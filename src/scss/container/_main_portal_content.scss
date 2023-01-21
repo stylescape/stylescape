@@ -1,0 +1,61 @@
+// Container Styles | Main | Content
+// ============================================================================
+
+
+.main_content {
+  @include reset_bleed;
+  @include flex_col;
+  @include color_scheme_light;
+  @include grid_col_12;
+  overflow-y: scroll;
+  max-width: 100%;
+  position: relative;
+  // pointer-events: auto;
+  grid-area: main_content;
+
+  // padding-left: calc($kyu_baseline_04 * 8);
+  // padding-right: calc($kyu_baseline_04 * 8);
+  // contain: none;
+  // container-type: inline-size;
+  // container-name: main_content;
+
+}
+
+.main_content[min-width~="400px"] {
+  @include grid_col_24;
+}
+
+// @container main_content (min-width: 400px) {
+//   .main_content {
+//     @include grid_col_24;
+//   }
+// }
+// @container container_main (min-width: 100px) {
+//   .main_content {
+//     margin-left: calc($kyu_baseline_04 * 8);
+//     margin-right: calc($kyu_baseline_04 * 8);
+//   }
+// }
+
+
+.main_content_article, .main_content article {
+  padding-top: $kyu_baseline_04;
+  padding-bottom: $kyu_baseline_04;
+  @include flex_col;
+  @include cell_col_span_full;
+  @include grid_col_12;
+  h1, h2, h3, h4, h5, h6 {
+    @include cell_col_span_full;
+  }
+  * {
+    @include cell_col_span_full;
+  }
+}
+
+.main_content section{
+  @include flex_col;
+}
+
+.main_content section article{
+  @include flex_col;
+}

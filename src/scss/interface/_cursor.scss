@@ -1,0 +1,26 @@
+body {
+    cursor: url('../cursor/default-white-20.png') 10 10, auto;  
+}
+a, button { 
+    cursor: url('../cursor/pointer-white-20.png') 10 10, auto;
+}
+p {
+    //cursor: url('static/cursor/text-white-20.png'), auto;
+}
+
+
+@mixin selection {
+    ::selection { @content; }    /*** Works on common browsers ***/
+    ::-moz-selection { @content; }   /*** Works on common browsers ***/
+    ::-o-selection { @content; }   /***For Other Browsers ***/
+    ::-webkit-selection { @content; }   /*** For Webkit ***/
+    ::-ms-selection { @content; }
+}
+
+@include selection {
+    background-color: $color_04;
+    color: $color_02;
+}
+
+
+

@@ -1,0 +1,82 @@
+// Container Styles | Ribbon | Navigation
+// ============================================================================
+
+
+.ribbon_nav {
+  @include icon_bar_horizontal;
+  @include hyperlink_clean;
+  @include justify_start;
+  align-content: center;
+  grid-area: ribbon_left;
+  @media screen and (min-width: $media_med) {
+    @include justify_center;
+    grid-area: ribbon_mid;
+  }
+}
+
+.ribbon_nav_button {
+  @include visible;
+  display: inherit;
+  @media screen and (min-width: $media_med) {
+    @include invisible;
+    display: none;
+  }
+}
+
+.ribbon_nav_list {
+  @include color_scheme_dark;
+  align-content: left;
+  // @include invisible;
+  // display: none;
+  // @include icon_bar_vertical;
+  position: absolute;
+  z-index: 9999;
+  top: $ribbon_height;
+  left: 0;
+  width: 100%;
+  padding-top: $ribbon_spacing;;
+  padding-bottom: 2*$ribbon_spacing;;
+
+  display: grid;
+  gap: 2 * $ribbon_spacing;
+  justify-items: center;
+  align-items: center;
+  // grid-template-columns: $kyu_baseline_04;
+  grid-auto-rows: min-content;
+  grid-auto-flow: row;
+  @include invisible;
+
+  &.active {
+    @include visible;
+  }
+
+  @media screen and (min-width: $media_med) {
+    @include visible;
+    @include icon_bar_horizontal;
+    display: inherit;
+    align-content: center;
+    width: auto;
+    top: auto;
+    left: auto;
+    padding:0;
+  }
+}
+
+.ribbon .ribbon_nav .ribbon_nav_list .ribbon_nav_list_item {
+  @include flex_col;
+  @include align_center;
+  @include justify_center;
+  padding-left: calc($ribbon_spacing / 2);
+  padding-right: calc($ribbon_spacing / 2);
+  height: 100%;
+}
+
+.ribbon_nav_list_item_text {
+  @include font_size_01;
+  @include color_scheme_dark;
+}
+
+// @media screen and (min-width: $media_med) {
+//   @include visible;
+//   opacity:1;
+// }
