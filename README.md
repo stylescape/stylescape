@@ -15,3 +15,10 @@
 
 
 ## About
+
+
+```sh
+npm i stylescape
+```
+
+- https://www.npmjs.com/package/stylescape
