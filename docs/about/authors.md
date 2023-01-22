@@ -1,6 +1,6 @@
 # Authors
 
-**rite** is an open-source project by [Scape Agency](https://www.scape.agency "Scape Agency website").
+**Stylescape** is an open-source project by [Scape Agency](https://www.scape.agency "Scape Agency website").
 
 ## Scape Agency
 
