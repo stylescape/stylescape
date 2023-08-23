@@ -3,7 +3,6 @@
 </p>
 <h1 align='center' style='border-bottom: none;'>Stylescape</h1>
 
-
 <br/>
 <details open="open">
 <summary>Table of Contents</summary>
@@ -12,14 +11,8 @@
 
 </details>
 
-
-
 ## About
 
-
-```sh
+``` sh
 npm i stylescape
 ```
-
-- https://www.npmjs.com/package/stylescape
-https://github.com/adobe/spectrum-css
