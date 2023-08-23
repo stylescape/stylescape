@@ -13,16 +13,18 @@
 // limitations under the License.
 
 
-// Character | Default
+// ============================================================================
+// Typography | Character | Bold
 // ============================================================================
 
-
-@mixin character_default {
-  //text-decoration: ;                      // text-decoration-line text-decoration-color text-decoration-style|initial|inherit;
-  text-decoration-color: $color_02;  // color | initial | inherit;
-  text-shadow: none;                        // h-shadow v-shadow blur-radius color|none|initial|inherit
-  text-emphasis: none;
-  -webkit-text-emphasis: none;
-  text-decoration: none;    
+@mixin character_bold {
+    // font-weight: bolder; /* Add the correct font weight in Chrome, Edge, and Safari */
+    @include character_normal;
+    // @include font_size_04;
+    @include character_default;
+    @include font_weight_600;
 }
-  
+
+b, strong {
+    @include character_bold;
+}
