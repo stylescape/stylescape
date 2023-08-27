@@ -1,23 +1,23 @@
 // webpack.common.ts
 
-// import webpack from 'webpack';
-import paths from './webpack.paths';
-// import CopyWebpackPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-// import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+// import webpack from "webpack";
+import paths from "./webpack.paths";
+// import CopyWebpackPlugin from "copy-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+// import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
 
 // Config | Common
 const configCommon: any = {
 
-    // mode: '',
+    // mode: "",
 
-    target: 'web',
+    target: "web",
 
     // Where webpack looks to start building the bundle
     entry: [
-        paths.src + '/index.ts'
-        // Widget: paths.src + '/index.ts'
+        paths.src + "/index.ts"
+        // Widget: paths.src + "/index.ts"
     ],
 
 
@@ -28,9 +28,9 @@ const configCommon: any = {
             // TypeScript
             {
                 test: /\.ts$/,
-                use: [{ loader: 'ts-loader' }],
+                use: [{ loader: "ts-loader" }],
                 // test: /\.tsx?$/,
-                // use: 'ts-loader',
+                // use: "ts-loader",
                 exclude: /node_modules/,
             },
 
@@ -38,30 +38,30 @@ const configCommon: any = {
             // {
             //     test: /\.js$/,
             //     exclude: /node_modules/,
-            //     use: ['babel-loader'],
+            //     use: ["babel-loader"],
             // },
 
             // Fonts and SVGs
             {
                 test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-                type: 'asset/inline',
+                type: "asset/inline",
             },
 
             // CSS, PostCSS, and Sass
             // {
             //     test: /\.(scss|css)$/,
-            //     use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+            //     use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
             // },
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
                 use: [
-                    'sass-to-string',
+                    "sass-to-string",
                     {
-                        loader: 'sass-loader',
+                        loader: "sass-loader",
                         options: {
                             sassOptions: {
-                                outputStyle: 'compressed',
+                                outputStyle: "compressed",
                             },
                         },
                     },
@@ -69,24 +69,24 @@ const configCommon: any = {
             },
             {
                 test: /\.css$/,
-                use: ['css-loader'],
+                use: ["css-loader"],
             },
 
             // Images
             {
                 test: /\.(?:ico|gif|png|jpg|jpeg|svg|gif)$/i,
-                type: 'asset/resource',
+                type: "asset/resource",
             },
 
             // Nunjucks
             {
                 test: /\.(njk|nunjucks|jinja)$/,
-                loader: 'nunjucks-loader',
+                loader: "nunjucks-loader",
                 // query: {
-                    // config: __dirname + '/src/nunjucks.config.js',
+                    // config: __dirname + "/src/nunjucks.config.js",
                     // jinjaCompat: true,
-                    // root: __dirname + '/path/to/templates',
-                    // quiet: true // Don't show the 'Cannot configure nunjucks environment before precompile' warning
+                    // root: __dirname + "/path/to/templates",
+                    // quiet: true // Don"t show the "Cannot configure nunjucks environment before precompile" warning
 
                 // }
             }
@@ -95,15 +95,15 @@ const configCommon: any = {
 
 
     resolve: {
-        modules: [paths.src, 'node_modules'],
+        modules: [paths.src, "node_modules"],
         extensions: [
-            '.ts', '.tsx',
-            '.js', '.jsx',
-            '.json',
-            '.scss'
+            ".ts", ".tsx",
+            ".js", ".jsx",
+            ".json",
+            ".scss"
         ],
         alias: {
-            '@': paths.src,
+            "@": paths.src,
             assets: paths.public,
         },
     },
@@ -111,15 +111,15 @@ const configCommon: any = {
     // Where webpack outputs the assets and bundles
     // output: {
     //     path: paths.build,
-    //     filename: '[name].bundle.js',
+    //     filename: "[name].bundle.js",
     // },
-    output: {
-        library: 'WidgetDeckGL',
-        libraryTarget: 'umd',
-        libraryExport: 'default',
-        path: paths.build,
-        filename: 'widget.js',
-    },
+    // output: {
+    //     library: "Stylescape",
+    //     libraryTarget: "umd",
+    //     libraryExport: "default",
+    //     path: paths.build,
+    //     filename: "widget.js",
+    // },
 
     // Customize the webpack build process
     plugins: [
@@ -134,9 +134,9 @@ const configCommon: any = {
         //         patterns: [
         //             {
         //                 from: paths.public,
-        //                 to: 'assets',
+        //                 to: "assets",
         //                 globOptions: {
-        //                     ignore: ['*.DS_Store'],
+        //                     ignore: ["*.DS_Store"],
         //                 },
         //                 noErrorOnMissing: true,
         //             },
@@ -145,15 +145,13 @@ const configCommon: any = {
         // ),
 
         // Generates an HTML file from a template
-        new HtmlWebpackPlugin(
-            {
-                title: 'NIJI',
-                // template: paths.src + '/template.html',
-                template: paths.src + '/index.html',
-                filename: 'index.html',
-            }
-        ),
-
+        // new HtmlWebpackPlugin(
+        //     {
+        //         title: "NIJI",
+        //         template: paths.src + "/index.html",
+        //         filename: "index.html",
+        //     }
+        // ),
 
     ],
 };
