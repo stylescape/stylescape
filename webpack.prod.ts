@@ -1,15 +1,15 @@
 // webpack.prod.ts
 
-import path from 'path'
-import { fileURLToPath } from 'url';
-import webpack from 'webpack';
+import path from "path"
+import { fileURLToPath } from "url";
+import webpack from "webpack";
 
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const path = require("path");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-// import paths from './webpack.paths';
-// import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-// import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+// import paths from "./webpack.paths";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+// import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,12 +19,12 @@ const __dirname = path.dirname(__filename);
 const configProduction: any = {
 
     // Set the mode to development or production
-    mode: 'production',
+    mode: "production",
 
-    entry: './src/scss/index.scss',
+    entry: "./src/scss/index.scss",
 
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, "dist"),
     },
 
     module: {
@@ -33,8 +33,8 @@ const configProduction: any = {
                 test: /\.scss$/,
                 use: [
                 MiniCssExtractPlugin.loader,
-                'css-loader',
-                'sass-loader'
+                "css-loader",
+                "sass-loader"
                 ],
             },
         ],
@@ -43,9 +43,12 @@ const configProduction: any = {
     plugins: [
         new MiniCssExtractPlugin(
             {
-                filename: 'index.css',
+                filename: "stylescape.css",
             }
         ),
     ],
 
 };
+
+export default configProduction
+
