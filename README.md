@@ -38,7 +38,7 @@ Stylescape is a modular, scalable, and customizable design framework written in 
 ## Requirements
 
 - Node.js v14 or above
-- npm v6 or above (or yarn)
+- npm v6 or above
   
 ---
 
@@ -50,10 +50,10 @@ You can install Stylescape using npm:
 npm install stylescape
 ```
 
-Or with yarn:
+Or via unpkg:
 
-```bash
-yarn add stylescape
+```html
+<link rel="stylesheet" href="https://unpkg.com/stylescape@0.0.10/dist/css/stylescape.css">
 ```
 
 ---
