@@ -27,48 +27,48 @@ $paper-size: (
 ) !default;
 
 
-// $kyu-page-min:      320px       !default;
-// $kyu-page-max:      960px       !default;
+// $q-page-min:      320px       !default;
+// $q-page-max:      960px       !default;
 
-$kyu-page-min:     180       !default;
-$kyu-page-med:     270    !default;
-$kyu-page-max:     360    !default;
+$q-page-min:     180       !default;
+$q-page-med:     270    !default;
+$q-page-max:     360    !default;
 
 
 // Layout | Page
 // ============================================================================
 
 
-@mixin kyu-page($vw_min, $vw_max, $kyu_min, $kyu_max) {
+@mixin q-page($vw_min, $vw_max, $q_min, $q_max) {
   $u1: unit($vw_min);
   $u2: unit($vw_max);
-  $u3: unit($kyu_min);
-  $u4: unit($kyu_max);
+  $u3: unit($q_min);
+  $u4: unit($q_max);
   @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
     & {
-      // width:  $kyu-page-min;
-      width:  calc(#{$kyu-page-min}*#{$kyu});
-      // font-size: calc(#{$kyu_min} * 16);
+      // width:  $q-page-min;
+      width:  calc(#{$q-page-min}*#{$q});
+      // font-size: calc(#{$q_min} * 16);
       @media screen and (min-width: $vw_min) {
-        width:  calc(#{$kyu-page-med}*#{$kyu});
+        width:  calc(#{$q-page-med}*#{$q});
 
-        // width:  calc(584*#{$kyu});
-        //   font-size: calc(16 * (#{$kyu_min} + #{strip-unit($kyu_max - $kyu_min)} * ((100vw - #{$vw_min}) / #{strip-unit($vw_max - $vw_min)})));
+        // width:  calc(584*#{$q});
+        //   font-size: calc(16 * (#{$q_min} + #{strip-unit($q_max - $q_min)} * ((100vw - #{$vw_min}) / #{strip-unit($vw_max - $vw_min)})));
       }
       @media screen and (min-width: $vw_max) {
-        // width: $kyu-page-max;
-        width:  calc(#{$kyu-page-max}*#{$kyu});
-        //   font-size: calc(#{$kyu_max} * 16);
+        // width: $q-page-max;
+        width:  calc(#{$q-page-max}*#{$q});
+        //   font-size: calc(#{$q_max} * 16);
       }
     }
   }
 }
 
 .page {
-  @include kyu-page($kyu-view-min, $kyu-view-max, $kyu-size-min, $kyu-size-max);
+  @include q-page($q-view-min, $q-view-max, $q-size-min, $q-size-max);
   margin: 0 auto;    
-  margin-top: $kyu*32;
-  // margin-bottom: $kyu *16;
+  margin-top: $q*32;
+  // margin-bottom: $q *16;
 }
  
 @media print {

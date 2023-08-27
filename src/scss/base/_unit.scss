@@ -32,40 +32,37 @@
 //   @if type-of($number) == 'number' and not unitless($number) {
 //     // @return $number / ($number * 0 + 1);
 //     @return calc($number / ($number * 0 + 1));
-
 //   }
 //   @return $number;
 // }
 @function strip-unit($value) {
-    // @return $value / ($value * 0 + 1);
     @return math.div($value, $value * 0 + 1);
-    // @return calc($value / ($value * 0 + 1));
 }
 
 // A Kyu is 1/16th of a Rem
-$kyu:         0.0625rem !default;
-$kyu_unit:    1.0000rem !default;
+$q:         0.0625rem !default;
+$q_unit:    1.0000rem !default;
 
 :root {
-    --kyu: $kyu;
+    --q: $q;
 }
 
-// @if $kyu_unit != rem and $kyu_unit != px {
-//   @error "`#{$kyu_unit}` is not a valid unit for $kyu_unit. Use `px` or `rem`.";
+// @if $q_unit != rem and $q_unit != px {
+//   @error "`#{$q_unit}` is not a valid unit for $q_unit. Use `px` or `rem`.";
 // }
 
-$kyu_min: 0.75px !default;
-$kyu_max: 1.50px !default;
-$kyu_dif: calc($kyu_max - $kyu_min);
+$q_min: 0.75px !default;
+$q_max: 1.50px !default;
+$q_dif: calc($q_max - $q_min);
 
-$font_min: calc(($kyu_unit / $kyu) * $kyu_min) !default;
-$font_max: calc(($kyu_unit / $kyu) * $kyu_max) !default;
+$font_min: calc(($q_unit / $q) * $q_min) !default;
+$font_max: calc(($q_unit / $q) * $q_max) !default;
 
 // @if $view_unit != px and $view_unit != em and $view_unit != rem {
 //   @error "`#{$view_unit}` is not a valid unit for $view_unit. Use `px`, `em` or `rem`.";
 // }
 
-@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+@mixin fluid_type($min-vw, $max-vw, $min-font-size, $max-font-size) {
     $u1: unit($min-vw);
     $u2: unit($max-vw);
     $u3: unit($min-font-size);
@@ -91,14 +88,11 @@ html {
 
 
 
-
-
-
 // html {
 //   @include fluid-type($min_width, $max_width, $min_font, $max_font);
 // }
 // html{
-//   font-size: calc($kyu_min + kyu_dif * (100vw ))
+//   font-size: calc($q_min + q_dif * (100vw ))
 // }
 // html {
 //   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
