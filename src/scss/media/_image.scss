@@ -14,11 +14,13 @@
 
 
 // ============================================================================
-// Elements | Image
+// Media | Image
 // ============================================================================
 
 img {
     border-style: none; /* Remove border when inside `a` element in IE 8/9/10 */
+    // max-width: 100%;
+    // height: auto;
 }
 
 
@@ -28,21 +30,51 @@ img {
     height:                   100%;
     // background-color:         $color_01;  /* Used if the image is unavailable */
     background-position:      50% 50%;
-    background-repeat:        no-repeat;        /* Do not repeat the image */
-    background-size:          cover;            /* Resize the background image to cover the entire container */
+    background-repeat: no-repeat !important; /* Do not repeat the image */
+    background-size: cover !important; /* Resize the background image to cover the entire container */
     -webkit-background-size:  cover;
     -moz-background-size:     cover;
     -o-background-size:       cover;
+
+    // position: relative !important;
+    // overflow: hidden !important;
+    // background-position: center !important;
+
 }
 
 
-// /* IMAGE
-// -------------------------------------------- */
-// img
-// {
-//     max-width: 100%;
-//     height: auto;
-// }
+@mixin image_parallax {
+    position: relative !important;
+    background-size: cover !important;
+    overflow: hidden;
+    background-attachment: fixed !important;
+    transition-duration: 0s;
+    -moz-transition-duration: 0s;
+    -webkit-transition-duration: 0s;
+    -o-transition-duration: 0s;
+}
+  
+@mixin image_fix-background {
+    background-attachment: fixed !important;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    overflow: hidden;
+    position: relative;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in;
+}
+
+
+// .background-size-inherit {background-size: inherit}
+// .background-attachment-inherit {background-attachment: inherit}
+// .background-position-left {background-position: left center;}
+// .background-position-left-bottom {background-position: left bottom;}
+// .background-position-right {background-position: right center;}
+// .background-position-top {background-position: center top !important;}
+// .up-down-ani {display:table; position: relative; -webkit-animation-name: up-down-animation; -webkit-animation-duration:.7s; -webkit-animation-timing-function: linear; -webkit-animation-delay:.7s; -webkit-animation-iteration-count: infinite; -webkit-animation-direction: alternate; -moz-animation-name: up-down-animation; -moz-animation-duration:.7s; -moz-animation-timing-function: linear; -moz-animation-delay:.7s; -moz-animation-iteration-count: infinite; -ms-animation-name: up-down-animation; -ms-animation-duration:.7s; -ms-animation-timing-function: linear; -ms-animation-delay:.7s; -ms-animation-iteration-count: infinite; -ms-animation-direction: alternate; -o-animation-direction: alternate; -o-animation-name: up-down-animation; -o-animation-duration:.7s; -o-animation-timing-function: linear; -o-animation-delay:.7s; -o-animation-iteration-count: infinite; -o-animation-direction: alternate; animation-direction: alternate; animation-name: up-down-animation; animation-duration:.7s; animation-timing-function: linear; animation-delay:.7s; animation-iteration-count: infinite; animation-direction: alternate; margin:0 auto;}
+// .background-position-x-50 {background-position-x: 50% !important;}
+  
 
 
 
@@ -156,21 +188,3 @@ img {
 //     &.is-#{$dimension}x#{$dimension}
 //       height: $dimension * 1px
 //       width: $dimension * 1px
-
-
-//       /* ===================================
-//       10. Background image
-//   ====================================== */
-  
-//   .parallax {position: relative !important; background-size: cover !important; overflow: hidden; background-attachment: fixed !important; transition-duration: 0s; -moz-transition-duration: 0s; -webkit-transition-duration: 0s; -o-transition-duration: 0s;}
-//   .fix-background {background-attachment: fixed !important; background-position: center center; background-repeat: no-repeat; background-size: cover !important; overflow: hidden; position: relative; transition-duration: 0.2s; transition-timing-function: ease-in;}
-//   .cover-background {position: relative !important; background-size: cover !important; overflow: hidden !important; background-position: center !important; background-repeat: no-repeat !important;}
-//   .background-size-inherit {background-size: inherit}
-//   .background-attachment-inherit {background-attachment: inherit}
-//   .background-position-left {background-position: left center;}
-//   .background-position-left-bottom {background-position: left bottom;}
-//   .background-position-right {background-position: right center;}
-//   .background-position-top {background-position: center top !important;}
-//   .up-down-ani {display:table; position: relative; -webkit-animation-name: up-down-animation; -webkit-animation-duration:.7s; -webkit-animation-timing-function: linear; -webkit-animation-delay:.7s; -webkit-animation-iteration-count: infinite; -webkit-animation-direction: alternate; -moz-animation-name: up-down-animation; -moz-animation-duration:.7s; -moz-animation-timing-function: linear; -moz-animation-delay:.7s; -moz-animation-iteration-count: infinite; -ms-animation-name: up-down-animation; -ms-animation-duration:.7s; -ms-animation-timing-function: linear; -ms-animation-delay:.7s; -ms-animation-iteration-count: infinite; -ms-animation-direction: alternate; -o-animation-direction: alternate; -o-animation-name: up-down-animation; -o-animation-duration:.7s; -o-animation-timing-function: linear; -o-animation-delay:.7s; -o-animation-iteration-count: infinite; -o-animation-direction: alternate; animation-direction: alternate; animation-name: up-down-animation; animation-duration:.7s; animation-timing-function: linear; animation-delay:.7s; animation-iteration-count: infinite; animation-direction: alternate; margin:0 auto;}
-//   .background-position-x-50 {background-position-x: 50% !important;}
-  
