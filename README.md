@@ -3,13 +3,6 @@
 </p>
 <h1 align='center' style='border-bottom: none;'>Stylescape</h1>
 
-<br/>
-<details open="open">
-<summary>Table of Contents</summary>
-
-- [About](#about)
-
-</details>
 
 # Stylescape Framework
 
