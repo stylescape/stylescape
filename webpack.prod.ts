@@ -17,6 +17,12 @@ const configProduction: any = {
     // Set the mode to development or production
     mode: "production",
 
+    performance: {
+        maxAssetSize: 5000000,
+        maxEntrypointSize: 5000000,
+        hints: 'error',
+
+    },
     // context: path.join(__dirname, "your-app"),
 
     entry: "./src/scss/index.scss",
@@ -30,7 +36,7 @@ const configProduction: any = {
         libraryTarget: "umd",
         libraryExport: "default",
         path: path.resolve(__dirname, "dist"),
-        filename: "stylescape.js",
+        filename: "js/stylescape.js",
     },
 
     module: {
@@ -39,17 +45,27 @@ const configProduction: any = {
                 test: /\.scss$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    // {
-                    //     loader: "css-loader",
-                    //     options: {
-                    //         importLoaders: 2,
-                    //         sourceMap: true,
-                    //         modules: false,
-                    //     },
-                    // },
-                    // "postcss-loader",
-                    "css-loader",
-                    "sass-loader"
+                    {
+                        loader: "css-loader",
+                        options: {
+                            sourceMap: true,
+                            // modules: false,
+                        },
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            sourceMap: true,
+                            // modules: false,
+                        },
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true,
+                            // modules: false,
+                        },
+                    },
                 ],
             },
         ],
@@ -58,21 +74,22 @@ const configProduction: any = {
     plugins: [
         new MiniCssExtractPlugin(
             {
-                filename: "stylescape.css",
+                filename: "css/stylescape.css",
             }
         ),
         new CopyWebpackPlugin(
             {
                 patterns: [
                     {
-                        // from: "static"
-                        from: "src/font"
+                        from: "src/font",
+                        to: "font"
                     }
                 ]
             }
         ),
     ],
 
+    devtool: 'source-map'
 };
 
 export default configProduction
