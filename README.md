@@ -3,9 +3,6 @@
 </p>
 <h1 align='center' style='border-bottom: none;'>Stylescape</h1>
 
-
-# Stylescape Framework
-
 ## A powerful design framework for concise and high-quality web development.
 
 Stylescape is a modular, scalable, and customizable design framework written in SCSS and TypeScript, aimed to bridge the gap between visual design and code. It provides a robust toolkit for creating elegant and consistent web experiences quickly and efficiently.
