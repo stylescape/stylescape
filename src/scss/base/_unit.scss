@@ -13,6 +13,10 @@
 // limitations under the License.
 
 
+// ============================================================================
+// Base | Unit
+// ============================================================================
+
 @use 'sass:math';
 
 // based on:
@@ -33,9 +37,9 @@
 //   @return $number;
 // }
 @function strip-unit($value) {
-  // @return $value / ($value * 0 + 1);
-  @return math.div($value, $value * 0 + 1);
-  // @return calc($value / ($value * 0 + 1));
+    // @return $value / ($value * 0 + 1);
+    @return math.div($value, $value * 0 + 1);
+    // @return calc($value / ($value * 0 + 1));
 }
 
 // A Kyu is 1/16th of a Rem
@@ -43,7 +47,7 @@ $kyu:         0.0625rem !default;
 $kyu_unit:    1.0000rem !default;
 
 :root {
-  --kyu: $kyu;
+    --kyu: $kyu;
 }
 
 // @if $kyu_unit != rem and $kyu_unit != px {
@@ -62,27 +66,27 @@ $font_max: calc(($kyu_unit / $kyu) * $kyu_max) !default;
 // }
 
 @mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
-  $u1: unit($min-vw);
-  $u2: unit($max-vw);
-  $u3: unit($min-font-size);
-  $u4: unit($max-font-size);
+    $u1: unit($min-vw);
+    $u2: unit($max-vw);
+    $u3: unit($min-font-size);
+    $u4: unit($max-font-size);
 
-  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
-    & {
-      font-size: $min-font-size;
-      @media screen and (min-width: $min-vw) {
-        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
-      }
-      @media screen and (min-width: $max-vw) {
-        font-size: $max-font-size;
-      }
+    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+        & {
+            font-size: $min-font-size;
+            @media screen and (min-width: $min-vw) {
+                font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+            }
+            @media screen and (min-width: $max-vw) {
+                font-size: $max-font-size;
+            }
+        }
     }
-  }
 }
 
 
 html {
-  @include fluid-type($media_min, $media_max, $font_min, $font_max);
+    @include fluid-type($media_min, $media_max, $font_min, $font_max);
 }
 
 
