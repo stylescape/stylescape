@@ -46,7 +46,6 @@ const configCommon: any = {
                 test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
                 type: "asset/inline",
             },
-
             // CSS, PostCSS, and Sass
             // {
             //     test: /\.(scss|css)$/,
