@@ -42,10 +42,10 @@
         "format": "npx prettier --write .",
         "lint": "eslint 'src/**/*.ts' || true",
         "prettify": "prettier --write 'src/**/*.ts'",
-        "dev": "node --loader ts-node/esm node_modules/.bin/webpack --mode development --config webpack.config.ts",
-        "build": "node --loader ts-node/esm node_modules/.bin/webpack --mode production --config webpack.config.ts",
-        "serve": "node --loader ts-node/esm node_modules/.bin/webpack serve --mode development --config webpack.config.ts",
-        "start": "node --loader ts-node/esm node_modules/.bin/webpack-dev-server --mode development --config webpack.config.ts"
+        "dev": "webpack --mode development --config webpack.config.js",
+        "build": "webpack --mode production --config webpack.config.js",
+        "serve": "webpack serve --mode development --config webpack.config.js",
+        "start": "webpack-dev-server --mode development --config webpack.config.js"
     },
     "devDependencies": {
         "@babel/core": "^7.22.10",
