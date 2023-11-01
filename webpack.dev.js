@@ -1,9 +1,12 @@
-// webpack.dev.ts
+// webpack.dev.js
 
-import paths from "./webpack.paths";
 import webpack from "webpack";
+import paths from './webpack.paths.js'
 
-const configDevelopment: any = {
+
+// Config | Development
+export const configDevelopment = {
+
     // Set the mode to development or production
     mode: "development",
     // Control how source maps are generated

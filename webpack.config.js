@@ -1,13 +1,13 @@
-// webpack.config.ts
+// webpack.config.js
 
 import { merge } from "webpack-merge";
-import configCommon from "./webpack.common";
-import configDevelopment from "./webpack.dev";
-import configProduction from "./webpack.prod";
+import configCommon from "./webpack.common.js";
+import configDevelopment from "./webpack.dev.js";
+import configProduction from "./webpack.prod.js";
 
 
 // Config | Merge
-const config = (env: any, args: { mode: any; }) => {
+export const config = (env, args) => {
     switch(args.mode) {
         case "development":
             return merge(configCommon, configDevelopment);

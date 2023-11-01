@@ -1,25 +1,17 @@
-// webpack.common.ts
+// webpack.common.js
 
-// import webpack from "webpack";
 import paths from "./webpack.paths";
-// import CopyWebpackPlugin from "copy-webpack-plugin";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-// import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
 
 // Config | Common
-const configCommon: any = {
-
-    // mode: "",
+const configCommon = {
 
     target: "web",
 
     // Where webpack looks to start building the bundle
-    entry: [
-        paths.src + "/index.ts"
-        // Widget: paths.src + "/index.ts"
-    ],
-
+    entry: {
+        index: paths.src + "/index.ts"
+    },
 
     // Determine how modules within the project are treated
     module: {
@@ -28,11 +20,15 @@ const configCommon: any = {
             // TypeScript
             {
                 test: /\.ts$/,
-                use: [{ loader: "ts-loader" }],
                 // test: /\.tsx?$/,
-                // use: "ts-loader",
+                use: [
+                    {
+                        loader: "ts-loader",
+                    }
+                ],
                 exclude: /node_modules/,
             },
+
 
             // JavaScript // remove babel from packages?
             // {

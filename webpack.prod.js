@@ -1,18 +1,17 @@
-// webpack.prod.ts
+// webpack.prod.js
 
-import webpack from "webpack";
 import path from "path"
 import { fileURLToPath } from "url";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-
 import CopyWebpackPlugin from "copy-webpack-plugin";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
 // Config | Production
-const configProduction: any = {
+export const configProduction = {
 
     // Set the mode to development or production
     mode: "production",
@@ -91,5 +90,6 @@ const configProduction: any = {
 
     devtool: 'source-map'
 };
+
 
 export default configProduction
