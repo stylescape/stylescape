@@ -1,6 +1,6 @@
 // webpack.common.js
 
-import paths from "./webpack.paths";
+import paths from "./webpack.paths.js";
 
 
 // Config | Common
