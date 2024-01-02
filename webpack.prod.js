@@ -1,6 +1,7 @@
 // webpack.prod.js
 
 import path from "path"
+import params from "params"
 import { fileURLToPath } from "url";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
@@ -29,7 +30,6 @@ export const configProduction = {
     // output: {
     //     path: path.resolve(__dirname, "dist"),
     // },
-
     output: {
         library: "Stylescape",
         libraryTarget: "umd",
@@ -73,7 +73,8 @@ export const configProduction = {
     plugins: [
         new MiniCssExtractPlugin(
             {
-                filename: "css/stylescape.css",
+                // filename: "css/stylescape.css",
+                filename: `css/${params.name}.css`,
             }
         ),
         new CopyWebpackPlugin(
