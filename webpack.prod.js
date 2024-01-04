@@ -1,7 +1,7 @@
 // webpack.prod.js
 
 import path from "path"
-import params from "params"
+import params from "./webpack.params.js";
 import { fileURLToPath } from "url";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
