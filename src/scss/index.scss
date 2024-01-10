@@ -13,7 +13,6 @@
 // limitations under the License.
 
 
-@charset "utf-8";
 
 /**
 * Stylescape
@@ -27,7 +26,6 @@
 * @license         Apache 2.0 License (https://github.com/scape-agency/stylescape/blob/main/LICENSE)
 */
 
-@use "sass:math";
 
 /**
 TABLE OF CONTENTS
@@ -38,15 +36,25 @@ TABLE OF CONTENTS
 */
 
 
-// .gl Libraries
+// Basics
 // ============================================================================
-@import "~unit.gl/src/scss/index.scss";
-@import "~hue.gl/src/scss/index.scss";
-$icongl_font_dir: "~icon.gl/src/font";
-@import "~icon.gl/src/scss/index.scss";
+
+@charset "utf-8";
+@use "sass:math";
 
 
+// Use .gl Libraries
+// ============================================================================
 
+@use "~unit.gl/src/scss/index.scss" as * ;
+@use "~hue.gl/src/scss/index.scss" as *;
+@use "~icon.gl/src/scss/index.scss" as * with (
+    $icongl_font_dir: "~icon.gl/src/font",
+);
+
+
+// Imports
+// ============================================================================
 
 // @import "base/base";
 @import "color.scss";
