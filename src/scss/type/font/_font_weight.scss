@@ -1,0 +1,81 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// Typography | Font | Weight
+// ============================================================================
+
+
+// Define Minimum and Maximum Font Weights
+$font_weight_min:  22; // Minimum font weight
+$font_weight_max: 188; // Maximum font weight
+
+// Define Minimum and Maximum Font Widths
+$font_weight_min: 300; // Minimum font width
+$font_weight_max: 500; // Maximum font width
+
+// Define Number of Steps
+$font_weight_steps: 9; // Number of steps
+
+// Calculate Step Size
+$font_weight_range: $font_weight_max - $font_weight_min;
+$font_weight_step_size: round($font_weight_range / $font_weight_steps);
+
+
+// Predefine mixins for a range of font weights
+@mixin font_weight($weight, $width: 400) {
+    font-weight: $weight;
+    font-variation-settings: "wght" $weight, "wdth" $width;
+}
+
+// Initialize an empty map for font weights
+$font_weight_map: ();
+
+// Loop to generate font-weight map entries and classes
+@for $i from 1 through $font_weight_steps {
+    $weight: $font_weight_min + ($font_weight_step_size * $i);
+  
+    // Ensure weight does not exceed max weight
+    $weight: if($weight > $font_weight_max, $font_weight_max, $weight);
+  
+    // Generate variable name and declare it
+    $var_name: "#{$i}00";
+    $var_value: $weight !global;
+
+    // Populate the map
+    $font_weights_map: map-merge($font_weight_map, ($var_name: $weight));
+  
+    // Generate Class
+    $class_name: "font_weight_#{$i}00";
+    .#{$class_name} {
+        @include font_weight($weight, 400);
+    }
+
+    // Break loop if maximum weight is reached
+    @if $weight == $font_weight_max {
+        @break;
+    }
+}
+
+// Create utility mixins based on the weight map
+@mixin font_weight_100 { @include font_weight(font_weight_map(100)); }
+@mixin font_weight_200 { @include font_weight(font_weight_map(200)); }
+@mixin font_weight_300 { @include font_weight(font_weight_map(300)); }
+@mixin font_weight_400 { @include font_weight(font_weight_map(400)); }
+@mixin font_weight_500 { @include font_weight(font_weight_map(500)); }
+@mixin font_weight_600 { @include font_weight(font_weight_map(600)); }
+@mixin font_weight_700 { @include font_weight(font_weight_map(700)); }
+@mixin font_weight_800 { @include font_weight(font_weight_map(800)); }
+@mixin font_weight_900 { @include font_weight(font_weight_map(900)); }
