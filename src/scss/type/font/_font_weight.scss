@@ -16,7 +16,7 @@
 // ============================================================================
 // Typography | Font | Weight
 // ============================================================================
-
+// Automated Font Weight definition for Variable Fonts
 
 // Define Minimum and Maximum Font Weights
 $font_weight_min:  22; // Minimum font weight
@@ -34,11 +34,15 @@ $font_weight_range: $font_weight_max - $font_weight_min;
 $font_weight_step_size: round($font_weight_range / $font_weight_steps);
 
 
+
+
 // Predefine mixins for a range of font weights
 @mixin font_weight($weight, $width: 400) {
     font-weight: $weight;
     font-variation-settings: "wght" $weight, "wdth" $width;
 }
+
+
 
 // Initialize an empty map for font weights
 $font_weight_map: ();
@@ -68,6 +72,8 @@ $font_weight_map: ();
         @break;
     }
 }
+
+
 
 // Create utility mixins based on the weight map
 @mixin font_weight_100 { @include font_weight(font_weight_map(100)); }
