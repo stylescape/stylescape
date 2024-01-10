@@ -171,15 +171,6 @@ async function main() {
         // console.log('TypeScript compilation completed.');
     
 
-        // Rename Ts
-        // --------------------------------------------------------------------
-
-        // await fileRenamer.renameFile(
-        //     path.join(CONFIG.path.js_output, 'index.js'),
-        //     path.join(CONFIG.path.js_output, `${packageConfig.name}.js`),
-        // )
-
-
         // Minify JavaScript
         // --------------------------------------------------------------------
         const jsMinifier = new JavaScriptMinifier();

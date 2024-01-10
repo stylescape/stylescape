@@ -72,15 +72,32 @@ $color_highlight: rgb(12, 143, 214);
 // Theme Color Variables
 // ============================================================================
 
+
+// Theme Color Map
+$theme_color_codes: (
+    "primary":    'N2409',  // Blue
+    "secondary":  'N0001',  // Grey
+    "success":    'N1655',  // Mint
+    "info":       'N2255',  // Sky
+    "warning":    'N0305',  // Orange
+    "danger":     'N3605',  // Red
+    "light":      'N0001',  // Grey
+    "dark":       'N0009'   // Grey
+) !default;
+
+
 // Palette Color Variables
-$primary:       hue_color('N2409') !default;  // Blue
-$secondary:     hue_color('N0001') !default;  // Grey
-$success:       hue_color('N1655') !default;  // Mint
-$info:          hue_color('N2255') !default;  // Sky
-$warning:       hue_color('N0305') !default;  // Orange
-$danger:        hue_color('N3605') !default;  // Red
-$light:         hue_color('N0001') !default;  // Grey
-$dark:          hue_color('N0009') !default;  // Grey
+$primary:       hue_color(map-get($theme_color_codes, "primary")) !default;
+$secondary:     hue_color(map-get($theme_color_codes, "secondary")) !default;
+$success:       hue_color(map-get($theme_color_codes, "success")) !default;
+$info:          hue_color(map-get($theme_color_codes, "info")) !default;
+$warning:       hue_color(map-get($theme_color_codes, "warning")) !default;
+$danger:        hue_color(map-get($theme_color_codes, "danger")) !default;
+$light:         hue_color(map-get($theme_color_codes, "light")) !default;
+$dark:          hue_color(map-get($theme_color_codes, "dark")) !default;
+
+
+
 
 
 // Theme Color Map
@@ -96,29 +113,29 @@ $theme_colors: (
 ) !default;
 
 
-$primary_text_emphasis:   hue_shade($primary, 60%) !default;
-$secondary_text_emphasis: hue_shade($secondary, 60%) !default;
-$success_text_emphasis:   hue_shade($success, 60%) !default;
-$info_text_emphasis:      hue_shade($info, 60%) !default;
-$warning_text_emphasis:   hue_shade($warning, 60%) !default;
-$danger_text_emphasis:    hue_shade($danger, 60%) !default;
+$primary_text_emphasis:   hue_shade(map-get($theme_color_codes, "primary"), 60%) !default;
+$secondary_text_emphasis: hue_shade(map-get($theme_color_codes, "secondary"), 60%) !default;
+$success_text_emphasis:   hue_shade(map-get($theme_color_codes, "success"), 60%) !default;
+$info_text_emphasis:      hue_shade(map-get($theme_color_codes, "info"), 60%) !default;
+$warning_text_emphasis:   hue_shade(map-get($theme_color_codes, "warning"), 60%) !default;
+$danger_text_emphasis:    hue_shade(map-get($theme_color_codes, "danger"), 60%) !default;
 $light_text_emphasis:     hue_color('N0005') !default;  // Grey
 $dark_text_emphasis:      hue_color('N0005') !default;  // Grey
 
-$primary_bg_subtle:       hue_tint($primary, 80%) !default;
-$secondary_bg_subtle:     hue_tint($secondary, 80%) !default;
-$success_bg_subtle:       hue_tint($success, 80%) !default;
-$info_bg_subtle:          hue_tint($info, 80%) !default;
-$warning_bg_subtle:       hue_tint($warning, 80%) !default;
-$danger_bg_subtle:        hue_tint($danger, 80%) !default;
-$light_bg_subtle:         hue_blend($gray-100, $white) !default;
+$primary_bg_subtle:       hue_tint(map-get($theme_color_codes, "primary"), 80%) !default;
+$secondary_bg_subtle:     hue_tint(map-get($theme_color_codes, "secondary"), 80%) !default;
+$success_bg_subtle:       hue_tint(map-get($theme_color_codes, "success"), 80%) !default;
+$info_bg_subtle:          hue_tint(map-get($theme_color_codes, "info"), 80%) !default;
+$warning_bg_subtle:       hue_tint(map-get($theme_color_codes, "warning"), 80%) !default;
+$danger_bg_subtle:        hue_tint(map-get($theme_color_codes, "danger"), 80%) !default;
+// $light_bg_subtle:         hue_blend($gray-100, $white) !default;
 $dark_bg_subtle:          hue_color('N0004') !default;  // Grey
 
-$primary-border-subtle:   hue_tint($primary, 60%) !default;
-$secondary-border-subtle: hue_tint($secondary, 60%) !default;
-$success-border-subtle:   hue_tint($success, 60%) !default;
-$info-border-subtle:      hue_tint($info, 60%) !default;
-$warning-border-subtle:   hue_tint($warning, 60%) !default;
-$danger-border-subtle:    hue_tint($danger, 60%) !default;
+$primary-border-subtle:   hue_tint(map-get($theme_color_codes, "primary"), 60%) !default;
+$secondary-border-subtle: hue_tint(map-get($theme_color_codes, "secondary"), 60%) !default;
+$success-border-subtle:   hue_tint(map-get($theme_color_codes, "success"), 60%) !default;
+$info-border-subtle:      hue_tint(map-get($theme_color_codes, "info"), 60%) !default;
+$warning-border-subtle:   hue_tint(map-get($theme_color_codes, "warning"), 60%) !default;
+$danger-border-subtle:    hue_tint(map-get($theme_color_codes, "danger"), 60%) !default;
 $light-border-subtle:     hue_color('N0002') !default;  // Grey
 $dark-border-subtle:      hue_color('N0004') !default;  // Grey
