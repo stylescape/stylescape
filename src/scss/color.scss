@@ -1,0 +1,124 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// Color | Schemes
+// =======================================================================
+
+$color_01:  #FFF;
+$color_02:  #000A0D;
+$color_03:  #00B6F2;
+$color_04:  #008FBF;
+
+$color_highlight: rgb(12, 143, 214);
+
+
+@mixin color_scheme_dark {
+    background-color:   $color_02;
+    fill:                $color_01;
+    stroke:             $color_01;
+    color:              $color_01;
+    border-color: $color_01;
+
+    :hover {
+        fill: grey;
+    }
+}
+
+@mixin color_scheme_light {
+    background-color:   $color_01;
+    fill:                $color_02;
+    stroke:             $color_02;
+    color:              $color_02;
+    border-color: $color_02;
+    :hover {
+        fill: grey;
+    }
+}
+
+
+// Theme Switcher
+// Toggles between light and dark themes.
+@function hue_theme_switcher($light_color_name, $dark_color_name, $is_dark_mode: false) {
+    $light_color: hue_color($light_color_name);
+    $dark_color: hue_color($dark_color_name);
+
+    @if type-of($light_color) != 'color' or type-of($dark_color) != 'color' {
+        @warn "One or both specified theme colors could not be found.";
+        @return null;
+    }
+
+    @if $is_dark_mode {
+        @return $dark_color;
+    } @else {
+        @return $light_color;
+    }
+}
+
+
+
+
+// Theme Color Variables
+// ============================================================================
+
+// Palette Color Variables
+$primary:       hue_color('N2409') !default;  // Blue
+$secondary:     hue_color('N0001') !default;  // Grey
+$success:       hue_color('N1655') !default;  // Mint
+$info:          hue_color('N2255') !default;  // Sky
+$warning:       hue_color('N0305') !default;  // Orange
+$danger:        hue_color('N3605') !default;  // Red
+$light:         hue_color('N0001') !default;  // Grey
+$dark:          hue_color('N0009') !default;  // Grey
+
+
+// Theme Color Map
+$theme_colors: (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      $light,
+    "dark":       $dark
+) !default;
+
+
+$primary_text_emphasis:   hue_shade($primary, 60%) !default;
+$secondary_text_emphasis: hue_shade($secondary, 60%) !default;
+$success_text_emphasis:   hue_shade($success, 60%) !default;
+$info_text_emphasis:      hue_shade($info, 60%) !default;
+$warning_text_emphasis:   hue_shade($warning, 60%) !default;
+$danger_text_emphasis:    hue_shade($danger, 60%) !default;
+$light_text_emphasis:     hue_color('N0005') !default;  // Grey
+$dark_text_emphasis:      hue_color('N0005') !default;  // Grey
+
+$primary_bg_subtle:       hue_tint($primary, 80%) !default;
+$secondary_bg_subtle:     hue_tint($secondary, 80%) !default;
+$success_bg_subtle:       hue_tint($success, 80%) !default;
+$info_bg_subtle:          hue_tint($info, 80%) !default;
+$warning_bg_subtle:       hue_tint($warning, 80%) !default;
+$danger_bg_subtle:        hue_tint($danger, 80%) !default;
+$light_bg_subtle:         hue_blend($gray-100, $white) !default;
+$dark_bg_subtle:          hue_color('N0004') !default;  // Grey
+
+$primary-border-subtle:   hue_tint($primary, 60%) !default;
+$secondary-border-subtle: hue_tint($secondary, 60%) !default;
+$success-border-subtle:   hue_tint($success, 60%) !default;
+$info-border-subtle:      hue_tint($info, 60%) !default;
+$warning-border-subtle:   hue_tint($warning, 60%) !default;
+$danger-border-subtle:    hue_tint($danger, 60%) !default;
+$light-border-subtle:     hue_color('N0002') !default;  // Grey
+$dark-border-subtle:      hue_color('N0004') !default;  // Grey
