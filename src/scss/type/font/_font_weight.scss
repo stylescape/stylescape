@@ -19,14 +19,16 @@
 // Automated Font Weight definition for Variable Fonts
 
 
+// Variables
+// ----------------------------------------------------------------------------
 
 // Define Minimum and Maximum Font Weights
-$font_weight_min:  22; // Minimum font weight
-$font_weight_max: 188; // Maximum font weight
+$font_weight_min:  22 !default; // Minimum font weight
+$font_weight_max: 188 !default; // Maximum font weight
 
 // Define Minimum and Maximum Font Widths
-$font_width_min: 300; // Minimum font width
-$font_width_max: 500; // Maximum font width
+$font_width_min: 300 !default; // Minimum font width
+$font_width_max: 500 !default; // Maximum font width
 
 // Define Number of Steps
 $font_weight_steps: 9; // Number of steps
@@ -37,14 +39,18 @@ $font_weight_step_size: round($font_weight_range / $font_weight_steps);
 
 
 
+// Utility Mixin
+// ----------------------------------------------------------------------------
+// Predefined mixin for a range of font weights
 
-// Predefine mixins for a range of font weights
 @mixin font_weight($weight, $width: 400) {
     font-weight: $weight;
     font-variation-settings: "wght" $weight, "wdth" $width;
 }
 
 
+// Map & Class
+// ----------------------------------------------------------------------------
 
 // Initialize an empty map for font weights
 $font_weight_map: ();
@@ -76,8 +82,10 @@ $font_weight_map: ();
 }
 
 
-
+// Mixins
+// ----------------------------------------------------------------------------
 // Create utility mixins based on the weight map
+
 @mixin font_weight_100 { @include font_weight(map.get($font_weight_map, "100")); }
 @mixin font_weight_200 { @include font_weight(map.get($font_weight_map, "200")); }
 @mixin font_weight_300 { @include font_weight(map.get($font_weight_map, "300")); }
@@ -89,13 +97,10 @@ $font_weight_map: ();
 @mixin font_weight_900 { @include font_weight(map.get($font_weight_map, "900")); }
 
 
+// Base
+// ----------------------------------------------------------------------------
 
-// @mixin font_weight_100 { @include font_weight(#{font_weight_map(100)}); }
-// @mixin font_weight_200 { @include font_weight(#{font_weight_map(200)}); }
-// @mixin font_weight_300 { @include font_weight(#{font_weight_map(300)}); }
-// @mixin font_weight_400 { @include font_weight(#{font_weight_map(400)}); }
-// @mixin font_weight_500 { @include font_weight(#{font_weight_map(500)}); }
-// @mixin font_weight_600 { @include font_weight(#{font_weight_map(600)}); }
-// @mixin font_weight_700 { @include font_weight(#{font_weight_map(700)}); }
-// @mixin font_weight_800 { @include font_weight(#{font_weight_map(800)}); }
-// @mixin font_weight_900 { @include font_weight(#{font_weight_map(900)}); }
+html {
+    @include font_weight_500;
+  }
+  
