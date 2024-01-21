@@ -17,11 +17,13 @@
 // StyleScape | Animations | Glow
 // ============================================================================
 
+@use "sass:math";
+
 
 // Glow Animation
 // ----------------------------------------------------------------------------
 @mixin animate_glow(
-    $color: #f00, 
+    $color: $animate_base_color_glow_01, 
     $start-shadow_size: 5px, 
     $end-shadow_size: 15px, 
     $duration: $animate_base_duration, 
@@ -41,13 +43,13 @@
 }
 
 .animate_glow {
-    @include animate_glow(#f00);
+    @include animate_glow($animate_base_color_glow_01);
 }
 
 // Pulse Glow Animation
 // ----------------------------------------------------------------------------
 @mixin animate_glow_pulse(
-    $color: #f00,
+    $color: $animate_base_color_glow_01,
     $duration: $animate_base_duration,
     $timing_function: ease-in-out,
     $iteration_count: $animate_base_iteration_count
@@ -65,13 +67,13 @@
 }
 
 .animate_glow_pulse {
-    @include animate_glow_pulse(#f00);
+    @include animate_glow_pulse($animate_base_color_glow_01);
 }
 
 // Soft Glow Animation
 // ----------------------------------------------------------------------------
 @mixin animate_glow_soft(
-    $color: #f00, 
+    $color: $animate_base_color_glow_01, 
     $duration: $animate_base_duration_slow,
     $timing_function: ease-in-out, 
     $iteration_count: $animate_base_iteration_count
@@ -89,13 +91,17 @@
 }
 
 .animate_glow_soft {
-    @include animate_glow_d(#f00);
+    @include animate_glow_soft($animate_base_color_glow_01);
 }
 
 // Multi-Color Glow Animation
 // ----------------------------------------------------------------------------
 @mixin animate_glow_multicolor(
-    $colors: (#f00, #0f0, #00f),
+    $colors: (
+        $animate_base_color_glow_01,
+        $animate_base_color_glow_02,
+        $animate_base_color_glow_03,
+    ),
     $duration: $animate_base_duration_slow,
     $timing_function: linear,
     $iteration_count: $animate_base_iteration_count
@@ -106,12 +112,14 @@
         $timing_function,
         $iteration_count,
     );
-    $total-colors: length($colors);
+    $total_colors: length($colors);
     @keyframes animate_glow_multicolor {
-        @for $i from 1 through $total-colors {
-            #{percentage(($i - 1) / $total-colors)}, 
-            #{percentage($i / $total-colors)} {
-                box-shadow: 0 0 10px 5px nth($colors, $i);
+        @for $i from 1 through $total_colors {
+            // #{percentage(($i - 1) / $total_colors)}, 
+            // #{percentage($i / $total_colors)} {
+            #{percentage(math.div(($i - 1), $total_colors))}, 
+            #{percentage(math.div($i, $total-colors))} {
+                    box-shadow: 0 0 10px 5px nth($colors, $i);
             }
         }
     }

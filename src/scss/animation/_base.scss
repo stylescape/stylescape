@@ -30,10 +30,11 @@ $animate_base_iteration_count: infinite !default;
 $animate_base_direction: normal !default;
 $animate_base_color_start: #ffffff !default;
 $animate_base_color_end: #000000 !default;
+$animate_base_color_glow_01: $N2405 !default;
+$animate_base_color_glow_02: $N3005 !default;
+$animate_base_color_glow_03: $N3605 !default;
 
 
-$color_start: #fff, 
-$color_end: #f00, 
 
 // Base Mixin
 // ----------------------------------------------------------------------------
@@ -42,15 +43,15 @@ $color_end: #f00,
     $name: none,
     $duration: $animate_base_duration,
     $timing_function: $animate_base_timing_function,
-    $iteration-count: $animate_base_iteration_count,
+    $iteration_count: $animate_base_iteration_count,
     $delay: $animate_base_delay,
     $direction: $animate_base_direction,
 ) {
-    // animation: $name $duration $timing_function $iteration-count $delay $direction;
+    // animation: $name $duration $timing_function $iteration_count $delay $direction;
     animation-name: $name;
     animation-duration: $duration;
     animation-timing-function: $timing_function;
-    animation-iteration-count: $iteration-count;
+    animation-iteration-count: $iteration_count;
     animation-delay: $delay;
     animation-direction: $direction;
 }
@@ -58,14 +59,14 @@ $color_end: #f00,
 // General Animation Classes
 // ----------------------------------------------------------------------------
 
-// Base classes for animations
-[class^="#{$icongl_prefix}animate_"],
-[class*=" #{$icongl_prefix}animate_"] {
-    // Base animation properties
-    display: inline-block;
-    backface-visibility: hidden;
-    perspective: 1000px; // Improve 3D animations
-}
+// // Base classes for animations
+// [class^="#{$icongl_prefix}animate_"],
+// [class*=" #{$icongl_prefix}animate_"] {
+//     // Base animation properties
+//     display: inline-block;
+//     backface-visibility: hidden;
+//     perspective: 1000px; // Improve 3D animations
+// }
 
 // Reduced Motion Preference
 // ----------------------------------------------------------------------------
@@ -173,92 +174,92 @@ $slideshow-time: 6s;
 
 
 
-// @mixin transition_hover_opacity {
-//   @include transition_duration_00;
-//   opacity: 1.00; 
-//   :hover {
-//     @include transition_duration_00;
-//     opacity: 0.50; 
-//   } 
-// }
+@mixin transition_hover_opacity {
+  @include transition_duration_00;
+  opacity: 1.00; 
+  :hover {
+    @include transition_duration_00;
+    opacity: 0.50; 
+  } 
+}
 
-// @mixin transition_duration($val) {
-//   transition:                     all $val ease-in-out;
-//   -moz-transition:                all $val ease-in-out;
-//   -ms-transition:                 all $val ease-in-out;
-//   -o-transition:                  all $val ease-in-out;
-//   -webkit-transition:             all $val ease-in-out;
-//   transition-duration:            all $val ease-in-out;
-//   -moz-transition-duration:       all $val ease-in-out;
-//   -ms-transition-duration:        all $val ease-in-out;
-//   -o-transition-duration:         all $val ease-in-out;
-//   -webkit-transition-duration:    all $val ease-in-out;
-// }
+@mixin transition_duration($val) {
+  transition:                     all $val ease-in-out;
+  -moz-transition:                all $val ease-in-out;
+  -ms-transition:                 all $val ease-in-out;
+  -o-transition:                  all $val ease-in-out;
+  -webkit-transition:             all $val ease-in-out;
+  transition-duration:            all $val ease-in-out;
+  -moz-transition-duration:       all $val ease-in-out;
+  -ms-transition-duration:        all $val ease-in-out;
+  -o-transition-duration:         all $val ease-in-out;
+  -webkit-transition-duration:    all $val ease-in-out;
+}
 
 
 
-// @mixin transition_duration_00 {
-//   transition:                     all $transition_duration_00 ease-in-out;
-//   -moz-transition:                all $transition_duration_00 ease-in-out;
-//   -ms-transition:                 all $transition_duration_00 ease-in-out;
-//   -o-transition:                  all $transition_duration_00 ease-in-out;
-//   -webkit-transition:             all $transition_duration_00 ease-in-out;
-//   transition-duration:            all $transition_duration_00 ease-in-out;
-//   -moz-transition-duration:       all $transition_duration_00 ease-in-out;
-//   -ms-transition-duration:        all $transition_duration_00 ease-in-out;
-//   -o-transition-duration:         all $transition_duration_00 ease-in-out;
-//   -webkit-transition-duration:    all $transition_duration_00 ease-in-out;  
-// }
+@mixin transition_duration_00 {
+  transition:                     all $transition_duration_00 ease-in-out;
+  -moz-transition:                all $transition_duration_00 ease-in-out;
+  -ms-transition:                 all $transition_duration_00 ease-in-out;
+  -o-transition:                  all $transition_duration_00 ease-in-out;
+  -webkit-transition:             all $transition_duration_00 ease-in-out;
+  transition-duration:            all $transition_duration_00 ease-in-out;
+  -moz-transition-duration:       all $transition_duration_00 ease-in-out;
+  -ms-transition-duration:        all $transition_duration_00 ease-in-out;
+  -o-transition-duration:         all $transition_duration_00 ease-in-out;
+  -webkit-transition-duration:    all $transition_duration_00 ease-in-out;  
+}
 
-// @mixin transition_duration_01 {
-//   transition:                     all $transition_duration_01 ease-in-out;
-//   -moz-transition:                all $transition_duration_01 ease-in-out;
-//   -ms-transition:                 all $transition_duration_01 ease-in-out;
-//   -o-transition:                  all $transition_duration_01 ease-in-out;
-//   -webkit-transition:             all $transition_duration_01 ease-in-out;
-//   transition-duration:            all $transition_duration_01 ease-in-out;
-//   -moz-transition-duration:       all $transition_duration_01 ease-in-out;
-//   -ms-transition-duration:        all $transition_duration_01 ease-in-out;
-//   -o-transition-duration:         all $transition_duration_01 ease-in-out;
-//   -webkit-transition-duration:    all $transition_duration_01 ease-in-out;  
-// }
+@mixin transition_duration_01 {
+  transition:                     all $transition_duration_01 ease-in-out;
+  -moz-transition:                all $transition_duration_01 ease-in-out;
+  -ms-transition:                 all $transition_duration_01 ease-in-out;
+  -o-transition:                  all $transition_duration_01 ease-in-out;
+  -webkit-transition:             all $transition_duration_01 ease-in-out;
+  transition-duration:            all $transition_duration_01 ease-in-out;
+  -moz-transition-duration:       all $transition_duration_01 ease-in-out;
+  -ms-transition-duration:        all $transition_duration_01 ease-in-out;
+  -o-transition-duration:         all $transition_duration_01 ease-in-out;
+  -webkit-transition-duration:    all $transition_duration_01 ease-in-out;  
+}
 
-// @mixin transition_duration_02 {
-//   transition:                     all $transition_duration_02 ease-in-out;
-//   -moz-transition:                all $transition_duration_02 ease-in-out;
-//   -ms-transition:                 all $transition_duration_02 ease-in-out;
-//   -o-transition:                  all $transition_duration_02 ease-in-out;
-//   -webkit-transition:             all $transition_duration_02 ease-in-out;
-//   transition-duration:            all $transition_duration_02 ease-in-out;
-//   -moz-transition-duration:       all $transition_duration_02 ease-in-out;
-//   -ms-transition-duration:        all $transition_duration_02 ease-in-out;
-//   -o-transition-duration:         all $transition_duration_02 ease-in-out;
-//   -webkit-transition-duration:    all $transition_duration_02 ease-in-out;  
-// }
+@mixin transition_duration_02 {
+  transition:                     all $transition_duration_02 ease-in-out;
+  -moz-transition:                all $transition_duration_02 ease-in-out;
+  -ms-transition:                 all $transition_duration_02 ease-in-out;
+  -o-transition:                  all $transition_duration_02 ease-in-out;
+  -webkit-transition:             all $transition_duration_02 ease-in-out;
+  transition-duration:            all $transition_duration_02 ease-in-out;
+  -moz-transition-duration:       all $transition_duration_02 ease-in-out;
+  -ms-transition-duration:        all $transition_duration_02 ease-in-out;
+  -o-transition-duration:         all $transition_duration_02 ease-in-out;
+  -webkit-transition-duration:    all $transition_duration_02 ease-in-out;  
+}
 
-// @mixin transition_duration_03 {
-//   transition:                     all $transition_duration_03 ease-in-out;
-//   -moz-transition:                all $transition_duration_03 ease-in-out;
-//   -ms-transition:                 all $transition_duration_03 ease-in-out;
-//   -o-transition:                  all $transition_duration_03 ease-in-out;
-//   -webkit-transition:             all $transition_duration_03 ease-in-out;
-//   transition-duration:            all $transition_duration_03 ease-in-out;
-//   -moz-transition-duration:       all $transition_duration_03 ease-in-out;
-//   -ms-transition-duration:        all $transition_duration_03 ease-in-out;
-//   -o-transition-duration:         all $transition_duration_03 ease-in-out;
-//   -webkit-transition-duration:    all $transition_duration_03 ease-in-out;  
-// }
+@mixin transition_duration_03 {
+  transition:                     all $transition_duration_03 ease-in-out;
+  -moz-transition:                all $transition_duration_03 ease-in-out;
+  -ms-transition:                 all $transition_duration_03 ease-in-out;
+  -o-transition:                  all $transition_duration_03 ease-in-out;
+  -webkit-transition:             all $transition_duration_03 ease-in-out;
+  transition-duration:            all $transition_duration_03 ease-in-out;
+  -moz-transition-duration:       all $transition_duration_03 ease-in-out;
+  -ms-transition-duration:        all $transition_duration_03 ease-in-out;
+  -o-transition-duration:         all $transition_duration_03 ease-in-out;
+  -webkit-transition-duration:    all $transition_duration_03 ease-in-out;  
+}
 
-// @mixin transition_duration_04 {
-//   transition:                     all $transition_duration_04 ease-in-out;
-//   -moz-transition:                all $transition_duration_04 ease-in-out;
-//   -ms-transition:                 all $transition_duration_04 ease-in-out;
-//   -o-transition:                  all $transition_duration_04 ease-in-out;
-//   -webkit-transition:             all $transition_duration_04 ease-in-out;
-//   transition-duration:            all $transition_duration_04 ease-in-out;
-//   -moz-transition-duration:       all $transition_duration_04 ease-in-out;
-//   -ms-transition-duration:        all $transition_duration_04 ease-in-out;
-//   -o-transition-duration:         all $transition_duration_04 ease-in-out;
-//   -webkit-transition-duration:    all $transition_duration_04 ease-in-out;
-// }
+@mixin transition_duration_04 {
+  transition:                     all $transition_duration_04 ease-in-out;
+  -moz-transition:                all $transition_duration_04 ease-in-out;
+  -ms-transition:                 all $transition_duration_04 ease-in-out;
+  -o-transition:                  all $transition_duration_04 ease-in-out;
+  -webkit-transition:             all $transition_duration_04 ease-in-out;
+  transition-duration:            all $transition_duration_04 ease-in-out;
+  -moz-transition-duration:       all $transition_duration_04 ease-in-out;
+  -ms-transition-duration:        all $transition_duration_04 ease-in-out;
+  -o-transition-duration:         all $transition_duration_04 ease-in-out;
+  -webkit-transition-duration:    all $transition_duration_04 ease-in-out;
+}
 

@@ -17,13 +17,15 @@
 // StyleScape | Animations | Shake
 // ============================================================================
 
+@use "sass:math";
+
 
 // Shake Animation
 // ----------------------------------------------------------------------------
 
 @mixin animate_shake(
     $amplitude: 15deg, 
-    $duration: $animate_base_duration / 2, 
+    $duration: math.div($animate_base_duration, 2),
     $timing_function: ease-in-out, 
     $iteration_count: $animate_base_iteration_count
 ) {
@@ -56,7 +58,7 @@
 
 @mixin animate_shake_slow(
     $amplitude: 10deg, 
-    $duration: $animate_base_duration_slow / 2,
+    $duration: math.div($animate_base_duration_slow, 2),
     $timing_function: ease-in-out, 
     $iteration_count: $animate_base_iteration_count
 ) {
@@ -81,7 +83,7 @@
 // ----------------------------------------------------------------------------
 @mixin animate_shake_horizontal(
     $distance: 10px, 
-    $duration: $animate_base_duration / 2, 
+    $duration: math.div($animate_base_duration, 2),
     $timing_function: ease-in-out, 
     $iteration_count: $animate_base_iteration_count
 ) {
