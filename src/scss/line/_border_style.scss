@@ -1,0 +1,59 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Borders | Style
+// ============================================================================
+
+
+// Border Style Mixins
+// ----------------------------------------------------------------------------
+
+@mixin border_style($style) {
+    border-style: $style !important;
+}
+
+@mixin border_transparent {
+    border-color: transparent !important;
+}
+
+// Mixin for Custom Border Style
+@mixin border_style_custom($style, $width, $color) {
+    border-style: $style;
+    border-width: $width;
+    border-color: $color;
+}
+
+
+// Border Style Classes
+// ----------------------------------------------------------------------------
+
+// Normal Border Styles
+.border_dotted      { @include border_style(dotted); }
+.border_dashed      { @include border_style(dashed); }
+.border_solid       { @include border_style(solid); }
+.border_double      { @include border_style(double); }
+
+// 3D Border Styles
+.border_groove      { @include border_style(groove); }
+.border_ridge       { @include border_style(ridge); }
+.border_inset       { @include border_style(inset); }
+.border_outset      { @include border_style(outset); }
+
+// Special Border Styles
+.border_none        { @include border_style(none); }
+.border_hidden      { @include border_style(hidden); }
+.border_transparent { @include border_transparent; }
+

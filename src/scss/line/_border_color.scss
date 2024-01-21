@@ -1,0 +1,51 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Borders | Color
+// ============================================================================
+
+
+
+
+
+// Mixin for Border Color
+@mixin border_color($color) {
+    border-color: $color !important;
+}
+
+
+
+// Applying Mixins for Border Colors
+.border_color_primary { @include border_color(blue); } // Example with primary color
+.border_color_secondary { @include border_color(green); } // Example with secondary color
+.border_color_alert { @include border_color(red); } // Example for alert/ warning
+
+
+
+// Gradient Border Mixin
+// ----------------------------------------------------------------------------
+
+// Create borders with gradient colors.
+@mixin gradient-border($colors, $direction: to right, $width: 1px) {
+    border: $width solid transparent;
+    background-image: linear-gradient($direction, $colors);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+.border_gradient {
+    @include gradient-border(purple, orange);
+}

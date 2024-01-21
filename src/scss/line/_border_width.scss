@@ -1,0 +1,92 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// StyleScape | Borders | Width
+// ============================================================================
+
+
+// Border Width mixin
+// ----------------------------------------------------------------------------
+
+// Mixin for Generic Border Width
+@mixin border_width($width) {
+    border-width: $width !important;
+}
+
+// Mixin for Specific Border Widths Based on Multiplier
+@mixin border_width_multiplier($multiplier) {
+    border-width: $q * 4 * $multiplier;
+}
+
+// Mixin for Individual Border Sides
+@mixin border_width_side(
+    $top: null,
+    $right: null,
+    $bottom: null,
+    $left: null,
+) {
+    @if $top != null    { border-top-width: $top !important; }
+    @if $right != null  { border-right-width: $right !important; }
+    @if $bottom != null { border-bottom-width: $bottom !important; }
+    @if $left != null   { border-left-width: $left !important; }
+}
+
+
+// Border Width
+// ----------------------------------------------------------------------------
+
+// Specific Multiplier-based Widths
+@mixin border_width_01  { @include border_width_multiplier(1); }
+@mixin border_width_02  { @include border_width_multiplier(2); }
+@mixin border_width_03  { @include border_width_multiplier(3); }
+@mixin border_width_04  { @include border_width_multiplier(4); }
+@mixin border_width_05  { @include border_width_multiplier(5); }
+@mixin border_width_06  { @include border_width_multiplier(6); }
+@mixin border_width_07  { @include border_width_multiplier(7); }
+@mixin border_width_08  { @include border_width_multiplier(8); }
+@mixin border_width_09  { @include border_width_multiplier(9); }
+@mixin border_width_10  { @include border_width_multiplier(10); }
+
+// Applying mixin for specific border width
+
+.border_width_01        { @include border_width_01; }
+.border_width_02        { @include border_width_02; }
+.border_width_03        { @include border_width_03; }
+.border_width_04        { @include border_width_04; }
+.border_width_05        { @include border_width_05; }
+.border_width_06        { @include border_width_06; }
+.border_width_07        { @include border_width_07; }
+.border_width_08        { @include border_width_08; }
+.border_width_09        { @include border_width_09; }
+.border_width_10        { @include border_width_10; }
+
+.border_thin            { @include border_width_01; }
+.border_medium          { @include border_width_02; }
+.border_thick           { @include border_width_03; }
+
+
+// No Border
+// ----------------------------------------------------------------------------
+
+@mixin no_border_top    { @include border_width_side($top: 0); }
+@mixin no_border_bottom { @include border_width_side($bottom: 0); }
+@mixin no_border_right  { @include border_width_side($right: 0); }
+@mixin no_border_left   { @include border_width_side($left: 0); }
+
+.no_border_top          { @include no_border_top; }
+.no_border_bottom       { @include no_border_bottom; }
+.no_border_right        { @include no_border_right; }
+.no_border_left         { @include no_border_left; }
