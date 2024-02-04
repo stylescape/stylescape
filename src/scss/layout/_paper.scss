@@ -16,13 +16,14 @@
 // ============================================================================
 // Layout | Paper
 // ============================================================================
-
+@use "../variables" as *;
+@use "../mixins" as *;
 $paper-size: (
-  "A4": 210,
-  "A3": 210,
-  "A2": 210,
-  "A1": 210,
-  "A0": 210
+    "A4": 210,
+    "A3": 210,
+    "A2": 210,
+    "A1": 210,
+    "A0": 210
 ) !default;
 
 
@@ -38,42 +39,42 @@ $q-page-max:     360    !default;
 // ============================================================================
 
 
-@mixin q-page($vw_min, $vw_max, $q_min, $q_max) {
-  $u1: unit($vw_min);
-  $u2: unit($vw_max);
-  $u3: unit($q_min);
-  $u4: unit($q_max);
-  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
-    & {
-      // width:  $q-page-min;
-      width:  calc(#{$q-page-min}*#{$q});
-      // font-size: calc(#{$q_min} * 16);
-      @media screen and (min-width: $vw_min) {
-        width:  calc(#{$q-page-med}*#{$q});
+@mixin q_page($vw_min, $vw_max, $q_min, $q_max) {
+    $u1: unit($vw_min);
+    $u2: unit($vw_max);
+    $u3: unit($q_min);
+    $u4: unit($q_max);
+    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+        & {
+        // width:  $q-page-min;
+        width:  calc(#{$q-page-min}*#{$q});
+        // font-size: calc(#{$q_min} * 16);
+        @media screen and (min-width: $vw_min) {
+            width:  calc(#{$q-page-med}*#{$q});
 
-        // width:  calc(584*#{$q});
-        //   font-size: calc(16 * (#{$q_min} + #{strip-unit($q_max - $q_min)} * ((100vw - #{$vw_min}) / #{strip-unit($vw_max - $vw_min)})));
-      }
-      @media screen and (min-width: $vw_max) {
-        // width: $q-page-max;
-        width:  calc(#{$q-page-max}*#{$q});
-        //   font-size: calc(#{$q_max} * 16);
-      }
+            // width:  calc(584*#{$q});
+            //   font-size: calc(16 * (#{$q_min} + #{strip-unit($q_max - $q_min)} * ((100vw - #{$vw_min}) / #{strip-unit($vw_max - $vw_min)})));
+        }
+        @media screen and (min-width: $vw_max) {
+            // width: $q-page-max;
+            width:  calc(#{$q-page-max}*#{$q});
+            //   font-size: calc(#{$q_max} * 16);
+        }
+        }
     }
-  }
 }
 
 .page {
-  @include q-page($q-view-min, $q-view-max, $q-size-min, $q-size-max);
-  margin: 0 auto;    
-  margin-top: $q*32;
-  // margin-bottom: $q *16;
+    @include q-page($q-view-min, $q-view-max, $q-size-min, $q-size-max);
+    margin: 0 auto;    
+    margin-top: $q*32;
+    // margin-bottom: $q *16;
 }
  
 @media print {
-  .page {
-    margin: 0 auto;    
-    width:  100mm;
-  }
+    .page {
+        margin: 0 auto;    
+        width:  100mm;
+    }
 }
  

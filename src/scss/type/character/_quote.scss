@@ -12,10 +12,56 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@use "../../variables" as *;
+@use "../../mixins" as *;
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
 
 // ============================================================================
 // Typography | Character | Quote
 // ============================================================================
+
+// Quote Styling Variables
+$quote-font-style: italic;
+$quote-color: #666; // A lighter shade for differentiation
+$quote-margin: 1em 0;
+$quote-padding: 0 1em;
+$quote-border-left: 4px solid #ddd; // A subtle left border for blockquotes
+
+
+// Mixin for base quote styles
+@mixin base-quote-style {
+    color: $quote-color;
+    font-style: $quote-font-style;
+    margin: $quote-margin;
+    padding: $quote-padding;
+}
+  
+
+
+// Mixin for inline quotes (`q` tag)
+@mixin inline-quote-style {
+    @include base-quote-style;
+
+    // Resetting default browser quote symbols
+    quotes: none;
+
+    &:before, &:after {
+    content: none;
+    }
+}
+
+
+// blockquote {
+//     @include blockquote-style;
+// }
+
+// q {
+//     @include inline-quote-style;
+// }
 
 blockquote,
 q {
@@ -27,3 +73,24 @@ q:before, q:after {
     content: '';
     content: none;
 }
+
+
+// Mixin for custom quote symbols
+@mixin custom-quote-symbols($open-quote: '“', $close-quote: '”') {
+    &:before {
+      content: $open-quote;
+      padding-right: 0.25em; // Space between the opening quote and text
+    }
+  
+    &:after {
+      content: $close-quote;
+      padding-left: 0.25em; // Space between the text and closing quote
+    }
+}
+  
+  // Applying custom symbols to inline quotes
+//   q {
+//     @include inline-quote-style;
+//     @include custom-quote-symbols;
+//   }
+  

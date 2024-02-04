@@ -16,12 +16,144 @@
 // ============================================================================
 // Layout | Display
 // ============================================================================
-
+@use "../variables" as *;
+@use "../mixins" as *;
+// Ensures elements with the [hidden] attribute are not displayed, with
+// better accessibility and compatibility.
 [hidden] {
-  display: none; /* Add the correct display in IE */
+    // Add the correct display in IE
+    display: none;
+    &:focus, &:active {
+        // Maintain `display: none` even if the element is focused or active.
+        display: none;
+    }
 }
 
 
+
+
+
+
+// Layout | Display Enhancements
+// Provides a more flexible and accessible approach to managing display properties.
+
+
+
+// Utility class for 'display: none' without using !important, promoting better specificity management.
+// .display_none {
+//     display: none;
+// }
 .display_none {
-  display: none !important;
+    display: none !important;
 }
+
+
+// Utility classes for other common display properties, expanding the toolkit for various layout needs.
+.display_block {
+    display: block;
+}
+
+.display_inline {
+    display: inline;
+}
+
+.display_inline-block {
+    display: inline-block;
+}
+
+.display_flex {
+    display: flex;
+}
+
+.display_grid {
+    display: grid;
+}
+  
+//   // Responsive display utilities, using a mixin to generate classes for different display properties at various breakpoints.
+//   $breakpoints: (
+//     'sm': 576px,
+//     'md': 768px,
+//     'lg': 992px,
+//     'xl': 1200px,
+//   );
+  
+//   @mixin responsive-display($property, $value) {
+//     @each $breakpoint, $bp-value in $breakpoints {
+//       @media (min-width: $bp-value) {
+//         &.#{$property}-#{$breakpoint} {
+//           display: $value;
+//         }
+//       }
+//     }
+//   }
+  
+//   // Example usage of the responsive display mixin for a 'none' display property.
+//   .hide-sm-up {
+//     @include responsive-display('hide', 'none');
+//   }
+  
+
+
+
+
+
+
+// Responsive Display Mixin with Conditions
+@mixin responsive-display($displays: ()) {
+    @each $breakpoint, $display in $displays {
+      $bp-value: map-get($breakpoints, $breakpoint);
+      @media (min-width: $bp-value) {
+        display: $display;
+      }
+    }
+  }
+  
+  // Usage Example: Hide on small devices, display as block on medium devices, and flex on large devices
+//   .element {
+//     @include responsive-display((
+//       'sm': 'none',
+//       'md': 'block',
+//       'lg': 'flex'
+//     ));
+//   }
+
+
+
+// Condition-Based Display Classes
+// For situations where display properties need to change based on user interaction or other conditions, we can create utility classes that can be toggled via JavaScript.
+
+// Condition-Based Display Utilities
+.is-visible {
+    display: block !important; // Ensure visibility
+  }
+  
+  .is-hidden {
+    display: none !important; // Ensure hidden
+  }
+  
+  // Usage with JavaScript:
+  // element.classList.toggle('is-visible');
+  // element.classList.toggle('is-hidden');
+  
+
+//   Visibility and Accessibility
+// In addition to controlling layout with display properties, managing visibility while considering accessibility is crucial. Elements that are visually hidden but should remain accessible to screen readers can use the .visually-hidden class, whereas .invisible can hide elements visually and from screen readers.
+
+
+// Visually Hidden but Accessible
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; // Ensure the element stays on one line
+  }
+  
+  // Completely Invisible
+  .invisible {
+    visibility: hidden;
+  }

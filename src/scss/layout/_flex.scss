@@ -1,4 +1,4 @@
-// Copyright 2023 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,11 +13,11 @@
 // limitations under the License.
 
 
-
 // ============================================================================
 // Layout | Flex
 // ============================================================================
-
+@use "../variables" as *;
+@use "../mixins" as *;
 // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 // https://gist.github.com/Farmatique/d88491ca4a8c75f3b39df6c71852bf5a
 
@@ -44,15 +44,15 @@
 // Flex
 
 @mixin flex {
-  -webkit-display: flex;
-  -moz-display: flex;
-  -ms-display: flex;
-  -o-display: flex;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
 }
 .flex { @include flex; }
 
@@ -62,32 +62,35 @@
 // flex-direction: row | row-reverse | column | column-reverse;
 
 @mixin flex_col {
-  @include flex;
-  -webkit-flex-direction: column;
-  -moz-box-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+    @include flex;
+    -webkit-flex-direction: column;
+    -moz-box-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }
+
 @mixin flex_col_rev {
-  @include flex;
-  -webkit-flex-direction: column-reverse;
-  -moz-box-direction: column-reverse;
-  -ms-flex-direction: column-reverse;
-  flex-direction: column-reverse;
+    @include flex;
+    -webkit-flex-direction: column-reverse;
+    -moz-box-direction: column-reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
 }
+
 @mixin flex_row {
-  @include flex;
-  -webkit-flex-direction: row;
-  -moz-box-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+    @include flex;
+    -webkit-flex-direction: row;
+    -moz-box-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
 }
+
 @mixin flex_row_rev {
-  @include flex;
-  -webkit-flex-direction: row-reverse;
-  -moz-box-direction: row-reverse;
-  -ms-flex-direction: row-reverse;
-  flex-direction: row-reverse;
+    @include flex;
+    -webkit-flex-direction: row-reverse;
+    -moz-box-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
 }
 
 

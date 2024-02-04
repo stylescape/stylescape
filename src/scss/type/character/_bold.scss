@@ -12,11 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@use "../../variables" as *;
+@use "../../mixins" as *;
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
 
 // ============================================================================
 // Typography | Character | Bold
 // ============================================================================
 
+// Mixin for applying bold styles, including any additional character styles that are part of your design system's "bold" definition
 @mixin character_bold {
     // font-weight: bolder; /* Add the correct font weight in Chrome, Edge, and Safari */
     @include character_normal;
@@ -25,6 +33,9 @@
     @include font_weight_600;
 }
 
+  // Apply the mixin to <b> and <strong> tags to ensure they use the defined bold styles
+
 b, strong {
     @include character_bold;
 }
+

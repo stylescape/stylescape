@@ -12,21 +12,79 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+@use "../../variables" as *;
 
 // ============================================================================
 // Typography | Character | Emphasis
 // ============================================================================
 
-@mixin character_emphasis {
-    //text-emphasis: none;
-    text-emphasis-style: filled dot;              // none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>
-    text-emphasis-color: $color_02;    // currentcolor | <color>
-    text-emphasis-position: over left;             // [ over | under ] && [ right | left ]
-    -webkit-text-emphasis: filled dot $color_02;
+
+// Variables for default emphasis styles
+$default-emphasis-style: filled dot;
+$default-emphasis-color: $color_02; // Replace with your default color variable
+$default-emphasis-position: over left;
+
+
+// Mixin for text emphasis with customizable parameters
+@mixin character_emphasis(
+    $style: $default-emphasis-style,
+    $color: $default-emphasis-color,
+    $position: $default-emphasis-position
+) {
+    text-emphasis-style: $style;
+    text-emphasis-color: $color;
+    text-emphasis-position: $position;
+    // Ensure compatibility with WebKit browsers
+    -webkit-text-emphasis: $style $color_02;
+    // -webkit-text-emphasis-style: $style;
+    // -webkit-text-emphasis-color: $color;
+    // -webkit-text-emphasis-position: $position;
 }
 
+// @mixin character_emphasis {
+//     //text-emphasis: none;
+//     text-emphasis-style: filled dot;              // none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>
+//     text-emphasis-color: $color_02;    // currentcolor | <color>
+//     text-emphasis-position: over left;             // [ over | under ] && [ right | left ]
+//     -webkit-text-emphasis: filled dot $color_02;
+// }
+
+
+
+// Utility classes for different emphasis styles
+.emphasis-dot {
+    @include character_emphasis(filled dot, $default-emphasis-color, $default-emphasis-position);
+}
+
+.emphasis-circle {
+    @include character_emphasis(filled circle, $default-emphasis-color, $default-emphasis-position);
+}
+
+.emphasis-double-circle {
+    @include character_emphasis(double-circle, $default-emphasis-color, $default-emphasis-position);
+}
+
+.emphasis-triangle {
+    @include character_emphasis(triangle, $default-emphasis-color, $default-emphasis-position);
+}
+
+.emphasis-sesame {
+    @include character_emphasis(sesame, $default-emphasis-color, $default-emphasis-position);
+}
+
+
+
+// Applying emphasis to italic elements
 em,
 i {
-    @include character_emphasis;
-    // font-style: italic;
+  @include character_emphasis;
+//   font-style: italic;
 }

@@ -1,4 +1,4 @@
-// Copyright 2023 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,23 +13,63 @@
 // limitations under the License.
 
 
+// ============================================================================
+// Accessibility
+// ============================================================================
+@use "../variables" as *;
+@use "../mixins" as *;
 
-/* # =================================================================
-   # Accessibility
-   # ================================================================= */
-
-/* Specify the progress cursor of updating elements */
+// Specify the progress cursor of updating elements
 [aria-busy='true'] {
-  cursor: progress;
+    cursor: progress;
 }
   
-/* Specify the pointer cursor of trigger elements */
+// Specify the pointer cursor of trigger elements
 [aria-controls] {
-  cursor: pointer;
+    cursor: pointer;
 }
 
-/* Specify the unstyled cursor of disabled, not-editable, or otherwise inoperable elements */
+// Specify the unstyled cursor of disabled, not-editable, or otherwise
+// inoperable elements
 [aria-disabled='true'] {
-  cursor: default;
+    cursor: default;
 }
-  
+
+
+
+
+// Accessibility Enhancements
+// Using ARIA attributes to improve cursor semantics for better user experience
+// in assistive technologies and for users with disabilities.
+
+// Mixin for Cursor Styles
+// Allows for easy expansion and reuse of cursor styles based on ARIA attributes.
+@mixin cursor_style($property, $value, $cursor) {
+    [#{'aria-' + $property}='#{ $value }'] {
+        cursor: $cursor;
+    }
+}
+
+// Progress Cursor for Busy Elements
+// Indicates an element is being updated or processed.
+@include cursor_style('busy', 'true', progress);
+
+// Pointer Cursor for Interactive Elements
+// Used for elements that control another element on the page.
+@include cursor_style('controls', '', pointer);
+
+// Default Cursor for Disabled Elements
+// Applied to elements that are disabled or not interactive.
+@include cursor_style('disabled', 'true', default);
+
+// Expanding Functionality
+// Here, you can add more cursor styles based on different ARIA attributes
+// to further enhance accessibility and user interaction cues.
+
+// Example: Not Allowed Cursor for Invalid Elements
+// Useful for form inputs or elements in an invalid state.
+@include cursor_style('invalid', 'true', not-allowed);
+
+// Example: Help Cursor for Elements with Descriptive Tooltips or Guidance
+// Can be applied to elements that provide additional information on hover.
+@include cursor_style('haspopup', 'true', help);

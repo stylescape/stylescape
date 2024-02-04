@@ -13,11 +13,15 @@
 // limitations under the License.
 
 
+@use '../../dev' as *;
+@use '../gap' as *;
+@use "~unit.gl/scss/index.scss" as *;
+// @use "~unit.gl/scss/variables" as *;
+
+
 // ============================================================================
 // Layout | Grid
 // ============================================================================
-
-
 
 // CSS Grid Layout Mixin:
 // Creates a grid layout with specified columns and gap.
@@ -42,9 +46,9 @@ $bleed: 2 * (map-get($baseline, 4));
 // $grid_width_min:   calc(100vw - $bleed);
 // $grid_width_max:   calc($media_xl - $bleed);
 
-$grid_columns_min:    6;
-$grid_columns_max:    12;
-$grid_columns_width:  1fr;
+$grid_columns_min: 6;
+$grid_columns_max: 12;
+$grid_columns_width: 1fr;
 
 // $grid_item_width_half_min: calc($grid_columns_min / 2);
 // $grid_item_width_half_max: calc($grid_columns_max / 2);
@@ -59,17 +63,20 @@ $grid_columns_width:  1fr;
 // ----------------------------------------------------------------------------
 
 @mixin grid {
-  display: grid;
-  @include gap_02;
-  // width: 100%;
-  position: relative;
+    display: grid;
+    // @include gap_02;
+    @include gap(2);
+    // width: 100%;
+    position: relative;
 }
 
 @mixin grid_inline {
-  display: inline-grid;
-  @include gap_02;
-  width: 100%;
-  position: relative;
+    display: inline-grid;
+    // @include gap_02;
+    @include gap(2);
+
+    width: 100%;
+    position: relative;
 }
 
 .grid { @include grid; }
@@ -80,8 +87,8 @@ $grid_columns_width:  1fr;
 // ----------------------------------------------------------------------------
 
 @mixin grid_col($val) {
-  @include grid;
-  grid-template-columns: repeat( $val, 1fr);
+    @include grid;
+    grid-template-columns: repeat( $val, 1fr);
 }
 
 @mixin grid_col_01 { @include grid_col( 1); }
@@ -136,14 +143,11 @@ $grid_columns_width:  1fr;
 
 
 
-// $media_s: 320px;  // Mobile
-// $media_m: 640px;  // Tablet
-// $media_l: 960px;  // Screen
 
 
 @mixin grid_row($val) {
-  @include grid;
-  grid-template-rows: repeat( $val, 1fr);
+    @include grid;
+    grid-template-rows: repeat( $val, 1fr);
 }
 
 @mixin grid_row_01 { @include grid_row( 1); }
@@ -201,10 +205,10 @@ $grid_columns_width:  1fr;
 
 
 .column-1-3 {
-  width: 33.3333%;
-  @media (max-width: 600px) {
-    width: 100%;
-  }
+    width: 33.3333%;
+    @media (max-width: 600px) {
+        width: 100%;
+    }
 }
 
 
@@ -245,14 +249,15 @@ $grid_columns_width:  1fr;
 
 
 .grid {
-  @include grid;
-  @include gap_04;
-  grid-auto-rows: minmax(10px, auto);
-  @media screen and (max-width: $media_xl) {
-    @include grid_col($grid_columns_min);
+    @include grid;
+    @include gap(4);
+
+    grid-auto-rows: minmax(10px, auto);
+    @media screen and (max-width: $media_xl) {
+        @include grid_col($grid_columns_min);
     }
-  @media screen and (min-width: $media_xl) {
-    @include grid_col($grid_columns_max);
+    @media screen and (min-width: $media_xl) {
+        @include grid_col($grid_columns_max);
     }
 }
 
@@ -262,19 +267,19 @@ $grid_columns_width:  1fr;
 
 
 @mixin grid_placeholder {
-  // display: grid;
-  // grid-template-columns: auto auto auto;
-  // gap: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  // padding: 10px
-  div {
-    background-color: #2196F3;
-    border: 1px solid black;
-    text-align: center;
-    font-size: $q * 12;
-    max-width: 100%;
-    overflow: hidden;
-  }
+    // display: grid;
+    // grid-template-columns: auto auto auto;
+    // gap: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    // padding: 10px
+    div {
+        background-color: #2196F3;
+        border: 1px solid black;
+        text-align: center;
+        font-size: $q * 12;
+        max-width: 100%;
+        overflow: hidden;
+    }
 }
 
 // @mixin grid_cell_placeholder {
@@ -285,7 +290,7 @@ $grid_columns_width:  1fr;
 // }
 
 .grid_placeholder {
-  @include grid_placeholder;
+    @include grid_placeholder;
 }
 
 

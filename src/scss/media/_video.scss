@@ -12,59 +12,88 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../type" as *;
+
 
 // ============================================================================
 // Media | Video
 // ============================================================================
 
-.videoWrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-}
-  
-.videoWrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-  
+// Basic SCSS for Video Elements
+// ----------------------------------------------------------------------------
+// This basic example styles the <video> element to maintain aspect ratio, add
+// a border, and ensure it's responsive.
 
 
-.video-wrapper {
+video {
+    max-width: 100%; // Ensure responsiveness
+    height: auto; // Maintain aspect ratio
+    border: 1px solid #ddd; // Add a light border for distinction
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional: Add a subtle shadow for depth
+
+    // Customizing the video controls
+    &:hover::controls {
+        background: rgba(0, 0, 0, 0.75); // Darken controls on hover for better visibility
+        color: #fff; // Change control icons/text color to white for contrast
+    }
+}
+
+.video_wrapper {
     height: 100%;
     overflow: hidden;
     position: absolute;
     width: 100%;
+
+    // position: relative;
+    // padding-bottom: 56.25%;
+    // /* 16:9 */
+    // padding-top: 25px;
+    // height: 0;
+
+    // background-color: #000;
+    // height: auto;
+    // left: 50%;
+    // min-height: 100%;
+    // min-width: 100%;
+    // position: absolute;
+    // top: 50%;
+    // -ms-transform: translate(-50%, -50%);
+    // -webkit-transform: translate(-50%, -50%);
+    // transform: translate(-50%, -50%);
+    // -moz-transform: translate(-50%, -50%);
+    // -o-transform: translate(-50%, -50%);
+    // width: auto;
+    // z-index: -3;
+  
+    iframe {
+        // height: 100%;
+        // left: 0;
+        // position: absolute;
+        // top: -5px !important;
+        // width: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+}
+
+.video-wrapper {
+
 }
 
 .htms-video {
-    background-color: #000;
-    height: auto;
-    left: 50%;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    width: auto;
-    z-index: -3;
+
 }
 
 .video-wrapper iframe {
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: -5px !important;
-    width: 100%;
+
 }
 
 .video-background {
@@ -76,3 +105,107 @@
     background: rgba(67,67,67,0.5)
 }
   
+
+
+
+
+
+// Advanced SCSS with Mixins for Responsive Aspect Ratios
+// ----------------------------------------------------------------------------
+// For a more advanced and flexible approach, especially for maintaining
+// specific aspect ratios (like 16:9), you can use SCSS mixins.
+
+
+// Mixin for maintaining aspect ratio
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: calc($height / $width) * 100%;
+  }
+  > .video-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Applying the mixin to the video container
+.video-container {
+  @include aspect-ratio(16, 9); // 16:9 aspect ratio
+
+  video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none; // Remove border for this approach
+  }
+}
+
+
+// Styling Video Overlays and Custom Controls
+// ----------------------------------------------------------------------------
+// If you're implementing custom controls or overlays (like play buttons or
+// progress bars), SCSS can help you manage their styles cohesively.
+
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); // Semi-transparent overlay
+    color: #fff;
+    font-size: 2em;
+    cursor: pointer;
+
+    // Hide by default and show on video hover or pause
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    video:hover + &, video:pause + & {
+        opacity: 1;
+    }
+}
+
+.custom-controls {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7); // Semi-transparent background for controls
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+
+    .play-button, .volume-control, .full-screen-button {
+        cursor: pointer;
+    }
+}
+
+
+// Responsive Video Embeds
+// ----------------------------------------------------------------------------
+// For embedded videos (like from YouTube or Vimeo), ensuring responsiveness
+// while maintaining aspect ratio is crucial.
+
+.embed-responsive {
+    @include aspect-ratio(16, 9); // 16:9 aspect ratio for embedded videos
+
+    iframe,
+    object,
+    embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}

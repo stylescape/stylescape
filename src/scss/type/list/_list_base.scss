@@ -1,4 +1,4 @@
-// Copyright 2023 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,82 +13,61 @@
 // limitations under the License.
 
 
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../../mixins" as *;
+@use "../character" as *;
+@use "../font" as *;
 
+// ============================================================================
 // Paragraph Styles | Lists
-// =======================================================================
+// ============================================================================
 
-  
+
+
+// List Styling Variables
+// ============================================================================
+
+$list-item-spacing: 1em; // Spacing between list items
+$nested-list-indent: calc($q * 8); // Indentation for nested lists
+
+
+
+// Mixins
+// ============================================================================
+
+// Mixin for resetting list styles
+@mixin list_base($type: none, $position: inside, $image: none) {
+    margin: 0;
+    padding: 0;
+    @include list_style_type($type);
+    @include list_style_position($position);
+    @include list_style_image($image);
+}
+
+// Mixin for nested list indentation
+@mixin list_nested {
+    padding-left: $nested-list-indent;
+}
+
+
+
+//  .list-style-none li {list-style: none;}
+
+
+// ============================================================================
+
 ol, ul, dl {
-  @include character_normal;
-  margin-bottom: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  list-style-type: none;
-  list-style-position: inside;
+    @include character_normal;
+    // @include list_reset;
+
+    margin-bottom: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    list-style-type: none;
+    list-style-position: inside;
 }
-
-// Unordered Lists
-// ----------------------------------------------------------------------------
-
-  // padding: 0;
-  // margin: 0;
-  // padding-bottom: 1em;
-  // padding-left: 1em;
-ul {
-  li {
-    ul {
-      padding-left: calc($q * 8);
-      li {
-        ul {
-          padding-left: calc($q * 8);
-          li {
-            ul {
-              padding-left: calc($q * 8);
-              li {
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-  
-  
-// Ordered Lists
-// ----------------------------------------------------------------------------
-
-ol {
-
-}
-
-ol li {
-
-}
-
-
-// Definition Lists
-// ----------------------------------------------------------------------------
-
-dl {
-
-}
-dl dt {
-    // font-size: 1.25rem;
-    // font-weight: 700;
-    // color: var(--ptf-color-black);
-}
-dl dd {
-    // font-size: .9375rem;
-    // line-height: 1.6;
-}
-
-
-
-
-
-
 
 
 //   ul.styled-list,
@@ -201,7 +180,6 @@ dl dd {
 
 
 // /* list style 1 */
-// .list-style-none li {list-style: none;}
 // .list-style-1 li {padding: 5px 0}
 
 // /* list style 2 */

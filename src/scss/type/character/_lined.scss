@@ -12,10 +12,42 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@use "../../variables" as *;
+@use "../../mixins" as *;
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
 
 // ============================================================================
 // Typography | Character | Lined
 // ============================================================================
+
+// Text Decoration Variables
+$default-line-style: solid;
+$default-line-thickness: 1px;
+$default-line-color: $color_02; // Assuming $color_02 is defined elsewhere in your styles
+$alternate-line-color: $color_03; // Assuming $color_03 is defined elsewhere in your styles
+
+
+// Mixin for base text decoration properties
+@mixin text-decoration-base($line: underline, $style: $default-line-style, $thickness: $default-line-thickness, $color: $default-line-color) {
+    text-decoration-line: $line;
+    text-decoration-style: $style;
+    text-decoration-thickness: $thickness;
+    text-decoration-color: $color;
+  }
+// Mixin for applying text-decoration with skip-ink and underline position
+@mixin text-decoration-advanced($line: underline, $skip-ink: auto, $position: under, $offset: auto) {
+    @include text-decoration-base($line);
+    text-decoration-skip-ink: $skip-ink;
+    text-underline-position: $position;
+    text-underline-offset: $offset;
+  }
+
+
+
 
 @mixin character_line {
     text-decoration-style: solid;             // solid | double | dotted | dashed | wavy | initial | inherit
@@ -62,3 +94,31 @@
     @include character_line_through;
     text-decoration-color: $color_03;  // color | initial | inherit;
 }
+
+
+
+// Utility Mixins for Common Decorations
+@mixin character-line-under($color: $default-line-color) {
+    @include text-decoration-advanced(underline, all, under, auto, $color);
+  }
+  
+  @mixin character-line-over($color: $default-line-color) {
+    @include text-decoration-base(overline, $default-line-style, $default-line-thickness, $color);
+  }
+  
+  @mixin character-line-through($color: $default-line-color) {
+    @include text-decoration-base(line-through, $default-line-style, $default-line-thickness, $color);
+  }
+  
+  // Mixins for Alternate Color Decorations
+  @mixin character-line-under-alt {
+    @include character-line-under($alternate-line-color);
+  }
+  
+  @mixin character-line-over-alt {
+    @include character-line-over($alternate-line-color);
+  }
+  
+  @mixin character-line-through-alt {
+    @include character-line-through($alternate-line-color);
+  }

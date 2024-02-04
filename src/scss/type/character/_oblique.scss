@@ -12,10 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@use "../../variables" as *;
+@use "../../mixins" as *;
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+
 
 // ============================================================================
 // Typography | Character | Oblique
 // ============================================================================
+
+// Variables for font size and weight
+$font-weight-oblique: 400; // Adjust based on your design system
+$font-size-oblique: 1rem; // Default font size for oblique text
+
 
 @mixin character_oblique {
     @include character_normal;
@@ -24,3 +37,15 @@
     @include character_default;
     font-style: oblique;
 }
+
+// Mixin for oblique font style with customizable weight and size
+// @mixin character-oblique($weight: $font-weight-oblique, $size: $font-size-oblique) {
+//     font-style: oblique;
+//     font-weight: $weight;
+//     font-size: $size;
+  
+//     // Include any additional default character styles from your design system
+//     // If `character_default` and `character_normal` are mixins in your setup, include them here:
+//     // @include character_normal;
+//     // @include character_default;
+// }

@@ -12,11 +12,54 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@use "../../variables" as *;
+@use "../../mixins" as *;
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
 
 // ============================================================================
 // Typography | Character | Script
 // ============================================================================
 /* https://gist.github.com/unruthless/413930 */
+
+// Typography Variables for Script
+$script-font-size: 75%;
+$script-line-height: 0;
+$sup-position: -0.5em;
+$sub-position: 0.5em;
+
+// Mixin for base script styles (applies to both sub and sup)
+@mixin base-script-style {
+  font-size: $script-font-size;
+  line-height: $script-line-height;
+  position: relative;
+  vertical-align: baseline;
+}
+
+// Mixin for subscript styles
+@mixin subscript-style {
+  @include base-script-style;
+  bottom: $sub-position; // Adjusted to 'bottom' for more semantic positioning
+}
+
+// Mixin for superscript styles
+@mixin superscript-style {
+  @include base-script-style;
+  top: $sup-position;
+}
+
+// sub {
+//     @include subscript-style;
+//   }
+  
+//   sup {
+//     @include superscript-style;
+//   }
+  
+
 
 sub,
 sup {
@@ -36,3 +79,23 @@ sub {
 sup {
     top: -0.5em;
 }
+
+
+// // Mixin for customizable script styles
+// @mixin custom-script-style($font-size: $script-font-size, $line-height: $script-line-height, $position-adjust: 0) {
+//     font-size: $font-size;
+//     line-height: $line-height;
+//     position: relative;
+//     vertical-align: baseline;
+//     top: $position-adjust;
+//   }
+  
+//   // Utility classes for different script styles
+//   .script-small {
+//     @include custom-script-style(65%, 1, 0); // Smaller font size and adjusted line height
+//   }
+  
+//   .script-large {
+//     @include custom-script-style(85%, 1, 0); // Larger font size and adjusted line height
+//   }
+  

@@ -12,10 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@use "../../variables" as *;
+@use "../../mixins" as *;
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
 
 // ============================================================================
 // Typography | Character | Hyperlink
 // ============================================================================
+
+
+// Hyperlink Variables
+$link-color: #007bff; // Default link color
+$link-hover-color: darken($link-color, 15%); // Darken for hover state
+$link-hover-opacity: 0.75; // Opacity for hover state
+$link-transition: all 0.2s ease-in-out; // Smooth transition for link effects
+
+
 
 
 @mixin hyperlink_clean {
@@ -34,6 +50,7 @@
     // transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
 }
 
+
 @mixin hyperlink_base {
     @include hyperlink_clean;
     :any-link           { @include hyperlink_clean; }
@@ -46,6 +63,9 @@
     :active             { @include hyperlink_clean; }
     :focus              { @include hyperlink_clean; }
 }
+
+
+
 
 @mixin hyperlink_normal {
     @include hyperlink_base;
@@ -67,3 +87,66 @@
 a {
     @include hyperlink_normal
 }
+
+
+// // Mixin for base hyperlink styles
+// @mixin hyperlink-base {
+//     text-decoration: none;
+//     outline: none;
+//     color: $link-color;
+//     background-color: transparent; // Remove the gray background on active links in IE 10
+//     cursor: pointer;
+//     transition: $link-transition;
+// }
+
+
+// // Mixin for hyperlink states
+// @mixin hyperlink-states {
+//     &:link, &:visited { // Style for normal and visited links
+//       @include hyperlink-base;
+//     }
+  
+//     &:hover {
+//       opacity: $link-hover-opacity;
+//       color: $link-hover-color;
+//     }
+  
+//     &:active, &:focus { // Style for active and focused links
+//       outline: none;
+//     }
+//   }
+  
+//   // Mixin for underlined hyperlinks
+//   @mixin hyperlink-underline {
+//     @include hyperlink-base;
+//     text-decoration: underline;
+//     text-decoration-thickness: 0.5px;
+  
+//     &:hover {
+//       text-decoration-color: $link-hover-color;
+//     }
+//   }
+  
+//   // Mixin for alternative underlined hyperlinks
+//   @mixin hyperlink-underline-alt {
+//     @include hyperlink-underline;
+//     text-decoration-style: dotted; // Alternative underline style
+//   }
+
+
+
+//   // Standard hyperlink styles
+// a {
+//     @include hyperlink-states;
+//   }
+  
+//   // Class for underlined hyperlinks
+//   a.underline {
+//     @include hyperlink-underline;
+//   }
+  
+//   // Class for alternative underlined hyperlinks
+//   a.underline-alt {
+//     @include hyperlink-underline-alt;
+//   }
+  

@@ -13,6 +13,15 @@
 // limitations under the License.
 
 
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+
 // ============================================================================
 // Typography | Character | Abbreviation
 // ============================================================================
@@ -53,3 +62,63 @@ abbr[title]:focus::after {
     font-size: 14px;
     padding: 3px 5px;
 }
+
+
+
+
+
+// // Abbreviation Styling Variables
+// $abbr-text-decoration: underline dotted;
+// $abbr-tooltip-bg: #1e1e1e; // Tooltip background color
+// $abbr-tooltip-color: #fff; // Tooltip text color
+// $abbr-tooltip-radius: 3px; // Tooltip border radius
+// $abbr-tooltip-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4); // Tooltip shadow
+// $abbr-tooltip-font-size: 14px; // Tooltip font size
+// $abbr-tooltip-padding: 3px 5px; // Tooltip padding
+
+// // Mixin for base abbreviation styles
+// @mixin abbr-base {
+//   display: inline;
+//   text-decoration: $abbr-text-decoration;
+// }
+
+// // Mixin for abbreviation tooltip styles
+// @mixin abbr-tooltip {
+//   position: relative;
+
+//   &:hover::after, &:focus::after {
+//     content: attr(title);
+//     position: absolute;
+//     left: 0;
+//     bottom: -30px; // Adjust based on your design
+//     white-space: nowrap;
+//     background-color: $abbr-tooltip-bg;
+//     color: $abbr-tooltip-color;
+//     border-radius: $abbr-tooltip-radius;
+//     box-shadow: $abbr-tooltip-shadow;
+//     font-size: $abbr-tooltip-font-size;
+//     padding: $abbr-tooltip-padding;
+//   }
+// }
+
+// abbr {
+//     @include abbr-base;
+  
+//     &[title] {
+//       @include abbr-tooltip;
+//     }
+//   }
+
+// // Mixin for touchscreen friendly styles
+// @mixin abbr-touchscreen {
+//     cursor: pointer; // Suggests interactivity
+//     &:active::after {
+//       // Tooltip styles could be replicated here if you want them to appear on tap
+//     }
+//   }
+  
+//   // Applying touchscreen friendly styles
+//   abbr[title] {
+//     @include abbr-touchscreen;
+//   }
+  

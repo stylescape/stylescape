@@ -12,12 +12,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@use "../../variables" as *;
+@use "../../mixins" as *;
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
 
 // ============================================================================
 // Typography | Character | Mark
 // ============================================================================
 
+// Color Variables
+$color-mark-text: #fff; // Fallback for white color
+$color-mark-bg: #ff0; // Fallback for a yellow highlight, typical for <mark>
+
+
+// Define your theme colors or import them if they are defined elsewhere
+$color-white: $color-mark-text !default; // Using !default allows overriding
+$color-accent-1: $color-mark-bg !default;
+
+// Mixin for <mark> styling
+@mixin mark_style($text-color: $color-white, $bg-color: $color-accent-1) {
+  color: $text-color;
+  background-color: $bg-color;
+  padding: 0.2em; // Adds padding for better readability
+  border-radius: 4px; // Optional: Adds rounded corners
+}
+
+// Applying the mixin to <mark> elements
 mark {
-    color: var(--ptf-color-white);
-    background-color: var(--ptf-accent-1);
+  @include mark_style;
 }

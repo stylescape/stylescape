@@ -12,62 +12,145 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
 
 // ============================================================================
 // Typography | Character | Dropcap
 // ============================================================================
 
+// Variables for common drop cap styles
+$dropcap-font-weight: 600;
+$dropcap-text-align: center;
+$dropcap-line-height: 1;
+$dropcap-margin: 0 20px 0 0;
+$dropcap-padding: 10px 0;
+$dropcap-border-radius: 50%;
+
+
+// Mixin for basic drop cap styles
+@mixin dropcap-base($font-size, $line-height: $dropcap-line-height, $font-weight: $dropcap-font-weight) {
+    float: left;
+    font-size: $font-size;
+    line-height: $line-height;
+    margin: $dropcap-margin;
+    text-align: $dropcap-text-align;
+    font-weight: $font-weight;
+}
+  
+// Mixin for additional styles like padding, borders, and border-radius
+@mixin dropcap-styling($padding: $dropcap-padding, $border: none, $border-radius: 0) {
+    padding: $padding;
+    border: $border;
+    border-radius: $border-radius;
+}
+
+
+// Standard Drop Cap
 .dropcap:first-child:first-letter {
-    float: left;
-    font-size: 50px;
-    line-height: auto;
-    margin: 0 20px 0 0;
-    text-align: center;
-    padding: 10px 0;
-    font-weight: 600;
+    @include dropcap-base(50px);
+    @include dropcap-styling;
 }
 
-.dropcap-big:first-child:first-letter {
-    float: left;
-    font-size: 110px;
-    line-height: 110px;
-    margin: 0 20px 0 0;
-    padding:0 8px; 
-    text-align: center;
-    font-weight: 600;
-    position: relative;
-}
+// Large Drop Cap with Underline
+.dropcap-large:first-child:first-letter {
+    @include dropcap-base(110px, 110px);
+    @include dropcap-styling(0 8px, 1px solid, 0);
 
-.dropcap-big:first-child:first-letter:before {
+    &:before {
+    content: "";
     position: absolute;
     border-bottom: 1px solid;
-    content: "";
-    display: block;
     width: 100%;
-    top: 55%;
+    top: 50%; // Adjusted for better visual centering
     left: 0;
+    }
 }
 
+// Block Drop Cap
 .dropcap-block:first-child:first-letter {
-    font-size: 30px;
+    @include dropcap-base(30px, 22px, 500);
     height: 55px;
-    line-height: 22px;
-    padding: 15px 0;
     width: 55px;
-    font-weight: 500;
+    @include dropcap-styling(15px 0, 0, 0);
     margin-top: 5px;
 }
 
+// Rounded Block Drop Cap
 .dropcap-block-round:first-child:first-letter {
-    border-radius:6px;
-    border:1px solid;
+    @include dropcap-base(30px, 22px, 500);
+    height: 55px;
+    width: 55px;
+    @include dropcap-styling(15px 0, 1px solid, 6px);
+    margin-top: 5px;
 }
 
+// Circular Drop Cap
 .dropcap-round:first-child:first-letter {
-    border-radius: 50%;
-    font-size: 35px;
-    padding: 15px;
-    width: 65px;
+    @include dropcap-base(35px, 32px);
     height: 65px;
-    line-height: 32px;
+    width: 65px;
+    @include dropcap-styling(15px, 0, $dropcap-border-radius);
 }
+
+
+// .dropcap:first-child:first-letter {
+//     float: left;
+//     font-size: 50px;
+//     line-height: auto;
+//     margin: 0 20px 0 0;
+//     text-align: center;
+//     padding: 10px 0;
+//     font-weight: 600;
+// }
+
+// .dropcap-big:first-child:first-letter {
+//     float: left;
+//     font-size: 110px;
+//     line-height: 110px;
+//     margin: 0 20px 0 0;
+//     padding:0 8px; 
+//     text-align: center;
+//     font-weight: 600;
+//     position: relative;
+// }
+
+// .dropcap-big:first-child:first-letter:before {
+//     position: absolute;
+//     border-bottom: 1px solid;
+//     content: "";
+//     display: block;
+//     width: 100%;
+//     top: 55%;
+//     left: 0;
+// }
+
+// .dropcap-block:first-child:first-letter {
+//     font-size: 30px;
+//     height: 55px;
+//     line-height: 22px;
+//     padding: 15px 0;
+//     width: 55px;
+//     font-weight: 500;
+//     margin-top: 5px;
+// }
+
+// .dropcap-block-round:first-child:first-letter {
+//     border-radius:6px;
+//     border:1px solid;
+// }
+
+// .dropcap-round:first-child:first-letter {
+//     border-radius: 50%;
+//     font-size: 35px;
+//     padding: 15px;
+//     width: 65px;
+//     height: 65px;
+//     line-height: 32px;
+// }

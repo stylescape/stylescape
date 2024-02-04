@@ -17,8 +17,11 @@
 // Layout | Layers
 // ============================================================================
 
+@use "../variables" as *;
+@use "../mixins" as *;
 
-/* z-index */
+
+// z-index
 .z-index-1111 {z-index:1111;}
 .z-index-111 {z-index:111;}
 .z-index-1 {z-index:1;}
@@ -31,43 +34,45 @@
 .z-index-minus2 {z-index:-2;}
 
 
-// Layer Map
-$z-layers: (
+// // Layer Map
+// $layers: (
 
+//     // Guides
+//     "guides":              9998,
+//     "guide_baseline":      3000,
+//     "guide_graph":         3100,
 
-  // Guides
-  "guides":              9998,
-  "guide_baseline":      3000,
-  "guide_graph":         3100,
+//     // Overlays
+//     "modal":               7000,
 
-  // Overlays
-  "modal":               7000,
+//     // Interface
+//     "ribbon":               5000,
+//     "interface":            4000,
+//     "control":              3000,
 
-  // Interface
-  "ribbon":               5000,
-  "interface":            4000,
-  "control":              3000,
+//     // Content
+//     "content":              2000,
 
-  // Content
-  "content":              2000,
+//     // Canvas
+//     "canvas":              -1000,
+//     // "canvas":              5000,
 
-  // Canvas
-  "canvas":              -1000,
-  // "canvas":              5000,
-
-  // 
-  "max":                  9999,
-  "med":                     0,
-  "min":                 -9999
-);
+//     // 
+//     "max":                  9999,
+//     "med":                     0,
+//     "min":                 -9999
+// );
 
 // Layer Function
-@function z($layer) {
-  @if not map-has-key($z-layers, $layer) {
-    @warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
-  }
-  @return map-get($z-layers, $layer);
-}
+// @function z($layer) {
+//     @if not map-has-key($z-layers, $layer) {
+//         @warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
+//     }
+//     @return map-get($z-layers, $layer);
+// }
+
+
+
 
 .canvas         {z-index: z("canvas");}
 .content        {z-index: z("content");}
@@ -81,11 +86,11 @@ $z-layers: (
 .guide_baseline {z-index: z("guide_baseline");}
 
 @mixin overlay {
-  position:       fixed;
-  min-width:      100%; 
-  width:          100%;
-  max-height:     $q * 16;
-  height:         $q * 16;
+    position:       fixed;
+    min-width:      100%; 
+    width:          100%;
+    max-height:     $q * 16;
+    height:         $q * 16;
 }
 
 

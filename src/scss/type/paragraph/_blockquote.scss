@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../../mixins" as *;
+@use "../character" as *;
+@use "../font" as *;
+@use "default" as *;
 
-// ============================================================================
-/* BLOCKQUOTE
-// ============================================================================
 blockquote
 {
     font-size: 1.875rem;
@@ -49,8 +52,73 @@ cite
     color: var(--ptf-color-3);
 }
 
-/* double quotes */ 
+// double quotes
 .special-char-small {font-size: 40px; line-height: 60px;}
 .special-char-medium{font-size: 80px; line-height: 120px;}
 .special-char-large {font-size: 140px; line-height: 120px;}
 .special-char-extra-large {font-size: 200px; line-height: 150px;}
+
+
+
+// Color Variables (assuming --ptf-color-black and --ptf-color-3 are defined in your CSS variables)
+$color-blockquote-text: var(--ptf-color-black);
+$color-cite-text: var(--ptf-color-3);
+
+// Typography Variables
+$blockquote-font-size: 1.875rem;
+$blockquote-font-weight: 700;
+$blockquote-line-height: 1.6;
+$cite-font-size: 0.875rem;
+$cite-line-height: 1.42;
+$cite-text-transform: uppercase;
+
+// Mixin for blockquote styles
+@mixin blockquote-style {
+
+
+    @include base-quote-style;
+    border-left: $quote-border-left;
+
+    // Resetting default browser quote symbols
+    quotes: none;
+
+    &:before, &:after {
+        content: none;
+    }
+
+    font-size: $blockquote-font-size;
+    font-weight: $blockquote-font-weight;
+    line-height: $blockquote-line-height;
+    position: relative;
+    margin: 0 0 1.875rem;
+    padding: 0;
+    color: $color-blockquote-text;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+
+
+
+// Mixin for cite styles
+@mixin cite-style {
+    font-size: $cite-font-size;
+    font-style: normal;
+    line-height: $cite-line-height;
+    display: block;
+    margin: 1rem 0 0;
+    text-transform: $cite-text-transform;
+    color: $color-cite-text;
+}
+
+
+blockquote {
+    @include blockquote-style;
+}
+
+cite {
+    @include cite-style;
+}
+  
