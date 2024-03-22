@@ -18,47 +18,40 @@
 // ============================================================================
 @use "../variables" as *;
 @use "../mixins" as *;
-// Single mixin for setting overflow properties
-@mixin overflow($x: auto, $y: auto) {
-    overflow-x: $x;
-    overflow-y: $y;
-}
+
+
+
 
 // Use this mixin only when necessary to override styles
-@mixin overflow-important($x: auto, $y: auto) {
+@mixin overflow_important($x: auto, $y: auto) {
     overflow-x: $x !important;
     overflow-y: $y !important;
 }
 
-
-
-// Improved Layout | Overflow Mixins
+// Overflow Mixins
+// ============================================================================
 // Provides a flexible mixin for setting overflow properties.
+
+// Single mixin for setting overflow properties
+// ----------------------------------------------------------------------------
+// General mixin for setting overflow properties
 
 @mixin overflow($x: null, $y: null) {
     @if $x != null and $y != null {
         overflow-x: $x;
         overflow-y: $y;
     } @else if $x != null {
-        overflow: $x;
+        overflow-x: $x;
     } @else if $y != null {
-        overflow: $y;
+        overflow-y: $y;
     }
 }
 
-
-// Utility classes using the improved mixin
-.overflow-hidden { @include overflow(hidden); }
-.overflow-visible { @include overflow(visible); }
-.overflow-scroll { @include overflow(scroll); }
-.overflow-auto { @include overflow(auto); }
-.overflow-hidden-visible { @include overflow(hidden, visible); } // For separate x and y overflows
-
-
-@mixin overflow_x_visible {
-    overflow: visible;
-    overflow-x: visible;
+@mixin overflow($x: auto, $y: auto) {
+    overflow-x: $x;
+    overflow-y: $y;
 }
+
 
 
 @mixin overflow_hidden {
@@ -80,6 +73,22 @@
 @mixin overflow_hidden_visible {
     overflow: hidden visible !important;
 }
+
+
+@mixin overflow_x_visible {
+    overflow: visible;
+    overflow-x: visible;
+}
+
+
+
+// Utility classes using the improved mixin
+.overflow-hidden { @include overflow(hidden); }
+.overflow-visible { @include overflow(visible); }
+.overflow-scroll { @include overflow(scroll); }
+.overflow-auto { @include overflow(auto); }
+.overflow-hidden-visible { @include overflow(hidden, visible); } // For separate x and y overflows
+
 
 
 .overflow_hidden { @include overflow_hidden; }

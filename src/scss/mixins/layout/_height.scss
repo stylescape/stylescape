@@ -1,0 +1,67 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// Layout | Height
+// ============================================================================
+
+@use "../../variables" as *;
+
+// Mixins for Common Height Patterns
+// ----------------------------------------------------------------------------
+// Mixins for reusable patterns like setting minimum, maximum, and fixed height.
+
+// Mixin for fixed height
+@mixin height_fixed($value) {
+    height: $value;
+}
+  
+// Mixin for min-height
+@mixin height_min($value) {
+    min-height: $value;
+}
+  
+// Mixin for max-height
+@mixin height_max($value) {
+    max-height: $value;
+}
+
+// Utility class for full-screen height.
+.full-screen {
+    height: 100vh;
+}
+
+// Utility classes for minimum heights, including a viewport height option.
+.minheight-fullscreen {
+    min-height: 100vh;
+}
+
+// Utility class for maximum height of 100%.
+.max-h-100 {
+    max-height: 100%;
+}
+
+// Generate utility classes for fixed heights.
+@each $size in (1px, 2px, 3px, 4px, 5px, 6px, 7px, 8px, 9px, 10px, 80px, 90px, 100px, 130px, 150px, 200px, 250px, 300px, 350px, 400px, 450px, 500px, 550px, 600px, 650px, 700px, 750px, 800px, 850px) {
+    .h-#{$size} {
+        height: $size;
+    }
+}
+
+@each $height in (100px, 200px, 300px, 400px, 500px, 600px, 700px) {
+    .min-h-#{$height} {
+        @include min-height($height);
+    }
+}
