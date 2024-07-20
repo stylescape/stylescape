@@ -3,7 +3,7 @@
 </p>
 <h1 align='center' style='border-bottom: none;'>Stylescape</h1>
 
-## A powerful design framework for concise and high-quality web development.
+## A powerful design framework for concise and high-quality web development
 
 Stylescape is a modular, scalable, and customizable design framework written in SCSS and TypeScript, aimed to bridge the gap between visual design and code. It provides a robust toolkit for creating elegant and consistent web experiences quickly and efficiently.
 
@@ -67,7 +67,6 @@ import 'stylescape/dist/stylescape.css';
 import 'stylescape/dist/stylescape.js';
 ```
 
-
 ---
 
 ## Documentation
@@ -80,21 +79,16 @@ For more detailed setup and usage instructions, refer to our official website: [
 
 Contributions are always welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for ways to get started.
 
-
 ---
 
 Made with ❤️ by Scape Agency. Visit us at [scape.agency](https://scape.agency).
 
-
 # scss-style-guide
 
-
-
-
-
-https://github.com/Famolus/awesome-sass
+<https://github.com/Famolus/awesome-sass>
 
 ## Style Guides
+
 - [Hugo Giraudel's Sass Guidelines](https://sass-guidelin.es/) - Guidelines for writing sane, maintainable and scalable Sass.
 - [BigCommerce Sass Coding Guidelines](https://github.com/bigcommerce/sass-style-guide) - Guidelines in use at BigCommerce.
 - [Airbnb Sass and CSS Style Guide](https://github.com/airbnb/css) - Sass and CSS style guide by Airbnb.
