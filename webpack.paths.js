@@ -24,7 +24,6 @@ const __dirname = path.dirname(__filename);
  * Paths Webpack Configuration
  * 
  * Defines common paths used throughout the Webpack configuration.
- * 
  * - `src`: Path to the source files.
  * - `build`: Path where production build files will be placed.
  * - `public`: Path to public/static files to be copied to the build folder.
