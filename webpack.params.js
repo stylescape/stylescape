@@ -11,7 +11,6 @@
 // ============================================================================
 
 
-
 /**
  * Parameters Webpack Configuration
  *
@@ -21,8 +20,6 @@ const configParams = {
 
     // Project Name
     name: "stylescape",
-
-
 
 };
 
