@@ -78,7 +78,6 @@ export const configDevelopment = {
     ],
 
 
-
     // Configuration | Performance
     // ========================================================================
     // Performance settings to control webpack"s hints
@@ -102,7 +101,6 @@ export const configDevelopment = {
 
     // Enable high-quality source maps for better debugging experience.
     devtool: "eval-source-map",
-
     // devtool: "inline-source-map",
 
 };
