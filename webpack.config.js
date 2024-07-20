@@ -26,7 +26,6 @@ import configProduction from "./webpack.prod.js";
  * @return {object} - The merged Webpack configuration object.
  * @throws {Error} - Throws an error if an invalid build mode is specified.
  */
-//  export const config = (env, args) => {
 const config = (env, args) => {
     switch (args.mode) {
 
