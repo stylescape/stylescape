@@ -5,12 +5,12 @@
 // Imports
 // ============================================================================
 
-import path from "path"
-import { fileURLToPath } from "url";
+// import path from "path"
+// import { fileURLToPath } from "url";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import CopyWebpackPlugin from "copy-webpack-plugin";
+// import CopyWebpackPlugin from "copy-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
+// import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
 
@@ -19,8 +19,8 @@ import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 // ============================================================================
 
 // Resolve current directory
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 
 /**
@@ -170,7 +170,6 @@ export const configProduction = {
     // This option omits column mappings for smaller file sizes, but preserves
     // line mappings for error reports.
     // devtool: "source-map",
-
 
 };
 
