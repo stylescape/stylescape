@@ -86,7 +86,6 @@ const configCommon = {
     // Determine how modules within the project are treated.
     module: {
         // entry: "./js/index.js",
-        // ...
         // target: ["web", "es5"],
         rules: [
 
