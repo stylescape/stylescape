@@ -15,13 +15,16 @@
 @use "../dev" as *;
 @use "../variables" as *;
 @use "../mixins" as *;
+
 // ============================================================================
 // StyleScape | Borders | Effects
 // ============================================================================
 
 
-
-// Hover Effect on Border
+/// Class for adding a hover effect on the border.
+/// The border color changes to blue on hover.
+/// @example
+/// .element { @extend .border_hover_effect; }
 .border_hover_effect {
     transition: border-color 0.3s ease;
 
@@ -30,11 +33,13 @@
     }
 }
 
-
-// Animated Border:
-// Add animation to the border for interactive UI elements.
-
-@mixin animated-border($duration: 0.5s, $color: blue) {
+/// Mixin for creating an animated border.
+/// The border width increases on hover.
+/// @param {Time} $duration - The duration of the border width transition.
+/// @param {Color} $color - The border color.
+/// @example
+/// .element { @include border_animated(0.5s, red); }
+@mixin border_animated($duration: 0.5s, $color: blue) {
     border: 2px solid $color;
     transition: border-width $duration ease;
 
@@ -43,19 +48,26 @@
     }
 }
 
+/// Class for applying an animated border effect to an element.
+/// The border width increases on hover, using the default duration and color.
+/// @example
+/// .element { @extend .border_animated; }
 .border_animated {
-    @include animated-border();
+    @include border_animated();
 }
 
 
-// Dotted Border Animation:
-// Create an animated dotted border.
-
+/// Class for creating an animated dotted border.
+/// The border color alternates between transparent and blue.
+/// @example
+/// .element { @extend .border_dotted-animated; }
 .border_dotted-animated {
     border-style: dotted;
     animation: dotted-border-animation 1s linear infinite;
 }
 
+/// Keyframes for the dotted border animation.
+/// The border color alternates between transparent and blue.
 @keyframes dotted-border-animation {
     0% { border-color: transparent; }
     50% { border-color: blue; }
