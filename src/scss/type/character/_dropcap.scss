@@ -25,7 +25,7 @@
 // Typography | Character | Dropcap
 // ============================================================================
 
-// Variables for common drop cap styles
+/// Variables for common drop cap styles.
 $dropcap-font-weight: 600;
 $dropcap-text-align: center;
 $dropcap-line-height: 1;
@@ -34,8 +34,19 @@ $dropcap-padding: 10px 0;
 $dropcap-border-radius: 50%;
 
 
-// Mixin for basic drop cap styles
-@mixin dropcap-base($font-size, $line-height: $dropcap-line-height, $font-weight: $dropcap-font-weight) {
+/// Mixin for basic drop cap styles.
+/// 
+/// This mixin applies basic styling to drop caps, including font size, line height, 
+/// margin, text alignment, and font weight.
+/// 
+/// @param {Length} $font-size - Font size for the drop cap.
+/// @param {Number} $line-height - Line height for the drop cap (default: `$dropcap-line-height`).
+/// @param {Number} $font-weight - Font weight for the drop cap (default: `$dropcap-font-weight`).
+@mixin dropcap-base(
+    $font-size,
+    $line-height: $dropcap-line-height,
+    $font-weight: $dropcap-font-weight
+) {
     float: left;
     font-size: $font-size;
     line-height: $line-height;
@@ -44,21 +55,35 @@ $dropcap-border-radius: 50%;
     font-weight: $font-weight;
 }
   
-// Mixin for additional styles like padding, borders, and border-radius
-@mixin dropcap-styling($padding: $dropcap-padding, $border: none, $border-radius: 0) {
+/// Mixin for additional drop cap styles.
+/// 
+/// This mixin allows for further customization of drop caps by adding padding, borders, 
+/// and border-radius.
+/// 
+/// @param {Length} $padding - Padding for the drop cap (default: `$dropcap-padding`).
+/// @param {String} $border - Border for the drop cap (default: `none`).
+/// @param {Length} $border-radius - Border radius for the drop cap (default: `0`).
+@mixin dropcap-styling(
+    $padding: $dropcap-padding,
+    $border: none,
+    $border-radius: 0
+) {
     padding: $padding;
     border: $border;
     border-radius: $border-radius;
 }
 
-
-// Standard Drop Cap
+/// Standard Drop Cap
+/// 
+/// Applies the standard drop cap style to the first letter of the first child element.
 .dropcap:first-child:first-letter {
     @include dropcap-base(50px);
     @include dropcap-styling;
 }
 
-// Large Drop Cap with Underline
+/// Large Drop Cap with Underline
+/// 
+/// Applies a large drop cap style with an underline to the first letter of the first child element.
 .dropcap-large:first-child:first-letter {
     @include dropcap-base(110px, 110px);
     @include dropcap-styling(0 8px, 1px solid, 0);
@@ -73,7 +98,9 @@ $dropcap-border-radius: 50%;
     }
 }
 
-// Block Drop Cap
+/// Block Drop Cap
+/// 
+/// Applies a block-style drop cap to the first letter of the first child element.
 .dropcap-block:first-child:first-letter {
     @include dropcap-base(30px, 22px, 500);
     height: 55px;
@@ -82,7 +109,9 @@ $dropcap-border-radius: 50%;
     margin-top: 5px;
 }
 
-// Rounded Block Drop Cap
+/// Rounded Block Drop Cap
+/// 
+/// Applies a rounded block-style drop cap to the first letter of the first child element.
 .dropcap-block-round:first-child:first-letter {
     @include dropcap-base(30px, 22px, 500);
     height: 55px;
@@ -91,7 +120,10 @@ $dropcap-border-radius: 50%;
     margin-top: 5px;
 }
 
-// Circular Drop Cap
+
+/// Circular Drop Cap
+/// 
+/// Applies a circular drop cap to the first letter of the first child element.
 .dropcap-round:first-child:first-letter {
     @include dropcap-base(35px, 32px);
     height: 65px;
