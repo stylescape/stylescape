@@ -17,7 +17,7 @@
 
 @use "../dev" as *;
 
-
+// Base colors
 $color_01:  #FFF;
 $color_02:  #000A0D;
 $color_03:  #00B6F2;
@@ -26,6 +26,11 @@ $color_04:  #008FBF;
 $color_highlight: rgb(12, 143, 214);
 
 
+// Dark color scheme
+/// Mixin for dark color scheme
+/// 
+/// Applies the dark theme colors to the background, fill, stroke, and text.
+/// Changes the fill color on hover to grey.
 @mixin color_scheme_dark {
     background-color:   $color_02;
     fill:                $color_01;
@@ -37,6 +42,11 @@ $color_highlight: rgb(12, 143, 214);
     }
 }
 
+// Light color scheme
+/// Mixin for light color scheme
+/// 
+/// Applies the light theme colors to the background, fill, stroke, and text.
+/// Changes the fill color on hover to grey.
 @mixin color_scheme_light {
     background-color:   $color_01;
     fill:                $color_02;
@@ -50,7 +60,12 @@ $color_highlight: rgb(12, 143, 214);
 
 
 // Theme Switcher
-// Toggles between light and dark themes.
+/// Function to switch between light and dark themes
+///
+/// @param {String} $light_color_name - Name of the light theme color.
+/// @param {String} $dark_color_name - Name of the dark theme color.
+/// @param {Boolean} $is_dark_mode - Boolean indicating if dark mode is active.
+/// @return {Color} - Returns the appropriate color based on the theme mode.
 @function hue_theme_switcher($light_color_name, $dark_color_name, $is_dark_mode: false) {
     $light_color: hue_color($light_color_name);
     $dark_color: hue_color($dark_color_name);
@@ -114,6 +129,7 @@ $theme_colors: (
 ) !default;
 
 
+// Text Emphasis Colors
 $primary_text_emphasis:   hue_shade(map-get($theme_color_codes, "primary"), 60%) !default;
 $secondary_text_emphasis: hue_shade(map-get($theme_color_codes, "secondary"), 60%) !default;
 $success_text_emphasis:   hue_shade(map-get($theme_color_codes, "success"), 60%) !default;
@@ -123,6 +139,7 @@ $danger_text_emphasis:    hue_shade(map-get($theme_color_codes, "danger"), 60%) 
 $light_text_emphasis:     hue_color('N0005') !default;  // Grey
 $dark_text_emphasis:      hue_color('N0005') !default;  // Grey
 
+// Background Subtle Colors
 $primary_bg_subtle:       hue_tint(map-get($theme_color_codes, "primary"), 80%) !default;
 $secondary_bg_subtle:     hue_tint(map-get($theme_color_codes, "secondary"), 80%) !default;
 $success_bg_subtle:       hue_tint(map-get($theme_color_codes, "success"), 80%) !default;
@@ -132,6 +149,7 @@ $danger_bg_subtle:        hue_tint(map-get($theme_color_codes, "danger"), 80%) !
 // $light_bg_subtle:         hue_blend($gray-100, $white) !default;
 $dark_bg_subtle:          hue_color('N0004') !default;  // Grey
 
+// Border Subtle Colors
 $primary-border-subtle:   hue_tint(map-get($theme_color_codes, "primary"), 60%) !default;
 $secondary-border-subtle: hue_tint(map-get($theme_color_codes, "secondary"), 60%) !default;
 $success-border-subtle:   hue_tint(map-get($theme_color_codes, "success"), 60%) !default;
