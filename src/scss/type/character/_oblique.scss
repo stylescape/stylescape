@@ -30,6 +30,16 @@ $font-weight-oblique: 400; // Adjust based on your design system
 $font-size-oblique: 1rem; // Default font size for oblique text
 
 
+/// Mixin for applying oblique character styles.
+/// 
+/// This mixin sets the text to an oblique font style, while also applying normal 
+/// character styles, default font weight, and size.
+/// 
+/// - `character_normal`: Applies normal character styles.
+/// - `font_weight_04`: Sets the font weight to 400 (normal weight).
+/// - `font_size_00`: Sets the font size to the default size 00.
+/// - `character_default`: Resets other character styles to their default state.
+/// - `font-style: oblique`: Applies the oblique font style.
 @mixin character_oblique {
     @include character_normal;
     @include font_weight_04;
@@ -38,14 +48,16 @@ $font-size-oblique: 1rem; // Default font size for oblique text
     font-style: oblique;
 }
 
-// Mixin for oblique font style with customizable weight and size
-// @mixin character-oblique($weight: $font-weight-oblique, $size: $font-size-oblique) {
-//     font-style: oblique;
-//     font-weight: $weight;
-//     font-size: $size;
+// Commented-out alternative mixin for oblique font style with customizable weight and size
+/*
+@mixin character-oblique($weight: $font-weight-oblique, $size: $font-size-oblique) {
+    font-style: oblique;
+    font-weight: $weight;
+    font-size: $size;
   
-//     // Include any additional default character styles from your design system
-//     // If `character_default` and `character_normal` are mixins in your setup, include them here:
-//     // @include character_normal;
-//     // @include character_default;
-// }
+    // Include any additional default character styles from your design system
+    // If `character_default` and `character_normal` are mixins in your setup, include them here:
+    // @include character_normal;
+    // @include character_default;
+}
+*/
