@@ -30,6 +30,14 @@
 $small-font-size: 80%; // Default small font size
 $small-line-height: 1.2; // Default line height for small text
 
+/// Mixin for small normal character styles.
+/// 
+/// This mixin applies the normal character styles along with a smaller font size 
+/// to elements, making the text smaller while keeping it consistent with the rest 
+/// of the design system.
+/// 
+/// - `character_normal`: Applies normal character styles.
+/// - `font_size_03`: Sets the font size to 80% or a predefined small size.
 @mixin character_small_normal{
     @include character_normal;
     @include font_size_03;
@@ -39,40 +47,47 @@ $small-line-height: 1.2; // Default line height for small text
     
 }
 
+/// Applies small normal character styles to `<small>` elements.
+/// 
+/// Ensures that all `<small>` elements use the defined small normal character styles.
 small {
     @include character_small_normal;
 }
 
+/// Applies small normal character styles to elements with the `.small` class.
+/// 
+/// Ensures that any element with the `.small` class uses the defined small normal character styles.
 .small {
     @include character_small_normal;
 }
 
 
+// Commented-out alternative mixin for small text styles with additional options
 
-// // Mixin for small text styles
-// @mixin character-small {
-//   font-size: $small-font-size;
-//   line-height: $small-line-height;
+/*
+@mixin character-small {
+    font-size: $small-font-size;
+    line-height: $small-line-height;
 
-//   // Include any additional character styles from your design system
-//   // If `character_normal` is a mixin in your setup, include it here:
-//   // @include character_normal;
-// }
+    // Include any additional character styles from your design system
+    // If `character_normal` is a mixin in your setup, include it here:
+    // @include character_normal;
+}
 
-// // Applying the mixin to <small> elements and .small class
-// small, .small {
-//   @include character-small;
-// }
+// Applying the mixin to <small> elements and .small class
+small, .small {
+    @include character-small;
+}
 
-// // Bold Small Text
-// .small-bold {
-//     @include character-small;
-//     font-weight: bold; // Apply bold weight
-//   }
-  
-//   // Italic Small Text
-//   .small-italic {
-//     @include character-small;
-//     font-style: italic; // Apply italic style
-//   }
-  
+// Bold Small Text
+.small-bold {
+    @include character-small;
+    font-weight: bold; // Apply bold weight
+}
+
+// Italic Small Text
+.small-italic {
+    @include character-small;
+    font-style: italic; // Apply italic style
+}
+*/
