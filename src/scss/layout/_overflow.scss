@@ -1,11 +1,11 @@
 // Copyright 2023 Scape Agency BV
-
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,23 +19,18 @@
 @use "../variables" as *;
 @use "../mixins" as *;
 
-
-
-
-// Use this mixin only when necessary to override styles
+/// Mixin to set overflow properties with `!important`.
+/// Use this mixin only when necessary to override styles.
+/// @param {String} $x - Overflow for x-axis.
+/// @param {String} $y - Overflow for y-axis.
 @mixin overflow_important($x: auto, $y: auto) {
     overflow-x: $x !important;
     overflow-y: $y !important;
 }
 
-// Overflow Mixins
-// ============================================================================
-// Provides a flexible mixin for setting overflow properties.
-
-// Single mixin for setting overflow properties
-// ----------------------------------------------------------------------------
-// General mixin for setting overflow properties
-
+/// Mixin to set overflow properties.
+/// @param {String} $x - Overflow for x-axis.
+/// @param {String} $y - Overflow for y-axis.
 @mixin overflow($x: null, $y: null) {
     @if $x != null and $y != null {
         overflow-x: $x;
@@ -47,49 +42,45 @@
     }
 }
 
-@mixin overflow($x: auto, $y: auto) {
-    overflow-x: $x;
-    overflow-y: $y;
-}
-
-
-
+/// Mixin to set both x and y overflow to `hidden`.
 @mixin overflow_hidden {
-    // -moz-scrollbars-none;
     overflow: hidden !important;
 }
+
+/// Mixin to set overflow to `visible`.
 @mixin overflow_visible {
     overflow: visible !important;
 }
+
+/// Mixin to set overflow to `scroll`.
 @mixin overflow_scroll {
     overflow: scroll !important;
 }
+
+/// Mixin to set overflow to `clip`.
 @mixin overflow_clip {
-    overflow: scroll !important;
+    overflow: clip !important;
 }
+
+/// Mixin to set overflow to `auto`.
 @mixin overflow_auto {
     overflow: auto !important;
 }
-@mixin overflow_hidden_visible {
-    overflow: hidden visible !important;
-}
 
-
+/// Mixin to set x-axis overflow to `visible`.
 @mixin overflow_x_visible {
     overflow: visible;
     overflow-x: visible;
 }
 
+// Utility Classes using the Mixins
+// ============================================================================
 
-
-// Utility classes using the improved mixin
 .overflow-hidden { @include overflow(hidden); }
 .overflow-visible { @include overflow(visible); }
 .overflow-scroll { @include overflow(scroll); }
 .overflow-auto { @include overflow(auto); }
-.overflow-hidden-visible { @include overflow(hidden, visible); } // For separate x and y overflows
-
-
+.overflow-hidden-visible { @include overflow(hidden, visible); }
 
 .overflow_hidden { @include overflow_hidden; }
 .overflow_visible { @include overflow_visible; }
