@@ -24,7 +24,10 @@
 // Typography | Character | Bold
 // ============================================================================
 
-// Mixin for applying bold styles, including any additional character styles that are part of your design system's "bold" definition
+/// Mixin for applying bold character styles.
+/// 
+/// This mixin combines the normal character styles, default font settings, 
+/// and a bold font weight to create the standard bold style for your design system.
 @mixin character_bold {
     // font-weight: bolder; /* Add the correct font weight in Chrome, Edge, and Safari */
     @include character_normal;
@@ -33,8 +36,9 @@
     @include font_weight_600;
 }
 
-  // Apply the mixin to <b> and <strong> tags to ensure they use the defined bold styles
-
+/// Apply the bold character styles to <b> and <strong> tags.
+/// 
+/// Ensures that both <b> and <strong> elements use the defined bold styles from the design system.
 b, strong {
     @include character_bold;
 }
