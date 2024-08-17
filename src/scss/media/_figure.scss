@@ -82,13 +82,18 @@
 
 
 
-
+/// Styles for the `<figure>` element.
+/// 
+/// Ensures the figure is positioned relative and that its contents are aligned.
 figure {
     position: relative;
     // Ensures the caption's text aligns with the image.
     display: inline-block;
 }
 
+/// Styles for images within a `<figure>`.
+/// 
+/// Ensures the image fits within its container and maintains its aspect ratio.
 figure img {
     object-fit: contain;
     width: 100%;
@@ -96,6 +101,9 @@ figure img {
     // line-height: 1;
 }
 
+/// Styles for the `<figcaption>` element within a `<figure>`.
+/// 
+/// Includes font styling to make the caption stand out.
 figure figcaption {
     // color: {{ css_color_01 }};
     font-weight: 700;
@@ -103,47 +111,61 @@ figure figcaption {
 //   color: $figure-caption-color;
 }
 
+/// Utility class for additional text styling within figures.
 .figure_text {
     font-size: calc($q * 24);
 }
 
+/// Utility class for styling dots or other small elements within figures.
 .figure_dot {
     // r: calc($q * 8);
 }
 
 
 
+/// Aspect Ratio Utilities
+// ----------------------------------------------------------------------------
+/// Utility classes to maintain various aspect ratios for images within figures.
+/// 
+/// These classes ensure that images maintain their aspect ratio, regardless of screen size.
+.figure_1x1, .figure_3_2, .figure_4x3, .figure_3x4, .figure_2x3, .figure_16x9 {
+    width: 100%;
+    position: relative;
+    overflow: hidden; // Ensures content doesn't overflow the figure
+}
 
+.figure_1x1 {
+    padding-bottom: 100%; // Maintains a 1:1 aspect ratio
+}
 
-// .figure_1x1, .figure_3_2, .figure_4x3, .figure_3x4, .figure_2x3, .figure_16x9 {
-//     width: 100%;
-//     position: relative;
-//     overflow: hidden;
-// }
-// .figure_1x1 {
-//     padding-bottom: 100%;
-// }
-//   .figure_3_2 {
-//     padding-bottom: 66.67%;
-//   }
-//   .figure_4x3 {
-//     padding-bottom: 75%;
-//   }
-//   .figure_3x4 {
-//     padding-bottom: 133.33%;
-//   }
-//   .figure_2x3 {
-//     padding-bottom: 150%;
-//   }
-//   .figure_16x9 {
-//     padding-bottom: 56.25%;
-//   }
-//   .figure_1x1 img, .figure_3_2 img, .figure_4x3 img, .figure_3x4 img, .figure_2x3 img, .figure_16x9 img {
-//     min-width: 100%;
-//     min-height: 100%;
-//     object-fit: cover;
-//     position: absolute;
-//   }
+.figure_3_2 {
+    padding-bottom: 66.67%; // Maintains a 3:2 aspect ratio
+}
+
+.figure_4x3 {
+    padding-bottom: 75%; // Maintains a 4:3 aspect ratio
+}
+
+.figure_3x4 {
+    padding-bottom: 133.33%; // Maintains a 3:4 aspect ratio
+}
+
+.figure_2x3 {
+    padding-bottom: 150%; // Maintains a 2:3 aspect ratio
+}
+
+.figure_16x9 {
+    padding-bottom: 56.25%; // Maintains a 16:9 aspect ratio
+}
+
+/// Ensures images within aspect ratio containers fill the container while maintaining their aspect ratio.
+.figure_1x1 img, .figure_3_2 img, .figure_4x3 img, .figure_3x4 img, .figure_2x3 img, .figure_16x9 img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover; // Ensures the image covers the entire container
+    position: absolute;
+}
+
 
 
 
