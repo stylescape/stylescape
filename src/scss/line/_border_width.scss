@@ -30,12 +30,21 @@
 //     border-width: $width !important;
 // }
 
-// Mixin for Specific Border Widths Based on Multiplier
-@mixin border_width_multiplier($multiplier) {
+/// Mixin for setting border width based on a multiplier.
+///
+/// @param {Number} $multiplier - Multiplier to calculate border width.
+@mixin border_width_multiplier(
+    $multiplier
+) {
     border-width: $q * 4 * $multiplier;
 }
 
-// Mixin for Individual Border Sides
+/// Mixin for setting individual border side widths.
+///
+/// @param {Number | null} $top - Top border width.
+/// @param {Number | null} $right - Right border width.
+/// @param {Number | null} $bottom - Bottom border width.
+/// @param {Number | null} $left - Left border width.
 @mixin border_width_side(
     $top: null,
     $right: null,
@@ -49,10 +58,10 @@
 }
 
 
-// Border Width
-// ----------------------------------------------------------------------------
+// Border Widths
+// ============================================================================
 
-// Specific Multiplier-based Widths
+/// Specific border width mixins based on multiplier.
 @mixin border_width_01  { @include border_width_multiplier(1); }
 @mixin border_width_02  { @include border_width_multiplier(2); }
 @mixin border_width_03  { @include border_width_multiplier(3); }
@@ -64,7 +73,8 @@
 @mixin border_width_09  { @include border_width_multiplier(9); }
 @mixin border_width_10  { @include border_width_multiplier(10); }
 
-// Applying mixin for specific border width
+// Applying Mixins to Classes
+// ============================================================================
 
 .border_width_01        { @include border_width_01; }
 .border_width_02        { @include border_width_02; }
@@ -83,11 +93,18 @@
 
 
 // No Border
-// ----------------------------------------------------------------------------
+// ============================================================================
 
+/// Mixin to remove the top border.
 @mixin no_border_top    { @include border_width_side($top: 0); }
+
+/// Mixin to remove the bottom border.
 @mixin no_border_bottom { @include border_width_side($bottom: 0); }
+
+/// Mixin to remove the right border.
 @mixin no_border_right  { @include border_width_side($right: 0); }
+
+/// Mixin to remove the left border.
 @mixin no_border_left   { @include border_width_side($left: 0); }
 
 .no_border_top          { @include no_border_top; }
