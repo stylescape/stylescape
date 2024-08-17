@@ -23,6 +23,8 @@
 @use "../mixins" as *;
 @use "../type" as *;
 
+/// Box size variables.
+/// @group Boxes
 $box_size_01:  1 !default;
 $box_size_02:  2 !default;
 $box_size_03:  3 !default;
@@ -36,11 +38,21 @@ $box_size_10: 10 !default;
 $box_size_11: 11 !default;
 $box_size_12: 12 !default;
 
+/// Mixin for setting box-sizing to border-box.
+/// @group Boxes
+@mixin box_border   { 
+    box-sizing: border-box; 
+}
+  
+/// Mixin for setting box-sizing to content-box.
+/// @group Boxes
+@mixin box_content  { 
+    box-sizing: content-box; 
+}
 
-@mixin box_border   { box-sizing: border-box; }
-@mixin box_content  { box-sizing: content-box; }
-
-
+/// Mixin for setting box size based on a given size value.
+/// @param {Number} $size - The size value to use for the box dimensions.
+/// @group Boxes
 @mixin box_size($size) {
     @include box_content;
     width:      baseline($size);
@@ -51,7 +63,8 @@ $box_size_12: 12 !default;
     max-height: baseline($size);
 }
 
-
+/// Specific box size mixins based on predefined sizes.
+/// @group Boxes
 @mixin box_size_00 { @include box_size( 4); }
 @mixin box_size_01 { @include box_size($box_size_01); }
 @mixin box_size_02 { @include box_size($box_size_02); }
@@ -66,7 +79,8 @@ $box_size_12: 12 !default;
 @mixin box_size_11 { @include box_size($box_size_11); }
 @mixin box_size_12 { @include box_size($box_size_12); }
 
-
+/// Box size utility classes.
+/// @group Boxes
 .box_size_00 { @include box_size_00; }
 .box_size_01 { @include box_size_01; }
 .box_size_02 { @include box_size_02; }
