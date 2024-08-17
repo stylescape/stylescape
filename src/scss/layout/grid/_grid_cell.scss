@@ -24,19 +24,26 @@
 // Cell | Span | Absolute | Column
 // ----------------------------------------------------------------------------
 
+/// Base Mixin for Grid Cell
+/// @group Grid Cell
 @mixin cell_base {
-  // max-width: 100%;
-  overflow: hidden;
+    // max-width: 100%;
+    overflow: hidden;
 }
 
 // Cell | Span | Absolute | Column
 // ----------------------------------------------------------------------------
 
+/// Mixin for Grid Column Span
+/// @param {Number} $var - Number of columns to span
+/// @group Grid Cell
 @mixin cell_col_span ($var) {
-  @include cell_base;
-  grid-column: span $var !important;
+    @include cell_base;
+    grid-column: span $var !important;
 }
 
+/// Utility mixins for specific column spans
+/// @group Grid Cell
 @mixin cell_col_span_01 { @include cell_col_span(1) }
 @mixin cell_col_span_02 { @include cell_col_span(2) }
 @mixin cell_col_span_03 { @include cell_col_span(3) }
@@ -62,6 +69,8 @@
 @mixin cell_col_span_23 { @include cell_col_span(23) }
 @mixin cell_col_span_24 { @include cell_col_span(24) }
 
+/// Utility classes for column spans
+/// @group Grid Cell
 .cell_col_span_01 { @include cell_col_span_01 }
 .cell_col_span_02 { @include cell_col_span_02 }
 .cell_col_span_03 { @include cell_col_span_03 }
@@ -91,10 +100,15 @@
 // Cell | Span | Absolute | Row
 // ----------------------------------------------------------------------------
 
+/// Mixin for Grid Row Span
+/// @param {Number} $var - Number of rows to span
+/// @group Grid Cell
 @mixin cell_row_span ($var) {
-  grid-row: span $var;
+    grid-row: span $var;
 }
 
+/// Utility mixins for specific row spans
+/// @group Grid Cell
 @mixin cell_row_span_01 { @include cell_row_span(1) }
 @mixin cell_row_span_02 { @include cell_row_span(2) }
 @mixin cell_row_span_03 { @include cell_row_span(3) }
@@ -120,6 +134,8 @@
 @mixin cell_row_span_23 { @include cell_row_span(23) }
 @mixin cell_row_span_24 { @include cell_row_span(24) }
 
+/// Utility classes for row spans
+/// @group Grid Cell
 .cell_row_span_01 { @include cell_row_span_01 }
 .cell_row_span_02 { @include cell_row_span_02 }
 .cell_row_span_03 { @include cell_row_span_03 }
@@ -148,26 +164,40 @@
 // Cell | Span | Relative | Column
 // ----------------------------------------------------------------------------
 
-@mixin cell_col_span_full { grid-column: 1/-1; }
+/// Mixin for spanning full width in a column layout
+/// @group Grid Cell
+@mixin cell_col_span_full {
+    grid-column: 1/-1;
+}
 
+/// Utility class for full-width column span
+/// @group Grid Cell
 .cell_col_span_full { @include cell_col_span_full; }
 
 
 // Cell | Span | Relative | Row
 // ----------------------------------------------------------------------------
 
-@mixin cell_row_span_full { grid-row: 1/-1; }
+/// Mixin for spanning full height in a row layout
+/// @group Grid Cell
+@mixin cell_row_span_full {
+  grid-row: 1/-1;
+}
 
+/// Utility class for full-height row span
+/// @group Grid Cell
 .cell_row_span_full { @include cell_row_span_full; }
-
-
-
-
 
 // ----------------------------------------------------------------------------
 
+/// Utility class to set a full-width row
+/// @group Grid Cell
 .row { @include cell_col_span_full; }
+
+/// Utility class to set a full-height column
+/// @group Grid Cell
 .col { @include cell_row_span_full; }
+
 
 
 // @mixin cell_col_span_12 {
