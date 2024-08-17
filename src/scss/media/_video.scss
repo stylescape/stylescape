@@ -27,7 +27,10 @@
 // This basic example styles the <video> element to maintain aspect ratio, add
 // a border, and ensure it's responsive.
 
-
+/// Basic video element styling.
+///
+/// Ensures responsiveness and adds a subtle border and shadow for distinction.
+/// Customizes video controls on hover.
 video {
     max-width: 100%; // Ensure responsiveness
     height: auto; // Maintain aspect ratio
@@ -41,6 +44,10 @@ video {
     }
 }
 
+
+/// Wrapper for video elements.
+/// 
+/// Ensures the video occupies the full height and width of its container.
 .video_wrapper {
     height: 100%;
     overflow: hidden;
@@ -84,7 +91,11 @@ video {
 
 }
 
-.video-wrapper {
+
+/// Background overlay for videos.
+///
+/// This overlay is semi-transparent and covers the entire video area, useful for adding effects or messages.
+.video-background {
 
 }
 
@@ -115,8 +126,12 @@ video {
 // For a more advanced and flexible approach, especially for maintaining
 // specific aspect ratios (like 16:9), you can use SCSS mixins.
 
-
-// Mixin for maintaining aspect ratio
+/// Mixin for maintaining aspect ratio for elements.
+/// 
+/// This mixin is especially useful for video containers to ensure that they maintain a specific aspect ratio.
+///
+/// @param {Number} $width - The width part of the aspect ratio.
+/// @param {Number} $height - The height part of the aspect ratio.
 @mixin aspect-ratio($width, $height) {
   position: relative;
   &:before {
@@ -134,7 +149,9 @@ video {
   }
 }
 
-// Applying the mixin to the video container
+/// Container for videos, ensuring a 16:9 aspect ratio.
+///
+/// Applies the aspect-ratio mixin for consistent sizing across different devices.
 .video-container {
   @include aspect-ratio(16, 9); // 16:9 aspect ratio
 
@@ -152,7 +169,10 @@ video {
 // If you're implementing custom controls or overlays (like play buttons or
 // progress bars), SCSS can help you manage their styles cohesively.
 
-
+/// Styling for video overlays, typically used for play buttons or video captions.
+///
+/// This overlay is semi-transparent and centered within the video container.
+/// It becomes visible on hover or when the video is paused.
 .video-overlay {
     position: absolute;
     top: 0;
@@ -175,6 +195,9 @@ video {
     }
 }
 
+/// Custom controls for video playback.
+///
+/// These controls are positioned at the bottom of the video and styled with a semi-transparent background.
 .custom-controls {
     position: absolute;
     bottom: 0;
@@ -196,6 +219,10 @@ video {
 // For embedded videos (like from YouTube or Vimeo), ensuring responsiveness
 // while maintaining aspect ratio is crucial.
 
+
+/// Ensures embedded videos maintain responsiveness and aspect ratio.
+///
+/// Particularly useful for video embeds from platforms like YouTube or Vimeo.
 .embed-responsive {
     @include aspect-ratio(16, 9); // 16:9 aspect ratio for embedded videos
 
