@@ -13,37 +13,50 @@
 // limitations under the License.
 
 
-// ============================================================================
-// Layout | Grid | Column
-// ============================================================================
-
 @use '../../dev' as *;
 @use '../gap' as *;
 @use "../../../../../unit.gl/scss/index.scss" as *;
 
+// ============================================================================
+// Layout | Grid | Column
+// ============================================================================
+
+/// Mixin for grid column span
+/// @param {Number} $val - The number of columns to span
+/// @group Grid Column
 @mixin col($val){
-  grid-column: span $val;
+    grid-column: span $val;
 }
 
+/// Mixin for small screen grid column span
+/// @param {Number} $val - The number of columns to span on small screens
+/// @group Grid Column
 @mixin col_s($val){
-  @media (min-width: $media_sm) {
-    @include col($val);
-  }
+    @media (min-width: $media_sm) {
+        @include col($val);
+    }
 }
 
+/// Mixin for medium screen grid column span
+/// @param {Number} $val - The number of columns to span on medium screens
+/// @group Grid Column
 @mixin col_m($val){
-  @media (min-width: $media_md) {
-    @include col($val);
-  }
+    @media (min-width: $media_md) {
+        @include col($val);
+    }
 }
 
+/// Mixin for large screen grid column span
+/// @param {Number} $val - The number of columns to span on large screens
+/// @group Grid Column
 @mixin col_l($val){
-  @media (min-width: $media_lg) {
-    @include col($val);
-  }
+    @media (min-width: $media_lg) {
+        @include col($val);
+    }
 }
 
-
+// Utility mixins for specific column spans
+/// @group Grid Column
 @mixin col_1 { @include col( 1); }
 @mixin col_2 { @include col( 2); }
 @mixin col_3 { @include col( 3); }
@@ -69,6 +82,8 @@
 @mixin col_23 { @include col(23); }
 @mixin col_24 { @include col(24); }
 
+// Utility classes for specific column spans
+/// @group Grid Column
 .col_1  { @include col_1; }
 .col_2  { @include col_2; }
 .col_3  { @include col_3; }
@@ -94,7 +109,8 @@
 .col_23 { @include col_23; }
 .col_24 { @include col_24; }
 
-
+// Utility mixins for specific small screen column spans
+/// @group Grid Column
 @mixin col_s_1  { @include col_s( 1); }
 @mixin col_s_2  { @include col_s( 2); }
 @mixin col_s_3  { @include col_s( 3); }
@@ -120,6 +136,8 @@
 @mixin col_s_23 { @include col_s(23); }
 @mixin col_s_24 { @include col_s(24); }
 
+// Utility classes for specific small screen column spans
+/// @group Grid Column
 .col_s_1 { @include col_s_1; }
 .col_s_2 { @include col_s_2; }
 .col_s_3 { @include col_s_3; }
@@ -146,7 +164,8 @@
 .col_s_24 { @include col_s_24; }
 
 
-
+// Utility mixins for specific medium screen column spans
+/// @group Grid Column
 @mixin col_m_1 { @include col_m( 1); }
 @mixin col_m_2 { @include col_m( 2); }
 @mixin col_m_3 { @include col_m( 3); }
@@ -172,6 +191,8 @@
 @mixin col_m_23 { @include col_m(23); }
 @mixin col_m_24 { @include col_m(24); }
 
+// Utility classes for specific medium screen column spans
+/// @group Grid Column
 .col_m_1 { @include col_m_1; }
 .col_m_2 { @include col_m_2; }
 .col_m_3 { @include col_m_3; }
@@ -197,7 +218,8 @@
 .col_m_23 { @include col_m_23; }
 .col_m_24 { @include col_m_24; }
 
-
+// Utility mixins for specific large screen column spans
+/// @group Grid Column
 @mixin col_l_1 { @include col_l( 1); }
 @mixin col_l_2 { @include col_l( 2); }
 @mixin col_l_3 { @include col_l( 3); }
@@ -223,6 +245,8 @@
 @mixin col_l_23 { @include col_l(23); }
 @mixin col_l_24 { @include col_l(24); }
 
+// Utility classes for specific large screen column spans
+/// @group Grid Column
 .col_l_1 { @include col_l_1; }
 .col_l_2 { @include col_l_2; }
 .col_l_3 { @include col_l_3; }
