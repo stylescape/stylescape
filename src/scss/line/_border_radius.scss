@@ -15,10 +15,10 @@
 @use "../dev" as *;
 @use "../variables" as *;
 @use "../mixins" as *;
+
 // ============================================================================
 // StyleScape | Borders | Radius
 // ============================================================================
-
 
 // Border Radius Mixins
 // ----------------------------------------------------------------------------
@@ -27,8 +27,11 @@
 //     border-radius: $radius !important;
 // }
 
-// Rounded Corner Specific Mixin:
-// Apply border-radius to specific corners.
+/// Mixin to apply rounded corners to specific corners of an element.
+/// @param {Number} $top-left - The radius for the top-left corner.
+/// @param {Number} $top-right - The radius for the top-right corner.
+/// @param {Number} $bottom-right - The radius for the bottom-right corner.
+/// @param {Number} $bottom-left - The radius for the bottom-left corner.
 @mixin rounded_corners(
     $top-left: 0,
     $top-right: 0,
@@ -45,6 +48,9 @@
 // Border Radius Mixin
 // ----------------------------------------------------------------------------
 
+/// Mixin for border radius based on a multiplier of the base unit.
+/// @example
+/// .element { @include border_radius_01; } // Adds a radius of $q * 4
 @mixin border_radius_01 { border-radius: $q * 4; }
 @mixin border_radius_02 { border-radius: $q * 8; }
 @mixin border_radius_03 { border-radius: $q * 12; }
@@ -56,9 +62,14 @@
 @mixin border_radius_09 { border-radius: $q * 36; }
 @mixin border_radius_10 { border-radius: $q * 40; }
 
+/// Mixin for setting a border radius of 0 (no border radius).
 @mixin border_radius_0 { border-radius: 0; }
+
+/// Mixin for setting a border radius of 50% (creates a circular border radius for square elements).
 @mixin border_radius_50 { border-radius: 50%; }
-@mixin border_radius_100 { border-radius:100%; }
+
+/// Mixin for setting a border radius of 100% (makes an element fully round).
+@mixin border_radius_100 { border-radius: 100%; }
 
 // @mixin border_radius { @include border_radius_04; }
 
@@ -66,17 +77,13 @@
 // Border Radius Classes
 // ----------------------------------------------------------------------------
 
+/// Class to apply rounded corners only to the top of an element.
+.border_rounded_top {
+    @include rounded_corners(5px, 5px);
+}
 
 // Applying Mixins for Border Radius
 // .border_radius_small { @include border_radius(4); }
 // .border_radius_medium { @include border_radius(8); }
 // .border_radius_large { @include border_radius(12); }
 // .border_radius_circle { @include border_radius(24); }
-
-
-
-
-
-.border_rounded_top {
-    @include rounded_corners(5px, 5px);
-}
