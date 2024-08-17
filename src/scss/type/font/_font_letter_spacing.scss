@@ -19,7 +19,10 @@
 // Typography | Font | Letter Spacing
 // ============================================================================
 
-
+/// Letter spacing variables.
+/// 
+/// These variables define different levels of letter spacing. The values can be 
+/// adjusted as needed to match the design system.
 $letter_spacing_01:  1 !default;
 $letter_spacing_02:  2 !default;
 $letter_spacing_03:  3 !default;
@@ -33,15 +36,24 @@ $letter_spacing_10: 10 !default;
 $letter_spacing_11: 11 !default;
 $letter_spacing_12: 12 !default;
 
-
+/// Mixin to apply letter spacing based on a multiplier.
+/// 
+/// This mixin calculates the letter spacing using a base unit `$q` multiplied 
+/// by a specified value.
+/// 
+/// @param {Number} $val - The multiplier for the base letter spacing unit.
 @mixin letter_spacings ($val) {
     letter-spacing: calc($q * $val);
 }
 
-
+/// Mixin for zero letter spacing.
+/// 
+/// This mixin sets the letter spacing to 0px.
 @mixin letter_spacing_00 { letter-spacing:  0px; }
 
-
+/// Mixins for positive letter spacing.
+/// 
+/// These mixins apply positive letter spacing using predefined variables.
 @mixin letter_spacing_01 { @include letter_spacings($letter_spacing_01); }
 @mixin letter_spacing_02 { @include letter_spacings($letter_spacing_02); }
 @mixin letter_spacing_03 { @include letter_spacings($letter_spacing_03); }
@@ -55,7 +67,10 @@ $letter_spacing_12: 12 !default;
 @mixin letter_spacing_11 { @include letter_spacings($letter_spacing_11); }
 @mixin letter_spacing_12 { @include letter_spacings($letter_spacing_12); }
 
-
+/// Mixins for negative letter spacing.
+/// 
+/// These mixins apply negative letter spacing (i.e., tightening the space between letters) 
+/// using predefined variables.
 @mixin letter_spacing_min_01 { @include letter_spacings(-$letter_spacing_01); }
 @mixin letter_spacing_min_02 { @include letter_spacings(-$letter_spacing_02); }
 @mixin letter_spacing_min_03 { @include letter_spacings(-$letter_spacing_03); }
