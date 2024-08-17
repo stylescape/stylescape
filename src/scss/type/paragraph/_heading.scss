@@ -26,15 +26,17 @@
 
 // Variables
 // ============================================================================
-
-// Heading Typography Variables
+/// Font family for headings.
 $heading-font-family: "Helvetica Neue", Arial, sans-serif;
+
+/// Default color for headings.
 $heading-color: #000;
+
 // $heading-weight: 700; // Default weight for headings
 // $heading-line-height: 1.3;
 // $heading-margin-bottom: 1rem;
 
-// Font sizes for different headings
+// Font sizes for different heading levels (h1 through h6)
 $heading-sizes: (
   1: 3.75rem,
   2: 3rem,
@@ -57,7 +59,10 @@ $heading-sizes: (
 // Base Heading Mixin
 // ----------------------------------------------------------------------------
 
-
+/// Base mixin for heading styles.
+/// 
+/// This mixin applies the default styles for headings, including font weight,
+/// margin, and color, ensuring consistent formatting across all headings.
 @mixin heading_normal {
     @include paragraph_normal;
     @include font_weight_400;
@@ -76,6 +81,10 @@ $heading-sizes: (
 // Heading Mixins
 // ----------------------------------------------------------------------------
 
+/// Mixin for specific heading levels.
+/// 
+/// These mixins apply the appropriate font size to each heading level 
+/// (h1 through h6), based on the values defined in `$heading-sizes`.
 @mixin heading_01 { @include heading_normal; @include font_size_06; }
 @mixin heading_02 { @include heading_normal; @include font_size_05; }
 @mixin heading_03 { @include heading_normal; @include font_size_04; }
@@ -83,6 +92,9 @@ $heading-sizes: (
 @mixin heading_05 { @include heading_normal; @include font_size_02; }
 @mixin heading_06 { @include heading_normal; @include font_size_01; }
 
+/// Mixin for uppercase headings.
+/// 
+/// These mixins apply the uppercase text transformation to the headings.
 @mixin heading_01_caps { @include heading_01; @include character_uppercase; }
 @mixin heading_02_caps { @include heading_02; @include character_uppercase; }
 @mixin heading_03_caps { @include heading_03; @include character_uppercase; }
@@ -100,6 +112,11 @@ $heading-sizes: (
 
 
 // Placeholder Selectors
+// ============================================================================
+
+/// Placeholder selectors for headings.
+/// 
+/// These placeholders allow for easy extension in other stylesheets or components.
 %heading_01 { @include heading_01; }
 %heading_02 { @include heading_02; }
 %heading_03 { @include heading_03; }
@@ -108,11 +125,13 @@ $heading-sizes: (
 %heading_06 { @include heading_06; }
 
 
+
 // Classes
 // ============================================================================
 
-
-
+/// Utility classes for headings.
+/// 
+/// These classes apply the respective heading styles to elements with the specified classes.
 h1, .h1, .heading_01, .h1_caps, .heading_01_caps { @extend %heading_01; }
 h2, .h2, .heading_02, .h2_caps, .heading_02_caps { @extend %heading_02; }
 h3, .h3, .heading_03, .h3_caps, .heading_03_caps { @extend %heading_03; }
@@ -121,7 +140,9 @@ h5, .h5, .heading_05, .h5_caps, .heading_05_caps { @extend %heading_05; }
 h6, .h6, .heading_06, .h6_caps, .heading_06_caps { @extend %heading_06; }
 
 
-
+/// Classes for uppercase headings.
+/// 
+/// These classes apply the uppercase text transformation to headings.
 .h1_caps, .heading_01_caps { @include heading_01_caps; }
 .h2_caps, .heading_02_caps { @include heading_02_caps; }
 .h3_caps, .heading_03_caps { @include heading_03_caps; }
