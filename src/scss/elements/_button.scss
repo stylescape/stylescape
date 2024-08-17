@@ -23,6 +23,8 @@
 @use "../type" as *;
 
 
+/// Basic button styles
+/// @group Button
 button {
     overflow: visible; /* Address `overflow` set to `hidden` in IE 8/9/10/11 */
     height: $baseline_04;
@@ -78,7 +80,8 @@ button {
 //   }
   
 
-
+/// Button mixin to reset and apply basic button styles
+/// @group Button
 @mixin button {
     @include reset_bleed;
     background-repeat:      no-repeat;
@@ -91,25 +94,28 @@ button {
     letter-spacing:         .5px;
     cursor:                 pointer;
     :active {
-      outline:            none;
-      border:             none;
+        outline:            none;
+        border:             none;
     }
     :focus {
-      outline:            0;
+        outline:            0;
     }
     :hover {
-      opacity:            0.75;
+        opacity:            0.75;
     }
 }
 
 
 
-
+/// Apply the button mixin to all button elements
+/// @group Button
 button {
     @include button;
 }
 
 
+/// Menu button with specific dimensions and transparent background
+/// @group Button
 .menu_button {
     width: $q * 24;
     height: $q * 24;
