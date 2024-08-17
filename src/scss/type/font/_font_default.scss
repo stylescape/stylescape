@@ -21,6 +21,20 @@
 @use "../../mixins" as *;
 @use "font_stack" as *;
 
+/// Mixin for applying default font settings.
+/// 
+/// This mixin sets the base font-family, smoothing, rendering, and various font properties 
+/// to ensure a consistent and optimized text appearance across different browsers.
+/// 
+/// - `font-family`: Sets the font stack to a sans-serif family.
+/// - `font-smooth`, `-webkit-font-smoothing`, `-moz-osx-font-smoothing`: Optimizes font rendering.
+/// - `text-rendering`: Enhances legibility.
+/// - `font-language-override`, `font-optical-sizing`: Adjusts language-specific and optical settings.
+/// - `font-style`: Sets the font style to normal.
+/// - `font-variant-*`: Configures various font variant properties, such as alternates, caps, ligatures, etc.
+/// - `font-kerning`, `font-feature-settings`, `font-size-adjust`, `font-stretch`: Configures advanced typography settings.
+/// - `color`: Sets the default text color.
+/// - `background-color`: Ensures no background color is applied by default.
 @mixin font_default {
     font-family:              $font_stack_sans_serif;
 
@@ -53,7 +67,9 @@
 }
 
 
-
+/// Applies the default font settings to the `<html>` element.
+/// 
+/// This ensures that all text in the document inherits these optimized font settings.
 html { @include font_default; }
 
 
