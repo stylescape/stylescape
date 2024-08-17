@@ -28,15 +28,29 @@
 // List Styling Variables
 // ============================================================================
 
-$list-item-spacing: 1em; // Spacing between list items
-$nested-list-indent: calc($q * 8); // Indentation for nested lists
+
+/// Spacing between list items.
+/// 
+/// This variable defines the vertical spacing between items in a list.
+$list-item-spacing: 1em; 
+
+/// Indentation for nested lists.
+/// 
+/// This variable defines the indentation for nested lists, calculated using a base unit `$q`.
+$nested-list-indent: calc($q * 8); 
 
 
 
 // Mixins
 // ============================================================================
 
-// Mixin for resetting list styles
+/// Mixin for resetting list styles.
+/// 
+/// This mixin resets the default browser styling for lists, allowing full customization.
+/// 
+/// @param {String} $type - The list style type (default: none).
+/// @param {String} $position - The list style position (default: inside).
+/// @param {String} $image - The list style image (default: none).
 @mixin list_base($type: none, $position: inside, $image: none) {
     margin: 0;
     padding: 0;
@@ -45,7 +59,10 @@ $nested-list-indent: calc($q * 8); // Indentation for nested lists
     @include list_style_image($image);
 }
 
-// Mixin for nested list indentation
+
+/// Mixin for nested list indentation.
+/// 
+/// This mixin applies consistent indentation to nested lists.
 @mixin list_nested {
     padding-left: $nested-list-indent;
 }
@@ -57,7 +74,13 @@ $nested-list-indent: calc($q * 8); // Indentation for nested lists
 
 // ============================================================================
 
-ol, ul, dl {
+
+/// Base styling for ordered lists (`<ol>`), unordered lists (`<ul>`), and description lists (`<dl>`).
+/// 
+/// This applies consistent character styles and resets the list styles to provide a clean slate for further customization.
+ol,
+ul,
+dl {
     @include character_normal;
     // @include list_reset;
 
