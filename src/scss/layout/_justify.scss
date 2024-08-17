@@ -18,6 +18,11 @@
 // ============================================================================
 @use "../variables" as *;
 @use "../mixins" as *;
+
+
+
+/// Mixin to set `justify-content` property.
+/// @param {String} $value - The value for `justify-content`.
 @mixin justify($value) {
     justify-content: $value;
 }
@@ -29,7 +34,13 @@
 /* Positional alignment */
 
 
-/* Pack items from the start */
+/// Mixin to align items at the start.
+/// Applies `justify-content: flex-start`.
+// @mixin justify_start {
+//     justify-content: flex-start;
+// }
+
+/// Mixin to align items at the start.
 @mixin justify_start {
     -webkit-justify-content: start;
     -moz-justify-content: start;
@@ -47,7 +58,13 @@
     justify-content: flex-start;
 }
 
-/* Pack items from the end */
+/// Mixin to align items at the end.
+/// Applies `justify-content: flex-end`.
+// @mixin justify_end {
+//     justify-content: flex-end;
+// }
+
+/// Mixin to align items at the end.
 @mixin justify_end {
     -webkit-justify-content: end;
     -moz-justify-content: end;
@@ -68,7 +85,13 @@
 // justify-content: left;       /* Pack items from the left */
 // justify-content: right;      /* Pack items from the right */
 
-/* Pack items around the center */
+/// Mixin to center items.
+/// Applies `justify-content: center`.
+// @mixin justify_center {
+//     justify-content: center;
+// }
+
+/// Mixin to center items.
 @mixin justify_center {
     -webkit-justify-content: flex-end;
     -moz-justify-content: flex-end;
@@ -101,6 +124,14 @@
 /* Distribute items evenly
                                    The first item is flush with the start,
                                    the last is flush with the end */
+
+/// Mixin to distribute items evenly with the first item at the start and the last at the end.
+/// Applies `justify-content: space-between`.
+// @mixin justify_between {
+//     justify-content: space-between;
+// }
+
+/// Mixin to distribute items evenly with the first item at the start and the last at the end.
 @mixin justify_between {
     -webkit-justify-content: space-between;
     -moz-justify-content: space-between;
@@ -113,6 +144,15 @@
 /* Distribute items evenly
                                    Items have a half-size space
                                    on either end */
+
+
+/// Mixin to distribute items evenly with half-size space on either end.
+/// Applies `justify-content: space-around`.
+// @mixin justify_around {
+//     justify-content: space-around;
+// }
+
+/// Mixin to distribute items evenly with half-size space on either end.
 @mixin justify_around {
     -webkit-justify-content: space-around;
     -moz-justify-content: space-around;
@@ -123,7 +163,16 @@
     justify-content: space-around;
 }
 /* Distribute items evenly
-                                   Items have equal space around them */
+Items have equal space around them */
+
+
+/// Mixin to distribute items evenly with equal space around them.
+/// Applies `justify-content: space-evenly`.
+// @mixin justify_evenly {
+//     justify-content: space-evenly;
+// }
+
+/// Mixin to distribute items evenly with equal space around them.
 @mixin justify_evenly {
     -webkit-justify-content: space-evenly;
     -moz-justify-content: space-evenly;
@@ -134,6 +183,9 @@
     justify-content: space-evenly;
 }
 
+
+// Utility Classes using the Mixins
+// ============================================================================
 
 .justify_start    { @include justify_start; }
 .justify_end      { @include justify_end; }
