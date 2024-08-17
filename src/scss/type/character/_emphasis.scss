@@ -27,13 +27,20 @@
 // ============================================================================
 
 
-// Variables for default emphasis styles
+/// Variables for default emphasis styles.
 $default-emphasis-style: filled dot;
 $default-emphasis-color: $color_02; // Replace with your default color variable
 $default-emphasis-position: over left;
 
 
-// Mixin for text emphasis with customizable parameters
+/// Mixin for applying text emphasis with customizable parameters.
+/// 
+/// This mixin allows you to apply emphasis to text with customizable style, color, and position. 
+/// It also ensures compatibility with WebKit browsers.
+/// 
+/// @param {String} $style - The emphasis style (default: `$default-emphasis-style`).
+/// @param {Color} $color - The emphasis color (default: `$default-emphasis-color`).
+/// @param {String} $position - The emphasis position (default: `$default-emphasis-position`).
 @mixin character_emphasis(
     $style: $default-emphasis-style,
     $color: $default-emphasis-color,
@@ -58,8 +65,9 @@ $default-emphasis-position: over left;
 // }
 
 
-
-// Utility classes for different emphasis styles
+/// Utility classes for different emphasis styles.
+///
+/// These classes apply various emphasis styles to elements.
 .emphasis-dot {
     @include character_emphasis(filled dot, $default-emphasis-color, $default-emphasis-position);
 }
@@ -81,8 +89,9 @@ $default-emphasis-position: over left;
 }
 
 
-
-// Applying emphasis to italic elements
+/// Applying emphasis to italic elements.
+///
+/// The following rules apply emphasis to `<em>` and `<i>` elements.
 em,
 i {
   @include character_emphasis;
