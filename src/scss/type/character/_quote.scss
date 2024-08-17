@@ -32,7 +32,14 @@ $quote-padding: 0 1em;
 $quote-border-left: 4px solid #ddd; // A subtle left border for blockquotes
 
 
-// Mixin for base quote styles
+/// Mixin for base quote styles.
+/// 
+/// This mixin sets the basic styling for quotes, including font style, color, margin, and padding.
+/// 
+/// - `color`: Sets the text color to a lighter shade.
+/// - `font-style`: Applies italic font style.
+/// - `margin`: Adds vertical spacing around the quote.
+/// - `padding`: Adds horizontal padding to the quote.
 @mixin base-quote-style {
     color: $quote-color;
     font-style: $quote-font-style;
@@ -41,8 +48,12 @@ $quote-border-left: 4px solid #ddd; // A subtle left border for blockquotes
 }
   
 
-
-// Mixin for inline quotes (`q` tag)
+/// Mixin for inline quotes (`q` tag).
+/// 
+/// This mixin applies the base quote style to inline quotes and resets default browser quote symbols.
+/// 
+/// - `quotes: none`: Disables the default quotation marks.
+/// - `&:before`, `&:after`: Removes any automatically added content.
 @mixin inline-quote-style {
     @include base-quote-style;
 
@@ -63,19 +74,30 @@ $quote-border-left: 4px solid #ddd; // A subtle left border for blockquotes
 //     @include inline-quote-style;
 // }
 
+
+/// Base styling for `blockquote` and `q` elements.
+/// 
+/// This applies a clean slate by removing any default quotation marks and resetting content.
 blockquote,
 q {
     quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
     content: '';
     content: none;
 }
 
 
-// Mixin for custom quote symbols
+/// Mixin for custom quote symbols.
+/// 
+/// This mixin allows the addition of custom quote symbols around inline quotes.
+/// 
+/// @param {String} $open-quote - The symbol for the opening quote (default: '“').
+/// @param {String} $close-quote - The symbol for the closing quote (default: '”').
 @mixin custom-quote-symbols($open-quote: '“', $close-quote: '”') {
     &:before {
       content: $open-quote;
