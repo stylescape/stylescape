@@ -27,9 +27,16 @@
 // Typography | List | Ordered Lists
 // ============================================================================
 
-
+/// Base styles for ordered lists (`<ol>`).
+/// 
+/// This section defines the basic structure and styles for ordered lists. 
+/// Additional customizations can be applied within the `<li>` elements.
 ol {
 
+    /// Base styles for list items (`<li>`) within ordered lists.
+    /// 
+    /// This can include font styles, spacing, and other properties 
+    /// specific to list items in an ordered list.
     li {
 
     }
@@ -39,15 +46,20 @@ ol {
 // Custom numbered lists with counters
 // ----------------------------------------------------------------------------
 
+
+/// Custom styles for ordered lists with custom numbering.
+/// 
+/// This section defines styles for ordered lists that use custom counters 
+/// for numbering the list items, allowing for enhanced control over the numbering style.
 ol.custom-numbered {
-    counter-reset: custom-counter;
-    list-style-type: none;
-  
+    counter-reset: custom-counter; // Resets the counter at the start of the list
+    list-style-type: none; // Removes the default list numbering
+
     li {
-        counter-increment: custom-counter;
+        counter-increment: custom-counter; // Increments the counter for each list item
         &:before {
-            content: counter(custom-counter) ". ";
-            font-weight: bold;
+            content: counter(custom-counter) ". "; // Adds the custom counter before the list item
+            font-weight: bold; // Applies bold styling to the counter
         }
     }
 }
