@@ -29,34 +29,49 @@
 // Nested list styles
 // ----------------------------------------------------------------------------
 
+/// Styles for nested unordered lists (`<ul>`).
+/// 
+/// This section defines styles for unordered lists that are nested within other lists.
+/// It applies specific list style types and margins to create a clear hierarchy.
 ul.nested-list-style {
-  ul {
-    @include list_style_type(square);
-    margin-left: 20px;
-  }
+
+    /// Apply square bullet points and left margin to nested `<ul>` elements.
+    ul {
+        @include list_style_type(square);
+        margin-left: 20px;
+    }
 }
 
 // padding: 0;
 // margin: 0;
 // padding-bottom: 1em;
 // padding-left: 1em;
-ul {
-  li {
-      ul {
-          @include list_nested;
-          li {
-              ul {
-                  @include list_nested;
-                  li {
-                      ul {
-                          @include list_nested;
-                          li {
 
-                          }
-                      }
-                  }
-              }
-          }
-      }
-  }
+/// Base styles for unordered lists (`<ul>`).
+/// 
+/// This section ensures that nested lists within `<ul>` elements are properly indented 
+/// and styled according to the project's design system.
+ul {
+    li {
+
+        /// Indentation and styling for first level nested lists.
+        ul {
+            @include list_nested;
+            li {
+                /// Indentation and styling for second level nested lists.
+                ul {
+                    @include list_nested;
+                    li {
+                        /// Indentation and styling for third level nested lists.
+                        ul {
+                            @include list_nested;
+                            li {
+                                // Additional nested list styling can be added here if needed.
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
