@@ -21,29 +21,44 @@
 // Layout | Grid | Row
 // ============================================================================
 
-@mixin row($val){
-  grid-row: span $val;
+
+/// Mixin to create a grid row that spans a specific number of rows.
+/// @param {Number} $val - The number of rows to span.
+/// @group Grid Rows
+@mixin row($val) {
+    grid-row: span $val;
+}
+  
+/// Mixin for grid row spanning with responsive design for small screens.
+/// @param {Number} $val - The number of rows to span.
+/// @group Grid Rows
+@mixin row_s($val) {
+    @media (min-width: $media_sm) {
+        @include row($val);
+    }
 }
 
-@mixin row_s($val){
-  @media (min-width: $media_sm) {
-    @include row($val);
-  }
+/// Mixin for grid row spanning with responsive design for medium screens.
+/// @param {Number} $val - The number of rows to span.
+/// @group Grid Rows
+@mixin row_m($val) {
+    @media (min-width: $media_md) {
+        @include row($val);
+    }
 }
 
-@mixin row_m($val){
-  @media (min-width: $media_md) {
-    @include row($val);
-  }
-}
-
-@mixin row_l($val){
-  @media (min-width: $media_lg) {
-    @include row($val);
-  }
+/// Mixin for grid row spanning with responsive design for large screens.
+/// @param {Number} $val - The number of rows to span.
+/// @group Grid Rows
+@mixin row_l($val) {
+    @media (min-width: $media_lg) {
+        @include row($val);
+    }
 }
 
 
+// Utility mixins for specific row spans
+/// @group Grid Rows
 @mixin row_1 { @include row( 1); }
 @mixin row_2 { @include row( 2); }
 @mixin row_3 { @include row( 3); }
@@ -69,6 +84,8 @@
 @mixin row_23 { @include row(23); }
 @mixin row_24 { @include row(24); }
 
+// Utility classes for specific row spans
+/// @group Grid Rows
 .row_1 { @include row_1; }
 .row_2 { @include row_2; }
 .row_3 { @include row_3; }
@@ -94,7 +111,8 @@
 .row_23 { @include row_23; }
 .row_24 { @include row_24; }
 
-
+// Utility mixins for specific row spans with small screens
+/// @group Grid Rows
 @mixin row_s_1 { @include row_s( 1); }
 @mixin row_s_2 { @include row_s( 2); }
 @mixin row_s_3 { @include row_s( 3); }
@@ -120,6 +138,8 @@
 @mixin row_s_23 { @include row_s(23); }
 @mixin row_s_24 { @include row_s(24); }
 
+// Utility classes for specific row spans with small screens
+/// @group Grid Rows
 .row_s_1 { @include row_s_1; }
 .row_s_2 { @include row_s_2; }
 .row_s_3 { @include row_s_3; }
@@ -146,6 +166,8 @@
 .row_s_24 { @include row_s_24; }
 
 
+// Utility mixins for specific row spans with medium screens
+/// @group Grid Rows
 @mixin row_m_1 { @include row_m( 1); }
 @mixin row_m_2 { @include row_m( 2); }
 @mixin row_m_3 { @include row_m( 3); }
@@ -171,6 +193,8 @@
 @mixin row_m_23 { @include row_m(23); }
 @mixin row_m_24 { @include row_m(24); }
 
+// Utility classes for specific row spans with medium screens
+/// @group Grid Rows
 .row_m_1 { @include row_m_1; }
 .row_m_2 { @include row_m_2; }
 .row_m_3 { @include row_m_3; }
@@ -196,7 +220,8 @@
 .row_m_23 { @include row_m_23; }
 .row_m_24 { @include row_m_24; }
 
-
+// Utility mixins for specific row spans with large screens
+/// @group Grid Rows
 @mixin row_l_1 { @include row_l( 1); }
 @mixin row_l_2 { @include row_l( 2); }
 @mixin row_l_3 { @include row_l( 3); }
@@ -222,6 +247,8 @@
 @mixin row_l_23 { @include row_l(23); }
 @mixin row_l_24 { @include row_l(24); }
 
+// Utility classes for specific row spans with large screens
+/// @group Grid Rows
 .row_l_1 { @include row_l_1; }
 .row_l_2 { @include row_l_2; }
 .row_l_3 { @include row_l_3; }
