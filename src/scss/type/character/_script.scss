@@ -31,7 +31,10 @@ $script-line-height: 0;
 $sup-position: -0.5em;
 $sub-position: 0.5em;
 
-// Mixin for base script styles (applies to both sub and sup)
+/// Mixin for base script styles (applies to both sub and sup).
+/// 
+/// This mixin sets the common styles for subscript and superscript text, 
+/// including font size, line height, position, and vertical alignment.
 @mixin base-script-style {
   font-size: $script-font-size;
   line-height: $script-line-height;
@@ -39,13 +42,17 @@ $sub-position: 0.5em;
   vertical-align: baseline;
 }
 
-// Mixin for subscript styles
+/// Mixin for subscript styles.
+/// 
+/// This mixin applies the base script styles and adjusts the position for subscript text.
 @mixin subscript-style {
   @include base-script-style;
   bottom: $sub-position; // Adjusted to 'bottom' for more semantic positioning
 }
 
-// Mixin for superscript styles
+/// Mixin for superscript styles.
+/// 
+/// This mixin applies the base script styles and adjusts the position for superscript text.
 @mixin superscript-style {
   @include base-script-style;
   top: $sup-position;
@@ -61,6 +68,9 @@ $sub-position: 0.5em;
   
 
 
+/// Base styling for subscript and superscript elements.
+/// 
+/// This applies a consistent font size, line height, and positioning for `<sub>` and `<sup>` elements.
 sub,
 sup {
     font-size: 75%;
@@ -71,31 +81,39 @@ sup {
 
 }
 
+/// Custom positioning for subscript elements.
+/// 
+/// This adjusts the vertical position for `<sub>` elements to align them correctly.
 sub {
     // bottom: -0.25em;
     top: 0.5em;
 }
 
+/// Custom positioning for superscript elements.
+/// 
+/// This adjusts the vertical position for `<sup>` elements to align them correctly.
 sup {
     top: -0.5em;
 }
 
 
-// // Mixin for customizable script styles
-// @mixin custom-script-style($font-size: $script-font-size, $line-height: $script-line-height, $position-adjust: 0) {
-//     font-size: $font-size;
-//     line-height: $line-height;
-//     position: relative;
-//     vertical-align: baseline;
-//     top: $position-adjust;
-//   }
-  
-//   // Utility classes for different script styles
-//   .script-small {
-//     @include custom-script-style(65%, 1, 0); // Smaller font size and adjusted line height
-//   }
-  
-//   .script-large {
-//     @include custom-script-style(85%, 1, 0); // Larger font size and adjusted line height
-//   }
-  
+// Commented-out section with alternative mixin for customizable script styles
+
+/*
+@mixin custom-script-style($font-size: $script-font-size, $line-height: $script-line-height, $position-adjust: 0) {
+    font-size: $font-size;
+    line-height: $line-height;
+    position: relative;
+    vertical-align: baseline;
+    top: $position-adjust;
+}
+
+// Utility classes for different script styles
+.script-small {
+    @include custom-script-style(65%, 1, 0); // Smaller font size and adjusted line height
+}
+
+.script-large {
+    @include custom-script-style(85%, 1, 0); // Larger font size and adjusted line height
+}
+*/
