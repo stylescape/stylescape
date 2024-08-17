@@ -26,6 +26,10 @@
 @use "../elements" as *;
 @use "../type" as *;
 
+
+/// Map container styling.
+/// This sets up the map container with full viewport dimensions and appropriate z-index.
+/// @group Map
 #map {
   // width: 100vw;
   // height: 100vh;
@@ -33,7 +37,9 @@
   // z-index: 9999;
 }
 
-
+/// Main map canvas.
+/// Ensures the map canvas takes up the full viewport and has the correct stacking order.
+/// @group Map
 .map_canvas {
     width: 100vw;
     height: 100vh;
@@ -42,7 +48,9 @@
 
 
 
-
+/// Base styles for layer controls on the map.
+/// Applies basic styles such as resetting margins, applying font size, and setting up a light color scheme.
+/// @group Map
 .layer_control_base, .layer_control_overlay {
     @include reset_bleed;
     @include font_size_03;
@@ -70,6 +78,9 @@
 
 }
 
+/// Custom radio button styling.
+/// Styles radio buttons with a custom appearance both in their default and checked states.
+/// @group Map
 input[type='radio']:after {
     width: 15px;
     height: 15px;
@@ -98,22 +109,12 @@ input[type='radio']:checked:after {
     border: 2px solid white;
 }
 
-
+/// Overlay-specific styles for layer controls.
+/// This section can be extended to include specific styles for layer control overlays on the map.
+/// @group Map
 .layer_control_overlay {
-  
+    // Additional styles for the overlay can be added here.
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
