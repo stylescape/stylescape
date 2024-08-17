@@ -25,6 +25,12 @@
 // Border Side Mixin
 // ----------------------------------------------------------------------------
 
+/// Mixin for setting the border on a specific side.
+///
+/// @param {String} $side - The side of the element to apply the border (top, bottom, left, right).
+/// @param {String} $width - The width of the border. Default is 1px.
+/// @param {String} $style - The style of the border (e.g., solid, dotted, dashed). Default is solid.
+/// @param {String} $color - The color of the border. Default is black.
 @mixin border_side(
     $side,
     $width: 1px,
@@ -46,15 +52,25 @@
 // Border Side Classes
 // ----------------------------------------------------------------------------
 
-.border_top     { @include border_side(top); }
-.border_bottom  { @include border_side(bottom); }
-.border_left    { @include border_side(left); }
-.border_right   { @include border_side(right); }
+/// Class for setting a border on the top side of an element.
+.border_top { @include border_side(top); }
 
+/// Class for setting a border on the bottom side of an element.
+.border_bottom { @include border_side(bottom); }
+
+/// Class for setting a border on the left side of an element.
+.border_left { @include border_side(left); }
+
+/// Class for setting a border on the right side of an element.
+.border_right { @include border_side(right); }
+
+/// Class for setting borders on both the top and bottom sides of an element.
 .border_vertical { 
     @include border_side(top); 
     @include border_side(bottom); 
 }
+
+/// Class for setting borders on both the left and right sides of an element.
 .border_horizontal { 
     @include border_side(left); 
     @include border_side(right); 
@@ -64,6 +80,11 @@
 // Full Border Mixin
 // ----------------------------------------------------------------------------
 
+/// Mixin for setting borders on all sides of an element.
+///
+/// @param {String} $width - The width of the border. Default is 1px.
+/// @param {String} $style - The style of the border (e.g., solid, dotted, dashed). Default is solid.
+/// @param {String} $color - The color of the border. Default is black.
 @mixin border_all(
     $width: 1px,
     $style: solid,
@@ -72,18 +93,16 @@
     border: $width $style $color;
 }
 
+/// Class for setting borders on all sides of an element.
 .border_all { @include border_all(); }
 
+// // Example: Customizable Border Classes
+// .border_custom { @include border_side(top, 2px, dashed, blue); }
 
-// // Customizable Border Classes
-// .border_custom { @include border_side(top, 2px, dashed, blue); } // Example
-
-// // Responsive Border Styles
+// // Example: Responsive Border Styles
 // @media (max-width: 600px) {
 //     .border_top-mobile { @include border_side(top, 2px); }
 //     // Add more responsive styles as needed
 // }
-
-
 
 
