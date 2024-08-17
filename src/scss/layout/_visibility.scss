@@ -13,44 +13,73 @@
 // limitations under the License.
 
 
-// ============================================================================
-// StyleScape | Effects | Visibilty
-// ============================================================================
 @use "../variables" as *;
 @use "../mixins" as *;
 
+
+// ============================================================================
+// StyleScape | Effects | Visibilty
+// ============================================================================
+
+@use "../mixins" as *;
+
+/// Ensures that visibility is inherited by all elements by default.
 * {
     visibility: inherit;
 }
 
+/// Mixin to make an element visible.
+/// @example
+/// .element { @include visible(); }
 @mixin visible {
     visibility: visible;
+    // Uncomment if you need to ensure the element is displayed:
     // display: inherit;
 }
 
+/// Mixin to make an element invisible.
+/// @example
+/// .element { @include invisible(); }
 @mixin invisible {
     visibility: hidden;
+    // Uncomment if you need to remove the element from the layout:
     // display: none;
 }
 
+/// Class to apply visibility to an element.
+/// @example
+/// <div class="visible">This text is visible.</div>
 .visible {
-    @include visible;
+    @include visible();
 }
-  
+
+/// Class to hide an element by setting its visibility to hidden.
+/// @example
+/// <div class="invisible">This text is hidden.</div>
 .invisible {
-    @include invisible;
+    @include invisible();
 }
 
 
-
-
-
-// Base Collapse Class
-// Hides the element when it does not have the 'show' class
+/// Base class for collapsible elements.
+/// Hides the element when it does not have the `show` class.
+/// @example
+/// <div class="collapse">This will be hidden by default.</div>
 .collapse {
     &:not(.show) {
         display: none;
     }
+}
+
+/// Class to control the expanded state of collapsible elements.
+/// Ensures the element is fully expanded and visible.
+/// @example
+/// <div class="expand">This element is expanded.</div>
+.expand {
+    display: block;
+    height: auto;
+    width: auto;
+    opacity: 1; // Reset opacity if the element had a fade effect
 }
 
 // Collapsing Transition Class
@@ -82,14 +111,6 @@
 //   }
 // }
 
-// Expand Class - Optional
-// This class can be used to control expanded state if needed
-.expand {
-    display: block;
-    height: auto;
-    width: auto;
-    opacity: 1; // Reset opacity in case of fade effect
-}
 
 
 
