@@ -22,13 +22,17 @@
 // Media | Image
 // ============================================================================
 
+/// Resets border styling on images to remove borders when inside an `<a>` element.
 img {
     border-style: none; /* Remove border when inside `a` element in IE 8/9/10 */
     // max-width: 100%;
     // height: auto;
 }
 
-
+/// Mixin for styling images to cover their container.
+/// 
+/// The image is positioned absolutely, taking up the full width and height
+/// of its container. The background is centered and covers the entire container.
 @mixin image_cover {
     position:                 absolute;
     width:                    100%;
@@ -47,6 +51,10 @@ img {
 
 }
 
+
+/// Mixin for creating a parallax effect on images.
+/// 
+/// The image is positioned relative with a fixed background attachment, creating a parallax scrolling effect.
 @mixin image_parallax {
     position: relative !important;
     background-size: cover !important;
@@ -58,6 +66,9 @@ img {
     -o-transition-duration: 0s;
 }
   
+/// Mixin for fixing the background of an image in place.
+/// 
+/// The image background is fixed, centered, and does not repeat. This is useful for creating non-scrolling backgrounds.
 @mixin image_fix_background {
     background-attachment: fixed !important;
     background-position: center center;
