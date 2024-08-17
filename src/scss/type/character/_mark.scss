@@ -28,20 +28,32 @@
 $color-mark-text: #fff; // Fallback for white color
 $color-mark-bg: #ff0; // Fallback for a yellow highlight, typical for <mark>
 
-
-// Define your theme colors or import them if they are defined elsewhere
+/// Theme color overrides.
+/// 
+/// These variables define the default colors for marked text and background, 
+/// which can be overridden if needed.
 $color-white: $color-mark-text !default; // Using !default allows overriding
 $color-accent-1: $color-mark-bg !default;
 
-// Mixin for <mark> styling
-@mixin mark_style($text-color: $color-white, $bg-color: $color-accent-1) {
-  color: $text-color;
-  background-color: $bg-color;
-  padding: 0.2em; // Adds padding for better readability
-  border-radius: 4px; // Optional: Adds rounded corners
+/// Mixin for styling `<mark>` elements.
+/// 
+/// This mixin styles the `<mark>` element, applying text color, background color, padding, and optional rounded corners.
+/// 
+/// @param {Color} $text-color - The color of the text inside the `<mark>` element (default: `$color-white`).
+/// @param {Color} $bg-color - The background color of the `<mark>` element (default: `$color-accent-1`).
+@mixin mark_style(
+    $text-color: $color-white,
+    $bg-color: $color-accent-1
+) {
+    color: $text-color;
+    background-color: $bg-color;
+    padding: 0.2em; // Adds padding for better readability
+    border-radius: 4px; // Optional: Adds rounded corners
 }
 
-// Applying the mixin to <mark> elements
+/// Applying the mixin to `<mark>` elements.
+/// 
+/// This ensures that all `<mark>` elements in the document are styled consistently using the `mark_style` mixin.
 mark {
-  @include mark_style;
+    @include mark_style;
 }
