@@ -35,43 +35,59 @@
 // Improved Layout | Sticky Mixins
 // Provides mixins for sticky positioning at the top or bottom of the viewport.
 
-// Mixin for sticky positioning at the top
-@mixin sticky_top($top-offset: 0, $z-index: 10, $width: 100%) {
-    position: -webkit-sticky; // For Safari support
-    position: sticky;
-    top: $top-offset;
-    z-index: $z-index;
-    width: $width;
+
+/// Mixin for sticky positioning at the top of the viewport.
+/// @param {Number} $top-offset [0] - Offset from the top of the viewport.
+/// @param {Number} $z-index [10] - Z-index to manage stacking order.
+/// @param {String} $width [100%] - Width of the sticky element.
+@mixin sticky_top(
+  $top-offset: 0,
+  $z-index: 10,
+  $width: 100%
+) {
+  position: -webkit-sticky; // For Safari support
+  position: sticky;
+  top: $top-offset;
+  z-index: $z-index;
+  width: $width;
 }
 
-// Mixin for sticky positioning at the bottom
+
+/// Mixin for sticky positioning at the bottom of the viewport.
+/// @param {Number} $bottom-offset [0] - Offset from the bottom of the viewport.
+/// @param {Number} $z-index [10] - Z-index to manage stacking order.
+/// @param {String} $width [100%] - Width of the sticky element.
 @mixin sticky_bottom($bottom-offset: 0, $z-index: 10, $width: 100%) {
-    position: -webkit-sticky; // For Safari support
-    position: sticky;
-    bottom: $bottom-offset;
-    z-index: $z-index;
-    width: $width;
+  position: -webkit-sticky; // For Safari support
+  position: sticky;
+  bottom: $bottom-offset;
+  z-index: $z-index;
+  width: $width;
 }
 
-// Mixin for sticky positioning on the left
+/// Mixin for sticky positioning on the left side of the viewport.
+/// @param {Number} $left-offset [0] - Offset from the left of the viewport.
+/// @param {Number} $z-index [10] - Z-index to manage stacking order.
+/// @param {String} $height [auto] - Height of the sticky element.
 @mixin sticky-left($left-offset: 0, $z-index: 10, $height: auto) {
-    position: -webkit-sticky;
-    position: sticky;
-    left: $left-offset;
-    z-index: $z-index;
-    height: $height;
+  position: -webkit-sticky;
+  position: sticky;
+  left: $left-offset;
+  z-index: $z-index;
+  height: $height;
 }
 
-// Mixin for sticky positioning on the right
+/// Mixin for sticky positioning on the right side of the viewport.
+/// @param {Number} $right-offset [0] - Offset from the right of the viewport.
+/// @param {Number} $z-index [10] - Z-index to manage stacking order.
+/// @param {String} $height [auto] - Height of the sticky element.
 @mixin sticky-right($right-offset: 0, $z-index: 10, $height: auto) {
-    position: -webkit-sticky;
-    position: sticky;
-    right: $right-offset;
-    z-index: $z-index;
-    height: $height;
+  position: -webkit-sticky;
+  position: sticky;
+  right: $right-offset;
+  z-index: $z-index;
+  height: $height;
 }
-
-
 
 // Handling Overlapping Sticky Elements
 // ----------------------------------------------------------------------------
@@ -79,14 +95,19 @@
 // introduce a mixin to manage the stacking order dynamically based on
 // their DOM order.
 
+/// Mixin to manage the stacking order of multiple sticky elements.
+/// The stacking order is dynamically managed based on the element's position in the DOM.
+/// @param {Number} $base-index [10] - Base Z-index.
+/// @param {Number} $increment [1] - Incremental value for Z-index.
 @mixin sticky-stack($base-index: 10, $increment: 1) {
-    $z-index: $base-index + nth($sticky-elements, &)*$increment;
-    z-index: $z-index;
-  
-    @at-root {
-        $sticky-elements: append($sticky-elements, &);
-    }
+  $z-index: $base-index + nth($sticky-elements, &)*$increment;
+  z-index: $z-index;
+
+  @at-root {
+      $sticky-elements: append($sticky-elements, &);
+  }
 }
+
 
 // Initialize a global list to keep track of sticky elements
 $sticky-elements: ();
@@ -119,6 +140,12 @@ $sticky-elements: ();
 // Sometimes, you might want an element to be sticky only under certain conditions, such as when a specific class is added dynamically via JavaScript. We can introduce a mixin to handle this.
 
 
+/// Mixin for conditional sticky behavior based on a specified class or condition.
+/// Useful for adding sticky behavior dynamically with JavaScript.
+/// @param {String} $condition ['.is-sticky'] - The condition or class for triggering sticky behavior.
+/// @param {String} $position ['top'] - The position to stick ('top' or 'bottom').
+/// @param {Number} $offset [0] - The offset for the sticky position.
+/// @param {Number} $z-index [10] - Z-index to manage stacking order.
 @mixin conditional-sticky($condition: '.is-sticky', $position: 'top', $offset: 0, $z-index: 10) {
   #{$condition} & {
     position: -webkit-sticky;
@@ -132,6 +159,11 @@ $sticky-elements: ();
 // Introduce mixins for sticky elements with offsets, allowing elements to not stick immediately at the edge of the viewport but after some space.
 
 
+/// Mixin for sticky positioning at the top with an additional offset.
+/// The element will stick after scrolling past the offset.
+/// @param {Number} $offset - Initial offset from the viewport.
+/// @param {Number} $additional-offset [0] - Additional offset from the viewport.
+/// @param {Number} $z-index [10] - Z-index to manage stacking order.
 @mixin sticky-top-with-offset($offset, $additional-offset: 0, $z-index: 10) {
   position: -webkit-sticky;
   position: sticky;
@@ -139,13 +171,17 @@ $sticky-elements: ();
   z-index: $z-index;
 }
 
+/// Mixin for sticky positioning at the bottom with an additional offset.
+/// The element will stick after scrolling past the offset.
+/// @param {Number} $offset - Initial offset from the viewport.
+/// @param {Number} $additional-offset [0] - Additional offset from the viewport.
+/// @param {Number} $z-index [10] - Z-index to manage stacking order.
 @mixin sticky-bottom-with-offset($offset, $additional-offset: 0, $z-index: 10) {
   position: -webkit-sticky;
   position: sticky;
   bottom: $offset + $additional-offset;
   z-index: $z-index;
 }
-
 
 
 // Improved Responsive Design
@@ -187,14 +223,14 @@ $sticky-elements: ();
 // Usage Examples
 
 // Conditionally sticky element
-.sidebar {
-  @include conditional-sticky('.is-sticky', 'top', 20px);
-}
+// .sidebar {
+//   @include conditional-sticky('.is-sticky', 'top', 20px);
+// }
 
 // Sticky header with offset on scroll
-.header {
-  @include sticky-top-with-offset(0, 30px); // Becomes sticky 30px from the top
-}
+// .header {
+//   @include sticky-top-with-offset(0, 30px); // Becomes sticky 30px from the top
+// }
 
 // Responsive sticky sidebar
 // .sidebar-responsive {
