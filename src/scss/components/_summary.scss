@@ -1,11 +1,11 @@
 // Copyright 2023 Scape Agency BV
-
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,7 +17,6 @@
 // Components | Summary
 // ============================================================================
 
-
 @use "../dev" as *;
 @use "../variables" as *;
 @use "../mixins" as *;
@@ -25,39 +24,29 @@
 @use "../elements" as *;
 @use "../type" as *;
 
+/// Styling for the `<details>` element.
+/// The `<details>` element represents a disclosure widget from which the user can obtain additional information.
+/// @group Summary
 details {
-    display: block; /* Render the `main` element consistently in IE. */
+    display: block; /* Render the `details` element consistently across browsers. */
 }
 
+/// Styling for the `<summary>` element within `<details>`.
+/// The `<summary>` element is used as a summary or caption for the details content.
+/// @group Summary
 summary {
-    display: list-item; /* Add the correct display in all browsers */
+    display: list-item; /* Ensure the correct display in all browsers. */
+    outline: none; /* Remove the default outline for better customization. */
+    list-style: none; /* Hide the default list marker. */
+    cursor: pointer; /* Change cursor to indicate interactiveness. */
 }
 
-
-// and here the CSS to hide the default arrow in the summary tag:
-summary {
-    outline: none;
-    /* Hides marker on Chrome */
-    list-style: none;
-    cursor: pointer;
-}
-
-details > summary {
-    list-style: none;
-}
-
-details summary::-webkit-details-marker {
-     display:none;
-}
-
-details summary::marker {
-    display:none;
-}
-
-summary::marker {
-    display:none;
-}
-
+/// Additional rules to hide default summary markers across different browsers.
+/// These rules ensure that the default arrow markers are hidden to allow for custom styling.
+/// @group Summary
+details > summary,
+summary::marker,
+details summary::-webkit-details-marker,
 details > summary::-webkit-details-marker {
-    display: none;
+    display: none; /* Hide the default marker for a cleaner appearance. */
 }
