@@ -25,39 +25,45 @@
 // Border Style Mixins
 // ----------------------------------------------------------------------------
 
+/// Mixin for setting the border style.
+///
+/// @param {String} $style - The style of the border (e.g., solid, dotted, dashed).
 @mixin border_style($style) {
     border-style: $style !important;
 }
 
+/// Mixin for setting the border color to transparent.
 @mixin border_transparent {
     border-color: transparent !important;
 }
 
-// Mixin for Custom Border Style
+/// Mixin for setting a custom border style.
+///
+/// @param {String} $style - The style of the border (e.g., solid, dotted, dashed).
+/// @param {String} $width - The width of the border.
+/// @param {String} $color - The color of the border.
 @mixin border_style_custom($style, $width, $color) {
     border-style: $style;
     border-width: $width;
     border-color: $color;
 }
 
-
 // Border Style Classes
 // ----------------------------------------------------------------------------
 
-// Normal Border Styles
+/// Class for setting a dotted border style.
 .border_dotted      { @include border_style(dotted); }
+
+/// Class for setting a dashed border style.
 .border_dashed      { @include border_style(dashed); }
+
+/// Class for setting a solid border style.
 .border_solid       { @include border_style(solid); }
+
+/// Class for setting a double border style.
 .border_double      { @include border_style(double); }
 
-// 3D Border Styles
+/// Class for setting a groove border style (3D effect).
 .border_groove      { @include border_style(groove); }
-.border_ridge       { @include border_style(ridge); }
-.border_inset       { @include border_style(inset); }
-.border_outset      { @include border_style(outset); }
 
-// Special Border Styles
-.border_none        { @include border_style(none); }
-.border_hidden      { @include border_style(hidden); }
-.border_transparent { @include border_transparent; }
-
+/// Class for setting a ridge bord
