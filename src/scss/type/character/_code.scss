@@ -33,13 +33,28 @@ $code-background-color: #f4f4f4; // Light gray background for better readability
 $code-border-color: #ccc; // Border color for <pre> elements
 $code-border-radius: 4px; // Border radius for <pre> elements
 
-// Mixin for monospace font family
+/// Mixin for applying monospace font family.
+/// 
+/// This mixin sets the font family to a monospace font, which is typically used for code elements.
 @mixin monospace-font {
     font-family: $font-family-monospace;
 }
 
-// Mixin for preformatted text styles
-@mixin preformatted-text($font-size: $base-font-size, $background-color: $code-background-color, $border-color: $code-border-color, $border-radius: $code-border-radius) {
+/// Mixin for preformatted text styles.
+/// 
+/// This mixin is designed for use with `<pre>` elements and applies a set of styles that include monospace font,
+/// background color, border, and padding. It also handles long code blocks by adding scrollability.
+/// 
+/// @param {Length} $font-size - The font size for the text (default: `$base-font-size`).
+/// @param {Color} $background-color - Background color for the `<pre>` element (default: `$code-background-color`).
+/// @param {Color} $border-color - Border color for the `<pre>` element (default: `$code-border-color`).
+/// @param {Length} $border-radius - Border radius for the `<pre>` element (default: `$code-border-radius`).
+@mixin preformatted-text(
+    $font-size: $base-font-size,
+    $background-color: $code-background-color,
+    $border-color: $code-border-color,
+    $border-radius: $code-border-radius
+) {
     @include monospace-font;
     font-size: $font-size;
     background-color: $background-color;
@@ -51,6 +66,9 @@ $code-border-radius: 4px; // Border radius for <pre> elements
     word-wrap: break-word; // Break long words in <pre>
 }
 
+/// Styles for code-related elements (`<code>`, `<kbd>`, `<pre>`, `<samp>`).
+/// 
+/// Applies monospace font, background color, padding, border-radius, and font size.
 code,
 kbd,
 pre,
@@ -65,6 +83,9 @@ samp {
     font-size: 0.9em; // Slightly smaller font size for inline code
 }
 
+/// Additional styles for `<pre>` elements.
+/// 
+/// Corrects the font sizing and applies the preformatted text styles using the `preformatted-text` mixin.
 pre {
     // Correct the odd `em` font sizing in all browsers
     font-size: 1em;
@@ -72,8 +93,9 @@ pre {
 
 }
 
-
-// Additional utility class for inline code blocks
+/// Utility class for inline code blocks.
+/// 
+/// Applies monospace font, background color, padding, border-radius, and a slightly smaller font size.
 .inline-code {
     @include monospace-font;
     background-color: $code-background-color;
