@@ -1,23 +1,12 @@
 <p align="center">
-    <img src="https://stylescape.github.io/.assets/image/logo/scape_agency-logo_dark.jpg" width="20%" height="20%" alt="Scape Agency Logo">
+    <img src="https://raw.githubusercontent.com/stylescape/brand/master/src/logo/logo-transparant.png" width="20%" height="20%" alt="Stylescape Logo">
 </p>
-<h1 align='center' style='border-bottom: none;'>Stylescape</h1>
+<h1 align="center" style='border-bottom: none;'>Stylescape</h1>
+<!-- <h3 align="center">Dynamic Layout Engine</h3> -->
 
 ## A powerful design framework for concise and high-quality web development
 
 Stylescape is a modular, scalable, and customizable design framework written in SCSS and TypeScript, aimed to bridge the gap between visual design and code. It provides a robust toolkit for creating elegant and consistent web experiences quickly and efficiently.
-
----
-
-## Table of Contents
-
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Getting Started](#getting-started)
-- [Documentation](#documentation)
-- [Contribution](#contribution)
-- [License](#license)
 
 ---
 
