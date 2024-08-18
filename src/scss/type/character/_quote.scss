@@ -25,37 +25,39 @@
 // ============================================================================
 
 // Quote Styling Variables
-$quote-font-style: italic;
-$quote-color: #666; // A lighter shade for differentiation
-$quote-margin: 1em 0;
-$quote-padding: 0 1em;
-$quote-border-left: 4px solid #ddd; // A subtle left border for blockquotes
+$quote_font_style: italic;
+$quote_color: #666; // A lighter shade for differentiation
+$quote_margin: 1em 0;
+$quote_padding: 0 1em;
+$quote_border_left: 4px solid #ddd; // A subtle left border for blockquotes
 
 
 /// Mixin for base quote styles.
 /// 
-/// This mixin sets the basic styling for quotes, including font style, color, margin, and padding.
+/// This mixin sets the basic styling for quotes, including font style, color,
+/// margin, and padding.
 /// 
 /// - `color`: Sets the text color to a lighter shade.
 /// - `font-style`: Applies italic font style.
 /// - `margin`: Adds vertical spacing around the quote.
 /// - `padding`: Adds horizontal padding to the quote.
-@mixin base-quote-style {
-    color: $quote-color;
-    font-style: $quote-font-style;
-    margin: $quote-margin;
-    padding: $quote-padding;
+@mixin quote_base {
+    color: $quote_color;
+    font-style: $quote_font_style;
+    margin: $quote_margin;
+    padding: $quote_padding;
 }
   
 
 /// Mixin for inline quotes (`q` tag).
 /// 
-/// This mixin applies the base quote style to inline quotes and resets default browser quote symbols.
+/// This mixin applies the base quote style to inline quotes and resets
+/// default browser quote symbols.
 /// 
 /// - `quotes: none`: Disables the default quotation marks.
 /// - `&:before`, `&:after`: Removes any automatically added content.
-@mixin inline-quote-style {
-    @include base-quote-style;
+@mixin quote_inline {
+    @include quote_base;
 
     // Resetting default browser quote symbols
     quotes: none;
@@ -66,18 +68,33 @@ $quote-border-left: 4px solid #ddd; // A subtle left border for blockquotes
 }
 
 
-// blockquote {
-//     @include blockquote-style;
-// }
-
-// q {
-//     @include inline-quote-style;
-// }
+/// Mixin for custom quote symbols.
+/// 
+/// This mixin allows the addition of custom quote symbols around inline
+/// quotes.
+/// 
+/// @param {String} $open_quote ['“'] - The symbol for the opening quote.
+/// @param {String} $close_quote ['“'] - The symbol for the closing quote.
+@mixin quote_symbols(
+    $open_quote: '“',
+    $close_quote: '”'
+) {
+    &:before {
+        content: $open_quote;
+        padding-right: 0.25em; // Space between the opening quote and text
+    }
+    &:after {
+        content: $close_quote;
+        padding-left: 0.25em; // Space between the text and closing quote
+    }
+}
+  
 
 
 /// Base styling for `blockquote` and `q` elements.
 /// 
-/// This applies a clean slate by removing any default quotation marks and resetting content.
+/// This applies a clean slate by removing any default quotation marks and
+/// resetting content.
 blockquote,
 q {
     quotes: none;
@@ -91,28 +108,14 @@ q:after {
     content: none;
 }
 
+// blockquote {
+//     @include blockquote-style;
+// }
 
-/// Mixin for custom quote symbols.
-/// 
-/// This mixin allows the addition of custom quote symbols around inline quotes.
-/// 
-/// @param {String} $open-quote - The symbol for the opening quote (default: '“').
-/// @param {String} $close-quote - The symbol for the closing quote (default: '”').
-@mixin custom-quote-symbols($open-quote: '“', $close-quote: '”') {
-    &:before {
-      content: $open-quote;
-      padding-right: 0.25em; // Space between the opening quote and text
-    }
-  
-    &:after {
-      content: $close-quote;
-      padding-left: 0.25em; // Space between the text and closing quote
-    }
+
+
+/// Applying custom symbols to inline quotes
+q {
+    @include quote_inline;
+    @include quote_symbols;
 }
-  
-  // Applying custom symbols to inline quotes
-//   q {
-//     @include inline-quote-style;
-//     @include custom-quote-symbols;
-//   }
-  
