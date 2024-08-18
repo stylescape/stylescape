@@ -26,13 +26,71 @@
 // Typography | Character | Abbreviation
 // ============================================================================
 
+
+/// Abbreviation Styling Variables
+$abbreviation_text-decoration: underline dotted;
+$abbreviation_tooltip_bg: #1e1e1e; // Tooltip background color
+$abbreviation_tooltip_color: #fff; // Tooltip text color
+$abbreviation_tooltip_radius: 3px; // Tooltip border radius
+$abbreviation_tooltip_shadow: 1px 1px 5px rgba(0, 0, 0, 0.4); // Tooltip shadow
+$abbreviation_tooltip_font-size: 14px; // Tooltip font size
+$abbreviation_tooltip_padding: 3px 5px; // Tooltip padding
+
+
+
+/// Mixin for base abbreviation styles
+@mixin abbreviation_base {
+    display: inline; // Most browsers will display the <abbr> element as inline
+    text-decoration: $abbreviation_text-decoration;
+}
+
+/// Mixin for abbreviation tooltip styles
+@mixin abbreviation_tooltip {
+    @include abbreviation_base;
+    position: relative;
+
+    &:hover::after, &:focus::after {
+        content: attr(title);
+        position: absolute;
+        left: 0;
+        bottom: -30px; // Adjust based on your design
+        white-space: nowrap;
+        background-color: $abbreviation_tooltip_bg;
+        color: $abbreviation_tooltip_color;
+        border-radius: $abbreviation_tooltip_radius;
+        box-shadow: $abbreviation_tooltip_shadow;
+        font-size: $abbreviation_tooltip_font-size;
+        padding: $abbreviation_tooltip_padding;
+    }
+}
+
+
+
+/// Mixin for touchscreen friendly styles
+@mixin abbreviation_touchscreen {
+    cursor: pointer; // Suggests interactivity
+    &:active::after {
+      // Tooltip styles could be replicated here if you want them to appear on tap
+    }
+  }
+
+
+
+
 /// Styles for the `<abbr>` HTML element.
 /// 
 /// The abbreviation element is styled to be inline, and the title attribute is used to generate a tooltip on hover or focus.
 abbr {
-    // Most browsers will display the <abbr> element as inline
+    @include abbreviation_base;
+
+    
     display: inline;
     // font-variant: all-small-caps;
+
+  
+    // &[title] {
+    //   @include abbreviation_tooltip;
+    // }
 }
 
 
@@ -40,6 +98,7 @@ abbr {
 /// 
 /// Adds a tooltip on hover and focus, and removes the default underline for better control over the decoration.
 /// Tooltip styling is provided for better accessibility and usability on different input devices.
+/// 
 abbr[title] {
 
     position: relative;
@@ -51,7 +110,7 @@ abbr[title] {
 
 
     // Making the abbr element work for touchscreen, keyboard, and mouse
-    // https://bitsofco.de/making-abbr-work-for-touchscreen-keyboard-mouse/
+    // https://bitsofco.de/making-abbreviation_work-for-touchscreen-keyboard-mouse/
 
 
     /// Tooltip appears on hover or focus
@@ -78,61 +137,9 @@ abbr[title] {
 
 
 
-
-// Commented-out section with improved mixin approach for better maintainability:
-
-// /// Abbreviation Styling Variables
-// $abbr-text-decoration: underline dotted;
-// $abbr-tooltip-bg: #1e1e1e; // Tooltip background color
-// $abbr-tooltip-color: #fff; // Tooltip text color
-// $abbr-tooltip-radius: 3px; // Tooltip border radius
-// $abbr-tooltip-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4); // Tooltip shadow
-// $abbr-tooltip-font-size: 14px; // Tooltip font size
-// $abbr-tooltip-padding: 3px 5px; // Tooltip padding
-
-// /// Mixin for base abbreviation styles
-// @mixin abbr-base {
-//   display: inline;
-//   text-decoration: $abbr-text-decoration;
-// }
-
-// /// Mixin for abbreviation tooltip styles
-// @mixin abbr-tooltip {
-//   position: relative;
-
-//   &:hover::after, &:focus::after {
-//     content: attr(title);
-//     position: absolute;
-//     left: 0;
-//     bottom: -30px; // Adjust based on your design
-//     white-space: nowrap;
-//     background-color: $abbr-tooltip-bg;
-//     color: $abbr-tooltip-color;
-//     border-radius: $abbr-tooltip-radius;
-//     box-shadow: $abbr-tooltip-shadow;
-//     font-size: $abbr-tooltip-font-size;
-//     padding: $abbr-tooltip-padding;
-//   }
-// }
-
-// abbr {
-//     @include abbr-base;
-  
-//     &[title] {
-//       @include abbr-tooltip;
-//     }
-//   }
-
-// /// Mixin for touchscreen friendly styles
-// @mixin abbr-touchscreen {
-//     cursor: pointer; // Suggests interactivity
-//     &:active::after {
-//       // Tooltip styles could be replicated here if you want them to appear on tap
-//     }
-//   }
   
 // /// Applying touchscreen friendly styles
 //   abbr[title] {
-//     @include abbr-touchscreen;
+//     @include abbreviation_touchscreen;
 //   }
   
