@@ -25,15 +25,14 @@
 // ============================================================================
 
 /// Mixin for applying bold character styles.
-/// 
-/// This mixin combines the normal character styles, default font settings, 
-/// and a bold font weight to create the standard bold style for your design system.
+/// Combines normal character styles, default font settings, and bold font weight
+/// to create the standard bold style for your design system.
 @mixin character_bold {
-    // font-weight: bolder; /* Add the correct font weight in Chrome, Edge, and Safari */
-    @include character_normal;
+    @include character_normal;     // Apply normal character styling
+    @include character_default;    // Apply default font settings
+    @include font_weight_600;      // Apply bold font weight
     // @include font_size_04;
-    @include character_default;
-    @include font_weight_600;
+    // font-weight: bolder;         // Add the correct font weight in Chrome, Edge, and Safari
 }
 
 /// Apply the bold character styles to <b> and <strong> tags.
