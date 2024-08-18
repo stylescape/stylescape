@@ -25,28 +25,29 @@
 // ============================================================================
 
 // Color Variables
-$color-mark-text: #fff; // Fallback for white color
-$color-mark-bg: #ff0; // Fallback for a yellow highlight, typical for <mark>
+$color_mark_text: #fff; // Fallback for white color
+$color_mark_bg: #ff0; // Fallback for a yellow highlight, typical for <mark>
 
 /// Theme color overrides.
 /// 
 /// These variables define the default colors for marked text and background, 
 /// which can be overridden if needed.
-$color-white: $color-mark-text !default; // Using !default allows overriding
-$color-accent-1: $color-mark-bg !default;
+$color_white: $color_mark_text !default;
+$color_accent_1: $color_mark_bg !default;
 
 /// Mixin for styling `<mark>` elements.
 /// 
-/// This mixin styles the `<mark>` element, applying text color, background color, padding, and optional rounded corners.
+/// This mixin styles the `<mark>` element, applying text color, background
+/// color, padding, and optional rounded corners.
 /// 
-/// @param {Color} $text-color - The color of the text inside the `<mark>` element (default: `$color-white`).
-/// @param {Color} $bg-color - The background color of the `<mark>` element (default: `$color-accent-1`).
+/// @param {Color} $text_color [$color_white] - The color of the text inside the `<mark>` element.
+/// @param {Color} $bg_color [color_accent_1] - The background color of the `<mark>` element.
 @mixin mark_style(
-    $text-color: $color-white,
-    $bg-color: $color-accent-1
+    $text_color: $color_white,
+    $bg_color: $color_accent_1
 ) {
-    color: $text-color;
-    background-color: $bg-color;
+    color: $text_color;
+    background-color: $bg_color;
     padding: 0.2em; // Adds padding for better readability
     border-radius: 4px; // Optional: Adds rounded corners
 }
