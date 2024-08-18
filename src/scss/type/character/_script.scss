@@ -28,42 +28,44 @@
 // Typography Variables for Script
 $script-font-size: 75%;
 $script-line-height: 0;
-$sup-position: -0.5em;
-$sub-position: 0.5em;
+$sup_position: -0.5em;
+$sub_position: 0.5em;
+
+
 
 /// Mixin for base script styles (applies to both sub and sup).
 /// 
 /// This mixin sets the common styles for subscript and superscript text, 
 /// including font size, line height, position, and vertical alignment.
-@mixin base-script-style {
-  font-size: $script-font-size;
-  line-height: $script-line-height;
-  position: relative;
-  vertical-align: baseline;
+@mixin script_base {
+    font-size: $script-font-size;
+    line-height: $script-line-height;
+    position: relative;
+    vertical-align: baseline;
 }
 
 /// Mixin for subscript styles.
 /// 
 /// This mixin applies the base script styles and adjusts the position for subscript text.
-@mixin subscript-style {
-  @include base-script-style;
-  bottom: $sub-position; // Adjusted to 'bottom' for more semantic positioning
+@mixin subscript {
+    @include script_base;
+    bottom: $sub_position; // Adjusted to 'bottom' for more semantic positioning
 }
 
 /// Mixin for superscript styles.
 /// 
 /// This mixin applies the base script styles and adjusts the position for superscript text.
-@mixin superscript-style {
-  @include base-script-style;
-  top: $sup-position;
+@mixin superscript {
+    @include script_base;
+    top: $sup_position;
 }
 
 // sub {
-//     @include subscript-style;
+//     @include subscript;
 //   }
   
 //   sup {
-//     @include superscript-style;
+//     @include superscript;
 //   }
   
 
