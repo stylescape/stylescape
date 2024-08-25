@@ -16,7 +16,7 @@
 
 ## A powerful design framework for concise and high-quality web development
 
-Stylescape is a modular, scalable, and customizable design framework written in SCSS and TypeScript, aimed to bridge the gap between visual design and code. It provides a robust toolkit for creating elegant and consistent web experiences quickly and efficiently.
+Stylescape is a modular, scalable, and customizable design framework dedicated to streamlining style and layout design for both web and print media. Written in SCSS and TypeScript, it aimes to bridge the gap between visual design and code. Whether you’re a designer or developer, Stylescape provides a robust toolkit that empowers you to create harmonious, scalable, and accessible designs efficiently.
 
 ---
 
@@ -69,4 +69,6 @@ Contributions are always welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for way
 
 ---
 
-Made with ❤️ by Scape Agency. Visit us at [scape.agency](https://scape.agency).
+<p align="center">
+    <b>Made with ❤️ by <a href="https://www.scape.agency" target="_blank">Scape Agency</a></b>
+</p>
