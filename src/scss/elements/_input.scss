@@ -23,74 +23,74 @@
 @use "../mixins" as *;
 @use "../type" as *;
 
-/// Styles for form labels
-/// @group Form
-label {
-    // font-size: 1.5rem;
-    // line-height: 1.5;
-    @include font-size_03;
-    // position: relative;
-    // display: block;
-    width: 100%;
-    // margin-bottom: .625rem;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none; 
-    // color: var(--ptf-color-black);
-}
+// /// Styles for form labels
+// /// @group Form
+// label {
+//     // font-size: 1.5rem;
+//     // line-height: 1.5;
+//     @include font-size_03;
+//     // position: relative;
+//     // display: block;
+//     width: 100%;
+//     // margin-bottom: .625rem;
+//     -webkit-user-select: none;
+//        -moz-user-select: none;
+//         -ms-user-select: none;
+//             user-select: none; 
+//     // color: var(--ptf-color-black);
+// }
 
-/// Styles for form input fields
-/// @group Form
-input {
-	outline: none;
-	border: none;
-    height: $baseline_04;
-    @include font-size_03;
-}
+// /// Styles for form input fields
+// /// @group Form
+// input {
+// 	outline: none;
+// 	border: none;
+//     height: $baseline_04;
+//     @include font-size_03;
+// }
 
-/// Mixin for general input and textarea reset styles
-/// @group Form
-@mixin form_reset {
-    @include reset_bleed;
-    display: block;
-    padding: ($q * 0.75) 0;
-    border-bottom: ($q * 0.25) solid $color_02;
-}
+// /// Mixin for general input and textarea reset styles
+// /// @group Form
+// @mixin form_reset {
+//     @include reset_bleed;
+//     display: block;
+//     padding: ($q * 0.75) 0;
+//     border-bottom: ($q * 0.25) solid $color_02;
+// }
 
 
-/// Example of custom form styling
-/// @group Form
-.form_contact {
-    label, input, textarea {
-        @include form_reset;
-    }
-    label {
-        float: left;
-        height: $baseline;
-        margin-bottom: $baseline;
-        width: 25%;
-        min-width: 25%;
-    }
-    input {
-        background: transparent;
-        color: $color_01;
-        float: right;
-        height: $baseline;
-        width: 75%;
-        max-width: 75%;
-        margin-bottom: $baseline;
-        background-color: $color_01;
-    }
-    textarea {
-        background: transparent;
-        height: calc(10 * $baseline);
-        width: 100%;
-        margin-bottom: $baseline;
-        background-color: $color_02;
-        opacity: 0.1;
-    }
-}
+// /// Example of custom form styling
+// /// @group Form
+// .form_contact {
+//     label, input, textarea {
+//         @include form_reset;
+//     }
+//     label {
+//         float: left;
+//         height: $baseline;
+//         margin-bottom: $baseline;
+//         width: 25%;
+//         min-width: 25%;
+//     }
+//     input {
+//         background: transparent;
+//         color: $color_01;
+//         float: right;
+//         height: $baseline;
+//         width: 75%;
+//         max-width: 75%;
+//         margin-bottom: $baseline;
+//         background-color: $color_01;
+//     }
+//     textarea {
+//         background: transparent;
+//         height: calc(10 * $baseline);
+//         width: 100%;
+//         margin-bottom: $baseline;
+//         background-color: $color_02;
+//         opacity: 0.1;
+//     }
+// }
 
 /// General styles for various form elements
 /// @group Form
@@ -114,83 +114,83 @@ form {
     align-items: center;
 }
 
-/// Checkbox checkmark styling
-/// @group Form
-.ptf-checkbox__checkmark {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    display: flex;
-    width: 1.5625rem;
-    height: 1.5625rem;
-    transform: translateY(-50%);
-    background-color: transparent;
-    box-shadow: inset 0 0 0 1px var(--ptf-color-3);
-    align-items: center;
-    justify-content: center;
-}
+// /// Checkbox checkmark styling
+// /// @group Form
+// .ptf-checkbox__checkmark {
+//     position: absolute;
+//     top: 50%;
+//     left: 0;
+//     display: flex;
+//     width: 1.5625rem;
+//     height: 1.5625rem;
+//     transform: translateY(-50%);
+//     background-color: transparent;
+//     box-shadow: inset 0 0 0 1px var(--ptf-color-3);
+//     align-items: center;
+//     justify-content: center;
+// }
 
-.ptf-checkbox__checkmark::after {
-    font-family: var(--ptf-linear-icons-light);
-    display: none;
-    content: '\eb9d';
-    color: var(--ptf-color-white);
-}
+// .ptf-checkbox__checkmark::after {
+//     font-family: var(--ptf-linear-icons-light);
+//     display: none;
+//     content: '\eb9d';
+//     color: var(--ptf-color-white);
+// }
 
-.ptf-checkbox input[type=checkbox]:checked ~ .ptf-checkbox__checkmark {
-    background-color: var(--ptf-accent-1);
-    box-shadow: inset 0 0 0 1px var(--ptf-accent-1);
-}
+// .ptf-checkbox input[type=checkbox]:checked ~ .ptf-checkbox__checkmark {
+//     background-color: var(--ptf-accent-1);
+//     box-shadow: inset 0 0 0 1px var(--ptf-accent-1);
+// }
 
-.ptf-checkbox input[type=checkbox]:checked ~ .ptf-checkbox__checkmark::after {
-    display: block;
-}
+// .ptf-checkbox input[type=checkbox]:checked ~ .ptf-checkbox__checkmark::after {
+//     display: block;
+// }
 
-/// Form group styling
-/// @group Form
-.ptf-form-group {
-    position: relative;
-    display: block;
-    margin-bottom: 1.875rem;
-}
+// /// Form group styling
+// /// @group Form
+// .ptf-form-group {
+//     position: relative;
+//     display: block;
+//     margin-bottom: 1.875rem;
+// }
 
-/// Form row styling
-/// @group Form
-.ptf-form-row {
-    display: grid;
-    grid-gap: 1.875rem;
-    grid-template-columns: repeat(1, 1fr);
-}
+// /// Form row styling
+// /// @group Form
+// .ptf-form-row {
+//     display: grid;
+//     grid-gap: 1.875rem;
+//     grid-template-columns: repeat(1, 1fr);
+// }
 
-/// Two-column form row
-/// @group Form
-.ptf-form-row.two-col {
-    grid-template-columns: repeat(2, 1fr);
-}
+// /// Two-column form row
+// /// @group Form
+// .ptf-form-row.two-col {
+//     grid-template-columns: repeat(2, 1fr);
+// }
 
-/// Responsive form row styling for two-column layout
-/// @group Form
-@media only screen and (max-width: 767px) {
-    .ptf-form-row.two-col {
-        grid-gap: 0;
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
+// /// Responsive form row styling for two-column layout
+// /// @group Form
+// @media only screen and (max-width: 767px) {
+//     .ptf-form-row.two-col {
+//         grid-gap: 0;
+//         grid-template-columns: repeat(1, 1fr);
+//     }
+// }
 
-/// Three-column form row
-/// @group Form
-.ptf-form-row.three-col {
-    grid-template-columns: repeat(3, 1fr);
-}
+// /// Three-column form row
+// /// @group Form
+// .ptf-form-row.three-col {
+//     grid-template-columns: repeat(3, 1fr);
+// }
 
-/// Responsive form row styling for three-column layout
-/// @group Form
-@media only screen and (max-width: 767px) {
-    .ptf-form-row.three-col {
-        grid-gap: 0;
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
+// /// Responsive form row styling for three-column layout
+// /// @group Form
+// @media only screen and (max-width: 767px) {
+//     .ptf-form-row.three-col {
+//         grid-gap: 0;
+//         grid-template-columns: repeat(1, 1fr);
+//     }
+// }
 
 // textarea {
 //   outline: none;
