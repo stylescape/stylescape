@@ -1,0 +1,90 @@
+// Copyright 2023 Scape Agency BV
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// Layout | Overflow
+// ============================================================================
+@use "../variables" as *;
+@use "../mixins" as *;
+
+/// Mixin to set overflow properties with `!important`.
+/// Use this mixin only when necessary to override styles.
+/// @param {String} $x - Overflow for x-axis.
+/// @param {String} $y - Overflow for y-axis.
+@mixin overflow_important($x: auto, $y: auto) {
+    overflow-x: $x !important;
+    overflow-y: $y !important;
+}
+
+/// Mixin to set overflow properties.
+/// @param {String} $x - Overflow for x-axis.
+/// @param {String} $y - Overflow for y-axis.
+@mixin overflow($x: null, $y: null) {
+    @if $x != null and $y != null {
+        overflow-x: $x;
+        overflow-y: $y;
+    } @else if $x != null {
+        overflow-x: $x;
+    } @else if $y != null {
+        overflow-y: $y;
+    }
+}
+
+/// Mixin to set both x and y overflow to `hidden`.
+@mixin overflow_hidden {
+    overflow: hidden !important;
+}
+
+/// Mixin to set overflow to `visible`.
+@mixin overflow_visible {
+    overflow: visible !important;
+}
+
+/// Mixin to set overflow to `scroll`.
+@mixin overflow_scroll {
+    overflow: scroll !important;
+}
+
+/// Mixin to set overflow to `clip`.
+@mixin overflow_clip {
+    overflow: clip !important;
+}
+
+/// Mixin to set overflow to `auto`.
+@mixin overflow_auto {
+    overflow: auto !important;
+}
+
+/// Mixin to set x-axis overflow to `visible`.
+@mixin overflow_x_visible {
+    overflow: visible;
+    overflow-x: visible;
+}
+
+// Utility Classes using the Mixins
+// ============================================================================
+
+.overflow-hidden { @include overflow(hidden); }
+.overflow-visible { @include overflow(visible); }
+.overflow-scroll { @include overflow(scroll); }
+.overflow-auto { @include overflow(auto); }
+.overflow-hidden-visible { @include overflow(hidden, visible); }
+
+.overflow_hidden { @include overflow_hidden; }
+.overflow_visible { @include overflow_visible; }
+.overflow_scroll { @include overflow_scroll; }
+.overflow_clip { @include overflow_clip; }
+.overflow_auto { @include overflow_auto; }
+// .overflow_hidden_visible { @include overflow_hidden_visible; }

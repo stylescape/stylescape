@@ -1,0 +1,174 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+
+
+// ============================================================================
+// Layout | Display
+// ============================================================================
+// Provides utility classes and mixins for controlling the display properties of elements.
+
+
+
+/// Ensures elements with the `[hidden]` attribute are not displayed, with better accessibility and compatibility.
+/// @group Display
+[hidden] {
+  // Add the correct display in IE
+  display: none;
+  &:focus, &:active {
+      // Maintain `display: none` even if the element is focused or active.
+      display: none;
+  }
+}
+
+
+
+
+
+// Layout | Display Enhancements
+// Provides a more flexible and accessible approach to managing display properties.
+
+
+/// Utility class for `display: none` with `!important` for higher specificity.
+/// @group Display
+.display_none {
+    display: none !important;
+}
+
+/// Utility class for `display: block`.
+/// @group Display
+.display_block {
+    display: block;
+}
+
+/// Utility class for `display: inline`.
+/// @group Display
+.display_inline {
+    display: inline;
+}
+
+/// Utility class for `display: inline-block`.
+/// @group Display
+.display_inline-block {
+    display: inline-block;
+}
+
+/// Utility class for `display: flex`.
+/// @group Display
+.display_flex {
+    display: flex;
+}
+
+/// Utility class for `display: grid`.
+/// @group Display
+.display_grid {
+    display: grid;
+}
+
+
+  
+//   // Responsive display utilities, using a mixin to generate classes for different display properties at various breakpoints.
+//   $breakpoints: (
+//     'sm': 576px,
+//     'md': 768px,
+//     'lg': 992px,
+//     'xl': 1200px,
+//   );
+  
+//   @mixin responsive-display($property, $value) {
+//     @each $breakpoint, $bp-value in $breakpoints {
+//       @media (min-width: $bp-value) {
+//         &.#{$property}-#{$breakpoint} {
+//           display: $value;
+//         }
+//       }
+//     }
+//   }
+  
+//   // Example usage of the responsive display mixin for a 'none' display property.
+//   .hide-sm-up {
+//     @include responsive-display('hide', 'none');
+//   }
+  
+
+
+/// Mixin for generating responsive display utilities.
+/// @param {Map} $displays - A map of breakpoints and corresponding display values.
+/// @group Display
+@mixin responsive-display($displays: ()) {
+    @each $breakpoint, $display in $displays {
+        $bp-value: map-get($breakpoints, $breakpoint);
+        @media (min-width: $bp-value) {
+            display: $display;
+        }
+    }
+}
+  
+  // Usage Example: Hide on small devices, display as block on medium devices, and flex on large devices
+//   .element {
+//     @include responsive-display((
+//       'sm': 'none',
+//       'md': 'block',
+//       'lg': 'flex'
+//     ));
+//   }
+
+
+
+// Condition-Based Display Classes
+// For situations where display properties need to change based on user interaction or other conditions, we can create utility classes that can be toggled via JavaScript.
+
+/// Utility classes for condition-based display changes, often used in combination with JavaScript.
+/// @group Display
+.is-visible {
+    display: block !important; // Ensure visibility
+}
+
+.is-hidden {
+    display: none !important; // Ensure hidden
+}
+  
+  // Usage with JavaScript:
+  // element.classList.toggle('is-visible');
+  // element.classList.toggle('is-hidden');
+  
+
+//   Visibility and Accessibility
+// In addition to controlling layout with display properties, managing visibility while considering accessibility is crucial. Elements that are visually hidden but should remain accessible to screen readers can use the .visually-hidden class, whereas .invisible can hide elements visually and from screen readers.
+
+
+/// Visually hides an element while keeping it accessible to screen readers.
+/// @group Display
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; // Ensure the element stays on one line
+}
+
+/// Completely hides an element from both visual and screen reader interfaces.
+/// @group Display
+.invisible {
+    visibility: hidden;
+}

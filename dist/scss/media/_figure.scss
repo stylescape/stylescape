@@ -1,0 +1,202 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../type" as *;
+
+// ============================================================================
+// Media | Figures
+// ============================================================================
+
+
+
+// // Define variables for consistent styling
+// $figure-border-color: #ccc;
+// $figure-padding: 15px;
+// $figure-margin: 0 auto 30px;
+// $figure-max-width: 90%;
+// $figcaption-margin-top: 15px;
+// $figcaption-text-align: center;
+// $figcaption-font-style: italic;
+// $figcaption-font-size: 0.85em;
+
+
+
+
+// // Mixin for figure styling
+// @mixin figure_style {
+//     border: 1px solid $figure-border-color;
+//     padding: $figure-padding;
+//     margin: $figure-margin;
+//     max-width: $figure-max-width;
+//     box-sizing: border-box;
+
+//     img {
+//         display: block;
+//         width: 100%;
+//         height: auto;
+//     }
+
+//     figcaption {
+//         margin-top: $figcaption-margin-top;
+//         text-align: $figcaption-text-align;
+//         font-style: $figcaption-font-style;
+//         font-size: $figcaption-font-size;
+//     }
+// }
+
+// // Apply the mixin to the figure element
+// figure {
+//     @include figure_style;
+// }
+
+// // Example for a themed figure, reusing the mixin with different variables
+// $dark-theme-figure-border-color: #666;
+// $dark-theme-figcaption-font-size: 0.95em;
+
+// .dark-theme-figure {
+//     @include figure_style;
+
+//     border-color: $dark-theme-figure-border-color;
+    
+//     figcaption {
+//         font-size: $dark-theme-figcaption-font-size;
+//     }
+// }
+
+
+
+
+
+
+/// Styles for the `<figure>` element.
+/// 
+/// Ensures the figure is positioned relative and that its contents are aligned.
+figure {
+    position: relative;
+    // Ensures the caption's text aligns with the image.
+    display: inline-block;
+}
+
+/// Styles for images within a `<figure>`.
+/// 
+/// Ensures the image fits within its container and maintains its aspect ratio.
+figure img {
+    object-fit: contain;
+    width: 100%;
+    // margin-bottom: $spacer * .5;
+    // line-height: 1;
+}
+
+/// Styles for the `<figcaption>` element within a `<figure>`.
+/// 
+/// Includes font styling to make the caption stand out.
+figure figcaption {
+    // color: {{ css_color_01 }};
+    font-weight: 700;
+//   @include font-size($figure-caption-font-size);
+//   color: $figure-caption-color;
+}
+
+/// Utility class for additional text styling within figures.
+.figure_text {
+    font-size: calc($q * 24);
+}
+
+/// Utility class for styling dots or other small elements within figures.
+.figure_dot {
+    // r: calc($q * 8);
+}
+
+
+
+/// Aspect Ratio Utilities
+// ----------------------------------------------------------------------------
+/// Utility classes to maintain various aspect ratios for images within figures.
+/// 
+/// These classes ensure that images maintain their aspect ratio, regardless of screen size.
+.figure_1x1, .figure_3_2, .figure_4x3, .figure_3x4, .figure_2x3, .figure_16x9 {
+    width: 100%;
+    position: relative;
+    overflow: hidden; // Ensures content doesn't overflow the figure
+}
+
+.figure_1x1 {
+    padding-bottom: 100%; // Maintains a 1:1 aspect ratio
+}
+
+.figure_3_2 {
+    padding-bottom: 66.67%; // Maintains a 3:2 aspect ratio
+}
+
+.figure_4x3 {
+    padding-bottom: 75%; // Maintains a 4:3 aspect ratio
+}
+
+.figure_3x4 {
+    padding-bottom: 133.33%; // Maintains a 3:4 aspect ratio
+}
+
+.figure_2x3 {
+    padding-bottom: 150%; // Maintains a 2:3 aspect ratio
+}
+
+.figure_16x9 {
+    padding-bottom: 56.25%; // Maintains a 16:9 aspect ratio
+}
+
+/// Ensures images within aspect ratio containers fill the container while maintaining their aspect ratio.
+.figure_1x1 img, .figure_3_2 img, .figure_4x3 img, .figure_3x4 img, .figure_2x3 img, .figure_16x9 img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover; // Ensures the image covers the entire container
+    position: absolute;
+}
+
+
+
+
+
+
+
+// // Basic SCSS for Styling Figures
+// // ----------------------------------------------------------------------------
+// // This basic example styles the <figure> element with a border, padding, and
+// // margin for spacing. The <figcaption> is styled for typography and alignment.
+
+
+// figure {
+//     border: 1px solid #ddd; // Light grey border
+//     padding: 10px; // Padding inside the figure
+//     margin: 20px auto; // Center the figure and add margin
+//     max-width: 80%; // Max width, for responsiveness
+//     box-sizing: border-box; // Include padding and border in the element's total width and height
+
+//     // Style for the image inside the figure (if any)
+//     img {
+//         display: block; // Remove inline spacing
+//         width: 100%; // Make the image responsive
+//         height: auto; // Maintain aspect ratio
+//     }
+
+//     // Style for the figcaption
+//     figcaption {
+//         margin-top: 10px; // Space between the image and caption
+//         text-align: center; // Center-align the caption text
+//         font-style: italic; // Italicize the caption
+//         font-size: 0.9em; // Slightly smaller font size for the caption
+//     }
+// }

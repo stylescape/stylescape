@@ -1,0 +1,99 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+@use "../../variables" as *;
+
+// ============================================================================
+// Typography | Character | Emphasis
+// ============================================================================
+
+
+/// Variables for default emphasis styles.
+$default-emphasis-style: filled dot;
+$default-emphasis-color: $color_02; // Replace with your default color variable
+$default-emphasis-position: over left;
+
+
+/// Mixin for applying text emphasis with customizable parameters.
+/// 
+/// This mixin allows you to apply emphasis to text with customizable style, color, and position. 
+/// It also ensures compatibility with WebKit browsers.
+/// 
+/// @param {String} $style - The emphasis style (default: `$default-emphasis-style`).
+/// @param {Color} $color - The emphasis color (default: `$default-emphasis-color`).
+/// @param {String} $position - The emphasis position (default: `$default-emphasis-position`).
+@mixin character_emphasis(
+    $style: $default-emphasis-style,
+    $color: $default-emphasis-color,
+    $position: $default-emphasis-position
+) {
+    text-emphasis-style: $style;
+    text-emphasis-color: $color;
+    text-emphasis-position: $position;
+    // Ensure compatibility with WebKit browsers
+    -webkit-text-emphasis: $style $color_02;
+    // -webkit-text-emphasis-style: $style;
+    // -webkit-text-emphasis-color: $color;
+    // -webkit-text-emphasis-position: $position;
+}
+
+// @mixin character_emphasis {
+//     //text-emphasis: none;
+//     text-emphasis-style: filled dot;              // none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>
+//     text-emphasis-color: $color_02;    // currentcolor | <color>
+//     text-emphasis-position: over left;             // [ over | under ] && [ right | left ]
+//     -webkit-text-emphasis: filled dot $color_02;
+// }
+
+
+/// Utility classes for different emphasis styles.
+///
+/// These classes apply various emphasis styles to elements.
+.emphasis-dot {
+    @include character_emphasis(filled dot, $default-emphasis-color, $default-emphasis-position);
+}
+
+.emphasis-circle {
+    @include character_emphasis(filled circle, $default-emphasis-color, $default-emphasis-position);
+}
+
+.emphasis-double-circle {
+    @include character_emphasis(double-circle, $default-emphasis-color, $default-emphasis-position);
+}
+
+.emphasis-triangle {
+    @include character_emphasis(triangle, $default-emphasis-color, $default-emphasis-position);
+}
+
+.emphasis-sesame {
+    @include character_emphasis(sesame, $default-emphasis-color, $default-emphasis-position);
+}
+
+
+/// Applying emphasis to italic elements.
+///
+/// The following rules apply emphasis to `<em>` and `<i>` elements.
+em,
+i {
+  @include character_emphasis;
+//   font-style: italic;
+}

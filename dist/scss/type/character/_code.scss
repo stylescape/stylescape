@@ -1,0 +1,169 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+
+// ============================================================================
+// Typography | Character | Code
+// ============================================================================
+
+// Typography Variables
+$font-family-monospace: "SF Mono", "Segoe UI Mono", "Roboto Mono", Menlo, Courier, monospace;
+// $base-font-size: 1em; // Base font size for <pre>
+$code-background-color: #f4f4f4; // Light gray background for better readability
+$code-border-color: #ccc; // Border color for <pre> elements
+$code-border-radius: 4px; // Border radius for <pre> elements
+
+/// Mixin for applying monospace font family.
+/// 
+/// This mixin sets the font family to a monospace font, which is typically used for code elements.
+@mixin monospace-font {
+    font-family: $font-family-monospace;
+}
+
+/// Mixin for preformatted text styles.
+/// 
+/// This mixin is designed for use with `<pre>` elements and applies a set of styles that include monospace font,
+/// background color, border, and padding. It also handles long code blocks by adding scrollability.
+/// 
+/// @param {Length} $font-size - The font size for the text (default: `$base-font-size`).
+/// @param {Color} $background-color - Background color for the `<pre>` element (default: `$code-background-color`).
+/// @param {Color} $border-color - Border color for the `<pre>` element (default: `$code-border-color`).
+/// @param {Length} $border-radius - Border radius for the `<pre>` element (default: `$code-border-radius`).
+@mixin preformatted-text(
+    $font-size: $base-font-size,
+    $background-color: $code-background-color,
+    $border-color: $code-border-color,
+    $border-radius: $code-border-radius
+) {
+    @include monospace-font;
+    font-size: $font-size;
+    background-color: $background-color;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    padding: 0.5em;
+    overflow: auto; // Ensure large code blocks are scrollable
+    white-space: pre-wrap; // Ensure lines wrap in <pre>
+    word-wrap: break-word; // Break long words in <pre>
+}
+
+/// Styles for code-related elements (`<code>`, `<kbd>`, `<pre>`, `<samp>`).
+/// 
+/// Applies monospace font, background color, padding, border-radius, and font size.
+code,
+kbd,
+pre,
+samp {
+    // Specify the font family of code elements
+    font-family: monospace, monospace;
+
+    @include monospace-font;
+    background-color: $code-background-color;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em; // Slightly smaller font size for inline code
+}
+
+/// Additional styles for `<pre>` elements.
+/// 
+/// Corrects the font sizing and applies the preformatted text styles using the `preformatted-text` mixin.
+pre {
+    // Correct the odd `em` font sizing in all browsers
+    font-size: 1em;
+    @include preformatted-text;
+
+}
+
+/// Utility class for inline code blocks.
+/// 
+/// Applies monospace font, background color, padding, border-radius, and a slightly smaller font size.
+.inline-code {
+    @include monospace-font;
+    background-color: $code-background-color;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+
+
+
+
+// Syntax Highlighting Themes
+// Introducing a mixin for syntax highlighting themes allows for easy switching between light and dark modes or other custom themes, enhancing the readability of code snippets.
+
+// Syntax Highlighting Themes
+// $themes: (
+//   "light": (
+//     "background": #f9f9f9,
+//     "text": #333333,
+//     "keyword": #0077aa,
+//     "function": #aa7700,
+//     "string": #008800,
+//     "comment": #999999,
+//     "variable": #0000ff
+//   ),
+//   "dark": (
+//     "background": #2d2d2d,
+//     "text": #cccccc,
+//     "keyword": #6ab0f3,
+//     "function": #f3d19c,
+//     "string": #b9ca4a,
+//     "comment": #7c7c7c,
+//     "variable": #e78c45
+//   )
+// );
+
+// @mixin apply-theme($theme-name: "light") {
+//   $theme: map-get($themes, $theme-name);
+//   background-color: map-get($theme, "background");
+//   color: map-get($theme, "text");
+
+//   // Apply colors based on theme for different parts of the syntax
+//   .keyword { color: map-get($theme, "keyword"); }
+//   .function { color: map-get($theme, "function"); }
+//   .string { color: map-get($theme, "string"); }
+//   .comment { color: map-get($theme, "comment"); }
+//   .variable { color: map-get($theme, "variable"); }
+// }
+
+
+
+// Line Numbers for pre Elements
+// Adding line numbers to pre elements can improve readability for longer code snippets. This feature is often implemented via JavaScript, but you can prepare your SCSS to accommodate the line number styling.
+
+// Line Numbers Styling
+// pre {
+//     position: relative;
+//     padding-left: 3.5em; // Make space for line numbers
+  
+//     .line-number {
+//       position: absolute;
+//       left: 0;
+//       width: 3em; // Width of the line number area
+//       text-align: right;
+//       color: #999; // Color for line numbers
+//       background-color: #eee; // Background color for line number area
+//       border-right: 1px solid #ddd; // Separator between line numbers and code
+//     }
+//   }
+  

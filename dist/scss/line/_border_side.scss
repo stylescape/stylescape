@@ -1,0 +1,108 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+@use "../dev" as *;
+
+@use "../variables" as *;
+@use "../mixins" as *;
+// ============================================================================
+// StyleScape | Borders | Side
+// ============================================================================
+
+
+// Border Side Mixin
+// ----------------------------------------------------------------------------
+
+/// Mixin for setting the border on a specific side.
+///
+/// @param {String} $side - The side of the element to apply the border (top, bottom, left, right).
+/// @param {String} $width - The width of the border. Default is 1px.
+/// @param {String} $style - The style of the border (e.g., solid, dotted, dashed). Default is solid.
+/// @param {String} $color - The color of the border. Default is black.
+@mixin border_side(
+    $side,
+    $width: 1px,
+    $style: solid,
+    $color: black,
+) {
+    @if $side == top {
+        border-top: $width $style $color;
+    } @else if $side == bottom {
+        border-bottom: $width $style $color;
+    } @else if $side == left {
+        border-left: $width $style $color;
+    } @else if $side == right {
+        border-right: $width $style $color;
+    }
+}
+
+
+// Border Side Classes
+// ----------------------------------------------------------------------------
+
+/// Class for setting a border on the top side of an element.
+.border_top { @include border_side(top); }
+
+/// Class for setting a border on the bottom side of an element.
+.border_bottom { @include border_side(bottom); }
+
+/// Class for setting a border on the left side of an element.
+.border_left { @include border_side(left); }
+
+/// Class for setting a border on the right side of an element.
+.border_right { @include border_side(right); }
+
+/// Class for setting borders on both the top and bottom sides of an element.
+.border_vertical { 
+    @include border_side(top); 
+    @include border_side(bottom); 
+}
+
+/// Class for setting borders on both the left and right sides of an element.
+.border_horizontal { 
+    @include border_side(left); 
+    @include border_side(right); 
+}
+
+
+// Full Border Mixin
+// ----------------------------------------------------------------------------
+
+/// Mixin for setting borders on all sides of an element.
+///
+/// @param {String} $width - The width of the border. Default is 1px.
+/// @param {String} $style - The style of the border (e.g., solid, dotted, dashed). Default is solid.
+/// @param {String} $color - The color of the border. Default is black.
+@mixin border_all(
+    $width: 1px,
+    $style: solid,
+    $color: black,
+) {
+    border: $width $style $color;
+}
+
+/// Class for setting borders on all sides of an element.
+.border_all { @include border_all(); }
+
+// // Example: Customizable Border Classes
+// .border_custom { @include border_side(top, 2px, dashed, blue); }
+
+// // Example: Responsive Border Styles
+// @media (max-width: 600px) {
+//     .border_top-mobile { @include border_side(top, 2px); }
+//     // Add more responsive styles as needed
+// }
+
+

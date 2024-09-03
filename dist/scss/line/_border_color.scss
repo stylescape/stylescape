@@ -1,0 +1,70 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../mixins" as *;
+// ============================================================================
+// StyleScape | Borders | Color
+// ============================================================================
+
+
+
+/// Mixin to set the border color of an element.
+/// @param {Color} $color - The color to apply to the border.
+/// @example
+/// .element { @include border_color(blue); }
+@mixin border_color($color) {
+    border-color: $color !important;
+}
+
+
+/// Class to apply a primary color to the border.
+/// Uses the `border_color` mixin with blue as the primary color.
+/// @example
+/// .element { @extend .border_color_primary; }
+.border_color_primary { @include border_color(blue); }
+
+/// Class to apply a secondary color to the border.
+/// Uses the `border_color` mixin with green as the secondary color.
+/// @example
+/// .element { @extend .border_color_secondary; }
+.border_color_secondary { @include border_color(green); }
+
+/// Class to apply an alert color to the border.
+/// Uses the `border_color` mixin with red as the alert color.
+/// @example
+/// .element { @extend .border_color_alert; }
+.border_color_alert { @include border_color(red); }
+
+/// Mixin for creating a gradient border with customizable colors and direction.
+/// @param {List} $colors - A list of colors to use in the gradient.
+/// @param {String} $direction - The direction of the gradient (default: to right).
+/// @param {Length} $width - The width of the border (default: 1px).
+/// @example
+/// .element { @include gradient-border((purple, orange), to bottom, 2px); }
+@mixin gradient-border($colors, $direction: to right, $width: 1px) {
+    border: $width solid transparent;
+    background-image: linear-gradient($direction, $colors);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+/// Class to apply a gradient border with a default color scheme.
+/// Uses the `gradient-border` mixin with purple to orange gradient.
+/// @example
+/// .element { @extend .border_gradient; }
+.border_gradient {
+    @include gradient-border(purple, orange);
+}

@@ -1,0 +1,133 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../type" as *;
+
+
+// ============================================================================
+// Media | SVG
+// ============================================================================
+
+svg {
+    @include hyperlink_base;
+}
+
+svg * {
+    @include hyperlink_base;
+    pointer-events: none;
+}
+
+
+.svg_container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.svg_container svg {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+}
+
+
+
+
+// // Styling Inline SVGs with SCSS
+// // When SVGs are used inline within HTML, you can directly target and style their properties using SCSS. This approach allows for dynamic styling of the SVG's parts, such as fill, stroke, and stroke-width.
+
+
+// // General SVG styling
+// svg {
+//   width: 50px; // Example size
+//   height: auto;
+//   fill: #333; // Default fill color
+
+//   // Hover effect
+//   &:hover {
+//     fill: #007bff; // Change fill color on hover
+//   }
+// }
+
+// // Styling specific parts of an SVG
+// // Assuming the SVG has elements with class `.path1` and `.path2`
+// svg {
+//   .path1 {
+//     fill: #ff5722;
+//   }
+
+//   .path2 {
+//     stroke: #4caf50;
+//     stroke-width: 2;
+//   }
+
+//   // Change styles on hover
+//   &:hover {
+//     .path1 { fill: #e91e63; }
+//     .path2 { stroke: #2196f3; }
+//   }
+// }
+// // Styling SVGs as Background Images with SCSS
+// // When using SVGs as CSS background images, you can't directly manipulate the SVG parts as in the inline method. However, you can control the size, position, and repetition of the background SVG.
+
+
+// // Using an SVG as a background image
+// .svg-background {
+//   background-image: url('path/to/your-image.svg');
+//   background-size: cover; // Cover the entire element area
+//   background-position: center; // Center the background image
+//   width: 100px; // Element size
+//   height: 100px;
+// }
+
+// // Changing the SVG color can be tricky with background images.
+// // One approach is to encode the SVG with a different color and swap it out.
+// // Another approach is to use CSS filters as a hacky solution to change colors.
+// .svg-background-alternative {
+//   background-image: url('path/to/your-image.svg');
+//   filter: invert(75%) sepia(100%) saturate(300%) hue-rotate(180deg); // Example filter to change color
+// }
+// // Using SCSS Variables and Mixins for Reusable SVG Styles
+// // To make your SVG styling more maintainable and reusable, you can use SCSS variables and mixins. This approach allows you to easily apply consistent styles across different SVGs and adjust them as needed.
+
+
+// // Define variables
+// $svg-size: 60px;
+// $svg-fill-default: #666;
+// $svg-fill-hover: #1e88e5;
+
+// // Mixin for SVG styling
+// @mixin svg-style($size, $fill-color) {
+//   width: $size;
+//   height: auto;
+//   fill: $fill-color;
+
+//   &:hover {
+//     fill: lighten($fill-color, 20%); // Lighten the fill color on hover
+//   }
+// }
+
+// // Applying the mixin
+// .inline-svg {
+//   @include svg-style($svg-size, $svg-fill-default);
+// }

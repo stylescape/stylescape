@@ -1,0 +1,229 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@use "../../variables" as *;
+@use "../../mixins" as *;
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+
+// ============================================================================
+// Typography | Character | Lined
+// ============================================================================
+
+// Text Decoration Variables
+$line_style_default: solid; // solid | double | dotted | dashed | wavy | initial | inherit
+$line_thickness_default: 1px; // auto | from-font | <length> | <percentage>
+$line_color_default: $color_02; // Assuming $color_02 is defined elsewhere in your styles
+$line_color_alternate: $color_03; // Assuming $color_03 is defined elsewhere in your styles
+
+/// Mixin for base text decoration properties.
+/// 
+/// This mixin sets the basic properties for text decorations, including line
+/// style, thickness, and color.
+/// 
+/// @param {String} $line - The type of text decoration line (default: underline).
+/// @param {String} $style - The style of the line (default: `$line_style_default`).
+/// @param {Length} $thickness - The thickness of the line (default: `$line_thickness_default`).
+/// @param {Color} $color - The color of the line (default: `$line_color_default`).
+@mixin text_decoration_base(
+    $line: underline,
+    $style: $line_style_default,
+    $thickness: $line_thickness_default,
+    $color: $line_color_default
+) {
+    text-decoration-line: $line;
+    text-decoration-style: $style;
+    text-decoration-thickness: $thickness;
+    text-decoration-color: $color;
+}
+
+
+/// Mixin for advanced text decoration properties.
+/// 
+/// This mixin extends `text_decoration_base` by adding support for ink
+/// skipping and underline position.
+/// 
+/// @param {String} $line - The type of text decoration line (default: underline).
+/// @param {String} $skip_ink - The ink-skipping behavior (default: auto).
+/// @param {String} $position - The position of the underline (default: under).
+/// @param {Length} $offset - The offset of the underline (default: auto).
+@mixin text_decoration_advanced(
+    $line: underline,
+    $skip_ink: auto,
+    $position: under,
+    $offset: auto
+) {
+    @include text_decoration_base($line);
+    text-decoration-skip-ink: $skip_ink;
+    text-underline-position: $position;
+    text-underline-offset: $offset;
+}
+
+
+
+/// Mixin for applying a solid line decoration to text.
+/// 
+/// This mixin sets the text decoration to a solid underline, overline, or
+/// line-through, using the default color and thickness.
+@mixin character_line {
+    text-decoration-style: $line_style_default;
+    text-decoration-thickness: $line_thickness_default;
+    text-decoration-color: $line_color_default;
+}
+
+/// Mixin for applying an underline decoration to text.
+/// 
+/// This mixin applies a solid underline to the text, with ink-skipping
+/// enabled and the underline positioned under the text.
+@mixin character_line_under {
+    @include character_line;
+    text-decoration-line: underline;                // none | underline | overline | line-through | initial | inherit
+    text-decoration-skip-ink: all;                  // auto | all | none
+    text-underline-position: under;                 // auto | from-font | [ under || [ left | right ] ]
+    text-underline-offset: auto;              // auto | <length> | <percentage>
+}
+
+/// Mixin for applying an overline decoration to text.
+/// 
+/// This mixin applies a solid overline to the text, with ink-skipping enabled.
+@mixin character_line_over {
+    @include character_line;
+    text-decoration-line: overline;                 // none | underline | overline | line-through | initial | inherit
+    text-decoration-skip-ink: all;                  // auto | all | none
+}
+
+
+/// Mixin for applying a line-through decoration to text.
+/// 
+/// This mixin applies a solid line-through decoration to the text, without ink-skipping.
+@mixin character_line_through {
+    @include character_line;
+    text-decoration-line: line-through;               // none | underline | overline | line-through | initial | inherit
+    text-decoration-skip-ink: none;                   // auto | all | none
+}
+
+/// Mixin for applying an alternate color to line decorations.
+/// 
+/// This mixin changes the text decoration color to an alternate color.
+@mixin character_line_alt {
+    @include character_line;
+    text-decoration-color: $line_color_alternate;
+}
+
+
+/// Mixin for applying an alternate color to underlined text.
+/// 
+/// This mixin changes the underline decoration color to an alternate color.
+@mixin character_line_under_alt {
+    @include character_line_under;
+    text-decoration-color: $line_color_alternate;
+}
+
+
+/// Mixin for applying an alternate color to overlined text.
+/// 
+/// This mixin changes the overline decoration color to an alternate color.
+@mixin character_line_over_alt {
+    @include character_line_over;
+    text-decoration-color: $line_color_alternate;
+}
+
+/// Mixin for applying an alternate color to line-through text.
+/// 
+/// This mixin changes the line-through decoration color to an alternate color.
+@mixin character_line_through_alt {
+    @include character_line_through;
+    text-decoration-color: $line_color_alternate;
+}
+
+
+
+// Utility Mixins for Common Decorations
+
+
+/// Utility Mixin for Underlined Text
+/// 
+/// This mixin provides an easy way to apply an underline with default or
+/// custom color.
+@mixin character_line_under(
+    $color: $line_color_default
+) {
+    @include text_decoration_advanced(
+        underline,
+        all,
+        under,
+        auto,
+        $color
+    );
+}
+
+
+/// Utility Mixin for Overlined Text
+/// 
+/// This mixin provides an easy way to apply an overline with default or custom color.
+@mixin character_line_over(
+    $color: $line_color_default
+) {
+    @include text_decoration_base(
+        overline,
+        $line_style_default,
+        $line_thickness_default,
+        $color
+    );
+}
+
+
+/// Utility Mixin for Line-Through Text
+/// 
+/// This mixin provides an easy way to apply a line-through with default or
+/// custom color.
+@mixin character_line_through(
+    $color: $line_color_default
+) {
+    @include text_decoration_base(
+        line-through,
+        $line_style_default,
+        $line_thickness_default, $color
+    );
+}
+
+/// Mixin for applying alternate underline color.
+/// 
+/// This mixin uses the alternate color for underline decorations.
+@mixin character_line_under_alt {
+    @include character_line_under(
+        $line_color_alternate
+    );
+}
+
+/// Mixin for applying alternate overline color.
+/// 
+/// This mixin uses the alternate color for overline decorations.
+@mixin character_line_over_alt {
+    @include character_line_over(
+        $line_color_alternate
+    );
+}
+
+/// Mixin for applying alternate line-through color.
+/// 
+/// This mixin uses the alternate color for line-through decorations.
+@mixin character_line_through_alt {
+    @include character_line_through(
+        $line_color_alternate
+    );
+}

@@ -1,0 +1,136 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+
+// ============================================================================
+// StyleScape | Effects | Visibilty
+// ============================================================================
+
+@use "../mixins" as *;
+
+/// Ensures that visibility is inherited by all elements by default.
+* {
+    visibility: inherit;
+}
+
+/// Mixin to make an element visible.
+/// @example
+/// .element { @include visible(); }
+@mixin visible {
+    visibility: visible;
+    // Uncomment if you need to ensure the element is displayed:
+    // display: inherit;
+}
+
+/// Mixin to make an element invisible.
+/// @example
+/// .element { @include invisible(); }
+@mixin invisible {
+    visibility: hidden;
+    // Uncomment if you need to remove the element from the layout:
+    // display: none;
+}
+
+/// Class to apply visibility to an element.
+/// @example
+/// <div class="visible">This text is visible.</div>
+.visible {
+    @include visible();
+}
+
+/// Class to hide an element by setting its visibility to hidden.
+/// @example
+/// <div class="invisible">This text is hidden.</div>
+.invisible {
+    @include invisible();
+}
+
+
+/// Base class for collapsible elements.
+/// Hides the element when it does not have the `show` class.
+/// @example
+/// <div class="collapse">This will be hidden by default.</div>
+.collapse {
+    &:not(.show) {
+        display: none;
+    }
+}
+
+/// Class to control the expanded state of collapsible elements.
+/// Ensures the element is fully expanded and visible.
+/// @example
+/// <div class="expand">This element is expanded.</div>
+.expand {
+    display: block;
+    height: auto;
+    width: auto;
+    opacity: 1; // Reset opacity if the element had a fade effect
+}
+
+// Collapsing Transition Class
+// Manages the transition for collapsing and expanding
+// .collapsing {
+//   // Initialize collapsed state
+//   height: 0;
+//   overflow: hidden;
+
+//   // Apply transition for vertical collapse (default)
+//   @include transition($transition-collapse);
+
+//   // Modifier for horizontal collapse
+//   // Changes transition to affect width instead of height
+//   &.collapse-horizontal {
+//       width: 0;
+//       height: auto; // Maintain natural height during horizontal collapse
+
+//       // Apply transition for horizontal collapse
+//       @include transition($transition-collapse-width);
+//   }
+
+//   // Optional: Modifier for fade effect during collapse
+//   &.collapse-fade {
+//       opacity: 0;
+
+//       // Combine height/width transition with opacity transition
+//       @include transition($transition-collapse, opacity $transition-duration $transition-timing-function);
+//   }
+// }
+
+
+
+
+
+// // scss-docs-start collapse-classes
+// .collapse {
+//     &:not(.show) {
+//     display: none;
+//     }
+// }
+
+// .collapsing {
+//     height: 0;
+//     overflow: hidden;
+//     @include transition($transition-collapse);
+
+//     &.collapse-horizontal {
+//     width: 0;
+//     height: auto;
+//     @include transition($transition-collapse-width);
+//     }
+// }
+// // scss-docs-end collapse-classes

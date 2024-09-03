@@ -1,0 +1,61 @@
+// Copyright 2023 Scape Agency BV
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// Components | Placeholder
+// ============================================================================
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../layout" as *;
+@use "../elements" as *;
+@use "../type" as *;
+
+/// Base styling for placeholders.
+/// Placeholders provide a temporary visual indicator while content is loading.
+/// @group Placeholder
+.placeholder {
+    display: inline-block;
+    min-height: 1em;
+    vertical-align: middle;
+    cursor: wait;
+    background-color: currentcolor;
+    opacity: $placeholder-opacity-max;
+
+    /// Specific styles for buttons with placeholder content.
+    &.btn::before {
+        display: inline-block;
+        content: "";
+    }
+}
+
+/// Placeholder size modifiers.
+/// These classes adjust the minimum height of the placeholder for different use cases.
+/// @group Placeholder
+/// @modifier .placeholder-xs Extra small placeholder with a minimum height of 0.6em.
+.placeholder-xs {
+    min-height: .6em;
+}
+
+/// @modifier .placeholder-sm Small placeholder with a minimum height of 0.8em.
+.placeholder-sm {
+    min-height: .8em;
+}
+
+/// @modifier .placeholder-lg Large placeholder with a minimum height of 1.2em.
+.placeholder-lg {
+    min-height: 1.2em;
+}

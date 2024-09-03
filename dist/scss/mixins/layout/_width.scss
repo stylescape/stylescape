@@ -1,0 +1,50 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// ============================================================================
+// Layout | Width
+// ============================================================================
+@use "../variables" as *;
+@use "../mixins" as *;
+
+
+// Layout | Width Enhancements
+// ============================================================================
+
+/// Generate utility classes for fixed widths.
+/// 
+/// This loop generates classes that set a fixed width based on a predefined list
+/// of values, offering flexible width options for various design elements.
+@each $size in (1px, 2px, 3px, 4px, 5px, 6px, 7px, 8px, 9px, 10px, 15px, 20px, 25px, 30px, 35px, 40px, 50px, 55px, 60px, 65px, 70px, 75px, 80px, 85px, 90px, 100px, 110px, 120px, 130px, 150px, 180px, 200px, 250px, 300px, 350px, 400px, 450px, 500px, 550px, 600px, 650px, 700px, 750px, 800px, 850px, 900px, 950px, 1000px) {
+    .w-#{$size} {
+        width: $size;
+    }
+}
+
+/// Generate utility classes for percentage-based widths.
+/// 
+/// This loop creates classes that apply a percentage-based width, 
+/// offering a range of options from 5% to 100% in increments of 5%.
+@for $i from 5 through 100 by 5 {
+    .w-#{$i} {
+        width: $i * 1%;
+    }
+}
+
+/// Utility class for setting width to auto.
+/// 
+/// This class allows an element's width to be determined by its content or parent container.
+.w-auto {
+    width: auto;
+}

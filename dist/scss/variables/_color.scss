@@ -1,0 +1,160 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Color | Schemes
+// =======================================================================
+
+@use "../dev" as *;
+
+// Base colors
+$color_01:  #FFF;
+$color_02:  #000A0D;
+$color_03:  #00B6F2;
+$color_04:  #008FBF;
+
+$color_highlight: rgb(12, 143, 214);
+
+
+// Dark color scheme
+/// Mixin for dark color scheme
+/// 
+/// Applies the dark theme colors to the background, fill, stroke, and text.
+/// Changes the fill color on hover to grey.
+@mixin color_scheme_dark {
+    background-color:   $color_02;
+    fill:                $color_01;
+    stroke:             $color_01;
+    color:              $color_01;
+    border-color: $color_01;
+    :hover {
+        fill: grey;
+    }
+}
+
+// Light color scheme
+/// Mixin for light color scheme
+/// 
+/// Applies the light theme colors to the background, fill, stroke, and text.
+/// Changes the fill color on hover to grey.
+@mixin color_scheme_light {
+    background-color:   $color_01;
+    fill:                $color_02;
+    stroke:             $color_02;
+    color:              $color_02;
+    border-color: $color_02;
+    :hover {
+        fill: grey;
+    }
+}
+
+
+// Theme Switcher
+/// Function to switch between light and dark themes
+///
+/// @param {String} $light_color_name - Name of the light theme color.
+/// @param {String} $dark_color_name - Name of the dark theme color.
+/// @param {Boolean} $is_dark_mode - Boolean indicating if dark mode is active.
+/// @return {Color} - Returns the appropriate color based on the theme mode.
+@function hue_theme_switcher($light_color_name, $dark_color_name, $is_dark_mode: false) {
+    $light_color: hue_color($light_color_name);
+    $dark_color: hue_color($dark_color_name);
+
+    @if type-of($light_color) != 'color' or type-of($dark_color) != 'color' {
+        @warn "One or both specified theme colors could not be found.";
+        @return null;
+    }
+
+    @if $is_dark_mode {
+        @return $dark_color;
+    } @else {
+        @return $light_color;
+    }
+}
+
+
+
+
+// Theme Color Variables
+// ============================================================================
+
+
+// Theme Color Map
+$theme_color_codes: (
+    "primary":    'N2409',  // Blue
+    "secondary":  'N0001',  // Grey
+    "success":    'N1655',  // Mint
+    "info":       'N2255',  // Sky
+    "warning":    'N0305',  // Orange
+    "danger":     'N3605',  // Red
+    "light":      'N0001',  // Grey
+    "dark":       'N0009'   // Grey
+) !default;
+
+
+// Palette Color Variables
+$primary:       hue_color(map-get($theme_color_codes, "primary")) !default;
+$secondary:     hue_color(map-get($theme_color_codes, "secondary")) !default;
+$success:       hue_color(map-get($theme_color_codes, "success")) !default;
+$info:          hue_color(map-get($theme_color_codes, "info")) !default;
+$warning:       hue_color(map-get($theme_color_codes, "warning")) !default;
+$danger:        hue_color(map-get($theme_color_codes, "danger")) !default;
+$light:         hue_color(map-get($theme_color_codes, "light")) !default;
+$dark:          hue_color(map-get($theme_color_codes, "dark")) !default;
+
+
+
+
+
+// Theme Color Map
+$theme_colors: (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      $light,
+    "dark":       $dark
+) !default;
+
+
+// Text Emphasis Colors
+$primary_text_emphasis:   hue_shade(map-get($theme_color_codes, "primary"), 60%) !default;
+$secondary_text_emphasis: hue_shade(map-get($theme_color_codes, "secondary"), 60%) !default;
+$success_text_emphasis:   hue_shade(map-get($theme_color_codes, "success"), 60%) !default;
+$info_text_emphasis:      hue_shade(map-get($theme_color_codes, "info"), 60%) !default;
+$warning_text_emphasis:   hue_shade(map-get($theme_color_codes, "warning"), 60%) !default;
+$danger_text_emphasis:    hue_shade(map-get($theme_color_codes, "danger"), 60%) !default;
+$light_text_emphasis:     hue_color('N0005') !default;  // Grey
+$dark_text_emphasis:      hue_color('N0005') !default;  // Grey
+
+// Background Subtle Colors
+$primary_bg_subtle:       hue_tint(map-get($theme_color_codes, "primary"), 80%) !default;
+$secondary_bg_subtle:     hue_tint(map-get($theme_color_codes, "secondary"), 80%) !default;
+$success_bg_subtle:       hue_tint(map-get($theme_color_codes, "success"), 80%) !default;
+$info_bg_subtle:          hue_tint(map-get($theme_color_codes, "info"), 80%) !default;
+$warning_bg_subtle:       hue_tint(map-get($theme_color_codes, "warning"), 80%) !default;
+$danger_bg_subtle:        hue_tint(map-get($theme_color_codes, "danger"), 80%) !default;
+// $light_bg_subtle:         hue_blend($gray-100, $white) !default;
+$dark_bg_subtle:          hue_color('N0004') !default;  // Grey
+
+// Border Subtle Colors
+$primary-border-subtle:   hue_tint(map-get($theme_color_codes, "primary"), 60%) !default;
+$secondary-border-subtle: hue_tint(map-get($theme_color_codes, "secondary"), 60%) !default;
+$success-border-subtle:   hue_tint(map-get($theme_color_codes, "success"), 60%) !default;
+$info-border-subtle:      hue_tint(map-get($theme_color_codes, "info"), 60%) !default;
+$warning-border-subtle:   hue_tint(map-get($theme_color_codes, "warning"), 60%) !default;
+$danger-border-subtle:    hue_tint(map-get($theme_color_codes, "danger"), 60%) !default;
+$light-border-subtle:     hue_color('N0002') !default;  // Grey
+$dark-border-subtle:      hue_color('N0004') !default;  // Grey

@@ -1,0 +1,137 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@use "../../variables" as *;
+@use "../../mixins" as *;
+// ============================================================================
+// Typography | Font | Weight
+// ============================================================================
+// Automated Font Weight definition for Variable Fonts
+
+@use "sass:map";
+
+// Variables
+// ----------------------------------------------------------------------------
+
+/// Define Minimum and Maximum Font Weights.
+/// 
+/// These variables define the minimum and maximum font weights for variable fonts.
+/// The `!default` flag allows them to be overridden if necessary.
+$font_weight_min:  22 !default; // Minimum font weight
+$font_weight_max: 188 !default; // Maximum font weight
+
+
+/// Define Minimum and Maximum Font Widths.
+/// 
+/// These variables define the minimum and maximum font widths for variable fonts.
+$font_width_min: 300 !default; // Minimum font width
+$font_width_max: 500 !default; // Maximum font width
+
+/// Define Number of Steps.
+/// 
+/// This variable specifies the number of steps between the minimum and maximum font weights.
+$font_weight_steps: 9; // Number of steps
+
+/// Calculate Step Size.
+/// 
+/// This variable calculates the size of each step between the minimum and maximum font weights.
+$font_weight_range: $font_weight_max - $font_weight_min;
+$font_weight_step_size: round($font_weight_range / $font_weight_steps);
+
+
+
+// Utility Mixin
+// ----------------------------------------------------------------------------
+
+
+/// Mixin for applying font weight and width.
+/// 
+/// This mixin sets the font weight and width using CSS `font-weight` and `font-variation-settings`.
+/// 
+/// @param {Number} $weight - The weight to be applied.
+/// @param {Number} $width - The width to be applied (default: 400).
+@mixin font_weight(
+    $weight,
+    $width: 400
+) {
+    font-weight: $weight;
+    font-variation-settings: "wght" $weight, "wdth" $width;
+}
+
+
+// Map & Class
+// ----------------------------------------------------------------------------
+
+/// Initialize an empty map for font weights.
+/// 
+/// This map will be populated with key-value pairs representing font weight names and values.
+$font_weight_map: ();
+
+// Loop to generate font-weight map entries and classes.
+/// 
+/// This loop generates a map of font weights and corresponding CSS classes for each step.
+@for $i from 1 through $font_weight_steps {
+    $weight: $font_weight_min + ($font_weight_step_size * $i);
+  
+    // Ensure weight does not exceed max weight
+    $weight: if($weight > $font_weight_max, $font_weight_max, $weight);
+  
+    // Generate variable name and declare it
+    $var_name: "#{$i}00";
+    $var_value: $weight;
+
+    // Populate the map
+    $font_weight_map: map-merge($font_weight_map, ($var_name: $weight));
+  
+    // Generate Class
+    $class_name: "font_weight_#{$i}00";
+    .#{$class_name} {
+        @include font_weight($weight, 400);
+    }
+
+    // Break loop if maximum weight is reached
+    @if $weight == $font_weight_max {
+        @break;
+    }
+}
+
+
+// Mixins
+// ----------------------------------------------------------------------------
+// Create utility mixins based on the weight map
+
+/// Utility mixins for predefined font weights.
+/// 
+/// These mixins apply specific font weights based on the values generated in the loop.
+@mixin font_weight_100 { @include font_weight(map.get($font_weight_map, "100")); }
+@mixin font_weight_200 { @include font_weight(map.get($font_weight_map, "200")); }
+@mixin font_weight_300 { @include font_weight(map.get($font_weight_map, "300")); }
+@mixin font_weight_400 { @include font_weight(map.get($font_weight_map, "400")); }
+@mixin font_weight_500 { @include font_weight(map.get($font_weight_map, "500")); }
+@mixin font_weight_600 { @include font_weight(map.get($font_weight_map, "600")); }
+@mixin font_weight_700 { @include font_weight(map.get($font_weight_map, "700")); }
+@mixin font_weight_800 { @include font_weight(map.get($font_weight_map, "800")); }
+@mixin font_weight_900 { @include font_weight(map.get($font_weight_map, "900")); }
+
+
+// Base
+// ----------------------------------------------------------------------------
+
+/// Apply a base font weight to the `html` element.
+/// 
+/// This ensures that the entire document inherits a default font weight.
+html {
+    @include font_weight_500;
+}
+  

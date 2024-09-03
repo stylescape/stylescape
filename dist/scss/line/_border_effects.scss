@@ -1,0 +1,75 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// ============================================================================
+// StyleScape | Borders | Effects
+// ============================================================================
+
+
+/// Class for adding a hover effect on the border.
+/// The border color changes to blue on hover.
+/// @example
+/// .element { @extend .border_hover_effect; }
+.border_hover_effect {
+    transition: border-color 0.3s ease;
+
+    &:hover {
+        @include border_color(blue);
+    }
+}
+
+/// Mixin for creating an animated border.
+/// The border width increases on hover.
+/// @param {Time} $duration - The duration of the border width transition.
+/// @param {Color} $color - The border color.
+/// @example
+/// .element { @include border_animated(0.5s, red); }
+@mixin border_animated($duration: 0.5s, $color: blue) {
+    border: 2px solid $color;
+    transition: border-width $duration ease;
+
+    &:hover {
+        border-width: 4px;
+    }
+}
+
+/// Class for applying an animated border effect to an element.
+/// The border width increases on hover, using the default duration and color.
+/// @example
+/// .element { @extend .border_animated; }
+.border_animated {
+    @include border_animated();
+}
+
+
+/// Class for creating an animated dotted border.
+/// The border color alternates between transparent and blue.
+/// @example
+/// .element { @extend .border_dotted-animated; }
+.border_dotted-animated {
+    border-style: dotted;
+    animation: dotted-border-animation 1s linear infinite;
+}
+
+/// Keyframes for the dotted border animation.
+/// The border color alternates between transparent and blue.
+@keyframes dotted-border-animation {
+    0% { border-color: transparent; }
+    50% { border-color: blue; }
+    100% { border-color: transparent; }
+}

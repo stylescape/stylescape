@@ -1,0 +1,84 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// ============================================================================
+// Layout | Height
+// ============================================================================
+
+@use "../../variables" as *;
+
+// Mixins for Common Height Patterns
+// ----------------------------------------------------------------------------
+// Mixins for reusable patterns like setting minimum, maximum, and fixed height.
+
+/// Mixin to set a fixed height for an element.
+/// 
+/// @param {Number | String} $value - The height value to be applied.
+@mixin height_fixed($value) {
+    height: $value;
+}
+  
+/// Mixin to set a minimum height for an element.
+/// 
+/// @param {Number | String} $value - The minimum height value to be applied.
+@mixin height_min($value) {
+    min-height: $value;
+}
+  
+/// Mixin to set a maximum height for an element.
+/// 
+/// @param {Number | String} $value - The maximum height value to be applied.
+@mixin height_max($value) {
+    max-height: $value;
+}
+
+// Utility Classes
+// ----------------------------------------------------------------------------
+
+/// Utility class for setting the height of an element to full-screen (100vh).
+.full-screen {
+    height: 100vh;
+}
+
+/// Utility class for setting the minimum height of an element to full-screen (100vh).
+.minheight-fullscreen {
+    min-height: 100vh;
+}
+
+/// Utility class for setting the maximum height of an element to 100%.
+.max-h-100 {
+    max-height: 100%;
+}
+
+// Generate Utility Classes for Fixed Heights
+// ----------------------------------------------------------------------------
+
+/// Generates utility classes for setting fixed heights based on a predefined list of values.
+/// 
+/// The values include common pixel measurements to cover a wide range of design needs.
+@each $size in (1px, 2px, 3px, 4px, 5px, 6px, 7px, 8px, 9px, 10px, 80px, 90px, 100px, 130px, 150px, 200px, 250px, 300px, 350px, 400px, 450px, 500px, 550px, 600px, 650px, 700px, 750px, 800px, 850px) {
+    .h-#{$size} {
+        height: $size;
+    }
+}
+
+/// Generates utility classes for setting minimum heights based on a predefined list of values.
+/// 
+/// These classes provide flexible options for ensuring that elements have a minimum height.
+@each $height in (100px, 200px, 300px, 400px, 500px, 600px, 700px) {
+    .min-h-#{$height} {
+        @include height_min($height);
+    }
+}

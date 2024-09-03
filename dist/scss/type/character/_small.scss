@@ -1,0 +1,93 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Character | Small
+
+@use "../../variables" as *;
+@use "../../mixins" as *;
+@use "default" as *;
+@use "normal" as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+
+// ============================================================================
+// Typography | Character | Small
+// ============================================================================
+
+// Typography Variables for Small Text
+$small_font_size: 80%; // Default small font size
+$small_line_height: 1.2; // Default line height for small text
+
+/// Mixin for small normal character styles.
+/// 
+/// This mixin applies the normal character styles along with a smaller font size 
+/// to elements, making the text smaller while keeping it consistent with the rest 
+/// of the design system.
+/// 
+/// - `character_normal`: Applies normal character styles.
+/// - `font_size_03`: Sets the font size to 80% or a predefined small size.
+@mixin character_small_normal{
+    @include character_normal;
+    @include font_size_03;
+    // font-size: 80%; /* Set font-size to 80% in `small` elements */
+    // font-size:      (map-get($baseline, 3));
+    // line-height:    (map-get($baseline, 3));
+    
+}
+
+/// Applies small normal character styles to `<small>` elements.
+/// 
+/// Ensures that all `<small>` elements use the defined small normal character styles.
+small {
+    @include character_small_normal;
+}
+
+/// Applies small normal character styles to elements with the `.small` class.
+/// 
+/// Ensures that any element with the `.small` class uses the defined small normal character styles.
+.small {
+    @include character_small_normal;
+}
+
+
+// Commented-out alternative mixin for small text styles with additional options
+
+/*
+@mixin character-small {
+    font-size: $small_font_size;
+    line-height: $small_line_height;
+
+    // Include any additional character styles from your design system
+    // If `character_normal` is a mixin in your setup, include it here:
+    // @include character_normal;
+}
+
+// Applying the mixin to <small> elements and .small class
+small, .small {
+    @include character-small;
+}
+
+// Bold Small Text
+.small-bold {
+    @include character-small;
+    font-weight: bold; // Apply bold weight
+}
+
+// Italic Small Text
+.small-italic {
+    @include character-small;
+    font-style: italic; // Apply italic style
+}
+*/
