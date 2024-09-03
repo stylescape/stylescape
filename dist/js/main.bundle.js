@@ -1,1 +1,0 @@
-!function(e,t){if("object"==typeof exports&&"object"==typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define([],t);else{var o=t();for(var f in o)("object"==typeof exports?exports:e)[f]=o[f]}}(self,(function(){return function(){"use strict";var e={};return e=e.default}()}));
