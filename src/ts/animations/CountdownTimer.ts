@@ -1,31 +1,44 @@
-// Copyright 2024 Scape Agency BV
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-
-
-// Implements a countdown timer UI, updating the display as the timer counts down.
-
+/**
+ * CountdownTimer class provides a simple countdown functionality that updates a display element on the page.
+ * It counts down from a specified end time and updates the UI every second.
+ * 
+ * When the countdown reaches zero, it stops and displays "Time up!".
+ * 
+ * @example
+ * // Usage:
+ * const countdown = new CountdownTimer(new Date('2024/01/01 00:00:00'), 'countdownDisplay');
+ */
 export default class CountdownTimer {
+    // The target end time for the countdown.
     private endTime: Date;
+    // The HTML element where the countdown will be displayed.
     private displayElement: HTMLElement;
 
+    /**
+     * Creates a new CountdownTimer instance.
+     * 
+     * @param endTime - The date and time at which the countdown should end.
+     * @param displayElementId - The ID of the HTML element where the countdown should be displayed.
+     */
     constructor(endTime: Date, displayElementId: string) {
         this.endTime = endTime;
-        this.displayElement = document.getElementById(displayElementId) as HTMLElement;
+        // Find the display element by its ID and ensure it's an HTMLElement.
+        const element = document.getElementById(displayElementId);
+        if (!element) {
+            throw new Error(`Element with ID ${displayElementId} not found.`);
+        }
+        this.displayElement = element;
         this.startTimer();
     }
 
+    /**
+     * Starts the countdown timer, updating the display every second.
+     * 
+     * This method calculates the time remaining until the end time and updates the text content of the display element.
+     * If the countdown reaches zero, it stops and displays "Time up!".
+     * 
+     * @private
+     */
     private startTimer(): void {
         const interval = setInterval(() => {
             const remaining = this.endTime.getTime() - new Date().getTime();
@@ -38,13 +51,29 @@ export default class CountdownTimer {
         }, 1000);
     }
 
+    /**
+     * Formats the remaining time in milliseconds into a string in the format "HH:MM:SS".
+     * 
+     * @param timeInMilliseconds - The remaining time in milliseconds.
+     * @returns A string representing the formatted time.
+     * 
+     * @private
+     */
     private formatTime(timeInMilliseconds: number): string {
         const seconds = Math.floor((timeInMilliseconds / 1000) % 60);
         const minutes = Math.floor((timeInMilliseconds / 1000 / 60) % 60);
         const hours = Math.floor((timeInMilliseconds / 1000 / 60 / 60) % 24);
-        return `${hours}:${minutes}:${seconds}`;
+
+        // Pad minutes and seconds with leading zeros for a cleaner display.
+        const formattedMinutes = minutes.toString().padStart(2, '0');
+        const formattedSeconds = seconds.toString().padStart(2, '0');
+        const formattedHours = hours.toString().padStart(2, '0');
+
+        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
     }
 }
 
-// Usage
-const countdown = new CountdownTimer(new Date('2023/01/01 00:00:00'), 'countdownDisplay');
+// Usage example:
+// Create a new countdown timer that ends on January 1, 2024, at midnight,
+// and updates the element with the ID 'countdownDisplay'.
+const countdown = new CountdownTimer(new Date('2024/01/01 00:00:00'), 'countdownDisplay');
