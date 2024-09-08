@@ -4,7 +4,6 @@
 <h1 align="center" style='border-bottom: none;'>Stylescape</h1>
 <h3 align="center">Design Framework</h3>
 
-
 <br/>
 
 <div align="center">
@@ -31,7 +30,6 @@
 ---
 
 <br/>
-
 
 ## A powerful design framework for concise and high-quality web development
 
