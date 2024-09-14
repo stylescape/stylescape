@@ -1,36 +1,72 @@
-// Copyright 2023 Scape Agency BV
+////
+/// 
+/// Address Paragraph Typography Mixins Module
+/// ===========================================================================
+/// Provides a mixin for styling the `<address>` HTML element, typically used 
+/// for contact information. This mixin ensures that addresses are prominently 
+/// styled with customizable font size, weight, and spacing options.
+///
+/// ### Key Features
+/// - Sets default font size, weight, and style for `<address>` elements.
+/// - Customizable margin settings for consistent spacing.
+/// - Enhances readability and visual emphasis for contact information.
+///
+/// @group Paragraph
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
 
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-// Paragraph | Address
-
+// ============================================================================
+// Use
+// ============================================================================
 
 @use "../../variables" as *;
 @use "../../mixins" as *;
+
 @use "../character" as *;
 @use "../font" as *;
+
 @use "default" as *;
 
+
+// ============================================================================
+// Mixins
 // ============================================================================
 
-
-/// Styles for the `<address>` HTML element.
-/// 
-/// The `<address>` element typically contains contact information, and this style 
-/// ensures that it is presented prominently with a larger font size and bold weight.
-address {
-    font-size: 1.75rem;    // Sets the font size for the address element
-    font-weight: 700;      // Applies bold font weight
-    font-style: normal;    // Overrides any italic style that might be default
-    
-    margin: 0 0 1.5625rem; // Sets the bottom margin, with no top or side margins
+///
+/// Mixin for Address Styling
+/// ===========================================================================
+/// This mixin provides a flexible approach to styling the `<address>` HTML 
+/// element, allowing customization of typography and spacing to highlight 
+/// contact information.
+///
+/// ### Features:
+/// - Customizable font size and weight for prominence.
+/// - Margin settings for controlled spacing.
+/// - Override default italic styling typically associated with addresses.
+///
+/// @param {Length} $font_size - Font size for the address text. Default is 
+///        `$paragraph_address_font_size`.
+/// @param {Number} $font_weight - Font weight for the address text. Default is 
+///        `$paragraph_address_font_weight`.
+/// @param {String} $font_style - Font style for the address text. Default is 
+///        `$paragraph_address_font_style`.
+/// @param {List} $margin - Margin around the address element for spacing. 
+///        Default is `$paragraph_address_margin`.
+///
+@mixin paragraph_address(
+    $font_size: $paragraph_address_font_size,
+    $font_weight: $paragraph_address_font_weight,
+    $font_style: $paragraph_address_font_style,
+    $margin: $paragraph_address_margin
+) {
+    font-size: $font_size; // Sets the font size for the address element
+    font-weight: $font_weight; // Applies the specified font weight
+    font-style: $font_style; // Sets the font style, typically normal to override default italics
+    margin: $margin; // Controls the spacing around the address element
 }
