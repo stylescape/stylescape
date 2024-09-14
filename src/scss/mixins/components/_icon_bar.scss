@@ -1,0 +1,53 @@
+
+
+// ============================================================================
+// Components | Icon Bar
+// ============================================================================
+
+
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../layout" as *;
+@use "../elements" as *;
+@use "../type" as *;
+
+
+/// Mixin for creating a basic icon bar.
+/// Sets up a grid display for icons with configurable gap, alignment, and justification.
+/// @group Icon Bar
+@mixin icon_bar {
+    display: grid;
+    gap: calc($q * 16);
+    justify-items: center;
+    align-items: center;
+}
+
+
+/// Mixin for creating a horizontal icon bar.
+/// This arranges icons in a single row with a specified height and minimal column width.
+/// @group Icon Bar
+@mixin icon_bar_horizontal {
+    @include icon_bar;
+    grid-template-rows: $baseline_04;
+    grid-auto-columns: min-content;
+    grid-auto-flow: column;
+    // Optional: customize the gap if needed
+    // gap: $ribbon_spacing;
+}
+
+/// Mixin for creating a vertical icon bar.
+/// This arranges icons in a single column with a specified width and minimal row height.
+/// @group Icon Bar
+@mixin icon_bar_vertical {
+    @include icon_bar;
+    grid-template-columns: $baseline_04;
+    grid-auto-rows: min-content;
+    grid-auto-flow: row;
+
+    // display: grid;
+    // grid-auto-rows: $baseline_04;
+    // justify-items: center;
+    // align-items: center;
+  
+}

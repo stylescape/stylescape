@@ -1,0 +1,187 @@
+
+
+// https://stackdiary.com/useful-css-tricks/#simple-tooltip-using-attr
+// https://www.w3schools.com/howto/howto_css_tooltip.asp
+
+
+// ============================================================================
+// Element | Tooltip
+// ============================================================================
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "../type" as *;
+
+
+// Tooltip General
+// ----------------------------------------------------------------------------
+
+$tooltip_transition: opacity .5s;
+$tooltip_unit: 5px;
+
+/// Base mixin for tooltip elements.
+/// Sets up the basic properties for a tooltip, including positioning,
+/// transition effects, and visibility.
+/// @group Tooltip
+@mixin tooltip_base {
+    position: absolute;
+    border-width: 5px;
+    // border-style: solid;
+    transition: $tooltip_transition;
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+// Tooltip Arrows
+// ----------------------------------------------------------------------------
+
+/// Base mixin for tooltip arrows.
+/// Used as a base for creating directional arrows for tooltips.
+/// @group Tooltip
+@mixin tooltip_arrow {
+    content: "";
+    @include tooltip_base;
+    border-style: solid;
+    border-width: $tooltip_unit;
+}
+
+/// Mixin for a right-pointing tooltip arrow.
+/// @group Tooltip
+@mixin tooltip_arrow_right {
+    @include tooltip_arrow;
+    top: 50%;
+    right: 100%;
+    margin-top: -$tooltip_unit;
+    border-color: transparent transparent transparent $color_02;
+}
+
+/// Mixin for a left-pointing tooltip arrow.
+/// @group Tooltip
+@mixin tooltip_arrow_left {
+    @include tooltip_arrow;
+    top: 50%;
+    left: 100%;
+    margin-top: -$tooltip_unit;
+    border-color: transparent $color_02 transparent transparent;
+}
+
+/// Mixin for a downward-pointing tooltip arrow.
+/// @group Tooltip
+@mixin tooltip_arrow_down {
+    @include tooltip_arrow;
+    bottom: 0%;
+    left: 50%;
+    margin-left: -$tooltip_unit;
+    border-color: transparent transparent $color_02 transparent;
+}
+
+/// Mixin for a upward-pointing tooltip arrow.
+/// @group Tooltip
+@mixin tooltip_arrow_up {
+    @include tooltip_arrow;
+    bottom: 0%;
+    left: 50%;
+    margin-left: - $tooltip_unit;
+    border-color: transparent transparent $color_02 transparent;
+}
+
+// Tooltip Boxes
+// ----------------------------------------------------------------------------
+
+/// Base mixin for tooltip boxes.
+/// Sets up the basic properties and styles for a tooltip box, including
+/// size, color, and text alignment.
+/// @group Tooltip
+@mixin tooltip_box {
+    @include tooltip_base;
+    @include font_size_03;
+    content: attr(tooltip-data);
+    width: 200px;
+    background-color: $color_02;
+    color: $color_01;
+    text-align: center;
+    border-radius: $tooltip_unit;
+    // padding: $tooltip_unit 0;
+    padding: $tooltip_unit;
+    line-height: 1.1;
+    transition: $tooltip_transition;
+    display: block;
+}
+
+/// Mixin for a right-aligned tooltip box.
+/// @group Tooltip
+@mixin tooltip_box_right {
+    @include tooltip_box;
+    top: calc($tooltip_unit / 2);
+    left: 100%;
+}
+
+/// Mixin for a top-aligned tooltip box.
+/// @group Tooltip
+@mixin tooltip_box_top {
+    @include tooltip_box;
+    bottom: 100%;
+    left: 50%;
+}
+
+
+
+// .tooltip {
+//   position: relative;
+//   display: inline-block;
+//   // display: unset;
+//   // display: block;
+//   // border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+//   // overflow: auto;
+//   // position: absolute;
+//   // z-index: 9998;
+//   // pointer-events: none;
+//   position: absolute;
+//   overflow: visible;
+
+//   position: relative;
+//   // border-bottom: 1px dotted $color_02;
+// }
+
+
+.tooltip {
+    // position: relative;
+    display: inline-block;
+    // position: absolute;
+    overflow: visible;
+    position: relative;
+}
+
+
+/// Tooltip content styling before the tooltip appears.
+/// @group Tooltip
+.tooltip:before {
+    @include tooltip_box_right;
+    // z-index: 9999;
+    // margin-left: -60px;
+    // font-size: 0.70em;
+    // top: -5px;
+    // left: 105%;
+}
+
+
+/// Tooltip arrow styling.
+/// @group Tooltip
+.tooltip:after {
+    @include tooltip_arrow_left;
+}
+
+/// Tooltip content and arrow visibility on hover.
+/// @group Tooltip
+.tooltip:hover:before, 
+.tooltip:hover:after {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    cursor: help;
+}
