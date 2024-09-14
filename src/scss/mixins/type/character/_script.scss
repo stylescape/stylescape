@@ -12,6 +12,7 @@
 /// @link https://scape.style
 /// @since 0.1.0 initial release
 /// @todo None
+/// @see https://gist.github.com/unruthless/413930
 /// @access public
 /// 
 ////
@@ -38,102 +39,53 @@
 // ============================================================================
 
 
-// ============================================================================
-// Typography | Character | Script
-// ============================================================================
-/* https://gist.github.com/unruthless/413930 */
-
-// Typography Variables for Script
-$script-font-size: 75%;
-$script-line-height: 0;
-$sup_position: -0.5em;
-$sub_position: 0.5em;
-
-
-
-/// Mixin for base script styles (applies to both sub and sup).
+///
+/// Mixin for base script styles.
 /// 
-/// This mixin sets the common styles for subscript and superscript text, 
-/// including font size, line height, position, and vertical alignment.
-@mixin script_base {
-    font-size: $script-font-size;
-    line-height: $script-line-height;
+/// This mixin sets the common styles for both subscript and superscript text, 
+/// including font size, line height, and vertical alignment.
+/// 
+/// @param {Length} $font_size - Font size for script text (default: `$character_script_font_size`).
+/// @param {Number} $line_height - Line height for script text (default: `$character_script_line_height`).
+///
+@mixin character_script_base (
+    $font_size: $character_script_font_size,
+    $line_height: $character_script_line_height
+) {
+    font-size: $font_size;
+    line-height: $line_height;
     position: relative;
     vertical-align: baseline;
 }
 
+
+///
 /// Mixin for subscript styles.
 /// 
-/// This mixin applies the base script styles and adjusts the position for subscript text.
-@mixin subscript {
-    @include script_base;
-    bottom: $sub_position; // Adjusted to 'bottom' for more semantic positioning
+/// This mixin extends the base script styles and adjusts the vertical
+/// position for subscript text.
+/// Adjusted to 'bottom' for more semantic positioning
+/// 
+/// @param {Length} $position - Vertical position adjustment for subscript (default: `$character_script_sub_position`).
+/// 
+@mixin character_script_sub(
+    $position: $character_script_sub_position
+) {
+    @include character_script_base;
+    bottom: $position;
 }
 
+///
 /// Mixin for superscript styles.
 /// 
-/// This mixin applies the base script styles and adjusts the position for superscript text.
-@mixin superscript {
-    @include script_base;
-    top: $sup_position;
-}
-
-// sub {
-//     @include subscript;
-//   }
-  
-//   sup {
-//     @include superscript;
-//   }
-  
-
-
-/// Base styling for subscript and superscript elements.
+/// This mixin extends the base script styles and adjusts the vertical
+/// position for superscript text.
 /// 
-/// This applies a consistent font size, line height, and positioning for `<sub>` and `<sup>` elements.
-sub,
-sup {
-    font-size: 75%;
-    // font-size: 0.8em;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-
-}
-
-/// Custom positioning for subscript elements.
+/// @param {Length} $position - Vertical position adjustment for superscript (default: `$character_script_sup_position`).
 /// 
-/// This adjusts the vertical position for `<sub>` elements to align them correctly.
-sub {
-    // bottom: -0.25em;
-    top: 0.5em;
+@mixin character_script_super(
+    $position: $character_script_sup_position
+) {
+    @include character_script_base;
+    top: $position;
 }
-
-/// Custom positioning for superscript elements.
-/// 
-/// This adjusts the vertical position for `<sup>` elements to align them correctly.
-sup {
-    top: -0.5em;
-}
-
-
-// Commented-out section with alternative mixin for customizable script styles
-
-/*
-@mixin custom-script-style($font-size: $script-font-size, $line-height: $script-line-height, $position-adjust: 0) {
-    font-size: $font-size;
-    line-height: $line-height;
-    position: relative;
-    vertical-align: baseline;
-    top: $position-adjust;
-}
-
-// Utility classes for different script styles
-.script-small {
-    @include custom-script-style(65%, 1, 0); // Smaller font size and adjusted line height
-}
-
-.script-large {
-    @include custom-script-style(85%, 1, 0); // Larger font size and adjusted line height
-}
-*/
