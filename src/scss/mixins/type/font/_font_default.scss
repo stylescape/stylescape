@@ -6,6 +6,23 @@
 /// 
 /// Default Font Typography Mixins Module
 /// ===========================================================================
+/// Provides a set of mixins for applying default font settings across your 
+/// project, ensuring a consistent typographic foundation. This module handles
+/// font family settings, smoothing, rendering optimizations, and advanced
+/// typographic controls such as ligatures and kerning. It's designed to be
+/// easily integrated into any stylesheet where typography consistency and
+/// performance are essential.
+/// 
+/// ### Key Features
+/// - Applies a default sans-serif font stack for clean and modern text appearance.
+/// - Enhances font rendering across different browsers with smoothing and legibility optimizations.
+/// - Configures a variety of font properties, including font variants, kerning, and feature settings.
+/// - Ensures consistent typographic settings by applying these styles to root elements like `<html>`.
+///
+/// ### Use Cases
+/// Use this module to set a standard typographic baseline for your entire project,
+/// particularly useful in global stylesheets or component libraries where a consistent 
+/// and optimized font display is required.
 /// 
 /// @group Font
 /// @author Scape Agency
@@ -33,10 +50,13 @@
 // ============================================================================
 
 
-/// Mixin for applying default font settings.
+///
+/// Applies default font settings for consistent and optimized typography.
 /// 
-/// This mixin sets the base font-family, smoothing, rendering, and various font properties 
+/// This mixin sets the base font-family, font smoothing, rendering, and various font properties 
 /// to ensure a consistent and optimized text appearance across different browsers.
+/// 
+/// ### Features
 /// 
 /// - `font-family`: Sets the font stack to a sans-serif family.
 /// - `font-smooth`, `-webkit-font-smoothing`, `-moz-osx-font-smoothing`: Optimizes font rendering.
@@ -47,46 +67,46 @@
 /// - `font-kerning`, `font-feature-settings`, `font-size-adjust`, `font-stretch`: Configures advanced typography settings.
 /// - `color`: Sets the default text color.
 /// - `background-color`: Ensures no background color is applied by default.
+/// 
+/// @example scss - Usage
+///   .text_default {
+///     @include font_default;
+///   }
+///
 @mixin font_default {
-    font-family:              $font_stack_sans_serif;
+    font-family:                $font_stack_sans_serif;
 
+    // Font rendering and smoothing
     font-smooth:                auto;
     -webkit-font-smoothing:     antialiased;
     -moz-osx-font-smoothing:    grayscale;
     text-rendering:             optimizeLegibility;
+
+    // Basic font settings
     font-language-override:     normal;
     font-optical-sizing:        auto; 
     font-style:                 normal;
 
+    // Font variants for advanced typographic features
     // font-variant:            normal;
     font-variant-alternates:    normal;
-    font-variant-caps:          normal;             // normal | small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps | initial | inherit | unset
-    font-variant-east-asian:    normal;             // normal | [ <east-asian-variant-values> || <east-asian-width-values> || ruby ]where <east-asian-variant-values> = [ jis78 | jis83 | jis90 | jis04 | simplified | traditional ] <east-asian-width-values> = [ full-width | proportional-width ]
-    font-variant-emoji:         text;               // normal | text | emoji
-    font-variant-ligatures:     normal;             // normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> ]
-    font-variant-numeric:       normal;             // normal | [ <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero ]
+    font-variant-caps:          normal;             
+    font-variant-east-asian:    normal;             
+    font-variant-emoji:         text;               
+    font-variant-ligatures:     normal;             
+    font-variant-numeric:       normal;             
     font-variant-position:      normal;
     
-    //font-variation-settings
+    // Advanced font settings
     font-kerning:               normal;
-    font-feature-settings:      none;
+    // font-feature-settings:      none;
+    font-feature-settings:      'kern' 1, 'liga' 1; // Enable kerning and common ligatures by default
     font-size-adjust:           none;
-    // Consider using "normal" unless a specific stretch is needed
     font-stretch:               100%;
-    // color:                      $color_02;
-    color:                      black;
-    background-color:           none;
+
+    // Text and background colors
+    // color:                      black;
+    color:                      $color_02; // Assumes $color_02 is a predefined variable in the variables module
+    // background-color:           none;
+    background-color:           transparent; // Ensures no default background color
 }
-
-
-/// Applies the default font settings to the `<html>` element.
-/// 
-/// This ensures that all text in the document inherits these optimized font settings.
-html { @include font_default; }
-
-
-// @supports (font-variant-emoji: emoji) {
-//     html {
-//         font-variant-emoji: emoji;
-//     }
-// }
