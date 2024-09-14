@@ -1,0 +1,82 @@
+////
+/// 
+/// Cite Paragraph Typography Mixins Module
+/// ===========================================================================
+/// Provides mixins for styling the `<cite>` HTML element, commonly used for 
+/// citing sources of quotes or references. This module ensures that citations 
+/// are distinct, readable, and align with the overall design system.
+///
+/// ### Key Features
+/// - Customizable font size, line height, and text transformation for citations.
+/// - Ensures citations are visually distinct and formatted consistently.
+/// - Modular approach for easy integration and reusability across projects.
+///
+/// @group Paragraph
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "../character" as *;
+@use "../font" as *;
+
+@use "default" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+///
+/// Mixin for Standard Cite Styles
+/// ===========================================================================
+/// Applies standard styles to the `<cite>` element, including font size, line 
+/// height, margin, and text transformation. This mixin ensures citations are 
+/// visually distinct and maintain a cohesive look with the rest of the 
+/// typography system.
+///
+/// ### Features:
+/// - Configurable font size, line height, and text transformation.
+/// - Sets block display for proper spacing and readability.
+/// - Customizable margin and color settings for design consistency.
+///
+/// @param {Length} $font_size - Font size for the cite text. Default is 
+///        `$paragraph_cite_font_size`.
+/// @param {String} $font_style - Font style for the cite text. Default is 
+///        `$paragraph_cite_font_style`.
+/// @param {Number} $line_height - Line height for the cite text. Default is 
+///        `$paragraph_cite_line_height`.
+/// @param {String} $text_transform - Text transformation style. Default is 
+///        `$paragraph_cite_text_transform`.
+/// @param {List} $margin - Margin around the cite element for spacing. 
+///        Default is `$paragraph_cite_margin`.
+/// @param {Color} $color - Text color for the cite element. Default is 
+///        `$paragraph_cite_text_color`.
+///
+@mixin paragraph_cite(
+    $font_size: $paragraph_cite_font_size,
+    $font_style: $paragraph_cite_font_style,
+    $line_height: $paragraph_cite_line_height,
+    $text_transform: $paragraph_cite_text_transform,
+    $margin: $paragraph_cite_margin,
+    $color: $paragraph_cite_text_color
+) {
+    font-size: $font_size; // Sets the font size for the cite text
+    font-style: $font_style; // Overrides any default italic style
+    line-height: $line_height; // Sets line height for readability
+    display: block; // Ensures the citation takes up a full line
+    margin: $margin; // Applies spacing around the citation
+    text-transform: $text_transform; // Transforms text for visual emphasis
+    color: $color; // Applies the specified text color
+}
