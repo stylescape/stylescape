@@ -1,32 +1,86 @@
-// Copyright 2024 Scape Agency BV
+// ============================================================================
+// Progress Bar Manager
+// ============================================================================
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-
-// Manages a progress bar UI, updating its value and appearance based on progress state.
-
+/**
+ * The ProgressBarManager class controls a progress bar UI element, allowing updates
+ * to its value and appearance based on the current progress state.
+ *
+ * @example
+ * // Usage:
+ * const progressBarManager = new ProgressBarManager('myProgressBar');
+ * progressBarManager.setProgress(50); // Set progress to 50%
+ */
 export default class ProgressBarManager {
-    private progressBar: HTMLElement;
+    // The HTML element representing the progress bar.
+    private progressBar: HTMLElement | null;
 
+    /**
+     * Creates an instance of ProgressBarManager.
+     * 
+     * @param progressBarId - The ID of the progress bar element to manage.
+     */
     constructor(progressBarId: string) {
-        this.progressBar = document.getElementById(progressBarId) as HTMLElement;
+        this.progressBar = document.getElementById(progressBarId);
+
+        if (!this.progressBar) {
+            console.error(`Progress bar element not found with ID: ${progressBarId}`);
+        }
     }
 
-    setProgress(percentage: number): void {
-        this.progressBar.style.width = `${percentage}%`;
+    /**
+     * Updates the progress bar to the specified percentage.
+     * 
+     * This method sets the width of the progress bar element to represent the given percentage.
+     * 
+     * @param percentage - A number representing the progress percentage (0-100).
+     */
+    public setProgress(percentage: number): void {
+        if (!this.progressBar) {
+            console.warn('Progress bar element is not available. Cannot set progress.');
+            return;
+        }
+
+        // Clamp the percentage between 0 and 100
+        const clampedPercentage = Math.min(Math.max(percentage, 0), 100);
+        this.progressBar.style.width = `${clampedPercentage}%`;
+
+        // Optionally update ARIA attributes or other accessibility features
+        this.progressBar.setAttribute('aria-valuenow', clampedPercentage.toString());
+    }
+
+    /**
+     * Resets the progress bar to 0%.
+     * 
+     * This method sets the progress bar's width to 0%, effectively resetting it.
+     */
+    public resetProgress(): void {
+        if (!this.progressBar) {
+            console.warn('Progress bar element is not available. Cannot reset progress.');
+            return;
+        }
+
+        this.setProgress(0);
+    }
+
+    /**
+     * Updates the progress bar element dynamically.
+     * 
+     * This method allows changing the progress bar element by providing a new CSS selector.
+     * It updates the instance with the new progress bar element.
+     * 
+     * @param progressBarId - The new ID of the progress bar element to manage.
+     */
+    public updateProgressBarElement(progressBarId: string): void {
+        this.progressBar = document.getElementById(progressBarId);
+
+        if (!this.progressBar) {
+            console.error(`Updated progress bar element not found with ID: ${progressBarId}`);
+        }
     }
 }
 
-// Usage
+// Usage example:
+// Create a new ProgressBarManager instance with a specified progress bar element ID.
 const progressBarManager = new ProgressBarManager('myProgressBar');
-// progressBarManager.setProgress(50); // Set progress to 50%
+progressBarManager.setProgress(50); // Set progress to 50%

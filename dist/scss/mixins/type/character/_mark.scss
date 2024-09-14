@@ -1,0 +1,80 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Mark Character Typography Mixins Module
+/// ===========================================================================
+/// 
+/// @group Character
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+
+@use "default" as *;
+@use "normal" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+
+// ============================================================================
+// Typography | Character | Mark
+// ============================================================================
+
+// Color Variables
+$color_mark_text: #fff; // Fallback for white color
+$color_mark_bg: #ff0; // Fallback for a yellow highlight, typical for <mark>
+
+/// Theme color overrides.
+/// 
+/// These variables define the default colors for marked text and background, 
+/// which can be overridden if needed.
+$color_white: $color_mark_text !default;
+$color_accent_1: $color_mark_bg !default;
+
+/// Mixin for styling `<mark>` elements.
+/// 
+/// This mixin styles the `<mark>` element, applying text color, background
+/// color, padding, and optional rounded corners.
+/// 
+/// @param {Color} $text_color [$color_white] - The color of the text inside the `<mark>` element.
+/// @param {Color} $bg_color [color_accent_1] - The background color of the `<mark>` element.
+///
+@mixin mark_style(
+    $text_color: $color_white,
+    $bg_color: $color_accent_1
+) {
+    color: $text_color;
+    background-color: $bg_color;
+    padding: 0.2em; // Adds padding for better readability
+    border-radius: 4px; // Optional: Adds rounded corners
+}
+
+/// Applying the mixin to `<mark>` elements.
+/// 
+/// This ensures that all `<mark>` elements in the document are styled consistently using the `mark_style` mixin.
+mark {
+    @include mark_style;
+}

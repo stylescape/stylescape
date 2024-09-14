@@ -1,0 +1,272 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Dropcap Character Typography Mixins Module
+/// ===========================================================================
+/// 
+/// @group Character
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+
+@use "default" as *;
+@use "normal" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+
+// ============================================================================
+// Typography | Character | Dropcap
+// ============================================================================
+
+
+// Common Drop Cap Variables
+$dropcap_font_weight: 600 !default;
+$dropcap_font_size: 50px !default;
+$dropcap_text_align: center !default;
+$dropcap-line-height: 1 !default;
+$dropcap-margin: 0 20px 0 0 !default;
+$dropcap-padding: 10px 0 !default;
+$dropcap-border-radius: 50% !default;
+
+// Standard Drop Cap Variables
+
+// Large Drop Cap Variables
+$dropcap-large-font-size: 110px !default;
+$dropcap-large-line-height: 110px !default;
+$dropcap-large-padding: 0 8px !default;
+$dropcap-large-border: 1px solid !default;
+
+// Block Drop Cap Variables
+$dropcap-block-font-size: 30px !default;
+$dropcap-block-line-height: 22px !default;
+$dropcap-block-height: 55px !default;
+$dropcap-block-width: 55px !default;
+$dropcap-block-padding: 15px 0 !default;
+$dropcap-block-margin-top: 5px !default;
+$dropcap-block-font-weight: 500 !default;
+
+// Rounded Block Drop Cap Variables
+$dropcap-rounded-border-radius: 6px !default;
+$dropcap-rounded-border: 1px solid !default;
+
+// Circular Drop Cap Variables
+$dropcap_circular_font-size: 35px !default;
+$dropcap_circular_line-height: 32px !default;
+$dropcap_circular_height: 65px !default;
+$dropcap_circular_width: 65px !default;
+$dropcap_circular_padding: 15px !default;
+
+
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+///
+/// Mixin for basic drop cap styles.
+/// 
+/// This mixin applies basic styling to drop caps, including font size, line height, 
+/// margin, text alignment, and font weight.
+/// 
+/// @param {Length} $font_size - Font size for the drop cap.
+/// @param {Number} $line-height - Line height for the drop cap (default: `$dropcap-line-height`).
+/// @param {Number} $font-weight - Font weight for the drop cap (default: `$dropcap_font_weight`).
+///
+@mixin dropcap_base(
+    $font_size,
+    $line-height: $dropcap-line-height,
+    $font-weight: $dropcap_font_weight
+) {
+    float: left;
+    font-size: $font_size;
+    line-height: $line-height;
+    margin: $dropcap-margin;
+    text-align: $dropcap_text_align;
+    font-weight: $font-weight;
+}
+  
+/// Mixin for additional drop cap styles.
+/// 
+/// This mixin allows for further customization of drop caps by adding padding, borders, 
+/// and border-radius.
+/// 
+/// @param {Length} $padding - Padding for the drop cap (default: `$dropcap-padding`).
+/// @param {String} $border - Border for the drop cap (default: `none`).
+/// @param {Length} $border-radius - Border radius for the drop cap (default: `0`).
+@mixin dropcap_style(
+    $padding: $dropcap-padding,
+    $border: none,
+    $border-radius: 0
+) {
+    padding: $padding;
+    border: $border;
+    border-radius: $border-radius;
+}
+
+/// Mixin for Standard Drop Cap
+/// 
+/// Applies the standard drop cap style to the first letter of the first child element.
+@mixin standard-dropcap {
+    @include dropcap_base($dropcap_font_size);
+    @include dropcap_style;
+}
+
+/// Mixin for Large Drop Cap with Underline
+/// 
+/// Applies a large drop cap style with an underline to the first letter of the first child element.
+@mixin large-dropcap-underline {
+    @include dropcap_base($dropcap-large-font-size, $dropcap-large-line-height);
+    @include dropcap_style($dropcap-large-padding, $dropcap-large-border, 0);
+
+    &:before {
+        content: "";
+        position: absolute;
+        border-bottom: 1px solid;
+        width: 100%;
+        top: 50%; // Adjusted for better visual centering
+        left: 0;
+    }
+}
+
+/// Mixin for Block Drop Cap
+/// 
+/// Applies a block-style drop cap to the first letter of the first child element.
+@mixin dropcap_block {
+    @include dropcap_base($dropcap-block-font-size, $dropcap-block-line-height, $dropcap-block-font-weight);
+    height: $dropcap-block-height;
+    width: $dropcap-block-width;
+    @include dropcap_style($dropcap-block-padding, 0, 0);
+    margin-top: $dropcap-block-margin-top;
+}
+
+/// Mixin for Rounded Block Drop Cap
+/// 
+/// Applies a rounded block-style drop cap to the first letter of the first child element.
+@mixin rounded-dropcap_block {
+    @include dropcap_base($dropcap-block-font-size, $dropcap-block-line-height, $dropcap-block-font-weight);
+    height: $dropcap-block-height;
+    width: $dropcap-block-width;
+    @include dropcap_style($dropcap-block-padding, $dropcap-rounded-border, $dropcap-rounded-border-radius);
+    margin-top: $dropcap-block-margin-top;
+}
+
+/// Mixin for Circular Drop Cap
+/// 
+/// Applies a circular drop cap to the first letter of the first child element.
+@mixin dropcap_circular {
+    @include dropcap_base($dropcap_circular_font-size, $dropcap_circular_line-height);
+    height: $dropcap_circular_height;
+    width: $dropcap_circular_width;
+    @include dropcap_style($dropcap_circular_padding, 0, $dropcap-border-radius);
+}
+
+// ============================================================================
+// Applying Mixins to Classes
+// ============================================================================
+
+// Standard Drop Cap
+.dropcap:first-child:first-letter {
+    @include standard-dropcap;
+}
+
+// Large Drop Cap with Underline
+.dropcap_large:first-child:first-letter {
+    @include large-dropcap-underline;
+}
+
+// Block Drop Cap
+.dropcap_block:first-child:first-letter {
+    @include dropcap_block;
+}
+
+// Rounded Block Drop Cap
+.dropcap_block-round:first-child:first-letter {
+    @include rounded-dropcap_block;
+}
+
+// Circular Drop Cap
+.dropcap_round:first-child:first-letter {
+    @include dropcap_circular;
+}
+
+
+// .dropcap:first-child:first-letter {
+//     float: left;
+//     font-size: 50px;
+//     line-height: auto;
+//     margin: 0 20px 0 0;
+//     text-align: center;
+//     padding: 10px 0;
+//     font-weight: 600;
+// }
+
+// .dropcap_big:first-child:first-letter {
+//     float: left;
+//     font-size: 110px;
+//     line-height: 110px;
+//     margin: 0 20px 0 0;
+//     padding:0 8px; 
+//     text-align: center;
+//     font-weight: 600;
+//     position: relative;
+// }
+
+// .dropcap_big:first-child:first-letter:before {
+//     position: absolute;
+//     border-bottom: 1px solid;
+//     content: "";
+//     display: block;
+//     width: 100%;
+//     top: 55%;
+//     left: 0;
+// }
+
+// .dropcap_block:first-child:first-letter {
+//     font-size: 30px;
+//     height: 55px;
+//     line-height: 22px;
+//     padding: 15px 0;
+//     width: 55px;
+//     font-weight: 500;
+//     margin-top: 5px;
+// }
+
+// .dropcap_block-round:first-child:first-letter {
+//     border-radius:6px;
+//     border:1px solid;
+// }
+
+// .dropcap_round:first-child:first-letter {
+//     border-radius: 50%;
+//     font-size: 35px;
+//     padding: 15px;
+//     width: 65px;
+//     height: 65px;
+//     line-height: 32px;
+// }

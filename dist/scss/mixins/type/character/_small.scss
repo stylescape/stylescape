@@ -1,0 +1,105 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Small Character Typography Mixins Module
+/// ===========================================================================
+/// 
+/// @group Character
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+
+@use "default" as *;
+@use "normal" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+
+
+
+///
+/// Mixin for small normal character styles.
+/// 
+/// This mixin applies the normal character styles along with a smaller font size 
+/// and line height, keeping the text consistent with the rest of the design system.
+/// 
+/// @param {Length} $font_size - Font size for small text (default: `$character_small_font_size`).
+/// @param {Number} $line_height - Line height for small text (default: `$character_small_line_height`).
+///
+@mixin character_small(
+    $font_size: $character_small_font_size,
+    $line_height: $character_small_line_height
+) {
+    @include character_normal;
+    font-size: $font_size;
+    line-height: $line_height;
+}
+
+///
+/// Mixin for bold small text styles.
+/// 
+/// This mixin applies bold styling to small text, combining the small character mixin with bold font weight.
+/// 
+/// @param {Length} $font_size - Font size for small bold text (default: `$character_small_font_size`).
+/// @param {Number} $line_height - Line height for small bold text (default: `$character_small_line_height`).
+/// @param {Weight} $font-weight - Font weight for small bold text (default: `bold`).
+///
+@mixin character_small_bold(
+    $font_size: $character_small_font_size,
+    $line_height: $character_small_line_height,
+    $font-weight: bold
+) {
+    @include character_small(
+        $font_size,
+        $line_height
+    );
+    font-weight: $font-weight;
+}
+
+
+///
+/// Mixin for italic small text styles.
+/// 
+/// This mixin applies italic styling to small text, combining the small character mixin with italic font style.
+/// 
+/// @param {Length} $font_size - Font size for small italic text (default: `$character_small_font_size`).
+/// @param {Number} $line_height - Line height for small italic text (default: `$character_small_line_height`).
+/// @param {Style} $font_style - Font style for small italic text (default: `italic`).
+///
+@mixin character_small_italic(
+    $font_size: $character_small_font_size,
+    $line_height: $character_small_line_height,
+    $font_style: italic
+) {
+    @include character_small(
+        $font_size,
+        $line_height
+    );
+    font-style: $font_style;
+}
+
+

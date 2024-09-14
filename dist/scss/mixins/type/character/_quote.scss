@@ -1,0 +1,153 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Quote Character Typography Mixins Module
+/// ===========================================================================
+/// Provides a set of mixins for styling quotes (`<blockquote>` and `<q>` tags) 
+/// with customizable typography and symbols. This module enables a cohesive 
+/// appearance for quotes across the project, ensuring readability and aesthetic 
+/// alignment with the overall design.
+/// 
+/// ### Key Features
+/// - Applies consistent styles to block and inline quotes.
+/// - Customizable symbols for inline quotes.
+/// - Supports removal of default browser quote symbols for a cleaner look.
+/// 
+/// @group Character
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+
+@use "default" as *;
+@use "normal" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+///
+/// Mixin for Base Quote Styles
+/// ===========================================================================
+/// Provides foundational styling for quotes, such as adjusting the font style,
+/// color, margin, and padding. Designed to create a consistent and elegant
+/// appearance for quoted text elements across the project.
+///
+/// ### Features:
+/// - Customizable text color for subtle differentiation.
+/// - Italic font style to visually set quotes apart from regular text.
+/// - Flexible margin and padding adjustments for spacing control.
+///
+/// @param {Color} $color [$character_quote_color] - The color of the quote
+///     text. Sets the text color for the quote. Default is 
+///   `$character_quote_color` which is typically a lighter shade for 
+///   subtlety and emphasis. Adjust as needed to match the design system.
+/// @param {String} $font_style [$character_quote_font_style] - The font style, typically italic. Specifies the font style, usually `italic` 
+///   for quotes, enhancing the distinction from other text.
+/// @param {List} $margin [$character_quote_margin] - Margin around the quote for spacing. Applies vertical spacing around the quote, 
+///   increasing readability and aesthetic separation. Defaults to 
+///   `$character_quote_margin`.
+/// @param {List} $padding [$character_quote_padding] - Padding inside the quote block. Adds horizontal padding within the quote, 
+///   creating a more defined visual block. Default value is 
+///   `$character_quote_padding`.
+///
+@mixin character_quote_base (
+    $color: $character_quote_color,
+    $font_style: $character_quote_font_style,
+    $margin: $character_quote_margin,
+    $padding: $character_quote_padding
+) {
+    color: $color;
+    font-style: $font_style;
+    margin: $margin;
+    padding: $padding;
+}
+
+///
+/// Mixin for Custom Quote Symbols
+/// ===========================================================================
+/// Enables the addition of custom symbols around inline quotes, providing 
+/// flexibility in how quotes are visually presented.
+///
+/// @param {String} $open_quote - Symbol for the opening quote. Default is
+///        `$character_quote_open_symbol`.
+/// @param {String} $close_quote - Symbol for the closing quote. Default is
+///        `$character_quote_close_symbol`.
+///
+@mixin character_quote_symbols(
+    $open_quote: $character_quote_open_symbol,
+    $close_quote: $character_quote_close_symbol,
+    $open_padding: $character_quote_open_padding,
+    $close_padding: $character_quote_close_padding
+) {
+    &:before {
+        content: $open_quote;
+        padding-right: $open_padding;
+    }
+
+    &:after {
+        content: $close_quote;
+        padding-left: $close_padding;
+    }
+}
+
+
+
+///
+/// Mixin for Inline Quotes (`<q>` Tag)
+/// ---------------------------------------------------------------------------
+/// Applies the base quote styles to inline quotes, while removing the default 
+/// browser-generated quote symbols. This mixin provides a cleaner, more 
+/// customized look for inline quotes.
+///
+/// ### Features:
+/// - Resets default browser quote symbols for a modern appearance.
+/// - Retains base styling to maintain consistency across quotes.
+/// 
+/// - `quotes: none`: Disables the default quotation marks.
+/// - `&:before`, `&:after`: Removes any automatically added content.
+///
+@mixin character_quote_inline {
+    @include quote_base;
+
+    // Resetting default browser quote symbols
+    quotes: none;
+
+    &:before,
+    &:after {
+        content: none;
+    }
+}
+
+
+
+///
+/// Applying Inline Quote Styles with Custom Symbols
+/// ===========================================================================
+/// Applies both inline quote styling and custom symbols to `<q>` elements for 
+/// a refined appearance.
+///
+q {
+    @include quote_inline;
+    @include quote_symbols;
+}

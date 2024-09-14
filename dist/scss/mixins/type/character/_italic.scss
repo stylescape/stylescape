@@ -1,0 +1,67 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Italic Character Typography Mixins Module
+/// ===========================================================================
+/// 
+/// @group Character
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+
+@use "default" as *;
+@use "normal" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+
+// ============================================================================
+// Typography | Character | Italic
+// ============================================================================
+
+/// Mixin for applying italic character styles.
+/// 
+/// This mixin applies a combination of default character styles and italic-specific styling, 
+/// including a light font weight and italic font style.
+/// 
+/// - `font-style`: italic
+/// - `font-weight`: 300 (light)
+@mixin character_italic {
+    @include character_normal;
+    // @include font_weight_03;
+    // @include font_size_00;
+    @include character_default;
+    @include font_weight_300;
+    font-style: italic;
+}
+
+/// Applies italic character styles to all `<i>` elements.
+/// 
+/// This ensures that all italicized elements in the document use the `character_italic` mixin by default.
+i {
+    @include character_italic;
+}

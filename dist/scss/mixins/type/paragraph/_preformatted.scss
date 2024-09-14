@@ -1,0 +1,90 @@
+////
+/// 
+/// Preformatted Paragraph Typography Mixins Module
+/// ===========================================================================
+/// ...
+///
+/// @group Paragraph
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "../character" as *;
+@use "../font" as *;
+
+@use "default" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+
+// ============================================================================
+// Typography | Paragraph Styles | Preformatted
+// ============================================================================
+
+/// Styles for inline code and keyboard input elements (`<code>`, `<kbd>`).
+/// 
+/// These styles ensure that inline code and keyboard inputs are clearly distinct from regular text,
+/// using a monospace font and a background color for emphasis.
+code,
+kbd {
+    font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;  // Monospace font for code elements
+    font-size: 87.5%;             // Slightly smaller font size for inline code
+    padding: .3125rem .5rem;      // Padding around the code for better readability
+
+    color: var(--ptf-color-white);  // White text color
+    border-radius: 0;              // No border radius for a square look
+    background-color: var(--ptf-accent-1);  // Background color for code elements
+}
+
+/// Styles for code elements inside anchor tags (`<a><code></code></a>`).
+/// 
+/// Ensures that code elements within links inherit the correct color.
+a > code {
+    color: var(--ptf-color-white);  // White text color for code within links
+}
+
+/// Styles for preformatted text blocks (`<pre>`).
+/// 
+/// These styles ensure that preformatted text blocks are properly formatted with monospace fonts,
+/// appropriate spacing, and overflow handling for better readability.
+pre {
+    font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;  // Monospace font for preformatted text
+
+    clear: both;               // Clear floats to ensure block-level formatting
+    overflow: auto;            // Enable scrolling for overflowing content
+
+    max-width: 100%;           // Ensure the pre block doesn't exceed its container width
+    margin: 0 0 2rem;          // Margin below the pre block
+    padding: 2rem;             // Padding inside the pre block
+
+    white-space: pre-wrap;     // Preserve whitespace and wrap lines
+    -moz-tab-size: 4;          // Set tab size for Firefox
+    -o-tab-size: 4;            // Set tab size for Opera
+    tab-size: 4;               // Set tab size for other browsers
+
+    color: var(--ptf-color-black);  // Text color for preformatted text
+    background-color: var(--ptf-color-4);  // Background color for the pre block
+}
+
+/// Styles for code elements inside preformatted text blocks (`<pre><code></code></pre>`).
+/// 
+/// Ensures that code within preformatted blocks inherits the correct text color.
+pre code {
+    color: var(--ptf-color-white);  // White text color for code inside pre blocks
+}

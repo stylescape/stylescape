@@ -1,0 +1,91 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Script Character Typography Mixins Module
+/// ===========================================================================
+/// 
+/// @group Character
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @see https://gist.github.com/unruthless/413930
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+
+@use "default" as *;
+@use "normal" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+///
+/// Mixin for base script styles.
+/// 
+/// This mixin sets the common styles for both subscript and superscript text, 
+/// including font size, line height, and vertical alignment.
+/// 
+/// @param {Length} $font_size - Font size for script text (default: `$character_script_font_size`).
+/// @param {Number} $line_height - Line height for script text (default: `$character_script_line_height`).
+///
+@mixin character_script_base (
+    $font_size: $character_script_font_size,
+    $line_height: $character_script_line_height
+) {
+    font-size: $font_size;
+    line-height: $line_height;
+    position: relative;
+    vertical-align: baseline;
+}
+
+
+///
+/// Mixin for subscript styles.
+/// 
+/// This mixin extends the base script styles and adjusts the vertical
+/// position for subscript text.
+/// Adjusted to 'bottom' for more semantic positioning
+/// 
+/// @param {Length} $position - Vertical position adjustment for subscript (default: `$character_script_sub_position`).
+/// 
+@mixin character_script_sub(
+    $position: $character_script_sub_position
+) {
+    @include character_script_base;
+    bottom: $position;
+}
+
+///
+/// Mixin for superscript styles.
+/// 
+/// This mixin extends the base script styles and adjusts the vertical
+/// position for superscript text.
+/// 
+/// @param {Length} $position - Vertical position adjustment for superscript (default: `$character_script_sup_position`).
+/// 
+@mixin character_script_super(
+    $position: $character_script_sup_position
+) {
+    @include character_script_base;
+    top: $position;
+}

@@ -1,0 +1,60 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Normal Character Typography Mixins Module
+/// ===========================================================================
+/// 
+/// @group Character
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
+
+@use "default" as *;
+@use "normal" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+
+// ============================================================================
+// Typography | Character | Normal
+// ============================================================================
+
+/// Mixin for applying normal character styles.
+/// 
+/// This mixin combines several typography-related mixins to set the default font, 
+/// weight, size, and other character styles to a "normal" state.
+/// 
+/// - `font_default`: Applies the default font family.
+/// - `font_weight_400`: Sets the font weight to 400 (normal weight).
+/// - `font_size_04`: Sets the font size to the default size 04.
+/// - `character_default`: Resets other character styles to their default state.
+@mixin character_normal {
+    @include font_default;
+    @include font_weight_400;
+    @include font_size_04;
+    @include character_default;
+}
