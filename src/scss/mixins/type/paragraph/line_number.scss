@@ -1,0 +1,107 @@
+////
+/// 
+/// Line Numbers Mixin
+/// ===========================================================================
+/// Provides a generic mixin to add line numbers to code blocks within `<pre>` 
+/// elements. This mixin improves the readability of longer code snippets by 
+/// adding line numbers to the left of the code. The mixin is designed to be 
+/// flexible, allowing you to customize spacing, colors, and other styling 
+/// properties.
+/// 
+/// ### Key Features
+/// - Adds line numbers with customizable width and positioning.
+/// - Allows setting text and background colors for line numbers.
+/// - Includes a separator between line numbers and code content.
+/// 
+/// @group Code
+/// @package Scape Typography
+/// @link https://scape.style
+/// @since 0.1.0 Initial Release
+/// @todo None
+/// @access public
+////
+@mixin line_numbers(
+    $padding_left: 3.5em,                      // Space for line numbers
+    $line_number_width: 3em,                   // Width of the line number area
+    $line_number_color: #999,                  // Color for line numbers
+    $line_number_bg_color: #eee,               // Background color for line number area
+    $line_number_border_color: #ddd,           // Border color between line numbers and code
+    $line_number_text_align: right             // Text alignment for line numbers
+) {
+    position: relative;
+    padding-left: $padding_left;
+
+    .line-number {
+        position: absolute;
+        left: 0;
+        width: $line_number_width;
+        text-align: $line_number_text_align;
+        color: $line_number_color;
+        background-color: $line_number_bg_color;
+        border-right: 1px solid $line_number_border_color;
+        padding-right: 0.5em; // Adjust padding for spacing
+        line-height: 1.6; // Match the line height of the code for alignment
+        user-select: none; // Prevent line numbers from being selected
+        pointer-events: none; // Allow click events to pass through line numbers
+    }
+}
+
+// ============================================================================
+// Applying the Mixin
+// ============================================================================
+
+pre {
+    @include line_numbers;
+
+    // Example: Adding line numbers dynamically (commonly handled via JavaScript)
+    // .line-number {
+    //   content: counter(line-number); // Requires counter logic via JS
+    //   counter-increment: line-number;
+    // }
+}
+
+
+
+
+
+
+
+
+// Syntax Highlighting Themes
+// Introducing a mixin for syntax highlighting themes allows for easy switching between light and dark modes or other custom themes, enhancing the readability of code snippets.
+
+// Syntax Highlighting Themes
+// $themes: (
+//   "light": (
+//     "background": #f9f9f9,
+//     "text": #333333,
+//     "keyword": #0077aa,
+//     "function": #aa7700,
+//     "string": #008800,
+//     "comment": #999999,
+//     "variable": #0000ff
+//   ),
+//   "dark": (
+//     "background": #2d2d2d,
+//     "text": #cccccc,
+//     "keyword": #6ab0f3,
+//     "function": #f3d19c,
+//     "string": #b9ca4a,
+//     "comment": #7c7c7c,
+//     "variable": #e78c45
+//   )
+// );
+
+// @mixin apply-theme($theme-name: "light") {
+//   $theme: map-get($themes, $theme-name);
+//   background-color: map-get($theme, "background");
+//   color: map-get($theme, "text");
+
+//   // Apply colors based on theme for different parts of the syntax
+//   .keyword { color: map-get($theme, "keyword"); }
+//   .function { color: map-get($theme, "function"); }
+//   .string { color: map-get($theme, "string"); }
+//   .comment { color: map-get($theme, "comment"); }
+//   .variable { color: map-get($theme, "variable"); }
+// }
+
