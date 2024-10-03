@@ -2,8 +2,19 @@
 /// 
 /// Blockquote Paragraph Typography Mixins Module
 /// ===========================================================================
-/// ...
+/// 
+/// Provides a set of mixins to style `<blockquote>` elements, allowing for a 
+/// visually distinct and aesthetically pleasing presentation of quoted text. 
+/// This module supports customization of padding, margins, borders, font 
+/// styling, and background colors to enhance the readability and visual 
+/// appeal of blockquotes.
 ///
+/// ### Key Features
+/// - Customizable padding and margins for flexible spacing control.
+/// - Configurable borders for emphasizing blockquotes.
+/// - Adjustable font styling, including size, weight, and color options.
+/// - Background color customization to visually differentiate blockquotes.
+/// 
 /// @group Paragraph
 /// @author Scape Agency
 /// @link https://scape.style
@@ -33,9 +44,12 @@
 // ============================================================================
 
 
+
+
 ///
 /// Mixin for Blockquote Styling
-/// ===========================================================================
+/// ---------------------------------------------------------------------------
+/// 
 /// This mixin provides a flexible way to style `<blockquote>` elements, 
 /// allowing customization of padding, margin, border, font styling, and 
 /// background color. It enhances the readability and visual appeal of 
@@ -61,15 +75,24 @@
 ///        `$paragraph_quote_block_text_color`.
 /// @param {Length} $font_size - Font size for the blockquote text. Default is 
 ///        `$paragraph_quote_block_font_size`.
+/// @param {String} $font_style - Font style for the blockquote text. Default is 
+///        `$paragraph_quote_block_font_style`.
+/// @param {Number} $font_weight - Font weight for the blockquote text. Default is 
+///        `$paragraph_quote_block_font_weight`.
+/// @param {Number} $line_height - Line height for the blockquote text. Default is 
+///        `$paragraph_quote_block_line_height`.
 ///
-@mixin quote_block (
+@mixin paragraph_quote_block (
     $padding: $paragraph_quote_block_padding,
     $margin: $paragraph_quote_block_margin,
     $border: $paragraph_quote_block_border,
     $border_color: $paragraph_quote_block_border_color,
     $bg_color: $paragraph_quote_block_background_color,
     $text_color: $paragraph_quote_block_text_color,
-    $font_size: $paragraph_quote_block_font_size
+    $font_size: $paragraph_quote_block_font_size,
+    $font_style: $paragraph_quote_block_font_style,
+    $font_weight: $paragraph_quote_block_font_weight,
+    $line_height: $paragraph_quote_block_line_height,
 ) {
     padding: $padding; // Sets the internal padding for blockquotes
     margin: $margin; // Controls the external margin
@@ -78,54 +101,37 @@
     background-color: $bg_color; // Background color for visual distinction
     color: $text_color; // Text color inside the blockquote
     font-size: $font_size; // Font size adjustment for readability
-    font-style: italic; // Applies an italic style to emphasize the quote
-    quotes: none; // Removes default quotation marks
+    font-style: $font_style; // Applies an italic style to emphasize the quote
+    font-weight: $font_weight; // Applies bold font weight
+    line-height: $line_height; // Sets the line height for readability
+    quotes: none; // Resetting default browser quote symbols
+    position: relative; // Allows for positioning relative to its normal flow
+    padding: 0; // Removes any padding
 
     // Optional: Add custom quote symbols using pseudo-elements
     &:before {
         content: open-quote; // Adds a customizable opening quote symbol
+        position: absolute; // Allows positioning of quote symbols
+        left: 0; // Adjust left position as needed
     }
 
     &:after {
         content: close-quote; // Adds a customizable closing quote symbol
+        position: absolute; // Allows positioning of quote symbols
+        right: 0; // Adjust right position as needed
+    }
+    
+    p {
+        margin-bottom: 0;  // Ensures paragraphs within blockquotes have no bottom margin
     }
 }
 
 
 
-
-
-
-
-
-
-
-/// Base styling for `blockquote` and `q` elements.
-/// 
-/// This applies a clean slate by removing any default quotation marks and
-/// resetting content.
-blockquote,
-q {
-    quotes: none;
+.paragraph_quote_block,
+.blockquote {
+    @include paragraph_quote_block;
 }
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-    content: '';
-    content: none;
-}
-
-// blockquote {
-//     @include blockquote-style;
-// }
-
-
-
-
-
-
 
 
 
@@ -135,122 +141,5 @@ q:after {
 /// and these styles ensure it stands out with a larger font size, bold weight, 
 /// and custom color.
 blockquote {
-    font-size: 1.875rem;    // Sets the font size for blockquote text
-    font-weight: 700;       // Applies bold font weight
-    line-height: 1.6;       // Sets the line height for readability
-
-    position: relative;     // Allows for positioning relative to its normal flow
-
-    margin: 0 0 1.875rem;   // Sets the bottom margin for spacing after the blockquote
-    padding: 0;             // Removes any padding
-
-    color: var(--ptf-color-black);  // Applies a custom color defined in CSS variables
+    @include paragraph_quote_block;
 }
-
-
-/// Styles for paragraphs inside `<blockquote>`.
-/// 
-/// Ensures that paragraphs within blockquotes do not add extra margin at the bottom.
-blockquote p {
-    margin-bottom: 0;  // Removes bottom margin from paragraphs within blockquote
-}
-
-
-
-
-// Special character styles for decorative quotes or symbols
-// ----------------------------------------------------------------------------
-
-/// Small decorative quote or symbol.
-.special-char-small {
-    font-size: 40px;
-    line-height: 60px;
-}
-
-/// Medium decorative quote or symbol.
-.special-char-medium {
-    font-size: 80px;
-    line-height: 120px;
-}
-
-/// Large decorative quote or symbol.
-.special-char-large {
-    font-size: 140px;
-    line-height: 120px;
-}
-
-/// Extra-large decorative quote or symbol.
-.special-char-extra-large {
-    font-size: 200px;
-    line-height: 150px;
-}
-
-
-// Color Variables
-// ----------------------------------------------------------------------------
-
-/// Color variable for blockquote text.
-/// 
-/// This variable uses a CSS custom property to set the text color for blockquotes.
-$color-blockquote-text: var(--ptf-color-black);
-
-
-// Typography Variables
-// ----------------------------------------------------------------------------
-
-/// Font size for blockquote text.
-$blockquote-font-size: 1.875rem;
-
-/// Font weight for blockquote text.
-$blockquote-font-weight: 700;
-
-/// Line height for blockquote text.
-$blockquote-line-height: 1.6;
-
-
-
-
-// Mixin for blockquote styles
-// ----------------------------------------------------------------------------
-
-/// Mixin to apply standard blockquote styles.
-/// 
-/// This mixin applies all necessary styles for blockquotes, including font size, 
-/// weight, line height, margin, and color.
-// @mixin blockquote-style {
-
-//     @include base-quote-style; // Includes base styles for blockquotes
-
-//     border-left: $quote-border-left;
-
-//     // Resetting default browser quote symbols
-//     quotes: none;
-
-//     &:before, &:after {
-//         content: none;  // Removes default quotation marks
-//     }
-
-//     font-size: $blockquote-font-size;
-//     font-weight: $blockquote-font-weight;
-//     line-height: $blockquote-line-height;
-//     position: relative;
-//     margin: 0 0 1.875rem;
-//     padding: 0;
-//     color: $color-blockquote-text;
-
-//     p {
-//         margin-bottom: 0;  // Ensures paragraphs within blockquotes have no bottom margin
-//     }
-// }
-
-
-
-
-
-
-// Example usage of the mixin:
-blockquote {
-    @include blockquote_style();
-}
-
-
