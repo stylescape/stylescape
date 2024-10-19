@@ -2,7 +2,16 @@
 /// 
 /// Preformatted Paragraph Typography Mixins Module
 /// ===========================================================================
-/// ...
+///
+/// Provides a set of mixins to style preformatted text elements such as `<pre>`, 
+/// `<code>`, and `<kbd>`, ensuring that they stand out with distinct typography 
+/// and spacing. This module enhances the readability and visual presentation 
+/// of code snippets and keyboard inputs.
+///
+/// ### Key Features
+/// - Distinct styling for inline code, keyboard inputs, and preformatted blocks.
+/// - Consistent use of monospace fonts for technical text.
+/// - Customizable padding, margins, and colors for enhanced readability and accessibility.
 ///
 /// @group Paragraph
 /// @author Scape Agency
@@ -32,59 +41,71 @@
 // ============================================================================
 
 
-
-// ============================================================================
-// Typography | Paragraph Styles | Preformatted
-// ============================================================================
-
-/// Styles for inline code and keyboard input elements (`<code>`, `<kbd>`).
+///
+/// Mixin for Preformatted Text Blocks
+/// ===========================================================================
+/// Styles preformatted text blocks (`<pre>`), ensuring that code snippets and 
+/// other preformatted content are visually distinct and easy to read.
+///
+/// ### Features:
+/// - Monospace fonts for technical content.
+/// - Scrollable overflow handling.
+/// - Consistent padding and margins for spacing.
+/// - Background color to set preformatted blocks apart from other content.
+///
+/// @param {List} $font_stack - Monospace font stack for preformatted text. 
+///        Default is `$font_stack_monospace`.
+/// @param {Length} $max_width - Maximum width for preformatted blocks. 
+///        Default is `$paragraph_code_max_width`.
+/// @param {List} $margin - Margin around preformatted blocks. Default is 
+///        `$paragraph_code_margin`.
+/// @param {List} $padding - Padding inside preformatted blocks. Default is 
+///        `$paragraph_code_padding`.
+/// @param {Color} $bg_color - Background color for preformatted blocks. 
+///        Default is `$paragraph_code_bg_color`.
+/// @param {Color} $text_color - Text color for preformatted text. Default is 
+///        `$paragraph_code_text_color`.
+/// @param {Number} $tab_size - Tab size setting for preformatted text. 
+///        Default is `$paragraph_code_tab_size`.
+/// @param {Color} $border_color - Border color for the `<pre>` element 
+///        (default: `$paragraph_code_border_color`).
+/// @param {Length} $border_radius - Border radius for the `<pre>` element
+///        (default: `$paragraph_code_border_radius`).
 /// 
-/// These styles ensure that inline code and keyboard inputs are clearly distinct from regular text,
-/// using a monospace font and a background color for emphasis.
-code,
-kbd {
-    font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;  // Monospace font for code elements
-    font-size: 87.5%;             // Slightly smaller font size for inline code
-    padding: .3125rem .5rem;      // Padding around the code for better readability
+///
+@mixin paragraph_code(
+    $font_stack: $font_stack_monospace,
+    $max_width: $paragraph_code_max_width,
+    $margin: $paragraph_code_margin,
+    $padding: $paragraph_code_padding,
+    $bg_color: $paragraph_code_bg_color,
+    $text_color: $paragraph_code_text_color,
+    $tab_size: $paragraph_code_tab_size,
+    $border_color: $paragraph_code_border_color,
+    $border_thickness: $paragraph_code_border_thickness,
+    $border_type: $paragraph_code_border_type,
+    $border_radius: $paragraph_code_border_radius,
+) {
+    // @include monospace-font;
+    font-family: $font_stack;
 
-    color: var(--ptf-color-white);  // White text color
-    border-radius: 0;              // No border radius for a square look
-    background-color: var(--ptf-accent-1);  // Background color for code elements
-}
+    clear: both; // Clear floats to ensure block-level formatting
+    overflow: auto; // Enable scrolling for overflowing content
+    
+    max-width: $max_width;
+    margin: $margin;
+    padding: $padding;
 
-/// Styles for code elements inside anchor tags (`<a><code></code></a>`).
-/// 
-/// Ensures that code elements within links inherit the correct color.
-a > code {
-    color: var(--ptf-color-white);  // White text color for code within links
-}
+    white-space: pre-wrap; // Preserve whitespace and wrap lines
+    word-wrap: break-word; // Break long words in <pre>
 
-/// Styles for preformatted text blocks (`<pre>`).
-/// 
-/// These styles ensure that preformatted text blocks are properly formatted with monospace fonts,
-/// appropriate spacing, and overflow handling for better readability.
-pre {
-    font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;  // Monospace font for preformatted text
+    -moz-tab-size: $tab_size; // Set tab size for Firefox
+    -o-tab-size: $tab_size; // Set tab size for Opera
+    tab-size: $tab_size; // Set tab size for other browsers
 
-    clear: both;               // Clear floats to ensure block-level formatting
-    overflow: auto;            // Enable scrolling for overflowing content
+    color: $text_color;
+    background-color: $bg_color;
 
-    max-width: 100%;           // Ensure the pre block doesn't exceed its container width
-    margin: 0 0 2rem;          // Margin below the pre block
-    padding: 2rem;             // Padding inside the pre block
-
-    white-space: pre-wrap;     // Preserve whitespace and wrap lines
-    -moz-tab-size: 4;          // Set tab size for Firefox
-    -o-tab-size: 4;            // Set tab size for Opera
-    tab-size: 4;               // Set tab size for other browsers
-
-    color: var(--ptf-color-black);  // Text color for preformatted text
-    background-color: var(--ptf-color-4);  // Background color for the pre block
-}
-
-/// Styles for code elements inside preformatted text blocks (`<pre><code></code></pre>`).
-/// 
-/// Ensures that code within preformatted blocks inherits the correct text color.
-pre code {
-    color: var(--ptf-color-white);  // White text color for code inside pre blocks
+    border: $border_thickness $border_type $border_color;
+    border-radius: $border_radius;
 }

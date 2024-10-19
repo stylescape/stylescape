@@ -3,17 +3,17 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Abbreviation Character Typography Mixins Module
 /// ===========================================================================
-/// 
+///
 /// @group Character
 /// @author Scape Agency
 /// @link https://scape.style
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -21,9 +21,9 @@
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../../mixins" as *;
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+// // @use "../../mixins" as *;
 
 @use "../font/font_default" as *;
 @use "../font/font_weight" as *;
@@ -61,7 +61,7 @@ $abbreviation_tooltip_padding: 3px 5px; // Tooltip padding
 ///
 /// Mixin for abbreviation tooltip styles
 /// ---------------------------------------------------------------------------
-/// 
+///
 @mixin abbreviation_tooltip {
     @include abbreviation_base;
     position: relative;
@@ -86,7 +86,7 @@ $abbreviation_tooltip_padding: 3px 5px; // Tooltip padding
 ///
 /// Mixin for touchscreen friendly styles
 /// ---------------------------------------------------------------------------
-/// 
+///
 @mixin abbreviation_touchscreen {
     cursor: pointer; // Suggests interactivity
     &:active::after {
@@ -98,16 +98,16 @@ $abbreviation_tooltip_padding: 3px 5px; // Tooltip padding
 
 
 /// Styles for the `<abbr>` HTML element.
-/// 
+///
 /// The abbreviation element is styled to be inline, and the title attribute is used to generate a tooltip on hover or focus.
 abbr {
     @include abbreviation_base;
 
-    
+
     display: inline;
     // font-variant: all-small-caps;
 
-  
+
     // &[title] {
     //   @include abbreviation_tooltip;
     // }
@@ -115,10 +115,10 @@ abbr {
 
 
 /// Styles for `<abbr>` elements with a title attribute.
-/// 
+///
 /// Adds a tooltip on hover and focus, and removes the default underline for better control over the decoration.
 /// Tooltip styling is provided for better accessibility and usability on different input devices.
-/// 
+///
 abbr[title] {
 
     position: relative;
@@ -157,9 +157,8 @@ abbr[title] {
 
 
 
-  
+
 // /// Applying touchscreen friendly styles
 //   abbr[title] {
 //     @include abbreviation_touchscreen;
 //   }
-  

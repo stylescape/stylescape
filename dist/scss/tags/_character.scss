@@ -33,6 +33,38 @@
 // ============================================================================
 
 
+
+
+
+
+/// Applying inline code styles to `<code>` and `<kbd>` elements.
+/// Styles for inline code and keyboard input elements (`<code>`, `<kbd>`).
+/// 
+/// These styles ensure that inline code and keyboard inputs are clearly distinct from regular text,
+/// using a monospace font and a background color for emphasis.
+code,
+kbd,
+samp {
+    @include character_code;
+}
+
+/// Applying inline code styles to code within anchor tags.
+/// Styles for code elements inside anchor tags (`<a><code></code></a>`).
+/// 
+/// Ensures that code elements within links inherit the correct color.
+a > code,
+a > kbd,
+a > samp {
+    color: $character_code_text_color; // White text color for code within links?
+}
+
+
+
+
+
+
+
+
 /// Base styling for `<sub>` and `<sup>` elements.
 /// 
 /// Ensures consistent font size, line height, and positioning for subscript and superscript text.

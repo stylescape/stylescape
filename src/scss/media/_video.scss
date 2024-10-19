@@ -15,7 +15,7 @@
 @use "../dev" as *;
 @use "../variables" as *;
 @use "../mixins" as *;
-@use "../type" as *;
+// @use "../type" as *;
 
 
 // ============================================================================
@@ -46,7 +46,7 @@ video {
 
 
 /// Wrapper for video elements.
-/// 
+///
 /// Ensures the video occupies the full height and width of its container.
 .video_wrapper {
     height: 100%;
@@ -74,7 +74,7 @@ video {
     // -o-transform: translate(-50%, -50%);
     // width: auto;
     // z-index: -3;
-  
+
     iframe {
         // height: 100%;
         // left: 0;
@@ -115,7 +115,7 @@ video {
     top:0;
     background: rgba(67,67,67,0.5)
 }
-  
+
 
 
 
@@ -127,12 +127,12 @@ video {
 // specific aspect ratios (like 16:9), you can use SCSS mixins.
 
 /// Mixin for maintaining aspect ratio for elements.
-/// 
+///
 /// This mixin is especially useful for video containers to ensure that they maintain a specific aspect ratio.
 ///
 /// @param {Number} $width - The width part of the aspect ratio.
 /// @param {Number} $height - The height part of the aspect ratio.
-@mixin aspect-ratio($width, $height) {
+@mixin video-aspect-ratio($width, $height) {
   position: relative;
   &:before {
     display: block;
@@ -153,7 +153,7 @@ video {
 ///
 /// Applies the aspect-ratio mixin for consistent sizing across different devices.
 .video-container {
-  @include aspect-ratio(16, 9); // 16:9 aspect ratio
+  @include video-aspect-ratio(16, 9); // 16:9 aspect ratio
 
   video {
     position: absolute;
@@ -224,7 +224,7 @@ video {
 ///
 /// Particularly useful for video embeds from platforms like YouTube or Vimeo.
 .embed-responsive {
-    @include aspect-ratio(16, 9); // 16:9 aspect ratio for embedded videos
+    @include video-aspect-ratio(16, 9); // 16:9 aspect ratio for embedded videos
 
     iframe,
     object,

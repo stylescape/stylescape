@@ -65,11 +65,14 @@
 // Mixin for setting font-variant-caps
 // ----------------------------------------------------------------------------
 
+/// 
 /// Mixin for setting font-variant-caps.
+/// ---------------------------------------------------------------------------
 /// 
 /// @param {String} $style - The font variant style, accepts: 
 /// normal | small-caps | all-small-caps | petite-caps | 
 /// all-petite-caps | unicase | titling-caps | initial | inherit | unset.
+/// 
 @mixin font_variant_caps($style: normal) {
     font-variant-caps: $style;
 }
@@ -77,20 +80,26 @@
 // Generic mixin for text transformation
 // ----------------------------------------------------------------------------
 
+///
 /// Mixin for text transformation styles.
+/// ---------------------------------------------------------------------------
 /// 
 /// @param {String} $transform - The text transformation style, accepts:
 /// uppercase | lowercase | capitalize | none.
+///
 @mixin text_transform($transform: none) {
     text-transform: $transform;
 }
 
+///
 /// Combined mixin for character styling.
+/// ---------------------------------------------------------------------------
 /// 
 /// Allows setting both text-transform and font-variant-caps in a single mixin.
 /// 
 /// @param {String} $transform - Optional text-transform style.
 /// @param {String} $font-variant - Optional font-variant-caps style.
+/// 
 @mixin character_style($transform: null, $font-variant: null) {
     @if $transform != null {
         text-transform: $transform;

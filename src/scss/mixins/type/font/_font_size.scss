@@ -3,18 +3,18 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Size Font Typography Mixins Module
 /// ===========================================================================
 /// ...
-/// 
+///
 /// @group Font
 /// @author Scape Agency
 /// @link https://scape.style
 /// @since 0.1.0 initial release
 /// @todo Implement unit.gl typography ladders
 /// @access public
-/// 
+///
 ////
 
 
@@ -22,11 +22,11 @@
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../../mixins" as *;
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+// // @use "../../mixins" as *;
 
-@use "font_stack" as *;
+// @use "font_stack" as *;
 
 
 // ============================================================================
@@ -72,7 +72,7 @@
 //     .font_size_#{$key} { @include font-size-#{$key}; }
 // }
 
-  
+
 // // Semantic size utility classes
 // .font_xs { @include font_size("02"); }
 // .font_sm { @include font_size("03"); }
@@ -81,8 +81,8 @@
 // .font_xl { @include font_size("08"); }
 
 /// Font size variables.
-/// 
-/// These variables define different levels of font sizes. The values can be 
+///
+/// These variables define different levels of font sizes. The values can be
 /// adjusted to match the design system's requirements.
 $font_size_01:  1 !default;
 $font_size_02:  2 !default;
@@ -98,10 +98,10 @@ $font_size_11: 11 !default;
 $font_size_12: 12 !default;
 
 /// Mixin to apply font size and line height based on a multiplier.
-/// 
-/// This mixin calculates the font size using a base unit and applies a corresponding 
+///
+/// This mixin calculates the font size using a base unit and applies a corresponding
 /// line height for optimal readability.
-/// 
+///
 /// @param {Number} $val - The multiplier for the base font size unit.
 @mixin font_sizes ($val) {
     font-size: basepoint($val);
@@ -110,7 +110,7 @@ $font_size_12: 12 !default;
 
 
 /// Mixins for predefined font sizes.
-/// 
+///
 /// These mixins apply specific font sizes and line heights using predefined variables.
 @mixin font_size_01 { @include font_sizes($font_size_01); }
 @mixin font_size_02 { @include font_sizes($font_size_02); }
@@ -126,8 +126,8 @@ $font_size_12: 12 !default;
 @mixin font_size_12 { @include font_sizes($font_size_12); }
 
 /// Utility classes for predefined font sizes.
-/// 
-/// These classes apply the corresponding font size and line height to elements 
+///
+/// These classes apply the corresponding font size and line height to elements
 /// using the predefined font size mixins.
 .font_size_01 { @include font_size_01; }
 .font_size_02 { @include font_size_02; }
@@ -143,8 +143,8 @@ $font_size_12: 12 !default;
 .font_size_12 { @include font_size_12; }
 
 /// Utility classes for semantic font sizes.
-/// 
-/// These classes provide a more semantic naming convention for font sizes, making 
+///
+/// These classes provide a more semantic naming convention for font sizes, making
 /// it easier to understand and apply appropriate sizes in different contexts.
 .font_extra_small { @include font_sizes($font_size_02); }
 .font_small       { @include font_sizes($font_size_03); }
