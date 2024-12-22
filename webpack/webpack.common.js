@@ -97,45 +97,45 @@ const configCommon = {
                 test: /\.ts$/,
                 exclude: /node_modules/,
                 use: [
-                    // Babel Loader
-                    // Transpiles TypeScript to JavaScript with Babel.
-                    // This allows for the use of the latest JavaScript
-                    // features and ensures compatibility with older browsers.
-                    {
-                        loader: "babel-loader",
-                        options: {
-                            presets: [
-                                // Preset for compiling modern JavaScript to
-                                // a more compatible version
-                                ["@babel/preset-env", {
-                                    // Define target environments
-                                    targets: "> 0.25%, not dead",
-                                    // Only include polyfills and transforms
-                                    // needed for target environments
-                                    useBuiltIns: "usage",
-                                    // Specify the core-js version for polyfills
-                                    corejs: 3,
-                                    // Preserve ECMAScript modules for tree
-                                    // shaking in Webpack
-                                    // modules: true
-                                    modules: false
-                                }],
-                                // Preset for handling TypeScript
-                                "@babel/preset-typescript"
-                            ],
-                            caller: {
-                                supportsStaticESM: true
-                            },
-                            plugins: [
-                                // Add any necessary Babel plugins here
-                                // Enables dynamic import syntax in JavaScript
-                                // (important for code splitting in ESM)
-                                "@babel/plugin-syntax-dynamic-import",
+                    // // Babel Loader
+                    // // Transpiles TypeScript to JavaScript with Babel.
+                    // // This allows for the use of the latest JavaScript
+                    // // features and ensures compatibility with older browsers.
+                    // {
+                    //     loader: "babel-loader",
+                    //     options: {
+                    //         presets: [
+                    //             // Preset for compiling modern JavaScript to
+                    //             // a more compatible version
+                    //             ["@babel/preset-env", {
+                    //                 // Define target environments
+                    //                 targets: "> 0.25%, not dead",
+                    //                 // Only include polyfills and transforms
+                    //                 // needed for target environments
+                    //                 useBuiltIns: "usage",
+                    //                 // Specify the core-js version for polyfills
+                    //                 corejs: 3,
+                    //                 // Preserve ECMAScript modules for tree
+                    //                 // shaking in Webpack
+                    //                 // modules: true
+                    //                 modules: false
+                    //             }],
+                    //             // Preset for handling TypeScript
+                    //             "@babel/preset-typescript"
+                    //         ],
+                    //         caller: {
+                    //             supportsStaticESM: true
+                    //         },
+                    //         plugins: [
+                    //             // Add any necessary Babel plugins here
+                    //             // Enables dynamic import syntax in JavaScript
+                    //             // (important for code splitting in ESM)
+                    //             "@babel/plugin-syntax-dynamic-import",
                                 
-                                // Other plugins that your project might need
-                            ],
-                        },
-                    },
+                    //             // Other plugins that your project might need
+                    //         ],
+                    //     },
+                    // },
                     // TypeScript Loader
                     // Handles the TypeScript compilation
                     {
@@ -160,13 +160,13 @@ const configCommon = {
             // JavaScript Rules
             // ----------------------------------------------------------------
             // Use Babel Loader to transpile JavaScript file
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                },
-            },
+            // {
+            //     test: /\.js$/,
+            //     exclude: /node_modules/,
+            //     use: {
+            //         loader: "babel-loader",
+            //     },
+            // },
 
             // CSS and SCSS Rules
             // ----------------------------------------------------------------
