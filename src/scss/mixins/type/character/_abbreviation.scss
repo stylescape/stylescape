@@ -16,7 +16,6 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
@@ -32,11 +31,9 @@
 @use "default" as *;
 @use "normal" as *;
 
-
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 /// Abbreviation Styling Variables
 $abbreviation_text_decoration: underline dotted;
@@ -46,8 +43,6 @@ $abbreviation_tooltip_radius: 3px; // Tooltip border radius
 $abbreviation_tooltip_shadow: 1px 1px 5px rgba(0, 0, 0, 0.4); // Tooltip shadow
 $abbreviation_tooltip_font-size: 14px; // Tooltip font size
 $abbreviation_tooltip_padding: 3px 5px; // Tooltip padding
-
-
 
 ///
 ///  Mixin for base abbreviation styles
@@ -66,7 +61,8 @@ $abbreviation_tooltip_padding: 3px 5px; // Tooltip padding
     @include abbreviation_base;
     position: relative;
 
-    &:hover::after, &:focus::after {
+    &:hover::after,
+    &:focus::after {
         content: attr(title);
         position: absolute;
         left: 0;
@@ -81,8 +77,6 @@ $abbreviation_tooltip_padding: 3px 5px; // Tooltip padding
     }
 }
 
-
-
 ///
 /// Mixin for touchscreen friendly styles
 /// ---------------------------------------------------------------------------
@@ -90,12 +84,9 @@ $abbreviation_tooltip_padding: 3px 5px; // Tooltip padding
 @mixin abbreviation_touchscreen {
     cursor: pointer; // Suggests interactivity
     &:active::after {
-      // Tooltip styles could be replicated here if you want them to appear on tap
+        // Tooltip styles could be replicated here if you want them to appear on tap
     }
-  }
-
-
-
+}
 
 /// Styles for the `<abbr>` HTML element.
 ///
@@ -103,16 +94,13 @@ $abbreviation_tooltip_padding: 3px 5px; // Tooltip padding
 abbr {
     @include abbreviation_base;
 
-
     display: inline;
     // font-variant: all-small-caps;
-
 
     // &[title] {
     //   @include abbreviation_tooltip;
     // }
 }
-
 
 /// Styles for `<abbr>` elements with a title attribute.
 ///
@@ -120,7 +108,6 @@ abbr {
 /// Tooltip styling is provided for better accessibility and usability on different input devices.
 ///
 abbr[title] {
-
     position: relative;
     // Remove the bottom border in Chrome 57
     border-bottom: none;
@@ -128,16 +115,12 @@ abbr[title] {
     // text-decoration: underline;
     text-decoration: underline dotted;
 
-
     // Making the abbr element work for touchscreen, keyboard, and mouse
     // https://bitsofco.de/making-abbreviation_work-for-touchscreen-keyboard-mouse/
-
 
     /// Tooltip appears on hover or focus
     &:hover::after,
     &:focus::after {
-
-
         content: attr(title);
         /* position tooltip like the native one */
         position: absolute;
@@ -149,14 +132,11 @@ abbr[title] {
         background-color: #1e1e1e;
         color: #fff;
         border-radius: 3px;
-        box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.4);
+        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.4);
         font-size: 14px;
         padding: 3px 5px;
     }
 }
-
-
-
 
 // /// Applying touchscreen friendly styles
 //   abbr[title] {

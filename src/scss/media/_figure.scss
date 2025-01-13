@@ -1,14 +1,10 @@
-
-@use "../dev" as *;
-@use "../variables" as *;
-@use "../mixins" as *;
-// @use "../type" as *;
+@use '../dev' as *;
+@use '../variables' as *;
+@use '../mixins' as *;
 
 // ============================================================================
 // Media | Figures
 // ============================================================================
-
-
 
 // // Define variables for consistent styling
 // $figure-border-color: #ccc;
@@ -19,9 +15,6 @@
 // $figcaption-text-align: center;
 // $figcaption-font-style: italic;
 // $figcaption-font-size: 0.85em;
-
-
-
 
 // // Mixin for figure styling
 // @mixin figure_style {
@@ -64,11 +57,6 @@
 //     }
 // }
 
-
-
-
-
-
 /// Styles for the `<figure>` element.
 ///
 /// Ensures the figure is positioned relative and that its contents are aligned.
@@ -94,8 +82,8 @@ figure img {
 figure figcaption {
     // color: {{ css_color_01 }};
     font-weight: 700;
-//   @include font-size($figure-caption-font-size);
-//   color: $figure-caption-color;
+    //   @include font-size($figure-caption-font-size);
+    //   color: $figure-caption-color;
 }
 
 /// Utility class for additional text styling within figures.
@@ -108,14 +96,17 @@ figure figcaption {
     // r: calc($q * 8);
 }
 
-
-
 /// Aspect Ratio Utilities
 // ----------------------------------------------------------------------------
 /// Utility classes to maintain various aspect ratios for images within figures.
 ///
 /// These classes ensure that images maintain their aspect ratio, regardless of screen size.
-.figure_1x1, .figure_3_2, .figure_4x3, .figure_3x4, .figure_2x3, .figure_16x9 {
+.figure_1x1,
+.figure_3_2,
+.figure_4x3,
+.figure_3x4,
+.figure_2x3,
+.figure_16x9 {
     width: 100%;
     position: relative;
     overflow: hidden; // Ensures content doesn't overflow the figure
@@ -146,24 +137,22 @@ figure figcaption {
 }
 
 /// Ensures images within aspect ratio containers fill the container while maintaining their aspect ratio.
-.figure_1x1 img, .figure_3_2 img, .figure_4x3 img, .figure_3x4 img, .figure_2x3 img, .figure_16x9 img {
+.figure_1x1 img,
+.figure_3_2 img,
+.figure_4x3 img,
+.figure_3x4 img,
+.figure_2x3 img,
+.figure_16x9 img {
     min-width: 100%;
     min-height: 100%;
     object-fit: cover; // Ensures the image covers the entire container
     position: absolute;
 }
 
-
-
-
-
-
-
 // // Basic SCSS for Styling Figures
 // // ----------------------------------------------------------------------------
 // // This basic example styles the <figure> element with a border, padding, and
 // // margin for spacing. The <figcaption> is styled for typography and alignment.
-
 
 // figure {
 //     border: 1px solid #ddd; // Light grey border

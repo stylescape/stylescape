@@ -1,26 +1,22 @@
-
 // ============================================================================
 // Components | Map
 // ============================================================================
 
-
-
-@use "../../dev" as *;
-@use "../../variables" as *;
+@use '../../dev' as *;
+@use '../../variables' as *;
 // @use "../mixins" as *;
-@use "../../layout" as *;
+@use '../../layout' as *;
 // @use "../elements" as *;
-@use "../type" as *;
-
+@use '../type' as *;
 
 /// Map container styling.
 /// This sets up the map container with full viewport dimensions and appropriate z-index.
 /// @group Map
 #map {
-  // width: 100vw;
-  // height: 100vh;
-  // z-index: z("canvas")+1;
-  // z-index: 9999;
+    // width: 100vw;
+    // height: 100vh;
+    // z-index: z("canvas")+1;
+    // z-index: 9999;
 }
 
 /// Main map canvas.
@@ -29,39 +25,36 @@
 .map_canvas {
     width: 100vw;
     height: 100vh;
-    z-index: z("canvas")+1;
+    z-index: z('canvas') + 1;
 }
-
-
 
 /// Base styles for layer controls on the map.
 /// Applies basic styles such as resetting margins, applying font size, and setting up a light color scheme.
 /// @group Map
-.layer_control_base, .layer_control_overlay {
+.layer_control_base,
+.layer_control_overlay {
     @include reset_bleed;
     @include font_size_03;
     @include color_scheme_light;
     @include flex_col;
     h3 {
         padding-bottom: $q * 8;
-
     }
     label {
         height: $q * 24;
         span {
-        @include flex_row;
-        input {
-            @include align_self_center;
-        }
-        span {
-            @include align_self_center;
-            @include reset_bleed;
-            @include font_size_03;
-            padding-left: $q * 12;
-        }
+            @include flex_row;
+            input {
+                @include align_self_center;
+            }
+            span {
+                @include align_self_center;
+                @include reset_bleed;
+                @include font_size_03;
+                padding-left: $q * 12;
+            }
         }
     }
-
 }
 
 /// Custom radio button styling.
@@ -102,10 +95,6 @@ input[type='radio']:checked:after {
     // Additional styles for the overlay can be added here.
 }
 
-
-
-
-
 // .map {
 //     height: 180px;
 //     //width: 50%;
@@ -122,7 +111,6 @@ input[type='radio']:checked:after {
 //   // z-index: 2; /* was 1000 */
 //   pointer-events: none;
 //   }
-
 
 // /* customize look of leaflet zoom controls */
 // .leaflet-bar{
@@ -154,8 +142,6 @@ input[type='radio']:checked:after {
 //     margin:4px;
 
 //   }
-
-
 
 //   /* google map filters */
 // .filter-grayscale-50 {-ms-filter: grayscale(50%); filter: grayscale(50%);}

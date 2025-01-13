@@ -1,36 +1,24 @@
-
-
-
 @use "../variables" as *;
-// // @use "../mixins" as *;
-
-
 
 // ============================================================================
 // Layout | Display
 // ============================================================================
 // Provides utility classes and mixins for controlling the display properties of elements.
 
-
-
 /// Ensures elements with the `[hidden]` attribute are not displayed, with better accessibility and compatibility.
 /// @group Display
 [hidden] {
-  // Add the correct display in IE
-  display: none;
-  &:focus, &:active {
-      // Maintain `display: none` even if the element is focused or active.
-      display: none;
-  }
+    // Add the correct display in IE
+    display: none;
+    &:focus,
+    &:active {
+        // Maintain `display: none` even if the element is focused or active.
+        display: none;
+    }
 }
-
-
-
-
 
 // Layout | Display Enhancements
 // Provides a more flexible and accessible approach to managing display properties.
-
 
 /// Utility class for `display: none` with `!important` for higher specificity.
 /// @group Display
@@ -68,8 +56,6 @@
     display: grid;
 }
 
-
-
 //   // Responsive display utilities, using a mixin to generate classes for different display properties at various breakpoints.
 //   $breakpoints: (
 //     'sm': 576px,
@@ -93,8 +79,6 @@
 //     @include responsive-display('hide', 'none');
 //   }
 
-
-
 /// Mixin for generating responsive display utilities.
 /// @param {Map} $displays - A map of breakpoints and corresponding display values.
 /// @group Display
@@ -107,7 +91,7 @@
     }
 }
 
-  // Usage Example: Hide on small devices, display as block on medium devices, and flex on large devices
+// Usage Example: Hide on small devices, display as block on medium devices, and flex on large devices
 //   .element {
 //     @include responsive-display((
 //       'sm': 'none',
@@ -115,8 +99,6 @@
 //       'lg': 'flex'
 //     ));
 //   }
-
-
 
 // Condition-Based Display Classes
 // For situations where display properties need to change based on user interaction or other conditions, we can create utility classes that can be toggled via JavaScript.
@@ -131,14 +113,12 @@
     display: none !important; // Ensure hidden
 }
 
-  // Usage with JavaScript:
-  // element.classList.toggle('is-visible');
-  // element.classList.toggle('is-hidden');
-
+// Usage with JavaScript:
+// element.classList.toggle('is-visible');
+// element.classList.toggle('is-hidden');
 
 //   Visibility and Accessibility
 // In addition to controlling layout with display properties, managing visibility while considering accessibility is crucial. Elements that are visually hidden but should remain accessible to screen readers can use the .visually-hidden class, whereas .invisible can hide elements visually and from screen readers.
-
 
 /// Visually hides an element while keeping it accessible to screen readers.
 /// @group Display

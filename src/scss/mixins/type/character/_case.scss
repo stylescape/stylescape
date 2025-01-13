@@ -3,19 +3,18 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Case Character Typography Mixins Module
 /// ===========================================================================
-/// 
+///
 /// @group Character
 /// @author Scape Agency
 /// @link https://scape.style
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
-
 
 // ============================================================================
 // Use
@@ -32,47 +31,59 @@
 @use "default" as *;
 @use "normal" as *;
 
-
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 // ============================================================================
 // Typography | Character | Case
 // ============================================================================
 // Provides flexible and reusable mixins for character case styling.
 
-
-
-
 // Placeholder selectors for font-variant-caps styles
-%font-variant-small-caps { font-variant-caps: small-caps; }
-%font-variant-all-small-caps { font-variant-caps: all-small-caps; }
-%font-variant-petite-caps { font-variant-caps: petite-caps; }
-%font-variant-all-petite-caps { font-variant-caps: all-petite-caps; }
-%font-variant-unicase { font-variant-caps: unicase; }
-%font-variant-titling-caps { font-variant-caps: titling-caps; }
+%font-variant-small-caps {
+    font-variant-caps: small-caps;
+}
+%font-variant-all-small-caps {
+    font-variant-caps: all-small-caps;
+}
+%font-variant-petite-caps {
+    font-variant-caps: petite-caps;
+}
+%font-variant-all-petite-caps {
+    font-variant-caps: all-petite-caps;
+}
+%font-variant-unicase {
+    font-variant-caps: unicase;
+}
+%font-variant-titling-caps {
+    font-variant-caps: titling-caps;
+}
 
 // Placeholder selectors for text transformation styles
-%text-transform-uppercase { text-transform: uppercase; }
-%text-transform-lowercase { text-transform: lowercase; }
-%text-transform-capitalize { text-transform: capitalize; }
-
+%text-transform-uppercase {
+    text-transform: uppercase;
+}
+%text-transform-lowercase {
+    text-transform: lowercase;
+}
+%text-transform-capitalize {
+    text-transform: capitalize;
+}
 
 // ============================================================================
 
 // Mixin for setting font-variant-caps
 // ----------------------------------------------------------------------------
 
-/// 
+///
 /// Mixin for setting font-variant-caps.
 /// ---------------------------------------------------------------------------
-/// 
-/// @param {String} $style - The font variant style, accepts: 
-/// normal | small-caps | all-small-caps | petite-caps | 
+///
+/// @param {String} $style - The font variant style, accepts:
+/// normal | small-caps | all-small-caps | petite-caps |
 /// all-petite-caps | unicase | titling-caps | initial | inherit | unset.
-/// 
+///
 @mixin font_variant_caps($style: normal) {
     font-variant-caps: $style;
 }
@@ -83,7 +94,7 @@
 ///
 /// Mixin for text transformation styles.
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// @param {String} $transform - The text transformation style, accepts:
 /// uppercase | lowercase | capitalize | none.
 ///
@@ -94,12 +105,12 @@
 ///
 /// Combined mixin for character styling.
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Allows setting both text-transform and font-variant-caps in a single mixin.
-/// 
+///
 /// @param {String} $transform - Optional text-transform style.
 /// @param {String} $font-variant - Optional font-variant-caps style.
-/// 
+///
 @mixin character_style($transform: null, $font-variant: null) {
     @if $transform != null {
         text-transform: $transform;
@@ -175,24 +186,44 @@
     @include text_transform(none);
 }
 
-
-
-
-
 // Utility classes using the improved mixins
 // ============================================================================
 
-.character_smallcaps { @include character_smallcaps; }
-.character_smallcaps_all { @include character_smallcaps_all; }
-.character_petite_caps { @include character_petite_caps; }
-.character_all_petite_caps { @include character_all_petite_caps; }
-.character_unicase { @include character_unicase; }
-.character_titling_caps { @include character_titling_caps; }
+.character_smallcaps {
+    @include character_smallcaps;
+}
+.character_smallcaps_all {
+    @include character_smallcaps_all;
+}
+.character_petite_caps {
+    @include character_petite_caps;
+}
+.character_all_petite_caps {
+    @include character_all_petite_caps;
+}
+.character_unicase {
+    @include character_unicase;
+}
+.character_titling_caps {
+    @include character_titling_caps;
+}
 
-.character_uppercase { @include character_uppercase; }
-.character_lowercase { @include character_lowercase; }
-.character_capitalize { @include character_capitalize; }
+.character_uppercase {
+    @include character_uppercase;
+}
+.character_lowercase {
+    @include character_lowercase;
+}
+.character_capitalize {
+    @include character_capitalize;
+}
 
-.character_initial { @include character_initial; }
-.character_inherit { @include character_inherit; }
-.character_unset { @include character_unset; }
+.character_initial {
+    @include character_initial;
+}
+.character_inherit {
+    @include character_inherit;
+}
+.character_unset {
+    @include character_unset;
+}

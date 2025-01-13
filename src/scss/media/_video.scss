@@ -1,10 +1,6 @@
-
-
-@use "../dev" as *;
-@use "../variables" as *;
-@use "../mixins" as *;
-// @use "../type" as *;
-
+@use '../dev' as *;
+@use '../variables' as *;
+@use '../mixins' as *;
 
 // ============================================================================
 // Media | Video
@@ -31,7 +27,6 @@ video {
         color: #fff; // Change control icons/text color to white for contrast
     }
 }
-
 
 /// Wrapper for video elements.
 ///
@@ -76,23 +71,18 @@ video {
         width: 100%;
         height: 100%;
     }
-
 }
-
 
 /// Background overlay for videos.
 ///
 /// This overlay is semi-transparent and covers the entire video area, useful for adding effects or messages.
 .video-background {
-
 }
 
 .htms-video {
-
 }
 
 .video-wrapper iframe {
-
 }
 
 .video-background {
@@ -100,14 +90,9 @@ video {
     height: 100%;
     width: 100%;
     z-index: 1;
-    top:0;
-    background: rgba(67,67,67,0.5)
+    top: 0;
+    background: rgba(67, 67, 67, 0.5);
 }
-
-
-
-
-
 
 // Advanced SCSS with Mixins for Responsive Aspect Ratios
 // ----------------------------------------------------------------------------
@@ -121,36 +106,35 @@ video {
 /// @param {Number} $width - The width part of the aspect ratio.
 /// @param {Number} $height - The height part of the aspect ratio.
 @mixin video-aspect-ratio($width, $height) {
-  position: relative;
-  &:before {
-    display: block;
-    content: "";
-    width: 100%;
-    padding-top: calc($height / $width) * 100%;
-  }
-  > .video-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+    position: relative;
+    &:before {
+        display: block;
+        content: '';
+        width: 100%;
+        padding-top: calc($height / $width) * 100%;
+    }
+    > .video-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /// Container for videos, ensuring a 16:9 aspect ratio.
 ///
 /// Applies the aspect-ratio mixin for consistent sizing across different devices.
 .video-container {
-  @include video-aspect-ratio(16, 9); // 16:9 aspect ratio
+    @include video-aspect-ratio(16, 9); // 16:9 aspect ratio
 
-  video {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: none; // Remove border for this approach
-  }
+    video {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: none; // Remove border for this approach
+    }
 }
-
 
 // Styling Video Overlays and Custom Controls
 // ----------------------------------------------------------------------------
@@ -178,7 +162,8 @@ video {
     // Hide by default and show on video hover or pause
     opacity: 0;
     transition: opacity 0.3s ease;
-    video:hover + &, video:pause + & {
+    video:hover + &,
+    video:pause + & {
         opacity: 1;
     }
 }
@@ -196,17 +181,17 @@ video {
     display: flex;
     justify-content: space-between;
 
-    .play-button, .volume-control, .full-screen-button {
+    .play-button,
+    .volume-control,
+    .full-screen-button {
         cursor: pointer;
     }
 }
-
 
 // Responsive Video Embeds
 // ----------------------------------------------------------------------------
 // For embedded videos (like from YouTube or Vimeo), ensuring responsiveness
 // while maintaining aspect ratio is crucial.
-
 
 /// Ensures embedded videos maintain responsiveness and aspect ratio.
 ///

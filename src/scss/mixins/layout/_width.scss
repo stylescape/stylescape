@@ -1,10 +1,8 @@
-
 // ============================================================================
 // Layout | Width
 // ============================================================================
 @use "../../variables" as *;
 // @use "../mixins" as *;
-
 
 // Layout | Width Enhancements
 // ============================================================================
@@ -13,7 +11,58 @@
 ///
 /// This loop generates classes that set a fixed width based on a predefined list
 /// of values, offering flexible width options for various design elements.
-@each $size in (1px, 2px, 3px, 4px, 5px, 6px, 7px, 8px, 9px, 10px, 15px, 20px, 25px, 30px, 35px, 40px, 50px, 55px, 60px, 65px, 70px, 75px, 80px, 85px, 90px, 100px, 110px, 120px, 130px, 150px, 180px, 200px, 250px, 300px, 350px, 400px, 450px, 500px, 550px, 600px, 650px, 700px, 750px, 800px, 850px, 900px, 950px, 1000px) {
+@each $size
+    in (
+        1px,
+        2px,
+        3px,
+        4px,
+        5px,
+        6px,
+        7px,
+        8px,
+        9px,
+        10px,
+        15px,
+        20px,
+        25px,
+        30px,
+        35px,
+        40px,
+        50px,
+        55px,
+        60px,
+        65px,
+        70px,
+        75px,
+        80px,
+        85px,
+        90px,
+        100px,
+        110px,
+        120px,
+        130px,
+        150px,
+        180px,
+        200px,
+        250px,
+        300px,
+        350px,
+        400px,
+        450px,
+        500px,
+        550px,
+        600px,
+        650px,
+        700px,
+        750px,
+        800px,
+        850px,
+        900px,
+        950px,
+        1000px
+    )
+{
     .w-#{$size} {
         width: $size;
     }
@@ -24,9 +73,11 @@
 /// This loop creates classes that apply a percentage-based width,
 /// offering a range of options from 5% to 100% in increments of 5%.
 @for $i from 5 through 100 {
-  @if ($i % 5 == 0) {
-      .w-#{$i} { width: $i * 1%;}
-  }
+    @if ($i % 5 == 0) {
+        .w-#{$i} {
+            width: $i * 1%;
+        }
+    }
 }
 
 /// Utility class for setting width to auto.

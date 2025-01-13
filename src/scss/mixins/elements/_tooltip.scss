@@ -1,8 +1,5 @@
-
-
 // https://stackdiary.com/useful-css-tricks/#simple-tooltip-using-attr
 // https://www.w3schools.com/howto/howto_css_tooltip.asp
-
 
 // ============================================================================
 // Element | Tooltip
@@ -12,11 +9,10 @@
 // @use "../mixins" as *;
 @use "../type" as *;
 
-
 // Tooltip General
 // ----------------------------------------------------------------------------
 
-$tooltip_transition: opacity .5s;
+$tooltip_transition: opacity 0.5s;
 $tooltip_unit: 5px;
 
 /// Base mixin for tooltip elements.
@@ -33,7 +29,6 @@ $tooltip_unit: 5px;
     visibility: hidden;
     pointer-events: none;
 }
-
 
 // Tooltip Arrows
 // ----------------------------------------------------------------------------
@@ -84,7 +79,7 @@ $tooltip_unit: 5px;
     @include tooltip_arrow;
     bottom: 0%;
     left: 50%;
-    margin-left: - $tooltip_unit;
+    margin-left: -$tooltip_unit;
     border-color: transparent transparent $color_02 transparent;
 }
 
@@ -127,8 +122,6 @@ $tooltip_unit: 5px;
     left: 50%;
 }
 
-
-
 // .tooltip {
 //   position: relative;
 //   display: inline-block;
@@ -146,7 +139,6 @@ $tooltip_unit: 5px;
 //   // border-bottom: 1px dotted $color_02;
 // }
 
-
 .tooltip {
     // position: relative;
     display: inline-block;
@@ -154,7 +146,6 @@ $tooltip_unit: 5px;
     overflow: visible;
     position: relative;
 }
-
 
 /// Tooltip content styling before the tooltip appears.
 /// @group Tooltip
@@ -167,7 +158,6 @@ $tooltip_unit: 5px;
     // left: 105%;
 }
 
-
 /// Tooltip arrow styling.
 /// @group Tooltip
 .tooltip:after {
@@ -176,7 +166,7 @@ $tooltip_unit: 5px;
 
 /// Tooltip content and arrow visibility on hover.
 /// @group Tooltip
-.tooltip:hover:before, 
+.tooltip:hover:before,
 .tooltip:hover:after {
     opacity: 1;
     visibility: visible;

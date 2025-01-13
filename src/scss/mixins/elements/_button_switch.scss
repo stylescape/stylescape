@@ -1,14 +1,11 @@
-
-
 // ============================================================================
 // Elements | Button | Switch
 // ============================================================================
 
-
-@use "../../dev" as *;
-@use "../../variables" as *;
+@use '../../dev' as *;
+@use '../../variables' as *;
 // @use "../mixins" as *;
-@use "../type" as *;
+@use '../type' as *;
 
 /// The switch container
 /// The box around the slider
@@ -19,7 +16,7 @@
     width: 60px;
     height: 34px;
 }
-  
+
 /// Hide the default HTML checkbox
 /// @group Switch
 .switch input {
@@ -38,32 +35,32 @@
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
 .slider:before {
     position: absolute;
-    content: "";
+    content: '';
     height: 26px;
     width: 26px;
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
 /// Style for when the switch is checked
 /// @group Switch
 input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #2196f3;
 }
 
 /// Focus state for the switch
 /// @group Switch
 input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #2196f3;
 }
 
 /// Positioning the slider when the switch is checked
@@ -84,10 +81,6 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-
-
-
-
 // ============================================================================
 // Custom Select Dropdown
 // ============================================================================
@@ -98,7 +91,7 @@ input:checked + .slider:before {
     position: relative;
     font-family: Arial;
 }
-  
+
 /// Hide the original SELECT element
 /// @group Custom Select
 .custom-select select {
@@ -115,7 +108,7 @@ input:checked + .slider:before {
 /// @group Custom Select
 .select-selected:after {
     position: absolute;
-    content: "";
+    content: '';
     top: 14px;
     right: 10px;
     width: 0;
@@ -133,7 +126,8 @@ input:checked + .slider:before {
 
 /// Style the items (options), including the selected item
 /// @group Custom Select
-.select-items div, .select-selected {
+.select-items div,
+.select-selected {
     color: #ffffff;
     padding: 8px 16px;
     border: 1px solid transparent;
@@ -152,7 +146,6 @@ input:checked + .slider:before {
     z-index: 99;
 }
 
-
 /// Hide the items when the select box is closed
 /// @group Custom Select
 .select-hide {
@@ -161,6 +154,7 @@ input:checked + .slider:before {
 
 /// Hover state for the items and style for the selected item
 /// @group Custom Select
-.select-items div:hover, .same-as-selected {
+.select-items div:hover,
+.same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
 }

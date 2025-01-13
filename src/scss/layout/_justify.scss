@@ -1,13 +1,8 @@
-// Copyright 2023 Scape Agency BV
-
-
 // ============================================================================
 // Layout | Justify
 // ============================================================================
 @use "../variables" as *;
 // @use "../mixins" as *;
-
-
 
 /// Mixin to set `justify-content` property.
 /// @param {String} $value - The value for `justify-content`.
@@ -15,12 +10,9 @@
     justify-content: $value;
 }
 
-  
 // justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe;
 
-
 /* Positional alignment */
-
 
 /// Mixin to align items at the start.
 /// Applies `justify-content: flex-start`.
@@ -108,7 +100,6 @@
 
 /* Distributed alignment */
 
-
 /* Distribute items evenly
                                    The first item is flush with the start,
                                    the last is flush with the end */
@@ -133,7 +124,6 @@
                                    Items have a half-size space
                                    on either end */
 
-
 /// Mixin to distribute items evenly with half-size space on either end.
 /// Applies `justify-content: space-around`.
 // @mixin justify_around {
@@ -153,7 +143,6 @@
 /* Distribute items evenly
 Items have equal space around them */
 
-
 /// Mixin to distribute items evenly with equal space around them.
 /// Applies `justify-content: space-evenly`.
 // @mixin justify_evenly {
@@ -171,17 +160,27 @@ Items have equal space around them */
     justify-content: space-evenly;
 }
 
-
 // Utility Classes using the Mixins
 // ============================================================================
 
-.justify_start    { @include justify_start; }
-.justify_end      { @include justify_end; }
-.justify_center   { @include justify_center; }
-.justify_between  { @include justify_between; }
-.justify_around   { @include justify_around; }
-.justify_evenly   { @include justify_evenly; }
-
+.justify_start {
+    @include justify_start;
+}
+.justify_end {
+    @include justify_end;
+}
+.justify_center {
+    @include justify_center;
+}
+.justify_between {
+    @include justify_between;
+}
+.justify_around {
+    @include justify_around;
+}
+.justify_evenly {
+    @include justify_evenly;
+}
 
 // /* Overflow alignment */
 // justify-content: safe center;
