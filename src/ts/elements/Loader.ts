@@ -1,18 +1,3 @@
-// Copyright 2024 Scape Agency BV
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-
 // ============================================================================
 // Class
 // ============================================================================
@@ -20,20 +5,17 @@
 /**
  * @title Loader
  * @description Manages the loading indicator for graph visualizations.
- * 
+ *
  * This class is responsible for showing and hiding a loading indicator
  * within a specified container element. It is used to provide visual
  * feedback to the user while graph data is being loaded and processed.
  */
 export class Loader {
-
-
     // Properties
     // ========================================================================
 
-    private container_id: string;
-    private element: HTMLElement | null;
-
+    private container_id: string
+    private element: HTMLElement | null
 
     // Constructor
     // ========================================================================
@@ -44,11 +26,10 @@ export class Loader {
      * be shown.
      */
     constructor(container_id: string) {
-        this.container_id = container_id;
-        this.element = null;
-        this.init();
+        this.container_id = container_id
+        this.element = null
+        this.init()
     }
-
 
     // Methods
     // ========================================================================
@@ -56,20 +37,20 @@ export class Loader {
     /**
      * Initializes the loader element and appends it to the container.
      * The loader is initially hidden.
-     */    
+     */
     private init(): void {
-        const container = document.getElementById(this.container_id);
+        const container = document.getElementById(this.container_id)
         if (!container) {
-            console.error(`Container with ID "${this.container_id}" not found.`);
-            return;
+            console.error(`Container with ID "${this.container_id}" not found.`)
+            return
         }
 
-        this.element = document.createElement("div");
-        this.element.className = "graph_loader";
-        this.element.setAttribute("role", "status");
-        this.element.setAttribute("aria-live", "assertive");
-        this.element.style.display = "none"; // Initially hidden
-        container.appendChild(this.element);
+        this.element = document.createElement('div')
+        this.element.className = 'graph_loader'
+        this.element.setAttribute('role', 'status')
+        this.element.setAttribute('aria-live', 'assertive')
+        this.element.style.display = 'none' // Initially hidden
+        container.appendChild(this.element)
     }
 
     /**
@@ -80,7 +61,7 @@ export class Loader {
      */
     public show(): void {
         if (this.element) {
-            this.element.style.display = "block"; // Make visible
+            this.element.style.display = 'block' // Make visible
         }
     }
 
@@ -90,8 +71,7 @@ export class Loader {
      */
     public hide(): void {
         if (this.element) {
-            this.element.style.display = "none"; // Hide
+            this.element.style.display = 'none' // Hide
         }
     }
-
 }

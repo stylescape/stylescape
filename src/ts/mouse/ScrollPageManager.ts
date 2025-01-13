@@ -1,5 +1,3 @@
-
-
 // Very good and simple solution. I made a few changes. Browsers will still store
 // this data even after the browser is closed. I replaced localStorage with
 // sessionStorage and cleared it using sessionStorage.removeItem('scrollpos')
@@ -12,12 +10,11 @@
  * it when the document is loaded.
  */
 export class ScrollPageManager {
-
     /**
      * Initializes the scroll manager by setting up event listeners.
      */
-     constructor() {
-        this.initialize();
+    constructor() {
+        this.initialize()
         // console.log("ScrollStateManager")
     }
 
@@ -38,46 +35,37 @@ export class ScrollPageManager {
         // );
 
         // Load the scroll position as soon as possible
-        window.addEventListener('load', this.loadScrollPosition.bind(this));
+        window.addEventListener('load', this.loadScrollPosition.bind(this))
 
         // Update the scroll position on scroll events
-        window.addEventListener('scroll', this.updateScrollPosition.bind(this));
-        
-        console.log("ScrollStateManager Init")
+        window.addEventListener('scroll', this.updateScrollPosition.bind(this))
 
+        console.log('ScrollStateManager Init')
     }
-
-
 
     /**
      * Loads and applies the saved scroll position from localStorage.
      */
     private loadScrollPosition(): void {
-        const scrollpos = localStorage.getItem('scrollpos');
+        const scrollpos = localStorage.getItem('scrollpos')
         if (scrollpos) {
-            window.scrollTo(0, parseInt(scrollpos));
+            window.scrollTo(0, parseInt(scrollpos))
         }
-        console.log("ScrollStateManager Load")
-
+        console.log('ScrollStateManager Load')
     }
 
     private updateScrollPosition(): void {
-        localStorage.setItem('scrollpos', window.scrollY.toString());
+        localStorage.setItem('scrollpos', window.scrollY.toString())
     }
 
     /**
      * Saves the current scroll position to localStorage.
      */
     private saveScrollPosition(): void {
-        localStorage.setItem(
-            'scrollpos',
-            window.scrollY.toString()
-        );
+        localStorage.setItem('scrollpos', window.scrollY.toString())
 
-        console.log("ScrollStateManager Save")
-
+        console.log('ScrollStateManager Save')
     }
-
 }
 
 // Creating an instance of the ScrollManager to activate its functionality.
