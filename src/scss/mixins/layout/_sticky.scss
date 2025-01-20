@@ -1,4 +1,23 @@
+////
+///
+/// Layout Mixins Module
+/// ===========================================================================
+///
+/// @group Layout
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+
 // ============================================================================
+// Mixins
+// ============================================================================
+
+
 // Layout | Sticky
 // ============================================================================
 @use "../variables" as *;
@@ -47,7 +66,7 @@
 /// @param {Number} $left-offset [0] - Offset from the left of the viewport.
 /// @param {Number} $z-index [10] - Z-index to manage stacking order.
 /// @param {String} $height [auto] - Height of the sticky element.
-@mixin sticky-left($left-offset: 0, $z-index: 10, $height: auto) {
+@mixin sticky_left($left-offset: 0, $z-index: 10, $height: auto) {
     position: -webkit-sticky;
     position: sticky;
     left: $left-offset;
@@ -59,7 +78,7 @@
 /// @param {Number} $right-offset [0] - Offset from the right of the viewport.
 /// @param {Number} $z-index [10] - Z-index to manage stacking order.
 /// @param {String} $height [auto] - Height of the sticky element.
-@mixin sticky-right($right-offset: 0, $z-index: 10, $height: auto) {
+@mixin sticky_right($right-offset: 0, $z-index: 10, $height: auto) {
     position: -webkit-sticky;
     position: sticky;
     right: $right-offset;
@@ -77,32 +96,32 @@
 /// The stacking order is dynamically managed based on the element's position in the DOM.
 /// @param {Number} $base-index [10] - Base Z-index.
 /// @param {Number} $increment [1] - Incremental value for Z-index.
-@mixin sticky-stack($base-index: 10, $increment: 1) {
-    $z-index: $base-index + nth($sticky-elements, &) * $increment;
+@mixin sticky_stack($base-index: 10, $increment: 1) {
+    $z-index: $base-index + nth($sticky_elements, &) * $increment;
     z-index: $z-index;
 
     @at-root {
-        $sticky-elements: append($sticky-elements, &);
+        $sticky_elements: append($sticky_elements, &);
     }
 }
 
 // Initialize a global list to keep track of sticky elements
-$sticky-elements: ();
+$sticky_elements: ();
 
-// Mixin for responsive sticky-top
+// Mixin for responsive sticky_top
 // ----------------------------------------------------------------------------
 
-// @mixin responsive-sticky-top($breakpoints-map) {
+// @mixin responsive-sticky_top($breakpoints-map) {
 //     @each $bp, $values in $breakpoints-map {
 //         @media (min-width: map-get($values, 'min-width')) {
-//             @include sticky-top(map-get($values, 'top-offset'), map-get($values, 'z-index'), map-get($values, 'width'));
+//             @include sticky_top(map-get($values, 'top-offset'), map-get($values, 'z-index'), map-get($values, 'width'));
 //         }
 //     }
 // }
 
-// Example usage of responsive sticky-top mixin
+// Example usage of responsive sticky_top mixin
 // .header {
-//     @include responsive-sticky-top((
+//     @include responsive-sticky_top((
 //     "sm": ("min-width": 576px, "top-offset": 0, "z-index": 20, "width": 100%),
 //     "md": ("min-width": 768px, "top-offset": 10px, "z-index": 25, "width": 100%)
 //     ));
@@ -117,7 +136,7 @@ $sticky-elements: ();
 /// @param {String} $position ['top'] - The position to stick ('top' or 'bottom').
 /// @param {Number} $offset [0] - The offset for the sticky position.
 /// @param {Number} $z-index [10] - Z-index to manage stacking order.
-@mixin conditional-sticky(
+@mixin conditional_sticky(
     $condition: ".is-sticky",
     $position: "top",
     $offset: 0,
@@ -139,7 +158,7 @@ $sticky-elements: ();
 /// @param {Number} $offset - Initial offset from the viewport.
 /// @param {Number} $additional-offset [0] - Additional offset from the viewport.
 /// @param {Number} $z-index [10] - Z-index to manage stacking order.
-@mixin sticky-top-with-offset($offset, $additional-offset: 0, $z-index: 10) {
+@mixin sticky_top_with_offset($offset, $additional-offset: 0, $z-index: 10) {
     position: -webkit-sticky;
     position: sticky;
     top: $offset + $additional-offset;
@@ -151,7 +170,7 @@ $sticky-elements: ();
 /// @param {Number} $offset - Initial offset from the viewport.
 /// @param {Number} $additional-offset [0] - Additional offset from the viewport.
 /// @param {Number} $z-index [10] - Z-index to manage stacking order.
-@mixin sticky-bottom-with-offset(
+@mixin sticky_bottom-with-offset(
     $offset,
     $additional-offset: 0,
     $z-index: 10
@@ -206,7 +225,7 @@ $sticky-elements: ();
 
 // Sticky header with offset on scroll
 // .header {
-//   @include sticky-top-with-offset(0, 30px); // Becomes sticky 30px from the top
+//   @include sticky_top-with-offset(0, 30px); // Becomes sticky 30px from the top
 // }
 
 // Responsive sticky sidebar
