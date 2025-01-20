@@ -1,6 +1,3 @@
-// webpack.prod.js
-
-
 // ============================================================================
 // Imports
 // ============================================================================
@@ -25,7 +22,7 @@ import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
 /**
  * Production Webpack Configuration
- * 
+ *
  */
 export const configProduction = {
 
