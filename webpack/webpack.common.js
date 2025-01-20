@@ -1,15 +1,10 @@
-// webpack.common.js
-
-
 // ============================================================================
 // Imports
 // ============================================================================
-import path from "path"
-import paths from "./webpack.paths.js";
-import params from "./webpack.params.js";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+import path from "path";
 import { fileURLToPath } from "url";
+import paths from "./webpack.paths.js";
 
 
 // ============================================================================
@@ -27,7 +22,7 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 
 /**
  * Common Webpack Configuration
- * 
+ *
  * This configuration file is the base for both development and production
  * environments. It includes configurations that are common across both.
  */
@@ -91,7 +86,7 @@ const configCommon = {
 
             // TypeScript Rules
             // ----------------------------------------------------------------
-            // Compiles TypeScript (.ts) files to JavaScript and enables 
+            // Compiles TypeScript (.ts) files to JavaScript and enables
             // additional features for development
             {
                 test: /\.ts$/,
@@ -131,7 +126,7 @@ const configCommon = {
                     //             // Enables dynamic import syntax in JavaScript
                     //             // (important for code splitting in ESM)
                     //             "@babel/plugin-syntax-dynamic-import",
-                                
+
                     //             // Other plugins that your project might need
                     //         ],
                     //     },
@@ -226,18 +221,18 @@ const configCommon = {
                             // Specify the path to the Nunjucks configuration file
                             // Adjust the path as per your project structure
                             // config: path.join(__dirname, "src/nunjucks.config.js"),
-            
+
                             // Set to true if you are using Jinja compatibility features
                             jinjaCompat: true,
-            
+
                             // Define the root directory for Nunjucks templates
                             // This is where Nunjucks will look for template files
                             // root: path.resolve(__dirname, "path/to/templates"),
-            
+
                             // Optional: Suppress the "Cannot configure nunjucks
                             // environment before precompile" warning
                             quiet: true,
-            
+
                             // Other Nunjucks loader specific options can be added here
                         }
                     }
@@ -356,8 +351,8 @@ const configCommon = {
     // Performance settings to control webpack"s hints
 
     // In the common configuration, you might not set specific performance
-    // settings, as these are typically more relevant for production. 
-    // However, you can set a baseline that can be overridden in 
+    // settings, as these are typically more relevant for production.
+    // However, you can set a baseline that can be overridden in
     // environment-specific configurations.
 
     // Basic performance hints can be set here
@@ -370,7 +365,7 @@ const configCommon = {
     // ========================================================================
     // Control how source maps are generated.
 
-    // In the common configuration, you don"t typically specify devtool. 
+    // In the common configuration, you don"t typically specify devtool.
     // Instead, defer this setting to the environment-specific configurations.
 
 };
