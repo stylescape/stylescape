@@ -1,11 +1,8 @@
-// webpack.paths.js
-
-
 // ============================================================================
 // Imports
 // ============================================================================
 
-import path from "path"
+import path from "path";
 import { fileURLToPath } from "url";
 
 
@@ -22,7 +19,7 @@ const __dirname = path.dirname(__filename);
 
 /**
  * Paths Webpack Configuration
- * 
+ *
  * Defines common paths used throughout the Webpack configuration.
  * - `src`: Path to the source files.
  * - `build`: Path where production build files will be placed.
@@ -36,7 +33,7 @@ const configPaths = {
 
     // Path for production build files
     build: path.resolve(__dirname, "/dist"),
-    
+
     // Path to public/static files
     public: path.resolve(__dirname, "/public"),
 
