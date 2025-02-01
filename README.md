@@ -96,7 +96,7 @@ npm install stylescape
 Or via unpkg:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/stylescape@0.0.10/dist/css/stylescape.css">
+<link rel="stylesheet" href="https://unpkg.com/stylescape@0.0.33/css/stylescape.css">
 ```
 
 ### Getting Started
