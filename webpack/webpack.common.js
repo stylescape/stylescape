@@ -49,9 +49,6 @@ const configCommon = {
     entry: {
         index: `${paths.src}/ts/index.ts`,
         index_scss: `${paths.src}/scss/index.scss`,
-        // index: paths.src + "/ts/index.ts"
-        // index_scss: "./src/scss/index.scss",
-
     },
 
 
@@ -80,8 +77,6 @@ const configCommon = {
     // Module rules for handling different file types.
     // Determine how modules within the project are treated.
     module: {
-        // entry: "./js/index.js",
-        // target: ["web", "es5"],
         rules: [
 
             // TypeScript Rules
@@ -330,6 +325,13 @@ const configCommon = {
     // Add any common plugins for both development and production here
     // Customize the webpack build process
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+        }),
+        // new HtmlWebpackPlugin({
+        //     template: "./test/index.html", // Ensure this file exists
+        //     filename: "index.html",
+        // }),
         // Generates an HTML file from a template
         // new HtmlWebpackPlugin(
         //     {
