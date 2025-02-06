@@ -1,8 +1,8 @@
-r<p align="center">
+<p align="center">
     <img src="https://raw.githubusercontent.com/stylescape/brand/master/src/logo/logo-transparant.png" width="20%" height="20%" alt="Stylescape Logo">
 </p>
-<h1 align="center" style='border-bottom: none;'>Stylescape</h1>
-<h3 align="center">Design Framework</h3>
+<h1 align="center" style='border-bottom: none;'>stylescape</h1>
+<h3 align="center">design framework</h3>
 
 <br/>
 
