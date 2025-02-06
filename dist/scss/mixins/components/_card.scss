@@ -3,10 +3,10 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Accordion Components Mixins Module
 /// ===========================================================================
-/// 
+///
 /// @group Components
 /// @author Scape Agency
 /// @link https://scape.style
@@ -14,21 +14,19 @@
 /// @todo None
 /// @see https://www.w3schools.com/howto/howto_js_accordion.asp
 /// @access public
-/// 
+///
 ////
-
 
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../dev" as *;
-@use "../variables" as *;
-@use "../mixins" as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
+// @use "../mixins" as *;
 @use "../layout" as *;
 @use "../elements" as *;
 @use "../type" as *;
-
 
 // .card {
 //     // scss-docs-start card-css-vars
@@ -52,7 +50,7 @@
 //     --#{$prefix}card-img-overlay-padding: #{$card-img-overlay-padding};
 //     --#{$prefix}card-group-margin: #{$card-group-margin};
 //     // scss-docs-end card-css-vars
-  
+
 //     position: relative;
 //     display: flex;
 //     flex-direction: column;
@@ -64,27 +62,27 @@
 //     border: var(--#{$prefix}card-border-width) solid var(--#{$prefix}card-border-color);
 //     @include border-radius(var(--#{$prefix}card-border-radius));
 //     @include box-shadow(var(--#{$prefix}card-box-shadow));
-  
+
 //     > hr {
 //       margin-right: 0;
 //       margin-left: 0;
 //     }
-  
+
 //     > .list-group {
 //       border-top: inherit;
 //       border-bottom: inherit;
-  
+
 //       &:first-child {
 //         border-top-width: 0;
 //         @include border-top-radius(var(--#{$prefix}card-inner-border-radius));
 //       }
-  
+
 //       &:last-child  {
 //         border-bottom-width: 0;
 //         @include border-bottom-radius(var(--#{$prefix}card-inner-border-radius));
 //       }
 //     }
-  
+
 //     // Due to specificity of the above selector (`.card > .list-group`), we must
 //     // use a child selector here to prevent double borders.
 //     > .card-header + .list-group,
@@ -92,7 +90,7 @@
 //       border-top: 0;
 //     }
 //   }
-  
+
 //   .card-body {
 //     // Enable `flex-grow: 1` for decks and groups so that card blocks take up
 //     // as much space as possible, ensuring footers are aligned to the bottom.
@@ -100,81 +98,80 @@
 //     padding: var(--#{$prefix}card-spacer-y) var(--#{$prefix}card-spacer-x);
 //     color: var(--#{$prefix}card-color);
 //   }
-  
+
 //   .card-title {
 //     margin-bottom: var(--#{$prefix}card-title-spacer-y);
 //     color: var(--#{$prefix}card-title-color);
 //   }
-  
+
 //   .card-subtitle {
 //     margin-top: calc(-.5 * var(--#{$prefix}card-title-spacer-y)); // stylelint-disable-line function-disallowed-list
 //     margin-bottom: 0;
 //     color: var(--#{$prefix}card-subtitle-color);
 //   }
-  
+
 //   .card-text:last-child {
 //     margin-bottom: 0;
 //   }
-  
+
 //   .card-link {
 //     &:hover {
 //       text-decoration: if($link-hover-decoration == underline, none, null);
 //     }
-  
+
 //     + .card-link {
 //       margin-left: var(--#{$prefix}card-spacer-x);
 //     }
 //   }
-  
+
 //   //
 //   // Optional textual caps
 //   //
-  
+
 //   .card-header {
 //     padding: var(--#{$prefix}card-cap-padding-y) var(--#{$prefix}card-cap-padding-x);
 //     margin-bottom: 0; // Removes the default margin-bottom of <hN>
 //     color: var(--#{$prefix}card-cap-color);
 //     background-color: var(--#{$prefix}card-cap-bg);
 //     border-bottom: var(--#{$prefix}card-border-width) solid var(--#{$prefix}card-border-color);
-  
+
 //     &:first-child {
 //       @include border-radius(var(--#{$prefix}card-inner-border-radius) var(--#{$prefix}card-inner-border-radius) 0 0);
 //     }
 //   }
-  
+
 //   .card-footer {
 //     padding: var(--#{$prefix}card-cap-padding-y) var(--#{$prefix}card-cap-padding-x);
 //     color: var(--#{$prefix}card-cap-color);
 //     background-color: var(--#{$prefix}card-cap-bg);
 //     border-top: var(--#{$prefix}card-border-width) solid var(--#{$prefix}card-border-color);
-  
+
 //     &:last-child {
 //       @include border-radius(0 0 var(--#{$prefix}card-inner-border-radius) var(--#{$prefix}card-inner-border-radius));
 //     }
 //   }
-  
-  
+
 //   //
 //   // Header navs
 //   //
-  
+
 //   .card-header-tabs {
 //     margin-right: calc(-.5 * var(--#{$prefix}card-cap-padding-x)); // stylelint-disable-line function-disallowed-list
 //     margin-bottom: calc(-1 * var(--#{$prefix}card-cap-padding-y)); // stylelint-disable-line function-disallowed-list
 //     margin-left: calc(-.5 * var(--#{$prefix}card-cap-padding-x)); // stylelint-disable-line function-disallowed-list
 //     border-bottom: 0;
-  
+
 //     .nav-link.active {
 //       background-color: var(--#{$prefix}card-bg);
 //       border-bottom-color: var(--#{$prefix}card-bg);
 //     }
 //   }
-  
+
 //   .card-header-pills {
 //     margin-right: calc(-.5 * var(--#{$prefix}card-cap-padding-x)); // stylelint-disable-line function-disallowed-list
 //     margin-left: calc(-.5 * var(--#{$prefix}card-cap-padding-x)); // stylelint-disable-line function-disallowed-list
 //   }
-  
+
 //   // Card image
 //   .card-img-overlay {
 //     position: absolute;
@@ -185,35 +182,34 @@
 //     padding: var(--#{$prefix}card-img-overlay-padding);
 //     @include border-radius(var(--#{$prefix}card-inner-border-radius));
 //   }
-  
+
 //   .card-img,
 //   .card-img-top,
 //   .card-img-bottom {
 //     width: 100%; // Required because we use flexbox and this inherently applies align-self: stretch
 //   }
-  
+
 //   .card-img,
 //   .card-img-top {
 //     @include border-top-radius(var(--#{$prefix}card-inner-border-radius));
 //   }
-  
+
 //   .card-img,
 //   .card-img-bottom {
 //     @include border-bottom-radius(var(--#{$prefix}card-inner-border-radius));
 //   }
-  
-  
+
 //   //
 //   // Card groups
 //   //
-  
+
 //   .card-group {
 //     // The child selector allows nested `.card` within `.card-group`
 //     // to display properly.
 //     > .card {
 //       margin-bottom: var(--#{$prefix}card-group-margin);
 //     }
-  
+
 //     @include media-breakpoint-up(sm) {
 //       display: flex;
 //       flex-flow: row wrap;
@@ -223,17 +219,17 @@
 //         // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
 //         flex: 1 0 0%;
 //         margin-bottom: 0;
-  
+
 //         + .card {
 //           margin-left: 0;
 //           border-left: 0;
 //         }
-  
+
 //         // Handle rounded corners
 //         @if $enable-rounded {
 //           &:not(:last-child) {
 //             @include border-end-radius(0);
-  
+
 //             .card-img-top,
 //             .card-header {
 //               // stylelint-disable-next-line property-disallowed-list
@@ -245,10 +241,10 @@
 //               border-bottom-right-radius: 0;
 //             }
 //           }
-  
+
 //           &:not(:first-child) {
 //             @include border-start-radius(0);
-  
+
 //             .card-img-top,
 //             .card-header {
 //               // stylelint-disable-next-line property-disallowed-list
@@ -265,24 +261,6 @@
 //     }
 //   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //   .card-panel {
 //     transition: box-shadow .25s;
 //     padding: $card-padding;
@@ -291,7 +269,7 @@
 //     @extend .z-depth-1;
 //     background-color: $card-bg-color;
 //   }
-  
+
 //   .card {
 //     position: relative;
 //     margin: $element-top-margin 0 $element-bottom-margin 0;
@@ -299,8 +277,7 @@
 //     transition: box-shadow .25s;
 //     border-radius: 2px;
 //     @extend .z-depth-1;
-  
-  
+
 //     .card-title {
 //       font-size: 24px;
 //       font-weight: 300;
@@ -308,11 +285,11 @@
 //         cursor: pointer;
 //       }
 //     }
-  
+
 //     // Card Sizes
 //     &.small, &.medium, &.large {
 //       position: relative;
-  
+
 //       .card-image {
 //         max-height: 60%;
 //         overflow: hidden;
@@ -331,19 +308,19 @@
 //         right: 0;
 //       }
 //     }
-  
+
 //     &.small {
 //       height: 300px;
 //     }
-  
+
 //     &.medium {
 //       height: 400px;
 //     }
-  
+
 //     &.large {
 //       height: 500px;
 //     }
-  
+
 //     // Horizontal Cards
 //     &.horizontal {
 //       &.small, &.medium, &.large {
@@ -351,15 +328,15 @@
 //           height: 100%;
 //           max-height: none;
 //           overflow: visible;
-  
+
 //           img {
 //             height: 100%;
 //           }
 //         }
 //       }
-  
+
 //       display: flex;
-  
+
 //       .card-image {
 //         max-width: 50%;
 //         img {
@@ -368,37 +345,34 @@
 //           width: auto;
 //         }
 //       }
-  
+
 //       .card-stacked {
 //         display: flex;
 //         flex-direction: column;
 //         flex: 1;
 //         position: relative;
-  
+
 //         .card-content {
 //           flex-grow: 1;
 //         }
 //       }
 //     }
-  
+
 //     // Sticky Action Section
 //     &.sticky-action {
 //       .card-action {
 //         z-index: 2;
 //       }
-  
+
 //       .card-reveal {
 //         z-index: 1;
 //         padding-bottom: 64px;
 //       }
 //     }
-  
-  
-  
-  
+
 //     .card-image {
 //       position: relative;
-  
+
 //       // Image background for content
 //       img {
 //         display: block;
@@ -410,7 +384,7 @@
 //         bottom: 0;
 //         width: 100%;
 //       }
-  
+
 //       .card-title {
 //         color: $card-bg-color;
 //         position: absolute;
@@ -420,11 +394,11 @@
 //         padding: $card-padding;
 //       }
 //     }
-  
+
 //     .card-content {
 //       padding: $card-padding;
 //       border-radius: 0 0 2px 2px;
-  
+
 //       p {
 //         margin: 0;
 //       }
@@ -432,13 +406,13 @@
 //         display: block;
 //         line-height: 32px;
 //         margin-bottom: 8px;
-  
+
 //         i {
 //           line-height: 32px;
 //         }
 //       }
 //     }
-  
+
 //     .card-action {
 //       &:last-child {
 //         border-radius: 0 0 2px 2px;
@@ -447,17 +421,17 @@
 //       border-top: 1px solid rgba(160,160,160,.2);
 //       position: relative;
 //       padding: 16px $card-padding;
-  
+
 //       a:not(.btn):not(.btn-large):not(.btn-floating) {
 //         color: $card-link-color;
 //         margin-right: $card-padding;
 //         transition: color .3s ease;
 //         text-transform: uppercase;
-  
+
 //         &:hover { color: $card-link-color-light; }
 //       }
 //     }
-  
+
 //     .card-reveal {
 //       padding: $card-padding;
 //       position: absolute;
@@ -469,7 +443,7 @@
 //       height: 100%;
 //       z-index: 3;
 //       display: none;
-  
+
 //       .card-title {
 //         cursor: pointer;
 //         display: block;

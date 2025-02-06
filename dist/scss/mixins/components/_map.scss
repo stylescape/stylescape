@@ -1,49 +1,22 @@
 // ============================================================================
-// Poster
-// ============================================================================
-
-////
-/// 
-/// Accordion Components Mixins Module
-/// ===========================================================================
-/// 
-/// @group Components
-/// @author Scape Agency
-/// @link https://scape.style
-/// @since 0.1.0 initial release
-/// @todo None
-/// @see https://www.w3schools.com/howto/howto_js_accordion.asp
-/// @access public
-/// 
-////
-
-
-// ============================================================================
-// Use
-// ============================================================================
-
-// ============================================================================
 // Components | Map
 // ============================================================================
 
-
-
-@use "../dev" as *;
-@use "../variables" as *;
-@use "../mixins" as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
+// @use "../mixins" as *;
 @use "../layout" as *;
-@use "../elements" as *;
+// @use "../elements" as *;
 @use "../type" as *;
-
 
 /// Map container styling.
 /// This sets up the map container with full viewport dimensions and appropriate z-index.
 /// @group Map
 #map {
-  // width: 100vw;
-  // height: 100vh;
-  // z-index: z("canvas")+1;
-  // z-index: 9999;
+    // width: 100vw;
+    // height: 100vh;
+    // z-index: z("canvas")+1;
+    // z-index: 9999;
 }
 
 /// Main map canvas.
@@ -52,45 +25,42 @@
 .map_canvas {
     width: 100vw;
     height: 100vh;
-    z-index: z("canvas")+1;
+    z-index: z("canvas") + 1;
 }
-
-
 
 /// Base styles for layer controls on the map.
 /// Applies basic styles such as resetting margins, applying font size, and setting up a light color scheme.
 /// @group Map
-.layer_control_base, .layer_control_overlay {
+.layer_control_base,
+.layer_control_overlay {
     @include reset_bleed;
     @include font_size_03;
     @include color_scheme_light;
     @include flex_col;
     h3 {
         padding-bottom: $q * 8;
-
     }
     label {
         height: $q * 24;
         span {
-        @include flex_row;
-        input {
-            @include align_self_center;
-        }
-        span {
-            @include align_self_center;
-            @include reset_bleed;
-            @include font_size_03;
-            padding-left: $q * 12;
-        }
+            @include flex_row;
+            input {
+                @include align_self_center;
+            }
+            span {
+                @include align_self_center;
+                @include reset_bleed;
+                @include font_size_03;
+                padding-left: $q * 12;
+            }
         }
     }
-
 }
 
 /// Custom radio button styling.
 /// Styles radio buttons with a custom appearance both in their default and checked states.
 /// @group Map
-input[type='radio']:after {
+input[type="radio"]:after {
     width: 15px;
     height: 15px;
     border-radius: 15px;
@@ -98,13 +68,13 @@ input[type='radio']:after {
     left: -1px;
     position: relative;
     background-color: #d1d3d1;
-    content: '';
+    content: "";
     display: inline-block;
     visibility: visible;
     border: 2px solid white;
 }
 
-input[type='radio']:checked:after {
+input[type="radio"]:checked:after {
     width: 15px;
     height: 15px;
     border-radius: 15px;
@@ -112,7 +82,7 @@ input[type='radio']:checked:after {
     left: -1px;
     position: relative;
     background-color: $color_highlight;
-    content: '';
+    content: "";
     display: inline-block;
     visibility: visible;
     border: 2px solid white;
@@ -124,10 +94,6 @@ input[type='radio']:checked:after {
 .layer_control_overlay {
     // Additional styles for the overlay can be added here.
 }
-
-
-
-
 
 // .map {
 //     height: 180px;
@@ -146,13 +112,12 @@ input[type='radio']:checked:after {
 //   pointer-events: none;
 //   }
 
-
 // /* customize look of leaflet zoom controls */
 // .leaflet-bar{
 //     box-shadow: none;
 //   }
 //   .leaflet-control-zoom a{
-//     box-shadow: 0 1px 5px $color_01; 
+//     box-shadow: 0 1px 5px $color_01;
 //   }
 //   .leaflet-bar a{
 //     border-radius: 0px;
@@ -177,8 +142,6 @@ input[type='radio']:checked:after {
 //     margin:4px;
 
 //   }
-
-
 
 //   /* google map filters */
 // .filter-grayscale-50 {-ms-filter: grayscale(50%); filter: grayscale(50%);}

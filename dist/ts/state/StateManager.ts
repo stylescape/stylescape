@@ -2,7 +2,6 @@
 // State Manager
 // ============================================================================
 
-
 export class StateManager {
     /**
      * Toggles a specified class on an element.
@@ -10,20 +9,15 @@ export class StateManager {
      * @param className The class to toggle. Defaults to "active".
      */
 
-    public toggleClass(
-        element: Element,
-        className: string = 'active'
-    ): void {
+    public toggleClass(element: Element, className: string = 'active'): void {
         if (!element) {
-            console.warn(`Element: '${element}' not found`);
-            return;
+            console.warn(`Element: '${element}' not found`)
+            return
         }
 
-        element.classList.toggle(className);
+        element.classList.toggle(className)
     }
-
 }
-
 
 // Usage example
 // const stateManager = new StateManager();

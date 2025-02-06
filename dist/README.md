@@ -1,4 +1,4 @@
-<p align="center">
+r<p align="center">
     <img src="https://raw.githubusercontent.com/stylescape/brand/master/src/logo/logo-transparant.png" width="20%" height="20%" alt="Stylescape Logo">
 </p>
 <h1 align="center" style='border-bottom: none;'>Stylescape</h1>
@@ -36,17 +36,6 @@
 Stylescape is a modular, scalable, and customizable design framework dedicated to streamlining style and layout design for both web and print media. Written in SCSS and TypeScript, it aimes to bridge the gap between visual design and code. Whether you’re a designer or developer, Stylescape provides a robust toolkit that empowers you to create harmonious, scalable, and accessible designs efficiently.
 
 ---
-
-## Features
-
-- **Visual Consistency**: A unified design language across all components for brand integrity.
-- **Modular Architecture**: Import only what you need for lighter, faster websites.
-- **Client Alignment**: Transform initial stylescapes into functional code easily.
-- **Streamlined Workflow**: In-built responsiveness, themes, and accessibility features.
-- **Scalable & Maintainable**: Built with SCSS and TypeScript for robustness and ease of use.
-
----
-
 
 ``` mermaid
 graph TD
@@ -107,7 +96,7 @@ npm install stylescape
 Or via unpkg:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/stylescape@0.0.10/dist/css/stylescape.css">
+<link rel="stylesheet" href="https://unpkg.com/stylescape@0.0.33/css/stylescape.css">
 ```
 
 ### Getting Started

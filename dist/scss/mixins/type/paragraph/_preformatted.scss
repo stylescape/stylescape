@@ -1,11 +1,11 @@
 ////
-/// 
+///
 /// Preformatted Paragraph Typography Mixins Module
 /// ===========================================================================
 ///
-/// Provides a set of mixins to style preformatted text elements such as `<pre>`, 
-/// `<code>`, and `<kbd>`, ensuring that they stand out with distinct typography 
-/// and spacing. This module enhances the readability and visual presentation 
+/// Provides a set of mixins to style preformatted text elements such as `<pre>`,
+/// `<code>`, and `<kbd>`, ensuring that they stand out with distinct typography
+/// and spacing. This module enhances the readability and visual presentation
 /// of code snippets and keyboard inputs.
 ///
 /// ### Key Features
@@ -19,32 +19,29 @@
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
-
 
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../variables" as *;
-@use "../../mixins" as *;
+@use "../../../variables" as *;
+// @use "../../mixins" as *;
 
 @use "../character" as *;
 @use "../font" as *;
 
 @use "default" as *;
 
-
 // ============================================================================
 // Mixins
 // ============================================================================
 
-
 ///
 /// Mixin for Preformatted Text Blocks
 /// ===========================================================================
-/// Styles preformatted text blocks (`<pre>`), ensuring that code snippets and 
+/// Styles preformatted text blocks (`<pre>`), ensuring that code snippets and
 /// other preformatted content are visually distinct and easy to read.
 ///
 /// ### Features:
@@ -53,25 +50,25 @@
 /// - Consistent padding and margins for spacing.
 /// - Background color to set preformatted blocks apart from other content.
 ///
-/// @param {List} $font_stack - Monospace font stack for preformatted text. 
+/// @param {List} $font_stack - Monospace font stack for preformatted text.
 ///        Default is `$font_stack_monospace`.
-/// @param {Length} $max_width - Maximum width for preformatted blocks. 
+/// @param {Length} $max_width - Maximum width for preformatted blocks.
 ///        Default is `$paragraph_code_max_width`.
-/// @param {List} $margin - Margin around preformatted blocks. Default is 
+/// @param {List} $margin - Margin around preformatted blocks. Default is
 ///        `$paragraph_code_margin`.
-/// @param {List} $padding - Padding inside preformatted blocks. Default is 
+/// @param {List} $padding - Padding inside preformatted blocks. Default is
 ///        `$paragraph_code_padding`.
-/// @param {Color} $bg_color - Background color for preformatted blocks. 
+/// @param {Color} $bg_color - Background color for preformatted blocks.
 ///        Default is `$paragraph_code_bg_color`.
-/// @param {Color} $text_color - Text color for preformatted text. Default is 
+/// @param {Color} $text_color - Text color for preformatted text. Default is
 ///        `$paragraph_code_text_color`.
-/// @param {Number} $tab_size - Tab size setting for preformatted text. 
+/// @param {Number} $tab_size - Tab size setting for preformatted text.
 ///        Default is `$paragraph_code_tab_size`.
-/// @param {Color} $border_color - Border color for the `<pre>` element 
+/// @param {Color} $border_color - Border color for the `<pre>` element
 ///        (default: `$paragraph_code_border_color`).
 /// @param {Length} $border_radius - Border radius for the `<pre>` element
 ///        (default: `$paragraph_code_border_radius`).
-/// 
+///
 ///
 @mixin paragraph_code(
     $font_stack: $font_stack_monospace,
@@ -84,14 +81,14 @@
     $border_color: $paragraph_code_border_color,
     $border_thickness: $paragraph_code_border_thickness,
     $border_type: $paragraph_code_border_type,
-    $border_radius: $paragraph_code_border_radius,
+    $border_radius: $paragraph_code_border_radius
 ) {
     // @include monospace-font;
     font-family: $font_stack;
 
     clear: both; // Clear floats to ensure block-level formatting
     overflow: auto; // Enable scrolling for overflowing content
-    
+
     max-width: $max_width;
     margin: $margin;
     padding: $padding;

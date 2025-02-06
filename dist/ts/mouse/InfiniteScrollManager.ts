@@ -1,6 +1,4 @@
-
 // Handles infinite scrolling logic, loading more content as the user scrolls down.
-
 
 // export default class InfiniteScrollManager {
 //     private threshold: number;
@@ -23,4 +21,3 @@
 // // Usage
 // const infiniteScroll = new InfiniteScrollManager(300, loadMoreContent);
 // // loadMoreContent is a function that loads more data
-

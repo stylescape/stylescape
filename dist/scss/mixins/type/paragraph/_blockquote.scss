@@ -1,12 +1,12 @@
 ////
-/// 
+///
 /// Blockquote Paragraph Typography Mixins Module
 /// ===========================================================================
-/// 
-/// Provides a set of mixins to style `<blockquote>` elements, allowing for a 
-/// visually distinct and aesthetically pleasing presentation of quoted text. 
-/// This module supports customization of padding, margins, borders, font 
-/// styling, and background colors to enhance the readability and visual 
+///
+/// Provides a set of mixins to style `<blockquote>` elements, allowing for a
+/// visually distinct and aesthetically pleasing presentation of quoted text.
+/// This module supports customization of padding, margins, borders, font
+/// styling, and background colors to enhance the readability and visual
 /// appeal of blockquotes.
 ///
 /// ### Key Features
@@ -14,45 +14,40 @@
 /// - Configurable borders for emphasizing blockquotes.
 /// - Adjustable font styling, including size, weight, and color options.
 /// - Background color customization to visually differentiate blockquotes.
-/// 
+///
 /// @group Paragraph
 /// @author Scape Agency
 /// @link https://scape.style
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
-
 
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
-@use "../../mixins" as *;
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+// @use "../../mixins" as *;
 
 @use "../character" as *;
 @use "../font" as *;
 
 @use "default" as *;
 
-
 // ============================================================================
 // Mixins
 // ============================================================================
 
-
-
-
 ///
 /// Mixin for Blockquote Styling
 /// ---------------------------------------------------------------------------
-/// 
-/// This mixin provides a flexible way to style `<blockquote>` elements, 
-/// allowing customization of padding, margin, border, font styling, and 
-/// background color. It enhances the readability and visual appeal of 
+///
+/// This mixin provides a flexible way to style `<blockquote>` elements,
+/// allowing customization of padding, margin, border, font styling, and
+/// background color. It enhances the readability and visual appeal of
 /// blockquotes within content.
 ///
 /// ### Features:
@@ -61,28 +56,28 @@
 /// - Font styling adjustments, including size and color.
 /// - Background color customization to distinguish blockquotes from other content.
 ///
-/// @param {Length} $padding - Padding inside the blockquote. Default is 
+/// @param {Length} $padding - Padding inside the blockquote. Default is
 ///        `$paragraph_quote_block_padding`.
-/// @param {List} $margin - Margin around the blockquote for spacing. 
+/// @param {List} $margin - Margin around the blockquote for spacing.
 ///        Default is `$paragraph_quote_block_margin`.
-/// @param {String} $border - Border style for the blockquote. Default is 
+/// @param {String} $border - Border style for the blockquote. Default is
 ///        `$paragraph_quote_block_border`.
-/// @param {Color} $border_color - Color of the blockquote border. Default is 
+/// @param {Color} $border_color - Color of the blockquote border. Default is
 ///        `$paragraph_quote_block_border_color`.
-/// @param {Color} $bg_color - Background color of the blockquote. Default is 
+/// @param {Color} $bg_color - Background color of the blockquote. Default is
 ///        `$paragraph_quote_block_background_color`.
-/// @param {Color} $text_color - Text color inside the blockquote. Default is 
+/// @param {Color} $text_color - Text color inside the blockquote. Default is
 ///        `$paragraph_quote_block_text_color`.
-/// @param {Length} $font_size - Font size for the blockquote text. Default is 
+/// @param {Length} $font_size - Font size for the blockquote text. Default is
 ///        `$paragraph_quote_block_font_size`.
-/// @param {String} $font_style - Font style for the blockquote text. Default is 
+/// @param {String} $font_style - Font style for the blockquote text. Default is
 ///        `$paragraph_quote_block_font_style`.
-/// @param {Number} $font_weight - Font weight for the blockquote text. Default is 
+/// @param {Number} $font_weight - Font weight for the blockquote text. Default is
 ///        `$paragraph_quote_block_font_weight`.
-/// @param {Number} $line_height - Line height for the blockquote text. Default is 
+/// @param {Number} $line_height - Line height for the blockquote text. Default is
 ///        `$paragraph_quote_block_line_height`.
 ///
-@mixin paragraph_quote_block (
+@mixin paragraph_quote_block(
     $padding: $paragraph_quote_block_padding,
     $margin: $paragraph_quote_block_margin,
     $border: $paragraph_quote_block_border,
@@ -92,7 +87,7 @@
     $font_size: $paragraph_quote_block_font_size,
     $font_style: $paragraph_quote_block_font_style,
     $font_weight: $paragraph_quote_block_font_weight,
-    $line_height: $paragraph_quote_block_line_height,
+    $line_height: $paragraph_quote_block_line_height
 ) {
     padding: $padding; // Sets the internal padding for blockquotes
     margin: $margin; // Controls the external margin
@@ -120,25 +115,21 @@
         position: absolute; // Allows positioning of quote symbols
         right: 0; // Adjust right position as needed
     }
-    
+
     p {
-        margin-bottom: 0;  // Ensures paragraphs within blockquotes have no bottom margin
+        margin-bottom: 0; // Ensures paragraphs within blockquotes have no bottom margin
     }
 }
-
-
 
 .paragraph_quote_block,
 .blockquote {
     @include paragraph_quote_block;
 }
 
-
-
 /// Styles for the `<blockquote>` HTML element.
-/// 
-/// The `<blockquote>` element is used for quoting text from another source, 
-/// and these styles ensure it stands out with a larger font size, bold weight, 
+///
+/// The `<blockquote>` element is used for quoting text from another source,
+/// and these styles ensure it stands out with a larger font size, bold weight,
 /// and custom color.
 blockquote {
     @include paragraph_quote_block;
