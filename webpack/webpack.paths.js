@@ -30,6 +30,7 @@ const configPaths = {
 
     // Path to source files
     src: path.resolve(__dirname, "/src"),
+    exe: path.resolve(__dirname, "/exe"),
 
     // Path for production build files
     build: path.resolve(__dirname, "/dist"),

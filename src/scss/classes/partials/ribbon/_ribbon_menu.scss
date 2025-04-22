@@ -1,0 +1,59 @@
+
+// ============================================================================
+// Imports
+// ============================================================================
+
+
+
+@use "../../../dev" as *;
+@use '../../../variables' as *;
+@use '../../../mixins' as *;
+
+
+
+// ============================================================================
+// Container | Ribbon | Menu
+// ============================================================================
+
+
+
+.ribbon .ribbon_menu {
+    @include icon_bar_horizontal;
+    @include justify_end;
+    align-content: center;
+    @include font_size_02;
+    // @include color_scheme_dark;
+    height: 100%;
+    grid-area: ribbon_right;
+    .ribbon_menu_item {
+        @include flex_col;
+        @include align_center;
+        @include justify_center;
+        // @include color_scheme_dark;
+        height: 100%;
+        .ribbon_menu_button {
+            // @include icon_size_04;
+            // @include color_scheme_dark;
+            position: relative;
+            overflow: visible;
+            .i, .i::before, .i::before, [class^=i_]::before, [class*=" i_"]::before {
+                color: white !important;
+                margin: 0;
+                font-size: $q * 28;
+                text-align: center;
+                vertical-align: middle;
+                display: inline-block;
+                transform:translateX(-$q * 6);
+                transform:translateY(-$q * 2);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+            }
+            svg {
+                // @include color_scheme_dark;
+                stroke-width: 0;
+            }
+        }
+    }
+}

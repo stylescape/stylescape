@@ -2,14 +2,68 @@
 // Imports
 // ============================================================================
 
+import fs from "fs";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import webpack from "webpack";
 import paths from "./webpack.paths.js";
 
+import path from "path";
+import { renderTemplate } from "./nunjucks-render.js";
 
 // ============================================================================
 // Constants
 // ============================================================================
+
+// Define the template directory
+const templateDir = path.resolve("exe/templates/pages");
+
+// Supported extensions in order of specificity
+const validExtensions = [".html.jinja", ".jinja", ".njk"];
+
+/**
+ * Converts a filename with a supported template extension to an output `.html` filename.
+ * @param {string} filename - The original template filename.
+ * @returns {string} - The converted output filename.
+ */
+function toOutputFilename(filename) {
+  for (const ext of validExtensions) {
+    if (filename.endsWith(ext)) {
+      return filename.replace(new RegExp(ext.replace(".", "\\.") + "$"), ".html");
+    }
+  }
+  return filename; // fallback, though should not occur
+}
+
+/**
+ * Extracts a clean name (e.g., "about") from a filename like "about.html.jinja"
+ * @param {string} filename
+ * @returns {string}
+ */
+function extractPageTitle(filename) {
+  return filename.replace(/\.(html\.jinja|jinja|njk)$/, "");
+}
+
+// Read and filter all valid template files
+const htmlPages = fs
+  .readdirSync(templateDir)
+  .filter((file) =>
+    validExtensions.some((ext) => file.endsWith(ext))
+  )
+  .map((filename) => {
+    return new HtmlWebpackPlugin({
+      filename: toOutputFilename(filename),
+      inject: true,
+
+        templateContent: ({ compilation }) =>
+  renderTemplate(filename, {
+    title: extractPageTitle(filename),
+  }, compilation)
+
+    });
+  });
+
+
+
 
 // Config | Development
 export const configDevelopment = {
@@ -19,16 +73,23 @@ export const configDevelopment = {
     // Set the mode to development or production
     mode: "development",
 
-
     // Development Server Configuration
     // ========================================================================
     // Spin up a server for quick development
 
     devServer: {
         historyApiFallback: true, // Fallback to index.html for Single Page Applications
-        watchFiles: [ // Watch for changes in these directories
-            paths.src + "/*",
-            paths.public + "/*",
+        // watchFiles: [ // Watch for changes in these directories
+        //     paths.src + "/*",
+        //     paths.public + "/*",
+        // ],
+        watchFiles: [
+            paths.src + "/**/*",           // Watch SCSS, TS, etc.
+            paths.public + "/**/*",        // Public assets
+            // paths.exe + "/**/*",           // Watch SCSS, TS, etc.
+            "exe/templates/**/*",          // ✅ Watch all template files
+            "exe/templates/*",          // ✅ Watch all template files
+            "exe/**/*",          // ✅ Watch all template files
         ],
         port: 4040,
         open: true, // Open the browser after server has been started
@@ -43,6 +104,19 @@ export const configDevelopment = {
 
     // Configuration | Module Rules
     // ========================================================================
+
+module: {
+  rules: [
+    {
+      test: /\.(njk|jinja|html\.jinja)$/,
+    //   type: "asset/resource", // or "asset/source" if you want the content
+      type: "asset/source", // or "asset/source" if you want the content
+      generator: {
+        filename: "dummy/[name][ext]", // avoid outputting these files
+      },
+    },
+  ],
+},
     // Module rules for handling different file types.
     // Determine how modules within the project are treated.
     // module: {
@@ -57,6 +131,24 @@ export const configDevelopment = {
     //     ],
     // },
 
+    // module: {
+    // rules: [
+    //     {
+    //     test: /\.ts$/,
+    //     use: "ts-loader",
+    //     exclude: /node_modules/,
+    //     },
+    //     {
+    //     test: /\.(scss|css)$/,
+    //     use: [
+    //         MiniCssExtractPlugin.loader,
+    //         "css-loader",
+    //         "postcss-loader", // if you use it
+    //         "sass-loader"
+    //     ],
+    //     },
+    // ],
+    // },
 
     // Plugins
     // ========================================================================
@@ -65,13 +157,9 @@ export const configDevelopment = {
         // Only update what has changed on hot reload
         new webpack.HotModuleReplacementPlugin(),
 
-        // Serve test page
-        new HtmlWebpackPlugin({
-            template: "./test/index.html",
-            // template: paths.src + "/index.html", // Specify the HTML template to use
-            // title: "Development Mode", // Optional: Specify a title for the HTML document
-            // favicon: paths.public + "/favicon.ico" // Optional: Specify a favicon
-        }),
+        // other plugins...
+        ...htmlPages,
+
     ],
 
 
