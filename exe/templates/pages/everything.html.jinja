@@ -1,0 +1,35 @@
+<!-- templates/base.html.jinja -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Every HTML Element at Once</h1>
+            {% include 'pages/nav.html.jinja' %}
+        </div>
+    </header>
+    <main class="container">
+        {% block content %}
+        {% include 'pages/typography.html.jinja' %}
+        {% include 'pages/lists.html.jinja' %}
+        {% include 'pages/semantic.html.jinja' %}
+        {% include 'pages/tables.html.jinja' %}
+        {% include 'pages/media.html.jinja' %}
+        {% include 'pages/forms.html.jinja' %}
+        {% include 'pages/interactive.html.jinja' %}
+        {% endblock %}
+    </main>
+    <footer class="container">
+        <p>&copy; 2025 HTML Showcase</p>
+    </footer>
+</body>
+
+</html>
