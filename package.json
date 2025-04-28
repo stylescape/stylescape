@@ -1,7 +1,7 @@
 {
     "name": "stylescape",
     "description": "Stylescape is a visual identity framework developed by Scape Agency.",
-    "version": "0.0.37",
+    "version": "0.0.38",
     "config": {
         "version_short": "0.0"
     },
@@ -39,20 +39,11 @@
     "module": "dist/js/stylescape.js",
     "style": "dist/css/stylescape.css",
     "scripts": {
-        "kist-build": "npx kist --config ./kist.yml",
-        "kist-watch": "npx kist --config ./kist.yml --live",
-        "start": "node dist/index.js",
-        "format": "npx prettier --write .",
-        "lint": "eslint 'src/**/*.ts' || true",
-        "prettify": "prettier --write 'src/**/*.ts'",
         "build": "npm run kist-build",
-        "build2": "npm run build-compile && npm run build-process",
-        "build-compile": "tsc -p bin/tsconfig.json",
-        "build-process": "node bin/js/index.js",
-        "webpack-build": "npm run webpack-prod",
-        "webpack-dev": "webpack --mode development --config webpack/webpack.config.js",
-        "webpack-prod": "webpack --mode production --config webpack/webpack.config.js",
-        "webpack-serve": "webpack serve --mode development --config webpack/webpack.config.js",
+        "start": "npm run webpack-start",
+        "kist-build": "npx kist --config ./kist.yml",
+        "kist-start": "npx kist --config ./kist.yml --live",
+        "webpack-build": "webpack --mode production --config webpack/webpack.config.js",
         "webpack-start": "webpack-dev-server --mode development --config webpack/webpack.config.js"
     },
     "dependencies": {
