@@ -1,8 +1,8 @@
-r<p align="center">
+<p align="center">
     <img src="https://raw.githubusercontent.com/stylescape/brand/master/src/logo/logo-transparant.png" width="20%" height="20%" alt="Stylescape Logo">
 </p>
-<h1 align="center" style='border-bottom: none;'>Stylescape</h1>
-<h3 align="center">Design Framework</h3>
+<h1 align="center" style='border-bottom: none;'>stylescape</h1>
+<h3 align="center">design framework</h3>
 
 <br/>
 
@@ -96,7 +96,7 @@ npm install stylescape
 Or via unpkg:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/stylescape@0.0.33/css/stylescape.css">
+<link rel="stylesheet" href="https://unpkg.com/stylescape@latest/css/stylescape.css">
 ```
 
 ### Getting Started
@@ -104,8 +104,8 @@ Or via unpkg:
 After installing, you can include Stylescape's SCSS and TypeScript files into your project:
 
 ```javascript
-import 'stylescape/dist/stylescape.css';
-import 'stylescape/dist/stylescape.js';
+import 'stylescape/css/stylescape.css';
+import 'stylescape/js/stylescape.js';
 ```
 
 ---

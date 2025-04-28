@@ -20,6 +20,8 @@
 // Use
 // ============================================================================
 
+@use "sass:color"; // Import the color module for Sass
+
 @use "../../../dev" as *;
 @use "../../../variables" as *;
 // @use "../../mixins" as *;
@@ -41,10 +43,8 @@
 
 // Hyperlink Variables
 $hyperlink_color: #007bff; // Default link color
-$hyperlink_hover_color: darken(
-    $hyperlink_color,
-    15%
-); // Darken for hover state
+
+$hyperlink_hover_color: color.adjust($hyperlink_color, $lightness: -15%);
 $hyperlink_hover_opacity: 0.75; // Opacity for hover state
 $hyperlink_transition: all 0.2s ease-in-out; // Smooth transition for link effects
 
