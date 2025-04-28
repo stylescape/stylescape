@@ -21,11 +21,10 @@
 // Use
 // ============================================================================
 
-@use "../../../dev" as *;
-@use "../../../variables" as *;
-@use "../character" as *;
-@use "../font" as *;
-
+@use '../../../dev' as *;
+@use '../../../variables' as *;
+@use '../character' as *;
+@use '../font' as *;
 
 ///
 /// Mixin for resetting list styles.
@@ -43,26 +42,27 @@
     list-style-position: outside;
 }
 
-@mixin nested_list{
-    ol {//nested ol
+@mixin nested_list {
+    ol {
+        //nested ol
         list-style-type: lower-latin;
         ol {
-            list-style-type:lower-greek;
+            list-style-type: lower-greek;
         }
     }
 
-    ul{
-        list-style-type:$list-nested-style-type;
-        ul{
+    ul {
+        list-style-type: $list-nested-style-type;
+        ul {
             list-style-type: $list-nested-style-type-level-2;
         }
     }
 
-    dl dt{
-        list-style-type:$list-nested-style-type;
+    dl dt {
+        list-style-type: $list-nested-style-type;
     }
 
-    dl dd{
+    dl dd {
         list-style-type: $list-nested-style-type-level-2;
     }
 }
@@ -95,9 +95,25 @@
     }
 }
 
-@mixin li{
-    &:before{
-        content:"";
+@mixin li {
+    &:before {
+        content: '';
         margin-left: $list-item-spacing;
+    }
+}
+
+@mixin nav {
+    ul {
+        @include list;
+        padding-left: 0px;
+        list-style: none;
+        li {
+            margin: 0;
+            padding: 0;
+            &:before {
+                margin: 0;
+                padding: 0;
+            }
+        }
     }
 }
