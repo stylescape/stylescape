@@ -60,7 +60,7 @@ const configCommon = {
         libraryTarget: "umd",
         libraryExport: "default",
         // Output directory
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "../dist"),
         // path: paths.build,
         // Filename pattern
         filename: "js/[name].bundle.js",
