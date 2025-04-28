@@ -1,7 +1,7 @@
 {
     "name": "stylescape",
     "description": "Stylescape is a visual identity framework developed by Scape Agency.",
-    "version": "0.0.37",
+    "version": "0.0.38",
     "config": {
         "version_short": "0.0"
     },
@@ -39,20 +39,11 @@
     "module": "dist/js/stylescape.js",
     "style": "dist/css/stylescape.css",
     "scripts": {
-        "kist-build": "npx kist --config ./kist.yml",
-        "kist-watch": "npx kist --config ./kist.yml --live",
-        "start": "node dist/index.js",
-        "format": "npx prettier --write .",
-        "lint": "eslint 'src/**/*.ts' || true",
-        "prettify": "prettier --write 'src/**/*.ts'",
         "build": "npm run kist-build",
-        "build2": "npm run build-compile && npm run build-process",
-        "build-compile": "tsc -p bin/tsconfig.json",
-        "build-process": "node bin/js/index.js",
-        "webpack-build": "npm run webpack-prod",
-        "webpack-dev": "webpack --mode development --config webpack/webpack.config.js",
-        "webpack-prod": "webpack --mode production --config webpack/webpack.config.js",
-        "webpack-serve": "webpack serve --mode development --config webpack/webpack.config.js",
+        "start": "npm run webpack-start",
+        "kist-build": "npx kist --config ./kist.yml",
+        "kist-start": "npx kist --config ./kist.yml --live",
+        "webpack-build": "webpack --mode production --config webpack/webpack.config.js",
         "webpack-start": "webpack-dev-server --mode development --config webpack/webpack.config.js"
     },
     "dependencies": {
@@ -66,10 +57,9 @@
         "@types/nunjucks": "^3.2.2",
         "@types/semver": "^7.5.6",
         "@types/webpack": "^5.28.1",
-        "browser-sync": "^2.29.3",
-        "browser-sync-webpack-plugin": "^2.3.0",
+        "browser-sync": "^3.0.4",
         "clean-webpack-plugin": "^4.0.0",
-        "copy-webpack-plugin": "^12.0.2",
+        "copy-webpack-plugin": "^13.0.0",
         "css-loader": "^7.1.2",
         "css-minimizer-webpack-plugin": "^7.0.0",
         "eslint": "^9.8.0",
