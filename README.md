@@ -8,9 +8,9 @@
 
 <div align="center">
 
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.scape.style&up_message=Up&up_color=354351&down_message=Down&down_color=354351&style=flat-square&logo=Firefox&logoColor=FFFFFF&label=Website&labelColor=354351&color=354351)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.scape.style&up_message=Up&up_color=000000&down_message=Down&down_color=000000&style=flat-square&logo=Firefox&logoColor=FFFFFF&label=Website&labelcolor=000000&color=000000)
 ](https://www.scape.style)
-[![NPM Version](https://img.shields.io/npm/v/stylescape?style=flat-square&logo=npm&logoColor=FFFFFF&label=NPM&labelColor=354351&color=354351&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fstylescape)](https://www.npmjs.com/package/stylescape)
+[![NPM Version](https://img.shields.io/npm/v/stylescape?style=flat-square&logo=npm&logoColor=FFFFFF&label=NPM&labelcolor=000000&color=000000&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fstylescape)](https://www.npmjs.com/package/stylescape)
 [![devContainer](https://img.shields.io/badge/devContainer-23354351?style=flat-square&logo=Docker&logoColor=%23FFFFFF&labelColor=%23354351&color=%23354351)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/stylescape/stylescape)
 [![StackBlitz](https://img.shields.io/badge/StackBlitz-23354351?style=flat-square&logo=StackBlitz&logoColor=%23FFFFFF&labelColor=%23354351&color=%23354351)](https://stackblitz.com/github/stylescape/stylescape/tree/main?file=src%2Findex.html)
 [![GitHub License](https://img.shields.io/github/license/stylescape/stylescape?style=flat-square&logo=readthedocs&logoColor=FFFFFF&label=&labelColor=%23354351&color=%23354351&link=LICENSE)](https://github.com/stylescape/stylescape/blob/main/LICENSE)
