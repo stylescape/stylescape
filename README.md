@@ -31,55 +31,9 @@
 
 <br/>
 
-## A powerful design framework for concise and high-quality web development
+## Design framework for concise and high-quality web development
 
 Stylescape is a modular, scalable, and customizable design framework dedicated to streamlining style and layout design for both web and print media. Written in SCSS and TypeScript, it aimes to bridge the gap between visual design and code. Whether you’re a designer or developer, Stylescape provides a robust toolkit that empowers you to create harmonious, scalable, and accessible designs efficiently.
-
----
-
-``` mermaid
-graph TD
-    %% Styles for the diagram
-    classDef main fill:#041B26,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF,font-size:16px,font-weight:bold;
-    classDef module fill:#1e3d59,stroke:#FFFFFF,stroke-width:1px,color:#FFFFFF,font-size:14px,font-weight:normal;
-    classDef focus fill:#028090,stroke:#FFFFFF,stroke-width:1px,color:#FFFFFF,font-size:12px,font-style:italic;
-
-    %% Main node
-    A[Stylescape]:::main
-
-    %% Modules
-    A --> B[unit.gl]:::module
-    A --> C[hue.gl]:::module
-    A --> D[icon.gl]:::module
-    A --> E[font.gl]:::module
-    A --> F[move.gl]:::module
-    A --> G[page.gl]:::module
-    A --> H[pack.gl]:::module
-
-    %% Descriptions and focus areas for each module
-    B --> B1[Dynamic Layout Engine]:::focus
-    B1 --> B2[Fluid Typography]:::focus
-    B1 --> B3[Responsive Design]:::focus
-
-    C --> C1[Perceptual Color System]:::focus
-    C1 --> C2[Color Management Toolkit]:::focus
-
-    D --> D1[Modular Icon Library]:::focus
-    D1 --> D2[Various Integration Options]:::focus
-
-    E --> E1[Variable Font Collection]:::focus
-    E1 --> E2[Typography Base]:::focus
-
-    F --> F1[User Experience Toolkit]:::focus
-    F1 --> F2[Interactives and Immersives]:::focus
-
-    G --> G1[Page Layout Library]:::focus
-    G1 --> G2[Rapid Prototyping]:::focus
-
-    H --> H1[Package Pipeline Manager]:::focus
-    H1 --> H2[Asset and Code Bundling]:::focus
-    H1 --> H3[Streamlined Deployment]:::focus
-```
 
 ---
 
@@ -87,13 +41,13 @@ graph TD
 
 ### Installation
 
-You can install Stylescape using npm:
+> You can install Stylescape using npm:
 
 ```bash
-npm install stylescape
+npm i stylescape
 ```
 
-Or via unpkg:
+> Or directly import via unpkg:
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/stylescape@latest/css/stylescape.css">
@@ -101,7 +55,7 @@ Or via unpkg:
 
 ### Getting Started
 
-After installing, you can include Stylescape's SCSS and TypeScript files into your project:
+> After installing, you can include Stylescape's SCSS and TypeScript files into your project:
 
 ```javascript
 import 'stylescape/css/stylescape.css';
@@ -112,7 +66,7 @@ import 'stylescape/js/stylescape.js';
 
 ## Documentation
 
-For more detailed setup and usage instructions, refer to our official website: [scape.style](https://scape.style).
+For detailed setup and usage instructions, refer to our official website: [scape.style](https://scape.style).
 
 ---
 
