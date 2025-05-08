@@ -1,0 +1,27 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Quotation (<q>)
+    ===========================================================================
+
+    Defines a short inline quotation.
+
+    Variables:
+    - `quote_text`: The text to be displayed as a quotation. Defaults to "Quoted text".
+    - `quote_cite`: The URL of the source of the quote. Defaults to "#".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+    - The `cite` attribute is optional and provides the source of the quotation.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/q
+    - https://www.w3schools.com/tags/tag_q.asp
+
+#}
+
+<q cite="{{ quote_cite | default('#') | e }}">
+    {{ quote_text | default('Quoted text') | e }}
+</q>

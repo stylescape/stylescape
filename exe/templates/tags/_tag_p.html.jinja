@@ -1,0 +1,32 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Paragraph (<p>)
+    ===========================================================================
+
+    Defines a paragraph.
+
+    Variables:
+    - `p_text`: The text to be displayed inside the paragraph. Defaults to "Default paragraph text".
+    - `p_class`: The class attribute for the <p> element. Defaults to "default-class".
+    - `p_id`: The id attribute for the <p> element. Defaults to "default-id".
+    - `p_style`: The style attribute for the <p> element. Defaults to "".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p
+    - https://www.w3schools.com/tags/tag_p.asp
+
+#}
+
+<p 
+    class="{{ p_class | default('default-class') | e }}" 
+    id="{{ p_id | default('default-id') | e }}" 
+    style="{{ p_style | default('') | e }}"
+>
+    {{ p_text | default('Default paragraph text') | e }}
+</p>

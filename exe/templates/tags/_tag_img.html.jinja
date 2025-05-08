@@ -1,0 +1,37 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Image (<img>)
+    ===========================================================================
+
+    Embeds an image into the document.
+
+    Variables:
+    - `img_src`: The URL of the image. Defaults to "default.jpg".
+    - `img_alt`: The alternate text for the image. Defaults to "Default image".
+    - `img_width`: The width of the image. Defaults to "600".
+    - `img_height`: The height of the image. Defaults to "400".
+    - `img_title`: The title of the image. Defaults to "Image Example".
+    - `img_class`: The class attribute for the image. Defaults to "default-class".
+    - `img_id`: The id attribute for the image. Defaults to "default-id".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img
+    - https://www.w3schools.com/tags/tag_img.asp
+
+#}
+
+<img 
+    src="{{ img_src | default('default.jpg') | e }}" 
+    alt="{{ img_alt | default('Default image') | e }}" 
+    width="{{ img_width | default('600') | e }}" 
+    height="{{ img_height | default('400') | e }}" 
+    title="{{ img_title | default('Image Example') | e }}" 
+    class="{{ img_class | default('default-class') | e }}" 
+    id="{{ img_id | default('default-id') | e }}"
+>

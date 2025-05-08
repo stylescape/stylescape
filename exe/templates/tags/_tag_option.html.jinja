@@ -1,0 +1,32 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Option (<option>)
+    ===========================================================================
+s
+    Defines an option in a select list.
+
+    Variables:
+    - `option_value`: The value of the option. Defaults to "default_value".
+    - `option_text`: The text to be displayed for the option. Defaults to "Default Option".
+    - `option_selected`: Boolean to specify if the option should be selected by default. Defaults to false.
+    - `option_disabled`: Boolean to specify if the option should be disabled. Defaults to false.
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option
+    - https://www.w3schools.com/tags/tag_option.asp
+
+#}
+
+<option 
+    value="{{ option_value | default('default_value') | e }}" 
+    {% if option_selected | default(false) %}selected{% endif %} 
+    {% if option_disabled | default(false) %}disabled{% endif %}
+>
+    {{ option_text | default('Default Option') | e }}
+</option>

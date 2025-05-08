@@ -1,0 +1,46 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Textarea (<textarea>)
+    ===========================================================================
+
+    Defines a multi-line text input control.
+
+    Variables:
+    - `textarea_name`: The name attribute for the <textarea> element. Defaults to "textareaName".
+    - `textarea_rows`: The number of visible text lines for the <textarea>. Defaults to "4".
+    - `textarea_cols`: The visible width of the <textarea>. Defaults to "50".
+    - `textarea_placeholder`: The placeholder text for the <textarea>. Defaults to "Enter text here...".
+    - `textarea_required`: Boolean to specify if the textarea is required. Defaults to false.
+    - `textarea_readonly`: Boolean to specify if the textarea is read-only. Defaults to false.
+    - `textarea_disabled`: Boolean to specify if the textarea is disabled. Defaults to false.
+    - `textarea_class`: The class attribute for the <textarea> element. Defaults to "default-class".
+    - `textarea_id`: The id attribute for the <textarea> element. Defaults to "default-id".
+    - `textarea_style`: The style attribute for the <textarea> element. Defaults to "".
+    - `textarea_content`: The content inside the <textarea>. Defaults to "".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea
+    - https://www.w3schools.com/tags/tag_textarea.asp
+
+#}
+
+<textarea 
+    name="{{ textarea_name | default('textareaName') | e }}" 
+    rows="{{ textarea_rows | default('4') | e }}" 
+    cols="{{ textarea_cols | default('50') | e }}" 
+    placeholder="{{ textarea_placeholder | default('Enter text here...') | e }}" 
+    {% if textarea_required | default(false) %}required{% endif %} 
+    {% if textarea_readonly | default(false) %}readonly{% endif %} 
+    {% if textarea_disabled | default(false) %}disabled{% endif %} 
+    class="{{ textarea_class | default('default-class') | e }}" 
+    id="{{ textarea_id | default('default-id') | e }}" 
+    style="{{ textarea_style | default('') | e }}"
+>
+    {{ textarea_content | default('') | e }}
+</textarea>

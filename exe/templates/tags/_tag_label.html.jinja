@@ -1,0 +1,26 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Label (<label>)
+    ===========================================================================
+
+    Defines a label for an <input> element.
+
+    Variables:
+    - `label_for`: The id of the <input> element that this label is associated with. Defaults to "input-id".
+    - `label_text`: The text to be displayed inside the label. Defaults to "Label text".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label
+    - https://www.w3schools.com/tags/tag_label.asp
+
+#}
+
+<label for="{{ label_for | default('input-id') | e }}">
+    {{ label_text | default('Label text') | e }}
+</label>

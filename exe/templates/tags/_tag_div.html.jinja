@@ -1,0 +1,27 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Division (<div>)
+    ===========================================================================
+
+    Defines a division or section in an HTML document.
+
+    Variables:
+    - `div_content`: The content to be displayed inside the <div>. Defaults to "Default div content".
+    - `div_class`: The class attribute for the <div> element. Defaults to "default-class".
+    - `div_id`: The id attribute for the <div> element. Defaults to "default-id".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div
+    - https://www.w3schools.com/tags/tag_div.asp
+
+#}
+
+<div class="{{ div_class | default('default-class') | e }}" id="{{ div_id | default('default-id') | e }}">
+    {{ div_content | default('Default div content') | e }}
+</div>

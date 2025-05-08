@@ -1,0 +1,38 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Command (<command>)
+    ===========================================================================
+
+    Defines a command button that a user can invoke. Note that the <command>
+        element is not widely supported in browsers.
+
+    Variables:
+    - `command_type`: The type of the command. Can be "command", "checkbox",
+      or "radio". Defaults to "command".
+    - `command_label`: The label of the command. Defaults to "Command".
+    - `command_icon`: The URL of the icon for the command. Defaults to "icon.png".
+    - `command_disabled`: Boolean to specify if the command should be disabled.
+      Defaults to false.
+    - `command_checked`: Boolean to specify if the command should be checked
+      (for "checkbox" or "radio" types). Defaults to false.
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+    - The <command> element is not widely supported and may not work in all browsers.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/command
+    - https://www.w3schools.com/tags/tag_command.asp
+
+#}
+
+<command 
+    type="{{ command_type | default('command') | e }}" 
+    label="{{ command_label | default('Command') | e }}" 
+    icon="{{ command_icon | default('icon.png') | e }}" 
+    {% if command_disabled | default(false) %}disabled{% endif %} 
+    {% if command_type == 'checkbox' or command_type == 'radio' %}{% if command_checked | default(false) %}checked{% endif %}{% endif %}
+>

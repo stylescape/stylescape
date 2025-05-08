@@ -1,0 +1,32 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Canvas (<canvas>)
+    ===========================================================================
+
+    Used to draw graphics on the fly via scripting (usually JavaScript).
+
+    Variables:
+    - `canvas_id`: The id attribute of the canvas element. Defaults to "myCanvas".
+    - `canvas_width`: The width of the canvas. Defaults to "300".
+    - `canvas_height`: The height of the canvas. Defaults to "150".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables
+      to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas
+    - https://www.w3schools.com/tags/tag_canvas.asp
+
+#}
+
+<canvas 
+    id="{{ canvas_id | default('myCanvas') | e }}" 
+    width="{{ canvas_width | default('300') | e }}" 
+    height="{{ canvas_height | default('150') | e }}"
+>
+    Your browser does not support the canvas element.
+</canvas>

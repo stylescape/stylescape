@@ -1,0 +1,25 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Strikethrough Text (<strike>)
+    ===========================================================================
+
+    Defines text that is no longer correct or relevant, typically displayed
+    with a strikethrough.
+
+    Variables:
+    - `strike_text`: The text to be displayed with a strikethrough. Defaults to "Strikethrough text".
+
+    Notes:
+    - The <strike> element is deprecated in HTML5 and should not be used. Consider using the <s> element or CSS text-decoration property instead.
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strike
+    - https://www.w3schools.com/tags/tag_strike.asp
+
+#}
+
+<strike>{{ strike_text | default('Strikethrough text') | e }}</strike>

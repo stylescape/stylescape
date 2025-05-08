@@ -1,0 +1,28 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Underlined Text (<u>)
+    ===========================================================================
+
+    Defines text that should be stylistically different from normal text,
+    typically rendered with an underline.
+
+    Variables:
+    - `u_text`: The text to be displayed with an underline. Defaults to
+      "Underlined text".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables
+      to prevent XSS attacks.
+    - The <u> element is often used for stylistic purposes, but CSS is
+      generally recommended for underlining text.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/u
+    - https://www.w3schools.com/tags/tag_u.asp
+
+#}
+
+<u>{{ u_text | default('Underlined text') | e }}</u>

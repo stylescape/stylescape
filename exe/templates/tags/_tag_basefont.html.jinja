@@ -1,0 +1,29 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Base Font (<basefont>)
+    ===========================================================================
+    Specifies a default font size, color, and face for all the text in a document.
+
+    Variables:
+    - `basefont_size`: The default font size. Defaults to "3".
+    - `basefont_color`: The default font color. Defaults to "black".
+    - `basefont_face`: The default font face. Defaults to "Arial".
+
+    Notes:
+    - The <basefont> tag is deprecated in HTML5 and should not be used.
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/basefont
+    - https://www.w3schools.com/tags/tag_basefont.asp
+
+#}
+
+<basefont 
+    size="{{ basefont_size | default('3') | e }}" 
+    color="{{ basefont_color | default('black') | e }}" 
+    face="{{ basefont_face | default('Arial') | e }}"
+>

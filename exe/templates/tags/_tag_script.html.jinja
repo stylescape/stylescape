@@ -1,0 +1,40 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Script (<script>)
+    ===========================================================================
+    Defines a client-side script, typically JavaScript.
+
+    Variables:
+    - `script_src`: The URL of an external script file. Defaults to an empty string.
+    - `script_type`: The MIME type of the script. Defaults to "text/javascript".
+    - `script_async`: Boolean to specify if the script should be executed asynchronously. Defaults to false.
+    - `script_defer`: Boolean to specify if the script should be deferred until the document is fully parsed. Defaults to false.
+    - `script_content`: The inline script content. Defaults to an empty string.
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+    - External scripts are specified with the `src` attribute, while inline scripts are placed within the opening and closing <script> tags.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
+    - https://www.w3schools.com/tags/tag_script.asp
+
+#}
+
+<script 
+    src="{{ script_src | default('') | e }}" 
+    type="{{ script_type | default('text/javascript') | e }}" 
+    {% if script_async | default(false) %}async{% endif %} 
+    {% if script_defer | default(false) %}defer{% endif %}
+>
+    {{ script_content | default('') | e }}
+</script>
+
+
+<!-- Inline JavaScript -->
+<script>
+    var data = {{ js_data|tojson }};
+</script>

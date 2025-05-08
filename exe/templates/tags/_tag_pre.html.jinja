@@ -1,0 +1,32 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Preformatted Text (<pre>)
+    ===========================================================================
+
+    Defines preformatted text, which preserves both spaces and line breaks.
+
+    Variables:
+    - `pre_text`: The text to be displayed inside the <pre> element. Defaults to "Preformatted text".
+    - `pre_class`: The class attribute for the <pre> element. Defaults to "default-class".
+    - `pre_id`: The id attribute for the <pre> element. Defaults to "default-id".
+    - `pre_style`: The style attribute for the <pre> element. Defaults to "".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre
+    - https://www.w3schools.com/tags/tag_pre.asp
+
+#}
+
+<pre 
+    class="{{ pre_class | default('default-class') | e }}" 
+    id="{{ pre_id | default('default-id') | e }}" 
+    style="{{ pre_style | default('') | e }}"
+>
+    {{ pre_text | default('Preformatted text') | e }}
+</pre>

@@ -1,0 +1,27 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Details (<details>)
+    ===========================================================================
+
+    Defines additional details that the user can view or hide.
+
+    Variables:
+    - `details_summary`: The summary or title for the details section. Defaults to "More Information".
+    - `details_content`: The content inside the details section. Defaults to "Default details content".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details
+    - https://www.w3schools.com/tags/tag_details.asp
+
+#}
+
+<details>
+    <summary>{{ details_summary | default('More Information') | e }}</summary>
+    <p>{{ details_content | default('Default details content') | e }}</p>
+</details>

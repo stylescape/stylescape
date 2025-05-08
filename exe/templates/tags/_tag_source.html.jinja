@@ -1,0 +1,30 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Media Source (<source>)
+    ===========================================================================
+
+    Defines multiple media resources for media elements, such as <video> and <audio>.
+
+    Variables:
+    - `source_src`: The URL of the media file. Defaults to "media-file.ext".
+    - `source_type`: The MIME type of the media resource. Defaults to "video/mp4".
+    - `source_media`: Specifies the media query for which the resource is designed. Defaults to "".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+    - Typically used within <video> or <audio> elements to provide different formats of the same media.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source
+    - https://www.w3schools.com/tags/tag_source.asp
+
+#}
+
+<source 
+    src="{{ source_src | default('media-file.ext') | e }}" 
+    type="{{ source_type | default('video/mp4') | e }}" 
+    media="{{ source_media | default('') | e }}"
+>

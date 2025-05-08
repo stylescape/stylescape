@@ -1,0 +1,25 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Column Group (<colgroup>)
+    ===========================================================================
+
+    Specifies a group of one or more columns in a table for formatting.
+
+    Variables:
+    - `colgroup_span`: The number of columns a <colgroup> element should span. Defaults to "1".
+    - `colgroup_class`: The class attribute for the <colgroup> element. Defaults to "default-class".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup
+    - https://www.w3schools.com/tags/tag_colgroup.asp
+
+#}
+
+<colgroup span="{{ colgroup_span | default('1') | e }}" class="{{ colgroup_class | default('default-class') | e }}">
+</colgroup>

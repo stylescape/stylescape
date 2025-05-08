@@ -1,0 +1,32 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Input Prompt (<isindex>)
+    ===========================================================================
+
+    Defines a single-line input field for entering text.
+
+    Variables:
+    - `isindex_prompt`: The prompt message displayed before the input field.
+      Defaults to "Enter search term:".
+    - `isindex_action`: The URL to which the form data will be submitted.
+      Defaults to "#".
+
+    Notes:
+    - The <isindex> element is deprecated in HTML5 and should not be used.
+      Consider using <input> elements within a <form> instead.
+    - The `| e` filter is used to escape any special characters in the
+      variables to prevent XSS attacks.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/isindex
+    - https://www.w3schools.com/tags/tag_isindex.asp
+
+#}
+
+<isindex
+    prompt="{{ isindex_prompt | default('Enter search term:') | e }}"
+    action="{{ isindex_action | default('#') | e }}"
+>

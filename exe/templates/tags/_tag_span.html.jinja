@@ -1,0 +1,33 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Span (<span>)
+    ===========================================================================
+
+    Defines a section in a document.
+
+    Variables:
+    - `span_text`: The text to be displayed inside the span. Defaults to "Default span text".
+    - `span_class`: The class attribute for the <span> element. Defaults to "default-class".
+    - `span_id`: The id attribute for the <span> element. Defaults to "default-id".
+    - `span_style`: The style attribute for the <span> element. Defaults to "".
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+    - The <span> element is often used to group inline elements and apply styles or scripts to them.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span
+    - https://www.w3schools.com/tags/tag_span.asp
+
+#}
+
+<span 
+    class="{{ span_class | default('default-class') | e }}" 
+    id="{{ span_id | default('default-id') | e }}" 
+    style="{{ span_style | default('') | e }}"
+>
+    {{ span_text | default('Default span text') | e }}
+</span>

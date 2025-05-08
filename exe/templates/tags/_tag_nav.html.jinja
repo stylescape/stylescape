@@ -1,0 +1,40 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Navigation (<nav>)
+    ===========================================================================
+
+    Defines a set of navigation links.
+
+    Variables:
+    - `nav_items`: A list of dictionaries, each containing `href` and `text`
+      keys for the navigation links. Defaults to a single default navigation item.
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+    - Each dictionary in `nav_items` should contain `href` and `text` keys.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav
+    - https://www.w3schools.com/tags/tag_nav.asp
+
+#}
+
+<nav>
+    <ul>
+        {% for item in nav_items | default([{'href': '#', 'text': 'Home'}]) %}
+            <li><a href="{{ item.href | e }}">{{ item.text | e }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+
+<!-- Navigation Menu -->
+<nav>
+    <ul>
+        {% for item in menu_items %}
+        <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>

@@ -1,0 +1,38 @@
+{# 
+    Copyright 2025 Scape Agency BV
+#}
+
+{# 
+    Track (<track>)
+    ===========================================================================
+
+    Defines text tracks for media elements (<video> and <audio>).
+
+    Variables:
+    - `track_src`: The URL of the track file. Defaults to "track.vtt".
+    - `track_kind`: The kind of text track. Can be "subtitles", "captions",
+      "descriptions", "chapters", or "metadata". Defaults to "subtitles".
+    - `track_srclang`: The language of the track text data. Defaults to "en".
+    - `track_label`: The label of the track. Defaults to "English".
+    - `track_default`: Boolean to specify if the track should be enabled by
+      default. Defaults to false.
+
+    Notes:
+    - The `| e` filter is used to escape any special characters in the variables
+      to prevent XSS attacks.
+    - The <track> element is used to specify timed text tracks for media
+      elements.
+
+    Links:
+    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track
+    - https://www.w3schools.com/tags/tag_track.asp
+
+#}
+
+<track 
+    src="{{ track_src | default('track.vtt') | e }}" 
+    kind="{{ track_kind | default('subtitles') | e }}" 
+    srclang="{{ track_srclang | default('en') | e }}" 
+    label="{{ track_label | default('English') | e }}" 
+    {% if track_default | default(false) %}default{% endif %}
+>
