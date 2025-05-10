@@ -1,7 +1,3 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Stack Font Typography Mixins Module
@@ -20,42 +16,46 @@
 // Use
 // ============================================================================
 
-@use '../dev' as *;
+// @use '../dev' as *;
 
 // ============================================================================
 // Variables
 // ============================================================================
 
 ///
-/// Fallback font stacks.
+/// Fallback Font Stacks
+/// ---------------------------------------------------------------------------
 ///
 /// These variables define fallback font stacks for different types of fonts
 /// (sans-serif, serif, monospace). They are used when the preferred font is
 /// not available on the user's system.
 ///
-$font_fallback_sans_serif: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-$font_fallback_serif: 'Times New Roman', 'Times', serif; // Example fallbacks for serif
-$font_fallback_monospace: 'Courier New', 'Courier', monospace; // Example fallbacks for monospace
+$font_fallback_sans: 'Roboto Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font_fallback_serif: 'Roboto Serif', 'Times New Roman', 'Times', serif;
+$font_fallback_slab: 'Roboto Slab', 'Rockwell', 'Georgia', 'serif';
+$font_fallback_mono: 'Roboto Mono', 'Courier New', 'Courier', monospace;
 
 ///
-/// Default font definitions.
+/// Default Font Definitions
+/// ---------------------------------------------------------------------------
 ///
 /// These variables define the default font families used in the project.
 /// The `!default` flag allows them to be overridden if necessary.
 ///
-$font_default_sans_serif: 'Block' !default;
-$font_default_serif: 'serif' !default;
-$font_default_monospace: 'Monaspace Neon' !default;
+$font_default_sans: 'stylescape_sans_regular' !default;
+$font_default_serif: 'stylescape_serif_regular' !default;
+$font_default_slab: 'stylescape_slab_regular' !default;
+$font_default_mono: 'stylescape_mono_regular' !default;
 
 ///
-/// Combined font stacks.
+/// Combined Font Stacks
+/// ---------------------------------------------------------------------------
 ///
 /// These variables combine the default font with its respective fallback
 /// stack, ensuring that a suitable font is always available. The `!important`
 /// flag ensures that these font stacks take precedence in CSS rendering.
 ///
-$font_stack_sans_serif: $font_default_sans_serif, $font_fallback_sans_serif !important;
-$font_stack_serif: $font_default_serif, $font_fallback_serif !important;
-$font_stack_monospace: $font_default_monospace, $font_fallback_monospace !important;
-
-// $font_stack_monospace: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !default;
+$font_stack_sans: $font_default_sans, $font_fallback_sans !default;
+$font_stack_serif: $font_default_serif, $font_fallback_serif !default;
+$font_stack_slab: $font_default_slab, $font_fallback_slab !default;
+$font_stack_mono: $font_default_mono, $font_fallback_mono !default;
