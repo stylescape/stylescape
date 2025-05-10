@@ -2,6 +2,7 @@
 ///
 /// Default Font Typography Mixins Module
 /// ===========================================================================
+///
 /// Provides a set of mixins for applying default font settings across your
 /// project, ensuring a consistent typographic foundation. This module handles
 /// font family settings, smoothing, rendering optimizations, and advanced
@@ -10,15 +11,19 @@
 /// performance are essential.
 ///
 /// ### Key Features
-/// - Applies a default sans-serif font stack for clean and modern text appearance.
-/// - Enhances font rendering across different browsers with smoothing and legibility optimizations.
-/// - Configures a variety of font properties, including font variants, kerning, and feature settings.
-/// - Ensures consistent typographic settings by applying these styles to root elements like `<html>`.
+/// - Applies a default sans-serif font stack for clean and modern text
+///     appearance.
+/// - Enhances font rendering across different browsers with smoothing and
+///     legibility optimizations.
+/// - Configures a variety of font properties, including font variants,
+///     kerning, and feature settings.
+/// - Ensures consistent typographic settings by applying these styles to
+///     root elements like `<html>`.
 ///
 /// ### Use Cases
-/// Use this module to set a standard typographic baseline for your entire project,
-/// particularly useful in global stylesheets or component libraries where a consistent
-/// and optimized font display is required.
+/// Use this module to set a standard typographic baseline for your entire
+/// project, particularly useful in global stylesheets or component libraries
+/// where a consistent and optimized font display is required.
 ///
 /// @group Font
 /// @author Scape Agency
@@ -44,21 +49,26 @@
 // ============================================================================
 
 ///
-/// Applies default font settings for consistent and optimized typography.
+/// Applies base font settings for consistent and optimized typography
 /// ---------------------------------------------------------------------------
 ///
-/// This mixin sets the base font-family, font smoothing, rendering, and various font properties
-/// to ensure a consistent and optimized text appearance across different browsers.
+/// This mixin sets the base font-family, font smoothing, rendering, and
+/// various font properties to ensure a consistent and optimized text
+/// appearance across different browsers.
 ///
 /// ### Features
 ///
 /// - `font-family`: Sets the font stack to a sans-serif family.
-/// - `font-smooth`, `-webkit-font-smoothing`, `-moz-osx-font-smoothing`: Optimizes font rendering.
+/// - `font-smooth`, `-webkit-font-smoothing`, `-moz-osx-font-smoothing`:
+///      Optimizes font rendering.
 /// - `text-rendering`: Enhances legibility.
-/// - `font-language-override`, `font-optical-sizing`: Adjusts language-specific and optical settings.
+/// - `font-language-override`, `font-optical-sizing`: Adjusts
+///     language-specific and optical settings.
 /// - `font-style`: Sets the font style to normal.
-/// - `font-variant-*`: Configures various font variant properties, such as alternates, caps, ligatures, etc.
-/// - `font-kerning`, `font-feature-settings`, `font-size-adjust`, `font-stretch`: Configures advanced typography settings.
+/// - `font-variant-*`: Configures various font variant properties, such as
+///     alternates, caps, ligatures, etc.
+/// - `font-kerning`, `font-feature-settings`, `font-size-adjust`,
+///     `font-stretch`: Configures advanced typography settings.
 /// - `color`: Sets the default text color.
 /// - `background-color`: Ensures no background color is applied by default.
 ///
@@ -67,22 +77,19 @@
 ///     @include font_default;
 ///   }
 ///
-@mixin font_default {
-    font-family: $font_stack_sans_serif;
-
-    // Font rendering and smoothing
+@mixin font_base {
+    // Font smoothing and rendering
     font-smooth: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
 
-    // Basic font settings
+    // Optical & language rendering
+    font-style: normal;
     font-language-override: normal;
     font-optical-sizing: auto;
-    font-style: normal;
 
-    // Font variants for advanced typographic features
-    // font-variant:            normal;
+    // Typographic variants
     font-variant-alternates: normal;
     font-variant-caps: normal;
     font-variant-east-asian: normal;
@@ -93,23 +100,54 @@
 
     // Advanced font settings
     font-kerning: normal;
-    // font-feature-settings:      none;
     font-feature-settings:
         'kern' 1,
-        'liga' 1; // Enable kerning and common ligatures by default
+        // Enable kerning by default
+        'liga' 1; // Enable common ligatures by default
     font-size-adjust: none;
     font-stretch: 100%;
 
-    // Text and background colors
-    // color:                      black;
-    color: $color_02; // Assumes $color_02 is a predefined variable in the variables module
-    // background-color:           none;
+    // Text colors
+    color: $color_02;
     background-color: transparent; // Ensures no default background color
 }
 
-/// Mixin for applying monospace font family.
 ///
-/// This mixin sets the font family to a monospace font, which is typically used for code elements.
-@mixin monospace-font {
-    font-family: $font-family-monospace;
+/// Deafult font variant using base defaults
+///
+@mixin font_default {
+    @include font_base;
+    font-family: $font_stack_sans;
+}
+
+///
+/// Serif font variant using base defaults
+///
+@mixin font_sans {
+    @include font_base;
+    font-family: $font_stack_sans;
+}
+
+///
+/// Serif font variant using base defaults
+///
+@mixin font_serif {
+    @include font_base;
+    font-family: $font_stack_serif;
+}
+
+///
+/// Slab serif font variant using base defaults
+///
+@mixin font_slab {
+    @include font_base;
+    font-family: $font_stack_slab;
+}
+
+///
+/// Monospace font variant using base defaults
+///
+@mixin font_mono {
+    @include font_base;
+    font-family: $font_stack_mono;
 }

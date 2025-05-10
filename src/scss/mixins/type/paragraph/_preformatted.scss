@@ -26,13 +26,13 @@
 // Use
 // ============================================================================
 
-@use "../../../variables" as *;
+@use '../../../variables' as *;
 // @use "../../mixins" as *;
 
-@use "../character" as *;
-@use "../font" as *;
+@use '../character' as *;
+@use '../font' as *;
 
-@use "default" as *;
+@use 'default' as *;
 
 // ============================================================================
 // Mixins
@@ -51,7 +51,7 @@
 /// - Background color to set preformatted blocks apart from other content.
 ///
 /// @param {List} $font_stack - Monospace font stack for preformatted text.
-///        Default is `$font_stack_monospace`.
+///        Default is `$font_stack_mono`.
 /// @param {Length} $max_width - Maximum width for preformatted blocks.
 ///        Default is `$paragraph_code_max_width`.
 /// @param {List} $margin - Margin around preformatted blocks. Default is
@@ -71,7 +71,7 @@
 ///
 ///
 @mixin paragraph_code(
-    $font_stack: $font_stack_monospace,
+    $font_stack: $font_stack_mono,
     $max_width: $paragraph_code_max_width,
     $margin: $paragraph_code_margin,
     $padding: $paragraph_code_padding,
@@ -83,7 +83,7 @@
     $border_type: $paragraph_code_border_type,
     $border_radius: $paragraph_code_border_radius
 ) {
-    // @include monospace-font;
+    // @include font_mono;
     font-family: $font_stack;
 
     clear: both; // Clear floats to ensure block-level formatting
