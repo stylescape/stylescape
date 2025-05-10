@@ -12,8 +12,6 @@
 button {
     overflow: visible; /* Address `overflow` set to `hidden` in IE 8/9/10/11 */
     height: auto;
-    @include font_size_03;
-    @include reset_bleed;
 }
 
 //   button,
@@ -65,26 +63,73 @@ button {
 
 /// Button mixin to reset and apply basic button styles
 /// @group Button
+// @mixin button {
+//     @include reset_bleed;
+//     background-repeat: no-repeat;
+//     border: none;
+//     outline: none;
+//     overflow: hidden;
+//     border-radius: 0;
+//     text-decoration: none;
+//     text-align: center;
+//     letter-spacing: 0.5px;
+//     cursor: pointer;
+//     :active {
+//         outline: none;
+//         border: none;
+//     }
+//     :focus {
+//         outline: 0;
+//     }
+//     :hover {
+//         opacity: 0.75;
+//     }
+// }
+
 @mixin button {
-    @include reset_bleed;
-    background-repeat: no-repeat;
-    border: none;
-    outline: none;
-    overflow: hidden;
-    border-radius: 0;
-    text-decoration: none;
-    text-align: center;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    :active {
-        outline: none;
-        border: none;
+    display: inline-flex;
+    height: 40px;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: $color_primary;
+    @include font_size_03;
+    color: $color_light;
+
+    &.button_large {
+        @include font_size_04;
+        height: 48px;
+        padding: 14px 20px;
     }
-    :focus {
-        outline: 0;
+
+    &.button_small {
+        @include font_size_02;
+        height: 32px;
+        padding: 8px 12px;
     }
-    :hover {
-        opacity: 0.75;
+
+    &.button_tiny {
+        @include font_size_01;
+        height: 24px;
+        padding: 6px 8px;
+    }
+
+    &:hover {
+        background: hue_color('N2402');
+    }
+
+    &:focus-within {
+        border: 3px solid hue_color('N2404');
+    }
+
+    &:active {
+        background: hue_color('N2409');
+    }
+
+    &:disabled {
+        background: $color_disabled;
     }
 }
 
