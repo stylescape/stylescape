@@ -1,7 +1,3 @@
-// ============================================================================
-// Poster
-// ============================================================================
-
 ////
 ///
 /// Dropcap Character Typography Mixins Module
@@ -20,16 +16,16 @@
 // Use
 // ============================================================================
 
-@use "../../../dev" as *;
-@use "../../../variables" as *;
+@use '../../../dev' as *;
+@use '../../../variables' as *;
 // @use "../../mixins" as *;
 
-@use "../font/font_default" as *;
-@use "../font/font_weight" as *;
-@use "../font/font_size" as *;
+@use '../font/font_default' as *;
+@use '../font/font_weight' as *;
+@use '../font/font_size' as *;
 
-@use "default" as *;
-@use "normal" as *;
+@use 'default' as *;
+@use 'normal' as *;
 
 // ============================================================================
 // Mixins
@@ -115,11 +111,7 @@ $dropcap_circular_padding: 15px !default;
 /// @param {String} $border - Border for the drop cap (default: `none`).
 /// @param {Length} $border-radius - Border radius for the drop cap (default: `0`).
 ///
-@mixin dropcap_style(
-    $padding: $dropcap-padding,
-    $border: none,
-    $border-radius: 0
-) {
+@mixin dropcap_style($padding: $dropcap-padding, $border: none, $border-radius: 0) {
     padding: $padding;
     border: $border;
     border-radius: $border-radius;
@@ -144,14 +136,11 @@ $dropcap_circular_padding: 15px !default;
 /// the first child element.
 ///
 @mixin large-dropcap-underline {
-    @include dropcap_base(
-        $dropcap-large-font-size,
-        $dropcap-large-line-height
-    );
+    @include dropcap_base($dropcap-large-font-size, $dropcap-large-line-height);
     @include dropcap_style($dropcap-large-padding, $dropcap-large-border, 0);
 
     &:before {
-        content: "";
+        content: '';
         position: absolute;
         border-bottom: 1px solid;
         width: 100%;
@@ -204,17 +193,10 @@ $dropcap_circular_padding: 15px !default;
 ///
 /// Applies a circular drop cap to the first letter of the first child element.
 @mixin dropcap_circular {
-    @include dropcap_base(
-        $dropcap_circular_font-size,
-        $dropcap_circular_line-height
-    );
+    @include dropcap_base($dropcap_circular_font-size, $dropcap_circular_line-height);
     height: $dropcap_circular_height;
     width: $dropcap_circular_width;
-    @include dropcap_style(
-        $dropcap_circular_padding,
-        0,
-        $dropcap-border-radius
-    );
+    @include dropcap_style($dropcap_circular_padding, 0, $dropcap-border-radius);
 }
 
 // ============================================================================
