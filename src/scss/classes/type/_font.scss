@@ -17,6 +17,7 @@
 // ============================================================================
 
 @use '../../mixins' as *;
+@use '../../maps' as *;
 
 // ============================================================================
 // Mixins
@@ -44,4 +45,52 @@
 
 .font_mono {
     @include font_mono;
+}
+
+// ============================================================================
+// Utilities | Classnames
+// ============================================================================
+
+///
+/// Utility classes for predefined font sizes.
+///
+/// These classes apply the corresponding font size and line height to elements
+/// using the predefined font size mixins.
+///
+@each $key, $val in $font_size_map {
+    .font_size_#{$key} {
+        @include font_size_scale($val);
+    }
+}
+
+// ============================================================================
+// Utilities | Semantic Class Aliases
+// ============================================================================
+
+///
+/// Utility classes for semantic font sizes.
+///
+/// These classes provide a more semantic naming convention for font sizes,
+/// making it easier to understand and apply appropriate sizes in different
+/// contexts.
+///
+.font_xs,
+.font_extra_small {
+    @include font_size('02');
+}
+.font_sm,
+.font_small {
+    @include font_size('03');
+}
+.font_md,
+.font_medium {
+    @include font_size('04');
+}
+.font_lg,
+.font_large {
+    @include font_size('05');
+}
+.font_xl,
+.font_extra_large {
+    @include font_size('06');
 }
