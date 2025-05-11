@@ -2,12 +2,12 @@
 // Components | Icon Bar
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
+@use '../../dev' as *;
+@use '../../variables' as *;
 // @use "../mixins" as *;
-@use "../layout" as *;
-@use "../elements" as *;
-@use "../type" as *;
+@use '../layout' as *;
+// @use '../elements' as *;
+@use '../type' as *;
 
 /// Mixin for creating a basic icon bar.
 /// Sets up a grid display for icons with configurable gap, alignment, and justification.
@@ -24,7 +24,7 @@
 /// @group Icon Bar
 @mixin icon_bar_horizontal {
     @include icon_bar;
-    grid-template-rows: $baseline_04;
+    grid-template-rows: baseline(4);
     grid-auto-columns: min-content;
     grid-auto-flow: column;
     // Optional: customize the gap if needed
@@ -36,12 +36,12 @@
 /// @group Icon Bar
 @mixin icon_bar_vertical {
     @include icon_bar;
-    grid-template-columns: $baseline_04;
+    grid-template-columns: baseline(4);
     grid-auto-rows: min-content;
     grid-auto-flow: row;
 
     // display: grid;
-    // grid-auto-rows: $baseline_04;
+    // grid-auto-rows: baseline(4);
     // justify-items: center;
     // align-items: center;
 }

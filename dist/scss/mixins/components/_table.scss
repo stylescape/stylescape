@@ -2,12 +2,12 @@
 // Components | Table
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
+@use '../../dev' as *;
+@use '../../variables' as *;
 // @use "../mixins" as *;
-@use "../layout" as *;
-@use "../elements" as *;
-@use "../type" as *;
+@use '../layout' as *;
+// @use '../elements' as *;
+@use '../type' as *;
 // @use "../animation" as *;
 
 /// Styling for the `table` element to ensure consistency across browsers.
@@ -49,7 +49,7 @@ table thead th {
     line-height: $q * 1.5;
     border-top-width: ($q * 0.25);
     border-top-style: solid;
-    border-top-color: $color_02;
+    border-top-color: var(--color_secondary);
 
     /// Table row styling within the custom table.
     /// Includes flexible width, padding, and border settings.
@@ -63,7 +63,7 @@ table thead th {
         padding-bottom: ($q * 0.75);
         border-bottom-width: ($q * 0.25);
         border-bottom-style: solid;
-        border-bottom-color: $color_02;
+        border-bottom-color: var(--color_secondary);
         display: flex;
         flex-direction: row;
 
@@ -72,7 +72,7 @@ table thead th {
         /// @group Table
         .table_head {
             @include reset_bleed;
-            height: $baseline_04;
+            height: baseline(4);
             min-width: calc(25% + #{$q});
             flex-basis: calc(25% + #{$q});
             margin-top: $q;
@@ -92,7 +92,7 @@ table thead th {
             flex-direction: column;
             overflow: hidden;
             height: 100%;
-            max-height: $baseline_04;
+            max-height: baseline(4);
 
             &.active {
                 // @include transition_duration_01;

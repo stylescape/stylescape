@@ -2,10 +2,10 @@
 // Elements | Form
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
+@use '../../dev' as *;
+@use '../../variables' as *;
 // @use "../mixins" as *;
-@use "../type" as *;
+@use '../type' as *;
 
 // /// Styles for form labels
 // /// @group Form
@@ -29,7 +29,7 @@
 // input {
 // 	outline: none;
 // 	border: none;
-//     height: $baseline_04;
+//     height: baseline(4);
 //     @include font-size_03;
 // }
 
@@ -77,25 +77,25 @@
 
 /// General styles for various form elements
 /// @group Form
-form {
-    max-width: 100%;
-}
+// form {
+//     max-width: 100%;
+// }
 
 /// Checkbox component styling
 /// @group Form
-.ptf-checkbox {
-    font-size: 0.875rem;
-    position: relative;
-    display: flex;
-    padding-left: 2.625rem;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    color: var(--ptf-color-black);
-    align-items: center;
-}
+// .ptf-checkbox {
+//     font-size: 0.875rem;
+//     position: relative;
+//     display: flex;
+//     padding-left: 2.625rem;
+//     cursor: pointer;
+//     -webkit-user-select: none;
+//     -moz-user-select: none;
+//     -ms-user-select: none;
+//     user-select: none;
+//     color: var(--ptf-color-black);
+//     align-items: center;
+// }
 
 // /// Checkbox checkmark styling
 // /// @group Form
@@ -458,3 +458,129 @@ form {
 //         grid-template-columns: repeat(1, 1fr);
 //     }
 // }
+
+// ============================================================================
+// FORM / INPUT / TEXTAREA / SELECT
+// ============================================================================
+
+/// @group Form
+@mixin input {
+    @include font_size_03;
+    display: flex;
+    padding: 12px;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+    border-radius: 4px;
+    border: 1.5px solid $color_dark;
+    color: &color_dark;
+
+    &:hover {
+        border: 1.5px solid $color_primary;
+    }
+
+    &:focus {
+        border: 3px solid hue_color('N2404');
+    }
+
+    &:disabled {
+        border: 1.5px solid $color_disabled;
+        color: $color_disabled;
+    }
+
+    &.is-success {
+        border: 1.5px solid $color_success;
+        color: $color_success;
+    }
+
+    &.is-warning {
+        border: 1.5px solid $color_warning;
+        color: $color_warning;
+    }
+
+    &.is-error {
+        border: 1.5px solid $color_error;
+        color: $color_error;
+    }
+
+    &.is-info {
+        border: 1.5px solid $color_info;
+        color: $color_info;
+    }
+}
+
+/// @group Form
+input[type='text'],
+input[type='date'],
+input[type='email'],
+input[type='password'],
+input[type='tel'],
+input[type='url'],
+input[type='search'],
+input[type='number'],
+input[type='file'],
+textarea,
+select {
+    @include input;
+}
+
+/// Additional styles for textarea
+/// @group Form
+textarea {
+    resize: none;
+}
+
+// ============================================================================
+// RADIO / CHECKBOX
+// ============================================================================
+
+@mixin radio {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    border: 1.5px solid $color_primary;
+
+    &:hover {
+        background: hue_color('N2402');
+    }
+
+    &:checked {
+        ::after {
+            width: 20px;
+            height: 20px;
+            background: $color_primary;
+        }
+    }
+
+    &:disabled {
+        border: 1.5px solid $color_disabled;
+    }
+}
+
+/// Base styles for radio buttons
+/// @group Form
+input[type='radio'] {
+    @include radio;
+}
+
+@mixin checkbox {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: 1.5px solid $color_primary;
+    &:hover {
+        background: hue_color('N2402');
+    }
+
+    &:checked {
+        background: $color_primary;
+    }
+}
+
+/// Base styles for checkboxes
+/// @group Form
+input[type='checkbox'] {
+    @include checkbox;
+}
