@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}Stylescape{% endblock %}</title>
+    <title>Stylescape</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/stylescape.css" />
     <style>
@@ -77,51 +77,10 @@
             line-height: 1.4;
             word-wrap: break-word;
         }
-
-
-        padding: 2rem;
-
-        label {
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            font-weight: bold;
-        }
-
-        .color-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 1rem;
-        }
-
-        .color-card {
-            border: 1px solid var(--color_border, #ccc);
-            border-radius: 6px;
-            overflow: hidden;
-            background-color: var(--color_surface_2);
-            text-align: center;
-            font-family: monospace;
-            font-size: 0.85rem;
-        }
-
-        .color-swatch {
-            width: 100%;
-            height: 80px;
-            border-bottom: 1px solid var(--color_border, #ccc);
-        }
-
-        code {
-            display: block;
-            padding: 0.5rem;
-        }
     </style>
-    {% block head %}{% endblock %}
 </head>
 
-<body>
-
-    {#- \ Body | Ribbon #}
-    {%- block body_ribbon -%}
-    <header class="ribbon" id="ribbon" role="banner">
+<body><header class="ribbon" id="ribbon" role="banner">
         <h1 id="ribbon_title" class="ribbon_title" role="heading" aria-level="1">
             <div class="ribbon_title_logo">
                 <a href="/" class="">
@@ -168,21 +127,17 @@
 
 
     </header>
-    {%- endblock body_ribbon -%}
-    {#- / Body | Layout | Ribbon #}
     <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
 
     <header>
-        <h1>{% block header %}{% endblock %}</h1>
+        <h1></h1>
     </header>
 
     <main>
-        {% block content %}{% endblock %}
     </main>
 
     <footer>
-        {% block footer %}<p>&copy; 2025 Stylescape</p>{% endblock %}
-    </footer>
+<p>&copy; 2025 Stylescape</p>    </footer>
 
     <script>
         document.getElementById("font-preview-input").addEventListener("input", function () {
