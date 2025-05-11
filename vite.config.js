@@ -17,9 +17,10 @@ const rootDir = process.cwd();
 
 
 const watchGlobs = [
-  'src/scss/**/*',
-  'src/jinja/**/*',
-  'kist.yml'
+    'src/ts/**/*',
+    'src/scss/**/*',
+    'src/jinja/**/*',
+    'kist.yml'
 ];
 
 let lastBuild = 0;
@@ -63,6 +64,7 @@ export default defineConfig({
                 runKist(server);
 
                 server.middlewares.use('/css', serveStatic(path.join(pathToDist, 'css')));
+                server.middlewares.use('/js', serveStatic(path.join(pathToDist, 'js')));
                 server.middlewares.use('/font', serveStatic(path.join(pathToDist, 'font')));
 
 
