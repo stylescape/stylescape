@@ -1,0 +1,35 @@
+{% extends "base.html.jinja" %}
+{% block title %}Color Palette{% endblock %}
+
+{% block content %}
+<section class="color-palette">
+    <h1>Color Palette</h1>
+
+    {% set families = [
+    'Grey', 'Salmon', 'Orange', 'Amber', 'Yellow', 'Lime', 'Ecru',
+    'Olive', 'Green', 'Forest', 'Jade', 'Mint', 'Cyan', 'Teal', 'Capri',
+    'Sky', 'Blue', 'Azure', 'Indigo', 'Violet', 'Magenta', 'Purple',
+    'Rose', 'Pink', 'Red'
+    ] %}
+
+    {% for family in families %}
+    <section class="color-family">
+
+
+        <div class="swatch-grid">
+            <h2 style="width: 15%;">{{ family }}</h2>
+            {% set base = 1 + (loop.index0 * 150) %}
+            {% for j in range(9) %}
+            {% set number = base + j %}
+            {% if number < 10 %} {% set code='N000' ~ number %} {% elif number < 100 %} {% set code='N00' ~ number %} {%
+                elif number < 1000 %} {% set code='N0' ~ number %} {% else %} {% set code='N' ~ number %} {% endif %}
+                <div class="swatch" style="background-color: var(--{{ code }})">
+                <code>{{ code }}</code>
+        </div>
+        {% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+
+</section>
+{% endblock %}
