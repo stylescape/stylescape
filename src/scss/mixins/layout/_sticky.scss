@@ -12,16 +12,13 @@
 ///
 ////
 
-
 // ============================================================================
 // Mixins
 // ============================================================================
 
-
 // Layout | Sticky
 // ============================================================================
 @use '../../variables' as *;
-
 
 // @mixin sticky_top {
 //     position: fixed;
@@ -113,8 +110,8 @@ $sticky_elements: ();
 
 // @mixin responsive-sticky_top($breakpoints-map) {
 //     @each $bp, $values in $breakpoints-map {
-//         @media (min-width: map-get($values, 'min-width')) {
-//             @include sticky_top(map-get($values, 'top-offset'), map-get($values, 'z-index'), map-get($values, 'width'));
+//         @media (min-width: map.get($values, 'min-width')) {
+//             @include sticky_top(map.get($values, 'top-offset'), map.get($values, 'z-index'), map.get($values, 'width'));
 //         }
 //     }
 // }
@@ -136,12 +133,7 @@ $sticky_elements: ();
 /// @param {String} $position ['top'] - The position to stick ('top' or 'bottom').
 /// @param {Number} $offset [0] - The offset for the sticky position.
 /// @param {Number} $z-index [10] - Z-index to manage stacking order.
-@mixin conditional_sticky(
-    $condition: ".is-sticky",
-    $position: "top",
-    $offset: 0,
-    $z-index: 10
-) {
+@mixin conditional_sticky($condition: '.is-sticky', $position: 'top', $offset: 0, $z-index: 10) {
     #{$condition} & {
         position: -webkit-sticky;
         position: sticky;
@@ -170,11 +162,7 @@ $sticky_elements: ();
 /// @param {Number} $offset - Initial offset from the viewport.
 /// @param {Number} $additional-offset [0] - Additional offset from the viewport.
 /// @param {Number} $z-index [10] - Z-index to manage stacking order.
-@mixin sticky_bottom-with-offset(
-    $offset,
-    $additional-offset: 0,
-    $z-index: 10
-) {
+@mixin sticky_bottom-with-offset($offset, $additional-offset: 0, $z-index: 10) {
     position: -webkit-sticky;
     position: sticky;
     bottom: $offset + $additional-offset;
@@ -195,24 +183,24 @@ $sticky_elements: ();
 // // Mixin for responsive sticky positioning
 // @mixin responsive-sticky($properties-map) {
 //   @each $breakpoint, $properties in $properties-map {
-//     $min-width: map-get($breakpoints, $breakpoint);
+//     $min-width: map.get($breakpoints, $breakpoint);
 
 //     @media (min-width: $min-width) {
 //       @if map-has-key($properties, 'top') {
-//         top: map-get($properties, 'top');
+//         top: map.get($properties, 'top');
 //       }
 //       @if map-has-key($properties, 'bottom') {
-//         bottom: map-get($properties, 'bottom');
+//         bottom: map.get($properties, 'bottom');
 //       }
 //       @if map-has-key($properties, 'left') {
-//         left: map-get($properties, 'left');
+//         left: map.get($properties, 'left');
 //       }
 //       @if map-has-key($properties, 'right') {
-//         right: map-get($properties, 'right');
+//         right: map.get($properties, 'right');
 //       }
 //       position: -webkit-sticky;
 //       position: sticky;
-//       z-index: map-get($properties, 'z-index', 10); // Default z-index if not specified
+//       z-index: map.get($properties, 'z-index', 10); // Default z-index if not specified
 //     }
 //   }
 // }
