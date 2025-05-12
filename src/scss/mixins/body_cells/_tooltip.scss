@@ -42,7 +42,7 @@ $tooltip_unit: 5px;
 
 /// Mixin for a right-pointing tooltip arrow.
 /// @group Tooltip
-@mixin tooltip_arrow_right {
+@mixin tooltip_arrow--right {
     @include tooltip_arrow;
     top: 50%;
     right: 100%;
@@ -52,7 +52,7 @@ $tooltip_unit: 5px;
 
 /// Mixin for a left-pointing tooltip arrow.
 /// @group Tooltip
-@mixin tooltip_arrow_left {
+@mixin tooltip_arrow--left {
     @include tooltip_arrow;
     top: 50%;
     left: 100%;
@@ -89,7 +89,7 @@ $tooltip_unit: 5px;
 /// @group Tooltip
 @mixin tooltip_box {
     @include tooltip_base;
-    @include font_size_03;
+    @include font_size('03');
     content: attr(tooltip-data);
     width: 200px;
     background-color: var(--color_secondary);
@@ -105,7 +105,7 @@ $tooltip_unit: 5px;
 
 /// Mixin for a right-aligned tooltip box.
 /// @group Tooltip
-@mixin tooltip_box_right {
+@mixin tooltip_box--right {
     @include tooltip_box;
     top: calc($tooltip_unit / 2);
     left: 100%;
@@ -113,7 +113,7 @@ $tooltip_unit: 5px;
 
 /// Mixin for a top-aligned tooltip box.
 /// @group Tooltip
-@mixin tooltip_box_top {
+@mixin tooltip_box--top {
     @include tooltip_box;
     bottom: 100%;
     left: 50%;
@@ -147,7 +147,7 @@ $tooltip_unit: 5px;
 /// Tooltip content styling before the tooltip appears.
 /// @group Tooltip
 .tooltip:before {
-    @include tooltip_box_right;
+    @include tooltip_box--right;
     // z-index: 9999;
     // margin-left: -60px;
     // font-size: 0.70em;
@@ -158,7 +158,7 @@ $tooltip_unit: 5px;
 /// Tooltip arrow styling.
 /// @group Tooltip
 .tooltip:after {
-    @include tooltip_arrow_left;
+    @include tooltip_arrow--left;
 }
 
 /// Tooltip content and arrow visibility on hover.

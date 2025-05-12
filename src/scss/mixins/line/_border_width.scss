@@ -2,8 +2,8 @@
 // StyleScape | Borders | Width
 // ============================================================================
 
-@use "../../dev" as *;
-@use "../../variables" as *;
+@use '../../dev' as *;
+@use '../../variables' as *;
 // @use "../mixins" as *;
 
 // Border Width mixin
@@ -27,12 +27,7 @@
 /// @param {Number | null} $right - Right border width.
 /// @param {Number | null} $bottom - Bottom border width.
 /// @param {Number | null} $left - Left border width.
-@mixin border_width_side(
-    $top: null,
-    $right: null,
-    $bottom: null,
-    $left: null
-) {
+@mixin border_width_side($top: null, $right: null, $bottom: null, $left: null) {
     @if $top != null {
         border-top-width: $top !important;
     }
@@ -130,34 +125,34 @@
 // ============================================================================
 
 /// Mixin to remove the top border.
-@mixin no_border_top {
+@mixin no_border--top {
     @include border_width_side($top: 0);
 }
 
 /// Mixin to remove the bottom border.
-@mixin no_border_bottom {
+@mixin no_border--bottom {
     @include border_width_side($bottom: 0);
 }
 
 /// Mixin to remove the right border.
-@mixin no_border_right {
+@mixin no_border--right {
     @include border_width_side($right: 0);
 }
 
 /// Mixin to remove the left border.
-@mixin no_border_left {
+@mixin no_border--left {
     @include border_width_side($left: 0);
 }
 
-.no_border_top {
-    @include no_border_top;
+.no_border--top {
+    @include no_border--top;
 }
-.no_border_bottom {
-    @include no_border_bottom;
+.no_border--bottom {
+    @include no_border--bottom;
 }
-.no_border_right {
-    @include no_border_right;
+.no_border--right {
+    @include no_border--right;
 }
-.no_border_left {
-    @include no_border_left;
+.no_border--left {
+    @include no_border--left;
 }

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8" />
     <title>Stylescape</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/stylescape.css" />
+    <script type="module" src="/js/stylescape.js"></script>
     <style>
         .font_preview {
             margin-bottom: 1.5rem;
@@ -17,8 +18,6 @@
             margin-bottom: 0.2rem;
             display: block;
         }
-
-
 
         .swatch-grid {
             display: flex;
@@ -77,66 +76,177 @@
             line-height: 1.4;
             word-wrap: break-word;
         }
+
+
+        padding: 2rem;
+
+        label {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+
+        .color-card {
+            border: 1px solid var(--color_border, #ccc);
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: var(--color_surface_2);
+            text-align: center;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .color-swatch {
+            width: 100%;
+            height: 80px;
+            border-bottom: 1px solid var(--color_border, #ccc);
+        }
+
+        code {
+            display: block;
+            padding: 0.5rem;
+        }
+
+
+        .grid_layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: z("guides");
+        }
+
+        .grid-status {
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+            background: #eee;
+            color: #444;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+        }
     </style>
 </head>
 
-<body><header class="ribbon" id="ribbon" role="banner">
-        <h1 id="ribbon_title" class="ribbon_title" role="heading" aria-level="1">
-            <div class="ribbon_title_logo">
-                <a href="/" class="">
+<body class="layout_page_default"><div class="ribbon__slot--left">
 
+    <h1 id="ribbon__title" class="ribbon__slot--left ribbon__title" role="heading" aria-level="1">
+        <div class="ribbon__title__logo">
+            <a href="/" class="">∆</a>
+        </div>
+        <div class="ribbon__title__text">
+            <a href="/" class="">
+                STYLESCAPE
+            </a>
+        </div>
+    </h1>
+
+</div>
+
+<div class="ribbon__slot--center">
+
+    <nav id="ribbon__nav" class="ribbon__nav" role="navigation">
+        <button aria-label="Toggle navigation" aria-expanded="false" type="button" data-view-component="true"
+            id="ribbon__nav_button" class="menu_button ribbon__nav_button">
+            <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true"
+                class="octicon octicon-three-bars">
+                <path fill-rule="evenodd"
+                    d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+                </path>
+            </svg>
+        </button>
+        <ul id="ribbon__nav__list" class="ribbon__nav__list">
+            <li class="ribbon__nav__list__item">
+                <a href="/" class="ribbon__nav__list__item__text">
+                    Studio
                 </a>
-            </div>
-            <div class="ribbon_title_text">
-                <a href="/" class="">
-                    STYLESCAPE
+            </li>
+            <li class="ribbon__nav__list__item">
+                <a href="/" class="ribbon__nav__list__item__text">
+                    Stories
                 </a>
-            </div>
-        </h1>
-        <nav id="ribbon_nav" class="ribbon_nav" role="navigation">
-            <button aria-label="Toggle navigation" aria-expanded="false" type="button" data-view-component="true"
-                id="ribbon_nav_button" class="menu_button ribbon_nav_button">
+            </li>
+            <li class="ribbon__nav__list__item">
+                <a href="/" class="ribbon__nav__list__item__text">
+                    Services
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+</div>
+
+
+<div class="ribbon__slot--right">
+    <div class="ribbon__search">
+        <form id="ribbon__search__form" class="ribbon__search__form" role="search">
+            <input type="text" id="ribbon__search__input" class="ribbon__search__input" placeholder="Search...">
+            <button type="submit" id="ribbon__search_button" class="ribbon__search_button">
                 <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24"
-                    data-view-component="true" class="octicon octicon-three-bars">
+                    data-view-component="true" class="octicon octicon-search">
                     <path fill-rule="evenodd"
-                        d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+                        d="M11.742 10.344a5.5 5.5 0 1 1 .707-.707l3.646 3.646a1 1 0 0 1-1.414 1.414l-3.646-3.646zM12.5 6a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0z">
                     </path>
                 </svg>
             </button>
-            <ul id="ribbon_nav_list" class="ribbon_nav_list">
-                <li class="ribbon_nav_list_item">
-                    <a href="/" class="ribbon_nav_list_item_text">
-                        Studio
-                    </a>
-                </li>
-                <li class="ribbon_nav_list_item">
-                    <a href="/" class="ribbon_nav_list_item_text">
-                        Stories
-                    </a>
-                </li>
-                <li class="ribbon_nav_list_item">
-                    <a href="/" class="ribbon_nav_list_item_text">
-                        Services
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
-        <menu id="ribbon_menu" class="ribbon_menu" role="menubar">
-        </menu>
+        </form>
+    </div>
 
 
-    </header>
+    <menu id="ribbon__menu" class="ribbon__menu" role="menubar">
+        <li class="ribbon__menu__item">
+            <button class="ribbon__button" onclick="copy()">
+
+                <a href="">
+                    <i class="i i_symbol_swirl_left_02"></i>
+                </a>
+
+            </button>
+        </li>
+        <li class="ribbon__menu__item">
+            <button class="ribbon__button" onclick="copy()">
+
+                <a href="">
+                    <i class="i i_symbol_swirl_left_02"></i>
+                </a>
+
+            </button>
+        </li>
+    </menu>
+
+</div>
+
+    <!-- Grids -->
+    <div class="grid_layer guide_graph--centered" data-grid="graph"></div>
+    <div class="grid_layer guide_baseline" data-grid="baseline"></div>
+
+    <!-- Buttons -->
+    <button data-toggle="baseline">
+        ☰ Toggle Baseline <span class="grid-status" data-status="baseline">✓ On</span>
+    </button>
+    <button data-toggle="graph">
+        ⊞ Toggle Graph <span class="grid-status" data-status="graph">✓ On</span>
+    </button>
+    <button data-toggle="modular">
+        ⌘ Toggle Modular <span class="grid-status" data-status="modular">✓ On</span>
+    </button>
+
+
     <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
 
-    <header>
+    <header class="layout__area_header">
         <h1></h1>
     </header>
 
-    <main>
+    <main class="layout__area_main">
     </main>
 
-    <footer>
+    <footer class="layout__area_footer">
 <p>&copy; 2025 Stylescape</p>    </footer>
 
     <script>

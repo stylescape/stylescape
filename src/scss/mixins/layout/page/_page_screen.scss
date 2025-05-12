@@ -1,0 +1,165 @@
+@use '../../../dev' as *;
+@use '../grid' as *;
+@use '../flex' as *;
+
+@mixin layout_grid {
+    height: 100vh;
+    width: 100vw;
+
+    display: grid;
+    grid-auto-flow: row;
+    gap: 0;
+
+    // box-sizing: border-box;
+    overflow: hidden;
+}
+
+/// Layout | Screen Grid
+/// ---------------------------------------------------------------------------
+/// Defines a full-page 3×3 layout with outer areas set to `auto`
+/// and a scrollable center area (`middle_center`).
+///
+@mixin layout__grid--screen {
+    @include layout_grid;
+
+    // Outer columns and rows use 'auto' to grow to fit content,
+    // center column and row use '1fr' to absorb remaining space
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 1fr auto;
+
+    grid-template-areas:
+        'top_left      top_center       top_right'
+        'middle_left   middle_center    middle_right'
+        'bottom_left   bottom_center    bottom_right';
+}
+
+/// Layout | Scrollable Center
+/// ---------------------------------------------------------------------------
+/// Makes the center area scrollable.
+///
+@mixin layout__area_screen--center {
+    @include layout__area(middle_center);
+    overflow-y: auto;
+    // overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+// ============================================================================
+// Area Mixins: Per Region (Semantic Groupings)
+// ============================================================================
+
+/// Layout | Area Utility
+/// ---------------------------------------------------------------------------
+/// Assigns a grid-area to a region.
+/// @param {String} $name - The name of the grid area.
+///
+@mixin layout__area($name) {
+    grid-area: $name;
+}
+
+@mixin layout__area--top {
+    grid-row-start: top_left;
+    grid-column-start: top_left;
+    grid-row-end: top_right;
+    grid-column-end: top_right;
+}
+
+@mixin layout__area--middle {
+    grid-row-start: middle_left;
+    grid-column-start: middle_left;
+    grid-row-end: middle_right;
+    grid-column-end: middle_right;
+}
+
+@mixin layout__area--bottom {
+    grid-row-start: bottom_left;
+    grid-column-start: bottom_left;
+    grid-row-end: bottom_right;
+    grid-column-end: bottom_right;
+}
+
+// Optional: split main content column groups
+@mixin layout__area--left {
+    grid-row-start: top_left;
+    grid-column-start: top_left;
+    grid-row-end: bottom_left;
+    grid-column-end: bottom_left;
+}
+
+@mixin layout__area--center {
+    grid-row-start: top_center;
+    grid-column-start: top_center;
+    grid-row-end: bottom_center;
+    grid-column-end: bottom_center;
+}
+
+@mixin layout__area--right {
+    grid-row-start: top_right;
+    grid-column-start: top_right;
+    grid-row-end: bottom_right;
+    grid-column-end: bottom_right;
+}
+
+// ============================================================================
+// Utility Class Composition
+// ============================================================================
+
+///
+/// Layout | Apply Grid Areas
+/// ---------------------------------------------------------------------------
+///
+/// Usage: Add this class to `<body>` or `<main>` to activate layout.
+///
+.layout__grid--screen {
+    @include layout__grid--screen;
+
+    .layout__area--top_left {
+        @include layout__area(top_left);
+    }
+    .layout__area--top_center {
+        @include layout__area(top_center);
+    }
+    .layout__area--top_right {
+        @include layout__area(layout__area--top_left);
+    }
+    .layout__area--middle_left {
+        @include layout__area(middle_left);
+    }
+    .layout__area--middle_center {
+        @include layout__area_screen--center;
+    }
+    .layout__area--middle_right {
+        @include layout__area(middle_right);
+    }
+    .layout__area--bottom_left {
+        @include layout__area(bottom_left);
+    }
+    .layout__area--bottom_center {
+        @include layout__area(bottom_center);
+    }
+    .layout__area--bottom_right {
+        @include layout__area(bottom_right);
+    }
+
+    // Group Utilities
+
+    .layout__area--top {
+        @include layout__area--top;
+    }
+    .layout__area_middle {
+        @include layout__area--middle;
+    }
+    .layout__area--bottom {
+        @include layout__area--bottom;
+    }
+    .layout__area--left {
+        @include layout__area--left;
+    }
+    .layout__area--center {
+        @include layout__area--center;
+    }
+    .layout__area--right {
+        @include layout__area--right;
+    }
+}
