@@ -16,7 +16,7 @@ $tooltip_unit: 5px;
 /// Sets up the basic properties for a tooltip, including positioning,
 /// transition effects, and visibility.
 /// @group Tooltip
-@mixin tooltip_base {
+@mixin tooltip--base {
     position: absolute;
     border-width: 5px;
     // border-style: solid;
@@ -33,17 +33,17 @@ $tooltip_unit: 5px;
 /// Base mixin for tooltip arrows.
 /// Used as a base for creating directional arrows for tooltips.
 /// @group Tooltip
-@mixin tooltip_arrow {
+@mixin tooltip__arrow {
     content: '';
-    @include tooltip_base;
+    @include tooltip--base;
     border-style: solid;
     border-width: $tooltip_unit;
 }
 
 /// Mixin for a right-pointing tooltip arrow.
 /// @group Tooltip
-@mixin tooltip_arrow--right {
-    @include tooltip_arrow;
+@mixin tooltip__arrow--right {
+    @include tooltip__arrow;
     top: 50%;
     right: 100%;
     margin-top: -$tooltip_unit;
@@ -52,8 +52,8 @@ $tooltip_unit: 5px;
 
 /// Mixin for a left-pointing tooltip arrow.
 /// @group Tooltip
-@mixin tooltip_arrow--left {
-    @include tooltip_arrow;
+@mixin tooltip__arrow--left {
+    @include tooltip__arrow;
     top: 50%;
     left: 100%;
     margin-top: -$tooltip_unit;
@@ -62,8 +62,8 @@ $tooltip_unit: 5px;
 
 /// Mixin for a downward-pointing tooltip arrow.
 /// @group Tooltip
-@mixin tooltip_arrow_down {
-    @include tooltip_arrow;
+@mixin tooltip__arrow_down {
+    @include tooltip__arrow;
     bottom: 0%;
     left: 50%;
     margin-left: -$tooltip_unit;
@@ -72,8 +72,8 @@ $tooltip_unit: 5px;
 
 /// Mixin for a upward-pointing tooltip arrow.
 /// @group Tooltip
-@mixin tooltip_arrow_up {
-    @include tooltip_arrow;
+@mixin tooltip__arrow_up {
+    @include tooltip__arrow;
     bottom: 0%;
     left: 50%;
     margin-left: -$tooltip_unit;
@@ -87,8 +87,8 @@ $tooltip_unit: 5px;
 /// Sets up the basic properties and styles for a tooltip box, including
 /// size, color, and text alignment.
 /// @group Tooltip
-@mixin tooltip_box {
-    @include tooltip_base;
+@mixin tooltip--box {
+    @include tooltip--base;
     @include font_size('03');
     content: attr(tooltip-data);
     width: 200px;
@@ -105,16 +105,16 @@ $tooltip_unit: 5px;
 
 /// Mixin for a right-aligned tooltip box.
 /// @group Tooltip
-@mixin tooltip_box--right {
-    @include tooltip_box;
+@mixin tooltip--box--right {
+    @include tooltip--box;
     top: calc($tooltip_unit / 2);
     left: 100%;
 }
 
 /// Mixin for a top-aligned tooltip box.
 /// @group Tooltip
-@mixin tooltip_box--top {
-    @include tooltip_box;
+@mixin tooltip--box--top {
+    @include tooltip--box;
     bottom: 100%;
     left: 50%;
 }
@@ -147,7 +147,7 @@ $tooltip_unit: 5px;
 /// Tooltip content styling before the tooltip appears.
 /// @group Tooltip
 .tooltip:before {
-    @include tooltip_box--right;
+    @include tooltip--box--right;
     // z-index: 9999;
     // margin-left: -60px;
     // font-size: 0.70em;
@@ -158,7 +158,7 @@ $tooltip_unit: 5px;
 /// Tooltip arrow styling.
 /// @group Tooltip
 .tooltip:after {
-    @include tooltip_arrow--left;
+    @include tooltip__arrow--left;
 }
 
 /// Tooltip content and arrow visibility on hover.

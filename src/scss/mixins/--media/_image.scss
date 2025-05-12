@@ -7,25 +7,30 @@
 // Media | Image
 // ============================================================================
 
-/// Resets border styling on images to remove borders when inside an `<a>` element.
+///
+/// Resets border styling on images to remove borders when inside an `<a>`
+/// element.
+///
 img {
     border-style: none; /* Remove border when inside `a` element in IE 8/9/10 */
     // max-width: 100%;
     // height: auto;
 }
 
+///
 /// Mixin for styling images to cover their container.
 ///
 /// The image is positioned absolutely, taking up the full width and height
-/// of its container. The background is centered and covers the entire container.
-@mixin image_cover {
+/// of its container. The background is centered and covers the entire
+/// container.
+///
+@mixin image--cover {
     position: absolute;
     width: 100%;
     height: 100%;
-    // background-color:         var(--color_primary);  /* Used if the image is unavailable */
     background-position: 50% 50%;
-    background-repeat: no-repeat !important; /* Do not repeat the image */
-    background-size: cover !important; /* Resize the background image to cover the entire container */
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -35,10 +40,13 @@ img {
     // background-position: center !important;
 }
 
+///
 /// Mixin for creating a parallax effect on images.
 ///
-/// The image is positioned relative with a fixed background attachment, creating a parallax scrolling effect.
-@mixin image_parallax {
+/// The image is positioned relative with a fixed background attachment,
+/// creating a parallax scrolling effect.
+///
+@mixin image--parallax {
     position: relative !important;
     background-size: cover !important;
     overflow: hidden;
@@ -49,10 +57,13 @@ img {
     -o-transition-duration: 0s;
 }
 
+///
 /// Mixin for fixing the background of an image in place.
 ///
-/// The image background is fixed, centered, and does not repeat. This is useful for creating non-scrolling backgrounds.
-@mixin image_fix_background {
+/// The image background is fixed, centered, and does not repeat. This is
+/// useful for creating non-scrolling backgrounds.
+///
+@mixin image_fix--background {
     background-attachment: fixed !important;
     background-position: center center;
     background-repeat: no-repeat;
