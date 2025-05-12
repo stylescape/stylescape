@@ -1,43 +1,125 @@
 // ============================================================================
 // Imports
 // ============================================================================
+@use 'sass:map';
+
+@use '../../type' as *;
+@use '../../body_cells' as *;
 @use '../../../dev' as *;
 @use '../../../variables' as *;
-
 // ============================================================================
-// Container | Ribbon | Base
+// Ribbon Base Styles
 // ============================================================================
 
 ///
-/// Mixin: ribbon
-/// ----------------------------------------------------------------------------
-/// A layout container ribbon with fixed height and shadow, using CSS Grid.
+/// Base Ribbon Style
+/// ---------------------------------------------------------------------------
+/// Shared styles for all ribbons regardless of side.
 ///
-/// Structure:
-///  ┌──────────────────────────────────────────────┐
-///  │ ribbon_left  |   ribbon_mid   | ribbon_right │
-///  └──────────────────────────────────────────────┘
-///
-@mixin ribbon {
-    // display: grid;
-    align-items: stretch;
+@mixin ribbon_base {
+    // Grid
+    display: grid;
+    gap: 0;
+
     box-sizing: border-box;
     pointer-events: all;
+
+    background-color: var(--color_foreground);
+    color: var(--color_background);
+
+    // Typography: Uniform text styling
+    font-size: basepoint(3); // or a fixed value like 1rem
+    line-height: baseline(3); // consistent vertical rhythm
+
+    // Layering and boundary
+    z-index: z('ribbon');
+    overflow: hidden;
+
+    // Ensure safe scroll context for dropdowns
+    position: relative;
+
+    // align-items: stretch;
+}
+
+@mixin ribbon--inverted {
+    background-color: var(--color_background);
+    color: var(--color_foreground);
+}
+
+// @include font_size('03');
+
+// ============================================================================
+// Ribbon | Horizontal (Top/Bottom)
+// ============================================================================
+
+///
+/// Horizontal Ribbon (Top or Bottom)
+/// ---------------------------------------------------------------------------
+///
+/// A layout container ribbon with fixed height and shadow, using CSS Grid.
+/// Three columns: left, center, right
+///
+@mixin ribbon--horizontal {
+    @include ribbon_base;
+
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: calc($q * 40);
+    grid-template-areas: 'ribbon_area--horizontal_left ribbon_area--horizontal_center ribbon_area--horizontal_right';
 
     // Layout
     width: 100%;
     height: calc($q * 40);
-    padding-left: calc($q * 4);
-    padding-right: calc($q * 4);
+    // padding-left: calc($q * 4);
+    // padding-right: calc($q * 4);
+    align-items: center;
+}
 
-    // Grid
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: calc($q * 40);
-    grid-template-areas: 'ribbon_left ribbon_mid ribbon_right';
-    gap: 0;
+/// Top Ribbon
+@mixin ribbon--top {
+    @include ribbon--horizontal;
+    border-bottom: 1px solid var(--color_border);
+}
 
-    // Layering and Visuals
-    z-index: z('ribbon');
-    background-color: var(--color_foreground);
-    color: var(--color_background);
+/// Bottom Ribbon
+@mixin ribbon--bottom {
+    @include ribbon--horizontal;
+    border-top: $q solid var(--color_border);
+}
+
+// ============================================================================
+// Ribbon | Vertical (Left/Right)
+// ============================================================================
+
+///
+/// Vertical Ribbon (Left or Right)
+/// ---------------------------------------------------------------------------
+/// Three rows: top, center, bottom
+///
+@mixin ribbon--vertical {
+    @include ribbon_base;
+
+    grid-template-columns: calc($q * 40);
+    grid-template-rows: 1fr auto 1fr;
+    grid-template-areas:
+        'ribbon_area--vertical_top'
+        'ribbon_area--vertical_center'
+        'ribbon_area--vertical_bottom';
+
+    height: 100%;
+    width: calc($q * 40);
+    // padding: calc($q * 4) 0;
+    justify-items: center;
+}
+
+/// Left Ribbon
+@mixin ribbon--left {
+    @include ribbon--vertical;
+    border-right: 1px solid var(--color_border);
+}
+
+/// Right Ribbon
+@mixin ribbon--right {
+    @include ribbon--vertical;
+    // Optionally: add visual separator
+    border-left: 1px solid var(--color_border);
 }

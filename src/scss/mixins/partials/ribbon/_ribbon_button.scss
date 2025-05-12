@@ -1,0 +1,49 @@
+// ============================================================================
+// Imports
+// ============================================================================
+@use '../../components' as *;
+@use '../../layout' as *;
+@use '../../../variables' as *;
+@use '../../type' as *;
+@use '../../body_cells' as *;
+@use '../../../dev' as *;
+
+// ============================================================================
+// Container | Ribbon | Menu
+// ============================================================================
+
+@mixin ribbon__button {
+    // background-color: var(--color_foreground);
+    // color: var(--color_background);
+
+    position: relative;
+    overflow: visible;
+
+    .i,
+    .i::before,
+    [class^='i_']::before,
+    [class*=' i_']::before {
+        color: white !important;
+        margin: 0;
+        font-size: $q * 28;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        vertical-align: middle;
+        transform: translate(-#{$q * 6}, -#{$q * 2});
+        font-weight: bold;
+    }
+
+    svg {
+        stroke-width: 0;
+    }
+}
+
+.ribbon__button {
+    @include ribbon__button;
+}
+
+// .ribbon--inverted .ribbon__button {
+//     @include ribbon__button(true); // inverted scheme
+// }

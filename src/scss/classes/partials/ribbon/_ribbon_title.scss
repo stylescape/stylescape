@@ -1,66 +1,74 @@
-
 // ============================================================================
 // Imports
 // ============================================================================
 
-
-
-@use "../../../dev" as *;
 @use '../../../variables' as *;
 @use '../../../mixins' as *;
-
+@use '../../../dev' as *;
 
 // ============================================================================
 // Container Styles | Ribbon | Ttile
 // ============================================================================
 
+// ============================================================================
+// Ribbon Title Utilities
+// ============================================================================
 
-
-.ribbon_title {
-    @include reset_bleed;
-    @include icon_bar_horizontal;
-    @include align_self_start;
-    @include font_size_04;
-    @include align_center;
-    @include hyperlink_clean;
-    // @include color_scheme_dark;
-    font-size: $q * 20;
-    align-content: center;
-    height: 100%;
-    grid-area: ribbon_mid;
-    @include justify_center;
-
-    @media screen and (min-width: $media_md) {
-        grid-area: ribbon_left;
-        @include justify_start;
-
-    }
-
-    .ribbon_title_logo {
-        padding-left: calc($ribbon_spacing / 2);
-        padding-right: calc($ribbon_spacing / 2);
-    }
-
-    .ribbon_title_logo {
-        // @include icon_size_04;
-        svg {
-            // @include color_scheme_dark;
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    .ribbon_title_text {
-        @include hyperlink_clean;
-        @include invisible;
-        @include font_size_03;
-        display: none;
-        @media screen and (min-width: $media_md) {
-            @include visible;
-            display: inherit;
-            overflow: visible;
-            white-space: nowrap;
-        }
-    }
+.ribbon__title {
+    @include ribbon__title;
 }
+.ribbon__title__logo {
+    @include ribbon__title__logo;
+}
+.ribbon__title__text {
+    @include ribbon__title__text;
+}
+
+// ============================================================================
+// .ribbon__title {
+//     @include reset_bleed;
+//     @include icon_bar--horizontal;
+//     @include align_self_start;
+//     @include font_size('04');
+//     @include align--center;
+//     @include hyperlink_clean;
+//     // @include color_scheme_dark;
+//     font-size: $q * 20;
+//     align-content: center;
+//     height: 100%;
+//     grid-area: ribbon--center;
+//     @include justify--center;
+
+//     @media screen and (min-width: $media_md) {
+//         grid-area: ribbon--left;
+//         @include justify_start;
+//     }
+
+//     .ribbon__title_logo {
+//         padding-left: calc($ribbon_spacing / 2);
+//         padding-right: calc($ribbon_spacing / 2);
+//     }
+
+//     .ribbon__title_logo {
+//         @include icon_size_04;
+//         svg {
+//             // @include color_scheme_dark;
+//             position: relative;
+//             width: 100%;
+//             height: 100%;
+//         }
+//     }
+
+//     .ribbon__title_text {
+//         @include hyperlink_clean;
+//         @include invisible;
+//         @include font_size('03');
+//         display: none;
+//         @media screen and (min-width: $media_md) {
+//             @include visible;
+//             display: inherit;
+//             overflow: visible;
+//             white-space: nowrap;
+//         }
+//     }
+// }
