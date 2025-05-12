@@ -117,3 +117,27 @@ stages:
                 options:
                     srcDir: "./src/font"
                     destDir: "./dist/font"
+            # Package.json
+            # -----------------------------------------------------------------
+            -
+                name: Package.json
+                action: PackageManagerAction
+                options:
+                    packageJsonPath: "./package.json"
+                    outputDir: "./dist"
+                    fields:
+                        - name
+                        - version
+                        - bin
+                        - dependencies
+                        - description
+                        - keywords
+                        - license
+                        - homepage
+                    # customConfig:
+                    #     private: true
+                    #     scripts:
+                    #     start: "node index.js"
+                    #     build: "npm run build"
+                    #     devDependencies:
+                    #     typescript: "^5.0.0"
