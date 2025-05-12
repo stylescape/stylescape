@@ -1,0 +1,200 @@
+// ============================================================================
+// Elements | Progress
+// ============================================================================
+
+@use '../../dev' as *;
+@use '../../variables' as *;
+// @use "../mixins" as *;
+@use '../type' as *;
+
+// ============================================================================
+// Slider Bar
+// ============================================================================
+
+/// Mixin to style <input type='range'>
+/// @group Form
+// @mixin range_slider() {
+//     -webkit-appearance: none;
+//     appearance: none;
+//     height: 10px;
+//     cursor: pointer;
+//     background: linear-gradient(
+//         to right,
+//         var(--color_primary) 0%,
+//         var(--color_primary) var(--range-percent, 50%),
+//         var(--color_surface_1) var(--range-percent, 50%),
+//         var(--color_surface_1) 100%
+//     );
+//     border-radius: 4px;
+
+//     &::-webkit-slider-runnable-track {
+//         background: transparent; // handled by parent background
+//         height: 10px;
+//         border-radius: 4px;
+//     }
+
+//     &::-webkit-slider-thumb {
+//         -webkit-appearance: none;
+//         appearance: none;
+//         width: 16px;
+//         height: 16px;
+//         background-color: var(--color_primary);
+//         border: none;
+//         border-radius: 50%;
+//         margin-top: -3px;
+//         transition: background 0.3s ease;
+//         position: relative;
+//         z-index: 2;
+//     }
+
+//     &::-moz-range-track {
+//         background: transparent;
+//         height: 10px;
+//         border-radius: 4px;
+//     }
+
+//     &::-moz-range-thumb {
+//         width: 16px;
+//         height: 16px;
+//         background-color: var(--color_primary);
+//         border: none;
+//         border-radius: 50%;
+//         transition: background 0.3s ease;
+//         position: relative;
+//         z-index: 2;
+//     }
+// }
+
+/// Mixin to style <input type='range'> with left-side fill using pure CSS
+/// @group Form
+///
+///
+/// SLIDER NEEDS ATTENTION & REWORK!!!!!
+/// https://codepen.io/ShadowShahriar/pen/zYPPYrQ
+
+@mixin range_slider() {
+    // ─── Base input container ────────────────────────────────────────────────
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: var(--thumb-size);
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px; // round the whole thing
+
+    // ─── Vars ─────────────────────────────────────────────────────────────────
+    --thumb-size: 16px; // 16×16 circle
+    --track-height: 10px; // visible line
+    --track-color: var(--color_surface_1);
+    --fill-color: var(--color_primary);
+
+    // helper math
+    --track-gap: calc((var(--thumb-size) - var(--track-height)) / 2);
+    --thumb-half: calc(var(--thumb-size) / 2);
+
+    // ─── WebKit: unfilled track ───────────────────────────────────────────────
+    &::-webkit-slider-runnable-track {
+        height: var(--track-height);
+        margin-top: var(--track-gap); // center it vertically
+        background-color: var(--track-color);
+        border-radius: 4px;
+    }
+
+    // ─── WebKit: thumb + dynamic fill ─────────────────────────────────────────
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: var(--thumb-size);
+        height: var(--thumb-size);
+        margin: 0; // no extra offset
+        background-color: var(--fill-color);
+        border: none;
+        border-radius: 50%; // perfect circle
+        position: relative;
+        z-index: 1;
+
+        // giant left-going shadow in fill-color…
+        box-shadow: calc(-100vmax + var(--thumb-half)) 0 0 100vmax var(--fill-color);
+
+        // …clipped so it only covers exactly the track area up to the thumb center
+        clip-path: inset(
+            var(--track-gap) /* top */ var(--thumb-half) /* right */ var(--track-gap) /* bottom */ 0
+                /* left */
+        );
+    }
+
+    // ─── Disabled state ───────────────────────────────────────────────────────
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    // ─── Firefox fallback ─────────────────────────────────────────────────────
+    &::-moz-range-track {
+        height: var(--track-height);
+        margin-top: var(--track-gap);
+        background-color: var(--track-color);
+        border-radius: 4px;
+    }
+    &::-moz-range-progress {
+        height: var(--track-height);
+        margin-top: var(--track-gap);
+        background-color: var(--fill-color);
+        border-radius: 4px;
+    }
+    &::-moz-range-thumb {
+        width: var(--thumb-size);
+        height: var(--thumb-size);
+        background-color: var(--fill-color);
+        border-radius: 50%;
+        border: none;
+    }
+}
+
+/// @group Form
+input[type='range'] {
+    @include range_slider;
+}
+
+// ============================================================================
+// Progress Bar
+// ============================================================================
+
+/// Mixin to style <progress> tag
+/// @group Form
+@mixin progress_bar() {
+    height: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--color_surface_1);
+    -webkit-appearance: none;
+    appearance: none;
+    overflow: hidden;
+
+    // WebKit (Chrome, Safari)
+    &::-webkit-progress-bar {
+        background-color: var(--color_surface_1);
+        border-radius: 4px;
+    }
+
+    &::-webkit-progress-value {
+        background-color: var(--color_primary);
+        border-radius: 4px;
+        transition: width 0.3s ease;
+    }
+
+    // Firefox
+    &::-moz-progress-bar {
+        background-color: var(--color_primary);
+        border-radius: 4px;
+        transition: width 0.3s ease;
+    }
+}
+
+/// @group Form
+progress,
+meter {
+    @include progress_bar;
+}

@@ -131,6 +131,60 @@ button {
 
     &:disabled {
         background: var(--color_muted);
+        color: var(--color_dark);
+    }
+}
+
+@mixin button_outline {
+    border: 1.5px solid var(--color_primary);
+    color: var(--color_primary);
+    background: none;
+
+    &:hover {
+        background: hue_color('N2402');
+    }
+
+    &:focus-within {
+        border: 3px solid hue_color('N2404');
+    }
+
+    &:active {
+        background: hue_color('N2407');
+    }
+
+    &:disabled {
+        border: 1.5px solid var(--color_muted);
+        color: var(--color_muted);
+
+        &:hover {
+            background: var(--color_dark);
+        }
+    }
+}
+
+@mixin button_clear {
+    border: none;
+    color: var(--color_primary);
+    background: none;
+
+    &:hover {
+        background: hue_color('N2402');
+    }
+
+    &:focus-within {
+        border: 3px solid hue_color('N2404');
+    }
+
+    &:active {
+        background: hue_color('N2407');
+    }
+
+    &:disabled {
+        color: var(--color_muted);
+
+        &:hover {
+            background: var(--color_dark);
+        }
     }
 }
 
@@ -138,6 +192,14 @@ button {
 /// @group Button
 button {
     @include button;
+
+    &.outline {
+        @include button_outline;
+    }
+
+    &.clear {
+        @include button_clear;
+    }
 }
 
 /// Menu button with specific dimensions and transparent background

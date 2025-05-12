@@ -473,7 +473,7 @@
     align-self: stretch;
     border-radius: 4px;
     border: 1.5px solid var(--color_dark);
-    color: &color_dark;
+    color: var(--color_dark);
 
     &:hover {
         border: 1.5px solid var(--color_primary);
@@ -519,8 +519,7 @@ input[type='url'],
 input[type='search'],
 input[type='number'],
 input[type='file'],
-textarea,
-select {
+textarea {
     @include input;
 }
 
@@ -530,31 +529,74 @@ textarea {
     resize: none;
 }
 
+/// @group Form
+@mixin select {
+    background-color: var(--color_background);
+
+    padding-right: 40px;
+    cursor: pointer;
+
+    // Inherit other input styles
+    @include input;
+
+    &option {
+        color: var(--color_dark);
+        background-color: var(--color_background);
+
+        &:hover {
+            background: hue_color('N2402');
+        }
+    }
+}
+
+select {
+    @include select;
+}
+
 // ============================================================================
 // RADIO / CHECKBOX
 // ============================================================================
 
 @mixin radio {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
     width: 24px;
     height: 24px;
     flex-shrink: 0;
-    border-radius: 12px;
+    border-radius: 50%;
     border: 1.5px solid var(--color_primary);
+    background: transparent;
+    position: relative;
+    cursor: pointer;
 
-    &:hover {
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        background: var(--color_primary);
+        border-radius: 50%;
+        transform: translate(25%, -60%);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    &:hover:not(:checked) {
         background: hue_color('N2402');
     }
 
-    &:checked {
-        ::after {
-            width: 20px;
-            height: 20px;
-            background: var(--color_primary);
-        }
+    &:checked::after {
+        opacity: 1;
     }
 
     &:disabled {
-        border: 1.5px solid var(--color_muted);
+        border-color: var(--color_muted);
+        background: transparent;
+        cursor: not-allowed;
     }
 }
 
@@ -565,17 +607,48 @@ input[type='radio'] {
 }
 
 @mixin checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
     width: 24px;
     height: 24px;
     flex-shrink: 0;
     border-radius: 4px;
     border: 1.5px solid var(--color_primary);
+    position: relative;
+    cursor: pointer;
+
     &:hover {
         background: hue_color('N2402');
     }
 
+    &::after {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 8px;
+        width: 6px;
+        height: 12px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
     &:checked {
         background: var(--color_primary);
+
+        &::after {
+            opacity: 1;
+        }
+    }
+
+    &:disabled {
+        border-color: var(--color_muted);
+        background-color: var(--color_background);
+        cursor: not-allowed;
     }
 }
 
