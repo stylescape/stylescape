@@ -1,0 +1,46 @@
+// ============================================================================
+// Imports
+// ============================================================================
+
+@use '../../variables' as *;
+@use '../layout' as *;
+@use '../../dev' as *;
+@use 'box' as *;
+
+// ============================================================================
+// Font-based Icons
+// ============================================================================
+.i {
+    text-emphasis-style: none;
+
+    * {
+        font-size: 24px;
+    }
+
+    &::before {
+        font-size: 24px;
+    }
+}
+
+.i::before,
+[class^='i_']::before,
+[class*=' i_']::before {
+    font-family: 'icongl' !important;
+    display: inline-block;
+    font-size: $q * 20;
+    color: #000000;
+    line-height: 1;
+    margin: 0;
+    margin-top: $q * 2;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    vertical-align: -0.125em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+button .i {
+    pointer-events: none;
+}

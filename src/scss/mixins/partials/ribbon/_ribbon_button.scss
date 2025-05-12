@@ -5,19 +5,27 @@
 @use '../../layout' as *;
 @use '../../../variables' as *;
 @use '../../type' as *;
-@use '../../body_cells' as *;
+@use '../../atoms' as *;
 @use '../../../dev' as *;
 
 // ============================================================================
 // Container | Ribbon | Menu
 // ============================================================================
 
+///
+/// Menu button with specific dimensions and transparent background
+/// @group Button
+///
 @mixin ribbon__button {
     // background-color: var(--color_foreground);
     // color: var(--color_background);
 
     position: relative;
     overflow: visible;
+
+    width: $q * 24;
+    height: $q * 24;
+    background-color: transparent;
 
     .i,
     .i::before,
