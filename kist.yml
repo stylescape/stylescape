@@ -35,10 +35,14 @@ stages:
 
         steps:
 
-
-
-            # Dirs Clean
+            # Process SCSS
             # -----------------------------------------------------------------
+            -   name: ProcessMainStyles
+                action: StyleProcessingAction
+                options:
+                    inputFile: "./src/scss/index.scss"
+                    outputFile: "./dist/css/stylescape.min.css"
+                    styleOption: "compressed"
             -
                 name: ProcessAdditionalStyles
                 action: StyleProcessingAction
@@ -63,6 +67,34 @@ stages:
                     version: "1.0.0"
                     author: "Lars van Vianen"
 
+            # Compile TS to JS
+            # -----------------------------------------------------------------
+
+
+            -
+                name: Compile TS to JS
+                action: TypeScriptCompilerAction
+                options:
+                    tsConfigPath: "./tsconfig.json"
+                    filePaths:
+                        - "src/ts/index.ts"
+                    outputDir: "./dist/js"
+                    compilerOptions:
+                        target: "ES2020"
+                        module: "CommonJS"
+            -
+                name: Rename README File
+                action: FileRenameAction
+                options:
+                    srcPath: "./dist/js/index.js.map"
+                    targetPath: "./dist/js/stylescape.js.map"
+
+            -
+                name: Rename README File
+                action: FileRenameAction
+                options:
+                    srcPath: "./dist/js/index.js"
+                    targetPath: "./dist/js/stylescape.js"
 
             # Copy HTML
             # -----------------------------------------------------------------
@@ -79,3 +111,9 @@ stages:
                     srcDir: "./src/html"
                     destDir: "./dist/html"
 
+            -
+                name: CopySrcTS
+                action: DirectoryCopyAction
+                options:
+                    srcDir: "./src/font"
+                    destDir: "./dist/font"
