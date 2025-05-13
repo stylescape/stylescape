@@ -6,6 +6,10 @@
 @use '../../variables' as *;
 @use '../type' as *;
 
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../type' as *;
+
 // ============================================================================
 // Maps
 // ============================================================================
@@ -56,7 +60,7 @@ $box_size_map: (
 /// @group Boxes
 ///
 @mixin box--size($val) {
-    // @include box_border;
+    @include reset_bleed;
     @include box--content;
     $size: baseline($val);
     aspect-ratio: 1;
@@ -66,6 +70,12 @@ $box_size_map: (
     min-height: $size;
     max-width: $size;
     max-height: $size;
+    // Optional:
+    border-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 @mixin box--size_rect($w, $h) {
