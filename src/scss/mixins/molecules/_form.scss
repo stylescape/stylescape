@@ -56,18 +56,6 @@ body:not(:-moz-handler-blocked) fieldset {
     display: table-cell;
 }
 
-// Form | Fieldset | Input
-// ----------------------------------------------------------------------------
-
-/// Input element styling.
-/// Resets default styles for inputs for better cross-browser consistency.
-/// @group Form
-input {
-    border-radius: 0;
-    outline: none;
-    border: none;
-}
-
 // Form | Fieldset | Input | Types
 // ----------------------------------------------------------------------------
 
@@ -88,375 +76,571 @@ input {
     -webkit-appearance: none; // Removes the inner padding in Chrome and Safari on macOS
 }
 
-// /* # =================================================================
-//    # Forms
-//    # ================================================================= */
+//// ENGINE
+///
+///
+///
+.form-control {
+    @include reset_bleed;
+    // width: 50%;
+    // margin: 0 auto;
+    border-bottom: 1px solid #888;
+    border-top: 0p;
+    border-left: 0p;
+    border-right: 0;
+    border-radius: 0;
+    margin-top: 8 * $q;
+    margin-bottom: 8 * $q;
+}
 
-//   optgroup {
-//     font-weight: bold; /* Restore the font weight unset by the previous rule */
-//   }
-
-//   a:focus,
-//   button:focus,
-//   input:focus,
-//   select:focus,
-//   textarea:focus {
-//     outline-width: 0;
-//   }
-
-//   ::-webkit-file-upload-button {
-//     /* Correct the inability to style clickable types in iOS and Safari */
-//     -webkit-appearance: button;
-//     color: inherit;
-//     font: inherit; /* Change font properties to `inherit` in Chrome and Safari */
-//   }
-
-//   /* Replace pointer cursor in disabled elements */
-//   [disabled] {
-//     cursor: default;
-//   }
-
-// .form_contact{
-//     label, input, textarea{
-//       @include reset_bleed;
-//       display: float;
-//       padding-top:            ($q * 1.00);
-//       padding-bottom:         ($q * 0.75);
-//       border-bottom-width:    ($q * 0.25);
-//       border-bottom-style:    solid;
-//       border-bottom-color:    var(--color_secondary);
-//     }
-//     label{
-//         float: left;
-//         height: $baseline;
-//         margin-bottom: $baseline;
-//         width:25%;
-//         min-width:25%;
-//     }
-//     input{
-//         background: transparent;
-//         color: var(--color_primary);
-//         float: right;
-//         height: $baseline;
-//         width:75%;
-//         max-width:75%;
-//         margin-bottom: $baseline;
-//         background-color: var(--color_primary);
-
-//     }
-//     textarea{
-//         background: transparent;
-//         height: calc(10*$baseline);
-//         width:100%;
-//         margin-bottom: $baseline;
-//         background-color: var(--color_secondary);
-//         opacity: .1;
-//     }
+// @mixin portal_button {
+//     text-align: right;
+//     padding-left: 8 * $q;
+//     padding-right: 8 * $q;
+//     background-color: #000 !important;
+//     color: #fff !important;
+//     cursor: pointer !important;
+//     border-radius: $q;
 // }
 
-// .form-group
-// {
-//     position: relative;
+// .portal_form {
+//     @include col_24;
+//     @include grid_col_24;
 
-//     display: block;
-
-//     margin-bottom: 1.875rem;
-// }
-
-// .form-row
-// {
-//     display: grid;
-
-//     grid-gap: 1.875rem;
-//     grid-template-columns: repeat(1, 1fr);
-// }
-// .form-row.two-col
-// {
-//     grid-template-columns: repeat(2, 1fr);
-// }
-// @media only screen and (max-width: 767px)
-// {
-//     .form-row.two-col
-//     {
-//         grid-gap: 0;
-//         grid-template-columns: repeat(1, 1fr);
-//     }
-// }
-// .form-row.three-col
-// {
-//     grid-template-columns: repeat(3, 1fr);
-// }
-// @media only screen and (max-width: 767px)
-// {
-//     .form-row.three-col
-//     {
-//         grid-gap: 0;
-//         grid-template-columns: repeat(1, 1fr);
-//     }
-// }
-
-// /// Mixin for general input and textarea reset styles
-// /// @group Form
-// @mixin form_reset {
-//     @include reset_bleed;
-//     display: block;
-//     padding: ($q * 0.75) 0;
-//     border-bottom: ($q * 0.25) solid var(--color_secondary);
-// }
-
-// /// Example of custom form styling
-// /// @group Form
-// .form_contact {
-//     label, input, textarea {
-//         @include form_reset;
-//     }
-//     label {
-//         float: left;
-//         height: $baseline;
-//         margin-bottom: $baseline;
-//         width: 25%;
-//         min-width: 25%;
-//     }
 //     input {
-//         background: transparent;
-//         color: var(--color_primary);
-//         float: right;
-//         height: $baseline;
-//         width: 75%;
-//         max-width: 75%;
-//         margin-bottom: $baseline;
-//         background-color: var(--color_primary);
+//         // display: none;
+//         // @include col_6;
 //     }
-//     textarea {
-//         background: transparent;
-//         height: calc(10 * $baseline);
+
+//     fieldset,
+//     .form_fieldset {
+//         @include col_24;
+//         display: contents;
+
+//         legend,
+//         .form_legend {
+//             display: none;
+//         }
+
+//         .form_fields {
+//             display: grid;
+//             @include col_24;
+//             @include grid_col_24;
+
+//             .form_fields_nested {
+//                 @include col_24;
+//                 @include grid_col_24;
+
+//                 .form_fields_nested {
+//                     grid-column-start: 7;
+//                     grid-column-end: -1;
+//                 }
+//             }
+
+//             .form_field_info,
+//             .form_fields_nested > .form_field_info,
+//             .form_fields_nested > .form_fields_nested > .form_field_info {
+//                 @include col_6;
+//                 @include flex_col;
+
+//                 .form_field_label,
+//                 .form_field_help,
+//                 .form_field_errors {
+//                 }
+
+//                 label,
+//                 .form_field_label {
+//                 }
+
+//                 .form_field_help {
+//                     @include font_size_03;
+//                 }
+
+//                 .form_field_errors {
+//                     @include font_size_03;
+//                     color: red;
+//                 }
+//             }
+
+//             .form_field_input,
+//             .form_fields_nested > .form_field_input,
+//             .form_fields_nested > .form_fields_nested > .form_field_input {
+//                 @include col_18;
+
+//                 * {
+//                     width: 100%;
+//                 }
+
+//                 input,
+//                 .form-control {
+//                     // @include col_18;
+//                     // width: 80%
+//                     width: 100%;
+//                 }
+
+//                 input[type='checkbox'] {
+//                     width: 32 * $q;
+//                 }
+//             }
+//         }
+
+//         .form_line {
+//             @include col_24;
+//             width: 100%;
+//             margin-top: 8 * $q;
+//             border-bottom-style: solid;
+//             border-bottom-width: $data_table_body_border_width;
+//             border-bottom-color: $data_table_body_border_color;
+//         }
+
+//         .form_buttons {
+//             @include col_24;
+//             @include flex_row_rev;
+
+//             .form_button {
+//                 @include portal_button;
+//             }
+//         }
+//     }
+// }
+
+// .form_field_info {
+//     grid-column: span 24 !important;
+// }
+
+// .form_field_label {
+//     font-size: 1.17rem;
+//     font-variation-settings: 'wght' 700;
+// }
+
+// .form_field_input {
+//     @include input-field();
+// }
+
+// .form-control.form_field {
+//     border-bottom: none;
+// }
+
+// .form_button {
+//     margin-top: 24px;
+//     @include action-button();
+// }
+
+// /* FORM FIELD FIXES */
+
+// .form_field_wrap {
+//     margin-bottom: 1rem;
+// }
+
+// .form_field_info {
+//     margin: 0.5rem 0;
+
+//     .form_field_label {
+//         display: block;
+//         margin: 0px;
+//     }
+// }
+
+// .form_field_input {
+//     input {
 //         width: 100%;
-//         margin-bottom: $baseline;
-//         background-color: var(--color_secondary);
-//         opacity: 0.1;
+//     }
+
+//     select {
+//         margin: 0.5rem 0;
+//         display: flex;
+//         width: 100%;
+//         background: none;
 //     }
 // }
 
-/// General styles for various form elements
-/// @group Form
-// form {
-//     max-width: 100%;
+// .form_buttons {
+//     margin-top: 1rem;
+
+//     button {
+//         width: max-content;
+//         display: inline-block;
+//     }
 // }
 
-// /// Form group styling
-// /// @group Form
-// .form-group {
-//     position: relative;
-//     display: block;
-//     margin-bottom: 1.875rem;
-// }
-
-// /// Form row styling
-// /// @group Form
-// .form-row {
+// .form_fieldset.grid_col_24 {
 //     display: grid;
-//     grid-gap: 1.875rem;
-//     grid-template-columns: repeat(1, 1fr);
+//     gap: 1rem;
 // }
 
-// /// Two-column form row
+// .form_fields.col_12 {
+//     grid-column: span 12 !important;
+// }
+
+// // /* # =================================================================
+// //    # Forms
+// //    # ================================================================= */
+
+// //   optgroup {
+// //     font-weight: bold; /* Restore the font weight unset by the previous rule */
+// //   }
+
+// //   a:focus,
+// //   button:focus,
+// //   input:focus,
+// //   select:focus,
+// //   textarea:focus {
+// //     outline-width: 0;
+// //   }
+
+// //   ::-webkit-file-upload-button {
+// //     /* Correct the inability to style clickable types in iOS and Safari */
+// //     -webkit-appearance: button;
+// //     color: inherit;
+// //     font: inherit; /* Change font properties to `inherit` in Chrome and Safari */
+// //   }
+
+// //   /* Replace pointer cursor in disabled elements */
+// //   [disabled] {
+// //     cursor: default;
+// //   }
+
+// // .form_contact{
+// //     label, input, textarea{
+// //       @include reset_bleed;
+// //       display: float;
+// //       padding-top:            ($q * 1.00);
+// //       padding-bottom:         ($q * 0.75);
+// //       border-bottom-width:    ($q * 0.25);
+// //       border-bottom-style:    solid;
+// //       border-bottom-color:    var(--color_secondary);
+// //     }
+// //     label{
+// //         float: left;
+// //         height: $baseline;
+// //         margin-bottom: $baseline;
+// //         width:25%;
+// //         min-width:25%;
+// //     }
+// //     input{
+// //         background: transparent;
+// //         color: var(--color_primary);
+// //         float: right;
+// //         height: $baseline;
+// //         width:75%;
+// //         max-width:75%;
+// //         margin-bottom: $baseline;
+// //         background-color: var(--color_primary);
+
+// //     }
+// //     textarea{
+// //         background: transparent;
+// //         height: calc(10*$baseline);
+// //         width:100%;
+// //         margin-bottom: $baseline;
+// //         background-color: var(--color_secondary);
+// //         opacity: .1;
+// //     }
+// // }
+
+// // .form-group
+// // {
+// //     position: relative;
+
+// //     display: block;
+
+// //     margin-bottom: 1.875rem;
+// // }
+
+// // .form-row
+// // {
+// //     display: grid;
+
+// //     grid-gap: 1.875rem;
+// //     grid-template-columns: repeat(1, 1fr);
+// // }
+// // .form-row.two-col
+// // {
+// //     grid-template-columns: repeat(2, 1fr);
+// // }
+// // @media only screen and (max-width: 767px)
+// // {
+// //     .form-row.two-col
+// //     {
+// //         grid-gap: 0;
+// //         grid-template-columns: repeat(1, 1fr);
+// //     }
+// // }
+// // .form-row.three-col
+// // {
+// //     grid-template-columns: repeat(3, 1fr);
+// // }
+// // @media only screen and (max-width: 767px)
+// // {
+// //     .form-row.three-col
+// //     {
+// //         grid-gap: 0;
+// //         grid-template-columns: repeat(1, 1fr);
+// //     }
+// // }
+
+// // /// Mixin for general input and textarea reset styles
+// // /// @group Form
+// // @mixin form_reset {
+// //     @include reset_bleed;
+// //     display: block;
+// //     padding: ($q * 0.75) 0;
+// //     border-bottom: ($q * 0.25) solid var(--color_secondary);
+// // }
+
+// // /// Example of custom form styling
+// // /// @group Form
+// // .form_contact {
+// //     label, input, textarea {
+// //         @include form_reset;
+// //     }
+// //     label {
+// //         float: left;
+// //         height: $baseline;
+// //         margin-bottom: $baseline;
+// //         width: 25%;
+// //         min-width: 25%;
+// //     }
+// //     input {
+// //         background: transparent;
+// //         color: var(--color_primary);
+// //         float: right;
+// //         height: $baseline;
+// //         width: 75%;
+// //         max-width: 75%;
+// //         margin-bottom: $baseline;
+// //         background-color: var(--color_primary);
+// //     }
+// //     textarea {
+// //         background: transparent;
+// //         height: calc(10 * $baseline);
+// //         width: 100%;
+// //         margin-bottom: $baseline;
+// //         background-color: var(--color_secondary);
+// //         opacity: 0.1;
+// //     }
+// // }
+
+// /// General styles for various form elements
 // /// @group Form
-// .form-row.two-col {
-//     grid-template-columns: repeat(2, 1fr);
-// }
+// // form {
+// //     max-width: 100%;
+// // }
 
-// /// Responsive form row styling for two-column layout
-// /// @group Form
-// @media only screen and (max-width: 767px) {
-//     .form-row.two-col {
-//         grid-gap: 0;
-//         grid-template-columns: repeat(1, 1fr);
-//     }
-// }
+// // /// Form group styling
+// // /// @group Form
+// // .form-group {
+// //     position: relative;
+// //     display: block;
+// //     margin-bottom: 1.875rem;
+// // }
 
-// /// Three-column form row
-// /// @group Form
-// .form-row.three-col {
-//     grid-template-columns: repeat(3, 1fr);
-// }
+// // /// Form row styling
+// // /// @group Form
+// // .form-row {
+// //     display: grid;
+// //     grid-gap: 1.875rem;
+// //     grid-template-columns: repeat(1, 1fr);
+// // }
 
-// /// Responsive form row styling for three-column layout
-// /// @group Form
-// @media only screen and (max-width: 767px) {
-//     .form-row.three-col {
-//         grid-gap: 0;
-//         grid-template-columns: repeat(1, 1fr);
-//     }
-// }
+// // /// Two-column form row
+// // /// @group Form
+// // .form-row.two-col {
+// //     grid-template-columns: repeat(2, 1fr);
+// // }
 
-// .form_contact{
-//     label, input, textarea{
-//       @include reset_bleed;
-//       display: float;
-//       padding-top:            ($q * 1.00);
-//       padding-bottom:         ($q * 0.75);
-//       border-bottom-width:    ($q * 0.25);
-//       border-bottom-style:    solid;
-//       border-bottom-color:    var(--color_secondary);
-//     }
-//     label{
-//         float: left;
-//         height: $baseline;
-//         margin-bottom: $baseline;
-//         width:25%;
-//         min-width:25%;
-//     }
-//     input{
-//         background: transparent;
-//         color: var(--color_primary);
-//         float: right;
-//         height: $baseline;
-//         width:75%;
-//         max-width:75%;
-//         margin-bottom: $baseline;
-//         background-color: var(--color_primary);
+// // /// Responsive form row styling for two-column layout
+// // /// @group Form
+// // @media only screen and (max-width: 767px) {
+// //     .form-row.two-col {
+// //         grid-gap: 0;
+// //         grid-template-columns: repeat(1, 1fr);
+// //     }
+// // }
 
-//     }
-//     textarea{
-//         background: transparent;
-//         height: calc(10*$baseline);
-//         width:100%;
-//         margin-bottom: $baseline;
-//         background-color: var(--color_secondary);
-//         opacity: .1;
-//     }
-// }
+// // /// Three-column form row
+// // /// @group Form
+// // .form-row.three-col {
+// //     grid-template-columns: repeat(3, 1fr);
+// // }
 
-// /* FORM / INPUT / TEXTAREA / SELECT
-// -------------------------------------------- */
-// form
-// {
-//     max-width: 100%;
-// }
+// // /// Responsive form row styling for three-column layout
+// // /// @group Form
+// // @media only screen and (max-width: 767px) {
+// //     .form-row.three-col {
+// //         grid-gap: 0;
+// //         grid-template-columns: repeat(1, 1fr);
+// //     }
+// // }
 
-// @media only screen and (min-width: 992px)
-// {
-//     label::before
-//     {
-//         font-size: .875rem;
+// // .form_contact{
+// //     label, input, textarea{
+// //       @include reset_bleed;
+// //       display: float;
+// //       padding-top:            ($q * 1.00);
+// //       padding-bottom:         ($q * 0.75);
+// //       border-bottom-width:    ($q * 0.25);
+// //       border-bottom-style:    solid;
+// //       border-bottom-color:    var(--color_secondary);
+// //     }
+// //     label{
+// //         float: left;
+// //         height: $baseline;
+// //         margin-bottom: $baseline;
+// //         width:25%;
+// //         min-width:25%;
+// //     }
+// //     input{
+// //         background: transparent;
+// //         color: var(--color_primary);
+// //         float: right;
+// //         height: $baseline;
+// //         width:75%;
+// //         max-width:75%;
+// //         margin-bottom: $baseline;
+// //         background-color: var(--color_primary);
 
-//         position: absolute;
-//         top: calc(50% - .75em);
-//         left: -3.75rem;
+// //     }
+// //     textarea{
+// //         background: transparent;
+// //         height: calc(10*$baseline);
+// //         width:100%;
+// //         margin-bottom: $baseline;
+// //         background-color: var(--color_secondary);
+// //         opacity: .1;
+// //     }
+// // }
 
-//         content: attr(data-number);
+// // /* FORM / INPUT / TEXTAREA / SELECT
+// // -------------------------------------------- */
+// // form
+// // {
+// //     max-width: 100%;
+// // }
 
-//         color: var(--color-3);
-//     }
-// }
+// // @media only screen and (min-width: 992px)
+// // {
+// //     label::before
+// //     {
+// //         font-size: .875rem;
 
-// input[type=text],
-// input[type=date],
-// input[type=email],
-// input[type=password],
-// input[type=tel],
-// input[type=url],
-// input[type=search],
-// input[type=number],
-// input[type=file],
-// textarea,
-// select
-// {
-//     font-size: 1rem;
+// //         position: absolute;
+// //         top: calc(50% - .75em);
+// //         left: -3.75rem;
 
-//     display: block;
+// //         content: attr(data-number);
 
-//     width: 100%;
-//     margin: 0;
-//     padding: 0 0 .625rem 0;
+// //         color: var(--color-3);
+// //     }
+// // }
 
-//     -webkit-transition: all var(--transition-duration) var(--transition-easing);
-//             transition: all var(--transition-duration) var(--transition-easing);
+// // input[type=text],
+// // input[type=date],
+// // input[type=email],
+// // input[type=password],
+// // input[type=tel],
+// // input[type=url],
+// // input[type=search],
+// // input[type=number],
+// // input[type=file],
+// // textarea,
+// // select
+// // {
+// //     font-size: 1rem;
 
-//     color: var(--color-primary);
-//     border: none;
-//     border-bottom: 1px solid var(--color-14);
-//     border-radius: 0;
-//     outline: none;
-//     background-color: transparent;
-//     -webkit-box-shadow: none;
-//             box-shadow: none;
+// //     display: block;
 
-//     -webkit-appearance: none;
-//        -moz-appearance: none;
-//             appearance: none;
-// }
-// input[type=text].is-large,
-// input[type=date].is-large,
-// input[type=email].is-large,
-// input[type=password].is-large,
-// input[type=tel].is-large,
-// input[type=url].is-large,
-// input[type=search].is-large,
-// input[type=number].is-large,
-// input[type=file].is-large,
-// textarea.is-large,
-// select.is-large
-// {
-//     font-size: 2.25rem;
-// }
-// input[type=text].style-2,
-// input[type=date].style-2,
-// input[type=email].style-2,
-// input[type=password].style-2,
-// input[type=tel].style-2,
-// input[type=url].style-2,
-// input[type=search].style-2,
-// input[type=number].style-2,
-// input[type=file].style-2,
-// textarea.style-2,
-// select.style-2
-// {
-//     font-size: .875rem;
+// //     width: 100%;
+// //     margin: 0;
+// //     padding: 0 0 .625rem 0;
 
-//     padding: .8125rem 1.4375rem;
+// //     -webkit-transition: all var(--transition-duration) var(--transition-easing);
+// //             transition: all var(--transition-duration) var(--transition-easing);
 
-//     border: 1px solid var(--color-3);
-//     background-color: var(--white-color);
-// }
+// //     color: var(--color-primary);
+// //     border: none;
+// //     border-bottom: 1px solid var(--color-14);
+// //     border-radius: 0;
+// //     outline: none;
+// //     background-color: transparent;
+// //     -webkit-box-shadow: none;
+// //             box-shadow: none;
 
-// .form-group
-// {
-//     position: relative;
+// //     -webkit-appearance: none;
+// //        -moz-appearance: none;
+// //             appearance: none;
+// // }
+// // input[type=text].is-large,
+// // input[type=date].is-large,
+// // input[type=email].is-large,
+// // input[type=password].is-large,
+// // input[type=tel].is-large,
+// // input[type=url].is-large,
+// // input[type=search].is-large,
+// // input[type=number].is-large,
+// // input[type=file].is-large,
+// // textarea.is-large,
+// // select.is-large
+// // {
+// //     font-size: 2.25rem;
+// // }
+// // input[type=text].style-2,
+// // input[type=date].style-2,
+// // input[type=email].style-2,
+// // input[type=password].style-2,
+// // input[type=tel].style-2,
+// // input[type=url].style-2,
+// // input[type=search].style-2,
+// // input[type=number].style-2,
+// // input[type=file].style-2,
+// // textarea.style-2,
+// // select.style-2
+// // {
+// //     font-size: .875rem;
 
-//     display: block;
+// //     padding: .8125rem 1.4375rem;
 
-//     margin-bottom: 1.875rem;
-// }
+// //     border: 1px solid var(--color-3);
+// //     background-color: var(--white-color);
+// // }
 
-// .form-row
-// {
-//     display: grid;
+// // .form-group
+// // {
+// //     position: relative;
 
-//     grid-gap: 1.875rem;
-//     grid-template-columns: repeat(1, 1fr);
-// }
-// .form-row.two-col
-// {
-//     grid-template-columns: repeat(2, 1fr);
-// }
-// @media only screen and (max-width: 767px)
-// {
-//     .form-row.two-col
-//     {
-//         grid-gap: 0;
-//         grid-template-columns: repeat(1, 1fr);
-//     }
-// }
-// .form-row.three-col
-// {
-//     grid-template-columns: repeat(3, 1fr);
-// }
-// @media only screen and (max-width: 767px)
-// {
-//     .form-row.three-col
-//     {
-//         grid-gap: 0;
-//         grid-template-columns: repeat(1, 1fr);
-//     }
-// }
+// //     display: block;
+
+// //     margin-bottom: 1.875rem;
+// // }
+
+// // .form-row
+// // {
+// //     display: grid;
+
+// //     grid-gap: 1.875rem;
+// //     grid-template-columns: repeat(1, 1fr);
+// // }
+// // .form-row.two-col
+// // {
+// //     grid-template-columns: repeat(2, 1fr);
+// // }
+// // @media only screen and (max-width: 767px)
+// // {
+// //     .form-row.two-col
+// //     {
+// //         grid-gap: 0;
+// //         grid-template-columns: repeat(1, 1fr);
+// //     }
+// // }
+// // .form-row.three-col
+// // {
+// //     grid-template-columns: repeat(3, 1fr);
+// // }
+// // @media only screen and (max-width: 767px)
+// // {
+// //     .form-row.three-col
+// //     {
+// //         grid-gap: 0;
+// //         grid-template-columns: repeat(1, 1fr);
+// //     }
+// // }

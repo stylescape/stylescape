@@ -446,3 +446,240 @@
 //       }
 //     }
 //   }
+// Copyright 2025 Starling Associates BV. All rights reserved.
+
+// ============================================================================
+// Imports
+// ============================================================================
+
+// Background Gradient with Direction
+// Generates a background gradient with a specified direction.
+
+// @function hue_background_gradient($start_color_name, $end_color_name, $direction: 135deg) {
+//     $start_color: hue_color($start_color_name);
+//     $end_color: hue_color($end_color_name);
+
+//     @if type-of($start_color) != 'color' or type-of($end_color) != 'color' {
+//         @warn "One or both specified colors could not be found.";
+//         @return null;
+//     }
+
+//     @return (background-image: linear-gradient($direction, $start_color, $end_color));
+// }
+
+// $gradient: hue_background_gradient('N0001', 'N0009', 135deg);
+
+.system_card_wrapper {
+    @include reset_bleed;
+    // @include ratio_2x3;
+    width: 100%;
+    background: white;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: $q * 4 $q * 4 $q * 4 $q * 4;
+    box-shadow: 0;
+    transform: scale(0.975);
+    transition:
+        box-shadow 0.5s,
+        transform 0.5s;
+    &:hover {
+        transform: scale(1);
+        box-shadow: 2px 8px 12px rgba(0, 0, 0, 0.2);
+    }
+    .system_card_container {
+        width: 100%;
+        height: 100%;
+        .top {
+            height: 80%;
+            width: 100%;
+            background: $N2403;
+            background: linear-gradient(135deg, $N2403, $N2405);
+            svg {
+                height: 50%;
+                width: 50%;
+                margin: auto 0 auto;
+                color: #ffffff;
+                fill: #ffffff;
+                * {
+                    color: #ffffff;
+                }
+            }
+        }
+        .bottom {
+            width: 200%;
+            height: 20%;
+            transition: transform 0.5s;
+            &.clicked {
+                transform: translateX(-50%);
+            }
+            h1 {
+                margin: 0;
+                padding: 0;
+            }
+            p {
+                margin: 0;
+                padding: 0;
+            }
+            .left {
+                height: 100%;
+                width: 50%;
+                background: #f4f4f4;
+                position: relative;
+                float: left;
+                .details,
+                .action {
+                    height: 100%;
+                    width: 100%;
+                    // @include font_size_04;
+                    padding: $q * 8;
+                    background: #f1f1f1;
+                    display: flex;
+                    align-items: center;
+                    * {
+                        vertical-align: middle;
+                    }
+                }
+                .details {
+                    float: left;
+                    width: calc(70% - 40px);
+                }
+                .action {
+                    float: right;
+                    width: calc(30% - 2px);
+                    transition: background 0.5s;
+                    border-left: solid thin rgba(0, 0, 0, 0.1);
+                    justify-content: center;
+                    i {
+                        height: 100%;
+                        width: 100%;
+                        text-align: center;
+                        color: #254053;
+                        transition: transform 0.5s;
+                    }
+                    &:hover {
+                        background: #a6cdde;
+                    }
+                    &:hover i {
+                        // transform: translateY(5px);
+                        color: #00394b;
+                    }
+                }
+            }
+            .right {
+                width: 50%;
+                background: #a6cdde;
+                color: white;
+                float: right;
+                height: 200%;
+                overflow: hidden;
+                .details {
+                    padding: 20px;
+                    float: right;
+                    width: calc(70% - 40px);
+                }
+                .done {
+                    width: calc(30% - 2px);
+                    float: left;
+                    transition: transform 0.5s;
+                    border-right: solid thin rgba(255, 255, 255, 0.3);
+                    height: 50%;
+                    i {
+                        font-size: 30px;
+                        padding: 30px;
+                        color: white;
+                    }
+                }
+                .remove {
+                    width: calc(30% - 1px);
+                    clear: both;
+                    border-right: solid thin rgba(255, 255, 255, 0.3);
+                    height: 50%;
+                    background: #bc3b59;
+                    transition:
+                        transform 0.5s,
+                        background 0.5s;
+                    &:hover {
+                        background: #9b2847;
+                    }
+                    &:hover i {
+                        transform: translateY(5px);
+                    }
+                    i {
+                        transition: transform 0.5s;
+                        font-size: 30px;
+                        padding: 30px;
+                        color: white;
+                    }
+                }
+                &:hover {
+                    .remove,
+                    .done {
+                        transform: translateY(-100%);
+                    }
+                }
+            }
+        }
+    }
+
+    .inside {
+        z-index: 9;
+        background: #dad7dd;
+        width: 140px;
+        height: 140px;
+        position: absolute;
+        top: -70px;
+        right: -70px;
+        border-radius: 0px 0px 10px 200px;
+        transition:
+            all 0.5s,
+            border-radius 2s,
+            top 1s;
+        overflow: hidden;
+        .icon {
+            position: absolute;
+            right: $q * 4;
+            top: $q * 4;
+            color: white;
+            opacity: 1;
+        }
+        &:hover {
+            width: 100%;
+            right: 0;
+            top: 0;
+            border-radius: 0;
+            height: 80%;
+            .icon {
+                opacity: 0;
+                right: 15px;
+                top: 15px;
+            }
+            .contents {
+                opacity: 1;
+                transform: scale(1);
+                transform: translateY(0);
+            }
+        }
+        .contents {
+            padding: 5%;
+            opacity: 0;
+            transform: scale(0.5);
+            transform: translateY(-200%);
+            transition:
+                opacity 0.2s,
+                transform 0.8s;
+            table {
+                text-align: left;
+                width: 100%;
+            }
+            h1,
+            p,
+            table {
+                color: white;
+            }
+            p {
+                font-size: 13px;
+            }
+        }
+    }
+}

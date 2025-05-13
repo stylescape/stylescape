@@ -1,0 +1,41 @@
+// Copyright 2025 Starling Associates BV. All rights reserved.
+
+// ============================================================================
+// Imports
+// ============================================================================
+
+@use 'stylescape/scss/index.scss' as *;
+@use '../variables' as *;
+@use '../mixins' as *;
+
+$main_portal_content_table_row_height: 16 * $q; // TODO: ...
+
+.main_portal_content_table {
+    @include grid_col_24;
+    @include col_24;
+    @include font_size_03;
+    @include font_weight_300;
+
+    // Header and Body Content both are a 24f grid
+    .main_portal_content_table_header,
+    .main_portal_content_table_body {
+        @include grid_col_24;
+        @include col_24;
+    }
+
+    // Header
+    .main_portal_content_table_header {
+        padding-bottom: 8 * $q; // TODO: Change this to row gap
+        * {
+            height: $main_portal_content_table_row_height;
+            opacity: 0.6;
+        }
+    }
+
+    // Body
+    .main_portal_content_table_body {
+        * {
+            height: $main_portal_content_table_row_height;
+        }
+    }
+}
