@@ -7,7 +7,7 @@
 @use '../type' as *;
 
 // Base Divider Mixin
-@mixin divider--base($thickness: 1px, $color: var(--color_border)) {
+@mixin divider--base($thickness: 1px, $color: var(--color_foreground)) {
     border: none;
     background-color: $color;
     height: $thickness;
@@ -33,16 +33,16 @@
 
 // Dotted Divider
 .divider--dotted {
-    @include divider--base(1px);
+    @include divider--base(2px);
     background-color: transparent;
-    border-top: 1px dotted var(--color_border);
+    border-top: 2px dotted var(--color_foreground);
     height: 0;
 }
 
 // Vertical Divider
 .divider--vertical {
-    @include divider--base(100%, var(--color_border));
-    width: 1px;
+    @include divider--base(100%, var(--color_foreground));
+    width: 100%;
     height: auto;
     min-height: baseline(8);
     display: inline-block;

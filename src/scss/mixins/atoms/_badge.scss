@@ -37,7 +37,7 @@
     font-size: font-size(2);
     font-weight: 500;
     line-height: 1;
-    color: var(--color_text_inverse);
+    color: var(--color_light);
     background-color: var(--color_primary);
     border-radius: $q;
     white-space: nowrap;
@@ -74,7 +74,34 @@
     padding: 0.3em 0.8em;
 }
 
+@mixin badge--rounded {
+    border-radius: 4px;
+}
+
+/// Border radius: 0px
+@mixin badge--squared {
+    border-radius: 0;
+}
+
+/// Border radius: 12px
+@mixin badge--pill {
+    border-radius: 12px;
+}
+
 /// Utility classes
+
+.badge--rounded {
+    @include badge--rounded;
+}
+
+.badge--squared {
+    @include badge--squared;
+}
+
+.badge--pill {
+    @include badge--pill;
+}
+
 .badge {
     @include badge--base;
 }

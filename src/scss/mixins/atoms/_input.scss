@@ -2,6 +2,9 @@
 // Elements | Form
 // ============================================================================
 
+@use 'sass:map';
+@use 'sass:list';
+
 @use '../../dev' as *;
 @use '../../variables' as *;
 // @use "../mixins" as *;
@@ -21,19 +24,36 @@
 // ============================================================================
 
 /// @group Form
-@mixin input {
-    @include font_size('03');
+/// Size map like the button map: height in baseline units + font-size key
+$input-size-map: (
+    's': (
+        2,
+        '02',
+    ),
+    'm': (
+        3,
+        '03',
+    ),
+    'l': (
+        4,
+        '04',
+    ),
+) !default;
+
+/// @group Form
+/// Base input style
+@mixin input--base {
     display: flex;
-    padding: 12px;
     align-items: center;
-    gap: 12px;
+    gap: baseline(1);
     align-self: stretch;
     border-radius: 4px;
     border: 1.5px solid var(--color_dark);
     color: var(--color_dark);
+    transition: border 0.2s ease;
 
     &:hover {
-        border: 1.5px solid var(--color_primary);
+        border-color: var(--color_primary);
     }
 
     &:focus {
@@ -41,43 +61,54 @@
     }
 
     &:disabled {
-        border: 1.5px solid var(--color_muted);
+        border-color: var(--color_muted);
         color: var(--color_muted);
     }
 
     &.is-success {
-        border: 1.5px solid var(--color_success);
+        border-color: var(--color_success);
         color: var(--color_success);
     }
 
     &.is-warning {
-        border: 1.5px solid var(--color_warning);
+        border-color: var(--color_warning);
         color: var(--color_warning);
     }
 
     &.is-error {
-        border: 1.5px solid var(--color_error);
+        border-color: var(--color_error);
         color: var(--color_error);
     }
 
     &.is-info {
-        border: 1.5px solid var(--color_info);
+        border-color: var(--color_info);
         color: var(--color_info);
     }
 }
 
 /// @group Form
-input[type='text'],
-input[type='date'],
-input[type='email'],
-input[type='password'],
-input[type='tel'],
-input[type='url'],
-input[type='search'],
-input[type='number'],
-input[type='file'],
-textarea {
-    @include input;
+/// Sizing mixin for input fields (baseline-based padding + font size)
+/// @param $height — in baseline units
+/// @param $font-size-key — design system font token
+@mixin input($height, $font-size-key) {
+    @include input--base;
+    @include font_size($font-size-key);
+    padding: baseline($height);
+}
+
+/// Apply default input styling to `.input`
+.input {
+    @include input(
+        list.nth(map.get($input-size-map, 'm'), 1),
+        list.nth(map.get($input-size-map, 'm'), 2)
+    );
+}
+
+/// Generate utility classes for sizes like `.input--s`
+@each $name, $pair in $input-size-map {
+    .input--#{$name} {
+        @include input(list.nth($pair, 1), list.nth($pair, 2));
+    }
 }
 
 // /* FORM / INPUT / TEXTAREA / SELECT
