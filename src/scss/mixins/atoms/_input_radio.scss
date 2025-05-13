@@ -1,0 +1,55 @@
+@use '../../dev' as *;
+@use '../../variables' as *;
+// @use "../mixins" as *;
+@use '../type' as *;
+
+@mixin radio {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--color_primary);
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        background: var(--color_primary);
+        border-radius: 50%;
+        transform: translate(25%, -60%);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    &:hover:not(:checked) {
+        background: hue_color('N2402');
+    }
+
+    &:checked::after {
+        opacity: 1;
+    }
+
+    &:disabled {
+        border-color: var(--color_muted);
+        background: transparent;
+        cursor: not-allowed;
+    }
+}
+
+///
+/// Base styles for radio buttons
+/// @group Form
+///
+input[type='radio'] {
+    @include radio;
+}

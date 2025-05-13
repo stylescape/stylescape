@@ -11,6 +11,74 @@
 // Slider Bar
 // ============================================================================
 
+/// The slider inside the switch
+/// @group Switch
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color_surface_1);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--color_background);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+///
+/// The switch container
+/// The box around the slider
+/// @group Switch
+///
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+///
+/// Hide the default HTML checkbox
+/// @group Switch
+///
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/// Style for when the switch is checked
+/// @group Switch
+input:checked + .slider {
+    background-color: var(--color_primary);
+}
+
+/// Focus state for the switch
+/// @group Switch
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--color_primary);
+}
+
+/// Positioning the slider when the switch is checked
+/// @group Switch
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
 /// Mixin to style <input type='range'>
 /// @group Form
 // @mixin range_slider() {
@@ -153,48 +221,17 @@
     }
 }
 
+/// Rounded sliders style
+/// @group Switch
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
 /// @group Form
 input[type='range'] {
     @include range_slider;
-}
-
-// ============================================================================
-// Progress Bar
-// ============================================================================
-
-/// Mixin to style <progress> tag
-/// @group Form
-@mixin progress_bar() {
-    height: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: var(--color_surface_1);
-    -webkit-appearance: none;
-    appearance: none;
-    overflow: hidden;
-
-    // WebKit (Chrome, Safari)
-    &::-webkit-progress-bar {
-        background-color: var(--color_surface_1);
-        border-radius: 4px;
-    }
-
-    &::-webkit-progress-value {
-        background-color: var(--color_primary);
-        border-radius: 4px;
-        transition: width 0.3s ease;
-    }
-
-    // Firefox
-    &::-moz-progress-bar {
-        background-color: var(--color_primary);
-        border-radius: 4px;
-        transition: width 0.3s ease;
-    }
-}
-
-/// @group Form
-progress,
-meter {
-    @include progress_bar;
 }

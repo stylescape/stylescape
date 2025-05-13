@@ -1,0 +1,48 @@
+// ============================================================================
+// Atoms | Labels
+// ============================================================================
+
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../type' as *;
+
+///
+/// Mixin: label_base
+/// ---------------------------------------------------------------------------
+/// Unified label styling for both `<label>` elements and `.label` classes.
+///
+/// @param {String} $color [--color_text_default] - Text color token.
+/// @param {Number} $font-size [03] - Font size level from your type scale.
+/// @param {Number} $margin [01] - Vertical spacing unit from baseline.
+///
+@mixin label_base($color: --color_text_default, $font-size: '03', $margin: 1) {
+    @include font_size($font-size);
+    display: block;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: baseline($margin);
+    color: var(#{$color});
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+///
+/// Utility label class
+///
+.label {
+    @include label_base;
+    // @include label_base(--color_text_muted, 02, 00);
+}
+
+///
+/// Native label element styling
+/// Provides basic styling for labels in forms.
+///
+label {
+    @include label_base();
+    cursor: pointer;
+}

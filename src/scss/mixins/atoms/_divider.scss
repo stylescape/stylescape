@@ -1,0 +1,50 @@
+// ============================================================================
+// Atoms | Divider
+// ============================================================================
+
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../type' as *;
+
+// Base Divider Mixin
+@mixin divider--base($thickness: 1px, $color: var(--color_border)) {
+    border: none;
+    background-color: $color;
+    height: $thickness;
+    width: 100%;
+    display: block;
+    margin: baseline(2) 0;
+}
+
+// Horizontal Divider
+.divider {
+    @include divider--base();
+}
+
+// Thin Divider
+.divider--thin {
+    @include divider--base(0.5px);
+}
+
+// Thick Divider
+.divider--thick {
+    @include divider--base(2px);
+}
+
+// Dotted Divider
+.divider--dotted {
+    @include divider--base(1px);
+    background-color: transparent;
+    border-top: 1px dotted var(--color_border);
+    height: 0;
+}
+
+// Vertical Divider
+.divider--vertical {
+    @include divider--base(100%, var(--color_border));
+    width: 1px;
+    height: auto;
+    min-height: baseline(8);
+    display: inline-block;
+    margin: 0 baseline(2);
+}

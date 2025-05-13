@@ -1,0 +1,199 @@
+////
+///
+/// Accordion Components Mixins Module
+/// ===========================================================================
+///
+/// @group Components
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../layout' as *;
+// @use '../elements' as *;
+@use '../type' as *;
+
+// ============================================================================
+// Atom | Badge
+// ============================================================================
+
+@use '../../variables' as *;
+@use '../../dev' as *;
+@use '../type' as *;
+
+/// Base badge styles
+@mixin badge--base {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    font-size: font-size(2);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color_text_inverse);
+    background-color: var(--color_primary);
+    border-radius: $q;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    user-select: none;
+}
+
+/// Color variants
+@mixin badge--info {
+    background-color: var(--color_info);
+}
+
+@mixin badge--success {
+    background-color: var(--color_success);
+}
+
+@mixin badge--warning {
+    background-color: var(--color_warning);
+}
+
+@mixin badge--error {
+    background-color: var(--color_error);
+}
+
+/// Size variants
+@mixin badge--small {
+    font-size: font-size(1);
+    padding: 0.1em 0.4em;
+}
+
+@mixin badge--large {
+    font-size: font-size(3);
+    padding: 0.3em 0.8em;
+}
+
+/// Utility classes
+.badge {
+    @include badge--base;
+}
+
+.badge--info {
+    @include badge--info;
+}
+
+.badge--success {
+    @include badge--success;
+}
+
+.badge--warning {
+    @include badge--warning;
+}
+
+.badge--error {
+    @include badge--error;
+}
+
+.badge--small {
+    @include badge--small;
+}
+
+.badge--large {
+    @include badge--large;
+}
+
+// Base class
+//
+// Requires one of the contextual, color modifier classes for `color` and
+// `background-color`.
+
+// .badge {
+//     // scss-docs-start badge-css-vars
+//     badge-padding-x: #{$badge-padding-x};
+//     badge-padding-y: #{$badge-padding-y};
+//     @include rfs($badge-font-size, badge-font-size);
+//     badge-font-weight: #{$badge-font-weight};
+//     badge-color: #{$badge-color};
+//     badge-border-radius: #{$badge-border-radius};
+//     // scss-docs-end badge-css-vars
+
+//     display: inline-block;
+//     padding: var(badge-padding-y) var(badge-padding-x);
+//     @include font-size(var(badge-font-size));
+//     font-weight: var(badge-font-weight);
+//     line-height: 1;
+//     color: var(badge-color);
+//     text-align: center;
+//     white-space: nowrap;
+//     vertical-align: baseline;
+//     @include border-radius(var(badge-border-radius));
+//     @include gradient-bg();
+
+//     // Empty badges collapse automatically
+//     &:empty {
+//       display: none;
+//     }
+//   }
+
+//   // Quick fix for badges in buttons
+//   .btn .badge {
+//     position: relative;
+//     top: -1px;
+//   }
+
+//   // Badges
+// span.badge {
+//   min-width: 3rem;
+//   padding: 0 6px;
+//   margin-left: 14px;
+//   text-align: center;
+//   font-size: 1rem;
+//   line-height: $badge-height;
+//   height: $badge-height;
+//   color: color("grey", "darken-1");
+//   float: right;
+//   box-sizing: border-box;
+
+//   &.new {
+//     font-weight: 300;
+//     font-size: 0.8rem;
+//     color: #fff;
+//     background-color: $badge-bg-color;
+//     border-radius: 2px;
+//   }
+//   &.new:after {
+//     content: " new";
+//   }
+
+//   &[data-badge-caption]::after {
+//     content: " " attr(data-badge-caption);
+//   }
+// }
+
+// // Special cases
+// nav ul a span.badge {
+//   display: inline-block;
+//   float: none;
+//   margin-left: 4px;
+//   line-height: $badge-height;
+//   height: $badge-height;
+//   -webkit-font-smoothing: auto;
+// }
+
+// // Line height centering
+// .collection-item span.badge {
+//   margin-top: calc(#{$collection-line-height / 2} - #{$badge-height / 2});
+// }
+// .collapsible span.badge {
+//   margin-left: auto;
+// }
+// .sidenav span.badge {
+//   margin-top: calc(#{$sidenav-line-height / 2} - #{$badge-height / 2});
+// }
+
+// table span.badge {
+//   display: inline-block;
+//   float: none;
+//   margin-left: auto;
+// }
