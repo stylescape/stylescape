@@ -12900,6 +12900,70 @@ select:focus::-webkit-input-placeholder {
   line-height: 0.9375rem;
 }
 
+/* Style select like a standard input */
+select {
+  -moz-appearance: none; /* Firefox 36+ */
+  -webkit-appearance: none; /* Chrome 41+ */
+}
+
+select::-ms-expand {
+  display: none; /* Internet Explorer 11+ */
+}
+
+select::-ms-value {
+  color: currentColor; /* Internet Explorer 11+ */
+}
+
+select {
+  background-color: var(--color_background);
+  padding-right: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
+  align-self: stretch;
+  border-radius: 4px;
+  border: 1.5px solid var(--color_dark);
+  color: var(--color_dark);
+  transition: border 0.2s ease;
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+  padding: 0.9375rem;
+}
+select:hover {
+  border-color: var(--color_primary);
+}
+select:focus {
+  border: 3px solid #65aace;
+}
+select:disabled {
+  border-color: var(--color_muted);
+  color: var(--color_muted);
+}
+select.is-success {
+  border-color: var(--color_success);
+  color: var(--color_success);
+}
+select.is-warning {
+  border-color: var(--color_warning);
+  color: var(--color_warning);
+}
+select.is-error {
+  border-color: var(--color_error);
+  color: var(--color_error);
+}
+select.is-info {
+  border-color: var(--color_info);
+  color: var(--color_info);
+}
+selectoption {
+  color: var(--color_dark);
+  background-color: var(--color_background);
+}
+selectoption:hover {
+  background: #acd2e9;
+}
+
 .slider {
   position: absolute;
   cursor: pointer;
@@ -13166,7 +13230,6 @@ meter::-moz-progress-bar {
   line-height: 1;
   color: var(--color_light);
   background-color: var(--color_primary);
-  border-radius: 0.0625rem;
   white-space: nowrap;
   vertical-align: middle;
   text-align: center;
