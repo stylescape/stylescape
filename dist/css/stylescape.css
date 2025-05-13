@@ -13131,6 +13131,51 @@ textarea {
   padding: 25px;
 }
 
+input[type=radio],
+.input_radio {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--color_primary);
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+  opacity: 1;
+}
+input[type=radio]::after,
+.input_radio::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: var(--color_primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+input[type=radio]:hover:not(:checked),
+.input_radio:hover:not(:checked) {
+  background: #acd2e9;
+}
+input[type=radio]:checked::after,
+.input_radio:checked::after {
+  opacity: 1;
+}
+input[type=radio]:disabled,
+.input_radio:disabled {
+  border-color: var(--color_muted);
+  background: transparent;
+  cursor: not-allowed;
+}
+
 progress,
 meter {
   height: 10px;
