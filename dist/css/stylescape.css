@@ -12906,21 +12906,6 @@ select:focus::-webkit-input-placeholder {
   line-height: 0.9375rem;
 }
 
-input[type=range] {
-  font-size: 1.5rem;
-  width: 12.5em;
-}
-
-input[type=range] {
-  color: #ef233c;
-  --thumb-height: 1.125em;
-  --track-height: 0.125em;
-  --track-color: rgba(0, 0, 0, 0.2);
-  --brightness-hover: 180%;
-  --brightness-down: 80%;
-  --clip-edges: 0.125em;
-}
-
 input[type=range].win10-thumb {
   color: #2b2d42;
   --thumb-height: 1.375em;
@@ -12929,40 +12914,70 @@ input[type=range].win10-thumb {
 }
 
 .input--range {
+  --thumb-height: 1.125em;
+  --track-height: 0.125em;
+  --track-color: rgba(0, 0, 0, 0.2);
+  --brightness-hover: 180%;
+  --brightness-down: 80%;
+  --clip-edges: 0.125em;
   --thumb-size: 1.25rem;
   --track-height: 0.625rem;
   --track-color: var(--color_surface_1);
   --fill-color: var(--color_primary);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
-  width: 100%;
-  height: var(--thumb-size);
-  background: transparent;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: var(--thumb-size);
-  background: transparent;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  border-radius: 4px;
-  transition: all ease 100ms;
-  height: var(--thumb-height);
   --thumb-size: 16px;
   --track-height: 10px;
   --track-color: var(--color_surface_1);
   --fill-color: var(--color_primary);
   --track-gap: calc((var(--thumb-size) - var(--track-height)) / 2);
   --thumb-half: calc(var(--thumb-size) / 2);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: var(--thumb-size);
+  border-radius: 4px;
+  font-size: 1.5rem;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  background: rgba(255, 255, 255, 0);
+  color: #ef233c;
+  transition: all ease 100ms;
+  cursor: pointer;
+}
+.input--range:active {
+  cursor: grabbing;
+}
+.input--range:active::-webkit-slider-thumb {
+  filter: brightness(var(--brightness-down));
+  cursor: grabbing;
+}
+.input--range:active::-moz-range-thumb, .input--range:active::-moz-range-progress {
+  filter: brightness(var(--brightness-down));
+}
+.input--range:active::-moz-range-thumb {
+  cursor: grabbing;
 }
 .input--range:disabled {
+  filter: grayscale(1);
   opacity: 0.4;
   cursor: not-allowed;
+}
+.input--range:disabled::-webkit-slider-thumb {
+  cursor: not-allowed;
+}
+.input--range:disabled::-moz-range-thumb {
+  cursor: not-allowed;
+}
+.input--range:hover::-webkit-slider-thumb {
+  filter: brightness(var(--brightness-hover));
+  cursor: grab;
+}
+.input--range:hover::-moz-range-thumb, .input--range:hover::-moz-range-progress {
+  filter: brightness(var(--brightness-hover));
+}
+.input--range::-webkit-slider-runnable-track {
+  background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center/100% calc(var(--track-height) + 1px);
 }
 .input--range::-webkit-slider-runnable-track {
   height: var(--track-height);
@@ -13012,6 +13027,10 @@ input[type=range].win10-thumb {
   height: var(--track-height);
   background-color: var(--track-color);
   border-radius: 0.0625rem;
+  height: calc(var(--track-height) + 1px);
+  border-radius: var(--track-height);
+  width: 100%;
+  background: var(--track-color);
 }
 .input--range::-moz-range-progress {
   height: var(--track-height);
@@ -13022,6 +13041,13 @@ input[type=range].win10-thumb {
   height: var(--track-height);
   background-color: var(--fill-color);
   border-radius: 0.0625rem;
+  height: calc(var(--track-height) + 1px);
+  border-radius: var(--track-height);
+  -moz-appearance: none;
+       appearance: none;
+  background: currentColor;
+  transition-delay: 30ms;
+  filter: brightness(100%);
 }
 .input--range::-moz-range-thumb {
   -moz-appearance: none;
@@ -13040,50 +13066,74 @@ input[type=range].win10-thumb {
   background-color: var(--fill-color);
   border-radius: 50%;
   border: none;
-}
-.input--range:active::-moz-range-thumb {
-  cursor: grabbing;
-}
-.input--range:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+  filter: brightness(100%);
 }
 
 input[type=range] {
+  --thumb-height: 1.125em;
+  --track-height: 0.125em;
+  --track-color: rgba(0, 0, 0, 0.2);
+  --brightness-hover: 180%;
+  --brightness-down: 80%;
+  --clip-edges: 0.125em;
   --thumb-size: 1.25rem;
   --track-height: 0.625rem;
   --track-color: var(--color_surface_1);
   --fill-color: var(--color_primary);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
-  width: 100%;
-  height: var(--thumb-size);
-  background: transparent;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: var(--thumb-size);
-  background: transparent;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  border-radius: 4px;
-  transition: all ease 100ms;
-  height: var(--thumb-height);
   --thumb-size: 16px;
   --track-height: 10px;
   --track-color: var(--color_surface_1);
   --fill-color: var(--color_primary);
   --track-gap: calc((var(--thumb-size) - var(--track-height)) / 2);
   --thumb-half: calc(var(--thumb-size) / 2);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: var(--thumb-size);
+  border-radius: 4px;
+  font-size: 1.5rem;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  background: rgba(255, 255, 255, 0);
+  color: #ef233c;
+  transition: all ease 100ms;
+  cursor: pointer;
+}
+input[type=range]:active {
+  cursor: grabbing;
+}
+input[type=range]:active::-webkit-slider-thumb {
+  filter: brightness(var(--brightness-down));
+  cursor: grabbing;
+}
+input[type=range]:active::-moz-range-thumb, input[type=range]:active::-moz-range-progress {
+  filter: brightness(var(--brightness-down));
+}
+input[type=range]:active::-moz-range-thumb {
+  cursor: grabbing;
 }
 input[type=range]:disabled {
+  filter: grayscale(1);
   opacity: 0.4;
   cursor: not-allowed;
+}
+input[type=range]:disabled::-webkit-slider-thumb {
+  cursor: not-allowed;
+}
+input[type=range]:disabled::-moz-range-thumb {
+  cursor: not-allowed;
+}
+input[type=range]:hover::-webkit-slider-thumb {
+  filter: brightness(var(--brightness-hover));
+  cursor: grab;
+}
+input[type=range]:hover::-moz-range-thumb, input[type=range]:hover::-moz-range-progress {
+  filter: brightness(var(--brightness-hover));
+}
+input[type=range]::-webkit-slider-runnable-track {
+  background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center/100% calc(var(--track-height) + 1px);
 }
 input[type=range]::-webkit-slider-runnable-track {
   height: var(--track-height);
@@ -13133,6 +13183,10 @@ input[type=range]::-moz-range-track {
   height: var(--track-height);
   background-color: var(--track-color);
   border-radius: 0.0625rem;
+  height: calc(var(--track-height) + 1px);
+  border-radius: var(--track-height);
+  width: 100%;
+  background: var(--track-color);
 }
 input[type=range]::-moz-range-progress {
   height: var(--track-height);
@@ -13143,6 +13197,13 @@ input[type=range]::-moz-range-progress {
   height: var(--track-height);
   background-color: var(--fill-color);
   border-radius: 0.0625rem;
+  height: calc(var(--track-height) + 1px);
+  border-radius: var(--track-height);
+  -moz-appearance: none;
+       appearance: none;
+  background: currentColor;
+  transition-delay: 30ms;
+  filter: brightness(100%);
 }
 input[type=range]::-moz-range-thumb {
   -moz-appearance: none;
@@ -13161,13 +13222,7 @@ input[type=range]::-moz-range-thumb {
   background-color: var(--fill-color);
   border-radius: 50%;
   border: none;
-}
-input[type=range]:active::-moz-range-thumb {
-  cursor: grabbing;
-}
-input[type=range]:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+  filter: brightness(100%);
 }
 
 .slider.round {
@@ -13176,43 +13231,6 @@ input[type=range]:disabled {
 
 .slider.round:before {
   border-radius: 50%;
-}
-
-input[type=range]::-moz-range-track {
-  width: 100%;
-  background: var(--track-color);
-}
-
-input[type=range]::-moz-range-progress {
-  -moz-appearance: none;
-       appearance: none;
-  background: currentColor;
-  transition-delay: 30ms;
-}
-
-input[type=range]::-moz-range-track,
-input[type=range]::-moz-range-progress {
-  height: calc(var(--track-height) + 1px);
-  border-radius: var(--track-height);
-}
-
-input[type=range]::-moz-range-thumb,
-input[type=range]::-moz-range-progress {
-  filter: brightness(100%);
-}
-
-input[type=range]:hover::-moz-range-thumb,
-input[type=range]:hover::-moz-range-progress {
-  filter: brightness(var(--brightness-hover));
-}
-
-input[type=range]:active::-moz-range-thumb,
-input[type=range]:active::-moz-range-progress {
-  filter: brightness(var(--brightness-down));
-}
-
-input[type=range]:disabled::-moz-range-thumb {
-  cursor: not-allowed;
 }
 
 .slider_square {
@@ -13289,23 +13307,6 @@ input[type=range]:disabled::-moz-range-thumb {
     color: #3a86ff;
   }
 }
-/* === range commons === */
-input[type=range] {
-  position: relative;
-  background: rgba(255, 255, 255, 0);
-  overflow: hidden;
-}
-
-input[type=range]:active {
-  cursor: grabbing;
-}
-
-input[type=range]:disabled {
-  filter: grayscale(1);
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
 /* === WebKit specific styles === */
 input[type=range],
 input[type=range]::-webkit-slider-runnable-track,
@@ -13336,25 +13337,6 @@ input[type=range]::-webkit-slider-thumb {
   clip-path: polygon(100% -1px, var(--clip-edges) -1px, 0 var(--clip-top), -100vmax var(--clip-top), -100vmax var(--clip-bottom), 0 var(--clip-bottom), var(--clip-edges) 100%, var(--clip-further) var(--clip-further));
 }
 
-input[type=range]:hover::-webkit-slider-thumb {
-  filter: brightness(var(--brightness-hover));
-  cursor: grab;
-}
-
-input[type=range]:active::-webkit-slider-thumb {
-  filter: brightness(var(--brightness-down));
-  cursor: grabbing;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-  background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center/100% calc(var(--track-height) + 1px);
-}
-
-input[type=range]:disabled::-webkit-slider-thumb {
-  cursor: not-allowed;
-}
-
-/* === Firefox specific styles === */
 /* Style select like a standard input */
 select {
   -moz-appearance: none; /* Firefox 36+ */
