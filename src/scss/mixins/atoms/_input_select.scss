@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use 'sass:list';
+
 @use '../../dev' as *;
 @use '../../variables' as *;
 // @use "../mixins" as *;
@@ -29,7 +32,10 @@ select::-ms-value {
     cursor: pointer;
 
     // Inherit other input styles
-    @include input;
+    @include input(
+        list.nth(map.get($input-size-map, 'm'), 1),
+        list.nth(map.get($input-size-map, 'm'), 2)
+    );
 
     &option {
         color: var(--color_dark);

@@ -13355,6 +13355,81 @@ input[type=range]:disabled::-webkit-slider-thumb {
 }
 
 /* === Firefox specific styles === */
+/* Style select like a standard input */
+select {
+  -moz-appearance: none; /* Firefox 36+ */
+  -webkit-appearance: none; /* Chrome 41+ */
+}
+
+select::-ms-expand {
+  display: none; /* Internet Explorer 11+ */
+}
+
+select::-ms-value {
+  color: currentColor; /* Internet Explorer 11+ */
+}
+
+select {
+  background-color: var(--color_background);
+  padding-right: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
+  align-self: stretch;
+  border-radius: 4px;
+  border: 1.5px solid var(--color_dark);
+  color: var(--color_dark);
+  transition: border 0.2s ease;
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+  padding: 0.9375rem;
+}
+select:hover {
+  border-color: var(--color_primary);
+}
+select:focus {
+  border: 3px solid #65aace;
+}
+select:disabled {
+  border-color: var(--color_muted);
+  color: var(--color_muted);
+}
+select.is-success {
+  border-color: var(--color_success);
+  color: var(--color_success);
+}
+select.is-warning {
+  border-color: var(--color_warning);
+  color: var(--color_warning);
+}
+select.is-error {
+  border-color: var(--color_error);
+  color: var(--color_error);
+}
+select.is-info {
+  border-color: var(--color_info);
+  color: var(--color_info);
+}
+selectoption {
+  color: var(--color_dark);
+  background-color: var(--color_background);
+}
+selectoption:hover {
+  background: #acd2e9;
+}
+
+select[multiple] {
+  border: 1px solid #000;
+  width: 100%;
+}
+
+select[multiple] {
+  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 textarea {
   resize: none;
 }
@@ -13412,6 +13487,51 @@ textarea {
 
 .toggles .panel-body {
   padding: 25px;
+}
+
+input[type=radio],
+.input_radio {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--color_primary);
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+  opacity: 1;
+}
+input[type=radio]::after,
+.input_radio::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: var(--color_primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+input[type=radio]:hover:not(:checked),
+.input_radio:hover:not(:checked) {
+  background: #acd2e9;
+}
+input[type=radio]:checked::after,
+.input_radio:checked::after {
+  opacity: 1;
+}
+input[type=radio]:disabled,
+.input_radio:disabled {
+  border-color: var(--color_muted);
+  background: transparent;
+  cursor: not-allowed;
 }
 
 progress,
@@ -13513,7 +13633,6 @@ meter::-moz-progress-bar {
   line-height: 1;
   color: var(--color_light);
   background-color: var(--color_primary);
-  border-radius: 0.0625rem;
   white-space: nowrap;
   vertical-align: middle;
   text-align: center;
