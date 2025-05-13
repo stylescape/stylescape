@@ -2,13 +2,15 @@
 
 @use '../../dev' as *;
 @use '../../variables' as *;
-// @use "../mixins" as *;
+
 @use '../type' as *;
 
 // ----------------------------------------------------------------------------
 
+///
 /// Mixin to style the placeholder text in input fields
 /// @group Form
+///
 @mixin input_placeholder {
     color: #999999;
     @include font_size('03');
@@ -17,8 +19,10 @@
     // opacity: 0.5;
 }
 
+///
 /// Mixin to style the placeholder text when an input is focused
 /// @group Form
+///
 @mixin input_placeholder_focus {
     color: transparent;
     @include font_size('03');
@@ -28,8 +32,10 @@
 
 // ----------------------------------------------------------------------------
 
+///
 /// Apply the placeholder styling across various browsers
 /// @group Form
+///
 ::placeholder,
 :-moz-placeholder,
 ::-moz-placeholder,
@@ -53,8 +59,10 @@ input::-webkit-input-placeholder {
     @include input_placeholder;
 }
 
+///
 /// Apply the placeholder styling specifically for text inputs
 /// @group Form
+///
 input[type='text'].placeholder,
 input[type='text']::placeholder,
 input[type='text']:-moz-placeholder,
@@ -145,8 +153,10 @@ input[type='file']::-webkit-input-placeholder {
     @include input_placeholder;
 }
 
+///
 /// Apply the placeholder styling for text areas
 /// @group Form
+///
 textarea.placeholder,
 textarea::placeholder,
 textarea:-moz-placeholder,
@@ -157,8 +167,10 @@ textarea::-webkit-input-placeholder {
     @include input_placeholder;
 }
 
+///
 /// Apply the placeholder styling for select elements
 /// @group Form
+///
 select.placeholder,
 select::placeholder,
 select:-moz-placeholder,
@@ -205,8 +217,10 @@ select::-webkit-input-placeholder {
 // Placeholder Styling on Focus
 // ============================================================================
 
+///
 /// Apply placeholder focus styling for inputs and other fields
 /// @group Form
+///
 :focus.placeholder,
 :focus::placeholder,
 :focus:-moz-placeholder,
@@ -217,8 +231,10 @@ select::-webkit-input-placeholder {
     @include input_placeholder_focus;
 }
 
+///
 /// Apply placeholder focus styling for input fields
 /// @group Form
+///
 input:focus.placeholder,
 input:focus::placeholder,
 input:focus:-moz-placeholder,

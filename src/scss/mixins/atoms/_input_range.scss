@@ -11,24 +11,6 @@
 // ----------------------------------------------------------------------------
 $slider-thumb-size: baseline(4); // example: 24px
 $slider-track-height: baseline(2); // example: 12px
-// ----------------------------------------------------------------------------
-// Reset
-// ----------------------------------------------------------------------------
-
-input[type='range'] {
-    font-size: 1.5rem;
-    width: 12.5em;
-}
-
-input[type='range'] {
-    color: #ef233c;
-    --thumb-height: 1.125em;
-    --track-height: 0.125em;
-    --track-color: rgba(0, 0, 0, 0.2);
-    --brightness-hover: 180%;
-    --brightness-down: 80%;
-    --clip-edges: 0.125em;
-}
 
 input[type='range'].win10-thumb {
     color: #2b2d42;
@@ -42,59 +24,114 @@ input[type='range'].win10-thumb {
 // ----------------------------------------------------------------------------
 
 @mixin input_range_slider {
+    // Variables
+    --thumb-height: 1.125em;
+    --track-height: 0.125em;
+    --track-color: rgba(0, 0, 0, 0.2);
+    --brightness-hover: 180%;
+    --brightness-down: 80%;
+    --clip-edges: 0.125em;
     --thumb-size: #{$slider-thumb-size};
     --track-height: #{$slider-track-height};
     --track-color: var(--color_surface_1);
     --fill-color: var(--color_primary);
-
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: var(--thumb-size);
-    background: transparent;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-
-    // ─── Base input container ────────────────────────────────────────────────
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: var(--thumb-size);
-    background: transparent;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    border-radius: 4px; // round the whole thing
-
-    transition: all ease 100ms;
-    height: var(--thumb-height);
-    //     -webkit-appearance: none;
-    //     height: 10px;
-    //     cursor: pointer;
-    //     background: linear-gradient(
-    //         to right,
-    //         var(--color_primary) 0%,
-    //         var(--color_primary) var(--range-percent, 50%),
-    //         var(--color_surface_1) var(--range-percent, 50%),
-    //         var(--color_surface_1) 100%
-    //     );
-    //     border-radius: 4px;
-
-    // ─── Vars ─────────────────────────────────────────────────────────────────
     --thumb-size: 16px; // 16×16 circle
     --track-height: 10px; // visible line
     --track-color: var(--color_surface_1);
     --fill-color: var(--color_primary);
-
-    // helper math
     --track-gap: calc((var(--thumb-size) - var(--track-height)) / 2);
     --thumb-half: calc(var(--thumb-size) / 2);
 
-    // ─── Disabled state ───────────────────────────────────────────────────────
+    // Position
+    position: relative;
+    overflow: hidden;
+
+    // Size
+    width: 100%;
+    // height: var(--thumb-height);
+    height: var(--thumb-size);
+    // height: 10px;
+    border-radius: 4px; // round the whole thing
+    font-size: 1.5rem;
+
+    // Style
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    background: #fff0;
+    // background: linear-gradient(
+    //     to right,
+    //     var(--color_primary) 0%,
+    //     var(--color_primary) var(--range-percent, 50%),
+    //     var(--color_surface_1) var(--range-percent, 50%),
+    //     var(--color_surface_1) 100%
+    // );
+    color: #ef233c;
+
+    // Interaction
+    transition: all ease 100ms;
+    cursor: pointer;
+
+    // ─── Vars ─────────────────────────────────────────────────────────────────
+
+    // helper math
+
+    // Active State
+    // ------------------------------------------------------------------------
+
+    &:active {
+        cursor: grabbing;
+    }
+
+    &:active::-webkit-slider-thumb {
+        filter: brightness(var(--brightness-down));
+        cursor: grabbing;
+    }
+
+    &:active::-moz-range-thumb,
+    &:active::-moz-range-progress {
+        filter: brightness(var(--brightness-down));
+    }
+    &:active::-moz-range-thumb {
+        cursor: grabbing;
+    }
+
+    // Disabled State
+    // ------------------------------------------------------------------------
+
     &:disabled {
+        filter: grayscale(1);
         opacity: 0.4;
         cursor: not-allowed;
+    }
+
+    &:disabled::-webkit-slider-thumb {
+        cursor: not-allowed;
+    }
+
+    &:disabled::-moz-range-thumb {
+        cursor: not-allowed;
+    }
+
+    // Hover State
+    // ------------------------------------------------------------------------
+
+    &:hover::-webkit-slider-thumb {
+        filter: brightness(var(--brightness-hover));
+        cursor: grab;
+    }
+
+    &:hover::-moz-range-thumb,
+    &:hover::-moz-range-progress {
+        filter: brightness(var(--brightness-hover));
+    }
+
+    // ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+
+    &::-webkit-slider-runnable-track {
+        background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center / 100%
+            calc(var(--track-height) + 1px);
     }
 
     // WebKit Track
@@ -162,6 +199,10 @@ input[type='range'].win10-thumb {
         height: var(--track-height);
         background-color: var(--track-color);
         border-radius: $q;
+        height: calc(var(--track-height) + 1px);
+        border-radius: var(--track-height);
+        width: 100%;
+        background: var(--track-color);
     }
 
     &::-moz-range-progress {
@@ -174,6 +215,12 @@ input[type='range'].win10-thumb {
         height: var(--track-height);
         background-color: var(--fill-color);
         border-radius: $q;
+        height: calc(var(--track-height) + 1px);
+        border-radius: var(--track-height);
+        appearance: none;
+        background: currentColor;
+        transition-delay: 30ms;
+        filter: brightness(100%);
     }
 
     &::-moz-range-thumb {
@@ -188,27 +235,20 @@ input[type='range'].win10-thumb {
         // border-radius: var(--thumb-width, var(--thumb-height));
         border: none;
         background: #fff0;
-        //         width: 16px;
-        //         height: 16px;
-        //         background-color: var(--color_primary);
-        //         border: none;
-        //         border-radius: 50%;
-        //         transition: background 0.3s ease;
-        //         position: relative;
-        //         z-index: 2;
+        // width: 16px;
+        // height: 16px;
+        // background-color: var(--color_primary);
+        // border: none;
+        // border-radius: 50%;
+        // transition: background 0.3s ease;
+        // position: relative;
+        // z-index: 2;
         width: var(--thumb-size);
         height: var(--thumb-size);
         background-color: var(--fill-color);
         border-radius: 50%;
         border: none;
-    }
-
-    &:active::-moz-range-thumb {
-        cursor: grabbing;
-    }
-    &:disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
+        filter: brightness(100%);
     }
 }
 
@@ -236,42 +276,6 @@ input[type='range'] {
 
 .slider.round:before {
     border-radius: 50%;
-}
-
-input[type='range']::-moz-range-track {
-    width: 100%;
-    background: var(--track-color);
-}
-
-input[type='range']::-moz-range-progress {
-    appearance: none;
-    background: currentColor;
-    transition-delay: 30ms;
-}
-
-input[type='range']::-moz-range-track,
-input[type='range']::-moz-range-progress {
-    height: calc(var(--track-height) + 1px);
-    border-radius: var(--track-height);
-}
-
-input[type='range']::-moz-range-thumb,
-input[type='range']::-moz-range-progress {
-    filter: brightness(100%);
-}
-
-input[type='range']:hover::-moz-range-thumb,
-input[type='range']:hover::-moz-range-progress {
-    filter: brightness(var(--brightness-hover));
-}
-
-input[type='range']:active::-moz-range-thumb,
-input[type='range']:active::-moz-range-progress {
-    filter: brightness(var(--brightness-down));
-}
-
-input[type='range']:disabled::-moz-range-thumb {
-    cursor: not-allowed;
 }
 
 //// ENGINE
@@ -361,23 +365,6 @@ input[type='range']:disabled::-moz-range-thumb {
     }
 }
 
-/* === range commons === */
-input[type='range'] {
-    position: relative;
-    background: #fff0;
-    overflow: hidden;
-}
-
-input[type='range']:active {
-    cursor: grabbing;
-}
-
-input[type='range']:disabled {
-    filter: grayscale(1);
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
 /* === WebKit specific styles === */
 input[type='range'],
 input[type='range']::-webkit-slider-runnable-track,
@@ -418,24 +405,3 @@ input[type='range']::-webkit-slider-thumb {
         var(--clip-further) var(--clip-further)
     );
 }
-
-input[type='range']:hover::-webkit-slider-thumb {
-    filter: brightness(var(--brightness-hover));
-    cursor: grab;
-}
-
-input[type='range']:active::-webkit-slider-thumb {
-    filter: brightness(var(--brightness-down));
-    cursor: grabbing;
-}
-
-input[type='range']::-webkit-slider-runnable-track {
-    background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center / 100%
-        calc(var(--track-height) + 1px);
-}
-
-input[type='range']:disabled::-webkit-slider-thumb {
-    cursor: not-allowed;
-}
-
-/* === Firefox specific styles === */
