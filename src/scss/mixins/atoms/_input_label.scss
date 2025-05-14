@@ -2,6 +2,9 @@
 // Atoms | Labels
 // ============================================================================
 
+@use 'sass:map';
+@use 'sass:list';
+
 @use '../../dev' as *;
 @use '../../variables' as *;
 @use '../type' as *;
@@ -10,23 +13,40 @@
 /// Mixin: label_base
 /// ---------------------------------------------------------------------------
 /// Unified label styling for both `<label>` elements and `.label` classes.
+/// @group Form
+/// Size map for label styles
+$label-size-map: (
+    's': (
+        '02',
+        0,
+    ),
+    // font-size: 02, margin-bottom: 0
+    'm': (
+            '03',
+            1,
+        ),
+    'l': (
+        '04',
+        2,
+    ),
+) !default;
+
+/// @mixin label_base
+/// Unified label styling for both `<label>` elements and `.label` classes.
 ///
-/// @param {String} $color [--color_text_default] - Text color token.
-/// @param {Number} $font-size [03] - Font size level from your type scale.
-/// @param {Number} $margin [01] - Vertical spacing unit from baseline.
+/// @param {String} $color [--color_dark] - Text color token.
+/// @param {String} $size ['m'] - Size key: 's', 'm', or 'l'.
 ///
-@mixin label_base($color: --color_text_default, $font-size: '03', $margin: 1) {
+@mixin label_base($color: --color_dark, $size: 'm') {
+    $font-size: list.nth(map.get($label-size-map, $size), 1);
+    $margin: list.nth(map.get($label-size-map, $size), 2);
+
     @include font_size($font-size);
     display: block;
-    // display: inline-block;
     width: 100%;
     margin-top: 0;
     margin-bottom: baseline($margin);
-    color: var(--color_dark);
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+    color: var(#{$color});
     user-select: none;
     cursor: default;
 }
@@ -51,8 +71,20 @@
 /// Utility label class
 ///
 .label {
-    @include label_base;
+    @include label_base(--color_dark, 'm');
     // @include label_base(--color_text_muted, 02, 00);
+}
+
+.label--s {
+    @include label_base(--color_dark, 's');
+}
+
+.label--m {
+    @include label_base(--color_dark, 'm');
+}
+
+.label--l {
+    @include label_base(--color_dark, 'l');
 }
 
 ///
