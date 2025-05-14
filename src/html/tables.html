@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Font Demo</title>
+    <title>Stylescape</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/stylescape.css" />
     <script type="module" src="/js/stylescape.js"></script>
@@ -139,94 +139,102 @@
         <div class="layout__area--middle_center">
             <main class="main" role="main">
 
-<div class="font-preview-controls">
-    <label for="font-preview-input">Preview text:</label>
-    <input id="font-preview-input" type="text" placeholder="The quick brown fox…" />
-</div>
+<h1 id="tables">Tables</h1>
 
-<div class="font-preview-grid">
-    <div class="font-preview-box" data-default="Aa Bb Cc" style="font-family: serif">
-        <span class="label">Serif</span>
-        <div class="text">The quick brown fox jumps over the lazy dog. 0123456789
-        </div>
-    </div>
-    <div class="font-preview-box" data-default="Aa Bb Cc" style="font-family: sans-serif">
-        <span class="label">Sans-serif</span>
-        <div class="text">The quick brown fox jumps over the lazy dog. 0123456789
-        </div>
-    </div>
-    <div class="font-preview-box" data-default="Aa Bb Cc" style="font-family: monospace">
-        <span class="label">Monospace</span>
-        <div class="text">The quick brown fox jumps over the lazy dog. 0123456789
-        </div>
-    </div>
-</div>
+<table cellspacing="0" cellpadding="0">
+    <tr>
+        <th>Table Header 1</th>
+        <th>Table Header 2</th>
+        <th>Table Header 3</th>
+    </tr>
+    <tr>
+        <td>Division 1</td>
+        <td>Division 2</td>
+        <td>Division 3</td>
+    </tr>
+    <tr class="even">
+        <td>Division 1</td>
+        <td>Division 2</td>
+        <td>Division 3</td>
+    </tr>
+    <tr>
+        <td>Division 1</td>
+        <td>Division 2</td>
+        <td>Division 3</td>
+    </tr>
+</table>
 
-<section>
-    <label>.font_default</label>
-    <p class="font_default">The quick brown fox jumps over the lazy dog. 0123456789</p>
+<table border="1">
+    <caption>This is a table caption, made with caption</caption>
+    <colgroup span="2">
+        <col>
+        <col>
+    </colgroup>
+    <colgroup></colgroup>
+    <thead>
+        <tr>
+            <th>Table Header 1</th>
+            <th>Table Header 2</th>
+            <th>Table Header 3</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td>Table Footer 1</td>
+            <td>Table Footer 2</td>
+            <td>Table Footer 3</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+            <td>TD 1.1</td>
+            <td>TD 1.2</td>
+            <td>TD 1.3</td>
+        </tr>
+        <tr>
+            <td>TD 2.1</td>
+            <td>TD 2.2</td>
+            <td>TD 2.3</td>
+        </tr>
+        <tr>
+            <td>TD 3.1</td>
+            <td>TD 3.2</td>
+            <td>TD 3.3</td>
+        </tr>
+    </tbody>
+</table>
+
+<section id="tables">
+    <h2>Tables & Preformatted</h2>
+    <table>
+        <caption>Sample Table</caption>
+        <colgroup>
+            <col span="1" />
+            <col span="1" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Foo</td>
+                <td>Bar</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">Footer text</td>
+            </tr>
+        </tfoot>
+    </table>
+    <pre>
+Line 1 of code
+Line 2 of code
+  </pre>
 </section>
-
-<section>
-    <label>.font_sans</label>
-    <p class="font_sans">The quick brown fox jumps over the lazy dog. 0123456789</p>
-</section>
-
-<section>
-    <label>.font_serif</label>
-    <p class="font_serif">The quick brown fox jumps over the lazy dog. 0123456789</p>
-</section>
-
-<section>
-    <label>.font_slab</label>
-    <p class="font_slab">The quick brown fox jumps over the lazy dog. 0123456789</p>
-</section>
-
-<section>
-    <label>.font_mono</label>
-    <p class="font_mono">The quick brown fox jumps over the lazy dog. 0123456789</p>
-</section>
-
-
-
-
-<!-- Preview Block -->
-<section class="preview-grid">
-
-    <div class="preview-live">
-        <h1>The quick brown fox jumps over the lazy dog.</h1>
-    </div>
-    <div class="typography-label">Heading 1</div>
-
-    <div class="preview-code">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code>&lt;h1&gt;The quick brown fox jumps over the lazy dog.&lt;/h1&gt;</code></pre>
-    </div>
-</section>
-
-<!-- Another Preview -->
-<section class="preview-grid">
-    <div class="typography-label">Paragraph</div>
-
-    <div class="preview-live">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-
-    <div class="preview-code">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;</code></pre>
-    </div>
-</section>
-
-<script>
-    function copyToClipboard(button) {
-        const code = button.nextElementSibling.innerText;
-        navigator.clipboard.writeText(code).then(() => {
-            button.textContent = "Copied!";
-            setTimeout(() => button.textContent = "Copy", 1500);
-        });
-    }
-</script>
 
 
             </main>
