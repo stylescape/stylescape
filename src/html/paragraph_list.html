@@ -228,6 +228,43 @@
 </article>
 
             </main>
+            
+            <div class="layout__middle_center--nested" id="middleCenter">
+
+                <!-- Left Aside -->
+                <aside class="layout__aside--left">
+                    <!-- Left content -->
+                    Left Menu
+                </aside>
+                <!-- Left Aside Toggle -->
+                <div class="aside_left_switch" id="leftSwitch">
+                    <button class="aside_left_switch_button">
+                        <span class="top_bar"></span>
+                        <span class="bot_bar"></span>
+                    </button>
+                </div>
+
+                <!-- Main Content -->
+                <main class="layout__main">
+                    <!-- Your content here -->
+                    Main Content
+                </main>
+
+                <!-- Right Aside -->
+                <aside class="layout__aside--right">
+                    <!-- Right content -->
+                    Right Menu
+                </aside>
+
+                <!-- Right Aside Toggle -->
+                <div class="aside_right_switch" id="rightSwitch">
+                    <button class="aside_right_switch_button">
+                        <span class="top_bar"></span>
+                        <span class="bot_bar"></span>
+                    </button>
+                </div>
+
+            </div>
         </div>
 
         <div class="layout__area--middle_right">
@@ -270,6 +307,23 @@
             const html = document.documentElement;
             html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const middleCenter = document.getElementById('middleCenter');
+            const leftSwitch = document.getElementById('leftSwitch');
+            const rightSwitch = document.getElementById('rightSwitch');
+
+            leftSwitch.addEventListener('click', () => {
+                middleCenter.classList.toggle('collapse-left');
+                leftSwitch.classList.toggle('active');
+            });
+
+            rightSwitch.addEventListener('click', () => {
+                middleCenter.classList.toggle('collapse-right');
+                rightSwitch.classList.toggle('active');
+            });
+        });
     </script>
 </body>
 
