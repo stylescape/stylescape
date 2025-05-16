@@ -118,7 +118,8 @@
 
 @mixin layout__middle_center__aside--left {
     grid-area: aside_left;
-    width: ($q * 100);
+    width: auto;
+    max-width: ($q * 300);
     transition: width 0.3s ease;
     overflow-y: auto;
     border-right: 1.5px solid var(--color_foreground);
@@ -129,11 +130,13 @@
     grid-area: main;
     overflow-y: auto;
     overflow-x: hidden;
+    padding: ($q * 30);
 }
 
 @mixin layout__middle_center__aside--right {
     grid-area: aside_right;
-    width: ($q * 100);
+    width: auto;
+    max-width: ($q * 300);
     transition: width 0.3s ease;
     overflow-y: auto;
     border-left: 1.5px solid var(--color_foreground);
@@ -223,12 +226,14 @@
     &.layout__middle_center--nested.collapse-left .layout__aside--left {
         width: 0;
         padding: 0;
+        border: 0;
         overflow: hidden;
     }
 
     &.layout__middle_center--nested.collapse-right .layout__aside--right {
         width: 0;
         padding: 0;
+        border: 0;
         overflow: hidden;
     }
 }
@@ -251,8 +256,8 @@ $arrow_size: $q * 12;
     // -webkit-font-smoothing: antialiased;
     .aside_left_switch_button,
     .aside_right_switch_button {
-        width: $arrow_size * 2;
-        height: $arrow_size * 2;
+        width: $arrow_size;
+        height: $arrow_size;
         position: relative;
         color: grey;
         // -webkit-appearance: button;
@@ -308,7 +313,7 @@ $arrow_size: $q * 12;
 }
 
 .aside_left_switch {
-    left: calc($arrow_size / 2);
+    left: calc($arrow_size / 30);
     .aside_left_switch_button {
         .top_bar {
             transform: rotate(90deg);

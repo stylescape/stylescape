@@ -47,23 +47,11 @@
         </div>
 
         <div class="layout__area--middle_center">
-            <main class="main" role="main">
+            {# <main class="main" role="main">
                 {% block content %}{% endblock %}
-            </main>
-            {# <button id="toggle-left">Toggle Left Aside</button>
-            <button id="toggle-right">Toggle Right Aside</button>
-            <div class="layout__middle_center--nested" id="middleCenter">
-                <aside class="layout__aside--left">Left Menu</aside>
-                <main class="layout__main">Main Content</main>
-                <aside class="layout__aside--right">Right Menu</aside>
-            </div> #}
-            <div class="layout__middle_center--nested" id="middleCenter">
+            </main> #}
+            <div class="layout__middle_center--nested collapse-left collapse-right" id="middleCenter">
 
-                <!-- Left Aside -->
-                <aside class="layout__aside--left">
-                    <!-- Left content -->
-                    Left Menu
-                </aside>
                 <!-- Left Aside Toggle -->
                 <div class="aside_left_switch" id="leftSwitch">
                     <button class="aside_left_switch_button">
@@ -72,16 +60,22 @@
                     </button>
                 </div>
 
+                <!-- Left Aside -->
+                <aside class="layout__aside--left">
+                    <!-- Left content -->
+                    Aside Left Menu
+                </aside>
+
                 <!-- Main Content -->
                 <main class="layout__main">
                     <!-- Your content here -->
-                    Main Content
+                    {% block content %}{% endblock %}
                 </main>
 
                 <!-- Right Aside -->
                 <aside class="layout__aside--right">
                     <!-- Right content -->
-                    Right Menu
+                    Aside Right Menu
                 </aside>
 
                 <!-- Right Aside Toggle -->
