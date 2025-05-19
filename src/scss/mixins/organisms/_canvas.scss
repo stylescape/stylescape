@@ -2,32 +2,31 @@
 // Imports
 // ============================================================================
 
-@use '../variables' as *;
-@use '../mixins' as *;
+@use '../../variables' as *;
+// @use '../../mixins' as *;
 
 // ============================================================================
 // Container | Canvas
 // ============================================================================
 
 @mixin canvas {
-    position: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
     margin: 0 0 0 0;
-    min-width: 100vw;
-    min-height: 100vh;
-    z-index: z('canvas');
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 0;
 
     // Grid
     // grid-column: 1/-1;
     // grid-row: 1/-1;
-    grid-row-start: a1;
-    grid-column-start: a1;
-    grid-row-end: c3;
-    grid-column-end: c3;
+    grid-row-start: top_left;
+    grid-column-start: top_left;
+    grid-row-end: bottom_right;
+    grid-column-end: bottom_right;
 
     // pointer-events: none;
-    // * {
-    //     pointer-events: auto;
-    // }
 
     // grid-template-areas:
     // "ribbon_left       ribbon_mid      ribbon_right";
@@ -37,7 +36,7 @@
     @include canvas;
 }
 
-.canvas div {
+.canvas > div {
     @include canvas;
     position: absolute;
 }
@@ -48,11 +47,11 @@
     height: 100%;
     @include canvas;
     position: absolute;
-    background-color: $color_highlight;
+    // background-color: $color_highlight;
 }
 
 .canvas_color {
-    background-color: $color_highlight;
+    // background-color: $color_highlight;
     min-width: 100vw;
     min-height: 100vh;
 }
