@@ -18,6 +18,13 @@
 
 <body class="">
 
+    {% if canvas%}
+    <div class="canvas">
+        {% block body_canvas %}
+        {% endblock body_canvas %}
+    </div>
+    {% endif %}
+
     <div class="layout__grid--screen">
 
         <div class="layout__area--top">
@@ -47,46 +54,11 @@
         </div>
 
         <div class="layout__area--middle_center">
-            {# <main class="main" role="main">
+            <main class="main full-height" role="main">
+
                 {% block content %}{% endblock %}
-            </main> #}
-            <div class="layout__middle_center--nested collapse-left collapse-right" id="middleCenter">
 
-                <!-- Left Aside Toggle -->
-                <div class="aside_left_switch" id="leftSwitch">
-                    <button class="aside_left_switch_button">
-                        <span class="top_bar"></span>
-                        <span class="bot_bar"></span>
-                    </button>
-                </div>
-
-                <!-- Left Aside -->
-                <aside class="layout__aside--left">
-                    <!-- Left content -->
-                    Aside Left Menu
-                </aside>
-
-                <!-- Main Content -->
-                <main class="layout__main">
-                    <!-- Your content here -->
-                    {% block content %}{% endblock %}
-                </main>
-
-                <!-- Right Aside -->
-                <aside class="layout__aside--right">
-                    <!-- Right content -->
-                    Aside Right Menu
-                </aside>
-
-                <!-- Right Aside Toggle -->
-                <div class="aside_right_switch" id="rightSwitch">
-                    <button class="aside_right_switch_button">
-                        <span class="top_bar"></span>
-                        <span class="bot_bar"></span>
-                    </button>
-                </div>
-
-            </div>
+            </main>
         </div>
 
         <div class="layout__area--middle_right">

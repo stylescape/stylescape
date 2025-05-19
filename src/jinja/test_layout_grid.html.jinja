@@ -1,0 +1,93 @@
+{% extends "base.html.jinja" %}
+
+{% block title %}Test Layout{% endblock %}
+
+{% set canvas = true%}
+
+{% block body_canvas%}
+<div id="map"></div>
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet" />
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoidmFsdWVzY2FwZXMiLCJhIjoiY2xqeTNvMW1hMDFibjNjcnU1Y2R2N3JxYSJ9.9TrR3NhHF6yZyyw9ZSlfgQ';
+
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/valuescapes/cm84j42hs003301sigms3gexd', // Custom style URL
+        center: [4.864105, 52.375196], // Initial map center - Park near the Markthal
+        zoom: 16.72,
+        bearing: -40.30,
+        pitch: 60,
+    });</script>
+{% endblock body_canvas%}
+
+
+
+{% block content %}
+<div class="layout__middle_center--nested collapse-left collapse-right" id="middleCenter">
+    <!-- Left Aside Toggle -->
+    <div class="aside_left_switch" id="leftSwitch">
+        <button class="aside_left_switch_button">
+            <span class="top_bar"></span>
+            <span class="bot_bar"></span>
+        </button>
+    </div>
+
+    <!-- Left Aside -->
+    <aside class="layout__aside--left">
+        <!-- Left content -->
+        <div class="layout__aside--inside">
+            Aside Left Menu
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="layout__main">
+        <!-- Your content here -->
+
+        <div class="layout__main--inside">
+
+            <div class="layout__grid--inner--screen">
+
+                {# <div class="layout__area--top_left">Top Left</div> #}
+                {# <div class="layout__area--top_center">Top Center</div> #}
+                <div class="layout__area--top_right"><input type="text" class="input input--m" placeholder="Search...">
+                </div>
+
+                <div class="layout__area--middle_left"><input type="checkbox" /></div>
+                {# <div class="layout__area--middle_center">Middle Center</div> #}
+                {# <div class="layout__area--middle_right">Middle Right</div> #}
+
+                {# <div class="layout__area--bottom_left">Bottom Left</div> #}
+                <div class="layout__area--bottom_center paragraph--center">
+                    <div class="button_group">
+                        <button class="button button--xl button--solid">Left</button>
+                        <button class="button button--xl button--solid">Center</button>
+                        <button class="button button--xl button--solid">Right</button>
+                    </div>
+                </div>
+                {# <div class="layout__area--bottom_right">Bottom Right</div> #}
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Right Aside -->
+    <aside class="layout__aside--right">
+        <!-- Right content -->
+        <div class="layout__aside--inside">
+            Aside Right Menu
+        </div>
+    </aside>
+
+    <!-- Right Aside Toggle -->
+    <div class="aside_right_switch" id="rightSwitch">
+        <button class="aside_right_switch_button">
+            <span class="top_bar"></span>
+            <span class="bot_bar"></span>
+        </button>
+    </div>
+</div>
+
+
+{% endblock content %}

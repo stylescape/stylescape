@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Design System Index</title>
+    <title>Test Layout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/stylescape.css" />
     <script type="module" src="/js/stylescape.js"></script>
@@ -17,6 +17,22 @@
 
 <body class="">
 
+    <div class="canvas">
+<div id="map"></div>
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet" />
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoidmFsdWVzY2FwZXMiLCJhIjoiY2xqeTNvMW1hMDFibjNjcnU1Y2R2N3JxYSJ9.9TrR3NhHF6yZyyw9ZSlfgQ';
+
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/valuescapes/cm84j42hs003301sigms3gexd', // Custom style URL
+        center: [4.864105, 52.375196], // Initial map center - Park near the Markthal
+        zoom: 16.72,
+        bearing: -40.30,
+        pitch: 60,
+    });</script>
+    </div>
 
     <div class="layout__grid--screen">
 
@@ -136,139 +152,72 @@
         <div class="layout__area--middle_center">
             <main class="main full-height" role="main">
 
-<main class="index">
+<div class="layout__middle_center--nested collapse-left collapse-right" id="middleCenter">
+    <!-- Left Aside Toggle -->
+    <div class="aside_left_switch" id="leftSwitch">
+        <button class="aside_left_switch_button">
+            <span class="top_bar"></span>
+            <span class="bot_bar"></span>
+        </button>
+    </div>
 
-    <br>
+    <!-- Left Aside -->
+    <aside class="layout__aside--left">
+        <!-- Left content -->
+        <div class="layout__aside--inside">
+            Aside Left Menu
+        </div>
+    </aside>
 
-    <header style="margin-bottom: var(--space-lg);">
-        <h1>Stylescape Index</h1>
-        <br>
-        <p class="lead">Explore components, layout utilities, tokens, and design primitives used throughout the system.
-        </p>
+    <!-- Main Content -->
+    <main class="layout__main">
+        <!-- Your content here -->
 
-        <input type="search" placeholder="🔍 Search components..." class="search-input"
-            oninput="filterSections(this.value)"
-            style="margin-top: var(--space-md); width: 100%; padding: var(--space-sm);" />
-    </header>
+        <div class="layout__main--inside">
 
+            <div class="layout__grid--inner--screen">
 
-    <br>
-    <br>
+                
+                
+                <div class="layout__area--top_right"><input type="text" class="input input--m" placeholder="Search...">
+                </div>
 
-    <h2>00. Head</h2>
-    <br>
+                <div class="layout__area--middle_left"><input type="checkbox" /></div>
+                
+                
 
+                
+                <div class="layout__area--bottom_center paragraph--center">
+                    <div class="button_group">
+                        <button class="button button--xl button--solid">Left</button>
+                        <button class="button button--xl button--solid">Center</button>
+                        <button class="button button--xl button--solid">Right</button>
+                    </div>
+                </div>
+                
 
-    <section data-group="layout">
-        <h4>00.00. Layout & Utilities</h4>
-        <ul>
-            <li><a href="grid.html">Grid</a> <small>- Responsive Columns, Gutters</small></li>
-            <li><a href="spacing.html">Spacing</a> <small>- Margin, Padding, Gaps</small></li>
-            <li><a href="visibility.html">Visibility</a> <small>- Show/Hide, Screen Sizes</small></li>
-            <li><a href="test_layout_grid.html">Test Layout Grid</a> <small>- Test Full Layout</small></li>
-        </ul>
-    </section>
-    <br>
+            </div>
+        </div>
+    </main>
 
-    <h2>00. Soul</h2>
-    <br>
+    <!-- Right Aside -->
+    <aside class="layout__aside--right">
+        <!-- Right content -->
+        <div class="layout__aside--inside">
+            Aside Right Menu
+        </div>
+    </aside>
 
-    <section data-group="typography">
-        <h4>00.00. Typography</h4>
-        <small>Headings, Paragraphs, Small Text</small>
-        <ul>
-            <li><a href="font_default.html">font_default</a> <small>- Font Defaults</small></li>
-            <li><a href="font_size.html">font_size</a> <small>- Font Sizes</small></li>
-            <li><a href="font_weight.html">font_weight</a> <small>- Font Weights</small></li>
-            <li><a href="paragraph_heading.html">paragraph_heading</a> <small>- Paragraph Headings</small></li>
-            <li><a href="paragraph_list.html">paragraph_list</a> <small>- Paragraph Lists</small></li>
-
-
-
-        </ul>
-    </section>
-
-    <br>
-
-    <section data-group="color">
-        <h4>00.00. Color</h4>
-        <ul>
-            <li><a href="color_palette.html">Color Palette</a> <small>- Themes, Tokens, Contrast</small></li>
-            <li><a href="color_system.html">Color System</a> <small>- Themes, Tokens, Contrast</small></li>
-            <li><a href="states.html">States</a> <small>- Hover, Focus, Disabled</small></li>
-            <li><a href="themes.html">Themes</a> <small>- Light, Dark, Custom</small></li>
-        </ul>
-    </section>
-    <br>
-
-    <h2>00. Body</h2>
-    <br>
-
-    <section data-group="atoms">
-        <h4>00.00. Atoms</h4>
-        <ul>
-            <ul>
-                <h6>00.00.00. Atoms / Primitive</h6><small>- Layout & Basic Primitives</small>
-                <li><a href="atom_box.html">Box</a> <small>- Fixed-size containers for layout and spacing</small></li>
-                <li><a href="atom_icon.html">Icons</a> <small>- SVG, Sizes, Colors</small></li>
-                <li><a href="atom_divider.html">Divider</a> <small>- Thin lines to visually separate content</small>
-                </li>
-
-            </ul>
-            <ul>
-                <h6>00.00.00. Atoms / Input</h6>
-                <li><a href="atom_input_label.html">Label</a> <small>- Text labels for inputs or content blocks</small>
-                </li>
-                <li><a href="atom_input.html">Input</a> <small>- Form fields for text, number, and more</small></li>
-                <li><a href="atom_input_slider.html">Slider</a> <small>- </small></li>
-            </ul>
-            <ul>
-                <h6>00.00.00. Atoms / Status</h6>
-                <li><a href="atom_spinner.html">Spinner</a> <small>- Loading indicators</small></li>
-
-            </ul>
+    <!-- Right Aside Toggle -->
+    <div class="aside_right_switch" id="rightSwitch">
+        <button class="aside_right_switch_button">
+            <span class="top_bar"></span>
+            <span class="bot_bar"></span>
+        </button>
+    </div>
+</div>
 
 
-            <li><a href="atom_button.html">Button</a> <small>- Clickable action triggers</small></li>
-
-            <li><a href="atom_badge.html">Badge</a> <small>- Inline indicators for status or count</small></li>
-            <li><a href="atom_tooltip.html">Tooltip</a> <small>- Hoverable hints or contextual help</small></li>
-        </ul>
-    </section>
-
-    <br>
-
-    <section data-group="molecules">
-        <h4>00.00. Molecules</h4>
-        <ul>
-            <li><a href="forms.html">Forms</a> <small>- Inputs, Checkboxes, Radios</small></li>
-            <li><a href="tables.html">Tables</a> <small>...</small></li>
-            <li><a href="cards.html">Cards</a> <small>- Elevated, Image, Content</small></li>
-            <li><a href="modals.html">Modals</a> <small>- Dialog, Slide, Overlay</small></li>
-        </ul>
-    </section>
-
-    <section data-group="organisms">
-        <h4>00.00. Organisms</h4>
-        <ul>
-            <li><a href="partial_ribbon.html">Ribbons</a> <small>- Ribbons</small></li>
-        </ul>
-    </section>
-
-
-    <br>
-
-</main>
-
-<script>
-    function filterSections(query) {
-        const q = query.toLowerCase();
-        document.querySelectorAll("section").forEach(section => {
-            const text = section.textContent.toLowerCase();
-            section.style.display = text.includes(q) ? "block" : "none";
-        });
-    }
-</script>
 
             </main>
         </div>
