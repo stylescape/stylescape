@@ -1,0 +1,27 @@
+// ============================================================================
+// Imports
+// ============================================================================
+@use 'sass:map';
+@use 'sass:list';
+
+@use '../../type' as *;
+@use '../../atoms' as *;
+@use '../../../dev' as *;
+@use '../../../variables' as *;
+
+.ribbon__search__form {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.ribbon__search__input {
+    @include input(
+        list.nth(map.get($input-size-map, 's'), 1),
+        list.nth(map.get($input-size-map, 's'), 2)
+    );
+}
+
+.ribbon__search_button {
+    fill: var(--color_background);
+}
