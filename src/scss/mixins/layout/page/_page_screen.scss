@@ -2,6 +2,12 @@
 @use '../grid' as *;
 @use '../flex' as *;
 
+.noclick {
+    pointer-events: none;
+}
+.click {
+    pointer-events: all !important;
+}
 @mixin layout_grid {
     height: 100vh;
     width: 100vw;
@@ -43,6 +49,8 @@
     // overflow-y: scroll;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    padding: 0;
+    margin: 0;
 }
 
 // ============================================================================
@@ -118,35 +126,46 @@
 
 @mixin layout__middle_center__aside--left {
     grid-area: aside_left;
-    width: auto;
+    width: ($q * 300);
     max-width: ($q * 300);
     transition: width 0.3s ease;
     overflow-y: auto;
+    overflow-x: hidden;
     border-right: 1.5px solid var(--color_foreground);
-    padding: $q * 8;
+    // padding: $q * 16;
+    background: var(--color_background);
+    z-index: 1;
 }
 
 @mixin layout__middle_center__main {
     grid-area: main;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: ($q * 30);
+    // padding: $q * 16;
 }
 
 @mixin layout__middle_center__aside--right {
     grid-area: aside_right;
-    width: auto;
+    width: ($q * 300);
     max-width: ($q * 300);
     transition: width 0.3s ease;
     overflow-y: auto;
+    overflow-x: hidden;
     border-left: 1.5px solid var(--color_foreground);
-    padding: $q * 8;
+    // padding: $q * 16;
+    background: var(--color_background);
+    z-index: 1;
+}
+
+@mixin layout__middle_center--inside {
+    width: ($q * 300);
+    overflow-x: hidden;
+    padding: $q * 16;
 }
 
 // ============================================================================
 // Utility Class Composition
 // ============================================================================
-
 ///
 /// Layout | Apply Grid Areas
 /// ---------------------------------------------------------------------------
@@ -163,7 +182,7 @@
         @include layout__area(top_center);
     }
     .layout__area--top_right {
-        @include layout__area(layout__area--top_left);
+        @include layout__area(top_right);
     }
     .layout__area--middle_left {
         @include layout__area(middle_left);
@@ -206,9 +225,25 @@
     }
 }
 
+///
 /// Layout | Nested Grid in Middle Center
+/// ---------------------------------------------------------------------------
+///
+/// Usage: Add this class to `<aside>`to activate layout.
+///
 .layout__middle_center--nested {
     @include layout__middle_center--nested;
+
+    .layout__aside--inside,
+    .layout__main--inside {
+        @include layout__middle_center--inside;
+    }
+
+    .layout__main--inside {
+        width: 100%;
+        height: 100%;
+        // pointer-events: none;
+    }
 
     .layout__aside--left {
         @include layout__middle_center__aside--left;
@@ -225,15 +260,15 @@
     // Collapsed state
     &.layout__middle_center--nested.collapse-left .layout__aside--left {
         width: 0;
-        padding: 0;
-        border: 0;
+        // padding: 0;
+        // border: 0;
         overflow: hidden;
     }
 
     &.layout__middle_center--nested.collapse-right .layout__aside--right {
         width: 0;
-        padding: 0;
-        border: 0;
+        // padding: 0;
+        // border: 0;
         overflow: hidden;
     }
 }
@@ -265,6 +300,7 @@ $arrow_size: $q * 12;
         // background-color: white;
         background-image: none;
         cursor: pointer;
+        pointer-events: all;
         display: block;
         // translate with half the ribbon height
         transform: translateX(0) translateY(-$q * 20) rotate(0deg) translateZ(0px);

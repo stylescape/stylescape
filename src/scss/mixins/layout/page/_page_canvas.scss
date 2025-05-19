@@ -1,0 +1,38 @@
+/// Layout | Inner Screen Grid
+/// ---------------------------------------------------------------------------
+/// Defines a full-page 3×3 layout with outer areas set to `auto`
+/// and a scrollable center area (`middle_center`).
+///
+@mixin layout__grid--inner--screen {
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-auto-flow: row;
+    gap: 0;
+
+    // box-sizing: border-box;
+    overflow: hidden;
+    // Outer columns and rows use 'auto' to grow to fit content,
+    // center column and row use '1fr' to absorb remaining space
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 1fr auto;
+
+    grid-template-areas:
+        'top_left      top_center       top_right'
+        'middle_left   middle_center    middle_right'
+        'bottom_left   bottom_center    bottom_right';
+
+    pointer-events: none;
+}
+
+///
+/// Layout | Apply Inner Grid Areas
+/// ---------------------------------------------------------------------------
+///
+/// Usage: Add this class to `<body>` or `<main>` to activate layout.
+///
+
+.layout__grid--inner--screen {
+    @include layout__grid--inner--screen;
+}
