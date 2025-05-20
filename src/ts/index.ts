@@ -1,4 +1,9 @@
-import { GridManager } from '../../node_modules/unit.gl/ts/GridManager.js';
+import { ExclusiveDetails } from './elements/ExclusiveDetails.js'
 
 
-new GridManager(); // auto-initializes
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const exclusiveDetails = new ExclusiveDetails('.ribbon_menu_button')
+
+})

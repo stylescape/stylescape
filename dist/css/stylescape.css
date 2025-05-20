@@ -12485,14 +12485,6 @@ button {
   cursor: pointer;
 }
 
-button:hover,
-button:active,
-button:focus {
-  outline: none !important;
-  text-decoration: none !important;
-  color: rgb(1, 2, 5);
-}
-
 .button--xs {
   box-sizing: border-box;
   font: inherit;
@@ -14815,13 +14807,13 @@ details {
 }
 
 summary {
-  display: list-item; /* Ensure the correct display in all browsers. */
+  display: flex; /* Ensure the correct display in all browsers. */
   outline: none; /* Remove the default outline for better customization. */
   list-style: none; /* Hide the default list marker. */
   cursor: pointer; /* Change cursor to indicate interactiveness. */
 }
 
-details > summary,
+details > summary::marker,
 summary::marker,
 details summary::-webkit-details-marker,
 details > summary::-webkit-details-marker {
@@ -15210,7 +15202,7 @@ table thead th {
   word-wrap: break-word;
   background-clip: padding-box;
   list-style: none;
-  z-index: z("ribbon");
+  z-index: 9999;
   position: absolute;
   box-sizing: border-box;
   top: 100%;

@@ -85,6 +85,7 @@
 
 
     <menu id="ribbon__menu" class="ribbon__menu" role="menubar">
+
         <li class="ribbon__menu__item">
             <button class="ribbon__button" onclick="copy()">
                 
@@ -94,19 +95,56 @@
                 
             </button>
         </li>
+
+        <details class="ribbon_menu_button">
+            <summary class="ribbon__button">
+                <i class="i i_people_person_lg"></i>
+            </summary>
+
+            <ul class="ribbon_panel">
+                <figure class="ribbon_panel_header">
+                    
+                    <figcaption>
+                        <h3 class="ribbon_panel_header">
+                            Kerem
+                        </h3>
+                    </figcaption>
+                </figure>
+                <hr class="ribbon_panel_line">
+                <h4 class="ribbon_panel_section_header">
+                    Account
+                </h4>
+                <ul class="ribbon_panel_section">
+                    <li class="ribbon_panel_section_item">
+                        <a href="/accounts/profileprofile/kerem/">
+                            Profile
+                        </a>
+                    </li>
+                </ul>
+                <hr class="ribbon_panel_line">
+                <ul class="ribbon_panel_section">
+                    <li class="ribbon_panel_section_item">
+                        <a href="/accounts/logout">
+                            Sign out
+                        </a>
+                    </li>
+                </ul>
+            </ul>
+        </details>
         <li class="ribbon__menu__item">
             <button class="ribbon__button" data-toggle="baseline">
-                ☰
+                <span class="i">☰</span>
+
             </button>
         </li>
         <li class="ribbon__menu__item">
             <button class="ribbon__button" data-toggle="graph">
-                ⊞
+                <span class="i">⊞</span>
             </button>
         </li>
         <li class="ribbon__menu__item">
             <button class="ribbon__button" data-toggle="margin">
-                ⌘
+                <span class="i">⌘</span>
             </button>
         </li>
     </menu>
@@ -201,37 +239,12 @@
     <div class="guide--layer guide--graph_centered" data-grid="graph"></div>
     <div class="guide--layer guide--baseline" data-grid="baseline"></div>
 
-    <script>
-        document.getElementById("font-preview-input").addEventListener("input", function () {
-            const value = this.value.trim();
-            document.querySelectorAll(".font-preview-box").forEach((box) => {
-                const textEl = box.querySelector(".text");
-                textEl.textContent = value || box.dataset.default;
-            });
-        });
-    </script>
+
     <script>
         function toggleTheme() {
             const html = document.documentElement;
             html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
         }
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const middleCenter = document.getElementById('middleCenter');
-            const leftSwitch = document.getElementById('leftSwitch');
-            const rightSwitch = document.getElementById('rightSwitch');
-
-            leftSwitch.addEventListener('click', () => {
-                middleCenter.classList.toggle('collapse-left');
-                leftSwitch.classList.toggle('active');
-            });
-
-            rightSwitch.addEventListener('click', () => {
-                middleCenter.classList.toggle('collapse-right');
-                rightSwitch.classList.toggle('active');
-            });
-        });
     </script>
 </body>
 
