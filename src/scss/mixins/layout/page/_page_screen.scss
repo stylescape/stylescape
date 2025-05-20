@@ -115,13 +115,14 @@
 /// Use utility classes to control visibility (e.g. .is-collapsed)
 ///
 @mixin layout__middle_center--nested {
+    @include col_24;
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-areas: 'aside_left main aside_right';
-    height: 100%;
-    width: 100%;
+    min-height: 100%;
     overflow: hidden;
     position: relative;
+    margin: calc($q * (-16));
 }
 
 @mixin layout__middle_center__aside--left {
