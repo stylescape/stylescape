@@ -57,6 +57,12 @@ export default defineConfig({
         open: true,
         fs: { strict: false },
     },
+    resolve: {
+        alias: {
+            '~': path.resolve(__dirname, './node_modules'),
+            //   'icons': path.resolve(__dirname, './node_modules/vue-material-design-icons')
+        },
+    },
     plugins: [
         {
             name: 'serve-kist-html',
