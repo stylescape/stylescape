@@ -60,7 +60,6 @@ export default defineConfig({
     resolve: {
         alias: {
             '~': path.resolve(__dirname, './node_modules'),
-            //   'icons': path.resolve(__dirname, './node_modules/vue-material-design-icons')
         },
     },
     plugins: [

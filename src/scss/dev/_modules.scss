@@ -11,13 +11,23 @@
 @use 'pkg:icon.gl' as * with (
     $icongl_font_dir: '~icon.gl/font/'
 );
-
+$icongl_font_dir: '/font';
 @forward 'pkg:unit.gl';
 @forward 'pkg:hue.gl';
-// @forward 'pkg:icon.gl';
+@forward 'pkg:icon.gl';
 @forward 'pkg:move.gl';
 
 // @include icon_face('~icon.gl/font/icongl', 'icongl', '', 'ttf');
+
+@include icon_face(
+    '#{$icongl_font_dir}/icongl',
+    // path without file extension
+    'icongl',
+    // font family name
+    '',
+    // type suffix (empty)
+    'ttf' // optional: include TTF
+);
 
 // @include icon_face(
 //     '../../../node_modules/icon.gl/font/icongl',
