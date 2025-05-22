@@ -1,3 +1,141 @@
-@mixin cursor_pointer {
-    cursor: pointer;
+// ============================================================================
+// Atoms | Cursor
+// ============================================================================
+
+@use '../variables' as *;
+
+/// Base Mixin
+/// @param {String} $type - CSS cursor value (e.g. pointer, grab)
+@mixin cursor($type) {
+    cursor: $type;
+}
+
+// ============================================================================
+// Interaction Cursors
+// ============================================================================
+
+@mixin cursor--pointer {
+    @include cursor(pointer);
+} // links, buttons
+@mixin cursor--click {
+    @include cursor(pointer);
+} // alias for pointer
+@mixin cursor--default {
+    @include cursor(default);
+} // fallback, paragraphs
+@mixin cursor--auto {
+    @include cursor(auto);
+} // browser-determined
+
+// ============================================================================
+// Dragging Cursors
+// ============================================================================
+
+@mixin cursor--grab {
+    @include cursor(grab);
+} // draggable but not dragging
+@mixin cursor--grabbing {
+    @include cursor(grabbing);
+} // active drag
+@mixin cursor--move {
+    @include cursor(move);
+} // 4-way move
+@mixin cursor--all-scroll {
+    @include cursor(all-scroll);
+} // like move, but always visible
+
+// ============================================================================
+// Resize Cursors
+// ============================================================================
+
+@mixin cursor--resize-n {
+    @include cursor(n-resize);
+}
+@mixin cursor--resize-s {
+    @include cursor(s-resize);
+}
+@mixin cursor--resize-e {
+    @include cursor(e-resize);
+}
+@mixin cursor--resize-w {
+    @include cursor(w-resize);
+}
+@mixin cursor--resize-ne {
+    @include cursor(ne-resize);
+}
+@mixin cursor--resize-nw {
+    @include cursor(nw-resize);
+}
+@mixin cursor--resize-se {
+    @include cursor(se-resize);
+}
+@mixin cursor--resize-sw {
+    @include cursor(sw-resize);
+}
+@mixin cursor--resize-ew {
+    @include cursor(ew-resize);
+}
+@mixin cursor--resize-ns {
+    @include cursor(ns-resize);
+}
+@mixin cursor--resize-nesw {
+    @include cursor(nesw-resize);
+}
+@mixin cursor--resize-nwse {
+    @include cursor(nwse-resize);
+}
+
+// ============================================================================
+// Special Cursors
+// ============================================================================
+
+@mixin cursor--text {
+    @include cursor(text);
+} // text inputs
+@mixin cursor--wait {
+    @include cursor(wait);
+} // long action
+@mixin cursor--progress {
+    @include cursor(progress);
+} // action + hover
+@mixin cursor--help {
+    @include cursor(help);
+} // ? icon
+@mixin cursor--not-allowed {
+    @include cursor(not-allowed);
+} // forbidden
+@mixin cursor--no-drop {
+    @include cursor(no-drop);
+} // drop denied
+@mixin cursor--crosshair {
+    @include cursor(crosshair);
+} // image editors
+
+// ============================================================================
+// Utility Classes (Optional)
+// ============================================================================
+
+.cursor--pointer {
+    @include cursor--pointer;
+}
+.cursor--grab {
+    @include cursor--grab;
+}
+.cursor--grabbing {
+    @include cursor--grabbing;
+}
+.cursor--text {
+    @include cursor--text;
+}
+.cursor--not-allowed {
+    @include cursor--not-allowed;
+}
+.cursor--default {
+    @include cursor--default;
+}
+.cursor--crosshair {
+    @include cursor--crosshair;
+}
+.cursor--wait {
+    @include cursor--wait;
 }

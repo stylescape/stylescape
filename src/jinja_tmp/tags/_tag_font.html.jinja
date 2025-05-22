@@ -1,34 +1,31 @@
-{# 
-    Copyright 2025 Scape Agency BV
+{#
+Copyright 2025 Scape Agency BV
 #}
 
-{# 
-    Font (<font>)
+{#
+Font (<font>)
     ===========================================================================
 
     Defines font, color, and size for text. Note that the <font> element is
-    deprecated in HTML5 and should not be used. Consider using CSS for styling
-    instead.
+        deprecated in HTML5 and should not be used. Consider using CSS for styling
+        instead.
 
-    Variables:
-    - `font_size`: The size of the font. Defaults to "3".
-    - `font_color`: The color of the font. Defaults to "black".
-    - `font_face`: The face (font family) of the font. Defaults to "Arial".
-    - `font_text`: The text to be displayed with the specified font settings. Defaults to "Sample text".
+        Variables:
+        - `font--size`: The size of the font. Defaults to "3".
+        - `font--color`: The color of the font. Defaults to "black".
+        - `font_face`: The face (font family) of the font. Defaults to "Arial".
+        - `font--text`: The text to be displayed with the specified font settings. Defaults to "Sample text".
 
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
+        Notes:
+        - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
 
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/font
-    - https://www.w3schools.com/tags/tag_font.asp
+        Links:
+        - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/font
+        - https://www.w3schools.com/tags/tag_font.asp
 
-#}
+        #}
 
-<font 
-    size="{{ font_size | default('3') | e }}" 
-    color="{{ font_color | default('black') | e }}" 
-    face="{{ font_face | default('Arial') | e }}"
->
-    {{ font_text | default('Sample text') | e }}
-</font>
+        <font size="{{ font--size | default('3') | e }}" color="{{ font--color | default('black') | e }}"
+            face="{{ font_face | default('Arial') | e }}">
+            {{ font--text | default('Sample text') | e }}
+        </font>

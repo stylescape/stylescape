@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/stylescape.css" />
     <script type="module" src="/js/stylescape.js"></script>
     <style>
-        .font_preview {
+        .font--preview {
             margin-bottom: 1.5rem;
         }
 
@@ -57,21 +57,21 @@
             gap: 1rem;
         }
 
-        .font-preview-box {
+        .preview_box--horizontal {
             padding: 1rem;
             border: 1px solid #ccc;
             border-radius: 8px;
             background: #f8f8f8;
         }
 
-        .font-preview-box .label {
+        .preview_box--horizontal .label {
             font-size: 0.85rem;
             color: #555;
             display: block;
             margin-bottom: 0.5rem;
         }
 
-        .font-preview-box .text {
+        .preview_box--horizontal .text {
             font-size: 1.5rem;
             line-height: 1.4;
             word-wrap: break-word;
@@ -252,7 +252,7 @@
     <script>
         document.getElementById("font-preview-input").addEventListener("input", function () {
             const value = this.value.trim();
-            document.querySelectorAll(".font-preview-box").forEach((box) => {
+            document.querySelectorAll(".preview_box--horizontal").forEach((box) => {
                 const textEl = box.querySelector(".text");
                 textEl.textContent = value || box.dataset.default;
             });

@@ -1,0 +1,110 @@
+{% extends "base.html.jinja" %}
+
+{% block title %}Font Demo{% endblock %}
+
+{% block content %}
+
+<section class="demo__section">
+
+    <div class="font-preview-controls">
+        <label for="font-preview-input">Preview text:</label>
+        <input id="font-preview-input" type="text" placeholder="The quick brown fox…" />
+    </div>
+
+</section>
+
+
+<section class="demo__section">
+
+    <header class="demo__section__header">
+        <h3>Main Variants</h3>
+    </header>
+
+    {% set fonts = [
+    { label: "Sans", family: "sans-serif" },
+    { label: "Mono", family: "monospace" },
+    { label: "Serif", family: "serif" }
+    ] %}
+
+    {% for font in fonts %}
+    {% set label = font.label %}
+    {% set family = font.family %}
+    {% include "includes/font_preview_box.html.jinja" %}
+    {% endfor %}
+</section>
+
+
+
+<section class="demo__section">
+
+    <header class="demo__section__header">
+        <h3>Variants Classes</h3>
+    </header>
+
+    {% set fonts = [
+    { label: ".font--default", class: "font--default" },
+    { label: ".font--sans", class: "font--sans" },
+    { label: ".font--serif", class: "font--serif" },
+    { label: ".font--slab", class: "font--slab" },
+    { label: ".font--mono", class: "font--mono" }
+
+    ] %}
+
+    {% for font in fonts %}
+    {% set label = font.label %}
+    {% set class = font.class %}
+    {% include "includes/font_preview_box.html.jinja" %}
+    {% endfor %}
+
+</section>
+
+
+
+
+<!-- Preview Block -->
+<section class="demo__section">
+
+    <header class="demo__section__header">
+        <h3>Variants Classes</h3>
+    </header>
+
+
+    <div class="preview-live">
+        <h1>The quick brown fox jumps over the lazy dog.</h1>
+    </div>
+    <div class="typography-label">Heading 1</div>
+
+    <div class="preview-code">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code>&lt;h1&gt;The quick brown fox jumps over the lazy dog.&lt;/h1&gt;</code></pre>
+    </div>
+
+
+</section>
+
+<!-- Another Preview -->
+<section class="preview-grid">
+    <div class="typography-label">Paragraph</div>
+
+    <div class="preview-live">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <div class="preview-code">
+        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        <pre><code>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;</code></pre>
+    </div>
+</section>
+
+<script>
+    function copyToClipboard(button) {
+        const code = button.nextElementSibling.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+            button.textContent = "Copied!";
+            setTimeout(() => button.textContent = "Copy", 1500);
+        });
+    }
+</script>
+
+
+{% endblock %}

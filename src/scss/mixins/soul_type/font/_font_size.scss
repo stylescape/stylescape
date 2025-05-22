@@ -36,17 +36,17 @@
 ///
 /// @param {Number} $scale - Multiplier for base unit (1q = 6px)
 ///
-@mixin font_size_scale($scale) {
+@mixin font--size_scale($scale) {
     font-size: basepoint($scale);
     line-height: baseline($scale);
 }
 
 /// Font size generator for key-based scale
 /// @param {String} $key - Key like "01", "02", ...
-@mixin font_size($key) {
-    $val: map.get($font_size_map, $key);
+@mixin font--size($key) {
+    $val: map.get($font--size_map, $key);
     @if $val != null {
-        @include font_size_scale($val);
+        @include font--size_scale($val);
     } @else {
         @warn "Invalid font size key: `#{$key}`.";
     }
@@ -63,38 +63,38 @@
 /// variables.
 ///
 @mixin font--size_01 {
-    @include font_size_scale(1);
+    @include font--size_scale(1);
 }
 @mixin font--size_02 {
-    @include font_size_scale(2);
+    @include font--size_scale(2);
 }
 @mixin font--size_03 {
-    @include font_size_scale(3);
+    @include font--size_scale(3);
 }
 @mixin font--size_04 {
-    @include font_size_scale(4);
+    @include font--size_scale(4);
 }
 @mixin font--size_05 {
-    @include font_size_scale(5);
+    @include font--size_scale(5);
 }
 @mixin font--size_06 {
-    @include font_size_scale(6);
+    @include font--size_scale(6);
 }
 @mixin font--size_07 {
-    @include font_size_scale(7);
+    @include font--size_scale(7);
 }
 @mixin font--size_08 {
-    @include font_size_scale(8);
+    @include font--size_scale(8);
 }
 @mixin font--size_09 {
-    @include font_size_scale(9);
+    @include font--size_scale(9);
 }
 @mixin font--size_10 {
-    @include font_size_scale(10);
+    @include font--size_scale(10);
 }
 @mixin font--size_11 {
-    @include font_size_scale(11);
+    @include font--size_scale(11);
 }
 @mixin font--size_12 {
-    @include font_size_scale(12);
+    @include font--size_scale(12);
 }

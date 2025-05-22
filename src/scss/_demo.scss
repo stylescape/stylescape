@@ -3,13 +3,247 @@
 @use 'mixins' as *;
 @use 'dev' as *;
 
-// .main_content {
-//     width: 100%;
-//     max-width: 100%;
-//     padding-top: baseline(4) * 3;
-//     padding-bottom: baseline(4) * 3;
-//     padding-left: baseline(4) * 2;
-//     padding-right: baseline(4) * 2;
-//     @include cell__col__span--full;
-//     @include grid__col--24;
+.demo__section {
+    @include col--24;
+    @include grid__col--24;
+    @include gap(baseline(4));
+}
+
+.demo__section__header,
+.demo__subsection {
+    @include col--24;
+}
+
+.preview_box--horizontal {
+    @include grid__col--24;
+    border: 1px solid #ccc;
+    border-radius: q(2);
+}
+
+.preview_box--horizontal .preview_box__label,
+.preview_box--horizontal .preview_box__text {
+    min-height: baseline(4);
+    padding: baseline(2);
+}
+
+.preview_box--horizontal .preview_box__label {
+    @include col--6;
+    @include font--size('03');
+    color: #555;
+    display: block;
+    // margin-bottom: 0.5rem;
+    border-right: 1px solid #ccc;
+    background: #f8f8f8;
+}
+
+.preview_box--horizontal .preview_box__text {
+    @include col--18;
+    // font-size: 1.5rem;
+    // line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.typography-label {
+    @include box--surface(1);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    // color: #666;
+    // padding: 0.5rem 1rem;
+    // background: #eee;
+    border-bottom: 1px solid #ddd;
+    grid-column: span 2;
+}
+
+.preview-live {
+    // padding: 2rem;
+    // background-color: #fff;
+}
+
+.preview-code {
+    // padding: 1rem;
+    // background-color: #f0f0f0;
+    // font-family: monospace;
+    // font-size: 0.9rem;
+    // position: relative;
+}
+
+.preview-code pre {
+    // white-space: pre-wrap;
+    // word-break: break-word;
+    // margin: 0;
+}
+
+.font--preview {
+    margin-bottom: 1.5rem;
+}
+
+.swatch-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.swatch {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #000;
+    padding: 4px;
+    background: white;
+}
+
+.color-family h2 {
+    margin-top: 2rem;
+}
+
+.font-preview-controls {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.font-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+}
+
+.color-card {
+    border: 1px solid var(--color_border, #ccc);
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: var(--color_surface_2);
+    text-align: center;
+    font-family: monospace;
+    font-size: 0.85rem;
+}
+
+.color-swatch {
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid var(--color_border, #ccc);
+}
+
+// code {
+//     display: block;
+//     padding: 0.5rem;
+// }
+
+.grid_layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: z('guides');
+}
+
+.grid-status {
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+    background: #eee;
+    color: #444;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+}
+
+.copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/// ENGINE
+
+@mixin vignette {
+    box-shadow: 0 0 200px rgba(0, 0, 0, 0.9) inset;
+}
+
+.wallpaper {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+.overlay {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+// ----------------------------------------------------------------------------
+
+/// Mixin for grid placeholder style
+/// @group Grid Placeholder
+@mixin grid__placeholder {
+    // display: grid;
+    // grid-template-columns: auto auto auto;
+    // gap: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    // padding: 10px
+    div {
+        background-color: #d9e4ed;
+        border: 1px solid black;
+        text-align: center;
+        // font-size: $q * 12;
+        max-width: 100%;
+        overflow: hidden;
+    }
+}
+
+// @mixin grid_cell_placeholder {
+//   background-color: rgba(255, 255, 255, 0.8);
+//   border: 1px solid black;
+//   text-align: center;
+//   font-size: 30px;
+// }
+
+.grid__placeholder {
+    @include grid__placeholder;
+}
+
+// .main {
+//   padding-left: calc(baseline(4) * 8);
+//   padding-right: calc(baseline(4) * 8);
+// }
+
+// .main[min-width../../../node_modules/="400px"] {
+//   padding-left: calc(baseline(4) * 2);
+//   padding-right: calc(baseline(4) * 2);
 // }

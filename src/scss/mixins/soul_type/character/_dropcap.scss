@@ -36,8 +36,8 @@
 // ============================================================================
 
 // Common Drop Cap Variables
-$dropcap_font_weight: 600 !default;
-$dropcap_font_size: 50px !default;
+$dropcap_font--weight: 600 !default;
+$dropcap_font--size: 50px !default;
 $dropcap_text_align: center !default;
 $dropcap-line-height: 1 !default;
 $dropcap-margin: 0 20px 0 0 !default;
@@ -83,17 +83,17 @@ $dropcap_circular_padding: 15px !default;
 /// This mixin applies basic styling to drop caps, including font size, line height,
 /// margin, text alignment, and font weight.
 ///
-/// @param {Length} $font_size - Font size for the drop cap.
+/// @param {Length} $font--size - Font size for the drop cap.
 /// @param {Number} $line-height - Line height for the drop cap (default: `$dropcap-line-height`).
-/// @param {Number} $font-weight - Font weight for the drop cap (default: `$dropcap_font_weight`).
+/// @param {Number} $font-weight - Font weight for the drop cap (default: `$dropcap_font--weight`).
 ///
 @mixin dropcap_base(
-    $font_size,
+    $font--size,
     $line-height: $dropcap-line-height,
-    $font-weight: $dropcap_font_weight
+    $font-weight: $dropcap_font--weight
 ) {
     float: left;
-    font-size: $font_size;
+    font-size: $font--size;
     line-height: $line-height;
     margin: $dropcap-margin;
     text-align: $dropcap_text_align;
@@ -124,7 +124,7 @@ $dropcap_circular_padding: 15px !default;
 /// Applies the standard drop cap style to the first letter of the first child element.
 ///
 @mixin standard-dropcap {
-    @include dropcap_base($dropcap_font_size);
+    @include dropcap_base($dropcap_font--size);
     @include dropcap_style;
 }
 
