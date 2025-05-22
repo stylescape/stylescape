@@ -1,6 +1,6 @@
-@use '../../../dev' as *;
-@use '../grid' as *;
-@use '../flex' as *;
+@use '../../dev' as *;
+@use '../head_grid' as *;
+@use '../head_layout' as *;
 
 .noclick {
     pointer-events: none;
@@ -17,7 +17,7 @@
     gap: 0;
 
     // box-sizing: border-box;
-    // overflow: hidden;
+    overflow: hidden;
     overflow-y: hidden;
 }
 
@@ -116,7 +116,7 @@
 /// Use utility classes to control visibility (e.g. .is-collapsed)
 ///
 @mixin layout__middle_center--nested {
-    @include col_24;
+    @include col--24;
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-areas: 'aside_left main aside_right';
