@@ -26,27 +26,27 @@ const watchGlobs = [
 let lastBuild = 0;
 
 async function runKist(server) {
-  const now = Date.now();
-  if (now - lastBuild < 500) return;
-  lastBuild = now;
+    const now = Date.now();
+    if (now - lastBuild < 500) return;
+    lastBuild = now;
 
-  console.log('[Kist] 🛠️ Running build...');
-  try {
-    const { stdout, stderr } = await execAsync('npx kist --config ./kist.yml');
-    if (stdout) console.log('[Kist] stdout:', stdout);
-    if (stderr) console.error('[Kist] stderr:', stderr);
-    console.log('[Kist] ✅ Build complete');
+    console.log('[Kist] 🛠️ Running build...');
+    try {
+        const { stdout, stderr } = await execAsync('npx kist --config ./kist.yml');
+        if (stdout) console.log('[Kist] stdout:', stdout);
+        if (stderr) console.error('[Kist] stderr:', stderr);
+        console.log('[Kist] ✅ Build complete');
 
-    setTimeout(() => {
-        server?.ws.send({
-          type: 'full-reload',
-          path: '*'
-        });
-    }, 200);
+        setTimeout(() => {
+            server?.ws.send({
+                type: 'full-reload',
+                path: '*'
+            });
+        }, 200);
 
-  } catch (err) {
-    console.error('[Kist] ❌ Build failed:', err.stderr || err.message);
-  }
+    } catch (err) {
+        console.error('[Kist] ❌ Build failed:', err.stderr || err.message);
+    }
 }
 
 export default defineConfig({
@@ -92,8 +92,8 @@ export default defineConfig({
                 server.watcher.on('change', (file) => {
                     const relativePath = path.relative(process.cwd(), file);
                     if (micromatch.isMatch(relativePath, watchGlobs)) {
-                    console.log(`[Kist] File changed: ${relativePath}`);
-                    runKist(server);
+                        console.log(`[Kist] File changed: ${relativePath}`);
+                        runKist(server);
                     }
                 });
             },
