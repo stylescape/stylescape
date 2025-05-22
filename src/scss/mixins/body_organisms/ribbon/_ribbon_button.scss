@@ -1,0 +1,55 @@
+// ============================================================================
+// Imports
+// ============================================================================
+@use '../../body_molecules' as *;
+@use '../../layout' as *;
+@use '../../../variables' as *;
+@use '../../soul_type' as *;
+@use '../../body_atoms' as *;
+@use '../../../dev' as *;
+
+// ============================================================================
+// Container | Ribbon | Menu
+// ============================================================================
+
+///
+/// Menu button with specific dimensions and transparent background
+/// @group Button
+///
+@mixin ribbon__button {
+    // background-color: var(--color_foreground);
+    // color: var(--color_background);
+
+    position: relative;
+    overflow: visible;
+
+    width: $q * 24;
+    height: $q * 24;
+
+    .i,
+    .i::before,
+    [class^='i_']::before,
+    [class*=' i_']::before {
+        color: white !important;
+        margin: 0;
+        font-size: $q * 28;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: bold;
+    }
+
+    svg {
+        stroke-width: 0;
+    }
+}
+
+.ribbon__button {
+    @include ribbon__button;
+}
+
+// .ribbon--inverted .ribbon__button {
+//     @include ribbon__button(true); // inverted scheme
+// }

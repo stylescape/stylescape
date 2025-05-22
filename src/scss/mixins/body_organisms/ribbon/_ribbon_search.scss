@@ -1,0 +1,28 @@
+// ============================================================================
+// Imports
+// ============================================================================
+@use 'sass:map';
+@use 'sass:list';
+
+@use '../../soul_type' as *;
+@use '../../body_atoms' as *;
+@use '../../../dev' as *;
+@use '../../../variables' as *;
+@use '../ribbon/ribbon_button' as *;
+
+.ribbon__search__form {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.ribbon__search__input {
+    @include input(
+        list.nth(map.get($input-size-map, 's'), 1),
+        list.nth(map.get($input-size-map, 's'), 2)
+    );
+}
+
+.ribbon__search_button {
+    @include ribbon__button;
+}

@@ -1,0 +1,126 @@
+@use '../../dev' as *;
+@use '../../variables' as *;
+
+@use '../soul_type' as *;
+
+@mixin radio {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--color_primary);
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    pointer-events: initial;
+    opacity: 1;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        background: var(--color_primary);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    &:hover:not(:checked) {
+        background: hue_color('N2402');
+    }
+
+    &:checked::after {
+        opacity: 1;
+    }
+
+    &:disabled {
+        border-color: var(--color_muted);
+        background: transparent;
+        cursor: not-allowed;
+    }
+}
+
+///
+/// Base styles for radio buttons
+/// @group Form
+///
+input[type='radio'],
+.input_radio {
+    @include radio;
+}
+
+// /// The slider inside the switch
+// /// @group Switch
+// .slider {
+//     position: absolute;
+//     cursor: pointer;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     background: var(--color_surface_1);
+//     -webkit-transition: 0.4s;
+//     transition: 0.4s;
+// }
+
+// .slider:before {
+//     position: absolute;
+//     content: '';
+//     height: 26px;
+//     width: 26px;
+//     left: 4px;
+//     bottom: 4px;
+//     background-color: var(--color_background);
+//     -webkit-transition: 0.4s;
+//     transition: 0.4s;
+// }
+
+// ///
+// /// The switch container
+// /// The box around the slider
+// /// @group Switch
+// ///
+// .switch {
+//     position: relative;
+//     display: inline-block;
+//     width: 60px;
+//     height: 34px;
+// }
+
+// ///
+// /// Hide the default HTML checkbox
+// /// @group Switch
+// ///
+// .switch input {
+//     opacity: 0;
+//     width: 0;
+//     height: 0;
+// }
+
+// /// Style for when the switch is checked
+// /// @group Switch
+// input:checked + .slider {
+//     background-color: var(--color_primary);
+// }
+
+// /// Focus state for the switch
+// /// @group Switch
+// input:focus + .slider {
+//     box-shadow: 0 0 1px var(--color_primary);
+// }
+
+// /// Positioning the slider when the switch is checked
+// /// @group Switch
+// input:checked + .slider:before {
+//     -webkit-transform: translateX(26px);
+//     -ms-transform: translateX(26px);
+//     transform: translateX(26px);
+// }

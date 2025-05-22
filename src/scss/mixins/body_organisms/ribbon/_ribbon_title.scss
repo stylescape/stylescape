@@ -1,0 +1,86 @@
+// ============================================================================
+// Imports
+// ============================================================================
+@use '../../body_molecules' as *;
+@use '../../layout' as *;
+@use '../../soul_type' as *;
+@use '../../body_atoms' as *;
+@use '../../../dev' as *;
+@use '../../../variables' as *;
+
+// ============================================================================
+// Ribbon Title | Modular Mixins
+// ============================================================================
+
+// @mixin ribbon__title($slot: ribbon--center) {
+//     @include reset_bleed;
+//     @include icon_bar--horizontal;
+//     @include align_self_start;
+//     @include font_size('04');
+//     @include align--center;
+//     @include hyperlink_clean;
+//     @include color_scheme_dark;
+//     @include justify--center;
+
+//     align-content: center;
+//     height: 100%;
+//     grid-area: $slot;
+
+//     @media screen and (min-width: $media_md) {
+//         @if $slot == ribbon--center {
+//             grid-area: ribbon--left;
+//             @include justify_start;
+//         }
+//     }
+// }
+
+/// Core wrapper for a ribbon title block
+@mixin ribbon__title {
+    @include reset_bleed;
+
+    @include icon_bar--horizontal;
+    @include align_self_start;
+    // @include font_size('04');
+    @include align--center;
+    @include hyperlink_clean;
+    // @include color_scheme_dark;
+    @include justify--center;
+
+    font-size: $q * 20;
+    align-content: center;
+    height: 100%;
+    // grid-area: ribbon--center;
+    gap: 0;
+
+    @media screen and (min-width: $media_md) {
+        // grid-area: ribbon--left;
+        @include justify_start;
+    }
+}
+
+/// Logo block inside a ribbon title
+@mixin ribbon__title__logo {
+    padding-left: calc($ribbon_spacing / 2);
+    padding-right: calc($ribbon_spacing / 2);
+    @include icon--size(
+        04
+    ); // } //     position: relative; //     height: 100%; //     width: 100%; //     // @include color_scheme_dark; //     @include icon--size(04) svg {
+
+    min-width: calc(($q * 40) - ($q * 8));
+    margin-right: calc($q * 4);
+}
+
+/// Text block inside a ribbon title
+@mixin ribbon__title__text {
+    @include hyperlink_clean;
+    @include invisible;
+    // @include font_size('03');
+    display: none;
+
+    @media screen and (min-width: $media_md) {
+        @include visible;
+        display: inherit;
+        white-space: nowrap;
+        overflow: visible;
+    }
+}

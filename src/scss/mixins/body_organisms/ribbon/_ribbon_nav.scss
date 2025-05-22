@@ -1,0 +1,83 @@
+// ============================================================================
+// Imports
+// ============================================================================
+@use '../../body_molecules' as *;
+@use '../../layout' as *;
+@use '../../../variables' as *;
+@use '../../soul_type' as *;
+@use '../../body_atoms' as *;
+@use '../../../dev' as *;
+// ============================================================================
+// Container | Ribbon | Nav
+// ============================================================================
+
+.ribbon__nav {
+    @include icon_bar--horizontal;
+    @include hyperlink_clean;
+    @include justify_start;
+    align-content: center;
+    // grid-area: ribbon--left;
+    @media screen and (min-width: $media_md) {
+        @include justify--center;
+        // grid-area: ribbon--center;
+    }
+}
+
+.ribbon__nav_button {
+    @include visible;
+    display: inherit;
+    @media screen and (min-width: $media_md) {
+        @include invisible;
+        display: none;
+    }
+}
+
+.ribbon__nav__list {
+    // @include color_scheme_dark;
+    align-content: left;
+    position: absolute;
+    z-index: 9999;
+    top: $ribbon_height;
+    left: 0;
+    width: 100%;
+    padding-top: $ribbon_spacing;
+    padding-bottom: 2 * $ribbon_spacing;
+
+    display: grid;
+    gap: 2 * $ribbon_spacing;
+    justify-items: center;
+    align-items: center;
+    grid-auto-rows: min-content;
+    grid-auto-flow: row;
+    @include invisible;
+
+    &.active {
+        @include visible;
+    }
+
+    @media screen and (min-width: $media_md) {
+        @include visible;
+        @include icon_bar--horizontal;
+        display: inherit;
+        align-content: center;
+        width: auto;
+        top: auto;
+        left: auto;
+        padding: 0;
+    }
+}
+
+.ribbon .ribbon__nav .ribbon__nav__list .ribbon__nav__list__item {
+    @include flex_col;
+    @include align--center;
+    @include justify--center;
+    padding-left: calc($ribbon_spacing / 2);
+    padding-right: calc($ribbon_spacing / 2);
+    height: 100%;
+}
+
+.ribbon__nav__list__item__text {
+    @include font_size('03');
+    white-space: nowrap;
+    overflow: hidden;
+}

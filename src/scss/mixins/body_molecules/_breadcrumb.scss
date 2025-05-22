@@ -1,0 +1,100 @@
+////
+///
+/// Breadcrumb Components Mixins Module
+/// ===========================================================================
+///
+/// @group Components
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use '../../dev' as *;
+@use '../../variables' as *;
+@use '../layout' as *;
+// @use '../elements' as *;
+@use '../soul_type' as *;
+
+.breadcrumb {
+    background: transparent;
+    border-radius: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+}
+
+.breadcrumb ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb ul li {
+    display: inline-block;
+    line-height: normal;
+}
+
+.breadcrumb ul > li:after {
+    content: '\f111';
+    font-family: Font Awesome\5 Free;
+    font-weight: 900;
+    padding: 0 11px 0 14px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 5px;
+    opacity: 0.6;
+}
+
+.breadcrumb ul > li:last-child:after {
+    border-right: 0;
+    content: '';
+    padding: 0;
+}
+
+// .breadcrumb {
+//     // scss-docs-start breadcrumb-css-vars
+//     breadcrumb-padding-x: #{$breadcrumb-padding-x};
+//     breadcrumb-padding-y: #{$breadcrumb-padding-y};
+//     breadcrumb-margin-bottom: #{$breadcrumb-margin-bottom};
+//     @include rfs($breadcrumb-font-size, breadcrumb-font-size);
+//     breadcrumb-bg: #{$breadcrumb-bg};
+//     breadcrumb-border-radius: #{$breadcrumb-border-radius};
+//     breadcrumb-divider-color: #{$breadcrumb-divider-color};
+//     breadcrumb-item-padding-x: #{$breadcrumb-item-padding-x};
+//     breadcrumb-item-active-color: #{$breadcrumb-active-color};
+//     // scss-docs-end breadcrumb-css-vars
+
+//     display: flex;
+//     flex-wrap: wrap;
+//     padding: var(breadcrumb-padding-y) var(breadcrumb-padding-x);
+//     margin-bottom: var(breadcrumb-margin-bottom);
+//     @include font-size(var(breadcrumb-font-size));
+//     list-style: none;
+//     background-color: var(breadcrumb-bg);
+//     @include border-radius(var(breadcrumb-border-radius));
+//   }
+
+//   .breadcrumb-item {
+//     // The separator between breadcrumbs (by default, a forward-slash: "/")
+//     + .breadcrumb-item {
+//       padding-left: var(breadcrumb-item-padding-x);
+
+//       &::before {
+//         float: left; // Suppress inline spacings and underlining of the separator
+//         padding-right: var(breadcrumb-item-padding-x);
+//         color: var(breadcrumb-divider-color);
+//         content: var(breadcrumb-divider, escape-svg($breadcrumb-divider)) #{"/* rtl:"} var(breadcrumb-divider, escape-svg($breadcrumb-divider-flipped)) #{"*/"};
+//       }
+//     }
+
+//     &.active {
+//       color: var(breadcrumb-item-active-color);
+//     }
+//   }
