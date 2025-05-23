@@ -24,8 +24,8 @@
 @use '../font/font_weight' as *;
 @use '../font/font_size' as *;
 
-@use 'default' as *;
-@use 'normal' as *;
+@use 'base_default' as *;
+@use 'base_normal' as *;
 
 // ============================================================================
 // Mixins
@@ -83,17 +83,17 @@ $dropcap_circular_padding: 15px !default;
 /// This mixin applies basic styling to drop caps, including font size, line height,
 /// margin, text alignment, and font weight.
 ///
-/// @param {Length} $font--size - Font size for the drop cap.
+/// @param {Length} $font_size - Font size for the drop cap.
 /// @param {Number} $line-height - Line height for the drop cap (default: `$dropcap-line-height`).
 /// @param {Number} $font-weight - Font weight for the drop cap (default: `$dropcap_font--weight`).
 ///
 @mixin dropcap_base(
-    $font--size,
+    $font_size,
     $line-height: $dropcap-line-height,
     $font-weight: $dropcap_font--weight
 ) {
     float: left;
-    font-size: $font--size;
+    font-size: $font_size;
     line-height: $line-height;
     margin: $dropcap-margin;
     text-align: $dropcap_text_align;

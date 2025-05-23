@@ -33,8 +33,8 @@
 @use '../font/font_weight' as *;
 @use '../font/font_size' as *;
 
-@use 'default' as *;
-@use 'normal' as *;
+@use 'base_default' as *;
+@use 'base_normal' as *;
 
 // ============================================================================
 // Mixins
@@ -57,7 +57,7 @@
 ///     text. Sets the text color for the quote. Default is
 ///   `$character_quote_color` which is typically a lighter shade for
 ///   subtlety and emphasis. Adjust as needed to match the design system.
-/// @param {String} $font--style [$character_quote_font--style] - The font style, typically italic. Specifies the font style, usually `italic`
+/// @param {String} $font_style [$character_quote_font--style] - The font style, typically italic. Specifies the font style, usually `italic`
 ///   for quotes, enhancing the distinction from other text.
 /// @param {List} $margin [$character_quote_margin] - Margin around the quote for spacing. Applies vertical spacing around the quote,
 ///   increasing readability and aesthetic separation. Defaults to
@@ -66,14 +66,14 @@
 ///   creating a more defined visual block. Default value is
 ///   `$character_quote_padding`.
 ///
-@mixin character_quote_base(
+@mixin character--quote_base(
     $color: $character_quote_color,
-    $font--style: $character_quote_font--style,
+    $font_style: $character_quote_font--style,
     $margin: $character_quote_margin,
     $padding: $character_quote_padding
 ) {
     color: $color;
-    font-style: $font--style;
+    font-style: $font_style;
     margin: $margin;
     padding: $padding;
 }
@@ -90,7 +90,7 @@
 /// @param {String} $close_quote - Symbol for the closing quote. Default is
 ///        `$character_quote_close_symbol`.
 ///
-@mixin character_quote_symbols(
+@mixin character--quote_symbols(
     $open_quote: $character_quote_open_symbol,
     $close_quote: $character_quote_close_symbol,
     $open_padding: $character_quote_open_padding,
@@ -122,8 +122,8 @@
 /// - `quotes: none`: Disables the default quotation marks.
 /// - `&:before`, `&:after`: Removes any automatically added content.
 ///
-@mixin character_quote_inline {
-    @include character_quote_base;
+@mixin character--quote_inline {
+    @include character--quote_base;
 
     // Resetting default browser quote symbols
     quotes: none;
@@ -141,6 +141,6 @@
 /// a refined appearance.
 ///
 q {
-    @include character_quote_inline;
-    @include character_quote_symbols;
+    @include character--quote_inline;
+    @include character--quote_symbols;
 }

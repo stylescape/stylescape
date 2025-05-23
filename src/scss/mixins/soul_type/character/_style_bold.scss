@@ -24,8 +24,8 @@
 @use '../font/font_weight' as *;
 @use '../font/font_size' as *;
 
-@use 'default' as *;
-@use 'normal' as *;
+@use 'base_default' as *;
+@use 'base_normal' as *;
 
 // ============================================================================
 // Mixins
@@ -42,9 +42,9 @@
 /// Combines normal character styles, default font settings, and bold font weight
 /// to create the standard bold style for your design system.
 ///
-@mixin character_bold {
-    @include character_normal; // Apply normal character styling
-    @include character_default; // Apply default font settings
+@mixin character--bold {
+    @include character--normal; // Apply normal character styling
+    @include character--default; // Apply default font settings
     @include font--weight_600; // Apply bold font weight
     // @include font--size('04');
     // font-weight: bolder;         // Add the correct font weight in Chrome, Edge, and Safari
@@ -55,5 +55,5 @@
 /// Ensures that both <b> and <strong> elements use the defined bold styles from the design system.
 b,
 strong {
-    @include character_bold;
+    @include character--bold;
 }

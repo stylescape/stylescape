@@ -9540,15 +9540,15 @@ i {
 }
 
 /*
-@mixin character-oblique($weight: $font--weight_oblique, $size: $font--size_oblique) {
+@mixin character-oblique($weight: $font_weight_oblique, $size: $font_size_oblique) {
     font-style: oblique;
     font-weight: $weight;
     font-size: $size;
 
     // Include any additional default character styles from your design system
     // If `character_default` and `character_normal` are mixins in your setup, include them here:
-    // @include character_normal;
-    // @include character_default;
+    // @include character--normal;
+    // @include character--default;
 }
 */
 .emphasis-dot {
@@ -9662,107 +9662,6 @@ i {
   text-transform: none;
 }
 
-q {
-  color: #666;
-  font-style: italic;
-  margin: 1em 0;
-  padding: 0 1em;
-  quotes: none;
-}
-q:before, q:after {
-  content: none;
-}
-q:before {
-  content: "“";
-  padding-right: 0.25em;
-}
-q:after {
-  content: "”";
-  padding-left: 0.25em;
-}
-
-a {
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
-  background-color: transparent;
-  cursor: pointer;
-}
-a :-moz-any-link {
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
-  background-color: transparent;
-  cursor: pointer;
-}
-a :any-link {
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
-  background-color: transparent;
-  cursor: pointer;
-}
-a :-webkit-any-link {
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
-  background-color: transparent;
-  cursor: pointer;
-}
-a :link {
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
-  background-color: transparent;
-  cursor: pointer;
-}
-a :-webkit-link {
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
-  background-color: transparent;
-  cursor: pointer;
-}
-a :visited {
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
-  background-color: transparent;
-  cursor: pointer;
-}
-a :hover {
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
-  background-color: transparent;
-  cursor: pointer;
-  opacity: 0.75;
-}
-a :active {
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
-  background-color: transparent;
-  cursor: pointer;
-}
-a :focus {
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
-  background-color: transparent;
-  cursor: pointer;
-}
-
 abbr {
   display: inline;
   -webkit-text-decoration: underline dotted;
@@ -9867,6 +9766,298 @@ abbr[title]:hover::after, abbr[title]:focus::after {
   padding: 15px;
   border: 0;
   border-radius: 50%;
+}
+
+.character--line {
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color_secondary);
+}
+
+.character--line--under {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color_secondary);
+  -webkit-text-decoration-skip-ink: all;
+          text-decoration-skip-ink: all;
+  text-underline-position: under;
+  text-underline-offset: auto;
+}
+
+.character--line--over {
+  text-decoration-line: overline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color_secondary);
+}
+
+.character--line--through {
+  text-decoration-line: line-through;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color_secondary);
+}
+
+.character--line_alt {
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color_secondary);
+  text-decoration-color: var(--color_tertiary);
+}
+
+.character--line--under_alt {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color_secondary);
+  -webkit-text-decoration-skip-ink: all;
+          text-decoration-skip-ink: all;
+  text-underline-position: under;
+  text-underline-offset: auto;
+}
+
+.character--line--over_alt {
+  text-decoration-line: overline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color_tertiary);
+}
+
+.character--line--through_alt {
+  text-decoration-line: line-through;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color_tertiary);
+}
+
+.character--hyperlink--clean {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+
+.character--hyperlink--base {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+.character--hyperlink--base:link, .character--hyperlink--base:visited, .character--hyperlink--base:focus, .character--hyperlink--base:active {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+.character--hyperlink--base:hover {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+  opacity: 0.75;
+  color: rgb(0, 86.1, 178.5);
+}
+
+.character--hyperlink--normal {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+  color: #007bff;
+}
+.character--hyperlink--normal:link, .character--hyperlink--normal:visited, .character--hyperlink--normal:focus, .character--hyperlink--normal:active {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+.character--hyperlink--normal:hover {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+  opacity: 0.75;
+  color: rgb(0, 86.1, 178.5);
+}
+
+.character--hyperlink--line {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color_secondary);
+  -webkit-text-decoration-skip-ink: all;
+          text-decoration-skip-ink: all;
+  text-underline-position: under;
+  text-underline-offset: auto;
+}
+.character--hyperlink--line:link, .character--hyperlink--line:visited, .character--hyperlink--line:focus, .character--hyperlink--line:active {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+.character--hyperlink--line:hover {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+  opacity: 0.75;
+  color: rgb(0, 86.1, 178.5);
+}
+
+.character--hyperlink--line_alt {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color_secondary);
+  -webkit-text-decoration-skip-ink: all;
+          text-decoration-skip-ink: all;
+  text-underline-position: under;
+  text-underline-offset: auto;
+}
+.character--hyperlink--line_alt:link, .character--hyperlink--line_alt:visited, .character--hyperlink--line_alt:focus, .character--hyperlink--line_alt:active {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+.character--hyperlink--line_alt:hover {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+  opacity: 0.75;
+  color: rgb(0, 86.1, 178.5);
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+  color: #007bff;
+}
+a:link, a:visited, a:focus, a:active {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+a:hover {
+  text-decoration: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+  opacity: 0.75;
+  color: rgb(0, 86.1, 178.5);
+}
+
+q {
+  color: #666;
+  font-style: italic;
+  margin: 1em 0;
+  padding: 0 1em;
+  quotes: none;
+}
+q:before, q:after {
+  content: none;
+}
+q:before {
+  content: "“";
+  padding-right: 0.25em;
+}
+q:after {
+  content: "”";
+  padding-left: 0.25em;
 }
 
 p {
@@ -14699,12 +14890,15 @@ table thead th {
   grid-template-rows: 1.25rem;
   grid-auto-columns: min-content;
   grid-auto-flow: column;
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
+  text-decoration: none;
+  outline: none;
   background-color: transparent;
+  color: inherit;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
   -moz-justify-content: start;
   -ms-justify-content: start;
   -o-justify-content: start;
@@ -14940,12 +15134,15 @@ table thead th {
   grid-auto-flow: row;
 }
 .ribbon_panel .ribbon_panel_section .ribbon_panel_section_item {
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
+  text-decoration: none;
+  outline: none;
   background-color: transparent;
+  color: inherit;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
   box-sizing: border-box;
   list-style-type: none;
 }
@@ -16088,12 +16285,15 @@ details[open] .ribbon_panel_wrapper {
   grid-auto-flow: column;
   align-self: flex-start;
   align-items: center;
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
+  text-decoration: none;
+  outline: none;
   background-color: transparent;
+  color: inherit;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
   -moz-justify-content: flex-end;
   -ms-justify-content: flex-end;
   -o-justify-content: flex-end;
@@ -16184,12 +16384,15 @@ details[open] .ribbon_panel_wrapper {
 }
 
 .ribbon__title__text {
-  text-decoration: none !important;
-  outline: none !important;
-  outline-width: 0;
-  color: inherit !important;
+  text-decoration: none;
+  outline: none;
   background-color: transparent;
+  color: inherit;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
   visibility: hidden;
   display: none;
 }
@@ -16480,8 +16683,8 @@ nav ul li:before {
   grid-gap: 2;
   position: relative;
   grid-template-columns: repeat(24, 1fr);
-  gap: 1.25rem;
-  grid-gap: 1.25rem;
+  gap: 0.3125rem;
+  grid-gap: 0.3125rem;
 }
 
 .demo__section__header,
@@ -16502,7 +16705,7 @@ nav ul li:before {
 .preview_box--horizontal .preview_box__label,
 .preview_box--horizontal .preview_box__text {
   min-height: 1.25rem;
-  padding: 0.625rem;
+  padding: 0.3125rem;
 }
 
 .preview_box--horizontal .preview_box__label {
@@ -16666,5 +16869,51 @@ nav ul li:before {
   text-align: center;
   max-width: 100%;
   overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.box-preview {
+  background: #e0e0e0;
+}
+
+.box-label {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  color: #666;
+}
+
+.demo-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.demo-grid .button-size-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.demo-grid .button-style-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+.demo-grid .button-style-grid .demo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.demo-grid .button-style-grid .demo-item .label {
+  font-size: 0.75rem;
+  color: var(--color_dark, #333);
+  opacity: 0.6;
+  height: 2rem;
+}
+.demo-grid .button-style-grid .demo-item button {
+  width: 100%;
 }
 /*# sourceMappingURL=to.css.map */

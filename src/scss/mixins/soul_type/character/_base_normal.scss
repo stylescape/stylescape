@@ -1,6 +1,6 @@
 ////
 ///
-/// Italic Character Typography Mixins Module
+/// Normal Character Typography Mixins Module
 /// ===========================================================================
 ///
 /// @group Character
@@ -23,42 +23,32 @@
 @use '../font/font_weight' as *;
 @use '../font/font_size' as *;
 
-@use 'default' as *;
-@use 'normal' as *;
+@use 'base_default' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
 
-// Typography | Character | Italic
+// ============================================================================
+// Typography | Character | Normal
 // ============================================================================
 
 ///
-/// Mixin for applying italic character styles.
+/// Mixin for applying normal character styles.
 /// ---------------------------------------------------------------------------
 ///
-/// This mixin applies a combination of default character styles and
-/// italic-specific styling, including a light font weight and italic
-/// font style.
+/// This mixin combines several typography-related mixins to set the default
+/// font, weight, size, and other character styles to a "normal" state.
 ///
-/// - `font-style`: italic
-/// - `font-weight`: 300 (light)
+/// - `font--default`: Applies the default font family.
+/// - `font--weight_400`: Sets the font weight to 400 (normal weight).
+/// - `font--size_04`: Sets the font size to the default size 04.
+/// - `character_default`: Resets other character styles to their default
+/// state.
 ///
-@mixin character_italic {
-    @include character_normal;
-    // @include font--weight_03;
-    // @include font--size_00;
-    @include character_default;
-    @include font--weight_300;
-    font-style: italic;
-}
-
-///
-/// Applies italic character styles to all `<i>` elements.
-///
-/// This ensures that all italicized elements in the document use the
-/// `character_italic` mixin by default.
-///
-i {
-    @include character_italic;
+@mixin character--normal {
+    // @include font--sans;
+    @include font--weight_400;
+    @include font--size('04');
+    @include character--default;
 }

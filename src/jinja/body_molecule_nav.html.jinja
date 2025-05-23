@@ -1,0 +1,28 @@
+{% extends "base.html.jinja" %}
+{% block title %}Spinner Atom Demo{% endblock %}
+
+{% block content %}
+<section class="demo__section">
+
+    <header class="demo__section__header">
+        <h3>Interactive Elements</h3>
+    </header>
+
+    <section class="demo__subsection">
+
+        <nav>
+            <ul class="nav-list">
+                {% for item in [
+                { 'title': 'A', 'href': 'a.html' },
+                { 'title': 'B', 'href': 'b.html' },
+                { 'title': 'C', 'href': 'c.html' },
+                { 'title': 'Buttons', 'href': 'buttons.html' },
+                { 'title': 'Everything', 'href': 'everything.html' }
+                ] %}
+                <li><a href="{{ item.href }}">{{ item.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </section>
+</section>
+{% endblock %}

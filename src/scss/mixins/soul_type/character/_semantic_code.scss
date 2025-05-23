@@ -24,8 +24,8 @@
 @use '../font/font_weight' as *;
 @use '../font/font_size' as *;
 
-@use 'default' as *;
-@use 'normal' as *;
+@use 'base_default' as *;
+@use 'base_normal' as *;
 
 // ============================================================================
 // Mixins
@@ -45,7 +45,7 @@
 ///
 /// @param {List} $font_stack - Monospace font stack for inline code. Default is
 ///        `$font_stack_mono`.
-/// @param {Length} $font--size - Font size for inline code. Default is
+/// @param {Length} $font_size - Font size for inline code. Default is
 ///        `$character_code_font--size`.
 /// @param {List} $padding - Padding around inline code for spacing. Default is
 ///        `$character_code_padding`.
@@ -56,16 +56,16 @@
 /// @param {Length} $border_radius - Border radius for inline code. Default is
 ///        `$character_code_border_radius`.
 ///
-@mixin character_code(
+@mixin character--code(
     $font_stack: $font_stack_mono,
-    $font--size: $character_code_font--size,
+    $font_size: $character_code_font--size,
     $padding: $character_code_padding,
     $text_color: $character_code_text_color,
     $bg_color: $character_code_bg_color,
     $border_radius: $character_code_border_radius
 ) {
     font-family: $font_stack;
-    font-size: $font--size;
+    font-size: $font_size;
     // padding: $padding;
     color: $text_color;
     // border-radius: $border_radius;

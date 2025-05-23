@@ -16,18 +16,18 @@
 // Use
 // ============================================================================
 
-@use 'sass:color'; // Import the color module for Sass
+@use 'sass:color';
 
 @use '../../../dev' as *;
 @use '../../../variables' as *;
-// @use "../../mixins" as *;
 
 @use '../font/font_default' as *;
 @use '../font/font_weight' as *;
 @use '../font/font_size' as *;
 
-@use 'default' as *;
-@use 'normal' as *;
+@use 'base_default' as *;
+@use 'base_normal' as *;
+@use 'semantic_lined' as *;
 
 // ============================================================================
 // Mixins
@@ -38,105 +38,129 @@
 // ============================================================================
 
 // Hyperlink Variables
-$hyperlink_color: #007bff; // Default link color
+$hyperlink_color: #007bff;
 
 $hyperlink_hover_color: color.adjust($hyperlink_color, $lightness: -15%);
-$hyperlink_hover_opacity: 0.75; // Opacity for hover state
+$hyperlink_hover_opacity: 0.75;
 $hyperlink_transition: all 0.2s ease-in-out; // Smooth transition for link effects
 
 ///
 /// Mixin for cleaning hyperlink styles.
 /// ---------------------------------------------------------------------------
 ///
-/// This mixin removes default link styles, including text decoration, outline, and background color,
-/// while inheriting the color and setting the cursor to pointer.
+/// This mixin removes default link styles, including text decoration,
+/// outline, and background color, while inheriting the color and setting
+/// the cursor to pointer.
 ///
-@mixin hyperlink_clean {
-    text-decoration: none !important;
-    // text-decoration-line: underline;
-    // text-decoration-thickness: 0.5px;
-    outline: none !important;
-    outline-width: 0; // Remove the outline when hovering in all browsers
-    color: inherit !important;
-    background-color: transparent; // Remove the gray background on active links in IE 10
+// @mixin character--hyperlink--clean {
+//     text-decoration: none !important;
+//     // text-decoration-line: underline;
+//     // text-decoration-thickness: 0.5px;
+//     outline: none !important;
+//     outline-width: 0; // Remove the outline when hovering in all browsers
+//     color: inherit !important;
+//     background-color: transparent; // Remove the gray background on active links in IE 10
+//     cursor: pointer;
+//     // cursor: auto;
+//     // transition: 0.2s;
+//     // -webkit-transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+//     // transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+// }
+
+/// Clean, reset base for links
+/// Removes default underline, sets pointer, resets background
+@mixin character--hyperlink--clean {
+    text-decoration: none;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
     cursor: pointer;
-    // cursor: auto;
-    // transition: 0.2s;
-    // -webkit-transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
-    // transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+    transition: $hyperlink-transition;
+    user-select: text;
 }
 
 ///
 /// Mixin for base hyperlink styles.
 /// ---------------------------------------------------------------------------
 ///
-/// This mixin applies the `hyperlink_clean` mixin to various link states, ensuring a consistent look
-/// for all link variations (`:link`, `:visited`, `:hover`, `:active`, `:focus`).
-@mixin hyperlink_base {
-    @include hyperlink_clean;
-    :any-link {
-        @include hyperlink_clean;
+/// This mixin applies the `hyperlink_clean` mixin to various link states,
+/// ensuring a consistent look for all link variations (`:link`, `:visited`,
+/// `:hover`, `:active`, `:focus`).
+/// Applies base hyperlink behavior to all pseudo-states
+@mixin character--hyperlink--base {
+    @include character--hyperlink--clean;
+
+    &:link,
+    &:visited,
+    &:focus,
+    &:active {
+        @include character--hyperlink--clean;
     }
-    :-webkit-any-link {
-        @include hyperlink_clean;
-    }
-    :link {
-        @include hyperlink_clean;
-    }
-    :-webkit-link {
-        @include hyperlink_clean;
-    }
-    :visited {
-        @include hyperlink_clean;
-    }
-    // :-webkit-visited            { @include hyperlink_clean_base; }
-    :hover {
-        @include hyperlink_clean;
-        opacity: 0.75;
-    }
-    :active {
-        @include hyperlink_clean;
-    }
-    :focus {
-        @include hyperlink_clean;
+
+    &:hover {
+        @include character--hyperlink--clean;
+        opacity: $hyperlink-hover-opacity;
+        color: $hyperlink-hover-color;
     }
 }
 
 /// Mixin for normal hyperlink styles.
 /// ---------------------------------------------------------------------------
 ///
-/// This mixin applies the `hyperlink_base` styles to hyperlinks, providing a clean, unstyled link.
-@mixin hyperlink_normal {
-    @include hyperlink_base;
-    // @include character_normal;
+/// This mixin applies the `hyperlink_base` styles to hyperlinks, providing
+/// a clean, unstyled link.
+/// Default hyperlink style with color and interaction feedback
+@mixin character--hyperlink--normal {
+    @include character--hyperlink--base;
+    color: $hyperlink-color;
 }
 
 /// Mixin for underlined hyperlink styles.
 /// ---------------------------------------------------------------------------
 ///
-/// This mixin applies the `hyperlink_base` styles along with an underline using the `character_line_under` mixin.
-@mixin hyperlink_line {
-    @include hyperlink_base;
-    // @include character_link_normal;
-    @include character_line_under;
+/// This mixin applies the `hyperlink_base` styles along with an underline
+/// using the `character--line--under` mixin.
+@mixin character--hyperlink--line {
+    @include character--hyperlink--base;
+    // @include character--link_normal;
+    @include character--line--under;
 }
 
 /// Mixin for alternative underlined hyperlink styles.
 /// ---------------------------------------------------------------------------
 ///
-/// This mixin applies the `hyperlink_base` styles along with an alternative underline using the `character_line_under_alt` mixin.
-@mixin hyperlink_line_alt {
-    @include hyperlink_base;
-    // @include character_link_normal;
-    @include character_line_under_alt;
+/// This mixin applies the `hyperlink_base` styles along with an alternative
+/// underline using the `character--line--under_alt` mixin.
+///
+@mixin character--hyperlink--line_alt {
+    @include character--hyperlink--base;
+    // @include character--link_normal;
+    @include character--line--under_alt;
+}
+
+.character--hyperlink--clean {
+    @include character--hyperlink--clean;
+}
+.character--hyperlink--base {
+    @include character--hyperlink--base;
+}
+.character--hyperlink--normal {
+    @include character--hyperlink--normal;
+}
+.character--hyperlink--line {
+    @include character--hyperlink--line;
+}
+.character--hyperlink--line_alt {
+    @include character--hyperlink--line_alt;
 }
 
 /// Applies normal hyperlink styles to all `<a>` tags.
 /// ---------------------------------------------------------------------------
 ///
-/// This ensures that all hyperlinks in the document use the `hyperlink_normal` mixin by default.
+/// This ensures that all hyperlinks in the document use the `hyperlink_normal`
+/// mixin by default.
 a {
-    @include hyperlink_normal;
+    @include character--hyperlink--normal;
 }
 
 // // Mixin for base hyperlink styles

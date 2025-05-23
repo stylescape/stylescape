@@ -6,7 +6,7 @@
 .demo__section {
     @include col--24;
     @include grid__col--24;
-    @include gap(baseline(4));
+    @include gap(baseline(1));
 }
 
 .demo__section__header,
@@ -23,7 +23,7 @@
 .preview_box--horizontal .preview_box__label,
 .preview_box--horizontal .preview_box__text {
     min-height: baseline(4);
-    padding: baseline(2);
+    padding: baseline(1);
 }
 
 .preview_box--horizontal .preview_box__label {
@@ -247,3 +247,54 @@
 //   padding-left: calc(baseline(4) * 2);
 //   padding-right: calc(baseline(4) * 2);
 // }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.box-preview {
+    background: #e0e0e0;
+}
+
+.box-label {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    color: #666;
+}
+
+.demo-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .button-size-row {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .button-style-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+
+        .demo-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            .label {
+                font-size: 0.75rem;
+                color: var(--color_dark, #333);
+                opacity: 0.6;
+                height: 2rem;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+}

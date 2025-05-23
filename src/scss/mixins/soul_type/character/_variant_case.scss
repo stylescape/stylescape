@@ -24,8 +24,8 @@
 @use '../font/font_weight' as *;
 @use '../font/font_size' as *;
 
-@use 'default' as *;
-@use 'normal' as *;
+@use 'base_default' as *;
+@use 'base_normal' as *;
 
 // ============================================================================
 // Mixins
@@ -107,7 +107,7 @@
 /// @param {String} $transform - Optional text-transform style.
 /// @param {String} $font-variant - Optional font-variant-caps style.
 ///
-@mixin character_style($transform: null, $font-variant: null) {
+@mixin character--style($transform: null, $font-variant: null) {
     @if $transform != null {
         text-transform: $transform;
     }
@@ -120,64 +120,64 @@
 // ============================================================================
 
 /// Mixin for applying small-caps font variant.
-@mixin character_smallcaps {
+@mixin character--smallcaps {
     @include font--variant_caps(small-caps);
 }
 
 /// Mixin for applying all-small-caps font variant.
-@mixin character_smallcaps_all {
+@mixin character--smallcaps_all {
     @include font--variant_caps(all-small-caps);
 }
 
 /// Mixin for applying petite-caps font variant.
-@mixin character_petite_caps {
+@mixin character--petite_caps {
     @include font--variant_caps(petite-caps);
 }
 
 /// Mixin for applying all-petite-caps font variant.
-@mixin character_all_petite_caps {
+@mixin character--all_petite_caps {
     @include font--variant_caps(all-petite-caps);
 }
 
 /// Mixin for applying unicase font variant.
-@mixin character_unicase {
+@mixin character--unicase {
     @include font--variant_caps(unicase);
 }
 
 /// Mixin for applying titling-caps font variant.
-@mixin character_titling_caps {
+@mixin character--titling_caps {
     @include font--variant_caps(titling-caps);
 }
 
 /// Mixin for applying uppercase text transformation.
-@mixin character_uppercase {
+@mixin character--uppercase {
     @include text_transform(uppercase);
 }
 
 /// Mixin for applying lowercase text transformation.
-@mixin character_lowercase {
+@mixin character--lowercase {
     @include text_transform(lowercase);
 }
 
 /// Mixin for applying capitalize text transformation.
-@mixin character_capitalize {
+@mixin character--capitalize {
     @include text_transform(capitalize);
 }
 
 /// Mixin for resetting text transformation and font variant to initial values.
-@mixin character_initial {
+@mixin character--initial {
     @include font--variant_caps(initial);
     @include text_transform(none);
 }
 
 /// Mixin for inheriting text transformation and font variant from parent.
-@mixin character_inherit {
+@mixin character--inherit {
     @include font--variant_caps(inherit);
     // @include text_transform(inherit);
 }
 
 /// Mixin for unsetting text transformation and font variant.
-@mixin character_unset {
+@mixin character--unset {
     @include font--variant_caps(unset);
     @include text_transform(none);
 }
@@ -186,40 +186,40 @@
 // ============================================================================
 
 .character_smallcaps {
-    @include character_smallcaps;
+    @include character--smallcaps;
 }
 .character_smallcaps_all {
-    @include character_smallcaps_all;
+    @include character--smallcaps_all;
 }
 .character_petite_caps {
-    @include character_petite_caps;
+    @include character--petite_caps;
 }
 .character_all_petite_caps {
-    @include character_all_petite_caps;
+    @include character--all_petite_caps;
 }
 .character_unicase {
-    @include character_unicase;
+    @include character--unicase;
 }
 .character_titling_caps {
-    @include character_titling_caps;
+    @include character--titling_caps;
 }
 
 .character_uppercase {
-    @include character_uppercase;
+    @include character--uppercase;
 }
 .character_lowercase {
-    @include character_lowercase;
+    @include character--lowercase;
 }
 .character_capitalize {
-    @include character_capitalize;
+    @include character--capitalize;
 }
 
 .character_initial {
-    @include character_initial;
+    @include character--initial;
 }
 .character_inherit {
-    @include character_inherit;
+    @include character--inherit;
 }
 .character_unset {
-    @include character_unset;
+    @include character--unset;
 }

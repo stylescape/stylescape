@@ -1,6 +1,6 @@
 ////
 ///
-/// Normal Character Typography Mixins Module
+/// Italic Character Typography Mixins Module
 /// ===========================================================================
 ///
 /// @group Character
@@ -23,32 +23,42 @@
 @use '../font/font_weight' as *;
 @use '../font/font_size' as *;
 
-@use './default' as *;
+@use 'base_default' as *;
+@use 'base_normal' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
 
-// ============================================================================
-// Typography | Character | Normal
+// Typography | Character | Italic
 // ============================================================================
 
 ///
-/// Mixin for applying normal character styles.
+/// Mixin for applying italic character styles.
 /// ---------------------------------------------------------------------------
 ///
-/// This mixin combines several typography-related mixins to set the default
-/// font, weight, size, and other character styles to a "normal" state.
+/// This mixin applies a combination of default character styles and
+/// italic-specific styling, including a light font weight and italic
+/// font style.
 ///
-/// - `font--default`: Applies the default font family.
-/// - `font--weight_400`: Sets the font weight to 400 (normal weight).
-/// - `font--size_04`: Sets the font size to the default size 04.
-/// - `character_default`: Resets other character styles to their default
-/// state.
+/// - `font-style`: italic
+/// - `font-weight`: 300 (light)
 ///
-@mixin character_normal {
-    // @include font--sans;
-    @include font--weight_400;
-    @include font--size('04');
-    @include character_default;
+@mixin character--italic {
+    @include character--normal;
+    // @include font--weight_03;
+    // @include font--size_00;
+    @include character--default;
+    @include font--weight_300;
+    font-style: italic;
+}
+
+///
+/// Applies italic character styles to all `<i>` elements.
+///
+/// This ensures that all italicized elements in the document use the
+/// `character_italic` mixin by default.
+///
+i {
+    @include character--italic;
 }
