@@ -1,43 +1,58 @@
-// class ThemeToggler {
-//     private static themeAttribute: string = 'theme'
-//     private static darkTheme: string = 'dark'
-//     private static lightTheme: string = 'light'
-
-//     static toggle(): void {
-//         const html = document.documentElement
-//         const currentTheme = html.dataset[ThemeToggler.themeAttribute]
-
-//         html.dataset[ThemeToggler.themeAttribute] =
-//             currentTheme === ThemeToggler.darkTheme
-//                 ? ThemeToggler.lightTheme
-//                 : ThemeToggler.darkTheme
-//     }
-// }
-
-// Usage
-// ThemeToggler.toggle();
-
 export class ThemeToggler {
-    private static themeAttribute: string = 'theme'
-    private static darkTheme: string = 'dark'
-    private static lightTheme: string = 'light'
+    private static readonly THEME_ATTRIBUTE = "theme"
+    private static readonly DARK_THEME = "dark"
+    private static readonly LIGHT_THEME = "light"
+    private static readonly htmlElement = document.documentElement
 
-    static toggle(): void {
-        const html = document.documentElement
-        const currentTheme = html.dataset[ThemeToggler.themeAttribute]
-
-        html.dataset[ThemeToggler.themeAttribute] =
-            currentTheme === ThemeToggler.darkTheme
-                ? ThemeToggler.lightTheme
-                : ThemeToggler.darkTheme
+    private constructor() {
+        // Prevent instantiation
     }
 
-    static initializeToggleSwitch(toggleId: string): void {
-        const toggle = document.getElementById(toggleId) as HTMLInputElement
-        if (!toggle) return
+    /**
+     * Toggle between dark and light theme
+     */
+    static toggle(): void {
+        const currentTheme = ThemeToggler.getCurrentTheme()
 
-        toggle.addEventListener('change', () => {
+        const newTheme =
+            currentTheme === ThemeToggler.DARK_THEME
+                ? ThemeToggler.LIGHT_THEME
+                : ThemeToggler.DARK_THEME
+
+        ThemeToggler.htmlElement.dataset[ThemeToggler.THEME_ATTRIBUTE] =
+            newTheme
+
+        // Optionally persist to localStorage
+        // localStorage.setItem('preferredTheme', newTheme);
+    }
+
+    /**
+     * Initialize a toggle switch (e.g. a checkbox)
+     * @param toggleId The ID of the input element to listen to
+     */
+    static initializeToggleSwitch(toggleId: string): void {
+        const toggle = document.getElementById(
+            toggleId,
+        ) as HTMLInputElement | null
+        if (!toggle) {
+            console.warn(
+                `ThemeToggler: Toggle element with ID '${toggleId}' not found.`,
+            )
+            return
+        }
+
+        toggle.addEventListener("change", () => {
             ThemeToggler.toggle()
         })
+    }
+
+    /**
+     * Get the currently set theme or fallback to default
+     */
+    private static getCurrentTheme(): string {
+        return (
+            ThemeToggler.htmlElement.dataset[ThemeToggler.THEME_ATTRIBUTE] ||
+            ThemeToggler.LIGHT_THEME
+        )
     }
 }
