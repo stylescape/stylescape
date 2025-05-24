@@ -1,10 +1,10 @@
 // ============================================================================
 // Imports
 // ============================================================================
-@use 'sass:map';
+@use "sass:map";
 
-@use '../../../dev' as *;
-@use '../../../variables' as *;
+@use "../../../dev" as *;
+@use "../../../variables" as *;
 
 // ============================================================================
 // Container | Ribbon | Slots
@@ -17,7 +17,7 @@ $ribbon_areas: (
     horizontal_right: ribbon_area--horizontal_right,
     vertical_top: ribbon_area--vertical_top,
     vertical_center: ribbon_area--vertical_center,
-    vertical_bottom: ribbon_area--vertical_bottom,
+    vertical_bottom: ribbon_area--vertical_bottom
 );
 
 ///
@@ -30,7 +30,7 @@ $ribbon_areas: (
 //     align-self: #{$v-align};
 //     display: flex;
 //     flex-direction: row;
-//     gap: calc($q * 2);
+//     gap: calc(q(2));
 //     // align-content: center;
 // }
 // ============================================================================
@@ -40,11 +40,16 @@ $ribbon_areas: (
 /// Base slot container with configurable layout
 ///
 /// @param {String} $flow - 'row' or 'column'
-/// @param {Length} $gap - spacing between items (default: $q * 2)
+/// @param {Length} $gap - spacing between items (default: q(2))
 /// @param {String} $justify - horizontal alignment (default: center)
 /// @param {String} $align - vertical alignment (default: center)
 /// @group Ribbon
-@mixin ribbon_slot($flow: row, $gap: calc($q * 2), $justify: center, $align: center) {
+@mixin ribbon_slot(
+    $flow: row,
+    $gap: calc(q(2)),
+    $justify: center,
+    $align: center
+) {
     display: grid;
     justify-content: $justify;
     // justify-content: flex-end;
@@ -78,7 +83,7 @@ $ribbon_areas: (
 //     display: grid;
 //     align-items: $align;
 //     justify-items: $justify;
-//     gap: calc($q * 2);
+//     gap: calc(q(2));
 //     position: relative;
 //     overflow: hidden;
 // }
@@ -212,7 +217,7 @@ $ribbon_areas: (
 // ///
 // @mixin icon_bar {
 //     display: grid;
-//     gap: calc($q * 16);
+//     gap: calc(q(16));
 //     justify-items: center;
 //     align-items: center;
 // }

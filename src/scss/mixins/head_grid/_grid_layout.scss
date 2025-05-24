@@ -12,10 +12,10 @@
 ///
 ////
 
-@use 'sass:map';
+@use "sass:map";
 
-@use '../../dev' as *;
-@use 'gap' as *;
+@use "../../dev" as *;
+@use "gap" as *;
 
 // ============================================================================
 // Layout | Grid
@@ -24,7 +24,7 @@
 // CSS Grid Layout Mixin:
 // Creates a grid layout with specified columns and gap.
 
-// @mixin grid-layout($columns, $gap: 1rem) {
+// @mixin grid-layout($columns, $gap: q(16)) {
 //   display: grid;
 //   grid-template-columns: repeat($columns, 1fr);
 //   gap: $gap;
@@ -457,14 +457,14 @@ $grid__columns_width: 1fr;
 // .grid {
 //   display: grid;
 //   @include grid__col(4);
-//   grid-column-gap: 10px;
+//   grid-column-gap: q(10);
 // }
 
 .grid {
     @include grid;
     @include gap(4);
 
-    grid-auto-rows: minmax(10px, auto);
+    grid-auto-rows: minmax(q(10), auto);
     @media screen and (max-width: $media_xl) {
         @include grid__col($grid__columns_min);
     }

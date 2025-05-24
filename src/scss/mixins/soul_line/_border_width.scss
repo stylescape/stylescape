@@ -2,8 +2,8 @@
 // StyleScape | Borders | Width
 // ============================================================================
 
-@use '../../dev' as *;
-@use '../../variables' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
 
 // Border Width mixin
 // ----------------------------------------------------------------------------
@@ -17,7 +17,7 @@
 ///
 /// @param {Number} $multiplier - Multiplier to calculate border width.
 @mixin border_width_multiplier($multiplier) {
-    border-width: $q * 4 * $multiplier;
+    border-width: q(4) * $multiplier;
 }
 
 /// Mixin for setting individual border side widths.
@@ -26,7 +26,12 @@
 /// @param {Number | null} $right - Right border width.
 /// @param {Number | null} $bottom - Bottom border width.
 /// @param {Number | null} $left - Left border width.
-@mixin border_width_side($top: null, $right: null, $bottom: null, $left: null) {
+@mixin border_width_side(
+    $top: null,
+    $right: null,
+    $bottom: null,
+    $left: null
+) {
     @if $top != null {
         border-top-width: $top !important;
     }

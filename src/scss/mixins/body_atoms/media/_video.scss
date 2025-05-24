@@ -1,6 +1,6 @@
-@use '../dev' as *;
-@use '../variables' as *;
-@use '../mixins' as *;
+@use "../dev" as *;
+@use "../variables" as *;
+@use "../mixins" as *;
 
 // ============================================================================
 // Media | Video
@@ -18,12 +18,17 @@
 video {
     max-width: 100%; // Ensure responsiveness
     height: auto; // Maintain aspect ratio
-    border: 1px solid #ddd; // Add a light border for distinction
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional: Add a subtle shadow for depth
+    border: q(1) solid #ddd; // Add a light border for distinction
+    box-shadow: 0 q(2) q(4) rgba(0, 0, 0, 0.1); // Optional: Add a subtle shadow for depth
 
     // Customizing the video controls
     &:hover::controls {
-        background: rgba(0, 0, 0, 0.75); // Darken controls on hover for better visibility
+        background: rgba(
+            0,
+            0,
+            0,
+            0.75
+        ); // Darken controls on hover for better visibility
         color: #fff; // Change control icons/text color to white for contrast
     }
 }
@@ -40,7 +45,7 @@ video {
     // position: relative;
     // padding-bottom: 56.25%;
     // /* 16:9 */
-    // padding-top: 25px;
+    // padding-top: q(25);
     // height: 0;
 
     // background-color: #000;
@@ -62,7 +67,7 @@ video {
         // height: 100%;
         // left: 0;
         // position: absolute;
-        // top: -5px !important;
+        // top: -q(4) !important;
         // width: 100%;
 
         position: absolute;
@@ -109,7 +114,7 @@ video {
     position: relative;
     &:before {
         display: block;
-        content: '';
+        content: "";
         width: 100%;
         padding-top: calc($height / $width) * 100%;
     }
@@ -156,7 +161,7 @@ video {
     align-items: center;
     background: rgba(0, 0, 0, 0.5); // Semi-transparent overlay
     color: #fff;
-    font-size: 2em;
+    font-size: q(32);
     cursor: pointer;
 
     // Hide by default and show on video hover or pause
@@ -175,7 +180,7 @@ video {
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 10px;
+    padding: q(10);
     background: rgba(0, 0, 0, 0.7); // Semi-transparent background for controls
     color: #fff;
     display: flex;
@@ -197,7 +202,10 @@ video {
 ///
 /// Particularly useful for video embeds from platforms like YouTube or Vimeo.
 .embed-responsive {
-    @include video-aspect-ratio(16, 9); // 16:9 aspect ratio for embedded videos
+    @include video-aspect-ratio(
+        16,
+        9
+    ); // 16:9 aspect ratio for embedded videos
 
     iframe,
     object,

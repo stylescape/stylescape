@@ -16,16 +16,16 @@
 // Use
 // ============================================================================
 
-@use '../../../dev' as *;
-@use '../../../variables' as *;
+@use "../../../dev" as *;
+@use "../../../variables" as *;
 // // @use "../../mixins" as *;
 
-@use '../font/font_default' as *;
-@use '../font/font_weight' as *;
-@use '../font/font_size' as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
 
-@use 'base_default' as *;
-@use 'base_normal' as *;
+@use "base_default" as *;
+@use "base_normal" as *;
 
 // ============================================================================
 // Mixins
@@ -35,10 +35,10 @@
 $abbreviation_text_decoration: underline dotted;
 $abbreviation_tooltip_background: #1e1e1e; // Tooltip background color
 $abbreviation_tooltip_color: #fff; // Tooltip text color
-$abbreviation_tooltip_radius: 3px; // Tooltip border radius
-$abbreviation_tooltip_shadow: 1px 1px 5px rgba(0, 0, 0, 0.4); // Tooltip shadow
-$abbreviation_tooltip_font-size: 14px; // Tooltip font size
-$abbreviation_tooltip_padding: 3px 5px; // Tooltip padding
+$abbreviation_tooltip_radius: q(3); // Tooltip border radius
+$abbreviation_tooltip_shadow: q(1) q(1) q(5) rgba(0, 0, 0, 0.4); // Tooltip shadow
+$abbreviation_tooltip_font-size: q(14); // Tooltip font size
+$abbreviation_tooltip_padding: q(3) q(5); // Tooltip padding
 
 ///
 ///  Mixin for base abbreviation styles
@@ -62,7 +62,7 @@ $abbreviation_tooltip_padding: 3px 5px; // Tooltip padding
         content: attr(title);
         position: absolute;
         left: 0;
-        bottom: -30px; // Adjust based on your design
+        bottom: -q(32); // Adjust based on your design
         white-space: nowrap;
         background-color: $abbreviation_tooltip_background;
         color: $abbreviation_tooltip_color;
@@ -121,16 +121,16 @@ abbr[title] {
         /* position tooltip like the native one */
         position: absolute;
         left: 0;
-        bottom: -30px;
+        bottom: -q(32);
         width: auto;
         white-space: nowrap;
         /* style tooltip */
         background-color: #1e1e1e;
         color: #fff;
-        border-radius: 3px;
-        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.4);
-        font-size: 14px;
-        padding: 3px 5px;
+        border-radius: q(3);
+        box-shadow: q(1) q(1) q(5) 0 rgba(0, 0, 0, 0.4);
+        font-size: q(14);
+        padding: q(3) q(5);
     }
 }
 

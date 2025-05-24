@@ -52,7 +52,7 @@
 //         }
 //     }
 
-//   // When the user scrolls down 100px from the top of the document, show the button
+//   // When the user scrolls down q(100) from the top of the document, show the button
 //   if (button_up   !== null){
 //     window.onscroll = function() {scrollButton()};
 //   }

@@ -1,6 +1,6 @@
-@use '../../dev' as *;
-@use '../head_grid' as *;
-@use '../head_layout' as *;
+@use "../../dev" as *;
+@use "../head_grid" as *;
+@use "../head_layout" as *;
 
 .noclick {
     pointer-events: none;
@@ -35,9 +35,9 @@
     grid-template-rows: auto 1fr auto;
 
     grid-template-areas:
-        'top_left      top_center       top_right'
-        'middle_left   middle_center    middle_right'
-        'bottom_left   bottom_center    bottom_right';
+        "top_left      top_center       top_right"
+        "middle_left   middle_center    middle_right"
+        "bottom_left   bottom_center    bottom_right";
 }
 
 /// Layout | Scrollable Center
@@ -119,7 +119,7 @@
     @include col--24;
     display: grid;
     grid-template-columns: auto 1fr auto;
-    grid-template-areas: 'aside_left main aside_right';
+    grid-template-areas: "aside_left main aside_right";
     min-height: 100%;
     overflow: hidden;
     position: relative;
@@ -133,8 +133,8 @@
     transition: width 0.3s ease;
     overflow-y: auto;
     overflow-x: hidden;
-    border-right: 1.5px solid var(--color_foreground);
-    // padding: $q * 16;
+    border-right: q(1) solid var(--color_foreground);
+    // padding: q(16);
     background: var(--color_background);
     z-index: 1;
 }
@@ -143,7 +143,7 @@
     grid-area: main;
     overflow-y: auto;
     overflow-x: hidden;
-    // padding: $q * 16;
+    // padding: q(16);
 }
 
 @mixin layout__middle_center__aside--right {
@@ -153,8 +153,8 @@
     transition: width 0.3s ease;
     overflow-y: auto;
     overflow-x: hidden;
-    border-left: 1.5px solid var(--color_foreground);
-    // padding: $q * 16;
+    border-left: q(1) solid var(--color_foreground);
+    // padding: q(16);
     background: var(--color_background);
     z-index: 1;
 }
@@ -162,7 +162,7 @@
 @mixin layout__middle_center--inside {
     width: ($q * 300);
     overflow-x: hidden;
-    padding: $q * 16;
+    padding: q(16);
 }
 
 // ============================================================================
@@ -279,7 +279,7 @@
 $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
 $duration: 0.5s;
 
-$arrow_size: $q * 12;
+$arrow_size: q(12);
 
 .aside_left_switch,
 .aside_right_switch {
@@ -305,7 +305,8 @@ $arrow_size: $q * 12;
         pointer-events: all;
         display: block;
         // translate with half the ribbon height
-        transform: translateX(0) translateY(-$q * 20) rotate(0deg) translateZ(0px);
+        transform: translateX(0) translateY(-q(20)) rotate(0deg)
+            translateZ(0px);
         z-index: 1;
         .top_bar,
         .bot_bar {
@@ -315,12 +316,12 @@ $arrow_size: $q * 12;
             height: calc($arrow_size / 4);
             display: block;
             float: right;
-            // transform: translateX(0) translateY($q * 10) rotate(0deg) translateZ(0px);
-            // border-radius: 0.25px;
+            // transform: translateX(0) translateY(q(12)) rotate(0deg) translateZ(0px);
+            // border-radius: 0.2q(4);
             &:after {
-                content: '';
+                content: "";
                 background-color: rgb(165, 165, 165);
-                // border: 1px;
+                // border: q(1);
                 // border-color: black;
                 width: $arrow_size;
                 height: calc($arrow_size / 4);
@@ -336,7 +337,7 @@ $arrow_size: $q * 12;
             left: 0;
             // transform: rotate(125deg);
             &:after {
-                // border-radius: 3px 5px 5px 3px;
+                // border-radius: q(3) q(5) q(5) q(3);
             }
         }
         .bot_bar {
@@ -344,7 +345,7 @@ $arrow_size: $q * 12;
             left: 0;
             // transform: rotate(55deg);
             &:after {
-                // border-radius: 10px 6px 6px 10px;
+                // border-radius: q(10) q(6) q(6) q(10);
             }
         }
     }
@@ -356,13 +357,13 @@ $arrow_size: $q * 12;
         .top_bar {
             transform: rotate(90deg);
             &:after {
-                // border-radius: 3px 5px 5px 3px;
+                // border-radius: q(3) q(5) q(5) q(3);
             }
         }
         .bot_bar {
             transform: rotate(90deg);
             &:after {
-                // border-radius: 10px 6px 6px 10px;
+                // border-radius: q(10) q(6) q(6) q(10);
             }
         }
     }
@@ -374,13 +375,13 @@ $arrow_size: $q * 12;
         .top_bar {
             transform: rotate(90deg);
             &:after {
-                // border-radius: 3px 5px 5px 3px;
+                // border-radius: q(3) q(5) q(5) q(3);
             }
         }
         .bot_bar {
             transform: rotate(90deg);
             &:after {
-                // border-radius: 10px 6px 6px 10px;
+                // border-radius: q(10) q(6) q(6) q(10);
             }
         }
     }

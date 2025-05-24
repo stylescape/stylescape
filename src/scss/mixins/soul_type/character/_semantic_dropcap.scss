@@ -16,16 +16,16 @@
 // Use
 // ============================================================================
 
-@use '../../../dev' as *;
-@use '../../../variables' as *;
+@use "../../../dev" as *;
+@use "../../../variables" as *;
 // @use "../../mixins" as *;
 
-@use '../font/font_default' as *;
-@use '../font/font_weight' as *;
-@use '../font/font_size' as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
 
-@use 'base_default' as *;
-@use 'base_normal' as *;
+@use "base_default" as *;
+@use "base_normal" as *;
 
 // ============================================================================
 // Mixins
@@ -37,40 +37,40 @@
 
 // Common Drop Cap Variables
 $dropcap_font--weight: 600 !default;
-$dropcap_font--size: 50px !default;
+$dropcap_font--size: q(50) !default;
 $dropcap_text_align: center !default;
 $dropcap-line-height: 1 !default;
-$dropcap-margin: 0 20px 0 0 !default;
-$dropcap-padding: 10px 0 !default;
+$dropcap-margin: 0 q(20) 0 0 !default;
+$dropcap-padding: q(10) 0 !default;
 $dropcap-border-radius: 50% !default;
 
 // Standard Drop Cap Variables
 
 // Large Drop Cap Variables
-$dropcap-large-font-size: 110px !default;
-$dropcap-large-line-height: 110px !default;
-$dropcap-large-padding: 0 8px !default;
-$dropcap-large-border: 1px solid !default;
+$dropcap-large-font-size: 1Q (10) !default;
+$dropcap-large-line-height: 1Q (10) !default;
+$dropcap-large-padding: 0 q(8) !default;
+$dropcap-large-border: q(1) solid !default;
 
 // Block Drop Cap Variables
-$dropcap-block-font-size: 30px !default;
-$dropcap-block-line-height: 22px !default;
-$dropcap-block-height: 55px !default;
-$dropcap-block-width: 55px !default;
-$dropcap-block-padding: 15px 0 !default;
-$dropcap-block-margin-top: 5px !default;
+$dropcap-block-font-size: q(32) !default;
+$dropcap-block-line-height: q(20) !default;
+$dropcap-block-height: 5Q (4) !default;
+$dropcap-block-width: 5Q (4) !default;
+$dropcap-block-padding: q(15) 0 !default;
+$dropcap-block-margin-top: q(5) !default;
 $dropcap-block-font-weight: 500 !default;
 
 // Rounded Block Drop Cap Variables
-$dropcap-rounded-border-radius: 6px !default;
-$dropcap-rounded-border: 1px solid !default;
+$dropcap-rounded-border-radius: q(6) !default;
+$dropcap-rounded-border: q(1) solid !default;
 
 // Circular Drop Cap Variables
-$dropcap_circular_font-size: 35px !default;
-$dropcap_circular_line-height: 32px !default;
-$dropcap_circular_height: 65px !default;
-$dropcap_circular_width: 65px !default;
-$dropcap_circular_padding: 15px !default;
+$dropcap_circular_font-size: 3Q (4) !default;
+$dropcap_circular_line-height: 3Q (2) !default;
+$dropcap_circular_height: 6Q (4) !default;
+$dropcap_circular_width: 6Q (4) !default;
+$dropcap_circular_padding: q(15) !default;
 
 // ============================================================================
 // Mixins
@@ -111,7 +111,11 @@ $dropcap_circular_padding: 15px !default;
 /// @param {String} $border - Border for the drop cap (default: `none`).
 /// @param {Length} $border-radius - Border radius for the drop cap (default: `0`).
 ///
-@mixin dropcap_style($padding: $dropcap-padding, $border: none, $border-radius: 0) {
+@mixin dropcap_style(
+    $padding: $dropcap-padding,
+    $border: none,
+    $border-radius: 0
+) {
     padding: $padding;
     border: $border;
     border-radius: $border-radius;
@@ -136,13 +140,16 @@ $dropcap_circular_padding: 15px !default;
 /// the first child element.
 ///
 @mixin large-dropcap-underline {
-    @include dropcap_base($dropcap-large-font-size, $dropcap-large-line-height);
+    @include dropcap_base(
+        $dropcap-large-font-size,
+        $dropcap-large-line-height
+    );
     @include dropcap_style($dropcap-large-padding, $dropcap-large-border, 0);
 
     &:before {
-        content: '';
+        content: "";
         position: absolute;
-        border-bottom: 1px solid;
+        border-bottom: q(1) solid;
         width: 100%;
         top: 50%; // Adjusted for better visual centering
         left: 0;
@@ -193,10 +200,17 @@ $dropcap_circular_padding: 15px !default;
 ///
 /// Applies a circular drop cap to the first letter of the first child element.
 @mixin dropcap_circular {
-    @include dropcap_base($dropcap_circular_font-size, $dropcap_circular_line-height);
+    @include dropcap_base(
+        $dropcap_circular_font-size,
+        $dropcap_circular_line-height
+    );
     height: $dropcap_circular_height;
     width: $dropcap_circular_width;
-    @include dropcap_style($dropcap_circular_padding, 0, $dropcap-border-radius);
+    @include dropcap_style(
+        $dropcap_circular_padding,
+        0,
+        $dropcap-border-radius
+    );
 }
 
 // ============================================================================
@@ -230,20 +244,20 @@ $dropcap_circular_padding: 15px !default;
 
 // .dropcap:first-child:first-letter {
 //     float: left;
-//     font-size: 50px;
+//     font-size: q(50);
 //     line-height: auto;
-//     margin: 0 20px 0 0;
+//     margin: 0 q(20) 0 0;
 //     text-align: center;
-//     padding: 10px 0;
+//     padding: q(10) 0;
 //     font-weight: 600;
 // }
 
 // .dropcap_big:first-child:first-letter {
 //     float: left;
-//     font-size: 110px;
-//     line-height: 110px;
-//     margin: 0 20px 0 0;
-//     padding:0 8px;
+//     font-size: 1q(10);
+//     line-height: 1q(10);
+//     margin: 0 q(20) 0 0;
+//     padding:0 q(8);
 //     text-align: center;
 //     font-weight: 600;
 //     position: relative;
@@ -251,7 +265,7 @@ $dropcap_circular_padding: 15px !default;
 
 // .dropcap_big:first-child:first-letter:before {
 //     position: absolute;
-//     border-bottom: 1px solid;
+//     border-bottom: q(1) solid;
 //     content: "";
 //     display: block;
 //     width: 100%;
@@ -260,25 +274,25 @@ $dropcap_circular_padding: 15px !default;
 // }
 
 // .dropcap_block:first-child:first-letter {
-//     font-size: 30px;
-//     height: 55px;
-//     line-height: 22px;
-//     padding: 15px 0;
-//     width: 55px;
+//     font-size: q(32);
+//     height: 5q(4);
+//     line-height: q(20);
+//     padding: q(15) 0;
+//     width: 5q(4);
 //     font-weight: 500;
-//     margin-top: 5px;
+//     margin-top: q(5);
 // }
 
 // .dropcap_block-round:first-child:first-letter {
-//     border-radius:6px;
-//     border:1px solid;
+//     border-radius:q(6);
+//     border:q(1) solid;
 // }
 
 // .dropcap_round:first-child:first-letter {
 //     border-radius: 50%;
-//     font-size: 35px;
-//     padding: 15px;
-//     width: 65px;
-//     height: 65px;
-//     line-height: 32px;
+//     font-size: 3q(4);
+//     padding: q(15);
+//     width: 6q(4);
+//     height: 6q(4);
+//     line-height: 3q(2);
 // }

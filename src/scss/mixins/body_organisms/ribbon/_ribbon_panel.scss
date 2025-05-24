@@ -1,14 +1,14 @@
 // ============================================================================
 // Imports
 // ============================================================================
-@use '../../body_molecules' as *;
-@use '../../head_layout' as *;
-@use '../../head_grid' as *;
-@use '../../../variables' as *;
-@use '../../soul_type' as *;
-@use '../../body_atoms' as *;
-@use '../../../dev' as *;
-@use 'pkg:unit.gl' as *;
+@use "../../body_molecules" as *;
+@use "../../head_layout" as *;
+@use "../../head_grid" as *;
+@use "../../../variables" as *;
+@use "../../soul_type" as *;
+@use "../../body_atoms" as *;
+@use "../../../dev" as *;
+@use "pkg:unit.gl" as *;
 
 // ============================================================================
 // Container | Ribbon | Panel
@@ -24,12 +24,13 @@
     // Style
     // @include color_scheme_light;
     background-color: var(--color_background);
-    border-radius: $q * 4;
-    border: 0.25px solid var(--color_foreground);
+    border-radius: q(4);
+    border: 0.2Q (4) solid var(--color_foreground);
     color: var(--color_dark);
-    box-shadow: calc($q * 4) calc($q * 0) calc($q * 8) calc($q * 0) rgba(0, 0, 0, 0.2);
+    box-shadow: calc(q(4)) calc($q * 0) calc(q(8)) calc($q * 0)
+        rgba(0, 0, 0, 0.2);
     // Text
-    font-size: $q * 12;
+    font-size: q(12);
     word-wrap: break-word;
     background-clip: padding-box;
     list-style: none;
@@ -41,25 +42,25 @@
     top: 100%;
     left: auto;
     right: 0;
-    width: $q * 180;
-    margin-top: $q * 8;
+    width: q(16) 0;
+    margin-top: q(8);
     padding-bottom: $ribbon_spacing * 2;
     padding-top: $ribbon_spacing * 2;
     padding-left: 0;
     .ribbon_panel_line {
         @include reset_bleed;
         // @include color_scheme_light;
-        border: 0.25px solid grey;
+        border: 0.2Q (4) solid grey;
         opacity: 0.5;
     }
     ::before {
-        content: '';
-        border-left: $q * 4 solid transparent;
-        border-right: $q * 4 solid transparent;
-        border-bottom: $q * 4 solid white;
+        content: "";
+        border-left: q(4) solid transparent;
+        border-right: q(4) solid transparent;
+        border-bottom: q(4) solid white;
         position: absolute;
-        top: -$q * 4;
-        right: $q * 6;
+        top: -q(4);
+        right: q(6);
         z-index: 9999;
     }
 }
@@ -71,7 +72,7 @@
     .ribbon_panel_section_header,
     .ribbon_panel_section_header .ribbon_panel_section_item {
         @include reset_bleed;
-        @include font--size('03');
+        @include font--size("03");
         width: 100%;
         padding-left: $menu_margin * 2;
         padding-right: $menu_margin * 2;

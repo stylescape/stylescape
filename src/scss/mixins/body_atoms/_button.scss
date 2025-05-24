@@ -2,13 +2,13 @@
 // Elements | Button
 // ============================================================================
 
-@use 'sass:map';
-@use 'sass:list';
+@use "sass:map";
+@use "sass:list";
 
-@use '../../dev' as *;
-@use '../../variables' as *;
-@use '../soul_type' as *;
-@use 'box' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../soul_type" as *;
+@use "box" as *;
 
 // ============================================================================
 // Resets
@@ -47,28 +47,28 @@ textarea {
 
 // Apply cursor pointer to button elements
 button,
-[type='button'],
-[type='reset'],
-[type='submit'],
-[role='button'] {
+[type="button"],
+[type="reset"],
+[type="submit"],
+[role="button"] {
     cursor: pointer;
 }
 
 /// Remove inner padding and border in Firefox 4+
 button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
     border-style: none;
     padding: 0;
 }
 
 /* Replace focus style removed in the border reset above */
 button:-moz-focusring,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
-    outline: 1px dotted ButtonText;
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+    outline: q(1) dotted ButtonText;
 }
 
 button,
@@ -108,26 +108,26 @@ button {
 //     'xl': 6,
 // ) !default;
 $button_size_map: (
-    'xs': (
+    "xs": (
         2,
-        '01',
+        "01"
     ),
-    'sm': (
+    "sm": (
         3,
-        '02',
+        "02"
     ),
-    'md': (
+    "md": (
         4,
-        '03',
+        "03"
     ),
-    'lg': (
+    "lg": (
         5,
-        '04',
+        "04"
     ),
-    'xl': (
+    "xl": (
         6,
-        '05',
-    ),
+        "05"
+    )
 ) !default;
 
 // ============================================================================
@@ -149,7 +149,7 @@ $button_size_map: (
     background: transparent;
     // background-color: transparent;
     color: inherit;
-    padding: calc($q * 8);
+    padding: calc(q(8));
     margin: 0;
     display: inline-flex;
     align-items: center;
@@ -161,7 +161,7 @@ $button_size_map: (
     transition:
         background 0.2s ease,
         border 0.2s ease;
-    border-radius: var(--border_radius, 4px);
+    border-radius: var(--border_radius, q(4));
     pointer-events: initial;
     cursor: pointer;
 }
@@ -200,13 +200,13 @@ $button_size_map: (
     color: var(--color_light);
 
     &:hover {
-        background: hue_color('N2402');
+        background: hue_color("N2402");
     }
     &:active {
-        background: hue_color('N2409');
+        background: hue_color("N2409");
     }
     &:focus-within {
-        border: 2px solid hue_color('N2404');
+        border: q(2) solid hue_color("N2404");
     }
     &:disabled {
         background: var(--color_muted);
@@ -217,18 +217,18 @@ $button_size_map: (
 
 /// Outline variant
 @mixin button--outline {
-    border: 1.5px solid var(--color_primary);
+    border: q(1) solid var(--color_primary);
     color: var(--color_primary);
     background: none;
 
     &:hover {
-        background: hue_color('N2402');
+        background: hue_color("N2402");
     }
     &:active {
-        background: hue_color('N2407');
+        background: hue_color("N2407");
     }
     &:focus-within {
-        border: 2px solid hue_color('N2404');
+        border: q(2) solid hue_color("N2404");
     }
     &:disabled {
         border-color: var(--color_muted);
@@ -243,13 +243,13 @@ $button_size_map: (
     color: var(--color_primary);
 
     &:hover {
-        background: hue_color('N2402');
+        background: hue_color("N2402");
     }
     &:active {
-        background: hue_color('N2407');
+        background: hue_color("N2407");
     }
     &:focus-within {
-        border: 2px solid hue_color('N2404');
+        border: q(2) solid hue_color("N2404");
     }
     &:disabled {
         color: var(--color_muted);
@@ -273,8 +273,8 @@ $button_size_map: (
 button {
     // @include button(map.get($button_size_map, 'md')); // default: md
     @include button(
-        list.nth(map.get($button_size_map, 'md'), 1),
-        list.nth(map.get($button_size_map, 'md'), 2)
+        list.nth(map.get($button_size_map, "md"), 1),
+        list.nth(map.get($button_size_map, "md"), 2)
     );
     // @each $name, $val in $button_size_map {
     //     &.button--#{$name} {
@@ -312,19 +312,19 @@ button {
 
         // First button
         &:first-child {
-            border-top-left-radius: var(--border_radius, 4px);
-            border-bottom-left-radius: var(--border_radius, 4px);
+            border-top-left-radius: var(--border_radius, q(4));
+            border-bottom-left-radius: var(--border_radius, q(4));
         }
 
         // Last button
         &:last-child {
-            border-top-right-radius: var(--border_radius, 4px);
-            border-bottom-right-radius: var(--border_radius, 4px);
+            border-top-right-radius: var(--border_radius, q(4));
+            border-bottom-right-radius: var(--border_radius, q(4));
         }
 
         // Middle buttons
         &:not(:first-child) {
-            margin-left: -1px; // collapse borders
+            margin-left: -q(1); // collapse borders
         }
     }
 }
@@ -343,7 +343,7 @@ button {
 //             border-bottom-right-radius: var(--border_radius);
 //         }
 //         &:not(:first-child) {
-//             margin-top: -1px;
+//             margin-top: -q(1);
 //         }
 //     }
 // }
@@ -359,17 +359,17 @@ button {
         width: 100%;
 
         &:not(:first-child) {
-            margin-top: -1px; // collapse borders
+            margin-top: -q(1); // collapse borders
         }
 
         &:first-child {
-            border-top-left-radius: var(--border_radius, 4px);
-            border-top-right-radius: var(--border_radius, 4px);
+            border-top-left-radius: var(--border_radius, q(4));
+            border-top-right-radius: var(--border_radius, q(4));
         }
 
         &:last-child {
-            border-bottom-left-radius: var(--border_radius, 4px);
-            border-bottom-right-radius: var(--border_radius, 4px);
+            border-bottom-left-radius: var(--border_radius, q(4));
+            border-bottom-right-radius: var(--border_radius, q(4));
         }
     }
 }
@@ -380,15 +380,15 @@ button {
 ///
 // .pdf-export-button {
 //     button {
-//         margin: 0.2rem;
+//         margin: 0.q(32);
 //         border-radius: 50%;
-//         border: 1px solid black;
+//         border: q(1) solid black;
 //         background-color: #fff;
 //         // display: flex;
 //         justify-content: center;
 //         align-items: center;
-//         width: calc(1rem + 10px);
-//         height: calc(1rem + 10px);
+//         width: calc(q(16) + q(10));
+//         height: calc(q(16) + q(10));
 
 //         * {
 //             display: flex;
@@ -396,12 +396,12 @@ button {
 //             align-items: center;
 //             margin: 0px !important;
 //             vertical-align: baseline !important;
-//             font-size: 1.5rem !important;
+//             font-size: q(24) !important;
 
 //             &:before {
 //                 margin: 0px !important;
 //                 vertical-align: baseline !important;
-//                 font-size: 1rem !important;
+//                 font-size: q(16) !important;
 //             }
 //         }
 
@@ -410,7 +410,7 @@ button {
 //         }
 
 //         &.active {
-//             border-width: 2px;
+//             border-width: q(2);
 //             background-color: #eee;
 //         }
 //     }

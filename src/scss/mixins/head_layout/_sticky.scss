@@ -18,7 +18,7 @@
 
 // Layout | Sticky
 // ============================================================================
-@use '../../variables' as *;
+@use "../../variables" as *;
 
 // @mixin sticky--top {
 //     position: fixed;
@@ -119,8 +119,8 @@ $sticky_elements: ();
 // Example usage of responsive sticky--top mixin
 // .header {
 //     @include responsive-sticky--top((
-//     "sm": ("min-width": 576px, "top-offset": 0, "z-index": 20, "width": 100%),
-//     "md": ("min-width": 768px, "top-offset": 10px, "z-index": 25, "width": 100%)
+//     "sm": ("min-width": 57q(6), "top-offset": 0, "z-index": 20, "width": 100%),
+//     "md": ("min-width": 76q(8), "top-offset": q(10), "z-index": 25, "width": 100%)
 //     ));
 // }
 
@@ -133,7 +133,12 @@ $sticky_elements: ();
 /// @param {String} $position ['top'] - The position to stick ('top' or 'bottom').
 /// @param {Number} $offset [0] - The offset for the sticky position.
 /// @param {Number} $z-index [10] - Z-index to manage stacking order.
-@mixin conditional_sticky($condition: '.is-sticky', $position: 'top', $offset: 0, $z-index: 10) {
+@mixin conditional_sticky(
+    $condition: ".is-sticky",
+    $position: "top",
+    $offset: 0,
+    $z-index: 10
+) {
     #{$condition} & {
         position: -webkit-sticky;
         position: sticky;
@@ -162,7 +167,11 @@ $sticky_elements: ();
 /// @param {Number} $offset - Initial offset from the viewport.
 /// @param {Number} $additional-offset [0] - Additional offset from the viewport.
 /// @param {Number} $z-index [10] - Z-index to manage stacking order.
-@mixin sticky--bottom-with-offset($offset, $additional-offset: 0, $z-index: 10) {
+@mixin sticky--bottom-with-offset(
+    $offset,
+    $additional-offset: 0,
+    $z-index: 10
+) {
     position: -webkit-sticky;
     position: sticky;
     bottom: $offset + $additional-offset;
@@ -174,10 +183,10 @@ $sticky_elements: ();
 
 // Define your project's breakpoints
 // $breakpoints: (
-//   'sm': 576px,
-//   'md': 768px,
-//   'lg': 992px,
-//   'xl': 1200px,
+//   'sm': 57q(6),
+//   'md': 76q(8),
+//   'lg': 99q(2),
+//   'xl': 1q(200),
 // );
 
 // // Mixin for responsive sticky positioning
@@ -208,19 +217,19 @@ $sticky_elements: ();
 
 // Conditionally sticky element
 // .sidebar {
-//   @include conditional-sticky('.is-sticky', 'top', 20px);
+//   @include conditional-sticky('.is-sticky', 'top', q(20));
 // }
 
 // Sticky header with offset on scroll
 // .header {
-//   @include sticky--top-with-offset(0, 30px); // Becomes sticky 30px from the top
+//   @include sticky--top-with-offset(0, q(32)); // Becomes sticky q(32) from the top
 // }
 
 // Responsive sticky sidebar
 // .sidebar-responsive {
 //   @include responsive-sticky((
-//     'sm': ('top': 10px, 'z-index': 5),
-//     'md': ('top': 20px, 'z-index': 10),
-//     'lg': ('top': 30px, 'left': 0, 'z-index': 15)
+//     'sm': ('top': q(10), 'z-index': 5),
+//     'md': ('top': q(20), 'z-index': 10),
+//     'lg': ('top': q(32), 'left': 0, 'z-index': 15)
 //   ));
 // }

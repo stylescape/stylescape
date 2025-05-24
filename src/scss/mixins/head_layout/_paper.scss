@@ -12,7 +12,6 @@
 ///
 ////
 
-
 // ============================================================================
 // Mixins
 // ============================================================================
@@ -20,7 +19,7 @@
 // ============================================================================
 // Layout | Paper
 // ============================================================================
-@use '../../variables' as *;
+@use "../../variables" as *;
 
 $paper-size: (
     "A4": 210,
@@ -30,8 +29,8 @@ $paper-size: (
     "A0": 210
 ) !default;
 
-// $q-page-min:      320px       !default;
-// $q-page-max:      960px       !default;
+// $q-page-min:      3q(20)       !default;
+// $q-page-max:      9q(60)       !default;
 
 $q-page-min: 180 !default;
 $q-page-med: 270 !default;
@@ -68,7 +67,7 @@ $q-page-max: 360 !default;
 .page {
     @include q-page($q-view-min, $q-view-max, $q-size-min, $q-size-max);
     margin: 0 auto;
-    margin-top: $q * 32;
+    margin-top: q(32);
     // margin-bottom: $q *16;
 }
 

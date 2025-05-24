@@ -1,104 +1,102 @@
-////
-///
-/// Layout Mixins Module
-/// ===========================================================================
-///
-/// @group Layout
-/// @author Scape Agency
-/// @link https://scape.style
-/// @since 0.1.0 initial release
-/// @todo None
-/// @access public
-///
-////
+// ////
+// ///
+// /// Layout Mixins Module
+// /// ===========================================================================
+// ///
+// /// @group Layout
+// /// @author Scape Agency
+// /// @link https://scape.style
+// /// @since 0.1.0 initial release
+// /// @todo None
+// /// @access public
+// ///
+// ////
 
+// // ============================================================================
+// // Mixins
+// // ============================================================================
 
-// ============================================================================
-// Mixins
-// ============================================================================
+// @use "../../variables" as *;
 
-@use '../../variables' as *;
+// // Layout | Width Enhancements
+// // ============================================================================
 
+// /// Generate utility classes for fixed widths.
+// ///
+// /// This loop generates classes that set a fixed width based on a predefined list
+// /// of values, offering flexible width options for various design elements.
+// @each $size
+//     in (
+//         q(1),
+//         q(2),
+//         q(3),
+//         q(4),
+//         q(5),
+//         q(6),
+//         q(8),
+//         q(8),
+//         q(8),
+//         q(10),
+//         q(15),
+//         q(20),
+//         q(25),
+//         q(32),
+//         3q(4),
+//         q(140),
+//         q(50),
+//         5q(4),
+//         q(60),
+//         6q(4),
+//         70px,
+//         7q(4),
+//         q(80),
+//         8q(4),
+//         90px,
+//         q(100),
+//         1q(10),
+//         1q(20),
+//         1q(32),
+//         1q(50),
+//         q(180),
+//         q(200),
+//         2q(50),
+//         300px,
+//         3q(50),
+//         400px,
+//         4q(50),
+//         q(500),
+//         5q(50),
+//         600px,
+//         6q(50),
+//         700px,
+//         7q(50),
+//         800px,
+//         8q(50),
+//         900px,
+//         9q(50),
+//         1000px
+//     )
+// {
+//     .w-#{$size} {
+//         width: $size;
+//     }
+// }
 
-// Layout | Width Enhancements
-// ============================================================================
+// /// Generate utility classes for percentage-based widths.
+// ///
+// /// This loop creates classes that apply a percentage-based width,
+// /// offering a range of options from 5% to 100% in increments of 5%.
+// @for $i from 5 through 100 {
+//     @if ($i % 5 == 0) {
+//         .w-#{$i} {
+//             width: $i * 1%;
+//         }
+//     }
+// }
 
-/// Generate utility classes for fixed widths.
-///
-/// This loop generates classes that set a fixed width based on a predefined list
-/// of values, offering flexible width options for various design elements.
-@each $size
-    in (
-        1px,
-        2px,
-        3px,
-        4px,
-        5px,
-        6px,
-        7px,
-        8px,
-        9px,
-        10px,
-        15px,
-        20px,
-        25px,
-        30px,
-        35px,
-        40px,
-        50px,
-        55px,
-        60px,
-        65px,
-        70px,
-        75px,
-        80px,
-        85px,
-        90px,
-        100px,
-        110px,
-        120px,
-        130px,
-        150px,
-        180px,
-        200px,
-        250px,
-        300px,
-        350px,
-        400px,
-        450px,
-        500px,
-        550px,
-        600px,
-        650px,
-        700px,
-        750px,
-        800px,
-        850px,
-        900px,
-        950px,
-        1000px
-    )
-{
-    .w-#{$size} {
-        width: $size;
-    }
-}
-
-/// Generate utility classes for percentage-based widths.
-///
-/// This loop creates classes that apply a percentage-based width,
-/// offering a range of options from 5% to 100% in increments of 5%.
-@for $i from 5 through 100 {
-    @if ($i % 5 == 0) {
-        .w-#{$i} {
-            width: $i * 1%;
-        }
-    }
-}
-
-/// Utility class for setting width to auto.
-///
-/// This class allows an element's width to be determined by its content or parent container.
-.w-auto {
-    width: auto;
-}
+// /// Utility class for setting width to auto.
+// ///
+// /// This class allows an element's width to be determined by its content or parent container.
+// .w-auto {
+//     width: auto;
+// }

@@ -2,20 +2,20 @@
 // Components | Placeholder
 // ============================================================================
 
-@use '../../dev' as *;
-@use '../../variables' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
 
-@use '../head_layout' as *;
-@use '../head_grid' as *; // @use "../elements" as *;
+@use "../head_layout" as *;
+@use "../head_grid" as *; // @use "../elements" as *;
 
-@use '../soul_type' as *;
+@use "../soul_type" as *;
 
 /// Base styling for placeholders.
 /// Placeholders provide a temporary visual indicator while content is loading.
 /// @group Placeholder
 .placeholder {
     display: inline-block;
-    min-height: 1em;
+    min-height: q(16);
     vertical-align: middle;
     cursor: wait;
     background-color: currentcolor;
@@ -24,7 +24,7 @@
     /// Specific styles for buttons with placeholder content.
     &.btn::before {
         display: inline-block;
-        content: '';
+        content: "";
     }
 }
 
@@ -41,7 +41,7 @@
     min-height: 0.8em;
 }
 
-/// @modifier .placeholder-lg Large placeholder with a minimum height of 1.2em.
+/// @modifier .placeholder-lg Large placeholder with a minimum height of 1.q(32).
 .placeholder-lg {
-    min-height: 1.2em;
+    min-height: 1Q (32);
 }

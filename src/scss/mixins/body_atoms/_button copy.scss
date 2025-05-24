@@ -2,12 +2,12 @@
 // Elements | Button
 // ============================================================================
 
-@use 'sass:list';
+@use "sass:list";
 
-@use '../../dev' as *;
-@use '../../variables' as *;
-@use '../soul_type' as *;
-@use 'box' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../soul_type" as *;
+@use "box" as *;
 
 // ============================================================================
 // Resets
@@ -38,28 +38,28 @@ textarea {
 
 // Apply cursor pointer to button elements
 button,
-[type='button'],
-[type='reset'],
-[type='submit'],
-[role='button'] {
+[type="button"],
+[type="reset"],
+[type="submit"],
+[role="button"] {
     cursor: pointer;
 }
 
 /// Remove inner padding and border in Firefox 4+
 button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
     border-style: none;
     padding: 0;
 }
 
 /* Replace focus style removed in the border reset above */
 button:-moz-focusring,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
-    outline: 1px dotted ButtonText;
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+    outline: q(1) dotted ButtonText;
 }
 
 button,
@@ -90,11 +90,11 @@ button,
 /// @group Buttons
 ///
 $button_size_map: (
-    'xs': 2,
-    'sm': 3,
-    'md': 4,
-    'lg': 5,
-    'xl': 6,
+    "xs": 2,
+    "sm": 3,
+    "md": 4,
+    "lg": 5,
+    "xl": 6
 ) !default;
 
 // ============================================================================
@@ -128,7 +128,7 @@ $button_size_map: (
     transition:
         background 0.2s ease,
         border 0.2s ease;
-    border-radius: var(--border_radius, 4px);
+    border-radius: var(--border_radius, q(4));
 }
 
 ///
@@ -159,13 +159,13 @@ $button_size_map: (
     color: var(--color_light);
 
     &:hover {
-        background: hue_color('N2402');
+        background: hue_color("N2402");
     }
     &:active {
-        background: hue_color('N2409');
+        background: hue_color("N2409");
     }
     &:focus-within {
-        border: 2px solid hue_color('N2404');
+        border: q(2) solid hue_color("N2404");
     }
     &:disabled {
         background: var(--color_muted);
@@ -176,18 +176,18 @@ $button_size_map: (
 
 /// Outline variant
 @mixin button--outline {
-    border: 1.5px solid var(--color_primary);
+    border: q(1) solid var(--color_primary);
     color: var(--color_primary);
     background: none;
 
     &:hover {
-        background: hue_color('N2402');
+        background: hue_color("N2402");
     }
     &:active {
-        background: hue_color('N2407');
+        background: hue_color("N2407");
     }
     &:focus-within {
-        border: 2px solid hue_color('N2404');
+        border: q(2) solid hue_color("N2404");
     }
     &:disabled {
         border-color: var(--color_muted);
@@ -202,13 +202,13 @@ $button_size_map: (
     color: var(--color_primary);
 
     &:hover {
-        background: hue_color('N2402');
+        background: hue_color("N2402");
     }
     &:active {
-        background: hue_color('N2407');
+        background: hue_color("N2407");
     }
     &:focus-within {
-        border: 2px solid hue_color('N2404');
+        border: q(2) solid hue_color("N2404");
     }
     &:disabled {
         color: var(--color_muted);
@@ -288,7 +288,7 @@ button {
 //     border-radius: 0;
 //     text-decoration: none;
 //     text-align: center;
-//     letter-spacing: 0.5px;
+//     letter-spacing: q(0.5);
 //     cursor: pointer;
 //     :active {
 //         outline: none;
@@ -304,32 +304,32 @@ button {
 
 // @mixin button {
 //     display: inline-flex;
-//     height: 40px;
-//     padding: 12px 16px;
+//     height: q(140);
+//     padding: q(12) q(16);
 //     justify-content: center;
 //     align-items: center;
 //     flex-shrink: 0;
-//     border-radius: 4px;
+//     border-radius: q(4);
 //     background: var(--color_primary);
 //     @include font--size('03');
 //     color: var(--color_light);
 
 //     &.button_large {
 //         @include font--size('04');
-//         height: 48px;
-//         padding: 14px 20px;
+//         height: 4q(8);
+//         padding: q(14) q(20);
 //     }
 
 //     &.button_small {
 //         @include font--size('02');
-//         height: 32px;
-//         padding: 8px 12px;
+//         height: 3q(2);
+//         padding: q(8) q(12);
 //     }
 
 //     &.button_tiny {
 //         @include font--size('01');
-//         height: 24px;
-//         padding: 6px 8px;
+//         height: q(24);
+//         padding: q(6) q(8);
 //     }
 
 //     &:hover {
@@ -337,7 +337,7 @@ button {
 //     }
 
 //     &:focus-within {
-//         border: 3px solid hue_color('N2404');
+//         border: q(3) solid hue_color('N2404');
 //     }
 
 //     &:active {
@@ -351,7 +351,7 @@ button {
 // }
 
 // @mixin button_outline {
-//     border: 1.5px solid var(--color_primary);
+//     border: q(1) solid var(--color_primary);
 //     color: var(--color_primary);
 //     background: none;
 
@@ -360,7 +360,7 @@ button {
 //     }
 
 //     &:focus-within {
-//         border: 3px solid hue_color('N2404');
+//         border: q(3) solid hue_color('N2404');
 //     }
 
 //     &:active {
@@ -368,7 +368,7 @@ button {
 //     }
 
 //     &:disabled {
-//         border: 1.5px solid var(--color_muted);
+//         border: q(1) solid var(--color_muted);
 //         color: var(--color_muted);
 
 //         &:hover {
@@ -387,7 +387,7 @@ button {
 //     }
 
 //     &:focus-within {
-//         border: 3px solid hue_color('N2404');
+//         border: q(3) solid hue_color('N2404');
 //     }
 
 //     &:active {
@@ -429,7 +429,7 @@ button {
 //     border-radius:          0;
 //     text-decoration:        none;
 //     text-align:             center;
-//     letter-spacing:         .5px;
+//     letter-spacing:         .q(4);
 //     // transition:             background-color .2s ease-out;
 //     cursor:                 pointer;
 //     :active {
@@ -472,7 +472,7 @@ button {
 //   color: $button-raised-color;
 //   background-color: $button-raised-background;
 //   text-align: center;
-//   letter-spacing: .5px;
+//   letter-spacing: .q(4);
 //   @extend .z-depth-1;
 //   transition: background-color .2s ease-out;
 //   cursor: pointer;
@@ -488,7 +488,7 @@ button {
 //   height: $button-large-height;
 //   line-height: $button-large-height;
 //   font-size: $button-large-font-size;
-//   padding: 0 28px;
+//   padding: 0 q(16);
 
 //   i {
 //     font-size: $button-large-icon-font-size;
@@ -508,10 +508,10 @@ button {
 
 // .button {
 // 	display: inline-block;
-// 	font-size: 12px;
-// 	line-height: 12px;
+// 	font-size: q(12);
+// 	line-height: q(12);
 // 	letter-spacing: 0.05em;
-// 	padding-bottom: 8px;
+// 	padding-bottom: q(8);
 // 	-webkit-transition: all 0.3s ease-in-out;
 // 	   -moz-transition: all 0.3s ease-in-out;
 // 	   	-ms-transition: all 0.3s ease-in-out;
@@ -520,37 +520,37 @@ button {
 // }
 
 // .button:hover {
-// 	padding-left: 8px;
-// 	padding-right: 8px;
+// 	padding-left: q(8);
+// 	padding-right: q(8);
 // 	text-decoration: none;
 // }
 
-// .btn {display:inline-block; border:2px solid transparent; color: inherit; letter-spacing: .5px; line-height: inherit; border-radius: 0; text-transform: uppercase; width: auto; font-family: 'din_regular', sans-serif; font-weight: 600; transition-duration: 0.3s; transition-timing-function: ease-in-out; white-space: nowrap;}
+// .btn {display:inline-block; border:q(2) solid transparent; color: inherit; letter-spacing: .q(4); line-height: inherit; border-radius: 0; text-transform: uppercase; width: auto; font-family: 'din_regular', sans-serif; font-weight: 600; transition-duration: 0.3s; transition-timing-function: ease-in-out; white-space: nowrap;}
 // .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger, .btn-info:hover {color: #fff;}
 
 // /* button size */
-// .btn.btn-very-small {font-size:9px; padding: 1px 17px; line-height: 22px;}
-// .btn.btn-small {font-size:11px; padding: 4px 24px;}
-// .btn.btn-medium {font-size:12px; padding: 6px 25px 5px;}
-// .btn.btn-large {font-size:13px; padding: 9px 34px; line-height: 25px}
-// .btn.btn-extra-large {font-size:15px; padding: 12px 40px 13px;  line-height: 25px}
-// .btn-dual .btn {margin-left: 10px; margin-right: 10px;}
-// .btn i {margin-left: 6px; vertical-align: middle; position: relative; top:-1px}
+// .btn.btn-very-small {font-size:q(8); padding: q(1) 1q(8); line-height: q(20);}
+// .btn.btn-small {font-size:q(12); padding: q(4) q(24);}
+// .btn.btn-medium {font-size:1q(2); padding: q(6) q(25) q(5);}
+// .btn.btn-large {font-size:1q(4); padding: q(8) 3q(4); line-height: q(25)}
+// .btn.btn-extra-large {font-size:q(16); padding: q(12) q(140) q(12);  line-height: q(25)}
+// .btn-dual .btn {margin-left: q(10); margin-right: q(10);}
+// .btn i {margin-left: q(6); vertical-align: middle; position: relative; top:-q(1)}
 
 // #myBtn {
 //     display: none; /* Hidden by default */
 //     position: fixed; /* Fixed/sticky position */
-//     bottom: 20px; /* Place the button at the bottom of the page */
-//     right: 30px; /* Place the button 30px from the right */
+//     bottom: q(20); /* Place the button at the bottom of the page */
+//     right: q(32); /* Place the button q(32) from the right */
 //     z-index: 99; /* Make sure it does not overlap */
 //     border: none; /* Remove borders */
 //     outline: none; /* Remove outline */
 //     background-color: {{ css_color_01 }};
 //     color: {{ css_color_03 }}; /* Text color */
 //     cursor: pointer; /* Add a mouse pointer on hover */
-//     padding: 15px; /* Some padding */
-//     border-radius: 5px;
-//     font-size: 18px; /* Increase font size */
+//     padding: q(15); /* Some padding */
+//     border-radius: q(5);
+//     font-size: q(16); /* Increase font size */
 // }
 
 // #myBtn:hover {
@@ -631,7 +631,7 @@ button {
 //   color: $button-raised-color;
 //   background-color: $button-raised-background;
 //   text-align: center;
-//   letter-spacing: .5px;
+//   letter-spacing: .q(4);
 //   @extend .z-depth-1;
 //   transition: background-color .2s ease-out;
 //   cursor: pointer;
@@ -676,10 +676,10 @@ button {
 //   &.halfway-fab {
 //     &.left {
 //       right: auto;
-//       left: 24px;
+//       left: q(24);
 //     }
 //     position: absolute;
-//     right: 24px;
+//     right: q(24);
 //     bottom: -$button-floating-size / 2;
 //   }
 //   display: inline-block;
@@ -723,43 +723,43 @@ button {
 //   // Directions
 //   &.direction-left,
 //   &.direction-right {
-//     padding: 0 0 0 15px;
+//     padding: 0 0 0 q(15);
 //     ul {
 //       text-align: right;
-//       right: 64px;
+//       right: 6q(4);
 //       top: 50%;
 //       transform: translateY(-50%);
 //       height: 100%;
 //       left: auto;
 //       /*width 100% only goes to width of button container */
-//       width: 500px;
+//       width: q(500);
 //       li {
 //         display: inline-block;
-//         margin: 7.5px 15px 0 0;
+//         margin: 7.q(4) q(15) 0 0;
 //       }
 //     }
 //   }
 //   &.direction-right {
-//     padding: 0 15px 0 0;
+//     padding: 0 q(15) 0 0;
 //     ul {
 //       text-align: left;
 //       direction: rtl;
-//       left: 64px;
+//       left: 6q(4);
 //       right: auto;
 //       li {
-//         margin: 7.5px 0 0 15px;
+//         margin: 7.q(4) 0 0 q(15);
 //       }
 //     }
 //   }
 //   &.direction-bottom {
-//     padding: 0 0 15px 0;
+//     padding: 0 0 q(15) 0;
 //     ul {
-//       top: 64px;
+//       top: 6q(4);
 //       bottom: auto;
 //       display: flex;
 //       flex-direction: column-reverse;
 //       li {
-//         margin: 15px 0 0 0;
+//         margin: q(15) 0 0 0;
 //       }
 //     }
 //   }
@@ -801,9 +801,9 @@ button {
 //     }
 //   }
 //   position: fixed;
-//   right: 23px;
-//   bottom: 23px;
-//   padding-top: 15px;
+//   right: 2q(4);
+//   bottom: 2q(4);
+//   padding-top: q(15);
 //   margin-bottom: 0;
 //   z-index: 997;
 //   ul {
@@ -811,11 +811,11 @@ button {
 //     right: 0;
 //     text-align: center;
 //     position: absolute;
-//     bottom: 64px;
+//     bottom: 6q(4);
 //     margin: 0;
 //     visibility: hidden;
 //     li {
-//       margin-bottom: 15px;
+//       margin-bottom: q(15);
 //     }
 //     a.btn-floating {
 //       opacity: 0;

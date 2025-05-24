@@ -2,12 +2,12 @@
 // Atoms | Labels
 // ============================================================================
 
-@use 'sass:map';
-@use 'sass:list';
+@use "sass:map";
+@use "sass:list";
 
-@use '../../dev' as *;
-@use '../../variables' as *;
-@use '../soul_type' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../soul_type" as *;
 
 ///
 /// Mixin: label_base
@@ -16,19 +16,20 @@
 /// @group Form
 /// Size map for label styles
 $label-size-map: (
-    's': (
-        '02',
-        0,
+    "s": (
+        "02",
+        0
     ),
     // font-size: 02, margin-bottom: 0
-    'm': (
-            '03',
-            1,
+    "m":
+        (
+            "03",
+            1
         ),
-    'l': (
-        '04',
-        2,
-    ),
+    "l": (
+        "04",
+        2
+    )
 ) !default;
 
 /// @mixin label_base
@@ -37,7 +38,7 @@ $label-size-map: (
 /// @param {String} $color [--color_dark] - Text color token.
 /// @param {String} $size ['m'] - Size key: 's', 'm', or 'l'.
 ///
-@mixin label_base($color: --color_dark, $size: 'm') {
+@mixin label_base($color: --color_dark, $size: "m") {
     $font-size: list.nth(map.get($label-size-map, $size), 1);
     $margin: list.nth(map.get($label-size-map, $size), 2);
 
@@ -64,27 +65,27 @@ $label-size-map: (
 //DEMO
 // label {
 //
-//     margin-bottom: 1.5rem;
+//     margin-bottom: q(24);
 //     font-weight: bold;
 // }
 ///
 /// Utility label class
 ///
 .label {
-    @include label_base(--color_dark, 'm');
+    @include label_base(--color_dark, "m");
     // @include label_base(--color_text_muted, 02, 00);
 }
 
 .label--s {
-    @include label_base(--color_dark, 's');
+    @include label_base(--color_dark, "s");
 }
 
 .label--m {
-    @include label_base(--color_dark, 'm');
+    @include label_base(--color_dark, "m");
 }
 
 .label--l {
-    @include label_base(--color_dark, 'l');
+    @include label_base(--color_dark, "l");
 }
 
 ///

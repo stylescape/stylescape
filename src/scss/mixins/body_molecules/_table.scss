@@ -2,12 +2,12 @@
 // Components | Table
 // ============================================================================
 
-@use '../../dev' as *;
-@use '../../variables' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
 
-@use '../head_layout' as *;
-@use '../head_grid' as *; // @use '../elements' as *;
-@use '../soul_type' as *;
+@use "../head_layout" as *;
+@use "../head_grid" as *; // @use '../elements' as *;
+@use "../soul_type" as *;
 // @use "../animation" as *;
 
 /// Styling for the `table` element to ensure consistency across browsers.
@@ -28,8 +28,8 @@ table {
 /// @group Table
 table td,
 table th {
-    padding: 0.625rem 1rem;
-    border: 1px solid;
+    padding: q(12) m q(16);
+    border: q(1) solid;
     border-color: var(--color-14) !important;
 }
 
@@ -59,7 +59,7 @@ table thead th {
         width: 100%;
         overflow: hidden;
         clear: both;
-        padding-top: ($q * 1);
+        padding-top: q(1);
         padding-bottom: ($q * 0.75);
         border-bottom-width: ($q * 0.25);
         border-bottom-style: solid;
@@ -96,12 +96,12 @@ table thead th {
 
             &.active {
                 // @include transition_duration_01;
-                max-height: 240px;
+                max-height: 2Q (140);
             }
 
             .table_body_item {
                 @include reset_bleed;
-                max-height: $q * 6;
+                max-height: q(6);
             }
         }
 
@@ -111,8 +111,8 @@ table thead th {
         .table_button {
             @include reset_bleed;
             margin-left: auto;
-            flex-basis: $q * 6;
-            height: $q * 6;
+            flex-basis: q(6);
+            height: q(6);
 
             .icon svg {
                 // @include transition_duration_01;
@@ -156,7 +156,7 @@ table thead th {
 //       padding: $table-cell-padding-y $table-cell-padding-x;
 //       background-color: var(table-bg);
 //       border-bottom-width: $table-border-width;
-//       box-shadow: inset 0 0 0 9999px var(table-accent-bg);
+//       box-shadow: inset 0 0 0 999q(8) var(table-accent-bg);
 //     }
 
 //     > tbody {

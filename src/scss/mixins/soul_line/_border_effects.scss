@@ -1,5 +1,5 @@
-@use '../../dev' as *;
-@use '../../variables' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
 
 // ============================================================================
 // StyleScape | Borders | Effects
@@ -15,7 +15,7 @@
 // }
 
 @mixin vignette {
-    box-shadow: 0 0 200px rgba(0, 0, 0, 0.9) inset;
+    box-shadow: 0 0 q(200) rgba(0, 0, 0, 0.9) inset;
 }
 
 /// Class for adding a hover effect on the border.
@@ -37,11 +37,11 @@
 /// @example
 /// .element { @include border_animated(0.5s, red); }
 @mixin border_animated($duration: 0.5s, $color: blue) {
-    border: 2px solid $color;
+    border: q(2) solid $color;
     transition: border-width $duration ease;
 
     &:hover {
-        border-width: 4px;
+        border-width: q(4);
     }
 }
 

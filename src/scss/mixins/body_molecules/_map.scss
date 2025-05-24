@@ -2,12 +2,12 @@
 // Components | Map
 // ============================================================================
 
-@use '../../dev' as *;
-@use '../../variables' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
 
-@use '../head_layout' as *;
-@use '../head_grid' as *; // @use "../elements" as *;
-@use '../soul_type' as *;
+@use "../head_layout" as *;
+@use "../head_grid" as *; // @use "../elements" as *;
+@use "../soul_type" as *;
 
 /// Map container styling.
 /// This sets up the map container with full viewport dimensions and appropriate z-index.
@@ -25,7 +25,7 @@
 .map_canvas {
     width: 100vw;
     height: 100vh;
-    z-index: z('canvas') + 1;
+    z-index: z("canvas") + 1;
 }
 
 /// Base styles for layer controls on the map.
@@ -34,14 +34,14 @@
 .layer_control_base,
 .layer_control_overlay {
     @include reset_bleed;
-    @include font--size('03');
+    @include font--size("03");
     // @include color_scheme_light;
     @include flex_col;
     h3 {
-        padding-bottom: $q * 8;
+        padding-bottom: q(8);
     }
     label {
-        height: $q * 24;
+        height: q(24);
         span {
             @include flex_row;
             input {
@@ -50,8 +50,8 @@
             span {
                 @include align_self--center;
                 @include reset_bleed;
-                @include font--size('03');
-                padding-left: $q * 12;
+                @include font--size("03");
+                padding-left: q(12);
             }
         }
     }
@@ -61,31 +61,31 @@
 /// Styles radio buttons with a custom appearance both in their default and checked states.
 /// @group Map
 // input[type='radio']:after {
-//     width: 15px;
-//     height: 15px;
-//     border-radius: 15px;
-//     top: 4px;
-//     left: -1px;
+//     width: q(15);
+//     height: q(15);
+//     border-radius: q(15);
+//     top: q(4);
+//     left: -q(1);
 //     position: relative;
 //     background-color: #d1d3d1;
 //     content: '';
 //     display: inline-block;
 //     visibility: visible;
-//     border: 2px solid white;
+//     border: q(2) solid white;
 // }
 
 // input[type='radio']:checked:after {
-//     width: 15px;
-//     height: 15px;
-//     border-radius: 15px;
-//     top: 4px;
-//     left: -1px;
+//     width: q(15);
+//     height: q(15);
+//     border-radius: q(15);
+//     top: q(4);
+//     left: -q(1);
 //     position: relative;
 //     background-color: var(--color_accent);
 //     content: '';
 //     display: inline-block;
 //     visibility: visible;
-//     border: 2px solid white;
+//     border: q(2) solid white;
 // }
 
 /// Overlay-specific styles for layer controls.
@@ -96,7 +96,7 @@
 }
 
 // .map {
-//     height: 180px;
+//     height: q(180);
 //     //width: 50%;
 //     // margin-bottom: $baseline_00;
 
@@ -117,29 +117,29 @@
 //     box-shadow: none;
 //   }
 //   .leaflet-control-zoom a{
-//     box-shadow: 0 1px 5px var(--color_primary);
+//     box-shadow: 0 q(1) q(5) var(--color_primary);
 //   }
 //   .leaflet-bar a{
 //     border-radius: 0px;
 //     background-color: var(--color_primary);
-//     border: 1px solid var(--color_primary);
+//     border: q(1) solid var(--color_primary);
 //     color: var(--color_secondary);
 //   }
 //   //.leaflet-bar a:last-child{
-//   //  border: 1px solid rgba(0,0,0,.15);
+//   //  border: q(1) solid rgba(0,0,0,.15);
 //   //}
 // //   .leaflet-bar a:hover{
 // //     background-color: #FB4F14;
-// //     border: 1px solid rgba(0,0,0,.15);
+// //     border: q(1) solid rgba(0,0,0,.15);
 // //     color: #002244;
 // //   }
 //   .leaflet-control-zoom-in{
-//     // margin-top: 10px;
-//     margin:4px;
+//     // margin-top: q(10);
+//     margin:q(4);
 //   }
 //   .leaflet-control-zoom-out{
-//     // margin-top: 15px;
-//     margin:4px;
+//     // margin-top: q(15);
+//     margin:q(4);
 
 //   }
 
@@ -149,4 +149,4 @@
 // .filter-invert-50 {-ms-filter: invert(50%); filter: invert(50%);}
 // .filter-invert-100 {-ms-filter: invert(100%); filter: invert(100%);}
 // .filter-mix-100 {-ms-filter: grayscale(100%) invert(100%); filter: grayscale(100%) invert(100%);}
-// .map iframe {height: 619px; vertical-align: bottom; width: 100%;}
+// .map iframe {height: 61q(8); vertical-align: bottom; width: 100%;}

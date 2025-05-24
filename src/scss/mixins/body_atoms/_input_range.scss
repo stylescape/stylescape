@@ -2,17 +2,17 @@
 // Atom | Progress / Range Slider
 // ============================================================================
 
-@use '../../variables' as *;
-@use '../../dev' as *;
-@use '../soul_type' as *;
+@use "../../variables" as *;
+@use "../../dev" as *;
+@use "../soul_type" as *;
 
 // ----------------------------------------------------------------------------
 // Configuration Tokens
 // ----------------------------------------------------------------------------
-$slider-thumb-size: baseline(4); // example: 24px
-$slider-track-height: baseline(2); // example: 12px
+$slider-thumb-size: baseline(4); // example: q(24)
+$slider-track-height: baseline(2); // example: q(12)
 
-input[type='range'].win10-thumb {
+input[type="range"].win10-thumb {
     color: #2b2d42;
 
     --thumb-height: 1.375em;
@@ -35,8 +35,8 @@ input[type='range'].win10-thumb {
     --track-height: #{$slider-track-height};
     --track-color: var(--color_surface_1);
     --fill-color: var(--color_primary);
-    --thumb-size: 16px; // 16×16 circle
-    --track-height: 10px; // visible line
+    --thumb-size: q(16); // 16×16 circle
+    --track-height: q(10); // visible line
     --track-color: var(--color_surface_1);
     --fill-color: var(--color_primary);
     --track-gap: calc((var(--thumb-size) - var(--track-height)) / 2);
@@ -50,9 +50,9 @@ input[type='range'].win10-thumb {
     width: 100%;
     // height: var(--thumb-height);
     height: var(--thumb-size);
-    // height: 10px;
-    border-radius: 4px; // round the whole thing
-    font-size: 1.5rem;
+    // height: q(10);
+    border-radius: q(4); // round the whole thing
+    font-size: q(24);
 
     // Style
     appearance: none;
@@ -130,8 +130,8 @@ input[type='range'].win10-thumb {
     // ------------------------------------------------------------------------
 
     &::-webkit-slider-runnable-track {
-        background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center / 100%
-            calc(var(--track-height) + 1px);
+        background: linear-gradient(var(--track-color) 0 0) scroll no-repeat
+            center / 100% calc(var(--track-height) + q(1));
     }
 
     // WebKit Track
@@ -158,9 +158,11 @@ input[type='range'].win10-thumb {
         position: relative;
         z-index: 1;
 
-        box-shadow: calc(-100vmax + var(--thumb-size) / 2) 0 0 100vmax var(--fill-color);
+        box-shadow: calc(-100vmax + var(--thumb-size) / 2) 0 0 100vmax
+            var(--fill-color);
         clip-path: inset(
-            calc((var(--thumb-size) - var(--track-height)) / 2) calc(var(--thumb-size) / 2)
+            calc((var(--thumb-size) - var(--track-height)) / 2)
+                calc(var(--thumb-size) / 2)
                 calc((var(--thumb-size) - var(--track-height)) / 2) 0
         );
 
@@ -176,12 +178,13 @@ input[type='range'].win10-thumb {
         z-index: 1;
 
         // giant left-going shadow in fill-color…
-        box-shadow: calc(-100vmax + var(--thumb-half)) 0 0 100vmax var(--fill-color);
+        box-shadow: calc(-100vmax + var(--thumb-half)) 0 0 100vmax
+            var(--fill-color);
 
         // …clipped so it only covers exactly the track area up to the thumb center
         clip-path: inset(
-            var(--track-gap) /* top */ var(--thumb-half) /* right */ var(--track-gap) /* bottom */ 0
-                /* left */
+            var(--track-gap) /* top */ var(--thumb-half) /* right */
+                var(--track-gap) /* bottom */ 0 /* left */
         );
     }
 
@@ -193,13 +196,13 @@ input[type='range'].win10-thumb {
         height: var(--track-height);
         margin-top: var(--track-gap);
         background-color: var(--track-color);
-        border-radius: 4px;
+        border-radius: q(4);
         background: #fff0;
 
         height: var(--track-height);
         background-color: var(--track-color);
         border-radius: $q;
-        height: calc(var(--track-height) + 1px);
+        height: calc(var(--track-height) + q(1));
         border-radius: var(--track-height);
         width: 100%;
         background: var(--track-color);
@@ -209,13 +212,13 @@ input[type='range'].win10-thumb {
         height: var(--track-height);
         margin-top: var(--track-gap);
         background-color: var(--fill-color);
-        border-radius: 4px;
+        border-radius: q(4);
         background: #fff0;
 
         height: var(--track-height);
         background-color: var(--fill-color);
         border-radius: $q;
-        height: calc(var(--track-height) + 1px);
+        height: calc(var(--track-height) + q(1));
         border-radius: var(--track-height);
         appearance: none;
         background: currentColor;
@@ -235,8 +238,8 @@ input[type='range'].win10-thumb {
         // border-radius: var(--thumb-width, var(--thumb-height));
         border: none;
         background: #fff0;
-        // width: 16px;
-        // height: 16px;
+        // width: q(16);
+        // height: q(16);
         // background-color: var(--color_primary);
         // border: none;
         // border-radius: 50%;
@@ -260,7 +263,7 @@ input[type='range'].win10-thumb {
 }
 
 /// @group Form
-input[type='range'] {
+input[type="range"] {
     @include input_range_slider;
 }
 
@@ -271,7 +274,7 @@ input[type='range'] {
 /// Rounded sliders style
 /// @group Switch
 .slider.round {
-    border-radius: 34px;
+    border-radius: 3Q (4);
 }
 
 .slider.round:before {
@@ -286,7 +289,7 @@ input[type='range'] {
 .slider_square {
     -webkit-appearance: none;
     width: 100%;
-    height: 25px;
+    height: q(25);
     background: #d3d3d3;
     outline: none;
     opacity: 0.7;
@@ -301,15 +304,15 @@ input[type='range'] {
 .slider_square::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
+    width: q(25);
+    height: q(25);
     background: #04aa6d;
     cursor: pointer;
 }
 
 .slider_square::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
+    width: q(25);
+    height: q(25);
     background: #04aa6d;
     cursor: pointer;
 }
@@ -317,8 +320,8 @@ input[type='range'] {
 .slider_round {
     -webkit-appearance: none;
     width: 100%;
-    height: 15px;
-    border-radius: 5px;
+    height: q(15);
+    border-radius: q(5);
     background: #d3d3d3;
     outline: none;
     opacity: 0.7;
@@ -329,16 +332,16 @@ input[type='range'] {
 .slider_round::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
+    width: q(25);
+    height: q(25);
     border-radius: 50%;
     background: #04aa6d;
     cursor: pointer;
 }
 
 .slider_round::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
+    width: q(25);
+    height: q(25);
     border-radius: 50%;
     background: #04aa6d;
     cursor: pointer;
@@ -355,48 +358,51 @@ input[type='range'] {
         background: radial-gradient(circle at center, #101112, #000);
     }
 
-    input[type='range'] {
+    input[type="range"] {
         color: #67c9f0;
         --track-color: rgba(255, 255, 255, 0.1);
     }
 
-    input[type='range'].win10-thumb {
+    input[type="range"].win10-thumb {
         color: #3a86ff;
     }
 }
 
 /* === WebKit specific styles === */
-input[type='range'],
-input[type='range']::-webkit-slider-runnable-track,
-input[type='range']::-webkit-slider-thumb {
+input[type="range"],
+input[type="range"]::-webkit-slider-runnable-track,
+input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     transition: all ease 100ms;
     height: var(--thumb-height);
 }
 
-input[type='range']::-webkit-slider-runnable-track,
-input[type='range']::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-runnable-track,
+input[type="range"]::-webkit-slider-thumb {
     position: relative;
 }
 
-input[type='range']::-webkit-slider-thumb {
-    --thumb-radius: calc((var(--thumb-height) * 0.5) - 1px);
-    --clip-top: calc((var(--thumb-height) - var(--track-height)) * 0.5 - 0.5px);
+input[type="range"]::-webkit-slider-thumb {
+    --thumb-radius: calc((var(--thumb-height) * 0.5) - q(1));
+    --clip-top: calc(
+        (var(--thumb-height) - var(--track-height)) * 0.5 - q(0.5)
+    );
     --clip-bottom: calc(var(--thumb-height) - var(--clip-top));
-    --clip-further: calc(100% + 1px);
-    --box-fill: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0 100vmax currentColor;
+    --clip-further: calc(100% + q(1));
+    --box-fill: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
+        100vmax currentColor;
 
     width: var(--thumb-width, var(--thumb-height));
-    background: linear-gradient(currentColor 0 0) scroll no-repeat left center / 50%
-        calc(var(--track-height) + 1px);
+    background: linear-gradient(currentColor 0 0) scroll no-repeat left center /
+        50% calc(var(--track-height) + q(1));
     background-color: currentColor;
     box-shadow: var(--box-fill);
     border-radius: var(--thumb-width, var(--thumb-height));
 
     filter: brightness(100%);
     clip-path: polygon(
-        100% -1px,
-        var(--clip-edges) -1px,
+        100% -q(1),
+        var(--clip-edges) -q(1),
         0 var(--clip-top),
         -100vmax var(--clip-top),
         -100vmax var(--clip-bottom),

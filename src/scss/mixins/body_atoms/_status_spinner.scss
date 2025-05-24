@@ -2,9 +2,9 @@
 // Atoms | Spinner
 // ============================================================================
 
-@use '../../dev' as *;
-@use '../../variables' as *;
-@use '../soul_type' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../soul_type" as *;
 
 /// Spinner animation keyframes
 @keyframes spinner-rotate {
@@ -18,7 +18,7 @@
 
 /// Spinner Base Mixin
 /// @group Spinner
-@mixin spinner--base($size: 3, $thickness: 2px, $color: var(--color_accent)) {
+@mixin spinner--base($size: 3, $thickness: q(2), $color: var(--color_accent)) {
     display: inline-block;
     width: baseline($size);
     height: baseline($size);
@@ -34,13 +34,13 @@
 }
 
 .spinner--sm {
-    @include spinner--base(2, 2px);
+    @include spinner--base(2, q(2));
 }
 
 .spinner--md {
-    @include spinner--base(3, 3px);
+    @include spinner--base(3, q(3));
 }
 
 .spinner--lg {
-    @include spinner--base(4, 4px);
+    @include spinner--base(4, q(4));
 }

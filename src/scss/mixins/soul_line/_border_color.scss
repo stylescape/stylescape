@@ -40,10 +40,10 @@
 /// Mixin for creating a gradient border with customizable colors and direction.
 /// @param {List} $colors - A list of colors to use in the gradient.
 /// @param {String} $direction - The direction of the gradient (default: to right).
-/// @param {Length} $width - The width of the border (default: 1px).
+/// @param {Length} $width - The width of the border (default: q(1)).
 /// @example
-/// .element { @include gradient-border((purple, orange), to bottom, 2px); }
-@mixin gradient-border($colors, $direction: to right, $width: 1px) {
+/// .element { @include gradient-border((purple, orange), to bottom, q(2)); }
+@mixin gradient-border($colors, $direction: to right, $width: q(1)) {
     border: $width solid transparent;
     background-image: linear-gradient($direction, $colors);
     background-origin: border-box;

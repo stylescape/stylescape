@@ -8,7 +8,7 @@
 //  *
 //  * @example
 //  * // Usage:
-//  * SoftScroll.enableForSelector('.scroll-link', 2); // Applies smooth scroll with a 2rem offset.
+//  * SoftScroll.enableForSelector('.scroll-link', 2); // Applies smooth scroll with a q(32) offset.
 //  */
 // export class SoftScroll {
 //     /**
@@ -54,7 +54,7 @@
 // }
 
 // // Usage example:
-// // Enables smooth scrolling for all anchor links with the class 'scroll-link' and applies a 2rem offset.
+// // Enables smooth scrolling for all anchor links with the class 'scroll-link' and applies a q(32) offset.
 // SoftScroll.enableForSelector('.scroll-link', 2)
 
 // // export class SoftScroll {

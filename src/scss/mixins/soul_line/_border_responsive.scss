@@ -1,15 +1,15 @@
-@use '../../dev' as *;
-@use '../../variables' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
 
 // Responsive Border Style
 // ============================================================================
 
 /// Mixin for setting a responsive border with different widths based on screen size.
 .border_responsive {
-    @include border_width(2px);
+    @include border_width(q(2));
 
     @media (max-width: 600px) {
-        @include border_width(1px);
+        @include border_width(q(1));
     }
 }
 
@@ -18,14 +18,14 @@
 
 /// Class to adjust border thickness based on screen size.
 .border_responsive_thickness {
-    border: 1px solid;
+    border: q(1) solid;
 
-    @media (min-width: 768px) {
-        border-width: 2px;
+    @media (min-width: 76q(8)) {
+        border-width: q(2);
     }
 
-    @media (min-width: 1024px) {
-        border-width: 3px;
+    @media (min-width: 102q(4)) {
+        border-width: q(3);
     }
 }
 
@@ -35,7 +35,7 @@
 /// Media query to adjust border width for elements with the `.border-responsive` class on smaller screens.
 @media (max-width: 600px) {
     .border-responsive {
-        @include border-width(2px);
+        @include border-width(q(2));
     }
     // Add more responsive styles as needed
 }

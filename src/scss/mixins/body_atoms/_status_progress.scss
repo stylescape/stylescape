@@ -2,10 +2,10 @@
 // Elements | Progress
 // ============================================================================
 
-@use '../../dev' as *;
-@use '../../variables' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
 
-@use '../soul_type' as *;
+@use "../soul_type" as *;
 
 // ============================================================================
 // Progress Bar
@@ -14,9 +14,9 @@
 /// Mixin to style <progress> tag
 /// @group Form
 @mixin progress_bar() {
-    height: 10px;
+    height: q(10);
     border: none;
-    border-radius: 4px;
+    border-radius: q(4);
     background-color: var(--color_surface_1);
     -webkit-appearance: none;
     appearance: none;
@@ -25,19 +25,19 @@
     // WebKit (Chrome, Safari)
     &::-webkit-progress-bar {
         background-color: var(--color_surface_1);
-        border-radius: 4px;
+        border-radius: q(4);
     }
 
     &::-webkit-progress-value {
         background-color: var(--color_primary);
-        border-radius: 4px;
+        border-radius: q(4);
         transition: width 0.3s ease;
     }
 
     // Firefox
     &::-moz-progress-bar {
         background-color: var(--color_primary);
-        border-radius: 4px;
+        border-radius: q(4);
         transition: width 0.3s ease;
     }
 }

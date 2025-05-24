@@ -1,16 +1,16 @@
 // ============================================================================
 // Element | Tooltip
 // ============================================================================
-@use '../../dev' as *;
-@use '../../variables' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
 
-@use '../soul_type' as *;
+@use "../soul_type" as *;
 
 // Tooltip General
 // ----------------------------------------------------------------------------
 
 $tooltip_transition: opacity 0.5s;
-$tooltip_unit: 5px;
+$tooltip_unit: q(5);
 
 /// Base mixin for tooltip elements.
 /// Sets up the basic properties for a tooltip, including positioning,
@@ -18,7 +18,7 @@ $tooltip_unit: 5px;
 /// @group Tooltip
 @mixin tooltip--base {
     position: absolute;
-    border-width: 5px;
+    border-width: q(5);
     // border-style: solid;
     transition: $tooltip_transition;
     position: absolute;
@@ -34,7 +34,7 @@ $tooltip_unit: 5px;
 /// Used as a base for creating directional arrows for tooltips.
 /// @group Tooltip
 @mixin tooltip__arrow {
-    content: '';
+    content: "";
     @include tooltip--base;
     border-style: solid;
     border-width: $tooltip_unit;
@@ -89,9 +89,9 @@ $tooltip_unit: 5px;
 /// @group Tooltip
 @mixin tooltip--box {
     @include tooltip--base;
-    @include font--size('03');
+    @include font--size("03");
     content: attr(tooltip-data);
-    width: 200px;
+    width: q(200);
     background-color: var(--color_secondary);
     color: var(--color_primary);
     text-align: center;
@@ -124,7 +124,7 @@ $tooltip_unit: 5px;
 //   display: inline-block;
 //   // display: unset;
 //   // display: block;
-//   // border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+//   // border-bottom: q(1) dotted black; /* If you want dots under the hoverable text */
 //   // overflow: auto;
 //   // position: absolute;
 //   // z-index: 9998;
@@ -133,7 +133,7 @@ $tooltip_unit: 5px;
 //   overflow: visible;
 
 //   position: relative;
-//   // border-bottom: 1px dotted var(--color_secondary);
+//   // border-bottom: q(1) dotted var(--color_secondary);
 // }
 
 .tooltip {
@@ -149,9 +149,9 @@ $tooltip_unit: 5px;
 .tooltip:before {
     @include tooltip--box--right;
     // z-index: 9999;
-    // margin-left: -60px;
+    // margin-left: -q(60);
     // font-size: 0.70em;
-    // top: -5px;
+    // top: -q(4);
     // left: 105%;
 }
 

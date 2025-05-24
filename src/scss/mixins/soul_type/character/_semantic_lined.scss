@@ -16,16 +16,16 @@
 // Use
 // ============================================================================
 
-@use '../../../dev' as *;
-@use '../../../variables' as *;
+@use "../../../dev" as *;
+@use "../../../variables" as *;
 // @use "../../mixins" as *;
 
-@use '../font/font_default' as *;
-@use '../font/font_weight' as *;
-@use '../font/font_size' as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
 
-@use 'base_default' as *;
-@use 'base_normal' as *;
+@use "base_default" as *;
+@use "base_normal" as *;
 
 // ============================================================================
 // Mixins
@@ -37,7 +37,7 @@
 
 // Text Decoration Variables
 $line_style_default: solid; // solid | double | dotted | dashed | wavy | initial | inherit
-$line_thickness_default: 1px; // auto | from-font | <length> | <percentage>
+$line_thickness_default: q(1); // auto | from-font | <length> | <percentage>
 $line_color_default: var(--color_secondary);
 $line_color_alternate: var(--color_tertiary);
 
@@ -181,7 +181,12 @@ $line_color_alternate: var(--color_tertiary);
 ///
 /// This mixin provides an easy way to apply an overline with default or custom color.
 @mixin character--line--over($color: $line_color_default) {
-    @include text_decoration_base(overline, $line_style_default, $line_thickness_default, $color);
+    @include text_decoration_base(
+        overline,
+        $line_style_default,
+        $line_thickness_default,
+        $color
+    );
 }
 
 /// Utility Mixin for Line-Through Text
