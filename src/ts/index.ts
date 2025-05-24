@@ -33,8 +33,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Initialize after DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
-    new FontPreview(
-        "#font-preview-input",
-        ".preview_box__live, .preview-live p",
-    )
+    new FontPreview("#preview__font--input", ".preview__font--output")
 })
