@@ -1,10 +1,10 @@
 import { ExclusiveDetails } from './elements/ExclusiveDetails.js'
 
-import { ClipboardHelper } from './ClipboardHelper.js'
 import { AsideHandler } from './elements/AsideHandler.js'
-import { FontPreview } from './FontPreview.js'
-import { GridManager } from './GridManager.js'
-import { ThemeToggler } from './ThemeToggler.js'
+import { ClipboardHelper } from './utilities/ClipboardHelper.js'
+import { FontPreview } from './utilities/FontPreview.js'
+import { GridManager } from './utilities/GridManager.js'
+import { ThemeToggler } from './utilities/ThemeToggler.js'
 ;(window as any).ClipboardHelper = ClipboardHelper
 
 document.addEventListener('DOMContentLoaded', () => {
