@@ -13,9 +13,7 @@
     {% for i in range(1, 13) %}
     {% if i < 10 %} {% set padded='0' ~ i %} {% else %} {% set padded=i|string %} {% endif %} {% set
         label=".font--size_" ~ padded %} {% set class="font--size_" ~ padded %} {%
-        include "includes/font_preview_box.html.jinja" %} {% endfor %} </section>
-
-
+        include "includes/preview_box_font.html.jinja" %} {% endfor %} </section>
 
         <section class="demo__section">
 
@@ -35,7 +33,9 @@
             {% for font in fonts %}
             {% set label = font.label %}
             {% set class = font.class %}
-            {% include "includes/font_preview_box.html.jinja" %}
+            <div class="demo__subsection">
+                {% include "includes/preview_box_font.html.jinja" %}
+            </div>
             {% endfor %}
 
         </section>

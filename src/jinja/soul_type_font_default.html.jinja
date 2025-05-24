@@ -5,17 +5,45 @@
 {% block content %}
 
 <section class="demo__section">
-
     <div class="font-preview-controls">
         <label for="font-preview-input">Preview text:</label>
         <input id="font-preview-input" type="text" placeholder="The quick brown fox…" />
     </div>
+</section>
 
+<!-- Preview Block -->
+<section class="demo__section">
+    <header class="demo__section__header">
+        <h3>Variants Classes</h3>
+    </header>
+    <section class="demo__subsection">
+
+        <div class="preview_box--vertical">
+            <div class="preview_box__live">
+                <h1>The quick brown fox jumps over the lazy dog.</h1>
+            </div>
+            <div class="preview_box__info">
+                <small>HTML</small>
+                <button class="preview_box__copy_button" onclick="copyToClipboard(this)">
+                    Copy
+                </button>
+            </div>
+            <div class="preview_box__code">
+                <pre>
+                    <code>
+                        &lt;h1&gt;The quick brown fox jumps over the lazy dog.&lt;/h1&gt;
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+    </section>
 </section>
 
 
-<section class="demo__section">
 
+
+<section class="demo__section">
     <header class="demo__section__header">
         <h3>Main Variants</h3>
     </header>
@@ -25,11 +53,12 @@
     { label: "Mono", family: "monospace" },
     { label: "Serif", family: "serif" }
     ] %}
-
     {% for font in fonts %}
     {% set label = font.label %}
     {% set family = font.family %}
-    {% include "includes/font_preview_box.html.jinja" %}
+    <div class="demo__subsection">
+        {% include "includes/preview_box_font.html.jinja" %}
+    </div>
     {% endfor %}
 </section>
 
@@ -53,58 +82,14 @@
     {% for font in fonts %}
     {% set label = font.label %}
     {% set class = font.class %}
-    {% include "includes/font_preview_box.html.jinja" %}
+    <div class="demo__subsection">
+        {% include "includes/preview_box_font.html.jinja" %}
+    </div>
     {% endfor %}
 
 </section>
 
 
-
-
-<!-- Preview Block -->
-<section class="demo__section">
-
-    <header class="demo__section__header">
-        <h3>Variants Classes</h3>
-    </header>
-
-
-    <div class="preview-live">
-        <h1>The quick brown fox jumps over the lazy dog.</h1>
-    </div>
-    <div class="typography-label">Heading 1</div>
-
-    <div class="preview-code">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code>&lt;h1&gt;The quick brown fox jumps over the lazy dog.&lt;/h1&gt;</code></pre>
-    </div>
-
-
-</section>
-
-<!-- Another Preview -->
-<section class="preview-grid">
-    <div class="typography-label">Paragraph</div>
-
-    <div class="preview-live">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-
-    <div class="preview-code">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;</code></pre>
-    </div>
-</section>
-
-<script>
-    function copyToClipboard(button) {
-        const code = button.nextElementSibling.innerText;
-        navigator.clipboard.writeText(code).then(() => {
-            button.textContent = "Copied!";
-            setTimeout(() => button.textContent = "Copy", 1500);
-        });
-    }
-</script>
 
 
 {% endblock %}

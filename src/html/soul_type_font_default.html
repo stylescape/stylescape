@@ -5,8 +5,13 @@
     <meta charset="UTF-8" />
     <title>Font Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
+
+
     <link rel="stylesheet" href="/css/stylescape.css" />
     <script type="module" src="/js/stylescape.js"></script>
+
     <style>
         * {
             font-variant-numeric: lining-nums tabular-nums;
@@ -37,7 +42,6 @@
 
 <div class="ribbon__slot--horizontal_center">
 
-    <nav id="ribbon__nav" class="ribbon__nav" role="navigation">
         <button aria-label="Toggle navigation" aria-expanded="false" type="button" data-view-component="true"
             id="ribbon__nav_button" class="menu_button ribbon__nav_button">
             <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true"
@@ -47,22 +51,8 @@
                 </path>
             </svg>
         </button>
-        <ul id="ribbon__nav__list" class="ribbon__nav__list">
-            <li class="ribbon__nav__list__item">
-                <a href="/" class="ribbon__nav__list__item__text">
-                    Studio
-                </a>
-            </li>
-            <li class="ribbon__nav__list__item">
-                <a href="/" class="ribbon__nav__list__item__text">
-                    Stories
-                </a>
-            </li>
-            <li class="ribbon__nav__list__item">
-                <a href="/" class="ribbon__nav__list__item__text">
-                    Services
-                </a>
-            </li>
+
+
             <details class="ribbon_menu_button">
                 <summary class="ribbon__button">
                     <i class="i i_people_person_lg"></i>
@@ -106,8 +96,6 @@
                 </ul>
 
             </details>
-        </ul>
-    </nav>
 
 
 
@@ -138,6 +126,13 @@
                 </a>
                 
             </button>
+        </li>
+        <li class="ribbon__menu__item">
+
+            <label class="theme-switch">
+                <input type="checkbox" id="themeToggle" />
+                <span class="slider"></span>
+            </label>
         </li>
 
         <li class="ribbon__menu__item">
@@ -229,73 +224,91 @@
             <main class="main main_content" role="main">
 
 <section class="demo__section">
-
     <div class="font-preview-controls">
         <label for="font-preview-input">Preview text:</label>
         <input id="font-preview-input" type="text" placeholder="The quick brown fox…" />
     </div>
+</section>
 
+<!-- Preview Block -->
+<section class="demo__section">
+    <header class="demo__section__header">
+        <h3>Variants Classes</h3>
+    </header>
+    <section class="demo__subsection">
+
+        <div class="preview_box--vertical">
+            <div class="preview_box__live">
+                <h1>The quick brown fox jumps over the lazy dog.</h1>
+            </div>
+            <div class="preview_box__info">
+                <small>HTML</small>
+                <button class="preview_box__copy_button" onclick="copyToClipboard(this)">
+                    Copy
+                </button>
+            </div>
+            <div class="preview_box__code">
+                <pre>
+                    <code>
+                        &lt;h1&gt;The quick brown fox jumps over the lazy dog.&lt;/h1&gt;
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+    </section>
 </section>
 
 
-<section class="demo__section">
 
+
+<section class="demo__section">
     <header class="demo__section__header">
         <h3>Main Variants</h3>
     </header>
 
+    <div class="demo__subsection">
 
 
 
-<div class="demo__subsection">
-
-    <div class="preview_box--horizontal" data-default="Aa Bb Cc"
-        style="font-family: sans-serif">
-
-        <code class="preview_box__label">
+<div class="preview_box--horizontal" data-default="Aa Bb Cc"
+    style="font-family: sans-serif">
+    <code class="preview_box__code">
             Sans
         </code>
-
-        <div class="preview_box__text ">
-            The quick brown fox jumps over the lazy dog. 0123456789
-        </div>
-
+    <div class="preview_box__live ">
+        <p>The quick brown fox jumps over the lazy dog. 0123456789</p>
     </div>
 </div>
+    </div>
+    <div class="demo__subsection">
 
 
-<div class="demo__subsection">
 
-    <div class="preview_box--horizontal" data-default="Aa Bb Cc"
-        style="font-family: monospace">
-
-        <code class="preview_box__label">
+<div class="preview_box--horizontal" data-default="Aa Bb Cc"
+    style="font-family: monospace">
+    <code class="preview_box__code">
             Mono
         </code>
-
-        <div class="preview_box__text ">
-            The quick brown fox jumps over the lazy dog. 0123456789
-        </div>
-
+    <div class="preview_box__live ">
+        <p>The quick brown fox jumps over the lazy dog. 0123456789</p>
     </div>
 </div>
+    </div>
+    <div class="demo__subsection">
 
 
-<div class="demo__subsection">
 
-    <div class="preview_box--horizontal" data-default="Aa Bb Cc"
-        style="font-family: serif">
-
-        <code class="preview_box__label">
+<div class="preview_box--horizontal" data-default="Aa Bb Cc"
+    style="font-family: serif">
+    <code class="preview_box__code">
             Serif
         </code>
-
-        <div class="preview_box__text ">
-            The quick brown fox jumps over the lazy dog. 0123456789
-        </div>
-
+    <div class="preview_box__live ">
+        <p>The quick brown fox jumps over the lazy dog. 0123456789</p>
     </div>
 </div>
+    </div>
 </section>
 
 
@@ -307,141 +320,80 @@
     </header>
 
 
+    <div class="demo__subsection">
 
 
-<div class="demo__subsection">
 
-    <div class="preview_box--horizontal" data-default="Aa Bb Cc"
-        style="font-family: sans-serif">
-
-        <code class="preview_box__label">
+<div class="preview_box--horizontal" data-default="Aa Bb Cc"
+    style="font-family: sans-serif">
+    <code class="preview_box__code">
             .font--default
         </code>
-
-        <div class="preview_box__text font--default">
-            The quick brown fox jumps over the lazy dog. 0123456789
-        </div>
-
+    <div class="preview_box__live font--default">
+        <p>The quick brown fox jumps over the lazy dog. 0123456789</p>
     </div>
 </div>
+    </div>
+    <div class="demo__subsection">
 
 
-<div class="demo__subsection">
 
-    <div class="preview_box--horizontal" data-default="Aa Bb Cc"
-        style="font-family: sans-serif">
-
-        <code class="preview_box__label">
+<div class="preview_box--horizontal" data-default="Aa Bb Cc"
+    style="font-family: sans-serif">
+    <code class="preview_box__code">
             .font--sans
         </code>
-
-        <div class="preview_box__text font--sans">
-            The quick brown fox jumps over the lazy dog. 0123456789
-        </div>
-
+    <div class="preview_box__live font--sans">
+        <p>The quick brown fox jumps over the lazy dog. 0123456789</p>
     </div>
 </div>
+    </div>
+    <div class="demo__subsection">
 
 
-<div class="demo__subsection">
 
-    <div class="preview_box--horizontal" data-default="Aa Bb Cc"
-        style="font-family: sans-serif">
-
-        <code class="preview_box__label">
+<div class="preview_box--horizontal" data-default="Aa Bb Cc"
+    style="font-family: sans-serif">
+    <code class="preview_box__code">
             .font--serif
         </code>
-
-        <div class="preview_box__text font--serif">
-            The quick brown fox jumps over the lazy dog. 0123456789
-        </div>
-
+    <div class="preview_box__live font--serif">
+        <p>The quick brown fox jumps over the lazy dog. 0123456789</p>
     </div>
 </div>
+    </div>
+    <div class="demo__subsection">
 
 
-<div class="demo__subsection">
 
-    <div class="preview_box--horizontal" data-default="Aa Bb Cc"
-        style="font-family: sans-serif">
-
-        <code class="preview_box__label">
+<div class="preview_box--horizontal" data-default="Aa Bb Cc"
+    style="font-family: sans-serif">
+    <code class="preview_box__code">
             .font--slab
         </code>
-
-        <div class="preview_box__text font--slab">
-            The quick brown fox jumps over the lazy dog. 0123456789
-        </div>
-
+    <div class="preview_box__live font--slab">
+        <p>The quick brown fox jumps over the lazy dog. 0123456789</p>
     </div>
 </div>
+    </div>
+    <div class="demo__subsection">
 
 
-<div class="demo__subsection">
 
-    <div class="preview_box--horizontal" data-default="Aa Bb Cc"
-        style="font-family: sans-serif">
-
-        <code class="preview_box__label">
+<div class="preview_box--horizontal" data-default="Aa Bb Cc"
+    style="font-family: sans-serif">
+    <code class="preview_box__code">
             .font--mono
         </code>
-
-        <div class="preview_box__text font--mono">
-            The quick brown fox jumps over the lazy dog. 0123456789
-        </div>
-
+    <div class="preview_box__live font--mono">
+        <p>The quick brown fox jumps over the lazy dog. 0123456789</p>
     </div>
 </div>
+    </div>
 
 </section>
 
 
-
-
-<!-- Preview Block -->
-<section class="demo__section">
-
-    <header class="demo__section__header">
-        <h3>Variants Classes</h3>
-    </header>
-
-
-    <div class="preview-live">
-        <h1>The quick brown fox jumps over the lazy dog.</h1>
-    </div>
-    <div class="typography-label">Heading 1</div>
-
-    <div class="preview-code">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code>&lt;h1&gt;The quick brown fox jumps over the lazy dog.&lt;/h1&gt;</code></pre>
-    </div>
-
-
-</section>
-
-<!-- Another Preview -->
-<section class="preview-grid">
-    <div class="typography-label">Paragraph</div>
-
-    <div class="preview-live">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-
-    <div class="preview-code">
-        <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
-        <pre><code>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;</code></pre>
-    </div>
-</section>
-
-<script>
-    function copyToClipboard(button) {
-        const code = button.nextElementSibling.innerText;
-        navigator.clipboard.writeText(code).then(() => {
-            button.textContent = "Copied!";
-            setTimeout(() => button.textContent = "Copy", 1500);
-        });
-    }
-</script>
 
 
             </main>
@@ -464,7 +416,11 @@
 
         <div class="layout__area--bottom">
             <footer class="ribbon--bottom ribbon--inverted" role="contentinfo">
-<p>&copy; 2025 SC∆PE AGENCY</p>            </footer>
+                <div class="ribbon__slot--horizontal_center">
+
+                    <small>&copy; 2025 SC∆PE AGENCY</small>
+                </div>
+            </footer>
         </div>
 
 
@@ -474,12 +430,6 @@
     <div class="guide--layer guide--baseline" data-grid="baseline"></div>
 
 
-    <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
-        }
-    </script>
 </body>
 
 </html>

@@ -5,8 +5,23 @@
     <meta charset="UTF-8" />
     <title>{% block title %}Stylescape{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {# <!-- Prism CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
+
+    <!-- Prism JS -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+
+    <!-- Optional: Load language components (e.g., HTML, CSS, JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-html.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script> #}
+
+
     <link rel="stylesheet" href="/css/stylescape.css" />
     <script type="module" src="/js/stylescape.js"></script>
+
     <style>
         * {
             font-variant-numeric: lining-nums tabular-nums;
@@ -69,7 +84,12 @@
 
         <div class="layout__area--bottom">
             <footer class="ribbon--bottom ribbon--inverted" role="contentinfo">
-                {% block footer %}<p>&copy; 2025 SC∆PE AGENCY</p>{% endblock %}
+                {% block footer %}
+                <div class="ribbon__slot--horizontal_center">
+
+                    <small>&copy; 2025 SC∆PE AGENCY</small>
+                </div>
+                {% endblock %}
             </footer>
         </div>
 
@@ -80,12 +100,6 @@
     <div class="guide--layer guide--baseline" data-grid="baseline"></div>
 
 
-    <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
-        }
-    </script>
 </body>
 
 </html>
