@@ -45,12 +45,35 @@ $preview-box-label-bg: #f8f8f8;
 }
 @mixin preview_box__element {
     min-height: baseline(4);
-    padding: baseline(1);
-
     position: relative;
-    width: 100%; // <-- Enforce full width inside box
-    max-width: 100%;
     box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+}
+
+@mixin preview_box__live {
+    @include preview_box__element;
+    padding: baseline(4);
+}
+
+@mixin preview_box__info {
+    @include preview_box__element;
+    padding-left: baseline(4);
+    padding-right: baseline(4);
+    padding-top: baseline(2);
+    padding-bottom: baseline(2);
+}
+
+@mixin preview_box__code {
+    @include preview_box__element;
+    pre {
+        padding: baseline(4);
+        display: -webkit-box;
+        -webkit-line-clamp: 10;
+        line-clamp: 10;
+        -webkit-box-orient: vertical;
+        @include font--size_scale(3);
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -63,10 +86,16 @@ $preview-box-label-bg: #f8f8f8;
     @include preview_box--vertical;
 }
 
-.preview_box__info,
-.preview_box__code,
 .preview_box__live {
-    @include preview_box__element;
+    @include preview_box__live;
+}
+
+.preview_box__info {
+    @include preview_box__info;
+}
+
+.preview_box__code {
+    @include preview_box__code;
 }
 
 .preview_box--horizontal .preview_box__code {
@@ -74,15 +103,11 @@ $preview-box-label-bg: #f8f8f8;
     @include font--size("03");
     color: #555;
     display: block;
-    // margin-bottom: q(8);
-
     background: #f8f8f8;
 }
 
 .preview_box--horizontal .preview_box__live {
     @include col--18;
-    // font-size: q(24);
-    // line-height: 1.4;
     word-wrap: break-word;
 }
 
@@ -91,10 +116,6 @@ $preview-box-label-bg: #f8f8f8;
     @include grid__col--02;
     font-size: 0.8rem;
     text-transform: uppercase;
-    // color: #666;
-    // padding: q(8) q(16);
-    // background: #eee;
-    // grid-column: span 2;
 }
 
 .preview_box__copy_button {
@@ -136,18 +157,4 @@ $preview-box-label-bg: #f8f8f8;
     color: #000;
     padding: q(4);
     background: white;
-}
-
-.preview-code {
-    // padding: q(16);
-    // background-color: #f0f0f0;
-    // font-family: monospace;
-    // font-size: 0.9rem;
-    // position: relative;
-}
-
-.preview-code pre {
-    // white-space: pre-wrap;
-    // word-break: break-word;
-    // margin: 0;
 }

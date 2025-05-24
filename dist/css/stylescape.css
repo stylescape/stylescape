@@ -9271,8 +9271,8 @@ abbr[title]:hover::after, abbr[title]:focus::after {
 
 .dropcap_large:first-child:first-letter {
   float: left;
-  font-size: 1Q 10;
-  line-height: 1Q 10;
+  font-size: 0.625rem;
+  line-height: 0.625rem;
   margin: 0 1.25rem 0 0;
   text-align: center;
   font-weight: 600;
@@ -10491,7 +10491,7 @@ hr {
 }
 
 .separator-line-verticle-small-thick {
-  width: 1Q 8;
+  width: q(8);
   height: q(3);
 }
 
@@ -10527,7 +10527,7 @@ hr {
 
 .separator-line-verticle-large-thick {
   width: 10Q 8;
-  height: 1Q 1;
+  height: q(1);
 }
 
 .separator-line-horrizontal-medium-light {
@@ -13408,7 +13408,7 @@ meter::-moz-progress-bar {
 
 .badge {
   display: inline-block;
-  padding: 0Q 32 0.6em;
+  padding: 0Q 32 0.625rem;
   font-weight: 500;
   line-height: 1;
   color: var(--color_background);
@@ -13447,7 +13447,7 @@ meter::-moz-progress-bar {
 
 .badge--lg {
   font-size: font-size(4);
-  padding: 0.3em 0.8em;
+  padding: 0.3em 0.75rem;
 }
 
 /* tab */
@@ -13791,7 +13791,7 @@ meter::-moz-progress-bar {
   content: "\f111";
   font-family: Font Awesome\5 Free;
   font-weight: 900;
-  padding: 0 1Q 1 0 0.875rem;
+  padding: 0 0.0625rem 0 0.875rem;
   display: inline-block;
   vertical-align: middle;
   font-size: 0.3125rem;
@@ -14017,8 +14017,8 @@ meter::-moz-progress-bar {
 .cookieconsent {
   position: fixed;
   height: 0.375rem;
-  font-size: 0.1875rem;
-  line-height: 0.1875rem;
+  font-size: 0.25rem;
+  line-height: 0.25rem;
   left: 0;
   bottom: 0;
   background-color: var(--color_primary);
@@ -14240,15 +14240,42 @@ iframe {
   border-bottom: 0.0625rem solid var(--color-border, #ccc);
 }
 
-.preview_box__info,
-.preview_box__code,
 .preview_box__live {
   min-height: 1.25rem;
-  padding: 0.3125rem;
   position: relative;
+  box-sizing: border-box;
   width: 100%;
   max-width: 100%;
+  padding: 1.25rem;
+}
+
+.preview_box__info {
+  min-height: 1.25rem;
+  position: relative;
   box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
+.preview_box__code {
+  min-height: 1.25rem;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+}
+.preview_box__code pre {
+  padding: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  line-clamp: 10;
+  -webkit-box-orient: vertical;
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
 }
 
 .preview_box--horizontal .preview_box__code {
@@ -14328,140 +14355,403 @@ details > summary::-webkit-details-marker {
   display: none; /* Hide the default marker for a cleaner appearance. */
 }
 
+.table--size--sm {
+  font-size: 0.875rem;
+}
+.table--size--sm th,
+.table--size--sm td {
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 0.9375rem;
+  max-height: 0.9375rem;
+  padding: 0.0625rem 0.125rem;
+}
+
+.table--size--lg {
+  font-size: 1.125rem;
+}
+.table--size--lg th,
+.table--size--lg td {
+  padding: 0.1875rem 0.3125rem;
+}
+
+table.caption-top caption {
+  caption-side: top;
+  text-align: left;
+  padding-bottom: 0.125rem;
+  font-weight: bold;
+}
+
+table.caption-bottom caption {
+  caption-side: bottom;
+  text-align: left;
+  padding-top: 0.125rem;
+  font-style: italic;
+}
+
+.table--base {
+  border-color: inherit; /* Correct border color in all Chrome, Edge, and Safari. */
+  text-indent: 0; /* Remove text indentation in Chrome, Edge, and Safari */
+  width: 100%; /* Ensure table takes up full width of its container */
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  table-layout: auto;
+  font-size: inherit;
+  line-height: inherit;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.table--base > thead {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  font-weight: 456;
+  font-variation-settings: "wght" 456, "wdth" 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  font-weight: 634;
+  font-variation-settings: "wght" 634, "wdth" 400;
+  vertical-align: bottom;
+}
+.table--base > tbody {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
+}
+.table--base > tfoot {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
+}
+.table--base > caption {
+  text-align: left;
+}
+
+.table--lined--all {
+  border-color: inherit; /* Correct border color in all Chrome, Edge, and Safari. */
+  text-indent: 0; /* Remove text indentation in Chrome, Edge, and Safari */
+  width: 100%; /* Ensure table takes up full width of its container */
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  table-layout: auto;
+  font-size: inherit;
+  line-height: inherit;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 0.0625rem solid #000000;
+}
+.table--lined--all > thead {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  font-weight: 456;
+  font-variation-settings: "wght" 456, "wdth" 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  font-weight: 634;
+  font-variation-settings: "wght" 634, "wdth" 400;
+  vertical-align: bottom;
+}
+.table--lined--all > tbody {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
+}
+.table--lined--all > tfoot {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
+}
+.table--lined--all > caption {
+  text-align: left;
+}
+.table--lined--all th,
+.table--lined--all td {
+  border: 0.0625rem solid #000000;
+}
+
+.table--lined--horizontal {
+  border-color: inherit; /* Correct border color in all Chrome, Edge, and Safari. */
+  text-indent: 0; /* Remove text indentation in Chrome, Edge, and Safari */
+  width: 100%; /* Ensure table takes up full width of its container */
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  table-layout: auto;
+  font-size: inherit;
+  line-height: inherit;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.table--lined--horizontal > thead {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  font-weight: 456;
+  font-variation-settings: "wght" 456, "wdth" 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  font-weight: 634;
+  font-variation-settings: "wght" 634, "wdth" 400;
+  vertical-align: bottom;
+}
+.table--lined--horizontal > tbody {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
+}
+.table--lined--horizontal > tfoot {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
+}
+.table--lined--horizontal > caption {
+  text-align: left;
+}
+.table--lined--horizontal th,
+.table--lined--horizontal td {
+  border-top: 0.0625rem solid #000000;
+  border-bottom: 0.0625rem solid #000000;
+  border-left: none;
+  border-right: none;
+}
+.table--lined--horizontal tbody tr:last-child td {
+  border-bottom: 0.0625rem solid #000000;
+}
+
+.table--lined--vertical {
+  border-color: inherit; /* Correct border color in all Chrome, Edge, and Safari. */
+  text-indent: 0; /* Remove text indentation in Chrome, Edge, and Safari */
+  width: 100%; /* Ensure table takes up full width of its container */
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  table-layout: auto;
+  font-size: inherit;
+  line-height: inherit;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.table--lined--vertical > thead {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  font-weight: 456;
+  font-variation-settings: "wght" 456, "wdth" 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  font-weight: 634;
+  font-variation-settings: "wght" 634, "wdth" 400;
+  vertical-align: bottom;
+}
+.table--lined--vertical > tbody {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
+}
+.table--lined--vertical > tfoot {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
+}
+.table--lined--vertical > caption {
+  text-align: left;
+}
+.table--lined--vertical th,
+.table--lined--vertical td {
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0.0625rem solid #000000;
+  border-right: 0.0625rem solid #000000;
+}
+
+.table--striped--horizontal {
+  border-color: inherit; /* Correct border color in all Chrome, Edge, and Safari. */
+  text-indent: 0; /* Remove text indentation in Chrome, Edge, and Safari */
+  width: 100%; /* Ensure table takes up full width of its container */
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  table-layout: auto;
+  font-size: inherit;
+  line-height: inherit;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.table--striped--horizontal > thead {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  font-weight: 456;
+  font-variation-settings: "wght" 456, "wdth" 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  font-weight: 634;
+  font-variation-settings: "wght" 634, "wdth" 400;
+  vertical-align: bottom;
+}
+.table--striped--horizontal > tbody {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
+}
+.table--striped--horizontal > tfoot {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
+}
+.table--striped--horizontal > caption {
+  text-align: left;
+}
+.table--striped--horizontal tbody tr:nth-child(odd) {
+  background-color: var(--color_surface_2);
+}
+
+.table--striped--vertical {
+  border-color: inherit; /* Correct border color in all Chrome, Edge, and Safari. */
+  text-indent: 0; /* Remove text indentation in Chrome, Edge, and Safari */
+  width: 100%; /* Ensure table takes up full width of its container */
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  table-layout: auto;
+  font-size: inherit;
+  line-height: inherit;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.table--striped--vertical > thead {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  font-weight: 456;
+  font-variation-settings: "wght" 456, "wdth" 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  font-weight: 634;
+  font-variation-settings: "wght" 634, "wdth" 400;
+  vertical-align: bottom;
+}
+.table--striped--vertical > tbody {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
+}
+.table--striped--vertical > tfoot {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
+}
+.table--striped--vertical > caption {
+  text-align: left;
+}
+.table--striped--vertical tbody tr td:nth-child(odd),
+.table--striped--vertical tbody tr th:nth-child(odd) {
+  background-color: var(--color_surface_2);
+}
+
 table {
   border-color: inherit; /* Correct border color in all Chrome, Edge, and Safari. */
   text-indent: 0; /* Remove text indentation in Chrome, Edge, and Safari */
   width: 100%; /* Ensure table takes up full width of its container */
   max-width: 100%;
   margin: 0;
+  padding: 0;
+  table-layout: auto;
+  font-size: inherit;
+  line-height: inherit;
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-table td,
-table th {
-  padding: 0.75rem m 1rem;
-  border: 0.0625rem solid;
-  border-color: var(--color-14) !important;
-}
-
-table tr th,
-table thead th {
-  font-weight: 700;
-  color: var(--color-primary);
-}
-
-.table {
-  line-height: 0.09375rem;
-  border-top-width: 0.015625rem;
-  border-top-style: solid;
-  border-top-color: var(--color_secondary);
-}
-.table .table_row {
-  height: auto;
-  width: 100%;
-  overflow: hidden;
-  clear: both;
-  padding-top: 0.0625rem;
-  padding-bottom: 0.046875rem;
-  border-bottom-width: 0.015625rem;
-  border-bottom-style: solid;
-  border-bottom-color: var(--color_secondary);
-  display: flex;
-  flex-direction: row;
-}
-.table .table_row .table_head {
-  margin: 0;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  height: 1.25rem;
-  min-width: calc(25% + 0.0625rem);
-  flex-basis: calc(25% + 0.0625rem);
-  margin-top: 0.0625rem;
-  text-transform: uppercase;
-}
-.table .table_row .table_body {
-  margin: 0;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  flex-basis: calc(75% - 0.0625rem * 12);
-  padding-top: 0.0625rem;
-  padding-bottom: 0.0625rem;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  height: 100%;
-  max-height: 1.25rem;
-}
-.table .table_row .table_body.active {
-  max-height: 2Q 140;
-}
-.table .table_row .table_body .table_body_item {
-  margin: 0;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  max-height: 0.375rem;
-}
-.table .table_row .table_button {
-  margin: 0;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  margin-left: auto;
-  flex-basis: 0.375rem;
-  height: 0.375rem;
-}
-.table .table_row .table_button.active .icon svg {
-  transform: rotate(180deg);
-}
-
-table {
-  color: var(--color_foreground) !important;
-}
-table th {
-  font-size: 1rem;
-  font-variation-settings: "wght" 756, "wdth" 700;
+table > thead {
+  padding: 0.125rem 0.25rem;
   text-align: left;
-  border-top: 0.0625rem solid #000000;
-  border-bottom: 0.0625rem solid #000000;
+  font-weight: 456;
+  font-variation-settings: "wght" 456, "wdth" 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  text-decoration-color: var(--color_primary);
+  text-shadow: none;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  text-decoration: none;
+  font-weight: 634;
+  font-variation-settings: "wght" 634, "wdth" 400;
+  vertical-align: bottom;
 }
-table td {
-  font-size: 0.75rem;
+table > tbody {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
 }
-table th,
-table td {
-  border-right: 0;
-  border-left: 0;
+table > tfoot {
+  padding: 0.125rem 0.25rem;
+  text-align: left;
+  vertical-align: inherit;
 }
-table a {
-  font-variation-settings: "wght" 756, "wdth" 700;
+table > caption {
+  text-align: left;
 }
 
 .aside_toc ul li a.active {
@@ -14525,43 +14815,6 @@ table a {
   text-decoration: none;
   font-weight: 634;
   font-variation-settings: "wght" 634, "wdth" 400;
-}
-
-.account_form fieldset {
-  display: grid;
-  gap: 2;
-  grid-gap: 2;
-  position: relative;
-  grid-template-columns: repeat(12, 1fr);
-  grid-column: span 12;
-}
-
-.account_form fieldset .form_label {
-  grid-column: span 6;
-}
-
-.account_form fieldset .form_input_text {
-  grid-column: span 6;
-}
-
-.account_form fieldset .form_help_text {
-  grid-column: span 12;
-  font-size: 0.75rem;
-  line-height: 0.9375rem;
-  color: blue;
-}
-
-.account_form fieldset .form_errors {
-  grid-column: span 12;
-}
-.account_form fieldset .form_errors .errorlist li {
-  font-size: 0.75rem;
-  line-height: 0.9375rem;
-  color: red;
-}
-
-.account_form_button {
-  grid-column: span 12;
 }
 
 .ribbon__title__logo .i,
@@ -15099,7 +15352,7 @@ details[open] .ribbon_panel_wrapper {
 }
 .layout__middle_center--nested .layout__aside--inside,
 .layout__middle_center--nested .layout__main--inside {
-  width: 18.75rem;
+  width: 0.25rem 0;
   overflow-x: hidden;
   padding: 1rem;
 }
@@ -15109,8 +15362,8 @@ details[open] .ribbon_panel_wrapper {
 }
 .layout__middle_center--nested .layout__aside--left {
   grid-area: aside_left;
-  width: 18.75rem;
-  max-width: 18.75rem;
+  width: 0.25rem 0;
+  max-width: 0.25rem 0;
   transition: width 0.3s ease;
   overflow-y: auto;
   overflow-x: hidden;
@@ -15125,8 +15378,8 @@ details[open] .ribbon_panel_wrapper {
 }
 .layout__middle_center--nested .layout__aside--right {
   grid-area: aside_right;
-  width: 18.75rem;
-  max-width: 18.75rem;
+  width: 0.25rem 0;
+  max-width: 0.25rem 0;
   transition: width 0.3s ease;
   overflow-y: auto;
   overflow-x: hidden;
@@ -16363,7 +16616,7 @@ nav ul li:before {
 
 .color-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(1Q 60, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(3.75rem, 1fr));
   gap: 1rem;
 }
 
@@ -16455,7 +16708,7 @@ nav ul li:before {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(1Q 20, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(1.25rem, 1fr));
   gap: 1rem;
 }
 
@@ -16481,7 +16734,7 @@ nav ul li:before {
 }
 .demo-grid .button-style-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(1Q 20, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(1.25rem, 1fr));
   gap: 1rem;
 }
 .demo-grid .button-style-grid .demo-item {
