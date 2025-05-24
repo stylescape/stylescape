@@ -2,47 +2,60 @@
 {% block title %}Color Theme Comparison{% endblock %}
 
 {% block content %}
-<section class="theme-compare">
-    <h1>Color Tokens — Light & Dark Comparison</h1>
+<section class="demo__section">
 
-    <div class="theme-columns">
-        <div class="theme-panel theme-light">
-            <h2>Light Theme</h2>
-            <div class="color-grid">
-                {% for name in [
-                'background', 'foreground', 'muted', 'accent',
-                'primary', 'secondary', 'tertiary',
-                'info', 'success', 'warning', 'error',
-                'light', 'dark',
-                'surface_1', 'surface_2', 'surface_3',
-                'text_default', 'text_muted', 'text_accent', 'text_inverse'
-                ] %}
-                <div class="color-card">
-                    <div class="color-swatch" style="background-color: var(--color_{{ name }})"></div>
-                    <code>--color_{{ name }}</code>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
+    <header class="demo__section__header">
+        <h3>Color System</h3>
+    </header>
 
-        <div class="theme-panel theme-dark">
-            <h2>Dark Theme</h2>
-            <div class="color-grid">
-                {% for name in [
-                'background', 'foreground', 'muted', 'accent',
-                'primary', 'secondary', 'tertiary',
-                'info', 'success', 'warning', 'error',
-                'light', 'dark',
-                'surface_1', 'surface_2', 'surface_3',
-                'text_default', 'text_muted', 'text_accent', 'text_inverse'
-                ] %}
-                <div class="color-card">
-                    <div class="color-swatch" style="background-color: var(--color_{{ name }})"></div>
-                    <code>--color_{{ name }}</code>
+    <section class="demo__subsection">
+
+
+
+        {# <section class="theme-compare"> #}
+
+
+            <div class="theme-columns">
+                <div class="theme-panel theme-light">
+                    <h4>Light Theme</h4>
+                    <div class="color-grid">
+                        {% for name in [
+                        'background', 'foreground', 'muted', 'accent',
+                        'primary', 'secondary', 'tertiary',
+                        'info', 'success', 'warning', 'error',
+                        'light', 'dark',
+                        'surface_1', 'surface_2', 'surface_3',
+                        'text_default', 'text_muted', 'text_accent', 'text_inverse'
+                        ] %}
+                        <div class="color-card">
+                            <div class="color-swatch" style="background-color: var(--color_{{ name }})"></div>
+                            <code>--color_{{ name }}</code>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
-                {% endfor %}
+        </section>
+        <section class="demo__subsection">
+
+            <div class="theme-panel theme-dark">
+                <h4>Dark Theme</h4>
+                <div class="color-grid">
+                    {% for name in [
+                    'background', 'foreground', 'muted', 'accent',
+                    'primary', 'secondary', 'tertiary',
+                    'info', 'success', 'warning', 'error',
+                    'light', 'dark',
+                    'surface_1', 'surface_2', 'surface_3',
+                    'text_default', 'text_muted', 'text_accent', 'text_inverse'
+                    ] %}
+                    <div class="color-card">
+                        <div class="color-swatch" style="background-color: var(--color_{{ name }})"></div>
+                        <code>--color_{{ name }}</code>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-        </div>
-    </div>
-</section>
-{% endblock %}
+            </div>
+        </section>
+    </section>
+    {% endblock %}
