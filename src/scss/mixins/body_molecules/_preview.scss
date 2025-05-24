@@ -1,0 +1,162 @@
+@use "../../functions" as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../head_grid" as *;
+@use "../soul_type" as *;
+@use "../body_atoms" as *;
+// @use "mixins" as *;
+
+// Define your variables (in _variables.scss or similar)
+$preview_box--border--color: var(--color-border, #ccc);
+$preview_box--border--width: q(1);
+$preview_box--border--radius: q(2);
+
+$preview-box-label-color: #555;
+$preview-box-label-bg: #f8f8f8;
+
+// Optional: color from a CSS custom property
+// $info-color: var(--color_info);
+
+// Mixin using SCSS variables
+@mixin preview_box {
+    border: $preview_box--border--width solid $preview_box--border--color;
+    border-radius: $preview_box--border--radius;
+    // position: relative;
+    // max-width: 100%;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+}
+
+@mixin preview_box--horizontal {
+    @include preview_box;
+    @include grid__col--24;
+    > *:not(:last-child) {
+        border-right: $preview_box--border--width solid
+            $preview_box--border--color;
+    }
+    display: flex; // horizontal needs flex
+    flex-wrap: wrap;
+}
+@mixin preview_box--vertical {
+    @include preview_box;
+    > *:not(:last-child) {
+        border-bottom: $preview_box--border--width solid
+            $preview_box--border--color;
+    }
+}
+@mixin preview_box__element {
+    min-height: baseline(4);
+    padding: baseline(1);
+
+    position: relative;
+    width: 100%; // <-- Enforce full width inside box
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+.preview_box--horizontal {
+    @include preview_box--horizontal;
+}
+
+.preview_box--vertical {
+    @include preview_box--vertical;
+}
+
+.preview_box__info,
+.preview_box__code,
+.preview_box__live {
+    @include preview_box__element;
+}
+
+.preview_box--horizontal .preview_box__code {
+    @include col--6;
+    @include font--size("03");
+    color: #555;
+    display: block;
+    // margin-bottom: 0.5rem;
+
+    background: #f8f8f8;
+}
+
+.preview_box--horizontal .preview_box__live {
+    @include col--18;
+    // font-size: 1.5rem;
+    // line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.preview_box__info {
+    @include box--surface(1);
+    @include grid__col--02;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    // color: #666;
+    // padding: 0.5rem 1rem;
+    // background: #eee;
+    // grid-column: span 2;
+}
+
+.preview_box__copy_button {
+    position: relative;
+    // top: 0.5rem;
+    // right: 0.5rem;
+    // font-size: 0.75rem;
+    // padding: 0.25rem 0.5rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+
+.swatch-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.color-swatch {
+    width: 100%;
+    height: 80px;
+}
+.swatch {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #000;
+    padding: 4px;
+    background: white;
+}
+
+.preview-code {
+    // padding: 1rem;
+    // background-color: #f0f0f0;
+    // font-family: monospace;
+    // font-size: 0.9rem;
+    // position: relative;
+}
+
+.preview-code pre {
+    // white-space: pre-wrap;
+    // word-break: break-word;
+    // margin: 0;
+}
+
+.ribbon_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+}
