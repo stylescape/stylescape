@@ -7,19 +7,32 @@
 
 <section class="demo__section">
     <header class="demo__section__header">
-        <h3>Semantic Font Size Classes</h3>
+        <h3>Font Sizes</h3>
     </header>
+    <section class="demo__subsection">
+        <h4>Semantic Font Size Classes</h4>
 
-    {% for i in range(1, 13) %}
-    {% if i < 10 %} {% set padded='0' ~ i %} {% else %} {% set padded=i|string %} {% endif %} {% set
-        label=".font--size_" ~ padded %} {% set class="font--size_" ~ padded %} {%
-        include "includes/preview_box_font.html.jinja" %} {% endfor %} </section>
+        {% for i in range(1, 13) %}
+            {% if i < 10 %}
+                {% set padded='0' ~ i %}
+            {% else %}
+                {% set padded=i|string %}
+            {% endif %}
 
-        <section class="demo__section">
+            {% set label=".font--size_" ~ padded %}
+            {% set class="font--size_" ~ padded %}
+            {% include "includes/preview_box_font.html.jinja" %}
+        {% endfor %}
+     </section>
+</section>
 
-            <header class="demo__section__header">
-                <h3>Utility Font Size Classes</h3>
-            </header>
+
+
+<section class="demo__section">
+
+    <header class="demo__section__header">
+        <h4>Utility Font Size Classes</h4>
+    </header>
 
             {% set fonts = [
             { label: ".font--xs", class: "font--xs" },
