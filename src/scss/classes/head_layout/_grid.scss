@@ -19,12 +19,30 @@
 // Grid Layout | Parent Containers
 // ============================================================================
 
-.grid__layout {
-    @include grid__layout;
+.grid--base {
+    @include grid--base;
 }
-.grid__layout--inline {
-    @include grid__layout--inline;
+.grid--base--inline {
+    @include grid--base--inline;
 }
+
+// Generate utility classes for 1–24 columns
+@for $i from 1 through 24 {
+    /// Utility class: .grid--size--col--#{$i}
+    .grid--#{$i} {
+        @include grid__layout($i);
+    }
+    .grid__layout--#{$i} {
+        @include grid__layout($i);
+    }
+    .grid__layout--clean--#{$i} {
+        @include grid__layout--clean($i);
+    }
+    .grid__layout--inline--#{$i} {
+        @include grid__layout--inline($i);
+    }
+}
+
 .grid__layout--flex {
     @include grid__layout--flex;
 }
@@ -103,6 +121,6 @@
 
 /// Utility class for setting grid rows to `auto`.
 /// @group Grid Rows
-.grid__row--auto {
-    @include grid__row--auto;
+.grid--size--row--auto {
+    @include grid--size--row--auto;
 }
