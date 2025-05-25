@@ -7,7 +7,7 @@
 //     private buttonDown: HTMLElement | null
 
 //     constructor() {
-//         this.buttonUp = document.getElementById('cover_arrow_up')
+//         this.buttonUp = document.getElementById('cover_arrow--up')
 //         this.buttonDown = document.getElementById('content_cover_arrow')
 
 //         if (this.buttonUp) {

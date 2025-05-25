@@ -34,7 +34,7 @@
 //   }
 
 //   // Get the buttons:
-//   var button_up   = document.getElementById("cover_arrow_up");
+//   var button_up   = document.getElementById("cover_arrow--up");
 //   if (button_up   !== null){
 //     buttonScrollUp();
 //   }

@@ -113,7 +113,7 @@ $preview-box-label-bg: #f8f8f8;
 
 .preview_box__info {
     @include box--surface(1);
-    @include grid__col--02;
+    @include grid__col--2;
     font-size: 0.8rem;
     text-transform: uppercase;
 }
@@ -133,6 +133,90 @@ $preview-box-label-bg: #f8f8f8;
 
 ///////////////////////////////////////////////////////////////////////////////
 
+.preview_box__swatch {
+    width: 100%;
+    @include aspect_ratio(1, 1);
+    // height: q(80);
+}
+
+preview_box__swatch .color-family h2 {
+    margin-top: q(32);
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(q(60), 1fr));
+    gap: q(16);
+}
+
+.color-card {
+    border: q(1) solid var(--color_border, #ccc);
+    border-radius: q(6);
+    overflow: hidden;
+    background-color: var(--color_fill_secondary);
+    text-align: center;
+    font-family: monospace;
+    font-size: 0.85rem;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+.preview_grid {
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    // gap: q(32);
+    margin-bottom: 3rem;
+    background: white;
+    border: q(1) solid #ddd;
+    border-radius: q(8);
+    overflow: hidden;
+}
+
+/// Mixin for grid placeholder style
+/// @group Grid Placeholder
+@mixin grid--placeholder {
+    // display: grid;
+    // grid-template-columns: auto auto auto;
+    // gap: q(10);
+    background-color: rgba(255, 255, 255, 0.8);
+    // padding: q(10)
+    div {
+        background-color: #d9e4ed;
+        border: q(1) solid black;
+        text-align: center;
+        // font-size: q(12);
+        max-width: 100%;
+        overflow: hidden;
+    }
+}
+
+// @mixin grid_cell_placeholder {
+//   background-color: rgba(255, 255, 255, 0.8);
+//   border: q(1) solid black;
+//   text-align: center;
+//   font-size: q(32);
+// }
+
+.grid--placeholder {
+    @include grid--placeholder;
+}
+
+// .main {
+//   padding-left: calc(baseline(4) * 8);
+//   padding-right: calc(baseline(4) * 8);
+// }
+
+// .main[min-width../../../node_modules/="400px"] {
+//   padding-left: calc(baseline(4) * 2);
+//   padding-right: calc(baseline(4) * 2);
+// }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(q(20), 1fr));
+    gap: q(16);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 
 .swatch-grid {
@@ -142,10 +226,6 @@ $preview-box-label-bg: #f8f8f8;
     margin-bottom: q(32);
 }
 
-.color-swatch {
-    width: 100%;
-    height: q(80);
-}
 .swatch {
     width: q(80);
     height: q(80);

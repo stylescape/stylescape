@@ -1,654 +1,159 @@
-////
-///
-/// Grid Layout Mixins Module
-/// ===========================================================================
-///
-/// @group Grid
-/// @author Scape Agency
-/// @link https://scape.style
-/// @since 0.1.0 initial release
-/// @todo None
-/// @access public
-///
-////
+@use "grid_layout" as *;
 
-@use "../../dev" as *;
-@use "gap" as *;
-
-// ============================================================================
-// Layout | Grid | Column
-// ============================================================================
-
-/// Mixin for grid column span
-/// @param {Number} $val - The number of columns to span
-/// @group Grid Column
-@mixin col($val) {
-    grid-column: span $val;
+/// Mixin for setting the number of grid columns
+/// @param {Number} $val - The number of columns in the grid
+/// @group Grid Columns
+@mixin grid__col($val) {
+    @include grid_layout;
+    grid-template-columns: repeat($val, 1fr);
 }
 
-/// Mixin for small screen grid column span
-/// @param {Number} $val - The number of columns to span on small screens
-/// @group Grid Column
-@mixin col--sm($val) {
-    @media (min-width: $media_sm) {
-        @include col($val);
-    }
+// Utility mixins for specific column counts
+/// @group Grid Columns
+@mixin grid__col--1 {
+    @include grid__col(1);
+}
+@mixin grid__col--2 {
+    @include grid__col(2);
+}
+@mixin grid__col--3 {
+    @include grid__col(3);
+}
+@mixin grid__col--4 {
+    @include grid__col(4);
+}
+@mixin grid__col--5 {
+    @include grid__col(5);
+}
+@mixin grid__col--6 {
+    @include grid__col(6);
+}
+@mixin grid__col--7 {
+    @include grid__col(7);
+}
+@mixin grid__col--8 {
+    @include grid__col(8);
+}
+@mixin grid__col--9 {
+    @include grid__col(9);
+}
+@mixin grid__col--10 {
+    @include grid__col(10);
+}
+@mixin grid__col--11 {
+    @include grid__col(11);
+}
+@mixin grid__col--12 {
+    @include grid__col(12);
+}
+@mixin grid__col--13 {
+    @include grid__col(13);
+}
+@mixin grid__col--14 {
+    @include grid__col(14);
+}
+@mixin grid__col--15 {
+    @include grid__col(15);
+}
+@mixin grid__col--16 {
+    @include grid__col(16);
+}
+@mixin grid__col--17 {
+    @include grid__col(17);
+}
+@mixin grid__col--18 {
+    @include grid__col(18);
+}
+@mixin grid__col--19 {
+    @include grid__col(19);
+}
+@mixin grid__col--20 {
+    @include grid__col(20);
+}
+@mixin grid__col--21 {
+    @include grid__col(21);
+}
+@mixin grid__col--22 {
+    @include grid__col(22);
+}
+@mixin grid__col--23 {
+    @include grid__col(23);
+}
+@mixin grid__col--24 {
+    @include grid__col(24);
 }
 
-/// Mixin for medium screen grid column span
-/// @param {Number} $val - The number of columns to span on medium screens
-/// @group Grid Column
-@mixin col--md($val) {
-    @media (min-width: $media_md) {
-        @include col($val);
-    }
+// Utility classes for specific column counts
+/// @group Grid Columns
+.grid__col--1 {
+    @include grid__col--1;
 }
-
-/// Mixin for large screen grid column span
-/// @param {Number} $val - The number of columns to span on large screens
-/// @group Grid Column
-@mixin col--lg($val) {
-    @media (min-width: $media_lg) {
-        @include col($val);
-    }
+.grid__col--2 {
+    @include grid__col--2;
 }
-
-// Utility mixins for specific column spans
-/// @group Grid Column
-@mixin col--1 {
-    @include col(1);
+.grid__col--3 {
+    @include grid__col--3;
 }
-@mixin col--2 {
-    @include col(2);
+.grid__col--4 {
+    @include grid__col--4;
 }
-@mixin col--3 {
-    @include col(3);
+.grid__col--5 {
+    @include grid__col--5;
 }
-@mixin col--4 {
-    @include col(4);
+.grid__col--6 {
+    @include grid__col--6;
 }
-@mixin col--5 {
-    @include col(5);
+.grid__col--7 {
+    @include grid__col--7;
 }
-@mixin col--6 {
-    @include col(6);
+.grid__col--8 {
+    @include grid__col--8;
 }
-@mixin col--7 {
-    @include col(7);
+.grid__col--9 {
+    @include grid__col--9;
 }
-@mixin col--8 {
-    @include col(8);
+.grid__col--10 {
+    @include grid__col--10;
 }
-@mixin col--9 {
-    @include col(9);
+.grid__col--11 {
+    @include grid__col--11;
 }
-@mixin col--10 {
-    @include col(10);
+.grid__col--12 {
+    @include grid__col--12;
 }
-@mixin col--11 {
-    @include col(11);
+.grid__col--13 {
+    @include grid__col--13;
 }
-@mixin col--12 {
-    @include col(12);
+.grid__col--14 {
+    @include grid__col--14;
 }
-@mixin col--13 {
-    @include col(13);
+.grid__col--15 {
+    @include grid__col--15;
 }
-@mixin col--14 {
-    @include col(14);
+.grid__col--16 {
+    @include grid__col--16;
 }
-@mixin col--15 {
-    @include col(15);
+.grid__col--17 {
+    @include grid__col--17;
 }
-@mixin col--16 {
-    @include col(16);
+.grid__col--18 {
+    @include grid__col--18;
 }
-@mixin col--17 {
-    @include col(17);
+.grid__col--19 {
+    @include grid__col--19;
 }
-@mixin col--18 {
-    @include col(18);
+.grid__col--20 {
+    @include grid__col--20;
 }
-@mixin col--19 {
-    @include col(19);
+.grid__col--21 {
+    @include grid__col--21;
 }
-@mixin col--20 {
-    @include col(20);
+.grid__col--22 {
+    @include grid__col--22;
 }
-@mixin col--21 {
-    @include col(21);
+.grid__col--23 {
+    @include grid__col--23;
 }
-@mixin col--22 {
-    @include col(22);
-}
-@mixin col--23 {
-    @include col(23);
-}
-@mixin col--24 {
-    @include col(24);
-}
-
-// Utility classes for specific column spans
-/// @group Grid Column
-.col--1 {
-    @include col--1;
-}
-.col--2 {
-    @include col--2;
-}
-.col--3 {
-    @include col--3;
-}
-.col--4 {
-    @include col--4;
-}
-.col--5 {
-    @include col--5;
-}
-.col--6 {
-    @include col--6;
-}
-.col--7 {
-    @include col--7;
-}
-.col--8 {
-    @include col--8;
-}
-.col--9 {
-    @include col--9;
-}
-.col--10 {
-    @include col--10;
-}
-.col--11 {
-    @include col--11;
-}
-.col--12 {
-    @include col--12;
-}
-.col--13 {
-    @include col--13;
-}
-.col--14 {
-    @include col--14;
-}
-.col--15 {
-    @include col--15;
-}
-.col--16 {
-    @include col--16;
-}
-.col--17 {
-    @include col--17;
-}
-.col--18 {
-    @include col--18;
-}
-.col--19 {
-    @include col--19;
-}
-.col--20 {
-    @include col--20;
-}
-.col--21 {
-    @include col--21;
-}
-.col--22 {
-    @include col--22;
-}
-.col--23 {
-    @include col--23;
-}
-.col--24 {
-    @include col--24;
-}
-
-// Utility mixins for specific small screen column spans
-/// @group Grid Column
-@mixin col--sm_1 {
-    @include col--sm(1);
-}
-@mixin col--sm_2 {
-    @include col--sm(2);
-}
-@mixin col--sm_3 {
-    @include col--sm(3);
-}
-@mixin col--sm_4 {
-    @include col--sm(4);
-}
-@mixin col--sm_5 {
-    @include col--sm(5);
-}
-@mixin col--sm_6 {
-    @include col--sm(6);
-}
-@mixin col--sm_7 {
-    @include col--sm(7);
-}
-@mixin col--sm_8 {
-    @include col--sm(8);
-}
-@mixin col--sm_9 {
-    @include col--sm(9);
-}
-@mixin col--sm_10 {
-    @include col--sm(10);
-}
-@mixin col--sm_11 {
-    @include col--sm(11);
-}
-@mixin col--sm_12 {
-    @include col--sm(12);
-}
-@mixin col--sm_13 {
-    @include col--sm(13);
-}
-@mixin col--sm_14 {
-    @include col--sm(14);
-}
-@mixin col--sm_15 {
-    @include col--sm(15);
-}
-@mixin col--sm_16 {
-    @include col--sm(16);
-}
-@mixin col--sm_17 {
-    @include col--sm(17);
-}
-@mixin col--sm_18 {
-    @include col--sm(18);
-}
-@mixin col--sm_19 {
-    @include col--sm(19);
-}
-@mixin col--sm_20 {
-    @include col--sm(20);
-}
-@mixin col--sm_21 {
-    @include col--sm(21);
-}
-@mixin col--sm_22 {
-    @include col--sm(22);
-}
-@mixin col--sm_23 {
-    @include col--sm(23);
-}
-@mixin col--sm_24 {
-    @include col--sm(24);
-}
-
-// Utility classes for specific small screen column spans
-/// @group Grid Column
-.col--s_1 {
-    @include col--sm_1;
-}
-.col--s_2 {
-    @include col--sm_2;
-}
-.col--s_3 {
-    @include col--sm_3;
-}
-.col--s_4 {
-    @include col--sm_4;
-}
-.col--s_5 {
-    @include col--sm_5;
-}
-.col--s_6 {
-    @include col--sm_6;
-}
-.col--s_7 {
-    @include col--sm_7;
-}
-.col--s_8 {
-    @include col--sm_8;
-}
-.col--s_9 {
-    @include col--sm_9;
-}
-.col--s_10 {
-    @include col--sm_10;
-}
-.col--s_11 {
-    @include col--sm_11;
-}
-.col--s_12 {
-    @include col--sm_12;
-}
-.col--s_13 {
-    @include col--sm_13;
-}
-.col--s_14 {
-    @include col--sm_14;
-}
-.col--s_15 {
-    @include col--sm_15;
-}
-.col--s_16 {
-    @include col--sm_16;
-}
-.col--s_17 {
-    @include col--sm_17;
-}
-.col--s_18 {
-    @include col--sm_18;
-}
-.col--s_19 {
-    @include col--sm_19;
-}
-.col--s_20 {
-    @include col--sm_20;
-}
-.col--s_21 {
-    @include col--sm_21;
-}
-.col--s_22 {
-    @include col--sm_22;
-}
-.col--s_23 {
-    @include col--sm_23;
-}
-.col--s_24 {
-    @include col--sm_24;
-}
-
-// Utility mixins for specific medium screen column spans
-/// @group Grid Column
-@mixin col--md_1 {
-    @include col--md(1);
-}
-@mixin col--md_2 {
-    @include col--md(2);
-}
-@mixin col--md_3 {
-    @include col--md(3);
-}
-@mixin col--md_4 {
-    @include col--md(4);
-}
-@mixin col--md_5 {
-    @include col--md(5);
-}
-@mixin col--md_6 {
-    @include col--md(6);
-}
-@mixin col--md_7 {
-    @include col--md(7);
-}
-@mixin col--md_8 {
-    @include col--md(8);
-}
-@mixin col--md_9 {
-    @include col--md(9);
-}
-@mixin col--md_10 {
-    @include col--md(10);
-}
-@mixin col--md_11 {
-    @include col--md(11);
-}
-@mixin col--md_12 {
-    @include col--md(12);
-}
-@mixin col--md_13 {
-    @include col--md(13);
-}
-@mixin col--md_14 {
-    @include col--md(14);
-}
-@mixin col--md_15 {
-    @include col--md(15);
-}
-@mixin col--md_16 {
-    @include col--md(16);
-}
-@mixin col--md_17 {
-    @include col--md(17);
-}
-@mixin col--md_18 {
-    @include col--md(18);
-}
-@mixin col--md_19 {
-    @include col--md(19);
-}
-@mixin col--md_20 {
-    @include col--md(20);
-}
-@mixin col--md_21 {
-    @include col--md(21);
-}
-@mixin col--md_22 {
-    @include col--md(22);
-}
-@mixin col--md_23 {
-    @include col--md(23);
-}
-@mixin col--md_24 {
-    @include col--md(24);
-}
-
-// Utility classes for specific medium screen column spans
-/// @group Grid Column
-.col--m_1 {
-    @include col--md_1;
-}
-.col--m_2 {
-    @include col--md_2;
-}
-.col--m_3 {
-    @include col--md_3;
-}
-.col--m_4 {
-    @include col--md_4;
-}
-.col--m_5 {
-    @include col--md_5;
-}
-.col--m_6 {
-    @include col--md_6;
-}
-.col--m_7 {
-    @include col--md_7;
-}
-.col--m_8 {
-    @include col--md_8;
-}
-.col--m_9 {
-    @include col--md_9;
-}
-.col--m_10 {
-    @include col--md_10;
-}
-.col--m_11 {
-    @include col--md_11;
-}
-.col--m_12 {
-    @include col--md_12;
-}
-.col--m_13 {
-    @include col--md_13;
-}
-.col--m_14 {
-    @include col--md_14;
-}
-.col--m_15 {
-    @include col--md_15;
-}
-.col--m_16 {
-    @include col--md_16;
-}
-.col--m_17 {
-    @include col--md_17;
-}
-.col--m_18 {
-    @include col--md_18;
-}
-.col--m_19 {
-    @include col--md_19;
-}
-.col--m_20 {
-    @include col--md_20;
-}
-.col--m_21 {
-    @include col--md_21;
-}
-.col--m_22 {
-    @include col--md_22;
-}
-.col--m_23 {
-    @include col--md_23;
-}
-.col--m_24 {
-    @include col--md_24;
-}
-
-// Utility mixins for specific large screen column spans
-/// @group Grid Column
-@mixin col--lg_1 {
-    @include col--lg(1);
-}
-@mixin col--lg_2 {
-    @include col--lg(2);
-}
-@mixin col--lg_3 {
-    @include col--lg(3);
-}
-@mixin col--lg_4 {
-    @include col--lg(4);
-}
-@mixin col--lg_5 {
-    @include col--lg(5);
-}
-@mixin col--lg_6 {
-    @include col--lg(6);
-}
-@mixin col--lg_7 {
-    @include col--lg(7);
-}
-@mixin col--lg_8 {
-    @include col--lg(8);
-}
-@mixin col--lg_9 {
-    @include col--lg(9);
-}
-@mixin col--lg_10 {
-    @include col--lg(10);
-}
-@mixin col--lg_11 {
-    @include col--lg(11);
-}
-@mixin col--lg_12 {
-    @include col--lg(12);
-}
-@mixin col--lg_13 {
-    @include col--lg(13);
-}
-@mixin col--lg_14 {
-    @include col--lg(14);
-}
-@mixin col--lg_15 {
-    @include col--lg(15);
-}
-@mixin col--lg_16 {
-    @include col--lg(16);
-}
-@mixin col--lg_17 {
-    @include col--lg(17);
-}
-@mixin col--lg_18 {
-    @include col--lg(18);
-}
-@mixin col--lg_19 {
-    @include col--lg(19);
-}
-@mixin col--lg_20 {
-    @include col--lg(20);
-}
-@mixin col--lg_21 {
-    @include col--lg(21);
-}
-@mixin col--lg_22 {
-    @include col--lg(22);
-}
-@mixin col--lg_23 {
-    @include col--lg(23);
-}
-@mixin col--lg_24 {
-    @include col--lg(24);
-}
-
-// Utility classes for specific large screen column spans
-/// @group Grid Column
-.col--l_1 {
-    @include col--lg_1;
-}
-.col--l_2 {
-    @include col--lg_2;
-}
-.col--l_3 {
-    @include col--lg_3;
-}
-.col--l_4 {
-    @include col--lg_4;
-}
-.col--l_5 {
-    @include col--lg_5;
-}
-.col--l_6 {
-    @include col--lg_6;
-}
-.col--l_7 {
-    @include col--lg_7;
-}
-.col--l_8 {
-    @include col--lg_8;
-}
-.col--l_9 {
-    @include col--lg_9;
-}
-.col--l_10 {
-    @include col--lg_10;
-}
-.col--l_11 {
-    @include col--lg_11;
-}
-.col--l_12 {
-    @include col--lg_12;
-}
-.col--l_13 {
-    @include col--lg_13;
-}
-.col--l_14 {
-    @include col--lg_14;
-}
-.col--l_15 {
-    @include col--lg_15;
-}
-.col--l_16 {
-    @include col--lg_16;
-}
-.col--l_17 {
-    @include col--lg_17;
-}
-.col--l_18 {
-    @include col--lg_18;
-}
-.col--l_19 {
-    @include col--lg_19;
-}
-.col--l_20 {
-    @include col--lg_20;
-}
-.col--l_21 {
-    @include col--lg_21;
-}
-.col--l_22 {
-    @include col--lg_22;
-}
-.col--l_23 {
-    @include col--lg_23;
-}
-.col--l_24 {
-    @include col--lg_24;
+.grid__col--24 {
+    @include grid__col--24;
 }
