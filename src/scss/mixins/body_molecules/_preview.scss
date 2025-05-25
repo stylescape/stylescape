@@ -1,10 +1,10 @@
 @use "../../functions" as *;
 @use "../../dev" as *;
 @use "../../variables" as *;
-@use "../head_grid" as *;
+
 @use "../soul_type" as *;
 @use "../body_atoms" as *;
-// @use "mixins" as *;
+@use "../head_layout" as *;
 
 // Define your variables (in _variables.scss or similar)
 $preview_box--border--color: var(--color-border, #ccc);
@@ -30,7 +30,7 @@ $preview-box-label-bg: #f8f8f8;
 
 @mixin preview_box--horizontal {
     @include preview_box;
-    @include grid__col--24;
+    @include grid--size--col(24);
     > *:not(:last-child) {
         border-right: $preview_box--border--width solid
             $preview_box--border--color;
@@ -99,7 +99,7 @@ $preview-box-label-bg: #f8f8f8;
 }
 
 .preview_box--horizontal .preview_box__code {
-    @include col--6;
+    @include grid--span--col(6);
     @include font--size("03");
     color: #555;
     display: block;
@@ -107,13 +107,13 @@ $preview-box-label-bg: #f8f8f8;
 }
 
 .preview_box--horizontal .preview_box__live {
-    @include col--18;
+    @include grid--span--col(18);
     word-wrap: break-word;
 }
 
 .preview_box__info {
     @include box--surface(1);
-    @include grid__col--2;
+    @include grid--size--col(2);
     font-size: 0.8rem;
     text-transform: uppercase;
 }

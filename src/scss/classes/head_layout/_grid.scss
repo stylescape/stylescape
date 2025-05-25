@@ -1,0 +1,108 @@
+////
+///
+/// Grid Layout Mixins Module
+/// ===========================================================================
+///
+/// @group Grid
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../mixins" as *;
+
+// ============================================================================
+// Grid Layout | Parent Containers
+// ============================================================================
+
+.grid__layout {
+    @include grid__layout;
+}
+.grid__layout--inline {
+    @include grid__layout--inline;
+}
+.grid__layout--flex {
+    @include grid__layout--flex;
+}
+
+// ============================================================================
+// Grid Flow
+// ============================================================================
+
+// ============================================================================
+// Grid Span
+// ============================================================================
+
+// Grid Column Span
+// ============================================================================
+
+/// Utility classes for column spans 1–24 and responsive variants
+@for $i from 1 through 24 {
+    .grid--span--col--#{$i} {
+        @include grid--span--col($i);
+    }
+    .grid--span--col--sm--#{$i} {
+        @include grid--span--col--sm($i);
+    }
+    .grid--span--col--md--#{$i} {
+        @include grid--span--col--md($i);
+    }
+    .grid--span--col--lg--#{$i} {
+        @include grid--span--col--lg($i);
+    }
+}
+
+// Grid Row Span
+// ============================================================================
+
+/// Utility classes for row spans 1–24 and responsive variants
+@for $i from 1 through 24 {
+    .grid--span--row--#{$i} {
+        @include grid--span--row($i);
+    }
+    .grid--span--row--sm--#{$i} {
+        @include grid--span--row--sm($i);
+    }
+    .grid--span--row--md--#{$i} {
+        @include grid--span--row--md($i);
+    }
+    .grid--span--row--lg--#{$i} {
+        @include grid--span--row--lg($i);
+    }
+}
+
+// ============================================================================
+// Grid Size
+// ============================================================================
+
+// Grid Column Size
+// ============================================================================
+
+// Generate utility classes for 1–24 columns
+@for $i from 1 through 24 {
+    /// Utility class: .grid--size--col--#{$i}
+    .grid--size--col--#{$i} {
+        @include grid--size--col($i);
+    }
+}
+
+// Grid Row Size
+// ============================================================================
+
+// Generate utility classes for 1–24 rowumns
+@for $i from 1 through 24 {
+    /// Utility class: .grid__row--#{$i}
+    .grid--size--row--#{$i} {
+        @include grid--size--row($i);
+    }
+}
+
+/// Utility class for setting grid rows to `auto`.
+/// @group Grid Rows
+.grid__row--auto {
+    @include grid__row--auto;
+}
