@@ -7,7 +7,7 @@
 @use "../soul_type" as *;
 
 // Base Divider Mixin
-@mixin divider--base($thickness: q(1), $color: var(--color_foreground)) {
+@mixin divider--base($thickness: q(1), $color: var(--color_text_primary)) {
     border: none;
     background-color: $color;
     height: $thickness;
@@ -35,13 +35,13 @@
 .divider--dotted {
     @include divider--base(q(2));
     background-color: transparent;
-    border-top: q(2) dotted var(--color_foreground);
+    border-top: q(2) dotted var(--color_text_primary);
     height: 0;
 }
 
 // Vertical Divider
 .divider--vertical {
-    @include divider--base(100%, var(--color_foreground));
+    @include divider--base(100%, var(--color_text_primary));
     width: 100%;
     height: auto;
     min-height: baseline(8);

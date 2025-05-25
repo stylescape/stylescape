@@ -10,7 +10,7 @@
 @use "../soul_type" as *;
 // @use "../animation" as *;
 
-$table_border_color: #000000;
+$table_border_color: var(--color_text_primary);
 $table_cell_padding_y: q(2);
 $table_cell_padding_x: q(4);
 
@@ -24,7 +24,7 @@ $table_cell_padding_x: q(4);
 //     table-active-bg: #{$table-active-bg};
 //     table-hover-color: #{$table-hover-color};
 //     table-hover-bg: #{$table-hover-bg};
-// q(1) solid #000000;
+// q(1) solid var(--color_text_primary);
 
 // -----------------------------------------------------------------------------
 // Base Table
@@ -109,7 +109,7 @@ $table_cell_padding_x: q(4);
     @include character--bold;
     vertical-align: bottom;
     // text-align: left;
-    // background-color: var(--color_surface_3);
+    // background-color: var(--color_fill_tertiary);
     // color: var(--color_text_default);
     // padding: $q * 4;
 }
@@ -120,7 +120,7 @@ $table_cell_padding_x: q(4);
     vertical-align: inherit;
     // padding: $q * 4;
     // color: var(--color_text_default);
-    // background-color: var(--color_surface_1);
+    // background-color: var(--color_fill_primary);
 }
 
 /// Footer cell styling.
@@ -277,7 +277,7 @@ table.caption-bottom {
 @mixin table--striped--horizontal {
     @include table--base;
     tbody tr:nth-child(odd) {
-        background-color: var(--color_surface_2);
+        background-color: var(--color_fill_secondary);
     }
 }
 /// Adds alternating background to table columns.
@@ -288,7 +288,7 @@ table.caption-bottom {
     tbody tr {
         td:nth-child(odd),
         th:nth-child(odd) {
-            background-color: var(--color_surface_2);
+            background-color: var(--color_fill_secondary);
         }
     }
 }
@@ -320,7 +320,7 @@ table.caption-bottom {
 
 /// Hover effect on entire table row (horizontal highlight).
 /// @group Table
-@mixin table--hover--horizontal($color: var(--color_surface_2)) {
+@mixin table--hover--horizontal($color: var(--color_fill_secondary)) {
     tbody tr:hover {
         background-color: $color;
     }
@@ -329,7 +329,7 @@ table.caption-bottom {
 /// Hover effect on individual cells (vertical-like highlight).
 /// Technically applied on td/th individually.
 /// @group Table
-@mixin table--hover--vertical($color: var(--color_surface_2)) {
+@mixin table--hover--vertical($color: var(--color_fill_secondary)) {
     tbody td:hover,
     tbody th:hover {
         background-color: $color;
@@ -339,7 +339,7 @@ table.caption-bottom {
 /// Combined hover effect: row + cell.
 /// Useful when highlighting both contextually.
 /// @group Table
-@mixin table--hover--combined($color: var(--color_surface_2)) {
+@mixin table--hover--combined($color: var(--color_fill_secondary)) {
     @include table--hover--horizontal($color);
     @include table--hover--vertical($color);
 }

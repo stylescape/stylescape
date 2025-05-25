@@ -15,6 +15,12 @@ const execAsync = promisify(exec);
 const rootDir = process.cwd();
 
 
+import { parse } from 'url';
+
+function getReloadPath() {
+    const pathname = parse(new URL('http://localhost:3000' + (globalThis.__CURRENT_PATH__ || '/')).pathname).pathname;
+    return pathname.endsWith('/') ? pathname + 'index.html' : pathname;
+}
 
 const watchGlobs = [
     'src/ts/**/*',
@@ -37,10 +43,18 @@ async function runKist(server) {
         if (stderr) console.error('[Kist] stderr:', stderr);
         console.log('[Kist] ✅ Build complete');
 
+        // setTimeout(() => {
+        //     server?.ws.send({
+        //         type: 'full-reload',
+        //         path: '*'
+        //     });
+        // }, 200);
+
         setTimeout(() => {
+            const pathToReload = getReloadPath();
             server?.ws.send({
                 type: 'full-reload',
-                path: '*'
+                path: pathToReload
             });
         }, 200);
 

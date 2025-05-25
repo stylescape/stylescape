@@ -1,6 +1,6 @@
 ////
 ///
-/// Accordion Components Mixins Module
+/// Cards Components Mixins Module
 /// ===========================================================================
 ///
 /// @group Components
@@ -466,6 +466,108 @@
 //     @return (background-image: linear-gradient($direction, $start_color, $end_color));
 // }
 
+// ============================================================================
+// Components | Card Mixins
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../head_layout" as *;
+@use "../head_grid" as *;
+@use "../soul_type" as *;
+
+// -----------------------------------------------------------------------------
+// Card Base
+// -----------------------------------------------------------------------------
+
+@mixin card--base {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: var(--card-bg);
+    color: var(--card-color);
+    border: var(--card-border-width) solid var(--card-border-color);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-box-shadow);
+    overflow: hidden;
+}
+
+@mixin card--hover {
+    transition:
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+    &:hover {
+        box-shadow: var(--card-hover-shadow);
+        transform: scale(1.02);
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Card Sections
+// -----------------------------------------------------------------------------
+
+@mixin card--header {
+    padding: var(--card-cap-padding-y) var(--card-cap-padding-x);
+    background-color: var(--card-cap-bg);
+    color: var(--card-cap-color);
+    border-bottom: var(--card-border-width) solid var(--card-border-color);
+    border-top-left-radius: var(--card-inner-border-radius);
+    border-top-right-radius: var(--card-inner-border-radius);
+}
+
+@mixin card--footer {
+    padding: var(--card-cap-padding-y) var(--card-cap-padding-x);
+    background-color: var(--card-cap-bg);
+    color: var(--card-cap-color);
+    border-top: var(--card-border-width) solid var(--card-border-color);
+    border-bottom-left-radius: var(--card-inner-border-radius);
+    border-bottom-right-radius: var(--card-inner-border-radius);
+}
+
+@mixin card--body {
+    flex: 1 1 auto;
+    padding: var(--card-spacer-y) var(--card-spacer-x);
+    color: var(--card-color);
+}
+
+@mixin card--title {
+    margin-bottom: var(--card-title-spacer-y);
+    font-weight: bold;
+    color: var(--card-title-color);
+}
+
+@mixin card--subtitle {
+    margin-top: calc(-0.5 * var(--card-title-spacer-y));
+    margin-bottom: 0;
+    color: var(--card-subtitle-color);
+}
+
+@mixin card--image-top {
+    width: 100%;
+    border-top-left-radius: var(--card-inner-border-radius);
+    border-top-right-radius: var(--card-inner-border-radius);
+    overflow: hidden;
+}
+
+@mixin card--image-bottom {
+    width: 100%;
+    border-bottom-left-radius: var(--card-inner-border-radius);
+    border-bottom-right-radius: var(--card-inner-border-radius);
+    overflow: hidden;
+}
+
+@mixin card--image-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: var(--card-img-overlay-padding);
+    border-radius: var(--card-inner-border-radius);
+}
+
 // $gradient: hue_background_gradient('N0001', 'N0009', 135deg);
 
 .system_card_wrapper {
@@ -498,10 +600,10 @@
                 height: 50%;
                 width: 50%;
                 margin: auto 0 auto;
-                color: #ffffff;
-                fill: #ffffff;
+                color: var(--color_surface_primary) fff;
+                fill: var(--color_surface_primary) fff;
                 * {
-                    color: #ffffff;
+                    color: var(--color_surface_primary) fff;
                 }
             }
         }

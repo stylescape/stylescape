@@ -28,17 +28,144 @@
 // Mixins
 // ============================================================================
 
-/// Style the buttons that are used to open and close the accordion panel
-.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: q(16);
+// ============================================================================
+// Components | Accordion | Mixins
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../head_layout" as *;
+@use "../head_grid" as *;
+@use "../soul_type" as *;
+
+/// Accordion base container
+@mixin accordion--base {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    text-align: left;
+    border-radius: var(--accordion-border-radius);
+    overflow: hidden;
+    background-color: var(--accordion-bg);
+    color: var(--accordion-color);
+}
+
+/// Accordion item wrapper
+@mixin accordion--item {
+    border: var(--accordion-border-width) solid var(--accordion-border-color);
+    background-color: var(--accordion-bg);
+}
+
+/// Accordion header
+@mixin accordion--header {
+    margin: 0;
+    padding: 0;
+}
+
+/// Accordion toggle button
+@mixin accordion--button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: var(--accordion-btn-padding-y) var(--accordion-btn-padding-x);
+    font-size: inherit;
+    background-color: var(--accordion-btn-bg);
+    color: var(--accordion-btn-color);
     border: none;
-    outline: none;
-    transition: 0.4s;
+    text-align: left;
+    cursor: pointer;
+    transition: var(--accordion-transition);
+
+    &::after {
+        content: "";
+        margin-left: auto;
+        background-image: var(--accordion-btn-icon);
+        width: var(--accordion-btn-icon-width);
+        height: var(--accordion-btn-icon-width);
+        background-repeat: no-repeat;
+        background-size: contain;
+        transition: var(--accordion-btn-icon-transition);
+    }
+
+    &:not(.collapsed) {
+        background-color: var(--accordion-active-bg);
+        color: var(--accordion-active-color);
+
+        &::after {
+            background-image: var(--accordion-btn-active-icon);
+            transform: var(--accordion-btn-icon-transform);
+        }
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: var(--accordion-btn-focus-box-shadow);
+    }
+}
+
+/// Accordion body content
+@mixin accordion--body {
+    padding: var(--accordion-body-padding-y) var(--accordion-body-padding-x);
+}
+
+/// Flush style (no borders or border radius)
+@mixin accordion--flush {
+    border: none;
+    border-radius: 0;
+
+    > .accordion--item {
+        border: none;
+        border-radius: 0;
+
+        &:first-child {
+            border-top: none;
+        }
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
+
+/// Style the buttons that are used to open and close the accordion panel
+// .accordion {
+//     background-color: #eee;
+//     color: #444;
+//     cursor: pointer;
+//     padding: q(16);
+//     width: 100%;
+//     text-align: left;
+//     border: none;
+//     outline: none;
+//     transition: 0.4s;
+// }
+
+/// Accordion base container
+.accordion {
+    @include accordion--base;
+}
+
+/// Accordion item wrapper
+.accordion__item {
+    @include accordion--item;
+}
+
+/// Accordion header
+.accordion__header {
+    @include accordion--header;
+}
+
+/// Accordion toggle button
+.accordion__button {
+    @include accordion--button;
+}
+
+/// Accordion body content
+.accordion__body {
+    @include accordion--body;
+}
+
+/// Accordion flush modifier
+.accordion--flush {
+    @include accordion--flush;
 }
 
 // //

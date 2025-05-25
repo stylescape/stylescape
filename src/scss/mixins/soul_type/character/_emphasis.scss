@@ -16,15 +16,15 @@
 // Use
 // ============================================================================
 
-@use '../../../dev' as *;
-@use '../../../variables' as *;
+@use "../../../dev" as *;
+@use "../../../variables" as *;
 
-@use '../font/font_default' as *;
-@use '../font/font_weight' as *;
-@use '../font/font_size' as *;
+@use "../font/font_default" as *;
+@use "../font/font_weight" as *;
+@use "../font/font_size" as *;
 
-@use 'base_default' as *;
-@use 'base_normal' as *;
+@use "base_default" as *;
+@use "base_normal" as *;
 
 // ============================================================================
 // Mixins
@@ -36,7 +36,9 @@
 
 /// Variables for default emphasis styles.
 $default-emphasis-style: filled dot;
-$default-emphasis-color: var(--color_secondary); // Replace with your default color variable
+$default-emphasis-color: var(
+    --color_fill_primary
+); // Replace with your default color variable
 $default-emphasis-position: over left;
 
 /// Mixin for applying text emphasis with customizable parameters.
@@ -57,7 +59,7 @@ $default-emphasis-position: over left;
     text-emphasis-color: $color;
     text-emphasis-position: $position;
     // Ensure compatibility with WebKit browsers
-    -webkit-text-emphasis: $style var(--color_secondary);
+    -webkit-text-emphasis: $style var(--color_fill_primary);
     // -webkit-text-emphasis-style: $style;
     // -webkit-text-emphasis-color: $color;
     // -webkit-text-emphasis-position: $position;
@@ -66,9 +68,9 @@ $default-emphasis-position: over left;
 // @mixin character--emphasis {
 //     //text-emphasis: none;
 //     text-emphasis-style: filled dot;              // none | [ [ filled | open ] || [ dot | circle | double-circle | triangle | sesame ] ] | <string>
-//     text-emphasis-color: var(--color_secondary);    // currentcolor | <color>
+//     text-emphasis-color: var(--color_fill_primary);    // currentcolor | <color>
 //     text-emphasis-position: over left;             // [ over | under ] && [ right | left ]
-//     -webkit-text-emphasis: filled dot var(--color_secondary);
+//     -webkit-text-emphasis: filled dot var(--color_fill_primary);
 // }
 
 /// Utility classes for different emphasis styles.
@@ -76,7 +78,11 @@ $default-emphasis-position: over left;
 ///
 /// These classes apply various emphasis styles to elements.
 .emphasis-dot {
-    @include character--emphasis(filled dot, $default-emphasis-color, $default-emphasis-position);
+    @include character--emphasis(
+        filled dot,
+        $default-emphasis-color,
+        $default-emphasis-position
+    );
 }
 
 .emphasis-circle {
@@ -96,11 +102,19 @@ $default-emphasis-position: over left;
 }
 
 .emphasis-triangle {
-    @include character--emphasis(triangle, $default-emphasis-color, $default-emphasis-position);
+    @include character--emphasis(
+        triangle,
+        $default-emphasis-color,
+        $default-emphasis-position
+    );
 }
 
 .emphasis-sesame {
-    @include character--emphasis(sesame, $default-emphasis-color, $default-emphasis-position);
+    @include character--emphasis(
+        sesame,
+        $default-emphasis-color,
+        $default-emphasis-position
+    );
 }
 
 /// Applying emphasis to italic elements.

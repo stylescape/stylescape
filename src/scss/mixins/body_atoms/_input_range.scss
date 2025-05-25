@@ -33,12 +33,12 @@ input[type="range"].win10-thumb {
     --clip-edges: 0.125em;
     --thumb-size: #{$slider-thumb-size};
     --track-height: #{$slider-track-height};
-    --track-color: var(--color_surface_1);
-    --fill-color: var(--color_primary);
+    --track-color: var(--color_fill_primary);
+    --fill-color: var(--color_text_primary);
     --thumb-size: q(16); // 16×16 circle
     --track-height: q(10); // visible line
-    --track-color: var(--color_surface_1);
-    --fill-color: var(--color_primary);
+    --track-color: var(--color_fill_primary);
+    --fill-color: var(--color_text_primary);
     --track-gap: calc((var(--thumb-size) - var(--track-height)) / 2);
     --thumb-half: calc(var(--thumb-size) / 2);
 
@@ -58,13 +58,13 @@ input[type="range"].win10-thumb {
     appearance: none;
     -webkit-appearance: none;
     background: transparent;
-    background: #fff0;
+    background: var(--color_surface_primary) 0;
     // background: linear-gradient(
     //     to right,
-    //     var(--color_primary) 0%,
-    //     var(--color_primary) var(--range-percent, 50%),
-    //     var(--color_surface_1) var(--range-percent, 50%),
-    //     var(--color_surface_1) 100%
+    //     var(--color_text_primary) 0%,
+    //     var(--color_text_primary) var(--range-percent, 50%),
+    //     var(--color_fill_primary) var(--range-percent, 50%),
+    //     var(--color_fill_primary) 100%
     // );
     color: #ef233c;
 
@@ -197,7 +197,7 @@ input[type="range"].win10-thumb {
         margin-top: var(--track-gap);
         background-color: var(--track-color);
         border-radius: q(4);
-        background: #fff0;
+        background: var(--color_surface_primary) 0;
 
         height: var(--track-height);
         background-color: var(--track-color);
@@ -213,7 +213,7 @@ input[type="range"].win10-thumb {
         margin-top: var(--track-gap);
         background-color: var(--fill-color);
         border-radius: q(4);
-        background: #fff0;
+        background: var(--color_surface_primary) 0;
 
         height: var(--track-height);
         background-color: var(--fill-color);
@@ -237,10 +237,10 @@ input[type="range"].win10-thumb {
         border-radius: 50%;
         // border-radius: var(--thumb-width, var(--thumb-height));
         border: none;
-        background: #fff0;
+        background: var(--color_surface_primary) 0;
         // width: q(16);
         // height: q(16);
-        // background-color: var(--color_primary);
+        // background-color: var(--color_text_primary);
         // border: none;
         // border-radius: 50%;
         // transition: background 0.3s ease;
@@ -351,11 +351,15 @@ input[type="range"] {
 
 @media (prefers-color-scheme: dark) {
     html {
-        background-color: #000;
+        background-color: var(--color_text_primary);
     }
 
     html::before {
-        background: radial-gradient(circle at center, #101112, #000);
+        background: radial-gradient(
+            circle at center,
+            #101112,
+            var(--color_text_primary)
+        );
     }
 
     input[type="range"] {

@@ -23,7 +23,8 @@
 @use "../head_grid" as *;
 @use "../soul_type" as *;
 
-.breadcrumb {
+/// Base breadcrumb container
+@mixin breadcrumb--base {
     background: transparent;
     border-radius: 0;
     padding-top: 0;
@@ -31,32 +32,70 @@
     margin: 0;
 }
 
-.breadcrumb ul {
+/// Breadcrumb list styling
+@mixin breadcrumb--list {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-.breadcrumb ul li {
+/// Breadcrumb list item
+@mixin breadcrumb--item {
     display: inline-block;
     line-height: normal;
+
+    &::after {
+        content: "\f111";
+        // font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        padding: 0 q(1) 0 q(14);
+        display: inline-block;
+        vertical-align: middle;
+        font-size: q(5);
+        opacity: 0.6;
+    }
+
+    &:last-child::after {
+        content: "";
+        padding: 0;
+    }
 }
 
-.breadcrumb ul > li:after {
-    content: "\f111";
-    font-family: Font Awesome\5 Free;
-    font-weight: 900;
-    padding: 0 q(1) 0 q(14);
-    display: inline-block;
-    vertical-align: middle;
-    font-size: q(5);
-    opacity: 0.6;
-}
+// .breadcrumb ul li {
+//     display: inline-block;
+//     line-height: normal;
+// }
 
-.breadcrumb ul > li:last-child:after {
-    border-right: 0;
-    content: "";
-    padding: 0;
+// .breadcrumb ul > li:after {
+//     content: "\f111";
+//     font-family: Font Awesome\5 Free;
+//     font-weight: 900;
+//     padding: 0 q(1) 0 q(14);
+//     display: inline-block;
+//     vertical-align: middle;
+//     font-size: q(5);
+//     opacity: 0.6;
+// }
+
+// .breadcrumb ul > li:last-child:after {
+//     border-right: 0;
+//     content: "";
+//     padding: 0;
+// }
+
+.breadcrumb {
+    @include breadcrumb--base;
+
+    ul {
+        @include breadcrumb--list;
+
+        li {
+            @include breadcrumb--item;
+        }
+    }
 }
 
 // .breadcrumb {

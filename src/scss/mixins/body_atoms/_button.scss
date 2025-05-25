@@ -196,8 +196,8 @@ $button_size_map: (
 
 /// Solid button variant
 @mixin button--solid {
-    background: var(--color_primary);
-    color: var(--color_light);
+    background: var(--color_text_primary);
+    color: var(--color_fill_primary);
 
     &:hover {
         background: hue_color("N2402");
@@ -209,16 +209,16 @@ $button_size_map: (
         border: q(2) solid hue_color("N2404");
     }
     &:disabled {
-        background: var(--color_muted);
-        color: var(--color_dark);
+        background: var(--color_state_muted);
+        color: var(--color_text_primary);
         cursor: not-allowed;
     }
 }
 
 /// Outline variant
 @mixin button--outline {
-    border: q(1) solid var(--color_primary);
-    color: var(--color_primary);
+    border: q(1) solid var(--color_text_primary);
+    color: var(--color_text_primary);
     background: none;
 
     &:hover {
@@ -231,8 +231,8 @@ $button_size_map: (
         border: q(2) solid hue_color("N2404");
     }
     &:disabled {
-        border-color: var(--color_muted);
-        color: var(--color_muted);
+        border-color: var(--color_state_muted);
+        color: var(--color_state_muted);
         cursor: not-allowed;
     }
 }
@@ -240,7 +240,7 @@ $button_size_map: (
 /// Clear/ghost button
 @mixin button--clear {
     background: none;
-    color: var(--color_primary);
+    color: var(--color_text_primary);
 
     &:hover {
         background: hue_color("N2402");
@@ -252,7 +252,7 @@ $button_size_map: (
         border: q(2) solid hue_color("N2404");
     }
     &:disabled {
-        color: var(--color_muted);
+        color: var(--color_state_muted);
         cursor: not-allowed;
     }
 }
@@ -383,7 +383,7 @@ button {
 //         margin: 0.q(32);
 //         border-radius: 50%;
 //         border: q(1) solid black;
-//         background-color: #fff;
+//         background-color: var(--color_surface_primary);
 //         // display: flex;
 //         justify-content: center;
 //         align-items: center;

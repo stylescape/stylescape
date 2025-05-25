@@ -8,21 +8,21 @@ Right now, your maps are flat. You might consider grouping them semantically, fo
 
 $color_system_light: (
   base: (
-    background: $color_light_background,
-    foreground: $color_light_foreground,
-    muted: $color_light_muted,
+    background: $color_light_surface_primary,
+    foreground: $color_light_text_primary,
+    muted: $color_light_state_muted,
     accent: $color_light_accent,
   ),
   feedback: (
-    info: $color_light_info,
-    success: $color_light_success,
+    info: $color_light_log_info,
+    success: $color_light_log_success,
     warning: $color_light_warning,
-    error: $color_light_error,
+    error: $color_light_log_error,
   ),
   brand: (
-    primary: $color_light_primary,
-    secondary: $color_light_secondary,
-    tertiary: $color_light_tertiary,
+    primary: $color_light_accent_primary,
+    secondary: $color_light_accent_secondary,
+    tertiary: $color_light_accent_tertiary,
   ),
   surface: (
     1: $color_light_surface_1,
@@ -55,19 +55,19 @@ This approach improves clarity for large design systems.
 
 ⸻
 
-✅ 2. Add a get-color() SCSS Function
+✅ 2. Add a get_color() SCSS Function
 
 This allows easy access to tokens in stylesheets:
 
-@function get-color($key) {
+@function get_color($key) {
   @return map.get($color_theme, $key);
 }
 
 Usage:
 
 body {
-  background-color: get-color(background);
-  color: get-color(foreground);
+  background-color: get_color(background);
+  color: get_color(foreground);
 }
 
 ⸻
@@ -89,8 +89,8 @@ document.documentElement.setAttribute('data-theme', 'dark');
 If SCSS fails to inject variables for some reason, ensure browser fallbacks:
 
 body {
-  background-color: var(--color_background, #fff);
-  color: var(--color_foreground, #000);
+  background-color: var(--color_background, var(--color_surface_primary));
+  color: var(--color_foreground, var(--color_text_primary));
 }
 
 ⸻

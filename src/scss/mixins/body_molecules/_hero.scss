@@ -2,12 +2,171 @@
 // Components | Hero
 // ============================================================================
 
-@use "../../dev" as *;
+@use "sass:map";
+@use "sass:color";
 @use "../../variables" as *;
+@use "../../dev" as *;
 
 @use "../head_layout" as *;
 @use "../head_grid" as *; // @use "../elements" as *;
 @use "../soul_type" as *;
+
+// ============================================================================
+// Mixins | Hero Component
+// ============================================================================
+
+// -----------------------------------------------------------------------------
+// Hero Size Mixins
+// -----------------------------------------------------------------------------
+
+@mixin hero--size($size) {
+    @if $size == small {
+        .hero-body {
+            padding: $hero-body-padding-small;
+        }
+    } @else if $size == medium {
+        @include tablet {
+            .hero-body {
+                padding: $hero-body-padding-medium;
+            }
+        }
+    } @else if $size == large {
+        @include tablet {
+            .hero-body {
+                padding: $hero-body-padding-large;
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Hero Height Variants
+// -----------------------------------------------------------------------------
+
+@mixin hero--height($variant) {
+    @if $variant == halfheight {
+        min-height: 50vh;
+    } @else if $variant == fullheight {
+        min-height: 100vh;
+    }
+    .hero-body {
+        display: flex;
+        align-items: center;
+        > .container {
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Hero Colors (Dynamic)
+// -----------------------------------------------------------------------------
+
+@mixin hero--color($name, $pair) {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+
+    background-color: $color;
+    color: $color-invert;
+
+    a:not(.button):not(.dropdown-item):not(.tag):not(
+            .pagination-link.is-current
+        ),
+    strong {
+        color: inherit;
+    }
+    .title {
+        color: $color-invert;
+    }
+    .subtitle {
+        color: rgba($color-invert, 0.9);
+        a:not(.button),
+        strong {
+            color: $color-invert;
+        }
+    }
+    .navbar-item,
+    .navbar-link {
+        color: rgba($color-invert, 0.7);
+        &:hover,
+        &.is-active {
+            background-color: darken($color, 5%);
+            color: $color-invert;
+        }
+    }
+    .tabs a {
+        color: $color-invert;
+        opacity: 0.9;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    .tabs li.is-active a {
+        color: $color !important;
+        opacity: 1;
+    }
+    .tabs.is-boxed a,
+    .tabs.is-toggle a {
+        color: $color-invert;
+        &:hover {
+            background-color: rgba($color-invert, 0.1);
+        }
+    }
+    .tabs li.is-active a {
+        background-color: $color-invert;
+        border-color: $color-invert;
+        color: $color;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Hero Video Modifier
+// -----------------------------------------------------------------------------
+
+@mixin hero--video($transparent: false) {
+    position: absolute;
+    overflow: hidden;
+    video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        transform: translate3d(-50%, -50%, 0);
+    }
+    @if $transparent {
+        opacity: 0.3;
+    }
+    @include mobile {
+        display: none;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Hero Buttons Block
+// -----------------------------------------------------------------------------
+
+@mixin hero--buttons {
+    margin-top: q(24);
+
+    @include mobile {
+        .button {
+            display: flex;
+            &:not(:last-child) {
+                margin-bottom: q(12);
+            }
+        }
+    }
+
+    @include tablet {
+        display: flex;
+        justify-content: center;
+        .button:not(:last-child) {
+            margin-right: q(24);
+        }
+    }
+}
 
 // @import "../utilities/mixins"
 
