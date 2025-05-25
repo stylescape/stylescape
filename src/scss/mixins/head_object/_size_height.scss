@@ -1,0 +1,129 @@
+////
+///
+/// Layout Mixins Module
+/// ===========================================================================
+///
+/// @group ObjectSize
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../variables" as *;
+
+// ============================================================================
+// Height Utilities
+// ============================================================================
+
+// Height Tokens Map
+$object_height_map: (
+    xs: 10,
+    sm: 15,
+    md: 20,
+    lg: 30,
+    xl: 40
+) !default;
+
+///
+/// Resolves a height value from a number or a map token key.
+///
+@function resolve-height($value) {
+    @if map.has-key($object_height_map, $value) {
+        @return map.get($object_height_map, $value);
+    }
+    @return $value;
+}
+
+///
+/// Sets a height value for an element.
+///
+/// @param {Number | String} $value - The height value to apply (in q units).
+/// @example scss - Set height to 64q
+///   @include object--height(64);
+///
+@mixin object--height($value) {
+    height: q(resolve-height($value));
+}
+
+///
+/// Sets a minimum height value for an element.
+///
+/// @param {Number | String} $value - The minimum height value to apply (in q units).
+/// @example scss - Set min-height to 32q
+///   @include object--height--min(32);
+///
+@mixin object--height--min($value) {
+    min-height: q(resolve-height($value));
+}
+
+///
+/// Sets a maximum height value for an element.
+///
+/// @param {Number | String} $value - The maximum height value to apply (in q units).
+/// @example scss - Set max-height to 96q
+///   @include object--height--max(96);
+///
+@mixin object--height--max($value) {
+    max-height: q(resolve-height($value));
+}
+
+///
+/// Sets a fixed height (both height and max-height).
+///
+/// @param {Number | String} $value - The fixed height value (in q units).
+/// @example scss - Set fixed height to 48q
+///   @include object--height--fixed(48);
+///
+@mixin object--height--fixed($value) {
+    @include object--height($value);
+    @include object--height--min($value);
+    @include object--height--max($value);
+}
+
+/// Generate height utility classes from map
+/// @group ObjectSize
+@each $key, $val in $object_height_map {
+    .object--height--#{$key} {
+        height: q($val);
+    }
+
+    .object--height--min--#{$key} {
+        min-height: q($val);
+    }
+
+    .object--height--max--#{$key} {
+        max-height: q($val);
+    }
+
+    .object--height--fixed--#{$key} {
+        height: q($val);
+        max-height: q($val);
+    }
+}
+
+// Utility Classes
+// ----------------------------------------------------------------------------
+
+/// Utility class for setting the height of an element to full-screen (100vh).
+.full-screen {
+    height: 100vh;
+}
+
+/// Utility class for setting the height of an element to full-height (100%).
+.full-height {
+    height: 100%;
+}
+
+/// Utility class for setting the minimum height of an element to full-screen (100vh).
+.minheight-fullscreen {
+    min-height: 100vh;
+}
+
+/// Utility class for setting the maximum height of an element to 100%.
+.max-h-100 {
+    max-height: 100%;
+}
