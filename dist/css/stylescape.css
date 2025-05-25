@@ -6779,16 +6779,17 @@ body {
   --color_accent_primary: #3696c1;
   --color_accent_secondary: #346a85;
   --color_accent_tertiary: #8abedc;
-  --color_state_visited: var(--color_text_primary);
-  --color_state_hover: var(--color_text_primary);
-  --color_state_active: var(--color_text_primary);
-  --color_state_link: var(--color_text_primary);
+  --color_state_visited: #87a2d6;
+  --color_state_focus: #65aace;
+  --color_state_hover: #acd2e9;
+  --color_state_active: #346a85;
+  --color_state_link: #65aace;
   --color_state_enabled: var(--color_text_primary);
-  --color_state_disabled: var(--color_text_primary);
+  --color_state_disabled: #a0a0a0;
   --color_state_current: var(--color_text_primary);
-  --color_state_checked: var(--color_text_primary);
-  --color_state_invalid: var(--color_text_primary);
-  --color_state_muted: var(--color_text_primary);
+  --color_state_checked: #87a2d6;
+  --color_state_invalid: #b994c7;
+  --color_state_muted: #a0a0a0;
   --color_log_info: #1a99b7;
   --color_log_debug: #2a9c8a;
   --color_log_trace: #019baa;
@@ -6812,6 +6813,7 @@ body {
   --color_accent_secondary: #346a85;
   --color_accent_tertiary: #8abedc;
   --color_state_visited: #ffffff;
+  --color_state_focus: #ffffff;
   --color_state_hover: #ffffff;
   --color_state_active: #ffffff;
   --color_state_link: #ffffff;
@@ -7528,6 +7530,126 @@ Items have equal space around them */
 
 .max-h-100 {
   max-height: 100%;
+}
+
+.object--fill--text_primary {
+  background-color: var(--color_text_primary);
+}
+
+.object--fill--text_secondary {
+  background-color: var(--color_text_secondary);
+}
+
+.object--fill--text_tertiary {
+  background-color: var(--color_text_tertiary);
+}
+
+.object--fill--line_primary {
+  background-color: var(--color_line_primary);
+}
+
+.object--fill--line_secondary {
+  background-color: var(--color_line_secondary);
+}
+
+.object--fill--line_tertiary {
+  background-color: var(--color_line_tertiary);
+}
+
+.object--fill--fill_primary {
+  background-color: var(--color_fill_primary);
+}
+
+.object--fill--fill_secondary {
+  background-color: var(--color_fill_secondary);
+}
+
+.object--fill--fill_tertiary {
+  background-color: var(--color_fill_tertiary);
+}
+
+.object--fill--accent_primary {
+  background-color: var(--color_accent_primary);
+}
+
+.object--fill--accent_secondary {
+  background-color: var(--color_accent_secondary);
+}
+
+.object--fill--accent_tertiary {
+  background-color: var(--color_accent_tertiary);
+}
+
+.object--fill--state_visited {
+  background-color: var(--color_state_visited);
+}
+
+.object--fill--state_focus {
+  background-color: var(--color_state_focus);
+}
+
+.object--fill--state_hover {
+  background-color: var(--color_state_hover);
+}
+
+.object--fill--state_active {
+  background-color: var(--color_state_active);
+}
+
+.object--fill--state_link {
+  background-color: var(--color_state_link);
+}
+
+.object--fill--state_enabled {
+  background-color: var(--color_state_enabled);
+}
+
+.object--fill--state_disabled {
+  background-color: var(--color_state_disabled);
+}
+
+.object--fill--state_current {
+  background-color: var(--color_state_current);
+}
+
+.object--fill--state_checked {
+  background-color: var(--color_state_checked);
+}
+
+.object--fill--state_invalid {
+  background-color: var(--color_state_invalid);
+}
+
+.object--fill--state_muted {
+  background-color: var(--color_state_muted);
+}
+
+.object--fill--log_info {
+  background-color: var(--color_log_info);
+}
+
+.object--fill--log_debug {
+  background-color: var(--color_log_debug);
+}
+
+.object--fill--log_trace {
+  background-color: var(--color_log_trace);
+}
+
+.object--fill--log_success {
+  background-color: var(--color_log_success);
+}
+
+.object--fill--log_warning {
+  background-color: var(--color_log_warning);
+}
+
+.object--fill--log_error {
+  background-color: var(--color_log_error);
+}
+
+.object--fill--log_critical {
+  background-color: var(--color_log_critical);
 }
 
 .font--weight_100 {
@@ -9202,22 +9324,6 @@ hr {
   border-bottom-left-radius: 0;
 }
 
-.fill--info {
-  background-color: var(--color_log_info);
-}
-
-.fill--success {
-  background-color: var(--color_log_success);
-}
-
-.fill--warning {
-  background-color: var(--color_log_warning);
-}
-
-.fill--error {
-  background-color: var(--color_log_error);
-}
-
 .box--size_00 {
   margin: 0;
   margin-block-start: 0;
@@ -10744,17 +10850,17 @@ button.button--outline {
   background: none;
 }
 button.button--outline:hover {
-  background: #acd2e9;
+  background: var(--color_state_hover);
 }
 button.button--outline:active {
-  background: #346a85;
+  background: var(--color_state_active);
 }
 button.button--outline:focus-within {
-  border: 0.125rem solid #65aace;
+  border: 0.125rem solid var(--color_state_focus);
 }
 button.button--outline:disabled {
-  border-color: var(--color_state_muted);
-  color: var(--color_state_muted);
+  border-color: var(--color_state_disabled);
+  color: var(--color_state_disabled);
   cursor: not-allowed;
 }
 button.button--clear {
@@ -10762,16 +10868,16 @@ button.button--clear {
   color: var(--color_text_primary);
 }
 button.button--clear:hover {
-  background: #acd2e9;
+  background: var(--color_state_hover);
 }
 button.button--clear:active {
-  background: #346a85;
+  background: var(--color_state_active);
 }
 button.button--clear:focus-within {
-  border: 0.125rem solid #65aace;
+  border: 0.125rem solid var(--color_state_focus);
 }
 button.button--clear:disabled {
-  color: var(--color_state_muted);
+  color: var(--color_state_disabled);
   cursor: not-allowed;
 }
 
