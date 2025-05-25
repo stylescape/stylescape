@@ -11,9 +11,6 @@ $preview_box--border--color: var(--color-border, #ccc);
 $preview_box--border--width: q(1);
 $preview_box--border--radius: q(2);
 
-$preview-box-label-color: #555;
-$preview-box-label-bg: #f8f8f8;
-
 // Optional: color from a CSS custom property
 // $info-color: var(--color_log_info);
 
@@ -30,7 +27,7 @@ $preview-box-label-bg: #f8f8f8;
 
 @mixin preview_box--horizontal {
     @include preview_box;
-    @include grid--size--col(24);
+    @include grid__layout(24);
     > *:not(:last-child) {
         border-right: $preview_box--border--width solid
             $preview_box--border--color;
@@ -101,9 +98,9 @@ $preview-box-label-bg: #f8f8f8;
 .preview_box--horizontal .preview_box__code {
     @include grid--span--col(6);
     @include font--size("03");
-    color: #555;
+    color: var(--color_text_secondary);
     display: block;
-    background: #f8f8f8;
+    background: var(--color_fill_secondary);
 }
 
 .preview_box--horizontal .preview_box__live {
