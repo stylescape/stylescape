@@ -20,6 +20,7 @@
 @use "../../variables" as *;
 
 @use "../head_layout" as *;
+@use "../head_object" as *;
 @use "../soul_type" as *;
 
 // ============================================================================
@@ -32,55 +33,17 @@
 
 /// Base badge styles
 @mixin badge--base {
-    //     // scss-docs-start badge-css-vars
-    //     badge-padding-x: #{$badge-padding-x};
-    //     badge-padding-y: #{$badge-padding-y};
-    //     @include rfs($badge-font-size, badge-font-size);
-    //     badge-font-weight: #{$badge-font-weight};
-    //     badge-color: #{$badge-color};
-    //     badge-border-radius: #{$badge-border-radius};
-    //     // scss-docs-end badge-css-vars
     display: inline-block;
-    padding: 0Q (32) q(10);
-    // padding: var(badge-padding-y) var(badge-padding-x);
-    // font-size: font-size(2);
     font-weight: 500;
     line-height: 1;
     color: var(--color_fill_primary);
     background-color: var(--color_text_primary);
-    // border-radius: $q;
     white-space: nowrap;
-    // vertical-align: middle;
     vertical-align: baseline;
     text-align: center;
     user-select: none;
-    //   min-width: 3rem;
-
-    //   padding: 0 q(6);
-    //   margin-left: q(14);
-    //   text-align: center;
-    //   font-size: q(16);
-    //   line-height: $badge-height;
-    //   height: $badge-height;
-    //   color: color("grey", "darken-1");
-    //   float: right;
-    //   box-sizing: border-box;
-
-    //   &.new {
-    //     font-weight: 300;
-    //     font-size: 0.8rem;
-    //     color: var(--color_surface_primary);
-    //     background-color: $badge-bg-color;
-    //     border-radius: q(2);
-    //   }
-    //   &.new:after {
-    //     content: " new";
-    //   }
-
-    //   &[data-badge-caption]::after {
-    //     content: " " attr(data-badge-caption);
-    //   }
-
+    padding: 0 q(6);
+    box-sizing: border-box;
     // Empty badges collapse automatically
     &:empty {
         display: none;
@@ -104,85 +67,14 @@
     background-color: var(--color_log_error);
 }
 
-/// Size variants
-///
-@mixin badge--xs {
-    font-size: font-size(1);
-    padding: 0Q (16) 0.4em;
-}
+/// Shape variants
 
-@mixin badge--sm {
-    font-size: font-size(2);
-    padding: 0Q (16) 0.4em;
-}
-
-@mixin badge--md {
-    font-size: font-size(3);
-    padding: 0Q (16) 0.4em;
-}
-
-@mixin badge--lg {
-    font-size: font-size(4);
-    padding: 0.3em q(12);
-}
-@mixin badge--xl {
-    font-size: font-size(5);
-    padding: 0.3em q(12);
-}
-
-//
-@mixin badge--rounded {
-    border-radius: q(4);
-}
-
-/// Border radius: 0px
 @mixin badge--squared {
     border-radius: 0;
 }
-
-/// Border radius: q(12)
+@mixin badge--rounded {
+    border-radius: q(2);
+}
 @mixin badge--pill {
-    border-radius: q(12);
-}
-
-/// Utility classes
-
-.badge--rounded {
-    @include badge--rounded;
-}
-
-.badge--squared {
-    @include badge--squared;
-}
-
-.badge--pill {
-    @include badge--pill;
-}
-
-.badge {
-    @include badge--base;
-}
-
-.badge--info {
-    @include badge--info;
-}
-
-.badge--success {
-    @include badge--success;
-}
-
-.badge--warning {
-    @include badge--warning;
-}
-
-.badge--error {
-    @include badge--error;
-}
-
-.badge--sm {
-    @include badge--sm;
-}
-
-.badge--lg {
-    @include badge--lg;
+    border-radius: 50vh;
 }
