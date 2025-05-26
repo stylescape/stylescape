@@ -8,15 +8,15 @@
 @use "../../../dev" as *;
 @use "../../../variables" as *;
 // ============================================================================
-// Ribbon Base Styles
+// aside Base Styles
 // ============================================================================
 
 ///
-/// Base Ribbon Style
+/// Base aside Style
 /// ---------------------------------------------------------------------------
-/// Shared styles for all ribbons regardless of side.
+/// Shared styles for all asides regardless of side.
 ///
-@mixin ribbon_base {
+@mixin aside_base {
     // Grid
     display: grid;
     gap: 0;
@@ -32,7 +32,7 @@
     line-height: baseline(3); // consistent vertical rhythm
 
     // Layering and boundary
-    z-index: z("ribbon");
+    z-index: z("aside");
     // overflow: hidden;
 
     // Ensure safe scroll context for dropdowns
@@ -41,7 +41,7 @@
     // align-items: stretch;
 }
 
-@mixin ribbon--inverted {
+@mixin aside--inverted {
     background-color: var(--color_fill_primary);
     color: var(--color_text_primary);
 }
@@ -49,22 +49,22 @@
 // @include font--size('03');
 
 // ============================================================================
-// Ribbon | Horizontal (Top/Bottom)
+// aside | Horizontal (Top/Bottom)
 // ============================================================================
 
 ///
-/// Horizontal Ribbon (Top or Bottom)
+/// Horizontal aside (Top or Bottom)
 /// ---------------------------------------------------------------------------
 ///
-/// A layout container ribbon with fixed height and shadow, using CSS Grid.
+/// A layout container aside with fixed height and shadow, using CSS Grid.
 /// Three columns: left, center, right
 ///
-@mixin ribbon--horizontal {
-    @include ribbon_base;
+@mixin aside--horizontal {
+    @include aside_base;
 
     grid-template-columns: 1fr auto 1fr;
     grid-template-rows: calc(q(40));
-    grid-template-areas: "ribbon_area--horizontal_left ribbon_area--horizontal_center ribbon_area--horizontal_right";
+    grid-template-areas: "aside_area--horizontal_left aside_area--horizontal_center aside_area--horizontal_right";
 
     // Layout
     width: 100%;
@@ -74,53 +74,78 @@
     align-items: center;
 }
 
-/// Top Ribbon
-@mixin ribbon--top {
-    @include ribbon--horizontal;
+/// Top aside
+@mixin aside--top {
+    @include aside--horizontal;
     border-bottom: q(1) solid var(--color_text_primary);
 }
 
-/// Bottom Ribbon
-@mixin ribbon--bottom {
-    @include ribbon--horizontal;
+/// Bottom aside
+@mixin aside--bottom {
+    @include aside--horizontal;
     border-top: $q solid var(--color_text_primary);
 }
 
 // ============================================================================
-// Ribbon | Vertical (Left/Right)
+// aside | Vertical (Left/Right)
 // ============================================================================
 
 ///
-/// Vertical Ribbon (Left or Right)
+/// Vertical aside (Left or Right)
 /// ---------------------------------------------------------------------------
 /// Three rows: top, center, bottom
 ///
-@mixin ribbon--vertical {
-    grid-area: ribbon;
+@mixin aside--vertical {
+    grid-area: aside;
 
-    @include ribbon_base;
+    // @include aside_base;
 
     grid-template-columns: calc(q(40));
     grid-template-rows: 1fr auto 1fr;
     grid-template-areas:
-        "ribbon_area--vertical_top"
-        "ribbon_area--vertical_center"
-        "ribbon_area--vertical_bottom";
+        "aside_area--vertical_top"
+        "aside_area--vertical_center"
+        "aside_area--vertical_bottom";
 
     height: 100%;
-    width: calc(q(40));
+    width: calc(q(0));
     // padding: calc(q(4)) 0;
     justify-items: center;
 }
 
-/// Left Ribbon
-@mixin ribbon--left {
-    @include ribbon--vertical;
+/// Left aside
+@mixin aside--left {
+    @include aside--vertical;
     border-right: $q solid var(--color_text_primary);
+    transition: width 0.3s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-/// Right Ribbon
-@mixin ribbon--right {
-    @include ribbon--vertical;
+/// Right aside
+@mixin aside--right {
+    @include aside--vertical;
     border-left: $q solid var(--color_text_primary);
+    transition: width 0.3s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.aside--left {
+    @include aside--left;
+}
+
+.aside--right {
+    @include aside--right;
+}
+
+.aside--inverted {
+    @include aside--inverted;
+}
+
+.aside--left,
+.aside--right {
+    &.active {
+        width: q(300);
+    }
 }

@@ -65,6 +65,7 @@
 ///
 @mixin layout__area($name) {
     grid-area: $name;
+    z-index: 1;
 }
 
 @mixin layout__area--top {
@@ -116,14 +117,11 @@
 /// Use utility classes to control visibility (e.g. .is-collapsed)
 ///
 @mixin layout__middle_center--nested {
-    @include grid--span--col(24);
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-areas: "aside_left main aside_right";
-    min-height: 100%;
     overflow: hidden;
     position: relative;
-    margin: calc($q * (-16));
 }
 
 @mixin layout__middle_center__aside--left {
@@ -148,21 +146,41 @@
 
 @mixin layout__middle_center__aside--right {
     grid-area: aside_right;
-    width: (q(4) 00);
-    max-width: (q(4) 00);
+    width: q(400);
     transition: width 0.3s ease;
     overflow-y: auto;
     overflow-x: hidden;
     border-left: q(1) solid var(--color_text_primary);
     // padding: q(16);
     background: var(--color_fill_primary);
-    z-index: 1;
 }
 
 @mixin layout__middle_center--inside {
     width: (q(4) 00);
     overflow-x: hidden;
     padding: q(16);
+}
+
+/// Aside | Ribbon & Aside Menu Container
+/// ---------------------------------------------------------------------------
+///
+
+@mixin layout_aside {
+    display: grid;
+    overflow: hidden;
+    position: relative;
+}
+
+@mixin layout__aside--left {
+    @include layout_aside;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "ribbon aside";
+}
+
+@mixin layout__aside--right {
+    @include layout_aside;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "aside ribbon";
 }
 
 // ============================================================================
@@ -188,12 +206,14 @@
     }
     .layout__area--middle_left {
         @include layout__area(middle_left);
+        @include layout__aside--left;
     }
     .layout__area--middle_center {
         @include layout__area_screen--center;
     }
     .layout__area--middle_right {
         @include layout__area(middle_right);
+        @include layout__aside--right;
     }
     .layout__area--bottom_left {
         @include layout__area(bottom_left);
@@ -272,140 +292,5 @@
         // padding: 0;
         // border: 0;
         overflow: hidden;
-    }
-}
-
-///Collapsing Button
-$easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
-$duration: 0.5s;
-
-$arrow--smize: q(12);
-
-.aside_left_switch,
-.aside_right_switch {
-    @include reset_bleed;
-    position: absolute;
-    width: 0;
-    height: 0;
-    top: 50%;
-    transform: translateX(0) translateY(-50%) rotate(0deg) translateZ(0px);
-    z-index: 9000;
-    // -webkit-font-smoothing: antialiased;
-    .aside_left_switch_button,
-    .aside_right_switch_button {
-        width: $arrow--smize;
-        height: $arrow--smize;
-        position: relative;
-        color: grey;
-        // -webkit-appearance: button;
-        background-color: transparent;
-        // background-color: white;
-        background-image: none;
-        cursor: pointer;
-        pointer-events: all;
-        display: block;
-        // translate with half the ribbon height
-        transform: translateX(0) translateY(-q(20)) rotate(0deg)
-            translateZ(0px);
-        z-index: 1;
-        .top_bar,
-        .bot_bar {
-            position: absolute;
-            background-color: transparent;
-            width: $arrow--smize;
-            height: calc($arrow--smize / 4);
-            display: block;
-            float: right;
-            // transform: translateX(0) translateY(q(12)) rotate(0deg) translateZ(0px);
-            // border-radius: 0.2q(4);
-            &:after {
-                content: "";
-                background-color: rgb(165, 165, 165);
-                // border: q(1);
-                // border-color: black;
-                width: $arrow--smize;
-                height: calc($arrow--smize / 4);
-                display: block;
-                float: right;
-                transition: all $duration $easing;
-                z-index: -1;
-            }
-        }
-        .top_bar {
-            top: 0;
-            top: calc($arrow--smize / 2) + $q;
-            left: 0;
-            // transform: rotate(125deg);
-            &:after {
-                // border-radius: q(3) q(5) q(5) q(3);
-            }
-        }
-        .bot_bar {
-            top: $arrow--smize + 3 * $q;
-            left: 0;
-            // transform: rotate(55deg);
-            &:after {
-                // border-radius: q(10) q(6) q(6) q(10);
-            }
-        }
-    }
-}
-
-.aside_left_switch {
-    left: calc($arrow--smize / 30);
-    .aside_left_switch_button {
-        .top_bar {
-            transform: rotate(90deg);
-            &:after {
-                // border-radius: q(3) q(5) q(5) q(3);
-            }
-        }
-        .bot_bar {
-            transform: rotate(90deg);
-            &:after {
-                // border-radius: q(10) q(6) q(6) q(10);
-            }
-        }
-    }
-}
-
-.aside_right_switch {
-    right: $arrow--smize;
-    .aside_right_switch_button {
-        .top_bar {
-            transform: rotate(90deg);
-            &:after {
-                // border-radius: q(3) q(5) q(5) q(3);
-            }
-        }
-        .bot_bar {
-            transform: rotate(90deg);
-            &:after {
-                // border-radius: q(10) q(6) q(6) q(10);
-            }
-        }
-    }
-}
-
-.active {
-    .aside_left_switch_button {
-        .top_bar:after {
-            transform-origin: center center;
-            transform: rotate(-150deg);
-        }
-        .bot_bar:after {
-            transform-origin: center center;
-            transform: rotate(150deg);
-        }
-    }
-    .aside_right_switch_button {
-        .top_bar:after {
-            transform-origin: center center;
-            transform: rotate(150deg);
-        }
-        .bot_bar:after {
-            transform-origin: center center;
-            transform: rotate(-150deg);
-        }
     }
 }

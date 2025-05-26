@@ -43,32 +43,32 @@
             {%- endblock ribbon_top -%}
         </div>
 
+
         <div class="layout__area--middle_left">
-            <aside class="ribbon--left" id="" role="navigation">
-                <nav class="layout__nav">
-                    <ul class="layout__nav__list">
-                        <li class="layout__nav__list__item">
-                            <a href="/" class="layout__nav__list__item__text">Home</a>
-                        </li>
-                        <li class="layout__nav__list__item">
-                            <a href="/about" class="layout__nav__list__item__text">About</a>
-                        </li>
-                        <li class="layout__nav__list__item">
-                            <a href="/contact" class="layout__nav__list__item__text">Contact</a>
-                        </li>
-                    </ul>
-                </nav>
+            <aside class="ribbon--left ribbon--inverted" id="leftRibbon" role="navigation">
             </aside>
+
+            {% if aside_left %}
+            <div class="aside_left_switch" id="leftSwitch">
+                <button class="aside_left_switch_button">
+                    <span class="top_bar"></span>
+                    <span class="bot_bar"></span>
+                </button>
+            </div>
+            <aside class="aside--left aside--inverted" id="leftAside" role="navigation">
+            {% block aside_left_content %}{% endblock%}
+            </aside>
+            {% endif%}
         </div>
 
         <div class="layout__area--middle_center ">
-            <main class="main main_content" role="main">
+            <main class="main" role="main">
                 {% block content %}{% endblock %}
             </main>
         </div>
 
         <div class="layout__area--middle_right">
-            <aside class="ribbon--right ribbon--inverted" id="" role="navigation">
+            <aside class="ribbon--right ribbon--inverted" id="rightRibbon" role="navigation">
                 <nav class="layout__nav">
                     <ul class="layout__nav__list">
                         <li class="layout__nav__list__item">
@@ -80,6 +80,18 @@
                     </ul>
                 </nav>
             </aside>
+
+            {% if aside_right %}
+                <div class="aside_right_switch" id="rightSwitch">
+                    <button class="aside_right_switch_button">
+                        <span class="top_bar"></span>
+                        <span class="bot_bar"></span>
+                    </button>
+                </div>
+            <aside class="aside--right aside--inverted" id="rightAside" role="navigation">
+            {% block aside_right_content %}{% endblock%}
+            </aside>
+            {% endif %}
         </div>
 
         <div class="layout__area--bottom">

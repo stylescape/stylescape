@@ -1,0 +1,144 @@
+// ============================================================================
+// Imports
+// ============================================================================
+@use "sass:map";
+
+@use "../../soul_type" as *;
+@use "../../body_atoms" as *;
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+
+///Collapsing Button
+$easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
+$duration: 0.5s;
+
+$arrow--smize: q(12);
+
+.aside_left_switch,
+.aside_right_switch {
+    @include reset_bleed;
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    transform: translateX(0) translateY(-50%) rotate(0deg) translateZ(0px);
+    z-index: 9000;
+    // -webkit-font-smoothing: antialiased;
+    .aside_left_switch_button,
+    .aside_right_switch_button {
+        width: $arrow--smize;
+        height: $arrow--smize;
+        position: relative;
+        color: grey;
+        // -webkit-appearance: button;
+        background-color: transparent;
+        // background-color: white;
+        background-image: none;
+        cursor: pointer;
+        pointer-events: all;
+        display: block;
+        // translate with half the ribbon height
+        transform: translateX(0) translateY(-q(20)) rotate(0deg)
+            translateZ(0px);
+        z-index: 1;
+        .top_bar,
+        .bot_bar {
+            position: absolute;
+            background-color: transparent;
+            width: $arrow--smize;
+            height: calc($arrow--smize / 4);
+            display: block;
+            float: right;
+            // transform: translateX(0) translateY(q(12)) rotate(0deg) translateZ(0px);
+            // border-radius: 0.2q(4);
+            &:after {
+                content: "";
+                background-color: rgb(165, 165, 165);
+                // border: q(1);
+                // border-color: black;
+                width: $arrow--smize;
+                height: calc($arrow--smize / 4);
+                display: block;
+                float: right;
+                transition: all $duration $easing;
+                z-index: -1;
+            }
+        }
+        .top_bar {
+            top: 0;
+            top: calc($arrow--smize / 2) + $q;
+            left: 0;
+            // transform: rotate(125deg);
+            &:after {
+                // border-radius: q(3) q(5) q(5) q(3);
+            }
+        }
+        .bot_bar {
+            top: $arrow--smize + 3 * $q;
+            left: 0;
+            // transform: rotate(55deg);
+            &:after {
+                // border-radius: q(10) q(6) q(6) q(10);
+            }
+        }
+    }
+}
+
+.aside_left_switch {
+    left: calc($arrow--smize / 40);
+    .aside_left_switch_button {
+        .top_bar {
+            transform: rotate(90deg);
+            &:after {
+                // border-radius: q(3) q(5) q(5) q(3);
+            }
+        }
+        .bot_bar {
+            transform: rotate(90deg);
+            &:after {
+                // border-radius: q(10) q(6) q(6) q(10);
+            }
+        }
+    }
+}
+
+.aside_right_switch {
+    right: $arrow--smize;
+    .aside_right_switch_button {
+        .top_bar {
+            transform: rotate(90deg);
+            &:after {
+                // border-radius: q(3) q(5) q(5) q(3);
+            }
+        }
+        .bot_bar {
+            transform: rotate(90deg);
+            &:after {
+                // border-radius: q(10) q(6) q(6) q(10);
+            }
+        }
+    }
+}
+
+.active {
+    .aside_left_switch_button {
+        .top_bar:after {
+            transform-origin: center center;
+            transform: rotate(-150deg);
+        }
+        .bot_bar:after {
+            transform-origin: center center;
+            transform: rotate(150deg);
+        }
+    }
+    .aside_right_switch_button {
+        .top_bar:after {
+            transform-origin: center center;
+            transform: rotate(150deg);
+        }
+        .bot_bar:after {
+            transform-origin: center center;
+            transform: rotate(-150deg);
+        }
+    }
+}
