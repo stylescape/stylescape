@@ -1,38 +1,22 @@
 {% extends "base.html.jinja" %}
 
-{% block title %}Test Layout{% endblock %}
+
+{% block title %}Test Layout Aside{% endblock %}
 
 
+{% set aside_left = true %}
+{% block aside_left_content %}
+Aside Left Menu
+{% endblock %}
 
-
-
+{% set aside_right = true %}
+{% block aside_right_content %}
+Aside Right Menu
+{% endblock %}
 
 {% block content %}
 
-<div class="layout__middle_center--nested collapse-left collapse-right" id="middleCenter">
-    <!-- Left Aside Toggle -->
-    <div class="aside_left_switch" id="leftSwitch">
-        <button class="aside_left_switch_button">
-            <span class="top_bar"></span>
-            <span class="bot_bar"></span>
-        </button>
-    </div>
-
-    <!-- Left Aside -->
-    <aside class="layout__aside--left">
-        <!-- Left content -->
-        <div class="layout__aside--inside">
-            Aside Left Menu
-        </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="layout__main">
-        <!-- Your content here -->
-
-        <div class="layout__main--inside">
-
-            <div class="canvas">
+            {# <div class="canvas">
                 <div id="map"></div>
                 <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
                 <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet" />
@@ -47,7 +31,7 @@
                         bearing: -40.30,
                         pitch: 60,
                     });</script>
-            </div>
+            </div> #}
 
             <div class="layout__grid--inner--screen">
 
@@ -72,25 +56,5 @@
                 {# <div class="layout__area--bottom_right">Bottom Right</div> #}
 
             </div>
-        </div>
-    </main>
-
-    <!-- Right Aside -->
-    <aside class="layout__aside--right">
-        <!-- Right content -->
-        <div class="layout__aside--inside">
-            Aside Right Menu
-        </div>
-    </aside>
-
-    <!-- Right Aside Toggle -->
-    <div class="aside_right_switch" id="rightSwitch">
-        <button class="aside_right_switch_button">
-            <span class="top_bar"></span>
-            <span class="bot_bar"></span>
-        </button>
-    </div>
-</div>
-
 
 {% endblock content %}
