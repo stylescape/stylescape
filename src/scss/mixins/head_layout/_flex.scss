@@ -69,7 +69,7 @@
 
 /// Mixin for setting the flex direction to column.
 /// @group Flexbox
-@mixin flex_col {
+@mixin flex--col {
     @include flex;
     -webkit-flex-direction: column;
     -moz-box-direction: column;
@@ -79,7 +79,7 @@
 
 /// Mixin for setting the flex direction to column-reverse.
 /// @group Flexbox
-@mixin flex_col_rev {
+@mixin flex--col--reverse {
     @include flex;
     -webkit-flex-direction: column-reverse;
     -moz-box-direction: column-reverse;
@@ -89,7 +89,7 @@
 
 /// Mixin for setting the flex direction to row.
 /// @group Flexbox
-@mixin flex_row {
+@mixin flex--row {
     @include flex;
     -webkit-flex-direction: row;
     -moz-box-direction: row;
@@ -99,7 +99,7 @@
 
 /// Mixin for setting the flex direction to row-reverse.
 /// @group Flexbox
-@mixin flex_row--rev {
+@mixin flex--row--reverse {
     @include flex;
     -webkit-flex-direction: row-reverse;
     -moz-box-direction: row-reverse;
@@ -109,24 +109,24 @@
 
 // -webkit-box-direction: normal | reverse;
 
-.flex_col {
-    @include flex_col;
+.flex--col {
+    @include flex--col;
 }
-.flex_col_rev {
-    @include flex_col_rev;
+.flex--col--reverse {
+    @include flex--col--reverse;
 }
-.flex_row {
-    @include flex_row;
+.flex--row {
+    @include flex--row;
 }
-.flex_row--rev {
-    @include flex_row--rev;
+.flex--row--reverse {
+    @include flex--row--reverse;
 }
 
-// @mixin flex_column {
+// @mixin flex--column {
 //   display:        flex;
 //   flex-direction: column;
 //   }
-// @mixin flex_row {
+// @mixin flex--row {
 //     display:        flex;
 //     flex-direction: row;
 // }
@@ -136,21 +136,21 @@
 
 /// Mixin for enabling flex-wrap.
 /// @group Flexbox
-@mixin flex_wrap {
+@mixin flex--wrap {
     flex-wrap: wrap;
 }
 
 /// Mixin for enabling reverse flex-wrap.
 /// @group Flexbox
-@mixin flex_wrap_rev {
+@mixin flex--wrap--reverse {
     flex-wrap: wrap-reverse;
 }
 
-.flex_wrap {
-    @include flex_wrap;
+.flex--wrap {
+    @include flex--wrap;
 }
-.flex_wrap_rev {
-    @include flex_wrap_rev;
+.flex--wrap--reverse {
+    @include flex--wrap--reverse;
 }
 
 // .  flex-flow: column wrap;
@@ -166,7 +166,7 @@
 /// Mixin for setting the order of flex items.
 /// @param {Number} $val - The order value.
 /// @group Flexbox
-@mixin flex_order($val) {
+@mixin flex--order($val) {
     -webkit-box-ordinal-group: $val;
     -moz-box-ordinal-group: $val;
     -ms-flex-order: $val;
@@ -179,7 +179,7 @@
 /// Mixin for adjusting the flex-grow, flex-shrink, and flex-basis properties.
 /// @param {Number} $val - The value for the flex property.
 /// @group Flexbox
-@mixin flex_size($val) {
+@mixin flex--size($val) {
     -webkit-box-flex: $val;
     -moz-box-flex: $val;
     -webkit-flex: $val;
@@ -190,7 +190,7 @@
 /// Mixin for setting the flex-basis property.
 /// @param {String} $val - The value for the flex-basis property.
 /// @group Flexbox
-@mixin flex_basis($val) {
+@mixin flex--basis($val) {
     flex-basis: $val;
 }
 
@@ -200,22 +200,22 @@
 /// Mixin for setting the flex-grow property.
 /// @param {Number} $val - The value for the flex-grow property.
 /// @group Flexbox
-@mixin flex_grow($val) {
+@mixin flex--grow($val) {
     flex-grow: $val;
 }
 
 /// Mixin for setting the flex-shrink property.
 /// @param {Number} $val - The value for the flex-shrink property.
 /// @group Flexbox
-@mixin flex_shrink($val) {
+@mixin flex--shrink($val) {
     flex-shrink: $val;
 }
 
 /// Mixin for disabling flex-grow and flex-shrink, keeping the item fixed.
 /// @group Flexbox
-@mixin flex_keep {
-    @include flex_grow(0); // do not grow   - initial value: 0
-    @include flex_shrink(0); // do not shrink - initial value: 1
+@mixin flex--keep {
+    @include flex--grow(0); // do not grow   - initial value: 0
+    @include flex--shrink(0); // do not shrink - initial value: 1
     // flex-grow: 0;     /* do not grow   - initial value: 0 */
     // flex-shrink: 0;   /* do not shrink - initial value: 1 */
 }

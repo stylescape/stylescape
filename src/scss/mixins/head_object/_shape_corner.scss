@@ -1,17 +1,41 @@
+@use "sass:map";
 @use "../../dev" as *;
 @use "../../variables" as *;
-// @use "../../mixins" as *;
 
-/// Shape variants
+/// Shape radius tokens
+$object_shape_radius: (
+    squared: 0,
+    rounded: q(2),
+    pill: 50vh
+) !default;
 
+/// General-purpose shape mixin
+/// @param {String} $variant - One of `squared`, `rounded`, `pill`
+/// @group ObjectShape
+@mixin object--shape($variant) {
+    @if map.has-key($object_shape_radius, $variant) {
+        border-radius: map.get($object_shape_radius, $variant);
+    } @else {
+        @warn "Unknown shape variant: #{$variant}";
+    }
+}
+
+/// Specific mixins for shape variants
 @mixin object--shape--squared {
-    border-radius: 0;
+    @include object--shape(squared);
 }
 
 @mixin object--shape--rounded {
-    border-radius: q(2);
+    @include object--shape(rounded);
 }
 
 @mixin object--shape--pill {
-    border-radius: 50vh;
+    @include object--shape(pill);
+}
+
+/// Generate utility classes for each shape variant
+@each $key, $val in $object_shape_radius {
+    .object--shape--#{$key} {
+        border-radius: $val;
+    }
 }

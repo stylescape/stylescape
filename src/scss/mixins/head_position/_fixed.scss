@@ -1,0 +1,76 @@
+////
+///
+/// Layout Mixins Module
+/// ===========================================================================
+///
+/// @group Layout
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+// ============================================================================
+// Layout | Position
+// ============================================================================
+@use "../../variables" as *;
+
+/// Base mixin for fixed positioning
+/// @param {String} $y - top | bottom | null
+/// @param {String} $x - left | right | both | null
+@mixin position--fixed($y: null, $x: null) {
+    position: fixed;
+
+    @if $y == top {
+        top: 0;
+    } @else if $y == bottom {
+        bottom: 0;
+    }
+
+    @if $x == left {
+        left: 0;
+    } @else if $x == right {
+        right: 0;
+    } @else if $x == both {
+        left: 0;
+        right: 0;
+    }
+}
+
+/// Inherit positioning (important override)
+@mixin position--inherit {
+    position: inherit !important;
+}
+
+.position--fixed--top {
+    @include position--fixed(top, both);
+}
+
+.position--fixed--bottom {
+    @include position--fixed(bottom, both);
+}
+
+.position--inherit {
+    @include position--inherit;
+}
+
+.position--fixed--top--left {
+    @include position--fixed(top, left);
+}
+
+.position--fixed--bottom--right {
+    @include position--fixed(bottom, right);
+}
+
+.position--fixed--top--right {
+    @include position--fixed(top, right);
+}
+.position--fixed--bottom--left {
+    @include position--fixed(bottom, left);
+}
