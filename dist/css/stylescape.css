@@ -13930,28 +13930,25 @@ details[open] .ribbon_panel_wrapper {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  position: absolute;
+  position: relative;
   width: 0;
   height: 0;
-  top: 50%;
-  transform: translateX(0) translateY(-50%) rotate(0deg) translateZ(0px);
+  top: 50vh;
   z-index: 9000;
 }
 .aside_left_switch .aside_left_switch_button,
 .aside_left_switch .aside_right_switch_button,
 .aside_right_switch .aside_left_switch_button,
 .aside_right_switch .aside_right_switch_button {
-  width: 0.75rem;
-  height: 0.75rem;
-  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
   color: grey;
   background-color: transparent;
   background-image: none;
   cursor: pointer;
-  pointer-events: all;
   display: block;
-  transform: translateX(0) translateY(-q(20)) rotate(0deg) translateZ(0px);
-  z-index: 1;
+  transform: translateX(0) translateY(-1.25rem) rotate(0deg) translateZ(0px);
 }
 .aside_left_switch .aside_left_switch_button .top_bar,
 .aside_left_switch .aside_left_switch_button .bot_bar,
@@ -14001,7 +13998,7 @@ details[open] .ribbon_panel_wrapper {
   left: 0;
 }
 .aside_left_switch {
-  left: 0.01875rem;
+  left: 0.15rem;
 }
 .aside_left_switch .aside_left_switch_button .top_bar {
   transform: rotate(90deg);
@@ -14105,28 +14102,22 @@ details[open] .ribbon_panel_wrapper {
 }
 .layout__grid--screen .layout__area--top_left {
   grid-area: top_left;
-  z-index: 1;
 }
 .layout__grid--screen .layout__area--top_center {
   grid-area: top_center;
-  z-index: 1;
 }
 .layout__grid--screen .layout__area--top_right {
   grid-area: top_right;
-  z-index: 1;
 }
 .layout__grid--screen .layout__area--middle_left {
   grid-area: middle_left;
-  z-index: 1;
   display: grid;
-  overflow: hidden;
   position: relative;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: "ribbon aside";
+  grid-template-columns: 1fr auto 0;
+  grid-template-areas: "ribbon aside switch";
 }
 .layout__grid--screen .layout__area--middle_center {
   grid-area: middle_center;
-  z-index: 1;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -14135,24 +14126,19 @@ details[open] .ribbon_panel_wrapper {
 }
 .layout__grid--screen .layout__area--middle_right {
   grid-area: middle_right;
-  z-index: 1;
   display: grid;
-  overflow: hidden;
   position: relative;
-  grid-template-columns: auto 1fr;
-  grid-template-areas: "aside ribbon";
+  grid-template-columns: 0 auto 1fr;
+  grid-template-areas: "switch aside ribbon";
 }
 .layout__grid--screen .layout__area--bottom_left {
   grid-area: bottom_left;
-  z-index: 1;
 }
 .layout__grid--screen .layout__area--bottom_center {
   grid-area: bottom_center;
-  z-index: 1;
 }
 .layout__grid--screen .layout__area--bottom_right {
   grid-area: bottom_right;
-  z-index: 1;
 }
 .layout__grid--screen .layout__area--top {
   grid-row-start: top_left;
