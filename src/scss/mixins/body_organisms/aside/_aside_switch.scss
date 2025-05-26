@@ -2,62 +2,58 @@
 // Imports
 // ============================================================================
 @use "sass:map";
-
 @use "../../soul_type" as *;
 @use "../../body_atoms" as *;
 @use "../../../dev" as *;
 @use "../../../variables" as *;
 
-///Collapsing Button
 $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
 $duration: 0.5s;
 
-$arrow--size: q(12);
+$arrow_size: $q * 12;
 
 .aside_left_switch,
 .aside_right_switch {
     @include reset_bleed;
-    position: absolute;
+    position: relative;
     width: 0;
     height: 0;
-    top: 50%;
-    transform: translateX(0) translateY(-50%) rotate(0deg) translateZ(0px);
+    top: 50vh;
+    // transform: translateX(0) translateY(-50%) rotate(0deg) translateZ(0px);
     z-index: 9000;
     // -webkit-font-smoothing: antialiased;
     .aside_left_switch_button,
     .aside_right_switch_button {
-        width: $arrow--size;
-        height: $arrow--size;
-        position: relative;
+        width: $arrow_size * 2;
+        height: $arrow_size * 2;
+        position: absolute;
         color: grey;
         // -webkit-appearance: button;
         background-color: transparent;
         // background-color: white;
         background-image: none;
         cursor: pointer;
-        pointer-events: all;
         display: block;
         // translate with half the ribbon height
-        transform: translateX(0) translateY(-q(20)) rotate(0deg)
+        transform: translateX(0) translateY(-$q * 20) rotate(0deg)
             translateZ(0px);
-        z-index: 1;
         .top_bar,
         .bot_bar {
             position: absolute;
             background-color: transparent;
-            width: $arrow--size;
-            height: calc($arrow--size / 4);
+            width: $arrow_size;
+            height: calc($arrow_size / 4);
             display: block;
             float: right;
-            // transform: translateX(0) translateY(q(12)) rotate(0deg) translateZ(0px);
-            // border-radius: 0.2q(4);
+            // transform: translateX(0) translateY($q * 10) rotate(0deg) translateZ(0px);
+            // border-radius: 0.25px;
             &:after {
                 content: "";
                 background-color: rgb(165, 165, 165);
-                // border: q(1);
+                // border: 1px;
                 // border-color: black;
-                width: $arrow--size;
-                height: calc($arrow--size / 4);
+                width: $arrow_size;
+                height: calc($arrow_size / 4);
                 display: block;
                 float: right;
                 transition: all $duration $easing;
@@ -66,55 +62,55 @@ $arrow--size: q(12);
         }
         .top_bar {
             top: 0;
-            top: calc($arrow--size / 2) + $q;
+            top: calc($arrow_size / 2) + $q;
             left: 0;
             // transform: rotate(125deg);
             &:after {
-                // border-radius: q(3) q(5) q(5) q(3);
+                // border-radius: 3px 5px 5px 3px;
             }
         }
         .bot_bar {
-            top: $arrow--size + 3 * $q;
+            top: $arrow_size + 3 * $q;
             left: 0;
             // transform: rotate(55deg);
             &:after {
-                // border-radius: q(10) q(6) q(6) q(10);
+                // border-radius: 10px 6px 6px 10px;
             }
         }
     }
 }
 
 .aside_left_switch {
-    left: calc($arrow--size / 40);
+    left: calc($arrow_size / 5);
     .aside_left_switch_button {
         .top_bar {
             transform: rotate(90deg);
             &:after {
-                // border-radius: q(3) q(5) q(5) q(3);
+                // border-radius: 3px 5px 5px 3px;
             }
         }
         .bot_bar {
             transform: rotate(90deg);
             &:after {
-                // border-radius: q(10) q(6) q(6) q(10);
+                // border-radius: 10px 6px 6px 10px;
             }
         }
     }
 }
 
 .aside_right_switch {
-    right: $arrow--size;
+    right: $arrow_size;
     .aside_right_switch_button {
         .top_bar {
             transform: rotate(90deg);
             &:after {
-                // border-radius: q(3) q(5) q(5) q(3);
+                // border-radius: 3px 5px 5px 3px;
             }
         }
         .bot_bar {
             transform: rotate(90deg);
             &:after {
-                // border-radius: q(10) q(6) q(6) q(10);
+                // border-radius: 10px 6px 6px 10px;
             }
         }
     }
