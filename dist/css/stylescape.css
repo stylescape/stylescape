@@ -12197,7 +12197,7 @@ meter::-moz-progress-bar {
   position: relative;
 }
 
-.tooltip:before {
+.tooltip--top:before {
   position: absolute;
   border-width: 0.3125rem;
   transition: opacity 0.5s;
@@ -12208,8 +12208,8 @@ meter::-moz-progress-bar {
   font-size: 0.75rem;
   line-height: 0.9375rem;
   content: attr(tooltip-data);
-  width: 12.5rem;
   background-color: var(--color_fill_primary);
+  border: 0.0625rem solid var(--color_line_primary);
   color: var(--color_text_primary);
   text-align: center;
   border-radius: 0.3125rem;
@@ -12217,11 +12217,146 @@ meter::-moz-progress-bar {
   line-height: 1.1;
   transition: opacity 0.5s;
   display: block;
-  top: 0.15625rem;
-  left: 100%;
+  width: -moz-max-content;
+  width: max-content;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.tooltip:after {
+.tooltip--top:after {
+  content: "";
+  position: absolute;
+  border-width: 0.3125rem;
+  transition: opacity 0.5s;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 0.3125rem;
+  bottom: 80%;
+  left: 50%;
+  margin-left: -0.3125rem;
+  border-color: var(--color_line_primary) transparent transparent transparent;
+}
+
+.tooltip--bottom:before {
+  position: absolute;
+  border-width: 0.3125rem;
+  transition: opacity 0.5s;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+  content: attr(tooltip-data);
+  background-color: var(--color_fill_primary);
+  border: 0.0625rem solid var(--color_line_primary);
+  color: var(--color_text_primary);
+  text-align: center;
+  border-radius: 0.3125rem;
+  padding: 0.3125rem;
+  line-height: 1.1;
+  transition: opacity 0.5s;
+  display: block;
+  width: -moz-max-content;
+  width: max-content;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip--bottom:after {
+  content: "";
+  position: absolute;
+  border-width: 0.3125rem;
+  transition: opacity 0.5s;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 0.3125rem;
+  top: 80%;
+  left: 50%;
+  margin-left: -0.3125rem;
+  border-color: transparent transparent var(--color_line_primary) transparent;
+}
+
+.tooltip--left:before {
+  position: absolute;
+  border-width: 0.3125rem;
+  transition: opacity 0.5s;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+  content: attr(tooltip-data);
+  background-color: var(--color_fill_primary);
+  border: 0.0625rem solid var(--color_line_primary);
+  color: var(--color_text_primary);
+  text-align: center;
+  border-radius: 0.3125rem;
+  padding: 0.3125rem;
+  line-height: 1.1;
+  transition: opacity 0.5s;
+  display: block;
+  width: -moz-max-content;
+  width: max-content;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 108%;
+}
+
+.tooltip--left:after {
+  content: "";
+  position: absolute;
+  border-width: 0.3125rem;
+  transition: opacity 0.5s;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 0.3125rem;
+  top: 50%;
+  right: 100%;
+  margin-top: -0.3125rem;
+  border-color: transparent transparent transparent var(--color_line_primary);
+}
+
+.tooltip--right:before {
+  position: absolute;
+  border-width: 0.3125rem;
+  transition: opacity 0.5s;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+  content: attr(tooltip-data);
+  background-color: var(--color_fill_primary);
+  border: 0.0625rem solid var(--color_line_primary);
+  color: var(--color_text_primary);
+  text-align: center;
+  border-radius: 0.3125rem;
+  padding: 0.3125rem;
+  line-height: 1.1;
+  transition: opacity 0.5s;
+  display: block;
+  width: -moz-max-content;
+  width: max-content;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 108%;
+}
+
+.tooltip--right:after {
   content: "";
   position: absolute;
   border-width: 0.3125rem;
@@ -12235,7 +12370,7 @@ meter::-moz-progress-bar {
   top: 50%;
   left: 100%;
   margin-top: -0.3125rem;
-  border-color: transparent var(--color_fill_primary) transparent transparent;
+  border-color: transparent var(--color_line_primary) transparent transparent;
 }
 
 .tooltip:hover:before,
@@ -12246,6 +12381,16 @@ meter::-moz-progress-bar {
   position: absolute;
   z-index: 9999;
   cursor: help;
+}
+
+.tooltip--static:before,
+.tooltip--static:after {
+  opacity: 1;
+  visibility: visible;
+  display: block;
+  position: absolute;
+  z-index: 9999;
+  pointer-events: auto;
 }
 
 .caption {
