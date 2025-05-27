@@ -1,0 +1,43 @@
+// ============================================================================
+// Imports
+// ============================================================================
+
+@use "../../variables" as *;
+@use "../../dev" as *;
+@use "../body_molecules" as *;
+@use "../body_atoms" as *;
+@use "../head_layout" as *;
+@use "../head_object" as *;
+@use "../soul_type" as *;
+
+@mixin widget--base {
+    // @include reset__bleed;
+    @include grid__layout(24);
+    z-index: z("widget");
+    background-color: var(--color_fill_secondary);
+    padding: q(16);
+}
+
+@mixin widget--squared {
+    @include object--shape--squared;
+}
+@mixin widget--rounded {
+    @include object--shape--rounded;
+}
+@mixin widget--pill {
+    @include object--shape--pill;
+}
+
+.widget {
+    @include widget--base;
+}
+
+.widget--squared {
+    @include widget--squared;
+}
+.widget--rounded {
+    @include widget--rounded;
+}
+.widget--pill {
+    @include widget--pill;
+}
