@@ -38,111 +38,33 @@ Figure Rounded
 
 
 {# ----------------------------------------------------------------------------
-Figure Aspect Ratio 16x9
+Figure Aspect Ratios
 ---------------------------------------------------------------------------- #}
+
+{% set aspect_ratios = [
+"16x9",
+"2x3",
+"3x4",
+"4x3",
+"3x2",
+"1x1"
+] %}
+
+{% for ratio in aspect_ratios %}
 <section class="demo__subsection">
-    <h4>Figure Aspect Ratio 16x9</h4>
+    <h4>Figure Aspect Ratio {{ ratio }}</h4>
     {% set code_snippet %}
     <figure class="figure--rounded">
-        <div class="figure_16x9">
-            <img src="https://via.placeholder.com/1280x720" alt="16x9 Aspect Ratio">
+        <div class="ratio_{{ ratio }}">
+            <img src="https://via.placeholder.com/1280x720" alt="{{ ratio }} Aspect Ratio">
         </div>
         <figcaption class="figcaption--title">Figure Title</figcaption>
-        <figcaption>Image constrained to 16:9 ratio using utility class.</figcaption>
+        <figcaption>Image constrained to {{ ratio | replace('x', ':') }} ratio using utility class.</figcaption>
     </figure>
     {% endset %}
-    {% set language="HTML" %}
+    {% set language = "HTML" %}
     {% include "includes/preview_box_code.html.jinja" %}
 </section>
-
-{# ----------------------------------------------------------------------------
-Figure Aspect Ratio 2x3
----------------------------------------------------------------------------- #}
-<section class="demo__subsection">
-    <h4>Figure Aspect Ratio 2x3</h4>
-    {% set code_snippet %}
-    <figure>
-        <div class="figure_2x3">
-            <img src="https://via.placeholder.com/1280x720" alt="2x3 Aspect Ratio">
-        </div>
-        <figcaption class="figcaption--title">Figure Title</figcaption>
-        <figcaption>Image constrained to 2:3 ratio using utility class.</figcaption>
-    </figure>
-    {% endset %}
-    {% set language="HTML" %}
-    {% include "includes/preview_box_code.html.jinja" %}
-</section>
-
-{# ----------------------------------------------------------------------------
-Figure Aspect Ratio 3x4
----------------------------------------------------------------------------- #}
-<section class="demo__subsection">
-    <h4>Figure Aspect Ratio 3x4</h4>
-    {% set code_snippet %}
-    <figure>
-        <div class="figure_3x4">
-            <img src="https://via.placeholder.com/1280x720" alt="3x4 Aspect Ratio">
-        </div>
-        <figcaption class="figcaption--title">Figure Title</figcaption>
-        <figcaption>Image constrained to 3:4 ratio using utility class.</figcaption>
-    </figure>
-    {% endset %}
-    {% set language="HTML" %}
-    {% include "includes/preview_box_code.html.jinja" %}
-</section>
-
-{# ----------------------------------------------------------------------------
-Figure Aspect Ratio 4x3
----------------------------------------------------------------------------- #}
-<section class="demo__subsection">
-    <h4>Figure Aspect Ratio 4x3</h4>
-    {% set code_snippet %}
-    <figure>
-        <div class="figure_4x3">
-            <img src="https://via.placeholder.com/1280x720" alt="4x3 Aspect Ratio">
-        </div>
-        <figcaption class="figcaption--title">Figure Title</figcaption>
-        <figcaption>Image constrained to 4:3 ratio using utility class.</figcaption>
-    </figure>
-    {% endset %}
-    {% set language="HTML" %}
-    {% include "includes/preview_box_code.html.jinja" %}
-</section>
-
-{# ----------------------------------------------------------------------------
-Figure Aspect Ratio 3x2
----------------------------------------------------------------------------- #}
-<section class="demo__subsection">
-    <h4>Figure Aspect Ratio 3x2</h4>
-    {% set code_snippet %}
-    <figure>
-        <div class="figure_3x2">
-            <img src="https://via.placeholder.com/1280x720" alt="3x2 Aspect Ratio">
-        </div>
-        <figcaption class="figcaption--title">Figure Title</figcaption>
-        <figcaption>Image constrained to 3:2 ratio using utility class.</figcaption>
-    </figure>
-    {% endset %}
-    {% set language="HTML" %}
-    {% include "includes/preview_box_code.html.jinja" %}
-</section>
-
-{# ----------------------------------------------------------------------------
-Figure Aspect Ratio 1x1
----------------------------------------------------------------------------- #}
-<section class="demo__subsection">
-    <h4>Figure Aspect Ratio 1x1</h4>
-    {% set code_snippet %}
-    <figure>
-        <div class="figure_1x1">
-            <img src="https://via.placeholder.com/600x600" alt="1x1 Aspect Ratio">
-        </div>
-        <figcaption class="figcaption--title">Figure Title</figcaption>
-        <figcaption>Perfect square image (1:1 aspect ratio).</figcaption>
-    </figure>
-    {% endset %}
-    {% set language="HTML" %}
-    {% include "includes/preview_box_code.html.jinja" %}
-</section>
+{% endfor %}
 
 {% endblock content %}
