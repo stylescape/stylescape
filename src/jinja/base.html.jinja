@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
+{% set rail_left = true %}
+{% set rail_right = true %}
+
+
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}Stylescape{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    {# <!-- Prism CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
-
-    <!-- Prism JS -->
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
-
-    <!-- Optional: Load language components (e.g., HTML, CSS, JS) -->
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-html.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css" />
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script> #}
-
-
     <link rel="stylesheet" href="/css/stylescape.css" />
     <script type="module" src="/js/stylescape.js"></script>
 
@@ -33,91 +23,83 @@
 
 <body class="">
 
-    <div class="layout__grid--screen">
+    <div class="frame_main">
 
-        <div class="layout__area--top">
+        <div class="frame_main__area--top">
             {%- block ribbon_top -%}
-            <header class="ribbon--top" id="" role="navigation">
-                {%- include "includes/_ribbon_top.html.jinja" -%}
-            </header>
+            {%- include "includes/_ribbon_top.html.jinja" -%}
             {%- endblock ribbon_top -%}
         </div>
 
+        <div class="frame_main__area--middle_left ">
 
-        <div class="layout__area--middle_left">
-            <aside class="ribbon--left ribbon--inverted" id="leftRibbon" role="navigation">
-            </aside>
+            <aside class="sidebar--left" id="" role="navigation">
 
-            {% if aside_left %}
-            <div class="aside_left_switch" id="leftSwitch">
-                <button class="aside_left_switch_button">
-                    <span class="top_bar"></span>
-                    <span class="bot_bar"></span>
-                </button>
-            </div>
-            <aside class="aside--left aside--inverted" id="leftAside" role="navigation">
-                <div class="aside--inside">
-                    {% block aside_left_content %}{% endblock%}
+                <!-- <nav class="ribbon--left ribbon--inverted" id="leftRibbon" role="navigation"> -->
+                <nav class="ribbon--left ribbon--inverted" id="" role="navigation">
+                </nav>
+
+
+
+                <menu class="sidebar__menu" id="sidebar_left_menu" role="navigation">
+                    <section class="rail" >
+                    {% block rail_left_content %}
+                    Aside Left Menu
+                    {% include "includes/_aside_left_index.html.jinja" %}
+                    {% endblock %}
+                    </section>
+                </menu>
+
+                <div class="sidebar__left_switch" id="sidebar_left_switch">
+                    <button class="sidebar__left_switch_button">
+                        <span class="top_bar"></span>
+                        <span class="bot_bar"></span>
+                    </button>
                 </div>
+
             </aside>
-            {% endif%}
+
         </div>
 
-        <div class="layout__area--middle_center ">
-            <main class="main" role="main">
-                <div class="main_content">
-                {% block content %}{% endblock %}
-                </div>
+        <div class="frame_main__area--middle_center">
+            <main class="rail" role="main">
+            {# <main class="main rail" role="main"> #}
+                {# <div class="main_content"> #}
+                    {% block content %}{% endblock %}
+                {# </div> #}
             </main>
         </div>
 
-        <div class="layout__area--middle_right">
-            <aside class="ribbon--right ribbon--inverted" id="rightRibbon" role="navigation">
-                <nav class="layout__nav">
-                    <ul class="layout__nav__list">
-                        <li class="layout__nav__list__item">
-                            <a href="/settings" class="layout__nav__list__item__text">Settings</a>
-                        </li>
-                        <li class="layout__nav__list__item">
-                            <a href="/help" class="layout__nav__list__item__text">Help</a>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
+        <div class="frame_main__area--middle_right rail">
+        <aside class="rail" id="" role="navigation">
+            {% block rail_right_content %}
+            Aside Left Menu
+            {% include "includes/_aside_left_index.html.jinja" %}
+            {% endblock%}
+        </aside>
 
-            {% if aside_right %}
-            <div class="aside_right_switch" id="rightSwitch">
-                <button class="aside_right_switch_button">
-                    <span class="top_bar"></span>
-                    <span class="bot_bar"></span>
-                </button>
-            </div>
-            <aside class="aside--right aside--inverted" id="rightAside" role="navigation">
-                <div class="aside--inside">
-                    {% block aside_right_content %}{% endblock%}
-                </div>
-            </aside>
-            {% endif %}
         </div>
 
-        <div class="layout__area--bottom">
-            <footer class="ribbon--bottom ribbon--inverted" role="contentinfo">
-                {% block footer %}
-                <div class="ribbon__slot--horizontal_center">
-
-                    <small>&copy; 2025 SC∆PE AGENCY</small>
-                </div>
-                {% endblock %}
-            </footer>
+        <div class="frame_main__area--bottom">
+            {%- block ribbon_bottom -%}
+            {%- include "includes/_ribbon_bottom.html.jinja" -%}
+            {%- endblock ribbon_bottom -%}
         </div>
-
 
     </div>
 
-    <div class="guide--layer guide--graph_centered" data-grid="graph"></div>
-    <div class="guide--layer guide--baseline" data-grid="baseline"></div>
-
+    <aside class="">
+        {% include "includes/_utility_guides.html.jinja" %}
+    </aside>
 
 </body>
+<script>
+    function filterSections(query) {
+        const q = query.toLowerCase();
+        document.querySelectorAll(".demo__section, .demo__subsection").forEach(section => {
+            section.style.display = section.textContent.toLowerCase().includes(q) ? "block" : "none";
+        });
+    }
+</script>
 
 </html>

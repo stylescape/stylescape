@@ -7,7 +7,7 @@
 /// Assigns a grid-area to a region.
 /// @param {String} $name - The name of the grid area.
 ///
-@mixin layout__area($name) {
+@mixin frame__area($name) {
     grid-area: $name;
 }
 
@@ -16,7 +16,7 @@
 /// Defines a full-page 3×3 layout with outer areas set to `auto`
 /// and a scrollable center area (`middle_center`).
 ///
-@mixin layout__grid--screen {
+@mixin frame_main {
     display: grid;
     height: 100vh;
     width: 100vw;
@@ -37,8 +37,8 @@
 /// ---------------------------------------------------------------------------
 /// Makes the center area scrollable.
 ///
-@mixin layout__area_screen--center {
-    @include layout__area(middle_center);
+@mixin frame_main__area--center {
+    @include frame__area(middle_center);
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -48,35 +48,35 @@
 /// ---------------------------------------------------------------------------
 /// Usage: Add this class to `<body>` or `<main>` to activate layout.
 ///
-.layout__grid--screen {
-    @include layout__area_screen--center;
+.frame_main {
+    @include frame_main__area--center;
 
-    .layout__area--top_left {
-        @include layout__area(top_left);
+    .frame__area--top_left {
+        @include frame__area(top_left);
     }
-    .layout__area--top_center {
-        @include layout__area(top_center);
+    .frame__area--top_center {
+        @include frame__area(top_center);
     }
-    .layout__area--top_right {
-        @include layout__area(top_right);
+    .frame__area--top_right {
+        @include frame__area(top_right);
     }
-    .layout__area--middle_left {
-        @include layout__area(middle_left);
+    .frame__area--middle_left {
+        @include frame__area(middle_left);
     }
-    .layout__area--middle_center {
-        @include layout__area_screen--center;
+    .frame__area--middle_center {
+        @include frame_main__area--center;
     }
-    .layout__area_middle_right {
-        @include layout__area(middle_right);
+    .frame__area_middle_right {
+        @include frame__area(middle_right);
     }
-    .layout__area--bottom_left {
-        @include layout__area(bottom_left);
+    .frame__area--bottom_left {
+        @include frame__area(bottom_left);
     }
-    .layout__area--bottom_center {
-        @include layout__area(bottom_center);
+    .frame__area--bottom_center {
+        @include frame__area(bottom_center);
     }
-    .layout__area--bottom_right {
-        @include layout__area(bottom_right);
+    .frame__area--bottom_right {
+        @include frame__area(bottom_right);
     }
 }
 
@@ -122,16 +122,16 @@
 ///
 /// Layout | Area Header
 ///
-@mixin layout__area_header {
-    @include layout__area(header);
+@mixin frame__area_header {
+    @include frame__area(header);
 }
 
 ///
 /// Layout | Area Main
 ///
-@mixin layout__area_main {
+@mixin frame__area_main {
     @include reset_bleed;
-    @include layout__area(main);
+    @include frame__area(main);
     // display: block; // Placeholder — can become grid later
     @include grid--size--col(24);
 
@@ -146,8 +146,8 @@
     align-items: start;
 }
 
-@mixin layout__area_footer {
-    @include layout__area(footer);
+@mixin frame__area_footer {
+    @include frame__area(footer);
     justify-self: center;
     align-self: end;
 }
@@ -160,14 +160,14 @@
     @include layout_page_default;
 }
 
-.layout__area_header {
-    @include layout__area_header;
+.frame__area_header {
+    @include frame__area_header;
 }
 
-.layout__area_main {
-    @include layout__area_main;
+.frame__area_main {
+    @include frame__area_main;
 }
 
-.layout__area_footer {
-    @include layout__area_footer;
+.frame__area_footer {
+    @include frame__area_footer;
 }

@@ -2,28 +2,31 @@
 // Imports
 // ============================================================================
 @use "sass:map";
-@use "../../soul_type" as *;
-@use "../../body_atoms" as *;
-@use "../../../dev" as *;
-@use "../../../variables" as *;
+@use "../soul_type" as *;
+// @use "../body_atoms" as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
 
 $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
 $duration: 0.5s;
 
 $arrow_size: $q * 12;
 
-.aside_left_switch,
-.aside_right_switch {
+.sidebar__left_switch,
+.rail_right_switch {
     @include reset_bleed;
+    z-index: 9999;
     position: relative;
     width: 0;
     height: 0;
     top: 50vh;
+    overflow: visible;
     // transform: translateX(0) translateY(-50%) rotate(0deg) translateZ(0px);
     z-index: 9000;
     // -webkit-font-smoothing: antialiased;
-    .aside_left_switch_button,
-    .aside_right_switch_button {
+    .sidebar__left_switch_button,
+    .rail_right_switch_button {
+        z-index: 9999;
         width: $arrow_size * 2;
         height: $arrow_size * 2;
         position: absolute;
@@ -80,9 +83,9 @@ $arrow_size: $q * 12;
     }
 }
 
-.aside_left_switch {
+.sidebar__left_switch {
     left: calc($arrow_size / 5);
-    .aside_left_switch_button {
+    .sidebar__left_switch_button {
         .top_bar {
             transform: rotate(90deg);
             &:after {
@@ -98,9 +101,9 @@ $arrow_size: $q * 12;
     }
 }
 
-.aside_right_switch {
+.rail_right_switch {
     right: $arrow_size;
-    .aside_right_switch_button {
+    .rail_right_switch_button {
         .top_bar {
             transform: rotate(90deg);
             &:after {
@@ -117,7 +120,7 @@ $arrow_size: $q * 12;
 }
 
 .active {
-    .aside_left_switch_button {
+    .sidebar__left_switch_button {
         .top_bar:after {
             transform-origin: center center;
             transform: rotate(-150deg);
@@ -127,7 +130,7 @@ $arrow_size: $q * 12;
             transform: rotate(150deg);
         }
     }
-    .aside_right_switch_button {
+    .rail_right_switch_button {
         .top_bar:after {
             transform-origin: center center;
             transform: rotate(150deg);

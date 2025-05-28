@@ -1,0 +1,105 @@
+// Base Mixin for Ticker Wrapper
+@mixin ticker--base {
+    overflow: hidden;
+    position: relative;
+    display: block;
+}
+
+// Inner Track Container
+@mixin ticker--track($direction: left) {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ticker-scroll-#{$direction} 20s linear infinite;
+}
+
+// Vertical Track
+@mixin ticker--track--vertical($direction: up) {
+    display: block;
+    animation: ticker-vertical-#{$direction} 20s linear infinite;
+}
+
+// Horizontal Scroll Keyframes
+@keyframes ticker-scroll-left {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes ticker-scroll-right {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+// Vertical Scroll Keyframes
+@keyframes ticker-vertical-up {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes ticker-vertical-down {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+// Horizontal Ticker
+.ticker--horizontal {
+    @include ticker--base;
+    height: q(40); // Customize as needed
+}
+
+.ticker--horizontal .ticker__track {
+    @include ticker--track(left);
+}
+
+// Reverse
+.ticker--horizontal--reverse .ticker__track {
+    @include ticker--track(right);
+}
+
+// Vertical Ticker
+.ticker--vertical {
+    @include ticker--base;
+    height: q(100);
+    width: 100%;
+}
+
+.ticker--vertical .ticker__track {
+    @include ticker--track--vertical(up);
+}
+
+// Reverse
+.ticker--vertical--reverse .ticker__track {
+    @include ticker--track--vertical(down);
+}
+
+// <div class="ticker--horizontal">
+//   <div class="ticker__track">
+//     <span>🚀 Latest update: Stylescape v1.2 now live! &nbsp;</span>
+//     <span>🎉 New components released today. &nbsp;</span>
+//   </div>
+// </div>
+
+// <div class="ticker--vertical">
+//   <div class="ticker__track">
+//     <div>📌 Upcoming event: Design Week</div>
+//     <div>💡 Tip of the day: Use mixins for reusability</div>
+//     <div>🧪 Labs update: Experimentation UI enabled</div>
+//   </div>
+// </div>
+
+// Add variants for interactivity (hover to pause, touch swipe, etc.)
