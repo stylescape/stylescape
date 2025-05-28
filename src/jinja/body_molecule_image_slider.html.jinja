@@ -1,0 +1,73 @@
+{% extends "base.html.jinja" %}
+
+{% block title %}Image Slider Demo{% endblock %}
+
+{% block content %}
+
+{# ----------------------------------------------------------------------------
+Aspect Ratio Variants
+---------------------------------------------------------------------------- #}
+{% set image_url = "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80" %}
+
+{% for ratio in ["1x1", "3x2", "4x3", "3x4", "2x3", "16x9"] %}
+<section class="demo__subsection">
+    <h4>Image Comparison Slider {{ ratio }}</h4>
+    {% set code_snippet %}
+    <div class="ratio_{{ ratio }}">
+        <figure class="image__compare" id="imageCompare">
+            <img src="{{ image_url }}" class="image__compare--image" alt="After Image">
+            <img src="{{ image_url }}" class="image__compare--overlay image__compare--image" alt="Before Image">
+            <div class="image__compare--slider" id="slider">
+                <span class="arrow--left"></span>
+                <span class="arrow--right"></span>
+            </div>
+        </figure>
+    </div>
+    {% endset %}
+    {% set language="HTML" %}
+    {% include "includes/preview_box_code.html.jinja" %}
+</section>
+{% endfor %}
+
+
+<script>
+    function initImageCompare(containerId, sliderId) {
+        const container = document.getElementById(containerId);
+        const overlay = container.querySelector('.image__compare--overlay');
+        const slider = document.getElementById(sliderId);
+
+        let isActive = false;
+
+        function slideMove(x) {
+            const bounds = container.getBoundingClientRect();
+            let pos = x - bounds.left;
+            pos = Math.max(0, Math.min(pos, bounds.width));
+            overlay.style.width = pos + "px";
+            slider.style.left = pos + "px";
+        }
+
+        slider.addEventListener("mousedown", () => { isActive = true; });
+        window.addEventListener("mouseup", () => { isActive = false; });
+        window.addEventListener("mousemove", (e) => {
+            if (!isActive) return;
+            slideMove(e.clientX);
+        });
+
+        slider.addEventListener("touchstart", () => { isActive = true; });
+        window.addEventListener("touchend", () => { isActive = false; });
+        window.addEventListener("touchmove", (e) => {
+            if (!isActive) return;
+            slideMove(e.touches[0].clientX);
+        });
+
+        // Initial position
+        slideMove(container.offsetWidth / 2);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        {% for i in range(1, 7) %}
+        initImageCompare("imageCompare{{ i }}", "slider{{ i }}");
+        {% endfor %}
+    });
+</script>
+{% endblock %}

@@ -6,6 +6,8 @@ import { GridManager } from "./utilities/GridManager.js"
 import { ThemeToggler } from "./utilities/ThemeToggler.js"
 ;(window as any).ClipboardHelper = ClipboardHelper
 
+import { ImageCompareSlider } from "./elements/ImageCompareSlider.js"
+
 document.addEventListener("DOMContentLoaded", () => {
     // ThemeToggles
     // ----
@@ -56,4 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Optional: expose for debugging
     ;(window as any).asideHandlers = handlers
+})
+
+// Image Compare Slider Handler
+// ============================================================================
+
+window.addEventListener("DOMContentLoaded", () => {
+    ImageCompareSlider.initAll() // Auto-detects all `.image__compare` elements
 })
