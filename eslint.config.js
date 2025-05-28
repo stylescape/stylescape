@@ -1,0 +1,19 @@
+// eslint.config.js
+export default [
+    {
+      ignores: [
+        '**/*.min.js',
+        '**/dist/',
+        '**/vendor/',
+        '.cache',
+        '.idea',
+        '.vscode',
+        'node_modules',
+        'coverage',
+        'dist',
+        'package.json',
+        'package-lock.json'
+      ]
+    },
+    // other ESLint config entries...
+  ];
