@@ -1,0 +1,45 @@
+@use "../../dev" as *;
+
+@use "../head_layout" as *;
+
+/// App Frame | 4 Column Grid for Scapeframe
+/// ---------------------------------------------------------------------------
+/// Adds a 4-column grid inside `middle_center` for app specific elements.
+///
+
+@mixin app__frame--base {
+    @include grid__layout(4);
+    height: 100%;
+    max-height: 100%;
+    margin: baseline(4);
+    box-sizing: border-box;
+    overflow: hidden;
+    position: absolute;
+
+    // Prevent growing beyond its container
+    max-height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    // In flex or grid layouts, this avoids overflow pushing others
+    flex-shrink: 1;
+    flex-grow: 1;
+    // bottom: 0;
+    // top: 0;
+}
+
+.app__frame {
+    @include app__frame--base();
+}
+
+@mixin app__view--base {
+    @include grid--span--col(3);
+    // @include aspect_ratio(3, 2);
+    height: 100%;
+    max-width: 100%;
+}
+
+.app__view {
+    @include app__view--base();
+}

@@ -7878,6 +7878,32 @@ Items have equal space around them */
   pointer-events: none;
 }
 
+.app__frame {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  grid-gap: 1.25rem;
+  height: 100%;
+  max-height: 100%;
+  margin: 1.25rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  max-height: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+
+.app__view {
+  grid-column: span 3;
+  height: 100%;
+  max-width: 100%;
+}
+
 .font--weight_100 {
   font-weight: 189;
   font-variation-settings: "wght" 189, "wdth" 400;
@@ -14969,14 +14995,17 @@ details[open] .ribbon_panel_wrapper {
 }
 
 .widget {
-  display: grid;
-  position: relative;
-  grid-template-columns: repeat(24, 1fr);
-  gap: 1.25rem;
-  grid-gap: 1.25rem;
+  grid-column: span 1;
+  grid-auto-flow: row;
   z-index: z("widget");
   background-color: var(--color_fill_secondary);
   padding: 1rem;
+  max-height: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+  flex-shrink: 1;
+  flex-grow: 1;
 }
 
 .widget--squared {

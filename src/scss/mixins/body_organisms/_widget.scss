@@ -12,10 +12,21 @@
 
 @mixin widget--base {
     // @include reset__bleed;
-    @include grid__layout(24);
+    @include grid--span--col(1);
+    grid-auto-flow: row;
     z-index: z("widget");
     background-color: var(--color_fill_secondary);
     padding: q(16);
+
+    // Prevent growing beyond its container
+    max-height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    // In flex or grid layouts, this avoids overflow pushing others
+    flex-shrink: 1;
+    flex-grow: 1;
 }
 
 @mixin widget--squared {
