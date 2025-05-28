@@ -41,16 +41,20 @@
     text-align: justify;
 }
 
-/// Mixin for centering text within a container using flexbox.
-/// @group Flexbox Alignment
-@mixin text--center {
+
+/// Mixin for centering text (or content) within a container using flexbox.
+/// Optionally, use absolute positioning.
+/// @param {Bool} $absolute - Use absolute positioning (default: false)
+@mixin text--center($absolute: false) {
+  @if $absolute {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 0px;
-    left: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
+    top: 0;
+    left: 0;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
