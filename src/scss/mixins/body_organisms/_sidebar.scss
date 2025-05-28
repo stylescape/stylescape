@@ -10,13 +10,11 @@
 @mixin sidebar--base {
     position: relative;
     display: grid;
-    // grid-template-columns: auto 1fr;
-    // grid-template-areas: "menu rest";
     height: 100%;
-    // overflow: hidden;
-    // overflow-x: visible; // Allow elements to overflow horizontally
-    // overflow-y: hidden; // Optional: avoid vertical scroll bleed
-
+    max-height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
     overflow-x: visible; // Allow elements to overflow horizontally
     overflow-y: visible; // Optional: avoid vertical scroll bleed
     .sidebar__menu {
@@ -55,6 +53,7 @@
         width: q(200);
     }
 }
+
 @mixin sidebar__switch {
     grid-area: switch;
     position: absolute;
@@ -73,25 +72,6 @@
     pointer-events: auto;
     background-color: red;
 }
-// @mixin sidebar__switch {
-//     position: absolute;
-//     top: q(8);
-//     left: 100%; // Position directly beside `.rail`
-//     z-index: 9999;
-
-//     pointer-events: auto;
-//     overflow: visible;
-
-//     width: q(24);
-//     height: q(24);
-
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-
-//     // background-color: var(--color_fill_primary);
-//     background-color: red; // check visibility
-// }
 
 @mixin sidebar--left {
     @include sidebar--base;
@@ -117,14 +97,4 @@
 
 .sidebar--right {
     @include sidebar--right;
-}
-// .sidebar--left {
-//     outline: 1px dashed lime; // debug
-// }
-.sidebar__left_switch_button {
-    all: unset;
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: orange;
 }
