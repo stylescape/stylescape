@@ -1,47 +1,87 @@
-@use "../dev" as *;
-@use "../variables" as *;
-@use "../mixins" as *;
+// ============================================================================
+// Molecule | Figure
+// ============================================================================
+
+@use "sass:map";
+@use "sass:list";
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../soul_type" as *;
+@use "../body_atoms" as *;
+@use "../head_object" as *;
 
 // ============================================================================
 // Media | Figures
 // ============================================================================
 
-// // Define variables for consistent styling
-// $figure-border-color: #ccc;
-// $figure-padding: q(15);
-// $figure-margin: 0 auto q(32);
-// $figure-max-width: 90%;
-// $figcaption-margin-top: q(15);
-// $figcaption-text-align: center;
-// $figcaption-font-style: italic;
-// $figcaption-font-size: 0.85em;
+// Define variables for consistent styling
+$figure-border-color: var(--color_line_primary);
+$figure-padding: q(8);
+$figure-max-width: 90%;
+$figcaption-margin-top: q(16);
+$figcaption-text-align: left;
+$figcaption-font-style: italic;
 
-// // Mixin for figure styling
-// @mixin figure_style {
-//     border: q(1) solid $figure-border-color;
-//     padding: $figure-padding;
-//     margin: $figure-margin;
-//     max-width: $figure-max-width;
-//     box-sizing: border-box;
+// Mixin for figure styling
+@mixin figure--base {
+    position: relative;
+    display: inline-block;
+    border: q(1) solid $figure-border-color;
+    max-width: $figure-max-width;
+    box-sizing: border-box;
 
-//     img {
-//         display: block;
-//         width: 100%;
-//         height: auto;
-//     }
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
 
-//     figcaption {
-//         margin-top: $figcaption-margin-top;
-//         text-align: $figcaption-text-align;
-//         font-style: $figcaption-font-style;
-//         font-size: $figcaption-font-size;
-//     }
-// }
+    .figcaption--title {
+        @include font--size_03;
+        @include font--weight_700;
+        margin-top: $figcaption-margin-top;
+        padding: $figure-padding $figure-padding calc($figure-padding/4)
+            $figure-padding;
+        text-align: $figcaption-text-align;
+        font-style: $figcaption-font-style;
+    }
 
-// // Apply the mixin to the figure element
-// figure {
-//     @include figure_style;
-// }
+    figcaption {
+        @include font--size_03;
+        @include font--weight_400;
+        padding: calc($figure-padding/4) $figure-padding $figure-padding
+            $figure-padding;
+        text-align: $figcaption-text-align;
+        font-style: $figcaption-font-style;
+    }
+}
+
+@mixin figure--squared {
+    @include object--shape--squared;
+}
+@mixin figure--rounded {
+    @include object--shape--rounded;
+}
+@mixin figure--pill {
+    @include object--shape--pill;
+}
+
+// Apply the mixin to the figure element
+figure {
+    @include figure--base;
+    overflow: hidden;
+
+    &.figure--squared {
+        @include figure--squared;
+    }
+    &.figure--rounded {
+        @include figure--rounded;
+    }
+    &.figure--pill {
+        @include figure--pill;
+    }
+}
 
 // // Example for a themed figure, reusing the mixin with different variables
 // $dark-theme-figure-border-color: #666;
@@ -79,22 +119,22 @@ figure img {
 /// Styles for the `<figcaption>` element within a `<figure>`.
 ///
 /// Includes font styling to make the caption stand out.
-figure figcaption {
-    // color: {{ css_color_01 }};
-    font-weight: 700;
-    //   @include font-size($figure-caption-font-size);
-    //   color: $figure-caption-color;
-}
+// figure figcaption {
+// color: {{ css_color_01 }};
+// font-weight: 700;
+//   @include font-size($figure-caption-font-size);
+//   color: $figure-caption-color;
+// }
 
 /// Utility class for additional text styling within figures.
-.figure_text {
-    font-size: calc(q(24));
-}
+// .figure_text {
+//     font-size: calc(q(24));
+// }
 
 /// Utility class for styling dots or other small elements within figures.
-.figure_dot {
-    // r: calc(q(8));
-}
+// .figure_dot {
+// r: calc(q(8));
+// }
 
 /// Aspect Ratio Utilities
 // ----------------------------------------------------------------------------
@@ -102,7 +142,7 @@ figure figcaption {
 ///
 /// These classes ensure that images maintain their aspect ratio, regardless of screen size.
 .figure_1x1,
-.figure_3_2,
+.figure_3x2,
 .figure_4x3,
 .figure_3x4,
 .figure_2x3,
@@ -116,7 +156,7 @@ figure figcaption {
     padding-bottom: 100%; // Maintains a 1:1 aspect ratio
 }
 
-.figure_3_2 {
+.figure_3x2 {
     padding-bottom: 66.67%; // Maintains a 3:2 aspect ratio
 }
 
