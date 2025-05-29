@@ -7901,6 +7901,42 @@ Items have equal space around them */
   max-width: 100%;
 }
 
+.portfolio {
+  grid-column: span 3;
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  grid-gap: 1.25rem;
+  grid-template-rows: repeat(3, 1fr);
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.portfolio--item {
+  grid-column: span 1;
+  grid-row: span 1;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.7777777778;
+}
+.portfolio--item > * {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.portfolio--item {
+  max-width: 100%;
+}
+.portfolio--item img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
 .font--weight_100 {
   font-weight: 189;
   font-variation-settings: "wght" 189, "wdth" 400;
@@ -13368,7 +13404,6 @@ figure {
   position: relative;
   display: inline-block;
   border: 0.0625rem solid var(--color_line_primary);
-  max-width: 90%;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -13398,11 +13433,6 @@ figure figcaption {
 }
 figure.figure--rounded {
   border-radius: 0.125rem;
-}
-
-figure {
-  position: relative;
-  display: inline-block;
 }
 
 figure img {
@@ -14997,6 +15027,8 @@ details[open] .ribbon_panel_wrapper {
   z-index: z("widget");
   background-color: var(--color_fill_secondary);
   padding: 1rem;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .widget--squared {
