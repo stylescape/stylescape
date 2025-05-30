@@ -2,7 +2,7 @@
 
 Your naming convention @mixin frame_main__area--center follows a structured, semantic BEM-inspired SCSS architecture that clearly expresses both layout hierarchy and functionality.
 
-##🔍 Description
+## Description
 
 ```
 @mixin frame_main__area--center
