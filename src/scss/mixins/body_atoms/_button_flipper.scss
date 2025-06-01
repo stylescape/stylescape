@@ -9,8 +9,8 @@
 // Variables
 // ============================================================================
 
-$arrow_size: $q * 12;
-$bar_height: math.div($arrow_size, 4);
+$arrow_size: q(16);
+$bar_height: math.div($arrow_size, 16);
 $duration: 0.5s;
 $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
 
@@ -26,132 +26,108 @@ $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
     background: transparent;
     cursor: pointer;
     display: block;
-    color: grey;
+    // color: grey;
     z-index: 9999;
+    overflow: visible;
 
     &::before,
     &::after {
+        // content: "";
+        // position: absolute;
+        // width: $arrow_size;
+        // height: $bar_height;
+        // background-color: rgb(165, 165, 165);
+        // // left: 0;
+        // transition: all $duration $easing;
+        // transform-origin: center center;
         content: "";
         position: absolute;
         width: $arrow_size;
         height: $bar_height;
-        background-color: rgb(165, 165, 165);
-        // left: 0;
+        background-color: var(--color_text_primary);
+        transform: translateX(-50%) rotate(90deg); // Center and rotate
         transition: all $duration $easing;
         transform-origin: center center;
+    }
+    &.active {
+        &::before,
+        &::after {
+            background-color: var(--color_state_active);
+        }
     }
 }
 
 // Left variant
-.flipper--right {
+.flipper--left {
     @include flipper-button-base;
-
+    &::before,
+    &::after {
+        transform: translateX(q(-8)) rotate(90deg);
+        // transform: translateX(q(16)); // Center horizontally
+        // transform: rotate(90deg);
+    }
     &::before {
-        top: $bar_height + q(1);
-        transform: rotate(90deg);
+        z-index: 9999;
+        top: math.div($arrow_size, 4);
+        // transform: rotate(90deg);
     }
 
     &::after {
         top: $arrow_size + 0 * $q;
-        transform: rotate(90deg);
+        // transform: rotate(90deg);
     }
 
     &.active {
         &::before {
-            transform: rotate(-135deg);
+            transform: translateX(q(-8)) rotate(120deg);
         }
         &::after {
-            transform: rotate(135deg);
+            transform: translateX(q(-8)) rotate(-120deg);
         }
     }
 }
 
 // Right variant
-.flipper--left {
+.flipper--right {
     @include flipper-button-base;
-
+    &::before,
+    &::after {
+        transform: translateX(q(-8)) rotate(90deg);
+        // transform: translateX(q(16)); // Center horizontally
+        // transform: rotate(90deg);
+    }
     &::before {
         z-index: 9999;
-
-        top: math.div($arrow_size, 4) + q(1);
-        transform: rotate(90deg);
+        top: $bar_height + q(1);
+        // transform: rotate(90deg);
     }
 
     &::after {
         top: $arrow_size + 0 * $q;
-        transform: rotate(90deg);
+        // transform: rotate(90deg);
     }
 
     &.active {
         &::before {
-            transform: rotate(135deg);
+            transform: translateX(q(-8)) rotate(-120deg);
         }
         &::after {
-            transform: rotate(-135deg);
+            transform: translateX(q(-8)) rotate(120deg);
         }
     }
 }
 
-// // ============================================================================
-// // Mixin: flipper left / right
-// // ============================================================================
-// @mixin flipper-button-left {
-//     @include flipper-button-base;
+// .sidebar__control {
+//     position: absolute;
+//     top: 50vh;
+//     z-index: 9000;
+//     overflow: visible;
 
-//     .top_bar {
-//         top: math.div($arrow_size, 2) + $q;
-//         transform: rotate(90deg);
+//     &--left {
+//         left: math.div($arrow_size, 5);
 //     }
 
-//     .bot_bar {
-//         top: $arrow_size + 3 * $q;
-//         transform: rotate(90deg);
+//     &--right {
+//         right: $arrow_size;
 //     }
-// }
-
-// @mixin flipper-button-right {
-//     @include flipper-button-base;
-
-//     .top_bar {
-//         top: math.div($arrow_size, 2) + $q;
-//         transform: rotate(90deg);
-//     }
-
-//     .bot_bar {
-//         top: $arrow_size + 3 * $q;
-//         transform: rotate(90deg);
-//     }
-// }
-
-// // ============================================================================
-// // Mixin: flipper active
-// // ============================================================================
-// @mixin flipper-active($direction: "left") {
-//     .top_bar:after {
-//         transform-origin: center center;
-//         transform: rotate(if($direction == "left", -150deg, 150deg));
-//     }
-
-//     .bot_bar:after {
-//         transform-origin: center center;
-//         transform: rotate(if($direction == "left", 150deg, -150deg));
-//     }
-// }
-
-// // ============================================================================
-// // Concrete usage
-// // ============================================================================
-
-// button.flipper--left {
-//     @include flipper-button-left;
-// }
-// button.flipper--right {
-//     @include flipper-button-right;
-// }
-
-// button.flipper--left.active {
-//     @include flipper-active("left");
-// }
-// button.flipper--right.active {
-//     @include flipper-active("right");
 // }

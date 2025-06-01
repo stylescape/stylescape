@@ -1,0 +1,105 @@
+// ============================================================================
+// Imports
+// ============================================================================
+@use "sass:map";
+@use "sass:math";
+@use "../soul_type" as *;
+@use "../body_atoms" as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
+
+@mixin sidebar--base {
+    position: relative;
+    display: grid;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: visible; // Allow elements to overflow horizontally
+    overflow-x: visible; // Allow elements to overflow horizontally
+    overflow-y: visible; // Optional: avoid vertical scroll bleed
+    .sidebar__menu {
+        @include sidebar__menu;
+    }
+    .flipper--left,
+    .flipper--right {
+        @include sidebar__control;
+    }
+}
+
+@mixin sidebar__menu {
+    grid-area: menu;
+    position: relative;
+    transition: width 0.3s ease;
+    width: 0;
+    display: none;
+    visibility: hidden;
+    overflow: visible;
+    height: 100%;
+    // Prevent growing beyond its container
+    max-height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    // Reset box sizing for accurate layout calculation
+    box-sizing: border-box;
+
+    &.active {
+        display: block;
+        visibility: visible;
+        width: q(200);
+    }
+}
+
+@mixin sidebar__control {
+    @include reset_bleed;
+    // grid-area: switch;
+    top: 50%;
+    z-index: 9999;
+
+    width: q(16);
+    height: q(16);
+
+    pointer-events: auto;
+    z-index: 99999;
+    overflow: visible;
+}
+
+// ============================================================================
+// Wrapper base
+// ============================================================================
+
+@mixin sidebar--left {
+    @include sidebar--base;
+    grid-template-columns: 1fr auto 0;
+    grid-template-areas: "ribbon menu switch";
+    border-right: q(1) solid var(--color_text_primary);
+    .sidebar__control {
+        left: 100%;
+    }
+}
+
+@mixin sidebar--right {
+    @include sidebar--base;
+
+    grid-template-columns: 0 auto 1fr;
+    grid-template-areas: "switch menu ribbon";
+    border-left: q(1) solid var(--color_text_primary);
+    overflow: visible;
+    position: relative;
+    .sidebar__control {
+        right: 0;
+        // transform: translateX(-200%);
+        z-index: 9999;
+    }
+}
+// Utility classes for left and right sidebars
+.sidebar--left {
+    @include sidebar--left;
+}
+
+.sidebar--right {
+    @include sidebar--right;
+}

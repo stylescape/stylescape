@@ -11930,73 +11930,84 @@ button.button--clear:disabled {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.flipper--right {
-  width: 0.75rem;
-  height: 1.5rem;
-  position: absolute;
-  background: transparent;
-  cursor: pointer;
-  display: block;
-  color: grey;
-  z-index: 9999;
-}
-.flipper--right::before, .flipper--right::after {
-  content: "";
-  position: absolute;
-  width: 0.75rem;
-  height: 0.1875rem;
-  background-color: rgb(165, 165, 165);
-  transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
-  transform-origin: center center;
-}
-.flipper--right::before {
-  top: 0.25rem;
-  transform: rotate(90deg);
-}
-.flipper--right::after {
-  top: 0.75rem;
-  transform: rotate(90deg);
-}
-.flipper--right.active::before {
-  transform: rotate(-135deg);
-}
-.flipper--right.active::after {
-  transform: rotate(135deg);
-}
-
 .flipper--left {
-  width: 0.75rem;
-  height: 1.5rem;
+  width: 1rem;
+  height: 2rem;
   position: absolute;
   background: transparent;
   cursor: pointer;
   display: block;
-  color: grey;
   z-index: 9999;
+  overflow: visible;
 }
 .flipper--left::before, .flipper--left::after {
   content: "";
   position: absolute;
-  width: 0.75rem;
-  height: 0.1875rem;
-  background-color: rgb(165, 165, 165);
+  width: 1rem;
+  height: 0.0625rem;
+  background-color: var(--color_text_primary);
+  transform: translateX(-50%) rotate(90deg);
   transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
   transform-origin: center center;
+}
+.flipper--left.active::before, .flipper--left.active::after {
+  background-color: var(--color_state_active);
+}
+.flipper--left::before, .flipper--left::after {
+  transform: translateX(-0.5rem) rotate(90deg);
 }
 .flipper--left::before {
   z-index: 9999;
   top: 0.25rem;
-  transform: rotate(90deg);
 }
 .flipper--left::after {
-  top: 0.75rem;
-  transform: rotate(90deg);
+  top: 1rem;
 }
 .flipper--left.active::before {
-  transform: rotate(135deg);
+  transform: translateX(-0.5rem) rotate(120deg);
 }
 .flipper--left.active::after {
-  transform: rotate(-135deg);
+  transform: translateX(-0.5rem) rotate(-120deg);
+}
+
+.flipper--right {
+  width: 1rem;
+  height: 2rem;
+  position: absolute;
+  background: transparent;
+  cursor: pointer;
+  display: block;
+  z-index: 9999;
+  overflow: visible;
+}
+.flipper--right::before, .flipper--right::after {
+  content: "";
+  position: absolute;
+  width: 1rem;
+  height: 0.0625rem;
+  background-color: var(--color_text_primary);
+  transform: translateX(-50%) rotate(90deg);
+  transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
+  transform-origin: center center;
+}
+.flipper--right.active::before, .flipper--right.active::after {
+  background-color: var(--color_state_active);
+}
+.flipper--right::before, .flipper--right::after {
+  transform: translateX(-0.5rem) rotate(90deg);
+}
+.flipper--right::before {
+  z-index: 9999;
+  top: 0.125rem;
+}
+.flipper--right::after {
+  top: 1rem;
+}
+.flipper--right.active::before {
+  transform: translateX(-0.5rem) rotate(-120deg);
+}
+.flipper--right.active::after {
+  transform: translateX(-0.5rem) rotate(120deg);
 }
 
 .input {
@@ -15454,25 +15465,22 @@ details[open] .ribbon_panel_wrapper {
 
 .sidebar--left {
   position: relative;
-  display: grid;
+  display: flex;
   height: 100%;
   max-height: 100%;
   max-width: 100%;
   min-width: 0;
   min-height: 0;
-  overflow-x: visible;
-  overflow-y: visible;
-  grid-template-columns: 1fr auto 0;
-  grid-template-areas: "ribbon menu switch";
-  border-right: 0.0625rem solid var(--color_text_primary);
+  overflow: visible;
+  flex-direction: row;
 }
 .sidebar--left .sidebar__menu {
-  grid-area: menu;
   position: relative;
   transition: width 0.3s ease;
   width: 0;
   display: none;
   visibility: hidden;
+  overflow: visible;
   height: 100%;
   max-height: 100%;
   max-width: 100%;
@@ -15484,6 +15492,30 @@ details[open] .ribbon_panel_wrapper {
   display: block;
   visibility: visible;
   width: 12.5rem;
+}
+.sidebar--left .sidebar__menu .sidebar__control {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateX(-100%) translateY(-50%);
+  z-index: 9999;
+}
+.sidebar--left .sidebar__menu .sidebar__control .flipper--right {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  z-index: 9999;
+}
+.sidebar--left .sidebar__menu .sidebar__control .flipper--right .flipper__icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  position: relative;
 }
 .sidebar--left .flipper--left,
 .sidebar--left .flipper--right {
@@ -15497,42 +15529,37 @@ details[open] .ribbon_panel_wrapper {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  grid-area: switch;
-  position: absolute;
-  top: 50%;
-  z-index: 9999;
+  position: relative;
   width: 1rem;
   height: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99999;
   pointer-events: auto;
+  overflow: visible;
 }
-.sidebar--left .sidebar__control {
-  left: 100%;
+.sidebar--left .sidebar__menu {
+  border-right: 0.0625rem solid var(--color_text_primary);
 }
 
 .sidebar--right {
   position: relative;
-  display: grid;
+  display: flex;
   height: 100%;
   max-height: 100%;
   max-width: 100%;
   min-width: 0;
   min-height: 0;
-  overflow-x: visible;
-  overflow-y: visible;
-  grid-template-columns: 1rem auto 1fr;
-  grid-template-areas: "switch menu ribbon";
-  border-left: 0.0625rem solid var(--color_text_primary);
+  overflow: visible;
+  flex-direction: row-reverse;
 }
 .sidebar--right .sidebar__menu {
-  grid-area: menu;
   position: relative;
   transition: width 0.3s ease;
   width: 0;
   display: none;
   visibility: hidden;
+  overflow: visible;
   height: 100%;
   max-height: 100%;
   max-width: 100%;
@@ -15544,6 +15571,30 @@ details[open] .ribbon_panel_wrapper {
   display: block;
   visibility: visible;
   width: 12.5rem;
+}
+.sidebar--right .sidebar__menu .sidebar__control {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateX(-100%) translateY(-50%);
+  z-index: 9999;
+}
+.sidebar--right .sidebar__menu .sidebar__control .flipper--right {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  z-index: 9999;
+}
+.sidebar--right .sidebar__menu .sidebar__control .flipper--right .flipper__icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  position: relative;
 }
 .sidebar--right .flipper--left,
 .sidebar--right .flipper--right {
@@ -15557,20 +15608,17 @@ details[open] .ribbon_panel_wrapper {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  grid-area: switch;
-  position: absolute;
-  top: 50%;
-  z-index: 9999;
+  position: relative;
   width: 1rem;
   height: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99999;
   pointer-events: auto;
+  overflow: visible;
 }
-.sidebar--right .sidebar__control {
-  right: 0;
-  transform: translate(-1rem, 0);
+.sidebar--right .sidebar__menu {
+  border-left: 0.0625rem solid var(--color_text_primary);
 }
 
 .canvas {
