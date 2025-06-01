@@ -20,7 +20,7 @@ $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
 
 // Shared styles
 @mixin flipper-button-base {
-    width: $arrow_size * 2;
+    width: $arrow_size;
     height: $arrow_size * 2;
     position: absolute;
     background: transparent;
@@ -36,56 +36,58 @@ $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
         width: $arrow_size;
         height: $bar_height;
         background-color: rgb(165, 165, 165);
-        left: 0;
+        // left: 0;
         transition: all $duration $easing;
         transform-origin: center center;
     }
 }
 
 // Left variant
-.flipper--left {
+.flipper--right {
     @include flipper-button-base;
 
     &::before {
-        top: math.div($arrow_size, 2) + $q;
+        top: $bar_height + q(1);
         transform: rotate(90deg);
     }
 
     &::after {
-        top: $arrow_size + 3 * $q;
+        top: $arrow_size + 0 * $q;
         transform: rotate(90deg);
     }
 
     &.active {
         &::before {
-            transform: rotate(-150deg);
+            transform: rotate(-135deg);
         }
         &::after {
-            transform: rotate(150deg);
+            transform: rotate(135deg);
         }
     }
 }
 
 // Right variant
-.flipper--right {
+.flipper--left {
     @include flipper-button-base;
 
     &::before {
-        top: math.div($arrow_size, 2) + $q;
+        z-index: 9999;
+
+        top: math.div($arrow_size, 4) + q(1);
         transform: rotate(90deg);
     }
 
     &::after {
-        top: $arrow_size + 3 * $q;
+        top: $arrow_size + 0 * $q;
         transform: rotate(90deg);
     }
 
     &.active {
         &::before {
-            transform: rotate(150deg);
+            transform: rotate(135deg);
         }
         &::after {
-            transform: rotate(-150deg);
+            transform: rotate(-135deg);
         }
     }
 }

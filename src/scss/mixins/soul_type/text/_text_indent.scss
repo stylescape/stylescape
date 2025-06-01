@@ -1,0 +1,61 @@
+////
+///
+/// Deafult Paragraph Typography Mixins Module
+/// ===========================================================================
+/// Provides reusable mixins for text alignment and centering.
+///
+/// @group TextAlignment
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+///
+/// Mixin for applying a standard first-line text indent.
+/// @param {Length} $amount [1.5em] - The amount of indentation.
+///
+@mixin text_indent($amount: baseline(4)) {
+    text-indent: $amount !important;
+    // text-justify: inter-word; // Optional for better justification
+}
+
+///
+/// Mixin for removing text indentation.
+///
+@mixin text_indent--none {
+    text-indent: 0 !important;
+}
+
+.text_indent {
+    @include text_indent(); // default
+}
+
+.text_indent--none {
+    @include text_indent--none;
+}
+.text_indent--xs {
+    @include text_indent(baseline(2));
+}
+
+.text_indent--sm {
+    @include text_indent(baseline(3));
+}
+
+.text_indent--md {
+    @include text_indent();
+}
+
+.text_indent--lg {
+    @include text_indent(baseline(6));
+}
+
+.text_indent--xl {
+    @include text_indent(baseline(8));
+}
