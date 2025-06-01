@@ -9,21 +9,13 @@
 
 @use "../soul_type" as *;
 
-.toc {
-    font-family: sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    padding: 1rem;
-    // background-color: #f8f9fa;
-    // border-left: 4px solid #ccc;
-
+@mixin toc {
     ul {
         list-style: none;
-        padding-left: 1rem;
         margin: 0;
 
         ul {
-            padding-left: 1rem;
+            padding-left: q(16);
             border-left: 1px dashed #ddd;
             margin-top: 0.25rem;
         }
@@ -32,6 +24,13 @@
     li {
         margin: 0.25rem 0;
 
+        &::before {
+            content: "•";
+            color: #bbb;
+            margin-right: 0.4rem;
+            font-size: 0.8em;
+        }
+
         a {
             text-decoration: none;
             color: #333;
@@ -39,26 +38,73 @@
 
             &:hover,
             &.active {
-                color: #0077cc;
                 font-weight: bold;
+            }
+
+            &.hover {
+                color: var(--color_state_hover, #007aff);
+            }
+            &.active {
+                color: var(--color_state_active, #007aff);
             }
         }
     }
-
-    // Optional: control depth indicators
-    li::before {
-        content: "•";
-        color: #bbb;
-        margin-right: 0.4rem;
-        font-size: 0.8em;
-    }
-
-    // Responsive layout
-    @media (max-width: 600px) {
-        font-size: 0.9rem;
-        padding: 0.75rem;
-    }
 }
+
+.toc {
+    // font-size: 0.95rem;
+    // line-height: 1.4;
+    // padding: 1rem;
+    // background-color: #f8f9fa;
+    // border-left: 4px solid #ccc;
+
+    @include toc;
+}
+
+// .toc {
+//     // font-family: sans-serif;
+//     // font-size: 0.95rem;
+//     // line-height: 1.4;
+//     // padding: 1rem;
+//     // background-color: #f8f9fa;
+//     // border-left: 4px solid #ccc;
+
+//     ul {
+//         list-style: none;
+//         padding-left: 1rem;
+//         margin: 0;
+
+//         ul {
+//             padding-left: 1rem;
+//             border-left: 1px dashed #ddd;
+//             margin-top: 0.25rem;
+//         }
+//     }
+
+//     li {
+//         margin: 0.25rem 0;
+
+//         a {
+//             text-decoration: none;
+//             color: #333;
+//             transition: color 0.2s ease;
+
+//             &:hover,
+//             &.active {
+//                 color: #0077cc;
+//                 font-weight: bold;
+//             }
+//         }
+//     }
+
+//     // Optional: control depth indicators
+//     li::before {
+//         content: "•";
+//         color: #bbb;
+//         margin-right: 0.4rem;
+//         font-size: 0.8em;
+//     }
+// }
 
 //   #toc_wrap{
 

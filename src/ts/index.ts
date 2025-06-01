@@ -26,9 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ThemeToggler.initializeToggleSwitch("themeToggle")
 
     // TableOfContentsBuilder
-
-    const builder = new TableOfContentsBuilder("main_content", "toc")
-    builder.build()
+    const tocBuilder = new TableOfContentsBuilder("main_content", "toc")
+    tocBuilder.buildAndAppendTOC()
 
     // Exclusive Details Handling
     new ExclusiveDetails(".ribbon_menu_button")

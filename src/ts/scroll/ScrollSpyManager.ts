@@ -1,6 +1,5 @@
 // Updates navigation based on scroll position, commonly used in single-page websites.
 
-// ScrollSpyManager: Activates nav links based on scroll position.
 export class ScrollSpyManager {
     private sections: HTMLElement[]
     private navLinks: NodeListOf<HTMLElement>
@@ -12,7 +11,7 @@ export class ScrollSpyManager {
         sections: HTMLElement[],
         navLinksSelector: string,
         containerId?: string,
-        thresholdOffset: number = 0.5, // default halfway through section
+        thresholdOffset: number = 0.5,
     ) {
         this.sections = sections
         this.navLinks = document.querySelectorAll(navLinksSelector)
@@ -45,6 +44,9 @@ export class ScrollSpyManager {
     }
 
     private updateActiveLink(): void {
+        if (!this.sections || this.sections.length === 0 || !this.navLinks)
+            return
+
         const scrollY =
             this.scrollContainer instanceof Window
                 ? window.scrollY
@@ -67,10 +69,104 @@ export class ScrollSpyManager {
 
         this.navLinks.forEach((link) => {
             const targetId = link.getAttribute("href")?.replace("#", "")
-            link.classList.toggle("active", targetId === activeId)
+            const isActive = targetId === activeId
+
+            link.classList.toggle("active", isActive)
+
+            let parent = link.parentElement
+            while (parent && parent !== document.body) {
+                if (parent.tagName === "LI") {
+                    parent.classList.remove("active")
+                }
+                parent = parent.parentElement
+            }
+
+            if (isActive) {
+                let parent = link.parentElement
+                while (parent && parent !== document.body) {
+                    if (parent.tagName === "LI") {
+                        parent.classList.add("active")
+                    }
+                    parent = parent.parentElement
+                }
+            }
         })
     }
 }
+
+// // Updates navigation based on scroll position, commonly used in single-page websites.
+
+// // ScrollSpyManager: Activates nav links based on scroll position.
+// export class ScrollSpyManager {
+//     private sections: HTMLElement[]
+//     private navLinks: NodeListOf<HTMLElement>
+//     private scrollContainer: HTMLElement | Window
+//     private thresholdOffset: number
+//     private ticking = false
+
+//     constructor(
+//         sections: HTMLElement[],
+//         navLinksSelector: string,
+//         containerId?: string,
+//         thresholdOffset: number = 0.5, // default halfway through section
+//     ) {
+//         this.sections = sections
+//         this.navLinks = document.querySelectorAll(navLinksSelector)
+//         this.scrollContainer = containerId
+//             ? (document.getElementById(containerId) ?? window)
+//             : window
+//         this.thresholdOffset = thresholdOffset
+
+//         this.bindScrollListener()
+//         this.updateActiveLink()
+//     }
+
+//     private bindScrollListener(): void {
+//         const container =
+//             this.scrollContainer === window ? window : this.scrollContainer
+
+//         container.addEventListener("scroll", () => this.onScroll(), {
+//             passive: true,
+//         })
+//     }
+
+//     private onScroll(): void {
+//         if (!this.ticking) {
+//             window.requestAnimationFrame(() => {
+//                 this.updateActiveLink()
+//                 this.ticking = false
+//             })
+//             this.ticking = true
+//         }
+//     }
+
+//     private updateActiveLink(): void {
+//         const scrollY =
+//             this.scrollContainer instanceof Window
+//                 ? window.scrollY
+//                 : this.scrollContainer.scrollTop
+
+//         let activeId: string | null = null
+
+//         for (const section of this.sections) {
+//             const id = section.getAttribute("id")
+//             if (!id) continue
+
+//             const top = section.offsetTop
+//             const height = section.offsetHeight
+//             const threshold = top - height * this.thresholdOffset
+
+//             if (scrollY >= threshold) {
+//                 activeId = id
+//             }
+//         }
+
+//         this.navLinks.forEach((link) => {
+//             const targetId = link.getAttribute("href")?.replace("#", "")
+//             link.classList.toggle("active", targetId === activeId)
+//         })
+//     }
+// }
 
 // export class ScrollSpyManager {
 //     private sections: HTMLElement[]
