@@ -1,36 +1,7 @@
 
 
-{% for section in sections %}
 <section class="sidebar__section">
 
-{# <section class="">
-    <h2>Stylescape Index</h2>
-    <input type="search" placeholder="Search components..." class="search-input" oninput="filterSections(this.value)" />
-</section>
- #}
+    <nav id="toc" class="toc"></nav>
 
-
-    <header class="sidebar__section__header">
-        <h3>{{ section.title }}</h3>
-    </header>
-    {% for group in section.groups %}
-    <section class="sidebar__subsection" data-group="{{ group.data_group }}">
-        <h4>{{ group.heading }}</h4>
-        {% if group.description %}
-        <small>{{ group.description }}</small>
-        {% endif %}
-        <ul>
-            {% for item in group.items %}
-            <li>
-                {% set link = item[0] %}
-                {% set label = item[1] %}
-                {# {% set desc = item[2] if item|length > 2 else "" %} #}
-                <a href="{{ link }}">{{ label }}</a>
-                {# {% if desc %} <small>- {{ desc }}</small>{% endif %} #}
-            </li>
-            {% endfor %}
-        </ul>
-    </section>
-    {% endfor %}
 </section>
-{% endfor %}

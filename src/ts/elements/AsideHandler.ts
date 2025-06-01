@@ -1,5 +1,5 @@
 import { StateManager } from "../state/StateManager.js"
-import { LocalStorageManager } from "./LocalStorageManager.js"
+import { LocalStorageManager } from "../storage/LocalStorageManager.js"
 
 export class AsideHandler {
     private static readonly VISIBLE_CLASS = "active"

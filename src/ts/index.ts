@@ -1,11 +1,12 @@
 import { AsideHandler } from "./elements/AsideHandler.js"
 import { ExclusiveDetails } from "./elements/ExclusiveDetails.js"
-import { ImageCompareSlider } from "./elements/ImageCompareSlider.js"
+import { ImageCompareSlider } from "./media/ImageCompareSlider.js"
 
 import { ClipboardHelper } from "./utilities/ClipboardHelper.js"
 import { GridManager } from "./utilities/GridManager.js"
 import { ThemeToggler } from "./utilities/ThemeToggler.js"
 
+import { TableOfContentsBuilder } from "./content/TableOfContentsBuilder.js"
 import { ScrollElementManager } from "./scroll/ScrollElementManager.js"
 import { ScrollPageManager } from "./scroll/ScrollPageManager.js"
 ;(window as any).ClipboardHelper = ClipboardHelper
@@ -23,6 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Theme Toggle
     ThemeToggler.initializeToggleSwitch("themeToggle")
+
+    // TableOfContentsBuilder
+
+    const builder = new TableOfContentsBuilder("main_content", "toc")
+    builder.build()
 
     // Exclusive Details Handling
     new ExclusiveDetails(".ribbon_menu_button")

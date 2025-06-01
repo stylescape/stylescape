@@ -1,4 +1,100 @@
-// import { ScrollSpyManager } from "../mouse/ScrollSpyManager.js"
+import { ScrollSpyManager } from "../scroll/ScrollSpyManager.js"
+
+export class TableOfContentsBuilder {
+    private contentElementId: string
+    private tocContainerId: string
+    private linkSectionMap = new Map<HTMLElement, HTMLElement>()
+    private idSet = new Set<string>()
+    private scrollSpyManager?: ScrollSpyManager
+
+    constructor(contentElementId: string, tocContainerId: string) {
+        this.contentElementId = contentElementId
+        this.tocContainerId = tocContainerId
+    }
+
+    private generateUniqueId(base: string): string {
+        let id = base
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .replace(/[^\w-]/g, "")
+        let uniqueId = id
+        let count = 1
+        while (this.idSet.has(uniqueId)) {
+            uniqueId = `${id}-${count++}`
+        }
+        this.idSet.add(uniqueId)
+        return uniqueId
+    }
+
+    build(): void {
+        const contentEl = document.getElementById(this.contentElementId)
+        const tocEl = document.getElementById(this.tocContainerId)
+        if (!contentEl || !tocEl) return
+
+        const sections = Array.from(
+            contentEl.querySelectorAll<HTMLElement>(
+                "[data-label][data-level]",
+            ),
+        )
+            .map((el) => {
+                const label = el.dataset.label?.trim() || "Untitled"
+                const level = parseInt(el.dataset.level || "1", 10)
+                return { el, label, level }
+            })
+            .filter(({ level }) => !isNaN(level))
+            .sort((a, b) => a.level - b.level)
+
+        const rootList = document.createElement("ul")
+        const stack: { level: number; list: HTMLUListElement }[] = [
+            { level: 0, list: rootList },
+        ]
+
+        for (const { el, label, level } of sections) {
+            const id = el.id || this.generateUniqueId(label)
+            el.id = id
+
+            const link = document.createElement("a")
+            link.href = `#${id}`
+            link.textContent = label
+
+            const listItem = document.createElement("li")
+            listItem.appendChild(link)
+
+            // Find correct nesting level
+            while (
+                stack.length > 1 &&
+                level <= stack[stack.length - 1].level
+            ) {
+                stack.pop()
+            }
+
+            const parentList = stack[stack.length - 1].list
+            parentList.appendChild(listItem)
+
+            // Prepare for deeper nesting
+            const subList = document.createElement("ul")
+            listItem.appendChild(subList)
+            stack.push({ level, list: subList })
+
+            this.linkSectionMap.set(link, el)
+        }
+
+        tocEl.innerHTML = ""
+        tocEl.appendChild(rootList)
+
+        this.scrollSpyManager = new ScrollSpyManager(
+            Array.from(this.linkSectionMap.values()),
+            `#${this.tocContainerId} a`,
+            this.contentElementId,
+        )
+    }
+
+    getLinkSectionMap(): Map<HTMLElement, HTMLElement> {
+        return this.linkSectionMap
+    }
+}
+
+// import { ScrollSpyManager } from "../scroll/ScrollSpyManager.js"
 
 // export class TableOfContentsBuilder {
 //     private contentElementId: string
