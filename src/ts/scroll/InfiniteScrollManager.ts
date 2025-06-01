@@ -1,4 +1,4 @@
-export default class InfiniteScrollManager {
+export class InfiniteScrollManager {
     private threshold: number
     private loadMoreCallback: () => void
     private container: HTMLElement | Window

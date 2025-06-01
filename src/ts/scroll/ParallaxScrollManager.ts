@@ -1,21 +1,47 @@
-// // Implements parallax scrolling effects for background images or elements.
+export class ParallaxScrollManager {
+    private elements: HTMLElement[]
+    private ticking = false
 
-// export default class ParallaxScrollManager {
-//     private elements: NodeListOf<HTMLElement>
+    constructor(parallaxSelector: string) {
+        this.elements = Array.from(
+            document.querySelectorAll<HTMLElement>(parallaxSelector),
+        )
+        this.onScroll = this.onScroll.bind(this)
+        window.addEventListener("scroll", this.onScroll)
+    }
 
-//     constructor(parallaxSelector: string) {
-//         this.elements = document.querySelectorAll(parallaxSelector)
-//         window.addEventListener('scroll', this.applyParallax.bind(this))
-//     }
+    private onScroll(): void {
+        if (!this.ticking) {
+            window.requestAnimationFrame(() => {
+                this.applyParallax()
+                this.ticking = false
+            })
+            this.ticking = true
+        }
+    }
 
-//     private applyParallax(): void {
-//         this.elements.forEach((element) => {
-//             const speed = parseFloat(element.getAttribute('data-speed')!)
-//             const yPos = -(window.scrollY * speed)
-//             element.style.backgroundPosition = `center ${yPos}px`
-//         })
-//     }
-// }
+    private applyParallax(): void {
+        const scrollY = window.scrollY
 
-// // Usage
-// const parallaxScrollManager = new ParallaxScrollManager('.parallax')
+        this.elements.forEach((element) => {
+            const speedAttr = element.getAttribute("data-speed")
+            const speed = speedAttr ? parseFloat(speedAttr) : 0.5
+            if (!isNaN(speed)) {
+                const yPos = -(scrollY * speed)
+                element.style.backgroundPosition = `center ${yPos}px`
+            }
+        })
+    }
+
+    public destroy(): void {
+        window.removeEventListener("scroll", this.onScroll)
+    }
+}
+
+// ✅ Usage
+// new ParallaxScrollManager('.parallax')
+
+// 📌 How to Use in HTML
+// <div class="parallax" data-speed="0.3" style="background-image: url('your-bg.jpg');">
+//   <!-- Content -->
+// </div>

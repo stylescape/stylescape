@@ -1,36 +1,32 @@
-
-
 {% for section in sections %}
-<section class="sidebar__section">
-
-{# <section class="">
-    <h2>Stylescape Index</h2>
-    <input type="search" placeholder="Search components..." class="search-input" oninput="filterSections(this.value)" />
-</section>
- #}
-
-
+<section 
+    class="sidebar__section" role="region" aria-labelledby="section-{{ loop.index }}">
     <header class="sidebar__section__header">
-        <h3>{{ section.title }}</h3>
+        <h2 id="section-{{ loop.index }}">{{ section.title }}</h2>
     </header>
+
     {% for group in section.groups %}
-    <section class="sidebar__subsection" data-group="{{ group.data_group }}">
-        <h4>{{ group.heading }}</h4>
+    <div class="sidebar__subsection" role="group" aria-labelledby="group-{{ loop.index }}-{{ loop.parent.loop.index }}"
+        data-group="{{ group.data_group }}">
+        <h3 id="group-{{ loop.index }}-{{ loop.parent.loop.index }}">{{ group.heading }}</h3>
+
         {% if group.description %}
-        <small>{{ group.description }}</small>
+        <p class="sidebar__subsection__description" id="group-desc-{{ loop.index }}-{{ loop.parent.loop.index }}">
+            <small>{{ group.description }}</small>
+        </p>
         {% endif %}
-        <ul>
+
+        <ul class="sidebar__subsection__list" {% if group.description %}
+            aria-describedby="group-desc-{{ loop.index }}-{{ loop.parent.loop.index }}" {% endif %}>
             {% for item in group.items %}
             <li>
                 {% set link = item[0] %}
                 {% set label = item[1] %}
-                {# {% set desc = item[2] if item|length > 2 else "" %} #}
                 <a href="{{ link }}">{{ label }}</a>
-                {# {% if desc %} <small>- {{ desc }}</small>{% endif %} #}
             </li>
             {% endfor %}
         </ul>
-    </section>
+    </div>
     {% endfor %}
 </section>
 {% endfor %}

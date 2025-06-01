@@ -6,15 +6,20 @@ import { ClipboardHelper } from "./utilities/ClipboardHelper.js"
 import { GridManager } from "./utilities/GridManager.js"
 import { ThemeToggler } from "./utilities/ThemeToggler.js"
 
-import { ScrollElementManager } from "./mouse/ScrollElementManager.js"
-import { ScrollPageManager } from "./mouse/ScrollPageManager.js"
+import { ScrollElementManager } from "./scroll/ScrollElementManager.js"
+import { ScrollPageManager } from "./scroll/ScrollPageManager.js"
 ;(window as any).ClipboardHelper = ClipboardHelper
 
 // Initialize on DOM ready
 document.addEventListener("DOMContentLoaded", () => {
     // Scroll Restoration
     new ScrollPageManager()
-    new ScrollElementManager("#main_content", "main_scroll", false)
+    new ScrollElementManager("#main_content", "main_content_scroll", false)
+    new ScrollElementManager(
+        "#sidebar_left_content",
+        "sidebar_left_content_scroll",
+        false,
+    )
 
     // Theme Toggle
     ThemeToggler.initializeToggleSwitch("themeToggle")
