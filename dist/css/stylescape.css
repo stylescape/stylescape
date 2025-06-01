@@ -11955,7 +11955,7 @@ button.button--clear:disabled {
   background-color: var(--color_state_active);
 }
 .flipper--right::before, .flipper--right::after {
-  transform: translateX(-0.5rem) rotate(90deg);
+  transform: translateX(-0.25rem) rotate(90deg);
 }
 .flipper--right::before {
   z-index: 9999;
@@ -11965,10 +11965,10 @@ button.button--clear:disabled {
   top: 0.75rem;
 }
 .flipper--right.active::before {
-  transform: translateX(-0.5rem) rotate(-120deg);
+  transform: translateX(-0.25rem) rotate(-120deg);
 }
 .flipper--right.active::after {
-  transform: translateX(-0.5rem) rotate(120deg);
+  transform: translateX(-0.25rem) rotate(120deg);
 }
 
 .input {
@@ -15689,43 +15689,65 @@ details[open] .ribbon_panel_wrapper {
     transform: translateY(100%);
   }
 }
-.ticker--horizontal {
+.ticker--horizontal--top {
   overflow: hidden;
   position: relative;
   display: block;
   width: 100%;
   z-index: z("ribbon");
-  height: 2.5rem;
-  line-height: 2.5rem;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  font-size: 0.5rem;
   overflow: hidden;
-  border-top: 0.0625rem solid var(--color_text_primary);
   border-bottom: 0.0625rem solid var(--color_text_primary);
 }
-.ticker--horizontal .ticker__track {
+.ticker--horizontal--top .ticker__track {
   display: inline-block;
   white-space: nowrap;
   animation: ticker-horizontal-left 20s linear infinite;
 }
-.ticker--horizontal:hover .ticker__track {
+.ticker--horizontal--top:hover .ticker__track {
   animation-play-state: paused;
 }
 
-.ticker--vertical {
+.ticker--horizontal--bottom {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  width: 100%;
+  z-index: z("ribbon");
+  height: 1.25rem;
+  line-height: 1.25rem;
+  font-size: 0.5rem;
+  overflow: hidden;
+  border-top: 0.0625rem solid var(--color_text_primary);
+}
+.ticker--horizontal--bottom .ticker__track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: ticker-horizontal-left 20s linear infinite;
+}
+.ticker--horizontal--bottom:hover .ticker__track {
+  animation-play-state: paused;
+}
+
+.ticker--vertical--left {
   overflow: hidden;
   position: relative;
   display: block;
   width: 100%;
   z-index: z("ribbon");
   height: 6.25rem;
+  border-right: 0.0625rem solid var(--color_text_primary);
 }
-.ticker--vertical .ticker__track {
+.ticker--vertical--left .ticker__track {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   will-change: transform;
   animation: ticker-vertical-up 20s linear infinite;
 }
-.ticker--vertical--reverse .ticker__track {
+.ticker--vertical--left--reverse .ticker__track {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -15733,8 +15755,34 @@ details[open] .ribbon_panel_wrapper {
   animation: ticker-vertical-down 20s linear infinite;
 }
 
-.ticker--horizontal:hover .ticker__track,
-.ticker--vertical:hover .ticker__track,
+.ticker--vertical--right {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  width: 100%;
+  z-index: z("ribbon");
+  height: 6.25rem;
+  border-left: 0.0625rem solid var(--color_text_primary);
+}
+.ticker--vertical--right .ticker__track {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  will-change: transform;
+  animation: ticker-vertical-up 20s linear infinite;
+}
+.ticker--vertical--right--reverse .ticker__track {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  will-change: transform;
+  animation: ticker-vertical-down 20s linear infinite;
+}
+
+.ticker--horizontal--top:hover .ticker__track,
+.ticker--horizontal--bottom:hover .ticker__track,
+.ticker--vertical--left:hover .ticker__track,
+.ticker--vertical--right:hover .ticker__track,
 .ticker__track:focus {
   animation-play-state: paused;
 }
@@ -15742,7 +15790,7 @@ details[open] .ribbon_panel_wrapper {
 .ticker__item {
   display: inline-block;
   padding: 0 1rem;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   white-space: nowrap;
 }
 

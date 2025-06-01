@@ -26,20 +26,11 @@ $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
     background: transparent;
     cursor: pointer;
     display: block;
-    // color: grey;
     z-index: 9999;
     overflow: visible;
 
     &::before,
     &::after {
-        // content: "";
-        // position: absolute;
-        // width: $arrow_size;
-        // height: $bar_height;
-        // background-color: rgb(165, 165, 165);
-        // // left: 0;
-        // transition: all $duration $easing;
-        // transform-origin: center center;
         content: "";
         position: absolute;
         width: $arrow_size;
@@ -63,18 +54,14 @@ $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
     &::before,
     &::after {
         transform: translateX(q(-8)) rotate(90deg);
-        // transform: translateX(q(16)); // Center horizontally
-        // transform: rotate(90deg);
     }
     &::before {
         z-index: 9999;
         top: math.div($arrow_size, 4);
-        // transform: rotate(90deg);
     }
 
     &::after {
-        top: $arrow_size + 0 * $q;
-        // transform: rotate(90deg);
+        top: $arrow_size + q(0);
     }
 
     &.active {
@@ -92,27 +79,23 @@ $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
     @include flipper-button-base;
     &::before,
     &::after {
-        transform: translateX(q(-8)) rotate(90deg);
-        // transform: translateX(q(16)); // Center horizontally
-        // transform: rotate(90deg);
+        transform: translateX(q(-4)) rotate(90deg);
     }
     &::before {
         z-index: 9999;
         top: $bar_height + q(1);
-        // transform: rotate(90deg);
     }
 
     &::after {
-        top: $arrow_size + 0 * $q;
-        // transform: rotate(90deg);
+        top: $arrow_size + q(0);
     }
 
     &.active {
         &::before {
-            transform: translateX(q(-8)) rotate(-120deg);
+            transform: translateX(q(-4)) rotate(-120deg);
         }
         &::after {
-            transform: translateX(q(-8)) rotate(120deg);
+            transform: translateX(q(-4)) rotate(120deg);
         }
     }
 }

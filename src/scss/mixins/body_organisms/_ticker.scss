@@ -86,13 +86,12 @@
 // ============================================================================
 
 // Ticker container
-.ticker--horizontal {
+@mixin ticker--horizontal {
     @include ticker--base;
-    height: q(40);
-    line-height: q(40);
+    height: q(20);
+    line-height: q(20);
+    font-size: q(8);
     overflow: hidden;
-    border-top: q(1) solid var(--color_text_primary);
-    border-bottom: q(1) solid var(--color_text_primary);
 
     .ticker__track {
         display: inline-block;
@@ -105,21 +104,7 @@
     }
 }
 
-// .ticker--horizontal {
-//     @include ticker--base;
-//     height: q(40);
-//     line-height: q(40);
-
-//     .ticker__track {
-//         @include ticker--track-horizontal(left);
-//     }
-
-//     &--reverse .ticker__track {
-//         @include ticker--track-horizontal(right);
-//     }
-// }
-
-.ticker--vertical {
+@mixin ticker--vertical {
     @include ticker--base;
     height: q(100);
 
@@ -132,9 +117,44 @@
     }
 }
 
+@mixin ticker--horizontal--top {
+    @include ticker--horizontal;
+    border-bottom: q(1) solid var(--color_text_primary);
+}
+
+@mixin ticker--horizontal--bottom {
+    @include ticker--horizontal;
+    border-top: q(1) solid var(--color_text_primary);
+}
+
+@mixin ticker--vertical--left {
+    @include ticker--vertical;
+    border-right: q(1) solid var(--color_text_primary);
+}
+
+@mixin ticker--vertical--right {
+    @include ticker--vertical;
+    border-left: q(1) solid var(--color_text_primary);
+}
+
+.ticker--horizontal--top {
+    @include ticker--horizontal--top;
+}
+.ticker--horizontal--bottom {
+    @include ticker--horizontal--bottom;
+}
+.ticker--vertical--left {
+    @include ticker--vertical--left;
+}
+.ticker--vertical--right {
+    @include ticker--vertical--right;
+}
+
 // Pause on hover or focus
-.ticker--horizontal:hover .ticker__track,
-.ticker--vertical:hover .ticker__track,
+.ticker--horizontal--top:hover .ticker__track,
+.ticker--horizontal--bottom:hover .ticker__track,
+.ticker--vertical--left:hover .ticker__track,
+.ticker--vertical--right:hover .ticker__track,
 .ticker__track:focus {
     animation-play-state: paused;
 }
@@ -143,7 +163,7 @@
 .ticker__item {
     display: inline-block;
     padding: 0 q(16);
-    font-size: q(14);
+    font-size: q(12);
     white-space: nowrap;
     // color: $text;
 }
