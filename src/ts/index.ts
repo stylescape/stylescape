@@ -2,6 +2,7 @@ import { AsideHandler } from "./elements/AsideHandler.js"
 import { ExclusiveDetails } from "./elements/ExclusiveDetails.js"
 import { ImageCompareSlider } from "./media/ImageCompareSlider.js"
 
+import { ActiveLinkHighlighter } from "./content/ActiveLinkHighlighter.js"
 import { ClipboardHelper } from "./utilities/ClipboardHelper.js"
 import { GridManager } from "./utilities/GridManager.js"
 import { ThemeToggler } from "./utilities/ThemeToggler.js"
@@ -21,6 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "sidebar_left_content_scroll",
         false,
     )
+
+    // new ActiveLinkHighlighter("nav a") // or any specific selector
+    new ActiveLinkHighlighter() // default uses 'active' class
 
     // Theme Toggle
     ThemeToggler.initializeToggleSwitch("themeToggle")

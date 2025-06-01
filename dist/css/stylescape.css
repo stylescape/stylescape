@@ -6914,59 +6914,14 @@ body {
   overflow: auto !important;
 }
 
-[hidden] {
-  display: none;
-}
-[hidden]:focus, [hidden]:active {
-  display: none;
-}
-
-.display_none {
-  display: none !important;
-}
-
-.display_block {
-  display: block;
-}
-
-.display_inline {
-  display: inline;
-}
-
-.display_inline-block {
-  display: inline-block;
-}
-
-.display_flex {
-  display: flex;
-}
-
-.display_grid {
-  display: grid;
-}
-
-.is-visible {
+.visible {
+  visibility: visible;
   display: block !important;
-}
-
-.is-hidden {
-  display: none !important;
-}
-
-.visually-hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: q(1);
-  margin: -q(1);
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: q(1);
-  white-space: nowrap;
 }
 
 .invisible {
   visibility: hidden;
+  display: none !important;
 }
 
 .align_stretch {
@@ -8434,8 +8389,8 @@ abbr[title]:hover::after, abbr[title]:focus::after {
   -webkit-user-select: text;
      -moz-user-select: text;
           user-select: text;
-  opacity: 0.75;
-  color: rgb(0, 86.1, 178.5);
+  opacity: 1;
+  color: var(--color_state_hover);
 }
 
 .character--hyperlink--normal {
@@ -8447,7 +8402,7 @@ abbr[title]:hover::after, abbr[title]:focus::after {
   -webkit-user-select: text;
      -moz-user-select: text;
           user-select: text;
-  color: #007bff;
+  color: var(--color_state_link);
 }
 .character--hyperlink--normal:link, .character--hyperlink--normal:visited, .character--hyperlink--normal:focus, .character--hyperlink--normal:active {
   text-decoration: none;
@@ -8468,8 +8423,11 @@ abbr[title]:hover::after, abbr[title]:focus::after {
   -webkit-user-select: text;
      -moz-user-select: text;
           user-select: text;
-  opacity: 0.75;
-  color: rgb(0, 86.1, 178.5);
+  opacity: 1;
+  color: var(--color_state_hover);
+}
+.character--hyperlink--normal.active {
+  color: var(--color_state_active);
 }
 
 .character--hyperlink--line {
@@ -8509,8 +8467,8 @@ abbr[title]:hover::after, abbr[title]:focus::after {
   -webkit-user-select: text;
      -moz-user-select: text;
           user-select: text;
-  opacity: 0.75;
-  color: rgb(0, 86.1, 178.5);
+  opacity: 1;
+  color: var(--color_state_hover);
 }
 
 .character--hyperlink--line_alt {
@@ -8550,8 +8508,8 @@ abbr[title]:hover::after, abbr[title]:focus::after {
   -webkit-user-select: text;
      -moz-user-select: text;
           user-select: text;
-  opacity: 0.75;
-  color: rgb(0, 86.1, 178.5);
+  opacity: 1;
+  color: var(--color_state_hover);
 }
 
 a {
@@ -8563,7 +8521,7 @@ a {
   -webkit-user-select: text;
      -moz-user-select: text;
           user-select: text;
-  color: #007bff;
+  color: var(--color_state_link);
 }
 a:link, a:visited, a:focus, a:active {
   text-decoration: none;
@@ -8584,8 +8542,11 @@ a:hover {
   -webkit-user-select: text;
      -moz-user-select: text;
           user-select: text;
-  opacity: 0.75;
-  color: rgb(0, 86.1, 178.5);
+  opacity: 1;
+  color: var(--color_state_hover);
+}
+a.active {
+  color: var(--color_state_active);
 }
 
 q {
@@ -11931,8 +11892,8 @@ button.button--clear:disabled {
 }
 
 .flipper--left {
-  width: 1rem;
-  height: 2rem;
+  width: 0.75rem;
+  height: 1.5rem;
   position: absolute;
   background: transparent;
   cursor: pointer;
@@ -11943,9 +11904,9 @@ button.button--clear:disabled {
 .flipper--left::before, .flipper--left::after {
   content: "";
   position: absolute;
-  width: 1rem;
-  height: 0.0625rem;
-  background-color: var(--color_text_primary);
+  width: 0.75rem;
+  height: 0.125rem;
+  background-color: var(--color_state_link);
   transform: translateX(-50%) rotate(90deg);
   transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
   transform-origin: center center;
@@ -11958,10 +11919,10 @@ button.button--clear:disabled {
 }
 .flipper--left::before {
   z-index: 9999;
-  top: 0.25rem;
+  top: 0.1875rem;
 }
 .flipper--left::after {
-  top: 1rem;
+  top: 0.75rem;
 }
 .flipper--left.active::before {
   transform: translateX(-0.5rem) rotate(120deg);
@@ -11971,8 +11932,8 @@ button.button--clear:disabled {
 }
 
 .flipper--right {
-  width: 1rem;
-  height: 2rem;
+  width: 0.75rem;
+  height: 1.5rem;
   position: absolute;
   background: transparent;
   cursor: pointer;
@@ -11983,9 +11944,9 @@ button.button--clear:disabled {
 .flipper--right::before, .flipper--right::after {
   content: "";
   position: absolute;
-  width: 1rem;
-  height: 0.0625rem;
-  background-color: var(--color_text_primary);
+  width: 0.75rem;
+  height: 0.125rem;
+  background-color: var(--color_state_link);
   transform: translateX(-50%) rotate(90deg);
   transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
   transform-origin: center center;
@@ -11998,10 +11959,10 @@ button.button--clear:disabled {
 }
 .flipper--right::before {
   z-index: 9999;
-  top: 0.125rem;
+  top: 0.1875rem;
 }
 .flipper--right::after {
-  top: 1rem;
+  top: 0.75rem;
 }
 .flipper--right.active::before {
   transform: translateX(-0.5rem) rotate(-120deg);
@@ -15119,11 +15080,13 @@ table > caption {
 
 .ribbon__nav_button {
   visibility: visible;
+  display: block !important;
   display: inherit;
 }
 @media screen and (min-width: 768px) {
   .ribbon__nav_button {
     visibility: hidden;
+    display: none !important;
     display: none;
   }
 }
@@ -15144,13 +15107,16 @@ table > caption {
   grid-auto-rows: min-content;
   grid-auto-flow: row;
   visibility: hidden;
+  display: none !important;
 }
 .ribbon__nav__list.active {
   visibility: visible;
+  display: block !important;
 }
 @media screen and (min-width: 768px) {
   .ribbon__nav__list {
     visibility: visible;
+    display: block !important;
     display: grid;
     gap: 1rem;
     justify-items: center;
@@ -16568,11 +16534,13 @@ details[open] .ribbon_panel_wrapper {
      -moz-user-select: text;
           user-select: text;
   visibility: hidden;
+  display: none !important;
   display: none;
 }
 @media screen and (min-width: 768px) {
   .ribbon__title__text {
     visibility: visible;
+    display: block !important;
     display: inherit;
     white-space: nowrap;
     overflow: visible;
@@ -16581,10 +16549,12 @@ details[open] .ribbon_panel_wrapper {
 
 .visible {
   visibility: visible;
+  display: block !important;
 }
 
 .invisible {
   visibility: hidden;
+  display: none !important;
 }
 
 .grid--base {
@@ -18750,13 +18720,13 @@ main {
 .demo__section {
   grid-column: span 24;
   grid-template-columns: repeat(24, 1fr);
-  gap: 0.3125rem;
-  grid-gap: 0.3125rem;
+  margin-bottom: 1.25rem;
 }
 
 .demo__section__header,
 .demo__subsection {
   grid-column: span 24;
+  margin-bottom: 1.25rem;
 }
 
 .font--preview {

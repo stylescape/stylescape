@@ -38,10 +38,11 @@
 // ============================================================================
 
 // Hyperlink Variables
-$hyperlink_color: #007bff;
+$hyperlink_color: var(--color_state_link);
 
-$hyperlink_hover_color: color.adjust($hyperlink_color, $lightness: -15%);
-$hyperlink_hover_opacity: 0.75;
+$hyperlink_hover_color: var(--color_state_hover);
+$hyperlink_hover_opacity: 1;
+// $hyperlink_hover_opacity: 0.75;
 $hyperlink_transition: all 0.2s ease-in-out; // Smooth transition for link effects
 
 ///
@@ -113,6 +114,9 @@ $hyperlink_transition: all 0.2s ease-in-out; // Smooth transition for link effec
 @mixin character--hyperlink--normal {
     @include character--hyperlink--base;
     color: $hyperlink-color;
+    &.active {
+        color: var(--color_state_active);
+    }
 }
 
 /// Mixin for underlined hyperlink styles.
