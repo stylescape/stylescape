@@ -17,17 +17,34 @@
 // Use
 // ============================================================================
 
-@use '../../../dev' as *;
-@use '../../../variables' as *;
-// @use "../../mixins" as *;
-@use '../character' as *;
-@use '../font' as *;
-@use 'list_base' as *;
-@use 'list_style' as *;
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+
+@use "../character" as *;
+@use "../font" as *;
+
+@use "list_base" as *;
+@use "list_style" as *;
 
 // ============================================================================
 // Typography | List
 // ============================================================================
+
+@mixin dl {
+    @include list;
+    @include list--nested;
+    dt {
+        @include character--bold;
+        display: list-item;
+        list-style-type: $list-style-type; //var
+    }
+
+    dd {
+        display: list-item;
+        list-style-type: $list-nested-style-type; //var
+        margin-left: $list-nested-indent; //To Var
+    }
+}
 
 ///
 /// Definition Lists
@@ -56,4 +73,8 @@ dl {
         // font-size: .9375rem;
         // line-height: 1.6;
     }
+}
+
+dl {
+    @include dl;
 }

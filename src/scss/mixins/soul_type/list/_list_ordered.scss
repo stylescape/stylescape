@@ -17,17 +17,23 @@
 // Use
 // ============================================================================
 
-@use '../../../dev' as *;
-@use '../../../variables' as *;
+@use "../../../dev" as *;
+@use "../../../variables" as *;
 // @use "../../mixins" as *;
-@use '../character' as *;
-@use '../font' as *;
-@use 'list_base' as *;
-@use 'list_style' as *;
+@use "../character" as *;
+@use "../font" as *;
+@use "list_base" as *;
+@use "list_style" as *;
 
 // ============================================================================
 // Typography | List | Ordered Lists
 // ============================================================================
+
+@mixin ol {
+    @include list;
+    @include list--nested;
+    list-style-type: $list-incremental-style-type;
+}
 
 /// Base styles for ordered lists (`<ol>`).
 /// ---------------------------------------------------------------------------
@@ -58,8 +64,12 @@ ol.custom-numbered {
     li {
         counter-increment: custom-counter; // Increments the counter for each list item
         &:before {
-            content: counter(custom-counter) '. '; // Adds the custom counter before the list item
+            content: counter(custom-counter) ". "; // Adds the custom counter before the list item
             font-weight: bold; // Applies bold styling to the counter
         }
     }
+}
+
+ol {
+    @include ol;
 }

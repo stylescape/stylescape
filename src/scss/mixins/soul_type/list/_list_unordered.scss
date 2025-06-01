@@ -31,6 +31,12 @@
 // Typography | List | Unordered
 // ============================================================================
 
+@mixin ul {
+    @include list;
+    @include list--nested;
+    list-style-type: $list-style-type; //var
+}
+
 ///
 ///  Nested list styles
 /// ---------------------------------------------------------------------------
@@ -61,15 +67,15 @@ ul {
     li {
         /// Indentation and styling for first level nested lists.
         ul {
-            @include list_nested;
+            @include list--nested;
             li {
                 /// Indentation and styling for second level nested lists.
                 ul {
-                    @include list_nested;
+                    @include list--nested;
                     li {
                         /// Indentation and styling for third level nested lists.
                         ul {
-                            @include list_nested;
+                            @include list--nested;
                             li {
                                 // Additional nested list styling can be added here if needed.
                             }
@@ -80,3 +86,17 @@ ul {
         }
     }
 }
+
+ul {
+    @include ul;
+}
+
+li,
+dd,
+dt {
+    @include li;
+}
+
+// nav {
+//     @include nav;
+// }
