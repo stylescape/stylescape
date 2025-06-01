@@ -1,25 +1,50 @@
-// Base Mixin for Ticker Wrapper
+@use "sass:math";
+@use "../../variables" as *;
+
+// ============================================================================
+// Base Mixins
+// ============================================================================
+
+// Wrapper
 @mixin ticker--base {
     overflow: hidden;
     position: relative;
     display: block;
+    width: 100%;
+    z-index: z("ribbon");
 }
 
-// Inner Track Container
-@mixin ticker--track($direction: left) {
-    display: inline-block;
+// Track Animation
+@mixin ticker--track-horizontal($direction: left, $duration: 20s) {
+    display: inline-flex;
+    gap: q(12);
     white-space: nowrap;
-    animation: ticker-scroll-#{$direction} 20s linear infinite;
+    will-change: transform;
+    animation: ticker-horizontal-#{$direction} $duration linear infinite;
 }
 
-// Vertical Track
-@mixin ticker--track--vertical($direction: up) {
-    display: block;
-    animation: ticker-vertical-#{$direction} 20s linear infinite;
+@mixin ticker--track-vertical($direction: up, $duration: 20s) {
+    display: flex;
+    flex-direction: column;
+    gap: q(4);
+    will-change: transform;
+    animation: ticker-vertical-#{$direction} $duration linear infinite;
 }
 
-// Horizontal Scroll Keyframes
-@keyframes ticker-scroll-left {
+// Optional duplicated content for seamless loop
+@mixin ticker--loop {
+    &::after {
+        content: attr(data-text);
+        display: inline-block;
+        padding-left: q(40);
+    }
+}
+
+// ============================================================================
+// Keyframes
+// ============================================================================
+
+@keyframes ticker-horizontal-left {
     0% {
         transform: translateX(100%);
     }
@@ -28,7 +53,7 @@
     }
 }
 
-@keyframes ticker-scroll-right {
+@keyframes ticker-horizontal-right {
     0% {
         transform: translateX(-100%);
     }
@@ -37,7 +62,6 @@
     }
 }
 
-// Vertical Scroll Keyframes
 @keyframes ticker-vertical-up {
     0% {
         transform: translateY(100%);
@@ -56,50 +80,69 @@
     }
 }
 
-// Horizontal Ticker
+// ============================================================================
+// Component Usage
+// ============================================================================
+
+// Ticker container
 .ticker--horizontal {
     @include ticker--base;
-    height: q(40); // Customize as needed
+    height: q(40);
+    line-height: q(40);
+    overflow: hidden;
+    border-top: q(1) solid var(--color_text_primary);
+    border-bottom: q(1) solid var(--color_text_primary);
+
+    .ticker__track {
+        display: inline-block;
+        white-space: nowrap;
+        animation: ticker-horizontal-left 20s linear infinite;
+    }
+
+    &:hover .ticker__track {
+        animation-play-state: paused;
+    }
 }
 
-.ticker--horizontal .ticker__track {
-    @include ticker--track(left);
-}
+// .ticker--horizontal {
+//     @include ticker--base;
+//     height: q(40);
+//     line-height: q(40);
 
-// Reverse
-.ticker--horizontal--reverse .ticker__track {
-    @include ticker--track(right);
-}
+//     .ticker__track {
+//         @include ticker--track-horizontal(left);
+//     }
 
-// Vertical Ticker
+//     &--reverse .ticker__track {
+//         @include ticker--track-horizontal(right);
+//     }
+// }
+
 .ticker--vertical {
     @include ticker--base;
     height: q(100);
-    width: 100%;
+
+    .ticker__track {
+        @include ticker--track-vertical(up);
+    }
+
+    &--reverse .ticker__track {
+        @include ticker--track-vertical(down);
+    }
 }
 
-.ticker--vertical .ticker__track {
-    @include ticker--track--vertical(up);
+// Pause on hover or focus
+.ticker--horizontal:hover .ticker__track,
+.ticker--vertical:hover .ticker__track,
+.ticker__track:focus {
+    animation-play-state: paused;
 }
 
-// Reverse
-.ticker--vertical--reverse .ticker__track {
-    @include ticker--track--vertical(down);
+// Ticker Items
+.ticker__item {
+    display: inline-block;
+    padding: 0 q(16);
+    font-size: q(14);
+    white-space: nowrap;
+    // color: $text;
 }
-
-// <div class="ticker--horizontal">
-//   <div class="ticker__track">
-//     <span>🚀 Latest update: Stylescape v1.2 now live! &nbsp;</span>
-//     <span>🎉 New components released today. &nbsp;</span>
-//   </div>
-// </div>
-
-// <div class="ticker--vertical">
-//   <div class="ticker__track">
-//     <div>📌 Upcoming event: Design Week</div>
-//     <div>💡 Tip of the day: Use mixins for reusability</div>
-//     <div>🧪 Labs update: Experimentation UI enabled</div>
-//   </div>
-// </div>
-
-// Add variants for interactivity (hover to pause, touch swipe, etc.)

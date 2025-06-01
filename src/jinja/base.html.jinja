@@ -32,51 +32,24 @@
         </div>
 
         <div class="frame_main__area--middle_left ">
-
-            <aside class="sidebar--left" id="" role="navigation">
-
-                <nav class="ribbon--left ribbon--inverted" id="" role="navigation">
-                </nav>
-
-                <menu class="sidebar__menu" id="sidebar_left_menu" role="navigation">
-                    <section class="sidebar__content rail" >
-                    {% block rail_left_content %}
-                    {% include "includes/_aside_left_index.html.jinja" %}
-                    {% endblock %}
-                    </section>
-                </menu>
-
-                <div class="sidebar__switch">
-                    <button class="flipper--left" id="sidebar_left_switch"></button>
-                    {# <button class="flipper--left" id="sidebar_left_switch">
-                        <span class="top_bar"></span>
-                        <span class="bot_bar"></span>
-                    </button> #}
-                </div>
-            </aside>
-
+            {% include "includes/_sidebar_left.html.jinja" %}
         </div>
 
         <div class="frame_main__area--middle_center">
-            <main class="rail" role="main">
-            {# <main class="main rail" role="main"> #}
-                {# <div class="main_content"> #}
-                    {% block content %}{% endblock %}
-                {# </div> #}
+            <main class="main_content rail" role="main">
+            {% block content %}{% endblock %}
             </main>
         </div>
 
         <div class="frame_main__area--middle_right rail">
-        <aside class="rail" id="" role="navigation">
-            {% block rail_right_content %}
-            Aside Left Menu
-            {% include "includes/_aside_left_index.html.jinja" %}
-            {% endblock%}
-        </aside>
-
+            {% include "includes/_sidebar_right.html.jinja" %}
         </div>
 
         <div class="frame_main__area--bottom">
+            {%- block ticker_bottom -%}
+            {%- include "includes/_ticker_bottom.html.jinja" -%}
+            {%- endblock ticker_bottom -%}
+
             {%- block ribbon_bottom -%}
             {%- include "includes/_ribbon_bottom.html.jinja" -%}
             {%- endblock ribbon_bottom -%}

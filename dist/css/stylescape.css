@@ -9274,19 +9274,6 @@ ul li li:before {
   content: none;
 }
 
-.main {
-  grid-template-columns: repeat(24, 1fr);
-  min-height: 100%;
-  min-width: 100%;
-}
-
-.main_header {
-  grid-column: span 24;
-  align-self: start;
-  justify-self: left;
-  text-align: left;
-}
-
 .main_content {
   grid-template-columns: repeat(24, 1fr);
   max-width: 100%;
@@ -9316,6 +9303,13 @@ ul li li:before {
   margin-bottom: 1rem;
 }
 
+.main_header {
+  grid-column: span 24;
+  align-self: start;
+  justify-self: left;
+  text-align: left;
+}
+
 .main_footer {
   grid-column: span 24;
   align-self: start;
@@ -9324,10 +9318,11 @@ ul li li:before {
 }
 
 .sidebar__search-input {
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
   width: 100%;
   padding: 0.1875rem 0.25rem;
   margin: 0.125rem 0 0.25rem;
-  font-size: 0.21875rem;
   border: 0.0625rem solid var(--color_border);
   border-radius: 0.0625rem;
   background: var(--color_fill_primary);
@@ -15032,6 +15027,95 @@ details[open] .ribbon_panel_wrapper {
 
 .widget--pill {
   border-radius: 50vh;
+}
+
+@keyframes ticker-horizontal-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes ticker-horizontal-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes ticker-vertical-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+@keyframes ticker-vertical-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+.ticker--horizontal {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  width: 100%;
+  z-index: z("ribbon");
+  height: q(40);
+  line-height: q(40);
+  overflow: hidden;
+  border-top: q(1) solid var(--color_text_primary);
+  border-bottom: q(1) solid var(--color_text_primary);
+}
+.ticker--horizontal .ticker__track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: ticker-horizontal-left 20s linear infinite;
+}
+.ticker--horizontal:hover .ticker__track {
+  animation-play-state: paused;
+}
+
+.ticker--vertical {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  width: 100%;
+  z-index: z("ribbon");
+  height: q(100);
+}
+.ticker--vertical .ticker__track {
+  display: flex;
+  flex-direction: column;
+  gap: q(4);
+  will-change: transform;
+  animation: ticker-vertical-up 20s linear infinite;
+}
+.ticker--vertical--reverse .ticker__track {
+  display: flex;
+  flex-direction: column;
+  gap: q(4);
+  will-change: transform;
+  animation: ticker-vertical-down 20s linear infinite;
+}
+
+.ticker--horizontal:hover .ticker__track,
+.ticker--vertical:hover .ticker__track,
+.ticker__track:focus {
+  animation-play-state: paused;
+}
+
+.ticker__item {
+  display: inline-block;
+  padding: 0 q(16);
+  font-size: q(14);
+  white-space: nowrap;
 }
 
 .font--default {
