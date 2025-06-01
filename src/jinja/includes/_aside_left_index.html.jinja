@@ -1,11 +1,15 @@
-<section class="">
-    <h2>Stylescape Index</h2>
-    <input type="search" placeholder="Search components..." class="search-input" oninput="filterSections(this.value)"/>
-</section>
 
 
 {% for section in sections %}
 <section class="sidebar__section">
+
+{# <section class="">
+    <h2>Stylescape Index</h2>
+    <input type="search" placeholder="Search components..." class="search-input" oninput="filterSections(this.value)" />
+</section>
+ #}
+
+
     <header class="sidebar__section__header">
         <h3>{{ section.title }}</h3>
     </header>
@@ -20,7 +24,7 @@
             <li>
                 {% set link = item[0] %}
                 {% set label = item[1] %}
-                {% set desc = item[2] if item|length > 2 else "" %}
+                {# {% set desc = item[2] if item|length > 2 else "" %} #}
                 <a href="{{ link }}">{{ label }}</a>
                 {# {% if desc %} <small>- {{ desc }}</small>{% endif %} #}
             </li>

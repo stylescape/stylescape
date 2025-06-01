@@ -2,6 +2,7 @@
 // Imports
 // ============================================================================
 @use "sass:map";
+@use "sass:math";
 @use "../soul_type" as *;
 @use "../body_atoms" as *;
 @use "../../dev" as *;
@@ -20,8 +21,8 @@
     .sidebar__menu {
         @include sidebar__menu;
     }
-    .sidebar__left_switch,
-    .sidebar__right_switch {
+    .flipper--left,
+    .flipper--right {
         @include sidebar__switch;
     }
 }
@@ -55,6 +56,7 @@
 }
 
 @mixin sidebar__switch {
+    @include reset_bleed;
     grid-area: switch;
     position: absolute;
     top: 50%;
@@ -74,7 +76,31 @@
 
     pointer-events: auto;
     background-color: red;
+
+    // position: relative;
+    // width: 0;
+    // height: 0;
+    // top: 50vh;
+    // overflow: visible;
 }
+
+// ============================================================================
+// Wrapper base
+// ============================================================================
+// .sidebar__switch {
+//     position: absolute;
+//     top: 50vh;
+//     z-index: 9000;
+//     overflow: visible;
+
+//     &--left {
+//         left: math.div($arrow_size, 5);
+//     }
+
+//     &--right {
+//         right: $arrow_size;
+//     }
+// }
 
 @mixin sidebar--left {
     @include sidebar--base;
