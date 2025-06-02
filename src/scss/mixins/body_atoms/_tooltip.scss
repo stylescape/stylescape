@@ -10,7 +10,7 @@
 // ----------------------------------------------------------------------------
 
 $tooltip_transition: opacity 0.5s;
-$tooltip_unit: q(5);
+$tooltip_unit: q(6);
 
 /// Base mixin for tooltip elements.
 /// Sets up the basic properties for a tooltip, including positioning,
@@ -18,7 +18,7 @@ $tooltip_unit: q(5);
 /// @group Tooltip
 @mixin tooltip--base {
     position: absolute;
-    border-width: q(5);
+    border-width: $tooltip_unit;
     // border-style: solid;
     transition: $tooltip_transition;
     position: absolute;
@@ -37,7 +37,6 @@ $tooltip_unit: q(5);
     content: "";
     @include tooltip--base;
     border-style: solid;
-    border-width: $tooltip_unit;
 }
 
 /// Mixin for a right-pointing tooltip arrow.
@@ -98,7 +97,7 @@ $tooltip_unit: q(5);
     border-radius: $tooltip_unit;
     // padding: $tooltip_unit 0;
     padding: $tooltip_unit;
-    line-height: 1.1;
+    line-height: 1;
     transition: $tooltip_transition;
     display: block;
     width: max-content;
@@ -110,28 +109,28 @@ $tooltip_unit: q(5);
     @include tooltip--box;
     top: 50%;
     transform: translateY(-50%);
-    left: 108%;
+    left: calc(100% + ($tooltip_unit * 2) - 1px);
 }
 
 @mixin tooltip__box--left {
     @include tooltip--box;
     top: 50%;
     transform: translateY(-50%);
-    right: 108%;
+    right: calc(100% + ($tooltip_unit * 2) - 1px);
 }
 
 /// Mixin for a vertical-aligned tooltip box.
 /// @group Tooltip
 @mixin tooltip__box--top {
     @include tooltip--box;
-    bottom: 130%;
+    bottom: calc(80% + ($tooltip_unit * 2) - 1px);
     left: 50%;
     transform: translateX(-50%);
 }
 
 @mixin tooltip__box--bottom {
     @include tooltip--box;
-    top: 130%;
+    top: calc(80% + ($tooltip_unit * 2) - 1px);
     left: 50%;
     transform: translateX(-50%);
 }
