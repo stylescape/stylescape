@@ -1,14 +1,17 @@
 {% extends "base.html.jinja" %}
 
-{% block title %}Font Demo{% endblock %}
+{% set title = "Fonts" %}
+
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
 
+<section class="demo__section" data-label="{{ title }}" data-level="1">
 
-<section class="demo__section">
     <header class="demo__section__header">
-        <h3>Semantic Font letter_spacing Classes</h3>
+        <h3>{{ title }}</h3>
     </header>
+
 
     {% for i in range(1, 13) %}
     {% if i < 10 %} {% set padded='0' ~ i %} {% else %} {% set padded=i|string %} {% endif %} {% set

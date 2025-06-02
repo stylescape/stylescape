@@ -1,13 +1,19 @@
 {% extends "base.html.jinja" %}
 
-{% block title %}Breadcrumb Demo{% endblock %}
+{% set title = "Breadcrumb" %}
+
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<section class="demo__section">
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+
     <header class="demo__section__header">
-        <h2>Breadcrumb Navigation</h2>
+        <h3>{{ title }}</h3>
     </header>
-    <div class="demo__subsection">
+
+    <section class="demo__subsection">
+
         <nav class="breadcrumb">
             <ul>
                 <li><a href="/">Home</a></li>
@@ -16,6 +22,6 @@
                 <li>Running</li>
             </ul>
         </nav>
-    </div>
+    </section>
 </section>
 {% endblock %}
