@@ -1,16 +1,36 @@
-.project_image img {
-    @include image--cover;
+@mixin ptf-gallery {
+    display: grid;
+    overflow: unset !important;
+
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: px2rem(30px);
+
+    @include mq("small") {
+        grid-template-columns: 1fr;
+    }
+
+    &__item {
+        overflow: unset !important;
+    }
 }
 
-.gallery_image {
-    @include ratio_1x1;
+.gallery {
+    @include ptf-gallery;
 }
 
-.gallery_border {
-    border: q(1) solid black;
-}
+// .project_image img {
+//     @include image--cover;
+// }
 
-.gallery_image img {
-    @include ratio_1x1;
-    @include image--cover;
-}
+// .gallery_image {
+//     @include ratio_1x1;
+// }
+
+// .gallery_border {
+//     border: q(1) solid black;
+// }
+
+// .gallery_image img {
+//     @include ratio_1x1;
+//     @include image--cover;
+// }
