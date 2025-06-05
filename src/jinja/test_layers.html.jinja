@@ -1,13 +1,13 @@
 {% extends "base.html.jinja" %}
 
-{% block title %}Layering System Demo | unit.gl{% endblock %}
+{%- block title %}Layering System Demo | unit.gl{%- endblock %}
 
-{% block header %}
+{%- block header %}
 <h1>Layering System Demo</h1>
 <p>Demonstrates the z-index stack defined in <code>$layer-map</code>. Use the buttons below to toggle each layer.</p>
-{% endblock %}
+{%- endblock %}
 
-{% block styles %}
+{%- block styles %}
 {{ super() }}
 <style>
   .layer-demo {
@@ -60,9 +60,9 @@
   .z-content        { z-index: 2000; background: rgba(100, 100, 255, 0.8); top: q(140); left: q(140); }
   .z-canvas         { z-index: -1000; background: rgba(0, 0, 0, 0.2); top: q(180); left: q(180); }
 </style>
-{% endblock %}
+{%- endblock %}
 
-{% block content %}
+{%- block content %}
 
 <div class="layer-controls">
   {% set layers = ["guides", "modal", "interface", "content", "canvas"] %}
@@ -86,4 +86,4 @@
   }
 </script>
 
-{% endblock %}
+{%- endblock %}

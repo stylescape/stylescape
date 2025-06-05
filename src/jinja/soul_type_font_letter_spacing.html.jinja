@@ -2,9 +2,9 @@
 
 {% set title = "Fonts" %}
 
-{% block title %}{{ title }}{% endblock %}
+{%- block title %}{{ title }}{%- endblock %}
 
-{% block content %}
+{%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
 
@@ -17,7 +17,7 @@
     {% if i < 10 %} {% set padded='0' ~ i %} {% else %} {% set padded=i|string %} {% endif %} {% set
         label=".font--letter_spacing_" ~ padded %} {% set class="font--letter_spacing_" ~ padded %} <div
         class="demo__subsection">
-        {% include "includes/preview_box_font.html.jinja" %}
+        {%- include "includes/preview_box_font.html.jinja" %}
         </div>
         {% endfor %}
 </section>
@@ -43,11 +43,11 @@
     {% set label = font.label %}
     {% set class = font.class %}
     <div class="demo__subsection">
-        {% include "includes/preview_box_font.html.jinja" %}
+        {%- include "includes/preview_box_font.html.jinja" %}
     </div>
     {% endfor %}
 
 </section>
 
 
-{% endblock %}
+{%- endblock %}
