@@ -14981,13 +14981,12 @@ table > caption {
   -webkit-user-select: text;
      -moz-user-select: text;
           user-select: text;
-  -moz-justify-content: start;
-  -ms-justify-content: start;
-  -o-justify-content: start;
-  -moz-justify-content: flex-start;
-  -ms-justify-content: flex-start;
-  -o-justify-content: flex-start;
-  justify-content: flex-start;
+  -moz-justify-content: flex-end;
+  -ms-justify-content: flex-end;
+  -o-justify-content: flex-end;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
 }
 @media screen and (min-width: 768px) {
   .ribbon__nav {
@@ -15020,42 +15019,53 @@ table > caption {
   width: 100%;
   padding-top: 0.5rem;
   padding-bottom: 1rem;
-  display: grid;
+  display: grid !important;
   gap: 1rem;
   justify-items: center;
   align-items: center;
   grid-auto-rows: min-content;
-  grid-auto-flow: row;
-  visibility: hidden;
-  display: none !important;
-}
-.ribbon__nav__list.active {
-  visibility: visible;
-  display: block !important;
+  grid-auto-flow: column;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  width: -moz-max-content;
+  width: max-content;
 }
 @media screen and (min-width: 768px) {
   .ribbon__nav__list {
-    visibility: visible;
-    display: block !important;
     display: grid;
+    grid-auto-flow: column;
     gap: 1rem;
     justify-items: center;
     align-items: center;
-    grid-template-rows: 1.25rem;
-    grid-auto-columns: min-content;
-    grid-auto-flow: column;
-    display: inherit;
     align-content: center;
-    width: auto;
     top: auto;
     left: auto;
     padding: 0;
+    position: static;
+    width: -moz-max-content;
+    width: max-content;
+    max-width: 100%;
+    overflow: hidden;
   }
 }
 
 .ribbon .ribbon__nav .ribbon__nav__list .ribbon__nav__list__item {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
+  height: 100%;
+  display: block;
+}
+
+.ribbon__nav__list__item {
+  -moz-justify-content: end;
+  -ms-justify-content: end;
+  -o-justify-content: end;
+  -moz-justify-content: flex-end;
+  -ms-justify-content: flex-end;
+  -o-justify-content: flex-end;
+  justify-content: flex-end;
+  align-content: center;
   height: 100%;
 }
 
