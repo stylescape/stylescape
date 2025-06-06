@@ -38,7 +38,7 @@ async function runKist(server) {
 
     console.log('[Kist] 🛠️ Running build...');
     try {
-        const { stdout, stderr } = await execAsync('npx kist --config ./kist.yml');
+        const { stdout, stderr } = await execAsync('npx kist --config ./kist.dev.yml');
         if (stdout) console.log('[Kist] stdout:', stdout);
         if (stderr) console.error('[Kist] stderr:', stderr);
         console.log('[Kist] ✅ Build complete');

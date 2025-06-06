@@ -98,18 +98,18 @@ stages:
             # Compile TS to JS
             # -----------------------------------------------------------------
 
-            # -
-            #     name: Compile TS to JS
-            #     action: TypeScriptCompilerAction
-            #     options:
-            #         tsConfigPath: "./tsconfig.json"
-            #         filePaths:
-            #             - "src/ts/index.ts"
-            #             # - "src/utils.ts"
-            #         outputDir: "./dist/js"
-            #         compilerOptions:
-            #             target: "ES2020"
-            #             module: "CommonJS"
+            -
+                name: Compile TS to JS
+                action: TypeScriptCompilerAction
+                options:
+                    tsConfigPath: "./tsconfig.json"
+                    filePaths:
+                        - "src/ts/index.ts"
+                        # - "src/utils.ts"
+                    outputDir: "./dist/js"
+                    compilerOptions:
+                        target: "ES2020"
+                        module: "CommonJS"
 
             # Package.json
             # -----------------------------------------------------------------
@@ -128,13 +128,7 @@ stages:
                         - keywords
                         - license
                         - homepage
-                    # customConfig:
-                    #     private: true
-                    #     scripts:
-                    #     start: "node index.js"
-                    #     build: "npm run build"
-                    #     devDependencies:
-                    #     typescript: "^5.0.0"
+
 
             # Replace Version
             # -----------------------------------------------------------------
