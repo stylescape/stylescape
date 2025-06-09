@@ -10,7 +10,7 @@
 ///
 /// This mixin resets default browser styles and applies consistent border,
 /// margin, and width settings.
-@mixin hr_base {
+@mixin hr--base {
     // Reset
     overflow: visible; /* Show the overflow in Edge and IE */
     height: 0; /* Add the correct box sizing in Firefox */
@@ -38,42 +38,42 @@
 }
 
 /// Thick border styling for horizontal rules.
-@mixin hr_thick {
+@mixin hr--thick {
     border-top-width: q(3);
 }
 
 /// Dotted border styling for horizontal rules.
-@mixin hr_dotted {
+@mixin hr--dotted {
     border-top-style: dotted;
 }
 
 /// Dashed border styling for horizontal rules.
-@mixin hr_dashed {
+@mixin hr--dashed {
     border-top-style: dashed;
 }
 
 /// Colored border styling for horizontal rules.
 ///
 /// @param {Color} $color - The color for the border. Defaults to #ff4500.
-@mixin hr_colored($color: #ff4500) {
+@mixin hr--colored($color: #ff4500) {
     border-top-color: $color;
 }
 
 /// Double border styling for horizontal rules.
-@mixin hr_double {
+@mixin hr--double {
     border-top: double q(4) #ccc;
     height: q(4);
 }
 
 /// Faded border styling for horizontal rules.
-@mixin hr_faded {
+@mixin hr--faded {
     border-top: q(1) solid rgba(0, 0, 0, 0.1);
 }
 
 /// Responsive margin adjustment for horizontal rules.
 ///
 /// Reduces top and bottom margins on smaller screens.
-@mixin hr_responsive {
+@mixin hr--responsive {
     @media (max-width: 600px) {
         margin: q(10) 0;
     }
@@ -83,38 +83,38 @@
 // ============================================================================
 
 hr {
-    @include hr_base;
+    @include hr--base;
 }
-.hr_base {
-    @include hr_base;
+.hr--base {
+    @include hr--base;
 }
-.hr_thick {
-    @include hr_base;
-    @include hr_thick;
+.hr--thick {
+    @include hr--base;
+    @include hr--thick;
 }
-.hr_dotted {
-    @include hr_base;
-    @include hr_dotted;
+.hr--dotted {
+    @include hr--base;
+    @include hr--dotted;
 }
-.hr_dashed {
-    @include hr_base;
-    @include hr_dashed;
+.hr--dashed {
+    @include hr--base;
+    @include hr--dashed;
 }
-.hr_colored {
-    @include hr_base;
-    @include hr_colored;
+.hr--colored {
+    @include hr--base;
+    @include hr--colored;
 }
-.hr_double {
-    @include hr_base;
-    @include hr_double;
+.hr--double {
+    @include hr--base;
+    @include hr--double;
 }
-.hr_faded {
-    @include hr_base;
-    @include hr_faded;
+.hr--faded {
+    @include hr--base;
+    @include hr--faded;
 }
-.hr_responsive {
-    @include hr_base;
-    @include hr_responsive;
+.hr--responsive {
+    @include hr--base;
+    @include hr--responsive;
 }
 
 // Custom Lines
