@@ -11,15 +11,71 @@
 @use "box" as *;
 
 // ============================================================================
+// Maps
+// ============================================================================
+
+///
+/// Map of predefined button sizes (width x height in baseline units)
+/// @group Buttons
+///
+$button_size_map: (
+    "xs": (
+        2,
+        "01"
+    ),
+    "sm": (
+        3,
+        "02"
+    ),
+    "md": (
+        4,
+        "03"
+    ),
+    "lg": (
+        5,
+        "04"
+    ),
+    "xl": (
+        6,
+        "05"
+    )
+) !default;
+
+// ============================================================================
 // Resets
 // ============================================================================
 
-/// Basic button styles
+// Basic reset and styling for button elements only
 /// @group Button
-button {
+@mixin button--reset {
     // Reset: Address `overflow` set to `hidden` in IE 8/9/10/11
     overflow: visible;
     height: auto;
+
+    /// Remove the default button styling in all browsers */
+    background-color: transparent;
+    border-style: none;
+
+    // Reset:  Firefox 40+, Internet Explorer 11-
+    text-transform: none;
+
+    // Specify font inheritance of form elements
+    font: inherit;
+    -webkit-appearance: button;
+    transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+
+    // Apply cursor pointer to button elements
+    cursor: pointer;
+
+    /// Remove inner padding and border in Firefox 4+
+    &::-moz-focus-inner {
+        border-style: none;
+        padding: 0;
+    }
+
+    &:-moz-focusring {
+        outline: q(1) dotted ButtonText;
+    }
 }
 
 button,
@@ -37,13 +93,13 @@ textarea {
     border-style: none;
 }
 
-//   button,
-//   input,
-//   optgroup,
-//   select,
-//   textarea {
-//     font: inherit; /* Specify font inheritance of form elements */
-//   }
+button,
+input,
+optgroup,
+select,
+textarea {
+    font: inherit; /* Specify font inheritance of form elements */
+}
 
 // Apply cursor pointer to button elements
 button,
@@ -93,37 +149,6 @@ button {
 // }
 
 // ============================================================================
-// Maps
-// ============================================================================
-
-///
-/// Map of predefined button sizes (width x height in baseline units)
-/// @group Buttons
-///
-$button_size_map: (
-    "xs": (
-        2,
-        "01"
-    ),
-    "sm": (
-        3,
-        "02"
-    ),
-    "md": (
-        4,
-        "03"
-    ),
-    "lg": (
-        5,
-        "04"
-    ),
-    "xl": (
-        6,
-        "05"
-    )
-) !default;
-
-// ============================================================================
 // Mixins | Buttons
 // ============================================================================
 
@@ -135,12 +160,9 @@ $button_size_map: (
 @mixin button--base {
     @include box--border;
     font: inherit;
-    // font-family: inherit;
-    // font-size: inherit;
     border: none;
     cursor: pointer;
     background: transparent;
-    // background-color: transparent;
     color: inherit;
     padding: calc(q(8));
     margin: 0;
@@ -269,11 +291,6 @@ button {
         list.nth(map.get($button_size_map, "md"), 1),
         list.nth(map.get($button_size_map, "md"), 2)
     );
-    // @each $name, $val in $button_size_map {
-    //     &.button--#{$name} {
-    //         @include button($val);
-    //     }
-    // }
     @each $name, $pair in $button_size_map {
         .button--#{$name} {
             @include button(list.nth($pair, 1), list.nth($pair, 2));
@@ -289,49 +306,3 @@ button {
         @include button--clear;
     }
 }
-
-///ENGINE
-///
-///
-///
-// .pdf-export-button {
-//     button {
-//         margin: 0.q(32);
-//         border-radius: 50%;
-//         border: q(1) solid black;
-//         background-color: var(--color_surface_primary);
-//         // display: flex;
-//         justify-content: center;
-//         align-items: center;
-//         width: calc(q(16) + q(10));
-//         height: calc(q(16) + q(10));
-
-//         * {
-//             display: flex;
-//             justify-content: center;
-//             align-items: center;
-//             margin: 0px !important;
-//             vertical-align: baseline !important;
-//             font-size: q(24) !important;
-
-//             &:before {
-//                 margin: 0px !important;
-//                 vertical-align: baseline !important;
-//                 font-size: q(16) !important;
-//             }
-//         }
-
-//         &:hover {
-//             background-color: #eee;
-//         }
-
-//         &.active {
-//             border-width: q(2);
-//             background-color: #eee;
-//         }
-//     }
-
-//     .download-svg {}
-
-//     .download-png {}
-// }

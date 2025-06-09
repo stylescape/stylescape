@@ -13,6 +13,26 @@
     display: block;
     width: 100%;
     z-index: z("ribbon");
+
+    // Style
+    background-color: var(--color_text_primary);
+    color: var(--color_fill_primary);
+    border-color: var(--color_fill_primary);
+    border-style: solid;
+}
+
+///
+/// Inverted Ticker Style
+/// ---------------------------------------------------------------------------
+///
+/// This style is used for the inverted color scheme of the ticker.
+///
+@mixin ticker--inverted {
+    // Inverted Ribbon Style
+    background-color: var(--color_fill_primary);
+    color: var(--color_text_primary);
+    border-color: var(--color_text_primary);
+    // border-style: solid;
 }
 
 // Track Animation
@@ -119,22 +139,26 @@
 
 @mixin ticker--horizontal--top {
     @include ticker--horizontal;
-    border-bottom: q(1) solid var(--color_text_primary);
+    // border-bottom: q(1) solid var(--color_text_primary);
+    border-bottom-width: q(1);
 }
 
 @mixin ticker--horizontal--bottom {
     @include ticker--horizontal;
-    border-top: q(1) solid var(--color_text_primary);
+    // border-top: q(1) solid var(--color_text_primary);
+    border-top-width: q(1);
 }
 
 @mixin ticker--vertical--left {
     @include ticker--vertical;
-    border-right: q(1) solid var(--color_text_primary);
+    // border-right: q(1) solid var(--color_text_primary);
+    border-right-width: q(1);
 }
 
 @mixin ticker--vertical--right {
     @include ticker--vertical;
-    border-left: q(1) solid var(--color_text_primary);
+    // border-left: q(1) solid var(--color_text_primary);
+    border-left-width: q(1);
 }
 
 .ticker--horizontal--top {
