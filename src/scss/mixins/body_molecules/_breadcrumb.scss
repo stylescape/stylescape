@@ -37,6 +37,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    //     margin-bottom: var(breadcrumb-margin-bottom);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -44,23 +45,40 @@
 
 /// Breadcrumb list item
 @mixin breadcrumb--item {
+    // Display list items side by side
     display: inline-block;
     line-height: normal;
 
+    // + .breadcrumb-item {
+    //   padding-left: var(breadcrumb-item-padding-x);
+
+    //   &::before {
+    //     float: left; // Suppress inline spacings and underlining of the separator
+    //     padding-right: var(breadcrumb-item-padding-x);
+    //     color: var(breadcrumb-divider-color);
+    //     content: var(breadcrumb-divider, escape-svg($breadcrumb-divider)) #{"/* rtl:"} var(breadcrumb-divider, escape-svg($breadcrumb-divider-flipped)) #{"*/"};
+    //   }
+
     &::after {
-        content: "\f111";
+        // Add a slash symbol (/) before/behind each list item
+        content: "/\00a0";
+        // content: ">";
         // font-family: "Font Awesome 5 Free";
         font-weight: 900;
-        padding: 0 q(1) 0 q(14);
+        padding: 0 q(8) 0 q(8);
         display: inline-block;
         vertical-align: middle;
-        font-size: q(5);
+        // font-size: q(5);
         opacity: 0.6;
     }
 
     &:last-child::after {
         content: "";
         padding: 0;
+    }
+
+    &.active {
+        color: var(breadcrumb-item-active-color);
     }
 }
 
@@ -98,43 +116,14 @@
     }
 }
 
-// .breadcrumb {
-//     // scss-docs-start breadcrumb-css-vars
-//     breadcrumb-padding-x: #{$breadcrumb-padding-x};
-//     breadcrumb-padding-y: #{$breadcrumb-padding-y};
-//     breadcrumb-margin-bottom: #{$breadcrumb-margin-bottom};
-//     @include rfs($breadcrumb-font-size, breadcrumb-font-size);
-//     breadcrumb-bg: #{$breadcrumb-bg};
-//     breadcrumb-border-radius: #{$breadcrumb-border-radius};
-//     breadcrumb-divider-color: #{$breadcrumb-divider-color};
-//     breadcrumb-item-padding-x: #{$breadcrumb-item-padding-x};
-//     breadcrumb-item-active-color: #{$breadcrumb-active-color};
-//     // scss-docs-end breadcrumb-css-vars
+// /* Add a color to all links inside the list */
+// ul.breadcrumb li a {
+//   color: #0275d8;
+//   text-decoration: none;
+// }
 
-//     display: flex;
-//     flex-wrap: wrap;
-//     padding: var(breadcrumb-padding-y) var(breadcrumb-padding-x);
-//     margin-bottom: var(breadcrumb-margin-bottom);
-//     @include font-size(var(breadcrumb-font-size));
-//     list-style: none;
-//     background-color: var(breadcrumb-bg);
-//     @include border-radius(var(breadcrumb-border-radius));
-//   }
-
-//   .breadcrumb-item {
-//     // The separator between breadcrumbs (by default, a forward-slash: "/")
-//     + .breadcrumb-item {
-//       padding-left: var(breadcrumb-item-padding-x);
-
-//       &::before {
-//         float: left; // Suppress inline spacings and underlining of the separator
-//         padding-right: var(breadcrumb-item-padding-x);
-//         color: var(breadcrumb-divider-color);
-//         content: var(breadcrumb-divider, escape-svg($breadcrumb-divider)) #{"/* rtl:"} var(breadcrumb-divider, escape-svg($breadcrumb-divider-flipped)) #{"*/"};
-//       }
-//     }
-
-//     &.active {
-//       color: var(breadcrumb-item-active-color);
-//     }
-//   }
+// /* Add a color on mouse-over */
+// ul.breadcrumb li a:hover {
+//   color: #01447e;
+//   text-decoration: underline;
+// }
