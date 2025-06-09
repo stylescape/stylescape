@@ -13,15 +13,50 @@
     </header>
 
     <section class="demo__subsection">
-
-        <nav class="breadcrumb">
+        <p>
+            The breadcrumb component is used to indicate the current page's location within a navigational hierarchy.
+            It helps users understand their position in the site structure and provides a way to navigate back to previous
+            pages.
+        </p>
+        <p>
+            Breadcrumbs are typically displayed as a horizontal list of links, with the current page not being a link.
+            They are often separated by a symbol such as ">" or "/".
+        </p>
+        <p>
+            Breadcrumbs are particularly useful for deep navigation structures, allowing users to easily backtrack without
+            using the browser's back button.
+        </p>
+        <p>
+            When implementing breadcrumbs, consider the following:
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/products/shoes">Shoes</a></li>
-                <li>Running</li>
+                <li>Keep the breadcrumb trail concise and relevant.</li>
+                <li>Use clear and descriptive labels for each link.</li>
+                <li>Ensure the current page is not a link to avoid confusion.</li>
+                <li>Consider accessibility by ensuring the breadcrumb is navigable via keyboard.</li>
+                <li>Use appropriate ARIA roles and properties to enhance screen reader support.</li>
+                <li>Test the breadcrumb on various devices and screen sizes to ensure usability.</li>
             </ul>
-        </nav>
+        </p>
     </section>
+
+    {% set section_title = "Default Breadcrumb" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+<nav class="breadcrumb">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/products">Products</a></li>
+        <li><a href="/products/shoes">Shoes</a></li>
+        <li>Running</li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+
+
 </section>
 {%- endblock %}
