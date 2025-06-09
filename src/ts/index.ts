@@ -14,6 +14,9 @@ import { ScrollPageManager } from "./scroll/ScrollPageManager.js"
 
 // Initialize on DOM ready
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("Document ready, initializing components...")
+    new GridManager() // Auto-initializes on construction
+
     // Scroll Restoration
     new ScrollPageManager()
     new ScrollElementManager("#main_content", "main_content_scroll", false)
@@ -37,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     new ExclusiveDetails(".ribbon_menu_button")
 
     // Grid Manager
-    new GridManager() // Auto-initializes on construction
+    // new GridManager() // Auto-initializes on construction
 
     // Highlight Active Navigation Link
     const current = location.pathname.split("/").pop()
