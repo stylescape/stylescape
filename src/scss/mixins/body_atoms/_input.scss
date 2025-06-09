@@ -4,219 +4,250 @@
 
 @use "sass:map";
 @use "sass:list";
-
 @use "../../dev" as *;
 @use "../../variables" as *;
-
 @use "../soul_type" as *;
 
-// /// Styles for form input fields
-// /// @group Form
-// input {
-// 	outline: none;
-// 	border: none;
-//     height: baseline(4);
-//     @include font-size_03;
+/// @group Form
+
+/// Base styling for all input variants
+/// @group Form
+@mixin input--base {
+    // display: block;
+    // width: 100%;
+    // padding: q(8) q(12);
+    font: inherit;
+    // background-color: var(--color_fill_primary);
+    color: var(--color_text_primary);
+    border: none;
+    outline: none;
+    transition: all 0.2s ease;
+
+    box-sizing: border-box; // Includes padding and borders in height
+    max-height: q(18); // Sets the total maximum height including borders
+    padding: q(8) q(12); // Optional padding
+    border: q(1) solid #ccc; // Optional border
+    // margin-bottom: q(10);
+}
+
+/// Input with straight corners
+/// @group Form
+@mixin input--straight {
+    @include input--base;
+    border: q(1) solid var(--color_text_secondary);
+    border-radius: 0;
+}
+
+/// Input with rounded corners
+/// @group Form
+@mixin input--rounded {
+    @include input--base;
+    border: q(1) solid var(--color_text_secondary);
+    border-radius: q(4);
+}
+
+/// Underlined input style
+/// @group Form
+@mixin input--underline {
+    @include input--base;
+    border-bottom: q(1) solid var(--color_text_secondary);
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/// Default input: straight corners
+.input,
+input,
+textarea,
+select {
+    @include input--straight;
+}
+
+// .input,
+// textarea,
+// select {
+//     @include input--base;
 // }
 
-// ============================================================================
-// FORM / INPUT / TEXTAREA / SELECT
-// ============================================================================
-
-/// @group Form
-/// Size map like the button map: height in baseline units + font-size key
-$input-size-map: (
-    "s": (
-        2,
-        "02"
-    ),
-    "m": (
-        3,
-        "03"
-    ),
-    "l": (
-        4,
-        "04"
-    )
-) !default;
-
-/// @group Form
-/// Base input style
-@mixin input--base {
-    display: flex;
-    align-items: center;
-    gap: baseline(1);
-    align-self: stretch;
-    border-radius: q(4);
-    border: q(1) solid var(--color_text_primary);
-    color: var(--color_text_primary);
-    transition: border 0.2s ease;
-    pointer-events: initial;
-    cursor: text;
-    background: var(--color_fill_primary);
-
-    &:hover {
-        border-color: var(--color_text_primary);
-    }
-
-    &:focus {
-        border: q(3) solid hue_color("N2404");
-    }
-
-    &:disabled {
-        border-color: hue_color("N0005");
-        color: var(--color_state_muted);
-        background: hue_color("N0001");
-        cursor: not-allowed;
-    }
-
-    &.is-success {
-        border-color: var(--color_log_success);
-        color: var(--color_log_success);
-        background-color: hue_color("N1651");
-    }
-
-    &.is-warning {
-        border-color: var(--color_log_warning);
-        color: var(--color_log_warning);
-        background: hue_color("N0301");
-    }
-
-    &.is-error {
-        border-color: var(--color_log_error);
-        color: var(--color_log_error);
-        background: hue_color("N3601");
-    }
-
-    &.is-info {
-        border-color: var(--color_log_info);
-        color: var(--color_log_info);
-        background: hue_color("N2401");
-    }
+/// Straight-corner inputs
+.input--straight,
+textarea.input--straight,
+select.input--straight {
+    @include input--straight;
 }
 
-/// @group Form
-/// Sizing mixin for input fields (baseline-based padding + font size)
-/// @param $height — in baseline units
-/// @param $font-size-key — design system font token
-@mixin input($height, $font-size-key) {
-    @include input--base;
-    @include font--size($font-size-key);
-    padding: baseline($height);
+/// Rounded inputs
+.input--rounded,
+textarea.input--rounded,
+select.input--rounded {
+    @include input--rounded;
 }
 
-/// Apply default input styling to `.input`
-.input {
-    @include input(
-        list.nth(map.get($input-size-map, "m"), 1),
-        list.nth(map.get($input-size-map, "m"), 2)
-    );
+/// Underlined inputs
+.input--underline,
+textarea.input--underline,
+select.input--underline {
+    @include input--underline;
 }
 
-/// Generate utility classes for sizes like `.input--s`
-@each $name, $pair in $input-size-map {
-    .input--#{$name} {
-        @include input(list.nth($pair, 1), list.nth($pair, 2));
-    }
+@mixin input--focus {
+    border-color: var(--color_accent_primary);
+    box-shadow: 0 0 0 q(1) var(--color_accent_primary);
 }
 
-// Form | Fieldset | Input
-// ----------------------------------------------------------------------------
-
-/// Input element styling.
-/// Resets default styles for inputs for better cross-browser consistency.
-/// @group Form
-input {
-    border-radius: 0;
-    outline: none;
-    border: none;
+@mixin input--disabled {
+    background-color: var(--color_disabled_bg);
+    color: var(--color_state_muted);
+    cursor: not-allowed;
 }
 
-// /* FORM / INPUT / TEXTAREA / SELECT
-// -------------------------------------------- */
+.input:focus,
+textarea:focus,
+select:focus {
+    @include input--focus;
+}
 
-// @media only screen and (min-width: 99q(2))
-// {
-//     label::before
-//     {
-//         font-size: .875rem;
+.input:disabled,
+textarea:disabled,
+select:disabled {
+    @include input--disabled;
+}
 
-//         position: absolute;
-//         top: calc(50% - .75em);
-//         left: -3.75rem;
+// -----------------------------------------------------------------------------
+// Configuration
+// -----------------------------------------------------------------------------
 
-//         content: attr(data-number);
+// /// Size map: [height in baseline units, font-size key]
+// $input-size-map: (
+//     "s": (
+//         2,
+//         "02"
+//     ),
+//     "m": (
+//         3,
+//         "03"
+//     ),
+//     "l": (
+//         4,
+//         "04"
+//     )
+// ) !default;
 
-//         color: var(--color-3);
+// // -----------------------------------------------------------------------------
+// // Base Input Mixin
+// // -----------------------------------------------------------------------------
+
+// /// Base styles for input-like elements (input, textarea, select)
+// @mixin input--base {
+//     display: flex;
+//     align-items: center;
+//     gap: baseline(1);
+//     align-self: stretch;
+//     color: var(--color_text_primary);
+//     background-color: var(--color_fill_primary);
+//     border-radius: 0;
+//     transition: border 0.2s ease;
+//     pointer-events: initial;
+//     cursor: text;
+//     // Optional border:
+//     // border: q(1) solid var(--color_text_primary);
+// }
+
+// // -----------------------------------------------------------------------------
+// // Input Variants
+// // -----------------------------------------------------------------------------
+
+// /// Size variant for input
+// /// @param $height - Height in baseline units
+// /// @param $font-size-key - Font size token
+// @mixin input($height, $font-size-key) {
+//     @include input--base;
+//     @include font--size($font-size-key);
+//     padding: baseline($height);
+// }
+
+// // -----------------------------------------------------------------------------
+// // Utilities
+// // -----------------------------------------------------------------------------
+
+// /// Default `.input` class
+// .input {
+//     @include input(
+//         list.nth(map.get($input-size-map, "m"), 1),
+//         list.nth(map.get($input-size-map, "m"), 2)
+//     );
+// }
+
+// /// Utility modifiers like `.input--s`, `.input--l`
+// @each $name, $pair in $input-size-map {
+//     .input--#{$name} {
+//         @include input(list.nth($pair, 1), list.nth($pair, 2));
 //     }
 // }
 
-// input[type=text],
-// input[type=date],
-// input[type=email],
-// input[type=password],
-// input[type=tel],
-// input[type=url],
-// input[type=search],
-// input[type=number],
-// input[type=file],
+// // -----------------------------------------------------------------------------
+// // Native Input Element Reset
+// // -----------------------------------------------------------------------------
+
+// input,
 // textarea,
-// select
-// {
-//     font-size: q(16);
-
-//     display: block;
-
+// select {
+//     font: inherit;
+//     border: none;
+//     outline: none;
+//     border-radius: 0;
+//     background-color: transparent;
+//     box-shadow: none;
+//     appearance: none;
 //     width: 100%;
 //     margin: 0;
-//     padding: 0 0 .625rem 0;
-
-//     -webkit-transition: all var(--transition-duration) var(--transition-easing);
-//             transition: all var(--transition-duration) var(--transition-easing);
-
-//     color: var(--color-primary);
-//     border: none;
-//     border-bottom: q(1) solid var(--color-14);
-//     border-radius: 0;
-//     outline: none;
-//     background-color: transparent;
-//     -webkit-box-shadow: none;
-//             box-shadow: none;
-
-//     -webkit-appearance: none;
-//        -moz-appearance: none;
-//             appearance: none;
+//     padding: 0;
+//     transition: all var(--transition-duration) var(--transition-easing);
+//     color: var(--color_text_primary);
+//     border-bottom: q(1) solid var(--color_text_secondary);
 // }
-// input[type=text].is-large,
-// input[type=date].is-large,
-// input[type=email].is-large,
-// input[type=password].is-large,
-// input[type=tel].is-large,
-// input[type=url].is-large,
-// input[type=search].is-large,
-// input[type=number].is-large,
-// input[type=file].is-large,
-// textarea.is-large,
-// select.is-large
-// {
-//     font-size: 2.25rem;
+
+// // -----------------------------------------------------------------------------
+// // Additional States
+// // -----------------------------------------------------------------------------
+
+// input:disabled,
+// textarea:disabled,
+// select:disabled {
+//     background-color: hue_color("N0001");
+//     color: var(--color_state_muted);
+//     cursor: not-allowed;
 // }
-// input[type=text].style-2,
-// input[type=date].style-2,
-// input[type=email].style-2,
-// input[type=password].style-2,
-// input[type=tel].style-2,
-// input[type=url].style-2,
-// input[type=search].style-2,
-// input[type=number].style-2,
-// input[type=file].style-2,
-// textarea.style-2,
-// select.style-2
-// {
-//     font-size: .875rem;
 
-//     padding: .8125rem 1.4375rem;
+// input.is-success,
+// textarea.is-success,
+// select.is-success {
+//     border-color: var(--color_log_success);
+//     background-color: hue_color("N1651");
+//     color: var(--color_log_success);
+// }
 
-//     border: q(1) solid var(--color-3);
-//     background-color: var(--white-color);
+// input.is-warning,
+// textarea.is-warning,
+// select.is-warning {
+//     border-color: var(--color_log_warning);
+//     background-color: hue_color("N0301");
+//     color: var(--color_log_warning);
+// }
+
+// input.is-error,
+// textarea.is-error,
+// select.is-error {
+//     border-color: var(--color_log_error);
+//     background-color: hue_color("N3601");
+//     color: var(--color_log_error);
+// }
+
+// input.is-info,
+// textarea.is-info,
+// select.is-info {
+//     border-color: var(--color_log_info);
+//     background-color: hue_color("N2401");
+//     color: var(--color_log_info);
 // }
