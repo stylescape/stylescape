@@ -1,13 +1,48 @@
-// // ============================================================================
-// // Atoms | Labels
-// // ============================================================================
+// ============================================================================
+// Atoms | Labels
+// ============================================================================
 
-// @use "sass:map";
-// @use "sass:list";
+@use "sass:map";
+@use "sass:list";
 
-// @use "../../dev" as *;
-// @use "../../variables" as *;
-// @use "../soul_type" as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../soul_type" as *;
+
+/// @mixin label_base
+/// Unified label styling for both `<label>` elements and `.label` classes.
+///
+/// @param {String} $color [--color_dark] - Text color token.
+/// @param {String} $size ['m'] - Size key: 's', 'm', or 'l'.
+///
+@mixin label--base {
+    // $font-size: list.nth(map.get($label-size-map, $size), 1);
+    // $margin: list.nth(map.get($label-size-map, $size), 2);
+
+    // @include font--size($font-size);
+    display: block;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: baseline($margin);
+    // color: var(#{$color});
+    user-select: none;
+    cursor: default;
+}
+
+@mixin label--hidden {
+    position: absolute !important;
+    width: q(1);
+    height: q(1);
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+.label--hidden {
+    @include label--hidden;
+}
 
 // ///
 // /// Mixin: label_base

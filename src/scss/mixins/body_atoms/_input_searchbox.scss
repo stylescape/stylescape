@@ -9,6 +9,23 @@
 
 @use "../soul_type" as *;
 
+/// Input types styling.
+/// Customizes specific input types for better consistency across browsers.
+/// @group Form
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+    height: auto; // Corrects the cursor style of increment and decrement buttons in Chrome
+}
+
+[type="search"] {
+    -webkit-appearance: textfield; // Corrects the odd appearance in Chrome and Safari
+    outline-offset: -q(2); // Corrects the outline style in Safari
+}
+
+[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none; // Removes the inner padding in Chrome and Safari on macOS
+}
+
 // /* search box */
 // .search-box .add-on .input-group-append > .btn, .search-box .add-on .input-group-btn > .btn {left:0px; border-color:#ededed; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; -o-box-shadow: none; -ms-box-shadow: none; margin-right: 0; margin-left: -q(1); text-transform: uppercase; border-width: q(1); border-style: solid;padding: q(5) q(8); height: 3q(1); border-top-right-radius: q(4); border-bottom-right-radius: q(4); border-left: 0;}
 // .search-box .add-on .form-control:focus, .search-box .add-on .input-group-btn > .btn:focus, .search-box .add-on .input-group-btn > .btn:hover {box-shadow:none; -webkit-box-shadow:none; -moz-box-shadow:none; -ms-box-shadow:none; -o-box-shadow:none; border-color:#ededed; background: #f7f7f7}

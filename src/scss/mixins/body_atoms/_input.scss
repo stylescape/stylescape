@@ -10,108 +10,187 @@
 
 /// @group Form
 
+// -----------------------------------------------------------------------------
+// Native Input Element Reset
+// -----------------------------------------------------------------------------
+
+///
 /// Base styling for all input variants
-/// @group Form
+///
 @mixin input--base {
     // display: block;
+    // display: flex;
     // width: 100%;
     // padding: q(8) q(12);
+    // align-items: center;
+    // gap: baseline(1);
+    // align-self: stretch;
+
     font: inherit;
+
+    margin: 0;
+    padding: 0;
+
     // background-color: var(--color_fill_primary);
     color: var(--color_text_primary);
+    background-color: transparent;
+
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    appearance: none;
+
     border: none;
     outline: none;
+    border-radius: 0;
+
     transition: all 0.2s ease;
+    // transition: all var(--transition-duration) var(--transition-easing);
+
+    pointer-events: initial;
+    cursor: text;
 
     box-sizing: border-box; // Includes padding and borders in height
-    max-height: q(18); // Sets the total maximum height including borders
-    padding: q(8) q(12); // Optional padding
-    border: q(1) solid #ccc; // Optional border
+    // max-height: q(20); // Sets the total maximum height including borders
+    // border: q(0) solid #ccc; // Optional border
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
+@mixin input--base--form {
+    @include input--base;
+    display: block;
+    width: 100%;
+    max-height: q(20);
     // margin-bottom: q(10);
 }
 
-/// Input with straight corners
-/// @group Form
-@mixin input--straight {
+@mixin input--base--inline {
     @include input--base;
+    // display: inline;
+    display: inline-block;
+    max-height: q(16);
+    width: auto;
+    min-width: 1ch; // Avoid collapsing completely
+    field-sizing: content;
+    &::placeholder {
+        font: inherit;
+        white-space: nowrap;
+    }
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
+///
+/// Input with straight corners
+///
+@mixin input--style--straight {
+    @include input--base;
+    background-color: transparent;
     border: q(1) solid var(--color_text_secondary);
     border-radius: 0;
+    padding-left: q(2);
+    padding-right: q(2);
 }
 
+///
 /// Input with rounded corners
-/// @group Form
-@mixin input--rounded {
+///
+@mixin input--style--rounded {
     @include input--base;
-    border: q(1) solid var(--color_text_secondary);
+    background-color: transparent;
+    border: q(1) solid var(--color_line_primary);
     border-radius: q(4);
+    padding-left: q(2);
+    padding-right: q(2);
 }
 
+///
 /// Underlined input style
-/// @group Form
-@mixin input--underline {
+///
+@mixin input--style--underline {
     @include input--base;
-    border-bottom: q(1) solid var(--color_text_secondary);
     background-color: transparent;
+    border-bottom: q(1) solid var(--color_line_primary);
+    border-radius: 0;
     padding-left: 0;
     padding-right: 0;
 }
+
+///
+/// Filled input style
+///
+@mixin input--style--filled {
+    @include input--base;
+    background-color: var(--color_fill_tertiary);
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 /// Default input: straight corners
 .input,
 input,
 textarea,
 select {
-    @include input--straight;
+    @include input--base;
+    @include input--style--straight;
 }
 
-// .input,
-// textarea,
-// select {
-//     @include input--base;
-// }
+.input--base--form,
+input.input--base--form,
+textarea.input--base--form,
+select.input--base--form {
+    @include input--base--form;
+}
+
+.input--base--inline,
+input.input--base--inline,
+textarea.input--base--inline,
+select.input--base--inline {
+    @include input--base--inline;
+}
+
+// -----------------------------------------------------------------------------
 
 /// Straight-corner inputs
-.input--straight,
-textarea.input--straight,
-select.input--straight {
-    @include input--straight;
+.input--style--straight,
+input.input--style--straight,
+textarea.input--style--straight,
+select.input--style--straight {
+    @include input--style--straight;
 }
 
 /// Rounded inputs
-.input--rounded,
-textarea.input--rounded,
-select.input--rounded {
-    @include input--rounded;
+.input--style--rounded,
+input.input--style--rounded,
+textarea.input--style--rounded,
+select.input--style--rounded {
+    @include input--style--rounded;
 }
 
 /// Underlined inputs
-.input--underline,
-textarea.input--underline,
-select.input--underline {
-    @include input--underline;
+.input--style--underline,
+input.input--style--underline,
+textarea.input--style--underline,
+select.input--style--underline {
+    @include input--style--underline;
 }
 
-@mixin input--focus {
-    border-color: var(--color_accent_primary);
-    box-shadow: 0 0 0 q(1) var(--color_accent_primary);
-}
-
-@mixin input--disabled {
-    background-color: var(--color_disabled_bg);
-    color: var(--color_state_muted);
-    cursor: not-allowed;
-}
-
-.input:focus,
-textarea:focus,
-select:focus {
-    @include input--focus;
-}
-
-.input:disabled,
-textarea:disabled,
-select:disabled {
-    @include input--disabled;
+/// Filled inputs
+.input--style--filled,
+input.input--style--filled,
+textarea.input--style--filled,
+select.input--style--filled {
+    @include input--style--filled;
 }
 
 // -----------------------------------------------------------------------------
@@ -133,26 +212,6 @@ select:disabled {
 //         "04"
 //     )
 // ) !default;
-
-// // -----------------------------------------------------------------------------
-// // Base Input Mixin
-// // -----------------------------------------------------------------------------
-
-// /// Base styles for input-like elements (input, textarea, select)
-// @mixin input--base {
-//     display: flex;
-//     align-items: center;
-//     gap: baseline(1);
-//     align-self: stretch;
-//     color: var(--color_text_primary);
-//     background-color: var(--color_fill_primary);
-//     border-radius: 0;
-//     transition: border 0.2s ease;
-//     pointer-events: initial;
-//     cursor: text;
-//     // Optional border:
-//     // border: q(1) solid var(--color_text_primary);
-// }
 
 // // -----------------------------------------------------------------------------
 // // Input Variants
@@ -186,68 +245,15 @@ select:disabled {
 //     }
 // }
 
-// // -----------------------------------------------------------------------------
-// // Native Input Element Reset
-// // -----------------------------------------------------------------------------
-
-// input,
-// textarea,
-// select {
-//     font: inherit;
-//     border: none;
-//     outline: none;
-//     border-radius: 0;
-//     background-color: transparent;
-//     box-shadow: none;
-//     appearance: none;
-//     width: 100%;
-//     margin: 0;
+// input[type='text'],
+// input[type='email'],
+// textarea {
+//     @include reset_bleed;
 //     padding: 0;
-//     transition: all var(--transition-duration) var(--transition-easing);
-//     color: var(--color_text_primary);
-//     border-bottom: q(1) solid var(--color_text_secondary);
-// }
-
-// // -----------------------------------------------------------------------------
-// // Additional States
-// // -----------------------------------------------------------------------------
-
-// input:disabled,
-// textarea:disabled,
-// select:disabled {
-//     background-color: hue_color("N0001");
-//     color: var(--color_state_muted);
-//     cursor: not-allowed;
-// }
-
-// input.is-success,
-// textarea.is-success,
-// select.is-success {
-//     border-color: var(--color_log_success);
-//     background-color: hue_color("N1651");
-//     color: var(--color_log_success);
-// }
-
-// input.is-warning,
-// textarea.is-warning,
-// select.is-warning {
-//     border-color: var(--color_log_warning);
-//     background-color: hue_color("N0301");
-//     color: var(--color_log_warning);
-// }
-
-// input.is-error,
-// textarea.is-error,
-// select.is-error {
-//     border-color: var(--color_log_error);
-//     background-color: hue_color("N3601");
-//     color: var(--color_log_error);
-// }
-
-// input.is-info,
-// textarea.is-info,
-// select.is-info {
-//     border-color: var(--color_log_info);
-//     background-color: hue_color("N2401");
-//     color: var(--color_log_info);
+//     @include font--default;
+//     @include font--weight_300;
+//     @include font--size_04;
+//     // background-color: WhiteSmoke;
+//     margin-top: 8 * $q;
+//     margin-bottom: 8 * $q;
 // }

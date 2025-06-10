@@ -11,87 +11,192 @@
 
 @use "../soul_type" as *;
 
-// Form
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// Imports
+@use "../../variables" as *;
 
-/// Form element styling.
-/// Provides general styling for form elements.
-/// @group Form
-form {
-    // display: flex;
-    // justify-content: center;
+@mixin form--base($gap: q(10)) {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}
+
+// -----------------------------------------------------------------------------
+// Form | Row (horizontal layout)
+// -----------------------------------------------------------------------------
+
+@mixin form--row($gap: q(20)) {
+    @include form--base($gap);
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
     // align-items: center;
-    max-width: 100%;
+
+    > * {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    label {
+        // margin-bottom: q(2);
+    }
 }
 
-// Form | Legend
+// -----------------------------------------------------------------------------
+// Form | Column (vertical layout)
+// -----------------------------------------------------------------------------
+
+@mixin form--col($gap: q(10)) {
+    @include form--base($gap);
+    flex-direction: column;
+
+    > * {
+        width: 100%;
+    }
+
+    label {
+        // margin-bottom: q(2);
+    }
+}
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+@mixin form__field--base($gap: q(4)) {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+    width: 100%;
+}
+
+// -----------------------------------------------------------------------------
+// Mixin: Form Field (label + input stacked)
+@mixin form__field--col($gap: q(4)) {
+    @include form__field--base($gap);
+    flex-direction: column;
+}
+
+// -----------------------------------------------------------------------------
+// Mixin: Inline Label + Input (horizontal layout)
+@mixin form__field--row($label-width: q(120), $gap: q(8)) {
+    @include form__field--base($gap);
+    flex-direction: row;
+    label {
+        flex: 0 0 $label-width;
+    }
+    input,
+    select,
+    textarea {
+        flex: 1 1 auto;
+    }
+}
+
+// -----------------------------------------------------------------------------
+
+@mixin form__control($gap: q(4)) {
+    @include form__field--base($gap);
+    flex-direction: row;
+}
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+.form {
+    // @include form--base;
+    @include form__row;
+}
+
+.form--row {
+    @include form__row;
+    .form__field {
+        @include form--field--row;
+    }
+}
+
+.form--col {
+    @include form--col;
+    .form__field {
+        @include form--field--col;
+    }
+}
+
+// // Form
+// // ----------------------------------------------------------------------------
+
+// /// Form element styling.
+// /// Provides general styling for form elements.
+// ///
+// form {
+//     // display: flex;
+//     // justify-content: center;
+//     // align-items: center;
+//     max-width: 100%;
+// }
+
+// // Form | Legend
+// // ----------------------------------------------------------------------------
+
+// /// Legend element styling.
+// /// Resets default styles for better cross-browser consistency.
+// /// @group Form
+// legend {
+//     padding: 0;
+//     border: 0; // Corrects `color` not being inherited in IE 8/9/10/11
+//     color: inherit; // Ensures the color is inherited correctly
+//     display: table; // Corrects text wrapping in Edge and IE
+//     white-space: normal; // Corrects text wrapping in Edge and IE
+//     max-width: 100%; // Ensures text wrapping in Edge 18- and IE
+// }
+
+// // Form | Fieldset
+// // ----------------------------------------------------------------------------
+
+// /// Fieldset element styling.
+// /// Resets default styles for better cross-browser consistency.
+// /// @group Form
+// fieldset {
+//     border: 0;
+//     padding: 0Q (16) 0 0 0;
+//     margin: 0;
+//     min-width: 0;
+// }
+
+// body:not(:-moz-handler-blocked) fieldset {
+//     display: table-cell;
+// }
+
+// // Form | Fieldset | Input | Types
+// // ----------------------------------------------------------------------------
+
+// //// ENGINE
+// ///
+// ///
+// ///
+// .form-control {
+//     @include reset_bleed;
+//     // width: 50%;
+//     // margin: 0 auto;
+//     border-bottom: q(1) solid #888;
+//     border-top: 0p;
+//     border-left: 0p;
+//     border-right: 0;
+//     border-radius: 0;
+//     margin-top: 8 * $q;
+//     margin-bottom: 8 * $q;
+// }
+
 // ----------------------------------------------------------------------------
-
-/// Legend element styling.
-/// Resets default styles for better cross-browser consistency.
-/// @group Form
-legend {
-    padding: 0;
-    border: 0; // Corrects `color` not being inherited in IE 8/9/10/11
-    color: inherit; // Ensures the color is inherited correctly
-    display: table; // Corrects text wrapping in Edge and IE
-    white-space: normal; // Corrects text wrapping in Edge and IE
-    max-width: 100%; // Ensures text wrapping in Edge 18- and IE
-}
-
-// Form | Fieldset
 // ----------------------------------------------------------------------------
-
-/// Fieldset element styling.
-/// Resets default styles for better cross-browser consistency.
-/// @group Form
-fieldset {
-    border: 0;
-    padding: 0Q (16) 0 0 0;
-    margin: 0;
-    min-width: 0;
-}
-
-body:not(:-moz-handler-blocked) fieldset {
-    display: table-cell;
-}
-
-// Form | Fieldset | Input | Types
 // ----------------------------------------------------------------------------
-
-/// Input types styling.
-/// Customizes specific input types for better consistency across browsers.
-/// @group Form
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
-    height: auto; // Corrects the cursor style of increment and decrement buttons in Chrome
-}
-
-[type="search"] {
-    -webkit-appearance: textfield; // Corrects the odd appearance in Chrome and Safari
-    outline-offset: -q(2); // Corrects the outline style in Safari
-}
-
-[type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none; // Removes the inner padding in Chrome and Safari on macOS
-}
-
-//// ENGINE
-///
-///
-///
-.form-control {
-    @include reset_bleed;
-    // width: 50%;
-    // margin: 0 auto;
-    border-bottom: q(1) solid #888;
-    border-top: 0p;
-    border-left: 0p;
-    border-right: 0;
-    border-radius: 0;
-    margin-top: 8 * $q;
-    margin-bottom: 8 * $q;
-}
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 // @mixin portal_button {
 //     text-align: right;

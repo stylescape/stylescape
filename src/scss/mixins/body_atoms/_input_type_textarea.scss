@@ -1,0 +1,40 @@
+@use "../../dev" as *;
+@use "../../variables" as *;
+
+@use "../soul_type" as *;
+@use "input" as *;
+
+// Textarea
+// ----------------------------------------------------------------------------
+
+///
+/// Base textarea styling
+/// ----------------------------------------------------------------------------
+/// Use in conjunction with `.input`, `.input--style--*`
+///
+/// @example
+/// textarea { @include textarea--base; }
+///
+@mixin textarea--base {
+    @include input--base;
+
+    width: 100%;
+    max-width: 100%;
+
+    overflow: auto;
+    resize: vertical;
+    // resize: none;
+
+    transition: height 0s;
+    -webkit-transition: height 0s;
+}
+
+/// Default textarea styles
+textarea {
+    @include textarea--base;
+}
+
+// textarea.custom-style {
+//   @include textarea--base;
+//   @include input--variant--rounded; // Optional: use any of your input variants
+// }

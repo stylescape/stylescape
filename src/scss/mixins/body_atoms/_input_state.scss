@@ -1,0 +1,209 @@
+// ============================================================================
+// Elements | Form
+// ============================================================================
+
+@use "sass:map";
+@use "sass:list";
+@use "sass:color";
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../soul_type" as *;
+
+/// @group Form
+
+// ----------------------------------------------------------------------------
+// Additional States
+// ----------------------------------------------------------------------------
+// Default
+// Hover
+// Focus
+// Typing
+// Entered
+// Disabled
+// Error
+// Error focus
+
+// ----------------------------------------------------------------------------
+// State Mixins
+// ----------------------------------------------------------------------------
+
+@mixin input--state--focus {
+    // outline-color: var(--color_accent_primary);
+    // border-color: transparent !important;
+    box-shadow: 0 0 0 q(1) var(--color_accent_primary);
+    @content;
+
+    outline: none;
+
+    &:focus-visible {
+        outline-color: var(--color_accent_primary);
+        box-shadow: 0 0 0 q(1) var(--color_accent_primary);
+    }
+}
+
+@mixin input--state--disabled {
+    background-color: var(--color_disabled_bg);
+    color: var(--color_state_muted);
+    cursor: not-allowed;
+    @content;
+}
+
+@mixin input--state--disabled {
+    background-color: var(--color_disabled_bg);
+    color: var(--color_state_muted);
+    cursor: not-allowed;
+    @content;
+}
+
+@mixin input--state--readonly {
+    background-color: var(--color_readonly_bg);
+    color: var(--color_state_muted);
+    cursor: default;
+    @content;
+}
+
+@mixin input--state--required {
+    border-color: var(--color_accent_secondary);
+    @content;
+}
+
+@mixin input--state--invalid {
+    border-color: var(--color_log_error);
+    background-color: hue_color("N3601");
+    color: var(--color_log_error);
+    @content;
+}
+
+// ----------------------------------------------------------------------------
+
+@mixin input--state--is_success {
+    border-color: var(--color_log_success);
+    background-color: hue_color("N1651");
+    color: var(--color_log_success);
+    @content;
+}
+
+@mixin input--state--is_warning {
+    border-color: var(--color_log_warning);
+    background-color: hue_color("N0301");
+    color: var(--color_log_warning);
+    @content;
+}
+
+@mixin input--state--is_error {
+    border-color: var(--color_log_error);
+    background-color: hue_color("N3601");
+    color: var(--color_log_error);
+    @content;
+}
+
+$color-log-info: #2196f3;
+
+@mixin input--state--is_info {
+    border-color: var(--color_log_info);
+    background-color: color.adjust($color-log-info, $lightness: 20%);
+    color: var(--color_log_info);
+    @content;
+}
+
+// ----------------------------------------------------------------------------
+
+.input--state--focus,
+.input:focus,
+input:focus,
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus,
+textarea:focus,
+select:focus {
+    @include input--state--focus;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    @include input--state--focus;
+}
+
+.input--state--disabled,
+.input:disabled,
+input:disabled,
+input[type="text"]:disabled,
+input[type="date"]:disabled,
+input[type="email"]:disabled,
+input[type="password"]:disabled,
+input[type="tel"]:disabled,
+input[type="url"]:disabled,
+input[type="search"]:disabled,
+input[type="number"]:disabled,
+input[type="file"]:disabled,
+textarea:disabled,
+select:disabled {
+    @include input--state--disabled;
+}
+
+// ----------------------------------------------------------------------------
+
+.input--state--readonly,
+.input[readonly],
+input[readonly],
+textarea[readonly],
+select[readonly] {
+    @include input--state--readonly;
+}
+
+.input--state--required,
+.input:required,
+input:required,
+textarea:required,
+select:required {
+    @include input--state--required;
+}
+
+.input--state--invalid,
+.input:invalid,
+input:invalid,
+textarea:invalid,
+select:invalid {
+    @include input--state--invalid;
+}
+
+// ----------------------------------------------------------------------------
+
+.input.is_success,
+input.is_success,
+textarea.is_success,
+select.is_success {
+    @include input--state--is_success;
+}
+
+.input--state--is_warning,
+.input.is_warning,
+input.is_warning,
+textarea.is_warning,
+select.is_warning {
+    @include input--state--is_warning;
+}
+
+.input--state--is_error,
+.input.is_error,
+input.is_error,
+textarea.is_error,
+select.is_error {
+    @include input--state--is_error;
+}
+
+.input--state--is_info,
+.input.is_info,
+input.is_info,
+textarea.is_info,
+select.is_info {
+    @include input--state--is_info;
+}
