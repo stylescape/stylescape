@@ -350,3 +350,98 @@ table.caption-bottom {
 table {
     @include table--base;
 }
+// -----------------------------------------------------------------------------
+// Collapsable Table
+// -----------------------------------------------------------------------------
+
+@mixin collapsible_table--base {
+    width: 100%;
+    overflow: hidden;
+
+    &--header {
+        @include flex;
+        @include align--center;
+        @include justify_between;
+        margin-bottom: q(6);
+        cursor: pointer;
+        border-bottom: q(1) solid var(--color_text_primary);
+
+        button {
+            right: q(12) * 2;
+        }
+    }
+
+    &--title {
+        font-weight: bold;
+        font-size: q(20);
+    }
+
+    &--content {
+        height: 0;
+        overflow: hidden;
+
+        &.expanded {
+            min-height: fit-content;
+            height: 100%;
+            max-height: q(10000);
+        }
+    }
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
+.collapsible_table {
+    @include collapsible_table--base;
+}
+
+// -----------------------------------------------------------------------------
+// Data Table
+// -----------------------------------------------------------------------------
+
+@mixin data_table--base {
+    width: 100%;
+    overflow: hidden;
+
+    &--header {
+        @include flex;
+        @include align--center;
+        @include justify_between;
+        cursor: pointer;
+        border-bottom: q(1) solid var(--color_line_primary);
+    }
+
+    &--title {
+        font-weight: bold;
+        font-size: q(20);
+    }
+
+    &--form {
+        @include flex;
+        @include align--center;
+    }
+
+    &--button {
+        @include reset_bleed;
+        width: q(20);
+        height: q(20);
+        font-size: q(20);
+    }
+
+    &--input {
+        @include reset_bleed;
+    }
+
+    &--pagination {
+        margin-top: q(4);
+        padding-bottom: q(4);
+        border-bottom: q(1) solid var(--color_line_primary);
+    }
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
+.data_table {
+    @include data_table--base;
+}
