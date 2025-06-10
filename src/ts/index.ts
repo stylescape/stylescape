@@ -1,4 +1,6 @@
 import { AsideHandler } from "./elements/AsideHandler.js"
+import { CollapsibleTableHandler } from "./elements/CollapsibleTableHandler.js"
+import { DropdownHandler } from "./elements/DropdownHandler.js"
 import { ExclusiveDetails } from "./elements/ExclusiveDetails.js"
 import { ImageCompareSlider } from "./media/ImageCompareSlider.js"
 
@@ -63,6 +65,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Image Compare Sliders
     ImageCompareSlider.initAll()
+
+    //  Custom Select Dropdown Handler
+    new DropdownHandler()
+
+    //  Collapsing Table
+    new CollapsibleTableHandler()
 })
 
 // import { ExclusiveDetails } from "./elements/ExclusiveDetails.js"
