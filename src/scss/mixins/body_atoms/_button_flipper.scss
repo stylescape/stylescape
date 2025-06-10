@@ -15,13 +15,10 @@ $duration: 0.5s;
 $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
 
 // ============================================================================
-// Mixin: flipper button base
+// Mixin: Flipper Button Base - VERTICAL
 // ============================================================================
 
-// Shared styles
-@mixin flipper-button-base {
-    width: $arrow_size;
-    height: $arrow_size * 2;
+@mixin flipper_button--base {
     position: absolute;
     background: transparent;
     cursor: pointer;
@@ -36,10 +33,10 @@ $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
         width: $arrow_size;
         height: $bar_height;
         background-color: var(--color_state_link);
-        transform: translateX(-50%) rotate(90deg); // Center and rotate
         transition: all $duration $easing;
         transform-origin: center center;
     }
+
     &.active {
         &::before,
         &::after {
@@ -47,55 +44,127 @@ $easing: cubic-bezier(0.25, 1.7, 0.35, 0.8);
         }
     }
 }
+// ============================================================================
+// Mixin: Flipper Button Base - VERTICAL
+// ============================================================================
+@mixin flipper_button--base--vertical {
+    width: $arrow_size * 2;
+    height: $arrow_size;
+    @include flipper_button--base;
+}
 
+// ============================================================================
+// Mixin: Flipper Button Base - HORIZONTAL
+// ============================================================================
+@mixin flipper_button--base--horizontal {
+    width: $arrow_size;
+    height: $arrow_size * 2;
+    @include flipper_button--base;
+}
 // Left variant
 .flipper--left {
-    @include flipper-button-base;
-    &::before,
-    &::after {
-        transform: translateX(q(-8)) rotate(90deg);
-    }
+    @include flipper_button--base--horizontal;
+
     &::before {
-        z-index: 9999;
-        top: math.div($arrow_size, 4);
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
     }
 
     &::after {
-        top: $arrow_size + q(0);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
     }
 
     &.active {
         &::before {
-            transform: translateX(q(-8)) rotate(120deg);
+            transform: translate(-50%, -50%) rotate(120deg);
         }
+
         &::after {
-            transform: translateX(q(-8)) rotate(-120deg);
+            transform: translate(-50%, -50%) rotate(-120deg);
         }
     }
 }
 
 // Right variant
 .flipper--right {
-    @include flipper-button-base;
-    &::before,
-    &::after {
-        transform: translateX(q(-4)) rotate(90deg);
-    }
+    @include flipper_button--base--horizontal;
+
     &::before {
-        z-index: 9999;
-        top: $bar_height + q(1);
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
     }
 
     &::after {
-        top: $arrow_size + q(0);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
     }
 
     &.active {
         &::before {
-            transform: translateX(q(-4)) rotate(-120deg);
+            transform: translate(-50%, -50%) rotate(-120deg);
         }
+
         &::after {
-            transform: translateX(q(-4)) rotate(120deg);
+            transform: translate(-50%, -50%) rotate(120deg);
+        }
+    }
+}
+
+// Up variant
+.flipper--up {
+    @include flipper_button--base--vertical;
+
+    &::before {
+        top: 50%;
+        left: 15%;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    &::after {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    &.active {
+        &::before {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        &::after {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+    }
+}
+
+// Down variant
+.flipper--down {
+    @include flipper_button--base--vertical;
+
+    &::before {
+        top: 50%;
+        left: 15%;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    &::after {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    &.active {
+        &::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        &::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
         }
     }
 }
