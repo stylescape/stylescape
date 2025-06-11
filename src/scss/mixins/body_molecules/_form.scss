@@ -76,14 +76,14 @@
     .form__field__input,
     input {
         @include input--base--form;
-        order: 2;
+        order: 3;
         &[required] + label:after {
             content: "*";
             color: var(--color_log_info);
         }
     }
     .form__field__help {
-        order: 3;
+        order: 2;
     }
     .form__field__error {
         order: 4;
@@ -126,7 +126,6 @@
 // -----------------------------------------------------------------------------
 
 .form {
-    // @include form--base;
     @include form__row;
 }
 
@@ -142,6 +141,32 @@
     .form__field {
         @include form--field--col;
     }
+}
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+.form__field__help {
+    display: flex;
+    // align-items: flex-start;
+    align-items: center; // vertically center icon + content
+
+    white-space: nowrap; // Prevent line breaks
+    overflow: hidden; // Optional: hide overflow
+    text-overflow: ellipsis; // Optional: ellipsis for long text
+    font-size: q(12) !important;
+    border-width: q(1);
+    border-style: solid;
+    border-radius: 0;
+    border-color: transparent; // default, overridden by variants
+    color: var(--color_text_tertiary);
+}
+.form__field__error {
+    @include alert--error;
+    // color: var(--color_log_error);
+    // margin-top: q(4);
 }
 
 // // Form

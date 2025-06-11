@@ -2,86 +2,230 @@
 // Mixins | Alert Component
 // ============================================================================
 
-@mixin alert-base($prefix: "bs") {
-    --#{$prefix}alert-bg: transparent;
-    --#{$prefix}alert-padding-x: #{$alert-padding-x};
-    --#{$prefix}alert-padding-y: #{$alert-padding-y};
-    --#{$prefix}alert-margin-bottom: #{$alert-margin-bottom};
-    --#{$prefix}alert-color: inherit;
-    --#{$prefix}alert-border-color: transparent;
-    --#{$prefix}alert-border: #{$alert-border-width} solid var(--#{$prefix}alert-border-color);
-    --#{$prefix}alert-border-radius: #{$alert-border-radius};
-    --#{$prefix}alert-link-color: inherit;
+/// Alert Component
+/// ============================================================================
+/// @group Components
+/// @author Scape Agency
+/// @since 0.1.0
+/// @access public
+///
 
-    position: relative;
-    padding: var(--#{$prefix}alert-padding-y) var(--#{$prefix}alert-padding-x);
-    margin-bottom: var(--#{$prefix}alert-margin-bottom);
-    color: var(--#{$prefix}alert-color);
-    background-color: var(--#{$prefix}alert-bg);
-    border: var(--#{$prefix}alert-border);
-    @include border-radius(var(--#{$prefix}alert-border-radius));
+@use "sass:string";
 
-    padding: 20px;
-    background-color: #f44336; /* Red */
-    color: white;
-    margin-bottom: 15px;
-}
+@use "../../dev" as *;
+@use "../../variables" as *;
 
-@mixin alert-heading {
-    color: inherit;
-}
+@use "../head_layout" as *;
+@use "../soul_object" as *;
+@use "../soul_type" as *;
 
-@mixin alert-link($prefix: "bs") {
-    font-weight: $alert-link-font-weight;
-    color: var(--#{$prefix}alert-link-color);
-}
-
-@mixin alert-dismissible($prefix: "bs") {
-    padding-right: $alert-dismissible-padding-r;
-
-    .btn-close {
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: $stretched-link-z-index + 1;
-        padding: $alert-padding-y * 1.25 $alert-padding-x;
+@mixin alert--base {
+    display: flex;
+    // align-items: flex-start;
+    align-items: center; // vertically center icon + content
+    // padding: q(12) q(16); // consistent top/bottom and left/right
+    padding-left: q(4);
+    padding-right: q(4);
+    gap: q(4); // space between icon and text
+    white-space: nowrap; // Prevent line breaks
+    overflow: hidden; // Optional: hide overflow
+    text-overflow: ellipsis; // Optional: ellipsis for long text
+    font-size: q(12) !important;
+    border-width: q(1);
+    border-style: solid;
+    border-radius: 0;
+    border-color: transparent; // default, overridden by variants
+    &::before {
+        content: none;
+        display: inline-block;
+        // position: absolute;
+        // left: q(8);
+        top: q(12); // adjust vertically to center with text
+        font-size: q(8);
+        // line-height: 1;
+        flex-shrink: 0;
     }
 }
 
-@mixin alert-variant($state, $prefix: "bs") {
-    --#{$prefix}alert-color: var(--#{$prefix}#{$state}-text-emphasis);
-    --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-bg-subtle);
-    --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-border-subtle);
-    --#{$prefix}alert-link-color: var(--#{$prefix}#{$state}-text-emphasis);
+@function css-var($name) {
+    @return string.unquote("--#{$name}");
+}
+
+@mixin alert--variant($token) {
+    background-color: var(css-var("color_#{$token}--75"));
+    color: var(css-var("color_#{$token}"));
+    border-color: var(css-var("color_#{$token}--50"));
+
+    @include alert--base; // includes nested `&__icon`, etc.
+}
+
+@mixin alert--success {
+    @include alert--variant("log_success");
+    &::before {
+        content: "✔";
+    }
+}
+
+@mixin alert--warning {
+    @include alert--variant("log_warning");
+    &::before {
+        content: "⚠";
+    }
+}
+
+@mixin alert--error {
+    @include alert--variant("log_error");
+    &::before {
+        content: "✖";
+    }
+}
+
+@mixin alert--info {
+    @include alert--variant("log_info");
+    &::before {
+        content: "ℹ";
+    }
 }
 
 .alert {
-    @include alert-base();
+    @include alert--base;
+}
+.alert--success {
+    @include alert--success;
 }
 
-.alert-heading {
-    @include alert-heading;
+.alert--warning {
+    @include alert--warning;
 }
 
-.alert-link {
-    @include alert-link();
+.alert--error {
+    @include alert--error;
 }
 
-.alert-dismissible {
-    @include alert-dismissible();
+.alert--info {
+    @include alert--info;
 }
 
-.alert-success {
-    @include alert-variant("success");
-}
+// @mixin alert-variant($bg, $color, $border) {
+//     background-color: $bg;
+//     color: $color;
+//     border-color: $border;
+// }
 
-.alert-warning {
-    @include alert-variant("warning");
-}
+// // Specific variants
 
-// Loop example
-@each $state in map-keys($theme-colors) {
-    .alert-#{$state} {
-        @include alert-variant($state);
-    }
-}
+// @mixin alert--success {
+//     @include alert-variant(#e6f4ea, #237a3b, #b6e0c3);
+// }
+
+// @mixin alert--warning {
+//     @include alert-variant(#fff4e5, #b36b00, #ffdca8);
+// }
+
+// @mixin alert--error {
+//     @include alert-variant(#fcebea, #a61b1b, #f5c6cb);
+// }
+
+// @mixin alert--info {
+//     @include alert-variant(#e8f4fd, #084298, #b6d4fe);
+// }
+
+// .alert--success {
+//     @include alert--success;
+// }
+
+// .alert--warning {
+//     @include alert--warning;
+// }
+
+// .alert--error {
+//     @include alert--error;
+// }
+
+// .alert--info {
+//     @include alert--info;
+// }
+
+// @mixin alert-base($prefix: "bs") {
+//     --#{$prefix}alert-bg: transparent;
+//     --#{$prefix}alert-padding-x: #{$alert-padding-x};
+//     --#{$prefix}alert-padding-y: #{$alert-padding-y};
+//     --#{$prefix}alert-margin-bottom: #{$alert-margin-bottom};
+//     --#{$prefix}alert-color: inherit;
+//     --#{$prefix}alert-border-color: transparent;
+//     --#{$prefix}alert-border: #{$alert-border-width} solid var(--#{$prefix}alert-border-color);
+//     --#{$prefix}alert-border-radius: #{$alert-border-radius};
+//     --#{$prefix}alert-link-color: inherit;
+
+//     position: relative;
+//     padding: var(--#{$prefix}alert-padding-y) var(--#{$prefix}alert-padding-x);
+//     margin-bottom: var(--#{$prefix}alert-margin-bottom);
+//     color: var(--#{$prefix}alert-color);
+//     background-color: var(--#{$prefix}alert-bg);
+//     border: var(--#{$prefix}alert-border);
+//     @include border-radius(var(--#{$prefix}alert-border-radius));
+
+//     padding: 20px;
+//     background-color: #f44336; /* Red */
+//     color: white;
+//     margin-bottom: 15px;
+// }
+
+// @mixin alert-heading {
+//     color: inherit;
+// }
+
+// @mixin alert-link($prefix: "bs") {
+//     font-weight: $alert-link-font-weight;
+//     color: var(--#{$prefix}alert-link-color);
+// }
+
+// @mixin alert-dismissible($prefix: "bs") {
+//     padding-right: $alert-dismissible-padding-r;
+
+//     .btn-close {
+//         position: absolute;
+//         top: 0;
+//         right: 0;
+//         z-index: $stretched-link-z-index + 1;
+//         padding: $alert-padding-y * 1.25 $alert-padding-x;
+//     }
+// }
+
+// @mixin alert-variant($state, $prefix: "bs") {
+//     --#{$prefix}alert-color: var(--#{$prefix}#{$state}-text-emphasis);
+//     --#{$prefix}alert-bg: var(--#{$prefix}#{$state}-bg-subtle);
+//     --#{$prefix}alert-border-color: var(--#{$prefix}#{$state}-border-subtle);
+//     --#{$prefix}alert-link-color: var(--#{$prefix}#{$state}-text-emphasis);
+// }
+
+// .alert {
+//     @include alert-base();
+// }
+
+// .alert-heading {
+//     @include alert-heading;
+// }
+
+// .alert-link {
+//     @include alert-link();
+// }
+
+// .alert-dismissible {
+//     @include alert-dismissible();
+// }
+
+// .alert-success {
+//     @include alert-variant("success");
+// }
+
+// .alert-warning {
+//     @include alert-variant("warning");
+// }
+
+// // Loop example
+// @each $state in map-keys($theme-colors) {
+//     .alert-#{$state} {
+//         @include alert-variant($state);
+//     }
+// }
