@@ -14,6 +14,42 @@
 @use "../soul_type" as *;
 @use "../body_atoms" as *;
 
+@mixin slider--base($color: var(--color_fill_primary)) {
+    position: absolute;
+    z-index: 2;
+    cursor: ew-resize;
+    width: q(40);
+    height: q(40);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: q(2) solid $color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: q(2);
+        background-color: $color;
+        z-index: 0;
+    }
+
+    &::before {
+        top: -100vh;
+        bottom: calc(50% + q(20));
+    }
+
+    &::after {
+        bottom: -100vh;
+        top: calc(50% + q(20));
+    }
+}
+
 @mixin image__compare--base {
     position: relative;
     width: 100%;
@@ -35,51 +71,58 @@
 
     &--overlay {
         object-position: left;
-        filter: grayscale(100%);
         width: 50%;
     }
 
     &--slider {
-        position: absolute;
-        z-index: 2;
-        cursor: ew-resize;
-        width: q(40);
-        height: q(40);
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border: q(2) solid var(--color_fill_primary);
+        @include slider--base(var(--color_fill_primary));
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
-        // Vertical line
-        &::before {
-            content: "";
-            position: absolute;
-            top: -100vh;
-            bottom: calc(50% + q(20));
-            left: 50%;
-            transform: translateX(-50%);
-            width: q(2);
-            background-color: var(--color_fill_primary);
-            z-index: 0;
+        .dark {
+            &--left,
+            &--right {
+                @include slider--base(var(--color_text_primary));
+                width: q(20);
+                height: q(40);
+                border-radius: 0 q(40) q(40) 0;
+                background-color: transparent !important;
+                border-left-color: transparent;
+
+                // Shared line styles
+                &::before,
+                &::after {
+                    width: q(1);
+                    left: -15%;
+                    transform: none;
+                }
+                &::before {
+                    bottom: calc(50% + q(18));
+                }
+
+                &::after {
+                    top: calc(50% + q(18));
+                }
+            }
+
+            &--left {
+                transform: rotate(180deg) translate(100%, 50%);
+
+                &::before,
+                &::after {
+                    left: -12%;
+                }
+            }
+
+            &--right {
+                transform: translate(0%, -50%);
+
+                &::before,
+                &::after {
+                    left: -13%;
+                }
+            }
         }
 
-        &::after {
-            content: "";
-            position: absolute;
-            bottom: -100vh;
-            top: calc(50% + q(20));
-            left: 50%;
-            transform: translateX(-50%);
-            width: q(2);
-            background-color: var(--color_fill_primary);
-            z-index: 0;
-        }
-
-        // Left arrow
         .arrow--left,
         .arrow--right {
             position: absolute;
