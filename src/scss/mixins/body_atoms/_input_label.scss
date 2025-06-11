@@ -8,18 +8,35 @@
 @use "../../dev" as *;
 @use "../../variables" as *;
 @use "../soul_type" as *;
+@use "../head_layout" as *;
+
+/// Unified label styling for both `<label>` elements and `.label` classes.
+/// Size map for label styles
+$label-size-map: (
+    "sm": (
+        "02",
+        0
+    ),
+    "md": (
+        "03",
+        1
+    ),
+    "lg": (
+        "04",
+        2
+    )
+) !default;
 
 /// @mixin label_base
 /// Unified label styling for both `<label>` elements and `.label` classes.
 ///
-/// @param {String} $color [--color_dark] - Text color token.
 /// @param {String} $size ['m'] - Size key: 's', 'm', or 'l'.
 ///
-@mixin label--base {
-    // $font-size: list.nth(map.get($label-size-map, $size), 1);
-    // $margin: list.nth(map.get($label-size-map, $size), 2);
+@mixin label--base($size: "md") {
+    $font-size: list.nth(map.get($label-size-map, $size), 1);
+    $margin: list.nth(map.get($label-size-map, $size), 2);
 
-    // @include font--size($font-size);
+    @include font--size($font-size);
     display: block;
     width: 100%;
     margin-top: 0;
@@ -30,104 +47,31 @@
 }
 
 @mixin label--hidden {
-    position: absolute !important;
-    width: q(1);
-    height: q(1);
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-    border: 0;
+    @include visually-hidden;
 }
+
+///
+/// Native label element styling
+/// Provides basic styling for labels in forms.
+///
+.label,
+label {
+    @include label--base;
+    //     @include label_base(--color_dark, "m");
+}
+
 .label--hidden {
     @include label--hidden;
 }
 
-// ///
-// /// Mixin: label_base
-// /// ---------------------------------------------------------------------------
-// /// Unified label styling for both `<label>` elements and `.label` classes.
-// /// @group Form
-// /// Size map for label styles
-// $label-size-map: (
-//     "s": (
-//         "02",
-//         0
-//     ),
-//     // font-size: 02, margin-bottom: 0
-//     "m":
-//         (
-//             "03",
-//             1
-//         ),
-//     "l": (
-//         "04",
-//         2
-//     )
-// ) !default;
+.label--sm {
+    @include label--base("sm");
+}
 
-// /// @mixin label_base
-// /// Unified label styling for both `<label>` elements and `.label` classes.
-// ///
-// /// @param {String} $color [--color_dark] - Text color token.
-// /// @param {String} $size ['m'] - Size key: 's', 'm', or 'l'.
-// ///
-// @mixin label_base($color: --color_dark, $size: "m") {
-//     $font-size: list.nth(map.get($label-size-map, $size), 1);
-//     $margin: list.nth(map.get($label-size-map, $size), 2);
+.label--md {
+    @include label--base("md");
+}
 
-//     @include font--size($font-size);
-//     display: block;
-//     width: 100%;
-//     margin-top: 0;
-//     margin-bottom: baseline($margin);
-//     color: var(#{$color});
-//     user-select: none;
-//     cursor: default;
-// }
-
-// // Engine
-// // label {
-// //     @include reset_bleed;
-// //     @include font--default;
-// //     @include font--weight_400;
-// //     @include font--size_04;
-// //     margin-top: 8 * $q;
-// //     margin-bottom: 8 * $q;
-// // }
-
-// //DEMO
-// // label {
-// //
-// //     margin-bottom: q(24);
-// //     font-weight: bold;
-// // }
-// ///
-// /// Utility label class
-// ///
-// .label {
-//     @include label_base(--color_dark, "m");
-//     // @include label_base(--color_text_muted, 02, 00);
-// }
-
-// .label--s {
-//     @include label_base(--color_dark, "s");
-// }
-
-// .label--m {
-//     @include label_base(--color_dark, "m");
-// }
-
-// .label--l {
-//     @include label_base(--color_dark, "l");
-// }
-
-// ///
-// /// Native label element styling
-// /// Provides basic styling for labels in forms.
-// ///
-// label {
-//     @include label_base();
-//     cursor: pointer;
-// }
+.label--lg {
+    @include label--base("lg");
+}

@@ -6899,23 +6899,38 @@ body {
   display: none !important;
 }
 
-.align_stretch {
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: q(1);
+  margin: -q(1);
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: q(1);
+  white-space: nowrap;
+}
+
+.align--stretch {
   align-items: stretch;
 }
 
-.align_start {
+.align--start {
   align-items: flex-start;
 }
 
-.align_end {
+.align--end {
   align-items: flex-end;
 }
 
 .align--center {
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
   align-items: center;
 }
 
-.align_baseline {
+.align--baseline {
   align-items: baseline;
 }
 
@@ -7225,27 +7240,52 @@ Items have equal space around them */
   flex-wrap: wrap-reverse;
 }
 
-.align_self_auto {
+.align_self--auto {
   align-self: auto;
 }
 
-.align_self_stretch {
-  align-self: stretch;
-}
-
-.align_self_start {
-  align-self: flex-start;
-}
-
-.align_self_end {
-  align-self: flex-end;
+.align_self--normal {
+  align-self: normal;
 }
 
 .align_self--center {
   align-self: center;
+  align-self: anchor-center;
 }
 
-.align_self_baseline {
+.align_self--start {
+  align-self: start;
+}
+
+.align_self--self_start {
+  align-self: self-start;
+}
+
+.align_self--flex_start {
+  -ms-align-self: flex-start;
+  -o-align-self: flex-start;
+  align-self: flex-start;
+}
+
+.align_self--end {
+  align-self: end;
+}
+
+.align_self--self_end {
+  align-self: self-end;
+}
+
+.align_self--end {
+  -ms-align-self: flex-end;
+  -o-align-self: flex-end;
+  align-self: flex-end;
+}
+
+.align_self--stretch {
+  align-self: stretch;
+}
+
+.align_self--baseline {
   align-self: baseline;
 }
 
@@ -11457,8 +11497,6 @@ select {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -11467,6 +11505,8 @@ select {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -11474,7 +11514,6 @@ select {
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -11489,8 +11528,6 @@ select {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -11499,12 +11536,13 @@ select {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   appearance: none;
   border: none;
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -11530,8 +11568,6 @@ select.input--base--form {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -11540,6 +11576,8 @@ select.input--base--form {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -11547,7 +11585,6 @@ select.input--base--form {
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -11573,8 +11610,6 @@ select.input--base--inline {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -11583,6 +11618,8 @@ select.input--base--inline {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -11590,7 +11627,6 @@ select.input--base--inline {
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -11629,8 +11665,6 @@ select.input--style--straight {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -11639,6 +11673,8 @@ select.input--style--straight {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -11646,7 +11682,6 @@ select.input--style--straight {
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -11672,8 +11707,6 @@ select.input--style--rounded {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -11682,6 +11715,8 @@ select.input--style--rounded {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -11689,7 +11724,6 @@ select.input--style--rounded {
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -11715,8 +11749,6 @@ select.input--style--underline {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -11725,6 +11757,8 @@ select.input--style--underline {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -11732,7 +11766,6 @@ select.input--style--underline {
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -11758,8 +11791,6 @@ select.input--style--filled {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -11768,6 +11799,8 @@ select.input--style--filled {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -11775,7 +11808,6 @@ select.input--style--filled {
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -11953,8 +11985,6 @@ textarea {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -11963,6 +11993,8 @@ textarea {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -11970,7 +12002,6 @@ textarea {
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -11982,16 +12013,69 @@ textarea {
   -webkit-transition: height 0s;
 }
 
+.label,
+label {
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+  display: block;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0.3125rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: default;
+}
+
 .label--hidden {
-  position: absolute !important;
-  width: 0.0625rem;
-  height: 0.0625rem;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
   border: 0;
+  clip: rect(0 0 0 0);
+  height: q(1);
+  margin: -q(1);
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: q(1);
+  white-space: nowrap;
+}
+
+.label--sm {
+  font-size: 0.5rem;
+  line-height: 0.625rem;
+  display: block;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: default;
+}
+
+.label--md {
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+  display: block;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0.3125rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: default;
+}
+
+.label--lg {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  display: block;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0.625rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: default;
 }
 
 .select,
@@ -12007,8 +12091,6 @@ select {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -12017,6 +12099,8 @@ select {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -12024,7 +12108,6 @@ select {
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -12064,8 +12147,6 @@ select {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -12074,6 +12155,8 @@ select {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -12081,7 +12164,6 @@ select {
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -12094,6 +12176,9 @@ select {
   -moz-display: flex;
   -ms-display: flex;
   -o-display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
   align-items: center;
   -moz-justify-content: space-between;
   -ms-justify-content: space-between;
@@ -12131,6 +12216,9 @@ select {
   -moz-display: flex;
   -ms-display: flex;
   -o-display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
   align-items: center;
   -moz-justify-content: space-between;
   -ms-justify-content: space-between;
@@ -12167,6 +12255,9 @@ select {
   -moz-display: flex;
   -ms-display: flex;
   -o-display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
   align-items: center;
   -moz-justify-content: space-between;
   -ms-justify-content: space-between;
@@ -13185,6 +13276,9 @@ video:hover + .video-overlay, video:pause + .video-overlay {
   border: none;
   border-bottom: 0.0625rem solid var(--color_text_primary);
   box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-sizing: none;
+  -webkit-box-shadow: none;
   min-height: 4Q 4;
   outline: none;
   transition: all 0.3s;
@@ -13379,8 +13473,6 @@ figure img {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -13389,6 +13481,8 @@ figure img {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -13396,7 +13490,6 @@ figure img {
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -13469,8 +13562,6 @@ figure img {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  color: var(--color_text_primary);
-  background-color: transparent;
   box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-sizing: none;
@@ -13479,6 +13570,8 @@ figure img {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color_text_primary);
+  background-color: transparent;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -13486,7 +13579,6 @@ figure img {
   border-color: transparent;
   outline: none;
   border-radius: 0;
-  line-height: 0.75rem;
   transition: all 0.2s ease;
   pointer-events: initial;
   cursor: text;
@@ -13650,10 +13742,12 @@ iframe {
 .layer_control_base label span input,
 .layer_control_overlay label span input {
   align-self: center;
+  align-self: anchor-center;
 }
 .layer_control_base label span span,
 .layer_control_overlay label span span {
   align-self: center;
+  align-self: anchor-center;
   margin: 0;
   margin-block-start: 0;
   margin-block-end: 0;
@@ -14327,6 +14421,9 @@ table > caption {
   -moz-display: flex;
   -ms-display: flex;
   -o-display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
   align-items: center;
   -moz-justify-content: space-between;
   -ms-justify-content: space-between;
@@ -14364,6 +14461,9 @@ table > caption {
   -moz-display: flex;
   -ms-display: flex;
   -o-display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
   align-items: center;
   -moz-justify-content: space-between;
   -ms-justify-content: space-between;
@@ -14382,6 +14482,9 @@ table > caption {
   -moz-display: flex;
   -ms-display: flex;
   -o-display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
   align-items: center;
 }
 .data_table--button {
@@ -14657,6 +14760,9 @@ table > caption {
   -ms-display: flex;
   -o-display: flex;
   flex-direction: column;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
   align-items: center;
   -moz-justify-content: flex-end;
   -ms-justify-content: flex-end;
@@ -16098,7 +16204,10 @@ details[open] .ribbon_panel_wrapper {
   grid-template-rows: 1.25rem;
   grid-auto-columns: min-content;
   grid-auto-flow: column;
-  align-self: flex-start;
+  align-self: start;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
   align-items: center;
   text-decoration: none;
   outline: none;

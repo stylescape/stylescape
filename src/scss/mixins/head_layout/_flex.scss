@@ -3,7 +3,7 @@
 /// Layout Mixins Module
 /// ===========================================================================
 ///
-/// @group Layout
+/// @group LayoutFlex
 /// @author Scape Agency
 /// @link https://scape.style
 /// @since 0.1.0 initial release
@@ -13,39 +13,12 @@
 ////
 
 // ============================================================================
-// Mixins
+// Flex | Base
 // ============================================================================
 
-@use "../../variables" as *;
-// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-// https://gist.github.com/Farmatique/d88491ca4a8c75f3b39df6c71852bf5a
-
-// ============================================================================
-// Layout | Flex
-// ============================================================================
-// Provides utility mixins and classes for working with CSS Flexbox layouts.
-
-// Flexbox Mixin:
-// Simplifies the use of flexbox with a single mixin.
-
-// @mixin flexbox($justify-content: center, $align-items: center, $flex-direction: row) {
-//     display: flex;
-//     justify-content: $justify-content;
-//     align-items: $align-items;
-//     flex-direction: $flex-direction;
-// }
-
-// .flex-center {
-//     @include flexbox();
-// }
-
-// Flex | Parents
-// -----------------------------------------------------------------------
-
-// Flex
-
+///
 /// Mixin for applying basic flexbox properties to a container.
-/// @group Flexbox
+///
 @mixin flex {
     display: -webkit-box;
     display: -moz-box;
@@ -63,12 +36,11 @@
     @include flex;
 }
 
+// ============================================================================
 // Flex | Direction
 // ============================================================================
-// flex-direction: row | row-reverse | column | column-reverse;
 
 /// Mixin for setting the flex direction to column.
-/// @group Flexbox
 @mixin flex--col {
     @include flex;
     -webkit-flex-direction: column;
@@ -76,9 +48,11 @@
     -ms-flex-direction: column;
     flex-direction: column;
 }
+.flex--col {
+    @include flex--col;
+}
 
 /// Mixin for setting the flex direction to column-reverse.
-/// @group Flexbox
 @mixin flex--col--reverse {
     @include flex;
     -webkit-flex-direction: column-reverse;
@@ -86,9 +60,11 @@
     -ms-flex-direction: column-reverse;
     flex-direction: column-reverse;
 }
+.flex--col--reverse {
+    @include flex--col--reverse;
+}
 
 /// Mixin for setting the flex direction to row.
-/// @group Flexbox
 @mixin flex--row {
     @include flex;
     -webkit-flex-direction: row;
@@ -96,9 +72,11 @@
     -ms-flex-direction: row;
     flex-direction: row;
 }
+.flex--row {
+    @include flex--row;
+}
 
 /// Mixin for setting the flex direction to row-reverse.
-/// @group Flexbox
 @mixin flex--row--reverse {
     @include flex;
     -webkit-flex-direction: row-reverse;
@@ -106,66 +84,36 @@
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
 }
-
-// -webkit-box-direction: normal | reverse;
-
-.flex--col {
-    @include flex--col;
-}
-.flex--col--reverse {
-    @include flex--col--reverse;
-}
-.flex--row {
-    @include flex--row;
-}
 .flex--row--reverse {
     @include flex--row--reverse;
 }
 
-// @mixin flex--column {
-//   display:        flex;
-//   flex-direction: column;
-//   }
-// @mixin flex--row {
-//     display:        flex;
-//     flex-direction: row;
-// }
-
-// Flex Direction
-// flex-wrap: nowrap | wrap | wrap-reverse;
+// ============================================================================
+// Flex | Wrap
+// ============================================================================
 
 /// Mixin for enabling flex-wrap.
-/// @group Flexbox
 @mixin flex--wrap {
     flex-wrap: wrap;
 }
-
-/// Mixin for enabling reverse flex-wrap.
-/// @group Flexbox
-@mixin flex--wrap--reverse {
-    flex-wrap: wrap-reverse;
-}
-
 .flex--wrap {
     @include flex--wrap;
+}
+
+/// Mixin for enabling reverse flex-wrap.
+@mixin flex--wrap--reverse {
+    flex-wrap: wrap-reverse;
 }
 .flex--wrap--reverse {
     @include flex--wrap--reverse;
 }
 
-// .  flex-flow: column wrap;
-
-// Flex | Children
-// -----------------------------------------------------------------------
-
-// Order
-
-// -webkit-order: 1;
-// order: 1;
+// ============================================================================
+// Flex | Child Behavior
+// ============================================================================
 
 /// Mixin for setting the order of flex items.
 /// @param {Number} $val - The order value.
-/// @group Flexbox
 @mixin flex--order($val) {
     -webkit-box-ordinal-group: $val;
     -moz-box-ordinal-group: $val;
@@ -174,11 +122,8 @@
     order: $val;
 }
 
-// Sizing adjustments
-
 /// Mixin for adjusting the flex-grow, flex-shrink, and flex-basis properties.
 /// @param {Number} $val - The value for the flex property.
-/// @group Flexbox
 @mixin flex--size($val) {
     -webkit-box-flex: $val;
     -moz-box-flex: $val;
@@ -187,32 +132,27 @@
     flex: $val;
 }
 
-/// Mixin for setting the flex-basis property.
+///
+///  Mixin for setting the flex-basis property.
 /// @param {String} $val - The value for the flex-basis property.
-/// @group Flexbox
+///
 @mixin flex--basis($val) {
     flex-basis: $val;
 }
 
-// -webkit-flex-grow: 1;
-// flex-grow: 1;
-
 /// Mixin for setting the flex-grow property.
 /// @param {Number} $val - The value for the flex-grow property.
-/// @group Flexbox
 @mixin flex--grow($val) {
     flex-grow: $val;
 }
 
 /// Mixin for setting the flex-shrink property.
 /// @param {Number} $val - The value for the flex-shrink property.
-/// @group Flexbox
 @mixin flex--shrink($val) {
     flex-shrink: $val;
 }
 
 /// Mixin for disabling flex-grow and flex-shrink, keeping the item fixed.
-/// @group Flexbox
 @mixin flex--keep {
     @include flex--grow(0); // do not grow   - initial value: 0
     @include flex--shrink(0); // do not shrink - initial value: 1
@@ -220,70 +160,110 @@
     // flex-shrink: 0;   /* do not shrink - initial value: 1 */
 }
 
-// Align Self
-// align-self: auto | flex-start | flex-end | center | baseline | stretch;
+// ============================================================================
+// Flex | Align Self
+// ============================================================================
 
-// -webkit-align-self: flex-start;
-// -moz-align-self: flex-start;
-// -ms-align-self: flex-start;
-// -o-align-self: flex-start;
-// align-self: flex-start;
+// Keyword values
+// ----------------------------------------------------------------------------
 
 /// Mixin for aligning a flex item along the cross axis.
-/// @group Flexbox
-@mixin align_self_auto {
+@mixin align_self--auto {
     align-self: auto;
 }
-
-/// Mixin for stretching a flex item along the cross axis.
-/// @group Flexbox
-@mixin align_self_stretch {
-    align-self: stretch;
+.align_self--auto {
+    @include align_self--auto;
 }
 
-/// Mixin for aligning a flex item at the start along the cross axis.
-/// @group Flexbox
-@mixin align_self_start {
-    align-self: flex-start;
+@mixin align_self--normal {
+    align-self: normal;
+}
+.align_self--normal {
+    @include align_self--normal;
 }
 
-/// Mixin for aligning a flex item at the end along the cross axis.
-/// @group Flexbox
-@mixin align_self_end {
-    align-self: flex-end;
-}
+// Positional alignment
+// ----------------------------------------------------------------------------
 
 /// Mixin for centering a flex item along the cross axis.
-/// @group Flexbox
 @mixin align_self--center {
     align-self: center;
-}
-
-/// Mixin for aligning a flex item based on its baseline along the cross axis.
-/// @group Flexbox
-@mixin align_self_baseline {
-    align-self: baseline;
-}
-
-.align_self_auto {
-    @include align_self_auto;
-}
-.align_self_stretch {
-    @include align_self_stretch;
-}
-.align_self_start {
-    @include align_self_start;
-}
-.align_self_end {
-    @include align_self_end;
+    align-self: anchor-center;
 }
 .align_self--center {
     @include align_self--center;
 }
-.align_self_baseline {
-    @include align_self_baseline;
+
+/// Mixin for aligning a  item at the start along the cross axis.
+@mixin align_self--start {
+    align-self: start;
+}
+.align_self--start {
+    @include align_self--start;
 }
 
-// -ms-flex-wrap: wrap;
-// -webkit-flex-wrap: wrap;
-// flex-wrap: wrap;
+@mixin align_self--self_start {
+    align-self: self-start;
+}
+.align_self--self_start {
+    @include align_self--self_start;
+}
+
+/// Mixin for aligning a flex item at the start along the cross axis.
+@mixin align_self--flex_start {
+    -webkit-align-self: flex-start;
+    -moz-align-self: flex-start;
+    -ms-align-self: flex-start;
+    -o-align-self: flex-start;
+    align-self: flex-start;
+}
+.align_self--flex_start {
+    @include align_self--flex_start;
+}
+
+/// Mixin for aligning a flex item at the end along the cross axis.
+@mixin align_self--end {
+    align-self: end;
+}
+
+.align_self--end {
+    @include align_self--end;
+}
+
+/// Mixin for aligning a flex item at the end along the cross axis.
+@mixin align_self--self_end {
+    align-self: self-end;
+}
+
+.align_self--self_end {
+    @include align_self--self_end;
+}
+
+/// Mixin for aligning a flex item at the end along the cross axis.
+@mixin align_self--flex_end {
+    -webkit-align-self: flex-end;
+    -moz-align-self: flex-end;
+    -ms-align-self: flex-end;
+    -o-align-self: flex-end;
+    align-self: flex-end;
+}
+
+.align_self--end {
+    @include align_self--flex_end;
+}
+
+/// Mixin for stretching a flex item along the cross axis.
+@mixin align_self--stretch {
+    align-self: stretch;
+}
+.align_self--stretch {
+    @include align_self--stretch;
+}
+
+/// Mixin for aligning a flex item based on its baseline along the cross axis.
+@mixin align_self--baseline {
+    align-self: baseline;
+}
+.align_self--baseline {
+    @include align_self--baseline;
+}
