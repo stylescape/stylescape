@@ -52,9 +52,9 @@
     pointer-events: all;
 
     // Style
-    background-color: var(--color_text_primary);
-    color: var(--color_fill_primary);
-    border-color: var(--color_fill_primary);
+    background-color: $ribbon_background_color;
+    color: $ribbon_text_color;
+    border-color: $ribbon_border_color;
     border-style: solid;
 
     // Typography
@@ -76,9 +76,9 @@
 ///
 @mixin ribbon--inverted {
     // Inverted Ribbon Style
-    background-color: var(--color_fill_primary);
-    color: var(--color_text_primary);
-    border-color: var(--color_text_primary);
+    background-color: $ribbon_background_color_inverted;
+    color: $ribbon_text_color_inverted;
+    border-color: $ribbon_border_color_inverted;
     // border-style: solid;
 }
 
@@ -106,7 +106,7 @@
 
     // Layout
     width: 100%;
-    height: $ribbon_width;
+    height: $ribbon_height;
 }
 
 ///
@@ -117,8 +117,8 @@
 ///
 @mixin ribbon--top {
     @include ribbon--horizontal;
-    // border-bottom: q(1) solid var(--color_text_primary);
-    border-bottom-width: q(1);
+    height: $ribbon_height_top;
+    border-bottom-width: $ribbon_border_width;
 }
 
 ///
@@ -129,8 +129,8 @@
 ///
 @mixin ribbon--bottom {
     @include ribbon--horizontal;
-    // border-top: q(1) solid var(--color_text_primary);
-    border-top-width: q(1);
+    height: $ribbon_height_bottom;
+    border-top-width: $ribbon_border_width;
 }
 
 // ============================================================================
@@ -171,8 +171,8 @@
 ///
 @mixin ribbon--left {
     @include ribbon--vertical;
-    // border-right: q(1) solid var(--color_text_primary);
-    border-right-width: q(1);
+    width: $ribbon_width_left;
+    border-right-width: $ribbon_border_width;
 }
 
 ///
@@ -183,6 +183,6 @@
 ///
 @mixin ribbon--right {
     @include ribbon--vertical;
-    // border-left: q(1) solid var(--color_text_primary);
-    border-left-width: q(1);
+    width: $ribbon_width_right;
+    border-left-width: $ribbon_border_width;
 }
