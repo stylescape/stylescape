@@ -28,6 +28,15 @@ export class DropdownHandler {
                 if (menu) {
                     menu.classList.toggle("active")
                 }
+
+                const flipper = header.querySelector<HTMLElement>(
+                    ".flipper--down, .flipper--up",
+                )
+                if (flipper) {
+                    flipper.classList.toggle("flipper--down")
+                    flipper.classList.toggle("flipper--up")
+                    // flipper.classList.toggle("active")
+                }
             })
 
             checkboxes.forEach((checkbox) => {
