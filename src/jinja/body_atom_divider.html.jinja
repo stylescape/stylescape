@@ -15,28 +15,71 @@
 
 
     <section class="demo__subsection">
+        {% set section_title = "Standard Divider" %}
+        <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+            <h3>{{ section_title }}</h3>
 
-        <p>Above the standard divider</p>
-        <hr class="divider" />
-        <p>Below the standard divider</p>
+            {% set code_snippet %}
+            <p>Above the standard divider</p>
+            <hr class="divider" />
+            <p>Below the standard divider</p>
+            {% endset %}
+            {% set language="HTML" %}
+            {%- include "includes/preview_box_code.html.jinja" %}
+
+        </section>
 
         <h2>Variants</h2>
 
-        <p>Thin:</p>
-        <hr class="divider divider--thin" />
+        {% set section_title = "Thin Divider" %}
+        <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+            <h3>{{ section_title }}</h3>
 
-        <p>Thick:</p>
-        <hr class="divider divider--thick" />
+            {% set code_snippet %}
+            <hr class="divider divider--thin" />
+            {% endset %}
+            {% set language="HTML" %}
+            {%- include "includes/preview_box_code.html.jinja" %}
+        </section>
 
-        <p>Dotted:</p>
-        <hr class="divider divider--dotted" />
+        {% set section_title = "Thick Divider" %}
+        <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+            <h3>{{ section_title }}</h3>
 
-        <p>Vertical (inline):</p>
-        <div style="display: flex; align-items: center; gap: q(16);">
-            <span>Left</span>
-            <span class="divider--vertical"></span>
-            <span>Right</span>
-        </div>
+            {% set code_snippet %}
+            <hr class="divider divider--thick" />
+            {% endset %}
+            {% set language="HTML" %}
+            {%- include "includes/preview_box_code.html.jinja" %}
+        </section>
+
+        {% set section_title = "Dotted Divider" %}
+        <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+            <h3>{{ section_title }}</h3>
+
+            {% set code_snippet %}
+            <hr class="divider divider--dotted" />
+            {% endset %}
+            {% set language="HTML" %}
+            {%- include "includes/preview_box_code.html.jinja" %}
+        </section>
+
+
+        {% set section_title = "Vertical (Inline) Divider" %}
+        <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+            <h3>{{ section_title }}</h3>
+
+            {% set code_snippet %}
+            <div style="display: flex; align-items: center; gap: q(16);">
+                <span>Left</span>
+                <span class="divider--vertical--inline"></span>
+                <span>Right</span>
+            </div>
+            {% endset %}
+            {% set language="HTML" %}
+            {%- include "includes/preview_box_code.html.jinja" %}
+        </section>
+
 
     </section>
 </section>
