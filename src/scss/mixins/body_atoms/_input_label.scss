@@ -8,6 +8,7 @@
 @use "../../dev" as *;
 @use "../../variables" as *;
 @use "../soul_type" as *;
+@use "../soul_object" as *;
 @use "../head_layout" as *;
 
 /// Unified label styling for both `<label>` elements and `.label` classes.
@@ -33,18 +34,23 @@ $label-size-map: (
 /// @param {String} $size ['m'] - Size key: 's', 'm', or 'l'.
 ///
 @mixin label--base($size: "md") {
+    @include reset_bleed;
+
     $font-size: list.nth(map.get($label-size-map, $size), 1);
     $margin: list.nth(map.get($label-size-map, $size), 2);
 
     @include font--size($font-size);
     display: block;
     width: 100%;
-    margin-top: 0;
-    margin-bottom: baseline($margin);
+    // margin-top: 0;
+    // margin-bottom: baseline($margin);
+    padding-bottom: baseline($margin);
     // color: var(#{$color});
     user-select: none;
     cursor: default;
 }
+
+//   @include object--height--fixed(md); // uses 20q
 
 @mixin label--hidden {
     @include visually-hidden;
@@ -66,12 +72,15 @@ label {
 
 .label--sm {
     @include label--base("sm");
+    @include object--height--fixed(sm);
 }
 
 .label--md {
     @include label--base("md");
+    @include object--height--fixed(md); // uses 20q
 }
 
 .label--lg {
     @include label--base("lg");
+    @include object--height--fixed(lg);
 }
