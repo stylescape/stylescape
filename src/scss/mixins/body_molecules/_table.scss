@@ -6,6 +6,7 @@
 @use "../../variables" as *;
 
 @use "../head_layout" as *;
+@use "../soul_object" as *;
 
 @use "../soul_type" as *;
 // @use "../animation" as *;
@@ -37,12 +38,13 @@ $table_cell_padding_x: q(4);
 //     font-size: 10px; // Optional: keep font within height
 //     padding: $padding;
 //     border: $border solid var(--color_border);
-//     box-sizing: border-box;
+//         @include sizing--border;
+
 //     overflow: hidden;
 // }
 
 @mixin table__cell--size__base {
-    box-sizing: border-box;
+    @include sizing--border;
     overflow: hidden;
 }
 @mixin table__cell--size__sm {

@@ -24,6 +24,7 @@
 @use "../../body_atoms" as *;
 @use "../../../dev" as *;
 @use "pkg:unit.gl" as *;
+@use "../../soul_object" as *;
 
 // ============================================================================
 // Mixins
@@ -53,7 +54,7 @@
     z-index: 9999;
     // z-index: z('modal');
     position: absolute;
-    box-sizing: border-box;
+    @include sizing--border;
     top: 100%;
     left: auto;
     right: 0;
@@ -103,7 +104,7 @@
         grid-auto-flow: row;
         .ribbon_panel_section_item {
             @include character--hyperlink--clean;
-            box-sizing: border-box;
+            @include sizing--border;
             list-style-type: none;
         }
         &.ribbon_panel_icon_grid {

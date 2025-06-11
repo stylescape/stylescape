@@ -335,116 +335,106 @@
 
 
 
-{% set section_title = "Login Form" %}
-<section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
-    <h3>{{ section_title }}</h3>
-    {% set code_snippet %}
 
-    <form
-        class="form--col"
-        method="post"
-        action="/authentication/login/"
-    >
-            
-        <div class="form__field">
 
-            <input 
-                type="text"
-                name="username"
-                id="id_username"
-                class="form__field__input"
-                minlength="3"
-                maxlength="30"
-                placeholder="Username"
-                required
-                aria-labelledby="id_username_label"
-                aria-describedby="id_username_help id_username_error"
-            />
-            <label
-                for="id_username"
-                id="id_username_label"
-                class="form__field__label">
-                Username
-            </label>
-            <span
-                id="id_username_help"
-                class="form__field__help"
-            >
-                Please provide a username.
-            </span>
-            <span
-                id="id_username_error"
-                class="form__field__error"
-                aria-live="polite"
-            >
-                Required. 30 characters or fewer. Letters and digits.
-            </span>
-        </div>
 
-        <div class="form__field">
 
-            <input 
-                type="password"
-                name="password"
-                id="id_password"
-                class=""
-                minlength="3"
-                maxlength="30"
-                placeholder="Password"
-                required
-                aria-labelledby="id_username_label"
-                aria-describedby="id_password_help id_password_error"
-            />
-            <label for="id_password" id="id_password_label" class="">
-                Password
-            </label>
-            <p
-                id="id_password_help"
-                class="form__field__help"
-            >
-                Required. 8 characters or more.
-            </p>
-            <div
-                id="id_password_error"
-                class="form__field__error"
-                aria-live="polite"
-            >
-                Required. 8 characters or more.
+
+
+    <section class="demo__subsection">
+
+        <form class="">
+
+            <div class="">
+            Paragraph text to describe the form and its purpose. This section can include instructions or any other relevant information for the user.
+                <label for="input_text" class="label">Text Input</label>
+                <input type="text" id="input_text" class="input" placeholder="Enter text" />
+            Paragraph text to describe the form and its purpose. This section can include instructions or any other relevant
+            information for the user.
             </div>
+
+            <div class="form_group">
+                <label for="input_email" class="label">Email</label>
+                <input type="email" id="input_email" class="input" placeholder="your@email.com" />
+            </div>
+
+            <div class="form_group">
+                <label for="input_password" class="label">Password</label>
+                <input type="password" id="input_password" class="input" />
+            </div>
+
+            <div class="form_group">
+                <label for="input_select" class="label">Select</label>
+                <select id="input_select" class="input">
+                    <option value="">Choose</option>
+                    <option value="1">Option One</option>
+                    <option value="2">Option Two</option>
+                </select>
+            </div>
+
+            <div class="form_group">
+                <label class="label">Checkbox</label>
+                <label>
+                    <input type="checkbox" />
+                    Subscribe to newsletter
+                </label>
+            </div>
+
+            <div class="form_group">
+                <label class="label">Radio</label>
+                <label><input type="radio" name="radio" class="input_radio" checked /> Option A</label>
+                <label><input type="radio" name="radio" class="input_radio" /> Option B</label>
+            </div>
+
+            <div class="form_group">
+                <label for="input_textarea" class="label">Textarea</label>
+                <textarea id="input_textarea" class="input"></textarea>
+            </div>
+
+            <div class="form_group">
+                <button type="submit" class="button button--md button--solid">Submit</button>
+            </div>
+
+        </form>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <form method="post" action="/authentication/login/">
+    
+        <input type="hidden" name="csrfmiddlewaretoken"
+            value="yZP2Z3qKQJHie2bntAwAOxOhUto1o8GCnCACFymcE94iBB2H6X8g7ABz1J8p3bRo">
+    
+    
+    
+        <div class="form_field_info">
+            <label class="form_field_label" for="id_username">
+                Username
+    
+            </label>
+            <small class="form_field_help">
+                Required. 30 characters or fewer. Letters and digits.
+            </small>
+            <span class="form_field_errors">
+            </span>
         </div>
     
-        <div class="form__field">
-            <label for="id_remember_me" class="">
-                Remember Me
-            </label>
-            <input 
-                type="checkbox"
-                name="remember_me"
-                id="id_remember_me"
-                class=""
-            />
-            <p
-                id="id_remember_me_help"
-                class="form__field__help"
-            >
-                Keep me logged in for 30 days.
-            </p>
-            <div
-                id="id_remember_me_error"
-                class="form__field__error"
-                aria-live="polite"
-            >
-                Keep me logged in for 30 days.
-            </div>
+        <div class="form_field_input">
+            <input type="text" name="username" maxlength="30" class="form-control form_field" id="id_username" required=""
+                aria-describedby="id_username_helptext">
         </div>
-
-        <button type="button" class="toggle-password" data-password-toggle="id_password" aria-pressed="false">
-            👁 Toggle
-        </button>
-
-        <button type="submit" class="button button--solid">
-            Login
-        </button>
+    
     
     
         <div class="form_field_info">
@@ -485,16 +475,7 @@
     
     
     
-    <p><span class="req">*</span> - Required field</p>
-
+    
     </form>
-
-{% endset %}
-{% set language="HTML" %}
-{%- include "includes/preview_box_code.html.jinja" %}
-</section>
-
-
-
 </section>
 {%- endblock %}

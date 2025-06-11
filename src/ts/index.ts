@@ -10,6 +10,7 @@ import { GridManager } from "./utilities/GridManager.js"
 import { ThemeToggler } from "./utilities/ThemeToggler.js"
 
 import { TableOfContentsBuilder } from "./content/TableOfContentsBuilder.js"
+import { PasswordToggleManager } from "./elements/PasswordToggleManager.js"
 import { ScrollElementManager } from "./scroll/ScrollElementManager.js"
 import { ScrollPageManager } from "./scroll/ScrollPageManager.js"
 ;(window as any).ClipboardHelper = ClipboardHelper
@@ -30,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // new ActiveLinkHighlighter("nav a") // or any specific selector
     new ActiveLinkHighlighter() // default uses 'active' class
+
+    new PasswordToggleManager()
 
     // Theme Toggle
     ThemeToggler.initializeToggleSwitch("themeToggle")

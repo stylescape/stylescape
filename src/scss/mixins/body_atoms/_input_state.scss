@@ -42,10 +42,10 @@
     }
 }
 
-@mixin input--state--disabled {
-    background-color: var(--color_disabled_bg);
-    color: var(--color_state_muted);
-    cursor: not-allowed;
+@mixin input--state--visible {
+    // background-color: var(--color_disabled_bg);
+    // color: var(--color_state_muted);
+    // cursor: not-allowed;
     @content;
 }
 
@@ -60,6 +60,11 @@
     background-color: var(--color_readonly_bg);
     color: var(--color_state_muted);
     cursor: default;
+    @content;
+}
+
+@mixin input--state--optional {
+    border-color: var(--color_accent_secondary);
     @content;
 }
 
@@ -157,6 +162,14 @@ input[readonly],
 textarea[readonly],
 select[readonly] {
     @include input--state--readonly;
+}
+
+.input--state--optional,
+.input:optional,
+input:optional,
+textarea:optional,
+select:optional {
+    @include input--state--optional;
 }
 
 .input--state--required,

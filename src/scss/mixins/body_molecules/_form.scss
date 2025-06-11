@@ -7,6 +7,7 @@
 @use "../../dev" as *;
 @use "../../variables" as *;
 
+@use "../body_atoms" as *;
 @use "../head_layout" as *;
 
 @use "../soul_type" as *;
@@ -65,24 +66,42 @@
 // -----------------------------------------------------------------------------
 
 @mixin form__field--base($gap: q(4)) {
-    display: flex;
-    flex-direction: column;
+    @include flex--col;
     gap: $gap;
     width: 100%;
+    .form__field__label,
+    label {
+        order: 1;
+    }
+    .form__field__input,
+    input {
+        @include input--base--form;
+        order: 2;
+        &[required] + label:after {
+            content: "*";
+            color: var(--color_log_info);
+        }
+    }
+    .form__field__help {
+        order: 3;
+    }
+    .form__field__error {
+        order: 4;
+    }
 }
 
 // -----------------------------------------------------------------------------
 // Mixin: Form Field (label + input stacked)
 @mixin form__field--col($gap: q(4)) {
     @include form__field--base($gap);
-    flex-direction: column;
+    @include flex--col;
 }
 
 // -----------------------------------------------------------------------------
 // Mixin: Inline Label + Input (horizontal layout)
 @mixin form__field--row($label-width: q(120), $gap: q(8)) {
     @include form__field--base($gap);
-    flex-direction: row;
+    @include flex--row;
     label {
         flex: 0 0 $label-width;
     }

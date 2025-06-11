@@ -9,6 +9,7 @@
 @use "../../dev" as *;
 @use "../../variables" as *;
 @use "../soul_type" as *;
+@use "../soul_object" as *;
 
 // ============================================================================
 // Maps
@@ -39,29 +40,13 @@ $box_size_map: (
 // ============================================================================
 
 ///
-/// Mixin for setting box-sizing to border-box.
-/// @group Boxes
-///
-@mixin box--border {
-    box-sizing: border-box;
-}
-
-///
-/// Mixin for setting box-sizing to content-box.
-/// @group Boxes
-///
-@mixin box--content {
-    box-sizing: content-box;
-}
-
-///
 /// Sets a square box size based on a baseline multiplier.
 /// @param {Number} $val - The size value to use for the box dimensions.
 /// @group Boxes
 ///
 @mixin box--size($val) {
     @include reset_bleed;
-    @include box--content;
+    @include sizing--content;
     $size: baseline($val);
     aspect-ratio: 1;
     width: $size;

@@ -7,6 +7,7 @@
 @use "../../dev" as *;
 @use "../../variables" as *;
 @use "../soul_type" as *;
+@use "../soul_object" as *;
 
 /// @group Form
 
@@ -27,22 +28,33 @@
     // align-self: stretch;
 
     font: inherit;
+    @include reset_bleed;
 
-    margin: 0;
-    padding: 0;
+    // margin: 0;
+    // padding: 0;
 
     // background-color: var(--color_fill_primary);
     color: var(--color_text_primary);
     background-color: transparent;
 
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
+    @include shadow--none;
+    @include sizing--border;
+
     appearance: none;
 
     border: none;
+    // border-width: q(1);
+    // border-top: q(1);
+    // border-right: q(1);
+    // border-bottom: q(1);
+    // border-left: q(1);
+    // border-style: solid;
+    border-color: transparent;
+
     outline: none;
     border-radius: 0;
+
+    line-height: q(12);
 
     transition: all 0.2s ease;
     // transition: all var(--transition-duration) var(--transition-easing);
@@ -50,7 +62,6 @@
     pointer-events: initial;
     cursor: text;
 
-    box-sizing: border-box; // Includes padding and borders in height
     // max-height: q(20); // Sets the total maximum height including borders
     // border: q(0) solid #ccc; // Optional border
 }
@@ -62,7 +73,13 @@
     @include input--base;
     display: block;
     width: 100%;
-    max-height: q(20);
+
+    height: q(18);
+    min-height: q(18);
+    max-height: q(18);
+    // height: q(20);
+    // min-height: q(20);
+    // max-height: q(20);
     // margin-bottom: q(10);
 }
 
@@ -70,7 +87,14 @@
     @include input--base;
     // display: inline;
     display: inline-block;
-    max-height: q(16);
+
+    height: q(14);
+    min-height: q(14);
+    max-height: q(14);
+    // height: q(16);
+    // min-height: q(16);
+    // max-height: q(16);
+
     width: auto;
     min-width: 1ch; // Avoid collapsing completely
     field-sizing: content;
@@ -90,6 +114,12 @@
     @include input--base;
     background-color: transparent;
     border: q(1) solid var(--color_text_secondary);
+
+    // outline-width: q(1);
+    // outline-style: solid;
+    // outline-color: var(--color_text_secondary);
+    // outline-offset: -q(1);
+
     border-radius: 0;
     padding-left: q(2);
     padding-right: q(2);

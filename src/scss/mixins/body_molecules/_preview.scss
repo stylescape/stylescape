@@ -5,22 +5,23 @@
 @use "../soul_type" as *;
 @use "../body_atoms" as *;
 @use "../head_layout" as *;
+@use "../soul_object" as *;
 
 // Define your variables (in _variables.scss or similar)
-$preview_box--border--color: var(--color-border, #ccc);
-$preview_box--border--width: q(1);
-$preview_box--border--radius: q(2);
+$preview_sizing--border--color: var(--color-border, #ccc);
+$preview_sizing--border--width: q(1);
+$preview_sizing--border--radius: q(2);
 
 // Optional: color from a CSS custom property
 // $info-color: var(--color_log_info);
 
 // Mixin using SCSS variables
 @mixin preview_box {
-    border: $preview_box--border--width solid $preview_box--border--color;
-    border-radius: $preview_box--border--radius;
+    border: $preview_sizing--border--width solid $preview_sizing--border--color;
+    border-radius: $preview_sizing--border--radius;
     // position: relative;
     // max-width: 100%;
-    box-sizing: border-box;
+    @include sizing--border;
     width: 100%;
     max-width: 100%;
 }
@@ -29,21 +30,21 @@ $preview_box--border--radius: q(2);
     @include preview_box;
     @include grid__layout(24);
     > *:not(:last-child) {
-        border-right: $preview_box--border--width solid
-            $preview_box--border--color;
+        border-right: $preview_sizing--border--width solid
+            $preview_sizing--border--color;
     }
 }
 @mixin preview_box--vertical {
     @include preview_box;
     > *:not(:last-child) {
-        border-bottom: $preview_box--border--width solid
-            $preview_box--border--color;
+        border-bottom: $preview_sizing--border--width solid
+            $preview_sizing--border--color;
     }
 }
 @mixin preview_box__element {
     min-height: baseline(4);
     position: relative;
-    box-sizing: border-box;
+    @include sizing--border;
     width: 100%;
     max-width: 100%;
 }

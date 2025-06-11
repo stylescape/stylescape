@@ -3,6 +3,7 @@
 @use "../head_layout" as *;
 @use "../head_position" as *;
 @use "frame_base" as *;
+@use "../soul_object" as *;
 
 /// frame | Screen Grid
 /// ---------------------------------------------------------------------------
@@ -19,7 +20,7 @@
     max-width: 100vw;
     max-height: 100vh;
 
-    box-sizing: border-box;
+    @include sizing--border;
     overflow: hidden;
 
     display: grid;
@@ -47,7 +48,7 @@
     display: grid;
 
     // Reset box sizing for accurate layout calculation
-    box-sizing: border-box;
+    @include sizing--border;
 }
 @mixin frame_main__area--flex {
     // In flex or grid layouts, this avoids overflow pushing others
