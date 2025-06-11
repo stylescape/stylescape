@@ -12,10 +12,36 @@
         <h2>{{ title }}</h2>
     </header>
 
-    <section class="demo__subsection">
+
+{% set section_title = "Border Styles" %}
+<section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    <h3>{{ section_title }}</h3>
+    {% set code_snippet %}
+
+<div class="flex--col gap--04">
+<div class="border--solid" style="border-width: 1px;">Solid</div>
+<div class="border--dashed" style="border-width: 1px;">Dashed</div>
+<div class="border--dotted" style="border-width: 1px;">Dotted</div>
+<div class="border--double" style="border-width: 1px;">Double</div>
+<div class="border--groove" style="border-width: 1px;">Groove</div>
+<div class="border--ridge" style="border-width: 1px;">Ridge</div>
+<div class="border--inset" style="border-width: 1px;">Inset</div>
+<div class="border--outset" style="border-width: 1px;">Outset</div>
+<div class="border--none" style="border-width: 1px;">None</div>
+<div class="border--hidden" style="border-width: 1px;">Hidden</div>
+<div class="border--transparent" style="border-width: 1px;">Transparent</div>
+</div>
 
 
-    </section>
+
+
+    {% endset %}
+    {% set language="HTML" %}
+    {%- include "includes/preview_box_code.html.jinja" %}
+</section>
+
+
+
 </section>
 
 {%- endblock content %}

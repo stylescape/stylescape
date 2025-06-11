@@ -1,30 +1,41 @@
-// ============================================================================
+//
 // StyleScape | Borders | Style
 // ============================================================================
+// @group Borders
+// @since 0.1.0
+// @link https://scape.style
+//
 
-@use '../../dev' as *;
-@use '../../variables' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
 
+// ============================================================================
 // Border Style Mixins
-// ----------------------------------------------------------------------------
+// ============================================================================
 
+///
 /// Mixin for setting the border style.
 ///
 /// @param {String} $style - The style of the border (e.g., solid, dotted, dashed).
+///
 @mixin border_style($style) {
     border-style: $style !important;
 }
 
+///
 /// Mixin for setting the border color to transparent.
+///
 @mixin border_transparent {
     border-color: transparent !important;
 }
 
+///
 /// Mixin for setting a custom border style.
 ///
-/// @param {String} $style - The style of the border (e.g., solid, dotted, dashed).
-/// @param {String} $width - The width of the border.
-/// @param {String} $color - The color of the border.
+/// @param {String} $style – The style (e.g., `solid`)
+/// @param {String} $width – The width (e.g., `1px`)
+/// @param {Color} $color – The color (e.g., `#000` or `var(--color_text_primary)`)
+///
 @mixin border_style_custom($style, $width, $color) {
     border-style: $style;
     border-width: $width;
@@ -34,29 +45,51 @@
 // Border Style Classes
 // ----------------------------------------------------------------------------
 
-/// Class for setting a dotted border style.
-.border_dotted {
-    @include border_style(dotted);
+.border--none {
+    border-style: none !important;
 }
 
-/// Class for setting a dashed border style.
-.border_dashed {
-    @include border_style(dashed);
+.border--hidden {
+    border-style: hidden !important;
 }
 
 /// Class for setting a solid border style.
-.border_solid {
+.border--solid {
     @include border_style(solid);
 }
 
+/// Class for setting a dashed border style.
+.border--dashed {
+    @include border_style(dashed);
+}
+
+/// Class for setting a dotted border style.
+.border--dotted {
+    @include border_style(dotted);
+}
+
 /// Class for setting a double border style.
-.border_double {
+.border--double {
     @include border_style(double);
 }
 
 /// Class for setting a groove border style (3D effect).
-.border_groove {
+.border--groove {
     @include border_style(groove);
 }
 
-/// Class for setting a ridge bord
+/// Class for setting a ridge border
+.border--ridge {
+    @include border-style(ridge);
+}
+
+.border--inset {
+    @include border-style(inset);
+}
+.border--outset {
+    @include border-style(outset);
+}
+
+.border--transparent {
+    @include border-transparent;
+}
