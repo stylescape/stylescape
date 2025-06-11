@@ -1,5 +1,6 @@
 @use "../soul_object" as *;
-
+@use "../../dev" as *;
+@use "../../variables" as *;
 ///
 /// Base Frame Mixin
 /// ---------------------------------------------------------------------------
@@ -9,10 +10,11 @@
 /// @group Layout
 ///
 @mixin frame_base {
+    @include reset_bleed;
+    @include sizing--border;
     display: grid;
     grid-auto-flow: row;
     gap: 0;
-
     // Full  height and width
     // width: 100%;
     // height: 100%;
@@ -21,17 +23,17 @@
     // min-width: 100%;
     // min-height: 100%;
 
-    padding: 0;
-    margin: 0;
+    // padding: 0;
+    // margin: 0;
 
     // Ensures consistent box model across browsers
     // and prevents layout shifts due to padding or borders
-    @include sizing--border;
 
     // Controls content overflow inside the frame
     overflow: hidden; // change to `auto` or `overlay` for scrollable frames
 }
 
+///
 /// Frame | Area Utility
 /// ---------------------------------------------------------------------------
 /// Assigns a grid-area to a region.
@@ -39,8 +41,7 @@
 ///
 @mixin frame__area($name) {
     grid-area: $name;
-    padding: 0;
-    margin: 0;
+    @include reset_bleed;
 }
 
 // ============================================================================
