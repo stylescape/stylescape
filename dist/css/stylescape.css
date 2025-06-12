@@ -12749,6 +12749,48 @@ textarea {
   -webkit-transition: height 0s;
 }
 
+input[type=checkbox] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  border-radius: 0.25rem;
+  border: 0.0625rem solid var(--color_text_primary);
+  position: relative;
+  cursor: pointer;
+  pointer-events: initial;
+}
+input[type=checkbox]:hover {
+  background: #acd2e9;
+}
+input[type=checkbox]::after {
+  content: "";
+  position: absolute;
+  top: 0.15625rem;
+  left: 0.40625rem;
+  width: 0.3125rem;
+  height: 0.625rem;
+  border: solid white;
+  border-width: 0 0.125rem 0.125rem 0;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+input[type=checkbox]:checked {
+  background: var(--color_text_primary);
+}
+input[type=checkbox]:checked::after {
+  opacity: 1;
+}
+input[type=checkbox]:disabled {
+  border-color: var(--color_state_muted);
+  background-color: var(--color_fill_primary);
+  cursor: not-allowed;
+}
+
 .label,
 label {
   margin: 0;
