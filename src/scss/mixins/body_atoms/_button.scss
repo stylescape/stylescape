@@ -216,16 +216,16 @@ button {
     color: var(--color_fill_primary);
 
     &:hover {
-        background: hue_color("N2402");
+        background: var(--color_state_hover);
     }
     &:active {
-        background: hue_color("N2409");
+        background: var(--color_state_active);
     }
     &:focus-within {
-        border: q(2) solid hue_color("N2404");
+        border: q(2) solid var(--color_state_focus);
     }
     &:disabled {
-        background: var(--color_state_muted);
+        background: var(--color_state_disabled);
         color: var(--color_text_primary);
         cursor: not-allowed;
     }
@@ -245,6 +245,27 @@ button {
     }
     &:focus-within {
         border: q(2) solid var(--color_state_focus);
+    }
+    &:disabled {
+        border-color: var(--color_state_disabled);
+        color: var(--color_state_disabled);
+        cursor: not-allowed;
+    }
+}
+
+/// Outline variant
+@mixin button--accent {
+    background: var(--color_text_primary);
+    color: var(--color_fill_primary);
+
+    &:hover {
+        background: var(--color_accent_primary);
+    }
+    &:active {
+        background: var(--color_accent_primary);
+    }
+    &:focus-within {
+        border: q(2) solid var(--color_accent_primary);
     }
     &:disabled {
         border-color: var(--color_state_disabled);
@@ -278,7 +299,7 @@ button {
 // ============================================================================
 
 @each $name, $pair in $button_size_map {
-    .button--#{$name} {
+    .#{$name} {
         @include button(list.nth($pair, 1), list.nth($pair, 2));
     }
 }
@@ -286,24 +307,29 @@ button {
 // Classes
 // ============================================================================
 
-button {
+button,
+.button {
     // @include button(map.get($button_size_map, 'md')); // default: md
     @include button(
         list.nth(map.get($button_size_map, "md"), 1),
         list.nth(map.get($button_size_map, "md"), 2)
     );
     @each $name, $pair in $button_size_map {
-        .button--#{$name} {
+        .#{$name} {
             @include button(list.nth($pair, 1), list.nth($pair, 2));
         }
     }
-    &.button--solid {
+
+    &.solid {
         @include button--solid;
     }
-    &.button--outline {
+    &.accent {
+        @include button--accent;
+    }
+    &.outline {
         @include button--outline;
     }
-    &.button--clear {
+    &.clear {
         @include button--clear;
     }
 }

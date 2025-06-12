@@ -5,7 +5,7 @@
 
 
 {% set button_sizes = ['xs', 'sm', 'md', 'lg', 'xl'] %}
-{% set button_styles = ['default', 'solid','outline','clear'] %}
+{% set button_styles = ['default', 'solid','outline','clear', 'accent'] %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
 
@@ -21,13 +21,13 @@
                 {% for style in button_styles %}
                 <div class="demo-item">
                     <div class="label">{{ style|capitalize }}</div>
-                    <button class="button button--{{ size }}{% if style != 'default' %} button--{{ style }}{% endif %}">
+                    <button class="button {{ size }}{% if style != 'default' %} {{ style }}{% endif %}">
                         {{ style|capitalize }}
                     </button>
                 </div>
                 <div class="demo-item">
                     <div class="label">{{ style|capitalize }} (Disabled)</div>
-                    <button class="button button--{{ size }}{% if style != 'default' %} button--{{ style }}{% endif %}"
+                    <button class="button {{ size }}{% if style != 'default' %} {{ style }}{% endif %}"
                         disabled>
                         {{ style|capitalize }}
                     </button>
@@ -48,22 +48,22 @@
     <section class="demo__subsection">
 
         <div class="button_group">
-            <button class="button button--sm button--solid">Left</button>
-            <button class="button button--sm button--solid">Center</button>
-            <button class="button button--sm button--solid">Right</button>
+            <button class="button sm solid">Left</button>
+            <button class="button sm solid">Center</button>
+            <button class="button sm solid">Right</button>
         </div>
         <br>
 
         <div class="button_group">
-            <button class="button button--md button--solid">Left</button>
-            <button class="button button--md button--solid">Center</button>
-            <button class="button button--md button--solid">Right</button>
+            <button class="button md solid">Left</button>
+            <button class="button md solid">Center</button>
+            <button class="button md solid">Right</button>
         </div>
         <br>
         <div class="button_group--vertical">
-            <button class="button button--md button--solid">1</button>
-            <button class="button button--md button--solid">2</button>
-            <button class="button button--md button--solid">3</button>
+            <button class="button md solid">1</button>
+            <button class="button md solid">2</button>
+            <button class="button md solid">3</button>
         </div>
     </section>
 </section>
