@@ -1,0 +1,41 @@
+////
+///
+/// Layout Mixins Module
+/// ===========================================================================
+///
+/// @group Layout
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+///
+
+@use "sass:map";
+@use "../../mixins" as *;
+@use "../../dev" as *;
+
+// ============================================================================
+// Gap Layout | Utility Classes (Dynamic)
+// ============================================================================
+
+/// Generates `.gap--0X`, `.gap--row--X`, and `.gap--col--0X` utility classes
+/// for baseline values from 1 through 12.
+@for $i from 1 through 12 {
+    /// Sets general gap using baseline value X
+    .gap--0#{$i} {
+        @include gap(baseline($i));
+    }
+
+    /// Sets row-gap using baseline value X
+    .gap--row--0#{$i} {
+        @include gap--row(baseline($i));
+    }
+
+    /// Sets column-gap using baseline value X
+    .gap--col--0#{$i} {
+        @include gap--col(baseline($i));
+    }
+}

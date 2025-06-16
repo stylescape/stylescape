@@ -15,23 +15,38 @@
 @use "../../dev" as *;
 @use "../../variables" as *;
 
-/// Base mixins
+/// Sets both `gap` and `grid-gap` properties for a container.
+/// @param {String | Number} $val - The gap size to be applied.
+/// @example scss - Usage
+///   @include gap(baseline(4));
 @mixin gap($val) {
     gap: $val;
     grid-gap: $val;
 }
 
+/// Sets both `row-gap` and `grid-row-gap` for vertical spacing in grid or flex containers.
+/// @param {String | Number} $val - The row gap size.
+/// @example scss - Usage
+///   @include gap--row(baseline(2));
 @mixin gap--row($val) {
     row-gap: $val;
     grid-row-gap: $val;
 }
 
+/// Sets both `column-gap` and `grid-column-gap` for horizontal spacing in grid or flex containers.
+/// @param {String | Number} $val - The column gap size.
+/// @example scss - Usage
+///   @include gap--col(baseline(3));
 @mixin gap--col($val) {
     column-gap: $val;
     grid-column-gap: $val;
 }
 
-/// Parametric gap utilities
+/// Generic mixin to set a gap-related CSS property dynamically.
+/// @param {String} $property - The gap property (e.g., `gap`, `row-gap`, `column-gap`).
+/// @param {String | Number} $val - The value to apply.
+/// @example scss - Usage
+///   @include gap_set('row-gap', baseline(2));
 @mixin gap_set($property, $val) {
     #{$property}: $val;
 }
@@ -40,19 +55,19 @@
 // Utility Classes (Dynamic)
 // ============================================================================
 
-@for $i from 1 through 12 {
-    .gap--0#{$i} {
-        @include gap(baseline($i));
-    }
+// @for $i from 1 through 12 {
+//     .gap--0#{$i} {
+//         @include gap(baseline($i));
+//     }
 
-    .gap--row--#{$i} {
-        @include gap--row(baseline($i));
-    }
+//     .gap--row--#{$i} {
+//         @include gap--row(baseline($i));
+//     }
 
-    .gap--col--0#{$i} {
-        @include gap--col(baseline($i));
-    }
-}
+//     .gap--col--0#{$i} {
+//         @include gap--col(baseline($i));
+//     }
+// }
 
 // // ============================================================================
 // // Mixins
