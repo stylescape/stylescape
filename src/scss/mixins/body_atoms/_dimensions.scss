@@ -1,0 +1,171 @@
+// ============================================================================
+// Stylescape Design System: Dimensions & Dim Elements
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../soul_type" as *;
+@use "../head_layout" as *;
+
+// ============================================================================
+// Variables
+// ============================================================================
+$dim_transition: opacity 0.5s;
+$dim_unit: q(16);
+$dim_corner_radius: 0;
+$dim_line_length: q(50);
+
+// ============================================================================
+// Mixins: Dim Lines (Vertical & Horizontal)
+// ============================================================================
+
+/// Vertical dimension line
+@mixin dim__line--vertical {
+    position: relative;
+    height: $dim_line_length;
+    width: q(1.5);
+    background-color: var(--color_line_primary);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/// Horizontal dimension line
+@mixin dim__line--horizontal {
+    display: inline-block;
+    width: $dim_line_length;
+    height: q(1.5);
+    background-color: var(--color_line_primary);
+    vertical-align: middle;
+}
+
+// ============================================================================
+// Mixins: Core Dim Elements (boxes, overlay, states)
+// ============================================================================
+
+@mixin dim--base {
+    position: relative;
+    display: inline-block;
+    overflow: visible;
+    z-index: 9999;
+    &::before {
+        opacity: 1;
+        visibility: visible;
+        display: block;
+        cursor: help;
+    }
+}
+
+@mixin dim__box {
+    position: absolute;
+    display: block;
+    width: max-content;
+    padding: q(8) q(16);
+    background-color: var(--color_fill_primary);
+    border-radius: $dim_corner_radius;
+    border: q(1) solid var(--color_line_primary);
+    pointer-events: none;
+    @include font--size("04");
+    line-height: 1;
+    text-align: center;
+    content: attr(dim-data);
+    color: var(--color_text_primary);
+    transition: $dim_transition;
+}
+
+@mixin dim__pointer {
+    color: var(--color_accent_primary);
+}
+
+// Directional Box Mixins (unchanged)
+@mixin dim__box--right {
+    @include dim__box;
+    top: 50%;
+    right: 0;
+    transform: translate(100%, -50%);
+}
+@mixin dim__box--left {
+    @include dim__box;
+    top: 50%;
+    left: 0;
+    transform: translate(-100%, -50%);
+}
+@mixin dim__box--top {
+    @include dim__box;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+@mixin dim__box--bottom {
+    @include dim__box;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+}
+@mixin dim--selected {
+    &.is-selected::before {
+        background-color: var(--color_accent_primary);
+        color: var(--color_fill_primary);
+        border-color: var(--color_accent_primary);
+    }
+}
+@mixin dim--overlay {
+    background-color: var(--color_fill_primary);
+    color: var(--color_text_primary);
+}
+
+// ============================================================================
+// .dim Element Rules (with line direction)
+// ============================================================================
+
+.dim {
+    @include dim--base;
+
+    &.dim--top,
+    &.dim--bottom {
+        .dim__line {
+            @include dim__line--vertical;
+        }
+        @include dim--selected;
+    }
+
+    &.dim--top {
+        &::before {
+            @include dim__box--top;
+        }
+    }
+    &.dim--bottom {
+        &::before {
+            @include dim__box--bottom;
+        }
+    }
+
+    &.dim--left,
+    &.dim--right {
+        .dim__line {
+            @include dim__line--horizontal;
+        }
+        @include dim--selected;
+    }
+    &.dim--left {
+        &::before {
+            @include dim__box--left;
+        }
+    }
+    &.dim--right {
+        &::before {
+            @include dim__box--right;
+        }
+    }
+
+    &.is-selected .dim__line {
+        background-color: var(--color_accent_primary);
+    }
+}
+
+.dim__pointer {
+    @include dim__pointer;
+}
+
+// ============================================================================
+// End of File
+// ============================================================================

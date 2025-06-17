@@ -12986,6 +12986,135 @@ meter::-moz-progress-bar {
   animation: spinner-rotate 0.6s linear infinite;
 }
 
+.dim {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+  z-index: 9999;
+}
+.dim::before {
+  opacity: 1;
+  visibility: visible;
+  display: block;
+  cursor: help;
+}
+.dim.dim--top .dim__line, .dim.dim--bottom .dim__line {
+  position: relative;
+  height: 3.125rem;
+  width: 0.09375rem;
+  background-color: var(--color_line_primary);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.dim.dim--top.is-selected::before, .dim.dim--bottom.is-selected::before {
+  background-color: var(--color_accent_primary);
+  color: var(--color_fill_primary);
+  border-color: var(--color_accent_primary);
+}
+.dim.dim--top::before {
+  position: absolute;
+  display: block;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.5rem 1rem;
+  background-color: var(--color_fill_primary);
+  border-radius: 0;
+  border: 0.0625rem solid var(--color_line_primary);
+  pointer-events: none;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  line-height: 1;
+  text-align: center;
+  content: attr(dim-data);
+  color: var(--color_text_primary);
+  transition: opacity 0.5s;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+.dim.dim--bottom::before {
+  position: absolute;
+  display: block;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.5rem 1rem;
+  background-color: var(--color_fill_primary);
+  border-radius: 0;
+  border: 0.0625rem solid var(--color_line_primary);
+  pointer-events: none;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  line-height: 1;
+  text-align: center;
+  content: attr(dim-data);
+  color: var(--color_text_primary);
+  transition: opacity 0.5s;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+}
+.dim.dim--left .dim__line, .dim.dim--right .dim__line {
+  display: inline-block;
+  width: 3.125rem;
+  height: 0.09375rem;
+  background-color: var(--color_line_primary);
+  vertical-align: middle;
+}
+.dim.dim--left.is-selected::before, .dim.dim--right.is-selected::before {
+  background-color: var(--color_accent_primary);
+  color: var(--color_fill_primary);
+  border-color: var(--color_accent_primary);
+}
+.dim.dim--left::before {
+  position: absolute;
+  display: block;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.5rem 1rem;
+  background-color: var(--color_fill_primary);
+  border-radius: 0;
+  border: 0.0625rem solid var(--color_line_primary);
+  pointer-events: none;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  line-height: 1;
+  text-align: center;
+  content: attr(dim-data);
+  color: var(--color_text_primary);
+  transition: opacity 0.5s;
+  top: 50%;
+  left: 0;
+  transform: translate(-100%, -50%);
+}
+.dim.dim--right::before {
+  position: absolute;
+  display: block;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.5rem 1rem;
+  background-color: var(--color_fill_primary);
+  border-radius: 0;
+  border: 0.0625rem solid var(--color_line_primary);
+  pointer-events: none;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  line-height: 1;
+  text-align: center;
+  content: attr(dim-data);
+  color: var(--color_text_primary);
+  transition: opacity 0.5s;
+  top: 50%;
+  right: 0;
+  transform: translate(100%, -50%);
+}
+.dim.is-selected .dim__line {
+  background-color: var(--color_accent_primary);
+}
+
+.dim__pointer {
+  color: var(--color_accent_primary);
+}
+
 /* tab */
 .nav-tabs > li > a.active,
 .nav-tabs > li > a.active:focus,
