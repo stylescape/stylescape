@@ -1,0 +1,68 @@
+.timestamp {
+    color: var(--theme-semantic-color-type-quartenary);
+    font-family: var(--theme-semantic-type-metadata-font-family);
+    font-size: var(--theme-semantic-type-metadata-M-font-size);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--theme-semantic-type-metadata-M-line-height);
+    letter-spacing: var(--theme-semantic-type-metadata-letter-spacing-none);
+    margin-top: var(--primitive-space-04);
+}
+
+.timestamp-elevate {
+    font-size: 0.66rem;
+    line-height: 1.11rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    width: fit-content;
+    margin: 0;
+}
+
+.timestamp-elevate .timestamp__container {
+    color: var(--color_text_primary);
+    display: flex;
+    align-items: center;
+    gap: q(4);
+    text-underline-offset: q(4);
+    width: fit-content;
+}
+
+.timestamp-elevate .timestamp__details {
+    display: none;
+    margin-top: q(4);
+    padding-left: q(12);
+    border-left: solid q(1) #e6e6e6;
+}
+
+.timestamp-elevate .timestamp__time-since--active {
+    color: var(--color_accent_primary);
+}
+
+.timestamp-elevate .timestamp__expand-btn {
+    width: q(14);
+    height: q(20);
+    background: url(/media/sites/cnn/icons/ui-caret-down-elevate.svg) 0 0 /
+        contain no-repeat;
+}
+
+.timestamp-elevate:not(.timestamp-elevate--expanded)
+    .timestamp__container:hover {
+    -webkit-text-decoration: underline solid var(--color_text_primary);
+    text-decoration: underline solid var(--color_text_primary);
+}
+
+.timestamp-elevate:not(.timestamp-elevate--expanded):has(
+        .timestamp__time-since--active
+    )
+    .timestamp__container:hover {
+    -webkit-text-decoration: underline solid var(--color_accent_primary);
+    text-decoration: underline solid var(--color_accent_primary);
+}
+
+.timestamp-elevate--expanded .timestamp__details {
+    display: block;
+}
+
+.timestamp-elevate--expanded .timestamp__expand-btn {
+    display: none;
+}
