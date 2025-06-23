@@ -1,0 +1,49 @@
+{% extends "base.html.jinja" %}
+
+{% set title = "Character Styles" %}
+
+{%- block title %}{{ title }}{%- endblock %}
+
+{%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+
+    <header class="demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    <section class="demo__section">
+        <div class="font-preview-controls">
+            <label for="font-preview-input">Preview text:</label>
+            <input id="font-preview-input" type="text" placeholder="The quick brown fox…" />
+        </div>
+    </section>
+
+
+    {% set section_title = "Hyperlink Character Styles" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+
+        {% set fonts = [
+        { label: ".character--hyperlink--clean", class: "character--hyperlink--clean" },
+        { label: ".character--hyperlink--base", class: "character--hyperlink--base" },
+        { label: ".character--hyperlink--normal", class: "character--hyperlink--normal" },
+        { label: ".character--hyperlink--line", class: "character--hyperlink--line" },
+        { label: ".character--hyperlink--line_alt", class: "character--hyperlink--line_alt" }
+        ] %}
+
+        {% for font in fonts %}
+        {% set label = font.label %}
+        {% set class = font.class %}
+        {# <div class="demo__subsection"> #}
+            {%- include "includes/preview_box_font.html.jinja" %}
+        {# </div> #}
+        {% endfor %}
+
+    </section>
+
+
+
+</section>
+
+{%- endblock %}
