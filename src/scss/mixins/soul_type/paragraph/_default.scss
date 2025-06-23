@@ -116,6 +116,16 @@
     @include text_align--justify;
 }
 
+@mixin paragraph--justify_left {
+    @include paragraph--normal;
+    @include text_align--justify_left;
+}
+
+@mixin paragraph--justify_right {
+    @include paragraph--normal;
+    @include text_align--justify_right;
+}
+
 // Utility Classes for Paragraph Styles
 // ----------------------------------------------------------------------------
 
@@ -136,6 +146,12 @@
 }
 .paragraph--justify {
     @include paragraph--justify;
+}
+.paragraph--justify_left {
+    @include paragraph--justify_left;
+}
+.paragraph--justify_right {
+    @include paragraph--justify_right;
 }
 
 // Base Paragraph Styling
@@ -519,3 +535,146 @@ p {
 // .paragraph-elevate[data-article-gutter] {
 //     max-width: 660px;
 // }
+
+.paragraph,
+.paragraph strong {
+    color: var(--theme-semantic-color-type-primary);
+}
+
+.paragraph {
+    font-family: var(--theme-paragraph__font-family);
+    font-size: var(--theme-paragraph__font-size);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--theme-paragraph__line-height);
+    letter-spacing: var(--theme-semantic-type-body-letter-spacing);
+    margin-bottom: var(--primitive-space-16);
+    margin-top: var(--primitive-space-none);
+    margin-left: var(--primitive-space-none);
+    margin-right: var(--primitive-space-none);
+}
+
+.paragraph a,
+.paragraph strong {
+    font-family: var(--theme-semantic-type-body-font-family);
+    font-size: var(--theme-semantic-type-body-L-font-size);
+    font-style: normal;
+    line-height: var(--theme-semantic-type-body-L-line-height);
+    letter-spacing: var(--theme-semantic-type-body-letter-spacing);
+}
+
+.paragraph strong {
+    font-weight: 700;
+}
+
+.paragraph a {
+    color: var(--theme-paragraph__link-color);
+    font-weight: 400;
+    -webkit-text-decoration-line: var(--theme-paragraph__link-decoration);
+    text-decoration-line: var(--theme-paragraph__link-decoration);
+    text-underline-offset: var(--theme-paragraph__hover-link-offset);
+}
+
+.paragraph a:hover {
+    color: var(--theme-link-color-hover);
+    -webkit-text-decoration-line: var(
+        --theme-paragraph__hover-link-decoration
+    );
+    text-decoration-line: var(--theme-paragraph__hover-link-decoration);
+}
+
+.paragraph a:active {
+    color: var(--theme-semantic-color-component-link-primary-overrides-press);
+}
+
+.paragraph a:focus {
+    color: var(--theme-semantic-color-component-link-primary-overrides-focus);
+}
+
+.paragraph {
+    word-wrap: break-word;
+}
+
+.paragraph[data-has-icon="true"] {
+    display: flex;
+}
+
+.paragraph svg {
+    fill: currentColor;
+    margin-top: 4px;
+    margin-right: 16px;
+}
+
+.paragraph-elevate {
+    font-family:
+        noto_serif,
+        Georgia,
+        Times New Roman,
+        serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 175%;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+.paragraph-elevate strong {
+    font-weight: 700;
+}
+
+.paragraph-elevate.paragraph a,
+.paragraph-elevate.paragraph a:focus,
+.paragraph-elevate.paragraph a:hover,
+.paragraph-elevate.paragraph strong {
+    font-family:
+        noto_serif,
+        Georgia,
+        Times New Roman,
+        serif;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.paragraph-elevate a {
+    font-weight: 700;
+    color: var(--theme-paragraph__link-color);
+    -webkit-text-decoration-line: var(--theme-paragraph__link-decoration);
+    text-decoration-line: var(--theme-paragraph__link-decoration);
+    -webkit-text-decoration-color: var(
+        --theme-paragraph__link-decoration-color
+    );
+    text-decoration-color: var(--theme-paragraph__link-decoration-color);
+    text-decoration-thickness: var(
+        --theme-paragraph__link-decoration-thickness
+    );
+    text-underline-offset: var(--theme-paragraph__hover-link-offset);
+    -webkit-text-decoration-skip-ink: var(--theme-underline-skip-ink);
+    text-decoration-skip-ink: var(--theme-underline-skip-ink);
+    -webkit-text-decoration-skip: var(--theme-underline-skip-ink);
+    text-decoration-skip: var(--theme-underline-skip-ink);
+}
+
+.paragraph-elevate a:hover {
+    color: var(--theme-link-color-hover);
+    -webkit-text-decoration: var(--theme-paragraph__hover-link-decoration);
+    text-decoration: var(--theme-paragraph__hover-link-decoration);
+}
+
+.paragraph-elevate[data-article-gutter] {
+    max-width: 660px;
+}
+
+@media screen and (min-width: 480px) {
+    body:not(.layout-homepage-mobile.kiln-edit-mode):not(
+            .layout-homepage-mobile-app.kiln-edit-mode
+        )
+        .paragraph-elevate,
+    body:not(.layout-homepage-mobile.kiln-edit-mode):not(
+            .layout-homepage-mobile-app.kiln-edit-mode
+        )
+        .paragraph-elevate
+        a {
+        font-size: var(--theme-paragraph__font-size--from-small);
+        line-height: var(--theme-paragraph__line-height--from-small);
+    }
+}
