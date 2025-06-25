@@ -1,4 +1,4 @@
-// // Manages a star rating UI, allowing users to set and view ratings.
+// Manages a star rating UI, allowing users to set and view ratings.
 
 // export default class RatingManager {
 //     private stars: NodeListOf<HTMLElement>;
@@ -23,6 +23,6 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const ratingManager = new RatingManager('.star');
-// // ratingManager.getRating() to get the current rating
+// ratingManager.getRating() to get the current rating

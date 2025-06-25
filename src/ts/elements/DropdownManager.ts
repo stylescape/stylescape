@@ -1,4 +1,4 @@
-// // Controls the behavior of dropdown menus, handling show and hide actions.
+// Controls the behavior of dropdown menus, handling show and hide actions.
 
 // export default class DropdownManager {
 //     private dropdowns: NodeListOf<HTMLElement>
@@ -22,6 +22,6 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const dropdownManager = new DropdownManager()
-// // Call dropdownManager.toggleDropdown('dropdownId') to toggle
+// Call dropdownManager.toggleDropdown('dropdownId') to toggle

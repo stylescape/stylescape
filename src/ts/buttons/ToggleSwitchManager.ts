@@ -1,6 +1,6 @@
-// // ============================================================================
-// // Toggle Switch Manager
-// // ============================================================================
+// ============================================================================
+// Toggle Switch Manager
+// ============================================================================
 
 // /**
 //  * The ToggleSwitchManager class manages a toggle switch UI element, providing methods
@@ -84,31 +84,31 @@
 //     }
 // }
 
-// // Usage example:
-// // Create a new ToggleSwitchManager instance with a specified toggle switch element ID.
+// Usage example:
+// Create a new ToggleSwitchManager instance with a specified toggle switch element ID.
 // const toggleSwitchManager = new ToggleSwitchManager('myToggleSwitch');
 // console.log(toggleSwitchManager.isOn); // Check the toggle state
 // toggleSwitchManager.onChange((isOn) => {
 //     console.log(`Toggle switch is now ${isOn ? 'on' : 'off'}`);
 // });
 
-// // export class ToggleSwitchManager {
+// export class ToggleSwitchManager {
 
-// //     private switchElement: HTMLInputElement;
+//     private switchElement: HTMLInputElement;
 
-// //     constructor(switchId: string) {
-// //         this.switchElement = document.getElementById(switchId) as HTMLInputElement;
-// //     }
+//     constructor(switchId: string) {
+//         this.switchElement = document.getElementById(switchId) as HTMLInputElement;
+//     }
 
-// //     get isOn(): boolean {
-// //         return this.switchElement.checked;
-// //     }
+//     get isOn(): boolean {
+//         return this.switchElement.checked;
+//     }
 
-// //     set isOn(value: boolean) {
-// //         this.switchElement.checked = value;
-// //     }
-// // }
+//     set isOn(value: boolean) {
+//         this.switchElement.checked = value;
+//     }
+// }
 
-// // // Usage
-// // const toggleSwitchManager = new ToggleSwitchManager('myToggleSwitch');
-// // // Check the toggle state: console.log(toggleSwitchManager.isOn);
+// // Usage
+// const toggleSwitchManager = new ToggleSwitchManager('myToggleSwitch');
+// // Check the toggle state: console.log(toggleSwitchManager.isOn);

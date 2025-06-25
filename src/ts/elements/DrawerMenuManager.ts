@@ -16,6 +16,6 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const drawerMenuManager = new DrawerMenuManager('myDrawerMenu')
-// // Open the menu: drawerMenuManager.open();
+// Open the menu: drawerMenuManager.open();

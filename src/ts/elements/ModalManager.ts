@@ -20,6 +20,6 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const modalManager = new ModalManager('myModal');
-// // To open modal: modalManager.openModal();
+// To open modal: modalManager.openModal();

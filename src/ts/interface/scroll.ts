@@ -1,8 +1,8 @@
-// // ============================================================================
-// // Interface | Scroll
-// // ============================================================================
+// ============================================================================
+// Interface | Scroll
+// ============================================================================
 
-// // Vertical Scroll Function
+// Vertical Scroll Function
 // export function scrollSmooth(distance: number, speed: number) {
 //     var int = setInterval(function() {
 //         window.scrollTo(0, speed);

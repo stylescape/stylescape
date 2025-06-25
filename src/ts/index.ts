@@ -122,18 +122,18 @@ window.addEventListener("load", () => {
 //     // Additional test tools or instrumentation could be bootstrapped here
 // })
 
-// // Initialize after DOM is ready
+// Initialize after DOM is ready
 // document.addEventListener("DOMContentLoaded", () => {
 //     // new FontPreview("#preview__font--input", ".preview__font--output")
 // })
 
-// // document.addEventListener("DOMContentLoaded", () => {
-// //     const toc = new TableOfContentsBuilder("main_content", "toc-container")
-// //     toc.buildAndAppendTOC()
-// // })
+// document.addEventListener("DOMContentLoaded", () => {
+//     const toc = new TableOfContentsBuilder("main_content", "toc-container")
+//     toc.buildAndAppendTOC()
+// })
 
-// // AsideHandler
-// // ============================================================================
+// AsideHandler
+// ============================================================================
 
 // document.addEventListener("DOMContentLoaded", () => {
 //     const handlers: AsideHandler[] = []
@@ -153,8 +153,8 @@ window.addEventListener("load", () => {
 //     ;(window as any).asideHandlers = handlers
 // })
 
-// // Image Compare Slider Handler
-// // ============================================================================
+// Image Compare Slider Handler
+// ============================================================================
 
 // window.addEventListener("DOMContentLoaded", () => {
 //     ImageCompareSlider.initAll() // Auto-detects all `.image__compare` elements

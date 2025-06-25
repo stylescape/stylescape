@@ -1,4 +1,4 @@
-// // Validates form inputs and displays error messages.
+// Validates form inputs and displays error messages.
 
 // export default class FormValidator {
 //     private form: HTMLFormElement
@@ -14,5 +14,5 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const formValidator = new FormValidator('myForm')

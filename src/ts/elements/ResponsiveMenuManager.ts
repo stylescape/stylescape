@@ -1,4 +1,4 @@
-// // Manages a responsive navigation menu, toggling between expanded and collapsed states based on screen size.
+// Manages a responsive navigation menu, toggling between expanded and collapsed states based on screen size.
 
 // export default class ResponsiveMenuManager {
 //     private menu: HTMLElement
@@ -23,5 +23,5 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const responsiveMenuManager = new ResponsiveMenuManager('navMenu', 'menuToggleButton')

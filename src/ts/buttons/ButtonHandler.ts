@@ -1,6 +1,6 @@
-// // ============================================================================
-// // Button Handler
-// // ============================================================================
+// ============================================================================
+// Button Handler
+// ============================================================================
 
 // /**
 //  * The ButtonHandler class manages click events for buttons on the page.
@@ -93,26 +93,26 @@
 //     }
 // }
 
-// // Initialize the ButtonHandler class
+// Initialize the ButtonHandler class
 // const buttonHandler = new ButtonHandler();
 
-// // export class ButtonHandler {
-// //     constructor() {
-// //         // Attaching event listeners to buttons
-// //         document.querySelectorAll('button').forEach(button => {
-// //             button.addEventListener('click', this.handleButtonClick.bind(this));
-// //         });
-// //     }
+// export class ButtonHandler {
+//     constructor() {
+//         // Attaching event listeners to buttons
+//         document.querySelectorAll('button').forEach(button => {
+//             button.addEventListener('click', this.handleButtonClick.bind(this));
+//         });
+//     }
 
-// //     private handleButtonClick(event: Event): void {
-// //         // Retrieving the ID of the clicked button
-// //         const button = event.target as HTMLButtonElement;
-// //         const buttonId = button.id;
+//     private handleButtonClick(event: Event): void {
+//         // Retrieving the ID of the clicked button
+//         const button = event.target as HTMLButtonElement;
+//         const buttonId = button.id;
 
-// //         console.log(`Button clicked: ${buttonId}`);
-// //         // Add your function logic here, using buttonId if needed
-// //     }
-// // }
+//         console.log(`Button clicked: ${buttonId}`);
+//         // Add your function logic here, using buttonId if needed
+//     }
+// }
 
-// // // Initialize the ButtonHandler class
-// // const buttonHandler = new ButtonHandler();
+// // Initialize the ButtonHandler class
+// const buttonHandler = new ButtonHandler();

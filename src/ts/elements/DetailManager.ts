@@ -1,6 +1,6 @@
-// // ============================================================================
-// // Details
-// // ============================================================================
+// ============================================================================
+// Details
+// ============================================================================
 
 // /**
 //  * Class responsible for managing <details> elements in a document.
@@ -70,51 +70,51 @@
 //     }
 // }
 
+// Usage
+// const detailsManager = new DetailManager();
+// Toggle a specific detail element
+// const specificDetail = document.querySelector("details#specific") as HTMLElement;
+// detailsManager.toggleDetail(specificDetail, true); // Open
+// detailsManager.toggleDetail(specificDetail, false); // Close
+
+// export default class DetailManager {
+
+//     private details: NodeListOf<HTMLElement>;
+
+//     constructor() {
+//         this.details = document.querySelectorAll("details");
+//         this.addClickListeners();
+//     }
+
+//     private addClickListeners(): void {
+//         this.details.forEach(targetDetail => {
+//             targetDetail.addEventListener("click", () => this.handleDetailClick(targetDetail));
+//         });
+//     }
+
+//     private handleDetailClick(targetDetail: HTMLElement): void {
+//         this.details.forEach(detail => {
+//             if (detail !== targetDetail) {
+//                 detail.removeAttribute("open");
+//             }
+//         });
+//     }
+// }
+
 // // Usage
-// // const detailsManager = new DetailManager();
-// // Toggle a specific detail element
-// // const specificDetail = document.querySelector("details#specific") as HTMLElement;
-// // detailsManager.toggleDetail(specificDetail, true); // Open
-// // detailsManager.toggleDetail(specificDetail, false); // Close
+// const detailsManager = new DetailManager();
 
-// // export default class DetailManager {
+// // Fetch all the details element.
+// const details = document.querySelectorAll("details")!
 
-// //     private details: NodeListOf<HTMLElement>;
-
-// //     constructor() {
-// //         this.details = document.querySelectorAll("details");
-// //         this.addClickListeners();
-// //     }
-
-// //     private addClickListeners(): void {
-// //         this.details.forEach(targetDetail => {
-// //             targetDetail.addEventListener("click", () => this.handleDetailClick(targetDetail));
-// //         });
-// //     }
-
-// //     private handleDetailClick(targetDetail: HTMLElement): void {
-// //         this.details.forEach(detail => {
-// //             if (detail !== targetDetail) {
-// //                 detail.removeAttribute("open");
-// //             }
-// //         });
-// //     }
-// // }
-
-// // // Usage
-// // const detailsManager = new DetailManager();
-
-// // // Fetch all the details element.
-// // const details = document.querySelectorAll("details")!
-
-// // // Add the onclick listeners.
-// // details.forEach((targetDetail) => {
-// //     targetDetail.addEventListener("click", () => {
-// //         // Close all the details that are not targetDetail.
-// //         details.forEach((detail) => {
-// //             if (detail !== targetDetail) {
-// //                 detail.removeAttribute("open");
-// //             }
-// //         });
-// //     });
-// // });
+// // Add the onclick listeners.
+// details.forEach((targetDetail) => {
+//     targetDetail.addEventListener("click", () => {
+//         // Close all the details that are not targetDetail.
+//         details.forEach((detail) => {
+//             if (detail !== targetDetail) {
+//                 detail.removeAttribute("open");
+//             }
+//         });
+//     });
+// });

@@ -24,5 +24,5 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const lazyLoadManager = new LazyLoadManager('.lazy-load-item')

@@ -1,4 +1,4 @@
-// // Manages collapsible sections in the UI, allowing them to be expanded or collapsed.
+// Manages collapsible sections in the UI, allowing them to be expanded or collapsed.
 
 // export default class CollapsibleSectionManager {
 //     private section: HTMLElement
@@ -13,5 +13,5 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const collapsibleSectionManager = new CollapsibleSectionManager('myCollapsibleSection')

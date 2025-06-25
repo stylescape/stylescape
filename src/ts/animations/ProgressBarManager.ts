@@ -1,6 +1,6 @@
-// // ============================================================================
-// // Progress Bar Manager
-// // ============================================================================
+// ============================================================================
+// Progress Bar Manager
+// ============================================================================
 
 // /**
 //  * The ProgressBarManager class controls a progress bar UI element, allowing updates
@@ -80,7 +80,7 @@
 //     }
 // }
 
-// // Usage example:
-// // Create a new ProgressBarManager instance with a specified progress bar element ID.
+// Usage example:
+// Create a new ProgressBarManager instance with a specified progress bar element ID.
 // const progressBarManager = new ProgressBarManager('myProgressBar');
 // progressBarManager.setProgress(50); // Set progress to 50%

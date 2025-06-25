@@ -648,10 +648,106 @@
         <h2>Tab</h2>
     </header>
 
-    <section class="demo__subsection">
+
+    <section class="demo__subsection" data-label="Demo Code" data-level="2">
+        <h3>Demo Code</h3>
 
 
+
+
+
+<div class="preview_box--vertical">
+    <div class="preview_box__live">
+        <!-- Tab links -->
+<div class="tab">
+<button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
+    <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+</div>
+
+<!-- Tab content -->
+<div id="London" class="tabcontent">
+    <h3>London</h3>
+    <p>London is the capital city of England.</p>
+</div>
+
+<div id="Paris" class="tabcontent">
+    <h3>Paris</h3>
+    <p>Paris is the capital of France.</p>
+</div>
+
+<div id="Tokyo" class="tabcontent">
+    <h3>Tokyo</h3>
+    <p>Tokyo is the capital of Japan.</p>
+</div>
+
+    </div>
+    <div class="preview_box__info">
+        <small>HTML</small>
+        <button class="preview_box__copy_button" onclick="ClipboardHelper.copyById('code-snippet-6520')">Copy</button>
+    </div>
+    <div class="preview_box__code">
+        <pre class="line-numbers"><code id="code-snippet-6520" class="language-html">&lt;!-- Tab links --&gt;
+&lt;div class=&quot;tab&quot;&gt;
+&lt;button class=&quot;tablinks&quot; onclick=&quot;openCity(event, &#39;London&#39;)&quot; id=&quot;defaultOpen&quot;&gt;London&lt;/button&gt;
+    &lt;button class=&quot;tablinks&quot; onclick=&quot;openCity(event, &#39;Paris&#39;)&quot;&gt;Paris&lt;/button&gt;
+    &lt;button class=&quot;tablinks&quot; onclick=&quot;openCity(event, &#39;Tokyo&#39;)&quot;&gt;Tokyo&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Tab content --&gt;
+&lt;div id=&quot;London&quot; class=&quot;tabcontent&quot;&gt;
+    &lt;h3&gt;London&lt;/h3&gt;
+    &lt;p&gt;London is the capital city of England.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;Paris&quot; class=&quot;tabcontent&quot;&gt;
+    &lt;h3&gt;Paris&lt;/h3&gt;
+    &lt;p&gt;Paris is the capital of France.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;Tokyo&quot; class=&quot;tabcontent&quot;&gt;
+    &lt;h3&gt;Tokyo&lt;/h3&gt;
+    &lt;p&gt;Tokyo is the capital of Japan.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</div>
     </section>
+
+
+<script>
+    function openCity(evt, cityName) {
+
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+
+
+    }
+                    // Get the element with id="defaultOpen" and click on it
+                        document.getElementById("defaultOpen").click();
+                    
+</script>
+
+
+
+
+
+
 </section>                </main>
             </div>
 

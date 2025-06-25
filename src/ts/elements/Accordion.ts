@@ -1,5 +1,5 @@
-// // Accordion Menu Class
-// // Accordions are useful for collapsing or expanding content and can be seen frequently in FAQs, nested menus, or form structures.
+// Accordion Menu Class
+// Accordions are useful for collapsing or expanding content and can be seen frequently in FAQs, nested menus, or form structures.
 
 // class Accordion {
 //     constructor(public selector: string) {

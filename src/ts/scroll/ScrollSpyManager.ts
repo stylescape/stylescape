@@ -94,9 +94,9 @@ export class ScrollSpyManager {
     }
 }
 
-// // Updates navigation based on scroll position, commonly used in single-page websites.
+// Updates navigation based on scroll position, commonly used in single-page websites.
 
-// // ScrollSpyManager: Activates nav links based on scroll position.
+// ScrollSpyManager: Activates nav links based on scroll position.
 // export class ScrollSpyManager {
 //     private sections: HTMLElement[]
 //     private navLinks: NodeListOf<HTMLElement>

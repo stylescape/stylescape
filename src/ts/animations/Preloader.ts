@@ -1,6 +1,6 @@
-// // ============================================================================
-// // Preloader
-// // ============================================================================
+// ============================================================================
+// Preloader
+// ============================================================================
 
 // /**
 //  * The Preloader class manages a preloader element that displays while the page is loading.
@@ -88,51 +88,51 @@
 //     }
 // }
 
-// // Usage example:
-// // Create a new preloader instance with a specified CSS selector and timeout duration.
+// Usage example:
+// Create a new preloader instance with a specified CSS selector and timeout duration.
 // const preloader = new Preloader('.preloader', 2000);
 
-// // export class Preloader {
+// export class Preloader {
 
-// //     private preloaderName: string
-// //     private preloaderElement: HTMLElement | null
-// //     private preloaderTimeout: number
+//     private preloaderName: string
+//     private preloaderElement: HTMLElement | null
+//     private preloaderTimeout: number
 
-// //     constructor(preloaderName: string, preloaderTimeout: number) {
-// //         this.preloaderName = preloaderName
-// //         this.preloaderElement = document.querySelector(preloaderName)
-// //         this.preloaderTimeout = preloaderTimeout
-// //         if (!this.preloaderElement) {
-// //             // pass
-// //             // console.warn(`Preloader element not found: ${preloaderName}`)
-// //         } else {
-// //             this.setPreloader()
-// //         }
-// //     }
+//     constructor(preloaderName: string, preloaderTimeout: number) {
+//         this.preloaderName = preloaderName
+//         this.preloaderElement = document.querySelector(preloaderName)
+//         this.preloaderTimeout = preloaderTimeout
+//         if (!this.preloaderElement) {
+//             // pass
+//             // console.warn(`Preloader element not found: ${preloaderName}`)
+//         } else {
+//             this.setPreloader()
+//         }
+//     }
 
-// //     setPreloader(): void {
-// //         window.addEventListener('load', this.handleLoadEvent.bind(this))
-// //     }
+//     setPreloader(): void {
+//         window.addEventListener('load', this.handleLoadEvent.bind(this))
+//     }
 
-// //     private handleLoadEvent(): void {
-// //         if (this.preloaderElement) {
-// //             setTimeout(() => this.hidePreloader(), this.preloaderTimeout)
-// //         }
-// //     }
+//     private handleLoadEvent(): void {
+//         if (this.preloaderElement) {
+//             setTimeout(() => this.hidePreloader(), this.preloaderTimeout)
+//         }
+//     }
 
-// //     private hidePreloader(): void {
-// //         if (this.preloaderElement) {
-// //             this.preloaderElement.classList.add('preloader_hidden')
-// //         }
-// //     }
+//     private hidePreloader(): void {
+//         if (this.preloaderElement) {
+//             this.preloaderElement.classList.add('preloader_hidden')
+//         }
+//     }
 
-// //     // Optional: Method to update the preloader element dynamically
-// //     updatePreloaderElement(selector: string): void {
-// //         this.preloaderName = selector
-// //         this.preloaderElement = document.querySelector(selector)
+//     // Optional: Method to update the preloader element dynamically
+//     updatePreloaderElement(selector: string): void {
+//         this.preloaderName = selector
+//         this.preloaderElement = document.querySelector(selector)
 
-// //         if (!this.preloaderElement) {
-// //             console.warn(`Updated preloader element not found: ${selector}`)
-// //         }
-// //     }
-// // }
+//         if (!this.preloaderElement) {
+//             console.warn(`Updated preloader element not found: ${selector}`)
+//         }
+//     }
+// }

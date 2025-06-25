@@ -1,4 +1,4 @@
-// // Manages an image slider or carousel functionality, handling next and previous actions.
+// Manages an image slider or carousel functionality, handling next and previous actions.
 
 // export default class SliderManager {
 //     private slides: NodeListOf<HTMLElement>
@@ -26,6 +26,6 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const slider = new SliderManager('#mySlider')
-// // slider.nextSlide() or slider.prevSlide() to control
+// slider.nextSlide() or slider.prevSlide() to control

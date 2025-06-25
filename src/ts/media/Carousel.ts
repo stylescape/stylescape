@@ -1,5 +1,5 @@
-// // Carousel Class
-// // A carousel allows users to cycle through elements like images or cards, often used in galleries or as a slideshow.
+// Carousel Class
+// A carousel allows users to cycle through elements like images or cards, often used in galleries or as a slideshow.
 
 // class Carousel {
 //     private container: HTMLElement
@@ -34,4 +34,4 @@
 //     }
 // }
 
-// // Example HTML: <div id="carouselContainer"><div class="carousel-item active">Item 1</div><div class="carousel-item">Item 2</div></div>
+// Example HTML: <div id="carouselContainer"><div class="carousel-item active">Item 1</div><div class="carousel-item">Item 2</div></div>

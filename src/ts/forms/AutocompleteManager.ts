@@ -1,4 +1,4 @@
-// // Manages an autocomplete functionality for input fields, including search suggestions.
+// Manages an autocomplete functionality for input fields, including search suggestions.
 
 // export default class AutocompleteManager {
 //     private input: HTMLInputElement
@@ -17,5 +17,5 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const autocompleteManager = new AutocompleteManager('searchInput', 'suggestionsList')

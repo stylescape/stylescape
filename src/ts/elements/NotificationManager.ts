@@ -1,4 +1,4 @@
-// // Manages the display and removal of notifications or alerts in the UI.
+// Manages the display and removal of notifications or alerts in the UI.
 
 // export default class NotificationManager {
 //     private container: HTMLElement
@@ -17,6 +17,6 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const notificationManager = new NotificationManager('notification-container')
-// // notificationManager.showNotification('Your action was successful', 'success');
+// notificationManager.showNotification('Your action was successful', 'success');

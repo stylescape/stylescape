@@ -1,4 +1,4 @@
-// // Handles zoom-in and zoom-out functionalities for images.
+// Handles zoom-in and zoom-out functionalities for images.
 
 // export default class ImageZoomManager {
 //     private image: HTMLImageElement
@@ -19,6 +19,6 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const imageZoomManager = new ImageZoomManager('myImage')
-// // imageZoomManager.zoomIn() or imageZoomManager.zoomOut()
+// imageZoomManager.zoomIn() or imageZoomManager.zoomOut()

@@ -1,4 +1,4 @@
-// // This class manages tabbed content in a web application. It handles tab switching and content display based on user interaction.
+// This class manages tabbed content in a web application. It handles tab switching and content display based on user interaction.
 // export default class TabManager {
 //     private tabs: NodeListOf<Element>
 //     private contents: NodeListOf<Element>
@@ -27,31 +27,31 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const tabManager = new TabManager('.tab', '.tab-content')
 
-// // class TabControlManager {
-// //     private tabs: NodeListOf<HTMLElement>;
-// //     private tabPanels: NodeListOf<HTMLElement>;
+// class TabControlManager {
+//     private tabs: NodeListOf<HTMLElement>;
+//     private tabPanels: NodeListOf<HTMLElement>;
 
-// //     constructor(tabSelector: string, tabPanelSelector: string) {
-// //         this.tabs = document.querySelectorAll(tabSelector);
-// //         this.tabPanels = document.querySelectorAll(tabPanelSelector);
+//     constructor(tabSelector: string, tabPanelSelector: string) {
+//         this.tabs = document.querySelectorAll(tabSelector);
+//         this.tabPanels = document.querySelectorAll(tabPanelSelector);
 
-// //         this.tabs.forEach(tab => {
-// //             tab.addEventListener('click', () => this.selectTab(tab));
-// //         });
-// //     }
+//         this.tabs.forEach(tab => {
+//             tab.addEventListener('click', () => this.selectTab(tab));
+//         });
+//     }
 
-// //     private selectTab(selectedTab: HTMLElement): void {
-// //         this.tabs.forEach(tab => tab.classList.remove('active'));
-// //         selectedTab.classList.add('active');
+//     private selectTab(selectedTab: HTMLElement): void {
+//         this.tabs.forEach(tab => tab.classList.remove('active'));
+//         selectedTab.classList.add('active');
 
-// //         this.tabPanels.forEach(panel => {
-// //             panel.classList.toggle('active', panel.id === selectedTab.getAttribute('data-target'));
-// //         });
-// //     }
-// // }
+//         this.tabPanels.forEach(panel => {
+//             panel.classList.toggle('active', panel.id === selectedTab.getAttribute('data-target'));
+//         });
+//     }
+// }
 
-// // // Usage
-// // const tabControlManager = new TabControlManager('.tab', '.tab-panel');
+// // Usage
+// const tabControlManager = new TabControlManager('.tab', '.tab-panel');

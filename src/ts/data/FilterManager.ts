@@ -1,4 +1,4 @@
-// // Manages filtering of items or data in the UI, for example, in a list or table.
+// Manages filtering of items or data in the UI, for example, in a list or table.
 
 // export default class FilterManager {
 
@@ -20,5 +20,5 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const filterManager = new FilterManager('searchInput', '.list-item');

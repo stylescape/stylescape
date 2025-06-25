@@ -1,4 +1,4 @@
-// // Handles opening and closing of modal dialog windows, including confirmation and prompt dialogs.
+// Handles opening and closing of modal dialog windows, including confirmation and prompt dialogs.
 
 // export default class DialogManager {
 //     private dialog: HTMLElement
@@ -18,6 +18,6 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const dialogManager = new DialogManager('myDialog')
-// // dialogManager.openDialog();
+// dialogManager.openDialog();

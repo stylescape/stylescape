@@ -1,5 +1,5 @@
-// // Tooltip Class
-// // A tooltip class can provide context-sensitive information on hover or focus, which is useful for forms, icons, or any element where additional information might be needed.
+// Tooltip Class
+// A tooltip class can provide context-sensitive information on hover or focus, which is useful for forms, icons, or any element where additional information might be needed.
 
 // class Tooltip {
 //     private targetElement: HTMLElement

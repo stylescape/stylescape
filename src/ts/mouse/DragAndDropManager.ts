@@ -1,4 +1,4 @@
-// // Facilitates drag-and-drop functionalities for UI elements.
+// Facilitates drag-and-drop functionalities for UI elements.
 
 // export default class DragAndDropManager {
 //     private draggableElements: NodeListOf<HTMLElement>
@@ -21,5 +21,5 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const dragAndDropManager = new DragAndDropManager('.draggable')

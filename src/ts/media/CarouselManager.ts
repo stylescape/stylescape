@@ -1,4 +1,4 @@
-// // Handles a carousel or slider, enabling cycling through items like images or cards.
+// Handles a carousel or slider, enabling cycling through items like images or cards.
 
 // export default class CarouselManager {
 //     private items: NodeListOf<HTMLElement>
@@ -24,6 +24,6 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const carouselManager = new CarouselManager('#myCarousel')
-// // carouselManager.next() or carouselManager.previous()
+// carouselManager.next() or carouselManager.previous()

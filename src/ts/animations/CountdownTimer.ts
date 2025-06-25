@@ -73,7 +73,7 @@
 //     }
 // }
 
-// // Usage example:
-// // Create a new countdown timer that ends on January 1, 2024, at midnight,
-// // and updates the element with the ID 'countdownDisplay'.
+// Usage example:
+// Create a new countdown timer that ends on January 1, 2024, at midnight,
+// and updates the element with the ID 'countdownDisplay'.
 // const countdown = new CountdownTimer(new Date('2024/01/01 00:00:00'), 'countdownDisplay');

@@ -12,6 +12,11 @@
         <h2>{{ title }}</h2>
     </header>
 
+
+{% set section_title = "Accordion Example 1" %}
+<section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    <h3>{{ section_title }}</h3>
+    {% set code_snippet %}
     <div class="accordion accordion--default">
         <div class="accordion__item">
             <h3 class="accordion__header">
@@ -24,7 +29,7 @@
                 <p>This is the content of accordion section 1.</p>
             </div>
         </div>
-
+    
         <div class="accordion__item">
             <h3 class="accordion__header">
                 <button class="accordion__button" type="button" data-toggle="accordion" aria-expanded="false"
@@ -37,5 +42,43 @@
             </div>
         </div>
     </div>
+    {% endset %}
+    {% set language="HTML" %}
+    {%- include "includes/preview_box_code.html.jinja" %}
+</section>
+
+
+{% set section_title = "Accordion Example 2" %}
+<section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    <h3>{{ section_title }}</h3>
+    {% set code_snippet %}
+<button class="accordion">Section 1</button>
+<div class="panel">
+    <p>Lorem ipsum...</p>
+</div>
+
+<button class="accordion">Section 2</button>
+<div class="panel">
+    <p>Lorem ipsum...</p>
+</div>
+
+<button class="accordion">Section 3</button>
+<div class="panel">
+    <p>Lorem ipsum...</p>
+</div>
+    {% endset %}
+    {% set language="HTML" %}
+    {%- include "includes/preview_box_code.html.jinja" %}
+</section>
+
+
+
+
+
+
+
+
+
+
 </section>
 {%- endblock %}

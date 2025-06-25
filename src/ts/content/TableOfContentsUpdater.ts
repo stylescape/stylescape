@@ -26,37 +26,37 @@
 //     updateActiveLink() // Initialize active state
 // }
 
-// // function updateActiveTOCItem(tocBuilder: TableOfContentsBuilder) {
-// //     const linkSectionMap = tocBuilder.getLinkSectionMap();
+// function updateActiveTOCItem(tocBuilder: TableOfContentsBuilder) {
+//     const linkSectionMap = tocBuilder.getLinkSectionMap();
 
-// //     const findCurrentSection = () => {
-// //         let currentSection: HTMLElement | null = null;
-// //         let currentSectionDistance = Number.MAX_VALUE;
+//     const findCurrentSection = () => {
+//         let currentSection: HTMLElement | null = null;
+//         let currentSectionDistance = Number.MAX_VALUE;
 
-// //         linkSectionMap.forEach((section) => {
-// //             const sectionTop = section.getBoundingClientRect().top;
+//         linkSectionMap.forEach((section) => {
+//             const sectionTop = section.getBoundingClientRect().top;
 
-// //             if (sectionTop >= -window.innerHeight / 2 && sectionTop < currentSectionDistance) {
-// //                 currentSectionDistance = sectionTop;
-// //                 currentSection = section;
-// //             }
-// //         });
+//             if (sectionTop >= -window.innerHeight / 2 && sectionTop < currentSectionDistance) {
+//                 currentSectionDistance = sectionTop;
+//                 currentSection = section;
+//             }
+//         });
 
-// //         return currentSection;
-// //     };
+//         return currentSection;
+//     };
 
-// //     const updateActiveLink = () => {
-// //         const currentSection = findCurrentSection();
+//     const updateActiveLink = () => {
+//         const currentSection = findCurrentSection();
 
-// //         linkSectionMap.forEach((section, link) => {
-// //             if (section === currentSection) {
-// //                 link.classList.add('active');
-// //             } else {
-// //                 link.classList.remove('active');
-// //             }
-// //         });
-// //     };
+//         linkSectionMap.forEach((section, link) => {
+//             if (section === currentSection) {
+//                 link.classList.add('active');
+//             } else {
+//                 link.classList.remove('active');
+//             }
+//         });
+//     };
 
-// //     window.addEventListener('scroll', updateActiveLink);
-// //     updateActiveLink(); // Initialize active state
-// // }
+//     window.addEventListener('scroll', updateActiveLink);
+//     updateActiveLink(); // Initialize active state
+// }

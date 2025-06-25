@@ -53,7 +53,7 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // new CookieConsentManager({
 //     message: "We use cookies to improve your experience.",
 //     buttonText: "Got it!"

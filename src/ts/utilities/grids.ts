@@ -82,7 +82,7 @@
 //   applyVisibilityState(visibility);
 // }
 
-// // Initialize on DOM ready
+// Initialize on DOM ready
 // document.addEventListener('DOMContentLoaded', () => {
 //   updateAllGridHeights();
 //   setupGridToggles();

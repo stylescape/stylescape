@@ -1,4 +1,4 @@
-// // Manages an image gallery, handling image selection, navigation, and possibly lightbox integration.
+// Manages an image gallery, handling image selection, navigation, and possibly lightbox integration.
 
 // export default class GalleryManager {
 //     private images: NodeListOf<HTMLImageElement>
@@ -25,5 +25,5 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const galleryManager = new GalleryManager('#imageGallery')

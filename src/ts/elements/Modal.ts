@@ -1,5 +1,5 @@
-// // Modal Popup Class
-// // A modal popup class can handle opening and closing of modal dialogs which are often used for user notifications, forms, or other focal interactions within a page.
+// Modal Popup Class
+// A modal popup class can handle opening and closing of modal dialogs which are often used for user notifications, forms, or other focal interactions within a page.
 
 // class Modal {
 //     private modalElement: HTMLElement
@@ -27,5 +27,5 @@
 //     }
 // }
 
-// // Example usage:
+// Example usage:
 // const modal = new Modal('myModal', 'myCloseBtn')

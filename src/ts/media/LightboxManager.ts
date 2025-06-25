@@ -1,4 +1,4 @@
-// // Creates and manages a lightbox for viewing images or content in an overlay.
+// Creates and manages a lightbox for viewing images or content in an overlay.
 
 // export default class LightboxManager {
 //     private lightbox: HTMLElement
@@ -20,6 +20,6 @@
 //     }
 // }
 
-// // Usage
+// Usage
 // const lightboxManager = new LightboxManager('myLightbox')
-// // lightboxManager.showLightbox('<img src="image.jpg" />');
+// lightboxManager.showLightbox('<img src="image.jpg" />');
