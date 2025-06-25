@@ -30,10 +30,11 @@
 /// (sans-serif, serif, monospace). They are used when the preferred font is
 /// not available on the user's system.
 ///
-$font_fallback_sans: 'Roboto Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-$font_fallback_serif: 'Roboto Serif', 'Times New Roman', 'Times', serif;
-$font_fallback_slab: 'Roboto Slab', 'Rockwell', 'Georgia', 'serif';
-$font_fallback_mono: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+$font_fallback_sans: "Roboto Sans", "Helvetica Neue", "Helvetica", "Arial",
+    sans-serif;
+$font_fallback_serif: "Roboto Serif", "Times New Roman", "Times", serif;
+$font_fallback_slab: "Roboto Slab", "Rockwell", "Georgia", "serif";
+$font_fallback_mono: "Roboto Mono", "Courier New", "Courier", monospace;
 
 ///
 /// Default Font Definitions
@@ -42,10 +43,10 @@ $font_fallback_mono: 'Roboto Mono', 'Courier New', 'Courier', monospace;
 /// These variables define the default font families used in the project.
 /// The `!default` flag allows them to be overridden if necessary.
 ///
-$font_default_sans: 'stylescape_sans_regular' !default;
-$font_default_serif: 'stylescape_serif_regular' !default;
-$font_default_slab: 'stylescape_slab_regular' !default;
-$font_default_mono: 'stylescape_mono_regular' !default;
+$font_default_sans: "stylescape_sans_regular" !default;
+$font_default_serif: "stylescape_serif_regular" !default;
+$font_default_slab: "stylescape_slab_regular" !default;
+$font_default_mono: "stylescape_mono_regular" !default;
 
 ///
 /// Combined Font Stacks
@@ -59,3 +60,22 @@ $font_stack_sans: $font_default_sans, $font_fallback_sans !default;
 $font_stack_serif: $font_default_serif, $font_fallback_serif !default;
 $font_stack_slab: $font_default_slab, $font_fallback_slab !default;
 $font_stack_mono: $font_default_mono, $font_fallback_mono !default;
+
+:root {
+    --primitive-type-font-family-cnn-sans-display: helveticaneue, Helvetica,
+        Arial, Utkal, sans-serif;
+    --primitive-type-font-family-cnn-sans: cnn_sans;
+    --primitive-type-font-family-cnn-condensed: cnn_sans_condensed,
+        Arial Narrow, Helvetica Narrow, sans-serif;
+    --primitive-type-font-family-cnn-stencil: cnn_stencil_display;
+    --primitive-type-text-decoration-underline: underline;
+    --primitive-type-font-family-noto-serif: noto_serif, Georgia,
+        Times New Roman, serif;
+
+    --semantic-type-title-font-family: var(
+        --primitive-type-font-family-cnn-sans-display
+    );
+    --semantic-type-body-font-family: var(
+        --primitive-type-font-family-cnn-sans-display
+    );
+}
