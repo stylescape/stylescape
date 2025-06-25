@@ -17,8 +17,7 @@ import { ScrollPageManager } from "./scroll/ScrollPageManager.js"
 
 // Initialize on DOM ready
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Document ready, initializing components...")
-    new GridManager() // Auto-initializes on construction
+    // console.log("Document ready, initializing components...")
 
     // Scroll Restoration
     new ScrollPageManager()
@@ -35,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     new PasswordToggleManager()
 
     // Theme Toggle
-    ThemeToggler.initializeToggleSwitch("themeToggle")
+    // ThemeToggler.initializeToggleSwitch("themeToggle")
+    ThemeToggler.registerOnLoad("themeToggle")
 
     // TableOfContentsBuilder
     const tocBuilder = new TableOfContentsBuilder("main_content", "toc")
@@ -74,6 +74,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //  Collapsing Table
     new CollapsibleTableHandler()
+})
+
+// window.addEventListener("load", () => {
+//     new GridManager() // Auto-initializes on construction
+// })
+
+window.addEventListener("load", () => {
+    requestAnimationFrame(() => {
+        new GridManager()
+    })
 })
 
 // import { ExclusiveDetails } from "./elements/ExclusiveDetails.js"

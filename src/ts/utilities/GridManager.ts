@@ -27,7 +27,7 @@ export class GridManager {
     }
 
     private loadVisibility(): void {
-        console.log("Loading grid visibility state from localStorage")
+        // console.log("Loading grid visibility state from localStorage")
         try {
             this.visibilityMap = JSON.parse(
                 localStorage.getItem(this.STORAGE_KEY) || "{}",
