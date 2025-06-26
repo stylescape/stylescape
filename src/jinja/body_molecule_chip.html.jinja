@@ -13,31 +13,37 @@
     </header>
 
 
-    {% set section_title = "Demo Code" %}
+    {% set section_title = "Basic Chip" %}
     <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-        <div> </div>
+        <div class="chip">
+            <img src="img_avatar.jpg" alt="Person" width="96" height="96">
+            John Doe
+        </div>
+<span class="chip">Basic Chip</span>
+<span class="chip">User <img src="https://placekitten.com/32/32" alt="user" /></span>
+<span class="chip">Dismiss <span class="close">&times;</span></span>
         {% endset %}
         {% set language="HTML" %}
         {%- include "includes/preview_box_code.html.jinja" %}
     </section>
 
-
-    <div class="demo__subsection">
-        <span class="chip">Basic Chip</span>
-        <span class="chip">User <img src="https://placekitten.com/32/32" alt="user" /></span>
-        <span class="chip">Dismiss <span class="close">&times;</span></span>
-    </div>
-
-    <header class="demo__section__header">
-        <h2>Chips Input Field</h2>
-    </header>
-
+{% set section_title = "Chips Input Field" %}
+<section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    <h3>{{ section_title }}</h3>
+    {% set code_snippet %}
     <div class="demo__subsection">
         <div class="chips">
             <input class="input" type="text" placeholder="Add tags…" />
         </div>
     </div>
+    {% endset %}
+    {% set language="HTML" %}
+    {%- include "includes/preview_box_code.html.jinja" %}
+</section>
+
+
+
 </section>
 {%- endblock %}
