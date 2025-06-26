@@ -64,9 +64,9 @@ export class ThemeToggler {
         }
 
         if (!toggle) {
-            console.warn(
-                `ThemeToggler: No toggle element found for ID '${toggleId}' or [data-theme-toggle].`,
-            )
+            // console.warn(
+            //     `ThemeToggler: No toggle element found for ID '${toggleId}' or [data-theme-toggle].`,
+            // )
             return
         }
 
