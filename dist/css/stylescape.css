@@ -7168,6 +7168,30 @@ body {
   align-items: baseline;
 }
 
+.self--stretch {
+  align-self: stretch;
+}
+
+.self--start {
+  align-self: flex-start;
+}
+
+.self--end {
+  align-self: flex-end;
+}
+
+.self--center {
+  align-self: center;
+}
+
+.self--baseline {
+  align-self: baseline;
+}
+
+.self--auto {
+  align-self: auto;
+}
+
 /* Positional alignment */
 /* Distribute items evenly
                                    Stretch 'auto'-sized items to fit
@@ -7182,7 +7206,7 @@ body {
                                    on either end */
 /* Distribute items evenly
 Items have equal space around them */
-.justify_start {
+.justify--start {
   -moz-justify-content: start;
   -ms-justify-content: start;
   -o-justify-content: start;
@@ -7192,7 +7216,7 @@ Items have equal space around them */
   justify-content: flex-start;
 }
 
-.justify_end {
+.justify--end {
   -moz-justify-content: end;
   -ms-justify-content: end;
   -o-justify-content: end;
@@ -7209,21 +7233,21 @@ Items have equal space around them */
   justify-content: center;
 }
 
-.justify_between {
+.justify--between {
   -moz-justify-content: space-between;
   -ms-justify-content: space-between;
   -o-justify-content: space-between;
   justify-content: space-between;
 }
 
-.justify_around {
+.justify--around {
   -moz-justify-content: space-around;
   -ms-justify-content: space-around;
   -o-justify-content: space-around;
   justify-content: space-around;
 }
 
-.justify_evenly {
+.justify--evenly {
   -moz-justify-content: space-evenly;
   -ms-justify-content: space-evenly;
   -o-justify-content: space-evenly;
@@ -8487,6 +8511,55 @@ Items have equal space around them */
   min-height: 0;
 }
 
+.frame_login {
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  display: grid;
+  grid-auto-flow: row;
+  gap: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 6.25rem auto auto;
+  grid-template-areas: "top_left      top_center       top_right" "middle_left   middle_center    middle_right" "bottom_left   bottom_center    bottom_right";
+  width: 100%;
+  height: 100%;
+}
+.frame_login > * {
+  display: flex;
+  -webkit-display: flex;
+  -moz-display: flex;
+  -ms-display: flex;
+  -o-display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -moz-justify-content: flex-end;
+  -ms-justify-content: flex-end;
+  -o-justify-content: flex-end;
+  justify-content: center;
+}
+
+.frame_login__area {
+  grid-area: middle_center;
+  max-width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+
 .font--weight_100 {
   font-weight: 189;
   font-variation-settings: "wght" 189, "wdth" 400;
@@ -8565,14 +8638,14 @@ html {
   text-justify: inter-word;
 }
 
-.text_align--justify_left {
+.text_align--justify--left {
   text-align: justify !important;
   -moz-text-align-last: justify !important;
        text-align-last: justify !important;
   text-justify: inter-word;
 }
 
-.text_align--justify_right {
+.text_align--justify--right {
   text-align: justify !important;
   -moz-text-align-last: justify !important;
        text-align-last: justify !important;
@@ -9422,7 +9495,7 @@ q:after {
   margin-bottom: 0;
 }
 
-.paragraph--justify_left {
+.paragraph--justify--left {
   margin: 0;
   margin-block-start: 0;
   margin-block-end: 0;
@@ -9460,14 +9533,14 @@ q:after {
        text-align-last: justify !important;
   text-justify: inter-word;
 }
-.paragraph--justify_left :empty {
+.paragraph--justify--left :empty {
   display: none;
 }
-.paragraph--justify_left :last-of-type {
+.paragraph--justify--left :last-of-type {
   margin-bottom: 0;
 }
 
-.paragraph--justify_right {
+.paragraph--justify--right {
   margin: 0;
   margin-block-start: 0;
   margin-block-end: 0;
@@ -9506,10 +9579,10 @@ q:after {
   text-justify: inter-word;
   direction: rtl;
 }
-.paragraph--justify_right :empty {
+.paragraph--justify--right :empty {
   display: none;
 }
-.paragraph--justify_right :last-of-type {
+.paragraph--justify--right :last-of-type {
   margin-bottom: 0;
 }
 
@@ -17788,10 +17861,17 @@ figure {
   box-sizing: border-box;
   overflow: hidden;
 }
+figure.border {
+  border: 0.0625rem solid var(--color_line_primary);
+}
 figure img {
   display: block;
+  object-fit: cover;
   width: 100%;
-  height: auto;
+  height: 100%;
+}
+figure img.height_auto {
+  height: auto !important;
 }
 figure .figcaption--title {
   font-size: 0.75rem;

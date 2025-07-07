@@ -1,0 +1,49 @@
+@use "../../dev" as *;
+
+@use "../head_layout" as *;
+@use "../head_position" as *;
+@use "frame_base" as *;
+@use "../soul_object" as *;
+
+// ============================================================================
+// Layout | Grid 3x3 Fullscreen Centered
+// ============================================================================
+
+/// Main full-screen frame with 3x3 grid
+@mixin frame_login {
+    @include frame_base;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: q(100) auto auto;
+    grid-template-areas:
+        "top_left      top_center       top_right"
+        "middle_left   middle_center    middle_right"
+        "bottom_left   bottom_center    bottom_right";
+
+    width: 100%;
+    height: 100%;
+
+    // Optional: allow all children to be centered (if needed)
+    > * {
+        @include flex;
+        @include align--center;
+        @include justify--center;
+    }
+}
+
+/// Just the middle_center area
+@mixin frame_login__area {
+    grid-area: middle_center;
+    max-width: 100%;
+    max-height: 100%;
+    box-sizing: border-box;
+}
+
+.frame_login {
+    @include frame_login;
+}
+
+.frame_login__area {
+    @include frame_login__area;
+}
