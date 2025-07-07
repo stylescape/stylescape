@@ -26,13 +26,21 @@ $figcaption-font-style: italic;
 @mixin figure--base {
     position: relative;
     display: inline-block;
-    // border: q(1) solid $figure-border-color;
     box-sizing: border-box;
+
+    &.border {
+        border: q(1) solid $figure-border-color;
+    }
 
     img {
         display: block;
+        object-fit: cover;
         width: 100%;
-        height: auto;
+        height: 100%;
+
+        &.height_auto {
+            height: auto !important;
+        }
     }
 
     .figcaption--title {
