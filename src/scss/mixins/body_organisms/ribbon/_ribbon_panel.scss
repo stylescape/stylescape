@@ -39,30 +39,35 @@
     grid-auto-flow: row;
     // Style
     // @include color_scheme_light;
-    background-color: var(--color_fill_primary);
-    border-radius: q(4);
-    border: 0Q (24) solid var(--color_text_primary);
+
+    border: q(1) solid var(--color_text_primary);
     color: var(--color_text_primary);
-    box-shadow: calc(q(4)) calc($q * 0) calc(q(8)) calc($q * 0)
-        rgba(0, 0, 0, 0.2);
+    background: var(--color_fill_primary);
+
     // Text
-    font-size: q(12);
     word-wrap: break-word;
     background-clip: padding-box;
     list-style: none;
     // Position
     z-index: 9999;
-    // z-index: z('modal');
-    position: absolute;
+    z-index: z("modal");
     @include sizing--border;
+    min-width: q(150);
+    position: absolute;
     top: 100%;
-    left: auto;
-    right: 0;
-    width: q(16) 0;
-    margin-top: q(8);
-    padding-bottom: $ribbon_spacing * 2;
-    padding-top: $ribbon_spacing * 2;
-    padding-left: 0;
+    &.right {
+        right: 0;
+    }
+    &.left {
+        left: 0;
+    }
+    &.center {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    margin-top: $ribbon_spacing + q(1);
+    padding: $ribbon_spacing * 2;
 }
 
 .ribbon_panel {
@@ -70,18 +75,17 @@
     .ribbon_panel_header,
     .ribbon_panel_section,
     .ribbon_panel_section_header,
-    .ribbon_panel_section_header .ribbon_panel_section_item {
+    .ribbon_panel_section_item {
         @include reset_bleed;
         @include font--size("03");
         width: 100%;
-        padding-left: $menu_margin * 2;
-        padding-right: $menu_margin * 2;
+        padding-left: $menu_margin;
+        padding-right: $menu_margin;
     }
     .ribbon_panel_line {
         @include reset_bleed;
         // @include color_scheme_light;
-        border: q(1) solid var(--color_text_primary);
-        opacity: 0.5;
+        border: q(1) solid var(--color_text_primary--50);
     }
 
     .ribbon_panel_header {
@@ -116,20 +120,8 @@
             }
         }
     }
-
-    ::before {
-        content: "";
-        border-left: q(4) solid transparent;
-        border-right: q(4) solid transparent;
-        border-bottom: q(4) solid white;
-        position: absolute;
-        top: -q(4);
-        right: q(6);
-        z-index: 9999;
-    }
 }
 
-details[open] .ribbon_panel_wrapper {
-    display: block;
-    visibility: visible;
+details {
+    position: relative;
 }
