@@ -22,6 +22,7 @@ export { ScrollPageManager } from "./scroll/ScrollPageManager.js"
 // 5. Main initializer
 export * from "./init/index.js"
 
+// initializeStylescape()
 // import { AsideHandler } from "./elements/AsideHandler.js";
 // import { CollapsibleTableHandler } from "./elements/CollapsibleTableHandler.js"
 // import { DropdownHandler } from "./elements/DropdownHandler.js"
