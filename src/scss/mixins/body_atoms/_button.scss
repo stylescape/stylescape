@@ -163,9 +163,9 @@ button {
     font: inherit;
     border: none;
     cursor: pointer;
-    background: transparent;
-    color: inherit;
-    padding: calc(q(8));
+    // background: transparent;
+    // color: inherit;
+    padding: baseline(1);
     margin: 0;
     display: inline-flex;
     align-items: center;
@@ -177,7 +177,7 @@ button {
     transition:
         background 0.2s ease,
         border 0.2s ease;
-    border-radius: var(--border_radius, q(4));
+    // border-radius: var(--border_radius, q(4));
     pointer-events: initial;
     cursor: pointer;
 }
@@ -255,7 +255,7 @@ button {
 
 /// Outline variant
 @mixin button--accent {
-    background: var(--color_text_primary);
+    background: var(--color_accent_primary);
     color: var(--color_fill_primary);
 
     &:hover {
@@ -268,7 +268,7 @@ button {
         border: q(2) solid var(--color_accent_primary);
     }
     &:disabled {
-        border-color: var(--color_state_disabled);
+        background: var(--color_accent_primary--25);
         color: var(--color_state_disabled);
         cursor: not-allowed;
     }
@@ -307,13 +307,15 @@ button {
 // Classes
 // ============================================================================
 
-button,
+// button,
 .button {
     // @include button(map.get($button_size_map, 'md')); // default: md
+    @include button--solid;
     @include button(
         list.nth(map.get($button_size_map, "md"), 1),
         list.nth(map.get($button_size_map, "md"), 2)
     );
+
     @each $name, $pair in $button_size_map {
         &.#{$name} {
             @include button(list.nth($pair, 1), list.nth($pair, 2));
