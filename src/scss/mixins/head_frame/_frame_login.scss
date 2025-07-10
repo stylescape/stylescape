@@ -14,8 +14,8 @@
     @include frame_base;
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: q(100) auto auto;
+    grid-template-columns: 0.5fr 2fr 0.5fr;
+    grid-template-rows: q(80) 1fr auto;
     grid-template-areas:
         "top_left      top_center       top_right"
         "middle_left   middle_center    middle_right"
@@ -24,11 +24,15 @@
     width: 100%;
     height: 100%;
 
+    overflow-y: scroll;
+
+    scrollbar-width: none;
+
     // Optional: allow all children to be centered (if needed)
     > * {
-        @include flex;
+        @include flex--col;
         @include align--center;
-        @include justify--center;
+        @include justify--start;
     }
 }
 
