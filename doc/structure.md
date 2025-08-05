@@ -98,7 +98,7 @@ The smallest building blocks in an atomic design system. These are typically sin
  • position: relative | absolute | fixed
  • z-index: z('ribbon'), z('overlay'), etc.
 
-🧩 UI Atoms
+UI Atoms
  • .button
  • .icon
  • .badge
@@ -112,7 +112,7 @@ The smallest building blocks in an atomic design system. These are typically sin
  • transition-*, animation-*
  • outline, box-shadow for focus states
 
-🧱 Surface & Structure
+Surface & Structure
  • .card, .panel, .elevation-*
  • border-*, border-radius-*
  • box-shadow-*, opacity-*

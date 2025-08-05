@@ -38,10 +38,10 @@ export class ParallaxScrollManager {
     }
 }
 
-// ✅ Usage
+// Usage
 // new ParallaxScrollManager('.parallax')
 
-// 📌 How to Use in HTML
+// How to Use in HTML
 // <div class="parallax" data-speed="0.3" style="background-image: url('your-bg.jpg');">
 //   <!-- Content -->
 // </div>
