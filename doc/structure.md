@@ -69,7 +69,7 @@ The smallest building blocks in an atomic design system. These are typically sin
 
 Design Atoms
 
-🎨 Color & Theme Tokens
+Color & Theme Tokens
  • --color-background
  • --color-foreground
  • --color-primary, --color-secondary, --color-accent
