@@ -17,6 +17,10 @@ export class ActiveLinkHighlighter {
         const links = document.querySelectorAll<HTMLAnchorElement>("a")
 
         links.forEach((link) => {
+            if (link.closest(".ribbon__title")) {
+                return
+            }
+
             const linkPath = this.normalizeUrl(link.href)
             if (linkPath === currentPath) {
                 link.classList.add(this.activeClass)
@@ -24,7 +28,6 @@ export class ActiveLinkHighlighter {
         })
     }
 }
-
 // export class ActiveLinkHighlighter {
 //     private links: NodeListOf<HTMLAnchorElement>
 //     private activeClass: string
