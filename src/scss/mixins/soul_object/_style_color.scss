@@ -8,6 +8,10 @@
 ///
 @mixin object--color($key) {
     color: var(--color_#{$key}) !important;
+
+    &::before {
+        color: var(--color_#{$key}) !important;
+    }
 }
 
 // Generate utility classes and emit CSS custom properties
@@ -21,6 +25,10 @@
     @each $label, $amount in $tint-levels {
         .object--color--#{$key}--#{$label} {
             color: var(--color_#{$key}--#{$label}) !important;
+
+            &::before {
+                color: var(--color_#{$key}--#{$label}) !important;
+            }
         }
     }
 }
