@@ -22,21 +22,21 @@ $object_padding_map: (
     padding-top: $v;
 }
 @mixin padding--right($v) {
-    padding--right: $v;
+    padding-right: $v;
 }
 @mixin padding--bottom($v) {
-    padding--bottom: $v;
+    padding-bottom: $v;
 }
 @mixin padding--left($v) {
-    padding--left: $v;
+    padding-left: $v;
 }
 @mixin padding--vertical($v) {
     padding-top: $v;
-    padding--bottom: $v;
+    padding-bottom: $v;
 }
 @mixin padding--horizontal($v) {
-    padding--left: $v;
-    padding--right: $v;
+    padding-left: $v;
+    padding-right: $v;
 }
 
 // --- Token-based utilities --------------------------------------------------
@@ -74,7 +74,7 @@ $object_padding_map: (
 }
 
 // --- Numeric range utilities ------------------------------------------------
-@mixin generate-padding-range($min: 1, $max: 1000) {
+@mixin generate-padding-range($min: 0, $max: 1000) {
     @for $i from $min through $max {
         $val: q($i);
 
@@ -109,4 +109,4 @@ $object_padding_map: (
 
 // --- Generate everything ----------------------------------------------------
 @include generate-padding-tokens();
-@include generate-padding-range(1, 1000);
+@include generate-padding-range(0, 1000);
