@@ -1,4 +1,112 @@
 // ============================================================================
 // Layout | Padding
 // ============================================================================
+@use "sass:math";
+@use "../../dev" as *; // where q() is defined
 @use "../../variables" as *;
+
+// Token-based map
+$object_padding_map: (
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 20,
+    xl: 32
+) !default;
+
+// --- Mixins -----------------------------------------------------------------
+@mixin padding($v) {
+    padding: $v;
+}
+@mixin padding-top($v) {
+    padding-top: $v;
+}
+@mixin padding--right($v) {
+    padding--right: $v;
+}
+@mixin padding--bottom($v) {
+    padding--bottom: $v;
+}
+@mixin padding--left($v) {
+    padding--left: $v;
+}
+@mixin padding--vertical($v) {
+    padding-top: $v;
+    padding--bottom: $v;
+}
+@mixin padding--horizontal($v) {
+    padding--left: $v;
+    padding--right: $v;
+}
+
+// --- Token-based utilities --------------------------------------------------
+@mixin generate-padding-tokens($tokens: $object_padding_map) {
+    @each $name, $space in $tokens {
+        $val: q($space);
+
+        // all
+        .padding--#{$name} {
+            @include padding($val);
+        }
+
+        // sides
+        .padding--#{$name}_top {
+            @include padding-top($val);
+        }
+        .padding--#{$name}_right {
+            @include padding--right($val);
+        }
+        .padding--#{$name}_bottom {
+            @include padding--bottom($val);
+        }
+        .padding--#{$name}_left {
+            @include padding--left($val);
+        }
+
+        // axes
+        .padding--#{$name}_vertical {
+            @include padding--vertical($val);
+        }
+        .padding--#{$name}_horizontal {
+            @include padding--horizontal($val);
+        }
+    }
+}
+
+// --- Numeric range utilities ------------------------------------------------
+@mixin generate-padding-range($min: 1, $max: 1000) {
+    @for $i from $min through $max {
+        $val: q($i);
+
+        // all
+        .padding--#{$i} {
+            @include padding($val);
+        }
+
+        // sides
+        .padding--#{$i}_top {
+            @include padding-top($val);
+        }
+        .padding--#{$i}_right {
+            @include padding--right($val);
+        }
+        .padding--#{$i}_bottom {
+            @include padding--bottom($val);
+        }
+        .padding--#{$i}_left {
+            @include padding--left($val);
+        }
+
+        // axes
+        .padding--#{$i}_vertical {
+            @include padding--vertical($val);
+        }
+        .padding--#{$i}_horizontal {
+            @include padding--horizontal($val);
+        }
+    }
+}
+
+// --- Generate everything ----------------------------------------------------
+@include generate-padding-tokens();
+@include generate-padding-range(1, 1000);

@@ -12,16 +12,174 @@
         <h2>{{ title }}</h2>
     </header>
 
-
-    {% set section_title = "Demo Code" %}
+    {# ----------------------------------------------------------------------- #}
+    {# Padding All #}
+    {# ----------------------------------------------------------------------- #}
+    {% set section_title = "Padding All" %}
     <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
         <h3>{{ section_title }}</h3>
+
+        {% set sizes = ["xs","sm","md","lg","xl"] %}
+
         {% set code_snippet %}
-        <div> </div>
+        <div class="">
+            {% for s in sizes %}
+            <div class="demo__box padding--{{ s }}">
+                <code>.padding--{{ s }}</code>
+            </div>
+            {% endfor %}
+        </div>
         {% endset %}
-        {% set language="HTML" %}
+        {% set language = "HTML" %}
         {%- include "includes/preview_box_code.html.jinja" %}
     </section>
+
+    {# ----------------------------------------------------------------------- #}
+    {# Padding Sides #}
+    {# ----------------------------------------------------------------------- #}
+    {% set section_title = "Padding Sides" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+
+        {% set sides = ["top","right","bottom","left"] %}
+
+        {% set code_snippet %}
+        <div class="">
+            {% for side in sides %}
+            <div class="demo__box padding--md_{{ side }}">
+                <code>.padding--md_{{ side }}</code>
+            </div>
+            <div class="demo__box padding--xl_{{ side }}">
+                <code>.padding--xl_{{ side }}</code>
+            </div>
+            {% endfor %}
+        </div>
+        {% endset %}
+        {% set language = "HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {# ----------------------------------------------------------------------- #}
+    {# Padding Axes #}
+    {# ----------------------------------------------------------------------- #}
+    {% set section_title = "Padding Axes" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+
+        {% set axes = ["vertical","horizontal"] %}
+
+        {% set code_snippet %}
+        <div class="">
+            {% for axis in axes %}
+            <div class="demo__box padding--sm_{{ axis }}">
+                <code>.padding--sm_{{ axis }}</code>
+            </div>
+            <div class="demo__box padding--md_{{ axis }}">
+                <code>.padding--md_{{ axis }}</code>
+            </div>
+            <div class="demo__box padding--xl_{{ axis }}">
+                <code>.padding--xl_{{ axis }}</code>
+            </div>
+            {% endfor %}
+        </div>
+        {% endset %}
+        {% set language = "HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {# ----------------------------------------------------------------------- #}
+    {# Mixed Examples (quick sanity check) #}
+    {# ----------------------------------------------------------------------- #}
+    {% set section_title = "Mixed Examples" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+
+        {% set code_snippet %}
+        <div class="demo__stack">
+            <div class="demo__box padding--md">
+                <code>.padding--md</code>
+            </div>
+            <div class="demo__box padding--md_vertical">
+                <code>.padding--md_vertical</code>
+            </div>
+            <div class="demo__box padding--sm_horizontal">
+                <code>.padding--sm_horizontal</code>
+            </div>
+            <div class="demo__box padding--lg_left">
+                <code>.padding--lg_left</code>
+            </div>
+        </div>
+        {% endset %}
+        {% set language = "HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {# ----------------------------------------------------------------------- #}
+    {# Numeric Padding (1–1000) #}
+    {# ----------------------------------------------------------------------- #}
+    {% set section_title = "Numeric Padding (q: 1–1000)" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+
+        {# sample set to keep preview compact; adjust as needed #}
+        {% set nums = [1, 4, 8, 12, 16, 24, 32, 48, 64] %}
+
+        {# All #}
+        {% set sub_title = "All Sides" %}
+        <h4>{{ sub_title }}</h4>
+        {% set code_snippet %}
+        <div class="">
+            {% for n in nums %}
+            <div class="demo__box padding--{{ n }}">
+                <code>.padding--{{ n }}</code>
+            </div>
+            {% endfor %}
+        </div>
+        {% endset %}
+        {% set language = "HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+
+        {# Sides #}
+        {% set sub_title = "Sides" %}
+        <h4>{{ sub_title }}</h4>
+        {% set code_snippet %}
+        <div class="">
+            {% for side in ["top","right","bottom","left"] %}
+            <div class="demo__box padding--24_{{ side }}">
+                <code>.padding--24_{{ side }}</code>
+            </div>
+            <div class="demo__box padding--48_{{ side }}">
+                <code>.padding--48_{{ side }}</code>
+            </div>
+            {% endfor %}
+        </div>
+        {% endset %}
+        {% set language = "HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+
+        {# Axes #}
+        {% set sub_title = "Axes" %}
+        <h4>{{ sub_title }}</h4>
+        {% set code_snippet %}
+        <div class="">
+            {% for axis in ["vertical","horizontal"] %}
+            <div class="demo__box padding--12_{{ axis }}">
+                <code>.padding--12_{{ axis }}</code>
+            </div>
+            <div class="demo__box padding--32_{{ axis }}">
+                <code>.padding--32_{{ axis }}</code>
+            </div>
+            <div class="demo__box padding--64_{{ axis }}">
+                <code>.padding--64_{{ axis }}</code>
+            </div>
+            {% endfor %}
+        </div>
+        {% endset %}
+        {% set language = "HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+
+    </section>
+
 </section>
 
 {%- endblock content %}
