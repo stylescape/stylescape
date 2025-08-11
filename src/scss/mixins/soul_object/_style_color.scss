@@ -1,0 +1,26 @@
+@use "sass:map";
+@use "sass:color";
+@use "../../variables" as *;
+
+///
+/// Mixin that applies background color using a key from $color_theme
+/// @param {String} $key - The color token key
+///
+@mixin object--color($key) {
+    color: var(--color_#{$key}) !important;
+}
+
+// Generate utility classes and emit CSS custom properties
+@each $key, $value in $color_theme {
+    // Solid fill class
+    .object--color--#{$key} {
+        @include object--color($key);
+    }
+
+    // Tinted fills using precomputed --color_*--XX variables
+    @each $label, $amount in $tint-levels {
+        .object--color--#{$key}--#{$label} {
+            color: var(--color_#{$key}--#{$label}) !important;
+        }
+    }
+}
