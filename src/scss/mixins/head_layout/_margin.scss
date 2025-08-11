@@ -19,24 +19,24 @@ $object_margin_map: (
     margin: $v;
 }
 @mixin margin--top($v) {
-    margin--top: $v;
+    margin-top: $v;
 }
 @mixin margin--right($v) {
-    margin--right: $v;
+    margin-right: $v;
 }
 @mixin margin--bottom($v) {
-    margin--bottom: $v;
+    margin-bottom: $v;
 }
 @mixin margin--left($v) {
-    margin--left: $v;
+    margin-left: $v;
 }
 @mixin margin--vertical($v) {
-    margin--top: $v;
-    margin--bottom: $v;
+    margin-top: $v;
+    margin-bottom: $v;
 }
 @mixin margin--horizontal($v) {
-    margin--left: $v;
-    margin--right: $v;
+    margin-left: $v;
+    margin-right: $v;
 }
 
 // --- Token-based utilities ---------------------------------------------------
@@ -74,7 +74,7 @@ $object_margin_map: (
 }
 
 // --- Numeric range utilities -------------------------------------------------
-@mixin generate-margin-range($min: 1, $max: 1000) {
+@mixin generate-margin-range($min: 0, $max: 1000) {
     @for $i from $min through $max {
         $val: q($i);
 
@@ -109,4 +109,4 @@ $object_margin_map: (
 
 // --- Generate everything -----------------------------------------------------
 @include generate-margin-tokens();
-@include generate-margin-range(1, 1000);
+@include generate-margin-range(0, 1000);
