@@ -1,0 +1,112 @@
+// ============================================================================
+// Layout | Margin
+// ============================================================================
+@use "sass:math";
+@use "../../dev" as *; // where q() is defined
+@use "../../variables" as *;
+
+// Token map (reusing same values as padding)
+$object_margin_map: (
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 20,
+    xl: 32
+) !default;
+
+// --- Low-level mixins --------------------------------------------------------
+@mixin margin-all($v) {
+    margin: $v;
+}
+@mixin margin-top($v) {
+    margin-top: $v;
+}
+@mixin margin-right($v) {
+    margin-right: $v;
+}
+@mixin margin-bottom($v) {
+    margin-bottom: $v;
+}
+@mixin margin-left($v) {
+    margin-left: $v;
+}
+@mixin margin-vertical($v) {
+    margin-top: $v;
+    margin-bottom: $v;
+}
+@mixin margin-horizontal($v) {
+    margin-left: $v;
+    margin-right: $v;
+}
+
+// --- Token-based utilities ---------------------------------------------------
+@mixin generate-margin-tokens($tokens: $object_margin_map) {
+    @each $name, $space in $tokens {
+        $val: q($space);
+
+        // all
+        .margin--#{$name} {
+            @include margin-all($val);
+        }
+
+        // sides
+        .margin--#{$name}_top {
+            @include margin-top($val);
+        }
+        .margin--#{$name}_right {
+            @include margin-right($val);
+        }
+        .margin--#{$name}_bottom {
+            @include margin-bottom($val);
+        }
+        .margin--#{$name}_left {
+            @include margin-left($val);
+        }
+
+        // axes
+        .margin--#{$name}_vertical {
+            @include margin-vertical($val);
+        }
+        .margin--#{$name}_horizontal {
+            @include margin-horizontal($val);
+        }
+    }
+}
+
+// --- Numeric range utilities -------------------------------------------------
+@mixin generate-margin-range($min: 1, $max: 1000) {
+    @for $i from $min through $max {
+        $val: q($i);
+
+        // all
+        .margin--#{$i} {
+            @include margin-all($val);
+        }
+
+        // sides
+        .margin--#{$i}_top {
+            @include margin-top($val);
+        }
+        .margin--#{$i}_right {
+            @include margin-right($val);
+        }
+        .margin--#{$i}_bottom {
+            @include margin-bottom($val);
+        }
+        .margin--#{$i}_left {
+            @include margin-left($val);
+        }
+
+        // axes
+        .margin--#{$i}_vertical {
+            @include margin-vertical($val);
+        }
+        .margin--#{$i}_horizontal {
+            @include margin-horizontal($val);
+        }
+    }
+}
+
+// --- Generate everything -----------------------------------------------------
+@include generate-margin-tokens();
+@include generate-margin-range(1, 1000);
