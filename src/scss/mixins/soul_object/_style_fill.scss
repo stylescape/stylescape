@@ -7,7 +7,7 @@
 /// @param {String} $key - The color token key
 ///
 @mixin object--fill($key) {
-    background-color: var(--color_#{$key});
+    background: var(--color_#{$key}) !important;
 }
 
 // Generate utility classes and emit CSS custom properties
@@ -20,7 +20,7 @@
     // Tinted fills using precomputed --color_*--XX variables
     @each $label, $amount in $tint-levels {
         .object--fill--#{$key}--#{$label} {
-            background-color: var(--color_#{$key}--#{$label});
+            background: var(--color_#{$key}--#{$label}) !important;
         }
     }
 }
