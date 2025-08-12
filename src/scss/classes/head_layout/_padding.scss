@@ -1,0 +1,86 @@
+////
+///
+/// Layout Mixins Module
+/// ===========================================================================
+///
+/// @group Layout
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+///
+
+@use "sass:map";
+@use "../../mixins/head_layout/padding" as *;
+@use "../../dev" as *;
+
+// ============================================================================
+// Padding Layout | Utility Classes (Map Based)
+// ============================================================================
+@each $name, $space in $object_padding_map {
+    $val: q($space);
+
+    // all
+    .padding--#{$name} {
+        @include padding($val);
+    }
+
+    // sides
+    .padding--#{$name}_top {
+        @include padding-top($val);
+    }
+    .padding--#{$name}_right {
+        @include padding--right($val);
+    }
+    .padding--#{$name}_bottom {
+        @include padding--bottom($val);
+    }
+    .padding--#{$name}_left {
+        @include padding--left($val);
+    }
+
+    // axes
+    .padding--#{$name}_vertical {
+        @include padding--vertical($val);
+    }
+    .padding--#{$name}_horizontal {
+        @include padding--horizontal($val);
+    }
+}
+
+// ============================================================================
+// Padding Layout | Utility Classes (Numeric)
+// ============================================================================
+@for $i from 0 through 250 {
+    $val: q($i);
+
+    // all
+    .padding--#{$i} {
+        @include padding($val);
+    }
+
+    // sides
+    .padding--#{$i}_top {
+        @include padding-top($val);
+    }
+    .padding--#{$i}_right {
+        @include padding--right($val);
+    }
+    .padding--#{$i}_bottom {
+        @include padding--bottom($val);
+    }
+    .padding--#{$i}_left {
+        @include padding--left($val);
+    }
+
+    // axes
+    .padding--#{$i}_vertical {
+        @include padding--vertical($val);
+    }
+    .padding--#{$i}_horizontal {
+        @include padding--horizontal($val);
+    }
+}
