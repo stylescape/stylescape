@@ -103,6 +103,12 @@ $hyperlink_transition: all 0.2s ease-in-out; // Smooth transition for link effec
         opacity: $hyperlink-hover-opacity;
         color: $hyperlink-hover-color;
     }
+
+    &::before:hover {
+        @include character--hyperlink--clean;
+        opacity: $hyperlink-hover-opacity;
+        color: $hyperlink-hover-color;
+    }
 }
 
 ///
@@ -118,6 +124,10 @@ $hyperlink_transition: all 0.2s ease-in-out; // Smooth transition for link effec
     color: $hyperlink-color;
     &.active {
         color: var(--color_state_active);
+
+        &::before {
+            color: var(--color_state_active);
+        }
     }
 }
 
