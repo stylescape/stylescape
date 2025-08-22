@@ -12,7 +12,7 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    outline: none;
+    // outline: none;
     width: baseline(4);
     height: baseline(4);
     flex-shrink: 0;
@@ -21,6 +21,20 @@
     position: relative;
     cursor: pointer;
     pointer-events: initial;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: q(-2);
+        left: q(-2);
+        bottom: q(-2);
+        right: q(-2);
+        // inset: q(-1);
+        border: q(1) solid var(--color_fill_primary);
+        border-radius: inherit; /* if you later add rounding */
+        pointer-events: none;
+        z-index: 0; /* below ::after */
+    }
 
     &:hover {
         background: hue_color("N2402");
