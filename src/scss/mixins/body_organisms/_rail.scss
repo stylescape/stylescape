@@ -40,6 +40,27 @@
 
     // Reset box sizing for accurate layout calculation
     @include sizing--border;
+
+    // Keep scrolling enabled, just hide the bar
+    -ms-overflow-style: none; // IE/Edge Legacy
+    scrollbar-width: none; // Firefox
+    &::-webkit-scrollbar {
+        // Chrome/Safari/Edge (Blink/WebKit)
+        width: 0;
+        height: 0;
+        display: none;
+    }
+
+    // 2) Placeholder — for @extend patterns
+    %scrollbar-hidden {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+        }
+    }
 }
 
 /// Utility class for scrollable rails
