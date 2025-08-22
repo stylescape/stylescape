@@ -6923,23 +6923,23 @@ body {
   --color_accent_tertiary--25: rgb(178.95, 212.75, 232.25);
   --color_accent_tertiary--50: rgb(196.5, 222.5, 237.5);
   --color_accent_tertiary--75: rgb(225.75, 238.75, 246.25);
-  --color_state_visited: #ffffff;
+  --color_state_visited: #87a2d6;
   --color_state_visited--25: rgb(177, 194.55, 228.35);
   --color_state_visited--50: rgb(195, 208.5, 234.5);
   --color_state_visited--75: rgb(225, 231.75, 244.75);
-  --color_state_focus: #ffffff;
+  --color_state_focus: #65aace;
   --color_state_focus--25: rgb(154.9, 199.75, 223.15);
   --color_state_focus--50: rgb(178, 212.5, 230.5);
   --color_state_focus--75: rgb(216.5, 233.75, 242.75);
-  --color_state_hover: #ffffff;
+  --color_state_hover: #acd2e9;
   --color_state_hover--25: rgb(201.05, 225.75, 240.7);
   --color_state_hover--50: rgb(213.5, 232.5, 244);
   --color_state_hover--75: rgb(234.25, 243.75, 249.5);
-  --color_state_active: #ffffff;
+  --color_state_active: #3696c1;
   --color_state_active--25: rgb(124.35, 186.75, 214.7);
   --color_state_active--50: rgb(154.5, 202.5, 224);
   --color_state_active--75: rgb(204.75, 228.75, 239.5);
-  --color_state_link: #ffffff;
+  --color_state_link: #65aace;
   --color_state_link--25: rgb(154.9, 199.75, 223.15);
   --color_state_link--50: rgb(178, 212.5, 230.5);
   --color_state_link--75: rgb(216.5, 233.75, 242.75);
@@ -6947,7 +6947,7 @@ body {
   --color_state_enabled--25: rgb(89.25, 89.25, 89.25);
   --color_state_enabled--50: rgb(127.5, 127.5, 127.5);
   --color_state_enabled--75: rgb(191.25, 191.25, 191.25);
-  --color_state_disabled: #ffffff;
+  --color_state_disabled: #a0a0a0;
   --color_state_disabled--25: rgb(193.25, 193.25, 193.25);
   --color_state_disabled--50: rgb(207.5, 207.5, 207.5);
   --color_state_disabled--75: rgb(231.25, 231.25, 231.25);
@@ -6955,15 +6955,15 @@ body {
   --color_state_current--25: rgb(89.25, 89.25, 89.25);
   --color_state_current--50: rgb(127.5, 127.5, 127.5);
   --color_state_current--75: rgb(191.25, 191.25, 191.25);
-  --color_state_checked: #ffffff;
+  --color_state_checked: #87a2d6;
   --color_state_checked--25: rgb(177, 194.55, 228.35);
   --color_state_checked--50: rgb(195, 208.5, 234.5);
   --color_state_checked--75: rgb(225, 231.75, 244.75);
-  --color_state_invalid: #ffffff;
+  --color_state_invalid: #b994c7;
   --color_state_invalid--25: rgb(209.5, 185.45, 218.6);
   --color_state_invalid--50: rgb(220, 201.5, 227);
   --color_state_invalid--75: rgb(237.5, 228.25, 241);
-  --color_state_muted: #ffffff;
+  --color_state_muted: #a0a0a0;
   --color_state_muted--25: rgb(193.25, 193.25, 193.25);
   --color_state_muted--50: rgb(207.5, 207.5, 207.5);
   --color_state_muted--75: rgb(231.25, 231.25, 231.25);
@@ -13551,7 +13551,6 @@ input[type=checkbox] {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  outline: none;
   width: 1.25rem;
   height: 1.25rem;
   flex-shrink: 0;
@@ -13559,6 +13558,18 @@ input[type=checkbox] {
   position: relative;
   cursor: pointer;
   pointer-events: initial;
+}
+input[type=checkbox]::before {
+  content: "";
+  position: absolute;
+  top: -0.0625rem;
+  left: -0.0625rem;
+  bottom: -0.0625rem;
+  right: -0.0625rem;
+  border: 0.0625rem solid var(--color_fill_primary);
+  border-radius: inherit; /* if you later add rounding */
+  pointer-events: none;
+  z-index: 0; /* below ::after */
 }
 input[type=checkbox]:hover {
   background: #acd2e9;
@@ -17038,7 +17049,7 @@ table > caption {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  border: 0.0625rem solid var(--color_text_primary--50);
+  border: 0.0625rem solid var(--color_text_primary);
 }
 .ribbon_panel .ribbon_panel_header {
   font-weight: 545;
@@ -17076,6 +17087,7 @@ table > caption {
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   list-style-type: none;
+  padding: 0;
 }
 .ribbon_panel .ribbon_panel_section.ribbon_panel_icon_grid {
   grid-template-columns: repeat(5, 1fr);
@@ -17181,8 +17193,14 @@ details {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
+.rail::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
 .sidebar--left {
   position: relative;
   display: flex;
@@ -17966,7 +17984,6 @@ details {
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   overflow: hidden;
-  background: var(--color_fill_primary);
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: "top_left      top_center       top_right" "middle_left   middle_center    middle_right" "bottom_left   bottom_center    bottom_right";
@@ -37636,6 +37653,7 @@ body {
   text-emphasis: none;
   -webkit-text-emphasis: none;
   text-decoration: none;
+  background: var(--color_fill_primary);
 }
 
 html {
