@@ -21,6 +21,10 @@ export class ActiveLinkHighlighter {
                 return
             }
 
+            if (!link.hasAttribute("href") || !link.getAttribute("href")) {
+                return
+            }
+
             const linkPath = this.normalizeUrl(link.href)
             if (linkPath === currentPath) {
                 link.classList.add(this.activeClass)
