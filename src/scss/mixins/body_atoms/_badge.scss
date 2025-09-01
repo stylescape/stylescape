@@ -16,6 +16,9 @@
 // Use
 // ============================================================================
 
+@use "sass:map";
+@use "sass:list";
+
 @use "../../dev" as *;
 @use "../../variables" as *;
 
@@ -24,26 +27,58 @@
 @use "../soul_type" as *;
 
 // ============================================================================
-// Atom | Badge
+// Maps (match button.scss structure: (height, font-size-key))
 // ============================================================================
 
-/// Base badge styles
+$badge_size_map: (
+    "xs": (
+        2,
+        "01"
+    ),
+    "sm": (
+        3,
+        "02"
+    ),
+    "md": (
+        4,
+        "03"
+    ),
+    "lg": (
+        5,
+        "04"
+    ),
+    "xl": (
+        6,
+        "05"
+    )
+) !default;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base badge styles (no size here; purely visual baseline)
 @mixin badge--base {
-    display: inline-block;
-    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: var(--color_fill_primary);
     background-color: var(--color_text_primary);
     white-space: nowrap;
-    vertical-align: baseline;
+    vertical-align: middle;
     text-align: center;
     user-select: none;
-    padding: q(4) q(8);
+    padding: baseline(1);
+    cursor: auto;
+    pointer-events: none;
     @include sizing--border;
+
     // Empty badges collapse automatically
     &:empty {
         display: none;
     }
-    /// Color variants
+
+    // Color variants
     &.accent {
         @include object--fill(accent_primary);
     }
@@ -76,24 +111,113 @@
     &.pill {
         @include object--corner--pill;
     }
+}
 
-    /// Size Modifiers
-    &.xs {
-        @include font--size("02");
-    }
-    &.sm {
-        @include font--size("03");
-    }
-    &.md {
-        @include font--size("04");
-    }
-    &.lg {
-        @include font--size("05");
-    }
-    &.xl {
-        @include font--size("06");
+/// Height sizing via baseline units (mirrors button--size)
+@mixin badge--size($val) {
+    $size: baseline($val);
+    height: $size;
+    min-height: $size;
+    max-height: $size;
+}
+
+/// Full badge style preset including base + size + type scale
+@mixin badge($height, $font-size-key) {
+    @include badge--base;
+    @include badge--size($height);
+    @include font--size($font-size-key);
+}
+
+// ============================================================================
+// Classes
+// ============================================================================
+
+.badge {
+    // Default to md to keep a predictable baseline size
+    @include badge(
+        list.nth(map.get($badge_size_map, "md"), 1),
+        list.nth(map.get($badge_size_map, "md"), 2)
+    );
+
+    // Size modifiers generated from the shared map
+    @each $name, $pair in $badge_size_map {
+        &.#{$name} {
+            @include badge(list.nth($pair, 1), list.nth($pair, 2));
+        }
     }
 }
+
+// // ============================================================================
+// // Atom | Badge
+// // ============================================================================
+
+// /// Base badge styles
+// @mixin badge--base {
+//     display: inline-block;
+//     line-height: 1;
+//     color: var(--color_fill_primary);
+//     background-color: var(--color_text_primary);
+//     white-space: nowrap;
+//     vertical-align: baseline;
+//     text-align: center;
+//     user-select: none;
+//     padding: q(4) q(8);
+//     @include sizing--border;
+//     // Empty badges collapse automatically
+//     &:empty {
+//         display: none;
+//     }
+//     /// Color variants
+//     &.accent {
+//         @include object--fill(accent_primary);
+//     }
+
+//     &.info {
+//         @include object--fill(log_info);
+//     }
+
+//     &.success {
+//         @include object--fill(log_success);
+//     }
+
+//     &.warning {
+//         @include object--fill(log_warning);
+//     }
+
+//     &.error {
+//         @include object--fill(log_error);
+//     }
+
+//     // Shape Modifiers
+//     &.squared {
+//         @include object--corner--squared;
+//     }
+
+//     &.rounded {
+//         @include object--corner--rounded;
+//     }
+
+//     &.pill {
+//         @include object--corner--pill;
+//     }
+
+//     /// Size Modifiers
+//     &.xs {
+//         @include font--size("02");
+//     }
+//     &.sm {
+//         @include font--size("03");
+//     }
+//     &.md {
+//         @include font--size("04");
+//     }
+//     &.lg {
+//         @include font--size("05");
+//     }
+//     &.xl {
+//         @include font--size("06");
+//     }
+// }
 
 // .alert,
 // .badge,
