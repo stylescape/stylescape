@@ -1,0 +1,19 @@
+@use "sass:map";
+@use "sass:color";
+@use "../../variables" as *;
+@use "../../mixins" as *;
+
+// Generate utility classes and emit CSS custom properties
+@each $key, $value in $color_theme {
+    // Solid fill class
+    .object--fill--#{$key} {
+        @include object--fill($key);
+    }
+
+    // Tinted fills using precomputed --color_*--XX variables
+    @each $label, $amount in $tint-levels {
+        .object--fill--#{$key}--#{$label} {
+            background: var(--color_#{$key}--#{$label});
+        }
+    }
+}
