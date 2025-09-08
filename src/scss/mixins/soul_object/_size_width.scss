@@ -12,6 +12,135 @@
 // ///
 // ////
 
+@use "sass:map";
+@use "../../variables" as *;
+@use "../../dev" as *;
+
+// ============================================================================
+// Height Utilities
+// ============================================================================
+
+// Height Tokens Map
+$object_width_map: (
+    xs: 10,
+    sm: 15,
+    md: 20,
+    lg: 30,
+    xl: 40
+) !default;
+
+// ============================================================================
+
+///
+/// Resolves a width value from a number or a map token key.
+///
+@function resolve-width($value) {
+    @if map.has-key($object_width_map, $value) {
+        @return map.get($object_width_map, $value);
+    }
+    @return $value;
+}
+
+// ============================================================================
+
+///
+/// Sets a width value for an element.
+///
+/// @param {Number | String} $value - The width value to apply (in q units).
+/// @example scss - Set width to 64q
+///   @include object--width(64);
+///
+@mixin object--width($value) {
+    width: q(resolve-width($value));
+}
+
+///
+/// Sets a minimum width value for an element.
+///
+/// @param {Number | String} $value - The minimum width value to apply (in q units).
+/// @example scss - Set min-width to 32q
+///   @include object--width--min(32);
+///
+@mixin object--width--min($value) {
+    min-width: q(resolve-width($value));
+}
+
+///
+/// Sets a maximum width value for an element.
+///
+/// @param {Number | String} $value - The maximum width value to apply (in q units).
+/// @example scss - Set max-width to 96q
+///   @include object--width--max(96);
+///
+@mixin object--width--max($value) {
+    max-width: q(resolve-width($value));
+}
+
+///
+/// Sets a fixed width (both width and max-width).
+///
+/// @param {Number | String} $value - The fixed width value (in q units).
+/// @example scss - Set fixed width to 48q
+///   @include object--width--fixed(48);
+///
+@mixin object--width--fixed($value) {
+    @include object--width($value);
+    @include object--width--min($value);
+    @include object--width--max($value);
+}
+
+// ============================================================================
+
+/// Generate width utility classes from map
+/// @group ObjectSize
+@each $key, $val in $object_width_map {
+    .object--width--#{$key} {
+        width: q($val);
+    }
+
+    .object--width--min--#{$key} {
+        min-width: q($val);
+    }
+
+    .object--width--max--#{$key} {
+        max-width: q($val);
+    }
+
+    .object--width--fixed--#{$key} {
+        width: q($val);
+        max-width: q($val);
+    }
+}
+
+// Utility Classes
+// ----------------------------------------------------------------------------
+
+// /// Utility class for setting the width of an element to full-screen (100vh).
+.object--width--full_screen {
+    width: 100vh;
+
+    &--min {
+        min-width: 100vh;
+    }
+
+    &--max {
+        max-width: 100vh;
+    }
+}
+
+// /// Utility class for setting the width of an element to full-width (100%).
+.object--width--full_width {
+    width: 100%;
+
+    &--min {
+        min-width: 100%;
+    }
+
+    &--max {
+        max-width: 100%;
+    }
+}
+
 // ============================================================================
 // Mixins
 // ============================================================================

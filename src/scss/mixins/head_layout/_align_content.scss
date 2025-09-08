@@ -1,0 +1,49 @@
+////
+///
+/// Layout Mixins Module
+/// ===========================================================================
+///
+/// @group Layout
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+// ============================================================================
+// Layout | Justify
+// ============================================================================
+@use "../../variables" as *;
+
+/// Mixin to set `align-content` property.
+/// @param {String} $value - The value for `align-content`.
+@mixin align_content($value) {
+    align-content: $value;
+}
+
+$align-content-values: (
+    normal,
+    start,
+    end,
+    center,
+    stretch,
+    space-between,
+    space-around,
+    space-evenly,
+    flex-start,
+    flex-end,
+    baseline
+);
+
+// Loop to generate classes
+@each $val in $align-content-values {
+    .align_content--#{$val} {
+        @include align_content($val);
+    }
+}

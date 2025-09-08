@@ -1,0 +1,28 @@
+@use "../../dev" as *;
+
+@use "../head_layout" as *;
+@use "../head_position" as *;
+@use "frame_base" as *;
+@use "../soul_object" as *;
+
+// ============================================================================
+// Layout
+// ============================================================================
+@mixin frame_main__area__background {
+    grid-area: 1 / 1 / -1 / -1; // spans full grid
+    z-index: -9000; // sit behind all content
+    width: 100%;
+    height: 100%;
+    pointer-events: none; // don't block clicks
+    overflow: hidden; // crop overflowing image
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // key: scale & crop proportionally
+        object-position: center; // center the crop
+        display: block; // remove inline gap
+    }
+}
+.frame_main__area--background {
+    @include frame_main__area__background;
+}

@@ -160,6 +160,24 @@
     // flex-shrink: 0;   /* do not shrink - initial value: 1 */
 }
 
+.flex--keep {
+    @include flex--keep;
+}
+
+/// Mixin for enabling flex-grow and flex-shrink, making the item dynamic.
+@mixin flex--fill {
+    @include flex--grow(1); // do grow
+    @include flex--shrink(1); // do shrink
+    @include flex--basis(auto); // auto basis-property
+    // flex-grow: 1;
+    // flex-shrink: 1;
+    //  flex-basis: auto;
+}
+
+.flex--fill {
+    @include flex--fill;
+}
+
 // ============================================================================
 // Flex | Align Self
 // ============================================================================
