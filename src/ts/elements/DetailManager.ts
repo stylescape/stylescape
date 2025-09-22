@@ -2,65 +2,57 @@
 // Details
 // ============================================================================
 
+// ============================================================================
+// DetailManager
+// ============================================================================
+
 /**
  * Class for managing <details> elements.
  *
- * Supports two modes:
- * - Accordion mode (default): only one <details> can stay open at a time.
- * - Free mode: multiple <details> can stay open.
- *
- * Usage:
- * ```ts
- * // Accordion mode
- * new DetailManager()
- *
- * // Free mode
- * new DetailManager({ singleOpen: false })
- * ```
+ * Behavior:
+ * - Accordion mode: only one <details> can stay open at a time.
+ * - Clicking outside any <details> closes all of them.
  */
 export class DetailManager {
     private details: NodeListOf<HTMLDetailsElement>
-    private singleOpen: boolean
     private boundHandler: (event: Event) => void
 
     /**
-     * Create a new DetailManager.
+     * Initializes the DetailManager.
+     * Selects all <details> elements and attaches a single document-level listener.
      *
-     * @param options - Configuration object.
-     * @param options.selector - CSS selector for <details> elements (default: "details").
-     * @param options.singleOpen - Whether only one <details> can stay open (default: true).
+     * @param selector - CSS selector for <details> elements (default: "details").
      */
-    constructor(options: { selector?: string; singleOpen?: boolean } = {}) {
-        this.details = document.querySelectorAll<HTMLDetailsElement>(
-            options.selector ?? "details",
-        )
-        this.singleOpen = options.singleOpen ?? true
+    constructor(selector: string = "details") {
+        this.details = document.querySelectorAll<HTMLDetailsElement>(selector)
         this.boundHandler = this.handleClick.bind(this)
 
         document.addEventListener("click", this.boundHandler)
     }
 
     /**
-     * Handles clicks and closes other <details> when in accordion mode.
+     * Handles clicks:
+     * - If clicking a <summary>: closes all others, keeps only that one open.
+     * - If clicking outside any <details>: closes all.
      */
     private handleClick(event: Event): void {
         const target = event.target as HTMLElement
         const summary = target.closest("summary")
         const parent = summary?.parentElement as HTMLDetailsElement | null
 
-        if (!parent || parent.tagName !== "DETAILS") return
-
-        if (this.singleOpen) {
+        if (parent && parent.tagName === "DETAILS") {
+            // Clicked a summary → close others
             this.details.forEach((detail) => {
-                if (detail !== parent) {
-                    detail.removeAttribute("open")
-                }
+                if (detail !== parent) detail.removeAttribute("open")
             })
+        } else {
+            // Clicked outside → close all
+            this.details.forEach((detail) => detail.removeAttribute("open"))
         }
     }
 
     /**
-     * Toggle a specific <details> element open or closed.
+     * Toggles a specific <details> element open or closed.
      */
     toggle(detail: HTMLDetailsElement, open: boolean): void {
         if (open) detail.setAttribute("open", "")
@@ -68,7 +60,7 @@ export class DetailManager {
     }
 
     /**
-     * Remove the global event listener.
+     * Cleans up the event listener (useful for SPA cleanup).
      */
     destroy(): void {
         document.removeEventListener("click", this.boundHandler)
