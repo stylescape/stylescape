@@ -2,6 +2,79 @@
 // Details
 // ============================================================================
 
+/**
+ * Class for managing <details> elements.
+ *
+ * Supports two modes:
+ * - Accordion mode (default): only one <details> can stay open at a time.
+ * - Free mode: multiple <details> can stay open.
+ *
+ * Usage:
+ * ```ts
+ * // Accordion mode
+ * new DetailManager()
+ *
+ * // Free mode
+ * new DetailManager({ singleOpen: false })
+ * ```
+ */
+export class DetailManager {
+    private details: NodeListOf<HTMLDetailsElement>
+    private singleOpen: boolean
+    private boundHandler: (event: Event) => void
+
+    /**
+     * Create a new DetailManager.
+     *
+     * @param options - Configuration object.
+     * @param options.selector - CSS selector for <details> elements (default: "details").
+     * @param options.singleOpen - Whether only one <details> can stay open (default: true).
+     */
+    constructor(options: { selector?: string; singleOpen?: boolean } = {}) {
+        this.details = document.querySelectorAll<HTMLDetailsElement>(
+            options.selector ?? "details",
+        )
+        this.singleOpen = options.singleOpen ?? true
+        this.boundHandler = this.handleClick.bind(this)
+
+        document.addEventListener("click", this.boundHandler)
+    }
+
+    /**
+     * Handles clicks and closes other <details> when in accordion mode.
+     */
+    private handleClick(event: Event): void {
+        const target = event.target as HTMLElement
+        const summary = target.closest("summary")
+        const parent = summary?.parentElement as HTMLDetailsElement | null
+
+        if (!parent || parent.tagName !== "DETAILS") return
+
+        if (this.singleOpen) {
+            this.details.forEach((detail) => {
+                if (detail !== parent) {
+                    detail.removeAttribute("open")
+                }
+            })
+        }
+    }
+
+    /**
+     * Toggle a specific <details> element open or closed.
+     */
+    toggle(detail: HTMLDetailsElement, open: boolean): void {
+        if (open) detail.setAttribute("open", "")
+        else detail.removeAttribute("open")
+    }
+
+    /**
+     * Remove the global event listener.
+     */
+    destroy(): void {
+        document.removeEventListener("click", this.boundHandler)
+    }
+}
+
 // /**
 //  * Class responsible for managing <details> elements in a document.
 //  * It ensures that only one <details> element can be open at a time.
@@ -70,7 +143,7 @@
 //     }
 // }
 
-// Usage
+// // Usage
 // const detailsManager = new DetailManager();
 // Toggle a specific detail element
 // const specificDetail = document.querySelector("details#specific") as HTMLElement;

@@ -3,6 +3,7 @@ import {
     AsideHandler,
     ClipboardHelper,
     CollapsibleTableHandler,
+    DetailManager,
     DropdownHandler,
     ExclusiveDetails,
     GridManager,
@@ -35,6 +36,8 @@ export function initializeStylescape(): void {
         tocBuilder.buildAndAppendTOC()
 
         new ExclusiveDetails(".ribbon_menu_button")
+
+        new DetailManager()
 
         const current = location.pathname.split("/").pop()
         const activeLink = document.querySelector(`a[href$="${current}"]`)

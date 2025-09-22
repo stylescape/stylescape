@@ -1,6 +1,7 @@
 // 1. ELEMENT HANDLERS
 export { AsideHandler } from "./elements/AsideHandler.js"
 export { CollapsibleTableHandler } from "./elements/CollapsibleTableHandler.js"
+export { DetailManager } from "./elements/DetailManager.js"
 export { DropdownHandler } from "./elements/DropdownHandler.js"
 export { ExclusiveDetails } from "./elements/ExclusiveDetails.js"
 export { PasswordToggleManager } from "./elements/PasswordToggleManager.js"
