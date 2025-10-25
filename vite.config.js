@@ -36,7 +36,7 @@ async function runKist(server) {
     if (now - lastBuild < 500) return;
     lastBuild = now;
 
-    console.log('[Kist] 🛠️ Running build...');
+    console.log('[Kist] Running build...');
     try {
         const { stdout, stderr } = await execAsync('npx kist --config ./kist.dev.yml');
         if (stdout) console.log('[Kist] stdout:', stdout);
