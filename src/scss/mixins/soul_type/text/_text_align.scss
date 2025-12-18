@@ -1,6 +1,6 @@
 ////
 ///
-/// Deafult Paragraph Typography Mixins Module
+/// Default Paragraph Typography Mixins Module
 /// ===========================================================================
 /// Provides reusable mixins for text alignment and centering.
 ///
@@ -18,52 +18,72 @@
 // ============================================================================
 
 ///
-/// Align text to the left.
+/// Generic text alignment mixin.
+/// @param {String} $align - Text alignment value (left, center, right, justify)
 /// @example
 ///   @include text-align(left);
+///   @include text-align(center);
+///
+@mixin text-align($align: left) {
+    text-align: $align !important;
+}
+
+///
+/// Align text to the left.
+/// @example
+///   @include text_align--left;
 ///
 @mixin text_align--left {
     text-align: left !important;
     text-align-last: left !important;
-    text-justify: inter-word; // Optional for better justification}
 }
 
 ///
 /// Align text to the center.
 /// @example
-///   @include text-align-center;
+///   @include text_align--center;
 ///
 @mixin text_align--center {
     text-align: center !important;
     text-align-last: center !important;
-    text-justify: inter-word; // Optional for better justification}
 }
+
 ///
 /// Align text to the right.
 /// @example
-///   @include text-align-right;
+///   @include text_align--right;
 ///
 @mixin text_align--right {
     text-align: right !important;
     text-align-last: right !important;
-    text-justify: inter-word; // Optional for better justification}
 }
 
 ///
 /// Justify text alignment.
 /// @example
-///   @include text-align-justify;
+///   @include text_align--justify;
 ///
 @mixin text_align--justify {
     text-align: justify !important;
     text-align-last: justify !important;
-    text-justify: inter-word; // Optional for better justification}
+    text-justify: inter-word;
 }
 
+///
+/// Justify text alignment with left-to-right direction.
+/// @example
+///   @include text_align--justify--left;
+///
 @mixin text_align--justify--left {
     @include text_align--justify;
+    direction: ltr;
 }
 
+///
+/// Justify text alignment with right-to-left direction.
+/// @example
+///   @include text_align--justify--right;
+///
 @mixin text_align--justify--right {
     @include text_align--justify;
     direction: rtl;
@@ -75,8 +95,8 @@
 ///
 /// @param {Boolean} $absolute [false] - Whether to use absolute positioning.
 /// @example
-///   @include text-center();         // Flex center
-///   @include text-center(true);     // Flex center with absolute fill
+///   @include text_align--center_flex();
+///   @include text_align--center_flex(true);
 ///
 @mixin text_align--center_flex($absolute: false) {
     @if $absolute {
@@ -89,8 +109,6 @@
     justify-content: center !important;
     align-items: center !important;
     text-align: center !important;
-    text-align-last: center !important;
-    text-justify: inter-word; // Optional for better justification}
 }
 
 // ============================================================================
