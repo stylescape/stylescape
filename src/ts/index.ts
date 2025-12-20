@@ -22,6 +22,7 @@ export { ScrollPageManager } from "./scroll/ScrollPageManager.js"
 
 // 5. Main initializer
 export * from "./init/index.js"
+export { initializeStylescape } from "./init/index.js"
 
 // initializeStylescape()
 

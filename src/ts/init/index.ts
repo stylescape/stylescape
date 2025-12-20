@@ -1,19 +1,17 @@
-import {
-    ActiveLinkHighlighter,
-    AsideHandler,
-    ClipboardHelper,
-    CollapsibleTableHandler,
-    DetailManager,
-    DropdownHandler,
-    ExclusiveDetails,
-    GridManager,
-    ImageCompareSlider,
-    PasswordToggleManager,
-    ScrollElementManager,
-    ScrollPageManager,
-    TableOfContentsBuilder,
-    ThemeToggler,
-} from "../index.js"
+import { ActiveLinkHighlighter } from "../content/ActiveLinkHighlighter.js"
+import { TableOfContentsBuilder } from "../content/TableOfContentsBuilder.js"
+import { AsideHandler } from "../elements/AsideHandler.js"
+import { CollapsibleTableHandler } from "../elements/CollapsibleTableHandler.js"
+import { DetailManager } from "../elements/DetailManager.js"
+import { DropdownHandler } from "../elements/DropdownHandler.js"
+import { ExclusiveDetails } from "../elements/ExclusiveDetails.js"
+import { PasswordToggleManager } from "../elements/PasswordToggleManager.js"
+import { ImageCompareSlider } from "../media/ImageCompareSlider.js"
+import { ScrollElementManager } from "../scroll/ScrollElementManager.js"
+import { ScrollPageManager } from "../scroll/ScrollPageManager.js"
+import { ClipboardHelper } from "../utilities/ClipboardHelper.js"
+import { GridManager } from "../utilities/GridManager.js"
+import { ThemeToggler } from "../utilities/ThemeToggler.js"
 
 export function initializeStylescape(): void {
     // Expose helper(s) globally if needed
