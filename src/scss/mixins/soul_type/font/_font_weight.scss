@@ -86,10 +86,10 @@ $font_width_max: 500 !default; // Maximum font width
 /// @param {Number} $width - The width to be applied (default: 400).
 ///
 @mixin font--weight($weight, $width: $font_width_default) {
-    font-weight: $weight;
-    font-variation-settings:
-        "wght" $weight,
-        "wdth" $width;
+  font-weight: $weight;
+  font-variation-settings:
+    "wght" $weight,
+    "wdth" $width;
 }
 
 // Mixins
@@ -100,31 +100,31 @@ $font_width_max: 500 !default; // Maximum font width
 ///
 /// These mixins apply specific font weights based on the values generated in the loop.
 @mixin font--weight_100 {
-    @include font--weight(map.get($font_weight_map, "100"));
+  @include font--weight(map.get($font_weight_map, "100"));
 }
 @mixin font--weight_200 {
-    @include font--weight(map.get($font_weight_map, "200"));
+  @include font--weight(map.get($font_weight_map, "200"));
 }
 @mixin font--weight_300 {
-    @include font--weight(map.get($font_weight_map, "300"));
+  @include font--weight(map.get($font_weight_map, "300"));
 }
 @mixin font--weight_400 {
-    @include font--weight(map.get($font_weight_map, "400"));
+  @include font--weight(map.get($font_weight_map, "400"));
 }
 @mixin font--weight_500 {
-    @include font--weight(map.get($font_weight_map, "500"));
+  @include font--weight(map.get($font_weight_map, "500"));
 }
 @mixin font--weight_600 {
-    @include font--weight(map.get($font_weight_map, "600"));
+  @include font--weight(map.get($font_weight_map, "600"));
 }
 @mixin font--weight_700 {
-    @include font--weight(map.get($font_weight_map, "700"));
+  @include font--weight(map.get($font_weight_map, "700"));
 }
 @mixin font--weight_800 {
-    @include font--weight(map.get($font_weight_map, "800"));
+  @include font--weight(map.get($font_weight_map, "800"));
 }
 @mixin font--weight_900 {
-    @include font--weight(map.get($font_weight_map, "900"));
+  @include font--weight(map.get($font_weight_map, "900"));
 }
 
 // ============================================================================
@@ -148,25 +148,29 @@ $font_weight_map: () !default;
 
 /// Populates the global `$font_weight_map` variable.
 @mixin generate_font--weight_map() {
-    $map: ();
-    @for $i from 1 through $font_weight_steps {
-        $weight: $font_weight_min + ($font_weight_step_size * $i);
-        $weight: if($weight > $font_weight_max, $font_weight_max, $weight);
-        $key: "#{$i}00";
-        $map: map.merge(
-            $map,
-            (
-                $key: $weight
-            )
-        );
+  $map: ();
+  @for $i from 1 through $font_weight_steps {
+    $weight: $font_weight_min + ($font_weight_step_size * $i);
+    $weight: if(
+      condition: $weight > $font_weight_max,
+      if-true: $font_weight_max,
+      if-false: $weight,
+    );
+    $key: "#{$i}00";
+    $map: map.merge(
+      $map,
+      (
+        $key: $weight,
+      )
+    );
 
-        // Exit loop manually by breaking max
-        @if $weight == $font_weight_max {
-            $i: $font_weight_steps + 1; // force loop end
-        }
+    // Exit loop manually by breaking max
+    @if $weight == $font_weight_max {
+      $i: $font_weight_steps + 1; // force loop end
     }
+  }
 
-    $font_weight_map: $map !global;
+  $font_weight_map: $map !global;
 }
 
 // $font_weight_map: generate_font--weight_map();
@@ -177,11 +181,11 @@ $font_weight_map: () !default;
 
 /// Generate all `.font--weight_xxx` utility classes.
 @mixin generate_font--weight_classes() {
-    @each $key, $val in $font_weight_map {
-        .font--weight_#{$key} {
-            @include font--weight($val, 400);
-        }
+  @each $key, $val in $font_weight_map {
+    .font--weight_#{$key} {
+      @include font--weight($val, 400);
     }
+  }
 }
 
 @include generate_font--weight_classes();
@@ -227,5 +231,5 @@ $font_weight_map: () !default;
 ///
 /// This ensures that the entire document inherits a default font weight.
 html {
-    @include font--weight_400;
+  @include font--weight_400;
 }
