@@ -50,11 +50,12 @@ $tint-levels: (
 
 $theme_mode: "light" !default;
 
-$color_theme: if(
-  condition: $theme_mode == "dark",
-  if-true: $color_system_dark,
-  if-false: $color_system_light,
-);
+$color_theme: null;
+@if $theme_mode == "dark" {
+  $color_theme: $color_system_dark;
+} @else {
+  $color_theme: $color_system_light;
+}
 
 // :root {
 //     @each $key, $value in $color_system_light {

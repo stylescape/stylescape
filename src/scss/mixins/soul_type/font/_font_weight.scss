@@ -151,11 +151,9 @@ $font_weight_map: () !default;
   $map: ();
   @for $i from 1 through $font_weight_steps {
     $weight: $font_weight_min + ($font_weight_step_size * $i);
-    $weight: if(
-      condition: $weight > $font_weight_max,
-      if-true: $font_weight_max,
-      if-false: $weight,
-    );
+    @if $weight > $font_weight_max {
+      $weight: $font_weight_max;
+    }
     $key: "#{$i}00";
     $map: map.merge(
       $map,
