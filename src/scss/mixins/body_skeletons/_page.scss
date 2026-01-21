@@ -17,8 +17,8 @@
 // Use
 // ============================================================================
 
-@use '../../dev' as *;
-@use '../../variables' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
 
 // ============================================================================
 // Mixins
@@ -31,9 +31,9 @@
     display: grid;
     grid-template-rows: $header-height 1fr $footer-height;
     grid-template-areas:
-        'header'
-        'main'
-        'footer';
+        "header"
+        "main"
+        "footer";
     min-height: 100vh;
     min-height: 100dvh;
 }
@@ -43,7 +43,7 @@
     @include page--base($header-height, auto);
 
     > header,
-    > [role='banner'] {
+    > [role="banner"] {
         grid-area: header;
         position: sticky;
         top: 0;
@@ -61,10 +61,10 @@
 
     @if $sidebar-position == left {
         grid-template-columns: $sidebar-width 1fr;
-        grid-template-areas: 'sidebar main';
+        grid-template-areas: "sidebar main";
     } @else {
         grid-template-columns: 1fr $sidebar-width;
-        grid-template-areas: 'main sidebar';
+        grid-template-areas: "main sidebar";
     }
 }
 
@@ -76,8 +76,8 @@
     grid-template-rows: $header-height 1fr;
     grid-template-columns: $sidebar-width 1fr;
     grid-template-areas:
-        'header header'
-        'sidebar main';
+        "header header"
+        "sidebar main";
     min-height: 100vh;
     min-height: 100dvh;
 }

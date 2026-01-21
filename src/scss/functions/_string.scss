@@ -17,9 +17,9 @@
 // Use
 // ============================================================================
 
-@use 'sass:string';
-@use 'sass:list';
-@use 'sass:meta';
+@use "sass:string";
+@use "sass:list";
+@use "sass:meta";
 
 // ============================================================================
 // Functions
@@ -30,7 +30,7 @@
 /// @param {String} $search - Substring to find
 /// @param {String} $replace [''] - Replacement string
 /// @return {String} - Modified string
-@function str-replace($string, $search, $replace: '') {
+@function str-replace($string, $search, $replace: "") {
     $index: string.index($string, $search);
 
     @if $index {
@@ -49,8 +49,8 @@
 /// @param {String} $string - Original string
 /// @return {String} - Kebab-case string
 @function to-kebab-case($string) {
-    $result: '';
-    $chars: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $result: "";
+    $chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     @for $i from 1 through string.length($string) {
         $char: string.slice($string, $i, $i);
@@ -58,11 +58,11 @@
 
         @if $index {
             @if $i > 1 {
-                $result: $result + '-';
+                $result: $result + "-";
             }
             $result: $result + string.to-lower-case($char);
-        } @else if $char == ' ' or $char == '_' {
-            $result: $result + '-';
+        } @else if $char == " " or $char == "_" {
+            $result: $result + "-";
         } @else {
             $result: $result + $char;
         }
@@ -122,12 +122,12 @@
 /// @return {String} - Trimmed string
 @function str-trim($string) {
     // Remove leading whitespace
-    @while string.slice($string, 1, 1) == ' ' {
+    @while string.slice($string, 1, 1) == " " {
         $string: string.slice($string, 2);
     }
 
     // Remove trailing whitespace
-    @while string.slice($string, string.length($string)) == ' ' {
+    @while string.slice($string, string.length($string)) == " " {
         $string: string.slice($string, 1, string.length($string) - 1);
     }
 

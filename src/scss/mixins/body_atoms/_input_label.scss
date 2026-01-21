@@ -2,28 +2,28 @@
 // Atoms | Labels
 // ============================================================================
 
-@use 'sass:map';
-@use 'sass:list';
+@use "sass:map";
+@use "sass:list";
 
-@use '../../dev' as *;
-@use '../../variables' as *;
-@use '../soul_type' as *;
-@use '../soul_object' as *;
-@use '../head_layout' as *;
+@use "../../dev" as *;
+@use "../../variables" as *;
+@use "../soul_type" as *;
+@use "../soul_object" as *;
+@use "../head_layout" as *;
 
 /// Unified label styling for both `<label>` elements and `.label` classes.
 /// Size map for label styles
 $label-size-map: (
-    'sm': (
-        '02',
+    "sm": (
+        "02",
         0,
     ),
-    'md': (
-        '03',
+    "md": (
+        "03",
         1,
     ),
-    'lg': (
-        '04',
+    "lg": (
+        "04",
         2,
     ),
 ) !default;
@@ -33,7 +33,7 @@ $label-size-map: (
 ///
 /// @param {String} $size ['m'] - Size key: 's', 'm', or 'l'.
 ///
-@mixin label--base($size: 'md') {
+@mixin label--base($size: "md") {
     @include reset_bleed;
 
     $font-size: list.nth(map.get($label-size-map, $size), 1);
@@ -71,16 +71,16 @@ label {
 }
 
 .label--sm {
-    @include label--base('sm');
+    @include label--base("sm");
     @include object--height--fixed(sm);
 }
 
 .label--md {
-    @include label--base('md');
+    @include label--base("md");
     @include object--height--fixed(md); // uses 20q
 }
 
 .label--lg {
-    @include label--base('lg');
+    @include label--base("lg");
     @include object--height--fixed(lg);
 }

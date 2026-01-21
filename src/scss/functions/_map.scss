@@ -17,10 +17,10 @@
 // Use
 // ============================================================================
 
-@use 'sass:map';
-@use 'sass:list';
-@use 'sass:meta';
-@use 'sass:string';
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+@use "sass:string";
 
 // ============================================================================
 // Functions
@@ -32,7 +32,7 @@
 /// @return {*} - The value at the path, or null
 @function map-deep-get($map, $keys...) {
     @each $key in $keys {
-        @if meta.type-of($map) != 'map' {
+        @if meta.type-of($map) != "map" {
             @return null;
         }
         $map: map.get($map, $key);
@@ -61,7 +61,7 @@
     }
 
     $nested: map.get($map, $key);
-    @if meta.type-of($nested) != 'map' {
+    @if meta.type-of($nested) != "map" {
         $nested: ();
     }
 
@@ -77,9 +77,9 @@
 
     @each $key, $value in $map2 {
         @if meta.type-of($value) ==
-            'map' and
+            "map" and
             meta.type-of(map.get($result, $key)) ==
-            'map'
+            "map"
         {
             $result: map.set(
                 $result,
@@ -140,21 +140,21 @@
 /// @param {Map} $map - Map to convert
 /// @param {String} $prefix [''] - Prefix for property names
 /// @return {String} - CSS declarations
-@function map-to-props($map, $prefix: '') {
-    $result: '';
+@function map-to-props($map, $prefix: "") {
+    $result: "";
 
     @each $key, $value in $map {
-        $prop-name: '';
-        @if $prefix != '' {
-            $prop-name: '#{$prefix}-#{$key}';
+        $prop-name: "";
+        @if $prefix != "" {
+            $prop-name: "#{$prefix}-#{$key}";
         } @else {
-            $prop-name: '#{$key}';
+            $prop-name: "#{$key}";
         }
 
-        @if meta.type-of($value) == 'map' {
+        @if meta.type-of($value) == "map" {
             $result: $result + map-to-props($value, $prop-name);
         } @else {
-            $result: $result + '--#{$prop-name}: #{$value}; ';
+            $result: $result + "--#{$prop-name}: #{$value}; ";
         }
     }
 
@@ -167,7 +167,7 @@
 /// @return {Boolean} - True if key exists
 @function map-has-deep-key($map, $keys...) {
     @each $key in $keys {
-        @if meta.type-of($map) != 'map' or not map.has-key($map, $key) {
+        @if meta.type-of($map) != "map" or not map.has-key($map, $key) {
             @return false;
         }
         $map: map.get($map, $key);

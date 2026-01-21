@@ -18,7 +18,6 @@
 
 @use '../../../dev' as *;
 @use '../../../variables' as *;
-// @use "../../mixins" as *;
 
 @use '../font/font_default' as *;
 @use '../font/font_weight' as *;
@@ -66,11 +65,11 @@ $dropcap-rounded-border-radius: q(6) !default;
 $dropcap-rounded-border: q(1) solid !default;
 
 // Circular Drop Cap Variables
-$dropcap_circular_font-size: 3Q (4) !default;
-$dropcap_circular_line-height: q(32) !default;
-$dropcap_circular_height: q(64) !default;
-$dropcap_circular_width: q(64) !default;
-$dropcap_circular_padding: q(15) !default;
+$dropcap__circular_font-size: 3Q (4) !default;
+$dropcap__circular_line-height: q(32) !default;
+$dropcap__circular_height: q(64) !default;
+$dropcap__circular_width: q(64) !default;
+$dropcap__circular_padding: q(15) !default;
 
 // ============================================================================
 // Mixins
@@ -87,7 +86,7 @@ $dropcap_circular_padding: q(15) !default;
 /// @param {Number} $line-height - Line height for the drop cap (default: `$dropcap-line-height`).
 /// @param {Number} $font-weight - Font weight for the drop cap (default: `$dropcap_font--weight`).
 ///
-@mixin dropcap_base(
+@mixin dropcap__base(
     $font_size,
     $line-height: $dropcap-line-height,
     $font-weight: $dropcap_font--weight
@@ -111,7 +110,7 @@ $dropcap_circular_padding: q(15) !default;
 /// @param {String} $border - Border for the drop cap (default: `none`).
 /// @param {Length} $border-radius - Border radius for the drop cap (default: `0`).
 ///
-@mixin dropcap_style(
+@mixin dropcap__style(
     $padding: $dropcap-padding,
     $border: none,
     $border-radius: 0
@@ -127,9 +126,9 @@ $dropcap_circular_padding: q(15) !default;
 ///
 /// Applies the standard drop cap style to the first letter of the first child element.
 ///
-@mixin standard-dropcap {
-    @include dropcap_base($dropcap_font--size);
-    @include dropcap_style;
+@mixin dropcap__standard {
+    @include dropcap__base($dropcap_font--size);
+    @include dropcap__style;
 }
 
 ///
@@ -139,12 +138,12 @@ $dropcap_circular_padding: q(15) !default;
 /// Applies a large drop cap style with an underline to the first letter of
 /// the first child element.
 ///
-@mixin large-dropcap-underline {
-    @include dropcap_base(
+@mixin dropcap__underline__large {
+    @include dropcap__base(
         $dropcap-large-font-size,
         $dropcap-large-line-height
     );
-    @include dropcap_style($dropcap-large-padding, $dropcap-large-border, 0);
+    @include dropcap__style($dropcap-large-padding, $dropcap-large-border, 0);
 
     &:before {
         content: '';
@@ -163,15 +162,15 @@ $dropcap_circular_padding: q(15) !default;
 /// Applies a block-style drop cap to the first letter of the first child
 /// element.
 ///
-@mixin dropcap_block {
-    @include dropcap_base(
+@mixin dropcap__block {
+    @include dropcap__base(
         $dropcap-block-font-size,
         $dropcap-block-line-height,
         $dropcap-block-font-weight
     );
     height: $dropcap-block-height;
     width: $dropcap-block-width;
-    @include dropcap_style($dropcap-block-padding, 0, 0);
+    @include dropcap__style($dropcap-block-padding, 0, 0);
     margin-top: $dropcap-block-margin-top;
 }
 
@@ -179,15 +178,15 @@ $dropcap_circular_padding: q(15) !default;
 /// ---------------------------------------------------------------------------
 ///
 /// Applies a rounded block-style drop cap to the first letter of the first child element.
-@mixin rounded-dropcap_block {
-    @include dropcap_base(
+@mixin dropcap__block__rounded {
+    @include dropcap__base(
         $dropcap-block-font-size,
         $dropcap-block-line-height,
         $dropcap-block-font-weight
     );
     height: $dropcap-block-height;
     width: $dropcap-block-width;
-    @include dropcap_style(
+    @include dropcap__style(
         $dropcap-block-padding,
         $dropcap-rounded-border,
         $dropcap-rounded-border-radius
@@ -199,15 +198,15 @@ $dropcap_circular_padding: q(15) !default;
 /// ---------------------------------------------------------------------------
 ///
 /// Applies a circular drop cap to the first letter of the first child element.
-@mixin dropcap_circular {
-    @include dropcap_base(
-        $dropcap_circular_font-size,
-        $dropcap_circular_line-height
+@mixin dropcap__circular {
+    @include dropcap__base(
+        $dropcap__circular_font-size,
+        $dropcap__circular_line-height
     );
-    height: $dropcap_circular_height;
-    width: $dropcap_circular_width;
-    @include dropcap_style(
-        $dropcap_circular_padding,
+    height: $dropcap__circular_height;
+    width: $dropcap__circular_width;
+    @include dropcap__style(
+        $dropcap__circular_padding,
         0,
         $dropcap-border-radius
     );
@@ -219,27 +218,27 @@ $dropcap_circular_padding: q(15) !default;
 
 // Standard Drop Cap
 .dropcap:first-child:first-letter {
-    @include standard-dropcap;
+    @include dropcap__standard;
 }
 
 // Large Drop Cap with Underline
 .dropcap_large:first-child:first-letter {
-    @include large-dropcap-underline;
+    @include dropcap__underline__large;
 }
 
 // Block Drop Cap
-.dropcap_block:first-child:first-letter {
-    @include dropcap_block;
+.dropcap__block:first-child:first-letter {
+    @include dropcap__block;
 }
 
 // Rounded Block Drop Cap
-.dropcap_block-round:first-child:first-letter {
-    @include rounded-dropcap_block;
+.dropcap__block-round:first-child:first-letter {
+    @include dropcap__block__rounded;
 }
 
 // Circular Drop Cap
-.dropcap_round:first-child:first-letter {
-    @include dropcap_circular;
+.dropcap__round:first-child:first-letter {
+    @include dropcap__circular;
 }
 
 // .dropcap:first-child:first-letter {
@@ -273,7 +272,7 @@ $dropcap_circular_padding: q(15) !default;
 //     left: 0;
 // }
 
-// .dropcap_block:first-child:first-letter {
+// .dropcap__block:first-child:first-letter {
 //     font-size: q(32);
 //     height: 5q(4);
 //     line-height: q(20);
@@ -283,12 +282,12 @@ $dropcap_circular_padding: q(15) !default;
 //     margin-top: q(5);
 // }
 
-// .dropcap_block-round:first-child:first-letter {
+// .dropcap__block-round:first-child:first-letter {
 //     border-radius:q(6);
 //     border:q(1) solid;
 // }
 
-// .dropcap_round:first-child:first-letter {
+// .dropcap__round:first-child:first-letter {
 //     border-radius: 50%;
 //     font-size: 3q(4);
 //     padding: q(15);

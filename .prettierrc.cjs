@@ -150,7 +150,7 @@ module.exports = {
         {
             files: ["*.css", "*.scss"],
             options: {
-                singleQuote: true,
+                singleQuote: false,
             },
         },
 

@@ -16,11 +16,11 @@
 // ============================================================================
 // Use
 // ============================================================================
-@use 'sass:map';
-@use 'sass:color';
-@use 'sass:meta';
-@use '../../dev' as *;
-@use './color_system' as *;
+@use "sass:map";
+@use "sass:color";
+@use "sass:meta";
+@use "../../dev" as *;
+@use "./color_system" as *;
 
 /// This allows easy access to tokens in stylesheets:
 @function get_color($key) {
@@ -48,10 +48,10 @@ $tint-levels: (
     }
 }
 
-$theme_mode: 'light' !default;
+$theme_mode: "light" !default;
 
 $color_theme: null;
-@if $theme_mode == 'dark' {
+@if $theme_mode == "dark" {
     $color_theme: $color_system_dark;
 } @else {
     $color_theme: $color_system_light;
@@ -74,7 +74,7 @@ $color_theme: null;
     }
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
     @each $key, $value in $color_system_dark {
         --color_#{$key}: #{$value};
         // --color_#{$key}: #{$value};

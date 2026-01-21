@@ -11,6 +11,9 @@
 
 @use '../soul_type' as *;
 
+$hero-breakpoint-mobile-max: 768px !default;
+$hero-breakpoint-tablet-min: 769px !default;
+
 // ============================================================================
 // Mixins | Hero Component
 // ============================================================================
@@ -25,13 +28,13 @@
             padding: $hero-body-padding-small;
         }
     } @else if $size == medium {
-        @include tablet {
+        @media (min-width: $hero-breakpoint-tablet-min) {
             .hero-body {
                 padding: $hero-body-padding-medium;
             }
         }
     } @else if $size == large {
-        @include tablet {
+        @media (min-width: $hero-breakpoint-tablet-min) {
             .hero-body {
                 padding: $hero-body-padding-large;
             }
@@ -138,7 +141,7 @@
     @if $transparent {
         opacity: 0.3;
     }
-    @include mobile {
+    @media (max-width: $hero-breakpoint-mobile-max) {
         display: none;
     }
 }
@@ -150,7 +153,7 @@
 @mixin hero--buttons {
     margin-top: q(24);
 
-    @include mobile {
+    @media (max-width: $hero-breakpoint-mobile-max) {
         .button {
             display: flex;
             &:not(:last-child) {
@@ -159,7 +162,7 @@
         }
     }
 
-    @include tablet {
+    @media (min-width: $hero-breakpoint-tablet-min) {
         display: flex;
         justify-content: center;
         .button:not(:last-child) {
