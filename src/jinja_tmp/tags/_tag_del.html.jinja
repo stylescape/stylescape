@@ -1,27 +1,21 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Deleted Text (<del>)
+{# Copyright 2025 Scape Agency BV #} {# Deleted Text (
+<del>
+    )
     ===========================================================================
+    Defines text that has been deleted from a document. Variables: -
+    `del_text`: The text to be displayed as deleted. Defaults to "Deleted
+    text". - `del_cite`: The URL that explains the reason for the change.
+    Defaults to "#". - `del_datetime`: The date and time when the text was
+    deleted. Defaults to "2024-01-01T00:00:00Z". Notes: - The `| e` filter is
+    used to escape any special characters in the variables to prevent XSS
+    attacks. Links: -
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del -
+    https://www.w3schools.com/tags/tag_del.asp #}
 
-    Defines text that has been deleted from a document.
-
-    Variables:
-    - `del_text`: The text to be displayed as deleted. Defaults to "Deleted text".
-    - `del_cite`: The URL that explains the reason for the change. Defaults to "#".
-    - `del_datetime`: The date and time when the text was deleted. Defaults to "2024-01-01T00:00:00Z".
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del
-    - https://www.w3schools.com/tags/tag_del.asp
-
-#}
-
-<del cite="{{ del_cite | default('#') | e }}" datetime="{{ del_datetime | default('2024-01-01T00:00:00Z') | e }}">
-    {{ del_text | default('Deleted text') | e }}
+    <del
+        cite="{{ del_cite | default('#') | e }}"
+        datetime="{{ del_datetime | default('2024-01-01T00:00:00Z') | e }}"
+    >
+        {{ del_text | default('Deleted text') | e }}
+    </del>
 </del>

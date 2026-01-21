@@ -1,34 +1,43 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Table Row (<tr>)
+{# Copyright 2025 Scape Agency BV #} {# Table Row (
+<tr>
+    )
     ===========================================================================
+    Defines a row in a table. Variables: - `tr_content`: The content inside the
+</tr>
 
-    Defines a row in a table.
+<tr>
+    element, typically table cells (
+    <td>or</td>
+    <th>
+        ). Defaults to a single default cell. - `tr_class`: The class attribute
+        for the
+        <tr>
+            element. Defaults to "default-class". - `tr_id`: The id attribute
+            for the
+        </tr>
+        <tr>
+            element. Defaults to "default-id". - `tr_style`: The style
+            attribute for the
+        </tr>
+        <tr>
+            element. Defaults to "". Notes: - The `| safe` filter is used to
+            include HTML content safely. - The
+        </tr>
 
-    Variables:
-    - `tr_content`: The content inside the <tr> element, typically table cells
-      (<td> or <th>). Defaults to a single default cell.
-    - `tr_class`: The class attribute for the <tr> element. Defaults to "default-class".
-    - `tr_id`: The id attribute for the <tr> element. Defaults to "default-id".
-    - `tr_style`: The style attribute for the <tr> element. Defaults to "".
+        <tr>
+            element is used to define a row in an HTML table. Links: -
+            https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr -
+            https://www.w3schools.com/tags/tag_tr.asp #}
+        </tr>
 
-    Notes:
-    - The `| safe` filter is used to include HTML content safely.
-    - The <tr> element is used to define a row in an HTML table.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr
-    - https://www.w3schools.com/tags/tag_tr.asp
-
-#}
-
-<tr 
-    class="{{ tr_class | default('default-class') | e }}" 
-    id="{{ tr_id | default('default-id') | e }}" 
-    style="{{ tr_style | default('') | e }}"
->
-    {{ tr_content | default('<td>Default cell content</td>') | safe }}
+        <tr
+            class="{{ tr_class | default('default-class') | e }}"
+            id="{{ tr_id | default('default-id') | e }}"
+            style="{{ tr_style | default('') | e }}"
+        >
+            {{ tr_content | default('
+            <td>Default cell content</td>
+            ') | safe }}
+        </tr>
+    </th>
 </tr>

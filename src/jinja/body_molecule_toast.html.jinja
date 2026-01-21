@@ -1,59 +1,48 @@
-{% extends "base.html.jinja" %}
-
-{% set title = "Toasts" %}
-
-{%- block title %}{{ title }}{%- endblock %}
-
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Toasts" %} {%- block title %}{{
+title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
-
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
     </header>
 
-<section class="demo__section">
+    <section class="demo__section">
+        <header class="demo__section__header">
+            <h2>...</h2>
+        </header>
+        <div class="demo__subsection">
+            {% set toasts = [ { type: "info", title: "Heads up!", message:
+            "This is an informational toast.", action: "Dismiss", rounded: true
+            }, { type: "success", message: "Data saved successfully.", rounded:
+            false } ] %}
 
-    <header class="demo__section__header">
-        <h2>...</h2>
-    </header>
-    <div class="demo__subsection">
-
-{% set toasts = [
-{
-type: "info",
-title: "Heads up!",
-message: "This is an informational toast.",
-action: "Dismiss",
-rounded: true
-},
-{
-type: "success",
-message: "Data saved successfully.",
-rounded: false
-}
-] %}
-
-<div id="toast-container">
-    {% for toast in toasts %}
-    <div class="toast {{ toast.type }}{% if toast.rounded %} rounded{% endif %} show">
-        {% if toast.title %}
-        <div class="toast-header">
-            <strong class="me-auto">{{ toast.title }}</strong>
-            <button type="button" class="btn-close" aria-label="Close">&times;</button>
+            <div id="toast-container">
+                {% for toast in toasts %}
+                <div
+                    class="toast {{ toast.type }}{% if toast.rounded %} rounded{% endif %} show"
+                >
+                    {% if toast.title %}
+                    <div class="toast-header">
+                        <strong class="me-auto">{{ toast.title }}</strong>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            aria-label="Close"
+                        >
+                            &times;
+                        </button>
+                    </div>
+                    {% endif %}
+                    <div class="toast-body">
+                        {{ toast.message }} {% if toast.action %}
+                        <span class="toast-action">{{ toast.action }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
-        {% endif %}
-        <div class="toast-body">
-            {{ toast.message }}
-            {% if toast.action %}
-            <span class="toast-action">{{ toast.action }}</span>
-            {% endif %}
-        </div>
-    </div>
-    {% endfor %}
-</div>
+    </section>
 
-    </div>
+    {%- endblock %}
 </section>
-
-{%- endblock %}

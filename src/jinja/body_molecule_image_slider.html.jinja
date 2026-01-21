@@ -1,88 +1,121 @@
-{% extends "base.html.jinja" %}
-
-{% set title = "Image Slider" %}
-
-{%- block title %}{{ title }}{%- endblock %}
-
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Image Slider" %} {%- block
+title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
-
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
     </header>
-    {% set image_url = "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80"
-    %}
-
-    {% set image_url_bright = "https://images.unsplash.com/uploads/1412026095116d2b0c90e/3bf33993?q=80&w=3872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" %}
-    {# ----------------------------------------------------------------------------
+    {% set image_url =
+    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80"
+    %} {% set image_url_bright =
+    "https://images.unsplash.com/uploads/1412026095116d2b0c90e/3bf33993?q=80&w=3872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    %} {#
+    ----------------------------------------------------------------------------
     Dark Variation
-    ---------------------------------------------------------------------------- #}
-
-    {% set section_title = "Dark Slider Variation " %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    ----------------------------------------------------------------------------
+    #} {% set section_title = "Dark Slider Variation " %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
         <div class="aspect_ratio--3x2">
             <figure class="image__compare" id="imageCompare">
-                <img src="{{ image_url }}" class="image__compare--image" alt="After Image" crossorigin="anonymous" data-dark-side="right">
-                <img src="{{ image_url_bright }}" class="image__compare--overlay image__compare--image" alt="Before Image" crossorigin="anonymous" data-dark-side="left">
+                <img
+                    src="{{ image_url }}"
+                    class="image__compare--image"
+                    alt="After Image"
+                    crossorigin="anonymous"
+                    data-dark-side="right"
+                />
+                <img
+                    src="{{ image_url_bright }}"
+                    class="image__compare--overlay image__compare--image"
+                    alt="Before Image"
+                    crossorigin="anonymous"
+                    data-dark-side="left"
+                />
                 <div class="image__compare--slider" id="slider">
                     <span class="arrow--left"></span>
                     <span class="arrow--right"></span>
                 </div>
             </figure>
         </div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview_box_code.html.jinja" %}
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview_box_code.html.jinja" %}
     </section>
 
     {% set section_title = "Dark Slider Variation " %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
         <div class="aspect_ratio--3x2">
             <figure class="image__compare" id="imageCompare">
-            <img src="{{ image_url_bright }}" class="image__compare--image" alt="Before Image"
-                crossorigin="anonymous" data-dark-side="right">
-                <img src="{{ image_url }}" class="image__compare--overlay image__compare--image" alt="After Image" crossorigin="anonymous"
-                    data-dark-side="left">
+                <img
+                    src="{{ image_url_bright }}"
+                    class="image__compare--image"
+                    alt="Before Image"
+                    crossorigin="anonymous"
+                    data-dark-side="right"
+                />
+                <img
+                    src="{{ image_url }}"
+                    class="image__compare--overlay image__compare--image"
+                    alt="After Image"
+                    crossorigin="anonymous"
+                    data-dark-side="left"
+                />
                 <div class="image__compare--slider" id="slider">
                     <span class="arrow--left"></span>
                     <span class="arrow--right"></span>
                 </div>
             </figure>
         </div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview_box_code.html.jinja" %}
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview_box_code.html.jinja" %}
     </section>
 
-    {# ----------------------------------------------------------------------------
+    {#
+    ----------------------------------------------------------------------------
     Aspect Ratio Variants
-    ---------------------------------------------------------------------------- #}
-
-    {% for ratio in ["1x1", "3x2", "4x3", "3x4", "2x3", "16x9"] %}
-
-    {% set section_title = "Image Comparison Slider " ~ ratio %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    ----------------------------------------------------------------------------
+    #} {% for ratio in ["1x1", "3x2", "4x3", "3x4", "2x3", "16x9"] %} {% set
+    section_title = "Image Comparison Slider " ~ ratio %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
         <div class="aspect_ratio--{{ ratio }}">
             <figure class="image__compare" id="imageCompare">
-                <img src="{{ image_url }}" class="image__compare--image" alt="After Image" data-dark-side="right">
-                <img src="{{ image_url }}" class="image__compare--overlay image__compare--image" alt="Before Image" data-dark-side="left">
+                <img
+                    src="{{ image_url }}"
+                    class="image__compare--image"
+                    alt="After Image"
+                    data-dark-side="right"
+                />
+                <img
+                    src="{{ image_url }}"
+                    class="image__compare--overlay image__compare--image"
+                    alt="Before Image"
+                    data-dark-side="left"
+                />
                 <div class="image__compare--slider" id="slider">
                     <span class="arrow--left"></span>
                     <span class="arrow--right"></span>
                 </div>
             </figure>
         </div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview_box_code.html.jinja" %}
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview_box_code.html.jinja" %}
     </section>
-    {% endfor %}
-
-    {%- endblock %}
+    {% endfor %} {%- endblock %}
+</section>

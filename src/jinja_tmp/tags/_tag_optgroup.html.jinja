@@ -1,33 +1,33 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Option Group (<optgroup>)
+{# Copyright 2025 Scape Agency BV #} {# Option Group (
+<optgroup>
+    )
     ===========================================================================
+    Defines a group of related options in a dropdown list. Variables: -
+    `optgroup_label`: The label for the option group. Defaults to "Group
+    Label". - `optgroup_disabled`: Boolean to specify if the optgroup should be
+    disabled. Defaults to false. - `options`: A list of options to be included
+    in the optgroup, each represented as a dictionary with `value` and `text`
+    keys. Defaults to a single default option. Notes: - The `| e` filter is
+    used to escape any special characters in the variables to prevent XSS
+    attacks. - Each dictionary in `options` should contain `value` and `text`
+    keys. Links: -
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup -
+    https://www.w3schools.com/tags/tag_optgroup.asp #}
+</optgroup>
 
-    Defines a group of related options in a dropdown list.
-
-    Variables:
-    - `optgroup_label`: The label for the option group. Defaults to "Group Label".
-    - `optgroup_disabled`: Boolean to specify if the optgroup should be disabled. Defaults to false.
-    - `options`: A list of options to be included in the optgroup, each represented as a dictionary with `value` and `text` keys. Defaults to a single default option.
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-    - Each dictionary in `options` should contain `value` and `text` keys.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup
-    - https://www.w3schools.com/tags/tag_optgroup.asp
-
-#}
-
-<optgroup 
-    label="{{ optgroup_label | default('Group Label') | e }}" 
-    {% if optgroup_disabled | default(false) %}disabled{% endif %}
+<optgroup
+    label="{{ optgroup_label | default('Group Label') | e }}"
+    {%
+    if
+    optgroup_disabled
+    |
+    default(false)
+    %}disabled{%
+    endif
+    %}
 >
-    {% for option in options | default([{'value': 'default', 'text': 'Default Option'}]) %}
-        <option value="{{ option.value | e }}">{{ option.text | e }}</option>
+    {% for option in options | default([{'value': 'default', 'text': 'Default
+    Option'}]) %}
+    <option value="{{ option.value | e }}">{{ option.text | e }}</option>
     {% endfor %}
 </optgroup>

@@ -1,26 +1,16 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Dialog (<dialog>)
+{# Copyright 2025 Scape Agency BV #} {# Dialog (
+<dialog>
+    )
     ===========================================================================
+    Defines a dialog box or window. Variables: - `dialog_open`: Boolean to
+    specify if the dialog should be open by default. Defaults to false. -
+    `dialog_content`: The content inside the dialog. Defaults to "Default
+    dialog content". Notes: - The `| e` filter is used to escape any special
+    characters in the variables to prevent XSS attacks. Links: -
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog -
+    https://www.w3schools.com/tags/tag_dialog.asp #}
 
-    Defines a dialog box or window.
-
-    Variables:
-    - `dialog_open`: Boolean to specify if the dialog should be open by default. Defaults to false.
-    - `dialog_content`: The content inside the dialog. Defaults to "Default dialog content".
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog
-    - https://www.w3schools.com/tags/tag_dialog.asp
-
-#}
-
-<dialog {% if dialog_open | default(false) %}open{% endif %}>
-    {{ dialog_content | default('Default dialog content') | e }}
+    <dialog {% if dialog_open | default(false) %}open{% endif %}>
+        {{ dialog_content | default('Default dialog content') | e }}
+    </dialog>
 </dialog>

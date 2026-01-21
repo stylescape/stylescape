@@ -1,83 +1,80 @@
-{% extends "base.html.jinja" %}
-
-{% set title = "Widgets" %}
-
-{%- block title %}{{ title }}{%- endblock %}
-
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Widgets" %} {%- block title
+%}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
-
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
     </header>
 
+    <section class="demo__section">
+        <header class="demo__section__header">
+            <h3>Widget</h3>
+        </header>
 
-<section class="demo__section">
+        {% set section_title = "Widget Base" %}
+        <section
+            class="demo__subsection"
+            data-label="{{ section_title }}"
+            data-level="2"
+        >
+            <h3>{{ section_title }}</h3>
+            {% set code_snippet %}
+            <div class="widget">Widget</div>
+            {% endset %} {% set language="HTML" %} {%- include
+            "includes/preview_box_code.html.jinja" %}
+        </section>
 
-    <header class="demo__section__header">
-        <h3>Widget</h3>
-    </header>
+        {% set section_title = "Widget Base" %}
+        <section
+            class="demo__subsection"
+            data-label="{{ section_title }}"
+            data-level="2"
+        >
+            <h3>{{ section_title }}</h3>
+            {% set code_snippet %}
+            <div class="widget">Widget</div>
+            {% endset %} {% set language="HTML" %} {%- include
+            "includes/preview_box_code.html.jinja" %}
+        </section>
 
-    {% set section_title = "Widget Base" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
-        {% set code_snippet %}
-        <div class="widget">
-            Widget
-        </div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview_box_code.html.jinja" %}
+        {% set section_title = "Widget Squared" %}
+        <section
+            class="demo__subsection"
+            data-label="{{ section_title }}"
+            data-level="2"
+        >
+            <h3>{{ section_title }}</h3>
+            {% set code_snippet %}
+            <div class="widget widget--squared">Widget</div>
+            {% endset %} {% set language="HTML" %} {%- include
+            "includes/preview_box_code.html.jinja" %}
+        </section>
+
+        {% set section_title = "Widget Rounded" %}
+        <section
+            class="demo__subsection"
+            data-label="{{ section_title }}"
+            data-level="2"
+        >
+            <h3>{{ section_title }}</h3>
+            {% set code_snippet %}
+            <div class="widget widget--rounded">Widget</div>
+            {% endset %} {% set language="HTML" %} {%- include
+            "includes/preview_box_code.html.jinja" %}
+        </section>
+
+        {% set section_title = "Widget Pill" %}
+        <section
+            class="demo__subsection"
+            data-label="{{ section_title }}"
+            data-level="2"
+        >
+            <h3>{{ section_title }}</h3>
+            {% set code_snippet %}
+            <div class="widget widget--pill">Widget</div>
+            {% endset %} {% set language="HTML" %} {%- include
+            "includes/preview_box_code.html.jinja" %}
+        </section>
     </section>
-
-    {% set section_title = "Widget Base" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
-        {% set code_snippet %}
-        <div class="widget">
-            Widget
-        </div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview_box_code.html.jinja" %}
-    </section>
-
-    {% set section_title = "Widget Squared" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
-        {% set code_snippet %}
-        <div class="widget widget--squared">
-            Widget
-        </div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview_box_code.html.jinja" %}
-    </section>
-
-    {% set section_title = "Widget Rounded" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
-        {% set code_snippet %}
-        <div class="widget widget--rounded">
-            Widget
-        </div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview_box_code.html.jinja" %}
-    </section>
-
-    {% set section_title = "Widget Pill" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
-        {% set code_snippet %}
-        <div class="widget widget--pill">
-            Widget
-        </div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview_box_code.html.jinja" %}
-    </section>
-
+    {%- endblock %}
 </section>
-{%- endblock %}

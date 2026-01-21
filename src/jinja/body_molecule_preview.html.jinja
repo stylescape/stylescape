@@ -1,28 +1,23 @@
-{% extends "base.html.jinja" %}
-
-{% set title = "Preview" %}
-
-{%- block title %}{{ title }}{%- endblock %}
-
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Preview" %} {%- block title
+%}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
-
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
     </header>
 
     <section class="demo__subsection">
-        {% set code_snippet="<h1>The quick brown fox jumps over the lazy dog.</h1>" %}
-        {% set language="HTML" %}
-        {%- include "includes/preview_box_code.html.jinja" %}
-    </section>
-    
-    <section class="demo__subsection">
-        {% set code_snippet="<h1>The quick.</h1>" %}
-        {% set language="HTML" %}
-        {%- include "includes/preview_box_code.html.jinja" %}
+        {% set code_snippet="
+        <h1>The quick brown fox jumps over the lazy dog.</h1>
+        " %} {% set language="HTML" %} {%- include
+        "includes/preview_box_code.html.jinja" %}
     </section>
 
+    <section class="demo__subsection">
+        {% set code_snippet="
+        <h1>The quick.</h1>
+        " %} {% set language="HTML" %} {%- include
+        "includes/preview_box_code.html.jinja" %}
+    </section>
 </section>
 {%- endblock content %}

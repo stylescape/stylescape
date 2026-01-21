@@ -1,72 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+    {% set rail_left = true %} {% set rail_right = true %}
 
-{% set rail_left = true %}
-{% set rail_right = true %}
+    <head>
+        <meta charset="UTF-8" />
+        <title>{%- block title %}Stylescape{%- endblock %}</title>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link rel="stylesheet" href="/css/stylescape.css" />
+        {#
+        <script type="module" src="/js/stylescape.js"></script>
+        #}
 
+        <style>
+            * {
+                font-variant-numeric: lining-nums tabular-nums;
+                font-feature-settings: "lnum", "tnum";
+            }
+        </style>
+        {%- block head %}{%- endblock %}
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <title>{%- block title %}Stylescape{%- endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/stylescape.css" />
-    {#
-    <script type="module" src="/js/stylescape.js"></script> #}
+    <body class="">
+        <div class="frame_main">
+            <div class="frame_main__area--top">
+                {%- block ribbon_top -%} {%- include
+                "includes/_ribbon_top.html.jinja" -%} {%- endblock ribbon_top
+                -%}
+            </div>
 
-    <style>
-        * {
-            font-variant-numeric: lining-nums tabular-nums;
-            font-feature-settings: "lnum", "tnum";
-        }
-    </style>
-    {%- block head %}{%- endblock %}
-</head>
+            <div class="frame_main__area--middle_left">
+                {%- include "includes/_sidebar_left.html.jinja" %}
+            </div>
 
-<body class="">
+            <div class="frame_main__area--middle_center">
+                <main id="main_content" class="main_content rail" role="main">
+                    {%- block content %}{%- endblock %}
+                </main>
+            </div>
 
-    <div class="frame_main">
+            <div class="frame_main__area--middle_right rail">
+                {%- include "includes/_sidebar_right.html.jinja" %}
+            </div>
 
-        <div class="frame_main__area--top">
-            {%- block ribbon_top -%}
-            {%- include "includes/_ribbon_top.html.jinja" -%}
-            {%- endblock ribbon_top -%}
+            <div class="frame_main__area--bottom">
+                {%- block ticker_bottom -%} {%- include
+                "includes/_ticker_bottom.html.jinja" -%} {%- endblock
+                ticker_bottom -%} {%- block ribbon_bottom -%} {%- include
+                "includes/_ribbon_bottom.html.jinja" -%} {%- endblock
+                ribbon_bottom -%}
+            </div>
         </div>
 
-        <div class="frame_main__area--middle_left ">
-            {%- include "includes/_sidebar_left.html.jinja" %}
-        </div>
+        <aside class="">
+            {%- include "includes/_utility_guides.html.jinja" %}
+        </aside>
 
-        <div class="frame_main__area--middle_center">
-            <main id="main_content" class="main_content rail" role="main">
-                {%- block content %}{%- endblock %}
-            </main>
-        </div>
-
-        <div class="frame_main__area--middle_right rail">
-            {%- include "includes/_sidebar_right.html.jinja" %}
-        </div>
-
-        <div class="frame_main__area--bottom">
-            {%- block ticker_bottom -%}
-            {%- include "includes/_ticker_bottom.html.jinja" -%}
-            {%- endblock ticker_bottom -%}
-
-            {%- block ribbon_bottom -%}
-            {%- include "includes/_ribbon_bottom.html.jinja" -%}
-            {%- endblock ribbon_bottom -%}
-        </div>
-
-    </div>
-
-    <aside class="">
-        {%- include "includes/_utility_guides.html.jinja" %}
-    </aside>
-
-    <script type="module">
-        import { initializeStylescape } from '/js/index.js';
-        initializeStylescape()
-    </script>
-</body>
-
-
+        <script type="module">
+            import { initializeStylescape } from "/js/index.js";
+            initializeStylescape();
+        </script>
+    </body>
 </html>

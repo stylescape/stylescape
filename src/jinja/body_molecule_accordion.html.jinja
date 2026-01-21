@@ -1,84 +1,82 @@
-{% extends "base.html.jinja" %}
-
-{% set title = "Accordion" %}
-
-{%- block title %}{{ title }}{%- endblock %}
-
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Accordion" %} {%- block title
+%}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
-
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
     </header>
 
+    {% set section_title = "Accordion Example 1" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="accordion accordion--default">
+            <div class="accordion__item">
+                <h3 class="accordion__header">
+                    <button
+                        class="accordion__button"
+                        type="button"
+                        data-toggle="accordion"
+                        aria-expanded="false"
+                        aria-controls="accordion-body-1"
+                    >
+                        Accordion Title 1
+                    </button>
+                </h3>
+                <div id="accordion-body-1" class="accordion__body">
+                    <p>This is the content of accordion section 1.</p>
+                </div>
+            </div>
 
-{% set section_title = "Accordion Example 1" %}
-<section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
-    <h3>{{ section_title }}</h3>
-    {% set code_snippet %}
-    <div class="accordion accordion--default">
-        <div class="accordion__item">
-            <h3 class="accordion__header">
-                <button class="accordion__button" type="button" data-toggle="accordion" aria-expanded="false"
-                    aria-controls="accordion-body-1">
-                    Accordion Title 1
-                </button>
-            </h3>
-            <div id="accordion-body-1" class="accordion__body">
-                <p>This is the content of accordion section 1.</p>
+            <div class="accordion__item">
+                <h3 class="accordion__header">
+                    <button
+                        class="accordion__button"
+                        type="button"
+                        data-toggle="accordion"
+                        aria-expanded="false"
+                        aria-controls="accordion-body-2"
+                    >
+                        Accordion Title 2
+                    </button>
+                </h3>
+                <div id="accordion-body-2" class="accordion__body">
+                    <p>This is the content of accordion section 2.</p>
+                </div>
             </div>
         </div>
-    
-        <div class="accordion__item">
-            <h3 class="accordion__header">
-                <button class="accordion__button" type="button" data-toggle="accordion" aria-expanded="false"
-                    aria-controls="accordion-body-2">
-                    Accordion Title 2
-                </button>
-            </h3>
-            <div id="accordion-body-2" class="accordion__body">
-                <p>This is the content of accordion section 2.</p>
-            </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Accordion Example 2" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <button class="accordion">Section 1</button>
+        <div class="panel">
+            <p>Lorem ipsum...</p>
         </div>
-    </div>
-    {% endset %}
-    {% set language="HTML" %}
-    {%- include "includes/preview_box_code.html.jinja" %}
-</section>
 
+        <button class="accordion">Section 2</button>
+        <div class="panel">
+            <p>Lorem ipsum...</p>
+        </div>
 
-{% set section_title = "Accordion Example 2" %}
-<section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
-    <h3>{{ section_title }}</h3>
-    {% set code_snippet %}
-<button class="accordion">Section 1</button>
-<div class="panel">
-    <p>Lorem ipsum...</p>
-</div>
-
-<button class="accordion">Section 2</button>
-<div class="panel">
-    <p>Lorem ipsum...</p>
-</div>
-
-<button class="accordion">Section 3</button>
-<div class="panel">
-    <p>Lorem ipsum...</p>
-</div>
-    {% endset %}
-    {% set language="HTML" %}
-    {%- include "includes/preview_box_code.html.jinja" %}
-</section>
-
-
-
-
-
-
-
-
-
-
+        <button class="accordion">Section 3</button>
+        <div class="panel">
+            <p>Lorem ipsum...</p>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview_box_code.html.jinja" %}
+    </section>
 </section>
 {%- endblock %}

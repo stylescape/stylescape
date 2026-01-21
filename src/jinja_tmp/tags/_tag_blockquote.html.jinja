@@ -1,25 +1,16 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Blockquote (<blockquote>)
+{# Copyright 2025 Scape Agency BV #} {# Blockquote (
+<blockquote>
+    )
     ===========================================================================
-    Defines a section that is quoted from another source.
+    Defines a section that is quoted from another source. Variables: -
+    `blockquote_text`: The text to be displayed as a blockquote. Defaults to
+    "Default quote text". - `cite_url`: The URL of the source of the quote.
+    Defaults to "#". Notes: - The `| e` filter is used to escape any special
+    characters in the variables to prevent XSS attacks. Links: -
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote -
+    https://www.w3schools.com/tags/tag_blockquote.asp #}
 
-    Variables:
-    - `blockquote_text`: The text to be displayed as a blockquote. Defaults to "Default quote text".
-    - `cite_url`: The URL of the source of the quote. Defaults to "#".
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote
-    - https://www.w3schools.com/tags/tag_blockquote.asp
-
-#}
-
-<blockquote cite="{{ cite_url | default('#') | e }}">
-    {{ blockquote_text | default('Default quote text') | e }}
+    <blockquote cite="{{ cite_url | default('#') | e }}">
+        {{ blockquote_text | default('Default quote text') | e }}
+    </blockquote>
 </blockquote>

@@ -1,30 +1,21 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Description List (<dl>)
-    ===========================================================================
-
-    Defines a description list.
-
-    Variables:
-    - `dl_items`: A list of terms and descriptions to be included in the
-      description list. Defaults to [{"term": "Term 1", "description":
-      "Description 1"}, {"term": "Term 2", "description": "Description 2"}].
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl
-    - https://www.w3schools.com/tags/tag_dl.asp
-
-#}
-
+{# Copyright 2025 Scape Agency BV #} {# Description List (
 <dl>
-    {% for item in dl_items | default([{"term": "Term 1", "description": "Description 1"}, {"term": "Term 2", "description": "Description 2"}]) %}
+    )
+    ===========================================================================
+    Defines a description list. Variables: - `dl_items`: A list of terms and
+    descriptions to be included in the description list. Defaults to [{"term":
+    "Term 1", "description": "Description 1"}, {"term": "Term 2",
+    "description": "Description 2"}]. Notes: - The `| e` filter is used to
+    escape any special characters in the variables to prevent XSS attacks.
+    Links: - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl -
+    https://www.w3schools.com/tags/tag_dl.asp #}
+
+    <dl>
+        {% for item in dl_items | default([{"term": "Term 1", "description":
+        "Description 1"}, {"term": "Term 2", "description": "Description 2"}])
+        %}
         <dt>{{ item.term | e }}</dt>
         <dd>{{ item.description | e }}</dd>
-    {% endfor %}
+        {% endfor %}
+    </dl>
 </dl>

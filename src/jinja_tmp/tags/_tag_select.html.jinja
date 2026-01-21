@@ -1,52 +1,86 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Select Box (<select>)
+{# Copyright 2025 Scape Agency BV #} {# Select Box (
+<select>
+    )
     ===========================================================================
+    Defines a drop-down list. Variables: - `select_name`: The name attribute
+    for the
+    <select>
+        element. Defaults to "selectName". - `select_id`: The id attribute for
+        the
+        <select>
+            element. Defaults to "selectId". - `select_class`: The class
+            attribute for the
+            <select>
+                element. Defaults to "default-class". - `select_multiple`:
+                Boolean to specify if multiple selections are allowed. Defaults
+                to false. - `select_disabled`: Boolean to specify if the select
+                box should be disabled. Defaults to false. - `select_options`:
+                A list of options, each represented as a dictionary with
+                `value`, `text`, and optional `selected` and `disabled` keys.
+                Defaults to a single default option. Notes: - The `| e` filter
+                is used to escape any special characters in the variables to
+                prevent XSS attacks. - Each dictionary in `select_options`
+                should contain `value` and `text` keys, and optionally
+                `selected` and `disabled`. Links: -
+                https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+                - https://www.w3schools.com/tags/tag_select.asp #}
 
-    Defines a drop-down list.
+                <select
+                    name="{{ select_name | default('selectName') | e }}"
+                    id="{{ select_id | default('selectId') | e }}"
+                    class="{{ select_class | default('default-class') | e }}"
+                    {%
+                    if
+                    select_multiple
+                    |
+                    default(false)
+                    %}multiple{%
+                    endif
+                    %}
+                    {%
+                    if
+                    select_disabled
+                    |
+                    default(false)
+                    %}disabled{%
+                    endif
+                    %}
+                >
+                    {% for option in select_options | default([{'value':
+                    'default', 'text': 'Default Option'}]) %}
+                    <option
+                        value="{{ option.value | e }}"
+                        {%
+                        if
+                        option.selected
+                        |
+                        default(false)
+                        %}selected{%
+                        endif
+                        %}
+                        {%
+                        if
+                        option.disabled
+                        |
+                        default(false)
+                        %}disabled{%
+                        endif
+                        %}
+                    >
+                        {{ option.text | e }}
+                    </option>
+                    {% endfor %}
+                </select>
 
-    Variables:
-    - `select_name`: The name attribute for the <select> element. Defaults to "selectName".
-    - `select_id`: The id attribute for the <select> element. Defaults to "selectId".
-    - `select_class`: The class attribute for the <select> element. Defaults to "default-class".
-    - `select_multiple`: Boolean to specify if multiple selections are allowed. Defaults to false.
-    - `select_disabled`: Boolean to specify if the select box should be disabled. Defaults to false.
-    - `select_options`: A list of options, each represented as a dictionary with `value`, `text`, and optional `selected` and `disabled` keys. Defaults to a single default option.
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-    - Each dictionary in `select_options` should contain `value` and `text` keys, and optionally `selected` and `disabled`.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
-    - https://www.w3schools.com/tags/tag_select.asp
-
-#}
-
-<select 
-    name="{{ select_name | default('selectName') | e }}" 
-    id="{{ select_id | default('selectId') | e }}" 
-    class="{{ select_class | default('default-class') | e }}" 
-    {% if select_multiple | default(false) %}multiple{% endif %} 
-    {% if select_disabled | default(false) %}disabled{% endif %}
->
-    {% for option in select_options | default([{'value': 'default', 'text': 'Default Option'}]) %}
-        <option 
-            value="{{ option.value | e }}" 
-            {% if option.selected | default(false) %}selected{% endif %} 
-            {% if option.disabled | default(false) %}disabled{% endif %}
-        >
-            {{ option.text | e }}
-        </option>
-    {% endfor %}
-</select>
-
-<!-- Select Dropdown -->
-<select name="dropdown">
-    {% for option in options %}
-    <option value="{{ option.value }}">{{ option.display }}</option>
-    {% endfor %}
+                <!-- Select Dropdown -->
+                <select name="dropdown">
+                    {% for option in options %}
+                    <option value="{{ option.value }}">
+                        {{ option.display }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </select>
+        </select>
+    </select>
 </select>

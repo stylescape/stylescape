@@ -1,46 +1,30 @@
-{% extends "base.html.jinja" %}
-
-{% set title = "Color Palette" %}
-
-{%- block title %}{{ title }}{%- endblock %}
-
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Color Palette" %} {%- block
+title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
-
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
     </header>
 
     <section class="demo__subsection">
-
-        {% set families = [
-        'Grey', 'Salmon', 'Orange', 'Amber', 'Yellow', 'Lime', 'Ecru',
-        'Olive', 'Green', 'Forest', 'Jade', 'Mint', 'Cyan', 'Teal', 'Capri',
-        'Sky', 'Blue', 'Azure', 'Indigo', 'Violet', 'Magenta', 'Purple',
-        'Rose', 'Pink', 'Red'
-        ] %}
-
-        {% for family in families %}
-
+        {% set families = [ 'Grey', 'Salmon', 'Orange', 'Amber', 'Yellow',
+        'Lime', 'Ecru', 'Olive', 'Green', 'Forest', 'Jade', 'Mint', 'Cyan',
+        'Teal', 'Capri', 'Sky', 'Blue', 'Azure', 'Indigo', 'Violet', 'Magenta',
+        'Purple', 'Rose', 'Pink', 'Red' ] %} {% for family in families %}
 
         <div class="grid--size--col--12">
-            <h6 class="col--3">
-                {{ family }}
-            </h6>
-            {% set base = 1 + (loop.index0 * 150) %}
-            {% for j in range(9) %}
-            {% set number = base + j %}
-            {% if number < 10 %} {% set code='N000' ~ number %} {% elif number < 100 %} {% set code='N00' ~ number %} {%
-                elif number < 1000 %} {% set code='N0' ~ number %} {% else %} {% set code='N' ~ number %} {% endif %}
-                <div class="swatch" style="background-color: var(--{{ code }})">
-
+            <h6 class="col--3">{{ family }}</h6>
+            {% set base = 1 + (loop.index0 * 150) %} {% for j in range(9) %} {%
+            set number = base + j %} {% if number < 10 %} {% set code='N000' ~
+            number %} {% elif number < 100 %} {% set code='N00' ~ number %} {%
+            elif number < 1000 %} {% set code='N0' ~ number %} {% else %} {%
+            set code='N' ~ number %} {% endif %}
+            <div class="swatch" style="background-color: var(--{{ code }})">
                 <code>{{ code }}</code>
+            </div>
+            {% endfor %}
         </div>
         {% endfor %}
-        </div>
-        {% endfor %}
-
     </section>
 </section>
 {%- endblock %}

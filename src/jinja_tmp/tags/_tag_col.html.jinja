@@ -1,24 +1,20 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
+{# Copyright 2025 Scape Agency BV #} {# Column (
+<col />
+) ===========================================================================
+Specifies column properties for each column within a
+<colgroup>
+    element. Variables: - `col_span`: The number of columns a
+    <col />
+    element should span. Defaults to "1". - `col_class`: The class attribute
+    for the
+    <col />
+    element. Defaults to "default-class". Notes: - The `| e` filter is used to
+    escape any special characters in the variables to prevent XSS attacks.
+    Links: - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col -
+    https://www.w3schools.com/tags/tag_col.asp #}
 
-{# 
-    Column (<col>)
-    ===========================================================================
-
-    Specifies column properties for each column within a <colgroup> element.
-
-    Variables:
-    - `col_span`: The number of columns a <col> element should span. Defaults to "1".
-    - `col_class`: The class attribute for the <col> element. Defaults to "default-class".
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col
-    - https://www.w3schools.com/tags/tag_col.asp
-
-#}
-
-<col span="{{ col_span | default('1') | e }}" class="{{ col_class | default('default-class') | e }}">
+    <col
+        span="{{ col_span | default('1') | e }}"
+        class="{{ col_class | default('default-class') | e }}"
+    />
+</colgroup>

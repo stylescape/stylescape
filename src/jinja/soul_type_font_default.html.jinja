@@ -1,61 +1,72 @@
-{% extends "base.html.jinja" %}
-
-{% set title = "Fonts" %}
-
-{%- block title %}{{ title }}{%- endblock %}
-
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Fonts" %} {%- block title %}{{
+title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
-
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
     </header>
 
-    {% set preview_text="The quick brown fox jumps over the lazy dog. 0123456789" %}
-
-    {% set section_title = "Font Overview" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {% set preview_text="The quick brown fox jumps over the lazy dog.
+    0123456789" %} {% set section_title = "Font Overview" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-<div>
-    <p class="font--default">{{ preview_text|default('The quick brown fox jumps over the lazy dog. 0123456789') }}</p>
-    <p class="font--sans">{{ preview_text|default('The quick brown fox jumps over the lazy dog. 0123456789') }}</p>
-    <p class="font--serif">{{ preview_text|default('The quick brown fox jumps over the lazy dog. 0123456789') }}</p>
-    <p class="font--slab">{{ preview_text|default('The quick brown fox jumps over the lazy dog. 0123456789') }}</p>
-    <p class="font--mono">{{ preview_text|default('The quick brown fox jumps over the lazy dog. 0123456789') }}</p>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview_box_code.html.jinja" %}
+        <div>
+            <p class="font--default">
+                {{ preview_text|default('The quick brown fox jumps over the
+                lazy dog. 0123456789') }}
+            </p>
+            <p class="font--sans">
+                {{ preview_text|default('The quick brown fox jumps over the
+                lazy dog. 0123456789') }}
+            </p>
+            <p class="font--serif">
+                {{ preview_text|default('The quick brown fox jumps over the
+                lazy dog. 0123456789') }}
+            </p>
+            <p class="font--slab">
+                {{ preview_text|default('The quick brown fox jumps over the
+                lazy dog. 0123456789') }}
+            </p>
+            <p class="font--mono">
+                {{ preview_text|default('The quick brown fox jumps over the
+                lazy dog. 0123456789') }}
+            </p>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview_box_code.html.jinja" %}
     </section>
 
-
     {% set section_title = "Font Variants" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <div class="preview__font__controls">
             <label for="preview__font--input">Preview text:</label>
-            <input id="preview__font--input" type="text" placeholder={{preview_text}} />
+            <input
+                id="preview__font--input"
+                type="text"
+                placeholder="{{preview_text}}"
+            />
         </div>
     </section>
 
-    {% set fonts = [
-    { label: ".font--default", class: "font--default" },
-    { label: ".font--sans", class: "font--sans" },
-    { label: ".font--serif", class: "font--serif" },
-    { label: ".font--slab", class: "font--slab" },
-    { label: ".font--mono", class: "font--mono" }
-    ] %}
-
-    {% for font in fonts %}
-    {% set label = font.label %}
-    {% set class = font.class %}
+    {% set fonts = [ { label: ".font--default", class: "font--default" }, {
+    label: ".font--sans", class: "font--sans" }, { label: ".font--serif",
+    class: "font--serif" }, { label: ".font--slab", class: "font--slab" }, {
+    label: ".font--mono", class: "font--mono" } ] %} {% for font in fonts %} {%
+    set label = font.label %} {% set class = font.class %}
     <div class="demo__subsection">
         {%- include "includes/preview_box_font.html.jinja" %}
     </div>
     {% endfor %}
-
 </section>
 
 {%- endblock %}

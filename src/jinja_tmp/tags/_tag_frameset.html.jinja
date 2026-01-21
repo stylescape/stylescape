@@ -1,31 +1,24 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Frameset (<frameset>)
+{# Copyright 2025 Scape Agency BV #} {# Frameset (
+<frameset>
+    )
     ===========================================================================
+    Defines a set of frames. Variables: - `frameset_rows`: The number and size
+    of rows in the frameset. Defaults to "100%,*". - `frameset_cols`: The
+    number and size of columns in the frameset. Defaults to "100%,*". -
+    `frameset_content`: The content (frames) to be included inside the
+    frameset. Defaults to "Default frameset content". Notes: - The
+    <frameset>
+        element is deprecated in HTML5 and should not be used. Consider using
+        CSS and JavaScript instead. - The `| e` filter is used to escape any
+        special characters in the variables to prevent XSS attacks. Links: -
+        https://developer.mozilla.org/en-US/docs/Web/HTML/Element/frameset -
+        https://www.w3schools.com/tags/tag_frameset.asp #}
 
-    Defines a set of frames.
-
-    Variables:
-    - `frameset_rows`: The number and size of rows in the frameset. Defaults to "100%,*".
-    - `frameset_cols`: The number and size of columns in the frameset. Defaults to "100%,*".
-    - `frameset_content`: The content (frames) to be included inside the frameset. Defaults to "Default frameset content".
-
-    Notes:
-    - The <frameset> element is deprecated in HTML5 and should not be used. Consider using CSS and JavaScript instead.
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/frameset
-    - https://www.w3schools.com/tags/tag_frameset.asp
-
-#}
-
-<frameset 
-    rows="{{ frameset_rows | default('100%,*') | e }}" 
-    cols="{{ frameset_cols | default('100%,*') | e }}"
->
-    {{ frameset_content | default('Default frameset content') | e }}
+        <frameset
+            rows="{{ frameset_rows | default('100%,*') | e }}"
+            cols="{{ frameset_cols | default('100%,*') | e }}"
+        >
+            {{ frameset_content | default('Default frameset content') | e }}
+        </frameset>
+    </frameset>
 </frameset>

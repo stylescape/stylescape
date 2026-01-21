@@ -1,27 +1,17 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Fieldset (<fieldset>)
-    ===========================================================================
-
-    Groups related elements in a form.
-
-    Variables:
-    - `fieldset_legend`: The legend (title) for the fieldset. Defaults to "Fieldset Legend".
-    - `fieldset_content`: The content inside the fieldset. Defaults to "Default fieldset content".
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset
-    - https://www.w3schools.com/tags/tag_fieldset.asp
-
-#}
-
+{# Copyright 2025 Scape Agency BV #} {# Fieldset (
 <fieldset>
-    <legend>{{ fieldset_legend | default('Fieldset Legend') | e }}</legend>
-    {{ fieldset_content | default('Default fieldset content') | e }}
+    )
+    ===========================================================================
+    Groups related elements in a form. Variables: - `fieldset_legend`: The
+    legend (title) for the fieldset. Defaults to "Fieldset Legend". -
+    `fieldset_content`: The content inside the fieldset. Defaults to "Default
+    fieldset content". Notes: - The `| e` filter is used to escape any special
+    characters in the variables to prevent XSS attacks. Links: -
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset -
+    https://www.w3schools.com/tags/tag_fieldset.asp #}
+
+    <fieldset>
+        <legend>{{ fieldset_legend | default('Fieldset Legend') | e }}</legend>
+        {{ fieldset_content | default('Default fieldset content') | e }}
+    </fieldset>
 </fieldset>

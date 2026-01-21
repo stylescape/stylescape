@@ -1,39 +1,41 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
+{# Copyright 2025 Scape Agency BV #} {# Input (
+<input />
+) ===========================================================================
+Defines an input control. Variables: - `input_type`: The type of the input
+element. Defaults to "text". - `input_name`: The name of the input element.
+Defaults to "defaultName". - `input_value`: The value of the input element.
+Defaults to "defaultValue". - `input_placeholder`: The placeholder text for the
+input element. Defaults to "Enter text". - `input_required`: Specifies whether
+the input is required. Defaults to false. - `input_disabled`: Specifies whether
+the input is disabled. Defaults to false. - `input_class`: The class attribute
+for the input element. Defaults to "default-class". - `input_id`: The id
+attribute for the input element. Defaults to "default-id". Notes: - The `| e`
+filter is used to escape any special characters in the variables to prevent XSS
+attacks. Links: -
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input -
+https://www.w3schools.com/tags/tag_input.asp #}
 
-{# 
-    Input (<input>)
-    ===========================================================================
-
-    Defines an input control.
-
-    Variables:
-    - `input_type`: The type of the input element. Defaults to "text".
-    - `input_name`: The name of the input element. Defaults to "defaultName".
-    - `input_value`: The value of the input element. Defaults to "defaultValue".
-    - `input_placeholder`: The placeholder text for the input element. Defaults to "Enter text".
-    - `input_required`: Specifies whether the input is required. Defaults to false.
-    - `input_disabled`: Specifies whether the input is disabled. Defaults to false.
-    - `input_class`: The class attribute for the input element. Defaults to "default-class".
-    - `input_id`: The id attribute for the input element. Defaults to "default-id".
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
-    - https://www.w3schools.com/tags/tag_input.asp
-
-#}
-
-<input 
-    type="{{ input_type | default('text') | e }}" 
-    name="{{ input_name | default('defaultName') | e }}" 
-    value="{{ input_value | default('defaultValue') | e }}" 
-    placeholder="{{ input_placeholder | default('Enter text') | e }}" 
-    {% if input_required | default(false) %}required{% endif %} 
-    {% if input_disabled | default(false) %}disabled{% endif %} 
-    class="{{ input_class | default('default-class') | e }}" 
+<input
+    type="{{ input_type | default('text') | e }}"
+    name="{{ input_name | default('defaultName') | e }}"
+    value="{{ input_value | default('defaultValue') | e }}"
+    placeholder="{{ input_placeholder | default('Enter text') | e }}"
+    {%
+    if
+    input_required
+    |
+    default(false)
+    %}required{%
+    endif
+    %}
+    {%
+    if
+    input_disabled
+    |
+    default(false)
+    %}disabled{%
+    endif
+    %}
+    class="{{ input_class | default('default-class') | e }}"
     id="{{ input_id | default('default-id') | e }}"
->
+/>

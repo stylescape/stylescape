@@ -1,27 +1,17 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
+{# Copyright 2025 Scape Agency BV #} {# Parameter (
+<param />
+) ===========================================================================
+Defines parameters for an
+<object>
+    element. Variables: - `param_name`: The name of the parameter. Defaults to
+    "paramName". - `param_value`: The value of the parameter. Defaults to
+    "paramValue". Notes: - The `| e` filter is used to escape any special
+    characters in the variables to prevent XSS attacks. Links: -
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/param -
+    https://www.w3schools.com/tags/tag_param.asp #}
 
-{# 
-    Parameter (<param>)
-    ===========================================================================
-
-    Defines parameters for an <object> element.
-
-    Variables:
-    - `param_name`: The name of the parameter. Defaults to "paramName".
-    - `param_value`: The value of the parameter. Defaults to "paramValue".
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/param
-    - https://www.w3schools.com/tags/tag_param.asp
-
-#}
-
-<param 
-    name="{{ param_name | default('paramName') | e }}" 
-    value="{{ param_value | default('paramValue') | e }}"
->
+    <param
+        name="{{ param_name | default('paramName') | e }}"
+        value="{{ param_value | default('paramValue') | e }}"
+    />
+</object>

@@ -1,40 +1,30 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Inline Frame (<iframe>)
+{# Copyright 2025 Scape Agency BV #} {# Inline Frame (
+<iframe>
+    )
     ===========================================================================
+    Embeds another HTML page within the current page. Variables: -
+    `iframe_src`: The URL of the page to embed. Defaults to "about:blank". -
+    `iframe_width`: The width of the iframe. Defaults to "600". -
+    `iframe_height`: The height of the iframe. Defaults to "400". -
+    `iframe_title`: The title of the iframe. Defaults to "Iframe Example". -
+    `iframe_name`: The name of the iframe. Defaults to "iframe_name". -
+    `iframe_allow`: Permissions policy for the iframe. Defaults to "". -
+    `iframe_sandbox`: Enables an extra set of restrictions for the content in
+    the iframe. Defaults to "". - `iframe_loading`: Specifies whether the
+    iframe should be loaded lazily or eagerly. Defaults to "auto". Notes: - The
+    `| e` filter is used to escape any special characters in the variables to
+    prevent XSS attacks. Links: -
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe -
+    https://www.w3schools.com/tags/tag_iframe.asp #}
 
-    Embeds another HTML page within the current page.
-
-    Variables:
-    - `iframe_src`: The URL of the page to embed. Defaults to "about:blank".
-    - `iframe_width`: The width of the iframe. Defaults to "600".
-    - `iframe_height`: The height of the iframe. Defaults to "400".
-    - `iframe_title`: The title of the iframe. Defaults to "Iframe Example".
-    - `iframe_name`: The name of the iframe. Defaults to "iframe_name".
-    - `iframe_allow`: Permissions policy for the iframe. Defaults to "".
-    - `iframe_sandbox`: Enables an extra set of restrictions for the content in the iframe. Defaults to "".
-    - `iframe_loading`: Specifies whether the iframe should be loaded lazily or eagerly. Defaults to "auto".
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
-    - https://www.w3schools.com/tags/tag_iframe.asp
-
-#}
-
-<iframe 
-    src="{{ iframe_src | default('about:blank') | e }}" 
-    width="{{ iframe_width | default('600') | e }}" 
-    height="{{ iframe_height | default('400') | e }}" 
-    title="{{ iframe_title | default('Iframe Example') | e }}" 
-    name="{{ iframe_name | default('iframe_name') | e }}" 
-    allow="{{ iframe_allow | default('') | e }}" 
-    sandbox="{{ iframe_sandbox | default('') | e }}" 
-    loading="{{ iframe_loading | default('auto') | e }}"
->
+    <iframe
+        src="{{ iframe_src | default('about:blank') | e }}"
+        width="{{ iframe_width | default('600') | e }}"
+        height="{{ iframe_height | default('400') | e }}"
+        title="{{ iframe_title | default('Iframe Example') | e }}"
+        name="{{ iframe_name | default('iframe_name') | e }}"
+        allow="{{ iframe_allow | default('') | e }}"
+        sandbox="{{ iframe_sandbox | default('') | e }}"
+        loading="{{ iframe_loading | default('auto') | e }}"
+    ></iframe>
 </iframe>

@@ -1,31 +1,26 @@
-{#
-Copyright 2025 Scape Agency BV
-#}
-
-{#
-Font (<font>)
+{# Copyright 2025 Scape Agency BV #} {# Font (
+<font>
+    )
     ===========================================================================
+    Defines font, color, and size for text. Note that the
+    <font>
+        element is deprecated in HTML5 and should not be used. Consider using
+        CSS for styling instead. Variables: - `font--size`: The size of the
+        font. Defaults to "3". - `font--color`: The color of the font. Defaults
+        to "black". - `font_face`: The face (font family) of the font. Defaults
+        to "Arial". - `font--text`: The text to be displayed with the specified
+        font settings. Defaults to "Sample text". Notes: - The `| e` filter is
+        used to escape any special characters in the variables to prevent XSS
+        attacks. Links: -
+        https://developer.mozilla.org/en-US/docs/Web/HTML/Element/font -
+        https://www.w3schools.com/tags/tag_font.asp #}
 
-    Defines font, color, and size for text. Note that the <font> element is
-        deprecated in HTML5 and should not be used. Consider using CSS for styling
-        instead.
-
-        Variables:
-        - `font--size`: The size of the font. Defaults to "3".
-        - `font--color`: The color of the font. Defaults to "black".
-        - `font_face`: The face (font family) of the font. Defaults to "Arial".
-        - `font--text`: The text to be displayed with the specified font settings. Defaults to "Sample text".
-
-        Notes:
-        - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-
-        Links:
-        - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/font
-        - https://www.w3schools.com/tags/tag_font.asp
-
-        #}
-
-        <font size="{{ font--size | default('3') | e }}" color="{{ font--color | default('black') | e }}"
-            face="{{ font_face | default('Arial') | e }}">
+        <font
+            size="{{ font--size | default('3') | e }}"
+            color="{{ font--color | default('black') | e }}"
+            face="{{ font_face | default('Arial') | e }}"
+        >
             {{ font--text | default('Sample text') | e }}
         </font>
+    </font>
+</font>

@@ -1,89 +1,114 @@
-{% extends "base.html.jinja" %}
-
-{%- block title %}Layering System Demo | unit.gl{%- endblock %}
-
-{%- block header %}
+{% extends "base.html.jinja" %} {%- block title %}Layering System Demo |
+unit.gl{%- endblock %} {%- block header %}
 <h1>Layering System Demo</h1>
-<p>Demonstrates the z-index stack defined in <code>$layer-map</code>. Use the buttons below to toggle each layer.</p>
-{%- endblock %}
-
-{%- block styles %}
-{{ super() }}
+<p>
+    Demonstrates the z-index stack defined in
+    <code>$layer-map</code>
+    . Use the buttons below to toggle each layer.
+</p>
+{%- endblock %} {%- block styles %} {{ super() }}
 <style>
-  .layer-demo {
-    position: relative;
-    height: 400px;
-    border: q(1) solid #ddd;
-    margin-bottom: q(32);
-    background: #f7f7f7;
-    overflow: hidden;
-  }
+    .layer-demo {
+        position: relative;
+        height: 400px;
+        border: q(1) solid #ddd;
+        margin-bottom: q(32);
+        background: #f7f7f7;
+        overflow: hidden;
+    }
 
-  .layer-box {
-    position: absolute;
-    width: q(200);
-    height: q(200);
-    padding: q(16);
-    color: white;
-    font-weight: bold;
-    border-radius: q(8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.9;
-    cursor: pointer;
-    transition: transform 0.2s, opacity 0.2s;
-  }
+    .layer-box {
+        position: absolute;
+        width: q(200);
+        height: q(200);
+        padding: q(16);
+        color: white;
+        font-weight: bold;
+        border-radius: q(8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.9;
+        cursor: pointer;
+        transition:
+            transform 0.2s,
+            opacity 0.2s;
+    }
 
-  .layer-controls {
-    margin-bottom: q(16);
-  }
+    .layer-controls {
+        margin-bottom: q(16);
+    }
 
-  .layer-controls button {
-    margin-right: q(8);
-    padding: q(4) q(12);
-    font-size: 0.875rem;
-    border: q(1) solid #ccc;
-    background: white;
-    cursor: pointer;
-    border-radius: q(4);
-  }
+    .layer-controls button {
+        margin-right: q(8);
+        padding: q(4) q(12);
+        font-size: 0.875rem;
+        border: q(1) solid #ccc;
+        background: white;
+        cursor: pointer;
+        border-radius: q(4);
+    }
 
-  .hidden {
-    opacity: 0 !important;
-    pointer-events: none;
-  }
+    .hidden {
+        opacity: 0 !important;
+        pointer-events: none;
+    }
 
-  .z-guides         { z-index: 9998; background: rgba(0, 200, 255, 0.8); top: q(20); left: q(20); }
-  .z-modal          { z-index: 7000; background: rgba(255, 0, 0, 0.8); top: q(60); left: q(60); }
-  .z-interface      { z-index: 4000; background: rgba(0, 200, 100, 0.8); top: q(100); left: q(100); }
-  .z-content        { z-index: 2000; background: rgba(100, 100, 255, 0.8); top: q(140); left: q(140); }
-  .z-canvas         { z-index: -1000; background: rgba(0, 0, 0, 0.2); top: q(180); left: q(180); }
+    .z-guides {
+        z-index: 9998;
+        background: rgba(0, 200, 255, 0.8);
+        top: q(20);
+        left: q(20);
+    }
+    .z-modal {
+        z-index: 7000;
+        background: rgba(255, 0, 0, 0.8);
+        top: q(60);
+        left: q(60);
+    }
+    .z-interface {
+        z-index: 4000;
+        background: rgba(0, 200, 100, 0.8);
+        top: q(100);
+        left: q(100);
+    }
+    .z-content {
+        z-index: 2000;
+        background: rgba(100, 100, 255, 0.8);
+        top: q(140);
+        left: q(140);
+    }
+    .z-canvas {
+        z-index: -1000;
+        background: rgba(0, 0, 0, 0.2);
+        top: q(180);
+        left: q(180);
+    }
 </style>
-{%- endblock %}
-
-{%- block content %}
+{%- endblock %} {%- block content %}
 
 <div class="layer-controls">
-  {% set layers = ["guides", "modal", "interface", "content", "canvas"] %}
-  {% for layer in layers %}
+    {% set layers = ["guides", "modal", "interface", "content", "canvas"] %} {%
+    for layer in layers %}
     <button onclick="toggleLayer('{{ layer }}')">Toggle {{ layer }}</button>
-  {% endfor %}
+    {% endfor %}
 </div>
 
 <div class="layer-demo">
-  {% for layer in layers %}
+    {% for layer in layers %}
     <div class="layer-box z-{{ layer }}" id="layer-{{ layer }}">
-      {{ layer }}<br><small>z({{ layer }})</small>
+        {{ layer }}
+        <br />
+        <small>z({{ layer }})</small>
     </div>
-  {% endfor %}
+    {% endfor %}
 </div>
 
 <script>
-  function toggleLayer(id) {
-    const el = document.getElementById('layer-' + id);
-    el.classList.toggle('hidden');
-  }
+    function toggleLayer(id) {
+        const el = document.getElementById("layer-" + id);
+        el.classList.toggle("hidden");
+    }
 </script>
 
 {%- endblock %}

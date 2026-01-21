@@ -1,28 +1,15 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Area (<area>)
-    ===========================================================================
-    Defines an area inside an image map.
-
-    Variables:
-    - `map_name`: The name of the image map. Defaults to "map".
-    - `shape`: The shape of the area. Defaults to "rect".
-    - `coordinates`: The coordinates of the area. Defaults to "0,0,100,100".
-    - `url`: The URL to which the area points. Defaults to "#".
-    - `alt_text`: The alternate text for the area. Defaults to "Default alt text".
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables
-      to prevent XSS attacks.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area
-    - https://www.w3schools.com/tags/tag_area.asp
-
-#}
+{# Copyright 2025 Scape Agency BV #} {# Area (
+<area />
+) ===========================================================================
+Defines an area inside an image map. Variables: - `map_name`: The name of the
+image map. Defaults to "map". - `shape`: The shape of the area. Defaults to
+"rect". - `coordinates`: The coordinates of the area. Defaults to
+"0,0,100,100". - `url`: The URL to which the area points. Defaults to "#". -
+`alt_text`: The alternate text for the area. Defaults to "Default alt text".
+Notes: - The `| e` filter is used to escape any special characters in the
+variables to prevent XSS attacks. Links: -
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area -
+https://www.w3schools.com/tags/tag_area.asp #}
 
 <map name="{{ map_name | default('map') | e }}">
     <area
@@ -32,5 +19,5 @@
         alt="{{ alt_text | default('Default alt text') | e }}"
         target="_blank"
         rel="noopener noreferrer"
-    >
+    />
 </map>

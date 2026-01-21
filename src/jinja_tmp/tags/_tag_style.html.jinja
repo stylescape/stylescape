@@ -1,25 +1,22 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Style (<style>)
-    ===========================================================================
-
-    Defines style information for a document, typically CSS.
-
-    Variables:
-    - `style_content`: The CSS content to be included inside the <style> element. Defaults to "/* Default CSS styles */".
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks. However, in this case, it is not necessary as CSS content should not be escaped.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style
-    - https://www.w3schools.com/tags/tag_style.asp
-
-#}
-
+{# Copyright 2025 Scape Agency BV #} {# Style (
 <style>
-    {{ style_content | default('/* Default CSS styles */') | safe }}
+    )
+        ===========================================================================
+
+        Defines style information for a document, typically CSS.
+
+        Variables:
+        - `style_content`: The CSS content to be included inside the <style> element. Defaults to "/* Default CSS styles */".
+
+        Notes:
+        - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks. However, in this case, it is not necessary as CSS content should not be escaped.
+
+        Links:
+        - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style
+        - https://www.w3schools.com/tags/tag_style.asp
+
+    #}
+
+    <style>
+        {{ style_content | default('/* Default CSS styles */') | safe }}
 </style>

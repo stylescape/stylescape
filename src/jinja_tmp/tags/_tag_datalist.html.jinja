@@ -1,28 +1,20 @@
-{# 
-    Copyright 2025 Scape Agency BV
-#}
-
-{# 
-    Datalist (<datalist>)
+{# Copyright 2025 Scape Agency BV #} {# Datalist (
+<datalist>
+    )
     ===========================================================================
+    Defines a list of pre-defined options for input controls. Variables: -
+    `datalist_id`: The id attribute of the datalist element. Defaults to
+    "datalist". - `options`: A list of options to be included in the datalist.
+    Defaults to ["Option 1", "Option 2", "Option 3"]. Notes: - The `| e` filter
+    is used to escape any special characters in the variables to prevent XSS
+    attacks. Links: -
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist -
+    https://www.w3schools.com/tags/tag_datalist.asp #}
 
-    Defines a list of pre-defined options for input controls.
-
-    Variables:
-    - `datalist_id`: The id attribute of the datalist element. Defaults to "datalist".
-    - `options`: A list of options to be included in the datalist. Defaults to ["Option 1", "Option 2", "Option 3"].
-
-    Notes:
-    - The `| e` filter is used to escape any special characters in the variables to prevent XSS attacks.
-
-    Links:
-    - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist
-    - https://www.w3schools.com/tags/tag_datalist.asp
-
-#}
-
-<datalist id="{{ datalist_id | default('datalist') | e }}">
-    {% for option in options | default(['Option 1', 'Option 2', 'Option 3']) %}
+    <datalist id="{{ datalist_id | default('datalist') | e }}">
+        {% for option in options | default(['Option 1', 'Option 2', 'Option
+        3']) %}
         <option value="{{ option | e }}"></option>
-    {% endfor %}
+        {% endfor %}
+    </datalist>
 </datalist>
