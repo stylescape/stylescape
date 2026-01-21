@@ -2,8 +2,8 @@
 // Stylescape | BaseElementManager Tests
 // ============================================================================
 
-import { describe, it, expect, vi, beforeEach } from "vitest"
-import { createAndAppend, wait } from "../utils"
+import { describe, expect, it, vi } from "vitest"
+import { createAndAppend } from "../utils"
 
 describe("BaseElementManager", () => {
     describe("Element Discovery", () => {

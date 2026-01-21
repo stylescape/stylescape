@@ -2,10 +2,10 @@
 // Stylescape | Theme Toggler Tests
 // ============================================================================
 
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
-import { createAndAppend, click, wait, $ } from "../utils"
-import { themeTogglerFixture } from "../utils/fixtures"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { ThemeToggler } from "../../src/ts/utilities/ThemeToggler"
+import { click, wait } from "../utils"
+import { themeTogglerFixture } from "../utils/fixtures"
 
 describe("ThemeToggler", () => {
     let themeToggler: typeof ThemeToggler

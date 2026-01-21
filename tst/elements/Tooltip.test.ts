@@ -2,19 +2,18 @@
 // Stylescape | Tooltip Component Tests
 // ============================================================================
 
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+import { Tooltip } from "../../src/ts/elements/Tooltip"
 import {
-    createAndAppend,
+    blur,
     click,
+    createAndAppend,
+    focus,
     mouseEnter,
     mouseLeave,
-    focus,
-    blur,
-    wait,
-    $
+    wait
 } from "../utils"
 import { tooltipFixture } from "../utils/fixtures"
-import { Tooltip } from "../../src/ts/elements/Tooltip"
 
 describe("Tooltip", () => {
     let tooltip: Tooltip

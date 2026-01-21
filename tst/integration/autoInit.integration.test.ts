@@ -4,8 +4,8 @@
 // Tests the complete auto-initialization flow from DOM to component instances.
 // ============================================================================
 
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
-import { createAndAppend, createElement, click, wait, $, $$ } from "../utils"
+import { beforeEach, describe, expect, it, vi } from "vitest"
+import { $, click, createElement, wait } from "../utils"
 import { autoInitFixture } from "../utils/fixtures"
 
 describe("Auto-Init Integration", () => {

@@ -4,7 +4,7 @@
 // Global test setup file for Vitest with jsdom environment.
 // ============================================================================
 
-import { beforeEach, afterEach, vi } from "vitest"
+import { afterEach, beforeEach, vi } from "vitest"
 
 // ============================================================================
 // DOM Reset

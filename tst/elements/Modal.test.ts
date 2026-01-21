@@ -2,17 +2,15 @@
 // Stylescape | Modal Component Tests
 // ============================================================================
 
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+import { Modal } from "../../src/ts/elements/Modal"
 import {
-    createAndAppend,
+    $,
     click,
     pressEscape,
-    pressTab,
-    wait,
-    $
+    wait
 } from "../utils"
 import { modalFixture } from "../utils/fixtures"
-import { Modal } from "../../src/ts/elements/Modal"
 
 describe("Modal", () => {
     let modal: Modal

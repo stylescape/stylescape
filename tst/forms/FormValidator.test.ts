@@ -2,10 +2,10 @@
 // Stylescape | Form Validator Tests
 // ============================================================================
 
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
-import { createAndAppend, inputValue, changeValue, click, wait, $ } from "../utils"
-import { formValidationFixture } from "../utils/fixtures"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { FormValidator } from "../../src/ts/forms/FormValidator"
+import { $, inputValue, wait } from "../utils"
+import { formValidationFixture } from "../utils/fixtures"
 
 describe("FormValidator", () => {
     let formValidator: FormValidator

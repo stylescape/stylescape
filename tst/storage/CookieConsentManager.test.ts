@@ -2,10 +2,10 @@
 // Stylescape | Cookie Consent Tests
 // ============================================================================
 
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
-import { createAndAppend, click, wait, $ } from "../utils"
-import { cookieConsentFixture } from "../utils/fixtures"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { CookieConsentManager } from "../../src/ts/storage/CookieConsentManager"
+import { $, click, wait } from "../utils"
+import { cookieConsentFixture } from "../utils/fixtures"
 
 describe("CookieConsentManager", () => {
     let consentManager: CookieConsentManager

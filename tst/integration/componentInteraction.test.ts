@@ -4,8 +4,8 @@
 // Tests interactions between multiple components.
 // ============================================================================
 
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
-import { createAndAppend, click, mouseEnter, mouseLeave, wait, $, $$ } from "../utils"
+import { beforeEach, describe, it, vi } from "vitest"
+import { $, click, mouseEnter, wait } from "../utils"
 
 describe("Component Interactions", () => {
     beforeEach(() => {
@@ -180,7 +180,7 @@ describe("Component Interactions", () => {
     describe("Progress Bar with Form Submit", () => {
         it("should update progress on form submission progress", async () => {
             document.body.innerHTML = `
-                <div data-ss="progress-bar" id="upload-progress" 
+                <div data-ss="progress-bar" id="upload-progress"
                      data-ss-progress-bar-value="0">
                     <div class="progress-bar__fill"></div>
                 </div>
@@ -203,7 +203,7 @@ describe("Component Interactions", () => {
             vi.useFakeTimers()
 
             document.body.innerHTML = `
-                <div data-ss="notification" 
+                <div data-ss="notification"
                      data-ss-notification-auto-dismiss="true"
                      data-ss-notification-duration="3000">
                     <span>Auto-dismiss notification</span>

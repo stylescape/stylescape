@@ -2,10 +2,10 @@
 // Stylescape | Accordion Component Tests
 // ============================================================================
 
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
-import { createAndAppend, click, pressEnter, wait, $, $$ } from "../utils"
-import { accordionFixture } from "../utils/fixtures"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { AccordionManager } from "../../src/ts/elements/AccordianMananger"
+import { $, $$, click, pressEnter, wait } from "../utils"
+import { accordionFixture } from "../utils/fixtures"
 
 describe("Accordion", () => {
     let accordion: AccordionManager

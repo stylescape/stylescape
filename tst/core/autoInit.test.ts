@@ -2,8 +2,8 @@
 // Stylescape | Auto-Init System Tests
 // ============================================================================
 
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
-import { createAndAppend, createElement, click, wait, $ } from "../utils"
+import { describe, expect, it, vi } from "vitest"
+import { createAndAppend } from "../utils"
 
 // ============================================================================
 // Test Suite

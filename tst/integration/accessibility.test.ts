@@ -4,8 +4,8 @@
 // Tests accessibility features across components.
 // ============================================================================
 
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
-import { createAndAppend, click, pressEscape, pressTab, pressEnter, wait, $, $$ } from "../utils"
+import { beforeEach, describe, expect, it, vi } from "vitest"
+import { $, click, pressEnter, pressEscape, pressTab, wait } from "../utils"
 
 describe("Accessibility Integration", () => {
     beforeEach(() => {
@@ -139,7 +139,7 @@ describe("Accessibility Integration", () => {
 
         it("should have aria-describedby on tooltip triggers", async () => {
             document.body.innerHTML = `
-                <button data-ss="tooltip" 
+                <button data-ss="tooltip"
                         data-ss-tooltip-content="Help text"
                         id="tooltip-aria-test">
                     Help
@@ -220,7 +220,7 @@ describe("Accessibility Integration", () => {
         it("should announce dynamic content", async () => {
             // For notifications, live regions should be used
             document.body.innerHTML = `
-                <div data-ss="notification" 
+                <div data-ss="notification"
                      role="alert"
                      aria-live="polite">
                     Important message

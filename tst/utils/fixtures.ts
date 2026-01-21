@@ -9,8 +9,8 @@
  */
 export const modalFixture = `
 <button id="modal-trigger" data-ss-modal-trigger="#test-modal">Open Modal</button>
-<div id="test-modal" 
-     data-ss="modal" 
+<div id="test-modal"
+     data-ss="modal"
      data-ss-modal-close-backdrop="true"
      role="dialog"
      aria-modal="true"
@@ -89,7 +89,7 @@ export const dropdownFixture = `
  */
 export const toggleFixture = `
 <label class="toggle-switch">
-    <input type="checkbox" 
+    <input type="checkbox"
            id="test-toggle"
            data-ss="toggle-switch"
            data-ss-toggle-switch-label-on="ON"
@@ -154,7 +154,7 @@ export const formValidationFixture = `
  * Preloader component HTML fixture
  */
 export const preloaderFixture = `
-<div class="preloader" 
+<div class="preloader"
      id="test-preloader"
      data-ss="preloader"
      data-ss-preloader-timeout="500"
@@ -197,13 +197,13 @@ export const cookieConsentFixture = `
  */
 export const collapsibleFixture = `
 <div data-ss="collapsible-section" id="test-collapsible">
-    <button class="collapsible-trigger" 
+    <button class="collapsible-trigger"
             data-ss-collapsible-trigger
             aria-expanded="false"
             aria-controls="collapsible-content">
         Toggle Content
     </button>
-    <div id="collapsible-content" 
+    <div id="collapsible-content"
          class="collapsible-content"
          data-ss-collapsible-content
          hidden>
@@ -248,12 +248,12 @@ export const imageCompareFixture = `
 export const autoInitFixture = `
 <div id="app">
     <button data-ss="tooltip" data-ss-tooltip-content="Help text">Help</button>
-    
+
     <button data-ss-modal-trigger="#modal1">Open Modal</button>
     <div id="modal1" data-ss="modal" hidden>
         <div data-ss-modal-content>Modal content</div>
     </div>
-    
+
     <div data-ss="accordion">
         <button data-ss-accordion-trigger>Toggle</button>
         <div data-ss-accordion-panel hidden>Content</div>
