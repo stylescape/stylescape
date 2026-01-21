@@ -5,18 +5,18 @@
 // attributes. Integrates with ScrollSpyManager for active link highlighting.
 // ============================================================================
 
-import { ScrollSpyManager } from "../scroll/ScrollSpyManager.js"
+import { ScrollSpyManager } from "../scroll/ScrollSpyManager.js";
 
 /**
  * Configuration options for TableOfContentsBuilder
  */
 export interface TableOfContentsBuilderOptions {
-    /** Attribute to read for section labels */
-    labelAttribute?: string
-    /** CSS class for the generated list */
-    listClass?: string
-    /** Whether to enable scroll spy integration */
-    scrollSpy?: boolean
+  /** Attribute to read for section labels */
+  labelAttribute?: string;
+  /** CSS class for the generated list */
+  listClass?: string;
+  /** Whether to enable scroll spy integration */
+  scrollSpy?: boolean;
 }
 
 /**
@@ -51,134 +51,134 @@ export interface TableOfContentsBuilderOptions {
  * ```
  */
 export class TableOfContentsBuilder {
-    /** ID of the root element containing content sections */
-    private rootId: string
+  /** ID of the root element containing content sections */
+  private rootId: string;
 
-    /** ID of the container element for the generated TOC */
-    private tocContainerId: string
+  /** ID of the container element for the generated TOC */
+  private tocContainerId: string;
 
-    /** Set of generated IDs to ensure uniqueness */
-    private idSet = new Set<string>()
+  /** Set of generated IDs to ensure uniqueness */
+  private idSet = new Set<string>();
 
-    /** Map linking TOC anchor elements to their target sections */
-    private linkSectionMap = new Map<HTMLElement, HTMLElement>()
+  /** Map linking TOC anchor elements to their target sections */
+  private linkSectionMap = new Map<HTMLElement, HTMLElement>();
 
-    /** Optional ScrollSpyManager for active link highlighting */
-    private scrollSpyManager?: ScrollSpyManager
+  /** Optional ScrollSpyManager for active link highlighting */
+  private scrollSpyManager?: ScrollSpyManager;
 
-    /**
-     * Creates a new TableOfContentsBuilder instance.
-     *
-     * @param rootId - ID of the element containing content sections
-     * @param tocContainerId - ID of the element to append the TOC to
-     */
-    constructor(rootId: string, tocContainerId: string) {
-        this.rootId = rootId
-        this.tocContainerId = tocContainerId
+  /**
+   * Creates a new TableOfContentsBuilder instance.
+   *
+   * @param rootId - ID of the element containing content sections
+   * @param tocContainerId - ID of the element to append the TOC to
+   */
+  constructor(rootId: string, tocContainerId: string) {
+    this.rootId = rootId;
+    this.tocContainerId = tocContainerId;
+  }
+
+  /**
+   * Generates a unique ID from a base string.
+   * Handles collisions by appending a numeric suffix.
+   *
+   * @param baseId - The base string to generate an ID from
+   * @returns A unique, URL-safe ID string
+   */
+  private generateUniqueId(baseId: string): string {
+    let id = baseId
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]/g, "");
+    let count = 1;
+    while (this.idSet.has(id)) {
+      id = `${baseId}-${count++}`;
     }
+    this.idSet.add(id);
+    return id;
+  }
 
-    /**
-     * Generates a unique ID from a base string.
-     * Handles collisions by appending a numeric suffix.
-     *
-     * @param baseId - The base string to generate an ID from
-     * @returns A unique, URL-safe ID string
-     */
-    private generateUniqueId(baseId: string): string {
-        let id = baseId
-            .toLowerCase()
-            .replace(/\s+/g, "-")
-            .replace(/[^\w-]/g, "")
-        let count = 1
-        while (this.idSet.has(id)) {
-            id = `${baseId}-${count++}`
+  /**
+   * Creates a TOC list item entry for a section element.
+   *
+   * @param element - The section element to create an entry for
+   * @returns An HTMLLIElement containing the anchor link
+   */
+  private createTOCEntry(element: HTMLElement): HTMLLIElement {
+    const text = element.getAttribute("data-label") || "Untitled";
+    const id = this.generateUniqueId(text);
+    element.id = id;
+
+    const a = document.createElement("a");
+    a.href = `#${id}`;
+    a.textContent = text;
+
+    const li = document.createElement("li");
+    li.appendChild(a);
+
+    this.linkSectionMap.set(a, element);
+    return li;
+  }
+
+  /**
+   * Recursively builds the TOC tree structure from nested elements.
+   *
+   * @param element - The parent element to traverse
+   * @returns An HTMLUListElement containing the nested TOC structure
+   */
+  private buildTOCTree(element: HTMLElement): HTMLUListElement {
+    const ul = document.createElement("ul");
+
+    Array.from(element.children).forEach((child) => {
+      if (!(child instanceof HTMLElement)) return;
+
+      if (child.hasAttribute("data-label")) {
+        const li = this.createTOCEntry(child);
+        const nestedUL = this.buildTOCTree(child);
+        if (nestedUL.children.length > 0) {
+          li.appendChild(nestedUL);
         }
-        this.idSet.add(id)
-        return id
-    }
+        ul.appendChild(li);
+      } else {
+        const nested = this.buildTOCTree(child);
+        if (nested.children.length > 0) {
+          ul.append(...Array.from(nested.children));
+        }
+      }
+    });
 
-    /**
-     * Creates a TOC list item entry for a section element.
-     *
-     * @param element - The section element to create an entry for
-     * @returns An HTMLLIElement containing the anchor link
-     */
-    private createTOCEntry(element: HTMLElement): HTMLLIElement {
-        const text = element.getAttribute("data-label") || "Untitled"
-        const id = this.generateUniqueId(text)
-        element.id = id
+    return ul;
+  }
 
-        const a = document.createElement("a")
-        a.href = `#${id}`
-        a.textContent = text
+  /**
+   * Builds the TOC tree and appends it to the container element.
+   * Also initializes ScrollSpyManager for active link tracking.
+   */
+  public buildAndAppendTOC(): void {
+    const root = document.getElementById(this.rootId);
+    const tocContainer = document.getElementById(this.tocContainerId);
 
-        const li = document.createElement("li")
-        li.appendChild(a)
+    if (!root || !tocContainer) return;
 
-        this.linkSectionMap.set(a, element)
-        return li
-    }
+    const tocTree = this.buildTOCTree(root);
+    tocContainer.innerHTML = "";
+    tocContainer.appendChild(tocTree);
 
-    /**
-     * Recursively builds the TOC tree structure from nested elements.
-     *
-     * @param element - The parent element to traverse
-     * @returns An HTMLUListElement containing the nested TOC structure
-     */
-    private buildTOCTree(element: HTMLElement): HTMLUListElement {
-        const ul = document.createElement("ul")
+    this.scrollSpyManager = ScrollSpyManager.fromElements(
+      Array.from(this.linkSectionMap.values()),
+      `#${this.tocContainerId} a`,
+      this.rootId
+    );
+  }
 
-        Array.from(element.children).forEach((child) => {
-            if (!(child instanceof HTMLElement)) return
-
-            if (child.hasAttribute("data-label")) {
-                const li = this.createTOCEntry(child)
-                const nestedUL = this.buildTOCTree(child)
-                if (nestedUL.children.length > 0) {
-                    li.appendChild(nestedUL)
-                }
-                ul.appendChild(li)
-            } else {
-                const nested = this.buildTOCTree(child)
-                if (nested.children.length > 0) {
-                    ul.append(...Array.from(nested.children))
-                }
-            }
-        })
-
-        return ul
-    }
-
-    /**
-     * Builds the TOC tree and appends it to the container element.
-     * Also initializes ScrollSpyManager for active link tracking.
-     */
-    public buildAndAppendTOC(): void {
-        const root = document.getElementById(this.rootId)
-        const tocContainer = document.getElementById(this.tocContainerId)
-
-        if (!root || !tocContainer) return
-
-        const tocTree = this.buildTOCTree(root)
-        tocContainer.innerHTML = ""
-        tocContainer.appendChild(tocTree)
-
-        this.scrollSpyManager = ScrollSpyManager.fromElements(
-            Array.from(this.linkSectionMap.values()),
-            `#${this.tocContainerId} a`,
-            this.rootId,
-        )
-    }
-
-    /**
-     * Returns the map of TOC links to their corresponding content sections.
-     * Useful for custom scroll spy implementations or section tracking.
-     *
-     * @returns A Map with anchor elements as keys and section elements as values
-     */
-    public getLinkSectionMap(): Map<HTMLElement, HTMLElement> {
-        return this.linkSectionMap
-    }
+  /**
+   * Returns the map of TOC links to their corresponding content sections.
+   * Useful for custom scroll spy implementations or section tracking.
+   *
+   * @returns A Map with anchor elements as keys and section elements as values
+   */
+  public getLinkSectionMap(): Map<HTMLElement, HTMLElement> {
+    return this.linkSectionMap;
+  }
 }
 
 // import { ScrollSpyManager } from "../scroll/ScrollSpyManager.js"
