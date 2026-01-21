@@ -4,22 +4,22 @@
 
 // https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
 
-@use "../../dev" as *;
-@use "../../variables" as *;
+@use '../../dev' as *;
+@use '../../variables' as *;
 
-@use "../body_atoms" as *;
-@use "../head_layout" as *;
+@use '../body_atoms' as *;
+@use '../head_layout' as *;
 
-@use "../soul_type" as *;
+@use '../soul_type' as *;
 
 // -----------------------------------------------------------------------------
 // Imports
-@use "../../variables" as *;
+@use '../../variables' as *;
 
 @mixin form--base($gap: q(10)) {
-  display: flex;
-  flex-direction: column;
-  gap: $gap;
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
 }
 
 // -----------------------------------------------------------------------------
@@ -27,20 +27,20 @@
 // -----------------------------------------------------------------------------
 
 @mixin form--row($gap: q(20)) {
-  @include form--base($gap);
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  // align-items: center;
+    @include form--base($gap);
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    // align-items: center;
 
-  > * {
-    flex: 1 1 auto;
-    min-width: 0;
-  }
+    > * {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
 
-  label {
-    // margin-bottom: q(2);
-  }
+    label {
+        // margin-bottom: q(2);
+    }
 }
 
 // -----------------------------------------------------------------------------
@@ -48,16 +48,16 @@
 // -----------------------------------------------------------------------------
 
 @mixin form--col($gap: q(10)) {
-  @include form--base($gap);
-  flex-direction: column;
+    @include form--base($gap);
+    flex-direction: column;
 
-  > * {
-    width: 100%;
-  }
+    > * {
+        width: 100%;
+    }
 
-  label {
-    // margin-bottom: q(2);
-  }
+    label {
+        // margin-bottom: q(2);
+    }
 }
 
 // -----------------------------------------------------------------------------
@@ -66,57 +66,57 @@
 // -----------------------------------------------------------------------------
 
 @mixin form__field--base($gap: q(0)) {
-  @include flex--col;
-  gap: $gap;
-  width: 100%;
-  .form__field__label,
-  label {
-    order: 1;
-  }
-  .form__field__input,
-  input {
-    @include input--base--form;
-    order: 3;
-    &[required] + label:after {
-      content: "*";
-      color: var(--color_log_info);
+    @include flex--col;
+    gap: $gap;
+    width: 100%;
+    .form__field__label,
+    label {
+        order: 1;
     }
-  }
-  .form__field__help {
-    order: 2;
-  }
-  .form__field__error {
-    order: 4;
-  }
+    .form__field__input,
+    input {
+        @include input--base--form;
+        order: 3;
+        &[required] + label:after {
+            content: '*';
+            color: var(--color_log_info);
+        }
+    }
+    .form__field__help {
+        order: 2;
+    }
+    .form__field__error {
+        order: 4;
+    }
 }
 
 // -----------------------------------------------------------------------------
 // Mixin: Form Field (label + input stacked)
 @mixin form__field--col($gap: q(0)) {
-  @include form__field--base($gap);
-  @include flex--col;
+    @include form__field--base($gap);
+    @include flex--col;
 }
 
 // -----------------------------------------------------------------------------
 // Mixin: Inline Label + Input (horizontal layout)
 @mixin form__field--row($label-width: q(120), $gap: q(8)) {
-  @include form__field--base($gap);
-  @include flex--row;
-  label {
-    flex: 0 0 $label-width;
-  }
-  input,
-  select,
-  textarea {
-    flex: 1 1 auto;
-  }
+    @include form__field--base($gap);
+    @include flex--row;
+    label {
+        flex: 0 0 $label-width;
+    }
+    input,
+    select,
+    textarea {
+        flex: 1 1 auto;
+    }
 }
 
 // -----------------------------------------------------------------------------
 
 @mixin form__control($gap: q(4)) {
-  @include form__field--base($gap);
-  flex-direction: row;
+    @include form__field--base($gap);
+    flex-direction: row;
 }
 
 // ============================================================================
@@ -126,21 +126,21 @@
 /// Inline form layout
 /// @group Forms
 @mixin form--inline {
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: q(12);
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: q(12);
 }
 
 /// Horizontal form layout (labels on left)
 /// @group Forms
 @mixin form--horizontal {
-  .form-field {
-    display: grid;
-    grid-template-columns: q(160) 1fr;
-    gap: q(16);
-    align-items: start;
-  }
+    .form-field {
+        display: grid;
+        grid-template-columns: q(160) 1fr;
+        gap: q(16);
+        align-items: start;
+    }
 }
 
 // ============================================================================
@@ -150,26 +150,26 @@
 /// Form field wrapper mixin
 /// @group Forms
 @mixin form-field {
-  display: flex;
-  flex-direction: column;
-  gap: q(4);
+    display: flex;
+    flex-direction: column;
+    gap: q(4);
 }
 
 /// Inline form field mixin
 /// @group Forms
 @mixin form-field--inline {
-  flex-direction: row;
-  align-items: center;
-  gap: q(8);
+    flex-direction: row;
+    align-items: center;
+    gap: q(8);
 }
 
 /// Required field indicator mixin
 /// @group Forms
 @mixin form-field--required {
-  > .form-label::after {
-    content: " *";
-    color: var(--color_error);
-  }
+    > .form-label::after {
+        content: ' *';
+        color: var(--color_error);
+    }
 }
 
 // ============================================================================
@@ -179,22 +179,22 @@
 /// Form label mixin
 /// @group Forms
 @mixin form-label {
-  display: block;
-  font-size: q(14);
-  font-weight: 500;
-  color: var(--color_text_primary);
+    display: block;
+    font-size: q(14);
+    font-weight: 500;
+    color: var(--color_text_primary);
 }
 
 /// Small label mixin
 /// @group Forms
 @mixin form-label--sm {
-  font-size: q(12);
+    font-size: q(12);
 }
 
 /// Large label mixin
 /// @group Forms
 @mixin form-label--lg {
-  font-size: q(16);
+    font-size: q(16);
 }
 
 // ============================================================================
@@ -204,25 +204,25 @@
 /// Help text mixin
 /// @group Forms
 @mixin form-help {
-  font-size: q(12);
-  color: var(--color_text_tertiary);
-  margin-top: q(4);
+    font-size: q(12);
+    color: var(--color_text_tertiary);
+    margin-top: q(4);
 }
 
 /// Error message mixin
 /// @group Forms
 @mixin form-error {
-  font-size: q(12);
-  color: var(--color_error);
-  margin-top: q(4);
+    font-size: q(12);
+    color: var(--color_error);
+    margin-top: q(4);
 }
 
 /// Success message mixin
 /// @group Forms
 @mixin form-success {
-  font-size: q(12);
-  color: var(--color_success);
-  margin-top: q(4);
+    font-size: q(12);
+    color: var(--color_success);
+    margin-top: q(4);
 }
 
 // ============================================================================
@@ -232,27 +232,27 @@
 /// Form actions mixin
 /// @group Forms
 @mixin form-actions {
-  display: flex;
-  gap: q(12);
-  margin-top: q(8);
+    display: flex;
+    gap: q(12);
+    margin-top: q(8);
 }
 
 /// Right-aligned actions mixin
 /// @group Forms
 @mixin form-actions--right {
-  justify-content: flex-end;
+    justify-content: flex-end;
 }
 
 /// Centered actions mixin
 /// @group Forms
 @mixin form-actions--center {
-  justify-content: center;
+    justify-content: center;
 }
 
 /// Space between actions mixin
 /// @group Forms
 @mixin form-actions--between {
-  justify-content: space-between;
+    justify-content: space-between;
 }
 
 // ============================================================================
@@ -262,19 +262,19 @@
 /// Fieldset wrapper mixin
 /// @group Forms
 @mixin fieldset {
-  border: q(1) solid var(--color_border_primary);
-  border-radius: var(--corner_radius_02);
-  padding: q(16);
-  margin: 0;
+    border: q(1) solid var(--color_border_primary);
+    border-radius: var(--corner_radius_02);
+    padding: q(16);
+    margin: 0;
 }
 
 /// Fieldset legend mixin
 /// @group Forms
 @mixin fieldset__legend {
-  font-size: q(14);
-  font-weight: 600;
-  padding: 0 q(8);
-  color: var(--color_text_primary);
+    font-size: q(14);
+    font-weight: 600;
+    padding: 0 q(8);
+    color: var(--color_text_primary);
 }
 
 // ============================================================================
@@ -284,21 +284,21 @@
 /// Form row mixin
 /// @group Forms
 @mixin form-row {
-  display: grid;
-  gap: q(16);
+    display: grid;
+    gap: q(16);
 }
 
 /// Form row columns mixin
 /// @param {Number} $columns - Number of columns
 /// @group Forms
 @mixin form-row-columns($columns) {
-  grid-template-columns: repeat($columns, 1fr);
+    grid-template-columns: repeat($columns, 1fr);
 }
 
 /// Auto-fit form row mixin
 /// @group Forms
 @mixin form-row--auto {
-  grid-template-columns: repeat(auto-fit, minmax(q(200), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(q(200), 1fr));
 }
 
 // Form

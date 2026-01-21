@@ -17,10 +17,10 @@
 // Use
 // ============================================================================
 
-@use "sass:map";
-@use "sass:list";
-@use "sass:meta";
-@use "sass:string";
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:meta';
+@use 'sass:string';
 
 // ============================================================================
 // Functions
@@ -31,13 +31,13 @@
 /// @param {Arglist} $keys - Key path to the value
 /// @return {*} - The value at the path, or null
 @function map-deep-get($map, $keys...) {
-  @each $key in $keys {
-    @if meta.type-of($map) != "map" {
-      @return null;
+    @each $key in $keys {
+        @if meta.type-of($map) != 'map' {
+            @return null;
+        }
+        $map: map.get($map, $key);
     }
-    $map: map.get($map, $key);
-  }
-  @return $map;
+    @return $map;
 }
 
 /// Deep set a value in a nested map
@@ -46,26 +46,26 @@
 /// @param {*} $value - Value to set
 /// @return {Map} - Updated map
 @function map-deep-set($map, $keys, $value) {
-  $length: list.length($keys);
-  $result: ();
+    $length: list.length($keys);
+    $result: ();
 
-  @if $length == 1 {
-    @return map.set($map, list.nth($keys, 1), $value);
-  }
+    @if $length == 1 {
+        @return map.set($map, list.nth($keys, 1), $value);
+    }
 
-  $key: list.nth($keys, 1);
-  $rest: ();
+    $key: list.nth($keys, 1);
+    $rest: ();
 
-  @for $i from 2 through $length {
-    $rest: list.append($rest, list.nth($keys, $i));
-  }
+    @for $i from 2 through $length {
+        $rest: list.append($rest, list.nth($keys, $i));
+    }
 
-  $nested: map.get($map, $key);
-  @if meta.type-of($nested) != "map" {
-    $nested: ();
-  }
+    $nested: map.get($map, $key);
+    @if meta.type-of($nested) != 'map' {
+        $nested: ();
+    }
 
-  @return map.set($map, $key, map-deep-set($nested, $rest, $value));
+    @return map.set($map, $key, map-deep-set($nested, $rest, $value));
 }
 
 /// Merge maps recursively (deep merge)
@@ -73,43 +73,51 @@
 /// @param {Map} $map2 - Second map (overrides first)
 /// @return {Map} - Merged map
 @function map-deep-merge($map1, $map2) {
-  $result: $map1;
+    $result: $map1;
 
-  @each $key, $value in $map2 {
-    @if meta.type-of($value) == "map" and meta.type-of(map.get($result, $key)) == "map" {
-      $result: map.set($result, $key, map-deep-merge(map.get($result, $key), $value));
-    } @else {
-      $result: map.set($result, $key, $value);
+    @each $key, $value in $map2 {
+        @if meta.type-of($value) ==
+            'map' and
+            meta.type-of(map.get($result, $key)) ==
+            'map'
+        {
+            $result: map.set(
+                $result,
+                $key,
+                map-deep-merge(map.get($result, $key), $value)
+            );
+        } @else {
+            $result: map.set($result, $key, $value);
+        }
     }
-  }
 
-  @return $result;
+    @return $result;
 }
 
 /// Get all values from a map as a list
 /// @param {Map} $map - The map
 /// @return {List} - List of values
 @function map-values($map) {
-  $result: ();
+    $result: ();
 
-  @each $key, $value in $map {
-    $result: list.append($result, $value);
-  }
+    @each $key, $value in $map {
+        $result: list.append($result, $value);
+    }
 
-  @return $result;
+    @return $result;
 }
 
 /// Invert a map (swap keys and values)
 /// @param {Map} $map - The map to invert
 /// @return {Map} - Inverted map
 @function map-invert($map) {
-  $result: ();
+    $result: ();
 
-  @each $key, $value in $map {
-    $result: map.set($result, $value, $key);
-  }
+    @each $key, $value in $map {
+        $result: map.set($result, $value, $key);
+    }
 
-  @return $result;
+    @return $result;
 }
 
 /// Filter a map by keys
@@ -117,40 +125,40 @@
 /// @param {List} $keys - Keys to keep
 /// @return {Map} - Filtered map
 @function map-filter-keys($map, $keys) {
-  $result: ();
+    $result: ();
 
-  @each $key, $value in $map {
-    @if list.index($keys, $key) {
-      $result: map.set($result, $key, $value);
+    @each $key, $value in $map {
+        @if list.index($keys, $key) {
+            $result: map.set($result, $key, $value);
+        }
     }
-  }
 
-  @return $result;
+    @return $result;
 }
 
 /// Convert a map to CSS custom properties string
 /// @param {Map} $map - Map to convert
 /// @param {String} $prefix [''] - Prefix for property names
 /// @return {String} - CSS declarations
-@function map-to-props($map, $prefix: "") {
-  $result: "";
+@function map-to-props($map, $prefix: '') {
+    $result: '';
 
-  @each $key, $value in $map {
-    $prop-name: "";
-    @if $prefix != "" {
-      $prop-name: "#{$prefix}-#{$key}";
-    } @else {
-      $prop-name: "#{$key}";
+    @each $key, $value in $map {
+        $prop-name: '';
+        @if $prefix != '' {
+            $prop-name: '#{$prefix}-#{$key}';
+        } @else {
+            $prop-name: '#{$key}';
+        }
+
+        @if meta.type-of($value) == 'map' {
+            $result: $result + map-to-props($value, $prop-name);
+        } @else {
+            $result: $result + '--#{$prop-name}: #{$value}; ';
+        }
     }
 
-    @if meta.type-of($value) == "map" {
-      $result: $result + map-to-props($value, $prop-name);
-    } @else {
-      $result: $result + "--#{$prop-name}: #{$value}; ";
-    }
-  }
-
-  @return $result;
+    @return $result;
 }
 
 /// Check if a map has a key (including nested)
@@ -158,11 +166,11 @@
 /// @param {Arglist} $keys - Key path to check
 /// @return {Boolean} - True if key exists
 @function map-has-deep-key($map, $keys...) {
-  @each $key in $keys {
-    @if meta.type-of($map) != "map" or not map.has-key($map, $key) {
-      @return false;
+    @each $key in $keys {
+        @if meta.type-of($map) != 'map' or not map.has-key($map, $key) {
+            @return false;
+        }
+        $map: map.get($map, $key);
     }
-    $map: map.get($map, $key);
-  }
-  @return true;
+    @return true;
 }

@@ -17,9 +17,9 @@
 // Use
 // ============================================================================
 
-@use "sass:math";
-@use "sass:list";
-@use "sass:meta";
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:meta';
 
 // ============================================================================
 // Functions
@@ -31,17 +31,17 @@
 /// @param {Number} $max - Maximum value
 /// @return {Number} - Clamped value
 @function clamp-value($value, $min, $max) {
-  @return math.min(math.max($value, $min), $max);
+    @return math.min(math.max($value, $min), $max);
 }
 
 /// Strip unit from a number
 /// @param {Number} $number - Number with unit
 /// @return {Number} - Unitless number
 @function strip-unit($number) {
-  @if meta.type-of($number) == "number" and not math.is-unitless($number) {
-    @return math.div($number, $number * 0 + 1);
-  }
-  @return $number;
+    @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
+        @return math.div($number, $number * 0 + 1);
+    }
+    @return $number;
 }
 
 /// Convert pixels to rem
@@ -49,7 +49,7 @@
 /// @param {Number} $base [16] - Base font size in pixels
 /// @return {Number} - Rem value
 @function px-to-rem($px, $base: 16) {
-  @return math.div(strip-unit($px), $base) * 1rem;
+    @return math.div(strip-unit($px), $base) * 1rem;
 }
 
 /// Convert rem to pixels
@@ -57,7 +57,7 @@
 /// @param {Number} $base [16] - Base font size in pixels
 /// @return {Number} - Pixel value
 @function rem-to-px($rem, $base: 16) {
-  @return strip-unit($rem) * $base * 1px;
+    @return strip-unit($rem) * $base * 1px;
 }
 
 /// Convert pixels to em
@@ -65,7 +65,7 @@
 /// @param {Number} $context [16] - Context font size in pixels
 /// @return {Number} - Em value
 @function px-to-em($px, $context: 16) {
-  @return math.div(strip-unit($px), $context) * 1em;
+    @return math.div(strip-unit($px), $context) * 1em;
 }
 
 /// Calculate modular scale value
@@ -74,7 +74,7 @@
 /// @param {Number} $ratio [1.25] - Scale ratio (e.g., 1.25 = major third)
 /// @return {Number} - Scaled value
 @function modular-scale($step, $base: 1rem, $ratio: 1.25) {
-  @return $base * math.pow($ratio, $step);
+    @return $base * math.pow($ratio, $step);
 }
 
 /// Calculate fluid value between two breakpoints
@@ -83,14 +83,23 @@
 /// @param {Number} $min-viewport - Minimum viewport width
 /// @param {Number} $max-viewport - Maximum viewport width
 /// @return {String} - CSS clamp() function
-@function fluid-value($min-value, $max-value, $min-viewport: 320px, $max-viewport: 1200px) {
-  $slope: math.div(
-    strip-unit($max-value) - strip-unit($min-value),
-    strip-unit($max-viewport) - strip-unit($min-viewport)
-  );
-  $intercept: strip-unit($min-value) - $slope * strip-unit($min-viewport);
+@function fluid-value(
+    $min-value,
+    $max-value,
+    $min-viewport: 320px,
+    $max-viewport: 1200px
+) {
+    $slope: math.div(
+        strip-unit($max-value) - strip-unit($min-value),
+        strip-unit($max-viewport) - strip-unit($min-viewport)
+    );
+    $intercept: strip-unit($min-value) - $slope * strip-unit($min-viewport);
 
-  @return clamp(#{$min-value}, #{$intercept}px + #{$slope * 100}vw, #{$max-value});
+    @return clamp(
+        #{$min-value},
+        #{$intercept}px + #{$slope * 100}vw,
+        #{$max-value}
+    );
 }
 
 /// Calculate percentage
@@ -98,7 +107,7 @@
 /// @param {Number} $whole - The whole
 /// @return {Number} - Percentage
 @function percentage($part, $whole) {
-  @return math.div($part, $whole) * 100%;
+    @return math.div($part, $whole) * 100%;
 }
 
 /// Round to specified decimal places
@@ -106,6 +115,6 @@
 /// @param {Number} $decimals [2] - Number of decimal places
 /// @return {Number} - Rounded number
 @function round-to($number, $decimals: 2) {
-  $factor: math.pow(10, $decimals);
-  @return math.div(math.round($number * $factor), $factor);
+    $factor: math.pow(10, $decimals);
+    @return math.div(math.round($number * $factor), $factor);
 }

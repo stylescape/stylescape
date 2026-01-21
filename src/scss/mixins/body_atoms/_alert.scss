@@ -10,14 +10,14 @@
 /// @access public
 ///
 
-@use "sass:string";
+@use 'sass:string';
 
-@use "../../dev" as *;
-@use "../../variables" as *;
+@use '../../dev' as *;
+@use '../../variables' as *;
 
-@use "../head_layout" as *;
-@use "../soul_object" as *;
-@use "../soul_type" as *;
+@use '../head_layout' as *;
+@use '../soul_object' as *;
+@use '../soul_type' as *;
 
 @mixin alert--base {
     display: flex;
@@ -48,42 +48,42 @@
 }
 
 @function css-var($name) {
-    @return string.unquote("--#{$name}");
+    @return string.unquote('--#{$name}');
 }
 
 @mixin alert--variant($token) {
-    background-color: var(css-var("color_#{$token}--75"));
-    color: var(css-var("color_#{$token}"));
-    border-color: var(css-var("color_#{$token}--50"));
+    background-color: var(css-var('color_#{$token}--75'));
+    color: var(css-var('color_#{$token}'));
+    border-color: var(css-var('color_#{$token}--50'));
 
     @include alert--base; // includes nested `&__icon`, etc.
 }
 
 @mixin alert--success {
-    @include alert--variant("log_success");
+    @include alert--variant('log_success');
     &::before {
-        content: "✔";
+        content: '✔';
     }
 }
 
 @mixin alert--warning {
-    @include alert--variant("log_warning");
+    @include alert--variant('log_warning');
     &::before {
-        content: "⚠";
+        content: '⚠';
     }
 }
 
 @mixin alert--error {
-    @include alert--variant("log_error");
+    @include alert--variant('log_error');
     &::before {
-        content: "✖";
+        content: '✖';
     }
 }
 
 @mixin alert--info {
-    @include alert--variant("log_info");
+    @include alert--variant('log_info');
     &::before {
-        content: "ℹ";
+        content: 'ℹ';
     }
 }
 

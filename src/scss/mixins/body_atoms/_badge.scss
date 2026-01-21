@@ -18,41 +18,41 @@
 // Use
 // ============================================================================
 
-@use "sass:map";
-@use "sass:list";
+@use 'sass:map';
+@use 'sass:list';
 
-@use "../../dev" as *;
-@use "../../variables" as *;
+@use '../../dev' as *;
+@use '../../variables' as *;
 
-@use "../head_layout" as *;
-@use "../soul_object" as *;
-@use "../soul_type" as *;
+@use '../head_layout' as *;
+@use '../soul_object' as *;
+@use '../soul_type' as *;
 
 // ============================================================================
 // Maps (match button.scss structure: (height, font-size-key))
 // ============================================================================
 
 $badge_size_map: (
-  "xs": (
-    2,
-    "01",
-  ),
-  "sm": (
-    3,
-    "02",
-  ),
-  "md": (
-    4,
-    "03",
-  ),
-  "lg": (
-    5,
-    "04",
-  ),
-  "xl": (
-    6,
-    "05",
-  ),
+    'xs': (
+        2,
+        '01',
+    ),
+    'sm': (
+        3,
+        '02',
+    ),
+    'md': (
+        4,
+        '03',
+    ),
+    'lg': (
+        5,
+        '04',
+    ),
+    'xl': (
+        6,
+        '05',
+    ),
 ) !default;
 
 // ============================================================================
@@ -61,73 +61,73 @@ $badge_size_map: (
 
 /// Base badge styles (no size here; purely visual baseline)
 @mixin badge--base {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color_fill_primary);
-  background-color: var(--color_text_primary);
-  white-space: nowrap;
-  vertical-align: middle;
-  text-align: center;
-  user-select: none;
-  padding: baseline(1);
-  cursor: auto;
-  pointer-events: none;
-  @include sizing--border;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color_fill_primary);
+    background-color: var(--color_text_primary);
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    user-select: none;
+    padding: baseline(1);
+    cursor: auto;
+    pointer-events: none;
+    @include sizing--border;
 
-  // Empty badges collapse automatically
-  &:empty {
-    display: none;
-  }
+    // Empty badges collapse automatically
+    &:empty {
+        display: none;
+    }
 
-  // Color variants
-  &.accent {
-    @include object--fill(accent_primary);
-  }
+    // Color variants
+    &.accent {
+        @include object--fill(accent_primary);
+    }
 
-  &.info {
-    @include object--fill(log_info);
-  }
+    &.info {
+        @include object--fill(log_info);
+    }
 
-  &.success {
-    @include object--fill(log_success);
-  }
+    &.success {
+        @include object--fill(log_success);
+    }
 
-  &.warning {
-    @include object--fill(log_warning);
-  }
+    &.warning {
+        @include object--fill(log_warning);
+    }
 
-  &.error {
-    @include object--fill(log_error);
-  }
+    &.error {
+        @include object--fill(log_error);
+    }
 
-  // Shape Modifiers
-  &.squared {
-    @include object--corner--squared;
-  }
+    // Shape Modifiers
+    &.squared {
+        @include object--corner--squared;
+    }
 
-  &.rounded {
-    @include object--corner--rounded;
-  }
+    &.rounded {
+        @include object--corner--rounded;
+    }
 
-  &.pill {
-    @include object--corner--pill;
-  }
+    &.pill {
+        @include object--corner--pill;
+    }
 }
 
 /// Height sizing via baseline units (mirrors button--size)
 @mixin badge--size($val) {
-  $size: baseline($val);
-  height: $size;
-  min-height: $size;
-  max-height: $size;
+    $size: baseline($val);
+    height: $size;
+    min-height: $size;
+    max-height: $size;
 }
 
 /// Full badge style preset including base + size + type scale
 @mixin badge($height, $font-size-key) {
-  @include badge--base;
-  @include badge--size($height);
-  @include font--size($font-size-key);
+    @include badge--base;
+    @include badge--size($height);
+    @include font--size($font-size-key);
 }
 
 // ============================================================================
@@ -137,36 +137,36 @@ $badge_size_map: (
 /// Extra small badge
 /// @group Badges
 @mixin badge--size-xs {
-  @include badge--size(list.nth(map.get($badge_size_map, "xs"), 1));
-  @include font--size(list.nth(map.get($badge_size_map, "xs"), 2));
+    @include badge--size(list.nth(map.get($badge_size_map, 'xs'), 1));
+    @include font--size(list.nth(map.get($badge_size_map, 'xs'), 2));
 }
 
 /// Small badge
 /// @group Badges
 @mixin badge--size-sm {
-  @include badge--size(list.nth(map.get($badge_size_map, "sm"), 1));
-  @include font--size(list.nth(map.get($badge_size_map, "sm"), 2));
+    @include badge--size(list.nth(map.get($badge_size_map, 'sm'), 1));
+    @include font--size(list.nth(map.get($badge_size_map, 'sm'), 2));
 }
 
 /// Medium badge (default)
 /// @group Badges
 @mixin badge--size-md {
-  @include badge--size(list.nth(map.get($badge_size_map, "md"), 1));
-  @include font--size(list.nth(map.get($badge_size_map, "md"), 2));
+    @include badge--size(list.nth(map.get($badge_size_map, 'md'), 1));
+    @include font--size(list.nth(map.get($badge_size_map, 'md'), 2));
 }
 
 /// Large badge
 /// @group Badges
 @mixin badge--size-lg {
-  @include badge--size(list.nth(map.get($badge_size_map, "lg"), 1));
-  @include font--size(list.nth(map.get($badge_size_map, "lg"), 2));
+    @include badge--size(list.nth(map.get($badge_size_map, 'lg'), 1));
+    @include font--size(list.nth(map.get($badge_size_map, 'lg'), 2));
 }
 
 /// Extra large badge
 /// @group Badges
 @mixin badge--size-xl {
-  @include badge--size(list.nth(map.get($badge_size_map, "xl"), 1));
-  @include font--size(list.nth(map.get($badge_size_map, "xl"), 2));
+    @include badge--size(list.nth(map.get($badge_size_map, 'xl'), 1));
+    @include font--size(list.nth(map.get($badge_size_map, 'xl'), 2));
 }
 
 // ============================================================================
@@ -176,31 +176,31 @@ $badge_size_map: (
 /// Accent badge
 /// @group Badges
 @mixin badge--accent {
-  @include object--fill(accent_primary);
+    @include object--fill(accent_primary);
 }
 
 /// Info badge
 /// @group Badges
 @mixin badge--info {
-  @include object--fill(log_info);
+    @include object--fill(log_info);
 }
 
 /// Success badge
 /// @group Badges
 @mixin badge--success {
-  @include object--fill(log_success);
+    @include object--fill(log_success);
 }
 
 /// Warning badge
 /// @group Badges
 @mixin badge--warning {
-  @include object--fill(log_warning);
+    @include object--fill(log_warning);
 }
 
 /// Error badge
 /// @group Badges
 @mixin badge--error {
-  @include object--fill(log_error);
+    @include object--fill(log_error);
 }
 
 // ============================================================================
@@ -210,19 +210,19 @@ $badge_size_map: (
 /// Squared badge
 /// @group Badges
 @mixin badge--squared {
-  @include object--corner--squared;
+    @include object--corner--squared;
 }
 
 /// Rounded badge
 /// @group Badges
 @mixin badge--rounded {
-  @include object--corner--rounded;
+    @include object--corner--rounded;
 }
 
 /// Pill badge
 /// @group Badges
 @mixin badge--pill {
-  @include object--corner--pill;
+    @include object--corner--pill;
 }
 
 // // ============================================================================

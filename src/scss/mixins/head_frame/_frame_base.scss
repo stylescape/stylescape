@@ -1,6 +1,6 @@
-@use "../soul_object" as *;
-@use "../../dev" as *;
-@use "../../variables" as *;
+@use '../soul_object' as *;
+@use '../../dev' as *;
+@use '../../variables' as *;
 ///
 /// Base Frame Mixin
 /// ---------------------------------------------------------------------------
@@ -10,27 +10,27 @@
 /// @group Layout
 ///
 @mixin frame_base {
-  @include reset_bleed;
-  @include sizing--border;
-  display: grid;
-  grid-auto-flow: row;
-  gap: 0;
-  // Full  height and width
-  // width: 100%;
-  // height: 100%;
-  // max-width: 100%;
-  // max-height: 100%;
-  // min-width: 100%;
-  // min-height: 100%;
+    @include reset_bleed;
+    @include sizing--border;
+    display: grid;
+    grid-auto-flow: row;
+    gap: 0;
+    // Full  height and width
+    // width: 100%;
+    // height: 100%;
+    // max-width: 100%;
+    // max-height: 100%;
+    // min-width: 100%;
+    // min-height: 100%;
 
-  // padding: 0;
-  // margin: 0;
+    // padding: 0;
+    // margin: 0;
 
-  // Ensures consistent box model across browsers
-  // and prevents layout shifts due to padding or borders
+    // Ensures consistent box model across browsers
+    // and prevents layout shifts due to padding or borders
 
-  // Controls content overflow inside the frame
-  overflow: hidden; // change to `auto` or `overlay` for scrollable frames
+    // Controls content overflow inside the frame
+    overflow: hidden; // change to `auto` or `overlay` for scrollable frames
 }
 
 ///
@@ -40,8 +40,8 @@
 /// @param {String} $name - The name of the grid area.
 ///
 @mixin frame__area($name) {
-  grid-area: $name;
-  @include reset_bleed;
+    grid-area: $name;
+    @include reset_bleed;
 }
 
 // ============================================================================
@@ -49,45 +49,45 @@
 // ============================================================================
 
 @mixin frame__area--top {
-  grid-row-start: top_left;
-  grid-column-start: top_left;
-  grid-row-end: top_right;
-  grid-column-end: top_right;
+    grid-row-start: top_left;
+    grid-column-start: top_left;
+    grid-row-end: top_right;
+    grid-column-end: top_right;
 }
 
 @mixin frame__area--middle {
-  grid-row-start: middle_left;
-  grid-column-start: middle_left;
-  grid-row-end: middle_right;
-  grid-column-end: middle_right;
+    grid-row-start: middle_left;
+    grid-column-start: middle_left;
+    grid-row-end: middle_right;
+    grid-column-end: middle_right;
 }
 
 @mixin frame__area--bottom {
-  grid-row-start: bottom_left;
-  grid-column-start: bottom_left;
-  grid-row-end: bottom_right;
-  grid-column-end: bottom_right;
+    grid-row-start: bottom_left;
+    grid-column-start: bottom_left;
+    grid-row-end: bottom_right;
+    grid-column-end: bottom_right;
 }
 
 @mixin frame__area--left {
-  grid-row-start: top_left;
-  grid-column-start: top_left;
-  grid-row-end: bottom_left;
-  grid-column-end: bottom_left;
+    grid-row-start: top_left;
+    grid-column-start: top_left;
+    grid-row-end: bottom_left;
+    grid-column-end: bottom_left;
 }
 
 @mixin frame__area--center {
-  grid-row-start: top_center;
-  grid-column-start: top_center;
-  grid-row-end: bottom_center;
-  grid-column-end: bottom_center;
+    grid-row-start: top_center;
+    grid-column-start: top_center;
+    grid-row-end: bottom_center;
+    grid-column-end: bottom_center;
 }
 
 @mixin frame__area--right {
-  grid-row-start: top_right;
-  grid-column-start: top_right;
-  grid-row-end: bottom_right;
-  grid-column-end: bottom_right;
+    grid-row-start: top_right;
+    grid-column-start: top_right;
+    grid-row-end: bottom_right;
+    grid-column-end: bottom_right;
 }
 
 // ============================================================================
@@ -97,33 +97,33 @@
 /// Full viewport frame
 /// @group Frames
 @mixin frame--viewport {
-  width: 100vw;
-  height: 100vh;
-  min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
 }
 
 /// Dynamic viewport frame (mobile-safe)
 /// @group Frames
 @mixin frame--viewport--dynamic {
-  width: 100vw;
-  height: 100dvh;
-  min-height: 100dvh;
+    width: 100vw;
+    height: 100dvh;
+    min-height: 100dvh;
 }
 
 /// Small viewport frame
 /// @group Frames
 @mixin frame--viewport--small {
-  width: 100vw;
-  height: 100svh;
-  min-height: 100svh;
+    width: 100vw;
+    height: 100svh;
+    min-height: 100svh;
 }
 
 /// Large viewport frame
 /// @group Frames
 @mixin frame--viewport--large {
-  width: 100vw;
-  height: 100lvh;
-  min-height: 100lvh;
+    width: 100vw;
+    height: 100lvh;
+    min-height: 100lvh;
 }
 
 // ============================================================================
@@ -133,8 +133,8 @@
 /// Full-width container
 /// @group Frames
 @mixin frame--full {
-  width: 100%;
-  max-width: 100%;
+    width: 100%;
+    max-width: 100%;
 }
 
 /// Centered container base mixin
@@ -142,48 +142,48 @@
 /// @param {Number} $padding - Horizontal padding
 /// @group Frames
 @mixin frame--container-base($max-width: q(1200), $padding: q(16)) {
-  width: 100%;
-  max-width: $max-width;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: $padding;
-  padding-right: $padding;
+    width: 100%;
+    max-width: $max-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $padding;
+    padding-right: $padding;
 }
 
 /// Default container
 /// @group Frames
 @mixin frame--container {
-  @include frame--container-base(q(1200));
+    @include frame--container-base(q(1200));
 }
 
 /// Small container
 /// @group Frames
 @mixin frame--container--sm {
-  @include frame--container-base(q(640));
+    @include frame--container-base(q(640));
 }
 
 /// Medium container
 /// @group Frames
 @mixin frame--container--md {
-  @include frame--container-base(q(768));
+    @include frame--container-base(q(768));
 }
 
 /// Large container
 /// @group Frames
 @mixin frame--container--lg {
-  @include frame--container-base(q(1024));
+    @include frame--container-base(q(1024));
 }
 
 /// Extra large container
 /// @group Frames
 @mixin frame--container--xl {
-  @include frame--container-base(q(1280));
+    @include frame--container-base(q(1280));
 }
 
 /// 2XL container
 /// @group Frames
 @mixin frame--container--2xl {
-  @include frame--container-base(q(1536));
+    @include frame--container-base(q(1536));
 }
 
 // ============================================================================
@@ -193,38 +193,38 @@
 /// App wrapper (flex column, full height)
 /// @group Frames
 @mixin frame--app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 /// App header frame
 /// @group Frames
 @mixin frame--header {
-  flex-shrink: 0;
-  width: 100%;
+    flex-shrink: 0;
+    width: 100%;
 }
 
 /// App main content frame (grows to fill)
 /// @group Frames
 @mixin frame--main {
-  flex-grow: 1;
-  width: 100%;
+    flex-grow: 1;
+    width: 100%;
 }
 
 /// App footer frame
 /// @group Frames
 @mixin frame--footer {
-  flex-shrink: 0;
-  width: 100%;
+    flex-shrink: 0;
+    width: 100%;
 }
 
 /// Sidebar frame
 /// @group Frames
 @mixin frame--sidebar {
-  flex-shrink: 0;
-  overflow-y: auto;
+    flex-shrink: 0;
+    overflow-y: auto;
 }
 
 // ============================================================================
@@ -234,35 +234,35 @@
 /// Square aspect ratio
 /// @group Frames
 @mixin frame--square {
-  aspect-ratio: 1 / 1;
+    aspect-ratio: 1 / 1;
 }
 
 /// Video aspect ratio (16:9)
 /// @group Frames
 @mixin frame--video {
-  aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 9;
 }
 
 /// Portrait aspect ratio (3:4)
 /// @group Frames
 @mixin frame--portrait {
-  aspect-ratio: 3 / 4;
+    aspect-ratio: 3 / 4;
 }
 
 /// Landscape aspect ratio (4:3)
 /// @group Frames
 @mixin frame--landscape {
-  aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 3;
 }
 
 /// Widescreen aspect ratio (21:9)
 /// @group Frames
 @mixin frame--widescreen {
-  aspect-ratio: 21 / 9;
+    aspect-ratio: 21 / 9;
 }
 
 /// Auto aspect ratio
 /// @group Frames
 @mixin frame--aspect--auto {
-  aspect-ratio: auto;
+    aspect-ratio: auto;
 }

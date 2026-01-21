@@ -17,9 +17,9 @@
 // Use
 // ============================================================================
 
-@use "sass:color";
-@use "sass:math";
-@use "sass:meta";
+@use 'sass:color';
+@use 'sass:math';
+@use 'sass:meta';
 
 // ============================================================================
 // Functions
@@ -29,29 +29,29 @@
 /// @param {Color} $color - The color to analyze
 /// @return {Number} - Relative luminance value (0-1)
 @function luminance($color) {
-  $red: color.red($color) / 255;
-  $green: color.green($color) / 255;
-  $blue: color.blue($color) / 255;
+    $red: color.red($color) / 255;
+    $green: color.green($color) / 255;
+    $blue: color.blue($color) / 255;
 
-  @if $red <= 0.03928 {
-    $red: math.div($red, 12.92);
-  } @else {
-    $red: math.pow(math.div($red + 0.055, 1.055), 2.4);
-  }
+    @if $red <= 0.03928 {
+        $red: math.div($red, 12.92);
+    } @else {
+        $red: math.pow(math.div($red + 0.055, 1.055), 2.4);
+    }
 
-  @if $green <= 0.03928 {
-    $green: math.div($green, 12.92);
-  } @else {
-    $green: math.pow(math.div($green + 0.055, 1.055), 2.4);
-  }
+    @if $green <= 0.03928 {
+        $green: math.div($green, 12.92);
+    } @else {
+        $green: math.pow(math.div($green + 0.055, 1.055), 2.4);
+    }
 
-  @if $blue <= 0.03928 {
-    $blue: math.div($blue, 12.92);
-  } @else {
-    $blue: math.pow(math.div($blue + 0.055, 1.055), 2.4);
-  }
+    @if $blue <= 0.03928 {
+        $blue: math.div($blue, 12.92);
+    } @else {
+        $blue: math.pow(math.div($blue + 0.055, 1.055), 2.4);
+    }
 
-  @return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
+    @return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
 }
 
 /// Calculate contrast ratio between two colors
@@ -59,10 +59,10 @@
 /// @param {Color} $color2 - Second color
 /// @return {Number} - Contrast ratio (1-21)
 @function contrast-ratio($color1, $color2) {
-  $lum1: luminance($color1) + 0.05;
-  $lum2: luminance($color2) + 0.05;
+    $lum1: luminance($color1) + 0.05;
+    $lum2: luminance($color2) + 0.05;
 
-  @return math.div(math.max($lum1, $lum2), math.min($lum1, $lum2));
+    @return math.div(math.max($lum1, $lum2), math.min($lum1, $lum2));
 }
 
 /// Get optimal text color (black or white) for a given background
@@ -71,14 +71,14 @@
 /// @param {Color} $dark [#000000] - Dark text color option
 /// @return {Color} - Optimal text color
 @function text-contrast($background, $light: #ffffff, $dark: #000000) {
-  $light-contrast: contrast-ratio($background, $light);
-  $dark-contrast: contrast-ratio($background, $dark);
+    $light-contrast: contrast-ratio($background, $light);
+    $dark-contrast: contrast-ratio($background, $dark);
 
-  @if $light-contrast > $dark-contrast {
-    @return $light;
-  } @else {
-    @return $dark;
-  }
+    @if $light-contrast > $dark-contrast {
+        @return $light;
+    } @else {
+        @return $dark;
+    }
 }
 
 /// Create a color shade (darken)
@@ -86,7 +86,7 @@
 /// @param {Number} $percentage - Amount to darken (0-100)
 /// @return {Color} - Shaded color
 @function shade($color, $percentage) {
-  @return color.mix(#000000, $color, $percentage);
+    @return color.mix(#000000, $color, $percentage);
 }
 
 /// Create a color tint (lighten)
@@ -94,7 +94,7 @@
 /// @param {Number} $percentage - Amount to lighten (0-100)
 /// @return {Color} - Tinted color
 @function tint($color, $percentage) {
-  @return color.mix(#ffffff, $color, $percentage);
+    @return color.mix(#ffffff, $color, $percentage);
 }
 
 /// Create a color tone (add grey)
@@ -102,18 +102,18 @@
 /// @param {Number} $percentage - Amount of grey (0-100)
 /// @return {Color} - Toned color
 @function tone($color, $percentage) {
-  @return color.mix(#808080, $color, $percentage);
+    @return color.mix(#808080, $color, $percentage);
 }
 
 /// Check if a color is light or dark
 /// @param {Color} $color - Color to check
 /// @return {String} - "light" or "dark"
 @function color-type($color) {
-  @if luminance($color) > 0.5 {
-    @return "light";
-  } @else {
-    @return "dark";
-  }
+    @if luminance($color) > 0.5 {
+        @return 'light';
+    } @else {
+        @return 'dark';
+    }
 }
 
 /// Generate an accessible color pair
@@ -121,7 +121,11 @@
 /// @param {Number} $min-ratio [4.5] - Minimum contrast ratio (WCAG AA = 4.5, AAA = 7)
 /// @return {Map} - Map with background and text colors
 @function accessible-pair($background, $min-ratio: 4.5) {
-  $text: text-contrast($background);
+    $text: text-contrast($background);
 
-  @return (background: $background, text: $text, ratio: contrast-ratio($background, $text));
+    @return (
+        background: $background,
+        text: $text,
+        ratio: contrast-ratio($background, $text)
+    );
 }
