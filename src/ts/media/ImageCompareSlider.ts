@@ -1,10 +1,83 @@
+// ============================================================================
+// Stylescape | Image Compare Slider
+// ============================================================================
+// Interactive before/after image comparison slider with drag support.
+// Supports data-ss-image-compare attributes for declarative configuration.
+// ============================================================================
+
+/**
+ * Configuration options for ImageCompareSlider
+ */
+export interface ImageCompareSliderOptions {
+    /** Initial slider position (0-100 percentage) */
+    initialPosition?: number
+    /** CSS class for the slider handle */
+    sliderClass?: string
+    /** CSS class for the overlay image */
+    overlayClass?: string
+    /** Enable touch support */
+    touch?: boolean
+    /** Show labels for before/after */
+    showLabels?: boolean
+    /** Before image label text */
+    beforeLabel?: string
+    /** After image label text */
+    afterLabel?: string
+    /** Callback when slider position changes */
+    onChange?: (position: number) => void
+}
+
+/**
+ * Interactive image comparison slider for before/after images.
+ * Supports mouse and touch interactions.
+ *
+ * @example JavaScript
+ * ```typescript
+ * const container = document.querySelector(".image__compare")
+ * const slider = new ImageCompareSlider(container, {
+ *     initialPosition: 50,
+ *     showLabels: true,
+ *     onChange: (pos) => console.log(`Position: ${pos}%`)
+ * })
+ * ```
+ *
+ * @example HTML with data-ss
+ * ```html
+ * <div class="image__compare"
+ *      data-ss="image-compare"
+ *      data-ss-image-compare-position="50">
+ *     <img class="image__compare--image" src="after.jpg" alt="After">
+ *     <img class="image__compare--overlay" src="before.jpg" alt="Before">
+ *     <div class="image__compare--slider"></div>
+ * </div>
+ * ```
+ *
+ * @example Static initialization for all sliders
+ * ```typescript
+ * ImageCompareSlider.initAll(".image__compare")
+ * ```
+ */
 export class ImageCompareSlider {
+    /** The container element for the slider */
     private container: HTMLElement
+
+    /** The overlay (before) image element */
     private overlay: HTMLImageElement
+
+    /** The base (after) image element */
     private baseImage: HTMLImageElement
+
+    /** The draggable slider handle element */
     private slider: HTMLElement
+
+    /** Whether the slider is currently being dragged */
     private isActive: boolean = false
 
+    /**
+     * Creates a new ImageCompareSlider instance.
+     *
+     * @param container - The container element holding both images and slider
+     */
     constructor(container: HTMLElement) {
         this.container = container
         this.slider = container.querySelector(
@@ -30,7 +103,7 @@ export class ImageCompareSlider {
             return
         }
 
-        // Kontrolleri başlat
+        // Initialize brightness checks
         this.checkAndInject(this.baseImage)
         this.checkAndInject(this.overlay)
 
@@ -38,6 +111,11 @@ export class ImageCompareSlider {
         this.slideMove(this.container.offsetWidth / 2)
     }
 
+    /**
+     * Checks image brightness and injects dark mode indicators if needed.
+     *
+     * @param image - The image element to check
+     */
     private checkAndInject(image: HTMLImageElement): void {
         const side = image.dataset.darkSide
         if (!side) return
@@ -73,6 +151,12 @@ export class ImageCompareSlider {
         }
     }
 
+    /**
+     * Analyzes image brightness using canvas pixel sampling.
+     *
+     * @param image - The image element to analyze
+     * @returns Promise resolving to true if image is bright (avg > 160)
+     */
     private isImageBright(image: HTMLImageElement): Promise<boolean> {
         return new Promise((resolve) => {
             const canvas = document.createElement("canvas")
@@ -107,6 +191,9 @@ export class ImageCompareSlider {
         })
     }
 
+    /**
+     * Initializes mouse and touch event listeners for drag interaction.
+     */
     private initEvents(): void {
         this.slider.addEventListener("mousedown", () => (this.isActive = true))
         window.addEventListener("mouseup", () => (this.isActive = false))
@@ -124,6 +211,11 @@ export class ImageCompareSlider {
         })
     }
 
+    /**
+     * Moves the slider and adjusts overlay width based on position.
+     *
+     * @param x - The x-coordinate (client position) to move to
+     */
     private slideMove(x: number): void {
         const bounds = this.container.getBoundingClientRect()
         let pos = x - bounds.left
@@ -132,7 +224,12 @@ export class ImageCompareSlider {
         this.slider.style.left = `${pos}px`
     }
 
-    static initAll(selector: string = ".image__compare") {
+    /**
+     * Static factory method to initialize all image compare sliders on the page.
+     *
+     * @param selector - CSS selector for container elements (default: ".image__compare")
+     */
+    public static initAll(selector: string = ".image__compare"): void {
         const containers = document.querySelectorAll<HTMLElement>(selector)
         containers.forEach((container) => {
             new ImageCompareSlider(container)

@@ -1,15 +1,57 @@
+// ============================================================================
+// Stylescape | Soft Scroll Manager
+// ============================================================================
+// Enables smooth scrolling for anchor links with customizable offset.
+// Supports data-ss-soft-scroll attributes for declarative configuration.
+// ============================================================================
+
 /**
- * SoftScroll enables smooth in-page anchor link scrolling with optional offset.
+ * Configuration options for soft scroll
+ */
+export interface SoftScrollOptions {
+    /** Vertical offset in rem units */
+    offsetRem?: number
+    /** Scroll behavior (smooth or auto) */
+    behavior?: ScrollBehavior
+    /** Block alignment (start, center, end, nearest) */
+    block?: ScrollLogicalPosition
+}
+
+/**
+ * Static utility class for smooth in-page anchor link scrolling.
+ * Provides smooth scrolling with configurable vertical offset.
  *
- * @example
- * SoftScroll.enableForSelector('.scroll-link', 2) // 2rem offset
+ * @example JavaScript
+ * ```typescript
+ * // Enable smooth scroll with 2rem offset for fixed header
+ * SoftScrollManager.enableForSelector(".scroll-link", 2)
+ *
+ * // Enable for all anchor links with no offset
+ * SoftScrollManager.enableForSelector('a[href^="#"]')
+ * ```
+ *
+ * @example HTML
+ * ```html
+ * <!-- Navigation with smooth scroll -->
+ * <nav>
+ *     <a href="#about" class="scroll-link">About</a>
+ *     <a href="#services" class="scroll-link">Services</a>
+ *     <a href="#contact" class="scroll-link">Contact</a>
+ * </nav>
+ *
+ * <!-- Target sections -->
+ * <section id="about">...</section>
+ * <section id="services">...</section>
+ * <section id="contact">...</section>
+ * ```
  */
 export class SoftScrollManager {
     /**
-     * Enable soft scrolling on anchor elements.
+     * Enable soft scrolling on anchor elements matching the selector.
+     * Intercepts click events and scrolls smoothly to target elements.
      *
-     * @param selector - CSS selector string for target anchor links
-     * @param yOffsetInRem - Optional vertical scroll offset in rem (default = 0)
+     * @param selector - CSS selector for anchor links to enable
+     * @param yOffsetInRem - Vertical offset in rem units (default: 0)
      */
     static enableForSelector(
         selector: string,

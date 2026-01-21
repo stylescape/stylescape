@@ -1,3 +1,55 @@
+// ============================================================================
+// Stylescape | Theme Toggler
+// ============================================================================
+// Manages dark/light theme switching with localStorage persistence.
+// Supports data-theme-toggle attributes for declarative configuration.
+// ============================================================================
+
+/**
+ * Available theme values
+ */
+export type Theme = "dark" | "light"
+
+/**
+ * Configuration options for theme toggling
+ */
+export interface ThemeTogglerOptions {
+    /** Custom storage key for theme preference */
+    storageKey?: string
+    /** Custom attribute name on <html> element */
+    themeAttribute?: string
+    /** Default theme if none is stored */
+    defaultTheme?: Theme
+    /** Callback when theme changes */
+    onChange?: (theme: Theme) => void
+}
+
+/**
+ * Static utility class for managing dark/light theme switching.
+ * Persists user preference in localStorage.
+ *
+ * @example JavaScript
+ * ```typescript
+ * // Initialize with a toggle switch
+ * ThemeToggler.initializeToggleSwitch("darkModeToggle")
+ *
+ * // Or register to initialize on page load
+ * ThemeToggler.registerOnLoad()
+ *
+ * // Programmatic control
+ * ThemeToggler.toggle()
+ * ThemeToggler.setTheme("dark")
+ * const current = ThemeToggler.getCurrentTheme()
+ * ```
+ *
+ * @example HTML with data-theme-toggle
+ * ```html
+ * <input type="checkbox"
+ *        id="themeToggle"
+ *        data-theme-toggle>
+ * <label for="themeToggle">Dark Mode</label>
+ * ```
+ */
 export class ThemeToggler {
     private static readonly THEME_ATTRIBUTE = "theme"
     private static readonly DARK_THEME = "dark"
@@ -10,7 +62,8 @@ export class ThemeToggler {
     }
 
     /**
-     * Toggle between dark and light themes
+     * Toggle between dark and light themes.
+     * Updates both the DOM attribute and localStorage.
      */
     static toggle(): void {
         const newTheme =
@@ -22,7 +75,9 @@ export class ThemeToggler {
     }
 
     /**
-     * Set theme explicitly
+     * Set theme explicitly to a specific value.
+     *
+     * @param theme - The theme to set ("dark" or "light")
      */
     static setTheme(theme: string): void {
         ThemeToggler.htmlElement.dataset[ThemeToggler.THEME_ATTRIBUTE] = theme
@@ -30,7 +85,10 @@ export class ThemeToggler {
     }
 
     /**
-     * Get the currently active theme
+     * Get the currently active theme.
+     * Checks DOM attribute first, then localStorage, defaults to light.
+     *
+     * @returns The current theme ("dark" or "light")
      */
     static getCurrentTheme(): string {
         return (
@@ -41,7 +99,9 @@ export class ThemeToggler {
     }
 
     /**
-     * Sync the current theme with the toggle input state
+     * Sync the toggle input checkbox state with the current theme.
+     *
+     * @param toggle - The checkbox input element to sync
      */
     private static syncToggleState(toggle: HTMLInputElement): void {
         const currentTheme = ThemeToggler.getCurrentTheme()

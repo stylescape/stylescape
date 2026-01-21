@@ -1,13 +1,52 @@
 // ============================================================================
-// Local Storage Manager
+// Stylescape | Local Storage Manager
+// ============================================================================
+// Singleton wrapper for localStorage with error handling and fallback support.
+// Provides a consistent API for persistent client-side storage.
 // ============================================================================
 
+/**
+ * Configuration options for LocalStorageManager
+ */
+export interface LocalStorageOptions {
+    /** Prefix for all storage keys */
+    prefix?: string
+    /** Whether to serialize values as JSON */
+    useJSON?: boolean
+    /** Fallback storage mechanism (e.g., in-memory Map) */
+    fallback?: Map<string, string>
+}
+
+/**
+ * Singleton class for managing localStorage operations.
+ * Provides error handling and consistent API for storage operations.
+ *
+ * @example
+ * ```typescript
+ * const storage = LocalStorageManager.getInstance()
+ *
+ * // Store a value
+ * storage.setValue("user-preference", "dark")
+ *
+ * // Retrieve a value
+ * const pref = storage.getValue("user-preference")
+ *
+ * // Remove a value
+ * storage.removeValue("user-preference")
+ *
+ * // Clear all storage
+ * storage.clearStorage()
+ * ```
+ */
 export class LocalStorageManager {
+    /** Singleton instance */
     private static instance: LocalStorageManager
 
     /**
-     * Static method to get the instance of LocalStorageManager.
-     * @returns The singleton instance of LocalStorageManager.
+     * Get the singleton instance of LocalStorageManager.
+     * Creates the instance if it doesn't exist.
+     *
+     * @returns The singleton LocalStorageManager instance
      */
     public static getInstance(): LocalStorageManager {
         if (!LocalStorageManager.instance) {

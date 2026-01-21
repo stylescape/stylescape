@@ -1,17 +1,89 @@
+// ============================================================================
+// Stylescape | Table of Contents Builder
+// ============================================================================
+// Automatically generates a table of contents from elements with data-label
+// attributes. Integrates with ScrollSpyManager for active link highlighting.
+// ============================================================================
+
 import { ScrollSpyManager } from "../scroll/ScrollSpyManager.js"
 
+/**
+ * Configuration options for TableOfContentsBuilder
+ */
+export interface TableOfContentsBuilderOptions {
+    /** Attribute to read for section labels */
+    labelAttribute?: string
+    /** CSS class for the generated list */
+    listClass?: string
+    /** Whether to enable scroll spy integration */
+    scrollSpy?: boolean
+}
+
+/**
+ * Builds a hierarchical table of contents from elements with data-label attributes.
+ * Automatically generates unique IDs for sections and integrates with scroll spy.
+ *
+ * @example JavaScript
+ * ```typescript
+ * const tocBuilder = new TableOfContentsBuilder("content", "toc")
+ * tocBuilder.buildAndAppendTOC()
+ *
+ * // Access link-to-section mapping
+ * const map = tocBuilder.getLinkSectionMap()
+ * ```
+ *
+ * @example HTML with data-ss
+ * ```html
+ * <div data-ss="toc-builder"
+ *      data-ss-toc-root="content"
+ *      data-ss-toc-container="toc">
+ * </div>
+ *
+ * <div id="content">
+ *     <section data-label="Introduction">...</section>
+ *     <section data-label="Getting Started">
+ *         <section data-label="Installation">...</section>
+ *         <section data-label="Configuration">...</section>
+ *     </section>
+ * </div>
+ *
+ * <nav id="toc"></nav>
+ * ```
+ */
 export class TableOfContentsBuilder {
+    /** ID of the root element containing content sections */
     private rootId: string
+
+    /** ID of the container element for the generated TOC */
     private tocContainerId: string
+
+    /** Set of generated IDs to ensure uniqueness */
     private idSet = new Set<string>()
+
+    /** Map linking TOC anchor elements to their target sections */
     private linkSectionMap = new Map<HTMLElement, HTMLElement>()
+
+    /** Optional ScrollSpyManager for active link highlighting */
     private scrollSpyManager?: ScrollSpyManager
 
+    /**
+     * Creates a new TableOfContentsBuilder instance.
+     *
+     * @param rootId - ID of the element containing content sections
+     * @param tocContainerId - ID of the element to append the TOC to
+     */
     constructor(rootId: string, tocContainerId: string) {
         this.rootId = rootId
         this.tocContainerId = tocContainerId
     }
 
+    /**
+     * Generates a unique ID from a base string.
+     * Handles collisions by appending a numeric suffix.
+     *
+     * @param baseId - The base string to generate an ID from
+     * @returns A unique, URL-safe ID string
+     */
     private generateUniqueId(baseId: string): string {
         let id = baseId
             .toLowerCase()
@@ -25,6 +97,12 @@ export class TableOfContentsBuilder {
         return id
     }
 
+    /**
+     * Creates a TOC list item entry for a section element.
+     *
+     * @param element - The section element to create an entry for
+     * @returns An HTMLLIElement containing the anchor link
+     */
     private createTOCEntry(element: HTMLElement): HTMLLIElement {
         const text = element.getAttribute("data-label") || "Untitled"
         const id = this.generateUniqueId(text)
@@ -41,6 +119,12 @@ export class TableOfContentsBuilder {
         return li
     }
 
+    /**
+     * Recursively builds the TOC tree structure from nested elements.
+     *
+     * @param element - The parent element to traverse
+     * @returns An HTMLUListElement containing the nested TOC structure
+     */
     private buildTOCTree(element: HTMLElement): HTMLUListElement {
         const ul = document.createElement("ul")
 
@@ -65,7 +149,11 @@ export class TableOfContentsBuilder {
         return ul
     }
 
-    buildAndAppendTOC(): void {
+    /**
+     * Builds the TOC tree and appends it to the container element.
+     * Also initializes ScrollSpyManager for active link tracking.
+     */
+    public buildAndAppendTOC(): void {
         const root = document.getElementById(this.rootId)
         const tocContainer = document.getElementById(this.tocContainerId)
 
@@ -82,7 +170,13 @@ export class TableOfContentsBuilder {
         )
     }
 
-    getLinkSectionMap(): Map<HTMLElement, HTMLElement> {
+    /**
+     * Returns the map of TOC links to their corresponding content sections.
+     * Useful for custom scroll spy implementations or section tracking.
+     *
+     * @returns A Map with anchor elements as keys and section elements as values
+     */
+    public getLinkSectionMap(): Map<HTMLElement, HTMLElement> {
         return this.linkSectionMap
     }
 }
