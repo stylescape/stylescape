@@ -87,17 +87,17 @@ The project uses **Kist** as the build system. Configuration files:
 
 ## Scripts Reference
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start Vite development server |
-| `npm run build` | Production build using Kist |
-| `npm run watch` | Watch mode with live reload |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Lint JavaScript/TypeScript |
-| `npm run lint:fix` | Fix linting issues |
-| `npm run format` | Format all code files |
-| `npm run format:check` | Check code formatting |
-| `npm run typecheck` | TypeScript type checking |
+| Script                 | Description                   |
+| ---------------------- | ----------------------------- |
+| `npm run dev`          | Start Vite development server |
+| `npm run build`        | Production build using Kist   |
+| `npm run watch`        | Watch mode with live reload   |
+| `npm run preview`      | Preview production build      |
+| `npm run lint`         | Lint JavaScript/TypeScript    |
+| `npm run lint:fix`     | Fix linting issues            |
+| `npm run format`       | Format all code files         |
+| `npm run format:check` | Check code formatting         |
+| `npm run typecheck`    | TypeScript type checking      |
 
 ## Code Style
 
@@ -120,6 +120,7 @@ The project uses **Kist** as the build system. Configuration files:
 ### Formatting
 
 The project uses:
+
 - **Prettier** for code formatting
 - **ESLint** for JavaScript/TypeScript linting
 - **Stylelint** for SCSS linting
@@ -170,8 +171,10 @@ npm run typecheck
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our code
+of conduct and the process for submitting pull requests.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE)
+file for details.
