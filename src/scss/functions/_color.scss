@@ -33,17 +33,23 @@
   $green: color.green($color) / 255;
   $blue: color.blue($color) / 255;
 
-  $red: if($red <= 0.03928, math.div($red, 12.92), math.pow(math.div($red + 0.055, 1.055), 2.4));
-  $green: if(
-    $green <= 0.03928,
-    math.div($green, 12.92),
-    math.pow(math.div($green + 0.055, 1.055), 2.4)
-  );
-  $blue: if(
-    $blue <= 0.03928,
-    math.div($blue, 12.92),
-    math.pow(math.div($blue + 0.055, 1.055), 2.4)
-  );
+  @if $red <= 0.03928 {
+    $red: math.div($red, 12.92);
+  } @else {
+    $red: math.pow(math.div($red + 0.055, 1.055), 2.4);
+  }
+
+  @if $green <= 0.03928 {
+    $green: math.div($green, 12.92);
+  } @else {
+    $green: math.pow(math.div($green + 0.055, 1.055), 2.4);
+  }
+
+  @if $blue <= 0.03928 {
+    $blue: math.div($blue, 12.92);
+  } @else {
+    $blue: math.pow(math.div($blue + 0.055, 1.055), 2.4);
+  }
 
   @return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
 }
@@ -68,7 +74,11 @@
   $light-contrast: contrast-ratio($background, $light);
   $dark-contrast: contrast-ratio($background, $dark);
 
-  @return if($light-contrast > $dark-contrast, $light, $dark);
+  @if $light-contrast > $dark-contrast {
+    @return $light;
+  } @else {
+    @return $dark;
+  }
 }
 
 /// Create a color shade (darken)
@@ -99,7 +109,11 @@
 /// @param {Color} $color - Color to check
 /// @return {String} - "light" or "dark"
 @function color-type($color) {
-  @return if(luminance($color) > 0.5, "light", "dark");
+  @if luminance($color) > 0.5 {
+    @return "light";
+  } @else {
+    @return "dark";
+  }
 }
 
 /// Generate an accessible color pair

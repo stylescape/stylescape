@@ -163,7 +163,7 @@ export class TableOfContentsBuilder {
         tocContainer.innerHTML = ""
         tocContainer.appendChild(tocTree)
 
-        this.scrollSpyManager = new ScrollSpyManager(
+        this.scrollSpyManager = ScrollSpyManager.fromElements(
             Array.from(this.linkSectionMap.values()),
             `#${this.tocContainerId} a`,
             this.rootId,

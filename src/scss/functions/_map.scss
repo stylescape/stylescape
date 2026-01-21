@@ -136,7 +136,12 @@
   $result: "";
 
   @each $key, $value in $map {
-    $prop-name: if($prefix != "", "#{$prefix}-#{$key}", "#{$key}");
+    $prop-name: "";
+    @if $prefix != "" {
+      $prop-name: "#{$prefix}-#{$key}";
+    } @else {
+      $prop-name: "#{$key}";
+    }
 
     @if meta.type-of($value) == "map" {
       $result: $result + map-to-props($value, $prop-name);

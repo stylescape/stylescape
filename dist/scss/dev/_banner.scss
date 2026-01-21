@@ -1,19 +1,49 @@
+////
+///
+/// Build Banner Mixin
+/// ===========================================================================
+///
+/// Generates a banner comment in the compiled CSS output with version,
+/// author, license, and other build metadata information.
+///
+/// @group Dev.Banner
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
 // ============================================================================
-// StyleScape | Development | Banner
+// Mixin
 // ============================================================================
 
+/// Outputs a styled banner comment in compiled CSS
+///
+/// @param {String} $file - The filename or module name
+/// @param {String} $version ["1.0.0"] - Version number
+/// @param {String} $author ["Scape Agency"] - Author name
+/// @param {String} $website ["https://www.style.scape/"] - Project website URL
+/// @param {String} $license ["Apache 2.0 License"] - License name
+/// @param {String} $licenseUrl - URL to the license file
+/// @param {String} $description ["Design Framework"] - Brief description
+/// @param {String} $repository - Repository URL
+///
+/// @example scss - Usage
+///   @include banner("main", "0.2.0");
+///
 @mixin banner(
-    $file,
-    $version: "1.0.0",
-    $author: "Scape Agency",
-    $website: "https://www.style.scape/",
-    $license: "Apache 2.0 License",
-    $licenseUrl: "https://github.com/stylescape/stylescape/blob/main/LICENSE",
-    $description: "Design Framework",
-    $repository: "https://github.com/stylescape/stylescape/"
+  $file,
+  $version: "1.0.0",
+  $author: "Scape Agency",
+  $website: "https://www.style.scape/",
+  $license: "Apache 2.0 License",
+  $licenseUrl: "https://github.com/stylescape/stylescape/blob/main/LICENSE",
+  $description: "Design Framework",
+  $repository: "https://github.com/stylescape/stylescape/"
 ) {
-    @at-root {
-        /*!
+  @at-root {
+    /*!
      * ============================================================================
      *
      * Stylescape #{$file} v#{$version} (#{$website})
@@ -32,5 +62,5 @@
      *
      * ============================================================================
      */
-    }
+  }
 }
