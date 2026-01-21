@@ -1,0 +1,77 @@
+/* ----------------------------------------
+   Map Styles
+---------------------------------------- */
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.mapboxgl-ctrl {
+    display: none !important;
+}
+
+.custom-marker {
+    border-radius: 50%;
+    cursor: pointer;
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.25));
+}
+
+#info {
+    display: table;
+    position: relative;
+    margin: 0px auto;
+    word-wrap: anywhere;
+    white-space: pre-wrap;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 12px;
+    text-align: center;
+    color: #222;
+    background: #fff;
+}
+
+.custom-user-marker,
+.fake-location-marker {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.custom-user-marker::before,
+.fake-location-marker::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 153px;
+    height: 156px;
+    background-image: url('../image/shadow.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.custom-user-marker::after,
+.fake-location-marker::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background-image: url('../image/fake-location.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+#map-legend {
+    position: relative;
+    z-index: 900;
+    
+}

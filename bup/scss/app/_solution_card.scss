@@ -1,0 +1,112 @@
+@use "pkg:stylescape/scss/index.scss" as *;
+
+.solution_card,
+.preview_solution_card {
+    border-radius: q(8);
+    border: q(1) solid var(--color_line_primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    margin: q(3);
+    transition: background-color 0.3s ease;
+
+    &.checked {
+        background: var(--color_accent_secondary--75);
+    }
+
+    .card_header,
+    .card_footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: q(8);
+        width: 100%;
+    }
+
+    .card-front,
+    .card-back {
+        width: 100%;
+        display: block;
+        padding-left: q(8);
+        padding-right: q(8);
+    }
+
+    .card-front {
+        .dashboard_item_text {
+            white-space: normal;
+            overflow: hidden;
+            box-sizing: inherit;
+            hyphens: auto;
+            word-break: normal;
+        }
+    }
+
+    figure {
+        border: q(1) solid var(--color_line_primary);
+
+        img {
+            object-fit: cover !important;
+        }
+    }
+
+    //Back of the card
+    .inactive {
+        display: none;
+    }
+
+    .card-info-text,
+    .card-rating {
+        font-size: q(8);
+        line-height: 1.5;
+    }
+
+    .square_filled,
+    .square_outline {
+        width: q(8);
+    }
+
+    .card-info {
+        height: q(128);
+        overflow: hidden;
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+
+    .icon {
+        border-radius: 50%;
+        border: q(1) solid var(--color_text_primary);
+        background-color: var(--color_fill_primary);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: q(20);
+        height: q(20);
+        overflow: hidden;
+
+        * {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px !important;
+            vertical-align: baseline !important;
+            font-size: q(16) !important;
+
+            &:before {
+                margin: 0px !important;
+                vertical-align: baseline !important;
+                font-size: q(16) !important;
+            }
+        }
+
+        &:hover {
+            background-color: var(--color_state_hover);
+        }
+
+        &.active {
+            border-width: q(2);
+            background-color: var(--color_state_hover);
+        }
+    }
+}

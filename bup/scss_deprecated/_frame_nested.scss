@@ -1,0 +1,97 @@
+/// Layout | Nested Grid in Middle Center
+/// ---------------------------------------------------------------------------
+/// Adds a 3-column grid inside `middle_center` for collapsible sidebars.
+/// Use utility classes to control visibility (e.g. .is-collapsed)
+///
+@mixin layout__middle_center--nested {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "aside_left main aside_right";
+    overflow: hidden;
+    position: relative;
+}
+
+@mixin layout__middle_center__aside--left {
+    grid-area: aside_left;
+    width: q(400);
+    max-width: q(400);
+    transition: width 0.3s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-right: q(1) solid var(--color_text_primary);
+    // padding: q(16);
+    background: var(--color_fill_primary);
+    z-index: 1;
+}
+
+@mixin layout__middle_center__main {
+    grid-area: main;
+    overflow-y: auto;
+    overflow-x: hidden;
+    // padding: q(16);
+}
+
+@mixin layout__middle_center__aside--right {
+    grid-area: aside_right;
+    width: q(400);
+    // transition: width 0.3s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-left: q(1) solid var(--color_text_primary);
+    // padding: q(16);
+    background: var(--color_fill_primary);
+}
+
+@mixin layout__middle_center--inside {
+    width: q(300);
+    overflow-x: hidden;
+    padding: q(16);
+}
+
+///
+/// Layout | Nested Grid in Middle Center
+/// ---------------------------------------------------------------------------
+///
+/// Usage: Add this class to `<aside>`to activate layout.
+///
+.layout__middle_center--nested {
+    @include layout__middle_center--nested;
+
+    .layout__aside--inside,
+    .layout__main--inside {
+        @include layout__middle_center--inside;
+    }
+
+    .layout__main--inside {
+        width: 100%;
+        height: 100%;
+        // pointer-events: none;
+    }
+
+    .layout__aside--left {
+        @include layout__middle_center__aside--left;
+    }
+
+    .layout__main {
+        @include layout__middle_center__main;
+    }
+
+    .layout__aside--right {
+        @include layout__middle_center__aside--right;
+    }
+
+    // Collapsed state
+    &.layout__middle_center--nested.collapse-left .layout__aside--left {
+        width: 0;
+        // padding: 0;
+        // border: 0;
+        overflow: hidden;
+    }
+
+    &.layout__middle_center--nested.collapse-right .layout__aside--right {
+        width: 0;
+        // padding: 0;
+        // border: 0;
+        overflow: hidden;
+    }
+}

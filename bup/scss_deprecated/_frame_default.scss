@@ -1,0 +1,174 @@
+@use "../../../dev" as *;
+
+@use "../head_layout" as *;
+@use "../soul_object" as *;
+
+/// Layout | Area Utility
+/// ---------------------------------------------------------------------------
+/// Assigns a grid-area to a region.
+/// @param {String} $name - The name of the grid area.
+///
+@mixin frame__area($name) {
+    grid-area: $name;
+}
+
+/// Layout | Screen Grid
+/// ---------------------------------------------------------------------------
+/// Defines a full-page 3×3 layout with outer areas set to `auto`
+/// and a scrollable center area (`middle_center`).
+///
+@mixin frame_main {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+
+    // Outer columns and rows use 'auto' to grow to fit content,
+    // center column and row use '1fr' to absorb remaining space
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 1fr auto;
+
+    grid-template-areas:
+        "top_left      top_center       top_right"
+        "middle_left   middle_center    middle_right"
+        "bottom_left   bottom_center    bottom_right";
+}
+
+/// Layout | Scrollable Center
+/// ---------------------------------------------------------------------------
+/// Makes the center area scrollable.
+///
+@mixin frame_main__area--center {
+    @include frame__area(middle_center);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+/// Layout | Apply Grid Areas
+/// ---------------------------------------------------------------------------
+/// Usage: Add this class to `<body>` or `<main>` to activate layout.
+///
+.frame_main {
+    @include frame_main__area--center;
+
+    .frame__area--top_left {
+        @include frame__area(top_left);
+    }
+    .frame__area--top_center {
+        @include frame__area(top_center);
+    }
+    .frame__area--top_right {
+        @include frame__area(top_right);
+    }
+    .frame__area--middle_left {
+        @include frame__area(middle_left);
+    }
+    .frame__area--middle_center {
+        @include frame_main__area--center;
+    }
+    .frame__area_middle_right {
+        @include frame__area(middle_right);
+    }
+    .frame__area--bottom_left {
+        @include frame__area(bottom_left);
+    }
+    .frame__area--bottom_center {
+        @include frame__area(bottom_center);
+    }
+    .frame__area--bottom_right {
+        @include frame__area(bottom_right);
+    }
+}
+
+///
+/// Layout | Default Page Grid
+/// ===========================================================================
+/// Defines a full-page layout using CSS Grid with semantic regions:
+/// header, main, and footer.
+///
+/// @example
+/// <body class="layout-page-default">
+///   <header class="header">...</header>
+///   <main class="main">...</main>
+///   <footer class="footer">...</footer>
+/// </body>
+///
+@mixin layout_page_default {
+    @include sizing--border;
+    z-index: z("canvas")-1;
+    min-height: 100%; // needs vendor prefixes
+    min-width: 100%;
+    display: grid;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+
+    grid-template-rows: auto min-content calc(q(6) 4);
+
+    // height: 100vh;
+    // width: 100vw;
+    overflow: hidden;
+
+    // Scroll
+    overflow-y: scroll;
+    // Hide scrollbar for IE, Edge and Firefox
+    -ms-overflow-style: none; // IE and Edge
+    scrollbar-width: none; // Firefox
+}
+
+///
+/// Layout | Area Header
+///
+@mixin frame__area_header {
+    @include frame__area(header);
+}
+
+///
+/// Layout | Area Main
+///
+@mixin frame__area_main {
+    @include reset_bleed;
+    @include frame__area(main);
+    // display: block; // Placeholder — can become grid later
+    @include grid--size--col(24);
+
+    @include flex--col;
+    max-width: 100%;
+    position: relative;
+    // grid-area: main_content;
+
+    @include col--24;
+    grid-gap: baseline(4);
+    grid-template-rows: auto 1fr;
+    align-items: start;
+}
+
+@mixin frame__area_footer {
+    @include frame__area(footer);
+    justify-self: center;
+    align-self: end;
+}
+
+///
+/// Utility Classes (Optional)
+///
+
+.layout_page_default {
+    @include layout_page_default;
+}
+
+.frame__area_header {
+    @include frame__area_header;
+}
+
+.frame__area_main {
+    @include frame__area_main;
+}
+
+.frame__area_footer {
+    @include frame__area_footer;
+}
