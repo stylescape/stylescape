@@ -9,4 +9,5 @@
 
 **Stylescape** is a multichannel identity framework.
 
-**Stylescape** is an open-source project by [Scape Agency](https://www.scape.agency "Scape Agency website").
+**Stylescape** is an open-source project by
+[Scape Agency](https://www.scape.agency "Scape Agency website").

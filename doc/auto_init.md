@@ -1,9 +1,9 @@
 # Auto-Initialization System
 
 Stylescape includes a powerful auto-initialization system that automatically
-initializes JavaScript components based on `data-ss-*` attributes. This provides
-a **plug-and-play** experience similar to Bootstrap, where components work
-without writing any JavaScript code.
+initializes JavaScript components based on `data-ss-*` attributes. This
+provides a **plug-and-play** experience similar to Bootstrap, where components
+work without writing any JavaScript code.
 
 ---
 
@@ -22,11 +22,11 @@ Simply add the `data-ss` attribute to any element to initialize a component:
 
 <!-- Multiple components on one element -->
 <button
-  data-ss="tooltip modal"
-  data-ss-tooltip-text="Opens a modal"
-  data-ss-modal-target="#myModal"
+    data-ss="tooltip modal"
+    data-ss-tooltip-text="Opens a modal"
+    data-ss-modal-target="#myModal"
 >
-  Hover or Click
+    Hover or Click
 </button>
 ```
 
@@ -42,7 +42,7 @@ Simply add the `data-ss` attribute to any element to initialize a component:
 
 ```html
 <script>
-  window.STYLESCAPE_AUTO_INIT = true;
+    window.STYLESCAPE_AUTO_INIT = true;
 </script>
 <script src="stylescape.js"></script>
 ```
@@ -76,24 +76,24 @@ All Stylescape data attributes follow a consistent naming pattern:
 
 <!-- Tooltip with options -->
 <button
-  data-ss="tooltip"
-  data-ss-tooltip-text="Click to submit"
-  data-ss-tooltip-position="bottom"
+    data-ss="tooltip"
+    data-ss-tooltip-text="Click to submit"
+    data-ss-tooltip-position="bottom"
 >
-  Submit
+    Submit
 </button>
 
 <!-- Using JSON config -->
 <div
-  data-ss="carousel"
-  data-ss-carousel-config='{"autoplay": true, "interval": 3000}'
+    data-ss="carousel"
+    data-ss-carousel-config='{"autoplay": true, "interval": 3000}'
 >
-  ...
+    ...
 </div>
 
 <!-- Manual initialization (opt-out) -->
 <div data-ss="accordion" data-ss-manual>
-  <!-- Will NOT auto-initialize -->
+    <!-- Will NOT auto-initialize -->
 </div>
 ```
 
@@ -139,11 +139,11 @@ Displays a tooltip on hover or focus.
 
 ```html
 <button
-  data-ss="tooltip"
-  data-ss-tooltip-text="Tooltip text"
-  data-ss-tooltip-position="top"
+    data-ss="tooltip"
+    data-ss-tooltip-text="Tooltip text"
+    data-ss-tooltip-position="top"
 >
-  Hover me
+    Hover me
 </button>
 ```
 
@@ -164,10 +164,10 @@ Opens a modal dialog when triggered.
 <button data-ss="modal" data-ss-modal-target="#myModal">Open Modal</button>
 
 <div id="myModal" class="modal">
-  <div class="modal__content">
-    <button data-ss-modal-close>×</button>
-    <p>Modal content here</p>
-  </div>
+    <div class="modal__content">
+        <button data-ss-modal-close>×</button>
+        <p>Modal content here</p>
+    </div>
 </div>
 ```
 
@@ -185,14 +185,14 @@ Collapsible content sections.
 
 ```html
 <div data-ss="accordion" data-ss-accordion-multiple="false">
-  <div data-ss-accordion-item>
-    <button data-ss-accordion-header>Section 1</button>
-    <div data-ss-accordion-content>Content 1</div>
-  </div>
-  <div data-ss-accordion-item>
-    <button data-ss-accordion-header>Section 2</button>
-    <div data-ss-accordion-content>Content 2</div>
-  </div>
+    <div data-ss-accordion-item>
+        <button data-ss-accordion-header>Section 1</button>
+        <div data-ss-accordion-content>Content 1</div>
+    </div>
+    <div data-ss-accordion-item>
+        <button data-ss-accordion-header>Section 2</button>
+        <div data-ss-accordion-content>Content 2</div>
+    </div>
 </div>
 ```
 
@@ -210,12 +210,12 @@ Tab-based content navigation.
 
 ```html
 <div data-ss="tabs">
-  <div data-ss-tab-list>
-    <button data-ss-tab="tab1">Tab 1</button>
-    <button data-ss-tab="tab2">Tab 2</button>
-  </div>
-  <div data-ss-tab-panel="tab1">Content 1</div>
-  <div data-ss-tab-panel="tab2">Content 2</div>
+    <div data-ss-tab-list>
+        <button data-ss-tab="tab1">Tab 1</button>
+        <button data-ss-tab="tab2">Tab 2</button>
+    </div>
+    <div data-ss-tab-panel="tab1">Content 1</div>
+    <div data-ss-tab-panel="tab2">Content 2</div>
 </div>
 ```
 
@@ -227,15 +227,15 @@ Image or content carousel/slider.
 
 ```html
 <div
-  data-ss="carousel"
-  data-ss-carousel-autoplay="true"
-  data-ss-carousel-interval="5000"
+    data-ss="carousel"
+    data-ss-carousel-autoplay="true"
+    data-ss-carousel-interval="5000"
 >
-  <div data-ss-carousel-slide>Slide 1</div>
-  <div data-ss-carousel-slide>Slide 2</div>
-  <div data-ss-carousel-slide>Slide 3</div>
-  <button data-ss-carousel-prev>Previous</button>
-  <button data-ss-carousel-next>Next</button>
+    <div data-ss-carousel-slide>Slide 1</div>
+    <div data-ss-carousel-slide>Slide 2</div>
+    <div data-ss-carousel-slide>Slide 3</div>
+    <button data-ss-carousel-prev>Previous</button>
+    <button data-ss-carousel-next>Next</button>
 </div>
 ```
 
@@ -256,20 +256,20 @@ The `Stylescape` object is available globally:
 
 ```javascript
 // Initialize all components in an element
-Stylescape.init(document.querySelector('#my-container'));
+Stylescape.init(document.querySelector("#my-container"));
 
 // Get a component instance
-const tooltip = Stylescape.getInstance(element, 'tooltip');
+const tooltip = Stylescape.getInstance(element, "tooltip");
 tooltip.show();
 
 // Get all instances on an element
 const instances = Stylescape.getAllInstances(element);
 
 // Reinitialize a component
-Stylescape.reinit(element, 'tooltip');
+Stylescape.reinit(element, "tooltip");
 
 // Destroy a component
-Stylescape.destroy(element, 'tooltip');
+Stylescape.destroy(element, "tooltip");
 
 // Start/stop observing for dynamic content
 Stylescape.observe(document.body);
@@ -297,14 +297,14 @@ import {
     getInstance,
     reinit,
     destroy,
-    registerComponent
-} from 'stylescape';
+    registerComponent,
+} from "stylescape";
 
 // Initialize manually
 init();
 
 // Get instance
-const modal = getInstance(element, 'modal');
+const modal = getInstance(element, "modal");
 modal.open();
 ```
 
@@ -315,23 +315,23 @@ modal.open();
 You can register your own components to use with the auto-init system:
 
 ```javascript
-import { registerComponent } from 'stylescape';
+import { registerComponent } from "stylescape";
 
 // Register a custom component
-registerComponent('custom-slider', {
+registerComponent("custom-slider", {
     handler: (element, config) => {
         // Initialize your component
         return new MyCustomSlider(element, {
             min: config.min || 0,
             max: config.max || 100,
-            step: config.step || 1
+            step: config.step || 1,
         });
     },
     defaults: {
         min: 0,
         max: 100,
-        step: 1
-    }
+        step: 1,
+    },
 });
 ```
 
@@ -339,9 +339,9 @@ Then use it in HTML:
 
 ```html
 <div
-  data-ss="custom-slider"
-  data-ss-custom-slider-min="0"
-  data-ss-custom-slider-max="50"
+    data-ss="custom-slider"
+    data-ss-custom-slider-min="0"
+    data-ss-custom-slider-max="50"
 ></div>
 ```
 
@@ -350,8 +350,8 @@ Then use it in HTML:
 ## Dynamic Content
 
 The auto-init system automatically observes the DOM for dynamically added
-content using `MutationObserver`. New elements with `data-ss` attributes will be
-initialized automatically.
+content using `MutationObserver`. New elements with `data-ss` attributes will
+be initialized automatically.
 
 ```javascript
 // Dynamic content is automatically detected
@@ -389,26 +389,26 @@ components to a single element:
 ```html
 <!-- Button with tooltip AND modal trigger -->
 <button
-  data-ss="tooltip modal"
-  data-ss-tooltip-text="Click to open settings"
-  data-ss-tooltip-position="top"
-  data-ss-modal-target="#settingsModal"
+    data-ss="tooltip modal"
+    data-ss-tooltip-text="Click to open settings"
+    data-ss-tooltip-position="top"
+    data-ss-modal-target="#settingsModal"
 >
-  ⚙️ Settings
+    ⚙️ Settings
 </button>
 ```
 
 Access individual instances:
 
 ```javascript
-const button = document.querySelector('button');
+const button = document.querySelector("button");
 
 // Get tooltip instance
-const tooltip = Stylescape.getInstance(button, 'tooltip');
+const tooltip = Stylescape.getInstance(button, "tooltip");
 tooltip.hide();
 
 // Get modal instance
-const modal = Stylescape.getInstance(button, 'modal');
+const modal = Stylescape.getInstance(button, "modal");
 modal.open();
 
 // Get all instances
@@ -434,12 +434,12 @@ const all = Stylescape.getAllInstances(button);
 
 ```html
 <button
-  data-ss="modal"
-  data-ss-modal-target="#dialog"
-  aria-haspopup="dialog"
-  aria-expanded="false"
+    data-ss="modal"
+    data-ss-modal-target="#dialog"
+    aria-haspopup="dialog"
+    aria-expanded="false"
 >
-  Open Dialog
+    Open Dialog
 </button>
 ```
 
@@ -448,15 +448,15 @@ const all = Stylescape.getAllInstances(button);
 ```html
 <!-- For simple options, use individual attributes -->
 <div
-  data-ss="carousel"
-  data-ss-carousel-autoplay="true"
-  data-ss-carousel-interval="3000"
+    data-ss="carousel"
+    data-ss-carousel-autoplay="true"
+    data-ss-carousel-interval="3000"
 ></div>
 
 <!-- For many options, use JSON -->
 <div
-  data-ss="carousel"
-  data-ss-carousel-config='{
+    data-ss="carousel"
+    data-ss-carousel-config='{
          "autoplay": true,
          "interval": 3000,
          "pauseOnHover": true,
@@ -488,7 +488,7 @@ element.remove();
 
 ```javascript
 // Check if already initialized
-if (!Stylescape.getInstance(element, 'tooltip')) {
+if (!Stylescape.getInstance(element, "tooltip")) {
     Stylescape.init(element);
 }
 ```

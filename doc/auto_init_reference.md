@@ -23,9 +23,9 @@ data-ss-manual                           → Disable auto-init for element
 
 ```html
 <span
-  data-ss="tooltip"
-  data-ss-tooltip-text="Help text"
-  data-ss-tooltip-position="top|bottom|left|right"
+    data-ss="tooltip"
+    data-ss-tooltip-text="Help text"
+    data-ss-tooltip-position="top|bottom|left|right"
 ></span>
 ```
 
@@ -39,10 +39,10 @@ data-ss-manual                           → Disable auto-init for element
 
 ```html
 <div data-ss="accordion" data-ss-accordion-multiple="true|false">
-  <div data-ss-accordion-item>
-    <button data-ss-accordion-header>Title</button>
-    <div data-ss-accordion-content>Content</div>
-  </div>
+    <div data-ss-accordion-item>
+        <button data-ss-accordion-header>Title</button>
+        <div data-ss-accordion-content>Content</div>
+    </div>
 </div>
 ```
 
@@ -50,10 +50,10 @@ data-ss-manual                           → Disable auto-init for element
 
 ```html
 <div data-ss="tabs">
-  <div data-ss-tab-list>
-    <button data-ss-tab="id1">Tab 1</button>
-  </div>
-  <div data-ss-tab-panel="id1">Content</div>
+    <div data-ss-tab-list>
+        <button data-ss-tab="id1">Tab 1</button>
+    </div>
+    <div data-ss-tab-panel="id1">Content</div>
 </div>
 ```
 
@@ -61,13 +61,13 @@ data-ss-manual                           → Disable auto-init for element
 
 ```html
 <div
-  data-ss="carousel"
-  data-ss-carousel-autoplay="true"
-  data-ss-carousel-interval="5000"
+    data-ss="carousel"
+    data-ss-carousel-autoplay="true"
+    data-ss-carousel-interval="5000"
 >
-  <div data-ss-carousel-slide>Slide</div>
-  <button data-ss-carousel-prev>←</button>
-  <button data-ss-carousel-next>→</button>
+    <div data-ss-carousel-slide>Slide</div>
+    <button data-ss-carousel-prev>←</button>
+    <button data-ss-carousel-next>→</button>
 </div>
 ```
 
@@ -123,13 +123,13 @@ Stylescape.getComponentNames()
 
 <!-- Option 2: Global flag -->
 <script>
-  window.STYLESCAPE_AUTO_INIT = true;
+    window.STYLESCAPE_AUTO_INIT = true;
 </script>
 
 <!-- Option 3: Manual -->
 <script>
-  import { autoStart } from "stylescape";
-  autoStart();
+    import { autoStart } from "stylescape";
+    autoStart();
 </script>
 ```
 
@@ -139,8 +139,8 @@ Stylescape.getComponentNames()
 
 ```javascript
 Stylescape.registerComponent("my-widget", {
-  handler: (el, config) => new MyWidget(el, config),
-  defaults: { option: "value" },
+    handler: (el, config) => new MyWidget(el, config),
+    defaults: { option: "value" },
 });
 ```
 
