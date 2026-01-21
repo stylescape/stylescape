@@ -1,39 +1,239 @@
-// Updates navigation based on scroll position, commonly used in single-page websites.
+// ============================================================================
+// Stylescape | Scroll Spy Manager
+// ============================================================================
+// Updates navigation based on scroll position for single-page navigation.
+// Supports data-ss-scrollspy attributes for declarative configuration.
+// ============================================================================
 
+/**
+ * Configuration options for ScrollSpyManager
+ */
+export interface ScrollSpyOptions {
+    /** Selector for navigation links */
+    navSelector?: string
+    /** Custom scroll container (defaults to window) */
+    containerId?: string
+    /** Threshold offset (0-1) for when section is considered active */
+    threshold?: number
+    /** Offset from top in pixels */
+    offset?: number
+    /** CSS class for active link */
+    activeClass?: string
+    /** CSS class for active parent (e.g., li) */
+    activeParentClass?: string
+    /** Smooth scroll to sections on link click */
+    smoothScroll?: boolean
+    /** Callback when active section changes */
+    onChange?: (activeId: string | null, link: HTMLElement | null) => void
+    /** History API integration */
+    updateHistory?: boolean
+}
+
+/**
+ * Scroll spy for single-page navigation with accessibility support.
+ *
+ * @example JavaScript
+ * ```typescript
+ * const scrollSpy = new ScrollSpyManager({
+ *     navSelector: ".toc a",
+ *     threshold: 0.3,
+ *     smoothScroll: true,
+ *     onChange: (id) => console.log("Active section:", id)
+ * })
+ * ```
+ *
+ * @example HTML with data-ss
+ * ```html
+ * <nav data-ss="scrollspy"
+ *      data-ss-scrollspy-nav=".toc-link"
+ *      data-ss-scrollspy-threshold="0.3"
+ *      data-ss-scrollspy-smooth="true">
+ *     <a class="toc-link" href="#section1">Section 1</a>
+ *     <a class="toc-link" href="#section2">Section 2</a>
+ * </nav>
+ *
+ * <section id="section1">...</section>
+ * <section id="section2">...</section>
+ * ```
+ */
 export class ScrollSpyManager {
-    private sections: HTMLElement[]
-    private navLinks: NodeListOf<HTMLElement>
+    private sections: HTMLElement[] = []
+    private navLinks: HTMLElement[] = []
     private scrollContainer: HTMLElement | Window
-    private thresholdOffset: number
-    private ticking = false
+    private options: Required<ScrollSpyOptions>
+    private ticking: boolean = false
+    private currentActiveId: string | null = null
 
-    constructor(
+    constructor(options: ScrollSpyOptions = {}) {
+        this.options = {
+            navSelector: options.navSelector ?? "[data-ss-scrollspy-link], .scrollspy-link",
+            containerId: options.containerId ?? "",
+            threshold: options.threshold ?? 0.5,
+            offset: options.offset ?? 0,
+            activeClass: options.activeClass ?? "active",
+            activeParentClass: options.activeParentClass ?? "active",
+            smoothScroll: options.smoothScroll ?? true,
+            onChange: options.onChange ?? (() => {}),
+            updateHistory: options.updateHistory ?? false
+        }
+
+        // Setup scroll container
+        this.scrollContainer = this.options.containerId
+            ? document.getElementById(this.options.containerId) ?? window
+            : window
+
+        this.init()
+    }
+
+    // For backwards compatibility with old constructor
+    static fromElements(
         sections: HTMLElement[],
         navLinksSelector: string,
         containerId?: string,
-        thresholdOffset: number = 0.5,
-    ) {
-        this.sections = sections
-        this.navLinks = document.querySelectorAll(navLinksSelector)
-        this.scrollContainer = containerId
-            ? (document.getElementById(containerId) ?? window)
-            : window
-        this.thresholdOffset = thresholdOffset
+        thresholdOffset: number = 0.5
+    ): ScrollSpyManager {
+        const instance = new ScrollSpyManager({
+            navSelector: navLinksSelector,
+            containerId,
+            threshold: thresholdOffset
+        })
+        instance.sections = sections
+        instance.updateActiveLink()
+        return instance
+    }
 
-        this.bindScrollListener()
+    // ========================================================================
+    // Public Methods
+    // ========================================================================
+
+    /**
+     * Manually refresh sections and links
+     */
+    public refresh(): void {
+        this.findSections()
         this.updateActiveLink()
     }
 
-    private bindScrollListener(): void {
-        const container =
-            this.scrollContainer === window ? window : this.scrollContainer
+    /**
+     * Scroll to a specific section
+     */
+    public scrollTo(sectionId: string): void {
+        const section = document.getElementById(sectionId)
+        if (!section) return
 
-        container.addEventListener("scroll", () => this.onScroll(), {
-            passive: true,
+        const top = section.offsetTop - this.options.offset
+
+        if (this.scrollContainer instanceof Window) {
+            window.scrollTo({
+                top,
+                behavior: this.options.smoothScroll ? "smooth" : "auto"
+            })
+        } else {
+            this.scrollContainer.scrollTo({
+                top,
+                behavior: this.options.smoothScroll ? "smooth" : "auto"
+            })
+        }
+    }
+
+    /**
+     * Get current active section ID
+     */
+    public getActive(): string | null {
+        return this.currentActiveId
+    }
+
+    /**
+     * Destroy the scroll spy
+     */
+    public destroy(): void {
+        const container = this.scrollContainer instanceof Window
+            ? window
+            : this.scrollContainer
+
+        container.removeEventListener("scroll", this.handleScroll)
+
+        this.navLinks.forEach((link) => {
+            link.removeEventListener("click", this.handleLinkClick)
+        })
+
+        this.sections = []
+        this.navLinks = []
+    }
+
+    // ========================================================================
+    // Static Factory
+    // ========================================================================
+
+    /**
+     * Initialize scroll spy from data-ss="scrollspy"
+     */
+    public static init(): ScrollSpyManager[] {
+        const managers: ScrollSpyManager[] = []
+
+        document.querySelectorAll<HTMLElement>('[data-ss="scrollspy"]').forEach((el) => {
+            const navSelector = el.dataset.ssScrollspyNav || `#${el.id} a`
+            const threshold = el.dataset.ssScrollspyThreshold
+            const smooth = el.dataset.ssScrollspySmooth !== "false"
+            const offset = el.dataset.ssScrollspyOffset
+
+            managers.push(new ScrollSpyManager({
+                navSelector,
+                threshold: threshold ? parseFloat(threshold) : undefined,
+                smoothScroll: smooth,
+                offset: offset ? parseInt(offset, 10) : undefined
+            }))
+        })
+
+        return managers
+    }
+
+    // ========================================================================
+    // Private Methods
+    // ========================================================================
+
+    private init(): void {
+        this.findSections()
+        this.bindScrollListener()
+        this.bindLinkListeners()
+        this.updateActiveLink()
+    }
+
+    private findSections(): void {
+        // Find nav links
+        this.navLinks = Array.from(
+            document.querySelectorAll<HTMLElement>(this.options.navSelector)
+        )
+
+        // Find sections based on nav link hrefs
+        this.sections = []
+        this.navLinks.forEach((link) => {
+            const href = link.getAttribute("href")
+            if (href?.startsWith("#")) {
+                const sectionId = href.slice(1)
+                const section = document.getElementById(sectionId)
+                if (section && !this.sections.includes(section)) {
+                    this.sections.push(section)
+                }
+            }
         })
     }
 
-    private onScroll(): void {
+    private bindScrollListener(): void {
+        const container = this.scrollContainer instanceof Window
+            ? window
+            : this.scrollContainer
+
+        container.addEventListener("scroll", this.handleScroll, { passive: true })
+    }
+
+    private bindLinkListeners(): void {
+        this.navLinks.forEach((link) => {
+            link.addEventListener("click", this.handleLinkClick)
+        })
+    }
+
+    private handleScroll = (): void => {
         if (!this.ticking) {
             window.requestAnimationFrame(() => {
                 this.updateActiveLink()
@@ -43,191 +243,80 @@ export class ScrollSpyManager {
         }
     }
 
-    private updateActiveLink(): void {
-        if (!this.sections || this.sections.length === 0 || !this.navLinks)
-            return
+    private handleLinkClick = (event: Event): void => {
+        const link = event.currentTarget as HTMLElement
+        const href = link.getAttribute("href")
 
-        const scrollY =
-            this.scrollContainer instanceof Window
-                ? window.scrollY
-                : this.scrollContainer.scrollTop
+        if (href?.startsWith("#")) {
+            event.preventDefault()
+            const sectionId = href.slice(1)
+            this.scrollTo(sectionId)
+
+            if (this.options.updateHistory) {
+                history.pushState(null, "", href)
+            }
+        }
+    }
+
+    private updateActiveLink(): void {
+        if (this.sections.length === 0 || this.navLinks.length === 0) return
+
+        const scrollY = this.scrollContainer instanceof Window
+            ? window.scrollY
+            : this.scrollContainer.scrollTop
 
         let activeId: string | null = null
 
+        // Find the active section
         for (const section of this.sections) {
             const id = section.getAttribute("id")
             if (!id) continue
 
-            const top = section.offsetTop
+            const top = section.offsetTop - this.options.offset
             const height = section.offsetHeight
-            const threshold = top - height * this.thresholdOffset
+            const threshold = top - height * this.options.threshold
 
             if (scrollY >= threshold) {
                 activeId = id
             }
         }
 
+        // Only update if changed
+        if (activeId === this.currentActiveId) return
+        this.currentActiveId = activeId
+
+        // Update classes
+        let activeLink: HTMLElement | null = null
+
         this.navLinks.forEach((link) => {
             const targetId = link.getAttribute("href")?.replace("#", "")
             const isActive = targetId === activeId
 
-            link.classList.toggle("active", isActive)
-
-            let parent = link.parentElement
-            while (parent && parent !== document.body) {
-                if (parent.tagName === "LI") {
-                    parent.classList.remove("active")
-                }
-                parent = parent.parentElement
-            }
+            // Update link
+            link.classList.toggle(this.options.activeClass, isActive)
+            link.setAttribute("aria-current", isActive ? "true" : "false")
 
             if (isActive) {
-                let parent = link.parentElement
-                while (parent && parent !== document.body) {
-                    if (parent.tagName === "LI") {
-                        parent.classList.add("active")
-                    }
-                    parent = parent.parentElement
-                }
+                activeLink = link
             }
+
+            // Update parent elements (like li in nav lists)
+            this.updateParentClasses(link, isActive)
         })
+
+        this.options.onChange(activeId, activeLink)
+    }
+
+    private updateParentClasses(link: HTMLElement, isActive: boolean): void {
+        let parent = link.parentElement
+
+        while (parent && parent !== document.body) {
+            if (parent.tagName === "LI") {
+                parent.classList.toggle(this.options.activeParentClass, isActive)
+            }
+            parent = parent.parentElement
+        }
     }
 }
 
-// Updates navigation based on scroll position, commonly used in single-page websites.
-
-// ScrollSpyManager: Activates nav links based on scroll position.
-// export class ScrollSpyManager {
-//     private sections: HTMLElement[]
-//     private navLinks: NodeListOf<HTMLElement>
-//     private scrollContainer: HTMLElement | Window
-//     private thresholdOffset: number
-//     private ticking = false
-
-//     constructor(
-//         sections: HTMLElement[],
-//         navLinksSelector: string,
-//         containerId?: string,
-//         thresholdOffset: number = 0.5, // default halfway through section
-//     ) {
-//         this.sections = sections
-//         this.navLinks = document.querySelectorAll(navLinksSelector)
-//         this.scrollContainer = containerId
-//             ? (document.getElementById(containerId) ?? window)
-//             : window
-//         this.thresholdOffset = thresholdOffset
-
-//         this.bindScrollListener()
-//         this.updateActiveLink()
-//     }
-
-//     private bindScrollListener(): void {
-//         const container =
-//             this.scrollContainer === window ? window : this.scrollContainer
-
-//         container.addEventListener("scroll", () => this.onScroll(), {
-//             passive: true,
-//         })
-//     }
-
-//     private onScroll(): void {
-//         if (!this.ticking) {
-//             window.requestAnimationFrame(() => {
-//                 this.updateActiveLink()
-//                 this.ticking = false
-//             })
-//             this.ticking = true
-//         }
-//     }
-
-//     private updateActiveLink(): void {
-//         const scrollY =
-//             this.scrollContainer instanceof Window
-//                 ? window.scrollY
-//                 : this.scrollContainer.scrollTop
-
-//         let activeId: string | null = null
-
-//         for (const section of this.sections) {
-//             const id = section.getAttribute("id")
-//             if (!id) continue
-
-//             const top = section.offsetTop
-//             const height = section.offsetHeight
-//             const threshold = top - height * this.thresholdOffset
-
-//             if (scrollY >= threshold) {
-//                 activeId = id
-//             }
-//         }
-
-//         this.navLinks.forEach((link) => {
-//             const targetId = link.getAttribute("href")?.replace("#", "")
-//             link.classList.toggle("active", targetId === activeId)
-//         })
-//     }
-// }
-
-// export class ScrollSpyManager {
-//     private sections: HTMLElement[]
-//     private navLinks: NodeListOf<HTMLElement>
-//     private scrollContainer: HTMLElement | Window
-
-//     constructor(
-//         sections: HTMLElement[],
-//         navLinksSelector: string,
-//         containerId?: string,
-//     ) {
-//         this.sections = sections
-//         this.navLinks = document.querySelectorAll(navLinksSelector)
-//         this.scrollContainer = containerId
-//             ? document.getElementById(containerId) || window
-//             : window
-
-//         this.attachScrollListener()
-//     }
-
-//     private attachScrollListener(): void {
-//         // console.log('attachScrollListener');
-//         const scrollHandler =
-//             this.scrollContainer === window
-//                 ? window.addEventListener(
-//                       "scroll",
-//                       this.updateActiveLink.bind(this),
-//                   )
-//                 : this.scrollContainer.addEventListener(
-//                       "scroll",
-//                       this.updateActiveLink.bind(this),
-//                       true,
-//                   )
-
-//         this.updateActiveLink() // Initialize active state
-//     }
-
-//     private updateActiveLink(): void {
-//         // console.log('updateActiveLink');
-//         // console.log(this.sections);
-//         // console.log(this.navLinks);
-
-//         let currentSection = ""
-//         const containerScrollY =
-//             this.scrollContainer instanceof Window
-//                 ? window.scrollY
-//                 : this.scrollContainer.scrollTop
-
-//         this.sections.forEach((section) => {
-//             const sectionTop = section.offsetTop
-//             const sectionHeight = section.clientHeight
-//             if (containerScrollY >= sectionTop - sectionHeight / 2) {
-//                 currentSection = section.getAttribute("id")!
-//             }
-//         })
-
-//         this.navLinks.forEach((link) => {
-//             link.classList.remove("active")
-//             if (link.getAttribute("href") === `#${currentSection}`) {
-//                 link.classList.add("active")
-//             }
-//         })
-//     }
-// }
+export default ScrollSpyManager

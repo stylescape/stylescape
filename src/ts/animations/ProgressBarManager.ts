@@ -1,86 +1,209 @@
 // ============================================================================
-// Progress Bar Manager
+// Stylescape | Progress Bar Manager
+// ============================================================================
+// Controls progress bar UI elements with animation support.
+// Supports data-ss-progress attributes for declarative configuration.
 // ============================================================================
 
-// /**
-//  * The ProgressBarManager class controls a progress bar UI element, allowing updates
-//  * to its value and appearance based on the current progress state.
-//  *
-//  * @example
-//  * // Usage:
-//  * const progressBarManager = new ProgressBarManager('myProgressBar');
-//  * progressBarManager.setProgress(50); // Set progress to 50%
-//  */
-// export default class ProgressBarManager {
-//     // The HTML element representing the progress bar.
-//     private progressBar: HTMLElement | null;
+/**
+ * Configuration options for ProgressBarManager
+ */
+export interface ProgressBarOptions {
+    /** Initial value (0-100) */
+    value?: number
+    /** Minimum value */
+    min?: number
+    /** Maximum value */
+    max?: number
+    /** Whether to animate changes */
+    animate?: boolean
+    /** Animation duration in ms */
+    animationDuration?: number
+    /** Callback when value changes */
+    onChange?: (value: number, percentage: number) => void
+    /** Callback when reaching 100% */
+    onComplete?: () => void
+    /** CSS property to animate (width, height, or custom) */
+    property?: string
+}
 
-//     /**
-//      * Creates an instance of ProgressBarManager.
-//      *
-//      * @param progressBarId - The ID of the progress bar element to manage.
-//      */
-//     constructor(progressBarId: string) {
-//         this.progressBar = document.getElementById(progressBarId);
+/**
+ * Progress bar manager with animation and accessibility support.
+ *
+ * @example JavaScript
+ * ```typescript
+ * const progress = new ProgressBarManager("#progress", { animate: true })
+ * progress.setProgress(50)
+ * progress.increment(10)
+ * ```
+ *
+ * @example HTML with data-ss
+ * ```html
+ * <div data-ss="progress"
+ *      data-ss-progress-value="0"
+ *      data-ss-progress-animate="true"
+ *      data-ss-progress-duration="300">
+ *     <div class="progress__bar"></div>
+ * </div>
+ * ```
+ */
+export class ProgressBarManager {
+    private element: HTMLElement | null
+    private bar: HTMLElement | null
+    private options: Required<ProgressBarOptions>
+    private currentValue: number
 
-//         if (!this.progressBar) {
-//             console.error(`Progress bar element not found with ID: ${progressBarId}`);
-//         }
-//     }
+    constructor(
+        selectorOrElement: string | HTMLElement,
+        options: ProgressBarOptions = {}
+    ) {
+        this.element = typeof selectorOrElement === "string"
+            ? document.querySelector<HTMLElement>(selectorOrElement)
+            : selectorOrElement
 
-//     /**
-//      * Updates the progress bar to the specified percentage.
-//      *
-//      * This method sets the width of the progress bar element to represent the given percentage.
-//      *
-//      * @param percentage - A number representing the progress percentage (0-100).
-//      */
-//     public setProgress(percentage: number): void {
-//         if (!this.progressBar) {
-//             console.warn('Progress bar element is not available. Cannot set progress.');
-//             return;
-//         }
+        this.options = {
+            value: options.value ?? 0,
+            min: options.min ?? 0,
+            max: options.max ?? 100,
+            animate: options.animate !== false,
+            animationDuration: options.animationDuration ?? 300,
+            onChange: options.onChange ?? (() => {}),
+            onComplete: options.onComplete ?? (() => {}),
+            property: options.property ?? "width"
+        }
 
-//         // Clamp the percentage between 0 and 100
-//         const clampedPercentage = Math.min(Math.max(percentage, 0), 100);
-//         this.progressBar.style.width = `${clampedPercentage}%`;
+        this.currentValue = this.options.value
 
-//         // Optionally update ARIA attributes or other accessibility features
-//         this.progressBar.setAttribute('aria-valuenow', clampedPercentage.toString());
-//     }
+        // Find bar element (child with class containing 'bar' or the element itself)
+        this.bar = this.element?.querySelector<HTMLElement>("[class*='bar']") || this.element
 
-//     /**
-//      * Resets the progress bar to 0%.
-//      *
-//      * This method sets the progress bar's width to 0%, effectively resetting it.
-//      */
-//     public resetProgress(): void {
-//         if (!this.progressBar) {
-//             console.warn('Progress bar element is not available. Cannot reset progress.');
-//             return;
-//         }
+        if (!this.element) {
+            console.warn("[Stylescape] ProgressBarManager element not found")
+            return
+        }
 
-//         this.setProgress(0);
-//     }
+        this.init()
+    }
 
-//     /**
-//      * Updates the progress bar element dynamically.
-//      *
-//      * This method allows changing the progress bar element by providing a new CSS selector.
-//      * It updates the instance with the new progress bar element.
-//      *
-//      * @param progressBarId - The new ID of the progress bar element to manage.
-//      */
-//     public updateProgressBarElement(progressBarId: string): void {
-//         this.progressBar = document.getElementById(progressBarId);
+    // ========================================================================
+    // Public Methods
+    // ========================================================================
 
-//         if (!this.progressBar) {
-//             console.error(`Updated progress bar element not found with ID: ${progressBarId}`);
-//         }
-//     }
-// }
+    /**
+     * Set progress value (0-100 or within min-max range)
+     */
+    public setProgress(value: number): void {
+        const clamped = Math.min(Math.max(value, this.options.min), this.options.max)
+        const percentage = this.calculatePercentage(clamped)
 
-// Usage example:
-// Create a new ProgressBarManager instance with a specified progress bar element ID.
-// const progressBarManager = new ProgressBarManager('myProgressBar');
-// progressBarManager.setProgress(50); // Set progress to 50%
+        this.currentValue = clamped
+        this.updateDisplay(percentage)
+        this.options.onChange(clamped, percentage)
+
+        if (percentage >= 100) {
+            this.options.onComplete()
+        }
+    }
+
+    /**
+     * Get current progress value
+     */
+    public getProgress(): number {
+        return this.currentValue
+    }
+
+    /**
+     * Get current percentage (0-100)
+     */
+    public getPercentage(): number {
+        return this.calculatePercentage(this.currentValue)
+    }
+
+    /**
+     * Increment progress by amount
+     */
+    public increment(amount: number = 1): void {
+        this.setProgress(this.currentValue + amount)
+    }
+
+    /**
+     * Decrement progress by amount
+     */
+    public decrement(amount: number = 1): void {
+        this.setProgress(this.currentValue - amount)
+    }
+
+    /**
+     * Reset progress to 0
+     */
+    public reset(): void {
+        this.setProgress(this.options.min)
+    }
+
+    /**
+     * Set progress to complete (100%)
+     */
+    public complete(): void {
+        this.setProgress(this.options.max)
+    }
+
+    /**
+     * Set indeterminate state (for unknown progress)
+     */
+    public setIndeterminate(indeterminate: boolean): void {
+        if (!this.element) return
+
+        this.element.classList.toggle("progress--indeterminate", indeterminate)
+        this.element.removeAttribute("aria-valuenow")
+    }
+
+    /**
+     * Destroy the progress bar manager
+     */
+    public destroy(): void {
+        this.element = null
+        this.bar = null
+    }
+
+    // ========================================================================
+    // Private Methods
+    // ========================================================================
+
+    private init(): void {
+        if (!this.element) return
+
+        // Set ARIA attributes
+        this.element.setAttribute("role", "progressbar")
+        this.element.setAttribute("aria-valuemin", String(this.options.min))
+        this.element.setAttribute("aria-valuemax", String(this.options.max))
+
+        // Set transition for animation
+        if (this.bar && this.options.animate) {
+            this.bar.style.transition = `${this.options.property} ${this.options.animationDuration}ms ease`
+        }
+
+        // Set initial value
+        this.setProgress(this.currentValue)
+    }
+
+    private calculatePercentage(value: number): number {
+        const range = this.options.max - this.options.min
+        return ((value - this.options.min) / range) * 100
+    }
+
+    private updateDisplay(percentage: number): void {
+        if (!this.bar || !this.element) return
+
+        // Update visual
+        this.bar.style[this.options.property as any] = `${percentage}%`
+
+        // Update ARIA
+        this.element.setAttribute("aria-valuenow", String(this.currentValue))
+
+        // Update data attribute for CSS styling
+        this.element.setAttribute("data-progress", String(Math.round(percentage)))
+    }
+}
+
+export default ProgressBarManager
+

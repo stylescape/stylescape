@@ -1,58 +1,170 @@
-// /**
-//  * A class to reveal content on a webpage with a fade-in effect after a specified delay.
-//  *
-//  * The `ContentRevealer` class is designed to hide elements initially and gradually reveal them
-//  * with a fade-in effect after a specified delay when the window loads.
-//  *
-//  * @example
-//  * // Usage:
-//  * const revealer = new ContentRevealer(500, '.hidden-content');
-//  *
-//  * This will apply a 500ms delay and fade-in effect to all elements with the class `.hidden-content`.
-//  */
-// export class ContentRevealer {
-//     // Duration of the fade-in effect in milliseconds.
-//     private delay: number
-//     // CSS selector used to target the elements to be revealed.
-//     private selector: string
+// ============================================================================
+// Stylescape | Content Revealer
+// ============================================================================
+// Reveals content with fade-in effects after page load.
+// Supports data-ss-reveal attributes for declarative configuration.
+// ============================================================================
 
-//     /**
-//      * Creates an instance of ContentRevealer.
-//      *
-//      * @param delay - The delay in milliseconds before the content begins to reveal.
-//      * @param selector - The CSS selector for the elements to be revealed.
-//      */
-//     constructor(delay: number, selector: string) {
-//         this.delay = delay
-//         this.selector = selector
-//         // Bind the revealContent method to the window load event.
-//         window.onload = this.revealContent.bind(this)
-//     }
+/**
+ * Configuration options for ContentRevealer
+ */
+export interface ContentRevealerOptions {
+    /** Delay before revealing (ms) */
+    delay?: number
+    /** Duration of fade animation (ms) */
+    duration?: number
+    /** Easing function */
+    easing?: string
+    /** Initial opacity */
+    initialOpacity?: number
+    /** Whether to use IntersectionObserver for scroll-triggered reveal */
+    onScroll?: boolean
+    /** Threshold for IntersectionObserver (0-1) */
+    threshold?: number
+}
 
-//     /**
-//      * Reveals the content by fading in elements that match the provided selector.
-//      *
-//      * This method selects all elements matching the given selector, sets their initial
-//      * opacity to 0, and then gradually changes the opacity to 1 after the specified delay.
-//      *
-//      * @private
-//      */
-//     private revealContent(): void {
-//         // Select all elements that match the selector.
-//         const elements = document.querySelectorAll(this.selector)
+/**
+ * Reveals content with a fade-in effect.
+ *
+ * @example JavaScript
+ * ```typescript
+ * const revealer = new ContentRevealer(".hidden-content", { delay: 500 })
+ * ```
+ *
+ * @example HTML with data-ss
+ * ```html
+ * <div data-ss="reveal"
+ *      data-ss-reveal-delay="300"
+ *      data-ss-reveal-duration="500"
+ *      data-ss-reveal-on-scroll="true">
+ *     Content to reveal
+ * </div>
+ * ```
+ */
+export class ContentRevealer {
+    private elements: HTMLElement[]
+    private options: Required<ContentRevealerOptions>
+    private observer: IntersectionObserver | null = null
 
-//         // Apply the fade-in effect to each element.
-//         elements.forEach((element) => {
-//             const el = element as HTMLElement
+    constructor(
+        selectorOrElements: string | HTMLElement | HTMLElement[] | NodeListOf<HTMLElement>,
+        options: ContentRevealerOptions = {}
+    ) {
+        // Normalize input to array
+        if (typeof selectorOrElements === "string") {
+            this.elements = Array.from(document.querySelectorAll<HTMLElement>(selectorOrElements))
+        } else if (selectorOrElements instanceof HTMLElement) {
+            this.elements = [selectorOrElements]
+        } else {
+            this.elements = Array.from(selectorOrElements)
+        }
 
-//             // Set the initial opacity to 0 and define the transition effect.
-//             el.style.opacity = '0'
-//             el.style.transition = `opacity ${this.delay}ms ease`
+        this.options = {
+            delay: options.delay ?? 0,
+            duration: options.duration ?? 500,
+            easing: options.easing ?? "ease",
+            initialOpacity: options.initialOpacity ?? 0,
+            onScroll: options.onScroll ?? false,
+            threshold: options.threshold ?? 0.1
+        }
 
-//             // Use a timeout to change the opacity to 1 after the specified delay.
-//             setTimeout(() => {
-//                 el.style.opacity = '1'
-//             }, this.delay)
-//         })
-//     }
-// }
+        this.init()
+    }
+
+    // ========================================================================
+    // Public Methods
+    // ========================================================================
+
+    /**
+     * Manually reveal all elements
+     */
+    public revealAll(): void {
+        this.elements.forEach(el => this.reveal(el))
+    }
+
+    /**
+     * Reveal a specific element
+     */
+    public reveal(element: HTMLElement): void {
+        element.style.transition = `opacity ${this.options.duration}ms ${this.options.easing}`
+        element.style.opacity = "1"
+        element.classList.add("reveal--visible")
+        element.setAttribute("data-ss-reveal-revealed", "true")
+    }
+
+    /**
+     * Reset element to hidden state
+     */
+    public hide(element: HTMLElement): void {
+        element.style.opacity = String(this.options.initialOpacity)
+        element.classList.remove("reveal--visible")
+        element.removeAttribute("data-ss-reveal-revealed")
+    }
+
+    /**
+     * Reset all elements to hidden state
+     */
+    public hideAll(): void {
+        this.elements.forEach(el => this.hide(el))
+    }
+
+    /**
+     * Destroy the revealer instance
+     */
+    public destroy(): void {
+        if (this.observer) {
+            this.observer.disconnect()
+            this.observer = null
+        }
+    }
+
+    // ========================================================================
+    // Private Methods
+    // ========================================================================
+
+    private init(): void {
+        // Set initial hidden state
+        this.elements.forEach(el => {
+            el.style.opacity = String(this.options.initialOpacity)
+            el.style.transition = `opacity ${this.options.duration}ms ${this.options.easing}`
+        })
+
+        if (this.options.onScroll) {
+            this.initIntersectionObserver()
+        } else {
+            this.initLoadReveal()
+        }
+    }
+
+    private initLoadReveal(): void {
+        const reveal = () => {
+            setTimeout(() => this.revealAll(), this.options.delay)
+        }
+
+        if (document.readyState === "complete") {
+            reveal()
+        } else {
+            window.addEventListener("load", reveal)
+        }
+    }
+
+    private initIntersectionObserver(): void {
+        this.observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target as HTMLElement
+                        setTimeout(() => this.reveal(el), this.options.delay)
+                        this.observer?.unobserve(el)
+                    }
+                })
+            },
+            { threshold: this.options.threshold }
+        )
+
+        this.elements.forEach(el => this.observer?.observe(el))
+    }
+}
+
+export default ContentRevealer
+

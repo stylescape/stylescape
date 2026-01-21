@@ -1,118 +1,235 @@
 // ============================================================================
-// Button Handler
+// Stylescape | Button Handler
+// ============================================================================
+// Manages button click events with loading states and ripple effects.
+// Supports data-ss-button attributes for declarative configuration.
 // ============================================================================
 
-// /**
-//  * The ButtonHandler class manages click events for buttons on the page.
-//  * It automatically attaches event listeners to all button elements and handles
-//  * their click events, providing easy access to button IDs for further functionality.
-//  *
-//  * @example
-//  * // Usage:
-//  * const buttonHandler = new ButtonHandler();
-//  */
-// export class ButtonHandler {
-//     /**
-//      * Initializes the ButtonHandler class by attaching click event listeners
-//      * to all button elements on the page.
-//      */
-//     constructor() {
-//         this.attachEventListeners();
-//     }
+/**
+ * Configuration options for ButtonHandler
+ */
+export interface ButtonHandlerOptions {
+    /** Show loading state on click */
+    loading?: boolean
+    /** Disable button during loading */
+    disableOnLoading?: boolean
+    /** Loading spinner HTML */
+    loadingHtml?: string
+    /** Enable ripple effect */
+    ripple?: boolean
+    /** Ripple color */
+    rippleColor?: string
+    /** Callback on click */
+    onClick?: (button: HTMLButtonElement, event: Event) => void | Promise<void>
+}
 
-//     /**
-//      * Attaches click event listeners to all button elements on the page.
-//      *
-//      * If no button elements are found, a warning is logged to the console.
-//      */
-//     private attachEventListeners(): void {
-//         const buttons = document.querySelectorAll('button');
+/**
+ * Button handler with loading states and ripple effects.
+ *
+ * @example JavaScript
+ * ```typescript
+ * const btn = new ButtonHandler("#submit", {
+ *     loading: true,
+ *     onClick: async (button) => {
+ *         await submitForm()
+ *     }
+ * })
+ * ```
+ *
+ * @example HTML with data-ss
+ * ```html
+ * <button data-ss="button"
+ *         data-ss-button-loading="true"
+ *         data-ss-button-ripple="true">
+ *     Submit
+ * </button>
+ * ```
+ */
+export class ButtonHandler {
+    private button: HTMLButtonElement | null
+    private options: Required<ButtonHandlerOptions>
+    private originalContent: string = ""
+    private isLoading: boolean = false
 
-//         if (buttons.length === 0) {
-//             console.warn('No button elements found on the page.');
-//             return;
-//         }
+    constructor(
+        selectorOrElement: string | HTMLButtonElement,
+        options: ButtonHandlerOptions = {}
+    ) {
+        this.button = typeof selectorOrElement === "string"
+            ? document.querySelector<HTMLButtonElement>(selectorOrElement)
+            : selectorOrElement
 
-//         buttons.forEach(button => {
-//             button.addEventListener('click', this.handleButtonClick.bind(this));
-//         });
-//     }
+        this.options = {
+            loading: options.loading ?? false,
+            disableOnLoading: options.disableOnLoading !== false,
+            loadingHtml: options.loadingHtml ?? '<span class="button__spinner"></span>',
+            ripple: options.ripple ?? false,
+            rippleColor: options.rippleColor ?? "rgba(255, 255, 255, 0.3)",
+            onClick: options.onClick ?? (() => {})
+        }
 
-//     /**
-//      * Handles the click event for button elements.
-//      *
-//      * This method logs the ID of the clicked button and can be extended
-//      * with custom logic as needed.
-//      *
-//      * @param event - The click event object.
-//      */
-//     private handleButtonClick(event: Event): void {
-//         const button = event.target as HTMLButtonElement;
+        if (!this.button) {
+            console.warn("[Stylescape] ButtonHandler button not found")
+            return
+        }
 
-//         if (!button.id) {
-//             console.warn('Clicked button does not have an ID.');
-//             return;
-//         }
+        this.originalContent = this.button.innerHTML
+        this.init()
+    }
 
-//         const buttonId = button.id;
-//         console.log(`Button clicked: ${buttonId}`);
+    // ========================================================================
+    // Public Methods
+    // ========================================================================
 
-//         // Add your custom function logic here, using buttonId if needed
-//     }
+    /**
+     * Start loading state
+     */
+    public startLoading(): void {
+        if (!this.button || this.isLoading) return
 
-//     /**
-//      * Dynamically updates event listeners for new or existing button elements.
-//      *
-//      * This method reattaches event listeners to all buttons on the page, useful
-//      * if buttons are added dynamically after the initial page load.
-//      */
-//     public updateButtonListeners(): void {
-//         // Remove existing listeners before reattaching
-//         document.querySelectorAll('button').forEach(button => {
-//             button.removeEventListener('click', this.handleButtonClick.bind(this));
-//         });
+        this.isLoading = true
+        this.originalContent = this.button.innerHTML
 
-//         // Reattach listeners
-//         this.attachEventListeners();
-//     }
+        if (this.options.disableOnLoading) {
+            this.button.disabled = true
+        }
 
-//     /**
-//      * Attaches a click event listener to a specific button element by ID.
-//      *
-//      * @param buttonId - The ID of the button element to attach the event listener to.
-//      */
-//     public addListenerToButton(buttonId: string): void {
-//         const button = document.getElementById(buttonId) as HTMLButtonElement;
+        this.button.classList.add("button--loading")
+        this.button.innerHTML = this.options.loadingHtml
+        this.button.setAttribute("aria-busy", "true")
+    }
 
-//         if (!button) {
-//             console.error(`Button with ID "${buttonId}" not found.`);
-//             return;
-//         }
+    /**
+     * Stop loading state
+     */
+    public stopLoading(): void {
+        if (!this.button || !this.isLoading) return
 
-//         button.addEventListener('click', this.handleButtonClick.bind(this));
-//     }
-// }
+        this.isLoading = false
+        this.button.disabled = false
+        this.button.classList.remove("button--loading")
+        this.button.innerHTML = this.originalContent
+        this.button.setAttribute("aria-busy", "false")
+    }
 
-// Initialize the ButtonHandler class
-// const buttonHandler = new ButtonHandler();
+    /**
+     * Manually trigger click
+     */
+    public click(): void {
+        this.button?.click()
+    }
 
-// export class ButtonHandler {
-//     constructor() {
-//         // Attaching event listeners to buttons
-//         document.querySelectorAll('button').forEach(button => {
-//             button.addEventListener('click', this.handleButtonClick.bind(this));
-//         });
-//     }
+    /**
+     * Enable the button
+     */
+    public enable(): void {
+        if (this.button) {
+            this.button.disabled = false
+        }
+    }
 
-//     private handleButtonClick(event: Event): void {
-//         // Retrieving the ID of the clicked button
-//         const button = event.target as HTMLButtonElement;
-//         const buttonId = button.id;
+    /**
+     * Disable the button
+     */
+    public disable(): void {
+        if (this.button) {
+            this.button.disabled = true
+        }
+    }
 
-//         console.log(`Button clicked: ${buttonId}`);
-//         // Add your function logic here, using buttonId if needed
-//     }
-// }
+    /**
+     * Destroy the handler
+     */
+    public destroy(): void {
+        this.button?.removeEventListener("click", this.handleClick)
+        this.button = null
+    }
 
-// // Initialize the ButtonHandler class
-// const buttonHandler = new ButtonHandler();
+    // ========================================================================
+    // Private Methods
+    // ========================================================================
+
+    private init(): void {
+        if (!this.button) return
+
+        this.button.addEventListener("click", this.handleClick)
+
+        if (this.options.ripple) {
+            this.button.style.position = "relative"
+            this.button.style.overflow = "hidden"
+        }
+    }
+
+    private handleClick = async (event: Event): Promise<void> => {
+        if (!this.button || this.isLoading) return
+
+        // Ripple effect
+        if (this.options.ripple) {
+            this.createRipple(event as MouseEvent)
+        }
+
+        // Loading state
+        if (this.options.loading) {
+            this.startLoading()
+        }
+
+        try {
+            await this.options.onClick(this.button, event)
+        } finally {
+            if (this.options.loading) {
+                this.stopLoading()
+            }
+        }
+    }
+
+    private createRipple(event: MouseEvent): void {
+        if (!this.button) return
+
+        const ripple = document.createElement("span")
+        ripple.className = "button__ripple"
+
+        const rect = this.button.getBoundingClientRect()
+        const size = Math.max(rect.width, rect.height)
+        const x = event.clientX - rect.left - size / 2
+        const y = event.clientY - rect.top - size / 2
+
+        ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            background: ${this.options.rippleColor};
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        `
+
+        this.button.appendChild(ripple)
+
+        ripple.addEventListener("animationend", () => {
+            ripple.remove()
+        })
+    }
+}
+
+// ============================================================================
+// Static Initialization
+// ============================================================================
+
+/**
+ * Initialize all buttons with data-ss="button" attribute
+ */
+export function initButtons(): void {
+    document.querySelectorAll<HTMLButtonElement>('[data-ss="button"]').forEach(button => {
+        new ButtonHandler(button, {
+            loading: button.dataset.ssButtonLoading === "true",
+            ripple: button.dataset.ssButtonRipple === "true",
+            rippleColor: button.dataset.ssButtonRippleColor
+        })
+    })
+}
+
+export default ButtonHandler
+

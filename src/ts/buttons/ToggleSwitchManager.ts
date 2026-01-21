@@ -1,114 +1,209 @@
 // ============================================================================
-// Toggle Switch Manager
+// Stylescape | Toggle Switch Manager
+// ============================================================================
+// Manages toggle switch UI elements with state persistence.
+// Supports data-ss-toggle attributes for declarative configuration.
 // ============================================================================
 
-// /**
-//  * The ToggleSwitchManager class manages a toggle switch UI element, providing methods
-//  * to get and set the state of the toggle switch, and handle its change events.
-//  *
-//  * @example
-//  * // Usage:
-//  * const toggleSwitchManager = new ToggleSwitchManager('myToggleSwitch');
-//  * console.log(toggleSwitchManager.isOn); // Check the toggle state
-//  */
-// export class ToggleSwitchManager {
-//     // The HTML input element representing the toggle switch.
-//     private switchElement: HTMLInputElement | null;
+/**
+ * Configuration options for ToggleSwitchManager
+ */
+export interface ToggleSwitchOptions {
+    /** Initial state */
+    checked?: boolean
+    /** Storage key for persistence */
+    storageKey?: string
+    /** Use localStorage for persistence */
+    persist?: boolean
+    /** Callback when state changes */
+    onChange?: (isOn: boolean, element: HTMLInputElement) => void
+    /** CSS class for on state */
+    onClass?: string
+    /** CSS class for off state */
+    offClass?: string
+    /** Label for on state */
+    onLabel?: string
+    /** Label for off state */
+    offLabel?: string
+}
 
-//     /**
-//      * Creates an instance of ToggleSwitchManager.
-//      *
-//      * @param switchId - The ID of the toggle switch element to manage.
-//      */
-//     constructor(switchId: string) {
-//         this.switchElement = document.getElementById(switchId) as HTMLInputElement;
+/**
+ * Toggle switch manager with state persistence and callbacks.
+ *
+ * @example JavaScript
+ * ```typescript
+ * const toggle = new ToggleSwitchManager("#darkMode", {
+ *     persist: true,
+ *     storageKey: "dark-mode",
+ *     onChange: (isOn) => document.body.classList.toggle("dark", isOn)
+ * })
+ * ```
+ *
+ * @example HTML with data-ss
+ * ```html
+ * <input type="checkbox"
+ *        data-ss="toggle"
+ *        data-ss-toggle-persist="true"
+ *        data-ss-toggle-storage-key="notifications"
+ *        id="notifications">
+ * <label for="notifications">Enable notifications</label>
+ * ```
+ */
+export class ToggleSwitchManager {
+    private element: HTMLInputElement | null
+    private options: Required<ToggleSwitchOptions>
+    private labelElement: HTMLElement | null = null
 
-//         if (!this.switchElement) {
-//             console.error(`Toggle switch element not found with ID: ${switchId}`);
-//         }
-//     }
+    constructor(
+        selectorOrElement: string | HTMLInputElement,
+        options: ToggleSwitchOptions = {}
+    ) {
+        this.element = typeof selectorOrElement === "string"
+            ? document.querySelector<HTMLInputElement>(selectorOrElement)
+            : selectorOrElement
 
-//     /**
-//      * Gets the current state of the toggle switch.
-//      *
-//      * @returns {boolean} - True if the toggle switch is on, otherwise false.
-//      */
-//     get isOn(): boolean {
-//         return this.switchElement ? this.switchElement.checked : false;
-//     }
+        this.options = {
+            checked: options.checked ?? false,
+            storageKey: options.storageKey ?? this.element?.id ?? "toggle-state",
+            persist: options.persist ?? false,
+            onChange: options.onChange ?? (() => {}),
+            onClass: options.onClass ?? "toggle--on",
+            offClass: options.offClass ?? "toggle--off",
+            onLabel: options.onLabel ?? "",
+            offLabel: options.offLabel ?? ""
+        }
 
-//     /**
-//      * Sets the state of the toggle switch.
-//      *
-//      * @param value - A boolean value to set the toggle switch state (true for on, false for off).
-//      */
-//     set isOn(value: boolean) {
-//         if (!this.switchElement) {
-//             console.warn('Toggle switch element is not available. Cannot set state.');
-//             return;
-//         }
+        if (!this.element) {
+            console.warn("[Stylescape] ToggleSwitchManager element not found")
+            return
+        }
 
-//         this.switchElement.checked = value;
-//     }
+        this.init()
+    }
 
-//     /**
-//      * Toggles the current state of the toggle switch.
-//      *
-//      * This method flips the current state of the toggle switch (on to off, or off to on).
-//      */
-//     public toggle(): void {
-//         if (!this.switchElement) {
-//             console.warn('Toggle switch element is not available. Cannot toggle state.');
-//             return;
-//         }
+    // ========================================================================
+    // Public Properties
+    // ========================================================================
 
-//         this.switchElement.checked = !this.switchElement.checked;
-//     }
+    /**
+     * Get current state
+     */
+    get isOn(): boolean {
+        return this.element?.checked ?? false
+    }
 
-//     /**
-//      * Attaches a callback function to the change event of the toggle switch.
-//      *
-//      * This method allows executing custom logic whenever the toggle switch state changes.
-//      *
-//      * @param callback - A function to call when the toggle switch changes state.
-//      */
-//     public onChange(callback: (isOn: boolean) => void): void {
-//         if (!this.switchElement) {
-//             console.warn('Toggle switch element is not available. Cannot attach event listener.');
-//             return;
-//         }
+    /**
+     * Set current state
+     */
+    set isOn(value: boolean) {
+        if (!this.element) return
+        this.element.checked = value
+        this.handleChange()
+    }
 
-//         this.switchElement.addEventListener('change', () => {
-//             callback(this.isOn);
-//         });
-//     }
-// }
+    // ========================================================================
+    // Public Methods
+    // ========================================================================
 
-// Usage example:
-// Create a new ToggleSwitchManager instance with a specified toggle switch element ID.
-// const toggleSwitchManager = new ToggleSwitchManager('myToggleSwitch');
-// console.log(toggleSwitchManager.isOn); // Check the toggle state
-// toggleSwitchManager.onChange((isOn) => {
-//     console.log(`Toggle switch is now ${isOn ? 'on' : 'off'}`);
-// });
+    /**
+     * Toggle the switch
+     */
+    public toggle(): void {
+        this.isOn = !this.isOn
+    }
 
-// export class ToggleSwitchManager {
+    /**
+     * Turn on
+     */
+    public on(): void {
+        this.isOn = true
+    }
 
-//     private switchElement: HTMLInputElement;
+    /**
+     * Turn off
+     */
+    public off(): void {
+        this.isOn = false
+    }
 
-//     constructor(switchId: string) {
-//         this.switchElement = document.getElementById(switchId) as HTMLInputElement;
-//     }
+    /**
+     * Destroy the manager
+     */
+    public destroy(): void {
+        this.element?.removeEventListener("change", this.handleChange)
+        this.element = null
+    }
 
-//     get isOn(): boolean {
-//         return this.switchElement.checked;
-//     }
+    // ========================================================================
+    // Private Methods
+    // ========================================================================
 
-//     set isOn(value: boolean) {
-//         this.switchElement.checked = value;
-//     }
-// }
+    private init(): void {
+        if (!this.element) return
 
-// // Usage
-// const toggleSwitchManager = new ToggleSwitchManager('myToggleSwitch');
-// // Check the toggle state: console.log(toggleSwitchManager.isOn);
+        // Load persisted state
+        if (this.options.persist) {
+            const stored = localStorage.getItem(this.options.storageKey)
+            if (stored !== null) {
+                this.element.checked = stored === "true"
+            } else {
+                this.element.checked = this.options.checked
+            }
+        } else {
+            this.element.checked = this.options.checked
+        }
+
+        // Find associated label
+        if (this.element.id) {
+            this.labelElement = document.querySelector(`label[for="${this.element.id}"]`)
+        }
+
+        // Set ARIA attributes
+        this.element.setAttribute("role", "switch")
+        this.updateAriaState()
+
+        // Add event listener
+        this.element.addEventListener("change", this.handleChange)
+
+        // Initial state update
+        this.updateUI()
+    }
+
+    private handleChange = (): void => {
+        if (!this.element) return
+
+        // Persist state
+        if (this.options.persist) {
+            localStorage.setItem(this.options.storageKey, String(this.element.checked))
+        }
+
+        this.updateUI()
+        this.updateAriaState()
+        this.options.onChange(this.element.checked, this.element)
+    }
+
+    private updateUI(): void {
+        if (!this.element) return
+
+        const parent = this.element.parentElement
+
+        // Update classes on parent wrapper
+        parent?.classList.toggle(this.options.onClass, this.element.checked)
+        parent?.classList.toggle(this.options.offClass, !this.element.checked)
+
+        // Update label text
+        if (this.labelElement && (this.options.onLabel || this.options.offLabel)) {
+            const label = this.element.checked ? this.options.onLabel : this.options.offLabel
+            if (label) {
+                this.labelElement.textContent = label
+            }
+        }
+    }
+
+    private updateAriaState(): void {
+        this.element?.setAttribute("aria-checked", String(this.element?.checked ?? false))
+    }
+}
+
+export default ToggleSwitchManager
+

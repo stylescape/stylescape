@@ -1,3 +1,10 @@
+// ============================================================================
+// Stylescape | Initialization Module
+// ============================================================================
+// Main entry point for the Stylescape initialization system.
+// Provides both legacy initialization and new auto-init functionality.
+// ============================================================================
+
 import { ActiveLinkHighlighter } from "../content/ActiveLinkHighlighter.js"
 import { TableOfContentsBuilder } from "../content/TableOfContentsBuilder.js"
 import { AsideHandler } from "../elements/AsideHandler.js"
@@ -13,11 +20,144 @@ import { ClipboardHelper } from "../utilities/ClipboardHelper.js"
 import { GridManager } from "../utilities/GridManager.js"
 import { ThemeToggler } from "../utilities/ThemeToggler.js"
 
-export function initializeStylescape(): void {
-    // Expose helper(s) globally if needed
-    ;(window as any).ClipboardHelper = ClipboardHelper
+// Import auto-init system
+import {
+    autoStart,
+    destroy,
+    getAllInstances,
+    getInstance,
+    init,
+    observe,
+    reinit,
+    setAttributePrefix,
+    setAutoInit,
+    setDebug,
+    setObserver,
+    stopObserving
+} from "./autoInit.js"
 
+import {
+    ComponentConfig,
+    ComponentHandler,
+    componentRegistry,
+    getComponent,
+    getComponentNames,
+    hasComponent,
+    registerComponent,
+    RegistryEntry
+} from "./registry.js"
+
+// ============================================================================
+// Re-exports for auto-init system
+// ============================================================================
+
+export {
+    autoStart,
+    // Types
+    ComponentConfig,
+    ComponentHandler,
+    // Registry functions
+    componentRegistry, destroy, getAllInstances, getComponent,
+    getComponentNames, getInstance, hasComponent,
+    // Auto-init functions
+    init, observe, registerComponent, RegistryEntry, reinit, setAttributePrefix, setAutoInit, setDebug, setObserver, stopObserving
+}
+
+// ============================================================================
+// Global Stylescape Object
+// ============================================================================
+
+/**
+ * Global Stylescape interface exposed on window object
+ */
+export interface StylescapeGlobal {
+    // Auto-init system
+    init: typeof init
+    getInstance: typeof getInstance
+    getAllInstances: typeof getAllInstances
+    reinit: typeof reinit
+    destroy: typeof destroy
+    observe: typeof observe
+    stopObserving: typeof stopObserving
+
+    // Configuration
+    autoInit: boolean
+    debug: boolean
+
+    // Registry
+    registerComponent: typeof registerComponent
+    hasComponent: typeof hasComponent
+    getComponentNames: typeof getComponentNames
+
+    // Version info
+    version: string
+}
+
+/**
+ * Create and expose the global Stylescape object
+ */
+function createGlobal(): StylescapeGlobal {
+    let autoInitEnabled = true
+    let debugEnabled = false
+
+    const stylescape: StylescapeGlobal = {
+        // Auto-init functions
+        init,
+        getInstance,
+        getAllInstances,
+        reinit,
+        destroy,
+        observe,
+        stopObserving,
+
+        // Configuration with getters/setters
+        get autoInit() { return autoInitEnabled },
+        set autoInit(value: boolean) {
+            autoInitEnabled = value
+            setAutoInit(value)
+        },
+
+        get debug() { return debugEnabled },
+        set debug(value: boolean) {
+            debugEnabled = value
+            setDebug(value)
+        },
+
+        // Registry access
+        registerComponent,
+        hasComponent,
+        getComponentNames,
+
+        // Version
+        version: "1.0.0"
+    }
+
+    return stylescape
+}
+
+// Expose globally
+if (typeof window !== "undefined") {
+    (window as any).Stylescape = createGlobal()
+    ;(window as any).ClipboardHelper = ClipboardHelper
+}
+
+// ============================================================================
+// Legacy Initialization Function
+// ============================================================================
+
+/**
+ * Legacy initialization function for backward compatibility.
+ * Initializes all Stylescape components the traditional way.
+ *
+ * @deprecated Use data-ss attributes and auto-init instead
+ */
+export function initializeStylescape(): void {
     document.addEventListener("DOMContentLoaded", () => {
+        // Initialize auto-init system
+        init()
+        observe()
+
+        // Legacy initializations for components not yet using data-ss
         new ScrollPageManager()
         new ScrollElementManager("#main_content", "main_content_scroll", false)
         new ScrollElementManager(
@@ -64,4 +204,20 @@ export function initializeStylescape(): void {
             new GridManager()
         })
     })
+}
+
+// ============================================================================
+// Auto-start (opt-in)
+// ============================================================================
+
+// Check for auto-start attribute on script tag or global flag
+if (typeof document !== "undefined") {
+    const scriptTag = document.currentScript
+    const shouldAutoStart =
+        scriptTag?.hasAttribute("data-ss-auto") ||
+        (window as any).STYLESCAPE_AUTO_INIT === true
+
+    if (shouldAutoStart) {
+        autoStart()
+    }
 }

@@ -1,79 +1,213 @@
-// /**
-//  * CountdownTimer class provides a simple countdown functionality that updates a display element on the page.
-//  * It counts down from a specified end time and updates the UI every second.
-//  *
-//  * When the countdown reaches zero, it stops and displays "Time up!".
-//  *
-//  * @example
-//  * // Usage:
-//  * const countdown = new CountdownTimer(new Date('2024/01/01 00:00:00'), 'countdownDisplay');
-//  */
-// export default class CountdownTimer {
-//     // The target end time for the countdown.
-//     private endTime: Date;
-//     // The HTML element where the countdown will be displayed.
-//     private displayElement: HTMLElement;
+// ============================================================================
+// Stylescape | Countdown Timer
+// ============================================================================
+// Displays a countdown to a target date/time.
+// Supports data-ss-countdown attributes for declarative configuration.
+// ============================================================================
 
-//     /**
-//      * Creates a new CountdownTimer instance.
-//      *
-//      * @param endTime - The date and time at which the countdown should end.
-//      * @param displayElementId - The ID of the HTML element where the countdown should be displayed.
-//      */
-//     constructor(endTime: Date, displayElementId: string) {
-//         this.endTime = endTime;
-//         // Find the display element by its ID and ensure it's an HTMLElement.
-//         const element = document.getElementById(displayElementId);
-//         if (!element) {
-//             throw new Error(`Element with ID ${displayElementId} not found.`);
-//         }
-//         this.displayElement = element;
-//         this.startTimer();
-//     }
+/**
+ * Configuration options for CountdownTimer
+ */
+export interface CountdownTimerOptions {
+    /** Target end time */
+    endTime?: Date | string | number
+    /** Format string (default: "HH:MM:SS") */
+    format?: "HH:MM:SS" | "DD:HH:MM:SS" | "full" | "compact"
+    /** Text to show when countdown ends */
+    endText?: string
+    /** Update interval in ms (default: 1000) */
+    interval?: number
+    /** Callback when countdown ends */
+    onComplete?: () => void
+    /** Callback on each tick */
+    onTick?: (remaining: CountdownTime) => void
+    /** Whether to show leading zeros */
+    leadingZeros?: boolean
+}
 
-//     /**
-//      * Starts the countdown timer, updating the display every second.
-//      *
-//      * This method calculates the time remaining until the end time and updates the text content of the display element.
-//      * If the countdown reaches zero, it stops and displays "Time up!".
-//      *
-//      * @private
-//      */
-//     private startTimer(): void {
-//         const interval = setInterval(() => {
-//             const remaining = this.endTime.getTime() - new Date().getTime();
-//             if (remaining <= 0) {
-//                 clearInterval(interval);
-//                 this.displayElement.textContent = 'Time up!';
-//                 return;
-//             }
-//             this.displayElement.textContent = this.formatTime(remaining);
-//         }, 1000);
-//     }
+/**
+ * Time breakdown for countdown
+ */
+export interface CountdownTime {
+    days: number
+    hours: number
+    minutes: number
+    seconds: number
+    total: number
+}
 
-//     /**
-//      * Formats the remaining time in milliseconds into a string in the format "HH:MM:SS".
-//      *
-//      * @param timeInMilliseconds - The remaining time in milliseconds.
-//      * @returns A string representing the formatted time.
-//      *
-//      * @private
-//      */
-//     private formatTime(timeInMilliseconds: number): string {
-//         const seconds = Math.floor((timeInMilliseconds / 1000) % 60);
-//         const minutes = Math.floor((timeInMilliseconds / 1000 / 60) % 60);
-//         const hours = Math.floor((timeInMilliseconds / 1000 / 60 / 60) % 24);
+/**
+ * Countdown timer that updates a display element.
+ *
+ * @example JavaScript
+ * ```typescript
+ * const countdown = new CountdownTimer("#countdown", {
+ *     endTime: "2025-12-31T00:00:00",
+ *     onComplete: () => console.log("Happy New Year!")
+ * })
+ * ```
+ *
+ * @example HTML with data-ss
+ * ```html
+ * <div data-ss="countdown"
+ *      data-ss-countdown-end-time="2025-12-31T00:00:00"
+ *      data-ss-countdown-format="DD:HH:MM:SS"
+ *      data-ss-countdown-end-text="Time's up!">
+ * </div>
+ * ```
+ */
+export class CountdownTimer {
+    private element: HTMLElement | null
+    private options: Required<CountdownTimerOptions>
+    private intervalId: number | null = null
+    private endTime: number
 
-//         // Pad minutes and seconds with leading zeros for a cleaner display.
-//         const formattedMinutes = minutes.toString().padStart(2, '0');
-//         const formattedSeconds = seconds.toString().padStart(2, '0');
-//         const formattedHours = hours.toString().padStart(2, '0');
+    constructor(
+        selectorOrElement: string | HTMLElement,
+        options: CountdownTimerOptions = {}
+    ) {
+        this.element = typeof selectorOrElement === "string"
+            ? document.querySelector<HTMLElement>(selectorOrElement)
+            : selectorOrElement
 
-//         return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-//     }
-// }
+        this.options = {
+            endTime: options.endTime ?? new Date(Date.now() + 3600000), // Default: 1 hour
+            format: options.format ?? "HH:MM:SS",
+            endText: options.endText ?? "Time's up!",
+            interval: options.interval ?? 1000,
+            onComplete: options.onComplete ?? (() => {}),
+            onTick: options.onTick ?? (() => {}),
+            leadingZeros: options.leadingZeros !== false
+        }
 
-// Usage example:
-// Create a new countdown timer that ends on January 1, 2024, at midnight,
-// and updates the element with the ID 'countdownDisplay'.
-// const countdown = new CountdownTimer(new Date('2024/01/01 00:00:00'), 'countdownDisplay');
+        // Parse end time
+        if (typeof this.options.endTime === "string") {
+            this.endTime = new Date(this.options.endTime).getTime()
+        } else if (typeof this.options.endTime === "number") {
+            this.endTime = this.options.endTime
+        } else {
+            this.endTime = this.options.endTime.getTime()
+        }
+
+        if (!this.element) {
+            console.warn("[Stylescape] CountdownTimer element not found")
+            return
+        }
+
+        this.start()
+    }
+
+    // ========================================================================
+    // Public Methods
+    // ========================================================================
+
+    /**
+     * Start the countdown
+     */
+    public start(): void {
+        if (this.intervalId) return
+
+        this.tick() // Initial tick
+        this.intervalId = window.setInterval(() => this.tick(), this.options.interval)
+    }
+
+    /**
+     * Stop the countdown
+     */
+    public stop(): void {
+        if (this.intervalId) {
+            clearInterval(this.intervalId)
+            this.intervalId = null
+        }
+    }
+
+    /**
+     * Reset with new end time
+     */
+    public reset(endTime: Date | string | number): void {
+        this.stop()
+
+        if (typeof endTime === "string") {
+            this.endTime = new Date(endTime).getTime()
+        } else if (typeof endTime === "number") {
+            this.endTime = endTime
+        } else {
+            this.endTime = endTime.getTime()
+        }
+
+        this.start()
+    }
+
+    /**
+     * Get remaining time breakdown
+     */
+    public getRemaining(): CountdownTime {
+        const total = Math.max(0, this.endTime - Date.now())
+        return {
+            total,
+            days: Math.floor(total / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((total / (1000 * 60 * 60)) % 24),
+            minutes: Math.floor((total / (1000 * 60)) % 60),
+            seconds: Math.floor((total / 1000) % 60)
+        }
+    }
+
+    /**
+     * Destroy the countdown
+     */
+    public destroy(): void {
+        this.stop()
+        this.element = null
+    }
+
+    // ========================================================================
+    // Private Methods
+    // ========================================================================
+
+    private tick(): void {
+        const remaining = this.getRemaining()
+        this.options.onTick(remaining)
+
+        if (remaining.total <= 0) {
+            this.stop()
+            this.updateDisplay(this.options.endText)
+            this.options.onComplete()
+            return
+        }
+
+        this.updateDisplay(this.formatTime(remaining))
+    }
+
+    private formatTime(time: CountdownTime): string {
+        const pad = (n: number) => this.options.leadingZeros
+            ? n.toString().padStart(2, "0")
+            : n.toString()
+
+        switch (this.options.format) {
+            case "DD:HH:MM:SS":
+                return `${pad(time.days)}:${pad(time.hours)}:${pad(time.minutes)}:${pad(time.seconds)}`
+
+            case "full":
+                return `${time.days}d ${time.hours}h ${time.minutes}m ${time.seconds}s`
+
+            case "compact":
+                if (time.days > 0) return `${time.days}d ${time.hours}h`
+                if (time.hours > 0) return `${time.hours}h ${time.minutes}m`
+                return `${time.minutes}m ${time.seconds}s`
+
+            case "HH:MM:SS":
+            default:
+                const totalHours = time.days * 24 + time.hours
+                return `${pad(totalHours)}:${pad(time.minutes)}:${pad(time.seconds)}`
+        }
+    }
+
+    private updateDisplay(text: string): void {
+        if (this.element) {
+            this.element.textContent = text
+        }
+    }
+}
+
+export default CountdownTimer
+
