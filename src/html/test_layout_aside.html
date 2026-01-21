@@ -1,739 +1,784 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="light">
-
-
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>Test Layout Aside</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/stylescape.css" />
-    
 
     <style>
-        * {
-            font-variant-numeric: lining-nums tabular-nums;
-            font-feature-settings: "lnum", "tnum";
-        }
-    </style></head>
+      * {
+        font-variant-numeric: lining-nums tabular-nums;
+        font-feature-settings: "lnum", "tnum";
+      }
+    </style>
+  </head>
 
-<body class="">
-
+  <body class="">
     <div class="frame_main">
+      <div class="frame_main__area--top">
+        <header class="ribbon--top" id="" role="navigation">
+          <div class="ribbon__slot--horizontal_left">
+            <h1
+              id="ribbon__title"
+              class="ribbon__slot--left ribbon__title"
+              role="heading"
+              aria-level="1"
+            >
+              <div class="ribbon__title__logo">
+                <a href="/" class=""> <span class="i-text">+</span></a>
+              </div>
+              <div class="ribbon__title__text">
+                <a href="/" class=""> STYLESCAPE </a>
+              </div>
+            </h1>
+          </div>
 
-        <div class="frame_main__area--top"><header class="ribbon--top" id="" role="navigation">
+          <div class="ribbon__slot--horizontal_center">
+            <button
+              aria-label="Toggle navigation"
+              aria-expanded="false"
+              type="button"
+              data-view-component="true"
+              id="ribbon__nav_button"
+              class="menu_button ribbon__nav_button"
+            >
+              <svg
+                aria-hidden="true"
+                height="24"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="24"
+                data-view-component="true"
+                class="octicon octicon-three-bars"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"
+                ></path>
+              </svg>
+            </button>
+          </div>
 
-    <div class="ribbon__slot--horizontal_left">
-
-        <h1 id="ribbon__title" class="ribbon__slot--left ribbon__title" role="heading" aria-level="1">
-            <div class="ribbon__title__logo">
-                <a href="/" class="">
-                    <span class="i-text">+</span></a>
-            </div>
-            <div class="ribbon__title__text">
-                <a href="/" class="">
-                    STYLESCAPE
-                </a>
-            </div>
-        </h1>
-
-    </div>
-
-    <div class="ribbon__slot--horizontal_center">
-        <button aria-label="Toggle navigation" aria-expanded="false" type="button" data-view-component="true"
-            id="ribbon__nav_button" class="menu_button ribbon__nav_button">
-            <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true"
-                class="octicon octicon-three-bars">
-                <path fill-rule="evenodd"
-                    d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
-                </path>
-            </svg>
-        </button>
-    </div>
-
-
-    <div class="ribbon__slot--horizontal_right">
-
-        <menu id="ribbon__menu" class="ribbon__menu" role="menubar">
-
-            <li class="ribbon__menu__item">
+          <div class="ribbon__slot--horizontal_right">
+            <menu id="ribbon__menu" class="ribbon__menu" role="menubar">
+              <li class="ribbon__menu__item">
                 <button class="ribbon__button" onclick="copy()">
-                    
-                    <a href="">
-                        <i class="i i_symbol_swirl_left_02"></i>
-                    </a>
-                    
+                  <a href="">
+                    <i class="i i_symbol_swirl_left_02"></i>
+                  </a>
                 </button>
-            </li>
+              </li>
 
-            <li class="ribbon__menu__item">
+              <li class="ribbon__menu__item">
                 <input type="checkbox" id="themeToggle" />
-            </li>
+              </li>
 
-            <li class="ribbon__menu__item">
+              <li class="ribbon__menu__item">
                 <button class="ribbon__button" data-toggle="baseline">
-                    <a>☰</a>
+                  <a>☰</a>
                 </button>
-            </li>
-            <li class="ribbon__menu__item">
+              </li>
+              <li class="ribbon__menu__item">
                 <button class="ribbon__button" data-toggle="graph">
-                    <a class="i i_shape_square_hatch_cross"></a>
+                  <a class="i i_shape_square_hatch_cross"></a>
                 </button>
-            </li>
-            <li class="ribbon__menu__item">
+              </li>
+              <li class="ribbon__menu__item">
                 <button class="ribbon__button" data-toggle="margin">
-                    <a>⌘</a>
+                  <a>⌘</a>
                 </button>
-            </li>
+              </li>
 
-            <li class="ribbon__menu__item">
+              <li class="ribbon__menu__item">
                 <details>
-                    <summary class="ribbon__button">
-                        <a class="i i_people_person_lg"></a>
-                    </summary>
+                  <summary class="ribbon__button">
+                    <a class="i i_people_person_lg"></a>
+                  </summary>
 
-                    <ul class="ribbon_panel right">
+                  <ul class="ribbon_panel right">
+                    <figure class="ribbon_panel_header">
+                      <figcaption>
+                        <h3 class="ribbon_panel_header">Kerem</h3>
+                      </figcaption>
+                    </figure>
 
-                        <figure class="ribbon_panel_header">
+                    <hr class="ribbon_panel_line" />
 
-                            <figcaption>
-                                <h3 class="ribbon_panel_header">
-                                    Kerem
-                                </h3>
-                            </figcaption>
-                        </figure>
+                    <h4 class="ribbon_panel_section_header">Account</h4>
 
-                        <hr class="ribbon_panel_line">
-
-                        <h4 class="ribbon_panel_section_header">
-                            Account
-                        </h4>
-
-                        <ul class="ribbon_panel_section">
-                            <li class="ribbon_panel_section_item">
-                                <a href="/accounts/profileprofile/kerem/">
-                                    Profile
-                                </a>
-                            </li>
-                        </ul>
-
-                        <hr class="ribbon_panel_line">
-
-                        <ul class="ribbon_panel_section">
-                            <li class="ribbon_panel_section_item">
-                                <a href="/accounts/logout">
-                                    Sign out
-                                </a>
-                            </li>
-                        </ul>
-
+                    <ul class="ribbon_panel_section">
+                      <li class="ribbon_panel_section_item">
+                        <a href="/accounts/profileprofile/kerem/"> Profile </a>
+                      </li>
                     </ul>
 
+                    <hr class="ribbon_panel_line" />
+
+                    <ul class="ribbon_panel_section">
+                      <li class="ribbon_panel_section_item">
+                        <a href="/accounts/logout"> Sign out </a>
+                      </li>
+                    </ul>
+                  </ul>
                 </details>
-            </li>
-        </menu>
+              </li>
+            </menu>
+          </div>
+        </header>
+      </div>
 
-    </div>
-</header>
-</div>
+      <div class="frame_main__area--middle_left">
+        <aside class="sidebar--left" id="" role="navigation">
+          <nav
+            id="sidebar_left_navigation"
+            class="ribbon--left ribbon--inverted"
+            aria-label="Sidebar Left Navigation"
+          >
+            <!-- Add navigation links here -->
+          </nav>
 
-        <div class="frame_main__area--middle_left "><aside class="sidebar--left" id="" role="navigation">
+          <nav
+            id="sidebar_left_menu"
+            class="sidebar__menu"
+            aria-label="Sidebar Left Content Navigation"
+          >
+            <section id="sidebar_left_content" class="sidebar__content rail" role="region">
+              <h2 id="sidebar-left-label" class="visually-hidden">Left Sidebar Content</h2>
+              <section class="sidebar__section" role="region" aria-labelledby="section-1">
+                <header class="sidebar__section__header">
+                  <h2 id="section-1">00. Head</h2>
+                </header>
 
-    <nav id="sidebar_left_navigation" class="ribbon--left ribbon--inverted" aria-label="Sidebar Left Navigation">
-        <!-- Add navigation links here -->
-    </nav>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-1-"
+                  data-group="layout"
+                >
+                  <h3 id="group-1-">00.00. Layout &amp; Utilities</h3>
 
-    <nav id="sidebar_left_menu" class="sidebar__menu" aria-label="Sidebar Left Content Navigation">
-        <section 
-            id="sidebar_left_content"
-            class="sidebar__content rail"
-            role="region">
-
-            <h2 id="sidebar-left-label" class="visually-hidden">
-                Left Sidebar Content
-            </h2><section 
-    class="sidebar__section" role="region" aria-labelledby="section-1">
-    <header class="sidebar__section__header">
-        <h2 id="section-1">00. Head</h2>
-    </header>
-
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-1-"
-        data-group="layout">
-        <h3 id="group-1-">00.00. Layout &amp; Utilities</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="head_grid.html">Grid</a>
-            </li>
-            <li>
-                <a href="head_flex.html">Flex</a>
-            </li>
-        </ul>
-    </div>
-</section>
-<section 
-    class="sidebar__section" role="region" aria-labelledby="section-2">
-    <header class="sidebar__section__header">
-        <h2 id="section-2">00. Soul</h2>
-    </header>
-
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-1-"
-        data-group="typography_font">
-        <h3 id="group-1-">00.00. Typography | Font</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="soul_type_font_default.html">Font | Default</a>
-            </li>
-            <li>
-                <a href="soul_type_font_size.html">Font | Sizes</a>
-            </li>
-            <li>
-                <a href="soul_type_font_weight.html">Font | Weights</a>
-            </li>
-            <li>
-                <a href="soul_type_font_letter_spacing.html">Font | Spacing</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-2-"
-        data-group="typography_character">
-        <h3 id="group-2-">00.00. Typography | Character</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="soul_type_character.html">Character</a>
-            </li>
-            <li>
-                <a href="soul_type_character_case.html">Character | Case</a>
-            </li>
-            <li>
-                <a href="soul_type_character_lined.html">Character | Line</a>
-            </li>
-            <li>
-                <a href="soul_type_character_hyperlink.html">Character | Hyperlink</a>
-            </li>
-            <li>
-                <a href="soul_type_character_code.html">Character | Code</a>
-            </li>
-            <li>
-                <a href="soul_type_character_quote.html">Character | Quote</a>
-            </li>
-            <li>
-                <a href="soul_type_character_abbreviation.html">Character | Abbreviation</a>
-            </li>
-            <li>
-                <a href="soul_type_character_acronym.html">Character | Acronym</a>
-            </li>
-            <li>
-                <a href="soul_type_character_citation.html">Character | Citation</a>
-            </li>
-            <li>
-                <a href="soul_type_character_dropcap.html">Character | Dropcap</a>
-            </li>
-            <li>
-                <a href="soul_type_character_mark.html">Character | Mark</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-3-"
-        data-group="typography_paragraph">
-        <h3 id="group-3-">00.00. Typography | Paragraph</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="soul_type_paragraph.html">Paragraph</a>
-            </li>
-            <li>
-                <a href="soul_type_paragraph_align.html">Paragraph | Align</a>
-            </li>
-            <li>
-                <a href="soul_type_paragraph_indent.html">Paragraph | Indent</a>
-            </li>
-            <li>
-                <a href="soul_type_paragraph_heading.html">Paragraph | Headings</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-4-"
-        data-group="typography_list">
-        <h3 id="group-4-">00.00. Typography | List</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="soul_type_list.html">Lists | Default</a>
-            </li>
-            <li>
-                <a href="soul_type_list_special.html">Lists | Special</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-5-"
-        data-group="color">
-        <h3 id="group-5-">00.01. Color</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="soul_color_palette.html">Color | Palette</a>
-            </li>
-            <li>
-                <a href="soul_color_system.html">Color | System</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-6-"
-        data-group="line">
-        <h3 id="group-6-">00.01. Line</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="soul_line.html">Line Styles</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-7-"
-        data-group="object">
-        <h3 id="group-7-">00.01. Objects</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="soul_object_height.html">Object | Height</a>
-            </li>
-            <li>
-                <a href="soul_object_width.html">Object | Width</a>
-            </li>
-            <li>
-                <a href="soul_object_margin.html">Object | Margin</a>
-            </li>
-            <li>
-                <a href="soul_object_padding.html">Object | Padding</a>
-            </li>
-            <li>
-                <a href="soul_object_border.html">Object | Border</a>
-            </li>
-            <li>
-                <a href="soul_object_shadow.html">Object | Shadow</a>
-            </li>
-            <li>
-                <a href="soul_object_color.html">Object | Color</a>
-            </li>
-            <li>
-                <a href="soul_object_fill.html">Object | Fill</a>
-            </li>
-        </ul>
-    </div>
-</section>
-<section 
-    class="sidebar__section" role="region" aria-labelledby="section-3">
-    <header class="sidebar__section__header">
-        <h2 id="section-3">00. Body</h2>
-    </header>
-
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-1-"
-        data-group="atoms">
-        <h3 id="group-1-">00.00. Atoms / Primitive</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="body_atom_alert.html">Alert</a>
-            </li>
-            <li>
-                <a href="body_atom_box.html">Box</a>
-            </li>
-            <li>
-                <a href="body_atom_box_surface.html">Box | Surface</a>
-            </li>
-            <li>
-                <a href="body_atom_cursor.html">Cursors</a>
-            </li>
-            <li>
-                <a href="body_atom_icon.html">Icons</a>
-            </li>
-            <li>
-                <a href="body_atom_icon_font.html">Icon | Font</a>
-            </li>
-            <li>
-                <a href="body_atom_divider.html">Divider</a>
-            </li>
-            <li>
-                <a href="body_atom_spacer.html">Spacer</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-2-"
-        data-group="atoms">
-        <h3 id="group-2-">00.01. Atoms / Input</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="body_atom_input.html">Input</a>
-            </li>
-            <li>
-                <a href="body_atom_input_label.html">Label</a>
-            </li>
-            <li>
-                <a href="body_atom_input_checkbox.html">Input | Checkbox</a>
-            </li>
-            <li>
-                <a href="body_atom_input_dropdown.html">Input | Dropdown</a>
-            </li>
-            <li>
-                <a href="body_atom_input_radio.html">Input | Radio</a>
-            </li>
-            <li>
-                <a href="body_atom_input_range.html">Input | Range</a>
-            </li>
-            <li>
-                <a href="body_atom_input_select.html">Input | Select</a>
-            </li>
-            <li>
-                <a href="body_atom_input_textarea.html">Input | Textarea</a>
-            </li>
-            <li>
-                <a href="body_atom_input_toggle.html">Input | Toggle</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-3-"
-        data-group="atoms">
-        <h3 id="group-3-">00.02. Atoms / Status</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="body_atom_status_progress.html">Progress</a>
-            </li>
-            <li>
-                <a href="body_atom_status_spinner.html">Spinner</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-4-"
-        data-group="atoms">
-        <h3 id="group-4-">00.03. Atoms / Misc</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="body_atom_button.html">Button</a>
-            </li>
-            <li>
-                <a href="body_atom_button_flipper.html">Button | Flipper</a>
-            </li>
-            <li>
-                <a href="body_atom_badge.html">Badge</a>
-            </li>
-            <li>
-                <a href="body_atom_caption.html">Caption</a>
-            </li>
-            <li>
-                <a href="body_atom_dimensions.html">Dimensions</a>
-            </li>
-            <li>
-                <a href="body_atom_tab.html">Tab</a>
-            </li>
-            <li>
-                <a href="body_atom_tooltip.html">Tooltip</a>
-            </li>
-            <li>
-                <a href="body_atom_interactive.html">Interactives</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-5-"
-        data-group="molecules">
-        <h3 id="group-5-">00.04. Molecules</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="body_molecule_accordion.html">Accordion</a>
-            </li>
-            <li>
-                <a href="body_molecule_address.html">Address</a>
-            </li>
-            <li>
-                <a href="body_molecule_blogpost.html">Blog Post</a>
-            </li>
-            <li>
-                <a href="body_molecule_cards.html">Cards</a>
-            </li>
-            <li>
-                <a href="body_molecule_chip.html">Chip</a>
-            </li>
-            <li>
-                <a href="body_molecule_cookie.html">Cookie</a>
-            </li>
-            <li>
-                <a href="body_molecule_cover.html">Cover</a>
-            </li>
-            <li>
-                <a href="body_molecule_forms.html">Forms</a>
-            </li>
-            <li>
-                <a href="body_molecule_hero.html">Hero</a>
-            </li>
-            <li>
-                <a href="body_molecule_modals.html">Modals</a>
-            </li>
-            <li>
-                <a href="body_molecule_popover.html">Popover</a>
-            </li>
-            <li>
-                <a href="body_molecule_summary.html">Summary</a>
-            </li>
-            <li>
-                <a href="body_molecule_tables.html">Tables</a>
-            </li>
-            <li>
-                <a href="body_molecule_timeline.html">Timeline</a>
-            </li>
-            <li>
-                <a href="body_molecule_toast.html">Toast</a>
-            </li>
-            <li>
-                <a href="body_molecule_vcard.html">VCard</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-6-"
-        data-group="molecules">
-        <h3 id="group-6-">00.04. Molecules | Navigation</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="body_molecule_breadcrumb.html">Breadcrumb</a>
-            </li>
-            <li>
-                <a href="body_molecule_icon_bar.html">Icon Bar</a>
-            </li>
-            <li>
-                <a href="body_molecule_nav.html">Nav</a>
-            </li>
-            <li>
-                <a href="body_molecule_pagination.html">Pagination</a>
-            </li>
-            <li>
-                <a href="body_molecule_social.html">Social</a>
-            </li>
-            <li>
-                <a href="body_molecule_toc.html">TOC</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-7-"
-        data-group="molecules">
-        <h3 id="group-7-">00.04. Molecules | Media</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="body_molecule_carousel.html">Carousel</a>
-            </li>
-            <li>
-                <a href="body_molecule_figure.html">Figure</a>
-            </li>
-            <li>
-                <a href="body_molecule_iframe.html">IFrame</a>
-            </li>
-            <li>
-                <a href="body_molecule_image_slider.html">Image Slider</a>
-            </li>
-            <li>
-                <a href="body_molecule_placeholder.html">Placeholder</a>
-            </li>
-            <li>
-                <a href="body_molecule_portfolio.html">Portfolio</a>
-            </li>
-            <li>
-                <a href="body_molecule_preview.html">Preview</a>
-            </li>
-            <li>
-                <a href="body_molecule_slideshow.html">Slideshow</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-8-"
-        data-group="organisms">
-        <h3 id="group-8-">00.05. Organisms</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="body_organisms_gallery.html">Gallery</a>
-            </li>
-            <li>
-                <a href="body_organisms_slideshow.html">Slideshow</a>
-            </li>
-            <li>
-                <a href="body_organisms_modal.html">Modal</a>
-            </li>
-            <li>
-                <a href="body_organisms_rail.html">Rail</a>
-            </li>
-            <li>
-                <a href="body_organisms_ribbon.html">Ribbons</a>
-            </li>
-            <li>
-                <a href="body_organisms_sidebar.html">Sidebar</a>
-            </li>
-            <li>
-                <a href="body_organisms_ticker.html">Ticker</a>
-            </li>
-            <li>
-                <a href="body_organisms_widget.html">Widgets</a>
-            </li>
-        </ul>
-    </div>
-</section>
-<section 
-    class="sidebar__section" role="region" aria-labelledby="section-4">
-    <header class="sidebar__section__header">
-        <h2 id="section-4">XX. Test</h2>
-    </header>
-
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-1-"
-        data-group="test_elements">
-        <h3 id="group-1-">XX.01. Test Elements</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="test_frame_login.html">Test Frame Login</a>
-            </li>
-            <li>
-                <a href="test_layout_aside.html">Test Layout Aside</a>
-            </li>
-            <li>
-                <a href="test_layers.html">Test Layers</a>
-            </li>
-        </ul>
-    </div>
-    <div class="sidebar__subsection" role="group" aria-labelledby="group-2-"
-        data-group="test_apps">
-        <h3 id="group-2-">XX.02. Test Apps</h3>
-
-
-        <ul class="sidebar__subsection__list" >
-            <li>
-                <a href="test_layout_scapeframe.html">Test Layout ScapeFrame</a>
-            </li>
-        </ul>
-    </div>
-</section>
-        </section>
-    </nav>
-
-    <div class="sidebar__control" role="group" aria-label="Sidebar Toggle">
-        <button class="flipper--left" id="sidebar_left_switch" aria-pressed="false" aria-label="Toggle Left Sidebar">
-        </button>
-    </div>
-
-</aside>
-        </div>
-
-        <div class="frame_main__area--middle_center">
-            <main id="main_content" class="main_content rail" role="main">
-            <div class="frame--inner--screen">
-
-                
-                
-                <div class="frame__area--top_right"><input type="text" class="input input--m"
-                        placeholder="Search..." />
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="head_grid.html">Grid</a>
+                    </li>
+                    <li>
+                      <a href="head_flex.html">Flex</a>
+                    </li>
+                  </ul>
                 </div>
+              </section>
+              <section class="sidebar__section" role="region" aria-labelledby="section-2">
+                <header class="sidebar__section__header">
+                  <h2 id="section-2">00. Soul</h2>
+                </header>
 
-                <div class="frame__area--middle_left"><input type="checkbox" /></div>
-                
-                
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-1-"
+                  data-group="typography_font"
+                >
+                  <h3 id="group-1-">00.00. Typography | Font</h3>
 
-                
-                <div class="frame__area--bottom_center paragraph--center">
-                    <div class="button_group">
-                        <button class="button button--xl button--solid">Left</button>
-                        <button class="button button--xl button--solid">Center</button>
-                        <button class="button button--xl button--solid">Right</button>
-                    </div>
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="soul_type_font_default.html">Font | Default</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_font_size.html">Font | Sizes</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_font_weight.html">Font | Weights</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_font_letter_spacing.html">Font | Spacing</a>
+                    </li>
+                  </ul>
                 </div>
-                
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-2-"
+                  data-group="typography_character"
+                >
+                  <h3 id="group-2-">00.00. Typography | Character</h3>
 
-            </div>            </main>
-        </div>
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="soul_type_character.html">Character</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_character_case.html">Character | Case</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_character_lined.html">Character | Line</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_character_hyperlink.html">Character | Hyperlink</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_character_code.html">Character | Code</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_character_quote.html">Character | Quote</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_character_abbreviation.html">Character | Abbreviation</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_character_acronym.html">Character | Acronym</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_character_citation.html">Character | Citation</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_character_dropcap.html">Character | Dropcap</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_character_mark.html">Character | Mark</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-3-"
+                  data-group="typography_paragraph"
+                >
+                  <h3 id="group-3-">00.00. Typography | Paragraph</h3>
 
-        <div class="frame_main__area--middle_right rail"><aside class="sidebar--right" id="" role="navigation">
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="soul_type_paragraph.html">Paragraph</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_paragraph_align.html">Paragraph | Align</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_paragraph_indent.html">Paragraph | Indent</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_paragraph_heading.html">Paragraph | Headings</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-4-"
+                  data-group="typography_list"
+                >
+                  <h3 id="group-4-">00.00. Typography | List</h3>
 
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="soul_type_list.html">Lists | Default</a>
+                    </li>
+                    <li>
+                      <a href="soul_type_list_special.html">Lists | Special</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-5-"
+                  data-group="color"
+                >
+                  <h3 id="group-5-">00.01. Color</h3>
 
-<nav id="sidebar_right_navigation" class="ribbon--right ribbon--inverted" aria-label="Sidebar right Navigation">
-    <!-- Add navigation links here -->
-</nav>
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="soul_color_palette.html">Color | Palette</a>
+                    </li>
+                    <li>
+                      <a href="soul_color_system.html">Color | System</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-6-"
+                  data-group="line"
+                >
+                  <h3 id="group-6-">00.01. Line</h3>
 
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="soul_line.html">Line Styles</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-7-"
+                  data-group="object"
+                >
+                  <h3 id="group-7-">00.01. Objects</h3>
 
-    <nav id="sidebar_right_menu" class="sidebar__menu" aria-label="Sidebar right Content Navigation">
-        <section class="sidebar__content rail">
-            <h2 id="sidebar-right-label" class="visually-hidden">
-                Page Contents
-            </h2>
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="soul_object_height.html">Object | Height</a>
+                    </li>
+                    <li>
+                      <a href="soul_object_width.html">Object | Width</a>
+                    </li>
+                    <li>
+                      <a href="soul_object_margin.html">Object | Margin</a>
+                    </li>
+                    <li>
+                      <a href="soul_object_padding.html">Object | Padding</a>
+                    </li>
+                    <li>
+                      <a href="soul_object_border.html">Object | Border</a>
+                    </li>
+                    <li>
+                      <a href="soul_object_shadow.html">Object | Shadow</a>
+                    </li>
+                    <li>
+                      <a href="soul_object_color.html">Object | Color</a>
+                    </li>
+                    <li>
+                      <a href="soul_object_fill.html">Object | Fill</a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <section class="sidebar__section" role="region" aria-labelledby="section-3">
+                <header class="sidebar__section__header">
+                  <h2 id="section-3">00. Body</h2>
+                </header>
 
-<section class="sidebar__section">
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-1-"
+                  data-group="atoms"
+                >
+                  <h3 id="group-1-">00.00. Atoms / Primitive</h3>
 
-    <nav id="toc" class="toc"></nav>
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="body_atom_alert.html">Alert</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_box.html">Box</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_box_surface.html">Box | Surface</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_cursor.html">Cursors</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_icon.html">Icons</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_icon_font.html">Icon | Font</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_divider.html">Divider</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_spacer.html">Spacer</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-2-"
+                  data-group="atoms"
+                >
+                  <h3 id="group-2-">00.01. Atoms / Input</h3>
 
-</section>
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="body_atom_input.html">Input</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_input_label.html">Label</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_input_checkbox.html">Input | Checkbox</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_input_dropdown.html">Input | Dropdown</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_input_radio.html">Input | Radio</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_input_range.html">Input | Range</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_input_select.html">Input | Select</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_input_textarea.html">Input | Textarea</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_input_toggle.html">Input | Toggle</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-3-"
+                  data-group="atoms"
+                >
+                  <h3 id="group-3-">00.02. Atoms / Status</h3>
+
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="body_atom_status_progress.html">Progress</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_status_spinner.html">Spinner</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-4-"
+                  data-group="atoms"
+                >
+                  <h3 id="group-4-">00.03. Atoms / Misc</h3>
+
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="body_atom_button.html">Button</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_button_flipper.html">Button | Flipper</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_badge.html">Badge</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_caption.html">Caption</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_dimensions.html">Dimensions</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_tab.html">Tab</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_tooltip.html">Tooltip</a>
+                    </li>
+                    <li>
+                      <a href="body_atom_interactive.html">Interactives</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-5-"
+                  data-group="molecules"
+                >
+                  <h3 id="group-5-">00.04. Molecules</h3>
+
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="body_molecule_accordion.html">Accordion</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_address.html">Address</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_blogpost.html">Blog Post</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_cards.html">Cards</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_chip.html">Chip</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_cookie.html">Cookie</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_cover.html">Cover</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_forms.html">Forms</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_hero.html">Hero</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_modals.html">Modals</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_popover.html">Popover</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_summary.html">Summary</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_tables.html">Tables</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_timeline.html">Timeline</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_toast.html">Toast</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_vcard.html">VCard</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-6-"
+                  data-group="molecules"
+                >
+                  <h3 id="group-6-">00.04. Molecules | Navigation</h3>
+
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="body_molecule_breadcrumb.html">Breadcrumb</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_icon_bar.html">Icon Bar</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_nav.html">Nav</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_pagination.html">Pagination</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_social.html">Social</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_toc.html">TOC</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-7-"
+                  data-group="molecules"
+                >
+                  <h3 id="group-7-">00.04. Molecules | Media</h3>
+
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="body_molecule_carousel.html">Carousel</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_figure.html">Figure</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_iframe.html">IFrame</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_image_slider.html">Image Slider</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_placeholder.html">Placeholder</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_portfolio.html">Portfolio</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_preview.html">Preview</a>
+                    </li>
+                    <li>
+                      <a href="body_molecule_slideshow.html">Slideshow</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-8-"
+                  data-group="organisms"
+                >
+                  <h3 id="group-8-">00.05. Organisms</h3>
+
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="body_organisms_gallery.html">Gallery</a>
+                    </li>
+                    <li>
+                      <a href="body_organisms_slideshow.html">Slideshow</a>
+                    </li>
+                    <li>
+                      <a href="body_organisms_modal.html">Modal</a>
+                    </li>
+                    <li>
+                      <a href="body_organisms_rail.html">Rail</a>
+                    </li>
+                    <li>
+                      <a href="body_organisms_ribbon.html">Ribbons</a>
+                    </li>
+                    <li>
+                      <a href="body_organisms_sidebar.html">Sidebar</a>
+                    </li>
+                    <li>
+                      <a href="body_organisms_ticker.html">Ticker</a>
+                    </li>
+                    <li>
+                      <a href="body_organisms_widget.html">Widgets</a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+              <section class="sidebar__section" role="region" aria-labelledby="section-4">
+                <header class="sidebar__section__header">
+                  <h2 id="section-4">XX. Test</h2>
+                </header>
+
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-1-"
+                  data-group="test_elements"
+                >
+                  <h3 id="group-1-">XX.01. Test Elements</h3>
+
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="test_frame_login.html">Test Frame Login</a>
+                    </li>
+                    <li>
+                      <a href="test_layout_aside.html">Test Layout Aside</a>
+                    </li>
+                    <li>
+                      <a href="test_layers.html">Test Layers</a>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="sidebar__subsection"
+                  role="group"
+                  aria-labelledby="group-2-"
+                  data-group="test_apps"
+                >
+                  <h3 id="group-2-">XX.02. Test Apps</h3>
+
+                  <ul class="sidebar__subsection__list">
+                    <li>
+                      <a href="test_layout_scapeframe.html">Test Layout ScapeFrame</a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </section>
+          </nav>
+
+          <div class="sidebar__control" role="group" aria-label="Sidebar Toggle">
+            <button
+              class="flipper--left"
+              id="sidebar_left_switch"
+              aria-pressed="false"
+              aria-label="Toggle Left Sidebar"
+            ></button>
+          </div>
+        </aside>
+      </div>
+
+      <div class="frame_main__area--middle_center">
+        <main id="main_content" class="main_content rail" role="main">
+          <div class="frame--inner--screen">
+            <div class="frame__area--top_right">
+              <input type="text" class="input input--m" placeholder="Search..." />
+            </div>
+
+            <div class="frame__area--middle_left"><input type="checkbox" /></div>
+
+            <div class="frame__area--bottom_center paragraph--center">
+              <div class="button_group">
+                <button class="button button--xl button--solid">Left</button>
+                <button class="button button--xl button--solid">Center</button>
+                <button class="button button--xl button--solid">Right</button>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <div class="frame_main__area--middle_right rail">
+        <aside class="sidebar--right" id="" role="navigation">
+          <nav
+            id="sidebar_right_navigation"
+            class="ribbon--right ribbon--inverted"
+            aria-label="Sidebar right Navigation"
+          >
+            <!-- Add navigation links here -->
+          </nav>
+
+          <nav
+            id="sidebar_right_menu"
+            class="sidebar__menu"
+            aria-label="Sidebar right Content Navigation"
+          >
+            <section class="sidebar__content rail">
+              <h2 id="sidebar-right-label" class="visually-hidden">Page Contents</h2>
+
+              <section class="sidebar__section">
+                <nav id="toc" class="toc"></nav>
+              </section>
+            </section>
+          </nav>
+          <div class="sidebar__control" role="group" aria-label="Sidebar Toggle">
+            <button
+              class="flipper--right"
+              id="sidebar_right_switch"
+              aria-pressed="false"
+              aria-label="Toggle right Sidebar"
+            >
+              <span class="flipper__icon"></span>
+            </button>
+          </div>
+        </aside>
+      </div>
+
+      <div class="frame_main__area--bottom">
+        <section
+          id="ticker-bottom"
+          class="ticker--horizontal--bottom"
+          role="marquee"
+          aria-label="News Ticker"
+          aria-live="polite"
+          aria-atomic="true"
+          aria-relevant="additions text"
+          aria-busy="false"
+        >
+          <ul class="ticker__track" aria-live="polite">
+            <li class="ticker__item">Latest update: Stylescape v0.1 now live!</li>
+            <li class="ticker__item">New components released today.</li>
+            <li class="ticker__item">💡 Tip: Use mixins for modular SCSS!</li>
+          </ul>
         </section>
-    </nav>
-    <div class="sidebar__control" role="group" aria-label="Sidebar Toggle">
-        <button class="flipper--right" id="sidebar_right_switch" aria-pressed="false" aria-label="Toggle right Sidebar">
-            <span class="flipper__icon"></span>
-    
-        </button>
+        <footer class="ribbon--bottom ribbon--inverted" role="contentinfo">
+          <div class="ribbon__slot--horizontal_center">
+            <small>&copy; 2025 SC∆PE AGENCY</small>
+          </div>
+        </footer>
+      </div>
     </div>
 
-</aside>
-        </div>
-
-        <div class="frame_main__area--bottom"><section 
-    id="ticker-bottom"
-    class="ticker--horizontal--bottom" 
-    role="marquee" 
-    aria-label="News Ticker"
-    aria-live="polite"
-    aria-atomic="true"
-    aria-relevant="additions text"
-    aria-busy="false">
-    <ul class="ticker__track" aria-live="polite">
-        <li class="ticker__item">Latest update: Stylescape v0.1 now live!</li>
-        <li class="ticker__item">New components released today.</li>
-        <li class="ticker__item">💡 Tip: Use mixins for modular SCSS!</li>
-    </ul>
-</section>
-<footer class="ribbon--bottom ribbon--inverted" role="contentinfo">
-    <div class="ribbon__slot--horizontal_center">
-        <small>&copy; 2025 SC∆PE AGENCY</small>
-    </div>
-</footer>
-</div>
-
-    </div>
-
-    <aside class=""><template class="guide--layer guide--graph_centered" data-grid="graph"></template>
-<template class="guide--layer guide--baseline" data-grid="baseline"></template>
+    <aside class="">
+      <template class="guide--layer guide--graph_centered" data-grid="graph"></template>
+      <template class="guide--layer guide--baseline" data-grid="baseline"></template>
     </aside>
 
     <script type="module">
-        import { initializeStylescape } from '/js/index.js';
-        initializeStylescape()
+      import { initializeStylescape } from "/js/index.js";
+      initializeStylescape();
     </script>
-</body>
-
-
+  </body>
 </html>
