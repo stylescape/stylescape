@@ -1,0 +1,106 @@
+////
+///
+/// Template Skeleton Mixins
+/// ===========================================================================
+///
+/// Common page template patterns for specific use cases.
+///
+/// @group Body Skeletons
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Blog post template skeleton
+/// @param {Length} $content-width [q(720)] - Maximum content width
+@mixin template--blog-post($content-width: q(720)) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > article {
+    width: 100%;
+    max-width: $content-width;
+  }
+}
+
+/// Documentation template skeleton
+/// @param {Length} $sidebar-width [q(280)] - Sidebar width
+/// @param {Length} $content-width [q(900)] - Maximum content width
+@mixin template--documentation($sidebar-width: q(280), $content-width: q(900)) {
+  display: grid;
+  grid-template-columns: $sidebar-width minmax(0, $content-width) 1fr;
+  grid-template-areas: "nav content toc";
+  gap: q(32);
+}
+
+/// E-commerce product listing template
+/// @param {Length} $filter-width [q(280)] - Filter sidebar width
+@mixin template--product-listing($filter-width: q(280)) {
+  display: grid;
+  grid-template-columns: $filter-width 1fr;
+  grid-template-areas: "filters products";
+  gap: q(24);
+}
+
+/// Landing page template skeleton
+@mixin template--landing {
+  display: flex;
+  flex-direction: column;
+
+  > section {
+    width: 100%;
+  }
+}
+
+/// Authentication page template (login, register, etc.)
+/// @param {Length} $form-width [q(400)] - Maximum form width
+@mixin template--auth($form-width: q(400)) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  > form,
+  > .auth-form {
+    width: 100%;
+    max-width: $form-width;
+  }
+}
+
+/// Portfolio/gallery template skeleton
+/// @param {Length} $min-item-width [q(300)] - Minimum gallery item width
+@mixin template--portfolio($min-item-width: q(300)) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($min-item-width, 1fr));
+  gap: q(16);
+}
+
+/// Dashboard template skeleton
+/// @param {Length} $header-height [q(64)] - Header height
+/// @param {Length} $sidebar-width [q(280)] - Sidebar width
+@mixin template--dashboard($header-height: q(64), $sidebar-width: q(280)) {
+  display: grid;
+  grid-template-rows: $header-height 1fr;
+  grid-template-columns: $sidebar-width 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  min-height: 100vh;
+  min-height: 100dvh;
+}

@@ -19,99 +19,99 @@
 /// Base styling for all input variants
 ///
 @mixin input--base {
-    font: inherit;
-    // @include reset_bleed;
-    @include shadow--none;
-    @include sizing--border;
-    color: var(--color_text_primary);
-    background-color: transparent;
-    appearance: none;
-    // border: none;
-    // border-color: transparent;
-    outline: none;
-    border-radius: 0;
-    transition: all 0.2s ease;
-    pointer-events: initial;
-    cursor: text;
+  font: inherit;
+  // @include reset_bleed;
+  @include shadow--none;
+  @include sizing--border;
+  color: var(--color_text_primary);
+  background-color: transparent;
+  appearance: none;
+  // border: none;
+  // border-color: transparent;
+  outline: none;
+  border-radius: 0;
+  transition: all 0.2s ease;
+  pointer-events: initial;
+  cursor: text;
 
-    // line-height: q(12);
+  // line-height: q(12);
 
-    // display: block;
-    // display: flex;
-    // width: 100%;
-    // padding: q(8) q(12);
-    // align-items: center;
-    // gap: baseline(1);
-    // align-self: stretch;'
-    // margin: 0;
-    // padding: 0;
+  // display: block;
+  // display: flex;
+  // width: 100%;
+  // padding: q(8) q(12);
+  // align-items: center;
+  // gap: baseline(1);
+  // align-self: stretch;'
+  // margin: 0;
+  // padding: 0;
 
-    // background-color: var(--color_fill_primary);
+  // background-color: var(--color_fill_primary);
 
-    // border-width: q(1);
-    // border-top: q(1);
-    // border-right: q(1);
-    // border-bottom: q(1);
-    // border-left: q(1);
-    // border-style: solid;
+  // border-width: q(1);
+  // border-top: q(1);
+  // border-right: q(1);
+  // border-bottom: q(1);
+  // border-left: q(1);
+  // border-style: solid;
 
-    // transition: all var(--transition-duration) var(--transition-easing);
+  // transition: all var(--transition-duration) var(--transition-easing);
 
-    // max-height: q(20); // Sets the total maximum height including borders
-    // border: q(0) solid #ccc; // Optional border
+  // max-height: q(20); // Sets the total maximum height including borders
+  // border: q(0) solid #ccc; // Optional border
 }
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
 @mixin input--base--form {
-    @include input--base;
-    display: block;
-    width: 100%;
+  @include input--base;
+  display: block;
+  width: 100%;
 
-    // height: q(18);
-    // min-height: q(18);
-    // max-height: q(18);
-    // height: q(20);
-    // min-height: q(20);
-    // max-height: q(20);
-    // margin-bottom: q(10);
+  // height: q(18);
+  // min-height: q(18);
+  // max-height: q(18);
+  // height: q(20);
+  // min-height: q(20);
+  // max-height: q(20);
+  // margin-bottom: q(10);
 
-    height: fit-content;
-    min-height: q(18);
+  height: fit-content;
+  min-height: q(18);
 }
 
 @mixin input--base--inline {
-    @include input--base;
-    // display: inline;
-    display: inline-block;
+  @include input--base;
+  // display: inline;
+  display: inline-block;
 
-    height: fit-content;
-    min-height: q(18);
-    // max-height: q(14);
-    // height: q(16);
-    // min-height: q(16);
-    // max-height: q(16);
+  height: fit-content;
+  min-height: q(18);
+  // max-height: q(14);
+  // height: q(16);
+  // min-height: q(16);
+  // max-height: q(16);
 
-    width: auto;
-    min-width: 1ch; // Avoid collapsing completely
-    field-sizing: content;
-    &::placeholder {
-        font: inherit;
-        white-space: nowrap;
-    }
+  width: auto;
+  min-width: 1ch; // Avoid collapsing completely
+  field-sizing: content;
+  &::placeholder {
+    font: inherit;
+    white-space: nowrap;
+  }
 }
 
 .input--sm {
-    @include object--height--fixed(sm);
+  @include object--height--fixed(sm);
 }
 
 .input--md {
-    @include object--height--fixed(md); // uses 20q
+  @include object--height--fixed(md); // uses 20q
 }
 
 .input--lg {
-    @include object--height--fixed(lg);
+  @include object--height--fixed(lg);
 }
 
 // ----------------------------------------------------------------------------
@@ -121,179 +121,252 @@
 /// Input with straight corners
 ///
 @mixin input--style--straight {
-    @include input--base;
-    background-color: transparent;
-    border: q(1) solid var(--color_text_secondary);
+  @include input--base;
+  background-color: transparent;
+  border: q(1) solid var(--color_text_secondary);
 
-    // outline-width: q(1);
-    // outline-style: solid;
-    // outline-color: var(--color_text_secondary);
-    // outline-offset: -q(1);
+  // outline-width: q(1);
+  // outline-style: solid;
+  // outline-color: var(--color_text_secondary);
+  // outline-offset: -q(1);
 
-    border-radius: 0;
-    padding-left: q(2);
-    padding-right: q(2);
+  border-radius: 0;
+  padding-left: q(2);
+  padding-right: q(2);
 }
 
 ///
 /// Input with rounded corners
 ///
 @mixin input--style--rounded {
-    @include input--base;
-    background-color: transparent;
-    border: q(1) solid var(--color_line_primary);
-    border-radius: q(4);
-    padding-left: q(2);
-    padding-right: q(2);
+  @include input--base;
+  background-color: transparent;
+  border: q(1) solid var(--color_line_primary);
+  border-radius: q(4);
+  padding-left: q(2);
+  padding-right: q(2);
 }
 
 ///
 /// Underlined input style
 ///
 @mixin input--style--underline {
-    @include input--base;
-    background-color: transparent;
-    border-bottom: q(1) solid var(--color_line_primary);
-    border-radius: 0;
-    padding-left: 0;
-    padding-right: 0;
+  @include input--base;
+  background-color: transparent;
+  border-bottom: q(1) solid var(--color_line_primary);
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 ///
 /// Filled input style
 ///
 @mixin input--style--filled {
-    @include input--base;
-    background-color: var(--color_fill_tertiary);
-    border-radius: 0;
-    padding-left: 0;
-    padding-right: 0;
+  @include input--base;
+  background-color: var(--color_fill_tertiary);
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-// ----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
+// ============================================================================
+// Input Size Mixins
+// ============================================================================
 
-/// Default input: straight corners
-.input,
-input,
-textarea,
-select {
-    @include input--base;
-    @include input--style--straight;
+/// Small input size
+/// @group Inputs
+@mixin input--size-sm {
+  padding: q(6) q(10);
+  font-size: q(13);
 }
 
-.input--base--form,
-input.input--base--form,
-textarea.input--base--form,
-select.input--base--form {
-    @include input--base--form;
+/// Medium input size (default)
+/// @group Inputs
+@mixin input--size-md {
+  padding: q(8) q(12);
+  font-size: q(14);
 }
 
-.input--base--inline,
-input.input--base--inline,
-textarea.input--base--inline,
-select.input--base--inline {
-    @include input--base--inline;
+/// Large input size
+/// @group Inputs
+@mixin input--size-lg {
+  padding: q(12) q(16);
+  font-size: q(16);
 }
 
-// -----------------------------------------------------------------------------
+// ============================================================================
+// Input State Mixins
+// ============================================================================
 
-/// Straight-corner inputs
-.input--style--straight,
-input.input--style--straight,
-textarea.input--style--straight,
-select.input--style--straight {
-    @include input--style--straight;
+/// Valid/Success input state
+/// @group Inputs
+@mixin input--valid {
+  border-color: var(--color_success);
+
+  &:focus {
+    box-shadow: 0 0 0 q(3) var(--color_success_ring);
+  }
 }
 
-/// Rounded inputs
-.input--style--rounded,
-input.input--style--rounded,
-textarea.input--style--rounded,
-select.input--style--rounded {
-    @include input--style--rounded;
+/// Invalid/Error input state
+/// @group Inputs
+@mixin input--invalid {
+  border-color: var(--color_error);
+
+  &:focus {
+    box-shadow: 0 0 0 q(3) var(--color_error_ring);
+  }
 }
 
-/// Underlined inputs
-.input--style--underline,
-input.input--style--underline,
-textarea.input--style--underline,
-select.input--style--underline {
-    @include input--style--underline;
+/// Warning input state
+/// @group Inputs
+@mixin input--warning {
+  border-color: var(--color_warning);
+
+  &:focus {
+    box-shadow: 0 0 0 q(3) var(--color_warning_ring);
+  }
 }
 
-/// Filled inputs
-.input--style--filled,
-input.input--style--filled,
-textarea.input--style--filled,
-select.input--style--filled {
-    @include input--style--filled;
+/// Disabled input state
+/// @group Inputs
+@mixin input--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--color_fill_disabled);
 }
 
-// -----------------------------------------------------------------------------
-// Configuration
-// -----------------------------------------------------------------------------
+/// Readonly input state
+/// @group Inputs
+@mixin input--readonly {
+  background-color: var(--color_fill_secondary);
+}
 
-// /// Size map: [height in baseline units, font-size key]
-// $input-size-map: (
-//     "s": (
-//         2,
-//         "02"
-//     ),
-//     "m": (
-//         3,
-//         "03"
-//     ),
-//     "l": (
-//         4,
-//         "04"
-//     )
-// ) !default;
+// ============================================================================
+// Input Focus Mixins
+// ============================================================================
 
-// -----------------------------------------------------------------------------
-// Input Variants
-// -----------------------------------------------------------------------------
+/// Input focus state
+/// @group Inputs
+@mixin input--focus {
+  outline: none;
+  border-color: var(--color_focus);
+  box-shadow: 0 0 0 q(3) var(--color_focus_ring);
+}
 
-// /// Size variant for input
-// /// @param $height - Height in baseline units
-// /// @param $font-size-key - Font size token
-// @mixin input($height, $font-size-key) {
-//     @include input--base;
-//     @include font--size($font-size-key);
-//     padding: baseline($height);
-// }
+/// Input hover state
+/// @group Inputs
+@mixin input--hover {
+  border-color: var(--color_border_hover);
+}
 
-// -----------------------------------------------------------------------------
-// Utilities
-// -----------------------------------------------------------------------------
+// ============================================================================
+// Textarea Mixins
+// ============================================================================
 
-// /// Default `.input` class
-// .input {
-//     @include input(
-//         list.nth(map.get($input-size-map, "m"), 1),
-//         list.nth(map.get($input-size-map, "m"), 2)
-//     );
-// }
+/// Base textarea mixin
+/// @group Inputs
+@mixin textarea--base {
+  @include input--base--form;
+  min-height: q(100);
+  resize: vertical;
+}
 
-// /// Utility modifiers like `.input--s`, `.input--l`
-// @each $name, $pair in $input-size-map {
-//     .input--#{$name} {
-//         @include input(list.nth($pair, 1), list.nth($pair, 2));
-//     }
-// }
+/// No resize textarea
+/// @group Inputs
+@mixin textarea--no-resize {
+  resize: none;
+}
 
-// input[type='text'],
-// input[type='email'],
-// textarea {
-//     @include reset_bleed;
-//     padding: 0;
-//     @include font--default;
-//     @include font--weight_300;
-//     @include font--size_04;
-//     // background-color: WhiteSmoke;
-//     margin-top: 8 * $q;
-//     margin-bottom: 8 * $q;
-// }
+/// Horizontal resize only
+/// @group Inputs
+@mixin textarea--resize-x {
+  resize: horizontal;
+}
+
+/// Both directions resize
+/// @group Inputs
+@mixin textarea--resize-both {
+  resize: both;
+}
+
+// ============================================================================
+// Select Mixins
+// ============================================================================
+
+/// Base select mixin
+/// @group Inputs
+@mixin select--base {
+  @include input--base--form;
+  appearance: none;
+  padding-right: q(36);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right q(12) center;
+  cursor: pointer;
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+// ============================================================================
+// Checkbox & Radio Mixins
+// ============================================================================
+
+/// Checkbox wrapper mixin
+/// @group Inputs
+@mixin checkbox--wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: q(8);
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    width: q(16);
+    height: q(16);
+    accent-color: var(--color_fill_accent);
+    cursor: pointer;
+  }
+}
+
+/// Radio wrapper mixin
+/// @group Inputs
+@mixin radio--wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: q(8);
+  cursor: pointer;
+
+  input[type="radio"] {
+    width: q(16);
+    height: q(16);
+    accent-color: var(--color_fill_accent);
+    cursor: pointer;
+  }
+}
+
+// ============================================================================
+// Input Group Mixins
+// ============================================================================
+
+/// Input group mixin
+/// @group Inputs
+@mixin input-group {
+  display: flex;
+  align-items: stretch;
+}
+
+/// Input addon mixin
+/// @group Inputs
+@mixin input-addon {
+  display: flex;
+  align-items: center;
+  padding: q(8) q(12);
+  font-size: q(14);
+  color: var(--color_text_secondary);
+  background-color: var(--color_fill_secondary);
+  border: q(1) solid var(--color_border_primary);
+  white-space: nowrap;
+}

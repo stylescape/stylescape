@@ -1,10 +1,33 @@
+////
+///
+/// Deprecation Warning Utilities
+/// ===========================================================================
+///
+/// Mixin for marking deprecated mixins or styles with compile-time
+/// warnings. Helps maintain backward compatibility while guiding
+/// developers to use updated alternatives.
+///
+/// @group Dev.Deprecation
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
 // ============================================================================
-// StyleScape | Development | Deprecation
+// Mixin
 // ============================================================================
 
-/// Deprecation Warning Mixin
-/// This mixin can be used to mark deprecated mixins or styles, displaying a
-/// warning in the console during compilation.
+/// Outputs a deprecation warning during compilation
+///
+/// @param {String} $feature - The deprecated feature name
+/// @param {String} $version - The version when it will be removed
+/// @param {String} $alternative [null] - Optional alternative to use instead
+///
+/// @example scss - Usage
+///   @include deprecate("old-mixin", "2.0.0", "new-mixin");
+///
 @mixin deprecate($feature, $version, $alternative: null) {
   $msg: "Deprecation Warning: #{$feature} will be removed in version #{$version}.";
   @if $alternative {
