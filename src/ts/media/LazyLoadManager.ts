@@ -10,15 +10,15 @@
  */
 export interface LazyLoadManagerOptions {
     /** Root margin for intersection observer */
-    rootMargin?: string
+    rootMargin?: string;
     /** Threshold for visibility (0-1) */
-    threshold?: number
+    threshold?: number;
     /** Attribute containing the real source */
-    srcAttribute?: string
+    srcAttribute?: string;
     /** CSS class added when loaded */
-    loadedClass?: string
+    loadedClass?: string;
     /** Callback when item loads */
-    onLoad?: (element: HTMLElement) => void
+    onLoad?: (element: HTMLElement) => void;
 }
 
 /**
@@ -47,7 +47,7 @@ export interface LazyLoadManagerOptions {
  */
 export default class LazyLoadManager {
     /** Collection of items to lazy load */
-    private items: NodeListOf<HTMLElement>
+    private items: NodeListOf<HTMLElement>;
 
     /**
      * Creates a new LazyLoadManager instance.
@@ -55,8 +55,8 @@ export default class LazyLoadManager {
      * @param itemsSelector - CSS selector for elements to lazy load
      */
     constructor(itemsSelector: string) {
-        this.items = document.querySelectorAll(itemsSelector)
-        this.observeItems()
+        this.items = document.querySelectorAll(itemsSelector);
+        this.observeItems();
     }
 
     /**
@@ -68,13 +68,15 @@ export default class LazyLoadManager {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     // Replace placeholder with actual content
-                    const item = entry.target as HTMLImageElement
-                    item.src = item.dataset.src!
-                    observer.unobserve(item)
+                    const item = entry.target as HTMLImageElement;
+                    if (item.dataset.src) {
+                        item.src = item.dataset.src;
+                    }
+                    observer.unobserve(item);
                 }
-            })
-        })
+            });
+        });
 
-        this.items.forEach((item) => observer.observe(item))
+        this.items.forEach((item) => observer.observe(item));
     }
 }

@@ -10,13 +10,13 @@
  */
 export interface ParallaxScrollOptions {
     /** CSS selector for parallax elements */
-    selector?: string
+    selector?: string;
     /** Default parallax speed (0-1, lower = slower) */
-    defaultSpeed?: number
+    defaultSpeed?: number;
     /** Use transform instead of background-position */
-    useTransform?: boolean
+    useTransform?: boolean;
     /** Enable smooth scrolling behavior */
-    smooth?: boolean
+    smooth?: boolean;
 }
 
 /**
@@ -49,10 +49,10 @@ export interface ParallaxScrollOptions {
  */
 export class ParallaxScrollManager {
     /** Array of parallax elements */
-    private elements: HTMLElement[]
+    private elements: HTMLElement[];
 
     /** RAF tick flag to prevent duplicate frames */
-    private ticking = false
+    private ticking = false;
 
     /**
      * Creates a new ParallaxScrollManager instance.
@@ -62,9 +62,9 @@ export class ParallaxScrollManager {
     constructor(parallaxSelector: string) {
         this.elements = Array.from(
             document.querySelectorAll<HTMLElement>(parallaxSelector),
-        )
-        this.onScroll = this.onScroll.bind(this)
-        window.addEventListener("scroll", this.onScroll)
+        );
+        this.onScroll = this.onScroll.bind(this);
+        window.addEventListener("scroll", this.onScroll);
     }
 
     /**
@@ -73,10 +73,10 @@ export class ParallaxScrollManager {
     private onScroll(): void {
         if (!this.ticking) {
             window.requestAnimationFrame(() => {
-                this.applyParallax()
-                this.ticking = false
-            })
-            this.ticking = true
+                this.applyParallax();
+                this.ticking = false;
+            });
+            this.ticking = true;
         }
     }
 
@@ -85,22 +85,22 @@ export class ParallaxScrollManager {
      * Reads speed from data-speed attribute (default: 0.5).
      */
     private applyParallax(): void {
-        const scrollY = window.scrollY
+        const scrollY = window.scrollY;
 
         this.elements.forEach((element) => {
-            const speedAttr = element.getAttribute("data-speed")
-            const speed = speedAttr ? parseFloat(speedAttr) : 0.5
+            const speedAttr = element.getAttribute("data-speed");
+            const speed = speedAttr ? parseFloat(speedAttr) : 0.5;
             if (!isNaN(speed)) {
-                const yPos = -(scrollY * speed)
-                element.style.backgroundPosition = `center ${yPos}px`
+                const yPos = -(scrollY * speed);
+                element.style.backgroundPosition = `center ${yPos}px`;
             }
-        })
+        });
     }
 
     /**
      * Destroys the manager and removes event listeners.
      */
     public destroy(): void {
-        window.removeEventListener("scroll", this.onScroll)
+        window.removeEventListener("scroll", this.onScroll);
     }
 }

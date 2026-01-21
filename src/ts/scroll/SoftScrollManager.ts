@@ -10,11 +10,11 @@
  */
 export interface SoftScrollOptions {
     /** Vertical offset in rem units */
-    offsetRem?: number
+    offsetRem?: number;
     /** Scroll behavior (smooth or auto) */
-    behavior?: ScrollBehavior
+    behavior?: ScrollBehavior;
     /** Block alignment (start, center, end, nearest) */
-    block?: ScrollLogicalPosition
+    block?: ScrollLogicalPosition;
 }
 
 /**
@@ -57,38 +57,38 @@ export class SoftScrollManager {
         selector: string,
         yOffsetInRem: number = 0,
     ): void {
-        const links = document.querySelectorAll<HTMLElement>(selector)
+        const links = document.querySelectorAll<HTMLElement>(selector);
         const offsetPx =
             yOffsetInRem *
-            parseFloat(getComputedStyle(document.documentElement).fontSize)
+            parseFloat(getComputedStyle(document.documentElement).fontSize);
 
         links.forEach((link) => {
-            if (!(link instanceof HTMLAnchorElement)) return
+            if (!(link instanceof HTMLAnchorElement)) return;
 
-            const href = link.getAttribute("href")
-            if (!href || !href.startsWith("#") || href === "#") return
+            const href = link.getAttribute("href");
+            if (!href || !href.startsWith("#") || href === "#") return;
 
-            const targetId = href.slice(1)
+            const targetId = href.slice(1);
 
             link.addEventListener("click", (event) => {
-                event.preventDefault()
+                event.preventDefault();
 
-                const targetElement = document.getElementById(targetId)
+                const targetElement = document.getElementById(targetId);
                 if (!targetElement) {
                     console.warn(
                         `SoftScroll: Element not found for ID "${targetId}"`,
-                    )
-                    return
+                    );
+                    return;
                 }
 
                 const scrollTargetY =
                     targetElement.getBoundingClientRect().top +
                     window.pageYOffset -
-                    offsetPx
+                    offsetPx;
 
-                window.scrollTo({ top: scrollTargetY, behavior: "smooth" })
-            })
-        })
+                window.scrollTo({ top: scrollTargetY, behavior: "smooth" });
+            });
+        });
     }
 }
 

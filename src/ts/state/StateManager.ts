@@ -10,13 +10,17 @@
  */
 export interface StateManagerOptions {
     /** Default class to toggle if none specified */
-    defaultClass?: string
+    defaultClass?: string;
     /** Persist state in localStorage */
-    persist?: boolean
+    persist?: boolean;
     /** Storage key prefix for persistence */
-    storagePrefix?: string
+    storagePrefix?: string;
     /** Callback when state changes */
-    onChange?: (element: Element, className: string, isActive: boolean) => void
+    onChange?: (
+        element: Element,
+        className: string,
+        isActive: boolean,
+    ) => void;
 }
 
 /**
@@ -51,13 +55,13 @@ export class StateManager {
      * @param element - The DOM element to toggle the class on
      * @param className - The CSS class to toggle (default: "active")
      */
-    public toggleClass(element: Element, className: string = 'active'): void {
+    public toggleClass(element: Element, className: string = "active"): void {
         if (!element) {
-            console.warn(`Element: '${element}' not found`)
-            return
+            console.warn(`Element: '${element}' not found`);
+            return;
         }
 
-        element.classList.toggle(className)
+        element.classList.toggle(className);
     }
 }
 

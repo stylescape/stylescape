@@ -3,32 +3,32 @@
  * Restores scroll position on page load and cleans it up after.
  */
 export class ScrollPageManager {
-    private key = "scrollpos"
-    private debounceTimeout: number | null = null
+    private key = "scrollpos";
+    private debounceTimeout: number | null = null;
 
     constructor() {
-        this.initialize()
+        this.initialize();
     }
 
     /**
      * Sets up scroll position tracking and restoration.
      */
     private initialize(): void {
-        window.addEventListener("load", () => this.loadScrollPosition())
-        window.addEventListener("scroll", () => this.debounceSaveScroll())
+        window.addEventListener("load", () => this.loadScrollPosition());
+        window.addEventListener("scroll", () => this.debounceSaveScroll());
         window.addEventListener("beforeunload", () =>
             this.saveScrollPosition(),
-        )
+        );
     }
 
     /**
      * Restores scroll position from sessionStorage and clears it.
      */
     private loadScrollPosition(): void {
-        const scrollpos = sessionStorage.getItem(this.key)
+        const scrollpos = sessionStorage.getItem(this.key);
         if (scrollpos) {
-            window.scrollTo(0, parseInt(scrollpos, 10))
-            sessionStorage.removeItem(this.key)
+            window.scrollTo(0, parseInt(scrollpos, 10));
+            sessionStorage.removeItem(this.key);
             // console.log(
             //     "ScrollPageManager: scroll position restored and cleared",
             // )
@@ -39,7 +39,7 @@ export class ScrollPageManager {
      * Saves scroll position to sessionStorage.
      */
     private saveScrollPosition(): void {
-        sessionStorage.setItem(this.key, window.scrollY.toString())
+        sessionStorage.setItem(this.key, window.scrollY.toString());
     }
 
     /**
@@ -47,10 +47,10 @@ export class ScrollPageManager {
      */
     private debounceSaveScroll(): void {
         if (this.debounceTimeout !== null) {
-            clearTimeout(this.debounceTimeout)
+            clearTimeout(this.debounceTimeout);
         }
         this.debounceTimeout = window.setTimeout(() => {
-            this.saveScrollPosition()
-        }, 200)
+            this.saveScrollPosition();
+        }, 200);
     }
 }

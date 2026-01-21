@@ -10,13 +10,13 @@
  */
 export interface PasswordToggleOptions {
     /** CSS selector for toggle buttons */
-    selector?: string
+    selector?: string;
     /** CSS class added when password is visible */
-    visibleClass?: string
+    visibleClass?: string;
     /** Aria label for showing password */
-    showLabel?: string
+    showLabel?: string;
     /** Aria label for hiding password */
-    hideLabel?: string
+    hideLabel?: string;
 }
 
 /**
@@ -46,7 +46,7 @@ export interface PasswordToggleOptions {
  */
 export class PasswordToggleManager {
     /** CSS selector for toggle buttons */
-    private readonly selector: string
+    private readonly selector: string;
 
     /**
      * Creates a new PasswordToggleManager instance.
@@ -54,8 +54,8 @@ export class PasswordToggleManager {
      * @param selector - CSS selector for toggle buttons (default: "[data-password-toggle]")
      */
     constructor(selector: string = "[data-password-toggle]") {
-        this.selector = selector
-        this.init()
+        this.selector = selector;
+        this.init();
     }
 
     /**
@@ -65,18 +65,18 @@ export class PasswordToggleManager {
         document
             .querySelectorAll<HTMLButtonElement>(this.selector)
             .forEach((button) => {
-                const inputId = button.dataset.passwordToggle
-                if (!inputId) return
+                const inputId = button.dataset.passwordToggle;
+                if (!inputId) return;
 
                 const input = document.getElementById(
                     inputId,
-                ) as HTMLInputElement | null
-                if (!input || input.type !== "password") return
+                ) as HTMLInputElement | null;
+                if (!input || input.type !== "password") return;
 
                 button.addEventListener("click", () =>
                     this.togglePasswordVisibility(input, button),
-                )
-            })
+                );
+            });
     }
 
     /**
@@ -89,10 +89,10 @@ export class PasswordToggleManager {
         input: HTMLInputElement,
         button: HTMLButtonElement,
     ): void {
-        const isText = input.type === "text"
-        input.type = isText ? "password" : "text"
+        const isText = input.type === "text";
+        input.type = isText ? "password" : "text";
 
-        button.classList.toggle("is-visible", !isText)
-        button.setAttribute("aria-pressed", String(!isText))
+        button.classList.toggle("is-visible", !isText);
+        button.setAttribute("aria-pressed", String(!isText));
     }
 }

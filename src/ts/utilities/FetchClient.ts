@@ -10,24 +10,24 @@
  */
 export interface FetchClientOptions {
     /** Base URL for all requests */
-    baseUrl?: string
+    baseUrl?: string;
     /** Default headers to include in all requests */
-    headers?: Record<string, string>
+    headers?: Record<string, string>;
     /** Default timeout in milliseconds */
-    timeout?: number
+    timeout?: number;
     /** Whether to include credentials (cookies) */
-    credentials?: RequestCredentials
+    credentials?: RequestCredentials;
 }
 
 /**
  * Response wrapper with status information
  */
-export interface FetchResponse<T = any> {
-    data: T
-    status: number
-    statusText: string
-    headers: Headers
-    ok: boolean
+export interface FetchResponse<T = unknown> {
+    data: T;
+    status: number;
+    statusText: string;
+    headers: Headers;
+    ok: boolean;
 }
 
 /**
@@ -49,20 +49,20 @@ export interface FetchResponse<T = any> {
  * ```
  */
 export class FetchClient {
-    private baseUrl: string
-    private defaultHeaders: Record<string, string>
-    private timeout: number
-    private credentials: RequestCredentials
+    private baseUrl: string;
+    private defaultHeaders: Record<string, string>;
+    private timeout: number;
+    private credentials: RequestCredentials;
 
     constructor(options: FetchClientOptions = {}) {
-        this.baseUrl = options.baseUrl || ""
-        this.timeout = options.timeout || 30000
-        this.credentials = options.credentials || "same-origin"
+        this.baseUrl = options.baseUrl || "";
+        this.timeout = options.timeout || 30000;
+        this.credentials = options.credentials || "same-origin";
         this.defaultHeaders = {
             "Content-Type": "application/json",
             "X-Requested-With": "XMLHttpRequest",
-            ...options.headers
-        }
+            ...options.headers,
+        };
     }
 
     // ========================================================================
@@ -72,84 +72,84 @@ export class FetchClient {
     /**
      * Make a GET request
      */
-    async get<T = any>(
+    async get<T = unknown>(
         endpoint: string,
         params?: Record<string, string>,
-        options?: RequestInit
+        options?: RequestInit,
     ): Promise<FetchResponse<T>> {
-        const url = this.buildUrl(endpoint, params)
-        return this.request<T>(url, { ...options, method: "GET" })
+        const url = this.buildUrl(endpoint, params);
+        return this.request<T>(url, { ...options, method: "GET" });
     }
 
     /**
      * Make a POST request
      */
-    async post<T = any>(
+    async post<T = unknown>(
         endpoint: string,
-        body?: any,
-        options?: RequestInit
+        body?: unknown,
+        options?: RequestInit,
     ): Promise<FetchResponse<T>> {
-        const url = this.buildUrl(endpoint)
+        const url = this.buildUrl(endpoint);
         return this.request<T>(url, {
             ...options,
             method: "POST",
-            body: JSON.stringify(body)
-        })
+            body: JSON.stringify(body),
+        });
     }
 
     /**
      * Make a PUT request
      */
-    async put<T = any>(
+    async put<T = unknown>(
         endpoint: string,
-        body?: any,
-        options?: RequestInit
+        body?: unknown,
+        options?: RequestInit,
     ): Promise<FetchResponse<T>> {
-        const url = this.buildUrl(endpoint)
+        const url = this.buildUrl(endpoint);
         return this.request<T>(url, {
             ...options,
             method: "PUT",
-            body: JSON.stringify(body)
-        })
+            body: JSON.stringify(body),
+        });
     }
 
     /**
      * Make a PATCH request
      */
-    async patch<T = any>(
+    async patch<T = unknown>(
         endpoint: string,
-        body?: any,
-        options?: RequestInit
+        body?: unknown,
+        options?: RequestInit,
     ): Promise<FetchResponse<T>> {
-        const url = this.buildUrl(endpoint)
+        const url = this.buildUrl(endpoint);
         return this.request<T>(url, {
             ...options,
             method: "PATCH",
-            body: JSON.stringify(body)
-        })
+            body: JSON.stringify(body),
+        });
     }
 
     /**
      * Make a DELETE request
      */
-    async delete<T = any>(
+    async delete<T = unknown>(
         endpoint: string,
-        options?: RequestInit
+        options?: RequestInit,
     ): Promise<FetchResponse<T>> {
-        const url = this.buildUrl(endpoint)
-        return this.request<T>(url, { ...options, method: "DELETE" })
+        const url = this.buildUrl(endpoint);
+        return this.request<T>(url, { ...options, method: "DELETE" });
     }
 
     /**
      * Submit a form via AJAX
      */
-    async submitForm<T = any>(
+    async submitForm<T = unknown>(
         form: HTMLFormElement,
-        options?: RequestInit
+        options?: RequestInit,
     ): Promise<FetchResponse<T>> {
-        const formData = new FormData(form)
-        const url = form.action || window.location.href
-        const method = form.method?.toUpperCase() || "POST"
+        const formData = new FormData(form);
+        const url = form.action || window.location.href;
+        const method = form.method?.toUpperCase() || "POST";
 
         return this.request<T>(url, {
             ...options,
@@ -158,36 +158,36 @@ export class FetchClient {
             headers: {
                 ...this.getHeaders(),
                 // Remove Content-Type to let browser set it with boundary for FormData
-            }
-        })
+            },
+        });
     }
 
     /**
      * Get CSRF token from cookies (for Django, Laravel, etc.)
      */
     getCSRFToken(cookieName: string = "csrftoken"): string {
-        const cookies = document.cookie.split(";")
+        const cookies = document.cookie.split(";");
         for (const cookie of cookies) {
-            const [name, value] = cookie.trim().split("=")
+            const [name, value] = cookie.trim().split("=");
             if (name === cookieName) {
-                return decodeURIComponent(value)
+                return decodeURIComponent(value);
             }
         }
-        return ""
+        return "";
     }
 
     /**
      * Set a default header for all future requests
      */
     setHeader(key: string, value: string): void {
-        this.defaultHeaders[key] = value
+        this.defaultHeaders[key] = value;
     }
 
     /**
      * Set the base URL
      */
     setBaseUrl(url: string): void {
-        this.baseUrl = url
+        this.baseUrl = url;
     }
 
     // ========================================================================
@@ -196,33 +196,33 @@ export class FetchClient {
 
     private async request<T>(
         url: string,
-        options: RequestInit = {}
+        options: RequestInit = {},
     ): Promise<FetchResponse<T>> {
-        const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), this.timeout)
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), this.timeout);
 
         try {
             const response = await fetch(url, {
                 ...options,
                 headers: {
                     ...this.getHeaders(),
-                    ...(options.headers as Record<string, string>)
+                    ...(options.headers as Record<string, string>),
                 },
                 credentials: this.credentials,
-                signal: controller.signal
-            })
+                signal: controller.signal,
+            });
 
-            clearTimeout(timeoutId)
+            clearTimeout(timeoutId);
 
-            let data: T
-            const contentType = response.headers.get("Content-Type") || ""
+            let data: T;
+            const contentType = response.headers.get("Content-Type") || "";
 
             if (contentType.includes("application/json")) {
-                data = await response.json()
+                data = await response.json();
             } else if (contentType.includes("text/")) {
-                data = await response.text() as unknown as T
+                data = (await response.text()) as unknown as T;
             } else {
-                data = await response.blob() as unknown as T
+                data = (await response.blob()) as unknown as T;
             }
 
             const result: FetchResponse<T> = {
@@ -230,46 +230,49 @@ export class FetchClient {
                 status: response.status,
                 statusText: response.statusText,
                 headers: response.headers,
-                ok: response.ok
-            }
+                ok: response.ok,
+            };
 
             if (!response.ok) {
                 throw new FetchError(
                     `HTTP ${response.status}: ${response.statusText}`,
-                    result
-                )
+                    result,
+                );
             }
 
-            return result
+            return result;
         } catch (error) {
-            clearTimeout(timeoutId)
+            clearTimeout(timeoutId);
 
             if (error instanceof FetchError) {
-                throw error
+                throw error;
             }
 
             if ((error as Error).name === "AbortError") {
-                throw new FetchError("Request timeout", null)
+                throw new FetchError("Request timeout", null);
             }
 
-            throw new FetchError((error as Error).message, null)
+            throw new FetchError((error as Error).message, null);
         }
     }
 
-    private buildUrl(endpoint: string, params?: Record<string, string>): string {
-        const url = new URL(endpoint, this.baseUrl || window.location.origin)
+    private buildUrl(
+        endpoint: string,
+        params?: Record<string, string>,
+    ): string {
+        const url = new URL(endpoint, this.baseUrl || window.location.origin);
 
         if (params) {
             Object.entries(params).forEach(([key, value]) => {
-                url.searchParams.append(key, value)
-            })
+                url.searchParams.append(key, value);
+            });
         }
 
-        return url.toString()
+        return url.toString();
     }
 
     private getHeaders(): Record<string, string> {
-        return { ...this.defaultHeaders }
+        return { ...this.defaultHeaders };
     }
 }
 
@@ -277,12 +280,12 @@ export class FetchClient {
  * Custom error class for fetch errors
  */
 export class FetchError extends Error {
-    response: FetchResponse | null
+    response: FetchResponse | null;
 
     constructor(message: string, response: FetchResponse | null) {
-        super(message)
-        this.name = "FetchError"
-        this.response = response
+        super(message);
+        this.name = "FetchError";
+        this.response = response;
     }
 }
 
@@ -291,6 +294,6 @@ export class FetchError extends Error {
 // ============================================================================
 
 /** Default FetchClient instance */
-export const fetchClient = new FetchClient()
+export const fetchClient = new FetchClient();
 
-export default FetchClient
+export default FetchClient;

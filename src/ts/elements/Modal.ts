@@ -10,27 +10,27 @@
  */
 export interface ModalOptions {
     /** Close on backdrop click */
-    closeOnBackdrop?: boolean
+    closeOnBackdrop?: boolean;
     /** Close on Escape key */
-    closeOnEscape?: boolean
+    closeOnEscape?: boolean;
     /** Animation duration in milliseconds */
-    animationDuration?: number
+    animationDuration?: number;
     /** CSS class for open state */
-    openClass?: string
+    openClass?: string;
     /** CSS class for backdrop */
-    backdropClass?: string
+    backdropClass?: string;
     /** Trap focus within modal */
-    trapFocus?: boolean
+    trapFocus?: boolean;
     /** Element to focus when opened */
-    focusElement?: string
+    focusElement?: string;
     /** Return focus to trigger element on close */
-    returnFocus?: boolean
+    returnFocus?: boolean;
     /** Callback when modal opens */
-    onOpen?: (modal: HTMLElement) => void
+    onOpen?: (modal: HTMLElement) => void;
     /** Callback when modal closes */
-    onClose?: (modal: HTMLElement) => void
+    onClose?: (modal: HTMLElement) => void;
     /** Callback before close (return false to prevent) */
-    onBeforeClose?: (modal: HTMLElement) => boolean | void
+    onBeforeClose?: (modal: HTMLElement) => boolean | void;
 }
 
 /**
@@ -68,20 +68,21 @@ export interface ModalOptions {
  * ```
  */
 export class Modal {
-    private element: HTMLElement | null
-    private options: Required<ModalOptions>
-    private triggerElement: HTMLElement | null = null
-    private focusableElements: HTMLElement[] = []
-    private isOpen: boolean = false
-    private backdropElement: HTMLElement | null = null
+    private element: HTMLElement | null;
+    private options: Required<ModalOptions>;
+    private triggerElement: HTMLElement | null = null;
+    private focusableElements: HTMLElement[] = [];
+    private isOpen: boolean = false;
+    private backdropElement: HTMLElement | null = null;
 
     constructor(
         selectorOrElement: string | HTMLElement,
-        options: ModalOptions = {}
+        options: ModalOptions = {},
     ) {
-        this.element = typeof selectorOrElement === "string"
-            ? document.querySelector<HTMLElement>(selectorOrElement)
-            : selectorOrElement
+        this.element =
+            typeof selectorOrElement === "string"
+                ? document.querySelector<HTMLElement>(selectorOrElement)
+                : selectorOrElement;
 
         this.options = {
             closeOnBackdrop: options.closeOnBackdrop ?? true,
@@ -94,15 +95,15 @@ export class Modal {
             returnFocus: options.returnFocus ?? true,
             onOpen: options.onOpen ?? (() => {}),
             onClose: options.onClose ?? (() => {}),
-            onBeforeClose: options.onBeforeClose ?? (() => true)
-        }
+            onBeforeClose: options.onBeforeClose ?? (() => true),
+        };
 
         if (!this.element) {
-            console.warn("[Stylescape] Modal element not found")
-            return
+            console.warn("[Stylescape] Modal element not found");
+            return;
         }
 
-        this.init()
+        this.init();
     }
 
     // ========================================================================
@@ -113,7 +114,7 @@ export class Modal {
      * Check if modal is currently open
      */
     public get opened(): boolean {
-        return this.isOpen
+        return this.isOpen;
     }
 
     // ========================================================================
@@ -124,73 +125,78 @@ export class Modal {
      * Open the modal
      */
     public open(trigger?: HTMLElement): void {
-        if (!this.element || this.isOpen) return
+        if (!this.element || this.isOpen) return;
 
-        this.triggerElement = trigger || document.activeElement as HTMLElement
+        this.triggerElement =
+            trigger || (document.activeElement as HTMLElement);
 
         // Create backdrop
-        this.createBackdrop()
+        this.createBackdrop();
 
         // Show modal
-        this.element.hidden = false
-        this.element.setAttribute("aria-hidden", "false")
-        document.body.classList.add("modal-open")
-        document.body.style.overflow = "hidden"
+        this.element.hidden = false;
+        this.element.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+        document.body.style.overflow = "hidden";
 
         // Add open class with delay for animation
         requestAnimationFrame(() => {
-            this.element?.classList.add(this.options.openClass)
-            this.backdropElement?.classList.add(`${this.options.backdropClass}--visible`)
-        })
+            this.element?.classList.add(this.options.openClass);
+            this.backdropElement?.classList.add(
+                `${this.options.backdropClass}--visible`,
+            );
+        });
 
         // Focus management
-        this.updateFocusableElements()
-        this.setInitialFocus()
+        this.updateFocusableElements();
+        this.setInitialFocus();
 
         // Add event listeners
-        document.addEventListener("keydown", this.handleKeydown)
+        document.addEventListener("keydown", this.handleKeydown);
 
-        this.isOpen = true
-        this.options.onOpen(this.element)
+        this.isOpen = true;
+        this.options.onOpen(this.element);
     }
 
     /**
      * Close the modal
      */
     public close(): void {
-        if (!this.element || !this.isOpen) return
+        if (!this.element || !this.isOpen) return;
 
         // Check beforeClose callback
         if (this.options.onBeforeClose(this.element) === false) {
-            return
+            return;
         }
 
         // Remove open class for animation
-        this.element.classList.remove(this.options.openClass)
-        this.backdropElement?.classList.remove(`${this.options.backdropClass}--visible`)
+        this.element.classList.remove(this.options.openClass);
+        this.backdropElement?.classList.remove(
+            `${this.options.backdropClass}--visible`,
+        );
 
         // Hide after animation
         setTimeout(() => {
-            if (!this.element) return
+            if (!this.element) return;
 
-            this.element.hidden = true
-            this.element.setAttribute("aria-hidden", "true")
-            document.body.classList.remove("modal-open")
-            document.body.style.overflow = ""
+            this.element.hidden = true;
+            this.element.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
+            document.body.style.overflow = "";
 
-            this.removeBackdrop()
+            this.removeBackdrop();
 
             // Return focus
             if (this.options.returnFocus && this.triggerElement) {
-                this.triggerElement.focus()
+                this.triggerElement.focus();
             }
 
-            this.isOpen = false
-            this.options.onClose(this.element)
-        }, this.options.animationDuration)
+            this.isOpen = false;
+            this.options.onClose(this.element);
+        }, this.options.animationDuration);
 
         // Remove event listeners
-        document.removeEventListener("keydown", this.handleKeydown)
+        document.removeEventListener("keydown", this.handleKeydown);
     }
 
     /**
@@ -198,9 +204,9 @@ export class Modal {
      */
     public toggle(trigger?: HTMLElement): void {
         if (this.isOpen) {
-            this.close()
+            this.close();
         } else {
-            this.open(trigger)
+            this.open(trigger);
         }
     }
 
@@ -208,10 +214,12 @@ export class Modal {
      * Update modal content
      */
     public setContent(html: string): void {
-        const content = this.element?.querySelector("[data-ss-modal-content], .modal-content")
+        const content = this.element?.querySelector(
+            "[data-ss-modal-content], .modal-content",
+        );
         if (content) {
-            content.innerHTML = html
-            this.updateFocusableElements()
+            content.innerHTML = html;
+            this.updateFocusableElements();
         }
     }
 
@@ -219,12 +227,14 @@ export class Modal {
      * Destroy the modal
      */
     public destroy(): void {
-        this.close()
-        document.removeEventListener("keydown", this.handleKeydown)
-        this.element?.querySelectorAll("[data-ss-modal-close]").forEach((btn) => {
-            btn.removeEventListener("click", this.handleCloseClick)
-        })
-        this.element = null
+        this.close();
+        document.removeEventListener("keydown", this.handleKeydown);
+        this.element
+            ?.querySelectorAll("[data-ss-modal-close]")
+            .forEach((btn) => {
+                btn.removeEventListener("click", this.handleCloseClick);
+            });
+        this.element = null;
     }
 
     // ========================================================================
@@ -235,37 +245,45 @@ export class Modal {
      * Initialize all modals and triggers
      */
     public static initModals(): Modal[] {
-        const modals: Modal[] = []
-        const modalMap = new Map<string, Modal>()
+        const modals: Modal[] = [];
+        const modalMap = new Map<string, Modal>();
 
         // Initialize modal elements
-        document.querySelectorAll<HTMLElement>('[data-ss="modal"]').forEach((el) => {
-            const closeOnBackdrop = el.dataset.ssModalCloseBackdrop !== "false"
-            const closeOnEscape = el.dataset.ssModalCloseEscape !== "false"
+        document
+            .querySelectorAll<HTMLElement>('[data-ss="modal"]')
+            .forEach((el) => {
+                const closeOnBackdrop =
+                    el.dataset.ssModalCloseBackdrop !== "false";
+                const closeOnEscape =
+                    el.dataset.ssModalCloseEscape !== "false";
 
-            const modal = new Modal(el, {
-                closeOnBackdrop,
-                closeOnEscape
-            })
-            modals.push(modal)
+                const modal = new Modal(el, {
+                    closeOnBackdrop,
+                    closeOnEscape,
+                });
+                modals.push(modal);
 
-            if (el.id) {
-                modalMap.set(`#${el.id}`, modal)
-            }
-        })
+                if (el.id) {
+                    modalMap.set(`#${el.id}`, modal);
+                }
+            });
 
         // Setup triggers
-        document.querySelectorAll<HTMLElement>("[data-ss-modal-trigger]").forEach((trigger) => {
-            const targetSelector = trigger.dataset.ssModalTrigger
-            if (targetSelector) {
-                const modal = modalMap.get(targetSelector)
-                if (modal) {
-                    trigger.addEventListener("click", () => modal.open(trigger))
+        document
+            .querySelectorAll<HTMLElement>("[data-ss-modal-trigger]")
+            .forEach((trigger) => {
+                const targetSelector = trigger.dataset.ssModalTrigger;
+                if (targetSelector) {
+                    const modal = modalMap.get(targetSelector);
+                    if (modal) {
+                        trigger.addEventListener("click", () =>
+                            modal.open(trigger),
+                        );
+                    }
                 }
-            }
-        })
+            });
 
-        return modals
+        return modals;
     }
 
     // ========================================================================
@@ -273,38 +291,40 @@ export class Modal {
     // ========================================================================
 
     private init(): void {
-        if (!this.element) return
+        if (!this.element) return;
 
         // Set up ARIA attributes
-        this.element.setAttribute("role", "dialog")
-        this.element.setAttribute("aria-modal", "true")
-        this.element.setAttribute("aria-hidden", "true")
-        this.element.hidden = true
+        this.element.setAttribute("role", "dialog");
+        this.element.setAttribute("aria-modal", "true");
+        this.element.setAttribute("aria-hidden", "true");
+        this.element.hidden = true;
 
         // Setup close buttons
-        this.element.querySelectorAll("[data-ss-modal-close]").forEach((btn) => {
-            btn.addEventListener("click", this.handleCloseClick)
-        })
+        this.element
+            .querySelectorAll("[data-ss-modal-close]")
+            .forEach((btn) => {
+                btn.addEventListener("click", this.handleCloseClick);
+            });
     }
 
     private createBackdrop(): void {
-        this.backdropElement = document.createElement("div")
-        this.backdropElement.className = this.options.backdropClass
+        this.backdropElement = document.createElement("div");
+        this.backdropElement.className = this.options.backdropClass;
 
         if (this.options.closeOnBackdrop) {
-            this.backdropElement.addEventListener("click", () => this.close())
+            this.backdropElement.addEventListener("click", () => this.close());
         }
 
-        document.body.appendChild(this.backdropElement)
+        document.body.appendChild(this.backdropElement);
     }
 
     private removeBackdrop(): void {
-        this.backdropElement?.remove()
-        this.backdropElement = null
+        this.backdropElement?.remove();
+        this.backdropElement = null;
     }
 
     private updateFocusableElements(): void {
-        if (!this.element) return
+        if (!this.element) return;
 
         const focusableSelectors = [
             "button:not([disabled])",
@@ -312,72 +332,75 @@ export class Modal {
             "select:not([disabled])",
             "textarea:not([disabled])",
             "a[href]",
-            '[tabindex]:not([tabindex="-1"])'
-        ].join(",")
+            '[tabindex]:not([tabindex="-1"])',
+        ].join(",");
 
         this.focusableElements = Array.from(
-            this.element.querySelectorAll<HTMLElement>(focusableSelectors)
-        )
+            this.element.querySelectorAll<HTMLElement>(focusableSelectors),
+        );
     }
 
     private setInitialFocus(): void {
-        if (!this.element) return
+        if (!this.element) return;
 
         // Focus specified element
         if (this.options.focusElement) {
-            const focusEl = this.element.querySelector<HTMLElement>(this.options.focusElement)
+            const focusEl = this.element.querySelector<HTMLElement>(
+                this.options.focusElement,
+            );
             if (focusEl) {
-                focusEl.focus()
-                return
+                focusEl.focus();
+                return;
             }
         }
 
         // Focus first focusable element or the modal itself
         if (this.focusableElements.length > 0) {
-            this.focusableElements[0].focus()
+            this.focusableElements[0].focus();
         } else {
-            this.element.setAttribute("tabindex", "-1")
-            this.element.focus()
+            this.element.setAttribute("tabindex", "-1");
+            this.element.focus();
         }
     }
 
     private handleKeydown = (event: KeyboardEvent): void => {
         if (event.key === "Escape" && this.options.closeOnEscape) {
-            event.preventDefault()
-            this.close()
-            return
+            event.preventDefault();
+            this.close();
+            return;
         }
 
         // Focus trap
         if (event.key === "Tab" && this.options.trapFocus) {
-            this.handleTabKey(event)
+            this.handleTabKey(event);
         }
-    }
+    };
 
     private handleTabKey(event: KeyboardEvent): void {
-        if (this.focusableElements.length === 0) return
+        if (this.focusableElements.length === 0) return;
 
-        const firstElement = this.focusableElements[0]
-        const lastElement = this.focusableElements[this.focusableElements.length - 1]
+        const firstElement = this.focusableElements[0];
+        const lastElement =
+            this.focusableElements[this.focusableElements.length - 1];
 
         if (event.shiftKey) {
             // Shift + Tab
             if (document.activeElement === firstElement) {
-                event.preventDefault()
-                lastElement.focus()
+                event.preventDefault();
+                lastElement.focus();
             }
         } else {
             // Tab
             if (document.activeElement === lastElement) {
-                event.preventDefault()
-                firstElement.focus()
+                event.preventDefault();
+                firstElement.focus();
             }
         }
     }
 
     private handleCloseClick = (): void => {
-        this.close()
-    }
+        this.close();
+    };
 }
 
-export default Modal
+export default Modal;

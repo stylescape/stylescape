@@ -10,11 +10,11 @@
  */
 export interface LocalStorageOptions {
     /** Prefix for all storage keys */
-    prefix?: string
+    prefix?: string;
     /** Whether to serialize values as JSON */
-    useJSON?: boolean
+    useJSON?: boolean;
     /** Fallback storage mechanism (e.g., in-memory Map) */
-    fallback?: Map<string, string>
+    fallback?: Map<string, string>;
 }
 
 /**
@@ -40,7 +40,7 @@ export interface LocalStorageOptions {
  */
 export class LocalStorageManager {
     /** Singleton instance */
-    private static instance: LocalStorageManager
+    private static instance: LocalStorageManager;
 
     /**
      * Get the singleton instance of LocalStorageManager.
@@ -50,9 +50,9 @@ export class LocalStorageManager {
      */
     public static getInstance(): LocalStorageManager {
         if (!LocalStorageManager.instance) {
-            LocalStorageManager.instance = new LocalStorageManager()
+            LocalStorageManager.instance = new LocalStorageManager();
         }
-        return LocalStorageManager.instance
+        return LocalStorageManager.instance;
     }
 
     /**
@@ -60,17 +60,17 @@ export class LocalStorageManager {
      * @param key The storage key.
      * @param value The value to store.
      */
-    setValue(key: string, value: any): void {
+    setValue(key: string, value: unknown): void {
         try {
             // const serializedValue = JSON.stringify(value);
             if (localStorage) {
                 // localStorage.setItem(key, serializedValue);
-                localStorage.setItem(key, value)
+                localStorage.setItem(key, String(value));
             } else {
                 // Fallback mechanism here, e.g., cookies
             }
         } catch (error) {
-            console.error("Error saving to localStorage:", error)
+            console.error("Error saving to localStorage:", error);
         }
     }
 
@@ -80,19 +80,19 @@ export class LocalStorageManager {
      * @returns The retrieved value or null if not found.
      */
     // getValue<T>(key: string): T | null {
-    getValue<T>(key: string): string | null {
+    getValue<_T>(key: string): string | null {
         try {
             if (localStorage) {
                 // const serializedValue = localStorage.getItem(key);
                 // return serializedValue ? JSON.parse(serializedValue) : null;
-                return localStorage.getItem(key)
+                return localStorage.getItem(key);
             } else {
                 // Fallback mechanism here
-                return null
+                return null;
             }
         } catch (error) {
-            console.error("Error reading from localStorage:", error)
-            return null
+            console.error("Error reading from localStorage:", error);
+            return null;
         }
     }
 
@@ -103,12 +103,12 @@ export class LocalStorageManager {
     removeValue(key: string): void {
         try {
             if (localStorage) {
-                localStorage.removeItem(key)
+                localStorage.removeItem(key);
             } else {
                 // Fallback remove mechanism here
             }
         } catch (error) {
-            console.error("Error removing from localStorage:", error)
+            console.error("Error removing from localStorage:", error);
         }
     }
 
@@ -118,12 +118,12 @@ export class LocalStorageManager {
     clearStorage(): void {
         try {
             if (localStorage) {
-                localStorage.clear()
+                localStorage.clear();
             } else {
                 // Fallback clear mechanism here
             }
         } catch (error) {
-            console.error("Error clearing localStorage:", error)
+            console.error("Error clearing localStorage:", error);
         }
     }
 }

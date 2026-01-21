@@ -14,8 +14,8 @@
  * - Clicking outside any <details> closes all of them.
  */
 export class DetailManager {
-    private details: NodeListOf<HTMLDetailsElement>
-    private boundHandler: (event: Event) => void
+    private details: NodeListOf<HTMLDetailsElement>;
+    private boundHandler: (event: Event) => void;
 
     /**
      * Initializes the DetailManager.
@@ -24,10 +24,10 @@ export class DetailManager {
      * @param selector - CSS selector for <details> elements (default: "details").
      */
     constructor(selector: string = "details") {
-        this.details = document.querySelectorAll<HTMLDetailsElement>(selector)
-        this.boundHandler = this.handleClick.bind(this)
+        this.details = document.querySelectorAll<HTMLDetailsElement>(selector);
+        this.boundHandler = this.handleClick.bind(this);
 
-        document.addEventListener("click", this.boundHandler)
+        document.addEventListener("click", this.boundHandler);
     }
 
     /**
@@ -36,18 +36,18 @@ export class DetailManager {
      * - If clicking outside any <details>: closes all.
      */
     private handleClick(event: Event): void {
-        const target = event.target as HTMLElement
-        const summary = target.closest("summary")
-        const parent = summary?.parentElement as HTMLDetailsElement | null
+        const target = event.target as HTMLElement;
+        const summary = target.closest("summary");
+        const parent = summary?.parentElement as HTMLDetailsElement | null;
 
         if (parent && parent.tagName === "DETAILS") {
             // Clicked a summary → close others
             this.details.forEach((detail) => {
-                if (detail !== parent) detail.removeAttribute("open")
-            })
+                if (detail !== parent) detail.removeAttribute("open");
+            });
         } else {
             // Clicked outside → close all
-            this.details.forEach((detail) => detail.removeAttribute("open"))
+            this.details.forEach((detail) => detail.removeAttribute("open"));
         }
     }
 
@@ -55,15 +55,15 @@ export class DetailManager {
      * Toggles a specific <details> element open or closed.
      */
     toggle(detail: HTMLDetailsElement, open: boolean): void {
-        if (open) detail.setAttribute("open", "")
-        else detail.removeAttribute("open")
+        if (open) detail.setAttribute("open", "");
+        else detail.removeAttribute("open");
     }
 
     /**
      * Cleans up the event listener (useful for SPA cleanup).
      */
     destroy(): void {
-        document.removeEventListener("click", this.boundHandler)
+        document.removeEventListener("click", this.boundHandler);
     }
 }
 

@@ -9,14 +9,14 @@
  * Configuration options for ActiveLinkHighlighter
  */
 export interface ActiveLinkHighlighterOptions {
-    /** CSS class to apply to active links */
-    activeClass?: string
-    /** Selector for links to check (default: all 'a' elements) */
-    linkSelector?: string
-    /** Whether to include query parameters in URL matching */
-    includeQuery?: boolean
-    /** Selectors for elements to skip (e.g., ribbon titles) */
-    skipSelectors?: string[]
+  /** CSS class to apply to active links */
+  activeClass?: string;
+  /** Selector for links to check (default: all 'a' elements) */
+  linkSelector?: string;
+  /** Whether to include query parameters in URL matching */
+  includeQuery?: boolean;
+  /** Selectors for elements to skip (e.g., ribbon titles) */
+  skipSelectors?: string[];
 }
 
 /**
@@ -45,37 +45,37 @@ export interface ActiveLinkHighlighterOptions {
  * ```
  */
 export class ActiveLinkHighlighter {
-    /** CSS class applied to active links */
-    private activeClass: string
+  /** CSS class applied to active links */
+  private activeClass: string;
 
-    /**
-     * Creates a new ActiveLinkHighlighter instance.
-     *
-     * @param activeClass - CSS class to apply to matching links (default: "active")
-     */
-    constructor(activeClass: string = "active") {
-        this.activeClass = activeClass
-        this.highlightAllLinks()
-    }
+  /**
+   * Creates a new ActiveLinkHighlighter instance.
+   *
+   * @param activeClass - CSS class to apply to matching links (default: "active")
+   */
+  constructor(activeClass: string = "active") {
+    this.activeClass = activeClass;
+    this.highlightAllLinks();
+  }
 
-    /**
-     * Normalizes a URL by extracting and cleaning the pathname and search.
-     *
-     * @param url - The URL to normalize
-     * @returns The normalized path including query parameters
-     */
-    private normalizeUrl(url: string): string {
+  /**
+   * Normalizes a URL by extracting and cleaning the pathname and search.
+   *
+   * @param url - The URL to normalize
+   * @returns The normalized path including query parameters
+   */
+  private normalizeUrl(url: string): string {
     const a = document.createElement("a");
     a.href = url;
     const pathname = a.pathname.replace(/\/+$/, ""); // strip trailing slash
     return pathname + a.search; // include query parameters
   }
 
-    /**
-     * Highlights all links on the page that match the current URL.
-     * Skips links inside ribbon titles and links without href attributes.
-     */
-    private highlightAllLinks(): void {
+  /**
+   * Highlights all links on the page that match the current URL.
+   * Skips links inside ribbon titles and links without href attributes.
+   */
+  private highlightAllLinks(): void {
     const currentPath = this.normalizeUrl(window.location.href);
     const links = document.querySelectorAll<HTMLAnchorElement>("a");
 

@@ -10,25 +10,25 @@
  */
 export interface CollapsibleSectionOptions {
     /** Initially expanded state */
-    expanded?: boolean
+    expanded?: boolean;
     /** Animation duration in milliseconds */
-    animationDuration?: number
+    animationDuration?: number;
     /** CSS class for collapsed state */
-    collapsedClass?: string
+    collapsedClass?: string;
     /** CSS class for expanded state */
-    expandedClass?: string
+    expandedClass?: string;
     /** Persist state in localStorage */
-    persist?: boolean
+    persist?: boolean;
     /** Storage key for persistence */
-    storageKey?: string
+    storageKey?: string;
     /** Callback when section expands */
-    onExpand?: (element: HTMLElement) => void
+    onExpand?: (element: HTMLElement) => void;
     /** Callback when section collapses */
-    onCollapse?: (element: HTMLElement) => void
+    onCollapse?: (element: HTMLElement) => void;
     /** Selector for the trigger element */
-    triggerSelector?: string
+    triggerSelector?: string;
     /** Selector for the content element */
-    contentSelector?: string
+    contentSelector?: string;
 }
 
 /**
@@ -58,19 +58,20 @@ export interface CollapsibleSectionOptions {
  * ```
  */
 export class CollapsibleSectionManager {
-    private element: HTMLElement | null
-    private trigger: HTMLElement | null = null
-    private content: HTMLElement | null = null
-    private options: Required<CollapsibleSectionOptions>
-    private isExpanded: boolean = false
+    private element: HTMLElement | null;
+    private trigger: HTMLElement | null = null;
+    private content: HTMLElement | null = null;
+    private options: Required<CollapsibleSectionOptions>;
+    private isExpanded: boolean = false;
 
     constructor(
         selectorOrElement: string | HTMLElement,
-        options: CollapsibleSectionOptions = {}
+        options: CollapsibleSectionOptions = {},
     ) {
-        this.element = typeof selectorOrElement === "string"
-            ? document.querySelector<HTMLElement>(selectorOrElement)
-            : selectorOrElement
+        this.element =
+            typeof selectorOrElement === "string"
+                ? document.querySelector<HTMLElement>(selectorOrElement)
+                : selectorOrElement;
 
         this.options = {
             expanded: options.expanded ?? false,
@@ -78,19 +79,24 @@ export class CollapsibleSectionManager {
             collapsedClass: options.collapsedClass ?? "collapsible--collapsed",
             expandedClass: options.expandedClass ?? "collapsible--expanded",
             persist: options.persist ?? false,
-            storageKey: options.storageKey ?? this.element?.id ?? "collapsible-state",
+            storageKey:
+                options.storageKey ?? this.element?.id ?? "collapsible-state",
             onExpand: options.onExpand ?? (() => {}),
             onCollapse: options.onCollapse ?? (() => {}),
-            triggerSelector: options.triggerSelector ?? "[data-ss-collapsible-trigger]",
-            contentSelector: options.contentSelector ?? "[data-ss-collapsible-content]"
-        }
+            triggerSelector:
+                options.triggerSelector ?? "[data-ss-collapsible-trigger]",
+            contentSelector:
+                options.contentSelector ?? "[data-ss-collapsible-content]",
+        };
 
         if (!this.element) {
-            console.warn("[Stylescape] CollapsibleSectionManager element not found")
-            return
+            console.warn(
+                "[Stylescape] CollapsibleSectionManager element not found",
+            );
+            return;
         }
 
-        this.init()
+        this.init();
     }
 
     // ========================================================================
@@ -101,7 +107,7 @@ export class CollapsibleSectionManager {
      * Get expanded state
      */
     public get expanded(): boolean {
-        return this.isExpanded
+        return this.isExpanded;
     }
 
     /**
@@ -109,9 +115,9 @@ export class CollapsibleSectionManager {
      */
     public set expanded(value: boolean) {
         if (value) {
-            this.expand()
+            this.expand();
         } else {
-            this.collapse()
+            this.collapse();
         }
     }
 
@@ -124,9 +130,9 @@ export class CollapsibleSectionManager {
      */
     public toggle(): void {
         if (this.isExpanded) {
-            this.collapse()
+            this.collapse();
         } else {
-            this.expand()
+            this.expand();
         }
     }
 
@@ -134,95 +140,95 @@ export class CollapsibleSectionManager {
      * Expand the section
      */
     public expand(): void {
-        if (!this.element || !this.content || this.isExpanded) return
+        if (!this.element || !this.content || this.isExpanded) return;
 
-        this.isExpanded = true
+        this.isExpanded = true;
 
         // Update classes
-        this.element.classList.remove(this.options.collapsedClass)
-        this.element.classList.add(this.options.expandedClass)
+        this.element.classList.remove(this.options.collapsedClass);
+        this.element.classList.add(this.options.expandedClass);
 
         // Update ARIA
-        this.trigger?.setAttribute("aria-expanded", "true")
-        this.content.hidden = false
+        this.trigger?.setAttribute("aria-expanded", "true");
+        this.content.hidden = false;
 
         // Animate
-        const height = this.content.scrollHeight
-        this.content.style.height = "0px"
-        this.content.style.overflow = "hidden"
+        const height = this.content.scrollHeight;
+        this.content.style.height = "0px";
+        this.content.style.overflow = "hidden";
 
         requestAnimationFrame(() => {
-            if (!this.content) return
-            this.content.style.transition = `height ${this.options.animationDuration}ms ease`
-            this.content.style.height = `${height}px`
+            if (!this.content) return;
+            this.content.style.transition = `height ${this.options.animationDuration}ms ease`;
+            this.content.style.height = `${height}px`;
 
             setTimeout(() => {
-                if (!this.content) return
-                this.content.style.height = ""
-                this.content.style.overflow = ""
-                this.content.style.transition = ""
-            }, this.options.animationDuration)
-        })
+                if (!this.content) return;
+                this.content.style.height = "";
+                this.content.style.overflow = "";
+                this.content.style.transition = "";
+            }, this.options.animationDuration);
+        });
 
         // Persist state
         if (this.options.persist) {
-            localStorage.setItem(this.options.storageKey, "true")
+            localStorage.setItem(this.options.storageKey, "true");
         }
 
-        this.options.onExpand(this.element)
+        this.options.onExpand(this.element);
     }
 
     /**
      * Collapse the section
      */
     public collapse(): void {
-        if (!this.element || !this.content || !this.isExpanded) return
+        if (!this.element || !this.content || !this.isExpanded) return;
 
-        this.isExpanded = false
+        this.isExpanded = false;
 
         // Update classes
-        this.element.classList.add(this.options.collapsedClass)
-        this.element.classList.remove(this.options.expandedClass)
+        this.element.classList.add(this.options.collapsedClass);
+        this.element.classList.remove(this.options.expandedClass);
 
         // Update ARIA
-        this.trigger?.setAttribute("aria-expanded", "false")
+        this.trigger?.setAttribute("aria-expanded", "false");
 
         // Animate
-        const height = this.content.scrollHeight
-        this.content.style.height = `${height}px`
-        this.content.style.overflow = "hidden"
+        const height = this.content.scrollHeight;
+        this.content.style.height = `${height}px`;
+        this.content.style.overflow = "hidden";
 
         requestAnimationFrame(() => {
-            if (!this.content) return
-            this.content.style.transition = `height ${this.options.animationDuration}ms ease`
-            this.content.style.height = "0px"
+            if (!this.content) return;
+            this.content.style.transition = `height ${this.options.animationDuration}ms ease`;
+            this.content.style.height = "0px";
 
             setTimeout(() => {
-                if (!this.content) return
-                this.content.hidden = true
-                this.content.style.height = ""
-                this.content.style.overflow = ""
-                this.content.style.transition = ""
-            }, this.options.animationDuration)
-        })
+                if (!this.content) return;
+                this.content.hidden = true;
+                this.content.style.height = "";
+                this.content.style.overflow = "";
+                this.content.style.transition = "";
+            }, this.options.animationDuration);
+        });
 
         // Persist state
         if (this.options.persist) {
-            localStorage.setItem(this.options.storageKey, "false")
+            localStorage.setItem(this.options.storageKey, "false");
         }
 
-        this.options.onCollapse(this.element)
+        this.options.onCollapse(this.element);
     }
 
     /**
      * Destroy the manager
      */
     public destroy(): void {
-        this.trigger?.removeEventListener("click", this.handleClick)
-        this.trigger?.removeEventListener("keydown", this.handleKeydown)
-        this.element = null
-        this.trigger = null
-        this.content = null
+        this.trigger?.removeEventListener("click", this.handleClick);
+        this.trigger?.removeEventListener("keydown", this.handleKeydown);
+        this.element = null;
+        this.trigger = null;
+        this.content = null;
     }
 
     // ========================================================================
@@ -233,19 +239,23 @@ export class CollapsibleSectionManager {
      * Initialize all collapsible sections with data-ss="collapsible"
      */
     public static initCollapsibles(): CollapsibleSectionManager[] {
-        const managers: CollapsibleSectionManager[] = []
+        const managers: CollapsibleSectionManager[] = [];
 
-        document.querySelectorAll<HTMLElement>('[data-ss="collapsible"]').forEach((el) => {
-            const expanded = el.dataset.ssCollapsibleExpanded === "true"
-            const persist = el.dataset.ssCollapsiblePersist === "true"
+        document
+            .querySelectorAll<HTMLElement>('[data-ss="collapsible"]')
+            .forEach((el) => {
+                const expanded = el.dataset.ssCollapsibleExpanded === "true";
+                const persist = el.dataset.ssCollapsiblePersist === "true";
 
-            managers.push(new CollapsibleSectionManager(el, {
-                expanded,
-                persist
-            }))
-        })
+                managers.push(
+                    new CollapsibleSectionManager(el, {
+                        expanded,
+                        persist,
+                    }),
+                );
+            });
 
-        return managers
+        return managers;
     }
 
     // ========================================================================
@@ -253,63 +263,76 @@ export class CollapsibleSectionManager {
     // ========================================================================
 
     private init(): void {
-        if (!this.element) return
+        if (!this.element) return;
 
         // Find trigger and content
-        this.trigger = this.element.querySelector<HTMLElement>(this.options.triggerSelector)
-            || this.element.querySelector<HTMLElement>(".collapsible-trigger")
-            || this.element
+        this.trigger =
+            this.element.querySelector<HTMLElement>(
+                this.options.triggerSelector,
+            ) ||
+            this.element.querySelector<HTMLElement>(".collapsible-trigger") ||
+            this.element;
 
-        this.content = this.element.querySelector<HTMLElement>(this.options.contentSelector)
-            || this.element.querySelector<HTMLElement>(".collapsible-content")
+        this.content =
+            this.element.querySelector<HTMLElement>(
+                this.options.contentSelector,
+            ) ||
+            this.element.querySelector<HTMLElement>(".collapsible-content");
 
         if (!this.content) {
             // If no specific content, use the element itself
-            this.content = this.element
+            this.content = this.element;
         }
 
         // Setup ARIA
-        const contentId = this.content.id || `collapsible-content-${Date.now()}`
-        this.content.id = contentId
-        this.trigger.setAttribute("aria-controls", contentId)
+        const contentId =
+            this.content.id || `collapsible-content-${Date.now()}`;
+        this.content.id = contentId;
+        this.trigger.setAttribute("aria-controls", contentId);
 
         // Make trigger focusable
-        if (!this.trigger.hasAttribute("tabindex") && this.trigger.tagName !== "BUTTON") {
-            this.trigger.setAttribute("tabindex", "0")
+        if (
+            !this.trigger.hasAttribute("tabindex") &&
+            this.trigger.tagName !== "BUTTON"
+        ) {
+            this.trigger.setAttribute("tabindex", "0");
         }
 
         // Load persisted state
-        let initialExpanded = this.options.expanded
+        let initialExpanded = this.options.expanded;
         if (this.options.persist) {
-            const stored = localStorage.getItem(this.options.storageKey)
+            const stored = localStorage.getItem(this.options.storageKey);
             if (stored !== null) {
-                initialExpanded = stored === "true"
+                initialExpanded = stored === "true";
             }
         }
 
         // Set initial state
-        this.isExpanded = !initialExpanded // Toggle will flip this
-        this.toggle()
+        this.isExpanded = !initialExpanded; // Toggle will flip this
+        this.toggle();
 
         // Add event listeners
-        this.trigger.addEventListener("click", this.handleClick)
-        this.trigger.addEventListener("keydown", this.handleKeydown)
+        this.trigger.addEventListener("click", this.handleClick);
+        this.trigger.addEventListener("keydown", this.handleKeydown);
     }
 
     private handleClick = (event: Event): void => {
         // Don't toggle if clicking inside content
-        if (this.content?.contains(event.target as Node) && event.target !== this.trigger) {
-            return
+        if (
+            this.content?.contains(event.target as Node) &&
+            event.target !== this.trigger
+        ) {
+            return;
         }
-        this.toggle()
-    }
+        this.toggle();
+    };
 
     private handleKeydown = (event: KeyboardEvent): void => {
         if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault()
-            this.toggle()
+            event.preventDefault();
+            this.toggle();
         }
-    }
+    };
 }
 
-export default CollapsibleSectionManager
+export default CollapsibleSectionManager;

@@ -13,15 +13,15 @@ import { LocalStorageManager } from "../storage/LocalStorageManager.js";
  */
 export interface AsideHandlerOptions {
     /** CSS class for visible state */
-    visibleClass?: string
+    visibleClass?: string;
     /** Initial visibility state */
-    initialState?: "show" | "hide"
+    initialState?: "show" | "hide";
     /** Enable localStorage persistence */
-    persist?: boolean
+    persist?: boolean;
     /** Callback when menu opens */
-    onOpen?: (menu: HTMLElement) => void
+    onOpen?: (menu: HTMLElement) => void;
     /** Callback when menu closes */
-    onClose?: (menu: HTMLElement) => void
+    onClose?: (menu: HTMLElement) => void;
 }
 
 /**
@@ -48,37 +48,37 @@ export interface AsideHandlerOptions {
  */
 export class AsideHandler {
     /** CSS class applied when menu is visible */
-    private static readonly VISIBLE_CLASS = "active"
+    private static readonly VISIBLE_CLASS = "active";
 
     /** LocalStorage key suffix for visibility state */
-    private static readonly VISIBLE_SUFFIX = "_visibility"
+    private static readonly VISIBLE_SUFFIX = "_visibility";
 
     /** State value for visible menu */
-    private static readonly VISIBLE_STATE = "show"
+    private static readonly VISIBLE_STATE = "show";
 
     /** State value for hidden menu */
-    private static readonly HIDDEN_STATE = "hide"
+    private static readonly HIDDEN_STATE = "hide";
 
     /** LocalStorage manager instance */
-    localStorageManager: LocalStorageManager
+    localStorageManager: LocalStorageManager;
 
     /** State manager instance */
-    stateManager: StateManager
+    stateManager: StateManager;
 
     /** ID of the aside menu element */
-    menuId: string
+    menuId: string;
 
     /** ID of the toggle switch element */
-    switchId: string
+    switchId: string;
 
     /** Reference to the aside menu element */
-    asideMenu: HTMLElement | null = null
+    asideMenu: HTMLElement | null = null;
 
     /** Reference to the toggle switch element */
-    asideSwitch: HTMLElement | null = null
+    asideSwitch: HTMLElement | null = null;
 
     /** Current visibility state */
-    asideMenuActive: string = AsideHandler.HIDDEN_STATE
+    asideMenuActive: string = AsideHandler.HIDDEN_STATE;
 
     /**
      * Creates a new AsideHandler instance.
@@ -87,22 +87,22 @@ export class AsideHandler {
      * @param switchId - ID of the toggle button element
      */
     constructor(menuId: string, switchId: string) {
-        this.localStorageManager = LocalStorageManager.getInstance()
-        this.stateManager = new StateManager()
-        this.menuId = menuId
-        this.switchId = switchId
+        this.localStorageManager = LocalStorageManager.getInstance();
+        this.stateManager = new StateManager();
+        this.menuId = menuId;
+        this.switchId = switchId;
 
-        this.assertMenu()
-        this.setupToggleListener()
-        this.updateStateMenu()
+        this.assertMenu();
+        this.setupToggleListener();
+        this.updateStateMenu();
     }
 
     /**
      * Queries and caches DOM references for menu and switch elements.
      */
     private assertMenu(): void {
-        this.asideMenu = document.getElementById(this.menuId)
-        this.asideSwitch = document.getElementById(this.switchId)
+        this.asideMenu = document.getElementById(this.menuId);
+        this.asideSwitch = document.getElementById(this.switchId);
     }
 
     /**
@@ -110,7 +110,9 @@ export class AsideHandler {
      */
     private setupToggleListener(): void {
         if (this.asideSwitch) {
-            this.asideSwitch.addEventListener("click", () => this.toggleMenu())
+            this.asideSwitch.addEventListener("click", () =>
+                this.toggleMenu(),
+            );
         }
     }
 
@@ -118,11 +120,11 @@ export class AsideHandler {
      * Toggles the menu between visible and hidden states.
      */
     public toggleMenu(): void {
-        this.assertMenu()
+        this.assertMenu();
         if (this.asideMenu?.classList.contains(AsideHandler.VISIBLE_CLASS)) {
-            this.hideMenu()
+            this.hideMenu();
         } else {
-            this.showMenu()
+            this.showMenu();
         }
     }
 
@@ -130,24 +132,24 @@ export class AsideHandler {
      * Shows the menu and persists the state to localStorage.
      */
     public showMenu(): void {
-        this.assertMenu()
+        this.assertMenu();
         this.localStorageManager.setValue(
             this.menuId + AsideHandler.VISIBLE_SUFFIX,
             AsideHandler.VISIBLE_STATE,
-        )
-        this.updateStateMenu()
+        );
+        this.updateStateMenu();
     }
 
     /**
      * Hides the menu and persists the state to localStorage.
      */
     public hideMenu(): void {
-        this.assertMenu()
+        this.assertMenu();
         this.localStorageManager.setValue(
             this.menuId + AsideHandler.VISIBLE_SUFFIX,
             AsideHandler.HIDDEN_STATE,
-        )
-        this.updateStateMenu()
+        );
+        this.updateStateMenu();
     }
 
     /**
@@ -155,19 +157,19 @@ export class AsideHandler {
      * Applies or removes the visible class on both menu and switch.
      */
     public updateStateMenu(): void {
-        this.assertMenu()
-        if (!this.asideMenu) return
+        this.assertMenu();
+        if (!this.asideMenu) return;
 
         this.asideMenuActive =
             this.localStorageManager.getValue(
                 this.menuId + AsideHandler.VISIBLE_SUFFIX,
-            ) || this.asideMenuActive
+            ) || this.asideMenuActive;
 
-        const isVisible = this.asideMenuActive === AsideHandler.VISIBLE_STATE
-        this.asideMenu.classList.toggle(AsideHandler.VISIBLE_CLASS, isVisible)
+        const isVisible = this.asideMenuActive === AsideHandler.VISIBLE_STATE;
+        this.asideMenu.classList.toggle(AsideHandler.VISIBLE_CLASS, isVisible);
         this.asideSwitch?.classList.toggle(
             AsideHandler.VISIBLE_CLASS,
             isVisible,
-        )
+        );
     }
 }

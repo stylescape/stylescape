@@ -10,23 +10,23 @@
  */
 export interface FilterManagerOptions {
     /** Selector for items to filter */
-    itemSelector?: string
+    itemSelector?: string;
     /** Attribute or property to search in (default: textContent) */
-    searchIn?: string | string[]
+    searchIn?: string | string[];
     /** Debounce delay in ms */
-    debounce?: number
+    debounce?: number;
     /** Whether search is case-sensitive */
-    caseSensitive?: boolean
+    caseSensitive?: boolean;
     /** Minimum characters before filtering */
-    minChars?: number
+    minChars?: number;
     /** CSS class for hidden items */
-    hiddenClass?: string
+    hiddenClass?: string;
     /** CSS class for matching items */
-    matchClass?: string
+    matchClass?: string;
     /** Callback when filter is applied */
-    onFilter?: (matches: HTMLElement[], query: string) => void
+    onFilter?: (matches: HTMLElement[], query: string) => void;
     /** Callback when no results found */
-    onEmpty?: (query: string) => void
+    onEmpty?: (query: string) => void;
 }
 
 /**
@@ -54,18 +54,21 @@ export interface FilterManagerOptions {
  * ```
  */
 export class FilterManager {
-    private input: HTMLInputElement | null
-    private items: HTMLElement[]
-    private options: Required<FilterManagerOptions>
-    private debounceTimer: number | null = null
+    private input: HTMLInputElement | null;
+    private items: HTMLElement[];
+    private options: Required<FilterManagerOptions>;
+    private debounceTimer: number | null = null;
 
     constructor(
         inputSelectorOrElement: string | HTMLInputElement,
-        options: FilterManagerOptions = {}
+        options: FilterManagerOptions = {},
     ) {
-        this.input = typeof inputSelectorOrElement === "string"
-            ? document.querySelector<HTMLInputElement>(inputSelectorOrElement)
-            : inputSelectorOrElement
+        this.input =
+            typeof inputSelectorOrElement === "string"
+                ? document.querySelector<HTMLInputElement>(
+                      inputSelectorOrElement,
+                  )
+                : inputSelectorOrElement;
 
         this.options = {
             itemSelector: options.itemSelector ?? ".filter-item",
@@ -76,17 +79,17 @@ export class FilterManager {
             hiddenClass: options.hiddenClass ?? "filter--hidden",
             matchClass: options.matchClass ?? "filter--match",
             onFilter: options.onFilter ?? (() => {}),
-            onEmpty: options.onEmpty ?? (() => {})
-        }
+            onEmpty: options.onEmpty ?? (() => {}),
+        };
 
-        this.items = []
+        this.items = [];
 
         if (!this.input) {
-            console.warn("[Stylescape] FilterManager input not found")
-            return
+            console.warn("[Stylescape] FilterManager input not found");
+            return;
         }
 
-        this.init()
+        this.init();
     }
 
     // ========================================================================
@@ -97,8 +100,8 @@ export class FilterManager {
      * Apply filter with current input value
      */
     public filter(query?: string): HTMLElement[] {
-        const searchQuery = query ?? this.input?.value ?? ""
-        return this.applyFilter(searchQuery)
+        const searchQuery = query ?? this.input?.value ?? "";
+        return this.applyFilter(searchQuery);
     }
 
     /**
@@ -106,19 +109,19 @@ export class FilterManager {
      */
     public clear(): void {
         if (this.input) {
-            this.input.value = ""
+            this.input.value = "";
         }
-        this.showAll()
+        this.showAll();
     }
 
     /**
      * Show all items
      */
     public showAll(): void {
-        this.items.forEach(item => {
-            item.classList.remove(this.options.hiddenClass)
-            item.classList.remove(this.options.matchClass)
-        })
+        this.items.forEach((item) => {
+            item.classList.remove(this.options.hiddenClass);
+            item.classList.remove(this.options.matchClass);
+        });
     }
 
     /**
@@ -126,24 +129,26 @@ export class FilterManager {
      */
     public refresh(): void {
         this.items = Array.from(
-            document.querySelectorAll<HTMLElement>(this.options.itemSelector)
-        )
+            document.querySelectorAll<HTMLElement>(this.options.itemSelector),
+        );
     }
 
     /**
      * Get current matches
      */
     public getMatches(): HTMLElement[] {
-        return this.items.filter(item => !item.classList.contains(this.options.hiddenClass))
+        return this.items.filter(
+            (item) => !item.classList.contains(this.options.hiddenClass),
+        );
     }
 
     /**
      * Destroy the filter manager
      */
     public destroy(): void {
-        this.input?.removeEventListener("input", this.handleInput)
-        this.input = null
-        this.items = []
+        this.input?.removeEventListener("input", this.handleInput);
+        this.input = null;
+        this.items = [];
     }
 
     // ========================================================================
@@ -151,76 +156,77 @@ export class FilterManager {
     // ========================================================================
 
     private init(): void {
-        this.refresh()
-        this.input?.addEventListener("input", this.handleInput)
+        this.refresh();
+        this.input?.addEventListener("input", this.handleInput);
 
         // Apply initial filter if input has value
         if (this.input?.value) {
-            this.filter()
+            this.filter();
         }
     }
 
     private handleInput = (): void => {
         if (this.debounceTimer) {
-            clearTimeout(this.debounceTimer)
+            clearTimeout(this.debounceTimer);
         }
 
         this.debounceTimer = window.setTimeout(() => {
-            this.filter()
-        }, this.options.debounce)
-    }
+            this.filter();
+        }, this.options.debounce);
+    };
 
     private applyFilter(query: string): HTMLElement[] {
         // Check minimum characters
         if (query.length < this.options.minChars) {
-            this.showAll()
-            return this.items
+            this.showAll();
+            return this.items;
         }
 
         const normalizedQuery = this.options.caseSensitive
             ? query
-            : query.toLowerCase()
+            : query.toLowerCase();
 
-        const matches: HTMLElement[] = []
+        const matches: HTMLElement[] = [];
 
-        this.items.forEach(item => {
-            const content = this.getSearchContent(item)
+        this.items.forEach((item) => {
+            const content = this.getSearchContent(item);
             const normalizedContent = this.options.caseSensitive
                 ? content
-                : content.toLowerCase()
+                : content.toLowerCase();
 
-            const isMatch = normalizedContent.includes(normalizedQuery)
+            const isMatch = normalizedContent.includes(normalizedQuery);
 
-            item.classList.toggle(this.options.hiddenClass, !isMatch)
-            item.classList.toggle(this.options.matchClass, isMatch)
+            item.classList.toggle(this.options.hiddenClass, !isMatch);
+            item.classList.toggle(this.options.matchClass, isMatch);
 
             if (isMatch) {
-                matches.push(item)
+                matches.push(item);
             }
-        })
+        });
 
-        this.options.onFilter(matches, query)
+        this.options.onFilter(matches, query);
 
         if (matches.length === 0 && query.length > 0) {
-            this.options.onEmpty(query)
+            this.options.onEmpty(query);
         }
 
-        return matches
+        return matches;
     }
 
     private getSearchContent(item: HTMLElement): string {
         const searchIn = Array.isArray(this.options.searchIn)
             ? this.options.searchIn
-            : [this.options.searchIn]
+            : [this.options.searchIn];
 
-        return searchIn.map(attr => {
-            if (attr === "textContent") {
-                return item.textContent || ""
-            }
-            return item.getAttribute(attr) || item.dataset[attr] || ""
-        }).join(" ")
+        return searchIn
+            .map((attr) => {
+                if (attr === "textContent") {
+                    return item.textContent || "";
+                }
+                return item.getAttribute(attr) || item.dataset[attr] || "";
+            })
+            .join(" ");
     }
 }
 
-export default FilterManager
-
+export default FilterManager;

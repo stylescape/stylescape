@@ -10,15 +10,15 @@
  */
 export interface SmoothScrollOptions {
     /** Target element or selector */
-    target?: string | HTMLElement
+    target?: string | HTMLElement;
     /** Offset from top in pixels */
-    offset?: number
+    offset?: number;
     /** Duration in milliseconds */
-    duration?: number
+    duration?: number;
     /** Easing function name */
-    easing?: "linear" | "easeInOut" | "easeIn" | "easeOut"
+    easing?: "linear" | "easeInOut" | "easeIn" | "easeOut";
     /** Callback on scroll complete */
-    onComplete?: () => void
+    onComplete?: () => void;
 }
 
 /**
@@ -26,15 +26,15 @@ export interface SmoothScrollOptions {
  */
 export interface ScrollToTopOptions {
     /** Selector or element for the button */
-    button?: string | HTMLElement
+    button?: string | HTMLElement;
     /** Show button after scrolling this many pixels */
-    threshold?: number
+    threshold?: number;
     /** Smooth scroll behavior */
-    smooth?: boolean
+    smooth?: boolean;
     /** Duration for scroll animation */
-    duration?: number
+    duration?: number;
     /** CSS class when button is visible */
-    visibleClass?: string
+    visibleClass?: string;
 }
 
 /**
@@ -44,8 +44,9 @@ const easingFunctions = {
     linear: (t: number): number => t,
     easeIn: (t: number): number => t * t,
     easeOut: (t: number): number => t * (2 - t),
-    easeInOut: (t: number): number => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
-}
+    easeInOut: (t: number): number =>
+        t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
+};
 
 /**
  * Smooth scroll to a target element or position.
@@ -70,47 +71,54 @@ const easingFunctions = {
  */
 export function scrollTo(
     target: string | HTMLElement | number,
-    options: SmoothScrollOptions = {}
+    options: SmoothScrollOptions = {},
 ): void {
-    const { offset = 0, duration = 500, easing = "easeInOut", onComplete } = options
+    const {
+        offset = 0,
+        duration = 500,
+        easing = "easeInOut",
+        onComplete,
+    } = options;
 
-    let targetPosition: number
+    let targetPosition: number;
 
     if (typeof target === "number") {
-        targetPosition = target
+        targetPosition = target;
     } else {
-        const element = typeof target === "string"
-            ? document.querySelector<HTMLElement>(target)
-            : target
+        const element =
+            typeof target === "string"
+                ? document.querySelector<HTMLElement>(target)
+                : target;
 
         if (!element) {
-            console.warn("[Stylescape] scrollTo target not found:", target)
-            return
+            console.warn("[Stylescape] scrollTo target not found:", target);
+            return;
         }
 
-        targetPosition = element.getBoundingClientRect().top + window.pageYOffset
+        targetPosition =
+            element.getBoundingClientRect().top + window.pageYOffset;
     }
 
-    const startPosition = window.pageYOffset
-    const distance = targetPosition + offset - startPosition
-    const easingFn = easingFunctions[easing]
-    let startTime: number | null = null
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition + offset - startPosition;
+    const easingFn = easingFunctions[easing];
+    let startTime: number | null = null;
 
     function animation(currentTime: number): void {
-        if (startTime === null) startTime = currentTime
-        const elapsed = currentTime - startTime
-        const progress = Math.min(elapsed / duration, 1)
+        if (startTime === null) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
 
-        window.scrollTo(0, startPosition + distance * easingFn(progress))
+        window.scrollTo(0, startPosition + distance * easingFn(progress));
 
         if (elapsed < duration) {
-            requestAnimationFrame(animation)
+            requestAnimationFrame(animation);
         } else {
-            onComplete?.()
+            onComplete?.();
         }
     }
 
-    requestAnimationFrame(animation)
+    requestAnimationFrame(animation);
 }
 
 /**
@@ -118,34 +126,38 @@ export function scrollTo(
  */
 export function scrollToPosition(
     y: number,
-    options: { smooth?: boolean; duration?: number } = {}
+    options: { smooth?: boolean; duration?: number } = {},
 ): void {
     if (options.smooth && options.duration) {
-        scrollTo(y, { duration: options.duration })
+        scrollTo(y, { duration: options.duration });
     } else {
         window.scrollTo({
             top: y,
-            behavior: options.smooth ? "smooth" : "auto"
-        })
+            behavior: options.smooth ? "smooth" : "auto",
+        });
     }
 }
 
 /**
  * Scroll to top of page
  */
-export function scrollToTop(options: { smooth?: boolean; duration?: number } = {}): void {
-    scrollToPosition(0, options)
+export function scrollToTop(
+    options: { smooth?: boolean; duration?: number } = {},
+): void {
+    scrollToPosition(0, options);
 }
 
 /**
  * Scroll to bottom of page
  */
-export function scrollToBottom(options: { smooth?: boolean; duration?: number } = {}): void {
+export function scrollToBottom(
+    options: { smooth?: boolean; duration?: number } = {},
+): void {
     const documentHeight = Math.max(
         document.body.scrollHeight,
-        document.documentElement.scrollHeight
-    )
-    scrollToPosition(documentHeight, options)
+        document.documentElement.scrollHeight,
+    );
+    scrollToPosition(documentHeight, options);
 }
 
 /**
@@ -170,148 +182,164 @@ export function scrollToBottom(options: { smooth?: boolean; duration?: number } 
  * ```
  */
 export class ScrollToTopButton {
-    private button: HTMLElement | null
-    private options: Required<ScrollToTopOptions>
-    private ticking: boolean = false
+    private button: HTMLElement | null;
+    private options: Required<ScrollToTopOptions>;
+    private ticking: boolean = false;
 
     constructor(options: ScrollToTopOptions = {}) {
-        this.button = typeof options.button === "string"
-            ? document.querySelector<HTMLElement>(options.button)
-            : options.button ?? null
+        this.button =
+            typeof options.button === "string"
+                ? document.querySelector<HTMLElement>(options.button)
+                : (options.button ?? null);
 
         this.options = {
             button: this.button ?? document.createElement("button"),
             threshold: options.threshold ?? 300,
             smooth: options.smooth ?? true,
             duration: options.duration ?? 500,
-            visibleClass: options.visibleClass ?? "scroll-to-top--visible"
-        }
+            visibleClass: options.visibleClass ?? "scroll-to-top--visible",
+        };
 
         if (!this.button) {
-            console.warn("[Stylescape] ScrollToTopButton: button not found")
-            return
+            console.warn("[Stylescape] ScrollToTopButton: button not found");
+            return;
         }
 
-        this.init()
+        this.init();
     }
 
     /**
      * Manually show the button
      */
     public show(): void {
-        this.button?.classList.add(this.options.visibleClass)
-        this.button?.setAttribute("aria-hidden", "false")
+        this.button?.classList.add(this.options.visibleClass);
+        this.button?.setAttribute("aria-hidden", "false");
     }
 
     /**
      * Manually hide the button
      */
     public hide(): void {
-        this.button?.classList.remove(this.options.visibleClass)
-        this.button?.setAttribute("aria-hidden", "true")
+        this.button?.classList.remove(this.options.visibleClass);
+        this.button?.setAttribute("aria-hidden", "true");
     }
 
     /**
      * Destroy the button manager
      */
     public destroy(): void {
-        window.removeEventListener("scroll", this.handleScroll)
-        this.button?.removeEventListener("click", this.handleClick)
-        this.button = null
+        window.removeEventListener("scroll", this.handleScroll);
+        this.button?.removeEventListener("click", this.handleClick);
+        this.button = null;
     }
 
     /**
      * Initialize scroll-to-top buttons with data-ss
      */
     public static init(): ScrollToTopButton[] {
-        const buttons: ScrollToTopButton[] = []
+        const buttons: ScrollToTopButton[] = [];
 
-        document.querySelectorAll<HTMLElement>('[data-ss="scroll-to-top"]').forEach((el) => {
-            const threshold = el.dataset.ssScrollThreshold
+        document
+            .querySelectorAll<HTMLElement>('[data-ss="scroll-to-top"]')
+            .forEach((el) => {
+                const threshold = el.dataset.ssScrollThreshold;
 
-            buttons.push(new ScrollToTopButton({
-                button: el,
-                threshold: threshold ? parseInt(threshold, 10) : undefined
-            }))
-        })
+                buttons.push(
+                    new ScrollToTopButton({
+                        button: el,
+                        threshold: threshold
+                            ? parseInt(threshold, 10)
+                            : undefined,
+                    }),
+                );
+            });
 
-        return buttons
+        return buttons;
     }
 
     private init(): void {
-        if (!this.button) return
+        if (!this.button) return;
 
         // Setup ARIA
-        this.button.setAttribute("aria-label", this.button.getAttribute("aria-label") || "Scroll to top")
-        this.button.setAttribute("aria-hidden", "true")
+        this.button.setAttribute(
+            "aria-label",
+            this.button.getAttribute("aria-label") || "Scroll to top",
+        );
+        this.button.setAttribute("aria-hidden", "true");
 
         // Initial state
-        this.checkScroll()
+        this.checkScroll();
 
         // Event listeners
-        window.addEventListener("scroll", this.handleScroll, { passive: true })
-        this.button.addEventListener("click", this.handleClick)
+        window.addEventListener("scroll", this.handleScroll, {
+            passive: true,
+        });
+        this.button.addEventListener("click", this.handleClick);
     }
 
     private handleScroll = (): void => {
         if (!this.ticking) {
             requestAnimationFrame(() => {
-                this.checkScroll()
-                this.ticking = false
-            })
-            this.ticking = true
+                this.checkScroll();
+                this.ticking = false;
+            });
+            this.ticking = true;
         }
-    }
+    };
 
     private checkScroll(): void {
-        const scrollY = window.pageYOffset || document.documentElement.scrollTop
+        const scrollY =
+            window.pageYOffset || document.documentElement.scrollTop;
 
         if (scrollY > this.options.threshold) {
-            this.show()
+            this.show();
         } else {
-            this.hide()
+            this.hide();
         }
     }
 
     private handleClick = (event: Event): void => {
-        event.preventDefault()
+        event.preventDefault();
 
         if (this.options.smooth) {
-            scrollTo(0, { duration: this.options.duration })
+            scrollTo(0, { duration: this.options.duration });
         } else {
-            window.scrollTo(0, 0)
+            window.scrollTo(0, 0);
         }
-    }
+    };
 }
 
 /**
  * Initialize scroll-to links with data-ss="scroll-to"
  */
 export function initScrollLinks(): void {
-    document.querySelectorAll<HTMLElement>('[data-ss="scroll-to"]').forEach((el) => {
-        const target = el.dataset.ssScrollTarget || el.getAttribute("href")
-        const offset = el.dataset.ssScrollOffset
-        const duration = el.dataset.ssScrollDuration
+    document
+        .querySelectorAll<HTMLElement>('[data-ss="scroll-to"]')
+        .forEach((el) => {
+            const target =
+                el.dataset.ssScrollTarget || el.getAttribute("href");
+            const offset = el.dataset.ssScrollOffset;
+            const duration = el.dataset.ssScrollDuration;
 
-        el.addEventListener("click", (event) => {
-            event.preventDefault()
+            el.addEventListener("click", (event) => {
+                event.preventDefault();
 
-            if (target) {
-                scrollTo(target, {
-                    offset: offset ? parseInt(offset, 10) : 0,
-                    duration: duration ? parseInt(duration, 10) : 500
-                })
-            }
-        })
-    })
+                if (target) {
+                    scrollTo(target, {
+                        offset: offset ? parseInt(offset, 10) : 0,
+                        duration: duration ? parseInt(duration, 10) : 500,
+                    });
+                }
+            });
+        });
 }
 
 /**
  * Auto-initialize all scroll utilities
  */
 export function initScrollUtilities(): void {
-    initScrollLinks()
-    ScrollToTopButton.init()
+    initScrollLinks();
+    ScrollToTopButton.init();
 }
 
 export default {
@@ -321,5 +349,5 @@ export default {
     scrollToBottom,
     ScrollToTopButton,
     initScrollLinks,
-    initScrollUtilities
-}
+    initScrollUtilities,
+};

@@ -10,21 +10,21 @@
  */
 export interface ImageCompareSliderOptions {
     /** Initial slider position (0-100 percentage) */
-    initialPosition?: number
+    initialPosition?: number;
     /** CSS class for the slider handle */
-    sliderClass?: string
+    sliderClass?: string;
     /** CSS class for the overlay image */
-    overlayClass?: string
+    overlayClass?: string;
     /** Enable touch support */
-    touch?: boolean
+    touch?: boolean;
     /** Show labels for before/after */
-    showLabels?: boolean
+    showLabels?: boolean;
     /** Before image label text */
-    beforeLabel?: string
+    beforeLabel?: string;
     /** After image label text */
-    afterLabel?: string
+    afterLabel?: string;
     /** Callback when slider position changes */
-    onChange?: (position: number) => void
+    onChange?: (position: number) => void;
 }
 
 /**
@@ -59,19 +59,19 @@ export interface ImageCompareSliderOptions {
  */
 export class ImageCompareSlider {
     /** The container element for the slider */
-    private container: HTMLElement
+    private container: HTMLElement;
 
     /** The overlay (before) image element */
-    private overlay: HTMLImageElement
+    private overlay: HTMLImageElement;
 
     /** The base (after) image element */
-    private baseImage: HTMLImageElement
+    private baseImage: HTMLImageElement;
 
     /** The draggable slider handle element */
-    private slider: HTMLElement
+    private slider: HTMLElement;
 
     /** Whether the slider is currently being dragged */
-    private isActive: boolean = false
+    private isActive: boolean = false;
 
     /**
      * Creates a new ImageCompareSlider instance.
@@ -79,16 +79,16 @@ export class ImageCompareSlider {
      * @param container - The container element holding both images and slider
      */
     constructor(container: HTMLElement) {
-        this.container = container
+        this.container = container;
         this.slider = container.querySelector(
             ".image__compare--slider",
-        ) as HTMLElement
+        ) as HTMLElement;
         this.overlay = container.querySelector(
             ".image__compare--overlay",
-        ) as HTMLImageElement
+        ) as HTMLImageElement;
         this.baseImage = container.querySelector(
             "img.image__compare--image:not(.image__compare--overlay)",
-        ) as HTMLImageElement
+        ) as HTMLImageElement;
 
         if (
             !this.container ||
@@ -99,16 +99,16 @@ export class ImageCompareSlider {
             console.warn(
                 `ImageCompareSlider skipped: required elements not found in`,
                 container,
-            )
-            return
+            );
+            return;
         }
 
         // Initialize brightness checks
-        this.checkAndInject(this.baseImage)
-        this.checkAndInject(this.overlay)
+        this.checkAndInject(this.baseImage);
+        this.checkAndInject(this.overlay);
 
-        this.initEvents()
-        this.slideMove(this.container.offsetWidth / 2)
+        this.initEvents();
+        this.slideMove(this.container.offsetWidth / 2);
     }
 
     /**
@@ -117,37 +117,37 @@ export class ImageCompareSlider {
      * @param image - The image element to check
      */
     private checkAndInject(image: HTMLImageElement): void {
-        const side = image.dataset.darkSide
-        if (!side) return
+        const side = image.dataset.darkSide;
+        if (!side) return;
 
         const inject = () => {
             this.isImageBright(image)
                 .then((isBright) => {
-                    if (!isBright) return
+                    if (!isBright) return;
 
-                    const el = document.createElement("div")
-                    el.className = `dark--${side}`
-                    this.slider.appendChild(el)
+                    const el = document.createElement("div");
+                    el.className = `dark--${side}`;
+                    this.slider.appendChild(el);
 
                     // Ok rengini değiştir
                     const arrow = this.slider.querySelector(
                         `.arrow--${side}`,
-                    ) as HTMLElement
+                    ) as HTMLElement;
                     if (arrow) {
-                        arrow.style.borderColor = "var(--color_text_primary)"
+                        arrow.style.borderColor = "var(--color_text_primary)";
                     }
                 })
                 .catch((err) => {
-                    console.warn("Brightness check failed:", err)
-                })
-        }
+                    console.warn("Brightness check failed:", err);
+                });
+        };
 
         if (image.complete && image.naturalWidth > 0) {
-            inject()
+            inject();
         } else {
             image.onload = () => {
-                if (image.naturalWidth > 0) inject()
-            }
+                if (image.naturalWidth > 0) inject();
+            };
         }
     }
 
@@ -159,56 +159,59 @@ export class ImageCompareSlider {
      */
     private isImageBright(image: HTMLImageElement): Promise<boolean> {
         return new Promise((resolve) => {
-            const canvas = document.createElement("canvas")
-            const ctx = canvas.getContext("2d")
-            if (!ctx) return resolve(false)
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            if (!ctx) return resolve(false);
 
-            canvas.width = image.naturalWidth
-            canvas.height = image.naturalHeight
-            ctx.drawImage(image, 0, 0)
+            canvas.width = image.naturalWidth;
+            canvas.height = image.naturalHeight;
+            ctx.drawImage(image, 0, 0);
 
             const data = ctx.getImageData(
                 0,
                 0,
                 canvas.width,
                 canvas.height,
-            ).data
+            ).data;
             let r = 0,
                 g = 0,
                 b = 0,
-                count = 0
-            const step = 4 * 20
+                count = 0;
+            const step = 4 * 20;
 
             for (let i = 0; i < data.length; i += step) {
-                r += data[i]
-                g += data[i + 1]
-                b += data[i + 2]
-                count++
+                r += data[i];
+                g += data[i + 1];
+                b += data[i + 2];
+                count++;
             }
 
-            const avg = (r + g + b) / (3 * count)
-            resolve(avg > 160)
-        })
+            const avg = (r + g + b) / (3 * count);
+            resolve(avg > 160);
+        });
     }
 
     /**
      * Initializes mouse and touch event listeners for drag interaction.
      */
     private initEvents(): void {
-        this.slider.addEventListener("mousedown", () => (this.isActive = true))
-        window.addEventListener("mouseup", () => (this.isActive = false))
+        this.slider.addEventListener(
+            "mousedown",
+            () => (this.isActive = true),
+        );
+        window.addEventListener("mouseup", () => (this.isActive = false));
         window.addEventListener("mousemove", (e) => {
-            if (this.isActive) this.slideMove(e.clientX)
-        })
+            if (this.isActive) this.slideMove(e.clientX);
+        });
 
         this.slider.addEventListener(
             "touchstart",
             () => (this.isActive = true),
-        )
-        window.addEventListener("touchend", () => (this.isActive = false))
+        );
+        window.addEventListener("touchend", () => (this.isActive = false));
         window.addEventListener("touchmove", (e) => {
-            if (this.isActive) this.slideMove(e.touches[0].clientX)
-        })
+            if (this.isActive) this.slideMove(e.touches[0].clientX);
+        });
     }
 
     /**
@@ -217,11 +220,11 @@ export class ImageCompareSlider {
      * @param x - The x-coordinate (client position) to move to
      */
     private slideMove(x: number): void {
-        const bounds = this.container.getBoundingClientRect()
-        let pos = x - bounds.left
-        pos = Math.max(0, Math.min(pos, bounds.width))
-        this.overlay.style.width = `${pos}px`
-        this.slider.style.left = `${pos}px`
+        const bounds = this.container.getBoundingClientRect();
+        let pos = x - bounds.left;
+        pos = Math.max(0, Math.min(pos, bounds.width));
+        this.overlay.style.width = `${pos}px`;
+        this.slider.style.left = `${pos}px`;
     }
 
     /**
@@ -230,9 +233,9 @@ export class ImageCompareSlider {
      * @param selector - CSS selector for container elements (default: ".image__compare")
      */
     public static initAll(selector: string = ".image__compare"): void {
-        const containers = document.querySelectorAll<HTMLElement>(selector)
+        const containers = document.querySelectorAll<HTMLElement>(selector);
         containers.forEach((container) => {
-            new ImageCompareSlider(container)
-        })
+            new ImageCompareSlider(container);
+        });
     }
 }

@@ -10,15 +10,15 @@
  */
 export interface InfiniteScrollOptions {
     /** Distance from bottom (in pixels) to trigger loading */
-    threshold?: number
+    threshold?: number;
     /** Callback function to load more content */
-    loadMoreCallback: () => void
+    loadMoreCallback: () => void;
     /** Scroll container (default: window) */
-    container?: HTMLElement | Window
+    container?: HTMLElement | Window;
     /** Throttle delay in milliseconds */
-    throttle?: number
+    throttle?: number;
     /** Enable debug logging */
-    debug?: boolean
+    debug?: boolean;
 }
 
 /**
@@ -55,25 +55,25 @@ export interface InfiniteScrollOptions {
  */
 export class InfiniteScrollManager {
     /** Distance from bottom to trigger loading */
-    private threshold: number
+    private threshold: number;
 
     /** Callback to load more content */
-    private loadMoreCallback: () => void
+    private loadMoreCallback: () => void;
 
     /** Scroll container element */
-    private container: HTMLElement | Window
+    private container: HTMLElement | Window;
 
     /** Whether scrolling is actively monitored */
-    private isActive: boolean
+    private isActive: boolean;
 
     /** Enable debug logging */
-    private debug: boolean
+    private debug: boolean;
 
     /** Timestamp of last scroll check */
-    private lastCheck: number
+    private lastCheck: number;
 
     /** Throttle interval in milliseconds */
-    private throttleMs: number
+    private throttleMs: number;
 
     /**
      * Creates a new InfiniteScrollManager instance.
@@ -87,23 +87,23 @@ export class InfiniteScrollManager {
         throttle = 200,
         debug = false,
     }: InfiniteScrollOptions) {
-        this.threshold = threshold
-        this.loadMoreCallback = loadMoreCallback
-        this.container = container
-        this.debug = debug
-        this.isActive = true
-        this.lastCheck = 0
-        this.throttleMs = throttle
+        this.threshold = threshold;
+        this.loadMoreCallback = loadMoreCallback;
+        this.container = container;
+        this.debug = debug;
+        this.isActive = true;
+        this.lastCheck = 0;
+        this.throttleMs = throttle;
 
-        this.attach()
-        if (this.debug) console.log("InfiniteScrollManager initialized")
+        this.attach();
+        if (this.debug) console.log("InfiniteScrollManager initialized");
     }
 
     /**
      * Attaches the scroll event listener to the container.
      */
     private attach(): void {
-        this.container.addEventListener("scroll", this.handleScroll)
+        this.container.addEventListener("scroll", this.handleScroll);
     }
 
     /**
@@ -111,37 +111,37 @@ export class InfiniteScrollManager {
      * Triggers the load callback when threshold is reached.
      */
     private handleScroll = (): void => {
-        if (!this.isActive) return
+        if (!this.isActive) return;
 
-        const now = Date.now()
-        if (now - this.lastCheck < this.throttleMs) return
-        this.lastCheck = now
+        const now = Date.now();
+        if (now - this.lastCheck < this.throttleMs) return;
+        this.lastCheck = now;
 
         const scrollPos =
             this.container instanceof Window
                 ? window.scrollY + window.innerHeight
                 : (this.container as HTMLElement).scrollTop +
-                  (this.container as HTMLElement).clientHeight
+                  (this.container as HTMLElement).clientHeight;
 
         const maxScroll =
             this.container instanceof Window
                 ? document.body.offsetHeight
-                : (this.container as HTMLElement).scrollHeight
+                : (this.container as HTMLElement).scrollHeight;
 
         if (scrollPos >= maxScroll - this.threshold) {
             if (this.debug)
-                console.log("Reached bottom, loading more content...")
-            this.loadMoreCallback()
+                console.log("Reached bottom, loading more content...");
+            this.loadMoreCallback();
         }
-    }
+    };
 
     /**
      * Pauses infinite scroll monitoring.
      * Call when loading to prevent duplicate requests.
      */
     public pause(): void {
-        this.isActive = false
-        if (this.debug) console.log("InfiniteScrollManager paused")
+        this.isActive = false;
+        if (this.debug) console.log("InfiniteScrollManager paused");
     }
 
     /**
@@ -149,16 +149,16 @@ export class InfiniteScrollManager {
      * Call after loading completes.
      */
     public resume(): void {
-        this.isActive = true
-        if (this.debug) console.log("InfiniteScrollManager resumed")
+        this.isActive = true;
+        if (this.debug) console.log("InfiniteScrollManager resumed");
     }
 
     /**
      * Destroys the manager and removes event listeners.
      */
     public destroy(): void {
-        this.container.removeEventListener("scroll", this.handleScroll)
-        if (this.debug) console.log("InfiniteScrollManager destroyed")
+        this.container.removeEventListener("scroll", this.handleScroll);
+        if (this.debug) console.log("InfiniteScrollManager destroyed");
     }
 }
 

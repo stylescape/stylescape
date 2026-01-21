@@ -10,13 +10,13 @@
  */
 export interface GalleryManagerOptions {
     /** Enable keyboard navigation */
-    keyboard?: boolean
+    keyboard?: boolean;
     /** Loop navigation at ends */
-    loop?: boolean
+    loop?: boolean;
     /** Open lightbox on click */
-    lightbox?: boolean
+    lightbox?: boolean;
     /** Callback when image is selected */
-    onSelect?: (index: number, image: HTMLImageElement) => void
+    onSelect?: (index: number, image: HTMLImageElement) => void;
 }
 
 /**
@@ -45,10 +45,10 @@ export interface GalleryManagerOptions {
  */
 export default class GalleryManager {
     /** Collection of gallery images */
-    private images: NodeListOf<HTMLImageElement>
+    private images: NodeListOf<HTMLImageElement>;
 
     /** Currently selected image index */
-    private currentIndex: number = 0
+    private currentIndex: number = 0;
 
     /**
      * Creates a new GalleryManager instance.
@@ -56,10 +56,10 @@ export default class GalleryManager {
      * @param gallerySelector - CSS selector for the gallery container
      */
     constructor(gallerySelector: string) {
-        this.images = document.querySelectorAll(`${gallerySelector} img`)
+        this.images = document.querySelectorAll(`${gallerySelector} img`);
         this.images.forEach((image, index) => {
-            image.addEventListener("click", () => this.selectImage(index))
-        })
+            image.addEventListener("click", () => this.selectImage(index));
+        });
     }
 
     /**
@@ -68,7 +68,7 @@ export default class GalleryManager {
      * @param index - The index of the image to select
      */
     private selectImage(index: number): void {
-        this.currentIndex = index
+        this.currentIndex = index;
         // Additional logic to display selected image, possibly in a lightbox
     }
 
@@ -77,7 +77,7 @@ export default class GalleryManager {
      * Loops to the first image when at the end.
      */
     public nextImage(): void {
-        this.selectImage((this.currentIndex + 1) % this.images.length)
+        this.selectImage((this.currentIndex + 1) % this.images.length);
     }
 
     /**
@@ -87,7 +87,7 @@ export default class GalleryManager {
     public prevImage(): void {
         this.selectImage(
             (this.currentIndex - 1 + this.images.length) % this.images.length,
-        )
+        );
     }
 
     /**
@@ -96,6 +96,6 @@ export default class GalleryManager {
      * @returns The current zero-based index
      */
     public getCurrentIndex(): number {
-        return this.currentIndex
+        return this.currentIndex;
     }
 }

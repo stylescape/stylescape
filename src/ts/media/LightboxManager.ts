@@ -10,17 +10,17 @@
  */
 export interface LightboxManagerOptions {
     /** CSS class for active state */
-    activeClass?: string
+    activeClass?: string;
     /** Close on backdrop click */
-    closeOnBackdrop?: boolean
+    closeOnBackdrop?: boolean;
     /** Close on Escape key */
-    closeOnEscape?: boolean
+    closeOnEscape?: boolean;
     /** Animation duration in ms */
-    animationDuration?: number
+    animationDuration?: number;
     /** Callback when lightbox opens */
-    onOpen?: () => void
+    onOpen?: () => void;
     /** Callback when lightbox closes */
-    onClose?: () => void
+    onClose?: () => void;
 }
 
 /**
@@ -56,7 +56,7 @@ export interface LightboxManagerOptions {
  */
 export default class LightboxManager {
     /** The lightbox container element */
-    private lightbox: HTMLElement
+    private lightbox: HTMLElement;
 
     /**
      * Creates a new LightboxManager instance.
@@ -64,11 +64,11 @@ export default class LightboxManager {
      * @param lightboxId - ID of the lightbox container element
      */
     constructor(lightboxId: string) {
-        this.lightbox = document.getElementById(lightboxId) as HTMLElement
+        this.lightbox = document.getElementById(lightboxId) as HTMLElement;
         const closeButton = this.lightbox.querySelector(
             ".close",
-        ) as HTMLElement
-        closeButton.addEventListener("click", () => this.hideLightbox())
+        ) as HTMLElement;
+        closeButton.addEventListener("click", () => this.hideLightbox());
     }
 
     /**
@@ -79,15 +79,15 @@ export default class LightboxManager {
     public showLightbox(content: string): void {
         const contentContainer = this.lightbox.querySelector(
             ".content",
-        ) as HTMLElement
-        contentContainer.innerHTML = content
-        this.lightbox.classList.add("active")
+        ) as HTMLElement;
+        contentContainer.innerHTML = content;
+        this.lightbox.classList.add("active");
     }
 
     /**
      * Hides the lightbox and clears content.
      */
     public hideLightbox(): void {
-        this.lightbox.classList.remove("active")
+        this.lightbox.classList.remove("active");
     }
 }

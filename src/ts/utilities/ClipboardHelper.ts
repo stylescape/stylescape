@@ -10,15 +10,15 @@
  */
 export interface ClipboardCopyOptions {
     /** Text to display on the button after successful copy */
-    successText?: string
+    successText?: string;
     /** Duration to show success text (in milliseconds) */
-    successDuration?: number
+    successDuration?: number;
     /** Text to display on error */
-    errorText?: string
+    errorText?: string;
     /** Callback on successful copy */
-    onSuccess?: (text: string) => void
+    onSuccess?: (text: string) => void;
     /** Callback on copy error */
-    onError?: (error: Error) => void
+    onError?: (error: Error) => void;
 }
 
 /**
@@ -55,16 +55,16 @@ export class ClipboardHelper {
      * @param button - The button element that triggered the copy
      */
     static copyCodeFromButton(button: HTMLButtonElement): void {
-        const nextElement = button.nextElementSibling
-        if (!(nextElement instanceof HTMLElement)) return
+        const nextElement = button.nextElementSibling;
+        if (!(nextElement instanceof HTMLElement)) return;
 
-        const code = nextElement.innerText
+        const code = nextElement.innerText;
         navigator.clipboard.writeText(code).then(() => {
-            button.textContent = 'Copied!'
+            button.textContent = "Copied!";
             setTimeout(() => {
-                button.textContent = 'Copy'
-            }, 1500)
-        })
+                button.textContent = "Copy";
+            }, 1500);
+        });
     }
 
     /**
@@ -73,11 +73,13 @@ export class ClipboardHelper {
      *
      * @param selector - CSS selector for copy buttons (default: '.copy-button')
      */
-    static attachToButtons(selector: string = '.copy-button'): void {
-        const buttons = document.querySelectorAll<HTMLButtonElement>(selector)
+    static attachToButtons(selector: string = ".copy-button"): void {
+        const buttons = document.querySelectorAll<HTMLButtonElement>(selector);
         buttons.forEach((button) => {
-            button.addEventListener('click', () => ClipboardHelper.copyCodeFromButton(button))
-        })
+            button.addEventListener("click", () =>
+                ClipboardHelper.copyCodeFromButton(button),
+            );
+        });
     }
 
     /**
@@ -87,28 +89,30 @@ export class ClipboardHelper {
      * @param codeId - The ID of the element containing text to copy
      */
     static copyById(codeId: string): void {
-        const codeElement = document.getElementById(codeId)
+        const codeElement = document.getElementById(codeId);
         if (!(codeElement instanceof HTMLElement)) {
-            console.warn(`Code element with ID "${codeId}" not found.`)
-            return
+            console.warn(`Code element with ID "${codeId}" not found.`);
+            return;
         }
 
-        const text = codeElement.innerText.trim()
+        const text = codeElement.innerText.trim();
 
         navigator.clipboard
             .writeText(text)
             .then(() => {
-                const button = document.querySelector(`button[onclick*="${codeId}"]`)
+                const button = document.querySelector(
+                    `button[onclick*="${codeId}"]`,
+                );
                 if (button) {
-                    const original = button.textContent
-                    button.textContent = 'Copied!'
+                    const original = button.textContent;
+                    button.textContent = "Copied!";
                     setTimeout(() => {
-                        button.textContent = original
-                    }, 1500)
+                        button.textContent = original;
+                    }, 1500);
                 }
             })
             .catch((err) => {
-                console.error('Failed to copy text:', err)
-            })
+                console.error("Failed to copy text:", err);
+            });
     }
 }

@@ -10,21 +10,21 @@
  */
 export interface CarouselManagerOptions {
     /** Selector for carousel items */
-    itemSelector?: string
+    itemSelector?: string;
     /** CSS class for active/visible item */
-    activeClass?: string
+    activeClass?: string;
     /** ID of the previous button (optional) */
-    prevButtonId?: string
+    prevButtonId?: string;
     /** ID of the next button (optional) */
-    nextButtonId?: string
+    nextButtonId?: string;
     /** Enable infinite looping */
-    loop?: boolean
+    loop?: boolean;
     /** Auto-play interval in milliseconds (0 to disable) */
-    autoPlay?: number
+    autoPlay?: number;
     /** Pause auto-play on hover */
-    pauseOnHover?: boolean
+    pauseOnHover?: boolean;
     /** Callback when slide changes */
-    onChange?: (index: number, total: number) => void
+    onChange?: (index: number, total: number) => void;
 }
 
 /**
@@ -60,13 +60,13 @@ export interface CarouselManagerOptions {
  */
 export default class CarouselManager {
     /** The carousel container element */
-    private container: HTMLElement
+    private container: HTMLElement;
 
     /** Collection of carousel items */
-    private items: NodeListOf<HTMLElement>
+    private items: NodeListOf<HTMLElement>;
 
     /** Current active slide index */
-    private currentIndex: number = 0
+    private currentIndex: number = 0;
 
     /**
      * Creates a new CarouselManager instance.
@@ -74,9 +74,9 @@ export default class CarouselManager {
      * @param containerId - ID of the carousel container element
      */
     constructor(containerId: string) {
-        this.container = document.getElementById(containerId) as HTMLElement
-        this.items = this.container.querySelectorAll(".carousel-item")
-        this.setupButtons()
+        this.container = document.getElementById(containerId) as HTMLElement;
+        this.items = this.container.querySelectorAll(".carousel-item");
+        this.setupButtons();
     }
 
     /**
@@ -84,11 +84,11 @@ export default class CarouselManager {
      */
     private setupButtons(): void {
         document
-            .getElementById("prevBtn")!
-            .addEventListener("click", () => this.movePrev())
+            .getElementById("prevBtn")
+            ?.addEventListener("click", () => this.movePrev());
         document
-            .getElementById("nextBtn")!
-            .addEventListener("click", () => this.moveNext())
+            .getElementById("nextBtn")
+            ?.addEventListener("click", () => this.moveNext());
     }
 
     /**
@@ -96,9 +96,9 @@ export default class CarouselManager {
      */
     public movePrev(): void {
         if (this.currentIndex > 0) {
-            this.items[this.currentIndex].classList.remove("active")
-            this.currentIndex--
-            this.items[this.currentIndex].classList.add("active")
+            this.items[this.currentIndex].classList.remove("active");
+            this.currentIndex--;
+            this.items[this.currentIndex].classList.add("active");
         }
     }
 
@@ -107,9 +107,9 @@ export default class CarouselManager {
      */
     public moveNext(): void {
         if (this.currentIndex < this.items.length - 1) {
-            this.items[this.currentIndex].classList.remove("active")
-            this.currentIndex++
-            this.items[this.currentIndex].classList.add("active")
+            this.items[this.currentIndex].classList.remove("active");
+            this.currentIndex++;
+            this.items[this.currentIndex].classList.add("active");
         }
     }
 
@@ -119,7 +119,7 @@ export default class CarouselManager {
      * @returns The current zero-based slide index
      */
     public getCurrentIndex(): number {
-        return this.currentIndex
+        return this.currentIndex;
     }
 
     /**
@@ -128,38 +128,6 @@ export default class CarouselManager {
      * @returns The total count of carousel items
      */
     public getTotalSlides(): number {
-        return this.items.length
+        return this.items.length;
     }
 }
-
-// Example HTML: <div id="carouselContainer"><div class="carousel-item active">Item 1</div><div class="carousel-item">Item 2</div></div>
-
-// Handles a carousel or slider, enabling cycling through items like images or cards.
-
-// export default class CarouselManager {
-//     private items: NodeListOf<HTMLElement>
-//     private currentIndex: number = 0
-
-//     constructor(carouselSelector: string) {
-//         this.items = document.querySelectorAll(`${carouselSelector} .carousel-item`)
-//     }
-
-//     next(): void {
-//         this.updateIndex(this.currentIndex + 1)
-//     }
-
-//     previous(): void {
-//         this.updateIndex(this.currentIndex - 1)
-//     }
-
-//     private updateIndex(newIndex: number): void {
-//         this.currentIndex = (newIndex + this.items.length) % this.items.length
-//         this.items.forEach((item, index) => {
-//             item.style.display = index === this.currentIndex ? 'block' : 'none'
-//         })
-//     }
-// }
-
-// Usage
-// const carouselManager = new CarouselManager('#myCarousel')
-// carouselManager.next() or carouselManager.previous()

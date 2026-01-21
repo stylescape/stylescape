@@ -8,20 +8,20 @@
 /**
  * Available theme values
  */
-export type Theme = "dark" | "light"
+export type Theme = "dark" | "light";
 
 /**
  * Configuration options for theme toggling
  */
 export interface ThemeTogglerOptions {
     /** Custom storage key for theme preference */
-    storageKey?: string
+    storageKey?: string;
     /** Custom attribute name on <html> element */
-    themeAttribute?: string
+    themeAttribute?: string;
     /** Default theme if none is stored */
-    defaultTheme?: Theme
+    defaultTheme?: Theme;
     /** Callback when theme changes */
-    onChange?: (theme: Theme) => void
+    onChange?: (theme: Theme) => void;
 }
 
 /**
@@ -51,11 +51,11 @@ export interface ThemeTogglerOptions {
  * ```
  */
 export class ThemeToggler {
-    private static readonly THEME_ATTRIBUTE = "theme"
-    private static readonly DARK_THEME = "dark"
-    private static readonly LIGHT_THEME = "light"
-    private static readonly STORAGE_KEY = "preferredTheme"
-    private static readonly htmlElement = document.documentElement
+    private static readonly THEME_ATTRIBUTE = "theme";
+    private static readonly DARK_THEME = "dark";
+    private static readonly LIGHT_THEME = "light";
+    private static readonly STORAGE_KEY = "preferredTheme";
+    private static readonly htmlElement = document.documentElement;
 
     private constructor() {
         // Prevent instantiation
@@ -69,9 +69,9 @@ export class ThemeToggler {
         const newTheme =
             ThemeToggler.getCurrentTheme() === ThemeToggler.DARK_THEME
                 ? ThemeToggler.LIGHT_THEME
-                : ThemeToggler.DARK_THEME
+                : ThemeToggler.DARK_THEME;
 
-        ThemeToggler.setTheme(newTheme)
+        ThemeToggler.setTheme(newTheme);
     }
 
     /**
@@ -80,8 +80,8 @@ export class ThemeToggler {
      * @param theme - The theme to set ("dark" or "light")
      */
     static setTheme(theme: string): void {
-        ThemeToggler.htmlElement.dataset[ThemeToggler.THEME_ATTRIBUTE] = theme
-        localStorage.setItem(ThemeToggler.STORAGE_KEY, theme)
+        ThemeToggler.htmlElement.dataset[ThemeToggler.THEME_ATTRIBUTE] = theme;
+        localStorage.setItem(ThemeToggler.STORAGE_KEY, theme);
     }
 
     /**
@@ -95,7 +95,7 @@ export class ThemeToggler {
             ThemeToggler.htmlElement.dataset[ThemeToggler.THEME_ATTRIBUTE] ||
             localStorage.getItem(ThemeToggler.STORAGE_KEY) ||
             ThemeToggler.LIGHT_THEME
-        )
+        );
     }
 
     /**
@@ -104,8 +104,8 @@ export class ThemeToggler {
      * @param toggle - The checkbox input element to sync
      */
     private static syncToggleState(toggle: HTMLInputElement): void {
-        const currentTheme = ThemeToggler.getCurrentTheme()
-        toggle.checked = currentTheme === ThemeToggler.DARK_THEME
+        const currentTheme = ThemeToggler.getCurrentTheme();
+        toggle.checked = currentTheme === ThemeToggler.DARK_THEME;
     }
 
     /**
@@ -115,26 +115,26 @@ export class ThemeToggler {
     static initializeToggleSwitch(toggleId = "themeToggle"): void {
         let toggle = document.getElementById(
             toggleId,
-        ) as HTMLInputElement | null
+        ) as HTMLInputElement | null;
 
         if (!toggle) {
             toggle = document.querySelector(
                 "[data-theme-toggle]",
-            ) as HTMLInputElement | null
+            ) as HTMLInputElement | null;
         }
 
         if (!toggle) {
             // console.warn(
             //     `ThemeToggler: No toggle element found for ID '${toggleId}' or [data-theme-toggle].`,
             // )
-            return
+            return;
         }
 
-        ThemeToggler.syncToggleState(toggle)
+        ThemeToggler.syncToggleState(toggle);
 
         toggle.addEventListener("change", () => {
-            ThemeToggler.toggle()
-        })
+            ThemeToggler.toggle();
+        });
     }
 
     /**
@@ -143,7 +143,7 @@ export class ThemeToggler {
      */
     static registerOnLoad(toggleId = "themeToggle"): void {
         window.addEventListener("load", () => {
-            ThemeToggler.initializeToggleSwitch(toggleId)
-        })
+            ThemeToggler.initializeToggleSwitch(toggleId);
+        });
     }
 }

@@ -5,20 +5,20 @@
 // Provides both legacy initialization and new auto-init functionality.
 // ============================================================================
 
-import { ActiveLinkHighlighter } from "../content/ActiveLinkHighlighter.js"
-import { TableOfContentsBuilder } from "../content/TableOfContentsBuilder.js"
-import { AsideHandler } from "../elements/AsideHandler.js"
-import { CollapsibleTableHandler } from "../elements/CollapsibleTableHandler.js"
-import { DetailManager } from "../elements/DetailManager.js"
-import { DropdownHandler } from "../elements/DropdownHandler.js"
-import { ExclusiveDetails } from "../elements/ExclusiveDetails.js"
-import { PasswordToggleManager } from "../elements/PasswordToggleManager.js"
-import { ImageCompareSlider } from "../media/ImageCompareSlider.js"
-import { ScrollElementManager } from "../scroll/ScrollElementManager.js"
-import { ScrollPageManager } from "../scroll/ScrollPageManager.js"
-import { ClipboardHelper } from "../utilities/ClipboardHelper.js"
-import { GridManager } from "../utilities/GridManager.js"
-import { ThemeToggler } from "../utilities/ThemeToggler.js"
+import { ActiveLinkHighlighter } from "../content/ActiveLinkHighlighter.js";
+import { TableOfContentsBuilder } from "../content/TableOfContentsBuilder.js";
+import { AsideHandler } from "../elements/AsideHandler.js";
+import { CollapsibleTableHandler } from "../elements/CollapsibleTableHandler.js";
+import { DetailManager } from "../elements/DetailManager.js";
+import { DropdownHandler } from "../elements/DropdownHandler.js";
+import { ExclusiveDetails } from "../elements/ExclusiveDetails.js";
+import { PasswordToggleManager } from "../elements/PasswordToggleManager.js";
+import { ImageCompareSlider } from "../media/ImageCompareSlider.js";
+import { ScrollElementManager } from "../scroll/ScrollElementManager.js";
+import { ScrollPageManager } from "../scroll/ScrollPageManager.js";
+import { ClipboardHelper } from "../utilities/ClipboardHelper.js";
+import { GridManager } from "../utilities/GridManager.js";
+import { ThemeToggler } from "../utilities/ThemeToggler.js";
 
 // Import auto-init system
 import {
@@ -33,9 +33,8 @@ import {
     setAutoInit,
     setDebug,
     setObserver,
-    stopObserving
-} from "./autoInit.js"
-
+    stopObserving,
+} from "./autoInit.js";
 import {
     ComponentConfig,
     ComponentHandler,
@@ -44,8 +43,8 @@ import {
     getComponentNames,
     hasComponent,
     registerComponent,
-    RegistryEntry
-} from "./registry.js"
+    RegistryEntry,
+} from "./registry.js";
 
 // ============================================================================
 // Re-exports for auto-init system
@@ -57,11 +56,25 @@ export {
     ComponentConfig,
     ComponentHandler,
     // Registry functions
-    componentRegistry, destroy, getAllInstances, getComponent,
-    getComponentNames, getInstance, hasComponent,
+    componentRegistry,
+    destroy,
+    getAllInstances,
+    getComponent,
+    getComponentNames,
+    getInstance,
+    hasComponent,
     // Auto-init functions
-    init, observe, registerComponent, RegistryEntry, reinit, setAttributePrefix, setAutoInit, setDebug, setObserver, stopObserving
-}
+    init,
+    observe,
+    registerComponent,
+    RegistryEntry,
+    reinit,
+    setAttributePrefix,
+    setAutoInit,
+    setDebug,
+    setObserver,
+    stopObserving,
+};
 
 // ============================================================================
 // Global Stylescape Object
@@ -72,33 +85,33 @@ export {
  */
 export interface StylescapeGlobal {
     // Auto-init system
-    init: typeof init
-    getInstance: typeof getInstance
-    getAllInstances: typeof getAllInstances
-    reinit: typeof reinit
-    destroy: typeof destroy
-    observe: typeof observe
-    stopObserving: typeof stopObserving
+    init: typeof init;
+    getInstance: typeof getInstance;
+    getAllInstances: typeof getAllInstances;
+    reinit: typeof reinit;
+    destroy: typeof destroy;
+    observe: typeof observe;
+    stopObserving: typeof stopObserving;
 
     // Configuration
-    autoInit: boolean
-    debug: boolean
+    autoInit: boolean;
+    debug: boolean;
 
     // Registry
-    registerComponent: typeof registerComponent
-    hasComponent: typeof hasComponent
-    getComponentNames: typeof getComponentNames
+    registerComponent: typeof registerComponent;
+    hasComponent: typeof hasComponent;
+    getComponentNames: typeof getComponentNames;
 
     // Version info
-    version: string
+    version: string;
 }
 
 /**
  * Create and expose the global Stylescape object
  */
 function createGlobal(): StylescapeGlobal {
-    let autoInitEnabled = true
-    let debugEnabled = false
+    let autoInitEnabled = true;
+    let debugEnabled = false;
 
     const stylescape: StylescapeGlobal = {
         // Auto-init functions
@@ -111,16 +124,20 @@ function createGlobal(): StylescapeGlobal {
         stopObserving,
 
         // Configuration with getters/setters
-        get autoInit() { return autoInitEnabled },
+        get autoInit() {
+            return autoInitEnabled;
+        },
         set autoInit(value: boolean) {
-            autoInitEnabled = value
-            setAutoInit(value)
+            autoInitEnabled = value;
+            setAutoInit(value);
         },
 
-        get debug() { return debugEnabled },
+        get debug() {
+            return debugEnabled;
+        },
         set debug(value: boolean) {
-            debugEnabled = value
-            setDebug(value)
+            debugEnabled = value;
+            setDebug(value);
         },
 
         // Registry access
@@ -129,16 +146,20 @@ function createGlobal(): StylescapeGlobal {
         getComponentNames,
 
         // Version
-        version: "1.0.0"
-    }
+        version: "1.0.0",
+    };
 
-    return stylescape
+    return stylescape;
 }
 
 // Expose globally
 if (typeof window !== "undefined") {
-    (window as any).Stylescape = createGlobal()
-    ;(window as any).ClipboardHelper = ClipboardHelper
+    (
+        window as unknown as { Stylescape: ReturnType<typeof createGlobal> }
+    ).Stylescape = createGlobal();
+    (
+        window as unknown as { ClipboardHelper: typeof ClipboardHelper }
+    ).ClipboardHelper = ClipboardHelper;
 }
 
 // ============================================================================
@@ -154,56 +175,62 @@ if (typeof window !== "undefined") {
 export function initializeStylescape(): void {
     document.addEventListener("DOMContentLoaded", () => {
         // Initialize auto-init system
-        init()
-        observe()
+        init();
+        observe();
 
         // Legacy initializations for components not yet using data-ss
-        new ScrollPageManager()
-        new ScrollElementManager("#main_content", "main_content_scroll", false)
+        new ScrollPageManager();
+        new ScrollElementManager(
+            "#main_content",
+            "main_content_scroll",
+            false,
+        );
         new ScrollElementManager(
             "#sidebar_left_content",
             "sidebar_left_content_scroll",
             false,
-        )
+        );
 
-        new ActiveLinkHighlighter()
-        new PasswordToggleManager()
-        ThemeToggler.registerOnLoad("themeToggle")
+        new ActiveLinkHighlighter();
+        new PasswordToggleManager();
+        ThemeToggler.registerOnLoad("themeToggle");
 
-        const tocBuilder = new TableOfContentsBuilder("main_content", "toc")
-        tocBuilder.buildAndAppendTOC()
+        const tocBuilder = new TableOfContentsBuilder("main_content", "toc");
+        tocBuilder.buildAndAppendTOC();
 
-        new ExclusiveDetails(".ribbon_menu_button")
+        new ExclusiveDetails(".ribbon_menu_button");
 
-        new DetailManager()
+        new DetailManager();
 
-        const current = location.pathname.split("/").pop()
-        const activeLink = document.querySelector(`a[href$="${current}"]`)
+        const current = location.pathname.split("/").pop();
+        const activeLink = document.querySelector(`a[href$="${current}"]`);
         if (activeLink) {
-            activeLink.classList.add("active")
+            activeLink.classList.add("active");
         }
 
-        const handlers: AsideHandler[] = []
+        const handlers: AsideHandler[] = [];
         document.querySelectorAll("[id$='_switch']").forEach((switchEl) => {
-            const switchId = switchEl.id
-            const menuId = switchId.replace("_switch", "_menu")
-            const menuEl = document.getElementById(menuId)
+            const switchId = switchEl.id;
+            const menuId = switchId.replace("_switch", "_menu");
+            const menuEl = document.getElementById(menuId);
             if (menuEl) {
-                handlers.push(new AsideHandler(menuId, switchId))
+                handlers.push(new AsideHandler(menuId, switchId));
             }
-        })
-        ;(window as any).asideHandlers = handlers
+        });
+        (
+            window as unknown as { asideHandlers: AsideHandler[] }
+        ).asideHandlers = handlers;
 
-        ImageCompareSlider.initAll()
-        new DropdownHandler()
-        new CollapsibleTableHandler()
-    })
+        ImageCompareSlider.initAll();
+        new DropdownHandler();
+        new CollapsibleTableHandler();
+    });
 
     window.addEventListener("load", () => {
         requestAnimationFrame(() => {
-            new GridManager()
-        })
-    })
+            new GridManager();
+        });
+    });
 }
 
 // ============================================================================
@@ -212,12 +239,13 @@ export function initializeStylescape(): void {
 
 // Check for auto-start attribute on script tag or global flag
 if (typeof document !== "undefined") {
-    const scriptTag = document.currentScript
+    const scriptTag = document.currentScript;
     const shouldAutoStart =
         scriptTag?.hasAttribute("data-ss-auto") ||
-        (window as any).STYLESCAPE_AUTO_INIT === true
+        (window as unknown as { STYLESCAPE_AUTO_INIT?: boolean })
+            .STYLESCAPE_AUTO_INIT === true;
 
     if (shouldAutoStart) {
-        autoStart()
+        autoStart();
     }
 }

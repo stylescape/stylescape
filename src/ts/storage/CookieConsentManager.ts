@@ -8,17 +8,21 @@
 /**
  * Cookie categories for granular consent
  */
-export type CookieCategory = "necessary" | "analytics" | "marketing" | "preferences"
+export type CookieCategory =
+    | "necessary"
+    | "analytics"
+    | "marketing"
+    | "preferences";
 
 /**
  * Consent state for all categories
  */
 export interface ConsentState {
-    necessary: boolean
-    analytics: boolean
-    marketing: boolean
-    preferences: boolean
-    timestamp?: number
+    necessary: boolean;
+    analytics: boolean;
+    marketing: boolean;
+    preferences: boolean;
+    timestamp?: number;
 }
 
 /**
@@ -26,33 +30,33 @@ export interface ConsentState {
  */
 export interface CookieConsentOptions {
     /** Main message text */
-    message?: string
+    message?: string;
     /** Accept all button text */
-    acceptAllText?: string
+    acceptAllText?: string;
     /** Accept necessary only button text */
-    acceptNecessaryText?: string
+    acceptNecessaryText?: string;
     /** Settings button text */
-    settingsText?: string
+    settingsText?: string;
     /** CSS class prefix */
-    cssClass?: string
+    cssClass?: string;
     /** Storage key */
-    storageKey?: string
+    storageKey?: string;
     /** Position on screen */
-    position?: "top" | "bottom" | "center"
+    position?: "top" | "bottom" | "center";
     /** Cookie categories to show */
-    categories?: CookieCategory[]
+    categories?: CookieCategory[];
     /** Link to privacy policy */
-    privacyPolicyUrl?: string
+    privacyPolicyUrl?: string;
     /** Days until consent expires */
-    expirationDays?: number
+    expirationDays?: number;
     /** Callback when consent is given */
-    onAccept?: (consent: ConsentState) => void
+    onAccept?: (consent: ConsentState) => void;
     /** Callback when consent changes */
-    onChange?: (consent: ConsentState) => void
+    onChange?: (consent: ConsentState) => void;
     /** Auto-show banner if no consent */
-    autoShow?: boolean
+    autoShow?: boolean;
     /** Show detailed settings panel */
-    showSettings?: boolean
+    showSettings?: boolean;
 }
 
 /**
@@ -81,40 +85,50 @@ export interface CookieConsentOptions {
  * ```
  */
 export class CookieConsentManager {
-    private options: Required<Omit<CookieConsentOptions, "onAccept" | "onChange">> &
-                     Pick<CookieConsentOptions, "onAccept" | "onChange">
-    private bannerElement: HTMLElement | null = null
-    private settingsPanel: HTMLElement | null = null
-    private consentState: ConsentState
+    private options: Required<
+        Omit<CookieConsentOptions, "onAccept" | "onChange">
+    > &
+        Pick<CookieConsentOptions, "onAccept" | "onChange">;
+    private bannerElement: HTMLElement | null = null;
+    private settingsPanel: HTMLElement | null = null;
+    private consentState: ConsentState;
 
     constructor(options: CookieConsentOptions = {}) {
         this.options = {
-            message: options.message ?? "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.",
+            message:
+                options.message ??
+                "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.",
             acceptAllText: options.acceptAllText ?? "Accept All",
-            acceptNecessaryText: options.acceptNecessaryText ?? "Necessary Only",
+            acceptNecessaryText:
+                options.acceptNecessaryText ?? "Necessary Only",
             settingsText: options.settingsText ?? "Cookie Settings",
             cssClass: options.cssClass ?? "ss-cookie-consent",
             storageKey: options.storageKey ?? "ss-cookie-consent",
             position: options.position ?? "bottom",
-            categories: options.categories ?? ["necessary", "analytics", "marketing", "preferences"],
+            categories: options.categories ?? [
+                "necessary",
+                "analytics",
+                "marketing",
+                "preferences",
+            ],
             privacyPolicyUrl: options.privacyPolicyUrl ?? "",
             expirationDays: options.expirationDays ?? 365,
             onAccept: options.onAccept,
             onChange: options.onChange,
             autoShow: options.autoShow ?? true,
-            showSettings: options.showSettings ?? true
-        }
+            showSettings: options.showSettings ?? true,
+        };
 
         // Load existing consent or set defaults
         this.consentState = this.loadConsent() ?? {
-            necessary: true,  // Always required
+            necessary: true, // Always required
             analytics: false,
             marketing: false,
-            preferences: false
-        }
+            preferences: false,
+        };
 
         if (this.options.autoShow && !this.hasConsent()) {
-            this.show()
+            this.show();
         }
     }
 
@@ -126,21 +140,21 @@ export class CookieConsentManager {
      * Check if user has given consent
      */
     public hasConsent(): boolean {
-        return this.loadConsent() !== null
+        return this.loadConsent() !== null;
     }
 
     /**
      * Get current consent state
      */
     public getConsent(): ConsentState {
-        return { ...this.consentState }
+        return { ...this.consentState };
     }
 
     /**
      * Check if a specific category is allowed
      */
     public isAllowed(category: CookieCategory): boolean {
-        return this.consentState[category] ?? false
+        return this.consentState[category] ?? false;
     }
 
     /**
@@ -152,12 +166,12 @@ export class CookieConsentManager {
             analytics: true,
             marketing: true,
             preferences: true,
-            timestamp: Date.now()
-        }
-        this.saveConsent()
-        this.hide()
-        this.options.onAccept?.(this.consentState)
-        this.activateCategoryScripts()
+            timestamp: Date.now(),
+        };
+        this.saveConsent();
+        this.hide();
+        this.options.onAccept?.(this.consentState);
+        this.activateCategoryScripts();
     }
 
     /**
@@ -169,11 +183,11 @@ export class CookieConsentManager {
             analytics: false,
             marketing: false,
             preferences: false,
-            timestamp: Date.now()
-        }
-        this.saveConsent()
-        this.hide()
-        this.options.onAccept?.(this.consentState)
+            timestamp: Date.now(),
+        };
+        this.saveConsent();
+        this.hide();
+        this.options.onAccept?.(this.consentState);
     }
 
     /**
@@ -181,31 +195,31 @@ export class CookieConsentManager {
      */
     public saveCustomConsent(consent: Partial<ConsentState>): void {
         this.consentState = {
-            necessary: true,  // Always required
+            necessary: true, // Always required
             analytics: consent.analytics ?? false,
             marketing: consent.marketing ?? false,
             preferences: consent.preferences ?? false,
-            timestamp: Date.now()
-        }
-        this.saveConsent()
-        this.hide()
-        this.options.onAccept?.(this.consentState)
-        this.options.onChange?.(this.consentState)
-        this.activateCategoryScripts()
+            timestamp: Date.now(),
+        };
+        this.saveConsent();
+        this.hide();
+        this.options.onAccept?.(this.consentState);
+        this.options.onChange?.(this.consentState);
+        this.activateCategoryScripts();
     }
 
     /**
      * Revoke consent and show banner again
      */
     public revokeConsent(): void {
-        localStorage.removeItem(this.options.storageKey)
+        localStorage.removeItem(this.options.storageKey);
         this.consentState = {
             necessary: true,
             analytics: false,
             marketing: false,
-            preferences: false
-        }
-        this.show()
+            preferences: false,
+        };
+        this.show();
     }
 
     /**
@@ -213,11 +227,11 @@ export class CookieConsentManager {
      */
     public show(): void {
         if (this.bannerElement) {
-            this.bannerElement.style.display = "block"
-            return
+            this.bannerElement.style.display = "block";
+            return;
         }
 
-        this.createBanner()
+        this.createBanner();
     }
 
     /**
@@ -225,9 +239,9 @@ export class CookieConsentManager {
      */
     public hide(): void {
         if (this.bannerElement) {
-            this.bannerElement.style.display = "none"
+            this.bannerElement.style.display = "none";
         }
-        this.hideSettings()
+        this.hideSettings();
     }
 
     /**
@@ -235,10 +249,10 @@ export class CookieConsentManager {
      */
     public showSettings(): void {
         if (!this.settingsPanel) {
-            this.createSettingsPanel()
+            this.createSettingsPanel();
         }
         if (this.settingsPanel) {
-            this.settingsPanel.style.display = "block"
+            this.settingsPanel.style.display = "block";
         }
     }
 
@@ -247,7 +261,7 @@ export class CookieConsentManager {
      */
     public hideSettings(): void {
         if (this.settingsPanel) {
-            this.settingsPanel.style.display = "none"
+            this.settingsPanel.style.display = "none";
         }
     }
 
@@ -255,10 +269,10 @@ export class CookieConsentManager {
      * Destroy the manager and remove elements
      */
     public destroy(): void {
-        this.bannerElement?.remove()
-        this.settingsPanel?.remove()
-        this.bannerElement = null
-        this.settingsPanel = null
+        this.bannerElement?.remove();
+        this.settingsPanel?.remove();
+        this.bannerElement = null;
+        this.settingsPanel = null;
     }
 
     // ========================================================================
@@ -269,19 +283,24 @@ export class CookieConsentManager {
      * Initialize from data-ss="cookie-consent" element
      */
     public static init(): CookieConsentManager | null {
-        const element = document.querySelector<HTMLElement>('[data-ss="cookie-consent"]')
+        const element = document.querySelector<HTMLElement>(
+            '[data-ss="cookie-consent"]',
+        );
 
         if (!element) {
-            return new CookieConsentManager()
+            return new CookieConsentManager();
         }
 
         return new CookieConsentManager({
             message: element.dataset.ssCookieMessage,
-            position: element.dataset.ssCookiePosition as "top" | "bottom" | "center",
+            position: element.dataset.ssCookiePosition as
+                | "top"
+                | "bottom"
+                | "center",
             privacyPolicyUrl: element.dataset.ssCookiePrivacyUrl,
             cssClass: element.dataset.ssCookieClass,
-            showSettings: element.dataset.ssCookieShowSettings !== "false"
-        })
+            showSettings: element.dataset.ssCookieShowSettings !== "false",
+        });
     }
 
     // ========================================================================
@@ -290,40 +309,47 @@ export class CookieConsentManager {
 
     private loadConsent(): ConsentState | null {
         try {
-            const stored = localStorage.getItem(this.options.storageKey)
-            if (!stored) return null
+            const stored = localStorage.getItem(this.options.storageKey);
+            if (!stored) return null;
 
-            const consent = JSON.parse(stored) as ConsentState
+            const consent = JSON.parse(stored) as ConsentState;
 
             // Check expiration
             if (consent.timestamp) {
-                const expirationMs = this.options.expirationDays * 24 * 60 * 60 * 1000
+                const expirationMs =
+                    this.options.expirationDays * 24 * 60 * 60 * 1000;
                 if (Date.now() - consent.timestamp > expirationMs) {
-                    localStorage.removeItem(this.options.storageKey)
-                    return null
+                    localStorage.removeItem(this.options.storageKey);
+                    return null;
                 }
             }
 
-            return consent
+            return consent;
         } catch {
-            return null
+            return null;
         }
     }
 
     private saveConsent(): void {
-        localStorage.setItem(this.options.storageKey, JSON.stringify(this.consentState))
+        localStorage.setItem(
+            this.options.storageKey,
+            JSON.stringify(this.consentState),
+        );
     }
 
     private createBanner(): void {
-        const banner = document.createElement("div")
-        banner.className = `${this.options.cssClass} ${this.options.cssClass}--${this.options.position}`
-        banner.setAttribute("role", "dialog")
-        banner.setAttribute("aria-label", "Cookie Consent")
-        banner.setAttribute("aria-describedby", `${this.options.cssClass}-message`)
+        const banner = document.createElement("div");
+        banner.className = `${this.options.cssClass} ${this.options.cssClass}--${this.options.position}`;
+        banner.setAttribute("role", "dialog");
+        banner.setAttribute("aria-label", "Cookie Consent");
+        banner.setAttribute(
+            "aria-describedby",
+            `${this.options.cssClass}-message`,
+        );
 
         const privacyLink = this.options.privacyPolicyUrl
             ? `<a href="${this.options.privacyPolicyUrl}" class="${this.options.cssClass}__link">Privacy Policy</a>`
-            : ""
+            : "";
 
         banner.innerHTML = `
             <div class="${this.options.cssClass}__content">
@@ -332,11 +358,13 @@ export class CookieConsentManager {
                     ${privacyLink}
                 </p>
                 <div class="${this.options.cssClass}__actions">
-                    ${this.options.showSettings
-                        ? `<button type="button" class="${this.options.cssClass}__btn ${this.options.cssClass}__btn--settings">
+                    ${
+                        this.options.showSettings
+                            ? `<button type="button" class="${this.options.cssClass}__btn ${this.options.cssClass}__btn--settings">
                                ${this.options.settingsText}
                            </button>`
-                        : ""}
+                            : ""
+                    }
                     <button type="button" class="${this.options.cssClass}__btn ${this.options.cssClass}__btn--necessary">
                         ${this.options.acceptNecessaryText}
                     </button>
@@ -345,51 +373,61 @@ export class CookieConsentManager {
                     </button>
                 </div>
             </div>
-        `
+        `;
 
-        document.body.appendChild(banner)
-        this.bannerElement = banner
+        document.body.appendChild(banner);
+        this.bannerElement = banner;
 
         // Add event listeners
-        banner.querySelector(`.${this.options.cssClass}__btn--accept`)
-            ?.addEventListener("click", () => this.acceptAll())
-        banner.querySelector(`.${this.options.cssClass}__btn--necessary`)
-            ?.addEventListener("click", () => this.acceptNecessary())
-        banner.querySelector(`.${this.options.cssClass}__btn--settings`)
-            ?.addEventListener("click", () => this.showSettings())
+        banner
+            .querySelector(`.${this.options.cssClass}__btn--accept`)
+            ?.addEventListener("click", () => this.acceptAll());
+        banner
+            .querySelector(`.${this.options.cssClass}__btn--necessary`)
+            ?.addEventListener("click", () => this.acceptNecessary());
+        banner
+            .querySelector(`.${this.options.cssClass}__btn--settings`)
+            ?.addEventListener("click", () => this.showSettings());
     }
 
     private createSettingsPanel(): void {
-        const panel = document.createElement("div")
-        panel.className = `${this.options.cssClass}-settings`
-        panel.setAttribute("role", "dialog")
-        panel.setAttribute("aria-label", "Cookie Settings")
+        const panel = document.createElement("div");
+        panel.className = `${this.options.cssClass}-settings`;
+        panel.setAttribute("role", "dialog");
+        panel.setAttribute("aria-label", "Cookie Settings");
 
-        const categoryLabels: Record<CookieCategory, { title: string; description: string }> = {
+        const categoryLabels: Record<
+            CookieCategory,
+            { title: string; description: string }
+        > = {
             necessary: {
                 title: "Necessary Cookies",
-                description: "Required for the website to function properly. Cannot be disabled."
+                description:
+                    "Required for the website to function properly. Cannot be disabled.",
             },
             analytics: {
                 title: "Analytics Cookies",
-                description: "Help us understand how visitors interact with our website."
+                description:
+                    "Help us understand how visitors interact with our website.",
             },
             marketing: {
                 title: "Marketing Cookies",
-                description: "Used to track visitors across websites for advertising purposes."
+                description:
+                    "Used to track visitors across websites for advertising purposes.",
             },
             preferences: {
                 title: "Preference Cookies",
-                description: "Allow the website to remember choices you make."
-            }
-        }
+                description: "Allow the website to remember choices you make.",
+            },
+        };
 
-        const categoriesHtml = this.options.categories.map((cat) => {
-            const info = categoryLabels[cat]
-            const isNecessary = cat === "necessary"
-            const isChecked = this.consentState[cat]
+        const categoriesHtml = this.options.categories
+            .map((cat) => {
+                const info = categoryLabels[cat];
+                const isNecessary = cat === "necessary";
+                const isChecked = this.consentState[cat];
 
-            return `
+                return `
                 <div class="${this.options.cssClass}-settings__category">
                     <label class="${this.options.cssClass}-settings__label">
                         <input type="checkbox"
@@ -400,8 +438,9 @@ export class CookieConsentManager {
                     </label>
                     <p class="${this.options.cssClass}-settings__description">${info.description}</p>
                 </div>
-            `
-        }).join("")
+            `;
+            })
+            .join("");
 
         panel.innerHTML = `
             <div class="${this.options.cssClass}-settings__overlay"></div>
@@ -415,46 +454,60 @@ export class CookieConsentManager {
                     <button type="button" class="${this.options.cssClass}-settings__btn--save">Save Preferences</button>
                 </div>
             </div>
-        `
+        `;
 
-        document.body.appendChild(panel)
-        this.settingsPanel = panel
+        document.body.appendChild(panel);
+        this.settingsPanel = panel;
 
         // Event listeners
-        panel.querySelector(`.${this.options.cssClass}-settings__btn--cancel`)
-            ?.addEventListener("click", () => this.hideSettings())
-        panel.querySelector(`.${this.options.cssClass}-settings__overlay`)
-            ?.addEventListener("click", () => this.hideSettings())
-        panel.querySelector(`.${this.options.cssClass}-settings__btn--save`)
-            ?.addEventListener("click", () => this.saveFromSettings())
+        panel
+            .querySelector(`.${this.options.cssClass}-settings__btn--cancel`)
+            ?.addEventListener("click", () => this.hideSettings());
+        panel
+            .querySelector(`.${this.options.cssClass}-settings__overlay`)
+            ?.addEventListener("click", () => this.hideSettings());
+        panel
+            .querySelector(`.${this.options.cssClass}-settings__btn--save`)
+            ?.addEventListener("click", () => this.saveFromSettings());
     }
 
     private saveFromSettings(): void {
-        if (!this.settingsPanel) return
+        if (!this.settingsPanel) return;
 
-        const checkboxes = this.settingsPanel.querySelectorAll<HTMLInputElement>("input[type='checkbox']")
-        const consent: Partial<ConsentState> = { necessary: true }
+        const checkboxes =
+            this.settingsPanel.querySelectorAll<HTMLInputElement>(
+                "input[type='checkbox']",
+            );
+        const consent: Partial<ConsentState> = { necessary: true };
 
         checkboxes.forEach((checkbox) => {
-            const category = checkbox.name as CookieCategory
-            consent[category] = checkbox.checked
-        })
+            const category = checkbox.name as CookieCategory;
+            consent[category] = checkbox.checked;
+        });
 
-        this.saveCustomConsent(consent)
+        this.saveCustomConsent(consent);
     }
 
     private activateCategoryScripts(): void {
         // Activate scripts based on consent
-        document.querySelectorAll<HTMLScriptElement>("script[data-ss-cookie-category]").forEach((script) => {
-            const category = script.dataset.ssCookieCategory as CookieCategory
-            if (this.isAllowed(category) && !script.dataset.ssCookieActivated) {
-                const newScript = document.createElement("script")
-                newScript.src = script.src
-                newScript.dataset.ssCookieActivated = "true"
-                document.head.appendChild(newScript)
-            }
-        })
+        document
+            .querySelectorAll<HTMLScriptElement>(
+                "script[data-ss-cookie-category]",
+            )
+            .forEach((script) => {
+                const category = script.dataset
+                    .ssCookieCategory as CookieCategory;
+                if (
+                    this.isAllowed(category) &&
+                    !script.dataset.ssCookieActivated
+                ) {
+                    const newScript = document.createElement("script");
+                    newScript.src = script.src;
+                    newScript.dataset.ssCookieActivated = "true";
+                    document.head.appendChild(newScript);
+                }
+            });
     }
 }
 
-export default CookieConsentManager
+export default CookieConsentManager;
