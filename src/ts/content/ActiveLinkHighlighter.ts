@@ -1,36 +1,38 @@
 export class ActiveLinkHighlighter {
-    private activeClass: string
+  private activeClass: string;
 
-    constructor(activeClass: string = "active") {
-        this.activeClass = activeClass
-        this.highlightAllLinks()
-    }
+  constructor(activeClass: string = "active") {
+    this.activeClass = activeClass;
+    this.highlightAllLinks();
+  }
 
-    private normalizeUrl(url: string): string {
-        const a = document.createElement("a")
-        a.href = url
-        return a.pathname.replace(/\/+$/, "") // strip trailing slash
-    }
+  private normalizeUrl(url: string): string {
+    const a = document.createElement("a");
+    a.href = url;
+    const pathname = a.pathname.replace(/\/+$/, ""); // strip trailing slash
+    return pathname + a.search; // include query parameters
+  }
 
-    private highlightAllLinks(): void {
-        const currentPath = this.normalizeUrl(window.location.href)
-        const links = document.querySelectorAll<HTMLAnchorElement>("a")
+  private highlightAllLinks(): void {
+    const currentPath = this.normalizeUrl(window.location.href);
+    const links = document.querySelectorAll<HTMLAnchorElement>("a");
 
-        links.forEach((link) => {
-            if (link.closest(".ribbon__title")) {
-                return
-            }
+    links.forEach((link) => {
+      // Skip links in ribbon titles
+      if (link.closest(".ribbon__title")) {
+        return;
+      }
 
-            if (!link.hasAttribute("href") || !link.getAttribute("href")) {
-                return
-            }
+      if (!link.hasAttribute("href") || !link.getAttribute("href")) {
+        return;
+      }
 
-            const linkPath = this.normalizeUrl(link.href)
-            if (linkPath === currentPath) {
-                link.classList.add(this.activeClass)
-            }
-        })
-    }
+      const linkPath = this.normalizeUrl(link.href);
+      if (linkPath === currentPath) {
+        link.classList.add(this.activeClass);
+      }
+    });
+  }
 }
 // export class ActiveLinkHighlighter {
 //     private links: NodeListOf<HTMLAnchorElement>
