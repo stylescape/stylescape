@@ -132,6 +132,19 @@ module.exports = {
         },
 
         // ---------------------------------------------------------------------
+        // Jinja: Treat as HTML with 4-space indent
+        // ---------------------------------------------------------------------
+        {
+            files: ["*.jinja", "*.html.jinja"],
+            options: {
+                parser: "html",
+                tabWidth: 4,
+                printWidth: 79,
+                htmlWhitespaceSensitivity: "ignore",
+            },
+        },
+
+        // ---------------------------------------------------------------------
         // CSS/SCSS: Single quotes for URLs and font names
         // ---------------------------------------------------------------------
         {

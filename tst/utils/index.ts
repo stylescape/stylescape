@@ -2,6 +2,5 @@
 // Stylescape | Test Utilities Index
 // ============================================================================
 
-export * from "./dom"
-export * from "./fixtures"
-
+export * from "./dom";
+export * from "./fixtures";

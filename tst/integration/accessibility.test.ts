@@ -4,13 +4,13 @@
 // Tests accessibility features across components.
 // ============================================================================
 
-import { beforeEach, describe, expect, it, vi } from "vitest"
-import { $, click, pressEnter, pressEscape, pressTab, wait } from "../utils"
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { $, click, pressEnter, pressEscape, pressTab, wait } from "../utils";
 
 describe("Accessibility Integration", () => {
     beforeEach(() => {
-        document.body.innerHTML = ""
-    })
+        document.body.innerHTML = "";
+    });
 
     describe("Keyboard Navigation", () => {
         it("should support full keyboard navigation for accordion", async () => {
@@ -21,23 +21,23 @@ describe("Accessibility Integration", () => {
                     <button data-ss-accordion-trigger id="trigger-2">Section 2</button>
                     <div data-ss-accordion-panel hidden>Content 2</div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
-            const trigger1 = document.getElementById("trigger-1")
+            const trigger1 = document.getElementById("trigger-1");
             if (trigger1) {
-                trigger1.focus()
-                pressEnter(trigger1)
-                await wait(50)
+                trigger1.focus();
+                pressEnter(trigger1);
+                await wait(50);
                 // Panel should expand
 
-                pressTab(trigger1)
-                await wait(50)
+                pressTab(trigger1);
+                await wait(50);
                 // Focus should move to next trigger
             }
-        })
+        });
 
         it("should trap focus within modal", async () => {
             document.body.innerHTML = `
@@ -50,30 +50,30 @@ describe("Accessibility Integration", () => {
                         <button id="submit-btn">Submit</button>
                     </div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
             // Open modal
-            const openBtn = document.getElementById("open-btn")
+            const openBtn = document.getElementById("open-btn");
             if (openBtn) {
-                click(openBtn)
-                await wait(100)
+                click(openBtn);
+                await wait(100);
 
                 // Focus should be trapped within modal
-                const closeBtn = document.getElementById("close-btn")
-                const submitBtn = document.getElementById("submit-btn")
+                const closeBtn = document.getElementById("close-btn");
+                const submitBtn = document.getElementById("submit-btn");
 
                 if (closeBtn && submitBtn) {
-                    closeBtn.focus()
+                    closeBtn.focus();
                     // Tab from last element should wrap to first
-                    submitBtn.focus()
-                    pressTab(submitBtn)
-                    await wait(50)
+                    submitBtn.focus();
+                    pressTab(submitBtn);
+                    await wait(50);
                 }
             }
-        })
+        });
 
         it("should close modal on Escape", async () => {
             document.body.innerHTML = `
@@ -81,22 +81,22 @@ describe("Accessibility Integration", () => {
                 <div id="esc-modal" data-ss="modal" data-ss-modal-close-escape="true" hidden>
                     <div data-ss-modal-content>Modal content</div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
-            const openBtn = document.getElementById("open-esc")
+            const openBtn = document.getElementById("open-esc");
             if (openBtn) {
-                click(openBtn)
-                await wait(100)
+                click(openBtn);
+                await wait(100);
 
-                pressEscape()
-                await wait(350)
+                pressEscape();
+                await wait(350);
                 // Modal should be closed
             }
-        })
-    })
+        });
+    });
 
     describe("ARIA Attributes", () => {
         it("should set correct ARIA attributes on modal", async () => {
@@ -104,15 +104,15 @@ describe("Accessibility Integration", () => {
                 <div id="aria-modal" data-ss="modal" role="dialog" aria-modal="true" hidden>
                     <div data-ss-modal-content>Content</div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
-            const modal = document.getElementById("aria-modal")
-            expect(modal?.getAttribute("role")).toBe("dialog")
-            expect(modal?.getAttribute("aria-modal")).toBe("true")
-        })
+            const modal = document.getElementById("aria-modal");
+            expect(modal?.getAttribute("role")).toBe("dialog");
+            expect(modal?.getAttribute("aria-modal")).toBe("true");
+        });
 
         it("should update aria-expanded on accordion triggers", async () => {
             document.body.innerHTML = `
@@ -122,20 +122,20 @@ describe("Accessibility Integration", () => {
                     </button>
                     <div data-ss-accordion-panel hidden>Content</div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
-            const trigger = document.getElementById("aria-trigger")
-            expect(trigger?.getAttribute("aria-expanded")).toBe("false")
+            const trigger = document.getElementById("aria-trigger");
+            expect(trigger?.getAttribute("aria-expanded")).toBe("false");
 
             if (trigger) {
-                click(trigger)
-                await wait(100)
+                click(trigger);
+                await wait(100);
                 // aria-expanded should be "true"
             }
-        })
+        });
 
         it("should have aria-describedby on tooltip triggers", async () => {
             document.body.innerHTML = `
@@ -144,14 +144,14 @@ describe("Accessibility Integration", () => {
                         id="tooltip-aria-test">
                     Help
                 </button>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
             // When tooltip is shown, trigger should have aria-describedby
-        })
-    })
+        });
+    });
 
     describe("Focus Management", () => {
         it("should return focus to trigger when modal closes", async () => {
@@ -162,25 +162,25 @@ describe("Accessibility Integration", () => {
                         <button data-ss-modal-close>Close</button>
                     </div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
-            const trigger = document.getElementById("focus-trigger")
+            const trigger = document.getElementById("focus-trigger");
             if (trigger) {
-                click(trigger)
-                await wait(100)
+                click(trigger);
+                await wait(100);
 
                 // Close modal
-                const closeBtn = $("[data-ss-modal-close]")
+                const closeBtn = $("[data-ss-modal-close]");
                 if (closeBtn) {
-                    click(closeBtn)
-                    await wait(350)
+                    click(closeBtn);
+                    await wait(350);
                     // Focus should return to trigger
                 }
             }
-        })
+        });
 
         it("should focus first interactive element in modal", async () => {
             document.body.innerHTML = `
@@ -191,31 +191,31 @@ describe("Accessibility Integration", () => {
                         <button>Submit</button>
                     </div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
-            const trigger = $("[data-ss-modal-trigger]")
+            const trigger = $("[data-ss-modal-trigger]");
             if (trigger) {
-                click(trigger)
-                await wait(100)
+                click(trigger);
+                await wait(100);
                 // Focus should be on first input
             }
-        })
-    })
+        });
+    });
 
     describe("Screen Reader Support", () => {
         it("should have role=tooltip on tooltip elements", async () => {
             document.body.innerHTML = `
                 <button data-ss="tooltip" data-ss-tooltip-content="Info">?</button>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
             // When tooltip is shown, it should have role="tooltip"
-        })
+        });
 
         it("should announce dynamic content", async () => {
             // For notifications, live regions should be used
@@ -225,19 +225,19 @@ describe("Accessibility Integration", () => {
                      aria-live="polite">
                     Important message
                 </div>
-            `
+            `;
 
-            const notification = $("[data-ss='notification']")
-            expect(notification?.getAttribute("role")).toBe("alert")
-            expect(notification?.getAttribute("aria-live")).toBe("polite")
-        })
-    })
+            const notification = $("[data-ss='notification']");
+            expect(notification?.getAttribute("role")).toBe("alert");
+            expect(notification?.getAttribute("aria-live")).toBe("polite");
+        });
+    });
 
     describe("Color Contrast and Visual Indicators", () => {
         it("should have visible focus indicators", () => {
             // This would typically be tested with visual regression tools
             // Here we just verify focus-visible is being handled
-        })
+        });
 
         it("should provide non-color indicators for state", async () => {
             document.body.innerHTML = `
@@ -245,15 +245,15 @@ describe("Accessibility Integration", () => {
                     <input type="email" required id="contrast-email">
                     <span class="error-message" data-ss-error-for="contrast-email"></span>
                 </form>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
             // Error states should have more than just color indication
             // (e.g., icons, text, borders)
-        })
-    })
+        });
+    });
 
     describe("Reduced Motion", () => {
         it("should respect prefers-reduced-motion", async () => {
@@ -266,20 +266,20 @@ describe("Accessibility Integration", () => {
                 removeListener: vi.fn(),
                 addEventListener: vi.fn(),
                 removeEventListener: vi.fn(),
-                dispatchEvent: vi.fn()
-            }))
+                dispatchEvent: vi.fn(),
+            }));
 
             document.body.innerHTML = `
                 <div data-ss="accordion">
                     <button data-ss-accordion-trigger>Toggle</button>
                     <div data-ss-accordion-panel hidden>Content</div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
             // Animations should be reduced or disabled
-        })
-    })
-})
+        });
+    });
+});

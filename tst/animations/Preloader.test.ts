@@ -2,150 +2,156 @@
 // Stylescape | Preloader Component Tests
 // ============================================================================
 
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
-import { Preloader } from "../../src/ts/animations/Preloader"
-import { wait } from "../utils"
-import { preloaderFixture } from "../utils/fixtures"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { Preloader } from "../../src/ts/animations/Preloader";
+import { wait } from "../utils";
+import { preloaderFixture } from "../utils/fixtures";
 
 describe("Preloader", () => {
-    let preloader: Preloader
-    let preloaderElement: HTMLElement
+    let preloader: Preloader;
+    let preloaderElement: HTMLElement;
 
     beforeEach(() => {
-        document.body.innerHTML = preloaderFixture
-        preloaderElement = document.getElementById("test-preloader") as HTMLElement
-    })
+        document.body.innerHTML = preloaderFixture;
+        preloaderElement = document.getElementById(
+            "test-preloader",
+        ) as HTMLElement;
+    });
 
     afterEach(() => {
         if (preloader && typeof (preloader as any).destroy === "function") {
-            (preloader as any).destroy()
+            (preloader as any).destroy();
         }
-    })
+    });
 
     describe("Initialization", () => {
         it("should initialize with element selector", () => {
-            preloader = new Preloader("#test-preloader")
-            expect(preloader).toBeDefined()
-        })
+            preloader = new Preloader("#test-preloader");
+            expect(preloader).toBeDefined();
+        });
 
         it("should initialize with element reference", () => {
-            preloader = new Preloader(preloaderElement)
-            expect(preloader).toBeDefined()
-        })
+            preloader = new Preloader(preloaderElement);
+            expect(preloader).toBeDefined();
+        });
 
         it("should handle non-existent element gracefully", () => {
-            const consoleSpy = vi.spyOn(console, "warn").mockImplementation()
-            preloader = new Preloader("#non-existent")
-            expect(consoleSpy).toHaveBeenCalled()
-            consoleSpy.mockRestore()
-        })
+            const consoleSpy = vi
+                .spyOn(console, "warn")
+                .mockImplementation(() => {});
+            preloader = new Preloader("#non-existent");
+            expect(consoleSpy).toHaveBeenCalled();
+            consoleSpy.mockRestore();
+        });
 
         it("should parse options from data attributes", () => {
-            preloader = new Preloader(preloaderElement)
+            preloader = new Preloader(preloaderElement);
             // Options from fixture: timeout="500", min-display="200"
-            expect(preloaderElement.getAttribute("data-ss-preloader-timeout")).toBe("500")
-        })
-    })
+            expect(
+                preloaderElement.getAttribute("data-ss-preloader-timeout"),
+            ).toBe("500");
+        });
+    });
 
     describe("Show/Hide", () => {
         beforeEach(() => {
-            preloader = new Preloader(preloaderElement)
-        })
+            preloader = new Preloader(preloaderElement);
+        });
 
         it("should show preloader", () => {
-            preloader.show()
+            preloader.show();
             expect(
-                preloaderElement.classList.contains("preloader--hidden")
-            ).toBe(false)
-        })
+                preloaderElement.classList.contains("preloader--hidden"),
+            ).toBe(false);
+        });
 
         it("should hide preloader", () => {
-            preloader.hide()
+            preloader.hide();
             // After hide, should have hidden class
-        })
+        });
 
         it("should update aria-hidden on show", () => {
-            preloader.show()
-            expect(preloaderElement.getAttribute("aria-hidden")).toBe("false")
-        })
+            preloader.show();
+            expect(preloaderElement.getAttribute("aria-hidden")).toBe("false");
+        });
 
         it("should update aria-hidden on hide", async () => {
-            preloader.hide()
-            await wait(100)
-            expect(preloaderElement.getAttribute("aria-hidden")).toBe("true")
-        })
-    })
+            preloader.hide();
+            await wait(100);
+            expect(preloaderElement.getAttribute("aria-hidden")).toBe("true");
+        });
+    });
 
     describe("Timeout", () => {
         it("should auto-hide after timeout", async () => {
-            vi.useFakeTimers()
+            vi.useFakeTimers();
 
             preloader = new Preloader(preloaderElement, {
-                timeout: 500
-            })
+                timeout: 500,
+            });
 
             // Advance timers
-            vi.advanceTimersByTime(600)
+            vi.advanceTimersByTime(600);
 
             // Should be hidden
-            vi.useRealTimers()
-        })
+            vi.useRealTimers();
+        });
 
         it("should respect minDisplayTime", async () => {
-            vi.useFakeTimers()
+            vi.useFakeTimers();
 
             preloader = new Preloader(preloaderElement, {
-                minDisplayTime: 200
-            })
+                minDisplayTime: 200,
+            });
 
-            preloader.show()
-            preloader.hide()
+            preloader.show();
+            preloader.hide();
 
             // Should wait for minDisplayTime
-            vi.advanceTimersByTime(100)
+            vi.advanceTimersByTime(100);
             // May still be visible
 
-            vi.advanceTimersByTime(150)
+            vi.advanceTimersByTime(150);
             // Now should be hidden
 
-            vi.useRealTimers()
-        })
-    })
+            vi.useRealTimers();
+        });
+    });
 
     describe("Callbacks", () => {
         it("should call onHide callback", async () => {
-            const onHide = vi.fn()
-            preloader = new Preloader(preloaderElement, { onHide })
+            const onHide = vi.fn();
+            preloader = new Preloader(preloaderElement, { onHide });
 
-            preloader.hide()
-            await wait(100)
+            preloader.hide();
+            await wait(100);
 
-            expect(onHide).toHaveBeenCalled()
-        })
-    })
+            expect(onHide).toHaveBeenCalled();
+        });
+    });
 
     describe("CSS Classes", () => {
         it("should add hidden class when hidden", async () => {
             preloader = new Preloader(preloaderElement, {
-                hiddenClass: "custom-hidden"
-            })
+                hiddenClass: "custom-hidden",
+            });
 
-            preloader.hide()
-            await wait(100)
+            preloader.hide();
+            await wait(100);
 
             expect(
                 preloaderElement.classList.contains("custom-hidden") ||
-                preloaderElement.classList.contains("preloader--hidden")
-            ).toBe(true)
-        })
-    })
+                    preloaderElement.classList.contains("preloader--hidden"),
+            ).toBe(true);
+        });
+    });
 
     describe("Page Load Integration", () => {
         it("should auto-hide on window load", () => {
-            preloader = new Preloader(preloaderElement)
+            preloader = new Preloader(preloaderElement);
 
             // Simulate load event
-            window.dispatchEvent(new Event("load"))
-        })
-    })
-})
+            window.dispatchEvent(new Event("load"));
+        });
+    });
+});

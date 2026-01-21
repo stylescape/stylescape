@@ -22,7 +22,7 @@ export const modalFixture = `
         <p>Modal content here</p>
     </div>
 </div>
-`
+`;
 
 /**
  * Tooltip component HTML fixture
@@ -34,7 +34,7 @@ export const tooltipFixture = `
         data-ss-tooltip-position="top">
     Hover me
 </button>
-`
+`;
 
 /**
  * Accordion component HTML fixture
@@ -66,7 +66,7 @@ export const accordionFixture = `
         </div>
     </div>
 </div>
-`
+`;
 
 /**
  * Dropdown component HTML fixture
@@ -82,7 +82,7 @@ export const dropdownFixture = `
         <li role="option" data-value="3">Option 3</li>
     </ul>
 </div>
-`
+`;
 
 /**
  * Toggle switch component HTML fixture
@@ -96,7 +96,7 @@ export const toggleFixture = `
            data-ss-toggle-switch-label-off="OFF">
     <span class="toggle-slider"></span>
 </label>
-`
+`;
 
 /**
  * Notification component HTML fixture
@@ -108,7 +108,7 @@ export const notificationFixture = `
         <button class="notification-close" aria-label="Close">&times;</button>
     </div>
 </div>
-`
+`;
 
 /**
  * Tabs component HTML fixture
@@ -124,7 +124,7 @@ export const tabsFixture = `
     <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>Panel 2 content</div>
     <div role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden>Panel 3 content</div>
 </div>
-`
+`;
 
 /**
  * Form validation fixture
@@ -148,7 +148,7 @@ export const formValidationFixture = `
     </div>
     <button type="submit">Submit</button>
 </form>
-`
+`;
 
 /**
  * Preloader component HTML fixture
@@ -161,7 +161,7 @@ export const preloaderFixture = `
      data-ss-preloader-min-display="200">
     <div class="preloader__spinner"></div>
 </div>
-`
+`;
 
 /**
  * Theme toggler fixture
@@ -173,7 +173,7 @@ export const themeTogglerFixture = `
     <span class="theme-icon theme-icon--light">☀️</span>
     <span class="theme-icon theme-icon--dark">🌙</span>
 </button>
-`
+`;
 
 /**
  * Cookie consent fixture
@@ -190,7 +190,7 @@ export const cookieConsentFixture = `
         <button data-ss-cookie-consent-decline>Decline</button>
     </div>
 </div>
-`
+`;
 
 /**
  * Collapsible section fixture
@@ -210,7 +210,7 @@ export const collapsibleFixture = `
         <p>Collapsible content here</p>
     </div>
 </div>
-`
+`;
 
 /**
  * Progress bar fixture
@@ -227,7 +227,7 @@ export const progressBarFixture = `
     <div class="progress-bar__fill"></div>
     <span class="progress-bar__label">50%</span>
 </div>
-`
+`;
 
 /**
  * Image compare slider fixture
@@ -240,7 +240,7 @@ export const imageCompareFixture = `
     <img src="after.jpg" alt="After" class="image-compare__after">
     <div class="image-compare__slider"></div>
 </div>
-`
+`;
 
 /**
  * Auto-init test fixture with multiple components
@@ -259,4 +259,4 @@ export const autoInitFixture = `
         <div data-ss-accordion-panel hidden>Content</div>
     </div>
 </div>
-`
+`;

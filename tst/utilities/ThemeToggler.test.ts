@@ -2,36 +2,38 @@
 // Stylescape | Theme Toggler Tests
 // ============================================================================
 
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
-import { ThemeToggler } from "../../src/ts/utilities/ThemeToggler"
-import { click, wait } from "../utils"
-import { themeTogglerFixture } from "../utils/fixtures"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { ThemeToggler } from "../../src/ts/utilities/ThemeToggler";
+import { click, wait } from "../utils";
+import { themeTogglerFixture } from "../utils/fixtures";
 
 describe("ThemeToggler", () => {
-    let themeToggler: typeof ThemeToggler
-    let toggleElement: HTMLElement
+    let themeToggler: typeof ThemeToggler;
+    let toggleElement: HTMLElement;
 
     beforeEach(() => {
-        document.body.innerHTML = themeTogglerFixture
-        toggleElement = document.getElementById("theme-toggle") as HTMLElement
+        document.body.innerHTML = themeTogglerFixture;
+        toggleElement = document.getElementById("theme-toggle") as HTMLElement;
 
         // Clear localStorage
-        localStorage.clear()
+        localStorage.clear();
 
         // Reset document attributes
-        document.documentElement.removeAttribute("data-theme")
-    })
+        document.documentElement.removeAttribute("data-theme");
+    });
 
     afterEach(() => {
-        localStorage.clear()
-    })
+        localStorage.clear();
+    });
 
     describe("Initialization", () => {
         it("should initialize with element ID", async () => {
-            const { ThemeToggler } = await import("../../src/ts/utilities/ThemeToggler")
-            ThemeToggler.registerOnLoad("theme-toggle")
-            expect(toggleElement).toBeDefined()
-        })
+            const { ThemeToggler } = await import(
+                "../../src/ts/utilities/ThemeToggler"
+            );
+            ThemeToggler.registerOnLoad("theme-toggle");
+            expect(toggleElement).toBeDefined();
+        });
 
         it("should respect system preference", async () => {
             // Mock matchMedia for dark mode
@@ -43,92 +45,112 @@ describe("ThemeToggler", () => {
                 removeListener: vi.fn(),
                 addEventListener: vi.fn(),
                 removeEventListener: vi.fn(),
-                dispatchEvent: vi.fn()
-            }))
+                dispatchEvent: vi.fn(),
+            }));
 
-            const { ThemeToggler } = await import("../../src/ts/utilities/ThemeToggler")
+            const { ThemeToggler } = await import(
+                "../../src/ts/utilities/ThemeToggler"
+            );
             // System preference should be detected
-        })
+        });
 
         it("should restore theme from localStorage", async () => {
-            localStorage.setItem("theme", "dark")
+            localStorage.setItem("theme", "dark");
 
-            const { ThemeToggler } = await import("../../src/ts/utilities/ThemeToggler")
-            ThemeToggler.registerOnLoad("theme-toggle")
+            const { ThemeToggler } = await import(
+                "../../src/ts/utilities/ThemeToggler"
+            );
+            ThemeToggler.registerOnLoad("theme-toggle");
 
             // Theme should be restored from storage
-        })
-    })
+        });
+    });
 
     describe("Toggle Behavior", () => {
         it("should toggle from light to dark", async () => {
-            const { ThemeToggler } = await import("../../src/ts/utilities/ThemeToggler")
-            ThemeToggler.registerOnLoad("theme-toggle")
+            const { ThemeToggler } = await import(
+                "../../src/ts/utilities/ThemeToggler"
+            );
+            ThemeToggler.registerOnLoad("theme-toggle");
 
-            document.documentElement.setAttribute("data-theme", "light")
+            document.documentElement.setAttribute("data-theme", "light");
 
-            click(toggleElement)
-            await wait(50)
+            click(toggleElement);
+            await wait(50);
 
             // Should be dark now
-        })
+        });
 
         it("should toggle from dark to light", async () => {
-            const { ThemeToggler } = await import("../../src/ts/utilities/ThemeToggler")
-            ThemeToggler.registerOnLoad("theme-toggle")
+            const { ThemeToggler } = await import(
+                "../../src/ts/utilities/ThemeToggler"
+            );
+            ThemeToggler.registerOnLoad("theme-toggle");
 
-            document.documentElement.setAttribute("data-theme", "dark")
+            document.documentElement.setAttribute("data-theme", "dark");
 
-            click(toggleElement)
-            await wait(50)
+            click(toggleElement);
+            await wait(50);
 
             // Should be light now
-        })
+        });
 
         it("should update data-theme attribute", async () => {
-            const { ThemeToggler } = await import("../../src/ts/utilities/ThemeToggler")
-            ThemeToggler.registerOnLoad("theme-toggle")
+            const { ThemeToggler } = await import(
+                "../../src/ts/utilities/ThemeToggler"
+            );
+            // Use initializeToggleSwitch directly since registerOnLoad waits for window.load
+            ThemeToggler.initializeToggleSwitch("theme-toggle");
 
-            click(toggleElement)
-            await wait(50)
+            // Trigger change event on checkbox
+            const checkbox = toggleElement as HTMLInputElement;
+            checkbox.checked = true;
+            checkbox.dispatchEvent(new Event("change"));
+            await wait(50);
 
-            expect(document.documentElement.hasAttribute("data-theme")).toBe(true)
-        })
-    })
+            expect(document.documentElement.hasAttribute("data-theme")).toBe(
+                true,
+            );
+        });
+    });
 
     describe("Persistence", () => {
         it("should save theme to localStorage", async () => {
-            const { ThemeToggler } = await import("../../src/ts/utilities/ThemeToggler")
-            ThemeToggler.registerOnLoad("theme-toggle")
+            const { ThemeToggler } = await import(
+                "../../src/ts/utilities/ThemeToggler"
+            );
+            ThemeToggler.registerOnLoad("theme-toggle");
 
-            click(toggleElement)
-            await wait(50)
+            click(toggleElement);
+            await wait(50);
 
             // localStorage should have theme value
-        })
+        });
 
         it("should use custom storage key", async () => {
             // Test with custom storage key if supported
-        })
-    })
+        });
+    });
 
     describe("Accessibility", () => {
         it("should have aria-label", () => {
-            expect(toggleElement.getAttribute("aria-label")).toBeTruthy()
-        })
+            expect(toggleElement.getAttribute("aria-label")).toBeTruthy();
+        });
 
         it("should be keyboard accessible", async () => {
-            const { ThemeToggler } = await import("../../src/ts/utilities/ThemeToggler")
-            ThemeToggler.registerOnLoad("theme-toggle")
+            const { ThemeToggler } = await import(
+                "../../src/ts/utilities/ThemeToggler"
+            );
+            ThemeToggler.registerOnLoad("theme-toggle");
 
-            toggleElement.focus()
+            toggleElement.focus();
             toggleElement.dispatchEvent(
                 new KeyboardEvent("keydown", {
                     key: "Enter",
-                    bubbles: true
-                })
-            )
-            await wait(50)
-        })
-    })
-})
+                    bubbles: true,
+                }),
+            );
+            await wait(50);
+        });
+    });
+});

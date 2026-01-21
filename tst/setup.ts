@@ -4,7 +4,7 @@
 // Global test setup file for Vitest with jsdom environment.
 // ============================================================================
 
-import { afterEach, beforeEach, vi } from "vitest"
+import { afterEach, beforeEach, vi } from "vitest";
 
 // ============================================================================
 // DOM Reset
@@ -12,23 +12,23 @@ import { afterEach, beforeEach, vi } from "vitest"
 
 beforeEach(() => {
     // Reset DOM to clean state before each test
-    document.head.innerHTML = ""
-    document.body.innerHTML = ""
+    document.head.innerHTML = "";
+    document.body.innerHTML = "";
 
     // Clear any stored instances
-    vi.clearAllMocks()
-})
+    vi.clearAllMocks();
+});
 
 afterEach(() => {
     // Clean up any created elements
-    document.body.innerHTML = ""
+    document.body.innerHTML = "";
 
     // Reset timers if they were mocked
-    vi.useRealTimers()
+    vi.useRealTimers();
 
     // Clear all intervals/timeouts
-    vi.clearAllTimers()
-})
+    vi.clearAllTimers();
+});
 
 // ============================================================================
 // Global Mocks
@@ -36,50 +36,50 @@ afterEach(() => {
 
 // Mock ResizeObserver
 class ResizeObserverMock {
-    observe = vi.fn()
-    unobserve = vi.fn()
-    disconnect = vi.fn()
+    observe = vi.fn();
+    unobserve = vi.fn();
+    disconnect = vi.fn();
 }
-vi.stubGlobal("ResizeObserver", ResizeObserverMock)
+vi.stubGlobal("ResizeObserver", ResizeObserverMock);
 
 // Mock IntersectionObserver
 class IntersectionObserverMock {
-    observe = vi.fn()
-    unobserve = vi.fn()
-    disconnect = vi.fn()
-    root = null
-    rootMargin = ""
-    thresholds = []
+    observe = vi.fn();
+    unobserve = vi.fn();
+    disconnect = vi.fn();
+    root = null;
+    rootMargin = "";
+    thresholds = [];
 }
-vi.stubGlobal("IntersectionObserver", IntersectionObserverMock)
+vi.stubGlobal("IntersectionObserver", IntersectionObserverMock);
 
 // Mock MutationObserver
 class MutationObserverMock {
-    private callback: MutationCallback
+    private callback: MutationCallback;
 
     constructor(callback: MutationCallback) {
-        this.callback = callback
+        this.callback = callback;
     }
 
-    observe = vi.fn()
-    disconnect = vi.fn()
-    takeRecords = vi.fn(() => [])
+    observe = vi.fn();
+    disconnect = vi.fn();
+    takeRecords = vi.fn(() => []);
 
     // Helper to trigger mutations in tests
     trigger(mutations: Partial<MutationRecord>[]) {
-        this.callback(mutations as MutationRecord[], this)
+        this.callback(mutations as MutationRecord[], this);
     }
 }
-vi.stubGlobal("MutationObserver", MutationObserverMock)
+vi.stubGlobal("MutationObserver", MutationObserverMock);
 
 // Mock requestAnimationFrame
 vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback) => {
-    return setTimeout(() => callback(Date.now()), 16)
-})
+    return setTimeout(() => callback(Date.now()), 16);
+});
 
 vi.stubGlobal("cancelAnimationFrame", (id: number) => {
-    clearTimeout(id)
-})
+    clearTimeout(id);
+});
 
 // Mock matchMedia
 vi.stubGlobal("matchMedia", (query: string) => ({
@@ -90,14 +90,14 @@ vi.stubGlobal("matchMedia", (query: string) => ({
     removeListener: vi.fn(),
     addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
-    dispatchEvent: vi.fn()
-}))
+    dispatchEvent: vi.fn(),
+}));
 
 // Mock scrollTo
-vi.stubGlobal("scrollTo", vi.fn())
-Object.defineProperty(window, "scrollY", { value: 0, writable: true })
-Object.defineProperty(window, "innerHeight", { value: 768, writable: true })
-Object.defineProperty(window, "innerWidth", { value: 1024, writable: true })
+vi.stubGlobal("scrollTo", vi.fn());
+Object.defineProperty(window, "scrollY", { value: 0, writable: true });
+Object.defineProperty(window, "innerHeight", { value: 768, writable: true });
+Object.defineProperty(window, "innerWidth", { value: 1024, writable: true });
 
 // ============================================================================
 // Custom Matchers (optional extension)

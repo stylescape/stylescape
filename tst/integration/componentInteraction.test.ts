@@ -4,13 +4,13 @@
 // Tests interactions between multiple components.
 // ============================================================================
 
-import { beforeEach, describe, it, vi } from "vitest"
-import { $, click, mouseEnter, wait } from "../utils"
+import { beforeEach, describe, it, vi } from "vitest";
+import { $, click, mouseEnter, wait } from "../utils";
 
 describe("Component Interactions", () => {
     beforeEach(() => {
-        document.body.innerHTML = ""
-    })
+        document.body.innerHTML = "";
+    });
 
     describe("Modal with Form", () => {
         it("should validate form inside modal", async () => {
@@ -24,27 +24,32 @@ describe("Component Interactions", () => {
                         </form>
                     </div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
             // Open modal
-            const trigger = $("[data-ss-modal-trigger]")
+            const trigger = $("[data-ss-modal-trigger]");
             if (trigger) {
-                click(trigger)
-                await wait(100)
+                click(trigger);
+                await wait(100);
 
                 // Form validation should work inside modal
-                const form = $("#modal-form")
-                const email = $<HTMLInputElement>("#modal-email")
+                const form = $("#modal-form");
+                const email = $<HTMLInputElement>("#modal-email");
                 if (form && email) {
-                    email.value = "invalid"
-                    form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }))
+                    email.value = "invalid";
+                    form.dispatchEvent(
+                        new Event("submit", {
+                            bubbles: true,
+                            cancelable: true,
+                        }),
+                    );
                 }
             }
-        })
-    })
+        });
+    });
 
     describe("Accordion with Tooltips", () => {
         it("should show tooltips inside accordion panels", async () => {
@@ -55,26 +60,26 @@ describe("Component Interactions", () => {
                         <button data-ss="tooltip" data-ss-tooltip-content="Info">?</button>
                     </div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
             // Open accordion
-            const trigger = $("[data-ss-accordion-trigger]")
+            const trigger = $("[data-ss-accordion-trigger]");
             if (trigger) {
-                click(trigger)
-                await wait(100)
+                click(trigger);
+                await wait(100);
 
                 // Tooltip inside should be usable
-                const tooltipTrigger = $("[data-ss='tooltip']")
+                const tooltipTrigger = $("[data-ss='tooltip']");
                 if (tooltipTrigger) {
-                    mouseEnter(tooltipTrigger)
-                    await wait(300)
+                    mouseEnter(tooltipTrigger);
+                    await wait(300);
                 }
             }
-        })
-    })
+        });
+    });
 
     describe("Tabs with Dynamic Content", () => {
         it("should initialize components in tab panels", async () => {
@@ -91,14 +96,14 @@ describe("Component Interactions", () => {
                         <button data-ss="tooltip" data-ss-tooltip-content="Tab 2 tooltip">?</button>
                     </div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
             // All tooltips should be initialized even in hidden panels
-        })
-    })
+        });
+    });
 
     describe("Theme Toggle with Multiple Components", () => {
         it("should update all components when theme changes", async () => {
@@ -108,21 +113,21 @@ describe("Component Interactions", () => {
                 <div data-ss="modal" id="test-modal" hidden>
                     <div data-ss-modal-content>Modal</div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
             // Change theme
-            const themeBtn = $("#theme-btn")
+            const themeBtn = $("#theme-btn");
             if (themeBtn) {
-                click(themeBtn)
-                await wait(50)
+                click(themeBtn);
+                await wait(50);
 
                 // Components should respect new theme
             }
-        })
-    })
+        });
+    });
 
     describe("Nested Modals", () => {
         it("should handle modal opening from within another modal", async () => {
@@ -138,26 +143,26 @@ describe("Component Interactions", () => {
                         Nested modal content
                     </div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
             // Open first modal
-            const trigger1 = $("[data-ss-modal-trigger='#modal-1']")
+            const trigger1 = $("[data-ss-modal-trigger='#modal-1']");
             if (trigger1) {
-                click(trigger1)
-                await wait(100)
+                click(trigger1);
+                await wait(100);
 
                 // Open second modal from inside first
-                const trigger2 = $("[data-ss-modal-trigger='#modal-2']")
+                const trigger2 = $("[data-ss-modal-trigger='#modal-2']");
                 if (trigger2) {
-                    click(trigger2)
-                    await wait(100)
+                    click(trigger2);
+                    await wait(100);
                 }
             }
-        })
-    })
+        });
+    });
 
     describe("Dropdown with Form Elements", () => {
         it("should handle form inputs inside dropdown", async () => {
@@ -170,12 +175,12 @@ describe("Component Interactions", () => {
                         <label><input type="checkbox"> Option 2</label>
                     </div>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
-        })
-    })
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
+        });
+    });
 
     describe("Progress Bar with Form Submit", () => {
         it("should update progress on form submission progress", async () => {
@@ -188,19 +193,19 @@ describe("Component Interactions", () => {
                     <input type="file" id="file-input">
                     <button type="submit">Upload</button>
                 </form>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
             // Simulate progress update
             // Would typically be updated by file upload progress
-        })
-    })
+        });
+    });
 
     describe("Notification with Auto-dismiss", () => {
         it("should auto-dismiss notification after timeout", async () => {
-            vi.useFakeTimers()
+            vi.useFakeTimers();
 
             document.body.innerHTML = `
                 <div data-ss="notification"
@@ -208,17 +213,17 @@ describe("Component Interactions", () => {
                      data-ss-notification-duration="3000">
                     <span>Auto-dismiss notification</span>
                 </div>
-            `
+            `;
 
-            const { init } = await import("../../src/ts/init/autoInit")
-            await init()
+            const { init } = await import("../../src/ts/init/autoInit");
+            await init();
 
             // Advance timers
-            vi.advanceTimersByTime(3500)
+            vi.advanceTimersByTime(3500);
 
             // Notification should be dismissed
 
-            vi.useRealTimers()
-        })
-    })
-})
+            vi.useRealTimers();
+        });
+    });
+});

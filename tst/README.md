@@ -70,36 +70,36 @@ npm run test:watch
 
 ```typescript
 // Create elements from HTML
-const button = createElement<HTMLButtonElement>(`<button>Click</button>`)
+const button = createElement<HTMLButtonElement>(`<button>Click</button>`);
 
 // Create and append to body
-const modal = createAndAppend(`<div class="modal">...</div>`)
+const modal = createAndAppend(`<div class="modal">...</div>`);
 
 // Simulate events
-click(element)
-mouseEnter(element)
-mouseLeave(element)
-focus(element)
-blur(element)
-keyDown(element, 'Escape')
-pressEscape(element)
-pressEnter(element)
-pressTab(element)
+click(element);
+mouseEnter(element);
+mouseLeave(element);
+focus(element);
+blur(element);
+keyDown(element, "Escape");
+pressEscape(element);
+pressEnter(element);
+pressTab(element);
 
 // Input helpers
-inputValue(input, 'test@example.com')
-changeValue(input, 'new value')
+inputValue(input, "test@example.com");
+changeValue(input, "new value");
 
 // Scroll simulation
-scrollTo(window, { y: 500 })
+scrollTo(window, { y: 500 });
 
 // Query helpers
-const el = $<HTMLElement>('.selector')
-const els = $$<HTMLElement>('.selector')
+const el = $<HTMLElement>(".selector");
+const els = $$<HTMLElement>(".selector");
 
 // Async helpers
-await wait(100)  // Wait ms
-await nextFrame()  // Wait for rAF
+await wait(100); // Wait ms
+await nextFrame(); // Wait for rAF
 ```
 
 ### Test Fixtures (`utils/fixtures.ts`)
@@ -120,78 +120,78 @@ Pre-built HTML fixtures for common components:
 ### Basic Component Test
 
 ```typescript
-import { describe, it, expect, beforeEach, afterEach } from "vitest"
-import { createAndAppend, click, $ } from "../utils"
-import { MyComponent } from "../../src/ts/elements/MyComponent"
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { createAndAppend, click, $ } from "../utils";
+import { MyComponent } from "../../src/ts/elements/MyComponent";
 
 describe("MyComponent", () => {
-    let component: MyComponent
-    let element: HTMLElement
+  let component: MyComponent;
+  let element: HTMLElement;
 
-    beforeEach(() => {
-        element = createAndAppend(`
+  beforeEach(() => {
+    element = createAndAppend(`
             <div data-ss="my-component" id="test">
                 Content
             </div>
-        `)
-    })
+        `);
+  });
 
-    afterEach(() => {
-        if (component?.destroy) {
-            component.destroy()
-        }
-    })
+  afterEach(() => {
+    if (component?.destroy) {
+      component.destroy();
+    }
+  });
 
-    it("should initialize", () => {
-        component = new MyComponent(element)
-        expect(component).toBeDefined()
-    })
+  it("should initialize", () => {
+    component = new MyComponent(element);
+    expect(component).toBeDefined();
+  });
 
-    it("should handle click", async () => {
-        component = new MyComponent(element)
-        click(element)
-        // Assert expected behavior
-    })
-})
+  it("should handle click", async () => {
+    component = new MyComponent(element);
+    click(element);
+    // Assert expected behavior
+  });
+});
 ```
 
 ### Testing with Mocks
 
 ```typescript
-import { vi } from "vitest"
+import { vi } from "vitest";
 
 // Mock callback
-const onOpen = vi.fn()
-component = new MyComponent(element, { onOpen })
+const onOpen = vi.fn();
+component = new MyComponent(element, { onOpen });
 
 // Assert callback called
-expect(onOpen).toHaveBeenCalled()
-expect(onOpen).toHaveBeenCalledWith(expectedArg)
+expect(onOpen).toHaveBeenCalled();
+expect(onOpen).toHaveBeenCalledWith(expectedArg);
 
 // Mock timers for animations
-vi.useFakeTimers()
-component.animate()
-vi.advanceTimersByTime(300)
-vi.useRealTimers()
+vi.useFakeTimers();
+component.animate();
+vi.advanceTimersByTime(300);
+vi.useRealTimers();
 ```
 
 ### Integration Tests
 
 ```typescript
 describe("Component Integration", () => {
-    it("should work with auto-init", async () => {
-        document.body.innerHTML = `
+  it("should work with auto-init", async () => {
+    document.body.innerHTML = `
             <div data-ss="tooltip" data-ss-tooltip-content="Hello">
                 Hover me
             </div>
-        `
+        `;
 
-        const { init } = await import("../../src/ts/init/autoInit")
-        await init()
+    const { init } = await import("../../src/ts/init/autoInit");
+    await init();
 
-        // Component should be initialized
-    })
-})
+    // Component should be initialized
+  });
+});
 ```
 
 ## Coverage
