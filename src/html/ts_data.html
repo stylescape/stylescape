@@ -993,7 +993,7 @@
     <section class="demo__subsection" data-label="Filter Manager" data-level="2">
         <h3>Filter Manager</h3>
         <p>Filters and searches items in lists, tables, or grids with debouncing.</p>
-  
+   
 <div class="preview_box--vertical">
     <div class="preview_box__live"><!-- Search input with filter -->
 <div style="margin-bottom: 20px;">
@@ -1030,7 +1030,7 @@
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-1088')"
+            onclick="ClipboardHelper.copyById('code-snippet-8904')"
         >
             Copy
         </button>
@@ -1038,7 +1038,7 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-1088" class="language-html">&lt;!-- Search input with filter --&gt;
+        ><code id="code-snippet-8904" class="language-html">&lt;!-- Search input with filter --&gt;
 &lt;div style=&quot;margin-bottom: 20px;&quot;&gt;
     &lt;input type=&quot;text&quot;
            data-ss=&quot;filter&quot;
@@ -1076,7 +1076,7 @@
     <section class="demo__subsection" data-label="Filter with Categories" data-level="2">
         <h3>Filter with Categories</h3>
         <p>Combined text search with category filtering.</p>
-  
+   
 <div class="preview_box--vertical">
     <div class="preview_box__live"><div style="display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
     <!-- Search input -->
@@ -1123,7 +1123,7 @@
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-6123')"
+            onclick="ClipboardHelper.copyById('code-snippet-1924')"
         >
             Copy
         </button>
@@ -1131,7 +1131,7 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-6123" class="language-html">&lt;div style=&quot;display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;&quot;&gt;
+        ><code id="code-snippet-1924" class="language-html">&lt;div style=&quot;display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;&quot;&gt;
     &lt;!-- Search input --&gt;
     &lt;input type=&quot;text&quot;
            data-ss=&quot;filter&quot;
@@ -1179,7 +1179,7 @@
     <section class="demo__subsection" data-label="Rating Manager" data-level="2">
         <h3>Rating Manager</h3>
         <p>Star rating component with keyboard accessibility.</p>
-  
+   
 <div class="preview_box--vertical">
     <div class="preview_box__live"><!-- Basic star rating -->
 <div data-ss="rating"
@@ -1226,7 +1226,7 @@
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-9547')"
+            onclick="ClipboardHelper.copyById('code-snippet-2966')"
         >
             Copy
         </button>
@@ -1234,7 +1234,7 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-9547" class="language-html">&lt;!-- Basic star rating --&gt;
+        ><code id="code-snippet-2966" class="language-html">&lt;!-- Basic star rating --&gt;
 &lt;div data-ss=&quot;rating&quot;
      data-ss-rating-max=&quot;5&quot;
      data-ss-rating-value=&quot;3&quot;
@@ -1282,7 +1282,7 @@
     <section class="demo__subsection" data-label="Rating Styles" data-level="2">
         <h3>Rating Styles</h3>
         <p>Various rating display styles.</p>
-  
+   
 <div class="preview_box--vertical">
     <div class="preview_box__live"><div style="display: flex; flex-direction: column; gap: 24px;">
     <!-- Hearts -->
@@ -1331,7 +1331,7 @@
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-8405')"
+            onclick="ClipboardHelper.copyById('code-snippet-2093')"
         >
             Copy
         </button>
@@ -1339,7 +1339,7 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-8405" class="language-html">&lt;div style=&quot;display: flex; flex-direction: column; gap: 24px;&quot;&gt;
+        ><code id="code-snippet-2093" class="language-html">&lt;div style=&quot;display: flex; flex-direction: column; gap: 24px;&quot;&gt;
     &lt;!-- Hearts --&gt;
     &lt;div&gt;
         &lt;label style=&quot;display: block; margin-bottom: 8px; font-size: 14px; opacity: 0.7;&quot;&gt;Favorite&lt;/label&gt;
@@ -1389,55 +1389,13 @@
     <section class="demo__subsection" data-label="JavaScript API" data-level="2">
         <h3>JavaScript API</h3>
         <p>Programmatic control of data components.</p>
-  
+   
 <div class="preview_box--vertical">
-    <div class="preview_box__live"><script>
-// FilterManager
-import { FilterManager } from 'stylescape';
-
-const filter = new FilterManager(inputElement, {
-    items: '.filterable-item',
-    debounce: 300,
-    minChars: 2,
-    filterAttribute: 'data-filter-text',
-    noResultsText: 'No items found',
-    onFilter: (matches, query) => {
-        console.log(`Found ${matches.length} items for "${query}"`);
-    }
-});
-
-filter.setQuery('search term');  // Set search programmatically
-filter.clear();                  // Clear filter
-filter.refresh();                // Re-scan items
-
-// RatingManager
-import { RatingManager } from 'stylescape';
-
-const rating = new RatingManager(element, {
-    max: 5,
-    value: 0,
-    allowHalf: true,
-    readonly: false,
-    onChange: (value) => {
-        console.log('Rating changed:', value);
-        // Submit to API
-        fetch('/api/rating', {
-            method: 'POST',
-            body: JSON.stringify({ rating: value })
-        });
-    }
-});
-
-rating.getValue();      // Get current rating
-rating.setValue(4.5);   // Set rating
-rating.setReadonly(true);  // Make readonly
-</script>
-</div>
     <div class="preview_box__info">
         <small>JavaScript</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-1965')"
+            onclick="ClipboardHelper.copyById('code-snippet-9169')"
         >
             Copy
         </button>
@@ -1445,7 +1403,7 @@ rating.setReadonly(true);  // Make readonly
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-1965" class="language-javascript">&lt;script&gt;
+        ><code id="code-snippet-9169" class="language-javascript">&lt;script&gt;
 // FilterManager
 import { FilterManager } from &#39;stylescape&#39;;
 

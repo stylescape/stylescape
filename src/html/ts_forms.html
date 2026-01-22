@@ -993,7 +993,7 @@
     <section class="demo__subsection" data-label="Autocomplete Manager" data-level="2">
         <h3>Autocomplete Manager</h3>
         <p>Autocomplete suggestions with keyboard navigation.</p>
-  
+   
 <div class="preview_box--vertical">
     <div class="preview_box__live"><!-- Basic autocomplete -->
 <div style="position: relative; max-width: 400px;">
@@ -1060,7 +1060,7 @@
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-7808')"
+            onclick="ClipboardHelper.copyById('code-snippet-4449')"
         >
             Copy
         </button>
@@ -1068,7 +1068,7 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-7808" class="language-html">&lt;!-- Basic autocomplete --&gt;
+        ><code id="code-snippet-4449" class="language-html">&lt;!-- Basic autocomplete --&gt;
 &lt;div style=&quot;position: relative; max-width: 400px;&quot;&gt;
     &lt;input type=&quot;text&quot;
            data-ss=&quot;autocomplete&quot;
@@ -1136,7 +1136,7 @@
     <section class="demo__subsection" data-label="Form Validator" data-level="2">
         <h3>Form Validator</h3>
         <p>Form validation with customizable rules and real-time feedback.</p>
-  
+   
 <div class="preview_box--vertical">
     <div class="preview_box__live"><form data-ss="validate"
       data-ss-validate-on-blur="true"
@@ -1197,7 +1197,7 @@
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-5437')"
+            onclick="ClipboardHelper.copyById('code-snippet-4965')"
         >
             Copy
         </button>
@@ -1205,7 +1205,7 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-5437" class="language-html">&lt;form data-ss=&quot;validate&quot;
+        ><code id="code-snippet-4965" class="language-html">&lt;form data-ss=&quot;validate&quot;
       data-ss-validate-on-blur=&quot;true&quot;
       style=&quot;max-width: 500px; display: flex; flex-direction: column; gap: 20px;&quot;&gt;
 
@@ -1267,7 +1267,7 @@
     <section class="demo__subsection" data-label="Validation States" data-level="2">
         <h3>Validation States</h3>
         <p>Visual feedback for different validation states.</p>
-  
+   
 <div class="preview_box--vertical">
     <div class="preview_box__live"><div style="display: flex; flex-direction: column; gap: 24px; max-width: 400px;">
     <!-- Default state -->
@@ -1324,7 +1324,7 @@
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-1633')"
+            onclick="ClipboardHelper.copyById('code-snippet-5659')"
         >
             Copy
         </button>
@@ -1332,7 +1332,7 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-1633" class="language-html">&lt;div style=&quot;display: flex; flex-direction: column; gap: 24px; max-width: 400px;&quot;&gt;
+        ><code id="code-snippet-5659" class="language-html">&lt;div style=&quot;display: flex; flex-direction: column; gap: 24px; max-width: 400px;&quot;&gt;
     &lt;!-- Default state --&gt;
     &lt;div class=&quot;form-field&quot;&gt;
         &lt;label style=&quot;display: block; margin-bottom: 6px; font-weight: 500;&quot;&gt;Default&lt;/label&gt;
@@ -1390,7 +1390,7 @@
     <section class="demo__subsection" data-label="Password Toggle" data-level="2">
         <h3>Password Toggle</h3>
         <p>Show/hide password functionality.</p>
-  
+   
 <div class="preview_box--vertical">
     <div class="preview_box__live"><div style="max-width: 400px;">
     <label style="display: block; margin-bottom: 6px; font-weight: 500;">Password</label>
@@ -1425,7 +1425,7 @@
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-9052')"
+            onclick="ClipboardHelper.copyById('code-snippet-6336')"
         >
             Copy
         </button>
@@ -1433,7 +1433,7 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-9052" class="language-html">&lt;div style=&quot;max-width: 400px;&quot;&gt;
+        ><code id="code-snippet-6336" class="language-html">&lt;div style=&quot;max-width: 400px;&quot;&gt;
     &lt;label style=&quot;display: block; margin-bottom: 6px; font-weight: 500;&quot;&gt;Password&lt;/label&gt;
     &lt;div style=&quot;position: relative;&quot;&gt;
         &lt;input type=&quot;password&quot;
@@ -1469,82 +1469,13 @@
     <section class="demo__subsection" data-label="JavaScript API" data-level="2">
         <h3>JavaScript API</h3>
         <p>Programmatic control of form components.</p>
-  
+   
 <div class="preview_box--vertical">
-    <div class="preview_box__live"><script>
-// AutocompleteManager
-import { AutocompleteManager } from 'stylescape';
-
-const autocomplete = new AutocompleteManager(inputElement, {
-    minChars: 2,
-    debounce: 300,
-    maxResults: 10,
-    source: async (query) => {
-        const response = await fetch(`/api/search?q=${query}`);
-        return response.json();
-    },
-    renderItem: (item) => `
-        <div class="autocomplete-item">
-            <img src="${item.avatar}" alt="">
-            <span>${item.name}</span>
-        </div>
-    `,
-    onSelect: (item) => {
-        console.log('Selected:', item);
-    }
-});
-
-autocomplete.setSource(newDataArray);
-autocomplete.clear();
-autocomplete.destroy();
-
-// FormValidator
-import { FormValidator } from 'stylescape';
-
-const validator = new FormValidator(formElement, {
-    validateOnBlur: true,
-    validateOnInput: false,
-    showErrors: true,
-    rules: {
-        email: {
-            required: true,
-            email: true,
-            message: 'Please enter a valid email'
-        },
-        password: {
-            required: true,
-            minLength: 8,
-            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-            message: 'Password must be 8+ chars with mixed case and numbers'
-        },
-        confirmPassword: {
-            required: true,
-            match: 'password',
-            message: 'Passwords must match'
-        }
-    },
-    onSubmit: async (data, form) => {
-        // Handle valid form submission
-        await submitForm(data);
-    },
-    onError: (errors) => {
-        console.log('Validation errors:', errors);
-    }
-});
-
-validator.validate();           // Validate all fields
-validator.validateField('email'); // Validate single field
-validator.isValid();            // Check if form is valid
-validator.getErrors();          // Get all error messages
-validator.reset();              // Reset validation state
-validator.setFieldError('email', 'Custom error');
-</script>
-</div>
     <div class="preview_box__info">
         <small>JavaScript</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-5003')"
+            onclick="ClipboardHelper.copyById('code-snippet-8342')"
         >
             Copy
         </button>
@@ -1552,7 +1483,7 @@ validator.setFieldError('email', 'Custom error');
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-5003" class="language-javascript">&lt;script&gt;
+        ><code id="code-snippet-8342" class="language-javascript">&lt;script&gt;
 // AutocompleteManager
 import { AutocompleteManager } from &#39;stylescape&#39;;
 
