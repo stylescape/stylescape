@@ -35,15 +35,17 @@ import {
     setObserver,
     stopObserving,
 } from "./autoInit.js";
-import {
+import type {
     ComponentConfig,
     ComponentHandler,
+    RegistryEntry,
+} from "./registry.js";
+import {
     componentRegistry,
     getComponent,
     getComponentNames,
     hasComponent,
     registerComponent,
-    RegistryEntry,
 } from "./registry.js";
 
 // ============================================================================
@@ -52,9 +54,6 @@ import {
 
 export {
     autoStart,
-    // Types
-    ComponentConfig,
-    ComponentHandler,
     // Registry functions
     componentRegistry,
     destroy,
@@ -67,7 +66,6 @@ export {
     init,
     observe,
     registerComponent,
-    RegistryEntry,
     reinit,
     setAttributePrefix,
     setAutoInit,
@@ -75,6 +73,8 @@ export {
     setObserver,
     stopObserving,
 };
+
+export type { ComponentConfig, ComponentHandler, RegistryEntry };
 
 // ============================================================================
 // Global Stylescape Object
