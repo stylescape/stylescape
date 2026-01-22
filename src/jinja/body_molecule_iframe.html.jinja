@@ -1,23 +1,152 @@
-{% extends "base.html.jinja" %} {% set title = "iFrame" %} {%- block title %}{{
-title }}{%- endblock %} {%- block content %}
+{% extends "base.html.jinja" %}
+{% set title = "iFrame" %}
+{%- block title %}{{ title }}{%- endblock %}
+{%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
+        <p>Embedded content frames for external resources and media.</p>
     </header>
 
-    {% set section_title = "Demo Code" %}
-    <section
-        class="demo__subsection"
-        data-label="{{ section_title }}"
-        data-level="2"
-    >
+    {# Basic iFrame #}
+    {% set section_title = "Basic iFrame" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-        <div></div>
-        {% endset %} {% set language="HTML" %} {%- include
-        "includes/preview_box_code.html.jinja" %}
+<iframe
+    src="about:blank"
+    title="Basic iframe example"
+    width="100%"
+    height="200"
+    style="border: 1px solid var(--color_line_secondary); border-radius: 8px; background: var(--color_fill_secondary);">
+</iframe>
+        {% endset %}
+        {% set language="HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
     </section>
+
+    {# Responsive iFrame #}
+    {% set section_title = "Responsive iFrame (16:9)" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+<div class="iframe-container" style="position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; border-radius: 12px;">
+    <iframe
+        src="about:blank"
+        title="Responsive 16:9 iframe"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"
+        allowfullscreen>
+    </iframe>
+</div>
+<p style="margin-top: 12px; font-size: 13px; opacity: 0.7;">This iframe maintains a 16:9 aspect ratio regardless of container width.</p>
+        {% endset %}
+        {% set language="HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {# iFrame with Loading State #}
+    {% set section_title = "iFrame with Loading State" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+<div style="position: relative; width: 100%; max-width: 600px;">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 12px; z-index: 0;">
+        <div style="width: 32px; height: 32px; border: 3px solid var(--color_fill_secondary); border-top-color: var(--color_fill_primary); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        <span style="font-size: 14px; opacity: 0.7;">Loading content...</span>
+    </div>
+    <iframe
+        src="about:blank"
+        title="iframe with loading state"
+        width="100%"
+        height="300"
+        style="position: relative; z-index: 1; border: 1px solid var(--color_line_secondary); border-radius: 8px; background: var(--color_fill_secondary);">
+    </iframe>
+</div>
+<style>@keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }</style>
+        {% endset %}
+        {% set language="HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Video Embed Placeholder #}
+    {% set section_title = "Video Embed Placeholder" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+<div class="video-embed" style="position: relative; width: 100%; max-width: 640px; padding-bottom: 56.25%; background: #000; border-radius: 12px; overflow: hidden;">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white;">
+        <div style="width: 80px; height: 80px; background: rgba(255,0,0,0.9); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; cursor: pointer;">
+            <span style="font-size: 32px; margin-left: 4px;">▶</span>
+        </div>
+        <p style="margin: 0; font-size: 14px; opacity: 0.9;">Click to play video</p>
+    </div>
+    <!-- Replace with actual YouTube/Vimeo embed -->
+    <iframe
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; opacity: 0;"
+        title="Video embed placeholder"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Map Embed Placeholder #}
+    {% set section_title = "Map Embed Placeholder" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+<div class="map-embed" style="position: relative; width: 100%; max-width: 600px; height: 300px; background: linear-gradient(180deg, #e8f4ea 0%, #c8e6c9 100%); border-radius: 12px; overflow: hidden; border: 1px solid var(--color_line_secondary);">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+        <div style="font-size: 48px; margin-bottom: 8px;">📍</div>
+        <p style="margin: 0; font-size: 14px; opacity: 0.8;">Interactive map placeholder</p>
+        <p style="margin: 8px 0 0; font-size: 12px; opacity: 0.6;">Replace with Google Maps or Mapbox embed</p>
+    </div>
+    <!-- Replace src with actual map embed URL -->
+    <iframe
+        src="about:blank"
+        title="Map embed placeholder"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; opacity: 0;"
+        loading="lazy"
+        allowfullscreen>
+    </iframe>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Secure iFrame #}
+    {% set section_title = "Secure iFrame with Sandbox" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+<iframe
+    src="about:blank"
+    title="Sandboxed iframe"
+    width="100%"
+    height="200"
+    sandbox="allow-scripts allow-same-origin"
+    loading="lazy"
+    referrerpolicy="no-referrer"
+    style="border: 2px dashed var(--color_line_secondary); border-radius: 8px; background: var(--color_fill_secondary);">
+</iframe>
+<div style="margin-top: 12px; padding: 12px; background: var(--color_fill_secondary); border-radius: 8px; font-size: 13px;">
+    <strong>Security attributes:</strong>
+    <ul style="margin: 8px 0 0; padding-left: 20px; opacity: 0.8;">
+        <li><code>sandbox</code> - Restricts iframe capabilities</li>
+        <li><code>loading="lazy"</code> - Deferred loading for performance</li>
+        <li><code>referrerpolicy</code> - Controls referrer information</li>
+    </ul>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
 </section>
 
 {%- endblock content %}

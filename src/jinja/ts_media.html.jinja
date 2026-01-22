@@ -1,0 +1,305 @@
+{% extends "base.html.jinja" %}
+{% set title = "Media Components" %}
+{%- block title %}{{ title }}{%- endblock %}
+{%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }}</h2>
+        <p>JavaScript components for carousels, galleries, image comparison, lazy loading, and lightbox.</p>
+    </header>
+
+    {# Carousel Manager #}
+    {% set section_title = "Carousel Manager" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Carousel/slider for cycling through items with autoplay and looping.</p>
+        {% set code_snippet %}
+<!-- Basic carousel -->
+<div data-ss="carousel"
+     data-ss-carousel-loop="true"
+     data-ss-carousel-autoplay="5000"
+     style="position: relative; max-width: 600px; border-radius: 12px; overflow: hidden;">
+
+    <div class="carousel-track" style="display: flex; transition: transform 0.5s ease;">
+        <div class="carousel-item active" style="min-width: 100%; height: 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white;">
+            <div style="text-align: center;">
+                <h3 style="margin: 0 0 8px;">Slide 1</h3>
+                <p style="margin: 0; opacity: 0.8;">First slide content</p>
+            </div>
+        </div>
+        <div class="carousel-item" style="min-width: 100%; height: 300px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white;">
+            <div style="text-align: center;">
+                <h3 style="margin: 0 0 8px;">Slide 2</h3>
+                <p style="margin: 0; opacity: 0.8;">Second slide content</p>
+            </div>
+        </div>
+        <div class="carousel-item" style="min-width: 100%; height: 300px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white;">
+            <div style="text-align: center;">
+                <h3 style="margin: 0 0 8px;">Slide 3</h3>
+                <p style="margin: 0; opacity: 0.8;">Third slide content</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation arrows -->
+    <button class="carousel-prev" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; cursor: pointer; font-size: 18px;">←</button>
+    <button class="carousel-next" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; cursor: pointer; font-size: 18px;">→</button>
+
+    <!-- Indicators -->
+    <div class="carousel-indicators" style="position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px;">
+        <span class="active" style="width: 24px; height: 4px; border-radius: 2px; background: white; cursor: pointer;"></span>
+        <span style="width: 12px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.5); cursor: pointer;"></span>
+        <span style="width: 12px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.5); cursor: pointer;"></span>
+    </div>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Gallery Manager #}
+    {% set section_title = "Gallery Manager" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Image gallery with navigation, selection, and lightbox integration.</p>
+        {% set code_snippet %}
+<!-- Gallery with lightbox -->
+<div data-ss="gallery"
+     data-ss-gallery-lightbox="true"
+     style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px;">
+    <div style="aspect-ratio: 1; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 8px; cursor: pointer; overflow: hidden; transition: transform 0.2s;">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23667eea' width='100' height='100'/%3E%3C/svg%3E" alt="Image 1" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div style="aspect-ratio: 1; background: linear-gradient(135deg, #f093fb, #f5576c); border-radius: 8px; cursor: pointer; overflow: hidden; transition: transform 0.2s;">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23f093fb' width='100' height='100'/%3E%3C/svg%3E" alt="Image 2" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div style="aspect-ratio: 1; background: linear-gradient(135deg, #4facfe, #00f2fe); border-radius: 8px; cursor: pointer; overflow: hidden; transition: transform 0.2s;">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%234facfe' width='100' height='100'/%3E%3C/svg%3E" alt="Image 3" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div style="aspect-ratio: 1; background: linear-gradient(135deg, #43e97b, #38f9d7); border-radius: 8px; cursor: pointer; overflow: hidden; transition: transform 0.2s;">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%2343e97b' width='100' height='100'/%3E%3C/svg%3E" alt="Image 4" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div style="aspect-ratio: 1; background: linear-gradient(135deg, #fa709a, #fee140); border-radius: 8px; cursor: pointer; overflow: hidden; transition: transform 0.2s;">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23fa709a' width='100' height='100'/%3E%3C/svg%3E" alt="Image 5" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div style="aspect-ratio: 1; background: linear-gradient(135deg, #a8edea, #fed6e3); border-radius: 8px; cursor: pointer; overflow: hidden; transition: transform 0.2s;">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23a8edea' width='100' height='100'/%3E%3C/svg%3E" alt="Image 6" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Image Compare Slider #}
+    {% set section_title = "Image Compare Slider" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Before/after image comparison slider with drag support.</p>
+        {% set code_snippet %}
+<!-- Image comparison -->
+<div class="image__compare"
+     data-ss="image-compare"
+     data-ss-image-compare-position="50"
+     style="position: relative; max-width: 600px; aspect-ratio: 16/9; overflow: hidden; border-radius: 12px; cursor: ew-resize;">
+
+    <!-- After image (bottom layer) -->
+    <div class="image__compare--image" style="position: absolute; inset: 0; background: linear-gradient(135deg, #667eea, #764ba2);">
+        <div style="position: absolute; bottom: 16px; right: 16px; padding: 8px 16px; background: rgba(0,0,0,0.6); color: white; border-radius: 4px; font-size: 14px;">After</div>
+    </div>
+
+    <!-- Before image (top layer, clipped) -->
+    <div class="image__compare--overlay" style="position: absolute; inset: 0; background: linear-gradient(135deg, #1a1a2e, #16213e); clip-path: inset(0 50% 0 0);">
+        <div style="position: absolute; bottom: 16px; left: 16px; padding: 8px 16px; background: rgba(0,0,0,0.6); color: white; border-radius: 4px; font-size: 14px;">Before</div>
+    </div>
+
+    <!-- Slider handle -->
+    <div class="image__compare--slider" style="position: absolute; top: 0; bottom: 0; left: 50%; width: 4px; background: white; cursor: ew-resize; transform: translateX(-50%);">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+            <span style="font-size: 16px;">⟷</span>
+        </div>
+    </div>
+</div>
+
+<!-- With indicator labels -->
+<div class="image__compare"
+     data-ss="image-compare"
+     data-ss-image-compare-position="30"
+     style="position: relative; max-width: 600px; aspect-ratio: 4/3; overflow: hidden; border-radius: 12px; margin-top: 24px;">
+    <div style="position: absolute; inset: 0; background: #22c55e; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">Edited</div>
+    <div style="position: absolute; inset: 0; background: #ef4444; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; clip-path: inset(0 70% 0 0);">Original</div>
+    <div style="position: absolute; top: 0; bottom: 0; left: 30%; width: 3px; background: white;"></div>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Lazy Load Manager #}
+    {% set section_title = "Lazy Load Manager" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Lazy loading of images via IntersectionObserver.</p>
+        {% set code_snippet %}
+<!-- Lazy loaded image -->
+<img class="lazy-image"
+     data-ss="lazy"
+     data-src="https://picsum.photos/800/400"
+     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23e5e7eb' width='800' height='400'/%3E%3C/svg%3E"
+     alt="Lazy loaded image"
+     style="width: 100%; max-width: 600px; height: auto; border-radius: 12px; transition: opacity 0.3s;">
+
+<!-- Lazy loaded background -->
+<div class="lazy-bg"
+     data-ss="lazy"
+     data-src="https://picsum.photos/1200/600"
+     style="width: 100%; max-width: 600px; height: 300px; background: var(--color_fill_secondary); border-radius: 12px; margin-top: 16px; display: flex; align-items: center; justify-content: center; color: var(--color_text_secondary);">
+    <span>Background loading...</span>
+</div>
+
+<!-- Skeleton placeholder -->
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 600px; margin-top: 24px;">
+    <div class="lazy-image" data-ss="lazy" style="aspect-ratio: 1; background: linear-gradient(90deg, var(--color_fill_secondary) 0%, #e5e7eb 50%, var(--color_fill_secondary) 100%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px;"></div>
+    <div class="lazy-image" data-ss="lazy" style="aspect-ratio: 1; background: linear-gradient(90deg, var(--color_fill_secondary) 0%, #e5e7eb 50%, var(--color_fill_secondary) 100%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px;"></div>
+    <div class="lazy-image" data-ss="lazy" style="aspect-ratio: 1; background: linear-gradient(90deg, var(--color_fill_secondary) 0%, #e5e7eb 50%, var(--color_fill_secondary) 100%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px;"></div>
+</div>
+
+<style>
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+</style>
+        {% endset %}
+        {% set language="HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Lightbox Manager #}
+    {% set section_title = "Lightbox Manager" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Fullscreen lightbox overlay for viewing content.</p>
+        {% set code_snippet %}
+<!-- Lightbox triggers -->
+<div style="display: flex; gap: 16px;">
+    <button data-ss="lightbox"
+            data-ss-lightbox-src="https://picsum.photos/1200/800"
+            style="padding: 0; border: none; cursor: pointer; border-radius: 8px; overflow: hidden;">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect fill='%23667eea' width='200' height='150'/%3E%3C/svg%3E" alt="Thumbnail 1" style="width: 200px; height: 150px; object-fit: cover; display: block;">
+    </button>
+    <button data-ss="lightbox"
+            data-ss-lightbox-src="https://picsum.photos/1200/900"
+            style="padding: 0; border: none; cursor: pointer; border-radius: 8px; overflow: hidden;">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect fill='%23f093fb' width='200' height='150'/%3E%3C/svg%3E" alt="Thumbnail 2" style="width: 200px; height: 150px; object-fit: cover; display: block;">
+    </button>
+</div>
+
+<!-- Lightbox overlay structure -->
+<div class="lightbox" style="position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; pointer-events: none;">
+    <button class="lightbox__close" style="position: absolute; top: 20px; right: 20px; width: 48px; height: 48px; background: rgba(255,255,255,0.1); border: none; border-radius: 50%; color: white; font-size: 24px; cursor: pointer;">×</button>
+    <button class="lightbox__prev" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; background: rgba(255,255,255,0.1); border: none; border-radius: 50%; color: white; font-size: 24px; cursor: pointer;">←</button>
+    <button class="lightbox__next" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; background: rgba(255,255,255,0.1); border: none; border-radius: 50%; color: white; font-size: 24px; cursor: pointer;">→</button>
+    <img class="lightbox__image" src="" alt="" style="max-width: 90vw; max-height: 90vh; object-fit: contain;">
+    <div class="lightbox__caption" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: white; text-align: center;"></div>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+    {# JavaScript API #}
+    {% set section_title = "JavaScript API" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Programmatic control of media components.</p>
+        {% set code_snippet %}
+<script>
+// CarouselManager
+import { CarouselManager } from 'stylescape';
+
+const carousel = new CarouselManager(element, {
+    loop: true,
+    autoplay: 5000,
+    pauseOnHover: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    onChange: (index) => console.log('Slide changed:', index)
+});
+
+carousel.next();        // Go to next slide
+carousel.prev();        // Go to previous slide
+carousel.goTo(2);       // Go to specific slide
+carousel.play();        // Start autoplay
+carousel.pause();       // Pause autoplay
+carousel.getCurrentIndex();
+
+// GalleryManager
+import { GalleryManager } from 'stylescape';
+
+const gallery = new GalleryManager(element, {
+    lightbox: true,
+    thumbs: true,
+    zoom: true,
+    onSelect: (index, image) => {
+        console.log('Selected:', index);
+    }
+});
+
+gallery.select(0);      // Select image
+gallery.openLightbox(1); // Open lightbox at index
+gallery.closeLightbox();
+
+// ImageCompareSlider
+import { ImageCompareSlider } from 'stylescape';
+
+const compare = new ImageCompareSlider(element, {
+    position: 50,
+    vertical: false,
+    onChange: (position) => {
+        console.log('Position:', position + '%');
+    }
+});
+
+compare.setPosition(75);  // Set slider position
+
+// LazyLoadManager
+import { LazyLoadManager } from 'stylescape';
+
+const lazyLoader = new LazyLoadManager({
+    root: null,
+    rootMargin: '100px',
+    threshold: 0.1,
+    onLoad: (element) => {
+        element.classList.add('loaded');
+    }
+});
+
+lazyLoader.observe(element);
+lazyLoader.unobserve(element);
+lazyLoader.refresh();
+
+// LightboxManager
+import { LightboxManager } from 'stylescape';
+
+const lightbox = new LightboxManager({
+    animation: 'fade',
+    closeOnBackdrop: true,
+    keyboard: true,
+    captions: true
+});
+
+lightbox.open(imageSrc, caption);
+lightbox.close();
+lightbox.next();
+lightbox.prev();
+</script>
+        {% endset %}
+        {% set language="JavaScript" %}
+        {%- include "includes/preview_box_code.html.jinja" %}
+    </section>
+
+</section>
+
+{%- endblock %}

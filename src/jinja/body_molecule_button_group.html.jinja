@@ -1,0 +1,71 @@
+{% extends "base.html.jinja" %} {% set title = "Button Group" %} {%- block title
+%}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    {% set section_title = "Horizontal Button Group" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="button_group">
+            <button type="button">Left</button>
+            <button type="button">Middle</button>
+            <button type="button">Right</button>
+        </div>
+        {% endset %}
+        <div class="demo__preview">{{ code_snippet | safe }}</div>
+        <div class="demo__code">
+            <pre><code class="language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Vertical Button Group" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="button-group--vertical">
+            <button type="button">Top</button>
+            <button type="button">Middle</button>
+            <button type="button">Bottom</button>
+        </div>
+        {% endset %}
+        <div class="demo__preview">{{ code_snippet | safe }}</div>
+        <div class="demo__code">
+            <pre><code class="language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Button Group with Icons" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="button_group">
+            <button type="button" aria-label="Previous">◀</button>
+            <button type="button" aria-label="Play">▶</button>
+            <button type="button" aria-label="Next">▶▶</button>
+        </div>
+        {% endset %}
+        <div class="demo__preview">{{ code_snippet | safe }}</div>
+        <div class="demo__code">
+            <pre><code class="language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+</section>
+
+{%- endblock %}

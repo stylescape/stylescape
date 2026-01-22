@@ -1,0 +1,86 @@
+{% extends "base.html.jinja" %} {% set title = "Form Field" %} {%- block title
+%}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    {% set section_title = "Radio Buttons with Labels" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="formfield-radio-buttons">
+            <label class="formfield-radio-buttons__option">
+                <div class="formfield-radio-buttons__option-label-wrapper">
+                    <span class="formfield-radio-buttons__option-label">Option 1</span>
+                    <span class="formfield-radio-buttons__option-subtext">Description for option 1</span>
+                </div>
+                <span class="formfield-radio-buttons__radio-open-icon"></span>
+                <span class="formfield-radio-buttons__radio-filled-icon"></span>
+                <input type="radio" name="demo-radio" value="1" hidden>
+            </label>
+
+            <label class="formfield-radio-buttons__option formfield-radio-buttons__option--selected">
+                <div class="formfield-radio-buttons__option-label-wrapper">
+                    <span class="formfield-radio-buttons__option-label">Option 2</span>
+                    <span class="formfield-radio-buttons__option-subtext">Description for option 2</span>
+                </div>
+                <span class="formfield-radio-buttons__radio-open-icon"></span>
+                <span class="formfield-radio-buttons__radio-filled-icon"></span>
+                <input type="radio" name="demo-radio" value="2" hidden checked>
+            </label>
+
+            <label class="formfield-radio-buttons__option">
+                <div class="formfield-radio-buttons__option-label-wrapper">
+                    <span class="formfield-radio-buttons__option-label">Option 3</span>
+                    <span class="formfield-radio-buttons__option-subtext">Description for option 3</span>
+                </div>
+                <span class="formfield-radio-buttons__radio-open-icon"></span>
+                <span class="formfield-radio-buttons__radio-filled-icon"></span>
+                <input type="radio" name="demo-radio" value="3" hidden>
+            </label>
+        </div>
+        {% endset %}
+        <div class="demo__preview">{{ code_snippet | safe }}</div>
+        <div class="demo__code">
+            <pre><code class="language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Radio with Input List" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="formfield-radio-buttons">
+            <label class="formfield-radio-buttons__option">
+                <div class="formfield-radio-buttons__option-label-wrapper">
+                    <span class="formfield-radio-buttons__option-label">Premium Plan</span>
+                    <span class="formfield-radio-buttons__option-label-right">$29/mo</span>
+                </div>
+                <ul class="formfield-radio-buttons__option-input-list">
+                    <li class="formfield-radio-buttons__option-input-list-item">Unlimited access</li>
+                    <li class="formfield-radio-buttons__option-input-list-item">Priority support</li>
+                    <li class="formfield-radio-buttons__option-input-list-item">Advanced features</li>
+                </ul>
+                <input type="radio" name="plan" value="premium" hidden>
+            </label>
+        </div>
+        {% endset %}
+        <div class="demo__preview">{{ code_snippet | safe }}</div>
+        <div class="demo__code">
+            <pre><code class="language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+</section>
+
+{%- endblock %}
