@@ -1,0 +1,513 @@
+// ============================================================================
+// Components | Map
+// ============================================================================
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+
+@use "../../head_layout" as *;
+
+@use "../../soul_type" as *;
+
+/// Map container styling.
+/// This sets up the map container with full viewport dimensions and appropriate z-index.
+/// @group Map
+#map {
+    // width: 100vw;
+    // height: 100vh;
+    // z-index: z("canvas")+1;
+    // z-index: 9999;
+}
+
+/// Main map canvas.
+/// Ensures the map canvas takes up the full viewport and has the correct stacking order.
+/// @group Map
+.map_canvas {
+    width: 100vw;
+    height: 100vh;
+    z-index: z("canvas") + 1;
+}
+
+/// Base styles for layer controls on the map.
+/// Applies basic styles such as resetting margins, applying font size, and setting up a light color scheme.
+/// @group Map
+.layer_control_base,
+.layer_control_overlay {
+    @include reset_bleed;
+    @include font--size("03");
+    // @include color_scheme_light;
+    @include flex--col;
+    h3 {
+        padding-bottom: q(8);
+    }
+    label {
+        height: q(24);
+        span {
+            @include flex--row;
+            input {
+                @include align_self--center;
+            }
+            span {
+                @include align_self--center;
+                @include reset_bleed;
+                @include font--size("03");
+                padding-left: q(12);
+            }
+        }
+    }
+}
+
+/// Custom radio button styling.
+/// Styles radio buttons with a custom appearance both in their default and checked states.
+/// @group Map
+// input[type='radio']:after {
+//     width: q(15);
+//     height: q(15);
+//     border-radius: q(15);
+//     top: q(4);
+//     left: -q(1);
+//     position: relative;
+//     background-color: #d1d3d1;
+//     content: '';
+//     display: inline-block;
+//     visibility: visible;
+//     border: q(2) solid white;
+// }
+
+// input[type='radio']:checked:after {
+//     width: q(15);
+//     height: q(15);
+//     border-radius: q(15);
+//     top: q(4);
+//     left: -q(1);
+//     position: relative;
+//     background-color: var(--color_accent_primary);
+//     content: '';
+//     display: inline-block;
+//     visibility: visible;
+//     border: q(2) solid white;
+// }
+
+/// Overlay-specific styles for layer controls.
+/// This section can be extended to include specific styles for layer control overlays on the map.
+/// @group Map
+.layer_control_overlay {
+    // Additional styles for the overlay can be added here.
+}
+
+// .map {
+//     height: q(180);
+//     //width: 50%;
+//     // margin-bottom: $baseline_00;
+
+// }
+// .map {
+//   z-index: z("content");
+// }
+
+// .leaflet-top,
+// .leaflet-bottom {
+//   position: absolute;
+//   // z-index: 2; /* was 1000 */
+//   pointer-events: none;
+//   }
+
+// /* customize look of leaflet zoom controls */
+// .leaflet-bar{
+//     @include shadow--none;
+//   }
+//   .leaflet-control-zoom a{
+//     box-shadow: 0 q(1) q(5) var(--color_text_primary);
+//   }
+//   .leaflet-bar a{
+//     border-radius: 0px;
+//     background-color: var(--color_text_primary);
+//     border: q(1) solid var(--color_text_primary);
+//     color: var(--color_fill_primary);
+//   }
+//   //.leaflet-bar a:last-child{
+//   //  border: q(1) solid rgba(0,0,0,.15);
+//   //}
+//   .leaflet-bar a:hover{
+//     background-color: #FB4F14;
+//     border: q(1) solid rgba(0,0,0,.15);
+//     color: #002244;
+//   }
+//   .leaflet-control-zoom-in{
+//     // margin-top: q(10);
+//     margin:q(4);
+//   }
+//   .leaflet-control-zoom-out{
+//     // margin-top: q(15);
+//     margin:q(4);
+
+//   }
+
+//   /* google map filters */
+// .filter-grayscale-50 {-ms-filter: grayscale(50%); filter: grayscale(50%);}
+// .filter-grayscale-100 {-ms-filter: grayscale(100%); filter: grayscale(100%);}
+// .filter-invert-50 {-ms-filter: invert(50%); filter: invert(50%);}
+// .filter-invert-100 {-ms-filter: invert(100%); filter: invert(100%);}
+// .filter-mix-100 {-ms-filter: grayscale(100%) invert(100%); filter: grayscale(100%) invert(100%);}
+// .map iframe {height: 61q(8); vertical-align: bottom; width: 100%;}
+
+// Vossi
+
+// .map {
+//     height: 300px;
+//     width: 100%;
+//     margin: 0 0 3q(2);
+// }
+
+// .map__container {
+//     height: 100%;
+// }
+
+// .map__caption {
+//     color: var(--color_text_primary);
+//     font-size: 1q(2);
+//     font-weight: 400;
+//     line-height: q(18);
+//     margin-top: q(8);
+//     text-align: left;
+// }
+
+// :root {
+//     --map-marker-color: #404040;
+// }
+
+// .map-label-callout {
+//     --map-marker-color: #cc0000;
+// }
+
+// .map-label-pin-top {
+//     padding-bottom: q(10);
+// }
+
+// .map-label-pin-top > .mapboxgl-popup-content {
+//     padding: q(3) q(10);
+//     z-index: 1;
+//     background-color: var(--map-marker-color);
+//     color: var(--color_fill_primary);
+//     font-size: q(16);
+//     border-radius: 0;
+//     text-align: center;
+// }
+
+// .map-label-pin-top:before {
+//     position: absolute;
+//     height: 9px;
+//     width: 9px;
+//     border-radius: 9999px;
+//     background-color: #404040;
+//     z-index: 10;
+//     left: calc(50% - q(4));
+//     bottom: -1q(5);
+// }
+
+// .map-label-pin-top:after {
+//     position: absolute;
+//     width: q(30);
+//     height: q(30);
+//     left: 50%;
+//     border-left: q(1) solid var(--map-marker-color);
+//     bottom: -1q(1);
+// }
+
+// .map-label-pin-bottom {
+//     padding-top: q(10);
+// }
+
+// .map-label-pin-bottom > .mapboxgl-popup-content {
+//     padding: q(3) q(10);
+//     z-index: 1;
+//     background-color: var(--map-marker-color);
+//     color: var(--color_fill_primary);
+//     font-size: q(16);
+//     border-radius: 0;
+//     text-align: center;
+// }
+
+// .map-label-pin-bottom:before {
+//     position: absolute;
+//     height: 9px;
+//     width: 9px;
+//     border-radius: 9999px;
+//     background-color: #404040;
+//     z-index: 10;
+//     left: calc(50% - q(4));
+//     top: -1q(5);
+// }
+
+// .map-label-pin-bottom:after {
+//     position: absolute;
+//     width: q(30);
+//     height: q(30);
+//     left: 50%;
+//     border-left: q(1) solid var(--map-marker-color);
+//     top: -1q(1);
+// }
+
+// .map-label-pin-bottomright:before,
+// .map-label-pin-right:before {
+//     left: -1q(5);
+//     content: "";
+//     position: absolute;
+// }
+
+// .map-label-pin-right {
+//     padding-left: q(10);
+// }
+
+// .map-label-pin-right > .mapboxgl-popup-content {
+//     padding: q(3) q(10);
+//     z-index: 1;
+//     background-color: var(--map-marker-color);
+//     color: var(--color_fill_primary);
+//     font-size: q(16);
+//     border-radius: 0;
+//     text-align: center;
+// }
+
+// .map-label-pin-right:before {
+//     height: 9px;
+//     width: 9px;
+//     border-radius: 9999px;
+//     background-color: #404040;
+//     z-index: 10;
+//     top: calc(50% - q(4));
+// }
+
+// .map-label-pin-right:after {
+//     content: "";
+//     position: absolute;
+//     width: q(30);
+//     height: q(30);
+//     top: 50%;
+//     border-top: q(1) solid var(--map-marker-color);
+//     left: -1q(1);
+// }
+
+// .map-label-pin-left {
+//     padding-right: q(10);
+// }
+
+// .map-label-pin-left > .mapboxgl-popup-content {
+//     padding: q(3) q(10);
+//     z-index: 1;
+//     background-color: var(--map-marker-color);
+//     color: var(--color_fill_primary);
+//     font-size: q(16);
+//     border-radius: 0;
+//     text-align: center;
+// }
+
+// .map-label-pin-left:before {
+//     content: "";
+//     position: absolute;
+//     height: 9px;
+//     width: 9px;
+//     border-radius: 9999px;
+//     background-color: #404040;
+//     z-index: 10;
+//     top: calc(50% - q(4));
+//     right: -1q(5);
+// }
+
+// .map-label-pin-left:after {
+//     content: "";
+//     position: absolute;
+//     width: q(30);
+//     height: q(30);
+//     top: 50%;
+//     border-top: q(1) solid var(--map-marker-color);
+//     right: -1q(1);
+// }
+
+// .map-label-pin-bottomleft {
+//     padding-right: q(10);
+//     padding-top: q(10);
+// }
+
+// .map-label-pin-bottomleft > .mapboxgl-popup-content {
+//     padding: q(3) q(10);
+//     z-index: 1;
+//     background-color: var(--map-marker-color);
+//     color: var(--color_fill_primary);
+//     font-size: q(16);
+//     border-radius: 0;
+//     text-align: center;
+// }
+
+// .map-label-pin-bottomleft:before {
+//     content: "";
+//     position: absolute;
+//     height: 9px;
+//     width: 9px;
+//     border-radius: 9999px;
+//     background-color: #404040;
+//     z-index: 10;
+//     right: -1q(5);
+//     top: -1q(5);
+// }
+
+// .map-label-pin-bottomleft:after {
+//     content: "";
+//     position: absolute;
+//     width: q(30);
+//     height: q(30);
+//     right: -1q(1);
+//     top: -1q(1);
+//     background: linear-gradient(
+//         to bottom right,
+//         rgba(255, 255, 255, 0) calc(50% - q(1)),
+//         var(--map-marker-color),
+//         rgba(255, 255, 255, 0) calc(50% + q(1))
+//     );
+// }
+
+// .map-label-pin-topleft {
+//     padding-right: q(10);
+//     padding-bottom: q(10);
+// }
+
+// .map-label-pin-topleft > .mapboxgl-popup-content {
+//     padding: q(3) q(10);
+//     z-index: 1;
+//     background-color: var(--map-marker-color);
+//     color: var(--color_fill_primary);
+//     font-size: q(16);
+//     border-radius: 0;
+//     text-align: center;
+// }
+
+// .map-label-pin-topleft:before {
+//     content: "";
+//     position: absolute;
+//     height: 9px;
+//     width: 9px;
+//     border-radius: 9999px;
+//     background-color: #404040;
+//     z-index: 10;
+//     right: -1q(5);
+//     bottom: -1q(5);
+// }
+
+// .map-label-pin-topleft:after {
+//     content: "";
+//     position: absolute;
+//     width: q(30);
+//     height: q(30);
+//     right: -1q(1);
+//     bottom: -1q(1);
+//     background: linear-gradient(
+//         to top right,
+//         rgba(255, 255, 255, 0) calc(50% - q(1)),
+//         var(--map-marker-color),
+//         rgba(255, 255, 255, 0) calc(50% + q(1))
+//     );
+// }
+
+// .map-label-pin-bottomright {
+//     padding-left: q(10);
+//     padding-top: q(10);
+// }
+
+// .map-label-pin-bottomright > .mapboxgl-popup-content {
+//     padding: q(3) q(10);
+//     z-index: 1;
+//     background-color: var(--map-marker-color);
+//     color: var(--color_fill_primary);
+//     font-size: q(16);
+//     border-radius: 0;
+//     text-align: center;
+// }
+
+// .map-label-pin-bottomright:before {
+//     height: 9px;
+//     width: 9px;
+//     border-radius: 9999px;
+//     background-color: #404040;
+//     z-index: 10;
+//     top: -1q(5);
+// }
+
+// .map-label-pin-bottomright:after {
+//     content: "";
+//     position: absolute;
+//     width: q(30);
+//     height: q(30);
+//     left: -1q(1);
+//     top: -1q(1);
+//     background: linear-gradient(
+//         to bottom left,
+//         rgba(255, 255, 255, 0) calc(50% - q(1)),
+//         var(--map-marker-color),
+//         rgba(255, 255, 255, 0) calc(50% + q(1))
+//     );
+// }
+
+// .map-label-pin-topright {
+//     padding-left: q(10);
+//     padding-bottom: q(10);
+// }
+
+// .map-label-pin-topright > .mapboxgl-popup-content {
+//     padding: q(3) q(10);
+//     z-index: 1;
+//     background-color: var(--map-marker-color);
+//     color: var(--color_fill_primary);
+//     font-size: q(16);
+//     border-radius: 0;
+//     text-align: center;
+// }
+
+// .map-label-pin-topright:before {
+//     content: "";
+//     position: absolute;
+//     height: 9px;
+//     width: 9px;
+//     border-radius: 9999px;
+//     background-color: #404040;
+//     z-index: 10;
+//     left: -1q(5);
+//     bottom: -1q(5);
+// }
+
+// .map-label-pin-topright:after {
+//     content: "";
+//     position: absolute;
+//     width: q(30);
+//     height: q(30);
+//     left: -1q(1);
+//     bottom: -1q(1);
+//     background: linear-gradient(
+//         to top left,
+//         rgba(255, 255, 255, 0) calc(50% - q(1)),
+//         var(--map-marker-color),
+//         rgba(255, 255, 255, 0) calc(50% + q(1))
+//     );
+// }
+
+// .mapboxgl-ctrl-scale {
+//     background-color: transparent;
+//     text-shadow: 0 0 q(10) var(--color_fill_primary);
+//     line-height: 1q(5);
+// }
+
+// .map-elevate {
+//     height: 100%;
+//     width: 100vw;
+//     margin-left: -50vw;
+//     position: relative;
+//     left: 50%;
+// }
+
+// .map-elevate .map__caption {
+//     color: #6e6e6e;
+//     font-size: 0.77rem;
+//     line-height: 1.27rem;
+//     max-width: 660px;
+//     margin-right: 3q(2);
+//     margin-left: 3q(2);
+// }

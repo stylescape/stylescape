@@ -1,126 +1,65 @@
-// @use "../../dev" as *;
-// @use "../../variables" as *;
+////
+///
+/// Radio Input Mixins
+/// ===========================================================================
+///
+/// Mixins for styling radio inputs.
+///
+/// @group Mixins.BodyAtoms.Inputs
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.2.10
+/// @access public
+///
+////
 
-// @use "../soul_type" as *;
+@use "../../dev" as *;
 
-// @mixin radio {
-//     appearance: none;
-//     -webkit-appearance: none;
-//     -moz-appearance: none;
-//     outline: none;
-//     width: q(24);
-//     height: q(24);
-//     flex-shrink: 0;
-//     border-radius: 50%;
-//     border: q(1) solid var(--color_text_primary);
-//     background: transparent;
-//     position: relative;
-//     cursor: pointer;
-//     pointer-events: initial;
-//     opacity: 1;
+@mixin input--radio {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 
-//     &::after {
-//         content: "";
-//         position: absolute;
-//         top: 50%;
-//         left: 50%;
-//         width: q(12);
-//         height: q(12);
-//         background: var(--color_text_primary);
-//         border-radius: 50%;
-//         transform: translate(-50%, -50%);
-//         opacity: 0;
-//         transition: opacity 0.2s ease;
-//     }
+    width: baseline(4);
+    height: baseline(4);
+    flex-shrink: 0;
 
-//     &:hover:not(:checked) {
-//         background: hue_color("N2402");
-//     }
+    border-radius: 50%;
+    border: q(1) solid var(--color_text_primary);
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    pointer-events: initial;
 
-//     &:checked::after {
-//         opacity: 1;
-//     }
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: baseline(2);
+        height: baseline(2);
+        background: var(--color_text_primary);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
 
-//     &:disabled {
-//         border-color: var(--color_state_muted);
-//         background: transparent;
-//         cursor: not-allowed;
-//     }
-// }
+    &:hover:not(:checked) {
+        background: var(--color_state_hover);
+    }
 
-// ///
-// /// Base styles for radio buttons
-// /// @group Form
-// ///
-// input[type="radio"],
-// .input_radio {
-//     @include radio;
-// }
+    &:checked::after {
+        opacity: 1;
+    }
 
-// /// The slider inside the switch
-// /// @group Switch
-// .slider {
-//     position: absolute;
-//     cursor: pointer;
-//     top: 0;
-//     left: 0;
-//     right: 0;
-//     bottom: 0;
-//     background: var(--color_fill_primary);
-//     -webkit-transition: 0.4s;
-//     transition: 0.4s;
-// }
+    &:disabled {
+        border-color: var(--color_state_muted);
+        background: transparent;
+        cursor: not-allowed;
+    }
+}
 
-// .slider:before {
-//     position: absolute;
-//     content: '';
-//     height: q(26);
-//     width: q(26);
-//     left: q(4);
-//     bottom: q(4);
-//     background-color: var(--color_fill_primary);
-//     -webkit-transition: 0.4s;
-//     transition: 0.4s;
-// }
-
-// ///
-// /// The switch container
-// /// The box around the slider
-// /// @group Switch
-// ///
-// .switch {
-//     position: relative;
-//     display: inline-block;
-//     width: q(60);
-//     height: 3q(4);
-// }
-
-// ///
-// /// Hide the default HTML checkbox
-// /// @group Switch
-// ///
-// .switch input {
-//     opacity: 0;
-//     width: 0;
-//     height: 0;
-// }
-
-// /// Style for when the switch is checked
-// /// @group Switch
-// input:checked + .slider {
-//     background-color: var(--color_text_primary);
-// }
-
-// /// Focus state for the switch
-// /// @group Switch
-// input:focus + .slider {
-//     box-shadow: 0 0 q(1) var(--color_text_primary);
-// }
-
-// /// Positioning the slider when the switch is checked
-// /// @group Switch
-// input:checked + .slider:before {
-//     -webkit-transform: translateX(2q(6));
-//     -ms-transform: translateX(2q(6));
-//     transform: translateX(2q(6));
-// }
+@mixin radio {
+    @include input--radio;
+}

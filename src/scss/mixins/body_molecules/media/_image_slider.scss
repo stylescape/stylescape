@@ -1,0 +1,180 @@
+// ============================================================================
+// Molecule | Image Slider
+// ============================================================================
+
+@use "sass:map";
+@use "sass:list";
+@use "sass:math";
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+
+@use "../../head_layout" as *;
+
+@use "../../soul_type" as *;
+@use "../../body_atoms" as *;
+
+@mixin slider--base($color: var(--color_fill_primary)) {
+    position: absolute;
+    z-index: 2;
+    cursor: ew-resize;
+    width: q(40);
+    height: q(40);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: q(2) solid $color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: q(2);
+        background-color: $color;
+        z-index: 0;
+    }
+
+    &::before {
+        top: -100vh;
+        bottom: calc(50% + q(20));
+    }
+
+    &::after {
+        bottom: -100vh;
+        top: calc(50% + q(20));
+    }
+}
+
+@mixin image__compare--base {
+    position: relative;
+    width: 100%;
+    min-width: 100%;
+    overflow: hidden;
+    user-select: none;
+
+    &--image {
+        @include image--cover;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        object-position: center;
+
+        pointer-events: none;
+        user-select: none;
+    }
+
+    &--overlay {
+        object-position: left;
+        width: 50%;
+    }
+
+    &--slider {
+        @include slider--base(var(--color_fill_primary));
+        border-radius: 50%;
+
+        .dark {
+            &--left,
+            &--right {
+                @include slider--base(var(--color_text_primary));
+                width: q(20);
+                height: q(40);
+                border-radius: 0 q(40) q(40) 0;
+                background-color: transparent !important;
+                border-left-color: transparent;
+
+                // Shared line styles
+                &::before,
+                &::after {
+                    width: q(1);
+                    left: -15%;
+                    transform: none;
+                }
+                &::before {
+                    bottom: calc(50% + q(18));
+                }
+
+                &::after {
+                    top: calc(50% + q(18));
+                }
+            }
+
+            &--left {
+                transform: rotate(180deg) translate(100%, 50%);
+
+                &::before,
+                &::after {
+                    left: -12%;
+                }
+            }
+
+            &--right {
+                transform: translate(0%, -50%);
+
+                &::before,
+                &::after {
+                    left: -13%;
+                }
+            }
+        }
+
+        .arrow--left,
+        .arrow--right {
+            position: absolute;
+            width: q(8);
+            height: q(8);
+            border: solid var(--color_fill_primary);
+            border-width: 0 q(2) q(2) 0;
+            padding: q(2);
+            z-index: 1;
+        }
+
+        .arrow--left {
+            left: q(8);
+            transform: rotate(135deg);
+        }
+
+        .arrow--right {
+            right: q(8);
+            transform: rotate(-45deg);
+        }
+    }
+}
+
+// ============================================================================
+// Image Slider | Aspect Ratios
+// ============================================================================
+
+// @mixin image__compare--aspect-ratios {
+//     $ratios: (
+//         "1x1": math.div(1, 1),
+//         "3x2": math.div(3, 2),
+//         //Default
+//         "4x3": math.div(4, 3),
+//         "3x4": math.div(3, 4),
+//         "2x3": math.div(2, 3),
+//         "16x9": math.div(16, 9)
+//     );
+
+//     @each $name, $ratio in $ratios {
+//         &.image__compare--#{$name} {
+//             .image__compare--wrapper {
+//                 aspect-ratio: #{$ratio};
+//             }
+//         }
+//     }
+// }
+
+// ============================================================================
+// Image Slider | Classes
+// ============================================================================
+
+.image__compare {
+    @include image__compare--base;
+    // @include image__compare--aspect-ratios;
+}

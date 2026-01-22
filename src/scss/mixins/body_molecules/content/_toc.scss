@@ -1,0 +1,230 @@
+// ============================================================================
+// Components | Table of Contents
+// ============================================================================
+// https://markentier.tech/posts/2021/03/responsive-toc-leader-lines-with-css/
+// https://css-tricks.com/a-perfect-table-of-contents-with-html-css/
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+
+@use "../../head_layout" as *;
+
+@use "../../soul_type" as *;
+
+@mixin toc {
+    ul {
+        list-style: none;
+        margin: 0;
+
+        ul {
+            padding-left: q(16);
+            border-left: q(1) dashed #ddd;
+            margin-top: 0.25rem;
+        }
+    }
+
+    li {
+        margin: 0.25rem 0;
+
+        &::before {
+            content: "•";
+            color: #bbb;
+            margin-right: 0.4rem;
+            font-size: 0.8em;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.2s ease;
+
+            &:hover,
+            &.active {
+                font-weight: bold;
+            }
+
+            &.hover {
+                color: var(--color_state_hover, #007aff);
+            }
+            &.active {
+                color: var(--color_state_active, #007aff);
+            }
+        }
+    }
+}
+
+.toc {
+    // font-size: 0.95rem;
+    // line-height: 1.4;
+    // padding: 1rem;
+    // background-color: #f8f9fa;
+    // border-left: q(4) solid #ccc;
+
+    @include toc;
+}
+
+// .toc {
+//     // font-family: sans-serif;
+//     // font-size: 0.95rem;
+//     // line-height: 1.4;
+//     // padding: 1rem;
+//     // background-color: #f8f9fa;
+//     // border-left: q(4) solid #ccc;
+
+//     ul {
+//         list-style: none;
+//         padding-left: 1rem;
+//         margin: 0;
+
+//         ul {
+//             padding-left: 1rem;
+//             border-left: q(1) dashed #ddd;
+//             margin-top: 0.25rem;
+//         }
+//     }
+
+//     li {
+//         margin: 0.25rem 0;
+
+//         a {
+//             text-decoration: none;
+//             color: #333;
+//             transition: color 0.2s ease;
+
+//             &:hover,
+//             &.active {
+//                 color: #0077cc;
+//                 font-weight: bold;
+//             }
+//         }
+//     }
+
+//     // Optional: control depth indicators
+//     li::before {
+//         content: "•";
+//         color: #bbb;
+//         margin-right: 0.4rem;
+//         font-size: 0.8em;
+//     }
+// }
+
+//   #toc_wrap{
+
+//     outline: q(1) solid {{ css_color_01 }};
+//     margin:0;
+//   }
+//   .toc_item_h2,.toc_item_h3, .toc_header{
+//     margin:0;
+//     min-height: q(32);
+//     vertical-align: middle;
+//     padding-left: q(16);
+
+//   }
+//   .toc_header{
+//     background-color: {{ css_color_01 }};
+//     color: {{ css_color_03 }};
+//   }
+//   .toc_item_h2{
+//     border-top: q(1) solid {{ css_color_01 }};
+//   }
+//   .toc_item_h2.active h5{
+//     font-weight: 700;
+//   }
+//   .toc_item_h3.active h6{
+//     font-weight: 700;
+//   }
+//   .toc_link{
+//     list-style-type: none;
+//     text-decoration: none;
+//   }
+//   .toc_list{
+//     padding: 0;
+//   }
+//   .toc_list__item{
+//     list-style-type: none;
+//     text-decoration: none;
+
+//   }
+//   .toc_arrow{
+//     float: right;
+//     padding-right: q(16);
+//     padding-top: .25rem;
+//   }
+
+//   .toc_h2, .toc_h3 {
+//     list-style-type: none;
+//     padding: 0;
+//   }
+//   .toc_h3 {
+//     padding-left: q(16);
+//   }
+
+//   /***************
+//     Nav List
+// ***************/
+// .table-of-contents {
+//   &.fixed {
+//       position: fixed;
+//     }
+
+//   li {
+//     padding: q(2) 0;
+//   }
+//   a {
+//     display: inline-block;
+//     font-weight: 300;
+//     color: #757575;
+//     padding-left: q(16);
+//     height: q(24);
+//     line-height: q(24);
+//     letter-spacing: .4;
+//     display: inline-block;
+
+//     &:hover {
+//       color: lighten(#757575, 20%);
+//       padding-left: q(15);
+//       border-left: q(1) solid $primary-color;
+//     }
+//     &.active {
+//       font-weight: 500;
+//       padding-left: q(14);
+//       border-left: q(2) solid $primary-color;
+//     }
+//   }
+// }
+
+.aside_toc {
+    ul {
+        li a.active {
+            color: blue;
+            font-weight: bold;
+            text-decoration: underline;
+            background-color: lightblue;
+        }
+    }
+}
+
+.aside_toc {
+    ul {
+        list-style-type: none;
+        padding: 0;
+        li {
+            margin: q(5) 0;
+            padding: q(3);
+            a {
+                text-decoration: none;
+                color: black;
+                &:hover {
+                    color: darkgray;
+                }
+            }
+            &.active {
+                a {
+                    color: blue;
+                    font-weight: bold;
+                    text-decoration: underline;
+                    background-color: lightblue;
+                }
+            }
+        }
+    }
+}

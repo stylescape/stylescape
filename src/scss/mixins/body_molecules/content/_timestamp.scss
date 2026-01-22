@@ -1,0 +1,109 @@
+//
+// Typography | Timestamp Mixins
+// ============================================================================
+// @group TypeTimestamp
+// @author Scape Agency
+// @since 0.1.0
+//
+
+@use "../../../variables" as *;
+
+/// Base timestamp style
+@mixin timestamp {
+    color: var(--theme-semantic-color-type-quartenary);
+    font-family: var(--theme-semantic-type-metadata-font-family);
+    font-size: var(--theme-semantic-type-metadata--md-font-size);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--theme-semantic-type-metadata--md-line-height);
+    letter-spacing: var(--theme-semantic-type-metadata-letter-spacing-none);
+    margin-top: var(--primitive-space-04);
+}
+
+/// Elevated timestamp variant
+@mixin timestamp--elevate {
+    font-size: 0.66rem;
+    line-height: 1.11rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    width: fit-content;
+    margin: 0;
+}
+
+/// Container within elevated timestamp
+@mixin timestamp--container {
+    color: var(--color_text_primary);
+    display: flex;
+    align-items: center;
+    gap: q(4);
+    text-underline-offset: q(4);
+    width: fit-content;
+}
+
+/// Hidden details block
+@mixin timestamp--details {
+    display: none;
+    margin-top: q(4);
+    padding-left: q(12);
+    border-left: solid q(1) #e6e6e6;
+}
+
+/// Active timestamp highlight
+@mixin timestamp--active {
+    color: var(--color_accent_primary);
+}
+
+/// Expand button
+@mixin timestamp--expand-btn {
+    width: q(14);
+    height: q(20);
+    // background: url(/media/sites/icons/ui-caret-down-elevate.svg) 0 0 / contain no-repeat;
+}
+
+/// Hover underline behavior
+@mixin timestamp--hover($color) {
+    -webkit-text-decoration: underline solid $color;
+    text-decoration: underline solid $color;
+}
+
+.timestamp {
+    @include timestamp;
+}
+
+.timestamp-elevate {
+    @include timestamp--elevate;
+
+    .timestamp__container {
+        @include timestamp--container;
+    }
+
+    .timestamp__details {
+        @include timestamp--details;
+    }
+
+    .timestamp__time-since--active {
+        @include timestamp--active;
+    }
+
+    .timestamp__expand-btn {
+        @include timestamp--expand-btn;
+    }
+
+    &:not(.timestamp-elevate--expanded) .timestamp__container:hover {
+        @include timestamp--hover(var(--color_text_primary));
+    }
+
+    &:not(.timestamp-elevate--expanded):has(.timestamp__time-since--active)
+        .timestamp__container:hover {
+        @include timestamp--hover(var(--color_accent_primary));
+    }
+
+    &.timestamp-elevate--expanded {
+        .timestamp__details {
+            display: block;
+        }
+        .timestamp__expand-btn {
+            display: none;
+        }
+    }
+}

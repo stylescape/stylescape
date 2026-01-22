@@ -1,0 +1,216 @@
+// ============================================================================
+// Components | Chip
+// ============================================================================
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+
+@use "../../head_layout" as *;
+
+@use "../../soul_type" as *;
+@use "../../soul_object" as *;
+
+// ============================================================================
+// Mixins | Chip Component
+// ============================================================================
+
+@mixin chip--base {
+    display: inline-block;
+    height: q(16);
+    font-size: q(12);
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: q(20);
+    padding: 0 q(12);
+    border-radius: q(16);
+    background-color: var(--color_surface_primary);
+    // margin-bottom: $chip-margin;
+    // margin-right: $chip-margin;
+
+    &:focus {
+        outline: none;
+        // background-color: $chip-selected-color;
+        color: var(--color_surface_primary);
+    }
+
+    > img {
+        float: left;
+        margin: 0 q(8) 0 -q(12);
+        height: q(32);
+        width: q(32);
+        border-radius: 50%;
+    }
+
+    .close {
+        cursor: pointer;
+        float: right;
+        font-size: q(16);
+        line-height: q(32);
+        padding-left: q(8);
+    }
+}
+
+// ============================================================================
+// Mixins | Chips Input Container
+// ============================================================================
+
+@mixin chips--base {
+    border: none;
+    border-bottom: q(1) solid var(--color_text_primary);
+    @include shadow--none;
+    // margin: $input-margin;
+    min-height: q(4);
+    outline: none;
+    transition: all 0.3s;
+
+    &:hover {
+        cursor: text;
+    }
+
+    &.focus {
+        // border-bottom: q(1) solid $chip-selected-color;
+        // box-shadow: 0 q(1) 0 0 $chip-selected-color;
+    }
+
+    .input {
+        background: none;
+        border: 0;
+        color: rgba(0, 0, 0, 0.6);
+        display: inline-block;
+        // font-size: $input-font-size;
+        // height: $input-height;
+        line-height: q(32);
+        outline: 0;
+        margin: 0;
+        padding: 0 !important;
+        width: q(20) !important;
+
+        &:focus {
+            border: 0 !important;
+            box-shadow: none !important;
+        }
+    }
+
+    .autocomplete-content {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+// ============================================================================
+// Mixins | Chips Modifiers
+// ============================================================================
+
+@mixin chips--with-prefix {
+    margin-left: 3rem;
+    width: calc(100% - 3rem);
+}
+
+@mixin chips--empty-label {
+    font-size: 0.8rem;
+    transform: translateY(-140%);
+}
+
+.chip {
+    @include chip--base;
+}
+.chips {
+    @include chips--base;
+}
+.prefix ~ .chips {
+    @include chips--with-prefix;
+}
+.chips:empty ~ label {
+    @include chips--empty-label;
+}
+
+// .chip {
+//     &:focus {
+//       outline: none;
+//       background-color: $chip-selected-color;
+//       color: var(--color_surface_primary);
+//     }
+
+//     display: inline-block;
+//     height: 3q(2);
+//     font-size: q(12);
+//     font-weight: 500;
+//     color: rgba(0,0,0,.6);
+//     line-height: 3q(2);
+//     padding: 0 q(12);
+//     border-radius: q(16);
+//     background-color: var(--color_surface_primary);
+//     margin-bottom: $chip-margin;
+//     margin-right: $chip-margin;
+
+//     > img {
+//       float: left;
+//       margin: 0 q(8) 0 -1q(2);
+//       height: 3q(2);
+//       width: 3q(2);
+//       border-radius: 50%;
+//     }
+
+//     .close {
+//       cursor: pointer;
+//       float: right;
+//       font-size: q(16);
+//       line-height: 3q(2);
+//       padding-left: q(8);
+//     }
+//   }
+
+//   .chips {
+//     border: none;
+//     border-bottom: q(1) solid var(--color_text_primary);
+//     @include shadow--none;
+//     margin: $input-margin;
+//     min-height: 4q(4);
+//     outline: none;
+//     transition: all .3s;
+
+//     &.focus {
+//       border-bottom: q(1) solid $chip-selected-color;
+//       box-shadow: 0 q(1) 0 0 $chip-selected-color;
+//     }
+
+//     &:hover {
+//       cursor: text;
+//     }
+
+//     .input {
+//       background: none;
+//       border: 0;
+//       color: rgba(0,0,0,.6);
+//       display: inline-block;
+//       font-size: $input-font-size;
+//       height: $input-height;
+//       line-height: 3q(2);
+//       outline: 0;
+//       margin: 0;
+//       padding: 0 !important;
+//       width: 1q(20) !important;
+//     }
+
+//     .input:focus {
+//       border: 0 !important;
+//       box-shadow: none !important;
+//     }
+
+//     // Autocomplete
+//     .autocomplete-content {
+//       margin-top: 0;
+//       margin-bottom: 0;
+//     }
+//   }
+
+//   // Form prefix
+//   .prefix ~ .chips {
+//     margin-left: 3rem;
+//     width: 92%;
+//     width: calc(100% - 3rem);
+//   }
+//   .chips:empty ~ label  {
+//     font-size: 0.8rem;
+//     transform: translateY(-140%);
+//   }

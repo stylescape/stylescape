@@ -1,0 +1,87 @@
+// ============================================================================
+// Atoms | Divider
+// ============================================================================
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+@use "../../soul_type" as *;
+
+// Base Divider Mixin
+@mixin divider--base($thickness: q(1), $color: var(--color_text_primary)) {
+    border: none;
+    background-color: $color;
+    height: $thickness;
+    width: 100%;
+    display: block;
+    margin: baseline(2) 0;
+}
+
+// Horizontal Divider
+.divider {
+    @include divider--base();
+}
+
+// Thin Divider
+.divider--thin {
+    @include divider--base(q(0.5));
+}
+
+// Thick Divider
+.divider--thick {
+    @include divider--base(q(2));
+}
+
+// Dotted Divider
+.divider--dotted {
+    @include divider--base(q(2));
+    background-color: transparent;
+    border-top: q(2) dotted var(--color_text_primary);
+    height: 0;
+}
+
+// Base Vertical Divider Mixin
+@mixin divider--base--vertical(
+    $thickness: q(1),
+    $color: var(--color_text_primary)
+) {
+    border: none;
+    background-color: $color;
+    width: $thickness;
+    height: 100%;
+    min-height: baseline(4);
+    display: block;
+    margin: 0 baseline(2);
+}
+
+// Vertical Divider
+.divider--vertical {
+    @include divider--base--vertical();
+}
+
+// Thin Vertical Divider
+.divider--vertical--thin {
+    @include divider--base--vertical(q(0.5));
+}
+
+// Thick Vertical Divider
+.divider--vertical--thick {
+    @include divider--base--vertical(q(2));
+}
+
+// Dotted Vertical Divider
+.divider--vertical--dotted {
+    @include divider--base--vertical(q(2));
+    background-color: transparent;
+    border-left: q(2) dotted var(--color_text_primary);
+    width: 0;
+}
+
+// Inline Vertical Divider
+.divider--vertical--inline {
+    @include divider--base(100%, var(--color_text_primary));
+    width: 100%;
+    height: auto;
+    min-height: baseline(8);
+    display: inline-block;
+    margin: 0 baseline(2);
+}

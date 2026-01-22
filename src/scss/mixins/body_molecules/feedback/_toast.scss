@@ -1,0 +1,156 @@
+////
+///
+/// Toast Component Mixins
+/// ===========================================================================
+///
+/// Toast notification mixins for displaying feedback messages.
+///
+/// @group Mixins.BodyMolecules.Feedback
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+@use "../../head_layout" as *;
+@use "../../soul_type" as *;
+
+// ============================================================================
+// Toast Mixins
+// ============================================================================
+
+/// Base toast styling
+/// @group Toast
+@mixin toast--base {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: q(400);
+    padding: q(12) q(16);
+    background-color: var(--color_fill_secondary);
+    color: var(--color_text_primary);
+    border-radius: q(4);
+    box-shadow:
+        0 q(4) q(12) rgba(0, 0, 0, 0.15),
+        0 q(1) q(4) rgba(0, 0, 0, 0.1);
+    pointer-events: auto;
+
+    &.showing {
+        opacity: 0;
+    }
+
+    &:not(.show) {
+        display: none;
+    }
+}
+
+/// Toast container positioning (absolute)
+/// @group Toast
+@mixin toast--container {
+    position: absolute;
+    z-index: 10000;
+    width: max-content;
+    max-width: 100%;
+    pointer-events: none;
+
+    > :not(:last-child) {
+        margin-bottom: q(8);
+    }
+}
+
+/// Toast container with fixed positioning
+/// @group Toast
+@mixin toast--fixed-container {
+    display: block;
+    position: fixed;
+    z-index: 10000;
+    top: q(16);
+    right: q(16);
+    max-width: calc(100% - q(32));
+}
+
+/// Toast header styling
+/// @group Toast
+@mixin toast--header {
+    display: flex;
+    align-items: center;
+    padding: q(8) q(12);
+    border-bottom: q(1) solid var(--color_line_primary);
+    font-weight: 600;
+}
+
+/// Toast body styling
+/// @group Toast
+@mixin toast--body {
+    padding: q(12);
+    word-wrap: break-word;
+    flex: 1;
+}
+
+/// Toast action button styling
+/// @group Toast
+@mixin toast--action {
+    font-weight: 500;
+    margin-left: q(16);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/// Toast close button styling
+/// @group Toast
+@mixin toast--close {
+    margin-left: q(12);
+    cursor: pointer;
+    opacity: 0.7;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+// ============================================================================
+// Toast Variant Mixins
+// ============================================================================
+
+/// Info toast variant
+/// @group Toast
+@mixin toast--info {
+    background-color: var(--color_log_info);
+    color: var(--color_fill_primary);
+}
+
+/// Success toast variant
+/// @group Toast
+@mixin toast--success {
+    background-color: var(--color_log_success);
+    color: var(--color_fill_primary);
+}
+
+/// Warning toast variant
+/// @group Toast
+@mixin toast--warning {
+    background-color: var(--color_log_warning);
+    color: var(--color_fill_primary);
+}
+
+/// Error toast variant
+/// @group Toast
+@mixin toast--error {
+    background-color: var(--color_log_error);
+    color: var(--color_fill_primary);
+}
+
+/// Rounded toast variant
+/// @group Toast
+@mixin toast--rounded {
+    border-radius: q(24);
+}

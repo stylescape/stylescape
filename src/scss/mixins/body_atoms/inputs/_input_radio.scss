@@ -1,0 +1,65 @@
+////
+///
+/// Radio Input Mixins
+/// ===========================================================================
+///
+/// Mixins for styling radio inputs.
+///
+/// @group Mixins.BodyAtoms.Inputs
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.2.10
+/// @access public
+///
+////
+
+@use "../../../dev" as *;
+
+@mixin input--radio {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: baseline(4);
+    height: baseline(4);
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    border: q(1) solid var(--color_text_primary);
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    pointer-events: initial;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: baseline(2);
+        height: baseline(2);
+        background: var(--color_text_primary);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    &:hover:not(:checked) {
+        background: var(--color_state_hover);
+    }
+
+    &:checked::after {
+        opacity: 1;
+    }
+
+    &:disabled {
+        border-color: var(--color_state_muted);
+        background: transparent;
+        cursor: not-allowed;
+    }
+}
+
+@mixin radio {
+    @include input--radio;
+}

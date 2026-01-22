@@ -1,0 +1,127 @@
+////
+///
+/// Dropdown Component Mixins
+/// ===========================================================================
+///
+/// Dropdown menu mixins for creating accessible dropdown menus.
+///
+/// @group Mixins.BodyMolecules.Navigation
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+@use "../../head_layout" as *;
+
+// ============================================================================
+// Dropdown Mixins
+// ============================================================================
+
+/// Base dropdown button styling
+/// @group Dropdown
+@mixin dropdown-menu-btn--base {
+    display: inline-flex;
+    align-items: center;
+    padding: q(12) q(16);
+    font-size: q(16);
+    font-weight: 500;
+    color: var(--color_text_primary);
+    background-color: var(--color_fill_secondary);
+    border: q(1) solid var(--color_line_primary);
+    border-radius: q(4);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover,
+    &:focus {
+        background-color: var(--color_fill_tertiary);
+    }
+}
+
+/// Dropdown container positioning
+/// @group Dropdown
+@mixin dropdown-menu--container {
+    position: relative;
+    display: inline-block;
+}
+
+/// Dropdown content styling (hidden by default)
+/// @group Dropdown
+@mixin dropdown-menu--content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: q(160);
+    padding: q(4) 0;
+    background-color: var(--color_fill_primary);
+    border: q(1) solid var(--color_line_primary);
+    border-radius: q(4);
+    box-shadow:
+        0 q(4) q(8) rgba(0, 0, 0, 0.1),
+        0 q(2) q(4) rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+/// Dropdown content when shown
+/// @group Dropdown
+@mixin dropdown-menu--content-show {
+    display: block;
+}
+
+/// Dropdown item styling
+/// @group Dropdown
+@mixin dropdown-menu--item {
+    display: block;
+    padding: q(10) q(16);
+    color: var(--color_text_primary);
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+        background-color: var(--color_fill_secondary);
+    }
+}
+
+/// Dropdown divider
+/// @group Dropdown
+@mixin dropdown-menu--divider {
+    height: 0;
+    margin: q(4) 0;
+    border-top: q(1) solid var(--color_line_primary);
+}
+
+// ============================================================================
+// Dropdown Variant Mixins
+// ============================================================================
+
+/// Dropdown with hover trigger (CSS-only)
+/// @group Dropdown
+@mixin dropdown-menu--hover {
+    &:hover .dropdown-content,
+    &:focus-within .dropdown-content {
+        display: block;
+    }
+}
+
+/// Right-aligned dropdown content
+/// @group Dropdown
+@mixin dropdown-menu--content-right {
+    left: auto;
+    right: 0;
+}
+
+/// Dropdown content above trigger (dropup)
+/// @group Dropdown
+@mixin dropdown-menu--content-up {
+    top: auto;
+    bottom: 100%;
+}

@@ -1,0 +1,140 @@
+////
+///
+/// Breadcrumb Components Mixins Module
+/// ===========================================================================
+///
+/// @group Components
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+
+@use "../../head_layout" as *;
+
+@use "../../soul_type" as *;
+
+///
+/// Base breadcrumb container
+///
+@mixin breadcrumb--base {
+    background: transparent;
+    border-radius: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+}
+
+///
+/// Breadcrumb list styling
+///
+@mixin breadcrumb--list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    //     margin-bottom: var(breadcrumb-margin-bottom);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/// Breadcrumb list item
+@mixin breadcrumb--item {
+    // Display list items side by side
+    display: inline-block;
+    line-height: normal;
+
+    // + .breadcrumb-item {
+    //   padding-left: var(breadcrumb-item-padding-x);
+
+    //   &::before {
+    //     float: left; // Suppress inline spacings and underlining of the separator
+    //     padding-right: var(breadcrumb-item-padding-x);
+    //     color: var(breadcrumb-divider-color);
+    //     content: var(breadcrumb-divider, escape-svg($breadcrumb-divider)) #{"/* rtl:"} var(breadcrumb-divider, escape-svg($breadcrumb-divider-flipped)) #{"*/"};
+    //   }
+
+    &::after {
+        // Add a slash symbol (/) before/behind each list item
+        content: "/\00a0";
+        // content: ">";
+        // font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        padding: 0 q(8) 0 q(8);
+        display: inline-block;
+        vertical-align: middle;
+        // font-size: q(5);
+        opacity: 0.6;
+    }
+
+    &:last-child::after {
+        content: "";
+        padding: 0;
+    }
+
+    &.active {
+        color: var(breadcrumb-item-active-color);
+    }
+}
+
+// .breadcrumb ul li {
+//     display: inline-block;
+//     line-height: normal;
+// }
+
+// .breadcrumb ul > li:after {
+//     content: "\f111";
+//     font-family: Font Awesome\5 Free;
+//     font-weight: 900;
+//     padding: 0 q(1) 0 q(14);
+//     display: inline-block;
+//     vertical-align: middle;
+//     font-size: q(5);
+//     opacity: 0.6;
+// }
+
+// .breadcrumb ul > li:last-child:after {
+//     border-right: 0;
+//     content: "";
+//     padding: 0;
+// }
+
+.breadcrumb {
+    @include breadcrumb--base;
+
+    ul,
+    ol {
+        @include breadcrumb--list;
+
+        li {
+            @include breadcrumb--item;
+        }
+    }
+}
+
+// /* Add a color to all links inside the list */
+// ul.breadcrumb li a {
+//   color: #0275d8;
+//   text-decoration: none;
+// }
+
+// /* Add a color on mouse-over */
+// ul.breadcrumb li a:hover {
+//   color: #01447e;
+//   text-decoration: underline;
+// }
+
+// sbf
+// .breadcrumb {
+// 	background-color: #ffffff;
+// 	margin-top: 24px;
+// }

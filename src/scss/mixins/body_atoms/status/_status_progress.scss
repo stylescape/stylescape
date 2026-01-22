@@ -1,0 +1,49 @@
+// ============================================================================
+// Elements | Progress
+// ============================================================================
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+
+@use "../../soul_type" as *;
+
+// ============================================================================
+// Progress Bar
+// ============================================================================
+
+/// Mixin to style <progress> tag
+/// @group Form
+@mixin progress_bar() {
+    height: q(10);
+    border: none;
+    border-radius: q(4);
+    background-color: var(--color_fill_primary);
+    -webkit-appearance: none;
+    appearance: none;
+    overflow: hidden;
+
+    // WebKit (Chrome, Safari)
+    &::-webkit-progress-bar {
+        background-color: var(--color_fill_primary);
+        border-radius: q(4);
+    }
+
+    &::-webkit-progress-value {
+        background-color: var(--color_text_primary);
+        border-radius: q(4);
+        transition: width 0.3s ease;
+    }
+
+    // Firefox
+    &::-moz-progress-bar {
+        background-color: var(--color_text_primary);
+        border-radius: q(4);
+        transition: width 0.3s ease;
+    }
+}
+
+/// @group Form
+progress,
+meter {
+    @include progress_bar;
+}
