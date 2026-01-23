@@ -1,0 +1,110 @@
+// ============================================================================
+// Floating Labels
+// Bootstrap-compatible floating label inputs
+// ============================================================================
+
+@use "../../dev" as *;
+
+// Floating label container
+.form_floating {
+    position: relative;
+
+    // Input styling
+    > .formfield__input,
+    > .input,
+    > textarea,
+    > select {
+        height: calc(3.5rem + 2px);
+        min-height: calc(3.5rem + 2px);
+        padding: q(24) q(12) q(8);
+        line-height: 1.25;
+
+        &::placeholder {
+            color: transparent;
+        }
+
+        &:focus,
+        &:not(:placeholder-shown) {
+            padding-top: q(26);
+            padding-bottom: q(6);
+        }
+
+        // Autofill handling
+        &:-webkit-autofill {
+            padding-top: q(26);
+            padding-bottom: q(6);
+        }
+    }
+
+    // Textarea specific
+    > textarea {
+        height: auto;
+        min-height: calc(3.5rem + 2px);
+
+        &:focus,
+        &:not(:placeholder-shown) {
+            padding-top: q(26);
+            padding-bottom: q(6);
+        }
+    }
+
+    // Select specific
+    > select {
+        padding-top: q(26);
+        padding-bottom: q(6);
+    }
+
+    // Label styling
+    > label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        height: 100%;
+        padding: q(16) q(12);
+        overflow: hidden;
+        text-align: start;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        pointer-events: none;
+        border: 1px solid transparent;
+        transform-origin: 0 0;
+        transition:
+            opacity 0.1s ease-in-out,
+            transform 0.1s ease-in-out;
+        color: var(--color_text_secondary);
+    }
+
+    // Floating state
+    > .formfield__input:focus ~ label,
+    > .formfield__input:not(:placeholder-shown) ~ label,
+    > .formfield__input:-webkit-autofill ~ label,
+    > .input:focus ~ label,
+    > .input:not(:placeholder-shown) ~ label,
+    > .input:-webkit-autofill ~ label,
+    > textarea:focus ~ label,
+    > textarea:not(:placeholder-shown) ~ label,
+    > select ~ label {
+        color: var(--color_text_tertiary);
+        transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+    }
+
+    // Disabled state
+    > .formfield__input:disabled ~ label,
+    > .input:disabled ~ label {
+        color: var(--color_text_disabled);
+    }
+}
+
+// Form floating with input group
+.input_group > .form_floating {
+    display: flex;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+
+    > .formfield__input,
+    > .input {
+        width: 100%;
+    }
+}

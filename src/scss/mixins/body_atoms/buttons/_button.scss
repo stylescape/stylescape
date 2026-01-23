@@ -290,18 +290,18 @@ button {
 /// Primary button variant
 /// @group Buttons
 @mixin button--primary {
-    background-color: var(--color_fill_accent);
-    color: var(--color_text_inverse);
-    border-color: var(--color_fill_accent);
+    background-color: var(--color_accent_primary);
+    color: var(--color_fill_primary);
+    border-color: var(--color_accent_primary);
 
     &:hover {
-        background-color: var(--color_fill_accent_hover);
-        border-color: var(--color_fill_accent_hover);
+        background-color: var(--color_state_hover);
+        border-color: var(--color_state_hover);
     }
 
     &:active {
-        background-color: var(--color_fill_accent_active);
-        border-color: var(--color_fill_accent_active);
+        background-color: var(--color_state_active);
+        border-color: var(--color_state_active);
     }
 }
 
@@ -310,14 +310,14 @@ button {
 @mixin button--secondary {
     background-color: var(--color_fill_secondary);
     color: var(--color_text_primary);
-    border-color: var(--color_border_primary);
+    border-color: var(--color_line_primary);
 
     &:hover {
-        background-color: var(--color_fill_secondary_hover);
+        background-color: var(--color_state_hover);
     }
 
     &:active {
-        background-color: var(--color_fill_secondary_active);
+        background-color: var(--color_state_active);
     }
 }
 
@@ -337,13 +337,13 @@ button {
 /// @group Buttons
 @mixin button--link {
     background-color: transparent;
-    color: var(--color_text_accent);
+    color: var(--color_state_link);
     border-color: transparent;
     padding: 0;
     text-decoration: underline;
 
     &:hover {
-        color: var(--color_text_accent_hover);
+        color: var(--color_state_hover);
     }
 }
 
@@ -354,33 +354,33 @@ button {
 /// Success button variant
 /// @group Buttons
 @mixin button--success {
-    background-color: var(--color_success);
-    color: var(--color_text_inverse);
-    border-color: var(--color_success);
+    background-color: var(--color_log_success);
+    color: var(--color_fill_primary);
+    border-color: var(--color_log_success);
 }
 
 /// Warning button variant
 /// @group Buttons
 @mixin button--warning {
-    background-color: var(--color_warning);
-    color: var(--color_text_inverse);
-    border-color: var(--color_warning);
+    background-color: var(--color_log_warning);
+    color: var(--color_fill_primary);
+    border-color: var(--color_log_warning);
 }
 
 /// Danger/Error button variant
 /// @group Buttons
 @mixin button--danger {
-    background-color: var(--color_error);
-    color: var(--color_text_inverse);
-    border-color: var(--color_error);
+    background-color: var(--color_log_error);
+    color: var(--color_fill_primary);
+    border-color: var(--color_log_error);
 }
 
 /// Info button variant
 /// @group Buttons
 @mixin button--info {
-    background-color: var(--color_info);
-    color: var(--color_text_inverse);
-    border-color: var(--color_info);
+    background-color: var(--color_log_info);
+    color: var(--color_fill_primary);
+    border-color: var(--color_log_info);
 }
 
 // ============================================================================
@@ -429,7 +429,7 @@ button {
 /// Rounded button shape
 /// @group Buttons
 @mixin button--rounded {
-    border-radius: var(--corner_radius_04);
+    border-radius: var(--primitive-corner-radius-12, q(12));
 }
 
 /// Pill button shape
@@ -481,15 +481,18 @@ button {
 /// @group Buttons
 @mixin button--loading {
     position: relative;
-    color: transparent;
+    color: transparent !important;
     pointer-events: none;
 
     &::after {
         content: "";
         position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: q(16);
         height: q(16);
-        border: q(2) solid currentColor;
+        border: q(2) solid var(--color_text_primary);
         border-right-color: transparent;
         border-radius: 50%;
         animation: btn-spin 0.6s linear infinite;

@@ -983,57 +983,30 @@
 
             <div class="frame_main__area--middle_center">
                 <main id="main_content" class="main_content rail" role="main">
-<section class="demo__section" data-label="Breadcrumb" data-level="1">
 
+<section class="demo__section" data-label="Basic Breadcrumb" data-level="1">
     <header class="demo__section__header">
-        <h2>Breadcrumb</h2>
+        <h3>Basic Breadcrumb</h3>
+        <p>Navigation trail showing the user's location in the site hierarchy.</p>
     </header>
 
     <section class="demo__subsection">
-        <p>
-            The breadcrumb component is used to indicate the current page's location within a navigational hierarchy.
-            It helps users understand their position in the site structure and provides a way to navigate back to previous
-            pages.
-        </p>
-        <p>
-            Breadcrumbs are typically displayed as a horizontal list of links, with the current page not being a link.
-            They are often separated by a symbol such as ">" or "/".
-        </p>
-        <p>
-            Breadcrumbs are particularly useful for deep navigation structures, allowing users to easily backtrack without
-            using the browser's back button.
-        </p>
-        <p>
-            When implementing breadcrumbs, consider the following:
-            <ul>
-                <li>Keep the breadcrumb trail concise and relevant.</li>
-                <li>Use clear and descriptive labels for each link.</li>
-                <li>Ensure the current page is not a link to avoid confusion.</li>
-                <li>Consider accessibility by ensuring the breadcrumb is navigable via keyboard.</li>
-                <li>Use appropriate ARIA roles and properties to enhance screen reader support.</li>
-                <li>Test the breadcrumb on various devices and screen sizes to ensure usability.</li>
-            </ul>
-        </p>
-    </section>
-
-    <section class="demo__subsection" data-label="Default Breadcrumb" data-level="2">
-        <h3>Default Breadcrumb</h3>
+        <h4>Simple Breadcrumb</h4>
    
 <div class="preview_box--vertical">
-    <div class="preview_box__live"><nav class="breadcrumb">
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/products">Products</a></li>
-        <li><a href="/products/shoes">Shoes</a></li>
-        <li>Running</li>
-    </ul>
+    <div class="preview_box__live"><nav aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb__item"><a href="#">Home</a></li>
+        <li class="breadcrumb__item"><a href="#">Products</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">Category</li>
+    </ol>
 </nav>
 </div>
     <div class="preview_box__info">
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-4913')"
+            onclick="ClipboardHelper.copyById('code-snippet-1313')"
         >
             Copy
         </button>
@@ -1041,43 +1014,36 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-4913" class="language-html">&lt;nav class=&quot;breadcrumb&quot;&gt;
-    &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;/products&quot;&gt;Products&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;/products/shoes&quot;&gt;Shoes&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;Running&lt;/li&gt;
-    &lt;/ul&gt;
+        ><code id="code-snippet-1313" class="language-html">&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;
+    &lt;ol class=&quot;breadcrumb&quot;&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Products&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--active&quot; aria-current=&quot;page&quot;&gt;Category&lt;/li&gt;
+    &lt;/ol&gt;
 &lt;/nav&gt;</code></pre>
     </div>
 </div>
     </section>
 
-    <section class="demo__subsection" data-label="Default Breadcrumb" data-level="2">
-        <h3>Default Breadcrumb</h3>
+    <section class="demo__subsection">
+        <h4>Deep Navigation</h4>
    
 <div class="preview_box--vertical">
-    <div class="preview_box__live">        <nav class="breadcrumb" aria-labelledby="breadcrumb__heading">
-            <h2 
-                class="breadcrumb__heading sr-only"
-                data-testid="screen-reader-heading"
-                id="breadcrumb__heading"
-            >
-                Breadcrumbs
-            </h2>
-            <ol>
-                <li><a href="/">Home</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/products/shoes">Shoes</a></li>
-                <li>Running</li>
-            </ol>
-        </nav>
+    <div class="preview_box__live"><nav aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb__item"><a href="#">Home</a></li>
+        <li class="breadcrumb__item"><a href="#">Documentation</a></li>
+        <li class="breadcrumb__item"><a href="#">Components</a></li>
+        <li class="breadcrumb__item"><a href="#">Navigation</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">Breadcrumb</li>
+    </ol>
+</nav>
 </div>
     <div class="preview_box__info">
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-4681')"
+            onclick="ClipboardHelper.copyById('code-snippet-9749')"
         >
             Copy
         </button>
@@ -1085,25 +1051,396 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-4681" class="language-html">&lt;nav class=&quot;breadcrumb&quot; aria-labelledby=&quot;breadcrumb__heading&quot;&gt;
-            &lt;h2 
-                class=&quot;breadcrumb__heading sr-only&quot;
-                data-testid=&quot;screen-reader-heading&quot;
-                id=&quot;breadcrumb__heading&quot;
-            &gt;
-                Breadcrumbs
-            &lt;/h2&gt;
-            &lt;ol&gt;
-                &lt;li&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;/products&quot;&gt;Products&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;/products/shoes&quot;&gt;Shoes&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;Running&lt;/li&gt;
-            &lt;/ol&gt;
-        &lt;/nav&gt;</code></pre>
+        ><code id="code-snippet-9749" class="language-html">&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;
+    &lt;ol class=&quot;breadcrumb&quot;&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Documentation&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Components&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Navigation&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--active&quot; aria-current=&quot;page&quot;&gt;Breadcrumb&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+    </div>
+</div>
+    </section>
+</section>
+
+
+<section class="demo__section" data-label="Separators" data-level="1">
+    <header class="demo__section__header">
+        <h3>Breadcrumb Separators</h3>
+        <p>Different separator styles between breadcrumb items.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Slash Separator (Default)</h4>
+   
+<div class="preview_box--vertical">
+    <div class="preview_box__live"><nav aria-label="Breadcrumb">
+    <ol class="breadcrumb breadcrumb--slash">
+        <li class="breadcrumb__item"><a href="#">Home</a></li>
+        <li class="breadcrumb__item"><a href="#">Section</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">Page</li>
+    </ol>
+</nav>
+</div>
+    <div class="preview_box__info">
+        <small>HTML</small>
+        <button
+            class="preview_box__copy_button"
+            onclick="ClipboardHelper.copyById('code-snippet-9393')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="preview_box__code">
+        <pre
+            class="line-numbers"
+        ><code id="code-snippet-9393" class="language-html">&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;
+    &lt;ol class=&quot;breadcrumb breadcrumb--slash&quot;&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Section&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--active&quot; aria-current=&quot;page&quot;&gt;Page&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
     </div>
 </div>
     </section>
 
+    <section class="demo__subsection">
+        <h4>Arrow Separator</h4>
+   
+<div class="preview_box--vertical">
+    <div class="preview_box__live"><nav aria-label="Breadcrumb">
+    <ol class="breadcrumb breadcrumb--arrow">
+        <li class="breadcrumb__item"><a href="#">Home</a></li>
+        <li class="breadcrumb__item"><a href="#">Section</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">Page</li>
+    </ol>
+</nav>
+</div>
+    <div class="preview_box__info">
+        <small>HTML</small>
+        <button
+            class="preview_box__copy_button"
+            onclick="ClipboardHelper.copyById('code-snippet-8141')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="preview_box__code">
+        <pre
+            class="line-numbers"
+        ><code id="code-snippet-8141" class="language-html">&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;
+    &lt;ol class=&quot;breadcrumb breadcrumb--arrow&quot;&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Section&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--active&quot; aria-current=&quot;page&quot;&gt;Page&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+    </div>
+</div>
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Chevron Separator</h4>
+   
+<div class="preview_box--vertical">
+    <div class="preview_box__live"><nav aria-label="Breadcrumb">
+    <ol class="breadcrumb breadcrumb--chevron">
+        <li class="breadcrumb__item"><a href="#">Home</a></li>
+        <li class="breadcrumb__item"><a href="#">Section</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">Page</li>
+    </ol>
+</nav>
+</div>
+    <div class="preview_box__info">
+        <small>HTML</small>
+        <button
+            class="preview_box__copy_button"
+            onclick="ClipboardHelper.copyById('code-snippet-7575')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="preview_box__code">
+        <pre
+            class="line-numbers"
+        ><code id="code-snippet-7575" class="language-html">&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;
+    &lt;ol class=&quot;breadcrumb breadcrumb--chevron&quot;&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Section&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--active&quot; aria-current=&quot;page&quot;&gt;Page&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+    </div>
+</div>
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Dot Separator</h4>
+   
+<div class="preview_box--vertical">
+    <div class="preview_box__live"><nav aria-label="Breadcrumb">
+    <ol class="breadcrumb breadcrumb--dot">
+        <li class="breadcrumb__item"><a href="#">Home</a></li>
+        <li class="breadcrumb__item"><a href="#">Section</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">Page</li>
+    </ol>
+</nav>
+</div>
+    <div class="preview_box__info">
+        <small>HTML</small>
+        <button
+            class="preview_box__copy_button"
+            onclick="ClipboardHelper.copyById('code-snippet-2687')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="preview_box__code">
+        <pre
+            class="line-numbers"
+        ><code id="code-snippet-2687" class="language-html">&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;
+    &lt;ol class=&quot;breadcrumb breadcrumb--dot&quot;&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Section&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--active&quot; aria-current=&quot;page&quot;&gt;Page&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+    </div>
+</div>
+    </section>
+</section>
+
+
+<section class="demo__section" data-label="With Icons" data-level="1">
+    <header class="demo__section__header">
+        <h3>Breadcrumb with Icons</h3>
+        <p>Enhanced breadcrumbs with icon elements.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Home Icon</h4>
+   
+<div class="preview_box--vertical">
+    <div class="preview_box__live"><nav aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb__item">
+            <a href="#" aria-label="Home">
+                <span class="breadcrumb__icon">🏠</span>
+            </a>
+        </li>
+        <li class="breadcrumb__item"><a href="#">Products</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">Details</li>
+    </ol>
+</nav>
+</div>
+    <div class="preview_box__info">
+        <small>HTML</small>
+        <button
+            class="preview_box__copy_button"
+            onclick="ClipboardHelper.copyById('code-snippet-5412')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="preview_box__code">
+        <pre
+            class="line-numbers"
+        ><code id="code-snippet-5412" class="language-html">&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;
+    &lt;ol class=&quot;breadcrumb&quot;&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;
+            &lt;a href=&quot;#&quot; aria-label=&quot;Home&quot;&gt;
+                &lt;span class=&quot;breadcrumb__icon&quot;&gt;🏠&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Products&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--active&quot; aria-current=&quot;page&quot;&gt;Details&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+    </div>
+</div>
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Icons on All Items</h4>
+   
+<div class="preview_box--vertical">
+    <div class="preview_box__live"><nav aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb__item">
+            <a href="#">
+                <span class="breadcrumb__icon">🏠</span>
+                <span>Home</span>
+            </a>
+        </li>
+        <li class="breadcrumb__item">
+            <a href="#">
+                <span class="breadcrumb__icon">📁</span>
+                <span>Folder</span>
+            </a>
+        </li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">
+            <span class="breadcrumb__icon">📄</span>
+            <span>File</span>
+        </li>
+    </ol>
+</nav>
+</div>
+    <div class="preview_box__info">
+        <small>HTML</small>
+        <button
+            class="preview_box__copy_button"
+            onclick="ClipboardHelper.copyById('code-snippet-7716')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="preview_box__code">
+        <pre
+            class="line-numbers"
+        ><code id="code-snippet-7716" class="language-html">&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;
+    &lt;ol class=&quot;breadcrumb&quot;&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;
+            &lt;a href=&quot;#&quot;&gt;
+                &lt;span class=&quot;breadcrumb__icon&quot;&gt;🏠&lt;/span&gt;
+                &lt;span&gt;Home&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;
+            &lt;a href=&quot;#&quot;&gt;
+                &lt;span class=&quot;breadcrumb__icon&quot;&gt;📁&lt;/span&gt;
+                &lt;span&gt;Folder&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--active&quot; aria-current=&quot;page&quot;&gt;
+            &lt;span class=&quot;breadcrumb__icon&quot;&gt;📄&lt;/span&gt;
+            &lt;span&gt;File&lt;/span&gt;
+        &lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+    </div>
+</div>
+    </section>
+</section>
+
+
+<section class="demo__section" data-label="Collapsed" data-level="1">
+    <header class="demo__section__header">
+        <h3>Collapsed Breadcrumb</h3>
+        <p>Truncated breadcrumbs for long navigation paths.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Ellipsis Collapse</h4>
+   
+<div class="preview_box--vertical">
+    <div class="preview_box__live"><nav aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb__item"><a href="#">Home</a></li>
+        <li class="breadcrumb__item breadcrumb__item--collapsed">
+            <button class="breadcrumb__expand" aria-label="Show hidden items">...</button>
+        </li>
+        <li class="breadcrumb__item"><a href="#">Parent</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">Current</li>
+    </ol>
+</nav>
+</div>
+    <div class="preview_box__info">
+        <small>HTML</small>
+        <button
+            class="preview_box__copy_button"
+            onclick="ClipboardHelper.copyById('code-snippet-5924')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="preview_box__code">
+        <pre
+            class="line-numbers"
+        ><code id="code-snippet-5924" class="language-html">&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;
+    &lt;ol class=&quot;breadcrumb&quot;&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--collapsed&quot;&gt;
+            &lt;button class=&quot;breadcrumb__expand&quot; aria-label=&quot;Show hidden items&quot;&gt;...&lt;/button&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Parent&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--active&quot; aria-current=&quot;page&quot;&gt;Current&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+    </div>
+</div>
+    </section>
+</section>
+
+
+<section class="demo__section" data-label="Sizes" data-level="1">
+    <header class="demo__section__header">
+        <h3>Breadcrumb Sizes</h3>
+        <p>Different size variations.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Size Variations</h4>
+   
+<div class="preview_box--vertical">
+    <div class="preview_box__live"><nav aria-label="Breadcrumb">
+    <ol class="breadcrumb breadcrumb--sm">
+        <li class="breadcrumb__item"><a href="#">Home</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">Small</li>
+    </ol>
+</nav>
+
+<nav aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb__item"><a href="#">Home</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">Default</li>
+    </ol>
+</nav>
+
+<nav aria-label="Breadcrumb">
+    <ol class="breadcrumb breadcrumb--lg">
+        <li class="breadcrumb__item"><a href="#">Home</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">Large</li>
+    </ol>
+</nav>
+</div>
+    <div class="preview_box__info">
+        <small>HTML</small>
+        <button
+            class="preview_box__copy_button"
+            onclick="ClipboardHelper.copyById('code-snippet-1288')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="preview_box__code">
+        <pre
+            class="line-numbers"
+        ><code id="code-snippet-1288" class="language-html">&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;
+    &lt;ol class=&quot;breadcrumb breadcrumb--sm&quot;&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--active&quot; aria-current=&quot;page&quot;&gt;Small&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;
+
+&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;
+    &lt;ol class=&quot;breadcrumb&quot;&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--active&quot; aria-current=&quot;page&quot;&gt;Default&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;
+
+&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;
+    &lt;ol class=&quot;breadcrumb breadcrumb--lg&quot;&gt;
+        &lt;li class=&quot;breadcrumb__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;breadcrumb__item breadcrumb__item--active&quot; aria-current=&quot;page&quot;&gt;Large&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+    </div>
+</div>
+    </section>
 </section>                </main>
             </div>
 

@@ -1,138 +1,266 @@
-{% extends "base.html.jinja" %} {% set title = "Pagination" %} {%- block title
-%}{{ title }}{%- endblock %} {%- block content %}
+{% extends "base.html.jinja" %}
+{%- block title %}Pagination{%- endblock %}
+{%- block content %}
 
-<section class="demo__section" data-label="{{ title }}" data-level="1">
+{# ============================================================================
+   Basic Pagination
+   ============================================================================ #}
+<section class="demo__section" data-label="Basic Pagination" data-level="1">
     <header class="demo__section__header">
-        <h2>{{ title }}</h2>
+        <h3>Basic Pagination</h3>
+        <p>Navigate through pages of content.</p>
     </header>
 
-    {#
-    ----------------------------------------------------------------------------
-    Active Link Highlighter Test
-    ----------------------------------------------------------------------------
-    #} {% set section_title = "Active Link Highlighter Test" %}
-    <section
-        class="demo__subsection"
-        data-label="{{ section_title }}"
-        data-level="2"
-    >
-        <h3>{{ section_title }}</h3>
-        <p>
-            Click a page number below. The link matching the current URL
-            (including query parameter) will get the
-            <code>active</code>
-            class automatically via JavaScript.
-        </p>
+    <section class="demo__subsection">
+        <h4>Simple Pagination</h4>
         {% set code_snippet %}
-        <ul class="pagination">
-            <li><a href="?page=1">&laquo;</a></li>
-            <li><a href="?page=1">1</a></li>
-            <li><a href="?page=2">2</a></li>
-            <li><a href="?page=3">3</a></li>
-            <li><a href="?page=4">4</a></li>
-            <li><a href="?page=4">&raquo;</a></li>
-        </ul>
-        {% endset %} {% set language="HTML" %} {%- include
-        "includes/preview/preview_box_code.html.jinja" %}
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="pagination__item">
+            <a href="#" class="pagination__link" aria-label="Previous">←</a>
+        </li>
+        <li class="pagination__item"><a href="#" class="pagination__link">1</a></li>
+        <li class="pagination__item pagination__item--active">
+            <a href="#" class="pagination__link" aria-current="page">2</a>
+        </li>
+        <li class="pagination__item"><a href="#" class="pagination__link">3</a></li>
+        <li class="pagination__item">
+            <a href="#" class="pagination__link" aria-label="Next">→</a>
+        </li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {#
-    ----------------------------------------------------------------------------
-    Pagination
-    ----------------------------------------------------------------------------
-    #} {% set section_title = "Pagination" %}
-    <section
-        class="demo__subsection"
-        data-label="{{ section_title }}"
-        data-level="2"
-    >
-        <h3>{{ section_title }}</h3>
+    <section class="demo__subsection">
+        <h4>With First/Last</h4>
         {% set code_snippet %}
-        <ul class="pagination">
-            <li><a href="#">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li class="active"><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>
-        {% endset %} {% set language="HTML" %} {%- include
-        "includes/preview/preview_box_code.html.jinja" %}
-    </section>
-
-    {% set section_title = "Disabled & Right-Aligned Pagination" %}
-    <section
-        class="demo__subsection"
-        data-label="{{ section_title }}"
-        data-level="2"
-    >
-        <h3>{{ section_title }}</h3>
-        {% set code_snippet %}
-        <ul class="pagination pagination--right">
-            <li class="disabled"><a href="#">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li class="active"><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>
-        {% endset %} {% set language="HTML" %} {%- include
-        "includes/preview/preview_box_code.html.jinja" %}
-    </section>
-
-    {% set section_title = "Pagination Alignment" %}
-    <section
-        class="demo__subsection"
-        data-label="{{ section_title }}"
-        data-level="2"
-    >
-        <h3>{{ section_title }}</h3>
-        {% set code_snippet %}
-        <ul class="pagination pagination--left">
-            <li><a href="#">Prev</a></li>
-            <li><a href="#">10</a></li>
-            <li class="active"><a href="#">11</a></li>
-            <li><a href="#">12</a></li>
-            <li><a href="#">Next</a></li>
-        </ul>
-        <ul class="pagination pagination--center">
-            <li><a href="#">Prev</a></li>
-            <li><a href="#">10</a></li>
-            <li class="active"><a href="#">11</a></li>
-            <li><a href="#">12</a></li>
-            <li><a href="#">Next</a></li>
-        </ul>
-        <ul class="pagination pagination--right">
-            <li><a href="#">Prev</a></li>
-            <li><a href="#">10</a></li>
-            <li class="active"><a href="#">11</a></li>
-            <li><a href="#">12</a></li>
-            <li><a href="#">Next</a></li>
-        </ul>
-        {% endset %} {% set language="HTML" %} {%- include
-        "includes/preview/preview_box_code.html.jinja" %}
-    </section>
-
-    {% set section_title = "Pagination Alt" %}
-    <section
-        class="demo__subsection"
-        data-label="{{ section_title }}"
-        data-level="2"
-    >
-        <h3>{{ section_title }}</h3>
-        {% set code_snippet %}
-        <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a class="active" href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
-        </div>
-        {% endset %} {% set language="HTML" %} {%- include
-        "includes/preview/preview_box_code.html.jinja" %}
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="pagination__item">
+            <a href="#" class="pagination__link" aria-label="First">««</a>
+        </li>
+        <li class="pagination__item">
+            <a href="#" class="pagination__link" aria-label="Previous">«</a>
+        </li>
+        <li class="pagination__item"><a href="#" class="pagination__link">1</a></li>
+        <li class="pagination__item pagination__item--active">
+            <a href="#" class="pagination__link" aria-current="page">2</a>
+        </li>
+        <li class="pagination__item"><a href="#" class="pagination__link">3</a></li>
+        <li class="pagination__item">
+            <a href="#" class="pagination__link" aria-label="Next">»</a>
+        </li>
+        <li class="pagination__item">
+            <a href="#" class="pagination__link" aria-label="Last">»»</a>
+        </li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
     </section>
 </section>
 
-{%- endblock %}
+{# ============================================================================
+   Pagination States
+   ============================================================================ #}
+<section class="demo__section" data-label="States" data-level="1">
+    <header class="demo__section__header">
+        <h3>Pagination States</h3>
+        <p>Disabled and active states.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Disabled Items</h4>
+        {% set code_snippet %}
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="pagination__item pagination__item--disabled">
+            <a href="#" class="pagination__link" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        <li class="pagination__item pagination__item--active">
+            <a href="#" class="pagination__link" aria-current="page">1</a>
+        </li>
+        <li class="pagination__item"><a href="#" class="pagination__link">2</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">3</a></li>
+        <li class="pagination__item">
+            <a href="#" class="pagination__link">Next</a>
+        </li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Pagination Sizes
+   ============================================================================ #}
+<section class="demo__section" data-label="Sizes" data-level="1">
+    <header class="demo__section__header">
+        <h3>Pagination Sizes</h3>
+        <p>Different size variations.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Size Variations</h4>
+        {% set code_snippet %}
+<nav aria-label="Small pagination">
+    <ul class="pagination pagination--sm">
+        <li class="pagination__item"><a href="#" class="pagination__link">«</a></li>
+        <li class="pagination__item pagination__item--active"><a href="#" class="pagination__link">1</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">2</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">»</a></li>
+    </ul>
+</nav>
+
+<nav aria-label="Default pagination" class="mt--02">
+    <ul class="pagination">
+        <li class="pagination__item"><a href="#" class="pagination__link">«</a></li>
+        <li class="pagination__item pagination__item--active"><a href="#" class="pagination__link">1</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">2</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">»</a></li>
+    </ul>
+</nav>
+
+<nav aria-label="Large pagination" class="mt--02">
+    <ul class="pagination pagination--lg">
+        <li class="pagination__item"><a href="#" class="pagination__link">«</a></li>
+        <li class="pagination__item pagination__item--active"><a href="#" class="pagination__link">1</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">2</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">»</a></li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Pagination Alignment
+   ============================================================================ #}
+<section class="demo__section" data-label="Alignment" data-level="1">
+    <header class="demo__section__header">
+        <h3>Pagination Alignment</h3>
+        <p>Different alignment options.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Centered</h4>
+        {% set code_snippet %}
+<nav aria-label="Centered pagination">
+    <ul class="pagination pagination--center">
+        <li class="pagination__item"><a href="#" class="pagination__link">«</a></li>
+        <li class="pagination__item pagination__item--active"><a href="#" class="pagination__link">1</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">2</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">3</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">»</a></li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Right Aligned</h4>
+        {% set code_snippet %}
+<nav aria-label="Right aligned pagination">
+    <ul class="pagination pagination--end">
+        <li class="pagination__item"><a href="#" class="pagination__link">«</a></li>
+        <li class="pagination__item pagination__item--active"><a href="#" class="pagination__link">1</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">2</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">3</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">»</a></li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Ellipsis Pagination
+   ============================================================================ #}
+<section class="demo__section" data-label="Ellipsis" data-level="1">
+    <header class="demo__section__header">
+        <h3>Ellipsis Pagination</h3>
+        <p>Truncated pagination for many pages.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>With Ellipsis</h4>
+        {% set code_snippet %}
+<nav aria-label="Ellipsis pagination">
+    <ul class="pagination">
+        <li class="pagination__item"><a href="#" class="pagination__link">«</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">1</a></li>
+        <li class="pagination__item pagination__item--ellipsis"><span>…</span></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">4</a></li>
+        <li class="pagination__item pagination__item--active"><a href="#" class="pagination__link">5</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">6</a></li>
+        <li class="pagination__item pagination__item--ellipsis"><span>…</span></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">20</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">»</a></li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Previous/Next Only
+   ============================================================================ #}
+<section class="demo__section" data-label="Simple Navigation" data-level="1">
+    <header class="demo__section__header">
+        <h3>Simple Navigation</h3>
+        <p>Previous/Next only pagination.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Prev/Next with Labels</h4>
+        {% set code_snippet %}
+<nav aria-label="Simple pagination">
+    <ul class="pagination pagination--simple">
+        <li class="pagination__item">
+            <a href="#" class="pagination__link">
+                <span>← Previous</span>
+            </a>
+        </li>
+        <li class="pagination__item">
+            <a href="#" class="pagination__link">
+                <span>Next →</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Page Info</h4>
+        {% set code_snippet %}
+<nav aria-label="Pagination with info" class="pagination__wrapper">
+    <span class="pagination__info">Page 5 of 20</span>
+    <ul class="pagination">
+        <li class="pagination__item"><a href="#" class="pagination__link">Previous</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">Next</a></li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{%- endblock content %}

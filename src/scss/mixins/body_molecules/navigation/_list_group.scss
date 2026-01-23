@@ -1,0 +1,244 @@
+// ============================================================================
+// List Group Component
+// Bootstrap-compatible list group for displaying content in a list format
+// ============================================================================
+
+@use "../../../dev" as *;
+
+// Base list group
+.list_group {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    border-radius: var(--primitive-corner-radius-02);
+
+    // Flush variant - removes borders and rounded corners
+    &--flush {
+        border-radius: 0;
+
+        > .list_group__item {
+            border-width: 0 0 1px;
+            border-radius: 0;
+
+            &:last-child {
+                border-bottom-width: 0;
+            }
+        }
+    }
+
+    // Horizontal variant
+    &--horizontal {
+        flex-direction: row;
+
+        > .list_group__item {
+            border-bottom-width: 1px;
+            border-right-width: 0;
+
+            &:first-child {
+                border-top-left-radius: var(--primitive-corner-radius-02);
+                border-bottom-left-radius: var(--primitive-corner-radius-02);
+                border-top-right-radius: 0;
+            }
+
+            &:last-child {
+                border-top-right-radius: var(--primitive-corner-radius-02);
+                border-bottom-right-radius: var(--primitive-corner-radius-02);
+                border-bottom-left-radius: 0;
+                border-right-width: 1px;
+            }
+
+            &:not(:last-child) {
+                border-right-width: 1px;
+            }
+        }
+    }
+
+    // Numbered list group
+    &--numbered {
+        list-style-type: none;
+        counter-reset: list-group-counter;
+
+        > .list_group__item {
+            counter-increment: list-group-counter;
+
+            &::before {
+                content: counter(list-group-counter) ". ";
+                font-weight: 600;
+                margin-right: q(8);
+            }
+        }
+    }
+}
+
+// List group item
+.list_group__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: q(12) q(16);
+    color: var(--color_text_primary);
+    background-color: var(--color_fill_01);
+    border: 1px solid var(--color_border_01);
+    text-decoration: none;
+
+    &:first-child {
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+    }
+
+    &:last-child {
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
+    }
+
+    &:not(:first-child) {
+        border-top-width: 0;
+    }
+
+    // Active state
+    &--active {
+        z-index: 2;
+        color: var(--color_text_on_accent);
+        background-color: var(--color_accent_primary);
+        border-color: var(--color_accent_primary);
+    }
+
+    // Disabled state
+    &--disabled,
+    &:disabled {
+        color: var(--color_text_disabled);
+        pointer-events: none;
+        background-color: var(--color_fill_01);
+        opacity: 0.65;
+    }
+
+    // Actionable items (links and buttons)
+    &--action {
+        width: 100%;
+        text-align: inherit;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            z-index: 1;
+            color: var(--color_text_primary);
+            background-color: var(--color_fill_02);
+        }
+
+        &:active {
+            background-color: var(--color_fill_03);
+        }
+    }
+
+    // Color variants
+    &--primary {
+        color: var(--color_accent_primary);
+        background-color: color-mix(
+            in srgb,
+            var(--color_accent_primary) 10%,
+            transparent
+        );
+
+        &.list_group__item--action:hover,
+        &.list_group__item--action:focus {
+            background-color: color-mix(
+                in srgb,
+                var(--color_accent_primary) 20%,
+                transparent
+            );
+        }
+    }
+
+    &--success {
+        color: var(--color_log_success);
+        background-color: color-mix(
+            in srgb,
+            var(--color_log_success) 10%,
+            transparent
+        );
+
+        &.list_group__item--action:hover,
+        &.list_group__item--action:focus {
+            background-color: color-mix(
+                in srgb,
+                var(--color_log_success) 20%,
+                transparent
+            );
+        }
+    }
+
+    &--warning {
+        color: var(--color_log_warning);
+        background-color: color-mix(
+            in srgb,
+            var(--color_log_warning) 10%,
+            transparent
+        );
+
+        &.list_group__item--action:hover,
+        &.list_group__item--action:focus {
+            background-color: color-mix(
+                in srgb,
+                var(--color_log_warning) 20%,
+                transparent
+            );
+        }
+    }
+
+    &--danger {
+        color: var(--color_log_error);
+        background-color: color-mix(
+            in srgb,
+            var(--color_log_error) 10%,
+            transparent
+        );
+
+        &.list_group__item--action:hover,
+        &.list_group__item--action:focus {
+            background-color: color-mix(
+                in srgb,
+                var(--color_log_error) 20%,
+                transparent
+            );
+        }
+    }
+
+    &--info {
+        color: var(--color_log_info);
+        background-color: color-mix(
+            in srgb,
+            var(--color_log_info) 10%,
+            transparent
+        );
+
+        &.list_group__item--action:hover,
+        &.list_group__item--action:focus {
+            background-color: color-mix(
+                in srgb,
+                var(--color_log_info) 20%,
+                transparent
+            );
+        }
+    }
+}
+
+// List group item content helpers
+.list_group__item__heading {
+    margin-bottom: q(4);
+    font-weight: 600;
+}
+
+.list_group__item__text {
+    margin-bottom: 0;
+    color: var(--color_text_secondary);
+    font-size: var(--font-size-14);
+}
+
+// Checkbox/radio in list group
+.list_group__item__input {
+    flex-shrink: 0;
+    width: q(16);
+    height: q(16);
+    margin-right: q(12);
+}

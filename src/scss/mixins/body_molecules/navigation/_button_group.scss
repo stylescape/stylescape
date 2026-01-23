@@ -49,6 +49,39 @@
 //     }
 // }
 
+.button_group--vertical {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    > button {
+        border-radius: 0;
+        margin: 0;
+        width: 100%;
+
+        &:not(:first-child) {
+            margin-top: -q(1);
+        }
+
+        &:first-child {
+            border-top-left-radius: var(--primitive-corner-radius-04, q(4));
+            border-top-right-radius: var(--primitive-corner-radius-04, q(4));
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &:last-child {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: var(--primitive-corner-radius-04, q(4));
+            border-bottom-right-radius: var(
+                --primitive-corner-radius-04,
+                q(4)
+            );
+        }
+    }
+}
+
 .button-group--vertical {
     display: inline-flex;
     flex-direction: column;

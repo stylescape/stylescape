@@ -1,86 +1,273 @@
-{% extends "base.html.jinja" %} {% set title = "Form Field" %} {%- block title
-%}{{ title }}{%- endblock %} {%- block content %}
+{% extends "base.html.jinja" %}
+{%- block title %}Form Field{%- endblock %}
+{%- block content %}
 
-<section class="demo__section" data-label="{{ title }}" data-level="1">
+{# ============================================================================
+   Basic Form Fields
+   ============================================================================ #}
+<section class="demo__section" data-label="Basic Form Fields" data-level="1">
     <header class="demo__section__header">
-        <h2>{{ title }}</h2>
+        <h3>Basic Form Fields</h3>
+        <p>Standard form field components with labels and inputs.</p>
     </header>
 
-    {% set section_title = "Radio Buttons with Labels" %}
-    <section
-        class="demo__subsection"
-        data-label="{{ section_title }}"
-        data-level="2"
-    >
-        <h3>{{ section_title }}</h3>
+    <section class="demo__subsection">
+        <h4>Text Input Field</h4>
         {% set code_snippet %}
-        <div class="formfield-radio-buttons">
-            <label class="formfield-radio-buttons__option">
-                <div class="formfield-radio-buttons__option-label-wrapper">
-                    <span class="formfield-radio-buttons__option-label">Option 1</span>
-                    <span class="formfield-radio-buttons__option-subtext">Description for option 1</span>
-                </div>
-                <span class="formfield-radio-buttons__radio-open-icon"></span>
-                <span class="formfield-radio-buttons__radio-filled-icon"></span>
-                <input type="radio" name="demo-radio" value="1" hidden>
-            </label>
-
-            <label class="formfield-radio-buttons__option formfield-radio-buttons__option--selected">
-                <div class="formfield-radio-buttons__option-label-wrapper">
-                    <span class="formfield-radio-buttons__option-label">Option 2</span>
-                    <span class="formfield-radio-buttons__option-subtext">Description for option 2</span>
-                </div>
-                <span class="formfield-radio-buttons__radio-open-icon"></span>
-                <span class="formfield-radio-buttons__radio-filled-icon"></span>
-                <input type="radio" name="demo-radio" value="2" hidden checked>
-            </label>
-
-            <label class="formfield-radio-buttons__option">
-                <div class="formfield-radio-buttons__option-label-wrapper">
-                    <span class="formfield-radio-buttons__option-label">Option 3</span>
-                    <span class="formfield-radio-buttons__option-subtext">Description for option 3</span>
-                </div>
-                <span class="formfield-radio-buttons__radio-open-icon"></span>
-                <span class="formfield-radio-buttons__radio-filled-icon"></span>
-                <input type="radio" name="demo-radio" value="3" hidden>
-            </label>
-        </div>
+<div class="formfield">
+    <label class="formfield__label" for="name">Full Name</label>
+    <input class="formfield__input" type="text" id="name" placeholder="Enter your name">
+</div>
         {% endset %}
-        <div class="demo__preview">{{ code_snippet | safe }}</div>
-        <div class="demo__code">
-            <pre><code class="language-html">{{ code_snippet | e }}</code></pre>
-        </div>
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {% set section_title = "Radio with Input List" %}
-    <section
-        class="demo__subsection"
-        data-label="{{ section_title }}"
-        data-level="2"
-    >
-        <h3>{{ section_title }}</h3>
+    <section class="demo__subsection">
+        <h4>Required Field</h4>
         {% set code_snippet %}
-        <div class="formfield-radio-buttons">
-            <label class="formfield-radio-buttons__option">
-                <div class="formfield-radio-buttons__option-label-wrapper">
-                    <span class="formfield-radio-buttons__option-label">Premium Plan</span>
-                    <span class="formfield-radio-buttons__option-label-right">$29/mo</span>
-                </div>
-                <ul class="formfield-radio-buttons__option-input-list">
-                    <li class="formfield-radio-buttons__option-input-list-item">Unlimited access</li>
-                    <li class="formfield-radio-buttons__option-input-list-item">Priority support</li>
-                    <li class="formfield-radio-buttons__option-input-list-item">Advanced features</li>
-                </ul>
-                <input type="radio" name="plan" value="premium" hidden>
-            </label>
-        </div>
+<div class="formfield formfield--required">
+    <label class="formfield__label" for="email">Email Address</label>
+    <input class="formfield__input" type="email" id="email" placeholder="you@example.com" required>
+</div>
         {% endset %}
-        <div class="demo__preview">{{ code_snippet | safe }}</div>
-        <div class="demo__code">
-            <pre><code class="language-html">{{ code_snippet | e }}</code></pre>
-        </div>
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
+    <section class="demo__subsection">
+        <h4>With Helper Text</h4>
+        {% set code_snippet %}
+<div class="formfield">
+    <label class="formfield__label" for="password">Password</label>
+    <input class="formfield__input" type="password" id="password" placeholder="Enter password">
+    <span class="formfield__hint">Must be at least 8 characters</span>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
 </section>
 
-{%- endblock %}
+{# ============================================================================
+   Validation States
+   ============================================================================ #}
+<section class="demo__section" data-label="Validation States" data-level="1">
+    <header class="demo__section__header">
+        <h3>Validation States</h3>
+        <p>Form fields with success, error, and warning states.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Success State</h4>
+        {% set code_snippet %}
+<div class="formfield formfield--success">
+    <label class="formfield__label" for="username">Username</label>
+    <input class="formfield__input" type="text" id="username" value="johndoe">
+    <span class="formfield__hint formfield__hint--success">Username is available</span>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Error State</h4>
+        {% set code_snippet %}
+<div class="formfield formfield--error">
+    <label class="formfield__label" for="email-error">Email</label>
+    <input class="formfield__input" type="email" id="email-error" value="invalid-email">
+    <span class="formfield__hint formfield__hint--error">Please enter a valid email address</span>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Warning State</h4>
+        {% set code_snippet %}
+<div class="formfield formfield--warning">
+    <label class="formfield__label" for="password-warn">Password</label>
+    <input class="formfield__input" type="password" id="password-warn" value="weak">
+    <span class="formfield__hint formfield__hint--warning">Password strength: Weak</span>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Radio Buttons
+   ============================================================================ #}
+<section class="demo__section" data-label="Radio Buttons" data-level="1">
+    <header class="demo__section__header">
+        <h3>Radio Button Fields</h3>
+        <p>Radio button groups for single-selection options.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Basic Radio Group</h4>
+        {% set code_snippet %}
+<fieldset class="formfield formfield--group">
+    <legend class="formfield__label">Select an option</legend>
+    <div class="formfield__options">
+        <label class="formfield__radio">
+            <input type="radio" name="option" value="1" checked>
+            <span class="formfield__radio-label">Option One</span>
+        </label>
+        <label class="formfield__radio">
+            <input type="radio" name="option" value="2">
+            <span class="formfield__radio-label">Option Two</span>
+        </label>
+        <label class="formfield__radio">
+            <input type="radio" name="option" value="3">
+            <span class="formfield__radio-label">Option Three</span>
+        </label>
+    </div>
+</fieldset>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Inline Radio Group</h4>
+        {% set code_snippet %}
+<fieldset class="formfield formfield--group">
+    <legend class="formfield__label">Payment Method</legend>
+    <div class="formfield__options formfield__options--inline">
+        <label class="formfield__radio">
+            <input type="radio" name="payment" value="card" checked>
+            <span class="formfield__radio-label">Credit Card</span>
+        </label>
+        <label class="formfield__radio">
+            <input type="radio" name="payment" value="paypal">
+            <span class="formfield__radio-label">PayPal</span>
+        </label>
+        <label class="formfield__radio">
+            <input type="radio" name="payment" value="bank">
+            <span class="formfield__radio-label">Bank Transfer</span>
+        </label>
+    </div>
+</fieldset>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Checkboxes
+   ============================================================================ #}
+<section class="demo__section" data-label="Checkboxes" data-level="1">
+    <header class="demo__section__header">
+        <h3>Checkbox Fields</h3>
+        <p>Checkbox groups for multi-selection options.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Checkbox Group</h4>
+        {% set code_snippet %}
+<fieldset class="formfield formfield--group">
+    <legend class="formfield__label">Select your interests</legend>
+    <div class="formfield__options">
+        <label class="formfield__checkbox">
+            <input type="checkbox" name="interest" value="design" checked>
+            <span class="formfield__checkbox-label">Design</span>
+        </label>
+        <label class="formfield__checkbox">
+            <input type="checkbox" name="interest" value="development">
+            <span class="formfield__checkbox-label">Development</span>
+        </label>
+        <label class="formfield__checkbox">
+            <input type="checkbox" name="interest" value="marketing">
+            <span class="formfield__checkbox-label">Marketing</span>
+        </label>
+    </div>
+</fieldset>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Single Checkbox</h4>
+        {% set code_snippet %}
+<div class="formfield">
+    <label class="formfield__checkbox">
+        <input type="checkbox" name="terms" required>
+        <span class="formfield__checkbox-label">I agree to the terms and conditions</span>
+    </label>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Select & Textarea
+   ============================================================================ #}
+<section class="demo__section" data-label="Other Fields" data-level="1">
+    <header class="demo__section__header">
+        <h3>Select & Textarea</h3>
+        <p>Dropdown select and multi-line text inputs.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Select Dropdown</h4>
+        {% set code_snippet %}
+<div class="formfield">
+    <label class="formfield__label" for="country">Country</label>
+    <select class="formfield__select" id="country">
+        <option value="">Select a country</option>
+        <option value="us">United States</option>
+        <option value="uk">United Kingdom</option>
+        <option value="ca">Canada</option>
+        <option value="au">Australia</option>
+    </select>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Textarea</h4>
+        {% set code_snippet %}
+<div class="formfield">
+    <label class="formfield__label" for="message">Message</label>
+    <textarea class="formfield__textarea" id="message" rows="4" placeholder="Enter your message"></textarea>
+    <span class="formfield__hint">Maximum 500 characters</span>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Disabled State
+   ============================================================================ #}
+<section class="demo__section" data-label="Disabled Fields" data-level="1">
+    <header class="demo__section__header">
+        <h3>Disabled Fields</h3>
+        <p>Form fields in a disabled state.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Disabled Input</h4>
+        {% set code_snippet %}
+<div class="formfield formfield--disabled">
+    <label class="formfield__label" for="disabled-input">Disabled Field</label>
+    <input class="formfield__input" type="text" id="disabled-input" value="Cannot be edited" disabled>
+</div>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{%- endblock content %}

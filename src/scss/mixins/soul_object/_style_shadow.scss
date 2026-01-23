@@ -1,6 +1,106 @@
+// ============================================================================
+// Shadow Mixins and Utilities
+// Box shadows for elevation and depth
+// ============================================================================
+
+// Mixin: No shadow
 @mixin shadow--none {
     box-shadow: none;
     -moz-box-shadow: none;
-    -ms-box-sizing: none;
+    -ms-box-shadow: none;
     -webkit-box-shadow: none;
+}
+
+// Mixin: Elevation shadows
+@mixin shadow--sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+@mixin shadow--md {
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+@mixin shadow--lg {
+    box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+@mixin shadow--xl {
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+@mixin shadow--2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+// Mixin: Inset shadow
+@mixin shadow--inset {
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+.shadow--none {
+    @include shadow--none;
+}
+.shadow--sm {
+    @include shadow--sm;
+}
+.shadow--md {
+    @include shadow--md;
+}
+.shadow--lg {
+    @include shadow--lg;
+}
+.shadow--xl {
+    @include shadow--xl;
+}
+.shadow--2xl {
+    @include shadow--2xl;
+}
+.shadow--inset {
+    @include shadow--inset;
+}
+
+// Directional shadows
+.shadow--top {
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.shadow--bottom {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.shadow--left {
+    box-shadow: -4px 0 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.shadow--right {
+    box-shadow: 4px 0 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+// Text shadow utilities
+.text_shadow--none {
+    text-shadow: none;
+}
+
+.text_shadow--sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.text_shadow--md {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.text_shadow--lg {
+    text-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.12),
+        0 2px 4px rgba(0, 0, 0, 0.08);
 }

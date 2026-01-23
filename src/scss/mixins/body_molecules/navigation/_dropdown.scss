@@ -125,3 +125,118 @@
     top: auto;
     bottom: 100%;
 }
+// ============================================================================
+// Additional Dropdown Direction Mixins (Bootstrap-style)
+// ============================================================================
+
+/// Dropdown to the right (dropend)
+/// @group Dropdown
+@mixin dropdown-menu--content-end {
+    top: 0;
+    left: 100%;
+    right: auto;
+    margin-top: 0;
+    margin-left: q(2);
+}
+
+/// Dropdown to the left (dropstart)
+/// @group Dropdown
+@mixin dropdown-menu--content-start {
+    top: 0;
+    right: 100%;
+    left: auto;
+    margin-top: 0;
+    margin-right: q(2);
+}
+
+/// Centered dropdown
+/// @group Dropdown
+@mixin dropdown-menu--content-center {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+}
+
+// ============================================================================
+// Dropdown Menu Enhancements
+// ============================================================================
+
+/// Dropdown header
+/// @group Dropdown
+@mixin dropdown-menu--header {
+    display: block;
+    padding: q(8) q(16);
+    margin-bottom: 0;
+    font-size: calc(var(--typescale-base) * 0.875);
+    color: var(--color_text_secondary);
+    white-space: nowrap;
+}
+
+/// Dropdown text (non-interactive text)
+/// @group Dropdown
+@mixin dropdown-menu--text {
+    display: block;
+    padding: q(4) q(16);
+    color: var(--color_text_primary);
+}
+
+/// Dropdown item active state
+/// @group Dropdown
+@mixin dropdown-menu--item-active {
+    color: var(--color_text_inverted, #fff);
+    background-color: var(--color_accent_primary);
+
+    &:hover {
+        background-color: var(--color_accent_primary);
+    }
+}
+
+/// Dropdown item disabled state
+/// @group Dropdown
+@mixin dropdown-menu--item-disabled {
+    color: var(--color_text_tertiary);
+    pointer-events: none;
+    background-color: transparent;
+}
+
+/// Dark dropdown variant
+/// @group Dropdown
+@mixin dropdown-menu--dark {
+    background-color: var(--color_fill_04);
+    border-color: var(--color_fill_04);
+
+    .dropdown-item {
+        color: var(--color_fill_01);
+
+        &:hover,
+        &:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    .dropdown-divider {
+        border-color: var(--color_fill_03);
+    }
+
+    .dropdown-header {
+        color: var(--color_text_tertiary);
+    }
+}
+
+/// Auto-close dropdown option (data attribute helper)
+/// @group Dropdown
+/// For JS implementation, use data-auto-close="true|false|inside|outside"
+
+/// Dropdown menu with icons
+/// @group Dropdown
+@mixin dropdown-menu--item-icon {
+    display: flex;
+    align-items: center;
+    gap: q(8);
+
+    .icon {
+        width: q(16);
+        height: q(16);
+        flex-shrink: 0;
+    }
+}

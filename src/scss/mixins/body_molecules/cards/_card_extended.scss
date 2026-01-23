@@ -1,0 +1,215 @@
+// ============================================================================
+// Card Header, Footer, and Layout Components
+// Bootstrap-compatible card extensions
+// ============================================================================
+
+@use "../../../dev" as *;
+
+// Card header
+.card__header {
+    padding: q(12) q(16);
+    margin-bottom: 0;
+    background-color: var(--color_fill_02);
+    border-bottom: 1px solid var(--color_border_01);
+
+    &:first-child {
+        border-radius: calc(var(--primitive-corner-radius-02) - 1px)
+            calc(var(--primitive-corner-radius-02) - 1px) 0 0;
+    }
+}
+
+// Card footer
+.card__footer {
+    padding: q(12) q(16);
+    background-color: var(--color_fill_02);
+    border-top: 1px solid var(--color_border_01);
+
+    &:last-child {
+        border-radius: 0 0 calc(var(--primitive-corner-radius-02) - 1px)
+            calc(var(--primitive-corner-radius-02) - 1px);
+    }
+}
+
+// Card image overlays
+.card__img_overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: q(16);
+    border-radius: calc(var(--primitive-corner-radius-02) - 1px);
+}
+
+// Card image caps
+.card__img--top {
+    border-top-left-radius: calc(var(--primitive-corner-radius-02) - 1px);
+    border-top-right-radius: calc(var(--primitive-corner-radius-02) - 1px);
+}
+
+.card__img--bottom {
+    border-bottom-left-radius: calc(var(--primitive-corner-radius-02) - 1px);
+    border-bottom-right-radius: calc(var(--primitive-corner-radius-02) - 1px);
+}
+
+// Horizontal card
+.card--horizontal {
+    flex-direction: row;
+
+    > .card__img,
+    > img {
+        width: auto;
+        max-width: 40%;
+        object-fit: cover;
+        border-radius: calc(var(--primitive-corner-radius-02) - 1px) 0 0
+            calc(var(--primitive-corner-radius-02) - 1px);
+    }
+}
+
+// Card groups - cards in a row with equal width
+.card_group {
+    display: flex;
+    flex-flow: row wrap;
+
+    > .card {
+        flex: 1 0 0%;
+        margin-bottom: 0;
+
+        + .card {
+            margin-left: 0;
+            border-left: 0;
+        }
+
+        &:not(:last-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+
+            .card__img--top,
+            .card__header {
+                border-top-right-radius: 0;
+            }
+
+            .card__img--bottom,
+            .card__footer {
+                border-bottom-right-radius: 0;
+            }
+        }
+
+        &:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+
+            .card__img--top,
+            .card__header {
+                border-top-left-radius: 0;
+            }
+
+            .card__img--bottom,
+            .card__footer {
+                border-bottom-left-radius: 0;
+            }
+        }
+    }
+}
+
+// Card deck - cards with gaps
+.card_deck {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: q(16);
+
+    > .card {
+        margin-bottom: 0;
+    }
+}
+
+// Card columns - masonry-like layout
+.card_columns {
+    column-count: 3;
+    column-gap: q(16);
+    orphans: 1;
+    widows: 1;
+
+    > .card {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: q(16);
+    }
+
+    @media (max-width: 768px) {
+        column-count: 2;
+    }
+
+    @media (max-width: 480px) {
+        column-count: 1;
+    }
+}
+
+// Card color variants
+.card--primary {
+    background-color: var(--color_accent_primary);
+    border-color: var(--color_accent_primary);
+    color: var(--color_text_on_accent);
+}
+
+.card--success {
+    background-color: color-mix(
+        in srgb,
+        var(--color_log_success) 15%,
+        var(--color_fill_01)
+    );
+    border-color: var(--color_log_success);
+}
+
+.card--warning {
+    background-color: color-mix(
+        in srgb,
+        var(--color_log_warning) 15%,
+        var(--color_fill_01)
+    );
+    border-color: var(--color_log_warning);
+}
+
+.card--danger {
+    background-color: color-mix(
+        in srgb,
+        var(--color_log_error) 15%,
+        var(--color_fill_01)
+    );
+    border-color: var(--color_log_error);
+}
+
+.card--info {
+    background-color: color-mix(
+        in srgb,
+        var(--color_log_info) 15%,
+        var(--color_fill_01)
+    );
+    border-color: var(--color_log_info);
+}
+
+// Card outline variants
+.card--outline-primary {
+    background-color: transparent;
+    border-color: var(--color_accent_primary);
+}
+
+.card--outline-success {
+    background-color: transparent;
+    border-color: var(--color_log_success);
+}
+
+.card--outline-warning {
+    background-color: transparent;
+    border-color: var(--color_log_warning);
+}
+
+.card--outline-danger {
+    background-color: transparent;
+    border-color: var(--color_log_error);
+}
+
+.card--outline-info {
+    background-color: transparent;
+    border-color: var(--color_log_info);
+}

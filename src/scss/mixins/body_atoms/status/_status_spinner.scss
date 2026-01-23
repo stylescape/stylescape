@@ -48,3 +48,62 @@
 .spinner--lg {
     @include spinner--base(4, q(4));
 }
+
+// Growing spinner animation
+@keyframes spinner-grow {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+// Growing spinner variant
+.spinner_grow {
+    display: inline-block;
+    width: baseline(3);
+    height: baseline(3);
+    vertical-align: text-bottom;
+    background-color: currentcolor;
+    border-radius: 50%;
+    opacity: 0;
+    animation: spinner-grow 0.75s linear infinite;
+
+    &--sm {
+        width: baseline(2);
+        height: baseline(2);
+    }
+
+    &--lg {
+        width: baseline(4);
+        height: baseline(4);
+    }
+}
+
+// Spinner color variants
+.spinner--primary {
+    border-top-color: var(--color_accent_primary);
+}
+.spinner--secondary {
+    border-top-color: var(--color_text_secondary);
+}
+.spinner--success {
+    border-top-color: var(--color_log_success);
+}
+.spinner--warning {
+    border-top-color: var(--color_log_warning);
+}
+.spinner--danger {
+    border-top-color: var(--color_log_error);
+}
+.spinner--info {
+    border-top-color: var(--color_log_info);
+}
+.spinner--light {
+    border-top-color: var(--color_fill_01);
+}
+.spinner--dark {
+    border-top-color: var(--color_fill_04);
+}

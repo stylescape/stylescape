@@ -1,0 +1,328 @@
+////
+///
+/// Popover Component Mixins
+/// ===========================================================================
+///
+/// Bootstrap-style popovers - similar to tooltips but with more content
+/// including a header and body. Popovers are larger overlay elements
+/// typically triggered by click.
+///
+/// @group Mixins.BodyAtoms.Display
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+@use "../../soul_type" as *;
+
+// ============================================================================
+// Popover Variables
+// ============================================================================
+
+$popover-max-width: 276px;
+$popover-border-radius: q(8);
+$popover-arrow-size: q(8);
+$popover-transition: opacity 0.15s linear;
+
+// ============================================================================
+// Popover Base Mixins
+// ============================================================================
+
+/// Base popover container
+/// @group Popover
+@mixin popover--base {
+    position: absolute;
+    z-index: 1070;
+    display: block;
+    max-width: $popover-max-width;
+    font-size: calc(var(--typescale-base) * 0.875);
+    word-wrap: break-word;
+    background-color: var(--color_fill_primary);
+    background-clip: padding-box;
+    border: q(1) solid var(--color_line_primary);
+    border-radius: $popover-border-radius;
+    box-shadow: 0 q(8) q(16) rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: $popover-transition;
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/// Popover header
+/// @group Popover
+@mixin popover--header {
+    padding: q(8) q(12);
+    margin-bottom: 0;
+    font-size: var(--typescale-base);
+    font-weight: 500;
+    color: var(--color_text_primary);
+    background-color: var(--color_fill_secondary);
+    border-bottom: q(1) solid var(--color_line_primary);
+    border-top-left-radius: calc($popover-border-radius - q(1));
+    border-top-right-radius: calc($popover-border-radius - q(1));
+
+    &:empty {
+        display: none;
+    }
+}
+
+/// Popover body
+/// @group Popover
+@mixin popover--body {
+    padding: q(12);
+    color: var(--color_text_primary);
+}
+
+/// Popover arrow base
+/// @group Popover
+@mixin popover--arrow {
+    position: absolute;
+    display: block;
+    width: calc($popover-arrow-size * 2);
+    height: $popover-arrow-size;
+
+    &::before,
+    &::after {
+        position: absolute;
+        display: block;
+        content: "";
+        border-color: transparent;
+        border-style: solid;
+    }
+}
+
+// ============================================================================
+// Popover Position Variants
+// ============================================================================
+
+/// Popover positioned above trigger
+/// @group Popover
+@mixin popover--top {
+    margin-bottom: $popover-arrow-size;
+
+    .popover_arrow {
+        bottom: calc(-1 * $popover-arrow-size);
+
+        &::before {
+            bottom: 0;
+            border-width: $popover-arrow-size $popover-arrow-size 0;
+            border-top-color: var(--color_line_primary);
+        }
+
+        &::after {
+            bottom: q(1);
+            border-width: $popover-arrow-size $popover-arrow-size 0;
+            border-top-color: var(--color_fill_primary);
+        }
+    }
+}
+
+/// Popover positioned to the right of trigger
+/// @group Popover
+@mixin popover--end {
+    margin-left: $popover-arrow-size;
+
+    .popover_arrow {
+        left: calc(-1 * $popover-arrow-size);
+        width: $popover-arrow-size;
+        height: calc($popover-arrow-size * 2);
+
+        &::before {
+            left: 0;
+            border-width: $popover-arrow-size $popover-arrow-size
+                $popover-arrow-size 0;
+            border-right-color: var(--color_line_primary);
+        }
+
+        &::after {
+            left: q(1);
+            border-width: $popover-arrow-size $popover-arrow-size
+                $popover-arrow-size 0;
+            border-right-color: var(--color_fill_primary);
+        }
+    }
+}
+
+/// Popover positioned below trigger
+/// @group Popover
+@mixin popover--bottom {
+    margin-top: $popover-arrow-size;
+
+    .popover_arrow {
+        top: calc(-1 * $popover-arrow-size);
+
+        &::before {
+            top: 0;
+            border-width: 0 $popover-arrow-size $popover-arrow-size
+                $popover-arrow-size;
+            border-bottom-color: var(--color_line_primary);
+        }
+
+        &::after {
+            top: q(1);
+            border-width: 0 $popover-arrow-size $popover-arrow-size
+                $popover-arrow-size;
+            border-bottom-color: var(--color_fill_secondary);
+        }
+    }
+
+    .popover_header::before {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        display: block;
+        width: calc($popover-arrow-size * 2);
+        margin-left: calc(-1 * $popover-arrow-size);
+        content: "";
+        border-bottom: q(1) solid var(--color_fill_secondary);
+    }
+}
+
+/// Popover positioned to the left of trigger
+/// @group Popover
+@mixin popover--start {
+    margin-right: $popover-arrow-size;
+
+    .popover_arrow {
+        right: calc(-1 * $popover-arrow-size);
+        width: $popover-arrow-size;
+        height: calc($popover-arrow-size * 2);
+
+        &::before {
+            right: 0;
+            border-width: $popover-arrow-size 0 $popover-arrow-size
+                $popover-arrow-size;
+            border-left-color: var(--color_line_primary);
+        }
+
+        &::after {
+            right: q(1);
+            border-width: $popover-arrow-size 0 $popover-arrow-size
+                $popover-arrow-size;
+            border-left-color: var(--color_fill_primary);
+        }
+    }
+}
+
+// ============================================================================
+// Popover Variant Mixins
+// ============================================================================
+
+/// Dark popover
+/// @group Popover
+@mixin popover--dark {
+    background-color: var(--color_fill_04);
+    border-color: var(--color_fill_04);
+
+    .popover_header {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.1);
+        color: var(--color_fill_01);
+    }
+
+    .popover_body {
+        color: var(--color_fill_01);
+    }
+
+    &.popover--top .popover_arrow {
+        &::before {
+            border-top-color: var(--color_fill_04);
+        }
+        &::after {
+            border-top-color: var(--color_fill_04);
+        }
+    }
+
+    &.popover--bottom .popover_arrow {
+        &::before {
+            border-bottom-color: var(--color_fill_04);
+        }
+        &::after {
+            border-bottom-color: var(--color_fill_04);
+        }
+    }
+
+    &.popover--start .popover_arrow {
+        &::before {
+            border-left-color: var(--color_fill_04);
+        }
+        &::after {
+            border-left-color: var(--color_fill_04);
+        }
+    }
+
+    &.popover--end .popover_arrow {
+        &::before {
+            border-right-color: var(--color_fill_04);
+        }
+        &::after {
+            border-right-color: var(--color_fill_04);
+        }
+    }
+}
+
+/// No arrow popover
+/// @group Popover
+@mixin popover--no-arrow {
+    margin: 0;
+
+    .popover_arrow {
+        display: none;
+    }
+}
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+.popover {
+    @include popover--base;
+}
+
+.popover_arrow {
+    @include popover--arrow;
+}
+
+.popover_header {
+    @include popover--header;
+}
+
+.popover_body {
+    @include popover--body;
+}
+
+.popover--top {
+    @include popover--top;
+}
+
+.popover--end {
+    @include popover--end;
+}
+
+.popover--bottom {
+    @include popover--bottom;
+}
+
+.popover--start {
+    @include popover--start;
+}
+
+.popover--dark {
+    @include popover--dark;
+}
+
+.popover--no-arrow {
+    @include popover--no-arrow;
+}

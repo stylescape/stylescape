@@ -224,3 +224,51 @@ $badge_size_map: (
 @mixin badge--pill {
     @include object--corner--pill;
 }
+// ============================================================================
+// Positioned Badges (Bootstrap-style)
+// ============================================================================
+
+/// Position badge container (apply to parent element)
+/// @group Badges
+@mixin badge--positioned-container {
+    position: relative;
+}
+
+/// Positioned badge in top-right corner
+/// @group Badges
+@mixin badge--positioned {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+/// Positioned badge variations
+/// @group Badges
+@mixin badge--positioned-start {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+/// Notification dot (small indicator badge)
+/// @group Badges
+@mixin badge--dot {
+    padding: 0;
+    width: baseline(1);
+    height: baseline(1);
+    min-width: baseline(1);
+    min-height: baseline(1);
+    border-radius: 50%;
+}
+
+/// Badge within button positioning helper
+/// @group Badges
+@mixin badge--button-positioned {
+    position: relative;
+
+    .badge {
+        @include badge--positioned;
+    }
+}

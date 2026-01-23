@@ -154,3 +154,179 @@
 @mixin toast--rounded {
     border-radius: q(24);
 }
+// ============================================================================
+// Bootstrap-style Toast Enhancements
+// ============================================================================
+
+/// Toast stacking container with placement options
+/// @group Toast
+@mixin toast--container-placement($position: "top-end") {
+    position: fixed;
+    z-index: 10000;
+    width: max-content;
+    max-width: 100%;
+    pointer-events: none;
+
+    @if $position == "top-start" {
+        top: q(16);
+        left: q(16);
+    } @else if $position == "top-center" {
+        top: q(16);
+        left: 50%;
+        transform: translateX(-50%);
+    } @else if $position == "top-end" {
+        top: q(16);
+        right: q(16);
+    } @else if $position == "middle-start" {
+        top: 50%;
+        left: q(16);
+        transform: translateY(-50%);
+    } @else if $position == "middle-center" {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    } @else if $position == "middle-end" {
+        top: 50%;
+        right: q(16);
+        transform: translateY(-50%);
+    } @else if $position == "bottom-start" {
+        bottom: q(16);
+        left: q(16);
+    } @else if $position == "bottom-center" {
+        bottom: q(16);
+        left: 50%;
+        transform: translateX(-50%);
+    } @else if $position == "bottom-end" {
+        bottom: q(16);
+        right: q(16);
+    }
+
+    > :not(:last-child) {
+        margin-bottom: q(12);
+    }
+}
+
+/// Toast container placement classes
+.toast_container--top-start {
+    @include toast--container-placement("top-start");
+}
+.toast_container--top-center {
+    @include toast--container-placement("top-center");
+}
+.toast_container--top-end {
+    @include toast--container-placement("top-end");
+}
+.toast_container--middle-start {
+    @include toast--container-placement("middle-start");
+}
+.toast_container--middle-center {
+    @include toast--container-placement("middle-center");
+}
+.toast_container--middle-end {
+    @include toast--container-placement("middle-end");
+}
+.toast_container--bottom-start {
+    @include toast--container-placement("bottom-start");
+}
+.toast_container--bottom-center {
+    @include toast--container-placement("bottom-center");
+}
+.toast_container--bottom-end {
+    @include toast--container-placement("bottom-end");
+}
+
+/// Toast with icon
+/// @group Toast
+@mixin toast--with-icon {
+    .toast_icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: q(24);
+        height: q(24);
+        margin-right: q(12);
+        flex-shrink: 0;
+    }
+}
+
+/// Translucent/semi-transparent toast
+/// @group Toast
+@mixin toast--translucent {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/// Dark toast
+/// @group Toast
+@mixin toast--dark {
+    background-color: var(--color_fill_04);
+    color: var(--color_fill_01);
+
+    .toast_header {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.1);
+        color: var(--color_fill_01);
+    }
+}
+
+/// Toast animation - fade in
+/// @group Toast
+@mixin toast--fade {
+    opacity: 0;
+    transition: opacity 0.15s linear;
+
+    &.show {
+        opacity: 1;
+    }
+}
+
+/// Toast animation - slide in from right
+/// @group Toast
+@mixin toast--slide-right {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+
+    &.show {
+        transform: translateX(0);
+    }
+}
+
+/// Toast animation - slide in from top
+/// @group Toast
+@mixin toast--slide-top {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-out;
+
+    &.show {
+        transform: translateY(0);
+    }
+}
+
+/// Toast autohide timer indicator
+/// @group Toast
+@mixin toast--timer-indicator {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: q(3);
+        background-color: currentColor;
+        opacity: 0.3;
+        width: 100%;
+        animation: toast-timer var(--toast-autohide-delay, 5s) linear forwards;
+    }
+}
+
+@keyframes toast-timer {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}

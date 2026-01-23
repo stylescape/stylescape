@@ -1,0 +1,202 @@
+////
+///
+/// Collapse Utility Mixins
+/// ===========================================================================
+///
+/// Bootstrap-style collapse utility for showing/hiding content with animation.
+/// This provides a reusable collapse pattern that can be used independently
+/// of accordion, for navbars, cards, or any collapsible content.
+///
+/// @group Mixins.BodyMolecules.Content
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+
+// ============================================================================
+// Collapse Base Mixins
+// ============================================================================
+
+/// Base collapse styles - hidden by default
+/// @group Collapse
+@mixin collapse--base {
+    &:not(.show) {
+        display: none;
+    }
+}
+
+/// Collapsing animation state
+/// @group Collapse
+@mixin collapse--collapsing {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease;
+}
+
+/// Horizontal collapse variant
+/// @group Collapse
+@mixin collapse--horizontal {
+    width: 0;
+    height: auto;
+    overflow: hidden;
+    transition: width 0.35s ease;
+
+    &.show {
+        width: auto;
+    }
+}
+
+// ============================================================================
+// Collapse Content Patterns
+// ============================================================================
+
+/// Collapsible card content
+/// @group Collapse
+@mixin collapse--card {
+    > .card_body {
+        padding-top: 0;
+        margin-top: calc(-1 * q(16));
+
+        &:first-child {
+            margin-top: 0;
+            padding-top: q(16);
+        }
+    }
+}
+
+/// Navbar collapse (for responsive navbars)
+/// @group Collapse
+@mixin navbar--collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+
+    &:not(.show) {
+        display: none;
+    }
+
+    // Responsive - show as row when expanded
+    @media (min-width: 768px) {
+        display: flex !important;
+        flex-basis: auto;
+    }
+}
+
+/// Navbar toggler button for collapse
+/// @group Collapse
+@mixin navbar--toggler {
+    padding: q(4) q(12);
+    font-size: calc(var(--typescale-base) * 1.25);
+    line-height: 1;
+    color: var(--color_text_primary);
+    background-color: transparent;
+    border: q(1) solid transparent;
+    border-radius: q(4);
+    transition: box-shadow 0.15s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:focus {
+        text-decoration: none;
+        outline: 0;
+        box-shadow: 0 0 0 q(4) rgba(var(--color_accent_primary), 0.25);
+    }
+
+    @media (min-width: 768px) {
+        display: none;
+    }
+}
+
+/// Navbar toggler icon (hamburger menu)
+/// @group Collapse
+@mixin navbar--toggler-icon {
+    display: inline-block;
+    width: q(24);
+    height: q(24);
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0,0,0,0.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+// ============================================================================
+// Collapse Animation Variants
+// ============================================================================
+
+/// Fade collapse
+/// @group Collapse
+@mixin collapse--fade {
+    opacity: 0;
+    transition: opacity 0.15s linear;
+
+    &.show {
+        opacity: 1;
+    }
+}
+
+/// Slide down collapse
+/// @group Collapse
+@mixin collapse--slide {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease-out;
+
+    &.show {
+        max-height: var(--collapse-max-height, 1000px);
+    }
+}
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+.collapse {
+    @include collapse--base;
+}
+
+.collapsing {
+    @include collapse--collapsing;
+}
+
+.collapse--horizontal {
+    @include collapse--horizontal;
+}
+
+.collapse--fade {
+    @include collapse--fade;
+}
+
+.collapse--slide {
+    @include collapse--slide;
+}
+
+.navbar_collapse {
+    @include navbar--collapse;
+}
+
+.navbar_toggler {
+    @include navbar--toggler;
+}
+
+.navbar_toggler_icon {
+    @include navbar--toggler-icon;
+}
+
+// Dark mode toggler icon
+.navbar--dark .navbar_toggler_icon,
+.navbar_toggler--light {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}

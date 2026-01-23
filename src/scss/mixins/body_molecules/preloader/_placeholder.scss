@@ -1,0 +1,117 @@
+// ============================================================================
+// Placeholder / Skeleton Loading
+// Bootstrap-compatible placeholder loading animations
+// ============================================================================
+
+@use "../../dev" as *;
+
+// Base placeholder
+.placeholder {
+    display: inline-block;
+    min-height: 1em;
+    vertical-align: middle;
+    cursor: wait;
+    background-color: currentcolor;
+    opacity: 0.5;
+
+    // Size variants
+    &--xs {
+        min-height: 0.6em;
+    }
+
+    &--sm {
+        min-height: 0.8em;
+    }
+
+    &--lg {
+        min-height: 1.2em;
+    }
+}
+
+// Placeholder width utilities
+.placeholder--w-25 {
+    width: 25%;
+}
+.placeholder--w-50 {
+    width: 50%;
+}
+.placeholder--w-75 {
+    width: 75%;
+}
+.placeholder--w-100 {
+    width: 100%;
+}
+
+// Glow animation
+.placeholder--glow {
+    .placeholder {
+        animation: placeholder-glow 2s ease-in-out infinite;
+    }
+}
+
+@keyframes placeholder-glow {
+    50% {
+        opacity: 0.2;
+    }
+}
+
+// Wave animation
+.placeholder--wave {
+    mask-image: linear-gradient(
+        130deg,
+        #000 55%,
+        rgba(0, 0, 0, 0.8) 75%,
+        #000 95%
+    );
+    mask-size: 200% 100%;
+    animation: placeholder-wave 2s linear infinite;
+}
+
+@keyframes placeholder-wave {
+    100% {
+        mask-position: -200% 0%;
+    }
+}
+
+// Placeholder button
+.placeholder--button {
+    pointer-events: none;
+
+    &::before {
+        display: inline-block;
+        content: "";
+    }
+}
+
+// Color variants
+.placeholder--primary {
+    background-color: var(--color_accent_primary);
+}
+
+.placeholder--secondary {
+    background-color: var(--color_text_secondary);
+}
+
+.placeholder--success {
+    background-color: var(--color_log_success);
+}
+
+.placeholder--danger {
+    background-color: var(--color_log_error);
+}
+
+.placeholder--warning {
+    background-color: var(--color_log_warning);
+}
+
+.placeholder--info {
+    background-color: var(--color_log_info);
+}
+
+.placeholder--light {
+    background-color: var(--color_fill_02);
+}
+
+.placeholder--dark {
+    background-color: var(--color_fill_04);
+}

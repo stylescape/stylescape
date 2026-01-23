@@ -1,171 +1,546 @@
-{% extends "base.html.jinja" %} {%- block title %}Buttons{%- endblock %} {%-
-block content %} {% set button_sizes = ['xs', 'sm', 'md', 'lg', 'xl'] %} {% set
-button_styles = ['default', 'solid','outline','clear', 'accent'] %}
+{% extends "base.html.jinja" %}
+{%- block title %}Buttons{%- endblock %}
+{%- block content %}
 
-<section class="demo__section" data-label="{{ title }}" data-level="1">
+{# ============================================================================
+   Button Variants
+   ============================================================================ #}
+<section class="demo__section" data-label="Button Variants" data-level="1">
     <header class="demo__section__header">
-        <h3>Buttons</h3>
+        <h3>Button Variants</h3>
+        <p>Core button styles for different semantic purposes and visual hierarchy.</p>
     </header>
 
+    {# Primary Button #}
     <section class="demo__subsection">
-        {% for size in button_sizes %}
-        <div class="button-size-row">
-            <h5>{{ size|upper }} Buttons</h5>
-            <div class="button-style-grid">
-                {% for style in button_styles %}
-                <div class="demo-item">
-                    <div class="label">{{ style|capitalize }}</div>
-                    <button
-                        class="button {{ size }}{% if style != 'default' %} {{ style }}{% endif %}"
-                    >
-                        {{ style|capitalize }}
-                    </button>
-                </div>
-                <div class="demo-item">
-                    <div class="label">{{ style|capitalize }} (Disabled)</div>
-                    <button
-                        class="button {{ size }}{% if style != 'default' %} {{ style }}{% endif %}"
-                        disabled
-                    >
-                        {{ style|capitalize }}
-                    </button>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        {% endfor %}
+        <h4>Primary Button</h4>
+        <p>Use for primary actions and calls-to-action. High visual prominence.</p>
+        {% set code_snippet %}
+<button class="button button--primary">Primary Action</button>
+<button class="button button--primary" disabled>Disabled</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Secondary Button #}
+    <section class="demo__subsection">
+        <h4>Secondary Button</h4>
+        <p>For secondary actions that complement the primary action.</p>
+        {% set code_snippet %}
+<button class="button button--secondary">Secondary</button>
+<button class="button button--secondary" disabled>Disabled</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Outline Button #}
+    <section class="demo__subsection">
+        <h4>Outline Button</h4>
+        <p>Bordered button with transparent background for subtle emphasis.</p>
+        {% set code_snippet %}
+<button class="button button--outline">Outline</button>
+<button class="button button--outline" disabled>Disabled</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Ghost Button #}
+    <section class="demo__subsection">
+        <h4>Ghost Button</h4>
+        <p>Minimal button with no border, ideal for toolbars and navigation.</p>
+        {% set code_snippet %}
+<button class="button button--ghost">Ghost</button>
+<button class="button button--ghost" disabled>Disabled</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Link Button #}
+    <section class="demo__subsection">
+        <h4>Link Button</h4>
+        <p>Styled as a link but with button semantics.</p>
+        {% set code_snippet %}
+<button class="button button--link">Link Button</button>
+<button class="button button--link" disabled>Disabled</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Solid Button #}
+    <section class="demo__subsection">
+        <h4>Solid Button</h4>
+        <p>Filled background with inverted text color.</p>
+        {% set code_snippet %}
+<button class="button button--solid">Solid</button>
+<button class="button button--solid" disabled>Disabled</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Accent Button #}
+    <section class="demo__subsection">
+        <h4>Accent Button</h4>
+        <p>Uses the accent color for special emphasis.</p>
+        {% set code_snippet %}
+<button class="button button--accent">Accent</button>
+<button class="button button--accent" disabled>Disabled</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Clear Button #}
+    <section class="demo__subsection">
+        <h4>Clear Button</h4>
+        <p>Transparent background with text color only.</p>
+        {% set code_snippet %}
+<button class="button button--clear">Clear</button>
+<button class="button button--clear" disabled>Disabled</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
     </section>
 </section>
 
-<section class="demo__section">
+{# ============================================================================
+   Status Variants
+   ============================================================================ #}
+<section class="demo__section" data-label="Status Variants" data-level="1">
+    <header class="demo__section__header">
+        <h3>Status Variants</h3>
+        <p>Semantic status buttons for success, warning, danger, and info actions.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Success Button</h4>
+        <p>Indicates positive or successful actions like save, confirm, or complete.</p>
+        {% set code_snippet %}
+<button class="button button--success">Success</button>
+<button class="button button--success" disabled>Disabled</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Warning Button</h4>
+        <p>For actions that require caution or attention.</p>
+        {% set code_snippet %}
+<button class="button button--warning">Warning</button>
+<button class="button button--warning" disabled>Disabled</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Danger Button</h4>
+        <p>For destructive or irreversible actions like delete or remove.</p>
+        {% set code_snippet %}
+<button class="button button--danger">Danger</button>
+<button class="button button--danger" disabled>Disabled</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Info Button</h4>
+        <p>For informational actions or links to help content.</p>
+        {% set code_snippet %}
+<button class="button button--info">Info</button>
+<button class="button button--info" disabled>Disabled</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Button Sizes
+   ============================================================================ #}
+<section class="demo__section" data-label="Button Sizes" data-level="1">
+    <header class="demo__section__header">
+        <h3>Button Sizes</h3>
+        <p>Five size options from extra-small to extra-large for different contexts.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Size Comparison</h4>
+        {% set code_snippet %}
+<button class="button button--primary button--size-xs">Extra Small</button>
+<button class="button button--primary button--size-sm">Small</button>
+<button class="button button--primary button--size-md">Medium</button>
+<button class="button button--primary button--size-lg">Large</button>
+<button class="button button--primary button--size-xl">Extra Large</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Sizes with Icons</h4>
+        {% set code_snippet %}
+<button class="button button--primary button--size-xs">
+    <span>⚡</span> XS
+</button>
+<button class="button button--primary button--size-sm">
+    <span>⚡</span> Small
+</button>
+<button class="button button--primary button--size-md">
+    <span>⚡</span> Medium
+</button>
+<button class="button button--primary button--size-lg">
+    <span>⚡</span> Large
+</button>
+<button class="button button--primary button--size-xl">
+    <span>⚡</span> Extra Large
+</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Button Shapes
+   ============================================================================ #}
+<section class="demo__section" data-label="Button Shapes" data-level="1">
+    <header class="demo__section__header">
+        <h3>Button Shapes</h3>
+        <p>Different border radius options for various design contexts.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Shape Variants</h4>
+        {% set code_snippet %}
+<button class="button button--primary">Default</button>
+<button class="button button--primary button--rounded">Rounded</button>
+<button class="button button--primary button--pill">Pill Shape</button>
+<button class="button button--primary button--square">Square</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Icon Buttons</h4>
+        <p>Square aspect ratio buttons for icon-only use cases.</p>
+        {% set code_snippet %}
+<button class="button button--primary button--icon" aria-label="Search">🔍</button>
+<button class="button button--secondary button--icon" aria-label="Settings">⚙️</button>
+<button class="button button--outline button--icon" aria-label="Edit">✏️</button>
+<button class="button button--ghost button--icon" aria-label="Close">✕</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Button States
+   ============================================================================ #}
+<section class="demo__section" data-label="Button States" data-level="1">
+    <header class="demo__section__header">
+        <h3>Button States</h3>
+        <p>Interactive states and special button behaviors.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Disabled State</h4>
+        <p>Buttons can be disabled using the <code>disabled</code> attribute or <code>.button--disabled</code> class.</p>
+        {% set code_snippet %}
+<button class="button button--primary" disabled>Disabled (attr)</button>
+<button class="button button--primary button--disabled">Disabled (class)</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Loading State</h4>
+        <p>Shows a spinner and makes the button non-interactive during async operations.</p>
+        {% set code_snippet %}
+<button class="button button--primary button--loading">Loading</button>
+<button class="button button--secondary button--loading">Processing</button>
+<button class="button button--accent button--loading">Saving</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Full Width / Block</h4>
+        <p>Buttons that span the full width of their container.</p>
+        {% set code_snippet %}
+<button class="button button--primary button--block">Full Width Primary</button>
+<button class="button button--secondary button--block">Full Width Secondary</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Buttons with Icons
+   ============================================================================ #}
+<section class="demo__section" data-label="Icons" data-level="1">
+    <header class="demo__section__header">
+        <h3>Buttons with Icons</h3>
+        <p>Combine text and icons for enhanced visual communication.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Leading Icons</h4>
+        <p>Icon appears before the text label.</p>
+        {% set code_snippet %}
+<button class="button button--primary">
+    <span aria-hidden="true">🔍</span>
+    <span>Search</span>
+</button>
+<button class="button button--secondary">
+    <span aria-hidden="true">📁</span>
+    <span>Open File</span>
+</button>
+<button class="button button--success">
+    <span aria-hidden="true">✓</span>
+    <span>Save</span>
+</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Trailing Icons</h4>
+        <p>Icon appears after the text label.</p>
+        {% set code_snippet %}
+<button class="button button--primary">
+    <span>Download</span>
+    <span aria-hidden="true">⬇️</span>
+</button>
+<button class="button button--secondary">
+    <span>Next</span>
+    <span aria-hidden="true">→</span>
+</button>
+<button class="button button--outline">
+    <span>External Link</span>
+    <span aria-hidden="true">↗</span>
+</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Icon Only (with accessible label)</h4>
+        <p>Use <code>aria-label</code> for accessibility when using icon-only buttons.</p>
+        {% set code_snippet %}
+<button class="button button--primary button--icon" aria-label="Add item">+</button>
+<button class="button button--danger button--icon" aria-label="Delete">🗑️</button>
+<button class="button button--ghost button--icon" aria-label="More options">⋮</button>
+<button class="button button--outline button--icon" aria-label="Refresh">🔄</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Button Groups
+   ============================================================================ #}
+<section class="demo__section" data-label="Button Groups" data-level="1">
     <header class="demo__section__header">
         <h3>Button Groups</h3>
+        <p>Group related buttons together for segmented controls or toolbars.</p>
     </header>
 
     <section class="demo__subsection">
-        <div class="button_group">
-            <button class="button sm solid">Left</button>
-            <button class="button sm solid">Center</button>
-            <button class="button sm solid">Right</button>
-        </div>
-        <br />
+        <h4>Horizontal Group</h4>
+        {% set code_snippet %}
+<div class="button_group">
+    <button class="button button--primary">Left</button>
+    <button class="button button--primary">Center</button>
+    <button class="button button--primary">Right</button>
+</div>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
 
-        <div class="button_group">
-            <button class="button md solid">Left</button>
-            <button class="button md solid">Center</button>
-            <button class="button md solid">Right</button>
-        </div>
-        <br />
-        <div class="button_group--vertical">
-            <button class="button md solid">1</button>
-            <button class="button md solid">2</button>
-            <button class="button md solid">3</button>
-        </div>
+    <section class="demo__subsection">
+        <h4>Outline Group</h4>
+        {% set code_snippet %}
+<div class="button_group">
+    <button class="button button--outline">Option A</button>
+    <button class="button button--outline">Option B</button>
+    <button class="button button--outline">Option C</button>
+</div>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Vertical Group</h4>
+        {% set code_snippet %}
+<div class="button_group--vertical">
+    <button class="button button--secondary">First</button>
+    <button class="button button--secondary">Second</button>
+    <button class="button button--secondary">Third</button>
+</div>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Mixed Group (Actions)</h4>
+        {% set code_snippet %}
+<div class="button_group">
+    <button class="button button--success">Save</button>
+    <button class="button button--secondary">Preview</button>
+    <button class="button button--danger">Delete</button>
+</div>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
     </section>
 </section>
 
-<section class="demo__section">
+{# ============================================================================
+   Switch / Toggle Buttons
+   ============================================================================ #}
+<section class="demo__section" data-label="Switch Buttons" data-level="1">
     <header class="demo__section__header">
-        <h3>Switch Buttons</h3>
+        <h3>Switch / Toggle Buttons</h3>
+        <p>Toggle switches for on/off states.</p>
     </header>
 
     <section class="demo__subsection">
-        <!-- Rectangular switch -->
-        <label class="switch">
-            <input type="checkbox" />
-            <span class="slider"></span>
-        </label>
+        <h4>Rectangular Switch</h4>
+        {% set code_snippet %}
+<label class="switch">
+    <input type="checkbox" />
+    <span class="slider"></span>
+</label>
+<label class="switch">
+    <input type="checkbox" checked />
+    <span class="slider"></span>
+</label>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
 
-        <!-- Rounded switch -->
-        <label class="switch">
-            <input type="checkbox" />
-            <span class="slider round"></span>
-        </label>
+    <section class="demo__subsection">
+        <h4>Rounded Switch</h4>
+        {% set code_snippet %}
+<label class="switch">
+    <input type="checkbox" />
+    <span class="slider round"></span>
+</label>
+<label class="switch">
+    <input type="checkbox" checked />
+    <span class="slider round"></span>
+</label>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Switch with Labels</h4>
+        {% set code_snippet %}
+<div style="display: flex; align-items: center; gap: 12px;">
+    <span>Off</span>
+    <label class="switch">
+        <input type="checkbox" />
+        <span class="slider round"></span>
+    </label>
+    <span>On</span>
+</div>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
     </section>
 </section>
 
-<section class="demo__section">
+{# ============================================================================
+   Button as Links
+   ============================================================================ #}
+<section class="demo__section" data-label="Button Links" data-level="1">
     <header class="demo__section__header">
-        <h3>Icon + Text</h3>
+        <h3>Button-Styled Links</h3>
+        <p>Apply button classes to anchor elements for navigation that looks like buttons.</p>
     </header>
 
     <section class="demo__subsection">
-        <div class="button-style-grid">
-            <div class="demo-item">
-                <div class="label">Leading icon</div>
-                <button class="button md solid">
-                    <span aria-hidden="true">🔍</span>
-                    <span>Search</span>
-                </button>
-            </div>
-            <div class="demo-item">
-                <div class="label">Trailing icon</div>
-                <button class="button md outline">
-                    <span>Download</span>
-                    <span aria-hidden="true">⬇️</span>
-                </button>
-            </div>
-            <div class="demo-item">
-                <div class="label">Icon only (round)</div>
-                <button class="button sm clear" aria-label="More options">
-                    <span aria-hidden="true">⋮</span>
-                </button>
-            </div>
-        </div>
+        <h4>Link as Button</h4>
+        {% set code_snippet %}
+<a href="#" class="button button--primary">Primary Link</a>
+<a href="#" class="button button--secondary">Secondary Link</a>
+<a href="#" class="button button--outline">Outline Link</a>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
     </section>
 </section>
 
-<section class="demo__section">
+{# ============================================================================
+   Accessibility
+   ============================================================================ #}
+<section class="demo__section" data-label="Accessibility" data-level="1">
     <header class="demo__section__header">
-        <h3>States</h3>
+        <h3>Accessibility</h3>
+        <p>Best practices for accessible button implementation.</p>
     </header>
 
     <section class="demo__subsection">
-        <div class="button-style-grid">
-            <div class="demo-item">
-                <div class="label">Active / pressed</div>
-                <button class="button md solid" aria-pressed="true">
-                    Active
-                </button>
-            </div>
-            <div class="demo-item">
-                <div class="label">Loading</div>
-                <button class="button md accent" aria-busy="true">
-                    <span class="status_spinner" aria-hidden="true"></span>
-                    <span>Loading</span>
-                </button>
-            </div>
-            <div class="demo-item">
-                <div class="label">Ghost / clear</div>
-                <button class="button md clear">Ghost</button>
-            </div>
-        </div>
+        <h4>ARIA Attributes</h4>
+        {% set code_snippet %}
+<!-- Pressed state for toggle buttons -->
+<button class="button button--primary" aria-pressed="true">
+    Toggle (On)
+</button>
+<button class="button button--outline" aria-pressed="false">
+    Toggle (Off)
+</button>
+
+<!-- Busy state for loading -->
+<button class="button button--primary button--loading" aria-busy="true">
+    Loading...
+</button>
+
+<!-- Expanded state for dropdowns -->
+<button class="button button--secondary" aria-expanded="false" aria-haspopup="true">
+    Menu ▼
+</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Focus Visible</h4>
+        <p>Tab through these buttons to see the focus indicator.</p>
+        {% set code_snippet %}
+<button class="button button--primary">Focusable 1</button>
+<button class="button button--secondary">Focusable 2</button>
+<button class="button button--outline">Focusable 3</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
     </section>
 </section>
 
-<section class="demo__section">
+{# ============================================================================
+   Combining Classes
+   ============================================================================ #}
+<section class="demo__section" data-label="Combinations" data-level="1">
     <header class="demo__section__header">
-        <h3>Select Buttons</h3>
+        <h3>Combining Classes</h3>
+        <p>Mix and match variants, sizes, and shapes for customized buttons.</p>
     </header>
 
     <section class="demo__subsection">
-        <!-- Surround the select box within a "custom-select" DIV element.
-    Remember to set the width: -->
-        <select class="input">
-            <option value="0">Select car:</option>
-            <option value="1">Audi</option>
-            <option value="2">BMW</option>
-            <option value="3">Citroen</option>
-            <option value="4">Ford</option>
-            <option value="5">Honda</option>
-            <option value="6">Jaguar</option>
-            <option value="7">Land Rover</option>
-            <option value="8">Mercedes</option>
-            <option value="9">Mini</option>
-            <option value="10">Nissan</option>
-            <option value="11">Toyota</option>
-            <option value="12">Volvo</option>
-        </select>
+        <h4>Size + Shape + Variant</h4>
+        {% set code_snippet %}
+<button class="button button--primary button--size-lg button--pill">
+    Large Pill Primary
+</button>
+<button class="button button--success button--size-sm button--rounded">
+    Small Rounded Success
+</button>
+<button class="button button--danger button--size-xl button--square">
+    XL Square Danger
+</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Full Width with Loading</h4>
+        {% set code_snippet %}
+<button class="button button--primary button--block button--loading button--size-lg">
+    Submitting Form...
+</button>
+        {% endset %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
     </section>
 </section>
 

@@ -1,22 +1,277 @@
-{% extends "base.html.jinja" %} {% set title = "Nav" %} {%- block title %}{{
-title }}{%- endblock %} {%- block content %}
+{% extends "base.html.jinja" %}
+{%- block title %}Navigation{%- endblock %}
+{%- block content %}
 
-<section class="demo__section" data-label="{{ title }}" data-level="1">
+{# ============================================================================
+   Basic Navigation
+   ============================================================================ #}
+<section class="demo__section" data-label="Basic Navigation" data-level="1">
     <header class="demo__section__header">
-        <h2>{{ title }}</h2>
+        <h3>Basic Navigation</h3>
+        <p>Simple navigation link lists.</p>
     </header>
 
     <section class="demo__subsection">
-        <nav>
-            <ul class="nav-list">
-                {% for item in [ { 'title': 'A', 'href': 'a.html' }, { 'title':
-                'B', 'href': 'b.html' }, { 'title': 'C', 'href': 'c.html' }, {
-                'title': 'Buttons', 'href': 'buttons.html' }, { 'title':
-                'Everything', 'href': 'everything.html' } ] %}
-                <li><a href="{{ item.href }}">{{ item.title }}</a></li>
-                {% endfor %}
-            </ul>
-        </nav>
+        <h4>Horizontal Nav</h4>
+        {% set code_snippet %}
+<nav class="nav" aria-label="Main navigation">
+    <ul class="nav__list">
+        <li class="nav__item nav__item--active"><a href="#" class="nav__link">Home</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">About</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Services</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Contact</a></li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Vertical Nav</h4>
+        {% set code_snippet %}
+<nav class="nav nav--vertical" aria-label="Sidebar navigation">
+    <ul class="nav__list">
+        <li class="nav__item nav__item--active"><a href="#" class="nav__link">Dashboard</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Analytics</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Reports</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Settings</a></li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
     </section>
 </section>
-{%- endblock %}
+
+{# ============================================================================
+   Nav Pills
+   ============================================================================ #}
+<section class="demo__section" data-label="Nav Pills" data-level="1">
+    <header class="demo__section__header">
+        <h3>Nav Pills</h3>
+        <p>Pill-shaped navigation links.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Horizontal Pills</h4>
+        {% set code_snippet %}
+<nav class="nav nav--pills" aria-label="Pill navigation">
+    <ul class="nav__list">
+        <li class="nav__item nav__item--active"><a href="#" class="nav__link">Active</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Link</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Link</a></li>
+        <li class="nav__item nav__item--disabled"><a href="#" class="nav__link" tabindex="-1" aria-disabled="true">Disabled</a></li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Fill Pills</h4>
+        {% set code_snippet %}
+<nav class="nav nav--pills nav--fill" aria-label="Full width pills">
+    <ul class="nav__list">
+        <li class="nav__item nav__item--active"><a href="#" class="nav__link">Active</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Much Longer Link</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Link</a></li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Nav Tabs
+   ============================================================================ #}
+<section class="demo__section" data-label="Nav Tabs" data-level="1">
+    <header class="demo__section__header">
+        <h3>Nav Tabs</h3>
+        <p>Tabbed navigation interface.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Basic Tabs</h4>
+        {% set code_snippet %}
+<nav class="nav nav--tabs" aria-label="Tab navigation">
+    <ul class="nav__list" role="tablist">
+        <li class="nav__item" role="presentation">
+            <a href="#" class="nav__link nav__link--active" role="tab" aria-selected="true">Active</a>
+        </li>
+        <li class="nav__item" role="presentation">
+            <a href="#" class="nav__link" role="tab" aria-selected="false">Tab 2</a>
+        </li>
+        <li class="nav__item" role="presentation">
+            <a href="#" class="nav__link" role="tab" aria-selected="false">Tab 3</a>
+        </li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Underline Tabs</h4>
+        {% set code_snippet %}
+<nav class="nav nav--tabs nav--underline" aria-label="Underline tabs">
+    <ul class="nav__list" role="tablist">
+        <li class="nav__item" role="presentation">
+            <a href="#" class="nav__link nav__link--active" role="tab">Active</a>
+        </li>
+        <li class="nav__item" role="presentation">
+            <a href="#" class="nav__link" role="tab">Tab 2</a>
+        </li>
+        <li class="nav__item" role="presentation">
+            <a href="#" class="nav__link" role="tab">Tab 3</a>
+        </li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Nav with Icons
+   ============================================================================ #}
+<section class="demo__section" data-label="Nav with Icons" data-level="1">
+    <header class="demo__section__header">
+        <h3>Navigation with Icons</h3>
+        <p>Navigation items enhanced with icons.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Icon Navigation</h4>
+        {% set code_snippet %}
+<nav class="nav nav--vertical" aria-label="Icon navigation">
+    <ul class="nav__list">
+        <li class="nav__item nav__item--active">
+            <a href="#" class="nav__link">
+                <span class="nav__icon">🏠</span>
+                <span class="nav__text">Home</span>
+            </a>
+        </li>
+        <li class="nav__item">
+            <a href="#" class="nav__link">
+                <span class="nav__icon">👤</span>
+                <span class="nav__text">Profile</span>
+            </a>
+        </li>
+        <li class="nav__item">
+            <a href="#" class="nav__link">
+                <span class="nav__icon">⚙️</span>
+                <span class="nav__text">Settings</span>
+            </a>
+        </li>
+        <li class="nav__item">
+            <a href="#" class="nav__link">
+                <span class="nav__icon">📧</span>
+                <span class="nav__text">Messages</span>
+                <span class="nav__badge">3</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Icon Only Navigation</h4>
+        {% set code_snippet %}
+<nav class="nav nav--icons" aria-label="Icon-only navigation">
+    <ul class="nav__list">
+        <li class="nav__item"><a href="#" class="nav__link" aria-label="Home">🏠</a></li>
+        <li class="nav__item"><a href="#" class="nav__link" aria-label="Search">🔍</a></li>
+        <li class="nav__item nav__item--active"><a href="#" class="nav__link" aria-label="Notifications">🔔</a></li>
+        <li class="nav__item"><a href="#" class="nav__link" aria-label="Profile">👤</a></li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Nested Navigation
+   ============================================================================ #}
+<section class="demo__section" data-label="Nested Navigation" data-level="1">
+    <header class="demo__section__header">
+        <h3>Nested Navigation</h3>
+        <p>Multi-level navigation with submenus.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Collapsible Submenu</h4>
+        {% set code_snippet %}
+<nav class="nav nav--vertical nav--nested" aria-label="Nested navigation">
+    <ul class="nav__list">
+        <li class="nav__item nav__item--active">
+            <a href="#" class="nav__link">Dashboard</a>
+        </li>
+        <li class="nav__item nav__item--expandable">
+            <a href="#" class="nav__link">
+                <span>Products</span>
+                <span class="nav__arrow">▼</span>
+            </a>
+            <ul class="nav__submenu">
+                <li class="nav__item"><a href="#" class="nav__link">All Products</a></li>
+                <li class="nav__item"><a href="#" class="nav__link">Categories</a></li>
+                <li class="nav__item"><a href="#" class="nav__link">Inventory</a></li>
+            </ul>
+        </li>
+        <li class="nav__item">
+            <a href="#" class="nav__link">Orders</a>
+        </li>
+        <li class="nav__item">
+            <a href="#" class="nav__link">Customers</a>
+        </li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+   Nav Dividers
+   ============================================================================ #}
+<section class="demo__section" data-label="Dividers & Groups" data-level="1">
+    <header class="demo__section__header">
+        <h3>Dividers & Groups</h3>
+        <p>Organize navigation with dividers and headings.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Grouped Navigation</h4>
+        {% set code_snippet %}
+<nav class="nav nav--vertical" aria-label="Grouped navigation">
+    <span class="nav__heading">Main</span>
+    <ul class="nav__list">
+        <li class="nav__item"><a href="#" class="nav__link">Dashboard</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Analytics</a></li>
+    </ul>
+    <hr class="nav__divider">
+    <span class="nav__heading">Account</span>
+    <ul class="nav__list">
+        <li class="nav__item"><a href="#" class="nav__link">Profile</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Settings</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Logout</a></li>
+    </ul>
+</nav>
+        {% endset %}
+        {% set language="HTML" %}
+        {% include "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{%- endblock content %}
