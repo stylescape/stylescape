@@ -23,3 +23,11 @@
 // export { ExclusiveDetails } from "./ExclusiveDetails";
 
 // export { AsideHandler } from "./AsideHandler";
+
+// Drilldown Menu
+export { DrilldownMenuManager } from "./DrilldownMenuManager";
+export type { DrilldownMenuOptions } from "./DrilldownMenuManager";
+
+// Responsive Table
+export { ResponsiveTableManager } from "./ResponsiveTableManager";
+export type { ResponsiveTableOptions } from "./ResponsiveTableManager";
