@@ -14,7 +14,7 @@ import { ButtonHandler } from "../buttons/ButtonHandler.js";
 import { ToggleSwitchManager } from "../buttons/ToggleSwitchManager.js";
 import { FilterManager } from "../data/FilterManager.js";
 import { RatingManager } from "../data/RatingManager.js";
-import { AccordionManager } from "../elements/AccordianMananger.js";
+import { AccordionManager } from "../elements/AccordionManager.js";
 import { AsideHandler } from "../elements/AsideHandler.js";
 import { CollapsibleSectionManager } from "../elements/CollapsibleSectionManager.js";
 import { CollapsibleTableHandler } from "../elements/CollapsibleTableHandler.js";

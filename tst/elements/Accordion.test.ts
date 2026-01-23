@@ -3,7 +3,7 @@
 // ============================================================================
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { AccordionManager } from "../../src/ts/elements/AccordianMananger";
+import { AccordionManager } from "../../src/ts/elements/AccordionManager";
 import { $, $$, click, pressEnter, wait } from "../utils";
 import { accordionFixture } from "../utils/fixtures";
 
