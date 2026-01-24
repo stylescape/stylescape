@@ -231,8 +231,8 @@ export class Modal {
         document.removeEventListener("keydown", this.handleKeydown);
         this.element
             ?.querySelectorAll("[data-ss-modal-close]")
-            .forEach((btn) => {
-                btn.removeEventListener("click", this.handleCloseClick);
+            .forEach((button) => {
+                button.removeEventListener("click", this.handleCloseClick);
             });
         this.element = null;
     }
@@ -302,8 +302,8 @@ export class Modal {
         // Setup close buttons
         this.element
             .querySelectorAll("[data-ss-modal-close]")
-            .forEach((btn) => {
-                btn.addEventListener("click", this.handleCloseClick);
+            .forEach((button) => {
+                button.addEventListener("click", this.handleCloseClick);
             });
     }
 

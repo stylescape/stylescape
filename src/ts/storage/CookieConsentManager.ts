@@ -360,15 +360,15 @@ export class CookieConsentManager {
                 <div class="${this.options.cssClass}__actions">
                     ${
                         this.options.showSettings
-                            ? `<button type="button" class="${this.options.cssClass}__btn ${this.options.cssClass}__btn--settings">
+                            ? `<button type="button" class="${this.options.cssClass}__button ${this.options.cssClass}__button--settings">
                                ${this.options.settingsText}
                            </button>`
                             : ""
                     }
-                    <button type="button" class="${this.options.cssClass}__btn ${this.options.cssClass}__btn--necessary">
+                    <button type="button" class="${this.options.cssClass}__button ${this.options.cssClass}__button--necessary">
                         ${this.options.acceptNecessaryText}
                     </button>
-                    <button type="button" class="${this.options.cssClass}__btn ${this.options.cssClass}__btn--accept">
+                    <button type="button" class="${this.options.cssClass}__button ${this.options.cssClass}__button--accept">
                         ${this.options.acceptAllText}
                     </button>
                 </div>
@@ -380,13 +380,13 @@ export class CookieConsentManager {
 
         // Add event listeners
         banner
-            .querySelector(`.${this.options.cssClass}__btn--accept`)
+            .querySelector(`.${this.options.cssClass}__button--accept`)
             ?.addEventListener("click", () => this.acceptAll());
         banner
-            .querySelector(`.${this.options.cssClass}__btn--necessary`)
+            .querySelector(`.${this.options.cssClass}__button--necessary`)
             ?.addEventListener("click", () => this.acceptNecessary());
         banner
-            .querySelector(`.${this.options.cssClass}__btn--settings`)
+            .querySelector(`.${this.options.cssClass}__button--settings`)
             ?.addEventListener("click", () => this.showSettings());
     }
 
@@ -450,8 +450,8 @@ export class CookieConsentManager {
                     ${categoriesHtml}
                 </div>
                 <div class="${this.options.cssClass}-settings__actions">
-                    <button type="button" class="${this.options.cssClass}-settings__btn--cancel">Cancel</button>
-                    <button type="button" class="${this.options.cssClass}-settings__btn--save">Save Preferences</button>
+                    <button type="button" class="${this.options.cssClass}-settings__button--cancel">Cancel</button>
+                    <button type="button" class="${this.options.cssClass}-settings__button--save">Save Preferences</button>
                 </div>
             </div>
         `;
@@ -461,13 +461,15 @@ export class CookieConsentManager {
 
         // Event listeners
         panel
-            .querySelector(`.${this.options.cssClass}-settings__btn--cancel`)
+            .querySelector(
+                `.${this.options.cssClass}-settings__button--cancel`,
+            )
             ?.addEventListener("click", () => this.hideSettings());
         panel
             .querySelector(`.${this.options.cssClass}-settings__overlay`)
             ?.addEventListener("click", () => this.hideSettings());
         panel
-            .querySelector(`.${this.options.cssClass}-settings__btn--save`)
+            .querySelector(`.${this.options.cssClass}-settings__button--save`)
             ?.addEventListener("click", () => this.saveFromSettings());
     }
 

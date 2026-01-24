@@ -34,7 +34,7 @@ export interface ClipboardCopyOptions {
  * ClipboardHelper.copyById("code-snippet-1")
  *
  * // Auto-attach to all copy buttons
- * ClipboardHelper.attachToButtons(".copy-btn")
+ * ClipboardHelper.attachToButtons(".copy-button")
  * ```
  *
  * @example HTML with data-ss

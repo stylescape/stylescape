@@ -17,6 +17,7 @@ import { ImageCompareSlider } from "../media/ImageCompareSlider.js";
 import { ScrollElementManager } from "../scroll/ScrollElementManager.js";
 import { ScrollPageManager } from "../scroll/ScrollPageManager.js";
 import { ClipboardHelper } from "../utilities/ClipboardHelper.js";
+import { FontPreview } from "../utilities/FontPreview.js";
 import { GridManager } from "../utilities/GridManager.js";
 import { ThemeToggler } from "../utilities/ThemeToggler.js";
 
@@ -224,6 +225,19 @@ export function initializeStylescape(): void {
         ImageCompareSlider.initAll();
         new DropdownHandler();
         new CollapsibleTableHandler();
+
+        // Initialize font preview if the input element exists
+        const fontPreviewInput = document.querySelector("#font-preview-input");
+        if (fontPreviewInput) {
+            try {
+                new FontPreview(
+                    "#font-preview-input",
+                    ".preview__font--output",
+                );
+            } catch (e) {
+                // Silently fail if no preview elements found
+            }
+        }
     });
 
     window.addEventListener("load", () => {

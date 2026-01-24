@@ -40,17 +40,17 @@ import { FormValidator } from "../forms/FormValidator.js";
 // Button/Input Components
 
 // Mouse/Interaction Components
-import { DragAndDropManager } from "../mouse/DragAndDropManager.js";
 
 // Data Components
 
 // Storage Components
-import { CookieConsentManager } from "../storage/CookieConsentManager.js";
 
 // Scroll Components
 import { ScrollToTopButton } from "../interface/scroll.js";
 import { ImageCompareSlider } from "../media/ImageCompareSlider.js";
+import { DragAndDropManager } from "../mouse/DragAndDropManager.js";
 import { ScrollSpyManager } from "../scroll/ScrollSpyManager.js";
+import { CookieConsentManager } from "../storage/CookieConsentManager.js";
 import { ThemeToggler } from "../utilities/ThemeToggler.js";
 
 // ============================================================================
@@ -60,7 +60,7 @@ import { ThemeToggler } from "../utilities/ThemeToggler.js";
 /**
  * Configuration options that can be passed to a component
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 export interface ComponentConfig {
     [key: string]: any;
 }
