@@ -41,13 +41,13 @@ describe("Accessibility Integration", () => {
 
         it("should trap focus within modal", async () => {
             document.body.innerHTML = `
-                <button data-ss-modal-trigger="#a11y-modal" id="open-btn">Open</button>
+                <button data-ss-modal-trigger="#a11y-modal" id="open-button">Open</button>
                 <div id="a11y-modal" data-ss="modal" hidden>
                     <div data-ss-modal-content>
-                        <button data-ss-modal-close id="close-btn">Close</button>
+                        <button data-ss-modal-close id="close-button">Close</button>
                         <input type="text" id="input-1">
                         <input type="text" id="input-2">
-                        <button id="submit-btn">Submit</button>
+                        <button id="submit-button">Submit</button>
                     </div>
                 </div>
             `;
@@ -56,14 +56,14 @@ describe("Accessibility Integration", () => {
             await init();
 
             // Open modal
-            const openBtn = document.getElementById("open-btn");
+            const openBtn = document.getElementById("open-button");
             if (openBtn) {
                 click(openBtn);
                 await wait(100);
 
                 // Focus should be trapped within modal
-                const closeBtn = document.getElementById("close-btn");
-                const submitBtn = document.getElementById("submit-btn");
+                const closeBtn = document.getElementById("close-button");
+                const submitBtn = document.getElementById("submit-button");
 
                 if (closeBtn && submitBtn) {
                     closeBtn.focus();

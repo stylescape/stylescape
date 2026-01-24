@@ -108,7 +108,7 @@ describe("Component Interactions", () => {
     describe("Theme Toggle with Multiple Components", () => {
         it("should update all components when theme changes", async () => {
             document.body.innerHTML = `
-                <button data-ss="theme-toggle" id="theme-btn">Toggle</button>
+                <button data-ss="theme-toggle" id="theme-button">Toggle</button>
                 <button data-ss="tooltip" data-ss-tooltip-content="Test">Hover</button>
                 <div data-ss="modal" id="test-modal" hidden>
                     <div data-ss-modal-content>Modal</div>
@@ -119,7 +119,7 @@ describe("Component Interactions", () => {
             await init();
 
             // Change theme
-            const themeBtn = $("#theme-btn");
+            const themeBtn = $("#theme-button");
             if (themeBtn) {
                 click(themeBtn);
                 await wait(50);

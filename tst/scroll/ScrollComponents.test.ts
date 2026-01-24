@@ -98,37 +98,37 @@ describe("ScrollToTopButton", () => {
             writable: true,
         });
 
-        const btn = document.getElementById("scroll-top");
-        if (btn) {
+        const button = document.getElementById("scroll-top");
+        if (button) {
             // Add click handler that scrolls to top
-            btn.addEventListener("click", () => {
+            button.addEventListener("click", () => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
             });
 
-            click(btn);
+            click(button);
             // window.scrollTo should have been called with top: 0
         }
     });
 
     it("should show/hide based on scroll position", () => {
         document.body.innerHTML = `
-            <button id="scroll-btn" hidden>Top</button>
+            <button id="scroll-button" hidden>Top</button>
         `;
 
-        const btn = document.getElementById("scroll-btn");
+        const button = document.getElementById("scroll-button");
         const threshold = 300;
 
         // Simulate scroll handlers
-        if (btn) {
+        if (button) {
             // Below threshold - should be hidden
             Object.defineProperty(window, "scrollY", {
                 value: 100,
                 writable: true,
             });
             if (window.scrollY > threshold) {
-                btn.hidden = false;
+                button.hidden = false;
             }
-            expect(btn.hidden).toBe(true);
+            expect(button.hidden).toBe(true);
 
             // Above threshold - should be visible
             Object.defineProperty(window, "scrollY", {
@@ -136,9 +136,9 @@ describe("ScrollToTopButton", () => {
                 writable: true,
             });
             if (window.scrollY > threshold) {
-                btn.hidden = false;
+                button.hidden = false;
             }
-            expect(btn.hidden).toBe(false);
+            expect(button.hidden).toBe(false);
         }
     });
 });

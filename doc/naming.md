@@ -78,11 +78,13 @@ src/scss/
 
 ### Tier Prefixes
 
+StyleScape uses a three-tier **Head Body Soul** architecture. See the [Architecture Guide](architecture.md) for a complete explanation.
+
 | Prefix  | Tier | Purpose                       |
 | ------- | ---- | ----------------------------- |
-| `body_` | Body | UI Components (Atomic Design) |
-| `head_` | Head | Structure & Layout            |
-| `soul_` | Soul | Visual Styling                |
+| `head_` | Head | 🧠 Structure & Layout (Structural Intelligence) |
+| `body_` | Body | 💪 UI Components (Atomic Design Composition) |
+| `soul_` | Soul | ✨ Visual Styling (Aesthetic Experience) |
 
 ### Category Suffixes
 
