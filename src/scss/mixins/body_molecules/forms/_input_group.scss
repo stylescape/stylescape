@@ -3,10 +3,15 @@
 // Bootstrap-compatible input groups with addons
 // ============================================================================
 
-@use "../../dev" as *;
+@use "../../../dev" as *;
 
-// Base input group
-.input_group {
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base input group mixin
+/// @group Forms.InputGroup
+@mixin input_group {
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -34,31 +39,35 @@
             border-bottom-right-radius: 0;
         }
     }
+}
 
-    // Size variants
-    &--sm {
-        > .formfield__input,
-        > .input,
-        > .input_group__text,
-        > .button {
-            padding: q(4) q(8);
-            font-size: var(--font-size-12);
-        }
-    }
-
-    &--lg {
-        > .formfield__input,
-        > .input,
-        > .input_group__text,
-        > .button {
-            padding: q(12) q(20);
-            font-size: var(--font-size-18);
-        }
+/// Small input group variant mixin
+/// @group Forms.InputGroup
+@mixin input_group--sm {
+    > .formfield__input,
+    > .input,
+    > .input_group__text,
+    > .button {
+        padding: q(4) q(8);
+        font-size: var(--font-size-12);
     }
 }
 
-// Input group text addon
-.input_group__text {
+/// Large input group variant mixin
+/// @group Forms.InputGroup
+@mixin input_group--lg {
+    > .formfield__input,
+    > .input,
+    > .input_group__text,
+    > .button {
+        padding: q(12) q(20);
+        font-size: var(--font-size-18);
+    }
+}
+
+/// Input group text addon mixin
+/// @group Forms.InputGroup
+@mixin input_group__text {
     display: flex;
     align-items: center;
     padding: q(8) q(12);
@@ -86,8 +95,9 @@
     }
 }
 
-// Buttons in input groups
-.input_group {
+/// Input group button styling mixin
+/// @group Forms.InputGroup
+@mixin input_group--buttons {
     > .button {
         position: relative;
         z-index: 2;
@@ -109,16 +119,21 @@
     }
 }
 
-// Multiple inputs
-.input_group > .formfield__input:focus,
-.input_group > .input:focus {
-    z-index: 5;
+/// Input group focus styling mixin
+/// @group Forms.InputGroup
+@mixin input_group--focus {
+    > .formfield__input:focus,
+    > .input:focus {
+        z-index: 5;
+    }
 }
 
-// Handle borders between adjacent elements
-.input_group
+/// Input group border handling mixin
+/// @group Forms.InputGroup
+@mixin input_group--borders {
     > :not(:first-child):not(.dropdown__menu):not(
-        .input_group__text + .input_group__text
-    ) {
-    margin-left: -1px;
+            .input_group__text + .input_group__text
+        ) {
+        margin-left: -1px;
+    }
 }

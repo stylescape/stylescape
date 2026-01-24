@@ -1,0 +1,61 @@
+////
+///
+/// Layout Mixins Module
+/// ===========================================================================
+///
+/// @group Layout
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Layout | Positioning Utilities
+// ============================================================================
+
+@use "../../../variables" as *;
+
+///
+/// Mixin: `position--fixed`
+/// ---------------------------------------------------------------------------
+/// Applies `position: fixed` with optional alignment.
+/// Supports combinations of top/bottom and left/right.
+///
+/// @param {String | null} $y - Vertical anchor: `top`, `bottom`, or `null`
+/// @param {String | null} $x - Horizontal anchor: `left`, `right`, `both`, or `null`
+///
+/// @example scss - Fixed to top-left
+///   @include position--fixed(top, left);
+///
+@mixin position--fixed($y: null, $x: null) {
+    position: fixed;
+
+    @if $y == top {
+        top: 0;
+    } @else if $y == bottom {
+        bottom: 0;
+    } @else if $y == both {
+        top: 0;
+        bottom: 0;
+    }
+
+    @if $x == left {
+        left: 0;
+    } @else if $x == right {
+        right: 0;
+    } @else if $x == both {
+        left: 0;
+        right: 0;
+    }
+}
+
+///
+/// Mixin: `position--inherit`
+/// Applies `position: inherit` with `!important` to override layout flows.
+///
+@mixin position--inherit {
+    position: inherit !important;
+}

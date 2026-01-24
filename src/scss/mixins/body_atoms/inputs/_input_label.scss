@@ -56,31 +56,17 @@ $label-size-map: (
     @include visually-hidden;
 }
 
-///
-/// Native label element styling
-/// Provides basic styling for labels in forms.
-///
-.label,
-label {
-    @include label--base;
-    //     @include label_base(--color_dark, "m");
-}
-
-.label--hidden {
-    @include label--hidden;
-}
-
-.label--sm {
+@mixin label--sm {
     @include label--base("sm");
     @include object--height--fixed(sm);
 }
 
-.label--md {
+@mixin label--md {
     @include label--base("md");
     @include object--height--fixed(md); // uses 20q
 }
 
-.label--lg {
+@mixin label--lg {
     @include label--base("lg");
     @include object--height--fixed(lg);
 }

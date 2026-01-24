@@ -47,16 +47,19 @@ $table_cell_padding_x: q(4);
     @include sizing--border;
     overflow: hidden;
 }
+
 @mixin table__cell--size__sm {
     @include table__cell--size__base;
     height: q(15);
     max-height: q(15);
 }
+
 @mixin table__cell--size__md {
     @include table__cell--size__base;
     height: q(20);
     max-height: q(20);
 }
+
 @mixin table__cell--size__lg {
     @include table__cell--size__base;
     height: q(25);
@@ -86,14 +89,6 @@ $table_cell_padding_x: q(4);
     td {
         padding: q(3) q(5);
     }
-}
-
-// Utility classes
-.table--size--sm {
-    @include table--size--sm;
-}
-.table--size--lg {
-    @include table--size--lg;
 }
 
 // -----------------------------------------------------------------------------
@@ -147,13 +142,17 @@ $table_cell_padding_x: q(4);
     font-style: italic;
 }
 
-table.caption-top {
+/// Table caption at the top with bold styling.
+/// @group Table
+@mixin table__caption--top--styled {
     caption {
         @include table__caption--top;
     }
 }
 
-table.caption-bottom {
+/// Table caption at the bottom with italic styling.
+/// @group Table
+@mixin table__caption--bottom--styled {
     caption {
         @include table__caption--bottom;
     }
@@ -298,25 +297,6 @@ table.caption-bottom {
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
-.table--base {
-    @include table--base;
-}
-.table--lined--all {
-    @include table--lined--all;
-}
-.table--lined--horizontal {
-    @include table--lined--horizontal;
-}
-.table--lined--vertical {
-    @include table--lined--vertical;
-}
-.table--striped--horizontal {
-    @include table--striped--horizontal;
-}
-.table--striped--vertical {
-    @include table--striped--vertical;
-}
-
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
@@ -349,12 +329,9 @@ table.caption-bottom {
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
-table {
-    @include table--base;
-}
-// -----------------------------------------------------------------------------
+// ============================================================================
 // Collapsable Table
-// -----------------------------------------------------------------------------
+// ============================================================================
 
 @mixin collapsible_table--base {
     width: 100%;
@@ -390,16 +367,9 @@ table {
     }
 }
 
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------------------
-
-.collapsible_table {
-    @include collapsible_table--base;
-}
-
-// -----------------------------------------------------------------------------
+// ============================================================================
 // Data Table
-// -----------------------------------------------------------------------------
+// ============================================================================
 
 @mixin data_table--base {
     width: 100%;
@@ -439,11 +409,4 @@ table {
         padding-bottom: q(4);
         border-bottom: q(1) solid var(--color_line_primary);
     }
-}
-
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------------------
-
-.data_table {
-    @include data_table--base;
 }

@@ -1,40 +1,68 @@
-.tags__list,
-.tags__title {
+// ============================================================================
+// Tags List Component
+// ============================================================================
+
+@use "../../../dev" as *;
+
+// ============================================================================
+// Tags List Mixins
+// ============================================================================
+
+/// Base tags list and title styling
+/// @group Tags
+@mixin tags--base {
     font-size: q(12);
     letter-spacing: q(3);
     text-transform: uppercase;
 }
 
-.tags__list,
-.tags__list-item {
+/// Tags list container
+/// @group Tags
+@mixin tags__list {
+    @include tags--base;
     display: inline;
-}
-
-.tags__list {
     padding: 0;
 }
 
-.tags__list-item:not(:last-child) .tags__link::after {
-    content: ",";
+/// Tags title
+/// @group Tags
+@mixin tags__title {
+    @include tags--base;
 }
 
-.tags__list-item--hidden,
-.tags__list-item--invisible {
+/// Tags list item
+/// @group Tags
+@mixin tags__list-item {
+    display: inline;
+}
+
+/// Hidden tags list item
+/// @group Tags
+@mixin tags__list-item--hidden {
     display: none;
 }
 
-.tags__link {
+/// Tags link styling
+/// @group Tags
+@mixin tags__link {
     color: var(--color_text_primary);
     text-decoration: none;
+
+    &:active,
+    &:focus,
+    &:hover {
+        box-shadow: 0 q(1) 0 var(--theme-primary);
+    }
 }
 
-.tags__link:active,
-.tags__link:focus,
-.tags__link:hover {
-    box-shadow: 0 q(1) 0 var(--theme-primary);
-}
-
-.tags__more-link {
+/// Tags more link
+/// @group Tags
+@mixin tags__more-link {
     color: var(--theme-color-link);
     cursor: pointer;
 }
+
+// ============================================================================
+// Utility Classes are defined in:
+// src/scss/classes/body_molecules/navigation/_tags_list.scss
+// ============================================================================

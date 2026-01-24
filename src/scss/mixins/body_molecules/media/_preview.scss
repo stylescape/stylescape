@@ -15,6 +15,10 @@ $preview_sizing--border--radius: q(2);
 // Optional: color from a CSS custom property
 // $info-color: var(--color_log_info);
 
+// ============================================================================
+// Preview Mixins
+// ============================================================================
+
 // Mixin using SCSS variables
 @mixin preview_box {
     border: $preview_sizing--border--width solid $preview_sizing--border--color;
@@ -34,6 +38,7 @@ $preview_sizing--border--radius: q(2);
             $preview_sizing--border--color;
     }
 }
+
 @mixin preview_box--vertical {
     @include preview_box;
     > *:not(:last-child) {
@@ -41,6 +46,7 @@ $preview_sizing--border--radius: q(2);
             $preview_sizing--border--color;
     }
 }
+
 @mixin preview_box__element {
     min-height: baseline(4);
     position: relative;
@@ -74,49 +80,7 @@ $preview_sizing--border--radius: q(2);
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////
-
-.preview_box--horizontal {
-    @include preview_box--horizontal;
-}
-
-.preview_box--vertical {
-    @include preview_box--vertical;
-}
-
-.preview_box__live {
-    @include preview_box__live;
-}
-
-.preview_box__info {
-    @include preview_box__info;
-}
-
-.preview_box__code {
-    @include preview_box__code;
-}
-
-.preview_box--horizontal .preview_box__code {
-    @include grid--span--col(6);
-    @include font--size("03");
-    color: var(--color_text_secondary);
-    display: block;
-    background: var(--color_fill_secondary);
-}
-
-.preview_box--horizontal .preview_box__live {
-    @include grid--span--col(18);
-    word-wrap: break-word;
-}
-
-.preview_box__info {
-    @include box--surface(1);
-    @include grid--size--col(2);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-}
-
-.preview_box__copy_button {
+@mixin preview_box__copy_button {
     position: relative;
     // top: q(8);
     // right: q(8);
@@ -129,27 +93,23 @@ $preview_sizing--border--radius: q(2);
     cursor: pointer;
 }
 
-///////////////////////////////////////////////////////////////////////////////
-
-.preview_box__swatch {
+@mixin preview_box__swatch {
     border: q(1) solid var(--color_border, #ccc);
     border-radius: q(1);
     overflow: hidden;
     background-color: var(--color_fill_secondary);
 }
 
-.preview_box__swatch__color {
+@mixin preview_box__swatch__color {
     width: 100%;
     @include aspect_ratio(1, 1);
 }
 
-.preview_box__swatch__code {
+@mixin preview_box__swatch__code {
     font-size: q(8);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-
-.preview_grid {
+@mixin preview_grid {
     // display: grid;
     // grid-template-columns: 1fr 1fr;
     // gap: q(32);
@@ -178,12 +138,41 @@ $preview_sizing--border--radius: q(2);
     }
 }
 
-// @mixin grid_cell_placeholder {
-//   background-color: rgba(255, 255, 255, 0.8);
-//   border: q(1) solid black;
-//   text-align: center;
-//   font-size: q(32);
-// }
+@mixin preview_box--horizontal__code {
+    @include grid--span--col(6);
+    @include font--size("03");
+    color: var(--color_text_secondary);
+    display: block;
+    background: var(--color_fill_secondary);
+}
+
+@mixin preview_box--horizontal__live {
+    @include grid--span--col(18);
+    word-wrap: break-word;
+}
+
+@mixin preview_box__info--styled {
+    @include box--surface(1);
+    @include grid--size--col(2);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.preview_box__swatch {
+    @include preview_box__swatch;
+}
+
+.preview_box__swatch__color {
+    @include preview_box__swatch__color;
+}
+
+.preview_box__swatch__code {
+    @include preview_box__swatch__code;
+}
+
+.preview_grid {
+    @include preview_grid;
+}
 
 .grid--placeholder {
     @include grid--placeholder;

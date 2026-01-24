@@ -5,8 +5,12 @@
 
 @use "../../../dev" as *;
 
-// Card header
-.card__header {
+// ============================================================================
+// Mixins
+// ============================================================================
+
+// Card header (Bootstrap-compatible extension)
+@mixin card_extended__header {
     padding: q(12) q(16);
     margin-bottom: 0;
     background-color: var(--color_fill_02);
@@ -18,8 +22,8 @@
     }
 }
 
-// Card footer
-.card__footer {
+// Card footer (Bootstrap-compatible extension)
+@mixin card_extended__footer {
     padding: q(12) q(16);
     background-color: var(--color_fill_02);
     border-top: 1px solid var(--color_border_01);
@@ -31,7 +35,7 @@
 }
 
 // Card image overlays
-.card__img_overlay {
+@mixin card__img_overlay {
     position: absolute;
     top: 0;
     right: 0;
@@ -42,18 +46,18 @@
 }
 
 // Card image caps
-.card__img--top {
+@mixin card__img--top {
     border-top-left-radius: calc(var(--primitive-corner-radius-02) - 1px);
     border-top-right-radius: calc(var(--primitive-corner-radius-02) - 1px);
 }
 
-.card__img--bottom {
+@mixin card__img--bottom {
     border-bottom-left-radius: calc(var(--primitive-corner-radius-02) - 1px);
     border-bottom-right-radius: calc(var(--primitive-corner-radius-02) - 1px);
 }
 
-// Horizontal card
-.card--horizontal {
+// Horizontal card (Bootstrap-compatible extension)
+@mixin card_extended--horizontal {
     flex-direction: row;
 
     > .card__img,
@@ -67,7 +71,7 @@
 }
 
 // Card groups - cards in a row with equal width
-.card_group {
+@mixin card_group {
     display: flex;
     flex-flow: row wrap;
 
@@ -113,7 +117,7 @@
 }
 
 // Card deck - cards with gaps
-.card_deck {
+@mixin card_deck {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: q(16);
@@ -124,7 +128,7 @@
 }
 
 // Card columns - masonry-like layout
-.card_columns {
+@mixin card_columns {
     column-count: 3;
     column-gap: q(16);
     orphans: 1;
@@ -146,13 +150,13 @@
 }
 
 // Card color variants
-.card--primary {
+@mixin card--primary {
     background-color: var(--color_accent_primary);
     border-color: var(--color_accent_primary);
     color: var(--color_text_on_accent);
 }
 
-.card--success {
+@mixin card--success {
     background-color: color-mix(
         in srgb,
         var(--color_log_success) 15%,
@@ -161,7 +165,7 @@
     border-color: var(--color_log_success);
 }
 
-.card--warning {
+@mixin card--warning {
     background-color: color-mix(
         in srgb,
         var(--color_log_warning) 15%,
@@ -170,7 +174,7 @@
     border-color: var(--color_log_warning);
 }
 
-.card--danger {
+@mixin card--danger {
     background-color: color-mix(
         in srgb,
         var(--color_log_error) 15%,
@@ -179,7 +183,7 @@
     border-color: var(--color_log_error);
 }
 
-.card--info {
+@mixin card--info {
     background-color: color-mix(
         in srgb,
         var(--color_log_info) 15%,
@@ -189,27 +193,27 @@
 }
 
 // Card outline variants
-.card--outline-primary {
+@mixin card--outline-primary {
     background-color: transparent;
     border-color: var(--color_accent_primary);
 }
 
-.card--outline-success {
+@mixin card--outline-success {
     background-color: transparent;
     border-color: var(--color_log_success);
 }
 
-.card--outline-warning {
+@mixin card--outline-warning {
     background-color: transparent;
     border-color: var(--color_log_warning);
 }
 
-.card--outline-danger {
+@mixin card--outline-danger {
     background-color: transparent;
     border-color: var(--color_log_error);
 }
 
-.card--outline-info {
+@mixin card--outline-info {
     background-color: transparent;
     border-color: var(--color_log_info);
 }

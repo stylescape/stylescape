@@ -27,7 +27,7 @@
 
 /// Form error message base styling (hidden by default)
 /// @group Forms.Validation
-@mixin form-error {
+@mixin validation-error {
     display: none;
     margin-top: q(4);
     margin-bottom: q(8);
@@ -39,13 +39,13 @@
 
 /// Visible error state
 /// @group Forms.Validation
-@mixin form-error--visible {
+@mixin validation-error--visible {
     display: block;
 }
 
 /// Form success message styling
 /// @group Forms.Validation
-@mixin form-success {
+@mixin validation-success {
     display: none;
     margin-top: q(4);
     margin-bottom: q(8);
@@ -61,7 +61,7 @@
 
 /// Invalid input state
 /// @group Forms.Validation
-@mixin input--invalid {
+@mixin validation-input--invalid {
     border-color: var(--color_log_error);
 
     &:focus {
@@ -73,7 +73,7 @@
 
 /// Valid input state
 /// @group Forms.Validation
-@mixin input--valid {
+@mixin validation-input--valid {
     border-color: var(--color_log_success);
 
     &:focus {
@@ -85,7 +85,7 @@
 
 /// Warning input state
 /// @group Forms.Validation
-@mixin input--warning {
+@mixin validation-input--warning {
     border-color: var(--color_log_warning);
 
     &:focus {
@@ -106,12 +106,12 @@
 
     .form-error,
     .input__error {
-        @include form-error;
+        @include validation-error;
     }
 
     .form-success,
     .input__success {
-        @include form-success;
+        @include validation-success;
     }
 
     &.is-invalid,
@@ -119,12 +119,12 @@
         input,
         textarea,
         select {
-            @include input--invalid;
+            @include validation-input--invalid;
         }
 
         .form-error,
         .input__error {
-            @include form-error--visible;
+            @include validation-error--visible;
         }
 
         label {
@@ -137,7 +137,7 @@
         input,
         textarea,
         select {
-            @include input--valid;
+            @include validation-input--valid;
         }
 
         .form-success,
@@ -151,7 +151,7 @@
         input,
         textarea,
         select {
-            @include input--warning;
+            @include validation-input--warning;
         }
     }
 }
@@ -210,12 +210,12 @@
     select {
         &:user-invalid,
         &:not(:placeholder-shown):invalid {
-            @include input--invalid;
+            @include validation-input--invalid;
         }
 
         &:user-valid,
         &:not(:placeholder-shown):valid {
-            @include input--valid;
+            @include validation-input--valid;
         }
     }
 }
@@ -231,17 +231,17 @@
         input:invalid,
         textarea:invalid,
         select:invalid {
-            @include input--invalid;
+            @include validation-input--invalid;
         }
 
         input:valid,
         textarea:valid,
         select:valid {
-            @include input--valid;
+            @include validation-input--valid;
         }
 
         .form-field.is-invalid .form-error {
-            @include form-error--visible;
+            @include validation-error--visible;
         }
     }
 
@@ -275,66 +275,4 @@
         font-size: calc(var(--typescale-base) * 0.875);
         font-weight: 400;
     }
-}
-
-// ============================================================================
-// Utility Classes
-// ============================================================================
-
-.form-error {
-    @include form-error;
-}
-
-.form-error.is-visible {
-    @include form-error--visible;
-}
-
-.form-success {
-    @include form-success;
-}
-
-.form-field {
-    @include form-field--validated;
-}
-
-.form-field--icons {
-    @include form-field--with-icon;
-}
-
-.form-field--native {
-    @include form-field--native-validation;
-}
-
-.form--validated {
-    @include form--validated;
-}
-
-.label--required {
-    @include label--required;
-}
-
-.label--optional {
-    @include label--optional;
-}
-
-// Input state classes
-.input--invalid,
-input.is-invalid,
-textarea.is-invalid,
-select.is-invalid {
-    @include input--invalid;
-}
-
-.input--valid,
-input.is-valid,
-textarea.is-valid,
-select.is-valid {
-    @include input--valid;
-}
-
-.input--warning,
-input.is-warning,
-textarea.is-warning,
-select.is-warning {
-    @include input--warning;
 }

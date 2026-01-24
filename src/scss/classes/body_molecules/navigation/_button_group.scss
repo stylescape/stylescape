@@ -3,6 +3,9 @@
 /// Button Group Classes
 /// ===========================================================================
 ///
+/// CSS classes for button group components.
+/// All functionality is defined in mixins - classes only include them.
+///
 /// @group Classes.BodyMolecules.Navigation.ButtonGroup
 /// @author Scape Agency
 /// @link https://scape.style
@@ -11,14 +14,24 @@
 ///
 ////
 
-// Note: The button_group mixin file already contains class definitions.
-// This file imports them for consistency with the class module structure.
+// ============================================================================
+// Use
+// ============================================================================
 
-@use "../../../mixins/body_molecules/navigation/button_group";
+@use "../../../mixins/body_molecules/navigation/button_group" as *;
 
 // ============================================================================
 // Button Group Classes
 // ============================================================================
-// Classes are defined in the mixin file:
-// - .button_group (horizontal)
-// - .button-group--vertical (vertical)
+
+.button_group {
+    @include button_group;
+}
+
+.button_group--vertical {
+    @include button_group--vertical;
+}
+
+.button-group--vertical {
+    @include button-group--vertical;
+}

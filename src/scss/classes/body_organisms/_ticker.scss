@@ -1,0 +1,57 @@
+////
+///
+/// Ticker Utility Classes
+/// ===========================================================================
+///
+/// Ticker utility classes for scrolling text/content components.
+///
+/// @group Classes.BodyOrganisms
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../mixins" as mixins;
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+.ticker--horizontal--top {
+    @include mixins.ticker--horizontal--top;
+}
+
+.ticker--horizontal--bottom {
+    @include mixins.ticker--horizontal--bottom;
+}
+
+.ticker--vertical--left {
+    @include mixins.ticker--vertical--left;
+}
+
+.ticker--vertical--right {
+    @include mixins.ticker--vertical--right;
+}
+
+// Pause on hover or focus
+.ticker--horizontal--top:hover .ticker__track,
+.ticker--horizontal--bottom:hover .ticker__track,
+.ticker--vertical--left:hover .ticker__track,
+.ticker--vertical--right:hover .ticker__track,
+.ticker__track:focus {
+    animation-play-state: paused;
+}
+
+// Ticker Items
+.ticker__item {
+    display: inline-block;
+    padding: 0 q(16);
+    font-size: q(12);
+    white-space: nowrap;
+}

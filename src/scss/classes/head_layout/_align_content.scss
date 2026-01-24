@@ -1,0 +1,39 @@
+////
+///
+/// Layout Classes Module | Align Content
+/// ===========================================================================
+///
+/// @group Layout
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../../mixins/head_layout/position/align_content" as *;
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+$align-content-values: (
+    normal,
+    start,
+    end,
+    center,
+    stretch,
+    space-between,
+    space-around,
+    space-evenly,
+    flex-start,
+    flex-end,
+    baseline
+);
+
+// Loop to generate classes
+@each $val in $align-content-values {
+    .align_content--#{$val} {
+        @include align_content($val);
+    }
+}

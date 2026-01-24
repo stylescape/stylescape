@@ -63,7 +63,7 @@
 @mixin drilldown--item {
     display: block;
     margin: 0;
-    
+
     > a,
     > button {
         display: flex;
@@ -78,15 +78,17 @@
         text-align: left;
         text-decoration: none;
         cursor: pointer;
-        transition: background-color 0.15s ease, color 0.15s ease;
-        
+        transition:
+            background-color 0.15s ease,
+            color 0.15s ease;
+
         &:hover,
         &:focus {
             background-color: var(--color_fill_secondary);
             color: var(--color_text_primary);
             outline: none;
         }
-        
+
         &:focus-visible {
             outline: q(2) solid var(--color_accent_primary);
             outline-offset: q(-2);
@@ -108,9 +110,11 @@
             border-bottom: q(2) solid var(--color_text_secondary);
             transform: rotate(-45deg);
             margin-left: q(8);
-            transition: transform 0.15s ease, border-color 0.15s ease;
+            transition:
+                transform 0.15s ease,
+                border-color 0.15s ease;
         }
-        
+
         &:hover::after {
             border-color: var(--color_accent_primary);
         }
@@ -136,7 +140,7 @@
         text-decoration: none;
         cursor: pointer;
         transition: background-color 0.15s ease;
-        
+
         &::before {
             content: "";
             display: inline-block;
@@ -146,7 +150,7 @@
             border-bottom: q(2) solid currentColor;
             transform: rotate(45deg);
         }
-        
+
         &:hover,
         &:focus {
             background-color: var(--color_fill_tertiary);
@@ -192,7 +196,7 @@
         color: var(--color_text_tertiary);
         pointer-events: none;
         cursor: not-allowed;
-        
+
         &::after {
             border-color: var(--color_text_tertiary);
         }
@@ -213,7 +217,9 @@
 /// Auto-height transition support
 /// @group Drilldown
 @mixin drilldown--auto-height {
-    transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
+    transition:
+        transform 0.3s ease-in-out,
+        height 0.3s ease-in-out;
 }
 
 // ============================================================================
@@ -230,7 +236,7 @@
             font-size: calc(var(--typescale-base) * 0.875);
         }
     }
-    
+
     .drilldown__back {
         > a,
         > button {
@@ -244,7 +250,7 @@
 @mixin drilldown--bordered {
     border: q(1) solid var(--color_line_primary);
     border-radius: var(--primitive-corner-radius-04);
-    
+
     .drilldown__item:last-child {
         > a,
         > button {
@@ -257,25 +263,25 @@
 /// @group Drilldown
 @mixin drilldown--dark {
     background-color: var(--color_fill_04);
-    
+
     .drilldown__item {
         > a,
         > button {
             color: var(--color_fill_01);
             background-color: var(--color_fill_04);
             border-color: var(--color_fill_03);
-            
+
             &:hover,
             &:focus {
                 background-color: var(--color_fill_03);
             }
-            
+
             &::after {
                 border-color: var(--color_fill_02);
             }
         }
     }
-    
+
     .drilldown__back {
         > a,
         > button {
@@ -286,66 +292,6 @@
 }
 
 // ============================================================================
-// Utility Classes
+// Utility Classes are defined in:
+// src/scss/classes/body_molecules/navigation/_drilldown.scss
 // ============================================================================
-
-.drilldown {
-    @include drilldown--container;
-}
-
-.drilldown__wrapper {
-    @include drilldown--wrapper;
-}
-
-.drilldown__level {
-    @include drilldown--level;
-}
-
-.drilldown__item {
-    @include drilldown--item;
-    
-    &.has-submenu {
-        @include drilldown--has-submenu;
-    }
-    
-    &.is-active {
-        @include drilldown--item-active;
-    }
-    
-    &.is-disabled {
-        @include drilldown--item-disabled;
-    }
-}
-
-.drilldown__back {
-    @include drilldown--back;
-}
-
-.drilldown__title {
-    @include drilldown--submenu-title;
-}
-
-// Variants
-.drilldown--compact {
-    @include drilldown--compact;
-}
-
-.drilldown--bordered {
-    @include drilldown--bordered;
-}
-
-.drilldown--dark {
-    @include drilldown--dark;
-}
-
-// Animation states (controlled via JS)
-.drilldown--auto-height .drilldown__wrapper {
-    @include drilldown--auto-height;
-}
-
-// Depth navigation classes (0-5 levels)
-@for $i from 0 through 5 {
-    .drilldown--depth-#{$i} .drilldown__wrapper {
-        @include drilldown--go-to-level($i);
-    }
-}

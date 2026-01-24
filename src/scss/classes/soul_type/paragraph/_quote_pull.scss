@@ -1,0 +1,256 @@
+////
+///
+/// Pull Quote Paragraph Typography Utility Classes
+/// ===========================================================================
+///
+/// @group Paragraph
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../../mixins/soul_type/paragraph/quote_pull" as *;
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+.pull-quote {
+    @include pull-quote;
+}
+
+.pull-quote .icon-sig-quote-default {
+    @include pull-quote__icon;
+}
+
+.pull-quote__text {
+    @include pull-quote__text;
+}
+
+.pull-quote__text a {
+    color: var(--theme-paragraph__link-color);
+    text-decoration-color: var(--theme-paragraph__link-decoration-color);
+}
+
+.pull-quote__text a:hover {
+    color: var(--theme-link-color-hover);
+}
+
+.pull-quote__attribution {
+    @include pull-quote__attribution;
+}
+
+@media (min-width: 960px) {
+    .pull-quote__text {
+        font-size: q(20);
+        line-height: q(26);
+    }
+
+    .pull-quote .icon-sig-quote-default {
+        width: q(50);
+        height: q(50);
+    }
+}
+
+.pull-quote-elevate {
+    @include pull-quote-elevate;
+}
+
+.pull-quote-elevate .icon-sig-quote-default {
+    display: none;
+}
+
+.pull-quote-elevate .pull-quote__text {
+    @include pull-quote-elevate__text;
+}
+
+.pull-quote-elevate .pull-quote__text a {
+    color: var(--theme-paragraph__link-color);
+    text-decoration-color: var(--theme-paragraph__link-decoration-color);
+}
+
+.pull-quote-elevate .pull-quote__text a:hover {
+    color: var(--theme-link-color-hover);
+}
+
+.pull-quote-elevate .pull-quote__attribution {
+    @include pull-quote-elevate__attribution;
+}
+
+.pull-quote-elevate .pull-quote__text a,
+.pull-quote__text a {
+    @include pull-quote__text-link;
+}
+
+.pull-quote-elevate .pull-quote__text a:hover,
+.pull-quote__text a:hover {
+    @include pull-quote__text-link-hover;
+}
+
+@media screen and (min-width: q(480)) and (max-width: 767px) {
+    body:not(.layout-homepage-mobile.kiln-edit-mode):not(
+            .layout-homepage-mobile-app.kiln-edit-mode
+        )
+        .pull-quote-elevate {
+        padding-left: q(24);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    body:not(.layout-homepage-mobile.kiln-edit-mode):not(
+            .layout-homepage-mobile-app.kiln-edit-mode
+        )
+        .pull-quote-elevate {
+        border-left: solid q(4) var(--color_text_primary);
+    }
+
+    body:not(.layout-homepage-mobile.kiln-edit-mode):not(
+            .layout-homepage-mobile-app.kiln-edit-mode
+        )
+        .pull-quote-elevate
+        .pull-quote__text {
+        font-size: 1.4rem;
+        line-height: 1.75rem;
+    }
+
+    body:not(.layout-homepage-mobile.kiln-edit-mode):not(
+            .layout-homepage-mobile-app.kiln-edit-mode
+        )
+        .pull-quote-elevate
+        .icon-sig-quote-default {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 7Q(68)) and (max-width: 102Q(3)) {
+    body:not(.layout-homepage-mobile.kiln-edit-mode):not(
+            .layout-homepage-mobile-app.kiln-edit-mode
+        )
+        .pull-quote-elevate {
+        padding-left: q(24);
+    }
+}
+
+.pull-quote_block-quote {
+    @include pull-quote_block-quote;
+}
+
+.pull-quote_block-quote .icon-sig-quote-default {
+    display: none;
+}
+
+.pull-quote_block-quote__text {
+    @include pull-quote_block-quote__text;
+}
+
+.pull-quote_block-quote-elevate .icon-sig-quote-default,
+.pull-quote_block-quote__attribution {
+    display: none;
+}
+
+.pull-quote_block-quote__text a {
+    color: var(--theme-paragraph__link-color);
+}
+
+.pull-quote_block-quote__text a:hover {
+    color: var(--theme-link-color-hover);
+}
+
+.pull-quote_block-quote-elevate {
+    @include pull-quote_block-quote-elevate;
+}
+
+.pull-quote_block-quote-elevate .pull-quote_block-quote__text {
+    @include pull-quote_block-quote-elevate__text;
+}
+
+.pull-quote_block-quote-elevate .pull-quote_block-quote__text a {
+    color: var(--theme-paragraph__link-color);
+}
+
+.pull-quote_block-quote-elevate .pull-quote_block-quote__text a:hover {
+    color: var(--theme-link-color-hover);
+}
+
+.pull-quote_block-quote-elevate__attribution {
+    display: none;
+}
+
+.pull-quote_block-quote-elevate .pull-quote_block-quote__text a,
+.pull-quote_block-quote__text a {
+    @include pull-quote_block-quote__text-link;
+}
+
+.pull-quote_block-quote-elevate .pull-quote_block-quote__text a:hover,
+.pull-quote_block-quote__text a:hover {
+    @include pull-quote_block-quote__text-link-hover;
+}
+
+@media screen and (min-width: 7Q(68)) and (max-width: 102Q(3)) {
+    body:not(.layout-homepage-mobile.kiln-edit-mode):not(
+            .layout-homepage-mobile-app.kiln-edit-mode
+        )
+        .pull-quote_block-quote-elevate {
+        padding: q(24) q(16) q(24) q(24);
+    }
+}
+
+@media screen and (min-width: q(480)) and (max-width: 767px) {
+    body:not(.layout-homepage-mobile.kiln-edit-mode):not(
+            .layout-homepage-mobile-app.kiln-edit-mode
+        )
+        .pull-quote_block-quote-elevate {
+        padding: q(24) q(16) q(24) q(24);
+    }
+}
+
+.pull-quote_full-width {
+    @include pull-quote_full-width;
+}
+
+.pull-quote_full-width .icon-sig-quote-default {
+    @include pull-quote_full-width__icon;
+}
+
+.pull-quote_full-width__text {
+    @include pull-quote_full-width__text;
+}
+
+.pull-quote_full-width__text a {
+    color: var(--theme-paragraph__link-color);
+    text-decoration-thickness: var(
+        --theme-paragraph__link-decoration-thickness
+    );
+    text-underline-offset: var(--theme-paragraph__hover-link-offset);
+    text-decoration-skip: var(--theme-underline-skip-ink);
+}
+
+.related-content__link:hover .related-content__headline,
+.related-content_full-width__link:hover
+    .related-content_full-width__headline-text,
+.related-content_without-image-full-border__headline-text {
+    -webkit-text-decoration-line: underline;
+    text-decoration-line: underline;
+    text-underline-offset: var(--theme-paragraph__hover-link-offset);
+}
+
+.pull-quote_full-width__text a:hover {
+    color: var(--theme-link-color-hover);
+}
+
+.pull-quote_full-width__attribution {
+    @include pull-quote_full-width__attribution;
+}
+
+@media (min-width: q(480)) {
+    .pull-quote_full-width .icon-sig-quote-default {
+        width: q(50);
+        height: q(50);
+    }
+}

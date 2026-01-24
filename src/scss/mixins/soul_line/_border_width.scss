@@ -12,7 +12,6 @@
 // @mixin border_width($width) {
 //     border-width: $width !important;
 // }
-
 /// Mixin for setting border width based on a multiplier.
 ///
 /// @param {Number} $multiplier - Multiplier to calculate border width.
@@ -53,75 +52,55 @@
 @mixin border_width_01 {
     @include border_width_multiplier(1);
 }
+
 @mixin border_width_02 {
     @include border_width_multiplier(2);
 }
+
 @mixin border_width_03 {
     @include border_width_multiplier(3);
 }
+
 @mixin border_width_04 {
     @include border_width_multiplier(4);
 }
+
 @mixin border_width_05 {
     @include border_width_multiplier(5);
 }
+
 @mixin border_width_06 {
     @include border_width_multiplier(6);
 }
+
 @mixin border_width_07 {
     @include border_width_multiplier(7);
 }
+
 @mixin border_width_08 {
     @include border_width_multiplier(8);
 }
+
 @mixin border_width_09 {
     @include border_width_multiplier(9);
 }
+
 @mixin border_width_10 {
     @include border_width_multiplier(10);
 }
 
-// Applying Mixins to Classes
-// ============================================================================
-
-.border_width_01 {
+/// Mixin for thin border.
+@mixin border_thin {
     @include border_width_01;
 }
-.border_width_02 {
+
+/// Mixin for medium border.
+@mixin border_medium {
     @include border_width_02;
-}
-.border_width_03 {
-    @include border_width_03;
-}
-.border_width_04 {
-    @include border_width_04;
-}
-.border_width_05 {
-    @include border_width_05;
-}
-.border_width_06 {
-    @include border_width_06;
-}
-.border_width_07 {
-    @include border_width_07;
-}
-.border_width_08 {
-    @include border_width_08;
-}
-.border_width_09 {
-    @include border_width_09;
-}
-.border_width_10 {
-    @include border_width_10;
 }
 
-.border_thin {
-    @include border_width_01;
-}
-.border_medium {
-    @include border_width_02;
-}
-.border_thick {
+/// Mixin for thick border.
+@mixin border_thick {
     @include border_width_03;
 }
 
@@ -146,17 +125,4 @@
 /// Mixin to remove the left border.
 @mixin no_border--left {
     @include border_width_side($left: 0);
-}
-
-.no_border--top {
-    @include no_border--top;
-}
-.no_border--bottom {
-    @include no_border--bottom;
-}
-.no_border--right {
-    @include no_border--right;
-}
-.no_border--left {
-    @include no_border--left;
 }

@@ -4,10 +4,11 @@
 
 @use "../../../variables" as *;
 
-// Container Styles | Preloader | Pulse
+// ============================================================================
+// Mixins | Preloader | Pulse
 // ============================================================================
 
-.preloader_pulse {
+@mixin preloader_pulse {
     border: 0 solid transparent;
     border-radius: 50%;
     width: q(50);
@@ -15,24 +16,24 @@
     position: absolute;
     top: calc(50vh - q(4));
     left: calc(50vw - q(4));
-}
 
-.preloader_pulse:before,
-.preloader_pulse:after {
-    content: "";
-    border: q(16) solid #239898;
-    border-radius: 50%;
-    width: inherit;
-    height: inherit;
-    position: absolute;
-    top: 0;
-    left: 0;
-    animation: preloader_pulse_animation 2s linear infinite;
-    opacity: 0;
-}
+    &:before,
+    &:after {
+        content: "";
+        border: q(16) solid #239898;
+        border-radius: 50%;
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: preloader_pulse_animation 2s linear infinite;
+        opacity: 0;
+    }
 
-.preloader_pulse:before {
-    animation-delay: 0.5s;
+    &:before {
+        animation-delay: 0.5s;
+    }
 }
 
 @keyframes preloader_pulse_animation {

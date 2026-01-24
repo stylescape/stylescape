@@ -1,0 +1,68 @@
+////
+///
+/// Grid Layout Mixins
+/// ===========================================================================
+///
+/// CSS Grid layout composition mixins for creating grid structures.
+///
+/// @group Mixins.HeadLayout.Grid
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+@use "base" as *;
+@use "size" as *;
+@use "../spacing/gap_base" as *;
+
+// ============================================================================
+// Config
+// ============================================================================
+
+$ss-grid-bleed: 2 * map.get($baseline, 4);
+$ss-grid-columns-min: 6 !default;
+$ss-grid-columns-max: 12 !default;
+$ss-grid-columns-width: 1fr !default;
+
+// ============================================================================
+// Grid Layout | Composite Containers
+// ============================================================================
+
+@mixin grid__layout($val) {
+    @include grid--base;
+    @include grid--size--col($val);
+    @include gap(baseline(4));
+}
+
+@mixin grid__frame--clean($val) {
+    @include grid--base;
+    @include grid--size--col($val);
+}
+
+@mixin grid__frame--inline($val) {
+    @include grid--base--inline;
+    @include grid--size--col($val);
+    @include gap(baseline(4));
+}
+
+/// Mixin for responsive flexible grid layout
+/// Applies default layout, spacing, and dynamic column configuration
+@mixin grid__frame--flex {
+    @include grid--base;
+    @include gap(baseline(4));
+
+    grid-auto-rows: minmax(baseline(2.5), auto);
+
+    @media (max-width: $media_xl) {
+        @include grid--size--col($ss-grid-columns-min);
+    }
+
+    @media (max-width: $media_xl) {
+        @include grid--size--col($ss-grid-columns-max);
+    }
+}

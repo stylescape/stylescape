@@ -73,11 +73,14 @@ $default-emphasis-position: over left;
 //     -webkit-text-emphasis: filled dot var(--color_fill_primary);
 // }
 
-/// Utility classes for different emphasis styles.
+/// Mixins for different emphasis styles.
 /// ---------------------------------------------------------------------------
 ///
-/// These classes apply various emphasis styles to elements.
-.emphasis-dot {
+/// These mixins apply various emphasis styles to elements.
+
+/// Mixin for dot emphasis style.
+/// @access public
+@mixin emphasis-dot {
     @include character--emphasis(
         filled dot,
         $default-emphasis-color,
@@ -85,7 +88,9 @@ $default-emphasis-position: over left;
     );
 }
 
-.emphasis-circle {
+/// Mixin for circle emphasis style.
+/// @access public
+@mixin emphasis-circle {
     @include character--emphasis(
         filled circle,
         $default-emphasis-color,
@@ -93,7 +98,9 @@ $default-emphasis-position: over left;
     );
 }
 
-.emphasis-double-circle {
+/// Mixin for double-circle emphasis style.
+/// @access public
+@mixin emphasis-double-circle {
     @include character--emphasis(
         double-circle,
         $default-emphasis-color,
@@ -101,7 +108,9 @@ $default-emphasis-position: over left;
     );
 }
 
-.emphasis-triangle {
+/// Mixin for triangle emphasis style.
+/// @access public
+@mixin emphasis-triangle {
     @include character--emphasis(
         triangle,
         $default-emphasis-color,
@@ -109,7 +118,9 @@ $default-emphasis-position: over left;
     );
 }
 
-.emphasis-sesame {
+/// Mixin for sesame emphasis style.
+/// @access public
+@mixin emphasis-sesame {
     @include character--emphasis(
         sesame,
         $default-emphasis-color,
@@ -117,12 +128,8 @@ $default-emphasis-position: over left;
     );
 }
 
-/// Applying emphasis to italic elements.
-/// ---------------------------------------------------------------------------
-///
-/// The following rules apply emphasis to `<em>` and `<i>` elements.
-em,
-i {
+/// Mixin for applying emphasis to italic elements.
+/// @access public
+@mixin emphasis-italic {
     @include character--emphasis;
-    //   font-style: italic;
 }

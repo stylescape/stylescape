@@ -3,14 +3,17 @@
 // ============================================================================
 
 @use "../../variables" as *;
+@use "../head_layout" as *;
+@use "../soul_type" as *;
 @use "../body_molecules" as *;
 @use "../body_atoms" as *;
 @use "../soul_object" as *;
 
-// Container Styles | Modal
+// ============================================================================
+// Mixins
 // ============================================================================
 
-.modal {
+@mixin modal {
     @include flex--col;
     z-index: z("modal");
     @include sizing--border;
@@ -28,142 +31,43 @@
     right: 0;
 }
 
-.modal_header {
-    @include text_align_center;
+@mixin modal_header {
+    @include text_align--center;
     margin-top: baseline(4);
     margin-bottom: baseline(2);
 }
 
-.modal_content {
+@mixin modal_content {
     margin-top: baseline(2);
     margin-bottom: baseline(2);
 }
 
-.modal_footer {
+@mixin modal_footer {
     margin-top: baseline(2);
     margin-bottom: baseline(4);
 }
 
-.modal_form {
+@mixin modal_form {
     @include flex--col;
 }
 
-.modal_fieldset {
+@mixin modal_fieldset {
     @include flex--col;
+
+    legend {
+        width: 100%;
+    }
+
+    label {
+        width: 100%;
+    }
+
+    input {
+        width: 100%;
+    }
 }
 
-.modal_fieldset legend {
-    width: 100%;
-}
-
-.modal_fieldset label {
-    width: 100%;
-}
-
-.modal_fieldset input {
-    width: 100%;
-}
-
-// .modal {
-//   &:focus {
-//     outline: none;
-//   }
-
-//   @extend .z-depth-5;
-
-//   display: none;
-//   position: fixed;
-//   left: 0;
-//   right: 0;
-//   background-color: #fafafa;
-//   padding: 0;
-//   max-height: 70%;
-//   width: 55%;
-//   margin: auto;
-//   overflow-y: auto;
-
-//   border-radius: q(2);
-//   will-change: top, opacity;
-
-//   @media #{$medium-and-down} {
-//    width: 80%;
-//   }
-
-//   h1,h2,h3,h4 {
-//     margin-top: 0;
-//   }
-
-//   .modal-content {
-//     padding: q(24);
-//   }
-//   .modal-close {
-//     cursor: pointer;
-//   }
-
-//   .modal-footer {
-//     border-radius: 0 0 q(2) q(2);
-//     background-color: #fafafa;
-//     padding: q(4) q(6);
-//     height: 5q(6);
-//     width: 100%;
-//     text-align: right;
-
-//     .btn, .btn-flat {
-//       margin: q(6) 0;
-//     }
-//   }
-// }
-// .modal-overlay {
-//   position: fixed;
-//   z-index: 999;
-//   top: -25%;
-//   left: 0;
-//   bottom: 0;
-//   right: 0;
-//   height: 125%;
-//   width: 100%;
-//   background: var(--color_text_primary);
-//   display: none;
-
-//   will-change: opacity;
-// }
-
-// Modal with fixed action footer
-// .modal.modal-fixed-footer {
-//   padding: 0;
-//   height: 70%;
-
-//   .modal-content {
-//     position: absolute;
-//     height: calc(100% - 5q(6));
-//     max-height: 100%;
-//     width: 100%;
-//     overflow-y: auto;
-//   }
-
-//   .modal-footer {
-//     border-top: q(1) solid rgba(0,0,0,.1);
-//     position: absolute;
-//     bottom: 0;
-//   }
-// }
-
-// Modal Bottom Sheet Style
-// .modal.bottom-sheet {
-//   top: auto;
-//   bottom: -100%;
-//   margin: 0;
-//   width: 100%;
-//   max-height: 45%;
-//   border-radius: 0;
-//   will-change: bottom, opacity;
-// }
-// ============================================================================
-// Bootstrap-style Modal Enhancements
-// ============================================================================
-
-/// Modal backdrop/overlay
-.modal_backdrop {
+@mixin modal_backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -181,8 +85,7 @@
     }
 }
 
-/// Modal dialog container (for centering)
-.modal_dialog {
+@mixin modal_dialog {
     position: relative;
     width: auto;
     margin: baseline(4);
@@ -193,36 +96,27 @@
     }
 }
 
-// ============================================================================
-// Modal Size Variants
-// ============================================================================
-
-/// Small modal
-.modal--sm {
+@mixin modal--sm {
     width: 100%;
     max-width: 300px;
 }
 
-/// Default modal (medium)
-.modal--md {
+@mixin modal--md {
     width: 100%;
     max-width: 500px;
 }
 
-/// Large modal
-.modal--lg {
+@mixin modal--lg {
     width: 100%;
     max-width: 800px;
 }
 
-/// Extra large modal
-.modal--xl {
+@mixin modal--xl {
     width: 100%;
     max-width: 1140px;
 }
 
-/// Fullscreen modal
-.modal--fullscreen {
+@mixin modal--fullscreen {
     width: 100vw;
     max-width: none;
     height: 100%;
@@ -230,60 +124,13 @@
     border-radius: 0;
 }
 
-/// Responsive fullscreen variants
-@media (max-width: 576px) {
-    .modal--fullscreen-sm-down {
-        width: 100vw;
-        max-width: none;
-        height: 100%;
-        margin: 0;
-        border-radius: 0;
-    }
-}
-
-@media (max-width: 768px) {
-    .modal--fullscreen-md-down {
-        width: 100vw;
-        max-width: none;
-        height: 100%;
-        margin: 0;
-        border-radius: 0;
-    }
-}
-
-@media (max-width: 992px) {
-    .modal--fullscreen-lg-down {
-        width: 100vw;
-        max-width: none;
-        height: 100%;
-        margin: 0;
-        border-radius: 0;
-    }
-}
-
-@media (max-width: 1200px) {
-    .modal--fullscreen-xl-down {
-        width: 100vw;
-        max-width: none;
-        height: 100%;
-        margin: 0;
-        border-radius: 0;
-    }
-}
-
-// ============================================================================
-// Modal Positioning Variants
-// ============================================================================
-
-/// Vertically centered modal
-.modal--centered {
+@mixin modal--centered {
     display: flex;
     align-items: center;
     min-height: calc(100% - baseline(8));
 }
 
-/// Scrollable modal body
-.modal--scrollable {
+@mixin modal--scrollable {
     max-height: calc(100vh - baseline(16));
 
     .modal_content {
@@ -292,20 +139,14 @@
     }
 }
 
-/// Static backdrop (won't close on click)
-.modal--static {
+@mixin modal--static {
     // Handled via JS, but can add visual indicator
     &[data-backdrop="static"] {
         // Modal won't close when clicking outside
     }
 }
 
-// ============================================================================
-// Modal Animation Variants
-// ============================================================================
-
-/// Fade animation
-.modal--fade {
+@mixin modal--fade {
     opacity: 0;
     transition: opacity 0.15s linear;
 
@@ -314,8 +155,7 @@
     }
 }
 
-/// Slide from top
-.modal--slide-top {
+@mixin modal--slide-top {
     transform: translateY(-100%);
     transition: transform 0.3s ease-out;
 
@@ -324,8 +164,7 @@
     }
 }
 
-/// Slide from bottom
-.modal--slide-bottom {
+@mixin modal--slide-bottom {
     top: auto;
     bottom: 0;
     transform: translateY(100%);
@@ -336,8 +175,7 @@
     }
 }
 
-/// Scale animation
-.modal--scale {
+@mixin modal--scale {
     transform: scale(0.7);
     transition: transform 0.3s ease-out;
 

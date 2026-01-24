@@ -9,20 +9,14 @@
 
 @use "../../soul_type" as *;
 
-/// Map container styling.
-/// This sets up the map container with full viewport dimensions and appropriate z-index.
-/// @group Map
-#map {
-    // width: 100vw;
-    // height: 100vh;
-    // z-index: z("canvas")+1;
-    // z-index: 9999;
-}
+// ============================================================================
+// Map Mixins
+// ============================================================================
 
 /// Main map canvas.
 /// Ensures the map canvas takes up the full viewport and has the correct stacking order.
 /// @group Map
-.map_canvas {
+@mixin map_canvas--base {
     width: 100vw;
     height: 100vh;
     z-index: z("canvas") + 1;
@@ -31,8 +25,7 @@
 /// Base styles for layer controls on the map.
 /// Applies basic styles such as resetting margins, applying font size, and setting up a light color scheme.
 /// @group Map
-.layer_control_base,
-.layer_control_overlay {
+@mixin layer_control--base {
     @include reset_bleed;
     @include font--size("03");
     // @include color_scheme_light;
@@ -55,44 +48,6 @@
             }
         }
     }
-}
-
-/// Custom radio button styling.
-/// Styles radio buttons with a custom appearance both in their default and checked states.
-/// @group Map
-// input[type='radio']:after {
-//     width: q(15);
-//     height: q(15);
-//     border-radius: q(15);
-//     top: q(4);
-//     left: -q(1);
-//     position: relative;
-//     background-color: #d1d3d1;
-//     content: '';
-//     display: inline-block;
-//     visibility: visible;
-//     border: q(2) solid white;
-// }
-
-// input[type='radio']:checked:after {
-//     width: q(15);
-//     height: q(15);
-//     border-radius: q(15);
-//     top: q(4);
-//     left: -q(1);
-//     position: relative;
-//     background-color: var(--color_accent_primary);
-//     content: '';
-//     display: inline-block;
-//     visibility: visible;
-//     border: q(2) solid white;
-// }
-
-/// Overlay-specific styles for layer controls.
-/// This section can be extended to include specific styles for layer control overlays on the map.
-/// @group Map
-.layer_control_overlay {
-    // Additional styles for the overlay can be added here.
 }
 
 // .map {

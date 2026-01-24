@@ -17,29 +17,44 @@
 // Timestamp Classes
 // ============================================================================
 
-// Note: The timestamp mixin file already includes class definitions
-// that use @include. This file re-exports for organizational purposes.
-
 .timestamp {
     @include timestamp;
 }
 
 .timestamp-elevate {
     @include timestamp--elevate;
-}
 
-.timestamp__container {
-    @include timestamp--container;
-}
+    .timestamp__container {
+        @include timestamp--container;
+    }
 
-.timestamp__details {
-    @include timestamp--details;
-}
+    .timestamp__details {
+        @include timestamp--details;
+    }
 
-.timestamp__time-since--active {
-    @include timestamp--active;
-}
+    .timestamp__time-since--active {
+        @include timestamp--active;
+    }
 
-.timestamp__expand-btn {
-    @include timestamp--expand-btn;
+    .timestamp__expand-button {
+        @include timestamp--expand-button;
+    }
+
+    &:not(.timestamp-elevate--expanded) .timestamp__container:hover {
+        @include timestamp--hover(var(--color_text_primary));
+    }
+
+    &:not(.timestamp-elevate--expanded):has(.timestamp__time-since--active)
+        .timestamp__container:hover {
+        @include timestamp--hover(var(--color_accent_primary));
+    }
+
+    &.timestamp-elevate--expanded {
+        .timestamp__details {
+            display: block;
+        }
+        .timestamp__expand-button {
+            display: none;
+        }
+    }
 }

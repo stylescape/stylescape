@@ -1,0 +1,146 @@
+////
+///
+/// Overflow Mixins
+/// ===========================================================================
+///
+/// Overflow utility mixins for controlling element overflow behavior.
+///
+/// @group Mixins.HeadLayout.Overflow
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../../../variables" as *;
+
+// ============================================================================
+// Base Overflow Mixins
+// ============================================================================
+
+/// Mixin to set overflow properties.
+/// @param {String} $x - Overflow for x-axis.
+/// @param {String} $y - Overflow for y-axis.
+@mixin overflow($x: null, $y: null) {
+    @if $x != null and $y != null {
+        overflow-x: $x;
+        overflow-y: $y;
+    } @else if $x != null {
+        overflow-x: $x;
+    } @else if $y != null {
+        overflow-y: $y;
+    }
+}
+
+/// Mixin to set overflow properties with `!important`.
+/// @param {String} $x - Overflow for x-axis.
+/// @param {String} $y - Overflow for y-axis.
+@mixin overflow_important($x: auto, $y: auto) {
+    overflow-x: $x !important;
+    overflow-y: $y !important;
+}
+
+// ============================================================================
+// Overflow Value Mixins
+// ============================================================================
+
+/// Mixin to set both x and y overflow to `hidden`.
+@mixin overflow_hidden {
+    overflow: hidden !important;
+}
+
+/// Mixin to set overflow to `visible`.
+@mixin overflow_visible {
+    overflow: visible !important;
+}
+
+/// Mixin to set overflow to `scroll`.
+@mixin overflow_scroll {
+    overflow: scroll !important;
+}
+
+/// Mixin to set overflow to `clip`.
+@mixin overflow_clip {
+    overflow: clip !important;
+}
+
+/// Mixin to set overflow to `auto`.
+@mixin overflow_auto {
+    overflow: auto !important;
+}
+
+// ============================================================================
+// Axis-specific Overflow Mixins
+// ============================================================================
+
+/// Mixin to set x-axis overflow to `visible`.
+@mixin overflow_x_visible {
+    overflow: visible;
+    overflow-x: visible;
+}
+
+/// Mixin to set x-axis overflow to `hidden`.
+@mixin overflow_x_hidden {
+    overflow-x: hidden;
+}
+
+/// Mixin to set x-axis overflow to `scroll`.
+@mixin overflow_x_scroll {
+    overflow-x: scroll;
+}
+
+/// Mixin to set x-axis overflow to `auto`.
+@mixin overflow_x_auto {
+    overflow-x: auto;
+}
+
+/// Mixin to set y-axis overflow to `visible`.
+@mixin overflow_y_visible {
+    overflow-y: visible;
+}
+
+/// Mixin to set y-axis overflow to `hidden`.
+@mixin overflow_y_hidden {
+    overflow-y: hidden;
+}
+
+/// Mixin to set y-axis overflow to `scroll`.
+@mixin overflow_y_scroll {
+    overflow-y: scroll;
+}
+
+/// Mixin to set y-axis overflow to `auto`.
+@mixin overflow_y_auto {
+    overflow-y: auto;
+}
+
+// ============================================================================
+// Utility Aliases
+// ============================================================================
+
+/// Mixin for setting overflow to hidden on both axes.
+@mixin overflow-hidden {
+    @include overflow(hidden, hidden);
+}
+
+/// Mixin for setting overflow to visible on both axes.
+@mixin overflow-visible {
+    @include overflow(visible, visible);
+}
+
+/// Mixin for setting overflow to scroll on both axes.
+@mixin overflow-scroll {
+    @include overflow(scroll, scroll);
+}
+
+/// Mixin for setting overflow to auto on both axes.
+@mixin overflow-auto {
+    @include overflow(auto, auto);
+}
+
+/// Mixin for setting overflow-x to hidden and overflow-y to visible.
+/// Useful for horizontal scroll containers where vertical content should be visible.
+@mixin overflow-hidden-visible {
+    @include overflow(hidden, visible);
+}

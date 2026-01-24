@@ -52,16 +52,6 @@
     }
 }
 
-.toc {
-    // font-size: 0.95rem;
-    // line-height: 1.4;
-    // padding: 1rem;
-    // background-color: #f8f9fa;
-    // border-left: q(4) solid #ccc;
-
-    @include toc;
-}
-
 // .toc {
 //     // font-family: sans-serif;
 //     // font-size: 0.95rem;
@@ -192,18 +182,9 @@
 //   }
 // }
 
-.aside_toc {
-    ul {
-        li a.active {
-            color: blue;
-            font-weight: bold;
-            text-decoration: underline;
-            background-color: lightblue;
-        }
-    }
-}
-
-.aside_toc {
+/// Aside TOC styles
+/// @group TOC
+@mixin aside-toc--base {
     ul {
         list-style-type: none;
         padding: 0;
@@ -215,6 +196,12 @@
                 color: black;
                 &:hover {
                     color: darkgray;
+                }
+                &.active {
+                    color: blue;
+                    font-weight: bold;
+                    text-decoration: underline;
+                    background-color: lightblue;
                 }
             }
             &.active {

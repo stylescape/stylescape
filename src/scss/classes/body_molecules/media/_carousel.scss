@@ -1,0 +1,72 @@
+////
+///
+/// Body Molecules - Carousel Classes
+/// ===========================================================================
+///
+/// @group Classes.BodyMolecules.Media
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../../../mixins/body_molecules/media/carousel" as *;
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+.carousel {
+    @include carousel--base;
+
+    &.carousel-slider {
+        @include carousel--slider;
+
+        .carousel-fixed-item {
+            @include carousel-fixed-item--base;
+
+            &.with-indicators {
+                @include carousel-fixed-item--with-indicators;
+            }
+        }
+
+        .carousel-item {
+            @include carousel-item--slider;
+
+            h2 {
+                @include carousel-item--h2;
+            }
+
+            p {
+                @include carousel-item--p;
+            }
+        }
+    }
+
+    .carousel-item {
+        @include carousel-item--base;
+
+        > img {
+            @include carousel-item--img;
+        }
+    }
+
+    .indicators {
+        @include carousel-indicators--base;
+
+        .indicator-item {
+            @include indicator-item--base;
+
+            &.active {
+                @include indicator-item--active;
+            }
+        }
+    }
+
+    // Materialbox compatibility
+    &.scrolling .carousel-item .materialboxed,
+    .carousel-item:not(.active) .materialboxed {
+        @include materialboxed--disabled;
+    }
+}

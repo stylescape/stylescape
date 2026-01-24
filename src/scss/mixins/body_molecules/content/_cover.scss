@@ -6,44 +6,64 @@
 @use "../../../variables" as *;
 
 @use "../../head_layout" as *;
+@use "../../body_atoms/media" as *;
 
 @use "../../soul_type" as *;
 
-// .content_cover_full, .content_cover_semi{
-//     @include reset_bleed;
-//     @include flex--column;
-//     align-items:            center;
-//     padding-bottom:         q(4);
-//     width:                  100%;
-//     height:                 100%;
-// }
+// ============================================================================
+// Mixins
+// ============================================================================
 
-// .content_cover_full {
-//     height:                 100vh;
-//     min-height:             100vh;
-// }
-// .content_cover_semi {
-//     height:                 calc(100vh / 2);
-//     max-height:             calc(100vh / 2);
-// }
+/// Base cover styles shared by full and semi variants
+/// @group content-cover
+@mixin content_cover_base {
+    @include reset_bleed;
+    @include flex--col;
+    align-items: center;
+    padding-bottom: q(4);
+    width: 100%;
+    height: 100%;
+}
 
-// .content_cover_image {
-//     @include reset_bleed;
-//     @include image--cover;
-//     position:               relative;
-//     width:                  100%;
-//     height:                 100%;
-// }
+/// Full viewport height cover
+/// @group content-cover
+@mixin content_cover_full {
+    @include content_cover_base;
+    height: 100vh;
+    min-height: 100vh;
+}
 
-// .content_cover_title {
-//     @include text--center;
-//     position:               relative;
-//     width:                  100%;
-//     height:                 100%;
-//     padding-top:            q(8);
-// }
+/// Semi (half viewport) height cover
+/// @group content-cover
+@mixin content_cover_semi {
+    @include content_cover_base;
+    height: calc(100vh / 2);
+    max-height: calc(100vh / 2);
+}
 
-// .content_cover_arrow {
-//     position:               absolute;
-//     bottom:                 0;
-// }
+/// Cover image styles
+/// @group content-cover
+@mixin content_cover_image {
+    @include reset_bleed;
+    @include image--cover;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/// Cover title styles
+/// @group content-cover
+@mixin content_cover_title {
+    @include text_align--center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: q(8);
+}
+
+/// Cover arrow styles (positioned at bottom)
+/// @group content-cover
+@mixin content_cover_arrow {
+    position: absolute;
+    bottom: 0;
+}

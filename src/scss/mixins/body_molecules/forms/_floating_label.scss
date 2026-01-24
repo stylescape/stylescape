@@ -3,10 +3,15 @@
 // Bootstrap-compatible floating label inputs
 // ============================================================================
 
-@use "../../dev" as *;
+@use "../../../dev" as *;
 
-// Floating label container
-.form_floating {
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Floating label container mixin
+/// @group Forms.FloatingLabel
+@mixin form_floating {
     position: relative;
 
     // Input styling
@@ -96,8 +101,9 @@
     }
 }
 
-// Form floating with input group
-.input_group > .form_floating {
+/// Form floating within input group mixin
+/// @group Forms.FloatingLabel
+@mixin form_floating--in-input-group {
     display: flex;
     flex: 1 1 auto;
     width: 1%;

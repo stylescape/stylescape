@@ -52,8 +52,9 @@ meter {
 // Bootstrap-style Progress Bar Component
 // ============================================================================
 
-/// Progress container
-.progress {
+/// Progress container mixin
+/// @group Progress
+@mixin progress {
     display: flex;
     height: q(10);
     overflow: hidden;
@@ -75,20 +76,24 @@ meter {
     }
 }
 
-// Progress bar label
-.progress--label {
+/// Progress bar label mixin
+/// @group Progress
+@mixin progress--label {
     .progress-bar {
         padding: 0 q(8);
     }
 }
 
-// Progress sizes
-.progress--sm {
+/// Small progress bar mixin
+/// @group Progress
+@mixin progress--sm {
     height: q(4);
     font-size: calc(var(--typescale-base) * 0.625);
 }
 
-.progress--lg {
+/// Large progress bar mixin
+/// @group Progress
+@mixin progress--lg {
     height: q(16);
     font-size: calc(var(--typescale-base) * 0.875);
 }
@@ -100,7 +105,9 @@ meter {
     }
 }
 
-.progress--striped {
+/// Striped progress bar mixin
+/// @group Progress
+@mixin progress--striped {
     .progress-bar {
         background-image: linear-gradient(
             45deg,
@@ -116,29 +123,46 @@ meter {
     }
 }
 
-// Animated striped progress bar
-.progress--animated {
+/// Animated striped progress bar mixin
+/// @group Progress
+@mixin progress--animated {
     .progress-bar {
         animation: progress-bar-stripes 1s linear infinite;
     }
 }
 
-// Progress bar color variants
-.progress-bar--primary {
+/// Primary progress bar color mixin
+/// @group Progress
+@mixin progress-bar--primary {
     background-color: var(--color_accent_primary);
 }
-.progress-bar--secondary {
+
+/// Secondary progress bar color mixin
+/// @group Progress
+@mixin progress-bar--secondary {
     background-color: var(--color_text_secondary);
 }
-.progress-bar--success {
+
+/// Success progress bar color mixin
+/// @group Progress
+@mixin progress-bar--success {
     background-color: var(--color_log_success);
 }
-.progress-bar--warning {
+
+/// Warning progress bar color mixin
+/// @group Progress
+@mixin progress-bar--warning {
     background-color: var(--color_log_warning);
 }
-.progress-bar--danger {
+
+/// Danger progress bar color mixin
+/// @group Progress
+@mixin progress-bar--danger {
     background-color: var(--color_log_error);
 }
-.progress-bar--info {
+
+/// Info progress bar color mixin
+/// @group Progress
+@mixin progress-bar--info {
     background-color: var(--color_log_info);
 }

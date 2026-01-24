@@ -36,7 +36,7 @@ video {
 /// Wrapper for video elements.
 ///
 /// Ensures the video occupies the full height and width of its container.
-.video_wrapper {
+@mixin video_wrapper {
     height: 100%;
     overflow: hidden;
     position: absolute;
@@ -81,22 +81,19 @@ video {
 /// Background overlay for videos.
 ///
 /// This overlay is semi-transparent and covers the entire video area, useful for adding effects or messages.
-.video-background {
-}
-
-.htms-video {
-}
-
-.video-wrapper iframe {
-}
-
-.video-background {
+@mixin video-background {
     position: absolute;
     height: 100%;
     width: 100%;
     z-index: 1;
     top: 0;
     background: rgba(67, 67, 67, 0.5);
+}
+
+@mixin htms-video {
+}
+
+@mixin video-wrapper-iframe {
 }
 
 // Advanced SCSS with Mixins for Responsive Aspect Ratios
@@ -130,7 +127,7 @@ video {
 /// Container for videos, ensuring a 16:9 aspect ratio.
 ///
 /// Applies the aspect-ratio mixin for consistent sizing across different devices.
-.video-container {
+@mixin video-container {
     @include video-aspect-ratio(16, 9); // 16:9 aspect ratio
 
     video {
@@ -150,7 +147,7 @@ video {
 ///
 /// This overlay is semi-transparent and centered within the video container.
 /// It becomes visible on hover or when the video is paused.
-.video-overlay {
+@mixin video-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -176,7 +173,7 @@ video {
 /// Custom controls for video playback.
 ///
 /// These controls are positioned at the bottom of the video and styled with a semi-transparent background.
-.custom-controls {
+@mixin custom-controls {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -201,7 +198,7 @@ video {
 /// Ensures embedded videos maintain responsiveness and aspect ratio.
 ///
 /// Particularly useful for video embeds from platforms like YouTube or Vimeo.
-.embed-responsive {
+@mixin embed-responsive {
     @include video-aspect-ratio(
         16,
         9

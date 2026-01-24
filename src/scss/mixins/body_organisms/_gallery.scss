@@ -1,11 +1,15 @@
+// ============================================================================
+// Mixins
+// ============================================================================
+
 @mixin gallery {
     display: grid;
     overflow: unset !important;
 
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: px2rem(30px);
+    grid-gap: 1.875rem; // px2rem(30px) - hardcoded until dependency resolved
 
-    @include mq("small") {
+    @media (max-width: 576px) {
         grid-template-columns: 1fr;
     }
 
@@ -14,49 +18,27 @@
     }
 }
 
-.gallery {
-    @include gallery;
-}
-
-.gallery_image {
+@mixin gallery_image {
     // @include reset_bleed;
-    @include ratio_1x1;
+    // @include ratio_1x1; // TODO: dependency not available
     // @include image_cover;
     // border: q(1) solid black;
 
     // border: q(1);
     // border-color: black;
+    aspect-ratio: 1 / 1; // Fallback for ratio_1x1
 }
 
-.gallery_border {
-    border: q(1) solid black;
+@mixin gallery_border {
+    border: 1px solid black; // Hardcoded q(1)
 }
 
-.gallery_image img {
+@mixin gallery_image_img {
     // @include reset_bleed;
-    @include ratio_1x1;
-    @include image_cover;
+    // @include ratio_1x1; // TODO: dependency not available
+    // @include image_cover; // TODO: dependency not available
+    aspect-ratio: 1 / 1; // Fallback for ratio_1x1
+    object-fit: cover; // Fallback for image_cover
+    width: 100%;
+    height: 100%;
 }
-
-// .gallery_image img {
-//     position: relative;
-//     width: q(100);
-//     height: q(100);
-// }
-
-// .project_image img {
-//     @include image--cover;
-// }
-
-// .gallery_image {
-//     @include ratio_1x1;
-// }
-
-// .gallery_border {
-//     border: q(1) solid black;
-// }
-
-// .gallery_image img {
-//     @include ratio_1x1;
-//     @include image--cover;
-// }

@@ -102,27 +102,35 @@ $font_width_max: 500 !default; // Maximum font width
 @mixin font--weight_100 {
     @include font--weight(map.get($font_weight_map, "100"));
 }
+
 @mixin font--weight_200 {
     @include font--weight(map.get($font_weight_map, "200"));
 }
+
 @mixin font--weight_300 {
     @include font--weight(map.get($font_weight_map, "300"));
 }
+
 @mixin font--weight_400 {
     @include font--weight(map.get($font_weight_map, "400"));
 }
+
 @mixin font--weight_500 {
     @include font--weight(map.get($font_weight_map, "500"));
 }
+
 @mixin font--weight_600 {
     @include font--weight(map.get($font_weight_map, "600"));
 }
+
 @mixin font--weight_700 {
     @include font--weight(map.get($font_weight_map, "700"));
 }
+
 @mixin font--weight_800 {
     @include font--weight(map.get($font_weight_map, "800"));
 }
+
 @mixin font--weight_900 {
     @include font--weight(map.get($font_weight_map, "900"));
 }
@@ -173,61 +181,3 @@ $font_weight_map: () !default;
 
 // $font_weight_map: generate_font--weight_map();
 @include generate_font--weight_map();
-// ============================================================================
-// Font Weight | Class Generation
-// ============================================================================
-
-/// Generate all `.font--weight_xxx` utility classes.
-@mixin generate_font--weight_classes() {
-    @each $key, $val in $font_weight_map {
-        .font--weight_#{$key} {
-            @include font--weight($val, 400);
-        }
-    }
-}
-
-@include generate_font--weight_classes();
-
-// Loop to generate font-weight map entries and classes.
-// /// ---------------------------------------------------------------------------
-// ///
-// /// This loop generates a map of font weights and corresponding CSS classes for each step.
-// @for $i from 1 through $font_weight_steps {
-//     $weight: $font_weight_min + ($font_weight_step_size * $i);
-
-//     // Ensure weight does not exceed max weight
-//     $weight: if($weight > $font_weight_max, $font_weight_max, $weight);
-
-//     // Generate variable name and declare it
-//     $var_name: '#{$i}00';
-//     $var_value: $weight;
-
-//     // Populate the map
-//     $font_weight_map: map.merge(
-//         $font_weight_map,
-//         (
-//             $var_name: $weight,
-//         )
-//     );
-
-//     // Generate Class
-//     $class_name: 'font--weight_#{$i}00';
-//     .#{$class_name} {
-//         @include font--weight($weight, 400);
-//     }
-
-//     // Break loop if maximum weight is reached
-//     @if $weight == $font_weight_max {
-//         @break;
-//     }
-// }
-
-// Base
-// ----------------------------------------------------------------------------
-
-/// Apply a base font weight to the `html` element.
-///
-/// This ensures that the entire document inherits a default font weight.
-html {
-    @include font--weight_400;
-}

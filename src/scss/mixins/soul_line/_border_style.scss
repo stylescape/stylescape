@@ -42,54 +42,60 @@
     border-color: $color;
 }
 
-// Border Style Classes
+// Border Style Specific Mixins
 // ----------------------------------------------------------------------------
 
-.border--none {
+/// Mixin for setting no border style.
+@mixin border--none {
     border-style: none !important;
 }
 
-.border--hidden {
+/// Mixin for setting a hidden border style.
+@mixin border--hidden {
     border-style: hidden !important;
 }
 
-/// Class for setting a solid border style.
-.border--solid {
+/// Mixin for setting a solid border style.
+@mixin border--solid {
     @include border_style(solid);
 }
 
-/// Class for setting a dashed border style.
-.border--dashed {
+/// Mixin for setting a dashed border style.
+@mixin border--dashed {
     @include border_style(dashed);
 }
 
-/// Class for setting a dotted border style.
-.border--dotted {
+/// Mixin for setting a dotted border style.
+@mixin border--dotted {
     @include border_style(dotted);
 }
 
-/// Class for setting a double border style.
-.border--double {
+/// Mixin for setting a double border style.
+@mixin border--double {
     @include border_style(double);
 }
 
-/// Class for setting a groove border style (3D effect).
-.border--groove {
+/// Mixin for setting a groove border style (3D effect).
+@mixin border--groove {
     @include border_style(groove);
 }
 
-/// Class for setting a ridge border
-.border--ridge {
-    @include border-style(ridge);
+/// Mixin for setting a ridge border style.
+@mixin border--ridge {
+    @include border_style(ridge);
 }
 
-.border--inset {
-    @include border-style(inset);
-}
-.border--outset {
-    @include border-style(outset);
+/// Mixin for setting an inset border style.
+@mixin border--inset {
+    @include border_style(inset);
 }
 
-.border--transparent {
-    @include border-transparent;
+/// Mixin for setting an outset border style.
+@mixin border--outset {
+    @include border_style(outset);
+}
+
+/// Mixin for setting a transparent border.
+@mixin border--transparent {
+    @include border_transparent;
 }

@@ -3,10 +3,14 @@
 // Bootstrap-compatible placeholder loading animations
 // ============================================================================
 
-@use "../../dev" as *;
+@use "../../../dev" as *;
+
+// ============================================================================
+// Mixins
+// ============================================================================
 
 // Base placeholder
-.placeholder {
+@mixin placeholder {
     display: inline-block;
     min-height: 1em;
     vertical-align: middle;
@@ -29,21 +33,24 @@
 }
 
 // Placeholder width utilities
-.placeholder--w-25 {
+@mixin placeholder--w-25 {
     width: 25%;
 }
-.placeholder--w-50 {
+
+@mixin placeholder--w-50 {
     width: 50%;
 }
-.placeholder--w-75 {
+
+@mixin placeholder--w-75 {
     width: 75%;
 }
-.placeholder--w-100 {
+
+@mixin placeholder--w-100 {
     width: 100%;
 }
 
 // Glow animation
-.placeholder--glow {
+@mixin placeholder--glow {
     .placeholder {
         animation: placeholder-glow 2s ease-in-out infinite;
     }
@@ -56,7 +63,7 @@
 }
 
 // Wave animation
-.placeholder--wave {
+@mixin placeholder--wave {
     mask-image: linear-gradient(
         130deg,
         #000 55%,
@@ -74,7 +81,7 @@
 }
 
 // Placeholder button
-.placeholder--button {
+@mixin placeholder--button {
     pointer-events: none;
 
     &::before {
@@ -84,34 +91,34 @@
 }
 
 // Color variants
-.placeholder--primary {
+@mixin placeholder--primary {
     background-color: var(--color_accent_primary);
 }
 
-.placeholder--secondary {
+@mixin placeholder--secondary {
     background-color: var(--color_text_secondary);
 }
 
-.placeholder--success {
+@mixin placeholder--success {
     background-color: var(--color_log_success);
 }
 
-.placeholder--danger {
+@mixin placeholder--danger {
     background-color: var(--color_log_error);
 }
 
-.placeholder--warning {
+@mixin placeholder--warning {
     background-color: var(--color_log_warning);
 }
 
-.placeholder--info {
+@mixin placeholder--info {
     background-color: var(--color_log_info);
 }
 
-.placeholder--light {
+@mixin placeholder--light {
     background-color: var(--color_fill_02);
 }
 
-.placeholder--dark {
+@mixin placeholder--dark {
     background-color: var(--color_fill_04);
 }

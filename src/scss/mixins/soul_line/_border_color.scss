@@ -13,27 +13,27 @@
     border-color: $color !important;
 }
 
-/// Class to apply a primary color to the border.
-/// Uses the `border_color` mixin with blue as the primary color.
+/// Mixin to apply a primary color to the border.
+/// Uses the `border_color` mixin with the primary text color.
 /// @example
-/// .element { @extend .border_color_primary; }
-.border_color_primary {
+/// .element { @include border_color_primary; }
+@mixin border_color_primary {
     @include border_color(var(--color_text_primary));
 }
 
-/// Class to apply a secondary color to the border.
-/// Uses the `border_color` mixin with green as the secondary color.
+/// Mixin to apply a secondary color to the border.
+/// Uses the `border_color` mixin with the primary accent color.
 /// @example
-/// .element { @extend .border_color_secondary; }
-.border_color_secondary {
+/// .element { @include border_color_secondary; }
+@mixin border_color_secondary {
     @include border_color(var(--color_accent_primary));
 }
 
-/// Class to apply an alert color to the border.
-/// Uses the `border_color` mixin with red as the alert color.
+/// Mixin to apply an alert color to the border.
+/// Uses the `border_color` mixin with the alert color.
 /// @example
-/// .element { @extend .border_color_alert; }
-.border_color_alert {
+/// .element { @include border_color_alert; }
+@mixin border_color_alert {
     @include border_color(var(--color_log_alert));
 }
 
@@ -50,10 +50,10 @@
     background-clip: padding-box, border-box;
 }
 
-/// Class to apply a gradient border with a default color scheme.
+/// Mixin to apply a gradient border with a default color scheme.
 /// Uses the `gradient-border` mixin with purple to orange gradient.
 /// @example
-/// .element { @extend .border_gradient; }
-.border_gradient {
+/// .element { @include border_gradient; }
+@mixin border_gradient {
     @include gradient-border(purple, orange);
 }

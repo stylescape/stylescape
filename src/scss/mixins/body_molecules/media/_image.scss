@@ -1,22 +1,29 @@
-.image {
+// ============================================================================
+// Image Mixins
+// ============================================================================
+
+@mixin image--base {
     border-bottom: q(1) solid #e6e6e6;
     margin: q(32) 0;
     padding-bottom: q(8);
     width: 100%;
 }
 
-.image__hide-placeholder .kiln-placeholder {
-    display: none;
+@mixin image__hide-placeholder {
+    .kiln-placeholder {
+        display: none;
+    }
 }
 
-.image__picture {
+@mixin image__picture {
     width: 100%;
 }
 
-.image__metadata {
+@mixin image__metadata {
     display: grid;
 }
-.image__caption {
+
+@mixin image__caption {
     color: var(--color_text_primary);
     font-size: q(12);
     font-weight: 400;
@@ -24,17 +31,20 @@
     margin-top: q(8);
     text-align: left;
     order: 2;
+
+    a {
+        color: var(--color_text_primary);
+        text-underline-offset: q(4);
+        text-decoration: underline;
+
+        &:hover {
+            color: #6e6e6e;
+            text-decoration: none;
+        }
+    }
 }
-.image__caption a {
-    color: var(--color_text_primary);
-    text-underline-offset: q(4);
-    text-decoration: underline;
-}
-.image__caption a:hover {
-    color: #6e6e6e;
-    text-decoration: none;
-}
-.image__credit {
+
+@mixin image__credit {
     color: #6e6e6e;
     font-size: q(10);
     font-weight: 400;
@@ -43,12 +53,12 @@
     order: 1;
     visibility: hidden;
 }
-.image__container {
+
+@mixin image__container {
     display: flex;
 }
 
-.image,
-.image_inline-small {
+@mixin image--border-bottom {
     border-bottom: q(1) solid #e6e6e6;
 }
 

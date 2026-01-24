@@ -11,14 +11,34 @@
 ///
 ////
 
-// Note: The map mixin file already contains class definitions.
-// This file imports them for consistency with the class module structure.
-
-@use "../../../mixins/body_molecules/media/map";
+@use "../../../mixins/body_molecules/media/map" as *;
 
 // ============================================================================
-// Map Classes
+// Utility Classes
 // ============================================================================
-// Classes are defined in the mixin file:
-// - #map, .map_canvas
-// - .layer_control_base, .layer_control_overlay
+
+/// Map container styling.
+/// This sets up the map container with full viewport dimensions and appropriate z-index.
+/// @group Map
+#map {
+    // width: 100vw;
+    // height: 100vh;
+    // z-index: z("canvas")+1;
+    // z-index: 9999;
+}
+
+.map_canvas {
+    @include map_canvas--base;
+}
+
+.layer_control_base,
+.layer_control_overlay {
+    @include layer_control--base;
+}
+
+/// Overlay-specific styles for layer controls.
+/// This section can be extended to include specific styles for layer control overlays on the map.
+/// @group Map
+.layer_control_overlay {
+    // Additional styles for the overlay can be added here.
+}

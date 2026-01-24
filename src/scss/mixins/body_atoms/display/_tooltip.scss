@@ -135,83 +135,94 @@ $tooltip_unit: q(6);
     transform: translateX(-50%);
 }
 
-.tooltip {
-    // position: relative;
+/// Base tooltip container
+/// @group Tooltip
+@mixin tooltip {
     display: inline-block;
-    // position: absolute;
     overflow: visible;
     position: relative;
-}
 
-/// Tooltip content styling before the tooltip appears.
-/// @group Tooltip
-.tooltip:before {
-    // @include tooltip--box--right;
-    // z-index: 9999;
-    // margin-left: -q(60);
-    // font-size: 0.70em;
-    // top: -q(4);
-    // left: 105%;
-}
+    /// Tooltip content styling before the tooltip appears.
+    &:before {
+        // @include tooltip--box--right;
+        // z-index: 9999;
+        // margin-left: -q(60);
+        // font-size: 0.70em;
+        // top: -q(4);
+        // left: 105%;
+    }
 
-/// Tooltip arrow styling.
-/// @group Tooltip
-.tooltip:after {
-    // @include tooltip__arrow--left;
+    /// Tooltip arrow styling.
+    &:after {
+        // @include tooltip__arrow--left;
+    }
+
+    /// Tooltip content and arrow visibility on hover.
+    &:hover:before,
+    &:hover:after {
+        opacity: 1;
+        visibility: visible;
+        display: block;
+        position: absolute;
+        z-index: 9999;
+        cursor: help;
+    }
 }
 
 /// Tooltip with content shown on top
-.tooltip--top:before {
-    @include tooltip__box--top;
-}
-.tooltip--top:after {
-    @include tooltip__arrow--top;
+/// @group Tooltip
+@mixin tooltip--top {
+    &:before {
+        @include tooltip__box--top;
+    }
+    &:after {
+        @include tooltip__arrow--top;
+    }
 }
 
 /// Tooltip with content shown on bottom
-.tooltip--bottom:before {
-    @include tooltip__box--bottom;
-}
-.tooltip--bottom:after {
-    @include tooltip__arrow--bottom;
+/// @group Tooltip
+@mixin tooltip--bottom {
+    &:before {
+        @include tooltip__box--bottom;
+    }
+    &:after {
+        @include tooltip__arrow--bottom;
+    }
 }
 
 /// Tooltip with content shown on left
-.tooltip--left:before {
-    @include tooltip__box--left;
-}
-.tooltip--left:after {
-    @include tooltip__arrow--left;
+/// @group Tooltip
+@mixin tooltip--left {
+    &:before {
+        @include tooltip__box--left;
+    }
+    &:after {
+        @include tooltip__arrow--left;
+    }
 }
 
 /// Tooltip with content shown on right (DEFAULT)
-.tooltip--right:before {
-    @include tooltip__box--right;
-}
-.tooltip--right:after {
-    @include tooltip__arrow--right;
-}
-
-/// Tooltip content and arrow visibility on hover.
 /// @group Tooltip
-.tooltip:hover:before,
-.tooltip:hover:after {
-    opacity: 1;
-    visibility: visible;
-    display: block;
-    position: absolute;
-    z-index: 9999;
-    cursor: help;
+@mixin tooltip--right {
+    &:before {
+        @include tooltip__box--right;
+    }
+    &:after {
+        @include tooltip__arrow--right;
+    }
 }
 
 /// Static tooltip that is always shown
 /// @group Tooltip
-.tooltip--static:before,
-.tooltip--static:after {
-    opacity: 1;
-    visibility: visible;
-    display: block;
-    position: absolute;
-    z-index: 9999;
-    pointer-events: auto;
+@mixin tooltip--static {
+    &:before,
+    &:after {
+        opacity: 1;
+        visibility: visible;
+        display: block;
+        position: absolute;
+        z-index: 9999;
+        pointer-events: auto;
+    }
 }

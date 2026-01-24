@@ -1,0 +1,69 @@
+////
+///
+/// Flex Child Mixins
+/// ===========================================================================
+///
+/// Flexbox child/item mixins for controlling flex item behavior.
+///
+/// @group Mixins.HeadLayout.Flex
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Flex | Child Behavior
+// ============================================================================
+
+/// Mixin for setting the order of flex items.
+/// @param {Number} $val - The order value.
+@mixin flex--order($val) {
+    -webkit-box-ordinal-group: $val;
+    -moz-box-ordinal-group: $val;
+    -ms-flex-order: $val;
+    -webkit-order: $val;
+    order: $val;
+}
+
+/// Mixin for adjusting the flex-grow, flex-shrink, and flex-basis properties.
+/// @param {Number} $val - The value for the flex property.
+@mixin flex--size($val) {
+    -webkit-box-flex: $val;
+    -moz-box-flex: $val;
+    -webkit-flex: $val;
+    -ms-flex: $val;
+    flex: $val;
+}
+
+/// Mixin for setting the flex-basis property.
+/// @param {String} $val - The value for the flex-basis property.
+@mixin flex--basis($val) {
+    flex-basis: $val;
+}
+
+/// Mixin for setting the flex-grow property.
+/// @param {Number} $val - The value for the flex-grow property.
+@mixin flex--grow($val) {
+    flex-grow: $val;
+}
+
+/// Mixin for setting the flex-shrink property.
+/// @param {Number} $val - The value for the flex-shrink property.
+@mixin flex--shrink($val) {
+    flex-shrink: $val;
+}
+
+/// Mixin for disabling flex-grow and flex-shrink, keeping the item fixed.
+@mixin flex--keep {
+    @include flex--grow(0);
+    @include flex--shrink(0);
+}
+
+/// Mixin for enabling flex-grow and flex-shrink, making the item dynamic.
+@mixin flex--fill {
+    @include flex--grow(1);
+    @include flex--shrink(1);
+    @include flex--basis(auto);
+}

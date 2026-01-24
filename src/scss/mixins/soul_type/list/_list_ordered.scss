@@ -35,29 +35,14 @@
     list-style-type: $list-incremental-style-type;
 }
 
-/// Base styles for ordered lists (`<ol>`).
+/// Mixin for custom numbered lists with counters
 /// ---------------------------------------------------------------------------
-///
-/// This section defines the basic structure and styles for ordered lists.
-/// Additional customizations can be applied within the `<li>` elements.
-ol {
-    /// Base styles for list items (`<li>`) within ordered lists.
-    ///
-    /// This can include font styles, spacing, and other properties
-    /// specific to list items in an ordered list.
-    li {
-    }
-}
-
-///
-/// Custom numbered lists with counters
-/// ----------------------------------------------------------------------------
 ///
 /// Custom styles for ordered lists with custom numbering.
 ///
-/// This section defines styles for ordered lists that use custom counters
+/// This mixin defines styles for ordered lists that use custom counters
 /// for numbering the list items, allowing for enhanced control over the numbering style.
-ol.custom-numbered {
+@mixin ol--custom-numbered {
     counter-reset: custom-counter; // Resets the counter at the start of the list
     list-style-type: none; // Removes the default list numbering
 
@@ -68,8 +53,4 @@ ol.custom-numbered {
             font-weight: bold; // Applies bold styling to the counter
         }
     }
-}
-
-ol {
-    @include ol;
 }

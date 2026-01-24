@@ -28,11 +28,7 @@
 // Mixins
 // ============================================================================
 
-// ============================================================================
-// Classes
-// ============================================================================
-
-.ribbon__nav {
+@mixin ribbon__nav {
     @include icon_bar--horizontal;
     @include character--hyperlink--clean;
     @include justify--center;
@@ -44,7 +40,7 @@
     }
 }
 
-.ribbon__nav_button {
+@mixin ribbon__nav_button {
     @include visible;
     display: inherit;
     @media screen and (min-width: $media_md) {
@@ -53,7 +49,7 @@
     }
 }
 
-.ribbon__nav__list {
+@mixin ribbon__nav__list {
     // @include color_scheme_dark;
     align-content: left;
     position: absolute;
@@ -107,7 +103,7 @@
     }
 }
 
-.ribbon .ribbon__nav .ribbon__nav__list .ribbon__nav__list__item {
+@mixin ribbon__nav__list__item--in-ribbon {
     // @include flex--col;
     // @include align--center;
     // @include justify--center;
@@ -117,13 +113,13 @@
     display: block;
 }
 
-.ribbon__nav__list__item {
+@mixin ribbon__nav__list__item {
     @include justify--end;
     align-content: center;
     height: 100%;
 }
 
-.ribbon__nav__list__item__text {
+@mixin ribbon__nav__list__item__text {
     @include font--size("03");
     white-space: nowrap;
     overflow: hidden;

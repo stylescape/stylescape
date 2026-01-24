@@ -54,7 +54,7 @@
 }
 
 /// Expand button
-@mixin timestamp--expand-btn {
+@mixin timestamp--expand-button {
     width: q(14);
     height: q(20);
     // background: url(/media/sites/icons/ui-caret-down-elevate.svg) 0 0 / contain no-repeat;
@@ -64,46 +64,4 @@
 @mixin timestamp--hover($color) {
     -webkit-text-decoration: underline solid $color;
     text-decoration: underline solid $color;
-}
-
-.timestamp {
-    @include timestamp;
-}
-
-.timestamp-elevate {
-    @include timestamp--elevate;
-
-    .timestamp__container {
-        @include timestamp--container;
-    }
-
-    .timestamp__details {
-        @include timestamp--details;
-    }
-
-    .timestamp__time-since--active {
-        @include timestamp--active;
-    }
-
-    .timestamp__expand-btn {
-        @include timestamp--expand-btn;
-    }
-
-    &:not(.timestamp-elevate--expanded) .timestamp__container:hover {
-        @include timestamp--hover(var(--color_text_primary));
-    }
-
-    &:not(.timestamp-elevate--expanded):has(.timestamp__time-since--active)
-        .timestamp__container:hover {
-        @include timestamp--hover(var(--color_accent_primary));
-    }
-
-    &.timestamp-elevate--expanded {
-        .timestamp__details {
-            display: block;
-        }
-        .timestamp__expand-btn {
-            display: none;
-        }
-    }
 }

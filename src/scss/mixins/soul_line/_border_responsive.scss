@@ -5,7 +5,7 @@
 // ============================================================================
 
 /// Mixin for setting a responsive border with different widths based on screen size.
-.border_responsive {
+@mixin border_responsive {
     @include border_width(q(2));
 
     @media (max-width: 600px) {
@@ -16,8 +16,8 @@
 // Responsive Border Thickness
 // ============================================================================
 
-/// Class to adjust border thickness based on screen size.
-.border_responsive_thickness {
+/// Mixin to adjust border thickness based on screen size.
+@mixin border_responsive_thickness {
     border: q(1) solid;
 
     @media (min-width: 7Q(68)) {
@@ -32,10 +32,7 @@
 // Responsive Border Width
 // ============================================================================
 
-/// Media query to adjust border width for elements with the `.border-responsive` class on smaller screens.
-@media (max-width: 600px) {
-    .border-responsive {
-        @include border-width(q(2));
-    }
-    // Add more responsive styles as needed
+/// Mixin to adjust border width for smaller screens.
+@mixin border-responsive {
+    @include border-width(q(2));
 }

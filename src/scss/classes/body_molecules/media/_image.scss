@@ -11,15 +11,41 @@
 ///
 ////
 
-// Note: The image mixin file already contains class definitions.
-// This file imports them for consistency with the class module structure.
-
-@use "../../../mixins/body_molecules/media/image";
+@use "../../../mixins/body_molecules/media/image" as *;
 
 // ============================================================================
-// Image Classes
+// Utility Classes
 // ============================================================================
-// Classes are defined in the mixin file:
-// - .image, .image__picture, .image__img, .image__metadata
-// - .image__caption, .image__credit, .image__container
-// - .image_inline-small
+
+.image {
+    @include image--base;
+}
+
+.image__hide-placeholder {
+    @include image__hide-placeholder;
+}
+
+.image__picture {
+    @include image__picture;
+}
+
+.image__metadata {
+    @include image__metadata;
+}
+
+.image__caption {
+    @include image__caption;
+}
+
+.image__credit {
+    @include image__credit;
+}
+
+.image__container {
+    @include image__container;
+}
+
+.image,
+.image_inline-small {
+    @include image--border-bottom;
+}

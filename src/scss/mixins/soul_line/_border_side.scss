@@ -27,37 +27,37 @@
     }
 }
 
-// Border Side Classes
+// Border Side Specific Mixins
 // ----------------------------------------------------------------------------
 
-/// Class for setting a border on the top side of an element.
-.border--top {
+/// Mixin for setting a border on the top side of an element.
+@mixin border--top {
     @include border_side(top);
 }
 
-/// Class for setting a border on the bottom side of an element.
-.border--bottom {
+/// Mixin for setting a border on the bottom side of an element.
+@mixin border--bottom {
     @include border_side(bottom);
 }
 
-/// Class for setting a border on the left side of an element.
-.border--left {
+/// Mixin for setting a border on the left side of an element.
+@mixin border--left {
     @include border_side(left);
 }
 
-/// Class for setting a border on the right side of an element.
-.border--right {
+/// Mixin for setting a border on the right side of an element.
+@mixin border--right {
     @include border_side(right);
 }
 
-/// Class for setting borders on both the top and bottom sides of an element.
-.border--vertical {
+/// Mixin for setting borders on both the top and bottom sides of an element.
+@mixin border--vertical {
     @include border_side(top);
     @include border_side(bottom);
 }
 
-/// Class for setting borders on both the left and right sides of an element.
-.border--horizontal {
+/// Mixin for setting borders on both the left and right sides of an element.
+@mixin border--horizontal {
     @include border_side(left);
     @include border_side(right);
 }
@@ -73,17 +73,3 @@
 @mixin border_all($width: q(1), $style: solid, $color: black) {
     border: $width $style $color;
 }
-
-/// Class for setting borders on all sides of an element.
-.border_all {
-    @include border_all();
-}
-
-// Example: Customizable Border Classes
-// .border_custom { @include border_side(top, q(2), dashed, blue); }
-
-// Example: Responsive Border Styles
-// @media (max-width: 600px) {
-//     .border--top-mobile { @include border_side(top, q(2)); }
-//     // Add more responsive styles as needed
-// }

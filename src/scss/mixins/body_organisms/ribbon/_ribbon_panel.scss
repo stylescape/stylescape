@@ -55,82 +55,89 @@
     min-width: q(150);
     position: absolute;
     top: 100%;
-    &.right {
-        right: 0;
-    }
-    &.left {
-        left: 0;
-    }
-    &.center {
-        left: 50%;
-        transform: translateX(-50%);
-    }
 
     margin-top: $ribbon_spacing + q(1);
     padding: $ribbon_spacing * 2;
 }
 
-.ribbon_panel {
-    @include ribbon_panel;
-    .ribbon_panel_header,
-    .ribbon_panel_section,
-    .ribbon_panel_section_header,
-    .ribbon_panel_section_item {
-        @include reset_bleed;
-        @include font--size("03");
-        width: 100%;
-        padding-left: $menu_margin;
-        padding-right: $menu_margin;
-    }
-    .ribbon_panel_line {
-        @include reset_bleed;
-        // @include color_scheme_light;
-        border: q(0.5) solid var(--color_text_primary);
-    }
+@mixin ribbon_panel--right {
+    right: 0;
+}
 
-    .ribbon_panel_header {
-        @include font--weight_500;
-        text-align: center;
-        font-style: normal;
-        svg {
-            background-color: transparent !important;
-            width: q(48);
-            height: q(48);
-        }
-    }
-    .ribbon_panel_section_header {
-        @include font--weight_500;
-    }
-    .ribbon_panel_section {
-        @include font--weight_300;
-        display: grid;
-        gap: $ribbon_spacing * 1;
-        justify-items: start;
-        align-items: center;
-        grid-auto-rows: min-content;
-        grid-auto-flow: row;
-        .ribbon_panel_section_item {
-            @include character--hyperlink--clean;
-            @include sizing--border;
-            list-style-type: none;
-            padding: 0;
-        }
-        &.ribbon_panel_icon_grid {
-            @include grid--size--col(5);
-            .ribbon_launcher_item {
-                .ribbon_launcher_item_icon svg {
-                    background-color: transparent;
-                }
-            }
-        }
+@mixin ribbon_panel--left {
+    left: 0;
+}
+
+@mixin ribbon_panel--center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin ribbon_panel_item_base {
+    @include reset_bleed;
+    @include font--size("03");
+    width: 100%;
+    padding-left: $menu_margin;
+    padding-right: $menu_margin;
+}
+
+@mixin ribbon_panel_line {
+    @include reset_bleed;
+    // @include color_scheme_light;
+    border: q(0.5) solid var(--color_text_primary);
+}
+
+@mixin ribbon_panel_header {
+    @include ribbon_panel_item_base;
+    @include font--weight_500;
+    text-align: center;
+    font-style: normal;
+    svg {
+        background-color: transparent !important;
+        width: q(48);
+        height: q(48);
     }
 }
 
-details {
+@mixin ribbon_panel_section_header {
+    @include ribbon_panel_item_base;
+    @include font--weight_500;
+}
+
+@mixin ribbon_panel_section {
+    @include ribbon_panel_item_base;
+    @include font--weight_300;
+    display: grid;
+    gap: $ribbon_spacing * 1;
+    justify-items: start;
+    align-items: center;
+    grid-auto-rows: min-content;
+    grid-auto-flow: row;
+}
+
+@mixin ribbon_panel_section_item {
+    @include ribbon_panel_item_base;
+    @include character--hyperlink--clean;
+    @include sizing--border;
+    list-style-type: none;
+    padding: 0;
+}
+
+@mixin ribbon_panel_icon_grid {
+    @include grid--size--col(5);
+}
+
+@mixin ribbon_launcher_item_icon {
+    svg {
+        background-color: transparent;
+    }
+}
+
+@mixin details_base {
     position: relative;
 }
 
-details[open] summary {
+@mixin details_open_summary {
     fill: var(--color_state_active) !important;
     color: var(--color_state_active) !important;
 

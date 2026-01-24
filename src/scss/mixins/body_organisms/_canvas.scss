@@ -9,6 +9,10 @@
 // Container | Canvas
 // ============================================================================
 
+// ============================================================================
+// Mixins
+// ============================================================================
+
 @mixin canvas {
     position: absolute;
     top: 0;
@@ -32,16 +36,12 @@
     // "ribbon_left       ribbon_mid      ribbon_right";
 }
 
-.canvas {
-    @include canvas;
-}
-
-.canvas > div {
+@mixin canvas--child {
     @include canvas;
     position: absolute;
 }
 
-#particles-js {
+@mixin particles-js {
     min-width: 100%;
     min-height: 100%;
     height: 100%;
@@ -50,13 +50,13 @@
     // background-color: $color_highlight;
 }
 
-.canvas_color {
+@mixin canvas_color {
     // background-color: $color_highlight;
     min-width: 100vw;
     min-height: 100vh;
 }
 
-.canvas_gradient {
+@mixin canvas_gradient {
     // background-color: $color_highlight;
     min-width: 100vw;
     min-height: 100vh;

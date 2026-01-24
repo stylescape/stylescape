@@ -32,20 +32,27 @@
     animation: spinner-rotate 0.6s linear infinite;
 }
 
-/// Spinner Utility Classes
-.spinner {
+/// Default spinner mixin
+/// @group Spinner
+@mixin spinner {
     @include spinner--base();
 }
 
-.spinner--sm {
+/// Small spinner mixin
+/// @group Spinner
+@mixin spinner--sm {
     @include spinner--base(2, q(2));
 }
 
-.spinner--md {
+/// Medium spinner mixin
+/// @group Spinner
+@mixin spinner--md {
     @include spinner--base(3, q(3));
 }
 
-.spinner--lg {
+/// Large spinner mixin
+/// @group Spinner
+@mixin spinner--lg {
     @include spinner--base(4, q(4));
 }
 
@@ -60,8 +67,9 @@
     }
 }
 
-// Growing spinner variant
-.spinner_grow {
+/// Growing spinner variant mixin
+/// @group Spinner
+@mixin spinner_grow {
     display: inline-block;
     width: baseline(3);
     height: baseline(3);
@@ -82,28 +90,50 @@
     }
 }
 
-// Spinner color variants
-.spinner--primary {
+/// Primary spinner color mixin
+/// @group Spinner
+@mixin spinner--primary {
     border-top-color: var(--color_accent_primary);
 }
-.spinner--secondary {
+
+/// Secondary spinner color mixin
+/// @group Spinner
+@mixin spinner--secondary {
     border-top-color: var(--color_text_secondary);
 }
-.spinner--success {
+
+/// Success spinner color mixin
+/// @group Spinner
+@mixin spinner--success {
     border-top-color: var(--color_log_success);
 }
-.spinner--warning {
+
+/// Warning spinner color mixin
+/// @group Spinner
+@mixin spinner--warning {
     border-top-color: var(--color_log_warning);
 }
-.spinner--danger {
+
+/// Danger spinner color mixin
+/// @group Spinner
+@mixin spinner--danger {
     border-top-color: var(--color_log_error);
 }
-.spinner--info {
+
+/// Info spinner color mixin
+/// @group Spinner
+@mixin spinner--info {
     border-top-color: var(--color_log_info);
 }
-.spinner--light {
+
+/// Light spinner color mixin
+/// @group Spinner
+@mixin spinner--light {
     border-top-color: var(--color_fill_01);
 }
-.spinner--dark {
+
+/// Dark spinner color mixin
+/// @group Spinner
+@mixin spinner--dark {
     border-top-color: var(--color_fill_04);
 }

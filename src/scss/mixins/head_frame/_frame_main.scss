@@ -1,7 +1,6 @@
 @use "../../dev" as *;
 
 @use "../head_layout" as *;
-@use "../head_position" as *;
 @use "frame_base" as *;
 @use "../soul_object" as *;
 
@@ -52,27 +51,32 @@
     // Reset box sizing for accurate layout calculation
     @include sizing--border;
 }
+
 @mixin frame_main__area--flex {
     // In flex or grid layouts, this avoids overflow pushing others
     flex-shrink: 1;
     flex-grow: 1;
 }
+
 @mixin frame_main__area--top_left {
     @include frame__area(top_left);
     @include frame_main__area--base;
     @include position--fixed(top, left);
 }
+
 @mixin frame_main__area--top_center {
     @include frame__area(top_center);
     @include frame_main__area--base;
     @include frame_main__area--flex;
     @include position--fixed(top, none);
 }
+
 @mixin frame_main__area--top_right {
     @include frame__area(top_right);
     @include frame_main__area--base;
     @include position--fixed(top, right);
 }
+
 @mixin frame_main__area--middle_left {
     @include frame__area(middle_left);
     @include frame_main__area--base;
@@ -80,28 +84,33 @@
     // @include position--fixed(none, left);
     height: 100%;
 }
+
 @mixin frame_main__area--middle_center {
     @include frame__area(middle_center);
     @include frame_main__area--base;
     @include frame_main__area--flex;
 }
+
 @mixin frame_main__area--middle_right {
     @include frame__area(middle_right);
     @include frame_main__area--base;
     @include frame_main__area--flex;
     // @include position--fixed(none, right);
 }
+
 @mixin frame_main__area--bottom_left {
     @include frame__area(bottom_left);
     @include frame_main__area--base;
     @include position--fixed(bottom, left);
 }
+
 @mixin frame_main__area--bottom_center {
     @include frame__area(bottom_center);
     @include frame_main__area--base;
     @include frame_main__area--flex;
     @include position--fixed(bottom, none);
 }
+
 @mixin frame_main__area--bottom_right {
     @include frame__area(bottom_right);
     @include frame_main__area--base;
@@ -142,64 +151,4 @@
     @include frame__area--right;
     @include frame_main__area--base;
     // @include position--fixed(both, right);
-}
-
-// ============================================================================
-// Utility Class Composition
-// ============================================================================
-///
-/// frame | Apply Grid Areas
-/// ---------------------------------------------------------------------------
-///
-/// Usage: Add this class to `<body>` or `<main>` to activate frame.
-///
-.frame_main {
-    @include frame_main;
-    // Area Utilities
-    .frame_main__area--top_left {
-        @include frame_main__area--top_left;
-    }
-    .frame_main__area--top_center {
-        @include frame_main__area--top_center;
-    }
-    .frame_main__area--top_right {
-        @include frame_main__area--top_right;
-    }
-    .frame_main__area--middle_left {
-        @include frame_main__area--middle_left;
-    }
-    .frame_main__area--middle_center {
-        @include frame_main__area--middle_center;
-    }
-    .frame_main__area--middle_right {
-        @include frame_main__area--middle_right;
-    }
-    .frame_main__area--bottom_left {
-        @include frame_main__area--bottom_left;
-    }
-    .frame_main__area--bottom_center {
-        @include frame_main__area--bottom_center;
-    }
-    .frame_main__area--bottom_right {
-        @include frame_main__area--bottom_right;
-    }
-    // Group Utilities
-    .frame_main__area--top {
-        @include frame_main__area--top;
-    }
-    .frame_main__area--middle {
-        @include frame_main__area--middle;
-    }
-    .frame_main__area--bottom {
-        @include frame_main__area--bottom;
-    }
-    .frame_main__area--left {
-        @include frame_main__area--left;
-    }
-    .frame_main__area--center {
-        @include frame_main__area--center;
-    }
-    .frame_main__area--right {
-        @include frame_main__area--right;
-    }
 }

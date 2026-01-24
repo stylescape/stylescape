@@ -6,7 +6,11 @@
 @use "../body_molecules" as *;
 @use "../body_atoms" as *;
 
-.interface {
+// ============================================================================
+// Mixins
+// ============================================================================
+
+@mixin interface {
     @include reset_bleed;
     // @include transition_duration_01; //TODO: does not exist
     bottom: 0;
@@ -18,12 +22,12 @@
     height: 100%;
 }
 
-.interface_header {
+@mixin interface_header {
     @include reset_bleed;
     @include flex--row;
 }
 
-.cover_arrow--up {
+@mixin cover_arrow--up {
     @include reset_bleed;
     pointer-events: auto;
     display: none; // Hidden by default

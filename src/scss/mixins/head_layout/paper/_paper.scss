@@ -1,0 +1,86 @@
+////
+///
+/// Paper/Page Layout Mixins
+/// ===========================================================================
+///
+/// Paper size and page layout mixins for print and document styling.
+///
+/// @group Mixins.HeadLayout.Paper
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:math";
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+
+// ============================================================================
+// Config
+// ============================================================================
+
+$paper-size: (
+    "A4": 210,
+    "A3": 297,
+    "A2": 420,
+    "A1": 594,
+    "A0": 841,
+) !default;
+
+$ss-page-min: 180 !default;
+$ss-page-med: 270 !default;
+$ss-page-max: 360 !default;
+
+$ss-page-unit: 1 !default;
+$ss-view-min: 320px !default;
+$ss-view-max: 1200px !default;
+$ss-size-min: 0px !default;
+$ss-size-max: 0px !default;
+
+// ============================================================================
+// Page Layout Mixins
+// ============================================================================
+
+@mixin q-page($vw_min, $vw_max, $q_min, $q_max) {
+    $u1: math.unit($vw_min);
+    $u2: math.unit($vw_max);
+    $u3: math.unit($q_min);
+    $u4: math.unit($q_max);
+    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+        & {
+            width: calc(#{$ss-page-min}*#{$ss-page-unit});
+            @media screen and (min-width: $vw_min) {
+                width: calc(#{$ss-page-med}*#{$ss-page-unit});
+            }
+            @media screen and (min-width: $vw_max) {
+                width: calc(#{$ss-page-max}*#{$ss-page-unit});
+            }
+        }
+    }
+}
+
+/// Mixin for page layout with responsive width and centered alignment.
+@mixin page {
+    @include q-page($ss-view-min, $ss-view-max, $ss-size-min, $ss-size-max);
+    margin: 0 auto;
+    margin-top: q(32);
+}
+
+/// Mixin for full-width page layout
+@mixin page--full {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/// Mixin for contained page layout
+/// @param {Length} $max-width - Maximum width of the container
+@mixin page--contained($max-width: 1200px) {
+    width: 100%;
+    max-width: $max-width;
+    margin-left: auto;
+    margin-right: auto;
+}

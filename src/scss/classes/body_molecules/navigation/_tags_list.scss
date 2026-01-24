@@ -3,6 +3,9 @@
 /// Tags List Classes
 /// ===========================================================================
 ///
+/// CSS classes for tags list components.
+/// All functionality is defined in mixins - classes only include them.
+///
 /// @group Classes.BodyMolecules.Navigation.TagsList
 /// @author Scape Agency
 /// @link https://scape.style
@@ -11,15 +14,42 @@
 ///
 ////
 
-// Note: The tags__list mixin file already contains class definitions.
-// This file imports them for consistency with the class module structure.
+// ============================================================================
+// Use
+// ============================================================================
 
-@use "../../../mixins/body_molecules/navigation/tags__list";
+@use "../../../mixins/body_molecules/navigation/tags__list" as *;
 
 // ============================================================================
 // Tags List Classes
 // ============================================================================
-// Classes are defined in the mixin file:
-// - .tags__list, .tags__title
-// - .tags__list-item, .tags__list-item--hidden
-// - .tags__link, .tags__more-link
+
+.tags__list,
+.tags__title {
+    @include tags--base;
+}
+
+.tags__list {
+    @include tags__list;
+}
+
+.tags__list-item {
+    @include tags__list-item;
+}
+
+.tags__list-item:not(:last-child) .tags__link::after {
+    content: ",";
+}
+
+.tags__list-item--hidden,
+.tags__list-item--invisible {
+    @include tags__list-item--hidden;
+}
+
+.tags__link {
+    @include tags__link;
+}
+
+.tags__more-link {
+    @include tags__more-link;
+}

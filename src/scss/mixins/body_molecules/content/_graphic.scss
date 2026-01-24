@@ -1,34 +1,43 @@
-.graphic {
+// ============================================================================
+// Components | Graphic
+// ============================================================================
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base graphic styles
+/// @group Graphic
+@mixin graphic--base {
     margin: q(32) 0;
 }
 
-.graphic-elevate {
+/// Elevated graphic variant
+/// @group Graphic
+@mixin graphic--elevate {
     margin-top: 0;
     margin-bottom: q(24);
     max-width: 660px;
 }
 
-@media screen and (min-width: 1280px) {
-    body:not(.layout-homepage-mobile.kiln-edit-mode):not(
-            .layout-homepage-mobile-app.kiln-edit-mode
-        )
-        .graphic-elevate {
-        width: 888px;
-        max-width: 888px;
-        justify-self: center;
-        margin-left: calc(444px - 50vw);
-        margin-right: calc(444px - 50vw);
-    }
+/// Elevated graphic responsive behavior
+/// @group Graphic
+@mixin graphic--elevate-responsive {
+    width: 888px;
+    max-width: 888px;
+    justify-self: center;
+    margin-left: calc(444px - 50vw);
+    margin-right: calc(444px - 50vw);
 }
 
-.html-embed img,
-.image,
-.image__dam-img,
-.image__img,
-.image__picture {
+/// Image base styles for graphic content
+/// @group Graphic
+@mixin graphic-image--base {
     width: 100%;
 }
 
-.graphic_no-margins {
+/// Graphic without margins
+/// @group Graphic
+@mixin graphic--no-margins {
     margin: 0;
 }

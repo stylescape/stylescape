@@ -1,0 +1,68 @@
+// ============================================================================
+// Ribbon Panel | Utility Classes
+// ============================================================================
+
+@use "../../../mixins/body_organisms/ribbon/ribbon_panel" as *;
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+.ribbon_panel {
+    @include ribbon_panel;
+
+    &.right {
+        @include ribbon_panel--right;
+    }
+    &.left {
+        @include ribbon_panel--left;
+    }
+    &.center {
+        @include ribbon_panel--center;
+    }
+
+    .ribbon_panel_header,
+    .ribbon_panel_section,
+    .ribbon_panel_section_header,
+    .ribbon_panel_section_item {
+        @include ribbon_panel_item_base;
+    }
+
+    .ribbon_panel_line {
+        @include ribbon_panel_line;
+    }
+
+    .ribbon_panel_header {
+        @include ribbon_panel_header;
+    }
+
+    .ribbon_panel_section_header {
+        @include ribbon_panel_section_header;
+    }
+
+    .ribbon_panel_section {
+        @include ribbon_panel_section;
+
+        .ribbon_panel_section_item {
+            @include ribbon_panel_section_item;
+        }
+
+        &.ribbon_panel_icon_grid {
+            @include ribbon_panel_icon_grid;
+
+            .ribbon_launcher_item {
+                .ribbon_launcher_item_icon {
+                    @include ribbon_launcher_item_icon;
+                }
+            }
+        }
+    }
+}
+
+details {
+    @include details_base;
+}
+
+details[open] summary {
+    @include details_open_summary;
+}
