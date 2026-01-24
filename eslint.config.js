@@ -89,6 +89,13 @@ export default tseslint.config(
             // Dependencies
             "node_modules/**",
 
+            // Config files (use simpler linting)
+            "vite.config.js",
+            "vitest.config.ts",
+
+            // Utility scripts
+            "bin/**",
+
             // Python environments
             ".venv/**",
             "venv/**",
