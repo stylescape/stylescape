@@ -1,6 +1,8 @@
 # Structure
 
-This page provides a visual overview of StyleScape's three-tier architecture. For a comprehensive explanation of the **Head Body Soul** philosophy, see the [Architecture Guide](architecture.md).
+This page provides a visual overview of StyleScape's three-tier architecture.
+For a comprehensive explanation of the **Head Body Soul** philosophy, see the
+[Architecture Guide](architecture.md).
 
 ---
 

@@ -1,18 +1,24 @@
 # Head Body Soul Architecture
 
-StyleScape uses a unique **three-tier architectural pattern** called "Head Body Soul" that organizes styles by their fundamental purpose. This philosophy draws inspiration from human anatomy as a metaphor for design systems.
+StyleScape uses a unique **three-tier architectural pattern** called "Head Body
+Soul" that organizes styles by their fundamental purpose. This philosophy draws
+inspiration from human anatomy as a metaphor for design systems.
 
 ## Philosophy
 
-Just as humans have distinct systems working together—a brain for thinking, a body for action, and a soul for expression—StyleScape separates concerns into three complementary tiers:
+Just as humans have distinct systems working together—a brain for thinking, a
+body for action, and a soul for expression—StyleScape separates concerns into
+three complementary tiers:
 
-| Tier | Metaphor | Purpose |
-|------|----------|---------|
-| **Head** | 🧠 The Brain | Structural intelligence — layout, positioning, spatial organization |
-| **Body** | 💪 The Physical Form | Composition anatomy — UI components following Atomic Design |
-| **Soul** | ✨ The Personality | Aesthetic experience — typography, colors, shadows, motion |
+| Tier     | Metaphor             | Purpose                                                             |
+| -------- | -------------------- | ------------------------------------------------------------------- |
+| **Head** | 🧠 The Brain         | Structural intelligence — layout, positioning, spatial organization |
+| **Body** | 💪 The Physical Form | Composition anatomy — UI components following Atomic Design         |
+| **Soul** | ✨ The Personality   | Aesthetic experience — typography, colors, shadows, motion          |
 
-This separation ensures that **structure**, **components**, and **styling** remain decoupled, making the system more maintainable, scalable, and composable.
+This separation ensures that **structure**, **components**, and **styling**
+remain decoupled, making the system more maintainable, scalable, and
+composable.
 
 ---
 
@@ -34,7 +40,7 @@ flowchart TB
         BM[body_molecules]
         BO[body_organisms]
         BS[body_skeletons]
-        
+
         BA --> BM --> BO --> BS
     end
 
@@ -58,18 +64,21 @@ flowchart TB
 
 ### 🧠 HEAD — Structural Intelligence
 
-The **Head** tier controls the skeleton of your application—how elements are positioned, how space is distributed, and how the overall page structure is organized.
+The **Head** tier controls the skeleton of your application—how elements are
+positioned, how space is distributed, and how the overall page structure is
+organized.
 
-> Think of HEAD as the architect's blueprint: it defines where things go, not what they look like.
+> Think of HEAD as the architect's blueprint: it defines where things go, not
+> what they look like.
 
 #### Modules
 
-| Module | Description | Examples |
-|--------|-------------|----------|
-| `head_frame` | Application shell containers | `frame_main`, `frame_app`, `frame_canvas`, `frame_login` |
-| `head_content` | Content region structures | `main_content`, `section`, `footer`, `sidebar_section` |
-| `head_layout` | Layout utilities | Grid, Flexbox, spacing, display, overflow, stacks |
-| `head_position` | Positioning utilities | Fixed, sticky, absolute, z-index, order |
+| Module          | Description                  | Examples                                                 |
+| --------------- | ---------------------------- | -------------------------------------------------------- |
+| `head_frame`    | Application shell containers | `frame_main`, `frame_app`, `frame_canvas`, `frame_login` |
+| `head_content`  | Content region structures    | `main_content`, `section`, `footer`, `sidebar_section`   |
+| `head_layout`   | Layout utilities             | Grid, Flexbox, spacing, display, overflow, stacks        |
+| `head_position` | Positioning utilities        | Fixed, sticky, absolute, z-index, order                  |
 
 #### Directory Structure
 
@@ -110,32 +119,35 @@ head_layout/
 
 ### 💪 BODY — Composition Anatomy
 
-The **Body** tier contains all UI components, organized following **Atomic Design** methodology. Components are built from small, reusable pieces that combine into increasingly complex structures.
+The **Body** tier contains all UI components, organized following **Atomic
+Design** methodology. Components are built from small, reusable pieces that
+combine into increasingly complex structures.
 
-> Think of BODY as the LEGO bricks: atoms snap together to form molecules, which combine into organisms, which compose skeletons.
+> Think of BODY as the LEGO bricks: atoms snap together to form molecules,
+> which combine into organisms, which compose skeletons.
 
 #### Atomic Design Hierarchy
 
 ```mermaid
 flowchart LR
     A[🔵 Atoms] --> M[🟢 Molecules] --> O[🟠 Organisms] --> S[🔴 Skeletons]
-    
+
     A1[Button]
     A2[Input]
     A3[Icon]
     A4[Badge]
-    
+
     M1[Search Form]
     M2[Card]
     M3[Navigation Item]
-    
+
     O1[Header Ribbon]
     O2[Sidebar]
     O3[Modal Dialog]
-    
+
     S1[Dashboard Page]
     S2[Login Page]
-    
+
     A1 & A2 & A3 --> M1
     A1 & A4 --> M2
     M1 & M3 --> O1
@@ -149,12 +161,12 @@ flowchart LR
 
 #### Modules
 
-| Module | Atomic Level | Description |
-|--------|--------------|-------------|
-| `body_atoms` | Atoms | Smallest building blocks — buttons, inputs, icons, badges, dividers |
-| `body_molecules` | Molecules | Composed components — cards, forms, dropdowns, accordions |
-| `body_organisms` | Organisms | Complex sections — ribbons, sidebars, modals, galleries |
-| `body_skeletons` | Skeletons | Page templates — complete page layouts |
+| Module           | Atomic Level | Description                                                         |
+| ---------------- | ------------ | ------------------------------------------------------------------- |
+| `body_atoms`     | Atoms        | Smallest building blocks — buttons, inputs, icons, badges, dividers |
+| `body_molecules` | Molecules    | Composed components — cards, forms, dropdowns, accordions           |
+| `body_organisms` | Organisms    | Complex sections — ribbons, sidebars, modals, galleries             |
+| `body_skeletons` | Skeletons    | Page templates — complete page layouts                              |
 
 #### Atoms (`body_atoms/`)
 
@@ -222,17 +234,19 @@ body_organisms/
 
 ### ✨ SOUL — Aesthetic Experience
 
-The **Soul** tier defines the visual personality of your design—how things look and feel. This includes typography, colors, borders, shadows, and motion.
+The **Soul** tier defines the visual personality of your design—how things look
+and feel. This includes typography, colors, borders, shadows, and motion.
 
-> Think of SOUL as the artist's palette: it gives life and character to the structural body.
+> Think of SOUL as the artist's palette: it gives life and character to the
+> structural body.
 
 #### Modules
 
-| Module | Description | Examples |
-|--------|-------------|----------|
-| `soul_type` | Typography | Font families, sizes, weights, text alignment, line height |
-| `soul_line` | Borders & Lines | Border styles, widths, dividers, rules |
-| `soul_object` | Visual Properties | Shadows, colors, fills, corners, sizing |
+| Module        | Description       | Examples                                                   |
+| ------------- | ----------------- | ---------------------------------------------------------- |
+| `soul_type`   | Typography        | Font families, sizes, weights, text alignment, line height |
+| `soul_line`   | Borders & Lines   | Border styles, widths, dividers, rules                     |
+| `soul_object` | Visual Properties | Shadows, colors, fills, corners, sizing                    |
 
 #### Directory Structure
 
@@ -286,25 +300,25 @@ The three tiers are designed to be composed together:
 flowchart TD
     subgraph Component ["Complete Component"]
         direction TB
-        
+
         STRUCTURE["HEAD: Structure
         ─────────────────
         • Position: relative
         • Display: flex
         • Padding: spacing-4"]
-        
+
         COMPONENT["BODY: Component
         ─────────────────
         • Card base styles
         • Interactive states
         • Semantic markup"]
-        
+
         STYLE["SOUL: Aesthetics
         ─────────────────
         • Typography: font-lg
         • Shadow: shadow-md
         • Border-radius: lg"]
-        
+
         STRUCTURE --> COMPONENT --> STYLE
     end
 
@@ -326,20 +340,20 @@ flowchart TD
     @include layout.flex--col;
     @include layout.gap--4;
     @include layout.padding--4;
-    
+
     // BODY: Component behavior
     @include molecules.card;
     @include molecules.card--interactive;
-    
+
     // SOUL: Visual styling
     @include object.shadow--sm;
     @include object.corner--lg;
-    
+
     &__title {
         @include type.font-size--lg;
         @include type.font-weight--semibold;
     }
-    
+
     &__price {
         @include type.font-size--xl;
         @include object.color--primary;
@@ -355,26 +369,26 @@ flowchart TD
 graph TD
     subgraph src/scss
         direction TB
-        
+
         subgraph mixins["mixins/"]
             direction TB
             M_HEAD["🧠 HEAD
             ├── head_frame/
             ├── head_content/
             └── head_layout/"]
-            
+
             M_BODY["💪 BODY
             ├── body_atoms/
             ├── body_molecules/
             ├── body_organisms/
             └── body_skeletons/"]
-            
+
             M_SOUL["✨ SOUL
             ├── soul_type/
             ├── soul_line/
             └── soul_object/"]
         end
-        
+
         subgraph classes["classes/"]
             direction TB
             C_HEAD["🧠 HEAD
@@ -382,13 +396,13 @@ graph TD
             ├── head_content/
             ├── head_layout/
             └── head_position/"]
-            
+
             C_BODY["💪 BODY
             ├── body_atoms/
             ├── body_molecules/
             ├── body_organisms/
             └── body_skeletons/"]
-            
+
             C_SOUL["✨ SOUL
             ├── soul_type/
             ├── soul_line/
@@ -411,21 +425,27 @@ graph TD
 ### 1. Separation of Concerns
 
 Each tier has a single responsibility:
-- **HEAD** answers: *"Where does it go?"*
-- **BODY** answers: *"What is it?"*
-- **SOUL** answers: *"How does it look?"*
+
+- **HEAD** answers: _"Where does it go?"_
+- **BODY** answers: _"What is it?"_
+- **SOUL** answers: _"How does it look?"_
 
 ### 2. Composability
 
-Mixins from different tiers can be freely combined. A button can use HEAD for its display properties, BODY for its component behavior, and SOUL for its colors and shadows.
+Mixins from different tiers can be freely combined. A button can use HEAD for
+its display properties, BODY for its component behavior, and SOUL for its
+colors and shadows.
 
 ### 3. Progressive Complexity
 
-The Atomic Design pattern within BODY ensures that complex components are built from simpler, tested pieces. You never build an organism from scratch—you compose it from atoms and molecules.
+The Atomic Design pattern within BODY ensures that complex components are built
+from simpler, tested pieces. You never build an organism from scratch—you
+compose it from atoms and molecules.
 
 ### 4. Dual Implementation
 
 Both `mixins/` and `classes/` directories mirror the same structure:
+
 - **Mixins** for SCSS composition and reuse
 - **Classes** for direct HTML utility class usage
 
@@ -433,18 +453,18 @@ Both `mixins/` and `classes/` directories mirror the same structure:
 
 ## Quick Reference
 
-| Prefix | Tier | When to Use |
-|--------|------|-------------|
-| `head_frame_*` | Head | Full-page layouts, application shells |
-| `head_content_*` | Head | Content regions, sections |
-| `head_layout_*` | Head | Flex, grid, spacing utilities |
-| `body_atoms_*` | Body | Basic elements (buttons, inputs) |
-| `body_molecules_*` | Body | Composed elements (cards, forms) |
-| `body_organisms_*` | Body | Complex sections (modals, ribbons) |
-| `body_skeletons_*` | Body | Page templates |
-| `soul_type_*` | Soul | Typography |
-| `soul_line_*` | Soul | Borders, dividers |
-| `soul_object_*` | Soul | Shadows, colors, corners |
+| Prefix             | Tier | When to Use                           |
+| ------------------ | ---- | ------------------------------------- |
+| `head_frame_*`     | Head | Full-page layouts, application shells |
+| `head_content_*`   | Head | Content regions, sections             |
+| `head_layout_*`    | Head | Flex, grid, spacing utilities         |
+| `body_atoms_*`     | Body | Basic elements (buttons, inputs)      |
+| `body_molecules_*` | Body | Composed elements (cards, forms)      |
+| `body_organisms_*` | Body | Complex sections (modals, ribbons)    |
+| `body_skeletons_*` | Body | Page templates                        |
+| `soul_type_*`      | Soul | Typography                            |
+| `soul_line_*`      | Soul | Borders, dividers                     |
+| `soul_object_*`    | Soul | Shadows, colors, corners              |
 
 ---
 
