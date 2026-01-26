@@ -11,10 +11,16 @@
 // Progress Bar
 // ============================================================================
 
+@mixin progress_base() {
+    // Add the correct vertical alignment in Chrome, Firefox, and Opera.
+    vertical-align: baseline;
+    height: q(12);
+    border-radius: q(4);
+}
 /// Mixin to style <progress> tag
 /// @group Form
 @mixin progress_bar() {
-    height: q(10);
+    height: q(12);
     border: none;
     border-radius: q(4);
     background-color: var(--color_fill_primary);
@@ -45,9 +51,36 @@
 /// @group Form
 progress,
 meter {
-    @include progress_bar;
+    // @include progress_bar;
 }
 
+/*
+Source - https://stackoverflow.com/a
+Posted by Teshtek, modified by community. See post 'Timeline' for change history
+Retrieved 2026-01-26, License - CC BY-SA 4.0
+*/
+
+progress {
+    @include progress_base;
+    // border-radius: 7px;
+    // width: 80%;
+    // height: q(12);
+    // height: 22px;
+    // margin-left: -11.5%;
+    // box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+progress::-webkit-progress-bar {
+    background-color: yellow;
+    border-radius: 7px;
+}
+progress::-webkit-progress-value {
+    background-color: blue;
+    border-radius: 7px;
+    // box-shadow: 1px 1px 5px 3px rgba(255, 0, 0, 0.8);
+}
+progress::-moz-progress-bar {
+    /* style rules */
+}
 // ============================================================================
 // Bootstrap-style Progress Bar Component
 // ============================================================================

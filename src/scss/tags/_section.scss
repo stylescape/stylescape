@@ -15,10 +15,27 @@
 ////
 
 // ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../mixins" as *;
+
+// ============================================================================
 // Tags
 // ============================================================================
 
 main {
     display: block;
     /* Render the `main` element consistently in IE. */
+}
+
+/// Reset margins and padding for sectioning elements
+section,
+article,
+header,
+footer,
+nav,
+aside {
+    @include reset_bleed;
 }

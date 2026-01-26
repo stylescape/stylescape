@@ -2,6 +2,25 @@
 @use "../../dev" as *;
 @use "../../variables" as *;
 
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/// Helper function to replace negative values with 0
+/// @param {List} $radius - The radius value(s) to validate
+/// @return {List} - The validated radius values with negatives replaced by 0
+@function valid-radius($radius) {
+    $return: ();
+    @each $value in $radius {
+        @if type-of($value) == number {
+            $return: append($return, max($value, 0));
+        } @else {
+            $return: append($return, $value);
+        }
+    }
+    @return $return;
+}
+
 /// Shape radius tokens
 $object_shape_radius: (
     squared: 0,
@@ -72,18 +91,68 @@ $object_shape_radius: (
     }
 }
 
-// @mixin border_radius { @include border_radius_04; }
+// ============================================================================
+// Edge-Specific Corner Mixins
+// ============================================================================
 
-// Border Radius Classes
-// ----------------------------------------------------------------------------
+/// Apply border radius to all corners with validation
+/// @param {Number|List} $radius - The radius value to apply
+@mixin object--corner--radius($radius) {
+    border-radius: valid-radius($radius);
+}
 
-// /// Class to apply rounded corners only to the top of an element.
-// .border_rounded--top {
-//     @include rounded_corners(q(4), q(5));
-// }
+/// Apply border radius to top edge (top-left and top-right corners)
+/// @param {Number} $radius [q(2)] - The radius value to apply
+@mixin object--corner--top($radius: q(2)) {
+    border-top-left-radius: valid-radius($radius);
+    border-top-right-radius: valid-radius($radius);
+}
 
-// Applying Mixins for Border Radius
-// .border_radius_small { @include border_radius(4); }
-// .border_radius_medium { @include border_radius(8); }
-// .border_radius_large { @include border_radius(12); }
-// .border_radius_circle { @include border_radius(24); }
+/// Apply border radius to end edge (top-right and bottom-right corners)
+/// @param {Number} $radius [q(2)] - The radius value to apply
+@mixin object--corner--end($radius: q(2)) {
+    border-top-right-radius: valid-radius($radius);
+    border-bottom-right-radius: valid-radius($radius);
+}
+
+/// Apply border radius to bottom edge (bottom-left and bottom-right corners)
+/// @param {Number} $radius [q(2)] - The radius value to apply
+@mixin object--corner--bottom($radius: q(2)) {
+    border-bottom-right-radius: valid-radius($radius);
+    border-bottom-left-radius: valid-radius($radius);
+}
+
+/// Apply border radius to start edge (top-left and bottom-left corners)
+/// @param {Number} $radius [q(2)] - The radius value to apply
+@mixin object--corner--start($radius: q(2)) {
+    border-top-left-radius: valid-radius($radius);
+    border-bottom-left-radius: valid-radius($radius);
+}
+
+// ============================================================================
+// Individual Corner Mixins
+// ============================================================================
+
+/// Apply border radius to top-start (top-left) corner only
+/// @param {Number} $radius [q(2)] - The radius value to apply
+@mixin object--corner--top-start($radius: q(2)) {
+    border-top-left-radius: valid-radius($radius);
+}
+
+/// Apply border radius to top-end (top-right) corner only
+/// @param {Number} $radius [q(2)] - The radius value to apply
+@mixin object--corner--top-end($radius: q(2)) {
+    border-top-right-radius: valid-radius($radius);
+}
+
+/// Apply border radius to bottom-end (bottom-right) corner only
+/// @param {Number} $radius [q(2)] - The radius value to apply
+@mixin object--corner--bottom-end($radius: q(2)) {
+    border-bottom-right-radius: valid-radius($radius);
+}
+
+/// Apply border radius to bottom-start (bottom-left) corner only
+/// @param {Number} $radius [q(2)] - The radius value to apply
+@mixin object--corner--bottom-start($radius: q(2)) {
+    border-bottom-left-radius: valid-radius($radius);
+}

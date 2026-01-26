@@ -86,55 +86,7 @@ $abbreviation_tooltip_padding: q(3) q(5); // Tooltip padding
     }
 }
 
-/// Styles for the `<abbr>` HTML element.
-///
-/// The abbreviation element is styled to be inline, and the title attribute is used to generate a tooltip on hover or focus.
-abbr {
-    @include abbreviation_base;
-
-    display: inline;
-    // font-variant: all-small-caps;
-
-    // &[title] {
-    //   @include abbreviation_tooltip;
-    // }
-}
-
-/// Styles for `<abbr>` elements with a title attribute.
-///
-/// Adds a tooltip on hover and focus, and removes the default underline for better control over the decoration.
-/// Tooltip styling is provided for better accessibility and usability on different input devices.
-///
-abbr[title] {
-    position: relative;
-    // Remove the bottom border in Chrome 57
-    border-bottom: none;
-    // Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari
-    // text-decoration: underline;
-    text-decoration: underline dotted;
-
-    // Making the abbr element work for touchscreen, keyboard, and mouse
-    // https://bitsofco.de/making-abbreviation_work-for-touchscreen-keyboard-mouse/
-
-    /// Tooltip appears on hover or focus
-    &:hover::after,
-    &:focus::after {
-        content: attr(title);
-        /* position tooltip like the native one */
-        position: absolute;
-        left: 0;
-        bottom: -q(32);
-        width: auto;
-        white-space: nowrap;
-        /* style tooltip */
-        background-color: #1e1e1e;
-        color: var(--color_surface_primary);
-        border-radius: q(3);
-        box-shadow: q(1) q(1) q(5) 0 rgba(0, 0, 0, 0.4);
-        font-size: q(14);
-        padding: q(3) q(5);
-    }
-}
+// Note: Tag-level styles for abbr have been moved to src/scss/tags/_inline.scss
 
 // /// Applying touchscreen friendly styles
 //   abbr[title] {

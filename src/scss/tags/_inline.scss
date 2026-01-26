@@ -1,0 +1,69 @@
+////
+///
+/// Inline Tags Module
+/// ===========================================================================
+///
+/// Base styles for HTML inline semantic elements including abbreviations,
+/// marks, quotes, bold/strong text, and other inline formatting elements.
+///
+/// @group Tags.Inline
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../dev" as *;
+@use "../mixins" as *;
+
+// ============================================================================
+// Tags
+// ============================================================================
+
+/// Apply the bold character styles to <b> and <strong> tags.
+///
+/// Ensures that both <b> and <strong> elements use the defined bold styles
+/// from the design system.
+b,
+strong {
+    @include character--bold;
+}
+
+/// Styles for the `<abbr>` HTML element.
+///
+/// The abbreviation element is styled to be inline, and the title attribute
+/// is used to generate a tooltip on hover or focus.
+abbr {
+    @include abbreviation_base;
+    display: inline;
+}
+
+/// Styles for `<abbr>` elements with a title attribute.
+///
+/// Adds a tooltip on hover and focus, and removes the default underline for
+/// better control over the decoration.
+abbr[title] {
+    position: relative;
+    border-bottom: none;
+    text-decoration: underline;
+    text-decoration: underline dotted;
+}
+
+/// Applying the mixin to `<mark>` elements.
+///
+/// This ensures that all `<mark>` elements in the document are styled
+/// consistently using the mark_style mixin.
+mark {
+    @include mark_style;
+}
+
+/// Applying Inline Quote Styles with Custom Symbols to `<q>` elements.
+q {
+    @include character--quote_inline;
+    @include character--quote_symbols;
+}
