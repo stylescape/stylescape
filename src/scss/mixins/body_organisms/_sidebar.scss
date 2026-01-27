@@ -78,6 +78,7 @@
 // ============================================================================
 // Sidebar Base
 // ============================================================================
+
 @mixin sidebar--base {
     position: relative;
     display: flex;
@@ -100,9 +101,12 @@
 // ============================================================================
 // Left Sidebar Layout (menu on left)
 // ============================================================================
+
 @mixin sidebar--left {
     @include sidebar--base;
     flex-direction: row;
+    overflow: hidden;
+    transition: width 0.3s ease;
     .sidebar__menu {
         border-right: q(1) solid var(--color_text_primary);
     }
@@ -114,6 +118,8 @@
 @mixin sidebar--right {
     @include sidebar--base;
     flex-direction: row-reverse;
+    overflow: hidden;
+    transition: width 0.3s ease;
     .sidebar__menu {
         border-left: q(1) solid var(--color_text_primary);
     }

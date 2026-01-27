@@ -70,6 +70,7 @@ $hyperlink-transition: all 0.2s ease-in-out; // Smooth transition for link effec
 
 /// Clean, reset base for links
 /// Removes default underline, sets pointer, resets background
+/// Uses default black color for all states
 @mixin character--hyperlink--clean {
     text-decoration: none;
     outline: none;
@@ -78,6 +79,17 @@ $hyperlink-transition: all 0.2s ease-in-out; // Smooth transition for link effec
     cursor: pointer;
     // transition: $hyperlink-transition; // only do this for things other than resize
     user-select: text;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+        outline: none;
+        background-color: transparent;
+        color: inherit;
+    }
 }
 
 ///
