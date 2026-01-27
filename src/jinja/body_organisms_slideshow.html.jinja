@@ -1,7 +1,5 @@
-{% extends "base.html.jinja" %}
-{% set title = "Slideshows" %}
-{%- block title %}{{ title }}{%- endblock %}
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Slideshows" %} {%- block title
+%}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
     <header class="demo__section__header">
@@ -9,104 +7,460 @@
         <p>Image and content slideshows with navigation controls.</p>
     </header>
 
-    {# Basic Slideshow #}
-    {% set section_title = "Basic Slideshow" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Basic Slideshow #} {% set section_title = "Basic Slideshow" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-<div class="slideshow" style="position: relative; width: 100%; max-width: 600px; aspect-ratio: 16/9; overflow: hidden; border-radius: 12px;">
-    <div class="slideshow--slides" style="display: flex; transition: transform 0.5s ease;">
-        <div class="slideshow--slide" style="min-width: 100%; height: 100%; background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">Slide 1</div>
-        <div class="slideshow--slide" style="min-width: 100%; height: 100%; background: linear-gradient(135deg, #f093fb, #f5576c); display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">Slide 2</div>
-        <div class="slideshow--slide" style="min-width: 100%; height: 100%; background: linear-gradient(135deg, #4facfe, #00f2fe); display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">Slide 3</div>
-    </div>
-    <button class="slideshow--prev" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border: none; background: rgba(255,255,255,0.9); border-radius: 50%; cursor: pointer; font-size: 18px;">←</button>
-    <button class="slideshow--next" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border: none; background: rgba(255,255,255,0.9); border-radius: 50%; cursor: pointer; font-size: 18px;">→</button>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
-    </section>
-
-    {# Slideshow with Indicators #}
-    {% set section_title = "Slideshow with Indicators" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
-        {% set code_snippet %}
-<div class="slideshow" style="position: relative; width: 100%; max-width: 600px; aspect-ratio: 16/9; overflow: hidden; border-radius: 12px;">
-    <div class="slideshow--slides">
-        <div class="slideshow--slide active" style="width: 100%; height: 100%; background: linear-gradient(135deg, #43e97b, #38f9d7);"></div>
-    </div>
-    <div class="slideshow--indicators" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
-        <button class="slideshow--indicator active" style="width: 12px; height: 12px; border: none; background: white; border-radius: 50%; cursor: pointer; opacity: 1;"></button>
-        <button class="slideshow--indicator" style="width: 12px; height: 12px; border: none; background: white; border-radius: 50%; cursor: pointer; opacity: 0.5;"></button>
-        <button class="slideshow--indicator" style="width: 12px; height: 12px; border: none; background: white; border-radius: 50%; cursor: pointer; opacity: 0.5;"></button>
-        <button class="slideshow--indicator" style="width: 12px; height: 12px; border: none; background: white; border-radius: 50%; cursor: pointer; opacity: 0.5;"></button>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
-    </section>
-
-    {# Slideshow with Captions #}
-    {% set section_title = "Slideshow with Captions" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
-        {% set code_snippet %}
-<div class="slideshow" style="position: relative; width: 100%; max-width: 600px; aspect-ratio: 16/9; overflow: hidden; border-radius: 12px;">
-    <div class="slideshow--slide" style="width: 100%; height: 100%; background: linear-gradient(135deg, #fa709a, #fee140);">
-        <div class="slideshow--caption" style="position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 24px 24px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white;">
-            <h3 style="margin: 0 0 8px; font-size: 20px;">Beautiful Sunset</h3>
-            <p style="margin: 0; opacity: 0.9; font-size: 14px;">A stunning view captured at golden hour with vibrant colors filling the sky.</p>
+        <div
+            class="slideshow"
+            style="
+                position: relative;
+                width: 100%;
+                max-width: 600px;
+                aspect-ratio: 16/9;
+                overflow: hidden;
+                border-radius: 12px;
+            "
+        >
+            <div
+                class="slideshow--slides"
+                style="display: flex; transition: transform 0.5s ease"
+            >
+                <div
+                    class="slideshow--slide"
+                    style="
+                        min-width: 100%;
+                        height: 100%;
+                        background: linear-gradient(135deg, #667eea, #764ba2);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 24px;
+                    "
+                >
+                    Slide 1
+                </div>
+                <div
+                    class="slideshow--slide"
+                    style="
+                        min-width: 100%;
+                        height: 100%;
+                        background: linear-gradient(135deg, #f093fb, #f5576c);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 24px;
+                    "
+                >
+                    Slide 2
+                </div>
+                <div
+                    class="slideshow--slide"
+                    style="
+                        min-width: 100%;
+                        height: 100%;
+                        background: linear-gradient(135deg, #4facfe, #00f2fe);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 24px;
+                    "
+                >
+                    Slide 3
+                </div>
+            </div>
+            <button
+                class="slideshow--prev"
+                style="
+                    position: absolute;
+                    left: 16px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 44px;
+                    height: 44px;
+                    border: none;
+                    background: rgba(255, 255, 255, 0.9);
+                    border-radius: 50%;
+                    cursor: pointer;
+                    font-size: 18px;
+                "
+            >
+                ←
+            </button>
+            <button
+                class="slideshow--next"
+                style="
+                    position: absolute;
+                    right: 16px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 44px;
+                    height: 44px;
+                    border: none;
+                    background: rgba(255, 255, 255, 0.9);
+                    border-radius: 50%;
+                    cursor: pointer;
+                    font-size: 18px;
+                "
+            >
+                →
+            </button>
         </div>
-    </div>
-    <div class="slideshow--counter" style="position: absolute; top: 16px; right: 16px; padding: 6px 12px; background: rgba(0,0,0,0.5); border-radius: 20px; color: white; font-size: 13px;">1 / 5</div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Thumbnail Navigation #}
-    {% set section_title = "Slideshow with Thumbnails" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Slideshow with Indicators #} {% set section_title = "Slideshow with
+    Indicators" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-<div class="slideshow-container" style="max-width: 600px;">
-    <div class="slideshow--main" style="width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 12px; margin-bottom: 12px;"></div>
-    <div class="slideshow--thumbnails" style="display: flex; gap: 8px; overflow-x: auto;">
-        <div class="slideshow--thumb active" style="flex-shrink: 0; width: 80px; height: 60px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 6px; cursor: pointer; border: 3px solid var(--color_fill_primary);"></div>
-        <div class="slideshow--thumb" style="flex-shrink: 0; width: 80px; height: 60px; background: linear-gradient(135deg, #f093fb, #f5576c); border-radius: 6px; cursor: pointer; opacity: 0.7;"></div>
-        <div class="slideshow--thumb" style="flex-shrink: 0; width: 80px; height: 60px; background: linear-gradient(135deg, #4facfe, #00f2fe); border-radius: 6px; cursor: pointer; opacity: 0.7;"></div>
-        <div class="slideshow--thumb" style="flex-shrink: 0; width: 80px; height: 60px; background: linear-gradient(135deg, #43e97b, #38f9d7); border-radius: 6px; cursor: pointer; opacity: 0.7;"></div>
-        <div class="slideshow--thumb" style="flex-shrink: 0; width: 80px; height: 60px; background: linear-gradient(135deg, #fa709a, #fee140); border-radius: 6px; cursor: pointer; opacity: 0.7;"></div>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <div
+            class="slideshow"
+            style="
+                position: relative;
+                width: 100%;
+                max-width: 600px;
+                aspect-ratio: 16/9;
+                overflow: hidden;
+                border-radius: 12px;
+            "
+        >
+            <div class="slideshow--slides">
+                <div
+                    class="slideshow--slide active"
+                    style="
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(135deg, #43e97b, #38f9d7);
+                    "
+                ></div>
+            </div>
+            <div
+                class="slideshow--indicators"
+                style="
+                    position: absolute;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    gap: 10px;
+                "
+            >
+                <button
+                    class="slideshow--indicator active"
+                    style="
+                        width: 12px;
+                        height: 12px;
+                        border: none;
+                        background: white;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        opacity: 1;
+                    "
+                ></button>
+                <button
+                    class="slideshow--indicator"
+                    style="
+                        width: 12px;
+                        height: 12px;
+                        border: none;
+                        background: white;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        opacity: 0.5;
+                    "
+                ></button>
+                <button
+                    class="slideshow--indicator"
+                    style="
+                        width: 12px;
+                        height: 12px;
+                        border: none;
+                        background: white;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        opacity: 0.5;
+                    "
+                ></button>
+                <button
+                    class="slideshow--indicator"
+                    style="
+                        width: 12px;
+                        height: 12px;
+                        border: none;
+                        background: white;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        opacity: 0.5;
+                    "
+                ></button>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Fade Transition #}
-    {% set section_title = "Fade Transition Slideshow" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Slideshow with Captions #} {% set section_title = "Slideshow with
+    Captions" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-<div class="slideshow slideshow--fade" style="position: relative; width: 100%; max-width: 600px; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden;">
-    <div class="slideshow--slide" style="position: absolute; inset: 0; background: linear-gradient(135deg, #a8edea, #fed6e3); opacity: 1; transition: opacity 0.5s;"></div>
-    <div class="slideshow--slide" style="position: absolute; inset: 0; background: linear-gradient(135deg, #d299c2, #fef9d7); opacity: 0; transition: opacity 0.5s;"></div>
-    <div class="slideshow--slide" style="position: absolute; inset: 0; background: linear-gradient(135deg, #89f7fe, #66a6ff); opacity: 0; transition: opacity 0.5s;"></div>
-    <div class="slideshow--controls" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px;">
-        <button style="padding: 8px 16px; border: none; background: rgba(255,255,255,0.9); border-radius: 6px; cursor: pointer;">Previous</button>
-        <button style="padding: 8px 16px; border: none; background: rgba(255,255,255,0.9); border-radius: 6px; cursor: pointer;">Next</button>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <div
+            class="slideshow"
+            style="
+                position: relative;
+                width: 100%;
+                max-width: 600px;
+                aspect-ratio: 16/9;
+                overflow: hidden;
+                border-radius: 12px;
+            "
+        >
+            <div
+                class="slideshow--slide"
+                style="
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(135deg, #fa709a, #fee140);
+                "
+            >
+                <div
+                    class="slideshow--caption"
+                    style="
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        padding: 40px 24px 24px;
+                        background: linear-gradient(
+                            transparent,
+                            rgba(0, 0, 0, 0.7)
+                        );
+                        color: white;
+                    "
+                >
+                    <h3 style="margin: 0 0 8px; font-size: 20px">
+                        Beautiful Sunset
+                    </h3>
+                    <p style="margin: 0; opacity: 0.9; font-size: 14px">
+                        A stunning view captured at golden hour with vibrant
+                        colors filling the sky.
+                    </p>
+                </div>
+            </div>
+            <div
+                class="slideshow--counter"
+                style="
+                    position: absolute;
+                    top: 16px;
+                    right: 16px;
+                    padding: 6px 12px;
+                    background: rgba(0, 0, 0, 0.5);
+                    border-radius: 20px;
+                    color: white;
+                    font-size: 13px;
+                "
+            >
+                1 / 5
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
+    {# Thumbnail Navigation #} {% set section_title = "Slideshow with
+    Thumbnails" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="slideshow-container" style="max-width: 600px">
+            <div
+                class="slideshow--main"
+                style="
+                    width: 100%;
+                    aspect-ratio: 16/9;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    border-radius: 12px;
+                    margin-bottom: 12px;
+                "
+            ></div>
+            <div
+                class="slideshow--thumbnails"
+                style="display: flex; gap: 8px; overflow-x: auto"
+            >
+                <div
+                    class="slideshow--thumb active"
+                    style="
+                        flex-shrink: 0;
+                        width: 80px;
+                        height: 60px;
+                        background: linear-gradient(135deg, #667eea, #764ba2);
+                        border-radius: 6px;
+                        cursor: pointer;
+                        border: 3px solid var(--color_fill_primary);
+                    "
+                ></div>
+                <div
+                    class="slideshow--thumb"
+                    style="
+                        flex-shrink: 0;
+                        width: 80px;
+                        height: 60px;
+                        background: linear-gradient(135deg, #f093fb, #f5576c);
+                        border-radius: 6px;
+                        cursor: pointer;
+                        opacity: 0.7;
+                    "
+                ></div>
+                <div
+                    class="slideshow--thumb"
+                    style="
+                        flex-shrink: 0;
+                        width: 80px;
+                        height: 60px;
+                        background: linear-gradient(135deg, #4facfe, #00f2fe);
+                        border-radius: 6px;
+                        cursor: pointer;
+                        opacity: 0.7;
+                    "
+                ></div>
+                <div
+                    class="slideshow--thumb"
+                    style="
+                        flex-shrink: 0;
+                        width: 80px;
+                        height: 60px;
+                        background: linear-gradient(135deg, #43e97b, #38f9d7);
+                        border-radius: 6px;
+                        cursor: pointer;
+                        opacity: 0.7;
+                    "
+                ></div>
+                <div
+                    class="slideshow--thumb"
+                    style="
+                        flex-shrink: 0;
+                        width: 80px;
+                        height: 60px;
+                        background: linear-gradient(135deg, #fa709a, #fee140);
+                        border-radius: 6px;
+                        cursor: pointer;
+                        opacity: 0.7;
+                    "
+                ></div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Fade Transition #} {% set section_title = "Fade Transition Slideshow" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div
+            class="slideshow slideshow--fade"
+            style="
+                position: relative;
+                width: 100%;
+                max-width: 600px;
+                aspect-ratio: 16/9;
+                border-radius: 12px;
+                overflow: hidden;
+            "
+        >
+            <div
+                class="slideshow--slide"
+                style="
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(135deg, #a8edea, #fed6e3);
+                    opacity: 1;
+                    transition: opacity 0.5s;
+                "
+            ></div>
+            <div
+                class="slideshow--slide"
+                style="
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(135deg, #d299c2, #fef9d7);
+                    opacity: 0;
+                    transition: opacity 0.5s;
+                "
+            ></div>
+            <div
+                class="slideshow--slide"
+                style="
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+                    opacity: 0;
+                    transition: opacity 0.5s;
+                "
+            ></div>
+            <div
+                class="slideshow--controls"
+                style="
+                    position: absolute;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    gap: 8px;
+                "
+            >
+                <button
+                    style="
+                        padding: 8px 16px;
+                        border: none;
+                        background: rgba(255, 255, 255, 0.9);
+                        border-radius: 6px;
+                        cursor: pointer;
+                    "
+                >
+                    Previous
+                </button>
+                <button
+                    style="
+                        padding: 8px 16px;
+                        border: none;
+                        background: rgba(255, 255, 255, 0.9);
+                        border-radius: 6px;
+                        cursor: pointer;
+                    "
+                >
+                    Next
+                </button>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
 </section>
 
 {%- endblock content %}

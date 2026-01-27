@@ -106,7 +106,7 @@ export class Tooltip {
             hideDelay: options.hideDelay ?? 100,
             animationDuration: options.animationDuration ?? 150,
             offset: options.offset ?? 8,
-            tooltipClass: options.tooltipClass ?? "ss-tooltip",
+            tooltipClass: options.tooltipClass ?? "tooltip__popup",
             maxWidth: options.maxWidth ?? 250,
             allowHTML: options.allowHTML ?? false,
             interactive: options.interactive ?? false,

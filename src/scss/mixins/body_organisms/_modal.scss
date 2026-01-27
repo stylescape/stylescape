@@ -13,22 +13,31 @@
 // Mixins
 // ============================================================================
 
+/// Modal container - hidden by default, shown via .modal--open class or JS
+/// Uses fixed positioning to overlay the entire viewport
 @mixin modal {
-    @include flex--col;
+    // Hidden by default
+    display: none;
+
+    // Full viewport overlay
+    position: fixed;
+    inset: 0;
     z-index: z("modal");
-    @include sizing--border;
-    width: 50%;
-    margin: auto;
-    background-color: rgb(255, 255, 255);
-    padding-left: baseline(4);
-    padding-right: baseline(4);
-    border-radius: baseline(2);
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    left: 0;
-    right: 0;
+
+    // Center content
+    align-items: center;
+    justify-content: center;
+
+    // Prevent body scroll when open
+    &.modal--open,
+    &:not([hidden]) {
+        display: flex;
+    }
+
+    // Support for hidden attribute
+    &[hidden] {
+        display: none !important;
+    }
 }
 
 @mixin modal_header {
@@ -38,8 +47,31 @@
 }
 
 @mixin modal_content {
-    margin-top: baseline(2);
-    margin-bottom: baseline(2);
+    // Content box styling
+    position: relative;
+    z-index: 1;
+    @include sizing--border;
+    width: 90%;
+    max-width: 500px;
+    max-height: calc(100vh - baseline(8));
+    overflow-y: auto;
+    margin: auto;
+    background-color: var(--modal_background, rgb(255, 255, 255));
+    padding: baseline(4);
+    border-radius: baseline(2);
+    box-shadow: 0 baseline(2) baseline(4) rgba(0, 0, 0, 0.15);
+
+    // Animation
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+
+    .modal--open & {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 @mixin modal_footer {
@@ -68,21 +100,22 @@
 }
 
 @mixin modal_backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: calc(z("modal") - 1);
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    // Full screen backdrop
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-color: var(--modal_backdrop, rgba(0, 0, 0, 0.5));
 
     // Fade animation
     opacity: 0;
-    transition: opacity 0.15s linear;
+    transition: opacity 0.2s ease;
 
-    &.show {
+    .modal--open & {
         opacity: 1;
     }
+
+    // Clickable area for closing
+    cursor: pointer;
 }
 
 @mixin modal_dialog {
@@ -91,95 +124,108 @@
     margin: baseline(4);
     pointer-events: none;
 
-    .modal.show & {
-        transform: none;
+    .modal--open & {
+        pointer-events: auto;
     }
 }
 
 @mixin modal--sm {
-    width: 100%;
-    max-width: 300px;
+    .modal__content {
+        max-width: 300px;
+    }
 }
 
 @mixin modal--md {
-    width: 100%;
-    max-width: 500px;
+    .modal__content {
+        max-width: 500px;
+    }
 }
 
 @mixin modal--lg {
-    width: 100%;
-    max-width: 800px;
+    .modal__content {
+        max-width: 800px;
+    }
 }
 
 @mixin modal--xl {
-    width: 100%;
-    max-width: 1140px;
+    .modal__content {
+        max-width: 1140px;
+    }
 }
 
 @mixin modal--fullscreen {
-    width: 100vw;
-    max-width: none;
-    height: 100%;
-    margin: 0;
-    border-radius: 0;
+    .modal__content {
+        width: 100vw;
+        max-width: none;
+        height: 100vh;
+        max-height: none;
+        margin: 0;
+        border-radius: 0;
+    }
 }
 
 @mixin modal--centered {
-    display: flex;
     align-items: center;
-    min-height: calc(100% - baseline(8));
+    justify-content: center;
 }
 
 @mixin modal--scrollable {
-    max-height: calc(100vh - baseline(16));
-
-    .modal_content {
-        max-height: calc(100vh - baseline(24));
+    .modal__content {
+        max-height: calc(100vh - baseline(16));
         overflow-y: auto;
     }
 }
 
 @mixin modal--static {
-    // Handled via JS, but can add visual indicator
-    &[data-backdrop="static"] {
-        // Modal won't close when clicking outside
+    // Handled via JS - modal won't close when clicking backdrop
+    &[data-backdrop="static"] .modal__backdrop {
+        cursor: default;
     }
 }
 
 @mixin modal--fade {
-    opacity: 0;
-    transition: opacity 0.15s linear;
+    .modal__content {
+        opacity: 0;
+        transition: opacity 0.15s linear;
+    }
 
-    &.show {
+    &.modal--open .modal__content {
         opacity: 1;
     }
 }
 
 @mixin modal--slide-top {
-    transform: translateY(-100%);
-    transition: transform 0.3s ease-out;
+    .modal__content {
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-out;
+    }
 
-    &.show {
+    &.modal--open .modal__content {
         transform: translateY(0);
     }
 }
 
 @mixin modal--slide-bottom {
-    top: auto;
-    bottom: 0;
-    transform: translateY(100%);
-    transition: transform 0.3s ease-out;
+    align-items: flex-end;
 
-    &.show {
+    .modal__content {
+        transform: translateY(100%);
+        transition: transform 0.3s ease-out;
+        border-radius: baseline(2) baseline(2) 0 0;
+    }
+
+    &.modal--open .modal__content {
         transform: translateY(0);
     }
 }
 
 @mixin modal--scale {
-    transform: scale(0.7);
-    transition: transform 0.3s ease-out;
+    .modal__content {
+        transform: scale(0.7);
+        transition: transform 0.3s ease-out;
+    }
 
-    &.show {
+    &.modal--open .modal__content {
         transform: scale(1);
     }
 }

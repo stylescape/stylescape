@@ -1,262 +1,691 @@
-{% extends "base.html.jinja" %}
-{% set title = "Data Components" %}
-{%- block title %}{{ title }}{%- endblock %}
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Data Components" %} {%- block
+title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
-        <p>JavaScript components for filtering/searching and rating interactions.</p>
+        <p>
+            JavaScript components for filtering/searching and rating
+            interactions.
+        </p>
     </header>
 
-    {# Filter Manager #}
-    {% set section_title = "Filter Manager" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Filter Manager #} {% set section_title = "Filter Manager" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
-        <p>Filters and searches items in lists, tables, or grids with debouncing.</p>
+        <p>
+            Filters and searches items in lists, tables, or grids with
+            debouncing.
+        </p>
         {% set code_snippet %}
-<!-- Search input with filter -->
-<div style="margin-bottom: 20px;">
-    <input type="text"
-           data-ss="filter"
-           data-ss-filter-items=".filter-item"
-           data-ss-filter-debounce="300"
-           data-ss-filter-min-chars="1"
-           placeholder="Search items..."
-           style="width: 100%; padding: 12px 16px; border: 1px solid var(--color_line_secondary); border-radius: 8px; font-size: 16px;">
-</div>
+        <!-- Search input with filter -->
+        <div style="margin-bottom: 20px">
+            <input
+                type="text"
+                data-ss="filter"
+                data-ss-filter-items=".filter-item"
+                data-ss-filter-debounce="300"
+                data-ss-filter-min-chars="1"
+                placeholder="Search items..."
+                style="
+                    width: 100%;
+                    padding: 12px 16px;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 8px;
+                    font-size: 16px;
+                "
+            />
+        </div>
 
-<!-- Filterable grid -->
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px;">
-    <div class="filter-item" data-filter-text="apple fruit red" style="padding: 20px; background: var(--color_fill_secondary); border-radius: 12px;">
-        <strong>Apple</strong>
-        <p style="margin: 8px 0 0; font-size: 14px; opacity: 0.7;">Red fruit</p>
-    </div>
-    <div class="filter-item" data-filter-text="banana fruit yellow" style="padding: 20px; background: var(--color_fill_secondary); border-radius: 12px;">
-        <strong>Banana</strong>
-        <p style="margin: 8px 0 0; font-size: 14px; opacity: 0.7;">Yellow fruit</p>
-    </div>
-    <div class="filter-item" data-filter-text="carrot vegetable orange" style="padding: 20px; background: var(--color_fill_secondary); border-radius: 12px;">
-        <strong>Carrot</strong>
-        <p style="margin: 8px 0 0; font-size: 14px; opacity: 0.7;">Orange vegetable</p>
-    </div>
-    <div class="filter-item" data-filter-text="tomato vegetable red" style="padding: 20px; background: var(--color_fill_secondary); border-radius: 12px;">
-        <strong>Tomato</strong>
-        <p style="margin: 8px 0 0; font-size: 14px; opacity: 0.7;">Red vegetable</p>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <!-- Filterable grid -->
+        <div
+            style="
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 16px;
+            "
+        >
+            <div
+                class="filter-item"
+                data-filter-text="apple fruit red"
+                style="
+                    padding: 20px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                "
+            >
+                <strong>Apple</strong>
+                <p style="margin: 8px 0 0; font-size: 14px; opacity: 0.7">
+                    Red fruit
+                </p>
+            </div>
+            <div
+                class="filter-item"
+                data-filter-text="banana fruit yellow"
+                style="
+                    padding: 20px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                "
+            >
+                <strong>Banana</strong>
+                <p style="margin: 8px 0 0; font-size: 14px; opacity: 0.7">
+                    Yellow fruit
+                </p>
+            </div>
+            <div
+                class="filter-item"
+                data-filter-text="carrot vegetable orange"
+                style="
+                    padding: 20px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                "
+            >
+                <strong>Carrot</strong>
+                <p style="margin: 8px 0 0; font-size: 14px; opacity: 0.7">
+                    Orange vegetable
+                </p>
+            </div>
+            <div
+                class="filter-item"
+                data-filter-text="tomato vegetable red"
+                style="
+                    padding: 20px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                "
+            >
+                <strong>Tomato</strong>
+                <p style="margin: 8px 0 0; font-size: 14px; opacity: 0.7">
+                    Red vegetable
+                </p>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Filter with Categories #}
-    {% set section_title = "Filter with Categories" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Filter with Categories #} {% set section_title = "Filter with
+    Categories" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Combined text search with category filtering.</p>
         {% set code_snippet %}
-<div style="display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-    <!-- Search input -->
-    <input type="text"
-           data-ss="filter"
-           data-ss-filter-items=".product-card"
-           placeholder="Search products..."
-           style="flex: 1; min-width: 200px; padding: 12px 16px; border: 1px solid var(--color_line_secondary); border-radius: 8px;">
+        <div
+            style="
+                display: flex;
+                gap: 16px;
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+            "
+        >
+            <!-- Search input -->
+            <input
+                type="text"
+                data-ss="filter"
+                data-ss-filter-items=".product-card"
+                placeholder="Search products..."
+                style="
+                    flex: 1;
+                    min-width: 200px;
+                    padding: 12px 16px;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 8px;
+                "
+            />
 
-    <!-- Category buttons -->
-    <div style="display: flex; gap: 8px;">
-        <button class="filter-button active" data-category="all" style="padding: 10px 16px; border: 1px solid var(--color_line_secondary); border-radius: 6px; background: var(--color_fill_primary); color: white; cursor: pointer;">All</button>
-        <button class="filter-button" data-category="electronics" style="padding: 10px 16px; border: 1px solid var(--color_line_secondary); border-radius: 6px; background: white; cursor: pointer;">Electronics</button>
-        <button class="filter-button" data-category="clothing" style="padding: 10px 16px; border: 1px solid var(--color_line_secondary); border-radius: 6px; background: white; cursor: pointer;">Clothing</button>
-        <button class="filter-button" data-category="books" style="padding: 10px 16px; border: 1px solid var(--color_line_secondary); border-radius: 6px; background: white; cursor: pointer;">Books</button>
-    </div>
-</div>
+            <!-- Category buttons -->
+            <div style="display: flex; gap: 8px">
+                <button
+                    class="filter-button active"
+                    data-category="all"
+                    style="
+                        padding: 10px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 6px;
+                        background: var(--color_fill_primary);
+                        color: white;
+                        cursor: pointer;
+                    "
+                >
+                    All
+                </button>
+                <button
+                    class="filter-button"
+                    data-category="electronics"
+                    style="
+                        padding: 10px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 6px;
+                        background: white;
+                        cursor: pointer;
+                    "
+                >
+                    Electronics
+                </button>
+                <button
+                    class="filter-button"
+                    data-category="clothing"
+                    style="
+                        padding: 10px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 6px;
+                        background: white;
+                        cursor: pointer;
+                    "
+                >
+                    Clothing
+                </button>
+                <button
+                    class="filter-button"
+                    data-category="books"
+                    style="
+                        padding: 10px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 6px;
+                        background: white;
+                        cursor: pointer;
+                    "
+                >
+                    Books
+                </button>
+            </div>
+        </div>
 
-<!-- Product grid -->
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px;">
-    <div class="product-card" data-category="electronics" data-filter-text="laptop computer technology" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 12px;">
-        <div style="height: 100px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 8px; margin-bottom: 12px;"></div>
-        <strong>Laptop</strong>
-        <span style="display: block; font-size: 12px; color: var(--color_fill_primary); margin-top: 4px;">Electronics</span>
-    </div>
-    <div class="product-card" data-category="clothing" data-filter-text="t-shirt fashion apparel" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 12px;">
-        <div style="height: 100px; background: linear-gradient(135deg, #f093fb, #f5576c); border-radius: 8px; margin-bottom: 12px;"></div>
-        <strong>T-Shirt</strong>
-        <span style="display: block; font-size: 12px; color: var(--color_fill_primary); margin-top: 4px;">Clothing</span>
-    </div>
-    <div class="product-card" data-category="books" data-filter-text="novel fiction reading" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 12px;">
-        <div style="height: 100px; background: linear-gradient(135deg, #4facfe, #00f2fe); border-radius: 8px; margin-bottom: 12px;"></div>
-        <strong>Novel</strong>
-        <span style="display: block; font-size: 12px; color: var(--color_fill_primary); margin-top: 4px;">Books</span>
-    </div>
-    <div class="product-card" data-category="electronics" data-filter-text="headphones audio music" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 12px;">
-        <div style="height: 100px; background: linear-gradient(135deg, #43e97b, #38f9d7); border-radius: 8px; margin-bottom: 12px;"></div>
-        <strong>Headphones</strong>
-        <span style="display: block; font-size: 12px; color: var(--color_fill_primary); margin-top: 4px;">Electronics</span>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <!-- Product grid -->
+        <div
+            style="
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 16px;
+            "
+        >
+            <div
+                class="product-card"
+                data-category="electronics"
+                data-filter-text="laptop computer technology"
+                style="
+                    padding: 16px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                "
+            >
+                <div
+                    style="
+                        height: 100px;
+                        background: linear-gradient(135deg, #667eea, #764ba2);
+                        border-radius: 8px;
+                        margin-bottom: 12px;
+                    "
+                ></div>
+                <strong>Laptop</strong>
+                <span
+                    style="
+                        display: block;
+                        font-size: 12px;
+                        color: var(--color_fill_primary);
+                        margin-top: 4px;
+                    "
+                >
+                    Electronics
+                </span>
+            </div>
+            <div
+                class="product-card"
+                data-category="clothing"
+                data-filter-text="t-shirt fashion apparel"
+                style="
+                    padding: 16px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                "
+            >
+                <div
+                    style="
+                        height: 100px;
+                        background: linear-gradient(135deg, #f093fb, #f5576c);
+                        border-radius: 8px;
+                        margin-bottom: 12px;
+                    "
+                ></div>
+                <strong>T-Shirt</strong>
+                <span
+                    style="
+                        display: block;
+                        font-size: 12px;
+                        color: var(--color_fill_primary);
+                        margin-top: 4px;
+                    "
+                >
+                    Clothing
+                </span>
+            </div>
+            <div
+                class="product-card"
+                data-category="books"
+                data-filter-text="novel fiction reading"
+                style="
+                    padding: 16px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                "
+            >
+                <div
+                    style="
+                        height: 100px;
+                        background: linear-gradient(135deg, #4facfe, #00f2fe);
+                        border-radius: 8px;
+                        margin-bottom: 12px;
+                    "
+                ></div>
+                <strong>Novel</strong>
+                <span
+                    style="
+                        display: block;
+                        font-size: 12px;
+                        color: var(--color_fill_primary);
+                        margin-top: 4px;
+                    "
+                >
+                    Books
+                </span>
+            </div>
+            <div
+                class="product-card"
+                data-category="electronics"
+                data-filter-text="headphones audio music"
+                style="
+                    padding: 16px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                "
+            >
+                <div
+                    style="
+                        height: 100px;
+                        background: linear-gradient(135deg, #43e97b, #38f9d7);
+                        border-radius: 8px;
+                        margin-bottom: 12px;
+                    "
+                ></div>
+                <strong>Headphones</strong>
+                <span
+                    style="
+                        display: block;
+                        font-size: 12px;
+                        color: var(--color_fill_primary);
+                        margin-top: 4px;
+                    "
+                >
+                    Electronics
+                </span>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Rating Manager #}
-    {% set section_title = "Rating Manager" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Rating Manager #} {% set section_title = "Rating Manager" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Star rating component with keyboard accessibility.</p>
         {% set code_snippet %}
-<!-- Basic star rating -->
-<div data-ss="rating"
-     data-ss-rating-max="5"
-     data-ss-rating-value="3"
-     role="slider"
-     aria-label="Rating"
-     aria-valuemin="0"
-     aria-valuemax="5"
-     aria-valuenow="3"
-     tabindex="0"
-     style="display: inline-flex; gap: 4px; cursor: pointer; font-size: 24px;">
-    <span class="star active" data-value="1" style="color: #fbbf24;">★</span>
-    <span class="star active" data-value="2" style="color: #fbbf24;">★</span>
-    <span class="star active" data-value="3" style="color: #fbbf24;">★</span>
-    <span class="star" data-value="4" style="color: var(--color_line_secondary);">★</span>
-    <span class="star" data-value="5" style="color: var(--color_line_secondary);">★</span>
-</div>
+        <!-- Basic star rating -->
+        <div
+            data-ss="rating"
+            data-ss-rating-max="5"
+            data-ss-rating-value="3"
+            role="slider"
+            aria-label="Rating"
+            aria-valuemin="0"
+            aria-valuemax="5"
+            aria-valuenow="3"
+            tabindex="0"
+            style="
+                display: inline-flex;
+                gap: 4px;
+                cursor: pointer;
+                font-size: 24px;
+            "
+        >
+            <span class="star active" data-value="1" style="color: #fbbf24">
+                ★
+            </span>
+            <span class="star active" data-value="2" style="color: #fbbf24">
+                ★
+            </span>
+            <span class="star active" data-value="3" style="color: #fbbf24">
+                ★
+            </span>
+            <span
+                class="star"
+                data-value="4"
+                style="color: var(--color_line_secondary)"
+            >
+                ★
+            </span>
+            <span
+                class="star"
+                data-value="5"
+                style="color: var(--color_line_secondary)"
+            >
+                ★
+            </span>
+        </div>
 
-<!-- Rating with half stars -->
-<div data-ss="rating"
-     data-ss-rating-max="5"
-     data-ss-rating-value="3.5"
-     data-ss-rating-half="true"
-     style="display: inline-flex; gap: 4px; cursor: pointer; font-size: 28px; margin-top: 16px;">
-    <span class="star active" data-value="1" style="color: #fbbf24;">★</span>
-    <span class="star active" data-value="2" style="color: #fbbf24;">★</span>
-    <span class="star active" data-value="3" style="color: #fbbf24;">★</span>
-    <span class="star half" data-value="3.5" style="background: linear-gradient(90deg, #fbbf24 50%, var(--color_line_secondary) 50%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">★</span>
-    <span class="star" data-value="5" style="color: var(--color_line_secondary);">★</span>
-</div>
+        <!-- Rating with half stars -->
+        <div
+            data-ss="rating"
+            data-ss-rating-max="5"
+            data-ss-rating-value="3.5"
+            data-ss-rating-half="true"
+            style="
+                display: inline-flex;
+                gap: 4px;
+                cursor: pointer;
+                font-size: 28px;
+                margin-top: 16px;
+            "
+        >
+            <span class="star active" data-value="1" style="color: #fbbf24">
+                ★
+            </span>
+            <span class="star active" data-value="2" style="color: #fbbf24">
+                ★
+            </span>
+            <span class="star active" data-value="3" style="color: #fbbf24">
+                ★
+            </span>
+            <span
+                class="star half"
+                data-value="3.5"
+                style="
+                    background: linear-gradient(
+                        90deg,
+                        #fbbf24 50%,
+                        var(--color_line_secondary) 50%
+                    );
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                "
+            >
+                ★
+            </span>
+            <span
+                class="star"
+                data-value="5"
+                style="color: var(--color_line_secondary)"
+            >
+                ★
+            </span>
+        </div>
 
-<!-- Rating display with count -->
-<div style="display: flex; align-items: center; gap: 12px; margin-top: 24px;">
-    <div data-ss="rating" data-ss-rating-value="4.5" data-ss-rating-readonly="true" style="display: inline-flex; gap: 2px; font-size: 18px;">
-        <span style="color: #fbbf24;">★★★★</span>
-        <span style="color: var(--color_line_secondary);">★</span>
-    </div>
-    <span style="font-weight: 600;">4.5</span>
-    <span style="opacity: 0.6;">(2,345 reviews)</span>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <!-- Rating display with count -->
+        <div
+            style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-top: 24px;
+            "
+        >
+            <div
+                data-ss="rating"
+                data-ss-rating-value="4.5"
+                data-ss-rating-readonly="true"
+                style="display: inline-flex; gap: 2px; font-size: 18px"
+            >
+                <span style="color: #fbbf24">★★★★</span>
+                <span style="color: var(--color_line_secondary)">★</span>
+            </div>
+            <span style="font-weight: 600">4.5</span>
+            <span style="opacity: 0.6">(2,345 reviews)</span>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Rating Styles #}
-    {% set section_title = "Rating Styles" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Rating Styles #} {% set section_title = "Rating Styles" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Various rating display styles.</p>
         {% set code_snippet %}
-<div style="display: flex; flex-direction: column; gap: 24px;">
-    <!-- Hearts -->
-    <div>
-        <label style="display: block; margin-bottom: 8px; font-size: 14px; opacity: 0.7;">Favorite</label>
-        <div data-ss="rating" data-ss-rating-max="5" data-ss-rating-value="4" style="display: inline-flex; gap: 6px; cursor: pointer; font-size: 24px;">
-            <span data-value="1" style="color: #ef4444;">♥</span>
-            <span data-value="2" style="color: #ef4444;">♥</span>
-            <span data-value="3" style="color: #ef4444;">♥</span>
-            <span data-value="4" style="color: #ef4444;">♥</span>
-            <span data-value="5" style="color: var(--color_line_secondary);">♥</span>
-        </div>
-    </div>
+        <div style="display: flex; flex-direction: column; gap: 24px">
+            <!-- Hearts -->
+            <div>
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 8px;
+                        font-size: 14px;
+                        opacity: 0.7;
+                    "
+                >
+                    Favorite
+                </label>
+                <div
+                    data-ss="rating"
+                    data-ss-rating-max="5"
+                    data-ss-rating-value="4"
+                    style="
+                        display: inline-flex;
+                        gap: 6px;
+                        cursor: pointer;
+                        font-size: 24px;
+                    "
+                >
+                    <span data-value="1" style="color: #ef4444">♥</span>
+                    <span data-value="2" style="color: #ef4444">♥</span>
+                    <span data-value="3" style="color: #ef4444">♥</span>
+                    <span data-value="4" style="color: #ef4444">♥</span>
+                    <span
+                        data-value="5"
+                        style="color: var(--color_line_secondary)"
+                    >
+                        ♥
+                    </span>
+                </div>
+            </div>
 
-    <!-- Emojis -->
-    <div>
-        <label style="display: block; margin-bottom: 8px; font-size: 14px; opacity: 0.7;">How was your experience?</label>
-        <div data-ss="rating" data-ss-rating-max="5" data-ss-rating-value="0" style="display: inline-flex; gap: 12px; cursor: pointer; font-size: 32px;">
-            <span data-value="1" style="filter: grayscale(100%); transition: filter 0.2s;">😠</span>
-            <span data-value="2" style="filter: grayscale(100%); transition: filter 0.2s;">😕</span>
-            <span data-value="3" style="filter: grayscale(100%); transition: filter 0.2s;">😐</span>
-            <span data-value="4" style="filter: grayscale(100%); transition: filter 0.2s;">😊</span>
-            <span data-value="5" style="filter: grayscale(100%); transition: filter 0.2s;">😍</span>
-        </div>
-    </div>
+            <!-- Emojis -->
+            <div>
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 8px;
+                        font-size: 14px;
+                        opacity: 0.7;
+                    "
+                >
+                    How was your experience?
+                </label>
+                <div
+                    data-ss="rating"
+                    data-ss-rating-max="5"
+                    data-ss-rating-value="0"
+                    style="
+                        display: inline-flex;
+                        gap: 12px;
+                        cursor: pointer;
+                        font-size: 32px;
+                    "
+                >
+                    <span
+                        data-value="1"
+                        style="
+                            filter: grayscale(100%);
+                            transition: filter 0.2s;
+                        "
+                    >
+                        😠
+                    </span>
+                    <span
+                        data-value="2"
+                        style="
+                            filter: grayscale(100%);
+                            transition: filter 0.2s;
+                        "
+                    >
+                        😕
+                    </span>
+                    <span
+                        data-value="3"
+                        style="
+                            filter: grayscale(100%);
+                            transition: filter 0.2s;
+                        "
+                    >
+                        😐
+                    </span>
+                    <span
+                        data-value="4"
+                        style="
+                            filter: grayscale(100%);
+                            transition: filter 0.2s;
+                        "
+                    >
+                        😊
+                    </span>
+                    <span
+                        data-value="5"
+                        style="
+                            filter: grayscale(100%);
+                            transition: filter 0.2s;
+                        "
+                    >
+                        😍
+                    </span>
+                </div>
+            </div>
 
-    <!-- Thumbs -->
-    <div>
-        <label style="display: block; margin-bottom: 8px; font-size: 14px; opacity: 0.7;">Was this helpful?</label>
-        <div style="display: flex; gap: 16px;">
-            <button data-ss="rating" data-value="1" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid var(--color_line_secondary); border-radius: 8px; background: white; cursor: pointer;">
-                <span style="font-size: 20px;">👍</span>
-                <span>Yes</span>
-                <span style="font-size: 14px; opacity: 0.6;">(42)</span>
-            </button>
-            <button data-ss="rating" data-value="0" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid var(--color_line_secondary); border-radius: 8px; background: white; cursor: pointer;">
-                <span style="font-size: 20px;">👎</span>
-                <span>No</span>
-                <span style="font-size: 14px; opacity: 0.6;">(8)</span>
-            </button>
+            <!-- Thumbs -->
+            <div>
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 8px;
+                        font-size: 14px;
+                        opacity: 0.7;
+                    "
+                >
+                    Was this helpful?
+                </label>
+                <div style="display: flex; gap: 16px">
+                    <button
+                        data-ss="rating"
+                        data-value="1"
+                        style="
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            padding: 10px 20px;
+                            border: 1px solid var(--color_line_secondary);
+                            border-radius: 8px;
+                            background: white;
+                            cursor: pointer;
+                        "
+                    >
+                        <span style="font-size: 20px">👍</span>
+                        <span>Yes</span>
+                        <span style="font-size: 14px; opacity: 0.6">(42)</span>
+                    </button>
+                    <button
+                        data-ss="rating"
+                        data-value="0"
+                        style="
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            padding: 10px 20px;
+                            border: 1px solid var(--color_line_secondary);
+                            border-radius: 8px;
+                            background: white;
+                            cursor: pointer;
+                        "
+                    >
+                        <span style="font-size: 20px">👎</span>
+                        <span>No</span>
+                        <span style="font-size: 14px; opacity: 0.6">(8)</span>
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# JavaScript API #}
-    {% set section_title = "JavaScript API" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# JavaScript API #} {% set section_title = "JavaScript API" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Programmatic control of data components.</p>
         {% set code_snippet %}
-<script>
-// FilterManager
-import { FilterManager } from 'stylescape';
+        <script>
+            // FilterManager
+            import { FilterManager } from "stylescape";
 
-const filter = new FilterManager(inputElement, {
-    items: '.filterable-item',
-    debounce: 300,
-    minChars: 2,
-    filterAttribute: 'data-filter-text',
-    noResultsText: 'No items found',
-    onFilter: (matches, query) => {
-        console.log(`Found ${matches.length} items for "${query}"`);
-    }
-});
+            const filter = new FilterManager(inputElement, {
+                items: ".filterable-item",
+                debounce: 300,
+                minChars: 2,
+                filterAttribute: "data-filter-text",
+                noResultsText: "No items found",
+                onFilter: (matches, query) => {
+                    console.log(
+                        `Found ${matches.length} items for "${query}"`,
+                    );
+                },
+            });
 
-filter.setQuery('search term');  // Set search programmatically
-filter.clear();                  // Clear filter
-filter.refresh();                // Re-scan items
+            filter.setQuery("search term"); // Set search programmatically
+            filter.clear(); // Clear filter
+            filter.refresh(); // Re-scan items
 
-// RatingManager
-import { RatingManager } from 'stylescape';
+            // RatingManager
+            import { RatingManager } from "stylescape";
 
-const rating = new RatingManager(element, {
-    max: 5,
-    value: 0,
-    allowHalf: true,
-    readonly: false,
-    onChange: (value) => {
-        console.log('Rating changed:', value);
-        // Submit to API
-        fetch('/api/rating', {
-            method: 'POST',
-            body: JSON.stringify({ rating: value })
-        });
-    }
-});
+            const rating = new RatingManager(element, {
+                max: 5,
+                value: 0,
+                allowHalf: true,
+                readonly: false,
+                onChange: (value) => {
+                    console.log("Rating changed:", value);
+                    // Submit to API
+                    fetch("/api/rating", {
+                        method: "POST",
+                        body: JSON.stringify({ rating: value }),
+                    });
+                },
+            });
 
-rating.getValue();      // Get current rating
-rating.setValue(4.5);   // Set rating
-rating.setReadonly(true);  // Make readonly
-</script>
-        {% endset %}
-        {% set language="JavaScript" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+            rating.getValue(); // Get current rating
+            rating.setValue(4.5); // Set rating
+            rating.setReadonly(true); // Make readonly
+        </script>
+        {% endset %} {% set language="JavaScript" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
-
 </section>
 
 {%- endblock %}

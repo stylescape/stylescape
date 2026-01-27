@@ -1,109 +1,178 @@
-{% extends "base.html.jinja" %}
-{% set title = "Modals" %}
-{%- block title %}{{ title }}{%- endblock %}
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Modals" %} {%- block title %}{{
+title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
-        <p>Modal dialogs for displaying content that requires user interaction.</p>
+        <p>
+            Modal dialogs for displaying content that requires user
+            interaction.
+        </p>
     </header>
 
-    {# Basic Modal #}
-    {% set section_title = "Basic Modal" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Basic Modal #} {% set section_title = "Basic Modal" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-<button class="button" onclick="document.getElementById('modal-basic').classList.add('show')">
-    Open Modal
-</button>
+        <button
+            class="button"
+            onclick="document.getElementById('modal-basic').classList.add('show')"
+        >
+            Open Modal
+        </button>
 
-<div id="modal-basic" class="modal">
-    <div class="modal__overlay" onclick="this.parentElement.classList.remove('show')"></div>
-    <div class="modal__container">
-        <header class="modal__header">
-            <h3 class="modal__title">Modal Title</h3>
-            <button class="modal__close" onclick="this.closest('.modal').classList.remove('show')">&times;</button>
-        </header>
-        <div class="modal__body">
-            <p>This is the modal body content. You can place any content here.</p>
+        <div id="modal-basic" class="modal">
+            <div
+                class="modal__overlay"
+                onclick="this.parentElement.classList.remove('show')"
+            ></div>
+            <div class="modal__container">
+                <header class="modal__header">
+                    <h3 class="modal__title">Modal Title</h3>
+                    <button
+                        class="modal__close"
+                        onclick="this.closest('.modal').classList.remove('show')"
+                    >
+                        &times;
+                    </button>
+                </header>
+                <div class="modal__body">
+                    <p>
+                        This is the modal body content. You can place any
+                        content here.
+                    </p>
+                </div>
+                <footer class="modal__footer">
+                    <button
+                        class="button button--secondary"
+                        onclick="this.closest('.modal').classList.remove('show')"
+                    >
+                        Cancel
+                    </button>
+                    <button class="button button--primary">Confirm</button>
+                </footer>
+            </div>
         </div>
-        <footer class="modal__footer">
-            <button class="button button--secondary" onclick="this.closest('.modal').classList.remove('show')">Cancel</button>
-            <button class="button button--primary">Confirm</button>
-        </footer>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Modal Sizes #}
-    {% set section_title = "Modal Sizes" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Modal Sizes #} {% set section_title = "Modal Sizes" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-<div style="display: flex; gap: 16px; flex-wrap: wrap;">
-    <button class="button" onclick="document.getElementById('modal-sm').classList.add('show')">Small</button>
-    <button class="button" onclick="document.getElementById('modal-lg').classList.add('show')">Large</button>
-</div>
-
-<div id="modal-sm" class="modal modal--small">
-    <div class="modal__overlay" onclick="this.parentElement.classList.remove('show')"></div>
-    <div class="modal__container">
-        <header class="modal__header">
-            <h3 class="modal__title">Small Modal</h3>
-            <button class="modal__close" onclick="this.closest('.modal').classList.remove('show')">&times;</button>
-        </header>
-        <div class="modal__body"><p>Compact modal for quick confirmations.</p></div>
-    </div>
-</div>
-
-<div id="modal-lg" class="modal modal--large">
-    <div class="modal__overlay" onclick="this.parentElement.classList.remove('show')"></div>
-    <div class="modal__container">
-        <header class="modal__header">
-            <h3 class="modal__title">Large Modal</h3>
-            <button class="modal__close" onclick="this.closest('.modal').classList.remove('show')">&times;</button>
-        </header>
-        <div class="modal__body"><p>Spacious modal for detailed content or forms.</p></div>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
-    </section>
-
-    {# Confirmation Modal #}
-    {% set section_title = "Confirmation Modal" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
-        {% set code_snippet %}
-<button class="button button--danger" onclick="document.getElementById('modal-confirm').classList.add('show')">
-    Delete Item
-</button>
-
-<div id="modal-confirm" class="modal">
-    <div class="modal__overlay" onclick="this.parentElement.classList.remove('show')"></div>
-    <div class="modal__container">
-        <header class="modal__header">
-            <h3 class="modal__title">Confirm Deletion</h3>
-        </header>
-        <div class="modal__body">
-            <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap">
+            <button
+                class="button"
+                onclick="document.getElementById('modal-sm').classList.add('show')"
+            >
+                Small
+            </button>
+            <button
+                class="button"
+                onclick="document.getElementById('modal-lg').classList.add('show')"
+            >
+                Large
+            </button>
         </div>
-        <footer class="modal__footer">
-            <button class="button button--secondary" onclick="this.closest('.modal').classList.remove('show')">Cancel</button>
-            <button class="button button--danger">Delete</button>
-        </footer>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+
+        <div id="modal-sm" class="modal modal--small">
+            <div
+                class="modal__overlay"
+                onclick="this.parentElement.classList.remove('show')"
+            ></div>
+            <div class="modal__container">
+                <header class="modal__header">
+                    <h3 class="modal__title">Small Modal</h3>
+                    <button
+                        class="modal__close"
+                        onclick="this.closest('.modal').classList.remove('show')"
+                    >
+                        &times;
+                    </button>
+                </header>
+                <div class="modal__body">
+                    <p>Compact modal for quick confirmations.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-lg" class="modal modal--large">
+            <div
+                class="modal__overlay"
+                onclick="this.parentElement.classList.remove('show')"
+            ></div>
+            <div class="modal__container">
+                <header class="modal__header">
+                    <h3 class="modal__title">Large Modal</h3>
+                    <button
+                        class="modal__close"
+                        onclick="this.closest('.modal').classList.remove('show')"
+                    >
+                        &times;
+                    </button>
+                </header>
+                <div class="modal__body">
+                    <p>Spacious modal for detailed content or forms.</p>
+                </div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
+    {# Confirmation Modal #} {% set section_title = "Confirmation Modal" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <button
+            class="button button--danger"
+            onclick="document.getElementById('modal-confirm').classList.add('show')"
+        >
+            Delete Item
+        </button>
+
+        <div id="modal-confirm" class="modal">
+            <div
+                class="modal__overlay"
+                onclick="this.parentElement.classList.remove('show')"
+            ></div>
+            <div class="modal__container">
+                <header class="modal__header">
+                    <h3 class="modal__title">Confirm Deletion</h3>
+                </header>
+                <div class="modal__body">
+                    <p>
+                        Are you sure you want to delete this item? This action
+                        cannot be undone.
+                    </p>
+                </div>
+                <footer class="modal__footer">
+                    <button
+                        class="button button--secondary"
+                        onclick="this.closest('.modal').classList.remove('show')"
+                    >
+                        Cancel
+                    </button>
+                    <button class="button button--danger">Delete</button>
+                </footer>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
 </section>
 
 {%- endblock content %}

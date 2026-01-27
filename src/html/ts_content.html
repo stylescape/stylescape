@@ -989,257 +989,746 @@
 <section class="demo__section" data-label="Content Management" data-level="1">
     <header class="demo__section__header">
         <h2>Content Management</h2>
-        <p>JavaScript components for active link highlighting and automatic table of contents generation.</p>
+        <p>
+            JavaScript components for active link highlighting and automatic
+            table of contents generation.
+        </p>
     </header>
 
+         <section
+        class="demo__subsection"
+        data-label="Active Link
+    Highlighter"
+        data-level="2"
+    >
+        <h3>Active Link
+    Highlighter</h3>
+        <p>
+            Automatically highlights navigation links matching the current URL.
+        </p>
     
-    <section class="demo__subsection" data-label="Active Link Highlighter" data-level="2">
-        <h3>Active Link Highlighter</h3>
-        <p>Automatically highlights navigation links matching the current URL.</p>
-   
 <div class="preview_box--vertical">
-    <div class="preview_box__live"><!-- Navigation with active link highlighting -->
-<nav data-ss="active-link"
-     data-ss-active-link-class="active"
-     style="display: flex; gap: 8px; padding: 16px; background: var(--color_fill_secondary); border-radius: 12px;">
-    <a href="/home" style="padding: 8px 16px; border-radius: 6px; text-decoration: none; color: inherit;">Home</a>
-    <a href="/about" style="padding: 8px 16px; border-radius: 6px; text-decoration: none; color: inherit;">About</a>
-    <a href="/services" class="active" style="padding: 8px 16px; border-radius: 6px; text-decoration: none; background: var(--color_fill_primary); color: white;">Services</a>
-    <a href="/contact" style="padding: 8px 16px; border-radius: 6px; text-decoration: none; color: inherit;">Contact</a>
-</nav>
-
-<!-- Sidebar navigation -->
-<aside data-ss="active-link"
-       data-ss-active-link-class="is-current"
-       data-ss-active-link-skip=".skip-highlight"
-       style="width: 200px; padding: 16px; background: var(--color_fill_secondary); border-radius: 12px; margin-top: 16px;">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-        <li><a href="/docs/intro" style="display: block; padding: 10px 12px; border-radius: 6px; text-decoration: none; color: inherit;">Introduction</a></li>
-        <li><a href="/docs/setup" class="is-current" style="display: block; padding: 10px 12px; border-radius: 6px; text-decoration: none; background: rgba(var(--color_fill_primary_rgb), 0.1); color: var(--color_fill_primary); font-weight: 500;">Getting Started</a></li>
-        <li><a href="/docs/components" style="display: block; padding: 10px 12px; border-radius: 6px; text-decoration: none; color: inherit;">Components</a></li>
-        <li><a href="/docs/api" style="display: block; padding: 10px 12px; border-radius: 6px; text-decoration: none; color: inherit;">API Reference</a></li>
-        <li><a href="https://external.com" class="skip-highlight" style="display: block; padding: 10px 12px; border-radius: 6px; text-decoration: none; color: inherit; opacity: 0.6;">External Link ↗</a></li>
-    </ul>
-</aside>
-</div>
-    <div class="preview_box__info">
-        <small>HTML</small>
-        <button
-            class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-7386')"
+    <div class="preview_box__live">        <!-- Navigation with active link highlighting -->
+        <nav
+            data-ss="active-link"
+            data-ss-active-link-class="active"
+            style="
+                display: flex;
+                gap: 8px;
+                padding: 16px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+            "
         >
-            Copy
-        </button>
-    </div>
-    <div class="preview_box__code">
-        <pre
-            class="line-numbers"
-        ><code id="code-snippet-7386" class="language-html">&lt;!-- Navigation with active link highlighting --&gt;
-&lt;nav data-ss=&quot;active-link&quot;
-     data-ss-active-link-class=&quot;active&quot;
-     style=&quot;display: flex; gap: 8px; padding: 16px; background: var(--color_fill_secondary); border-radius: 12px;&quot;&gt;
-    &lt;a href=&quot;/home&quot; style=&quot;padding: 8px 16px; border-radius: 6px; text-decoration: none; color: inherit;&quot;&gt;Home&lt;/a&gt;
-    &lt;a href=&quot;/about&quot; style=&quot;padding: 8px 16px; border-radius: 6px; text-decoration: none; color: inherit;&quot;&gt;About&lt;/a&gt;
-    &lt;a href=&quot;/services&quot; class=&quot;active&quot; style=&quot;padding: 8px 16px; border-radius: 6px; text-decoration: none; background: var(--color_fill_primary); color: white;&quot;&gt;Services&lt;/a&gt;
-    &lt;a href=&quot;/contact&quot; style=&quot;padding: 8px 16px; border-radius: 6px; text-decoration: none; color: inherit;&quot;&gt;Contact&lt;/a&gt;
-&lt;/nav&gt;
+            <a
+                href="/home"
+                style="
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    color: inherit;
+                "
+            >
+                Home
+            </a>
+            <a
+                href="/about"
+                style="
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    color: inherit;
+                "
+            >
+                About
+            </a>
+            <a
+                href="/services"
+                class="active"
+                style="
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    background: var(--color_fill_primary);
+                    color: white;
+                "
+            >
+                Services
+            </a>
+            <a
+                href="/contact"
+                style="
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    color: inherit;
+                "
+            >
+                Contact
+            </a>
+        </nav>
 
-&lt;!-- Sidebar navigation --&gt;
-&lt;aside data-ss=&quot;active-link&quot;
-       data-ss-active-link-class=&quot;is-current&quot;
-       data-ss-active-link-skip=&quot;.skip-highlight&quot;
-       style=&quot;width: 200px; padding: 16px; background: var(--color_fill_secondary); border-radius: 12px; margin-top: 16px;&quot;&gt;
-    &lt;ul style=&quot;list-style: none; padding: 0; margin: 0;&quot;&gt;
-        &lt;li&gt;&lt;a href=&quot;/docs/intro&quot; style=&quot;display: block; padding: 10px 12px; border-radius: 6px; text-decoration: none; color: inherit;&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;/docs/setup&quot; class=&quot;is-current&quot; style=&quot;display: block; padding: 10px 12px; border-radius: 6px; text-decoration: none; background: rgba(var(--color_fill_primary_rgb), 0.1); color: var(--color_fill_primary); font-weight: 500;&quot;&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;/docs/components&quot; style=&quot;display: block; padding: 10px 12px; border-radius: 6px; text-decoration: none; color: inherit;&quot;&gt;Components&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;/docs/api&quot; style=&quot;display: block; padding: 10px 12px; border-radius: 6px; text-decoration: none; color: inherit;&quot;&gt;API Reference&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;https://external.com&quot; class=&quot;skip-highlight&quot; style=&quot;display: block; padding: 10px 12px; border-radius: 6px; text-decoration: none; color: inherit; opacity: 0.6;&quot;&gt;External Link ↗&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/aside&gt;</code></pre>
-    </div>
-</div>
-    </section>
-
-    
-    <section class="demo__subsection" data-label="Table of Contents Builder" data-level="2">
-        <h3>Table of Contents Builder</h3>
-        <p>Generates a table of contents from elements with <code>data-label</code> attributes. Integrates with ScrollSpyManager.</p>
-   
-<div class="preview_box--vertical">
-    <div class="preview_box__live"><!-- TOC Builder initialization -->
-<div data-ss="toc-builder"
-     data-ss-toc-root="content-area"
-     data-ss-toc-container="toc-nav">
-</div>
-
-<div style="display: grid; grid-template-columns: 1fr 250px; gap: 32px;">
-    <!-- Main content with labeled sections -->
-    <div id="content-area">
-        <section data-label="Introduction" id="intro">
-            <h2>Introduction</h2>
-            <p>Welcome to the documentation. This section covers the basics.</p>
-        </section>
-
-        <section data-label="Getting Started" id="getting-started">
-            <h2>Getting Started</h2>
-            <p>Follow these steps to begin using the library.</p>
-
-            <section data-label="Installation" id="installation">
-                <h3>Installation</h3>
-                <p>Install via npm or yarn.</p>
-            </section>
-
-            <section data-label="Configuration" id="configuration">
-                <h3>Configuration</h3>
-                <p>Configure your project settings.</p>
-            </section>
-        </section>
-
-        <section data-label="Advanced Usage" id="advanced">
-            <h2>Advanced Usage</h2>
-            <p>Learn about advanced features and patterns.</p>
-        </section>
-    </div>
-
-    <!-- Auto-generated TOC -->
-    <nav id="toc-nav" style="position: sticky; top: 20px; padding: 20px; background: var(--color_fill_secondary); border-radius: 12px; height: fit-content;">
-        <h4 style="margin: 0 0 16px; font-size: 14px; text-transform: uppercase; opacity: 0.6;">On This Page</h4>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-            <li><a href="#intro" style="display: block; padding: 6px 0; text-decoration: none; color: inherit; border-left: 2px solid transparent; padding-left: 12px;">Introduction</a></li>
-            <li><a href="#getting-started" style="display: block; padding: 6px 0; text-decoration: none; color: var(--color_fill_primary); border-left: 2px solid var(--color_fill_primary); padding-left: 12px; font-weight: 500;">Getting Started</a></li>
-            <li style="padding-left: 16px;"><a href="#installation" style="display: block; padding: 4px 0; text-decoration: none; color: inherit; font-size: 14px; opacity: 0.8;">Installation</a></li>
-            <li style="padding-left: 16px;"><a href="#configuration" style="display: block; padding: 4px 0; text-decoration: none; color: inherit; font-size: 14px; opacity: 0.8;">Configuration</a></li>
-            <li><a href="#advanced" style="display: block; padding: 6px 0; text-decoration: none; color: inherit; border-left: 2px solid transparent; padding-left: 12px;">Advanced Usage</a></li>
-        </ul>
-    </nav>
-</div>
-</div>
-    <div class="preview_box__info">
-        <small>HTML</small>
-        <button
-            class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-2313')"
+        <!-- Sidebar navigation -->
+        <aside
+            data-ss="active-link"
+            data-ss-active-link-class="is-current"
+            data-ss-active-link-skip=".skip-highlight"
+            style="
+                width: 200px;
+                padding: 16px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+                margin-top: 16px;
+            "
         >
-            Copy
-        </button>
-    </div>
-    <div class="preview_box__code">
-        <pre
-            class="line-numbers"
-        ><code id="code-snippet-2313" class="language-html">&lt;!-- TOC Builder initialization --&gt;
-&lt;div data-ss=&quot;toc-builder&quot;
-     data-ss-toc-root=&quot;content-area&quot;
-     data-ss-toc-container=&quot;toc-nav&quot;&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;display: grid; grid-template-columns: 1fr 250px; gap: 32px;&quot;&gt;
-    &lt;!-- Main content with labeled sections --&gt;
-    &lt;div id=&quot;content-area&quot;&gt;
-        &lt;section data-label=&quot;Introduction&quot; id=&quot;intro&quot;&gt;
-            &lt;h2&gt;Introduction&lt;/h2&gt;
-            &lt;p&gt;Welcome to the documentation. This section covers the basics.&lt;/p&gt;
-        &lt;/section&gt;
-
-        &lt;section data-label=&quot;Getting Started&quot; id=&quot;getting-started&quot;&gt;
-            &lt;h2&gt;Getting Started&lt;/h2&gt;
-            &lt;p&gt;Follow these steps to begin using the library.&lt;/p&gt;
-
-            &lt;section data-label=&quot;Installation&quot; id=&quot;installation&quot;&gt;
-                &lt;h3&gt;Installation&lt;/h3&gt;
-                &lt;p&gt;Install via npm or yarn.&lt;/p&gt;
-            &lt;/section&gt;
-
-            &lt;section data-label=&quot;Configuration&quot; id=&quot;configuration&quot;&gt;
-                &lt;h3&gt;Configuration&lt;/h3&gt;
-                &lt;p&gt;Configure your project settings.&lt;/p&gt;
-            &lt;/section&gt;
-        &lt;/section&gt;
-
-        &lt;section data-label=&quot;Advanced Usage&quot; id=&quot;advanced&quot;&gt;
-            &lt;h2&gt;Advanced Usage&lt;/h2&gt;
-            &lt;p&gt;Learn about advanced features and patterns.&lt;/p&gt;
-        &lt;/section&gt;
-    &lt;/div&gt;
-
-    &lt;!-- Auto-generated TOC --&gt;
-    &lt;nav id=&quot;toc-nav&quot; style=&quot;position: sticky; top: 20px; padding: 20px; background: var(--color_fill_secondary); border-radius: 12px; height: fit-content;&quot;&gt;
-        &lt;h4 style=&quot;margin: 0 0 16px; font-size: 14px; text-transform: uppercase; opacity: 0.6;&quot;&gt;On This Page&lt;/h4&gt;
-        &lt;ul style=&quot;list-style: none; padding: 0; margin: 0;&quot;&gt;
-            &lt;li&gt;&lt;a href=&quot;#intro&quot; style=&quot;display: block; padding: 6px 0; text-decoration: none; color: inherit; border-left: 2px solid transparent; padding-left: 12px;&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;#getting-started&quot; style=&quot;display: block; padding: 6px 0; text-decoration: none; color: var(--color_fill_primary); border-left: 2px solid var(--color_fill_primary); padding-left: 12px; font-weight: 500;&quot;&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
-            &lt;li style=&quot;padding-left: 16px;&quot;&gt;&lt;a href=&quot;#installation&quot; style=&quot;display: block; padding: 4px 0; text-decoration: none; color: inherit; font-size: 14px; opacity: 0.8;&quot;&gt;Installation&lt;/a&gt;&lt;/li&gt;
-            &lt;li style=&quot;padding-left: 16px;&quot;&gt;&lt;a href=&quot;#configuration&quot; style=&quot;display: block; padding: 4px 0; text-decoration: none; color: inherit; font-size: 14px; opacity: 0.8;&quot;&gt;Configuration&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;#advanced&quot; style=&quot;display: block; padding: 6px 0; text-decoration: none; color: inherit; border-left: 2px solid transparent; padding-left: 12px;&quot;&gt;Advanced Usage&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/nav&gt;
-&lt;/div&gt;</code></pre>
-    </div>
-</div>
-    </section>
-
-    
-    <section class="demo__subsection" data-label="Nested Section Structure" data-level="2">
-        <h3>Nested Section Structure</h3>
-        <p>The TOC builder supports nested sections with <code>data-level</code> attributes.</p>
-   
-<div class="preview_box--vertical">
-    <div class="preview_box__live"><!-- Deeply nested content structure -->
-<article id="documentation">
-    <section data-label="Chapter 1" data-level="1">
-        <h1>Chapter 1: Foundation</h1>
-
-        <section data-label="Overview" data-level="2">
-            <h2>Overview</h2>
-            <p>Chapter overview content...</p>
-        </section>
-
-        <section data-label="Core Concepts" data-level="2">
-            <h2>Core Concepts</h2>
-
-            <section data-label="Components" data-level="3">
-                <h3>Components</h3>
-                <p>Component details...</p>
-            </section>
-
-            <section data-label="Patterns" data-level="3">
-                <h3>Patterns</h3>
-                <p>Pattern explanations...</p>
-            </section>
-        </section>
-    </section>
-
-    <section data-label="Chapter 2" data-level="1">
-        <h1>Chapter 2: Advanced</h1>
-        <p>Advanced topics...</p>
-    </section>
-</article>
-
-<!-- Generated TOC structure -->
-<nav class="toc" style="padding: 20px; background: var(--color_fill_secondary); border-radius: 12px;">
-    <ol style="margin: 0; padding-left: 20px;">
-        <li>
-            <a href="#chapter-1">Chapter 1: Foundation</a>
-            <ol style="padding-left: 16px;">
-                <li><a href="#overview">Overview</a></li>
+            <ul style="list-style: none; padding: 0; margin: 0">
                 <li>
-                    <a href="#core-concepts">Core Concepts</a>
-                    <ol style="padding-left: 16px;">
-                        <li><a href="#components">Components</a></li>
-                        <li><a href="#patterns">Patterns</a></li>
+                    <a
+                        href="/docs/intro"
+                        style="
+                            display: block;
+                            padding: 10px 12px;
+                            border-radius: 6px;
+                            text-decoration: none;
+                            color: inherit;
+                        "
+                    >
+                        Introduction
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/docs/setup"
+                        class="is-current"
+                        style="
+                            display: block;
+                            padding: 10px 12px;
+                            border-radius: 6px;
+                            text-decoration: none;
+                            background: rgba(
+                                var(--color_fill_primary_rgb),
+                                0.1
+                            );
+                            color: var(--color_fill_primary);
+                            font-weight: 500;
+                        "
+                    >
+                        Getting Started
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/docs/components"
+                        style="
+                            display: block;
+                            padding: 10px 12px;
+                            border-radius: 6px;
+                            text-decoration: none;
+                            color: inherit;
+                        "
+                    >
+                        Components
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/docs/api"
+                        style="
+                            display: block;
+                            padding: 10px 12px;
+                            border-radius: 6px;
+                            text-decoration: none;
+                            color: inherit;
+                        "
+                    >
+                        API Reference
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://external.com"
+                        class="skip-highlight"
+                        style="
+                            display: block;
+                            padding: 10px 12px;
+                            border-radius: 6px;
+                            text-decoration: none;
+                            color: inherit;
+                            opacity: 0.6;
+                        "
+                    >
+                        External Link ↗
+                    </a>
+                </li>
+            </ul>
+        </aside>
+</div>
+    <div class="preview_box__info">
+        <small>HTML</small>
+        <button
+            class="preview_box__copy_button"
+            onclick="ClipboardHelper.copyById('code-snippet-1726')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="preview_box__code">
+        <pre
+            class="line-numbers"
+        ><code id="code-snippet-1726" class="language-html">&lt;!-- Navigation with active link highlighting --&gt;
+        &lt;nav
+            data-ss=&quot;active-link&quot;
+            data-ss-active-link-class=&quot;active&quot;
+            style=&quot;
+                display: flex;
+                gap: 8px;
+                padding: 16px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+            &quot;
+        &gt;
+            &lt;a
+                href=&quot;/home&quot;
+                style=&quot;
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    color: inherit;
+                &quot;
+            &gt;
+                Home
+            &lt;/a&gt;
+            &lt;a
+                href=&quot;/about&quot;
+                style=&quot;
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    color: inherit;
+                &quot;
+            &gt;
+                About
+            &lt;/a&gt;
+            &lt;a
+                href=&quot;/services&quot;
+                class=&quot;active&quot;
+                style=&quot;
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    background: var(--color_fill_primary);
+                    color: white;
+                &quot;
+            &gt;
+                Services
+            &lt;/a&gt;
+            &lt;a
+                href=&quot;/contact&quot;
+                style=&quot;
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    color: inherit;
+                &quot;
+            &gt;
+                Contact
+            &lt;/a&gt;
+        &lt;/nav&gt;
+
+        &lt;!-- Sidebar navigation --&gt;
+        &lt;aside
+            data-ss=&quot;active-link&quot;
+            data-ss-active-link-class=&quot;is-current&quot;
+            data-ss-active-link-skip=&quot;.skip-highlight&quot;
+            style=&quot;
+                width: 200px;
+                padding: 16px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+                margin-top: 16px;
+            &quot;
+        &gt;
+            &lt;ul style=&quot;list-style: none; padding: 0; margin: 0&quot;&gt;
+                &lt;li&gt;
+                    &lt;a
+                        href=&quot;/docs/intro&quot;
+                        style=&quot;
+                            display: block;
+                            padding: 10px 12px;
+                            border-radius: 6px;
+                            text-decoration: none;
+                            color: inherit;
+                        &quot;
+                    &gt;
+                        Introduction
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a
+                        href=&quot;/docs/setup&quot;
+                        class=&quot;is-current&quot;
+                        style=&quot;
+                            display: block;
+                            padding: 10px 12px;
+                            border-radius: 6px;
+                            text-decoration: none;
+                            background: rgba(
+                                var(--color_fill_primary_rgb),
+                                0.1
+                            );
+                            color: var(--color_fill_primary);
+                            font-weight: 500;
+                        &quot;
+                    &gt;
+                        Getting Started
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a
+                        href=&quot;/docs/components&quot;
+                        style=&quot;
+                            display: block;
+                            padding: 10px 12px;
+                            border-radius: 6px;
+                            text-decoration: none;
+                            color: inherit;
+                        &quot;
+                    &gt;
+                        Components
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a
+                        href=&quot;/docs/api&quot;
+                        style=&quot;
+                            display: block;
+                            padding: 10px 12px;
+                            border-radius: 6px;
+                            text-decoration: none;
+                            color: inherit;
+                        &quot;
+                    &gt;
+                        API Reference
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a
+                        href=&quot;https://external.com&quot;
+                        class=&quot;skip-highlight&quot;
+                        style=&quot;
+                            display: block;
+                            padding: 10px 12px;
+                            border-radius: 6px;
+                            text-decoration: none;
+                            color: inherit;
+                            opacity: 0.6;
+                        &quot;
+                    &gt;
+                        External Link ↗
+                    &lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/aside&gt;</code></pre>
+    </div>
+</div>
+    </section>
+
+         <section
+        class="demo__subsection"
+        data-label="Table of Contents
+    Builder"
+        data-level="2"
+    >
+        <h3>Table of Contents
+    Builder</h3>
+        <p>
+            Generates a table of contents from elements with
+            <code>data-label</code>
+            attributes. Integrates with ScrollSpyManager.
+        </p>
+    
+<div class="preview_box--vertical">
+    <div class="preview_box__live">        <!-- TOC Builder initialization -->
+        <div
+            data-ss="toc-builder"
+            data-ss-toc-root="content-area"
+            data-ss-toc-container="toc-nav"
+        ></div>
+
+        <div
+            style="display: grid; grid-template-columns: 1fr 250px; gap: 32px"
+        >
+            <!-- Main content with labeled sections -->
+            <div id="content-area">
+                <section data-label="Introduction" id="intro">
+                    <h2>Introduction</h2>
+                    <p>
+                        Welcome to the documentation. This section covers the
+                        basics.
+                    </p>
+                </section>
+
+                <section data-label="Getting Started" id="getting-started">
+                    <h2>Getting Started</h2>
+                    <p>Follow these steps to begin using the library.</p>
+
+                    <section data-label="Installation" id="installation">
+                        <h3>Installation</h3>
+                        <p>Install via npm or yarn.</p>
+                    </section>
+
+                    <section data-label="Configuration" id="configuration">
+                        <h3>Configuration</h3>
+                        <p>Configure your project settings.</p>
+                    </section>
+                </section>
+
+                <section data-label="Advanced Usage" id="advanced">
+                    <h2>Advanced Usage</h2>
+                    <p>Learn about advanced features and patterns.</p>
+                </section>
+            </div>
+
+            <!-- Auto-generated TOC -->
+            <nav
+                id="toc-nav"
+                style="
+                    position: sticky;
+                    top: 20px;
+                    padding: 20px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                    height: fit-content;
+                "
+            >
+                <h4
+                    style="
+                        margin: 0 0 16px;
+                        font-size: 14px;
+                        text-transform: uppercase;
+                        opacity: 0.6;
+                    "
+                >
+                    On This Page
+                </h4>
+                <ul style="list-style: none; padding: 0; margin: 0">
+                    <li>
+                        <a
+                            href="#intro"
+                            style="
+                                display: block;
+                                padding: 6px 0;
+                                text-decoration: none;
+                                color: inherit;
+                                border-left: 2px solid transparent;
+                                padding-left: 12px;
+                            "
+                        >
+                            Introduction
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#getting-started"
+                            style="
+                                display: block;
+                                padding: 6px 0;
+                                text-decoration: none;
+                                color: var(--color_fill_primary);
+                                border-left: 2px solid
+                                    var(--color_fill_primary);
+                                padding-left: 12px;
+                                font-weight: 500;
+                            "
+                        >
+                            Getting Started
+                        </a>
+                    </li>
+                    <li style="padding-left: 16px">
+                        <a
+                            href="#installation"
+                            style="
+                                display: block;
+                                padding: 4px 0;
+                                text-decoration: none;
+                                color: inherit;
+                                font-size: 14px;
+                                opacity: 0.8;
+                            "
+                        >
+                            Installation
+                        </a>
+                    </li>
+                    <li style="padding-left: 16px">
+                        <a
+                            href="#configuration"
+                            style="
+                                display: block;
+                                padding: 4px 0;
+                                text-decoration: none;
+                                color: inherit;
+                                font-size: 14px;
+                                opacity: 0.8;
+                            "
+                        >
+                            Configuration
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#advanced"
+                            style="
+                                display: block;
+                                padding: 6px 0;
+                                text-decoration: none;
+                                color: inherit;
+                                border-left: 2px solid transparent;
+                                padding-left: 12px;
+                            "
+                        >
+                            Advanced Usage
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+</div>
+    <div class="preview_box__info">
+        <small>HTML</small>
+        <button
+            class="preview_box__copy_button"
+            onclick="ClipboardHelper.copyById('code-snippet-5612')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="preview_box__code">
+        <pre
+            class="line-numbers"
+        ><code id="code-snippet-5612" class="language-html">&lt;!-- TOC Builder initialization --&gt;
+        &lt;div
+            data-ss=&quot;toc-builder&quot;
+            data-ss-toc-root=&quot;content-area&quot;
+            data-ss-toc-container=&quot;toc-nav&quot;
+        &gt;&lt;/div&gt;
+
+        &lt;div
+            style=&quot;display: grid; grid-template-columns: 1fr 250px; gap: 32px&quot;
+        &gt;
+            &lt;!-- Main content with labeled sections --&gt;
+            &lt;div id=&quot;content-area&quot;&gt;
+                &lt;section data-label=&quot;Introduction&quot; id=&quot;intro&quot;&gt;
+                    &lt;h2&gt;Introduction&lt;/h2&gt;
+                    &lt;p&gt;
+                        Welcome to the documentation. This section covers the
+                        basics.
+                    &lt;/p&gt;
+                &lt;/section&gt;
+
+                &lt;section data-label=&quot;Getting Started&quot; id=&quot;getting-started&quot;&gt;
+                    &lt;h2&gt;Getting Started&lt;/h2&gt;
+                    &lt;p&gt;Follow these steps to begin using the library.&lt;/p&gt;
+
+                    &lt;section data-label=&quot;Installation&quot; id=&quot;installation&quot;&gt;
+                        &lt;h3&gt;Installation&lt;/h3&gt;
+                        &lt;p&gt;Install via npm or yarn.&lt;/p&gt;
+                    &lt;/section&gt;
+
+                    &lt;section data-label=&quot;Configuration&quot; id=&quot;configuration&quot;&gt;
+                        &lt;h3&gt;Configuration&lt;/h3&gt;
+                        &lt;p&gt;Configure your project settings.&lt;/p&gt;
+                    &lt;/section&gt;
+                &lt;/section&gt;
+
+                &lt;section data-label=&quot;Advanced Usage&quot; id=&quot;advanced&quot;&gt;
+                    &lt;h2&gt;Advanced Usage&lt;/h2&gt;
+                    &lt;p&gt;Learn about advanced features and patterns.&lt;/p&gt;
+                &lt;/section&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Auto-generated TOC --&gt;
+            &lt;nav
+                id=&quot;toc-nav&quot;
+                style=&quot;
+                    position: sticky;
+                    top: 20px;
+                    padding: 20px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                    height: fit-content;
+                &quot;
+            &gt;
+                &lt;h4
+                    style=&quot;
+                        margin: 0 0 16px;
+                        font-size: 14px;
+                        text-transform: uppercase;
+                        opacity: 0.6;
+                    &quot;
+                &gt;
+                    On This Page
+                &lt;/h4&gt;
+                &lt;ul style=&quot;list-style: none; padding: 0; margin: 0&quot;&gt;
+                    &lt;li&gt;
+                        &lt;a
+                            href=&quot;#intro&quot;
+                            style=&quot;
+                                display: block;
+                                padding: 6px 0;
+                                text-decoration: none;
+                                color: inherit;
+                                border-left: 2px solid transparent;
+                                padding-left: 12px;
+                            &quot;
+                        &gt;
+                            Introduction
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;a
+                            href=&quot;#getting-started&quot;
+                            style=&quot;
+                                display: block;
+                                padding: 6px 0;
+                                text-decoration: none;
+                                color: var(--color_fill_primary);
+                                border-left: 2px solid
+                                    var(--color_fill_primary);
+                                padding-left: 12px;
+                                font-weight: 500;
+                            &quot;
+                        &gt;
+                            Getting Started
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li style=&quot;padding-left: 16px&quot;&gt;
+                        &lt;a
+                            href=&quot;#installation&quot;
+                            style=&quot;
+                                display: block;
+                                padding: 4px 0;
+                                text-decoration: none;
+                                color: inherit;
+                                font-size: 14px;
+                                opacity: 0.8;
+                            &quot;
+                        &gt;
+                            Installation
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li style=&quot;padding-left: 16px&quot;&gt;
+                        &lt;a
+                            href=&quot;#configuration&quot;
+                            style=&quot;
+                                display: block;
+                                padding: 4px 0;
+                                text-decoration: none;
+                                color: inherit;
+                                font-size: 14px;
+                                opacity: 0.8;
+                            &quot;
+                        &gt;
+                            Configuration
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;a
+                            href=&quot;#advanced&quot;
+                            style=&quot;
+                                display: block;
+                                padding: 6px 0;
+                                text-decoration: none;
+                                color: inherit;
+                                border-left: 2px solid transparent;
+                                padding-left: 12px;
+                            &quot;
+                        &gt;
+                            Advanced Usage
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/nav&gt;
+        &lt;/div&gt;</code></pre>
+    </div>
+</div>
+    </section>
+
+         <section
+        class="demo__subsection"
+        data-label="Nested Section Structure"
+        data-level="2"
+    >
+        <h3>Nested Section Structure</h3>
+        <p>
+            The TOC builder supports nested sections with
+            <code>data-level</code>
+            attributes.
+        </p>
+    
+<div class="preview_box--vertical">
+    <div class="preview_box__live">        <!-- Deeply nested content structure -->
+        <article id="documentation">
+            <section data-label="Chapter 1" data-level="1">
+                <h1>Chapter 1: Foundation</h1>
+
+                <section data-label="Overview" data-level="2">
+                    <h2>Overview</h2>
+                    <p>Chapter overview content...</p>
+                </section>
+
+                <section data-label="Core Concepts" data-level="2">
+                    <h2>Core Concepts</h2>
+
+                    <section data-label="Components" data-level="3">
+                        <h3>Components</h3>
+                        <p>Component details...</p>
+                    </section>
+
+                    <section data-label="Patterns" data-level="3">
+                        <h3>Patterns</h3>
+                        <p>Pattern explanations...</p>
+                    </section>
+                </section>
+            </section>
+
+            <section data-label="Chapter 2" data-level="1">
+                <h1>Chapter 2: Advanced</h1>
+                <p>Advanced topics...</p>
+            </section>
+        </article>
+
+        <!-- Generated TOC structure -->
+        <nav
+            class="toc"
+            style="
+                padding: 20px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+            "
+        >
+            <ol style="margin: 0; padding-left: 20px">
+                <li>
+                    <a href="#chapter-1">Chapter 1: Foundation</a>
+                    <ol style="padding-left: 16px">
+                        <li><a href="#overview">Overview</a></li>
+                        <li>
+                            <a href="#core-concepts">Core Concepts</a>
+                            <ol style="padding-left: 16px">
+                                <li><a href="#components">Components</a></li>
+                                <li><a href="#patterns">Patterns</a></li>
+                            </ol>
+                        </li>
                     </ol>
                 </li>
+                <li><a href="#chapter-2">Chapter 2: Advanced</a></li>
             </ol>
-        </li>
-        <li><a href="#chapter-2">Chapter 2: Advanced</a></li>
-    </ol>
-</nav>
+        </nav>
 </div>
     <div class="preview_box__info">
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-7771')"
+            onclick="ClipboardHelper.copyById('code-snippet-3761')"
         >
             Copy
         </button>
@@ -1247,71 +1736,81 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-7771" class="language-html">&lt;!-- Deeply nested content structure --&gt;
-&lt;article id=&quot;documentation&quot;&gt;
-    &lt;section data-label=&quot;Chapter 1&quot; data-level=&quot;1&quot;&gt;
-        &lt;h1&gt;Chapter 1: Foundation&lt;/h1&gt;
+        ><code id="code-snippet-3761" class="language-html">&lt;!-- Deeply nested content structure --&gt;
+        &lt;article id=&quot;documentation&quot;&gt;
+            &lt;section data-label=&quot;Chapter 1&quot; data-level=&quot;1&quot;&gt;
+                &lt;h1&gt;Chapter 1: Foundation&lt;/h1&gt;
 
-        &lt;section data-label=&quot;Overview&quot; data-level=&quot;2&quot;&gt;
-            &lt;h2&gt;Overview&lt;/h2&gt;
-            &lt;p&gt;Chapter overview content...&lt;/p&gt;
-        &lt;/section&gt;
+                &lt;section data-label=&quot;Overview&quot; data-level=&quot;2&quot;&gt;
+                    &lt;h2&gt;Overview&lt;/h2&gt;
+                    &lt;p&gt;Chapter overview content...&lt;/p&gt;
+                &lt;/section&gt;
 
-        &lt;section data-label=&quot;Core Concepts&quot; data-level=&quot;2&quot;&gt;
-            &lt;h2&gt;Core Concepts&lt;/h2&gt;
+                &lt;section data-label=&quot;Core Concepts&quot; data-level=&quot;2&quot;&gt;
+                    &lt;h2&gt;Core Concepts&lt;/h2&gt;
 
-            &lt;section data-label=&quot;Components&quot; data-level=&quot;3&quot;&gt;
-                &lt;h3&gt;Components&lt;/h3&gt;
-                &lt;p&gt;Component details...&lt;/p&gt;
+                    &lt;section data-label=&quot;Components&quot; data-level=&quot;3&quot;&gt;
+                        &lt;h3&gt;Components&lt;/h3&gt;
+                        &lt;p&gt;Component details...&lt;/p&gt;
+                    &lt;/section&gt;
+
+                    &lt;section data-label=&quot;Patterns&quot; data-level=&quot;3&quot;&gt;
+                        &lt;h3&gt;Patterns&lt;/h3&gt;
+                        &lt;p&gt;Pattern explanations...&lt;/p&gt;
+                    &lt;/section&gt;
+                &lt;/section&gt;
             &lt;/section&gt;
 
-            &lt;section data-label=&quot;Patterns&quot; data-level=&quot;3&quot;&gt;
-                &lt;h3&gt;Patterns&lt;/h3&gt;
-                &lt;p&gt;Pattern explanations...&lt;/p&gt;
+            &lt;section data-label=&quot;Chapter 2&quot; data-level=&quot;1&quot;&gt;
+                &lt;h1&gt;Chapter 2: Advanced&lt;/h1&gt;
+                &lt;p&gt;Advanced topics...&lt;/p&gt;
             &lt;/section&gt;
-        &lt;/section&gt;
-    &lt;/section&gt;
+        &lt;/article&gt;
 
-    &lt;section data-label=&quot;Chapter 2&quot; data-level=&quot;1&quot;&gt;
-        &lt;h1&gt;Chapter 2: Advanced&lt;/h1&gt;
-        &lt;p&gt;Advanced topics...&lt;/p&gt;
-    &lt;/section&gt;
-&lt;/article&gt;
-
-&lt;!-- Generated TOC structure --&gt;
-&lt;nav class=&quot;toc&quot; style=&quot;padding: 20px; background: var(--color_fill_secondary); border-radius: 12px;&quot;&gt;
-    &lt;ol style=&quot;margin: 0; padding-left: 20px;&quot;&gt;
-        &lt;li&gt;
-            &lt;a href=&quot;#chapter-1&quot;&gt;Chapter 1: Foundation&lt;/a&gt;
-            &lt;ol style=&quot;padding-left: 16px;&quot;&gt;
-                &lt;li&gt;&lt;a href=&quot;#overview&quot;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+        &lt;!-- Generated TOC structure --&gt;
+        &lt;nav
+            class=&quot;toc&quot;
+            style=&quot;
+                padding: 20px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+            &quot;
+        &gt;
+            &lt;ol style=&quot;margin: 0; padding-left: 20px&quot;&gt;
                 &lt;li&gt;
-                    &lt;a href=&quot;#core-concepts&quot;&gt;Core Concepts&lt;/a&gt;
-                    &lt;ol style=&quot;padding-left: 16px;&quot;&gt;
-                        &lt;li&gt;&lt;a href=&quot;#components&quot;&gt;Components&lt;/a&gt;&lt;/li&gt;
-                        &lt;li&gt;&lt;a href=&quot;#patterns&quot;&gt;Patterns&lt;/a&gt;&lt;/li&gt;
+                    &lt;a href=&quot;#chapter-1&quot;&gt;Chapter 1: Foundation&lt;/a&gt;
+                    &lt;ol style=&quot;padding-left: 16px&quot;&gt;
+                        &lt;li&gt;&lt;a href=&quot;#overview&quot;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a href=&quot;#core-concepts&quot;&gt;Core Concepts&lt;/a&gt;
+                            &lt;ol style=&quot;padding-left: 16px&quot;&gt;
+                                &lt;li&gt;&lt;a href=&quot;#components&quot;&gt;Components&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href=&quot;#patterns&quot;&gt;Patterns&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ol&gt;
+                        &lt;/li&gt;
                     &lt;/ol&gt;
                 &lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;#chapter-2&quot;&gt;Chapter 2: Advanced&lt;/a&gt;&lt;/li&gt;
             &lt;/ol&gt;
-        &lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;#chapter-2&quot;&gt;Chapter 2: Advanced&lt;/a&gt;&lt;/li&gt;
-    &lt;/ol&gt;
-&lt;/nav&gt;</code></pre>
+        &lt;/nav&gt;</code></pre>
     </div>
 </div>
     </section>
 
-    
-    <section class="demo__subsection" data-label="JavaScript API" data-level="2">
+         <section
+        class="demo__subsection"
+        data-label="JavaScript API"
+        data-level="2"
+    >
         <h3>JavaScript API</h3>
         <p>Programmatic control of content management components.</p>
-   
+    
 <div class="preview_box--vertical">
     <div class="preview_box__info">
         <small>JavaScript</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-6580')"
+            onclick="ClipboardHelper.copyById('code-snippet-2951')"
         >
             Copy
         </button>
@@ -1319,41 +1818,40 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-6580" class="language-javascript">&lt;script&gt;
-// ActiveLinkHighlighter
-import { ActiveLinkHighlighter } from &#39;stylescape&#39;;
+        ><code id="code-snippet-2951" class="language-javascript">&lt;script&gt;
+            // ActiveLinkHighlighter
+            import { ActiveLinkHighlighter } from &quot;stylescape&quot;;
 
-const highlighter = new ActiveLinkHighlighter(navElement, {
-    activeClass: &#39;is-active&#39;,
-    skip: &#39;.external-link&#39;,
-    matchExact: false,  // Also match parent routes
-    matchHash: true     // Match URL hash
-});
+            const highlighter = new ActiveLinkHighlighter(navElement, {
+                activeClass: &quot;is-active&quot;,
+                skip: &quot;.external-link&quot;,
+                matchExact: false, // Also match parent routes
+                matchHash: true, // Match URL hash
+            });
 
-highlighter.refresh();  // Re-check active state
-highlighter.setActive(linkElement);  // Manually set active
+            highlighter.refresh(); // Re-check active state
+            highlighter.setActive(linkElement); // Manually set active
 
-// TableOfContentsBuilder
-import { TableOfContentsBuilder } from &#39;stylescape&#39;;
+            // TableOfContentsBuilder
+            import { TableOfContentsBuilder } from &quot;stylescape&quot;;
 
-const tocBuilder = new TableOfContentsBuilder({
-    root: document.getElementById(&#39;content&#39;),
-    container: document.getElementById(&#39;toc&#39;),
-    labelAttribute: &#39;data-label&#39;,
-    levelAttribute: &#39;data-level&#39;,
-    scrollSpy: true,
-    smooth: true,
-    offset: 80
-});
+            const tocBuilder = new TableOfContentsBuilder({
+                root: document.getElementById(&quot;content&quot;),
+                container: document.getElementById(&quot;toc&quot;),
+                labelAttribute: &quot;data-label&quot;,
+                levelAttribute: &quot;data-level&quot;,
+                scrollSpy: true,
+                smooth: true,
+                offset: 80,
+            });
 
-tocBuilder.build();     // Generate TOC
-tocBuilder.refresh();   // Rebuild after content changes
-tocBuilder.destroy();   // Clean up
-&lt;/script&gt;</code></pre>
+            tocBuilder.build(); // Generate TOC
+            tocBuilder.refresh(); // Rebuild after content changes
+            tocBuilder.destroy(); // Clean up
+        &lt;/script&gt;</code></pre>
     </div>
 </div>
     </section>
-
 </section>                </main>
             </div>
 

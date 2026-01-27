@@ -23,10 +23,33 @@
 // Utility Classes
 // ============================================================================
 
+/// Base modal container - hidden by default
 .modal {
     @include mixins.modal;
 }
 
+/// Modal child elements (BEM naming with double underscore)
+.modal__header {
+    @include mixins.modal_header;
+}
+
+.modal__content {
+    @include mixins.modal_content;
+}
+
+.modal__footer {
+    @include mixins.modal_footer;
+}
+
+.modal__backdrop {
+    @include mixins.modal_backdrop;
+}
+
+.modal__dialog {
+    @include mixins.modal_dialog;
+}
+
+/// Legacy naming support (underscore instead of double underscore)
 .modal_header {
     @include mixins.modal_header;
 }
@@ -55,6 +78,7 @@
     @include mixins.modal_dialog;
 }
 
+/// Size modifiers
 .modal--sm {
     @include mixins.modal--sm;
 }
@@ -100,6 +124,7 @@
     }
 }
 
+/// Layout modifiers
 .modal--centered {
     @include mixins.modal--centered;
 }
@@ -112,6 +137,7 @@
     @include mixins.modal--static;
 }
 
+/// Animation modifiers
 .modal--fade {
     @include mixins.modal--fade;
 }

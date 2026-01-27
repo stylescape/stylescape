@@ -14,7 +14,8 @@
     display: inline-flex;
     flex-wrap: nowrap;
 
-    > button {
+    > button,
+    > .button {
         border-radius: 0;
         margin: 0;
         position: relative;
@@ -31,9 +32,16 @@
             border-bottom-right-radius: var(--border_radius, q(4));
         }
 
-        // Middle buttons
+        // Middle buttons - collapse borders to prevent double outline
         &:not(:first-child) {
-            margin-left: -q(1); // collapse borders
+            margin-left: calc(-1 * var(--button_border_width, 1px));
+        }
+
+        // Ensure hover/focus states appear above siblings
+        &:hover,
+        &:focus,
+        &:active {
+            z-index: 1;
         }
     }
 }
@@ -45,13 +53,15 @@
     flex-direction: column;
     align-items: stretch;
 
-    > button {
+    > button,
+    > .button {
         border-radius: 0;
         margin: 0;
         width: 100%;
 
+        // Collapse borders to prevent double outline
         &:not(:first-child) {
-            margin-top: -q(1);
+            margin-top: calc(-1 * var(--button_border_width, 1px));
         }
 
         &:first-child {
@@ -70,6 +80,13 @@
                 q(4)
             );
         }
+
+        // Ensure hover/focus states appear above siblings
+        &:hover,
+        &:focus,
+        &:active {
+            z-index: 1;
+        }
     }
 }
 
@@ -80,13 +97,15 @@
     flex-direction: column;
     align-items: stretch; // ensures buttons fill the width
 
-    > button {
+    > button,
+    > .button {
         border-radius: 0;
         margin: 0;
         width: 100%;
 
+        // Collapse borders to prevent double outline
         &:not(:first-child) {
-            margin-top: -q(1); // collapse borders
+            margin-top: calc(-1 * var(--button_border_width, 1px));
         }
 
         &:first-child {
@@ -97,6 +116,13 @@
         &:last-child {
             border-bottom-left-radius: var(--border_radius, q(4));
             border-bottom-right-radius: var(--border_radius, q(4));
+        }
+
+        // Ensure hover/focus states appear above siblings
+        &:hover,
+        &:focus,
+        &:active {
+            z-index: 1;
         }
     }
 }

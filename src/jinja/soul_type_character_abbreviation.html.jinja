@@ -1,7 +1,5 @@
-{% extends "base.html.jinja" %}
-{% set title = "Abbreviation Characters" %}
-{%- block title %}{{ title }}{%- endblock %}
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Abbreviation Characters" %} {%-
+block title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
     <header class="demo__section__header">
@@ -9,131 +7,402 @@
         <p>Abbreviations with expanded definitions for accessibility.</p>
     </header>
 
-    {# Basic Abbreviation #}
-    {% set section_title = "Basic Abbreviation" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Basic Abbreviation #} {% set section_title = "Basic Abbreviation" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-<p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948. It works closely with the <abbr title="United Nations">UN</abbr> on global health initiatives.</p>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <p>
+            The
+            <abbr title="World Health Organization">WHO</abbr>
+            was founded in 1948. It works closely with the
+            <abbr title="United Nations">UN</abbr>
+            on global health initiatives.
+        </p>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Styled Abbreviations #}
-    {% set section_title = "Styled Abbreviations" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Styled Abbreviations #} {% set section_title = "Styled Abbreviations" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-<div style="display: flex; flex-direction: column; gap: 16px;">
-    <p>Default dotted: <abbr title="As Soon As Possible" style="text-decoration: underline dotted; cursor: help;">ASAP</abbr></p>
-    <p>Dashed underline: <abbr title="For Your Information" style="text-decoration: underline dashed; cursor: help;">FYI</abbr></p>
-    <p>No underline: <abbr title="et cetera" style="text-decoration: none; font-style: italic;">etc.</abbr></p>
-    <p>With tooltip icon: <abbr title="To Be Determined" style="text-decoration: none; cursor: help;">TBD <span style="font-size: 10px; vertical-align: super;">?</span></abbr></p>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <div style="display: flex; flex-direction: column; gap: 16px">
+            <p>
+                Default dotted:
+                <abbr
+                    title="As Soon As Possible"
+                    style="text-decoration: underline dotted; cursor: help"
+                >
+                    ASAP
+                </abbr>
+            </p>
+            <p>
+                Dashed underline:
+                <abbr
+                    title="For Your Information"
+                    style="text-decoration: underline dashed; cursor: help"
+                >
+                    FYI
+                </abbr>
+            </p>
+            <p>
+                No underline:
+                <abbr
+                    title="et cetera"
+                    style="text-decoration: none; font-style: italic"
+                >
+                    etc.
+                </abbr>
+            </p>
+            <p>
+                With tooltip icon:
+                <abbr
+                    title="To Be Determined"
+                    style="text-decoration: none; cursor: help"
+                >
+                    TBD
+                    <span style="font-size: 10px; vertical-align: super">
+                        ?
+                    </span>
+                </abbr>
+            </p>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Common Abbreviations #}
-    {% set section_title = "Common Abbreviations" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Common Abbreviations #} {% set section_title = "Common Abbreviations" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px;">
-    <div style="padding: 12px; background: var(--color_fill_secondary); border-radius: 8px; text-align: center;">
-        <abbr title="exempli gratia (for example)" style="text-decoration: none; font-weight: 600;">e.g.</abbr>
-        <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7;">for example</p>
-    </div>
-    <div style="padding: 12px; background: var(--color_fill_secondary); border-radius: 8px; text-align: center;">
-        <abbr title="id est (that is)" style="text-decoration: none; font-weight: 600;">i.e.</abbr>
-        <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7;">that is</p>
-    </div>
-    <div style="padding: 12px; background: var(--color_fill_secondary); border-radius: 8px; text-align: center;">
-        <abbr title="et cetera (and so forth)" style="text-decoration: none; font-weight: 600;">etc.</abbr>
-        <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7;">and so forth</p>
-    </div>
-    <div style="padding: 12px; background: var(--color_fill_secondary); border-radius: 8px; text-align: center;">
-        <abbr title="nota bene (note well)" style="text-decoration: none; font-weight: 600;">N.B.</abbr>
-        <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7;">note well</p>
-    </div>
-    <div style="padding: 12px; background: var(--color_fill_secondary); border-radius: 8px; text-align: center;">
-        <abbr title="versus" style="text-decoration: none; font-weight: 600;">vs.</abbr>
-        <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7;">versus</p>
-    </div>
-    <div style="padding: 12px; background: var(--color_fill_secondary); border-radius: 8px; text-align: center;">
-        <abbr title="approximately" style="text-decoration: none; font-weight: 600;">approx.</abbr>
-        <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7;">approximately</p>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <div
+            style="
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
+            "
+        >
+            <div
+                style="
+                    padding: 12px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 8px;
+                    text-align: center;
+                "
+            >
+                <abbr
+                    title="exempli gratia (for example)"
+                    style="text-decoration: none; font-weight: 600"
+                >
+                    e.g.
+                </abbr>
+                <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7">
+                    for example
+                </p>
+            </div>
+            <div
+                style="
+                    padding: 12px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 8px;
+                    text-align: center;
+                "
+            >
+                <abbr
+                    title="id est (that is)"
+                    style="text-decoration: none; font-weight: 600"
+                >
+                    i.e.
+                </abbr>
+                <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7">
+                    that is
+                </p>
+            </div>
+            <div
+                style="
+                    padding: 12px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 8px;
+                    text-align: center;
+                "
+            >
+                <abbr
+                    title="et cetera (and so forth)"
+                    style="text-decoration: none; font-weight: 600"
+                >
+                    etc.
+                </abbr>
+                <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7">
+                    and so forth
+                </p>
+            </div>
+            <div
+                style="
+                    padding: 12px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 8px;
+                    text-align: center;
+                "
+            >
+                <abbr
+                    title="nota bene (note well)"
+                    style="text-decoration: none; font-weight: 600"
+                >
+                    N.B.
+                </abbr>
+                <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7">
+                    note well
+                </p>
+            </div>
+            <div
+                style="
+                    padding: 12px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 8px;
+                    text-align: center;
+                "
+            >
+                <abbr
+                    title="versus"
+                    style="text-decoration: none; font-weight: 600"
+                >
+                    vs.
+                </abbr>
+                <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7">
+                    versus
+                </p>
+            </div>
+            <div
+                style="
+                    padding: 12px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 8px;
+                    text-align: center;
+                "
+            >
+                <abbr
+                    title="approximately"
+                    style="text-decoration: none; font-weight: 600"
+                >
+                    approx.
+                </abbr>
+                <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7">
+                    approximately
+                </p>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Unit Abbreviations #}
-    {% set section_title = "Unit Abbreviations" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Unit Abbreviations #} {% set section_title = "Unit Abbreviations" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-<table style="width: 100%; max-width: 500px; border-collapse: collapse;">
-    <thead>
-        <tr style="background: var(--color_fill_secondary);">
-            <th style="padding: 12px; text-align: left; border-bottom: 2px solid var(--color_line_secondary);">Unit</th>
-            <th style="padding: 12px; text-align: left; border-bottom: 2px solid var(--color_line_secondary);">Full Name</th>
-            <th style="padding: 12px; text-align: right; border-bottom: 2px solid var(--color_line_secondary);">Example</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 10px 12px; border-bottom: 1px solid var(--color_line_secondary);"><abbr title="kilobyte">KB</abbr></td>
-            <td style="padding: 10px 12px; border-bottom: 1px solid var(--color_line_secondary);">Kilobyte</td>
-            <td style="padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--color_line_secondary);">256 <abbr title="kilobyte">KB</abbr></td>
-        </tr>
-        <tr>
-            <td style="padding: 10px 12px; border-bottom: 1px solid var(--color_line_secondary);"><abbr title="megabyte">MB</abbr></td>
-            <td style="padding: 10px 12px; border-bottom: 1px solid var(--color_line_secondary);">Megabyte</td>
-            <td style="padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--color_line_secondary);">4.5 <abbr title="megabyte">MB</abbr></td>
-        </tr>
-        <tr>
-            <td style="padding: 10px 12px; border-bottom: 1px solid var(--color_line_secondary);"><abbr title="gigabyte">GB</abbr></td>
-            <td style="padding: 10px 12px; border-bottom: 1px solid var(--color_line_secondary);">Gigabyte</td>
-            <td style="padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--color_line_secondary);">16 <abbr title="gigabyte">GB</abbr></td>
-        </tr>
-        <tr>
-            <td style="padding: 10px 12px;"><abbr title="terabyte">TB</abbr></td>
-            <td style="padding: 10px 12px;">Terabyte</td>
-            <td style="padding: 10px 12px; text-align: right;">2 <abbr title="terabyte">TB</abbr></td>
-        </tr>
-    </tbody>
-</table>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <table
+            style="width: 100%; max-width: 500px; border-collapse: collapse"
+        >
+            <thead>
+                <tr style="background: var(--color_fill_secondary)">
+                    <th
+                        style="
+                            padding: 12px;
+                            text-align: left;
+                            border-bottom: 2px solid
+                                var(--color_line_secondary);
+                        "
+                    >
+                        Unit
+                    </th>
+                    <th
+                        style="
+                            padding: 12px;
+                            text-align: left;
+                            border-bottom: 2px solid
+                                var(--color_line_secondary);
+                        "
+                    >
+                        Full Name
+                    </th>
+                    <th
+                        style="
+                            padding: 12px;
+                            text-align: right;
+                            border-bottom: 2px solid
+                                var(--color_line_secondary);
+                        "
+                    >
+                        Example
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td
+                        style="
+                            padding: 10px 12px;
+                            border-bottom: 1px solid
+                                var(--color_line_secondary);
+                        "
+                    >
+                        <abbr title="kilobyte">KB</abbr>
+                    </td>
+                    <td
+                        style="
+                            padding: 10px 12px;
+                            border-bottom: 1px solid
+                                var(--color_line_secondary);
+                        "
+                    >
+                        Kilobyte
+                    </td>
+                    <td
+                        style="
+                            padding: 10px 12px;
+                            text-align: right;
+                            border-bottom: 1px solid
+                                var(--color_line_secondary);
+                        "
+                    >
+                        256
+                        <abbr title="kilobyte">KB</abbr>
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 10px 12px;
+                            border-bottom: 1px solid
+                                var(--color_line_secondary);
+                        "
+                    >
+                        <abbr title="megabyte">MB</abbr>
+                    </td>
+                    <td
+                        style="
+                            padding: 10px 12px;
+                            border-bottom: 1px solid
+                                var(--color_line_secondary);
+                        "
+                    >
+                        Megabyte
+                    </td>
+                    <td
+                        style="
+                            padding: 10px 12px;
+                            text-align: right;
+                            border-bottom: 1px solid
+                                var(--color_line_secondary);
+                        "
+                    >
+                        4.5
+                        <abbr title="megabyte">MB</abbr>
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 10px 12px;
+                            border-bottom: 1px solid
+                                var(--color_line_secondary);
+                        "
+                    >
+                        <abbr title="gigabyte">GB</abbr>
+                    </td>
+                    <td
+                        style="
+                            padding: 10px 12px;
+                            border-bottom: 1px solid
+                                var(--color_line_secondary);
+                        "
+                    >
+                        Gigabyte
+                    </td>
+                    <td
+                        style="
+                            padding: 10px 12px;
+                            text-align: right;
+                            border-bottom: 1px solid
+                                var(--color_line_secondary);
+                        "
+                    >
+                        16
+                        <abbr title="gigabyte">GB</abbr>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 12px">
+                        <abbr title="terabyte">TB</abbr>
+                    </td>
+                    <td style="padding: 10px 12px">Terabyte</td>
+                    <td style="padding: 10px 12px; text-align: right">
+                        2
+                        <abbr title="terabyte">TB</abbr>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Abbreviation in Context #}
-    {% set section_title = "Abbreviation in Context" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Abbreviation in Context #} {% set section_title = "Abbreviation in
+    Context" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
-<div style="padding: 20px; background: var(--color_fill_secondary); border-radius: 8px; line-height: 1.8;">
-    <p style="margin: 0;">
-        The meeting is scheduled for <abbr title="3:00 Post Meridiem">3:00 PM</abbr>
-        <abbr title="Eastern Standard Time">EST</abbr>. Please confirm your attendance
-        <abbr title="As Soon As Possible" style="text-decoration: underline dotted;">ASAP</abbr>.
-        <abbr title="For Your Information">FYI</abbr>, the agenda includes
-        <abbr title="Quarter 4">Q4</abbr> budget review,
-        <abbr title="id est (that is)">i.e.</abbr>, financial planning for the next fiscal year,
-        <abbr title="et cetera (and so forth)">etc.</abbr>
-    </p>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <div
+            style="
+                padding: 20px;
+                background: var(--color_fill_secondary);
+                border-radius: 8px;
+                line-height: 1.8;
+            "
+        >
+            <p style="margin: 0">
+                The meeting is scheduled for
+                <abbr title="3:00 Post Meridiem">3:00 PM</abbr>
+                <abbr title="Eastern Standard Time">EST</abbr>
+                . Please confirm your attendance
+                <abbr
+                    title="As Soon As Possible"
+                    style="text-decoration: underline dotted"
+                >
+                    ASAP
+                </abbr>
+                .
+                <abbr title="For Your Information">FYI</abbr>
+                , the agenda includes
+                <abbr title="Quarter 4">Q4</abbr>
+                budget review,
+                <abbr title="id est (that is)">i.e.</abbr>
+                , financial planning for the next fiscal year,
+                <abbr title="et cetera (and so forth)">etc.</abbr>
+            </p>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
-
 </section>
 
 {%- endblock %}

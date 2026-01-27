@@ -1,359 +1,808 @@
-{% extends "base.html.jinja" %}
-{% set title = "Storage & State" %}
-{%- block title %}{{ title }}{%- endblock %}
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Storage & State" %} {%- block
+title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
-        <p>JavaScript components for cookie consent, local storage, and UI state management.</p>
+        <p>
+            JavaScript components for cookie consent, local storage, and UI
+            state management.
+        </p>
     </header>
 
-    {# Cookie Consent Manager #}
-    {% set section_title = "Cookie Consent Manager" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Cookie Consent Manager #} {% set section_title = "Cookie Consent
+    Manager" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>GDPR-compliant cookie consent with category control.</p>
         {% set code_snippet %}
-<!-- Cookie consent banner -->
-<div data-ss="cookie-consent"
-     data-ss-cookie-position="bottom"
-     data-ss-cookie-privacy-url="/privacy"
-     style="position: relative; padding: 24px; background: white; border-radius: 16px; box-shadow: 0 -4px 20px rgba(0,0,0,0.1);">
-    <div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 300px;">
-            <h4 style="margin: 0 0 8px;">🍪 We use cookies</h4>
-            <p style="margin: 0; font-size: 14px; opacity: 0.8;">We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
-        </div>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <button style="padding: 12px 24px; background: var(--color_fill_secondary); border: none; border-radius: 8px; cursor: pointer;">Customize</button>
-            <button style="padding: 12px 24px; background: var(--color_fill_primary); color: white; border: none; border-radius: 8px; cursor: pointer;">Accept All</button>
-        </div>
-    </div>
-</div>
-
-<!-- Cookie preferences modal -->
-<div style="margin-top: 24px; padding: 24px; background: white; border-radius: 16px; border: 1px solid var(--color_line_secondary); max-width: 500px;">
-    <h4 style="margin: 0 0 20px;">Cookie Preferences</h4>
-
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-        <!-- Essential cookies -->
-        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px solid var(--color_line_secondary);">
-            <div>
-                <strong style="display: block;">Essential Cookies</strong>
-                <span style="font-size: 13px; opacity: 0.7;">Required for the website to function</span>
+        <!-- Cookie consent banner -->
+        <div
+            data-ss="cookie-consent"
+            data-ss-cookie-position="bottom"
+            data-ss-cookie-privacy-url="/privacy"
+            style="
+                position: relative;
+                padding: 24px;
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            "
+        >
+            <div
+                style="
+                    display: flex;
+                    gap: 24px;
+                    align-items: flex-start;
+                    flex-wrap: wrap;
+                "
+            >
+                <div style="flex: 1; min-width: 300px">
+                    <h4 style="margin: 0 0 8px">🍪 We use cookies</h4>
+                    <p style="margin: 0; font-size: 14px; opacity: 0.8">
+                        We use cookies to enhance your browsing experience,
+                        serve personalized content, and analyze our traffic. By
+                        clicking "Accept All", you consent to our use of
+                        cookies.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap">
+                    <button
+                        style="
+                            padding: 12px 24px;
+                            background: var(--color_fill_secondary);
+                            border: none;
+                            border-radius: 8px;
+                            cursor: pointer;
+                        "
+                    >
+                        Customize
+                    </button>
+                    <button
+                        style="
+                            padding: 12px 24px;
+                            background: var(--color_fill_primary);
+                            color: white;
+                            border: none;
+                            border-radius: 8px;
+                            cursor: pointer;
+                        "
+                    >
+                        Accept All
+                    </button>
+                </div>
             </div>
-            <input type="checkbox" checked disabled style="width: 44px; height: 24px;">
         </div>
 
-        <!-- Analytics cookies -->
-        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px solid var(--color_line_secondary);">
-            <div>
-                <strong style="display: block;">Analytics Cookies</strong>
-                <span style="font-size: 13px; opacity: 0.7;">Help us improve our website</span>
+        <!-- Cookie preferences modal -->
+        <div
+            style="
+                margin-top: 24px;
+                padding: 24px;
+                background: white;
+                border-radius: 16px;
+                border: 1px solid var(--color_line_secondary);
+                max-width: 500px;
+            "
+        >
+            <h4 style="margin: 0 0 20px">Cookie Preferences</h4>
+
+            <div style="display: flex; flex-direction: column; gap: 16px">
+                <!-- Essential cookies -->
+                <div
+                    style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding-bottom: 16px;
+                        border-bottom: 1px solid var(--color_line_secondary);
+                    "
+                >
+                    <div>
+                        <strong style="display: block">
+                            Essential Cookies
+                        </strong>
+                        <span style="font-size: 13px; opacity: 0.7">
+                            Required for the website to function
+                        </span>
+                    </div>
+                    <input
+                        type="checkbox"
+                        checked
+                        disabled
+                        style="width: 44px; height: 24px"
+                    />
+                </div>
+
+                <!-- Analytics cookies -->
+                <div
+                    style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding-bottom: 16px;
+                        border-bottom: 1px solid var(--color_line_secondary);
+                    "
+                >
+                    <div>
+                        <strong style="display: block">
+                            Analytics Cookies
+                        </strong>
+                        <span style="font-size: 13px; opacity: 0.7">
+                            Help us improve our website
+                        </span>
+                    </div>
+                    <input
+                        type="checkbox"
+                        data-ss-cookie-category="analytics"
+                        style="width: 44px; height: 24px"
+                    />
+                </div>
+
+                <!-- Marketing cookies -->
+                <div
+                    style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    "
+                >
+                    <div>
+                        <strong style="display: block">
+                            Marketing Cookies
+                        </strong>
+                        <span style="font-size: 13px; opacity: 0.7">
+                            Used for targeted advertising
+                        </span>
+                    </div>
+                    <input
+                        type="checkbox"
+                        data-ss-cookie-category="marketing"
+                        style="width: 44px; height: 24px"
+                    />
+                </div>
             </div>
-            <input type="checkbox" data-ss-cookie-category="analytics" style="width: 44px; height: 24px;">
-        </div>
 
-        <!-- Marketing cookies -->
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div>
-                <strong style="display: block;">Marketing Cookies</strong>
-                <span style="font-size: 13px; opacity: 0.7;">Used for targeted advertising</span>
+            <div style="display: flex; gap: 12px; margin-top: 24px">
+                <button
+                    style="
+                        flex: 1;
+                        padding: 12px;
+                        background: var(--color_fill_secondary);
+                        border: none;
+                        border-radius: 8px;
+                        cursor: pointer;
+                    "
+                >
+                    Reject All
+                </button>
+                <button
+                    style="
+                        flex: 1;
+                        padding: 12px;
+                        background: var(--color_fill_primary);
+                        color: white;
+                        border: none;
+                        border-radius: 8px;
+                        cursor: pointer;
+                    "
+                >
+                    Save Preferences
+                </button>
             </div>
-            <input type="checkbox" data-ss-cookie-category="marketing" style="width: 44px; height: 24px;">
         </div>
-    </div>
-
-    <div style="display: flex; gap: 12px; margin-top: 24px;">
-        <button style="flex: 1; padding: 12px; background: var(--color_fill_secondary); border: none; border-radius: 8px; cursor: pointer;">Reject All</button>
-        <button style="flex: 1; padding: 12px; background: var(--color_fill_primary); color: white; border: none; border-radius: 8px; cursor: pointer;">Save Preferences</button>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Conditional Script Loading #}
-    {% set section_title = "Conditional Script Loading" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Conditional Script Loading #} {% set section_title = "Conditional Script
+    Loading" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Block scripts until consent is given for their category.</p>
         {% set code_snippet %}
-<!-- Scripts blocked until consent -->
-<script data-ss-cookie-category="analytics" type="text/plain">
-    // Google Analytics - only runs if analytics cookies accepted
-    gtag('config', 'GA_MEASUREMENT_ID');
-</script>
+        <!-- Scripts blocked until consent -->
+        <script data-ss-cookie-category="analytics" type="text/plain">
+            // Google Analytics - only runs if analytics cookies accepted
+            gtag('config', 'GA_MEASUREMENT_ID');
+        </script>
 
-<script data-ss-cookie-category="marketing" type="text/plain">
-    // Facebook Pixel - only runs if marketing cookies accepted
-    fbq('init', 'PIXEL_ID');
-    fbq('track', 'PageView');
-</script>
+        <script data-ss-cookie-category="marketing" type="text/plain">
+            // Facebook Pixel - only runs if marketing cookies accepted
+            fbq('init', 'PIXEL_ID');
+            fbq('track', 'PageView');
+        </script>
 
-<!-- Essential scripts always run -->
-<script>
-    // Core functionality - always executes
-    initApp();
-</script>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <!-- Essential scripts always run -->
+        <script>
+            // Core functionality - always executes
+            initApp();
+        </script>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Local Storage Manager #}
-    {% set section_title = "Local Storage Manager" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Local Storage Manager #} {% set section_title = "Local Storage Manager"
+    %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Wrapper for localStorage with error handling and namespacing.</p>
         {% set code_snippet %}
-<!-- Storage demo UI -->
-<div style="max-width: 500px; padding: 24px; background: var(--color_fill_secondary); border-radius: 12px;">
-    <h4 style="margin: 0 0 16px;">Local Storage Demo</h4>
+        <!-- Storage demo UI -->
+        <div
+            style="
+                max-width: 500px;
+                padding: 24px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+            "
+        >
+            <h4 style="margin: 0 0 16px">Local Storage Demo</h4>
 
-    <div style="display: flex; gap: 12px; margin-bottom: 16px;">
-        <input type="text" id="storageKey" placeholder="Key" style="flex: 1; padding: 10px 14px; border: 1px solid var(--color_line_secondary); border-radius: 6px;">
-        <input type="text" id="storageValue" placeholder="Value" style="flex: 1; padding: 10px 14px; border: 1px solid var(--color_line_secondary); border-radius: 6px;">
-    </div>
+            <div style="display: flex; gap: 12px; margin-bottom: 16px">
+                <input
+                    type="text"
+                    id="storageKey"
+                    placeholder="Key"
+                    style="
+                        flex: 1;
+                        padding: 10px 14px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 6px;
+                    "
+                />
+                <input
+                    type="text"
+                    id="storageValue"
+                    placeholder="Value"
+                    style="
+                        flex: 1;
+                        padding: 10px 14px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 6px;
+                    "
+                />
+            </div>
 
-    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-        <button onclick="setStorage()" style="padding: 10px 16px; background: var(--color_fill_primary); color: white; border: none; border-radius: 6px; cursor: pointer;">Set</button>
-        <button onclick="getStorage()" style="padding: 10px 16px; background: white; border: 1px solid var(--color_line_secondary); border-radius: 6px; cursor: pointer;">Get</button>
-        <button onclick="removeStorage()" style="padding: 10px 16px; background: white; border: 1px solid var(--color_line_secondary); border-radius: 6px; cursor: pointer;">Remove</button>
-        <button onclick="clearStorage()" style="padding: 10px 16px; background: var(--color_state_error); color: white; border: none; border-radius: 6px; cursor: pointer;">Clear All</button>
-    </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap">
+                <button
+                    onclick="setStorage()"
+                    style="
+                        padding: 10px 16px;
+                        background: var(--color_fill_primary);
+                        color: white;
+                        border: none;
+                        border-radius: 6px;
+                        cursor: pointer;
+                    "
+                >
+                    Set
+                </button>
+                <button
+                    onclick="getStorage()"
+                    style="
+                        padding: 10px 16px;
+                        background: white;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 6px;
+                        cursor: pointer;
+                    "
+                >
+                    Get
+                </button>
+                <button
+                    onclick="removeStorage()"
+                    style="
+                        padding: 10px 16px;
+                        background: white;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 6px;
+                        cursor: pointer;
+                    "
+                >
+                    Remove
+                </button>
+                <button
+                    onclick="clearStorage()"
+                    style="
+                        padding: 10px 16px;
+                        background: var(--color_state_error);
+                        color: white;
+                        border: none;
+                        border-radius: 6px;
+                        cursor: pointer;
+                    "
+                >
+                    Clear All
+                </button>
+            </div>
 
-    <div id="storageOutput" style="margin-top: 16px; padding: 12px; background: white; border-radius: 6px; font-family: monospace; font-size: 13px; min-height: 40px;"></div>
-</div>
+            <div
+                id="storageOutput"
+                style="
+                    margin-top: 16px;
+                    padding: 12px;
+                    background: white;
+                    border-radius: 6px;
+                    font-family: monospace;
+                    font-size: 13px;
+                    min-height: 40px;
+                "
+            ></div>
+        </div>
 
-<!-- Stored data display -->
-<div style="margin-top: 24px; max-width: 500px;">
-    <h5 style="margin: 0 0 12px; opacity: 0.7;">Stored Data:</h5>
-    <table style="width: 100%; border-collapse: collapse;">
-        <thead>
-            <tr style="background: var(--color_fill_secondary);">
-                <th style="padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--color_line_secondary);">Key</th>
-                <th style="padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--color_line_secondary);">Value</th>
-                <th style="padding: 10px 12px; text-align: center; border-bottom: 1px solid var(--color_line_secondary);">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="padding: 10px 12px; border-bottom: 1px solid var(--color_line_secondary); font-family: monospace;">theme</td>
-                <td style="padding: 10px 12px; border-bottom: 1px solid var(--color_line_secondary); font-family: monospace;">"dark"</td>
-                <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid var(--color_line_secondary);">
-                    <button style="padding: 4px 8px; background: none; border: none; cursor: pointer;">🗑️</button>
-                </td>
-            </tr>
-            <tr>
-                <td style="padding: 10px 12px; border-bottom: 1px solid var(--color_line_secondary); font-family: monospace;">user</td>
-                <td style="padding: 10px 12px; border-bottom: 1px solid var(--color_line_secondary); font-family: monospace;">{"name": "John"}</td>
-                <td style="padding: 10px 12px; text-align: center; border-bottom: 1px solid var(--color_line_secondary);">
-                    <button style="padding: 4px 8px; background: none; border: none; cursor: pointer;">🗑️</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <!-- Stored data display -->
+        <div style="margin-top: 24px; max-width: 500px">
+            <h5 style="margin: 0 0 12px; opacity: 0.7">Stored Data:</h5>
+            <table style="width: 100%; border-collapse: collapse">
+                <thead>
+                    <tr style="background: var(--color_fill_secondary)">
+                        <th
+                            style="
+                                padding: 10px 12px;
+                                text-align: left;
+                                border-bottom: 1px solid
+                                    var(--color_line_secondary);
+                            "
+                        >
+                            Key
+                        </th>
+                        <th
+                            style="
+                                padding: 10px 12px;
+                                text-align: left;
+                                border-bottom: 1px solid
+                                    var(--color_line_secondary);
+                            "
+                        >
+                            Value
+                        </th>
+                        <th
+                            style="
+                                padding: 10px 12px;
+                                text-align: center;
+                                border-bottom: 1px solid
+                                    var(--color_line_secondary);
+                            "
+                        >
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td
+                            style="
+                                padding: 10px 12px;
+                                border-bottom: 1px solid
+                                    var(--color_line_secondary);
+                                font-family: monospace;
+                            "
+                        >
+                            theme
+                        </td>
+                        <td
+                            style="
+                                padding: 10px 12px;
+                                border-bottom: 1px solid
+                                    var(--color_line_secondary);
+                                font-family: monospace;
+                            "
+                        >
+                            "dark"
+                        </td>
+                        <td
+                            style="
+                                padding: 10px 12px;
+                                text-align: center;
+                                border-bottom: 1px solid
+                                    var(--color_line_secondary);
+                            "
+                        >
+                            <button
+                                style="
+                                    padding: 4px 8px;
+                                    background: none;
+                                    border: none;
+                                    cursor: pointer;
+                                "
+                            >
+                                🗑️
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="
+                                padding: 10px 12px;
+                                border-bottom: 1px solid
+                                    var(--color_line_secondary);
+                                font-family: monospace;
+                            "
+                        >
+                            user
+                        </td>
+                        <td
+                            style="
+                                padding: 10px 12px;
+                                border-bottom: 1px solid
+                                    var(--color_line_secondary);
+                                font-family: monospace;
+                            "
+                        >
+                            {"name": "John"}
+                        </td>
+                        <td
+                            style="
+                                padding: 10px 12px;
+                                text-align: center;
+                                border-bottom: 1px solid
+                                    var(--color_line_secondary);
+                            "
+                        >
+                            <button
+                                style="
+                                    padding: 4px 8px;
+                                    background: none;
+                                    border: none;
+                                    cursor: pointer;
+                                "
+                            >
+                                🗑️
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# State Manager #}
-    {% set section_title = "State Manager" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# State Manager #} {% set section_title = "State Manager" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Manages UI element states via class toggling.</p>
         {% set code_snippet %}
-<!-- State toggle buttons -->
-<div style="display: flex; gap: 12px; margin-bottom: 24px;">
-    <button data-ss="state-toggle"
-            data-ss-state-target="#sidebar"
-            data-ss-state-class="is-open"
-            style="padding: 10px 20px; background: var(--color_fill_primary); color: white; border: none; border-radius: 6px; cursor: pointer;">
-        Toggle Sidebar
-    </button>
-    <button data-ss="state-toggle"
-            data-ss-state-target="#menu"
-            data-ss-state-class="is-expanded"
-            style="padding: 10px 20px; background: var(--color_fill_secondary); border: none; border-radius: 6px; cursor: pointer;">
-        Toggle Menu
-    </button>
-</div>
+        <!-- State toggle buttons -->
+        <div style="display: flex; gap: 12px; margin-bottom: 24px">
+            <button
+                data-ss="state-toggle"
+                data-ss-state-target="#sidebar"
+                data-ss-state-class="is-open"
+                style="
+                    padding: 10px 20px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                "
+            >
+                Toggle Sidebar
+            </button>
+            <button
+                data-ss="state-toggle"
+                data-ss-state-target="#menu"
+                data-ss-state-class="is-expanded"
+                style="
+                    padding: 10px 20px;
+                    background: var(--color_fill_secondary);
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                "
+            >
+                Toggle Menu
+            </button>
+        </div>
 
-<!-- Elements with state classes -->
-<div style="display: grid; grid-template-columns: 200px 1fr; gap: 16px;">
-    <div id="sidebar" class="is-open" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 8px; transition: transform 0.3s, opacity 0.3s;">
-        <strong style="display: block; margin-bottom: 8px;">Sidebar</strong>
-        <p style="font-size: 14px; opacity: 0.7; margin: 0;">State: Open</p>
-    </div>
-    <div style="padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;">
-        <strong>Main Content</strong>
-        <p style="font-size: 14px; opacity: 0.7; margin: 8px 0 0;">The sidebar can be toggled with state management.</p>
-    </div>
-</div>
+        <!-- Elements with state classes -->
+        <div
+            style="display: grid; grid-template-columns: 200px 1fr; gap: 16px"
+        >
+            <div
+                id="sidebar"
+                class="is-open"
+                style="
+                    padding: 16px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 8px;
+                    transition:
+                        transform 0.3s,
+                        opacity 0.3s;
+                "
+            >
+                <strong style="display: block; margin-bottom: 8px">
+                    Sidebar
+                </strong>
+                <p style="font-size: 14px; opacity: 0.7; margin: 0">
+                    State: Open
+                </p>
+            </div>
+            <div
+                style="
+                    padding: 16px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 8px;
+                "
+            >
+                <strong>Main Content</strong>
+                <p style="font-size: 14px; opacity: 0.7; margin: 8px 0 0">
+                    The sidebar can be toggled with state management.
+                </p>
+            </div>
+        </div>
 
-<!-- Multi-state example -->
-<div style="margin-top: 24px; padding: 20px; background: var(--color_fill_secondary); border-radius: 12px;">
-    <h5 style="margin: 0 0 16px;">Theme State</h5>
-    <div style="display: flex; gap: 8px;">
-        <button data-ss="state-toggle"
-                data-ss-state-target="body"
-                data-ss-state-class="theme-light"
-                data-ss-state-remove="theme-dark theme-auto"
-                style="padding: 10px 16px; background: white; border: 1px solid var(--color_line_secondary); border-radius: 6px; cursor: pointer;">
-            ☀️ Light
-        </button>
-        <button data-ss="state-toggle"
-                data-ss-state-target="body"
-                data-ss-state-class="theme-dark"
-                data-ss-state-remove="theme-light theme-auto"
-                style="padding: 10px 16px; background: #1a1a2e; color: white; border: none; border-radius: 6px; cursor: pointer;">
-            🌙 Dark
-        </button>
-        <button data-ss="state-toggle"
-                data-ss-state-target="body"
-                data-ss-state-class="theme-auto"
-                data-ss-state-remove="theme-light theme-dark"
-                style="padding: 10px 16px; background: var(--color_fill_secondary); border: 1px solid var(--color_line_secondary); border-radius: 6px; cursor: pointer;">
-            🔄 Auto
-        </button>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <!-- Multi-state example -->
+        <div
+            style="
+                margin-top: 24px;
+                padding: 20px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+            "
+        >
+            <h5 style="margin: 0 0 16px">Theme State</h5>
+            <div style="display: flex; gap: 8px">
+                <button
+                    data-ss="state-toggle"
+                    data-ss-state-target="body"
+                    data-ss-state-class="theme-light"
+                    data-ss-state-remove="theme-dark theme-auto"
+                    style="
+                        padding: 10px 16px;
+                        background: white;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 6px;
+                        cursor: pointer;
+                    "
+                >
+                    ☀️ Light
+                </button>
+                <button
+                    data-ss="state-toggle"
+                    data-ss-state-target="body"
+                    data-ss-state-class="theme-dark"
+                    data-ss-state-remove="theme-light theme-auto"
+                    style="
+                        padding: 10px 16px;
+                        background: #1a1a2e;
+                        color: white;
+                        border: none;
+                        border-radius: 6px;
+                        cursor: pointer;
+                    "
+                >
+                    🌙 Dark
+                </button>
+                <button
+                    data-ss="state-toggle"
+                    data-ss-state-target="body"
+                    data-ss-state-class="theme-auto"
+                    data-ss-state-remove="theme-light theme-dark"
+                    style="
+                        padding: 10px 16px;
+                        background: var(--color_fill_secondary);
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 6px;
+                        cursor: pointer;
+                    "
+                >
+                    🔄 Auto
+                </button>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Theme Toggle #}
-    {% set section_title = "Theme Toggle" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Theme Toggle #} {% set section_title = "Theme Toggle" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Dark/light theme switching with localStorage persistence.</p>
         {% set code_snippet %}
-<!-- Theme toggle checkbox -->
-<div style="display: flex; align-items: center; gap: 12px; padding: 20px; background: var(--color_fill_secondary); border-radius: 12px; max-width: 300px;">
-    <span>☀️</span>
-    <label style="position: relative; display: inline-block; width: 52px; height: 28px;">
-        <input type="checkbox"
-               id="themeToggle"
-               data-theme-toggle
-               style="opacity: 0; width: 0; height: 0;">
-        <span style="position: absolute; cursor: pointer; inset: 0; background: var(--color_line_secondary); border-radius: 14px; transition: background 0.3s;">
-            <span style="position: absolute; content: ''; height: 22px; width: 22px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: transform 0.3s;"></span>
-        </span>
-    </label>
-    <span>🌙</span>
-</div>
+        <!-- Theme toggle checkbox -->
+        <div
+            style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 20px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+                max-width: 300px;
+            "
+        >
+            <span>☀️</span>
+            <label
+                style="
+                    position: relative;
+                    display: inline-block;
+                    width: 52px;
+                    height: 28px;
+                "
+            >
+                <input
+                    type="checkbox"
+                    id="themeToggle"
+                    data-theme-toggle
+                    style="opacity: 0; width: 0; height: 0"
+                />
+                <span
+                    style="
+                        position: absolute;
+                        cursor: pointer;
+                        inset: 0;
+                        background: var(--color_line_secondary);
+                        border-radius: 14px;
+                        transition: background 0.3s;
+                    "
+                >
+                    <span
+                        style="
+                            position: absolute;
+                            content: &quot;&quot;;
+                            height: 22px;
+                            width: 22px;
+                            left: 3px;
+                            bottom: 3px;
+                            background: white;
+                            border-radius: 50%;
+                            transition: transform 0.3s;
+                        "
+                    ></span>
+                </span>
+            </label>
+            <span>🌙</span>
+        </div>
 
-<!-- Theme toggle button -->
-<button data-theme-toggle
-        style="margin-top: 16px; padding: 12px 24px; background: var(--color_fill_primary); color: white; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-    <span id="themeIcon">🌙</span>
-    <span>Toggle Theme</span>
-</button>
+        <!-- Theme toggle button -->
+        <button
+            data-theme-toggle
+            style="
+                margin-top: 16px;
+                padding: 12px 24px;
+                background: var(--color_fill_primary);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            "
+        >
+            <span id="themeIcon">🌙</span>
+            <span>Toggle Theme</span>
+        </button>
 
-<!-- Theme indicator -->
-<div style="margin-top: 24px; padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;">
-    <p style="margin: 0; font-family: monospace;">
-        Current theme: <strong id="currentTheme">light</strong>
-    </p>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <!-- Theme indicator -->
+        <div
+            style="
+                margin-top: 24px;
+                padding: 16px;
+                background: var(--color_fill_secondary);
+                border-radius: 8px;
+            "
+        >
+            <p style="margin: 0; font-family: monospace">
+                Current theme:
+                <strong id="currentTheme">light</strong>
+            </p>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# JavaScript API #}
-    {% set section_title = "JavaScript API" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# JavaScript API #} {% set section_title = "JavaScript API" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Programmatic control of storage and state components.</p>
         {% set code_snippet %}
-<script>
-// CookieConsentManager
-import { CookieConsentManager } from 'stylescape';
+        <script>
+            // CookieConsentManager
+            import { CookieConsentManager } from "stylescape";
 
-const cookieConsent = new CookieConsentManager({
-    position: 'bottom',
-    privacyUrl: '/privacy',
-    categories: ['essential', 'analytics', 'marketing'],
-    onAccept: (categories) => {
-        console.log('Accepted categories:', categories);
-        if (categories.includes('analytics')) {
-            loadAnalytics();
-        }
-    },
-    onReject: () => {
-        console.log('Cookies rejected');
-    }
-});
+            const cookieConsent = new CookieConsentManager({
+                position: "bottom",
+                privacyUrl: "/privacy",
+                categories: ["essential", "analytics", "marketing"],
+                onAccept: (categories) => {
+                    console.log("Accepted categories:", categories);
+                    if (categories.includes("analytics")) {
+                        loadAnalytics();
+                    }
+                },
+                onReject: () => {
+                    console.log("Cookies rejected");
+                },
+            });
 
-cookieConsent.show();
-cookieConsent.hide();
-cookieConsent.acceptAll();
-cookieConsent.rejectAll();
-cookieConsent.acceptCategory('analytics');
-cookieConsent.hasConsent('marketing'); // Check if category accepted
+            cookieConsent.show();
+            cookieConsent.hide();
+            cookieConsent.acceptAll();
+            cookieConsent.rejectAll();
+            cookieConsent.acceptCategory("analytics");
+            cookieConsent.hasConsent("marketing"); // Check if category accepted
 
-// LocalStorageManager
-import { LocalStorageManager } from 'stylescape';
+            // LocalStorageManager
+            import { LocalStorageManager } from "stylescape";
 
-const storage = LocalStorageManager.getInstance();
+            const storage = LocalStorageManager.getInstance();
 
-// Basic operations
-storage.setValue('key', 'value');
-storage.getValue('key');
-storage.removeValue('key');
-storage.clearStorage();
+            // Basic operations
+            storage.setValue("key", "value");
+            storage.getValue("key");
+            storage.removeValue("key");
+            storage.clearStorage();
 
-// With expiration
-storage.setValue('session', data, { expires: 3600 }); // 1 hour
+            // With expiration
+            storage.setValue("session", data, { expires: 3600 }); // 1 hour
 
-// With namespace
-const userStorage = LocalStorageManager.getInstance('user');
-userStorage.setValue('preferences', { theme: 'dark' });
+            // With namespace
+            const userStorage = LocalStorageManager.getInstance("user");
+            userStorage.setValue("preferences", { theme: "dark" });
 
-// JSON auto-serialization
-storage.setValue('user', { name: 'John', age: 30 });
-const user = storage.getValue('user'); // Returns object
+            // JSON auto-serialization
+            storage.setValue("user", { name: "John", age: 30 });
+            const user = storage.getValue("user"); // Returns object
 
-// StateManager
-import { StateManager } from 'stylescape';
+            // StateManager
+            import { StateManager } from "stylescape";
 
-const stateManager = new StateManager({
-    persist: true,
-    storageKey: 'app-state'
-});
+            const stateManager = new StateManager({
+                persist: true,
+                storageKey: "app-state",
+            });
 
-stateManager.addClass('#element', 'is-active');
-stateManager.removeClass('#element', 'is-active');
-stateManager.toggleClass('#element', 'is-open');
-stateManager.hasClass('#element', 'is-active');
+            stateManager.addClass("#element", "is-active");
+            stateManager.removeClass("#element", "is-active");
+            stateManager.toggleClass("#element", "is-open");
+            stateManager.hasClass("#element", "is-active");
 
-// ThemeToggle
-import { ThemeToggle } from 'stylescape';
+            // ThemeToggle
+            import { ThemeToggle } from "stylescape";
 
-ThemeToggle.init({
-    storageKey: 'theme-preference',
-    defaultTheme: 'light',
-    onChange: (theme) => {
-        console.log('Theme changed to:', theme);
-    }
-});
+            ThemeToggle.init({
+                storageKey: "theme-preference",
+                defaultTheme: "light",
+                onChange: (theme) => {
+                    console.log("Theme changed to:", theme);
+                },
+            });
 
-ThemeToggle.setTheme('dark');
-ThemeToggle.getTheme();
-ThemeToggle.toggle();
-</script>
-        {% endset %}
-        {% set language="JavaScript" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+            ThemeToggle.setTheme("dark");
+            ThemeToggle.getTheme();
+            ThemeToggle.toggle();
+        </script>
+        {% endset %} {% set language="JavaScript" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
-
 </section>
 
 {%- endblock %}

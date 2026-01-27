@@ -8,6 +8,8 @@
 /// Intended for use by `.input--range` classes in the body atoms input classes
 /// module.
 ///
+/// Cross-browser compatible with Chrome, Safari, and Firefox.
+///
 /// @group Mixins.BodyAtoms.Inputs
 /// @author Scape Agency
 /// @link https://scape.style
@@ -19,33 +21,57 @@
 @use "../../../dev" as *;
 
 @mixin input--range {
-    --thumb-size: var(--input_range_thumb_size, #{q(16)});
-    --track-height: var(--input_range_track_height, #{q(10)});
+    --thumb-size: var(--input_range_thumb_size, #{q(4)});
+    --track-height: var(--input_range_track_height, #{q(1)});
     --track-color: var(--input_range_track_color, var(--color_fill_primary));
     --fill-color: var(--input_range_fill_color, var(--color_text_primary));
     --brightness-hover: var(--input_range_brightness_hover, 115%);
     --brightness-down: var(--input_range_brightness_down, 90%);
 
-    --track-gap: calc((var(--thumb-size) - var(--track-height)) / 2);
-    --thumb-half: calc(var(--thumb-size) / 2);
-
     appearance: none;
     -webkit-appearance: none;
+    -moz-appearance: none;
     width: 100%;
     height: var(--thumb-size);
     background: transparent;
     cursor: pointer;
+    margin: 0;
+    padding: 0;
+
+    // Remove default focus outline and tap highlight
+    &:focus {
+        outline: none;
+    }
+
+    // Remove tap highlight on mobile (iOS/Android)
+    -webkit-tap-highlight-color: transparent;
+
+    // Remove focus-visible outline
+    &:focus-visible {
+        outline: none;
+    }
 
     &:disabled {
         opacity: 0.5;
         cursor: not-allowed;
     }
 
+    // =========================================================================
+    // WebKit (Chrome, Safari, Edge)
+    // =========================================================================
+
     &::-webkit-slider-runnable-track {
+        width: 100%;
         height: var(--track-height);
-        margin-top: var(--track-gap);
         background-color: var(--track-color);
         border-radius: var(--track-height);
+        border: none;
+        outline: 1px solid
+            var(
+                --input_range_outline_color,
+                var(--color_border_primary, rgba(0, 0, 0, 0.1))
+            );
+        outline-offset: 0;
     }
 
     &::-webkit-slider-thumb {
@@ -53,30 +79,47 @@
         appearance: none;
         width: var(--thumb-size);
         height: var(--thumb-size);
-        margin-top: calc(var(--track-gap) * -1);
         background-color: var(--fill-color);
-        border: 0;
+        border: none;
         border-radius: 50%;
-        box-shadow: calc(-100vmax + var(--thumb-half)) 0 0 100vmax
-            var(--fill-color);
-        clip-path: inset(
-            var(--track-gap) var(--thumb-half) var(--track-gap) 0
-        );
-        transition: filter 0.12s ease;
+        cursor: pointer;
+        // Center thumb vertically on track
+        margin-top: calc((var(--track-height) - var(--thumb-size)) / 2);
+        transition:
+            filter 0.12s ease,
+            transform 0.12s ease;
     }
 
     &:hover::-webkit-slider-thumb {
         filter: brightness(var(--brightness-hover));
+        transform: scale(1.1);
     }
 
     &:active::-webkit-slider-thumb {
         filter: brightness(var(--brightness-down));
+        transform: scale(0.95);
     }
 
+    &:disabled::-webkit-slider-thumb {
+        cursor: not-allowed;
+    }
+
+    // =========================================================================
+    // Firefox
+    // =========================================================================
+
     &::-moz-range-track {
+        width: 100%;
         height: var(--track-height);
         background-color: var(--track-color);
         border-radius: var(--track-height);
+        border: none;
+        outline: 1px solid
+            var(
+                --input_range_outline_color,
+                var(--color_border_primary, rgba(0, 0, 0, 0.1))
+            );
+        outline-offset: 0;
     }
 
     &::-moz-range-progress {
@@ -89,16 +132,50 @@
         width: var(--thumb-size);
         height: var(--thumb-size);
         background-color: var(--fill-color);
-        border: 0;
+        border: none;
         border-radius: 50%;
-        transition: filter 0.12s ease;
+        cursor: pointer;
+        transition:
+            filter 0.12s ease,
+            transform 0.12s ease;
     }
 
     &:hover::-moz-range-thumb {
         filter: brightness(var(--brightness-hover));
+        transform: scale(1.1);
     }
 
     &:active::-moz-range-thumb {
         filter: brightness(var(--brightness-down));
+        transform: scale(0.95);
+    }
+
+    &:disabled::-moz-range-thumb {
+        cursor: not-allowed;
+    }
+
+    // Remove Firefox dotted outline
+    &::-moz-focus-outer {
+        border: 0;
+    }
+}
+
+/// Range input with filled track (progress indicator)
+/// Uses a gradient background updated via JavaScript or CSS variable
+@mixin input--range--filled {
+    @include input--range;
+
+    // For WebKit, use a gradient to simulate filled progress
+    // The --progress variable should be set via JS: element.style.setProperty('--progress', value + '%')
+    --progress: 50%;
+
+    &::-webkit-slider-runnable-track {
+        background: linear-gradient(
+            to right,
+            var(--fill-color) 0%,
+            var(--fill-color) var(--progress),
+            var(--track-color) var(--progress),
+            var(--track-color) 100%
+        );
     }
 }

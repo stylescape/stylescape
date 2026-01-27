@@ -125,33 +125,33 @@ import { createAndAppend, click, $ } from "../utils";
 import { MyComponent } from "../../src/ts/elements/MyComponent";
 
 describe("MyComponent", () => {
-  let component: MyComponent;
-  let element: HTMLElement;
+    let component: MyComponent;
+    let element: HTMLElement;
 
-  beforeEach(() => {
-    element = createAndAppend(`
+    beforeEach(() => {
+        element = createAndAppend(`
             <div data-ss="my-component" id="test">
                 Content
             </div>
         `);
-  });
+    });
 
-  afterEach(() => {
-    if (component?.destroy) {
-      component.destroy();
-    }
-  });
+    afterEach(() => {
+        if (component?.destroy) {
+            component.destroy();
+        }
+    });
 
-  it("should initialize", () => {
-    component = new MyComponent(element);
-    expect(component).toBeDefined();
-  });
+    it("should initialize", () => {
+        component = new MyComponent(element);
+        expect(component).toBeDefined();
+    });
 
-  it("should handle click", async () => {
-    component = new MyComponent(element);
-    click(element);
-    // Assert expected behavior
-  });
+    it("should handle click", async () => {
+        component = new MyComponent(element);
+        click(element);
+        // Assert expected behavior
+    });
 });
 ```
 
@@ -179,18 +179,18 @@ vi.useRealTimers();
 
 ```typescript
 describe("Component Integration", () => {
-  it("should work with auto-init", async () => {
-    document.body.innerHTML = `
+    it("should work with auto-init", async () => {
+        document.body.innerHTML = `
             <div data-ss="tooltip" data-ss-tooltip-content="Hello">
                 Hover me
             </div>
         `;
 
-    const { init } = await import("../../src/ts/init/autoInit");
-    await init();
+        const { init } = await import("../../src/ts/init/autoInit");
+        await init();
 
-    // Component should be initialized
-  });
+        // Component should be initialized
+    });
 });
 ```
 

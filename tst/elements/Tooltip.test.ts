@@ -31,7 +31,9 @@ describe("Tooltip", () => {
             (tooltip as any).destroy();
         }
         // Clean up any tooltip elements in body
-        document.querySelectorAll(".ss-tooltip").forEach((el) => el.remove());
+        document
+            .querySelectorAll(".tooltip__popup")
+            .forEach((el) => el.remove());
     });
 
     describe("Initialization", () => {
@@ -85,7 +87,7 @@ describe("Tooltip", () => {
                 (tooltip as any).show();
                 await wait(50);
 
-                const tooltipEl = document.querySelector(".ss-tooltip");
+                const tooltipEl = document.querySelector(".tooltip__popup");
                 expect(tooltipEl).not.toBeNull();
             }
         });
@@ -199,7 +201,7 @@ describe("Tooltip", () => {
 
             // Should not show immediately
             await wait(50);
-            let tooltipEl = document.querySelector(".ss-tooltip");
+            let tooltipEl = document.querySelector(".tooltip__popup");
             // May or may not be visible yet depending on implementation
 
             // Should show after delay
@@ -262,11 +264,11 @@ describe("Tooltip", () => {
                 (tooltip as any).show();
                 await wait(50);
 
-                const tooltipEl = document.querySelector(".ss-tooltip");
+                const tooltipEl = document.querySelector(".tooltip__popup");
                 if (tooltipEl) {
                     expect(
                         tooltipEl.getAttribute("role") === "tooltip" ||
-                            tooltipEl.classList.contains("ss-tooltip"),
+                            tooltipEl.classList.contains("tooltip__popup"),
                     ).toBe(true);
                 }
             }
@@ -308,7 +310,7 @@ describe("Tooltip", () => {
             await wait(50);
 
             // Move to tooltip - should remain visible
-            const tooltipEl = document.querySelector(".ss-tooltip");
+            const tooltipEl = document.querySelector(".tooltip__popup");
             if (tooltipEl) {
                 mouseLeave(triggerElement);
                 mouseEnter(tooltipEl);

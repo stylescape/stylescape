@@ -9,14 +9,14 @@
  * Configuration options for Preloader
  */
 export interface PreloaderOptions {
-  /** Timeout before hiding (ms) */
-  timeout?: number;
-  /** CSS class to add when hidden */
-  hiddenClass?: string;
-  /** Minimum display time (ms) */
-  minDisplayTime?: number;
-  /** Callback when preloader is hidden */
-  onHide?: () => void;
+    /** Timeout before hiding (ms) */
+    timeout?: number;
+    /** CSS class to add when hidden */
+    hiddenClass?: string;
+    /** Minimum display time (ms) */
+    minDisplayTime?: number;
+    /** Callback when preloader is hidden */
+    onHide?: () => void;
 }
 
 /**
@@ -38,98 +38,101 @@ export interface PreloaderOptions {
  * ```
  */
 export class Preloader {
-  private element: HTMLElement | null;
-  private options: Required<PreloaderOptions>;
-  private startTime: number;
-  private isHidden: boolean = false;
+    private element: HTMLElement | null;
+    private options: Required<PreloaderOptions>;
+    private startTime: number;
+    private isHidden: boolean = false;
 
-  constructor(selectorOrElement: string | HTMLElement, options: PreloaderOptions = {}) {
-    this.element =
-      typeof selectorOrElement === "string"
-        ? document.querySelector<HTMLElement>(selectorOrElement)
-        : selectorOrElement;
+    constructor(
+        selectorOrElement: string | HTMLElement,
+        options: PreloaderOptions = {},
+    ) {
+        this.element =
+            typeof selectorOrElement === "string"
+                ? document.querySelector<HTMLElement>(selectorOrElement)
+                : selectorOrElement;
 
-    this.options = {
-      timeout: options.timeout ?? 500,
-      hiddenClass: options.hiddenClass ?? "preloader--hidden",
-      minDisplayTime: options.minDisplayTime ?? 0,
-      onHide: options.onHide ?? (() => {}),
-    };
+        this.options = {
+            timeout: options.timeout ?? 500,
+            hiddenClass: options.hiddenClass ?? "preloader--hidden",
+            minDisplayTime: options.minDisplayTime ?? 0,
+            onHide: options.onHide ?? (() => {}),
+        };
 
-    this.startTime = Date.now();
+        this.startTime = Date.now();
 
-    if (!this.element) {
-      console.warn("[Stylescape] Preloader element not found");
-      return;
+        if (!this.element) {
+            console.warn("[Stylescape] Preloader element not found");
+            return;
+        }
+
+        this.init();
     }
 
-    this.init();
-  }
+    // ========================================================================
+    // Public Methods
+    // ========================================================================
 
-  // ========================================================================
-  // Public Methods
-  // ========================================================================
+    /**
+     * Manually show the preloader
+     */
+    public show(): void {
+        if (!this.element) return;
 
-  /**
-   * Manually show the preloader
-   */
-  public show(): void {
-    if (!this.element) return;
-
-    this.isHidden = false;
-    this.startTime = Date.now();
-    this.element.classList.remove(this.options.hiddenClass);
-    this.element.setAttribute("aria-hidden", "false");
-  }
-
-  /**
-   * Manually hide the preloader
-   */
-  public hide(): void {
-    if (!this.element || this.isHidden) return;
-
-    const elapsed = Date.now() - this.startTime;
-    const remaining = Math.max(0, this.options.minDisplayTime - elapsed);
-
-    setTimeout(() => {
-      if (!this.element) return;
-
-      this.element.classList.add(this.options.hiddenClass);
-      this.element.setAttribute("aria-hidden", "true");
-      this.isHidden = true;
-      this.options.onHide();
-    }, remaining);
-  }
-
-  /**
-   * Destroy the preloader instance
-   */
-  public destroy(): void {
-    this.hide();
-    this.element = null;
-  }
-
-  // ========================================================================
-  // Private Methods
-  // ========================================================================
-
-  private init(): void {
-    // Set ARIA attributes for accessibility
-    this.element?.setAttribute("role", "progressbar");
-    this.element?.setAttribute("aria-busy", "true");
-    this.element?.setAttribute("aria-hidden", "false");
-
-    // Hide on window load with timeout
-    if (document.readyState === "complete") {
-      this.scheduleHide();
-    } else {
-      window.addEventListener("load", () => this.scheduleHide());
+        this.isHidden = false;
+        this.startTime = Date.now();
+        this.element.classList.remove(this.options.hiddenClass);
+        this.element.setAttribute("aria-hidden", "false");
     }
-  }
 
-  private scheduleHide(): void {
-    setTimeout(() => this.hide(), this.options.timeout);
-  }
+    /**
+     * Manually hide the preloader
+     */
+    public hide(): void {
+        if (!this.element || this.isHidden) return;
+
+        const elapsed = Date.now() - this.startTime;
+        const remaining = Math.max(0, this.options.minDisplayTime - elapsed);
+
+        setTimeout(() => {
+            if (!this.element) return;
+
+            this.element.classList.add(this.options.hiddenClass);
+            this.element.setAttribute("aria-hidden", "true");
+            this.isHidden = true;
+            this.options.onHide();
+        }, remaining);
+    }
+
+    /**
+     * Destroy the preloader instance
+     */
+    public destroy(): void {
+        this.hide();
+        this.element = null;
+    }
+
+    // ========================================================================
+    // Private Methods
+    // ========================================================================
+
+    private init(): void {
+        // Set ARIA attributes for accessibility
+        this.element?.setAttribute("role", "progressbar");
+        this.element?.setAttribute("aria-busy", "true");
+        this.element?.setAttribute("aria-hidden", "false");
+
+        // Hide on window load with timeout
+        if (document.readyState === "complete") {
+            this.scheduleHide();
+        } else {
+            window.addEventListener("load", () => this.scheduleHide());
+        }
+    }
+
+    private scheduleHide(): void {
+        setTimeout(() => this.hide(), this.options.timeout);
+    }
 }
 
 export default Preloader;

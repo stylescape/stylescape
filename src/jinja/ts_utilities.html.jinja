@@ -1,330 +1,684 @@
-{% extends "base.html.jinja" %}
-{% set title = "Utilities" %}
-{%- block title %}{{ title }}{%- endblock %}
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Utilities" %} {%- block title
+%}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
-        <p>JavaScript utility components for clipboard, fetch, font preview, grid layers, and initialization.</p>
+        <p>
+            JavaScript utility components for clipboard, fetch, font preview,
+            grid layers, and initialization.
+        </p>
     </header>
 
-    {# Clipboard Helper #}
-    {% set section_title = "Clipboard Helper" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Clipboard Helper #} {% set section_title = "Clipboard Helper" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Copy content to clipboard with visual feedback.</p>
         {% set code_snippet %}
-<!-- Copy button for code -->
-<div style="position: relative; background: #1e1e1e; border-radius: 12px; overflow: hidden;">
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #2d2d2d;">
-        <span style="color: #888; font-size: 13px;">JavaScript</span>
-        <button class="copy-button"
-                data-ss="copy"
-                style="padding: 6px 12px; background: #3d3d3d; border: none; border-radius: 4px; color: #ccc; cursor: pointer; font-size: 13px;">
-            📋 Copy
-        </button>
-    </div>
-    <pre style="margin: 0; padding: 16px; color: #d4d4d4; overflow-x: auto;"><code>const greeting = "Hello, World!";
+        <!-- Copy button for code -->
+        <div
+            style="
+                position: relative;
+                background: #1e1e1e;
+                border-radius: 12px;
+                overflow: hidden;
+            "
+        >
+            <div
+                style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 12px 16px;
+                    background: #2d2d2d;
+                "
+            >
+                <span style="color: #888; font-size: 13px">JavaScript</span>
+                <button
+                    class="copy-button"
+                    data-ss="copy"
+                    style="
+                        padding: 6px 12px;
+                        background: #3d3d3d;
+                        border: none;
+                        border-radius: 4px;
+                        color: #ccc;
+                        cursor: pointer;
+                        font-size: 13px;
+                    "
+                >
+                    📋 Copy
+                </button>
+            </div>
+            <pre
+                style="
+                    margin: 0;
+                    padding: 16px;
+                    color: #d4d4d4;
+                    overflow-x: auto;
+                "
+            ><code>const greeting = "Hello, World!";
 console.log(greeting);</code></pre>
-</div>
+        </div>
 
-<!-- Copy with different states -->
-<div style="display: flex; gap: 12px; margin-top: 24px;">
-    <button data-ss="copy"
-            data-copy-text="npm install stylescape"
-            style="padding: 12px 20px; background: var(--color_fill_secondary); border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-        <span class="copy-icon">📋</span>
-        <span class="copy-text">Copy install command</span>
-    </button>
+        <!-- Copy with different states -->
+        <div style="display: flex; gap: 12px; margin-top: 24px">
+            <button
+                data-ss="copy"
+                data-copy-text="npm install stylescape"
+                style="
+                    padding: 12px 20px;
+                    background: var(--color_fill_secondary);
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                "
+            >
+                <span class="copy-icon">📋</span>
+                <span class="copy-text">Copy install command</span>
+            </button>
 
-    <button class="is-copied"
-            style="padding: 12px 20px; background: var(--color_state_success); color: white; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-        <span>✓</span>
-        <span>Copied!</span>
-    </button>
-</div>
+            <button
+                class="is-copied"
+                style="
+                    padding: 12px 20px;
+                    background: var(--color_state_success);
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                "
+            >
+                <span>✓</span>
+                <span>Copied!</span>
+            </button>
+        </div>
 
-<!-- Copy input value -->
-<div style="margin-top: 24px; display: flex; gap: 8px; max-width: 500px;">
-    <input type="text"
-           id="shareLinkInput"
-           value="https://stylescape.dev/share/abc123"
-           readonly
-           style="flex: 1; padding: 12px 16px; border: 1px solid var(--color_line_secondary); border-radius: 8px; font-family: monospace;">
-    <button data-ss="copy"
-            data-copy-target="#shareLinkInput"
-            style="padding: 12px 20px; background: var(--color_fill_primary); color: white; border: none; border-radius: 8px; cursor: pointer;">
-        Copy Link
-    </button>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <!-- Copy input value -->
+        <div
+            style="margin-top: 24px; display: flex; gap: 8px; max-width: 500px"
+        >
+            <input
+                type="text"
+                id="shareLinkInput"
+                value="https://stylescape.dev/share/abc123"
+                readonly
+                style="
+                    flex: 1;
+                    padding: 12px 16px;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 8px;
+                    font-family: monospace;
+                "
+            />
+            <button
+                data-ss="copy"
+                data-copy-target="#shareLinkInput"
+                style="
+                    padding: 12px 20px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                "
+            >
+                Copy Link
+            </button>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Fetch Client #}
-    {% set section_title = "Fetch Client" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Fetch Client #} {% set section_title = "Fetch Client" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>HTTP client for API requests with CSRF support.</p>
         {% set code_snippet %}
-<!-- Form with AJAX submit -->
-<form data-ss="fetch-form"
-      data-ss-fetch-form-url="/api/contact"
-      data-ss-fetch-form-method="POST"
-      style="max-width: 400px; display: flex; flex-direction: column; gap: 16px;">
-    <div>
-        <label style="display: block; margin-bottom: 6px; font-weight: 500;">Name</label>
-        <input type="text" name="name" required style="width: 100%; padding: 12px 16px; border: 1px solid var(--color_line_secondary); border-radius: 8px;">
-    </div>
-    <div>
-        <label style="display: block; margin-bottom: 6px; font-weight: 500;">Email</label>
-        <input type="email" name="email" required style="width: 100%; padding: 12px 16px; border: 1px solid var(--color_line_secondary); border-radius: 8px;">
-    </div>
-    <div>
-        <label style="display: block; margin-bottom: 6px; font-weight: 500;">Message</label>
-        <textarea name="message" rows="4" required style="width: 100%; padding: 12px 16px; border: 1px solid var(--color_line_secondary); border-radius: 8px; resize: vertical;"></textarea>
-    </div>
-    <button type="submit" style="padding: 14px 24px; background: var(--color_fill_primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 500;">
-        Send Message
-    </button>
-</form>
+        <!-- Form with AJAX submit -->
+        <form
+            data-ss="fetch-form"
+            data-ss-fetch-form-url="/api/contact"
+            data-ss-fetch-form-method="POST"
+            style="
+                max-width: 400px;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            "
+        >
+            <div>
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 6px;
+                        font-weight: 500;
+                    "
+                >
+                    Name
+                </label>
+                <input
+                    type="text"
+                    name="name"
+                    required
+                    style="
+                        width: 100%;
+                        padding: 12px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 8px;
+                    "
+                />
+            </div>
+            <div>
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 6px;
+                        font-weight: 500;
+                    "
+                >
+                    Email
+                </label>
+                <input
+                    type="email"
+                    name="email"
+                    required
+                    style="
+                        width: 100%;
+                        padding: 12px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 8px;
+                    "
+                />
+            </div>
+            <div>
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 6px;
+                        font-weight: 500;
+                    "
+                >
+                    Message
+                </label>
+                <textarea
+                    name="message"
+                    rows="4"
+                    required
+                    style="
+                        width: 100%;
+                        padding: 12px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 8px;
+                        resize: vertical;
+                    "
+                ></textarea>
+            </div>
+            <button
+                type="submit"
+                style="
+                    padding: 14px 24px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-weight: 500;
+                "
+            >
+                Send Message
+            </button>
+        </form>
 
-<!-- Loading state -->
-<div style="margin-top: 24px; padding: 20px; background: var(--color_fill_secondary); border-radius: 12px; display: flex; align-items: center; gap: 12px;">
-    <span style="width: 20px; height: 20px; border: 2px solid var(--color_line_secondary); border-top-color: var(--color_fill_primary); border-radius: 50%; animation: spin 1s linear infinite;"></span>
-    <span>Sending request...</span>
-</div>
+        <!-- Loading state -->
+        <div
+            style="
+                margin-top: 24px;
+                padding: 20px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            "
+        >
+            <span
+                style="
+                    width: 20px;
+                    height: 20px;
+                    border: 2px solid var(--color_line_secondary);
+                    border-top-color: var(--color_fill_primary);
+                    border-radius: 50%;
+                    animation: spin 1s linear infinite;
+                "
+            ></span>
+            <span>Sending request...</span>
+        </div>
 
-<!-- Response states -->
-<div style="margin-top: 16px; display: flex; gap: 16px; flex-wrap: wrap;">
-    <div style="padding: 16px; background: rgba(34,197,94,0.1); border-left: 4px solid var(--color_state_success); border-radius: 0 8px 8px 0;">
-        <strong style="color: var(--color_state_success);">✓ Success</strong>
-        <p style="margin: 4px 0 0; font-size: 14px;">Message sent successfully!</p>
-    </div>
-    <div style="padding: 16px; background: rgba(239,68,68,0.1); border-left: 4px solid var(--color_state_error); border-radius: 0 8px 8px 0;">
-        <strong style="color: var(--color_state_error);">✕ Error</strong>
-        <p style="margin: 4px 0 0; font-size: 14px;">Network error. Please try again.</p>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <!-- Response states -->
+        <div
+            style="margin-top: 16px; display: flex; gap: 16px; flex-wrap: wrap"
+        >
+            <div
+                style="
+                    padding: 16px;
+                    background: rgba(34, 197, 94, 0.1);
+                    border-left: 4px solid var(--color_state_success);
+                    border-radius: 0 8px 8px 0;
+                "
+            >
+                <strong style="color: var(--color_state_success)">
+                    ✓ Success
+                </strong>
+                <p style="margin: 4px 0 0; font-size: 14px">
+                    Message sent successfully!
+                </p>
+            </div>
+            <div
+                style="
+                    padding: 16px;
+                    background: rgba(239, 68, 68, 0.1);
+                    border-left: 4px solid var(--color_state_error);
+                    border-radius: 0 8px 8px 0;
+                "
+            >
+                <strong style="color: var(--color_state_error)">
+                    ✕ Error
+                </strong>
+                <p style="margin: 4px 0 0; font-size: 14px">
+                    Network error. Please try again.
+                </p>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Grid Layer Toggle #}
-    {% set section_title = "Grid Layer Toggle" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Grid Layer Toggle #} {% set section_title = "Grid Layer Toggle" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Toggle visibility of grid overlay layers for design alignment.</p>
         {% set code_snippet %}
-<!-- Grid toggle controls -->
-<div style="display: flex; gap: 12px; margin-bottom: 24px;">
-    <button data-ss-grid-toggle="columns"
-            style="padding: 10px 16px; background: var(--color_fill_primary); color: white; border: none; border-radius: 6px; cursor: pointer;">
-        Columns Grid
-    </button>
-    <button data-ss-grid-toggle="baseline"
-            style="padding: 10px 16px; background: var(--color_fill_secondary); border: none; border-radius: 6px; cursor: pointer;">
-        Baseline Grid
-    </button>
-    <button data-ss-grid-toggle="spacing"
-            style="padding: 10px 16px; background: var(--color_fill_secondary); border: none; border-radius: 6px; cursor: pointer;">
-        Spacing Grid
-    </button>
-</div>
+        <!-- Grid toggle controls -->
+        <div style="display: flex; gap: 12px; margin-bottom: 24px">
+            <button
+                data-ss-grid-toggle="columns"
+                style="
+                    padding: 10px 16px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                "
+            >
+                Columns Grid
+            </button>
+            <button
+                data-ss-grid-toggle="baseline"
+                style="
+                    padding: 10px 16px;
+                    background: var(--color_fill_secondary);
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                "
+            >
+                Baseline Grid
+            </button>
+            <button
+                data-ss-grid-toggle="spacing"
+                style="
+                    padding: 10px 16px;
+                    background: var(--color_fill_secondary);
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                "
+            >
+                Spacing Grid
+            </button>
+        </div>
 
-<!-- Grid overlay example -->
-<div style="position: relative; padding: 40px; background: white; border: 1px solid var(--color_line_secondary); border-radius: 12px; overflow: hidden;">
-    <!-- Column grid overlay -->
-    <div data-ss-grid-layer="columns" style="position: absolute; inset: 0; display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; padding: 0 16px; pointer-events: none;">
-        <div style="background: rgba(102, 126, 234, 0.1);"></div>
-        <div style="background: rgba(102, 126, 234, 0.1);"></div>
-        <div style="background: rgba(102, 126, 234, 0.1);"></div>
-        <div style="background: rgba(102, 126, 234, 0.1);"></div>
-        <div style="background: rgba(102, 126, 234, 0.1);"></div>
-        <div style="background: rgba(102, 126, 234, 0.1);"></div>
-        <div style="background: rgba(102, 126, 234, 0.1);"></div>
-        <div style="background: rgba(102, 126, 234, 0.1);"></div>
-        <div style="background: rgba(102, 126, 234, 0.1);"></div>
-        <div style="background: rgba(102, 126, 234, 0.1);"></div>
-        <div style="background: rgba(102, 126, 234, 0.1);"></div>
-        <div style="background: rgba(102, 126, 234, 0.1);"></div>
-    </div>
+        <!-- Grid overlay example -->
+        <div
+            style="
+                position: relative;
+                padding: 40px;
+                background: white;
+                border: 1px solid var(--color_line_secondary);
+                border-radius: 12px;
+                overflow: hidden;
+            "
+        >
+            <!-- Column grid overlay -->
+            <div
+                data-ss-grid-layer="columns"
+                style="
+                    position: absolute;
+                    inset: 0;
+                    display: grid;
+                    grid-template-columns: repeat(12, 1fr);
+                    gap: 16px;
+                    padding: 0 16px;
+                    pointer-events: none;
+                "
+            >
+                <div style="background: rgba(102, 126, 234, 0.1)"></div>
+                <div style="background: rgba(102, 126, 234, 0.1)"></div>
+                <div style="background: rgba(102, 126, 234, 0.1)"></div>
+                <div style="background: rgba(102, 126, 234, 0.1)"></div>
+                <div style="background: rgba(102, 126, 234, 0.1)"></div>
+                <div style="background: rgba(102, 126, 234, 0.1)"></div>
+                <div style="background: rgba(102, 126, 234, 0.1)"></div>
+                <div style="background: rgba(102, 126, 234, 0.1)"></div>
+                <div style="background: rgba(102, 126, 234, 0.1)"></div>
+                <div style="background: rgba(102, 126, 234, 0.1)"></div>
+                <div style="background: rgba(102, 126, 234, 0.1)"></div>
+                <div style="background: rgba(102, 126, 234, 0.1)"></div>
+            </div>
 
-    <!-- Content -->
-    <div style="position: relative;">
-        <h4 style="margin: 0 0 12px;">Design Alignment</h4>
-        <p style="margin: 0;">Toggle the grid overlays to check alignment with the design system grid.</p>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+            <!-- Content -->
+            <div style="position: relative">
+                <h4 style="margin: 0 0 12px">Design Alignment</h4>
+                <p style="margin: 0">
+                    Toggle the grid overlays to check alignment with the design
+                    system grid.
+                </p>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Auto Initialization #}
-    {% set section_title = "Auto Initialization" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Auto Initialization #} {% set section_title = "Auto Initialization" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Automatic component initialization via data-ss attributes.</p>
         {% set code_snippet %}
-<!-- Auto-initialized components -->
-<div data-ss="tooltip" data-ss-tooltip-content="Auto-initialized!" style="display: inline-block; padding: 12px 20px; background: var(--color_fill_secondary); border-radius: 8px; cursor: pointer;">
-    Hover for tooltip
-</div>
+        <!-- Auto-initialized components -->
+        <div
+            data-ss="tooltip"
+            data-ss-tooltip-content="Auto-initialized!"
+            style="
+                display: inline-block;
+                padding: 12px 20px;
+                background: var(--color_fill_secondary);
+                border-radius: 8px;
+                cursor: pointer;
+            "
+        >
+            Hover for tooltip
+        </div>
 
-<!-- Skip auto-initialization -->
-<div data-ss="modal" data-ss-skip-init="true" style="display: none;">
-    <!-- This modal won't be auto-initialized -->
-    <!-- Must be initialized manually via JavaScript -->
-</div>
+        <!-- Skip auto-initialization -->
+        <div data-ss="modal" data-ss-skip-init="true" style="display: none">
+            <!-- This modal won't be auto-initialized -->
+            <!-- Must be initialized manually via JavaScript -->
+        </div>
 
-<!-- Custom configuration via JSON -->
-<div data-ss="carousel"
-     data-ss-config='{"loop": true, "autoplay": 3000, "slidesToShow": 2}'
-     style="margin-top: 16px;">
-    <!-- Carousel with custom config -->
-</div>
+        <!-- Custom configuration via JSON -->
+        <div
+            data-ss="carousel"
+            data-ss-config='{"loop": true, "autoplay": 3000, "slidesToShow": 2}'
+            style="margin-top: 16px"
+        >
+            <!-- Carousel with custom config -->
+        </div>
 
-<!-- Manual initialization example -->
-<script>
-// Skip auto-init and initialize manually
-const modal = document.querySelector('[data-ss-skip-init]');
-if (modal) {
-    new Modal(modal, {
-        closeOnBackdrop: true,
-        animation: 'fade'
-    });
-}
-</script>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <!-- Manual initialization example -->
+        <script>
+            // Skip auto-init and initialize manually
+            const modal = document.querySelector("[data-ss-skip-init]");
+            if (modal) {
+                new Modal(modal, {
+                    closeOnBackdrop: true,
+                    animation: "fade",
+                });
+            }
+        </script>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Font Preview #}
-    {% set section_title = "Font Preview" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Font Preview #} {% set section_title = "Font Preview" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Live font preview from text input.</p>
         {% set code_snippet %}
-<!-- Font preview component -->
-<div style="max-width: 600px; padding: 24px; background: var(--color_fill_secondary); border-radius: 12px;">
-    <div style="margin-bottom: 20px;">
-        <label style="display: block; margin-bottom: 8px; font-weight: 500;">Preview Text</label>
-        <input type="text"
-               data-ss="font-preview-input"
-               value="The quick brown fox jumps over the lazy dog"
-               style="width: 100%; padding: 12px 16px; border: 1px solid var(--color_line_secondary); border-radius: 8px; font-size: 16px;">
-    </div>
+        <!-- Font preview component -->
+        <div
+            style="
+                max-width: 600px;
+                padding: 24px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+            "
+        >
+            <div style="margin-bottom: 20px">
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 8px;
+                        font-weight: 500;
+                    "
+                >
+                    Preview Text
+                </label>
+                <input
+                    type="text"
+                    data-ss="font-preview-input"
+                    value="The quick brown fox jumps over the lazy dog"
+                    style="
+                        width: 100%;
+                        padding: 12px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 8px;
+                        font-size: 16px;
+                    "
+                />
+            </div>
 
-    <div style="display: grid; gap: 16px;">
-        <div style="padding: 20px; background: white; border-radius: 8px;">
-            <p style="font-family: 'Inter', sans-serif; font-size: 24px; margin: 0;">The quick brown fox jumps over the lazy dog</p>
-            <span style="font-size: 12px; opacity: 0.5; margin-top: 8px; display: block;">Inter - Sans Serif</span>
+            <div style="display: grid; gap: 16px">
+                <div
+                    style="
+                        padding: 20px;
+                        background: white;
+                        border-radius: 8px;
+                    "
+                >
+                    <p
+                        style="
+                            font-family: &quot;Inter&quot;, sans-serif;
+                            font-size: 24px;
+                            margin: 0;
+                        "
+                    >
+                        The quick brown fox jumps over the lazy dog
+                    </p>
+                    <span
+                        style="
+                            font-size: 12px;
+                            opacity: 0.5;
+                            margin-top: 8px;
+                            display: block;
+                        "
+                    >
+                        Inter - Sans Serif
+                    </span>
+                </div>
+                <div
+                    style="
+                        padding: 20px;
+                        background: white;
+                        border-radius: 8px;
+                    "
+                >
+                    <p
+                        style="
+                            font-family: Georgia, serif;
+                            font-size: 24px;
+                            margin: 0;
+                        "
+                    >
+                        The quick brown fox jumps over the lazy dog
+                    </p>
+                    <span
+                        style="
+                            font-size: 12px;
+                            opacity: 0.5;
+                            margin-top: 8px;
+                            display: block;
+                        "
+                    >
+                        Georgia - Serif
+                    </span>
+                </div>
+                <div
+                    style="
+                        padding: 20px;
+                        background: white;
+                        border-radius: 8px;
+                    "
+                >
+                    <p
+                        style="
+                            font-family: &quot;Fira Code&quot;, monospace;
+                            font-size: 24px;
+                            margin: 0;
+                        "
+                    >
+                        The quick brown fox jumps over the lazy dog
+                    </p>
+                    <span
+                        style="
+                            font-size: 12px;
+                            opacity: 0.5;
+                            margin-top: 8px;
+                            display: block;
+                        "
+                    >
+                        Fira Code - Monospace
+                    </span>
+                </div>
+            </div>
         </div>
-        <div style="padding: 20px; background: white; border-radius: 8px;">
-            <p style="font-family: Georgia, serif; font-size: 24px; margin: 0;">The quick brown fox jumps over the lazy dog</p>
-            <span style="font-size: 12px; opacity: 0.5; margin-top: 8px; display: block;">Georgia - Serif</span>
-        </div>
-        <div style="padding: 20px; background: white; border-radius: 8px;">
-            <p style="font-family: 'Fira Code', monospace; font-size: 24px; margin: 0;">The quick brown fox jumps over the lazy dog</p>
-            <span style="font-size: 12px; opacity: 0.5; margin-top: 8px; display: block;">Fira Code - Monospace</span>
-        </div>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# JavaScript API #}
-    {% set section_title = "JavaScript API" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# JavaScript API #} {% set section_title = "JavaScript API" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Programmatic control of utility components.</p>
         {% set code_snippet %}
-<script>
-// ClipboardHelper
-import { ClipboardHelper } from 'stylescape';
+        <script>
+            // ClipboardHelper
+            import { ClipboardHelper } from 'stylescape';
 
-// Copy text
-ClipboardHelper.copy('Text to copy');
+            // Copy text
+            ClipboardHelper.copy('Text to copy');
 
-// Copy with callback
-ClipboardHelper.copy('npm install stylescape', {
-    onSuccess: () => showNotification('Copied!'),
-    onError: (err) => showNotification('Failed to copy')
-});
+            // Copy with callback
+            ClipboardHelper.copy('npm install stylescape', {
+                onSuccess: () => showNotification('Copied!'),
+                onError: (err) => showNotification('Failed to copy')
+            });
 
-// Copy element content
-const codeBlock = document.querySelector('code');
-ClipboardHelper.copyElement(codeBlock);
+            // Copy element content
+            const codeBlock = document.querySelector('code');
+            ClipboardHelper.copyElement(codeBlock);
 
-// FetchClient
-import { FetchClient } from 'stylescape';
+            // FetchClient
+            import { FetchClient } from 'stylescape';
 
-const api = new FetchClient({
-    baseUrl: '/api',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    csrfToken: document.querySelector('meta[name="csrf-token"]')?.content
-});
+            const api = new FetchClient({
+                baseUrl: '/api',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                csrfToken: document.querySelector('meta[name="csrf-token"]')?.content
+            });
 
-// GET request
-const users = await api.get('/users');
+            // GET request
+            const users = await api.get('/users');
 
-// POST request
-const newUser = await api.post('/users', {
-    name: 'John',
-    email: 'john@example.com'
-});
+            // POST request
+            const newUser = await api.post('/users', {
+                name: 'John',
+                email: 'john@example.com'
+            });
 
-// With loading state
-api.post('/data', payload, {
-    onStart: () => showLoading(),
-    onComplete: () => hideLoading(),
-    onError: (err) => showError(err.message)
-});
+            // With loading state
+            api.post('/data', payload, {
+                onStart: () => showLoading(),
+                onComplete: () => hideLoading(),
+                onError: (err) => showError(err.message)
+            });
 
-// GridLayerToggle
-import { GridLayerToggle } from 'stylescape';
+            // GridLayerToggle
+            import { GridLayerToggle } from 'stylescape';
 
-const gridToggle = new GridLayerToggle({
-    persist: true,
-    layers: ['columns', 'baseline', 'spacing']
-});
+            const gridToggle = new GridLayerToggle({
+                persist: true,
+                layers: ['columns', 'baseline', 'spacing']
+            });
 
-gridToggle.show('columns');
-gridToggle.hide('baseline');
-gridToggle.toggle('spacing');
-gridToggle.isVisible('columns');
+            gridToggle.show('columns');
+            gridToggle.hide('baseline');
+            gridToggle.toggle('spacing');
+            gridToggle.isVisible('columns');
 
-// Auto-initialization
-import { initStylescape, registerComponent } from 'stylescape';
+            // Auto-initialization
+            import { initStylescape, registerComponent } from 'stylescape';
 
-// Initialize all components on page load
-document.addEventListener('DOMContentLoaded', () => {
-    initStylescape();
-});
+            // Initialize all components on page load
+            document.addEventListener('DOMContentLoaded', () => {
+                initStylescape();
+            });
 
-// Initialize specific elements
-initStylescape(containerElement);
+            // Initialize specific elements
+            initStylescape(containerElement);
 
-// Register custom component
-registerComponent('my-component', MyComponentClass);
+            // Register custom component
+            registerComponent('my-component', MyComponentClass);
 
-// Then use it in HTML
-// <div data-ss="my-component" data-ss-my-option="value"></div>
-</script>
-        {% endset %}
-        {% set language="JavaScript" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+            // Then use it in HTML
+            // <div data-ss="my-component" data-ss-my-option="value"></div>
+        </script>
+        {% endset %} {% set language="JavaScript" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
-
 </section>
 
 {%- endblock %}

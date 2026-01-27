@@ -26,25 +26,9 @@ import { NotificationManager } from "../elements/NotificationManager.js";
 import { PasswordToggleManager } from "../elements/PasswordToggleManager.js";
 import { ResponsiveMenuManager } from "../elements/ResponsiveMenuManager.js";
 import { Tooltip } from "../elements/Tooltip.js";
-
-// Media Components
-
-// Utility Components
-
-// Animation Components
-
 // Form Components
 import { AutocompleteManager } from "../forms/AutocompleteManager.js";
 import { FormValidator } from "../forms/FormValidator.js";
-
-// Button/Input Components
-
-// Mouse/Interaction Components
-
-// Data Components
-
-// Storage Components
-
 // Scroll Components
 import { ScrollToTopButton } from "../interface/scroll.js";
 import { ImageCompareSlider } from "../media/ImageCompareSlider.js";
@@ -60,8 +44,8 @@ import { ThemeToggler } from "../utilities/ThemeToggler.js";
 /**
  * Configuration options that can be passed to a component
  */
- 
 export interface ComponentConfig {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 }
 

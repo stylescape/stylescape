@@ -1,182 +1,391 @@
-{% extends "base.html.jinja" %}
-{% set title = "Button Handlers" %}
-{%- block title %}{{ title }}{%- endblock %}
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Button Handlers" %} {%- block
+title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
-        <p>JavaScript button interaction components with loading states, ripple effects, and toggles.</p>
+        <p>
+            JavaScript button interaction components with loading states,
+            ripple effects, and toggles.
+        </p>
     </header>
 
-    {# Button Handler #}
-    {% set section_title = "Button Handler" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Button Handler #} {% set section_title = "Button Handler" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
-        <p>Manages button click events with loading states and ripple effects.</p>
+        <p>
+            Manages button click events with loading states and ripple effects.
+        </p>
         {% set code_snippet %}
-<!-- Button with loading state -->
-<button data-ss="button"
-        data-ss-button-loading="true"
-        style="padding: 12px 24px; background: var(--color_fill_primary); color: white; border: none; border-radius: 8px; cursor: pointer; position: relative; min-width: 140px;">
-    <span class="button__text">Submit</span>
-    <span class="button__loader" style="display: none; position: absolute; inset: 0; background: inherit; border-radius: inherit; align-items: center; justify-content: center;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite;">
-            <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
-            <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/>
-        </svg>
-    </span>
-</button>
+        <!-- Button with loading state -->
+        <button
+            data-ss="button"
+            data-ss-button-loading="true"
+            style="
+                padding: 12px 24px;
+                background: var(--color_fill_primary);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                position: relative;
+                min-width: 140px;
+            "
+        >
+            <span class="button__text">Submit</span>
+            <span
+                class="button__loader"
+                style="
+                    display: none;
+                    position: absolute;
+                    inset: 0;
+                    background: inherit;
+                    border-radius: inherit;
+                    align-items: center;
+                    justify-content: center;
+                "
+            >
+                <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    style="animation: spin 1s linear infinite"
+                >
+                    <circle cx="12" cy="12" r="10" stroke-opacity="0.25" />
+                    <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round" />
+                </svg>
+            </span>
+        </button>
 
-<!-- Button with ripple effect -->
-<button data-ss="button"
-        data-ss-button-ripple="true"
-        style="padding: 12px 24px; background: var(--color_fill_primary); color: white; border: none; border-radius: 8px; cursor: pointer; overflow: hidden; position: relative;">
-    Click for Ripple
-</button>
+        <!-- Button with ripple effect -->
+        <button
+            data-ss="button"
+            data-ss-button-ripple="true"
+            style="
+                padding: 12px 24px;
+                background: var(--color_fill_primary);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                overflow: hidden;
+                position: relative;
+            "
+        >
+            Click for Ripple
+        </button>
 
-<!-- Combined loading and ripple -->
-<button data-ss="button"
-        data-ss-button-loading="true"
-        data-ss-button-ripple="true"
-        style="padding: 14px 32px; background: linear-gradient(135deg, var(--color_fill_primary), #764ba2); color: white; border: none; border-radius: 24px; cursor: pointer; overflow: hidden; position: relative; font-weight: 600;">
-    <span class="button__text">Save Changes</span>
-    <span class="button__loader" style="display: none;">Saving...</span>
-</button>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <!-- Combined loading and ripple -->
+        <button
+            data-ss="button"
+            data-ss-button-loading="true"
+            data-ss-button-ripple="true"
+            style="
+                padding: 14px 32px;
+                background: linear-gradient(
+                    135deg,
+                    var(--color_fill_primary),
+                    #764ba2
+                );
+                color: white;
+                border: none;
+                border-radius: 24px;
+                cursor: pointer;
+                overflow: hidden;
+                position: relative;
+                font-weight: 600;
+            "
+        >
+            <span class="button__text">Save Changes</span>
+            <span class="button__loader" style="display: none">Saving...</span>
+        </button>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Toggle Switch Manager #}
-    {% set section_title = "Toggle Switch Manager" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Toggle Switch Manager #} {% set section_title = "Toggle Switch Manager"
+    %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
-        <p>Manages toggle switches with optional state persistence via localStorage.</p>
+        <p>
+            Manages toggle switches with optional state persistence via
+            localStorage.
+        </p>
         {% set code_snippet %}
-<!-- Basic toggle -->
-<label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
-    <input type="checkbox"
-           data-ss="toggle"
-           style="width: 48px; height: 24px; appearance: none; background: var(--color_fill_secondary); border-radius: 12px; position: relative; cursor: pointer; transition: background 0.2s;">
-    <span>Enable notifications</span>
-</label>
+        <!-- Basic toggle -->
+        <label
+            style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                cursor: pointer;
+            "
+        >
+            <input
+                type="checkbox"
+                data-ss="toggle"
+                style="
+                    width: 48px;
+                    height: 24px;
+                    appearance: none;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                    position: relative;
+                    cursor: pointer;
+                    transition: background 0.2s;
+                "
+            />
+            <span>Enable notifications</span>
+        </label>
 
-<!-- Toggle with persistence -->
-<label style="display: flex; align-items: center; gap: 12px; cursor: pointer; margin-top: 16px;">
-    <input type="checkbox"
-           data-ss="toggle"
-           data-ss-toggle-persist="true"
-           data-ss-toggle-storage-key="dark-mode"
-           id="darkModeToggle"
-           style="width: 48px; height: 24px; appearance: none; background: var(--color_fill_secondary); border-radius: 12px; position: relative; cursor: pointer;">
-    <span>Dark Mode (persisted)</span>
-</label>
+        <!-- Toggle with persistence -->
+        <label
+            style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                cursor: pointer;
+                margin-top: 16px;
+            "
+        >
+            <input
+                type="checkbox"
+                data-ss="toggle"
+                data-ss-toggle-persist="true"
+                data-ss-toggle-storage-key="dark-mode"
+                id="darkModeToggle"
+                style="
+                    width: 48px;
+                    height: 24px;
+                    appearance: none;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                    position: relative;
+                    cursor: pointer;
+                "
+            />
+            <span>Dark Mode (persisted)</span>
+        </label>
 
-<!-- Toggle with custom styling -->
-<div style="margin-top: 24px; padding: 20px; background: var(--color_fill_secondary); border-radius: 12px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-            <strong>Auto-save</strong>
-            <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7;">Automatically save your work</p>
+        <!-- Toggle with custom styling -->
+        <div
+            style="
+                margin-top: 24px;
+                padding: 20px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+            "
+        >
+            <div
+                style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                "
+            >
+                <div>
+                    <strong>Auto-save</strong>
+                    <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7">
+                        Automatically save your work
+                    </p>
+                </div>
+                <input
+                    type="checkbox"
+                    data-ss="toggle"
+                    data-ss-toggle-persist="true"
+                    data-ss-toggle-storage-key="auto-save"
+                    checked
+                    style="
+                        width: 52px;
+                        height: 28px;
+                        appearance: none;
+                        background: var(--color_fill_primary);
+                        border-radius: 14px;
+                        position: relative;
+                        cursor: pointer;
+                    "
+                />
+            </div>
         </div>
-        <input type="checkbox"
-               data-ss="toggle"
-               data-ss-toggle-persist="true"
-               data-ss-toggle-storage-key="auto-save"
-               checked
-               style="width: 52px; height: 28px; appearance: none; background: var(--color_fill_primary); border-radius: 14px; position: relative; cursor: pointer;">
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Button States #}
-    {% set section_title = "Button States" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Button States #} {% set section_title = "Button States" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Different button states managed by the handler.</p>
         {% set code_snippet %}
-<div style="display: flex; flex-wrap: wrap; gap: 16px;">
-    <!-- Default state -->
-    <button data-ss="button" style="padding: 12px 24px; background: var(--color_fill_primary); color: white; border: none; border-radius: 8px; cursor: pointer;">
-        Default
-    </button>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px">
+            <!-- Default state -->
+            <button
+                data-ss="button"
+                style="
+                    padding: 12px 24px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                "
+            >
+                Default
+            </button>
 
-    <!-- Hover state (CSS) -->
-    <button data-ss="button" data-ss-button-ripple="true" style="padding: 12px 24px; background: var(--color_fill_primary); color: white; border: none; border-radius: 8px; cursor: pointer;">
-        Hover Me
-    </button>
+            <!-- Hover state (CSS) -->
+            <button
+                data-ss="button"
+                data-ss-button-ripple="true"
+                style="
+                    padding: 12px 24px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                "
+            >
+                Hover Me
+            </button>
 
-    <!-- Loading state -->
-    <button data-ss="button" data-ss-button-loading="true" class="is-loading" disabled style="padding: 12px 24px; background: var(--color_fill_primary); color: white; border: none; border-radius: 8px; cursor: not-allowed; opacity: 0.7;">
-        <span class="button__text" style="visibility: hidden;">Processing</span>
-        <span class="button__loader" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
-            <span style="width: 16px; height: 16px; border: 2px solid transparent; border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite;"></span>
-        </span>
-    </button>
+            <!-- Loading state -->
+            <button
+                data-ss="button"
+                data-ss-button-loading="true"
+                class="is-loading"
+                disabled
+                style="
+                    padding: 12px 24px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: not-allowed;
+                    opacity: 0.7;
+                "
+            >
+                <span class="button__text" style="visibility: hidden">
+                    Processing
+                </span>
+                <span
+                    class="button__loader"
+                    style="
+                        position: absolute;
+                        inset: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    "
+                >
+                    <span
+                        style="
+                            width: 16px;
+                            height: 16px;
+                            border: 2px solid transparent;
+                            border-top-color: white;
+                            border-radius: 50%;
+                            animation: spin 0.8s linear infinite;
+                        "
+                    ></span>
+                </span>
+            </button>
 
-    <!-- Disabled state -->
-    <button data-ss="button" disabled style="padding: 12px 24px; background: var(--color_fill_secondary); color: var(--color_text_secondary); border: none; border-radius: 8px; cursor: not-allowed;">
-        Disabled
-    </button>
+            <!-- Disabled state -->
+            <button
+                data-ss="button"
+                disabled
+                style="
+                    padding: 12px 24px;
+                    background: var(--color_fill_secondary);
+                    color: var(--color_text_secondary);
+                    border: none;
+                    border-radius: 8px;
+                    cursor: not-allowed;
+                "
+            >
+                Disabled
+            </button>
 
-    <!-- Success state -->
-    <button data-ss="button" class="is-success" style="padding: 12px 24px; background: var(--color_state_success); color: white; border: none; border-radius: 8px; cursor: pointer;">
-        ✓ Success
-    </button>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+            <!-- Success state -->
+            <button
+                data-ss="button"
+                class="is-success"
+                style="
+                    padding: 12px 24px;
+                    background: var(--color_state_success);
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                "
+            >
+                ✓ Success
+            </button>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# JavaScript API #}
-    {% set section_title = "JavaScript API" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# JavaScript API #} {% set section_title = "JavaScript API" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Programmatic control of button handlers.</p>
         {% set code_snippet %}
-<script>
-// ButtonHandler - Loading states
-import { ButtonHandler } from 'stylescape';
+        <script>
+            // ButtonHandler - Loading states
+            import { ButtonHandler } from "stylescape";
 
-const button = new ButtonHandler(element, {
-    loading: true,
-    ripple: true,
-    onClick: async () => {
-        // Async operation
-        await saveData();
-    }
-});
+            const button = new ButtonHandler(element, {
+                loading: true,
+                ripple: true,
+                onClick: async () => {
+                    // Async operation
+                    await saveData();
+                },
+            });
 
-button.setLoading(true);  // Show loading
-button.setLoading(false); // Hide loading
-button.disable();         // Disable button
-button.enable();          // Enable button
+            button.setLoading(true); // Show loading
+            button.setLoading(false); // Hide loading
+            button.disable(); // Disable button
+            button.enable(); // Enable button
 
-// ToggleSwitchManager - Persistence
-import { ToggleSwitchManager } from 'stylescape';
+            // ToggleSwitchManager - Persistence
+            import { ToggleSwitchManager } from "stylescape";
 
-const toggle = new ToggleSwitchManager(checkbox, {
-    persist: true,
-    storageKey: 'my-setting',
-    onChange: (checked) => {
-        console.log('Toggle state:', checked);
-    }
-});
+            const toggle = new ToggleSwitchManager(checkbox, {
+                persist: true,
+                storageKey: "my-setting",
+                onChange: (checked) => {
+                    console.log("Toggle state:", checked);
+                },
+            });
 
-toggle.getState();        // Get current state
-toggle.setState(true);    // Set state programmatically
-toggle.toggle();          // Toggle state
-</script>
-        {% endset %}
-        {% set language="JavaScript" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+            toggle.getState(); // Get current state
+            toggle.setState(true); // Set state programmatically
+            toggle.toggle(); // Toggle state
+        </script>
+        {% endset %} {% set language="JavaScript" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
-
 </section>
 
 {%- endblock %}

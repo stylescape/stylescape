@@ -234,7 +234,7 @@ export function initializeStylescape(): void {
                     "#font-preview-input",
                     ".preview__font--output",
                 );
-            } catch (e) {
+            } catch (_e) {
                 // Silently fail if no preview elements found
             }
         }

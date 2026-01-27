@@ -46,20 +46,13 @@
 
 // Core ESLint recommended rules
 import js from "@eslint/js";
-
-// TypeScript support via typescript-eslint
-
 // Prettier integration - disables rules that conflict with Prettier
 import prettier from "eslint-config-prettier";
-
 // Global variable definitions (browser, node, etc.)
 import importPlugin from "eslint-plugin-import";
 import globals from "globals";
-
 // Import/export linting (order, duplicates, etc.)
 import tseslint from "typescript-eslint";
-
-// Security vulnerability detection
 
 // =============================================================================
 // Configuration Export

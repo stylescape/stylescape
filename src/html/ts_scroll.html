@@ -989,60 +989,146 @@
 <section class="demo__section" data-label="Scroll Components" data-level="1">
     <header class="demo__section__header">
         <h2>Scroll Components</h2>
-        <p>JavaScript components for infinite scroll, parallax, scroll spy, and smooth scrolling.</p>
+        <p>
+            JavaScript components for infinite scroll, parallax, scroll spy,
+            and smooth scrolling.
+        </p>
     </header>
 
-    
-    <section class="demo__subsection" data-label="Infinite Scroll Manager" data-level="2">
-        <h3>Infinite Scroll Manager</h3>
+         <section
+        class="demo__subsection"
+        data-label="Infinite Scroll
+    Manager"
+        data-level="2"
+    >
+        <h3>Infinite Scroll
+    Manager</h3>
         <p>Auto-loads content when scrolling near bottom.</p>
-   
+    
 <div class="preview_box--vertical">
-    <div class="preview_box__live"><!-- Infinite scroll container -->
-<div data-ss="infinite-scroll"
-     data-ss-infinite-scroll-threshold="300"
-     data-ss-infinite-scroll-url="/api/items"
-     style="max-height: 400px; overflow-y: auto; border: 1px solid var(--color_line_secondary); border-radius: 12px;">
+    <div class="preview_box__live">        <!-- Infinite scroll container -->
+        <div
+            data-ss="infinite-scroll"
+            data-ss-infinite-scroll-threshold="300"
+            data-ss-infinite-scroll-url="/api/items"
+            style="
+                max-height: 400px;
+                overflow-y: auto;
+                border: 1px solid var(--color_line_secondary);
+                border-radius: 12px;
+            "
+        >
+            <div
+                class="items-container"
+                style="
+                    padding: 16px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                "
+            >
+                <!-- Loaded items -->
+                <div
+                    class="item"
+                    style="
+                        padding: 16px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 8px;
+                    "
+                >
+                    <strong>Item 1</strong>
+                    <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7">
+                        Content loaded initially
+                    </p>
+                </div>
+                <div
+                    class="item"
+                    style="
+                        padding: 16px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 8px;
+                    "
+                >
+                    <strong>Item 2</strong>
+                    <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7">
+                        Content loaded initially
+                    </p>
+                </div>
+                <div
+                    class="item"
+                    style="
+                        padding: 16px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 8px;
+                    "
+                >
+                    <strong>Item 3</strong>
+                    <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7">
+                        Content loaded initially
+                    </p>
+                </div>
+                <div
+                    class="item"
+                    style="
+                        padding: 16px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 8px;
+                    "
+                >
+                    <strong>Item 4</strong>
+                    <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7">
+                        Scroll down to load more...
+                    </p>
+                </div>
+            </div>
 
-    <div class="items-container" style="padding: 16px; display: flex; flex-direction: column; gap: 12px;">
-        <!-- Loaded items -->
-        <div class="item" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;">
-            <strong>Item 1</strong>
-            <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7;">Content loaded initially</p>
+            <!-- Loading indicator -->
+            <div
+                class="loading-indicator"
+                style="padding: 24px; text-align: center"
+            >
+                <div
+                    style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        color: var(--color_text_secondary);
+                    "
+                >
+                    <span
+                        style="
+                            width: 20px;
+                            height: 20px;
+                            border: 2px solid var(--color_fill_secondary);
+                            border-top-color: var(--color_fill_primary);
+                            border-radius: 50%;
+                            animation: spin 1s linear infinite;
+                        "
+                    ></span>
+                    Loading more...
+                </div>
+            </div>
         </div>
-        <div class="item" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;">
-            <strong>Item 2</strong>
-            <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7;">Content loaded initially</p>
-        </div>
-        <div class="item" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;">
-            <strong>Item 3</strong>
-            <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7;">Content loaded initially</p>
-        </div>
-        <div class="item" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;">
-            <strong>Item 4</strong>
-            <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7;">Scroll down to load more...</p>
-        </div>
-    </div>
 
-    <!-- Loading indicator -->
-    <div class="loading-indicator" style="padding: 24px; text-align: center;">
-        <div style="display: inline-flex; align-items: center; gap: 8px; color: var(--color_text_secondary);">
-            <span style="width: 20px; height: 20px; border: 2px solid var(--color_fill_secondary); border-top-color: var(--color_fill_primary); border-radius: 50%; animation: spin 1s linear infinite;"></span>
-            Loading more...
+        <!-- End of list message -->
+        <div
+            style="
+                max-width: 400px;
+                margin-top: 16px;
+                padding: 16px;
+                background: var(--color_fill_secondary);
+                border-radius: 8px;
+                text-align: center;
+            "
+        >
+            <p style="margin: 0; opacity: 0.6">You've reached the end! 🎉</p>
         </div>
-    </div>
-</div>
-
-<!-- End of list message -->
-<div style="max-width: 400px; margin-top: 16px; padding: 16px; background: var(--color_fill_secondary); border-radius: 8px; text-align: center;">
-    <p style="margin: 0; opacity: 0.6;">You've reached the end! 🎉</p>
-</div>
 </div>
     <div class="preview_box__info">
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-2144')"
+            onclick="ClipboardHelper.copyById('code-snippet-2864')"
         >
             Copy
         </button>
@@ -1050,90 +1136,265 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-2144" class="language-html">&lt;!-- Infinite scroll container --&gt;
-&lt;div data-ss=&quot;infinite-scroll&quot;
-     data-ss-infinite-scroll-threshold=&quot;300&quot;
-     data-ss-infinite-scroll-url=&quot;/api/items&quot;
-     style=&quot;max-height: 400px; overflow-y: auto; border: 1px solid var(--color_line_secondary); border-radius: 12px;&quot;&gt;
+        ><code id="code-snippet-2864" class="language-html">&lt;!-- Infinite scroll container --&gt;
+        &lt;div
+            data-ss=&quot;infinite-scroll&quot;
+            data-ss-infinite-scroll-threshold=&quot;300&quot;
+            data-ss-infinite-scroll-url=&quot;/api/items&quot;
+            style=&quot;
+                max-height: 400px;
+                overflow-y: auto;
+                border: 1px solid var(--color_line_secondary);
+                border-radius: 12px;
+            &quot;
+        &gt;
+            &lt;div
+                class=&quot;items-container&quot;
+                style=&quot;
+                    padding: 16px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                &quot;
+            &gt;
+                &lt;!-- Loaded items --&gt;
+                &lt;div
+                    class=&quot;item&quot;
+                    style=&quot;
+                        padding: 16px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 8px;
+                    &quot;
+                &gt;
+                    &lt;strong&gt;Item 1&lt;/strong&gt;
+                    &lt;p style=&quot;margin: 4px 0 0; font-size: 14px; opacity: 0.7&quot;&gt;
+                        Content loaded initially
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div
+                    class=&quot;item&quot;
+                    style=&quot;
+                        padding: 16px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 8px;
+                    &quot;
+                &gt;
+                    &lt;strong&gt;Item 2&lt;/strong&gt;
+                    &lt;p style=&quot;margin: 4px 0 0; font-size: 14px; opacity: 0.7&quot;&gt;
+                        Content loaded initially
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div
+                    class=&quot;item&quot;
+                    style=&quot;
+                        padding: 16px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 8px;
+                    &quot;
+                &gt;
+                    &lt;strong&gt;Item 3&lt;/strong&gt;
+                    &lt;p style=&quot;margin: 4px 0 0; font-size: 14px; opacity: 0.7&quot;&gt;
+                        Content loaded initially
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div
+                    class=&quot;item&quot;
+                    style=&quot;
+                        padding: 16px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 8px;
+                    &quot;
+                &gt;
+                    &lt;strong&gt;Item 4&lt;/strong&gt;
+                    &lt;p style=&quot;margin: 4px 0 0; font-size: 14px; opacity: 0.7&quot;&gt;
+                        Scroll down to load more...
+                    &lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
 
-    &lt;div class=&quot;items-container&quot; style=&quot;padding: 16px; display: flex; flex-direction: column; gap: 12px;&quot;&gt;
-        &lt;!-- Loaded items --&gt;
-        &lt;div class=&quot;item&quot; style=&quot;padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;&quot;&gt;
-            &lt;strong&gt;Item 1&lt;/strong&gt;
-            &lt;p style=&quot;margin: 4px 0 0; font-size: 14px; opacity: 0.7;&quot;&gt;Content loaded initially&lt;/p&gt;
+            &lt;!-- Loading indicator --&gt;
+            &lt;div
+                class=&quot;loading-indicator&quot;
+                style=&quot;padding: 24px; text-align: center&quot;
+            &gt;
+                &lt;div
+                    style=&quot;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        color: var(--color_text_secondary);
+                    &quot;
+                &gt;
+                    &lt;span
+                        style=&quot;
+                            width: 20px;
+                            height: 20px;
+                            border: 2px solid var(--color_fill_secondary);
+                            border-top-color: var(--color_fill_primary);
+                            border-radius: 50%;
+                            animation: spin 1s linear infinite;
+                        &quot;
+                    &gt;&lt;/span&gt;
+                    Loading more...
+                &lt;/div&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
-        &lt;div class=&quot;item&quot; style=&quot;padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;&quot;&gt;
-            &lt;strong&gt;Item 2&lt;/strong&gt;
-            &lt;p style=&quot;margin: 4px 0 0; font-size: 14px; opacity: 0.7;&quot;&gt;Content loaded initially&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;item&quot; style=&quot;padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;&quot;&gt;
-            &lt;strong&gt;Item 3&lt;/strong&gt;
-            &lt;p style=&quot;margin: 4px 0 0; font-size: 14px; opacity: 0.7;&quot;&gt;Content loaded initially&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;item&quot; style=&quot;padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;&quot;&gt;
-            &lt;strong&gt;Item 4&lt;/strong&gt;
-            &lt;p style=&quot;margin: 4px 0 0; font-size: 14px; opacity: 0.7;&quot;&gt;Scroll down to load more...&lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
 
-    &lt;!-- Loading indicator --&gt;
-    &lt;div class=&quot;loading-indicator&quot; style=&quot;padding: 24px; text-align: center;&quot;&gt;
-        &lt;div style=&quot;display: inline-flex; align-items: center; gap: 8px; color: var(--color_text_secondary);&quot;&gt;
-            &lt;span style=&quot;width: 20px; height: 20px; border: 2px solid var(--color_fill_secondary); border-top-color: var(--color_fill_primary); border-radius: 50%; animation: spin 1s linear infinite;&quot;&gt;&lt;/span&gt;
-            Loading more...
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- End of list message --&gt;
-&lt;div style=&quot;max-width: 400px; margin-top: 16px; padding: 16px; background: var(--color_fill_secondary); border-radius: 8px; text-align: center;&quot;&gt;
-    &lt;p style=&quot;margin: 0; opacity: 0.6;&quot;&gt;You&#39;ve reached the end! 🎉&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+        &lt;!-- End of list message --&gt;
+        &lt;div
+            style=&quot;
+                max-width: 400px;
+                margin-top: 16px;
+                padding: 16px;
+                background: var(--color_fill_secondary);
+                border-radius: 8px;
+                text-align: center;
+            &quot;
+        &gt;
+            &lt;p style=&quot;margin: 0; opacity: 0.6&quot;&gt;You&#39;ve reached the end! 🎉&lt;/p&gt;
+        &lt;/div&gt;</code></pre>
     </div>
 </div>
     </section>
 
-    
-    <section class="demo__subsection" data-label="Parallax Manager" data-level="2">
+         <section
+        class="demo__subsection"
+        data-label="Parallax Manager"
+        data-level="2"
+    >
         <h3>Parallax Manager</h3>
         <p>Parallax scrolling effects for backgrounds.</p>
-   
+    
 <div class="preview_box--vertical">
-    <div class="preview_box__live"><!-- Parallax section -->
-<div class="parallax"
-     data-speed="0.3"
-     style="position: relative; height: 400px; overflow: hidden; border-radius: 12px;">
-    <div style="position: absolute; inset: -50px; background: linear-gradient(135deg, #667eea, #764ba2); background-size: cover; transform: translateY(0);"></div>
-    <div style="position: relative; height: 100%; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
-        <div>
-            <h2 style="margin: 0 0 16px; font-size: 48px;">Parallax Effect</h2>
-            <p style="margin: 0; font-size: 18px; opacity: 0.9;">Scroll to see the background move at a different speed</p>
+    <div class="preview_box__live">        <!-- Parallax section -->
+        <div
+            class="parallax"
+            data-speed="0.3"
+            style="
+                position: relative;
+                height: 400px;
+                overflow: hidden;
+                border-radius: 12px;
+            "
+        >
+            <div
+                style="
+                    position: absolute;
+                    inset: -50px;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    background-size: cover;
+                    transform: translateY(0);
+                "
+            ></div>
+            <div
+                style="
+                    position: relative;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    text-align: center;
+                "
+            >
+                <div>
+                    <h2 style="margin: 0 0 16px; font-size: 48px">
+                        Parallax Effect
+                    </h2>
+                    <p style="margin: 0; font-size: 18px; opacity: 0.9">
+                        Scroll to see the background move at a different speed
+                    </p>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<!-- Multiple parallax layers -->
-<div style="position: relative; height: 500px; overflow: hidden; border-radius: 12px; margin-top: 24px;">
-    <!-- Background layer (slowest) -->
-    <div class="parallax" data-speed="0.2" style="position: absolute; inset: -100px; background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);"></div>
+        <!-- Multiple parallax layers -->
+        <div
+            style="
+                position: relative;
+                height: 500px;
+                overflow: hidden;
+                border-radius: 12px;
+                margin-top: 24px;
+            "
+        >
+            <!-- Background layer (slowest) -->
+            <div
+                class="parallax"
+                data-speed="0.2"
+                style="
+                    position: absolute;
+                    inset: -100px;
+                    background: linear-gradient(
+                        to bottom,
+                        #0f0c29,
+                        #302b63,
+                        #24243e
+                    );
+                "
+            ></div>
 
-    <!-- Stars layer -->
-    <div class="parallax" data-speed="0.3" style="position: absolute; inset: -50px; background-image: radial-gradient(white 1px, transparent 1px); background-size: 50px 50px; opacity: 0.5;"></div>
+            <!-- Stars layer -->
+            <div
+                class="parallax"
+                data-speed="0.3"
+                style="
+                    position: absolute;
+                    inset: -50px;
+                    background-image: radial-gradient(
+                        white 1px,
+                        transparent 1px
+                    );
+                    background-size: 50px 50px;
+                    opacity: 0.5;
+                "
+            ></div>
 
-    <!-- Moon layer -->
-    <div class="parallax" data-speed="0.4" style="position: absolute; top: 50px; right: 100px; width: 80px; height: 80px; background: #fef3c7; border-radius: 50%; box-shadow: 0 0 40px rgba(254, 243, 199, 0.5);"></div>
+            <!-- Moon layer -->
+            <div
+                class="parallax"
+                data-speed="0.4"
+                style="
+                    position: absolute;
+                    top: 50px;
+                    right: 100px;
+                    width: 80px;
+                    height: 80px;
+                    background: #fef3c7;
+                    border-radius: 50%;
+                    box-shadow: 0 0 40px rgba(254, 243, 199, 0.5);
+                "
+            ></div>
 
-    <!-- Content layer (fastest) -->
-    <div class="parallax" data-speed="0.6" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
-        <h2 style="color: white; font-size: 36px; text-shadow: 0 2px 20px rgba(0,0,0,0.5);">Multi-Layer Parallax</h2>
-    </div>
-</div>
+            <!-- Content layer (fastest) -->
+            <div
+                class="parallax"
+                data-speed="0.6"
+                style="
+                    position: absolute;
+                    inset: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                "
+            >
+                <h2
+                    style="
+                        color: white;
+                        font-size: 36px;
+                        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+                    "
+                >
+                    Multi-Layer Parallax
+                </h2>
+            </div>
+        </div>
 </div>
     <div class="preview_box__info">
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-4099')"
+            onclick="ClipboardHelper.copyById('code-snippet-9366')"
         >
             Copy
         </button>
@@ -1141,95 +1402,279 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-4099" class="language-html">&lt;!-- Parallax section --&gt;
-&lt;div class=&quot;parallax&quot;
-     data-speed=&quot;0.3&quot;
-     style=&quot;position: relative; height: 400px; overflow: hidden; border-radius: 12px;&quot;&gt;
-    &lt;div style=&quot;position: absolute; inset: -50px; background: linear-gradient(135deg, #667eea, #764ba2); background-size: cover; transform: translateY(0);&quot;&gt;&lt;/div&gt;
-    &lt;div style=&quot;position: relative; height: 100%; display: flex; align-items: center; justify-content: center; color: white; text-align: center;&quot;&gt;
-        &lt;div&gt;
-            &lt;h2 style=&quot;margin: 0 0 16px; font-size: 48px;&quot;&gt;Parallax Effect&lt;/h2&gt;
-            &lt;p style=&quot;margin: 0; font-size: 18px; opacity: 0.9;&quot;&gt;Scroll to see the background move at a different speed&lt;/p&gt;
+        ><code id="code-snippet-9366" class="language-html">&lt;!-- Parallax section --&gt;
+        &lt;div
+            class=&quot;parallax&quot;
+            data-speed=&quot;0.3&quot;
+            style=&quot;
+                position: relative;
+                height: 400px;
+                overflow: hidden;
+                border-radius: 12px;
+            &quot;
+        &gt;
+            &lt;div
+                style=&quot;
+                    position: absolute;
+                    inset: -50px;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    background-size: cover;
+                    transform: translateY(0);
+                &quot;
+            &gt;&lt;/div&gt;
+            &lt;div
+                style=&quot;
+                    position: relative;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    text-align: center;
+                &quot;
+            &gt;
+                &lt;div&gt;
+                    &lt;h2 style=&quot;margin: 0 0 16px; font-size: 48px&quot;&gt;
+                        Parallax Effect
+                    &lt;/h2&gt;
+                    &lt;p style=&quot;margin: 0; font-size: 18px; opacity: 0.9&quot;&gt;
+                        Scroll to see the background move at a different speed
+                    &lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
 
-&lt;!-- Multiple parallax layers --&gt;
-&lt;div style=&quot;position: relative; height: 500px; overflow: hidden; border-radius: 12px; margin-top: 24px;&quot;&gt;
-    &lt;!-- Background layer (slowest) --&gt;
-    &lt;div class=&quot;parallax&quot; data-speed=&quot;0.2&quot; style=&quot;position: absolute; inset: -100px; background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);&quot;&gt;&lt;/div&gt;
+        &lt;!-- Multiple parallax layers --&gt;
+        &lt;div
+            style=&quot;
+                position: relative;
+                height: 500px;
+                overflow: hidden;
+                border-radius: 12px;
+                margin-top: 24px;
+            &quot;
+        &gt;
+            &lt;!-- Background layer (slowest) --&gt;
+            &lt;div
+                class=&quot;parallax&quot;
+                data-speed=&quot;0.2&quot;
+                style=&quot;
+                    position: absolute;
+                    inset: -100px;
+                    background: linear-gradient(
+                        to bottom,
+                        #0f0c29,
+                        #302b63,
+                        #24243e
+                    );
+                &quot;
+            &gt;&lt;/div&gt;
 
-    &lt;!-- Stars layer --&gt;
-    &lt;div class=&quot;parallax&quot; data-speed=&quot;0.3&quot; style=&quot;position: absolute; inset: -50px; background-image: radial-gradient(white 1px, transparent 1px); background-size: 50px 50px; opacity: 0.5;&quot;&gt;&lt;/div&gt;
+            &lt;!-- Stars layer --&gt;
+            &lt;div
+                class=&quot;parallax&quot;
+                data-speed=&quot;0.3&quot;
+                style=&quot;
+                    position: absolute;
+                    inset: -50px;
+                    background-image: radial-gradient(
+                        white 1px,
+                        transparent 1px
+                    );
+                    background-size: 50px 50px;
+                    opacity: 0.5;
+                &quot;
+            &gt;&lt;/div&gt;
 
-    &lt;!-- Moon layer --&gt;
-    &lt;div class=&quot;parallax&quot; data-speed=&quot;0.4&quot; style=&quot;position: absolute; top: 50px; right: 100px; width: 80px; height: 80px; background: #fef3c7; border-radius: 50%; box-shadow: 0 0 40px rgba(254, 243, 199, 0.5);&quot;&gt;&lt;/div&gt;
+            &lt;!-- Moon layer --&gt;
+            &lt;div
+                class=&quot;parallax&quot;
+                data-speed=&quot;0.4&quot;
+                style=&quot;
+                    position: absolute;
+                    top: 50px;
+                    right: 100px;
+                    width: 80px;
+                    height: 80px;
+                    background: #fef3c7;
+                    border-radius: 50%;
+                    box-shadow: 0 0 40px rgba(254, 243, 199, 0.5);
+                &quot;
+            &gt;&lt;/div&gt;
 
-    &lt;!-- Content layer (fastest) --&gt;
-    &lt;div class=&quot;parallax&quot; data-speed=&quot;0.6&quot; style=&quot;position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;&quot;&gt;
-        &lt;h2 style=&quot;color: white; font-size: 36px; text-shadow: 0 2px 20px rgba(0,0,0,0.5);&quot;&gt;Multi-Layer Parallax&lt;/h2&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+            &lt;!-- Content layer (fastest) --&gt;
+            &lt;div
+                class=&quot;parallax&quot;
+                data-speed=&quot;0.6&quot;
+                style=&quot;
+                    position: absolute;
+                    inset: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                &quot;
+            &gt;
+                &lt;h2
+                    style=&quot;
+                        color: white;
+                        font-size: 36px;
+                        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+                    &quot;
+                &gt;
+                    Multi-Layer Parallax
+                &lt;/h2&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;</code></pre>
     </div>
 </div>
     </section>
 
-    
-    <section class="demo__subsection" data-label="Scroll Spy Manager" data-level="2">
+         <section
+        class="demo__subsection"
+        data-label="Scroll Spy Manager"
+        data-level="2"
+    >
         <h3>Scroll Spy Manager</h3>
-        <p>Updates navigation based on scroll position for single-page sites.</p>
-   
+        <p>
+            Updates navigation based on scroll position for single-page sites.
+        </p>
+    
 <div class="preview_box--vertical">
-    <div class="preview_box__live"><div style="display: grid; grid-template-columns: 200px 1fr; gap: 32px;">
-    <!-- Scrollspy navigation -->
-    <nav data-ss="scrollspy"
-         data-ss-scrollspy-nav=".spy-link"
-         data-ss-scrollspy-threshold="0.3"
-         data-ss-scrollspy-smooth="true"
-         data-ss-scrollspy-offset="-80"
-         style="position: sticky; top: 20px; height: fit-content;">
-        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">
-            <li>
-                <a href="#section-intro" class="spy-link active" style="display: block; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: white; background: var(--color_fill_primary);">Introduction</a>
-            </li>
-            <li>
-                <a href="#section-features" class="spy-link" style="display: block; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: inherit;">Features</a>
-            </li>
-            <li>
-                <a href="#section-usage" class="spy-link" style="display: block; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: inherit;">Usage</a>
-            </li>
-            <li>
-                <a href="#section-api" class="spy-link" style="display: block; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: inherit;">API</a>
-            </li>
-        </ul>
-    </nav>
+    <div class="preview_box__live">        <div
+            style="display: grid; grid-template-columns: 200px 1fr; gap: 32px"
+        >
+            <!-- Scrollspy navigation -->
+            <nav
+                data-ss="scrollspy"
+                data-ss-scrollspy-nav=".spy-link"
+                data-ss-scrollspy-threshold="0.3"
+                data-ss-scrollspy-smooth="true"
+                data-ss-scrollspy-offset="-80"
+                style="position: sticky; top: 20px; height: fit-content"
+            >
+                <ul
+                    style="
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+                    "
+                >
+                    <li>
+                        <a
+                            href="#section-intro"
+                            class="spy-link active"
+                            style="
+                                display: block;
+                                padding: 10px 16px;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: white;
+                                background: var(--color_fill_primary);
+                            "
+                        >
+                            Introduction
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#section-features"
+                            class="spy-link"
+                            style="
+                                display: block;
+                                padding: 10px 16px;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: inherit;
+                            "
+                        >
+                            Features
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#section-usage"
+                            class="spy-link"
+                            style="
+                                display: block;
+                                padding: 10px 16px;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: inherit;
+                            "
+                        >
+                            Usage
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#section-api"
+                            class="spy-link"
+                            style="
+                                display: block;
+                                padding: 10px 16px;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: inherit;
+                            "
+                        >
+                            API
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-    <!-- Scrollable content -->
-    <div style="height: 400px; overflow-y: auto; border: 1px solid var(--color_line_secondary); border-radius: 12px; padding: 24px;">
-        <section id="section-intro" style="min-height: 300px; margin-bottom: 32px;">
-            <h2>Introduction</h2>
-            <p>Welcome to the documentation. This section provides an overview of the library and its capabilities.</p>
-        </section>
-        <section id="section-features" style="min-height: 300px; margin-bottom: 32px;">
-            <h2>Features</h2>
-            <p>Discover all the powerful features available in this library.</p>
-        </section>
-        <section id="section-usage" style="min-height: 300px; margin-bottom: 32px;">
-            <h2>Usage</h2>
-            <p>Learn how to use the library in your projects.</p>
-        </section>
-        <section id="section-api" style="min-height: 300px;">
-            <h2>API Reference</h2>
-            <p>Complete API documentation with examples.</p>
-        </section>
-    </div>
-</div>
+            <!-- Scrollable content -->
+            <div
+                style="
+                    height: 400px;
+                    overflow-y: auto;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 12px;
+                    padding: 24px;
+                "
+            >
+                <section
+                    id="section-intro"
+                    style="min-height: 300px; margin-bottom: 32px"
+                >
+                    <h2>Introduction</h2>
+                    <p>
+                        Welcome to the documentation. This section provides an
+                        overview of the library and its capabilities.
+                    </p>
+                </section>
+                <section
+                    id="section-features"
+                    style="min-height: 300px; margin-bottom: 32px"
+                >
+                    <h2>Features</h2>
+                    <p>
+                        Discover all the powerful features available in this
+                        library.
+                    </p>
+                </section>
+                <section
+                    id="section-usage"
+                    style="min-height: 300px; margin-bottom: 32px"
+                >
+                    <h2>Usage</h2>
+                    <p>Learn how to use the library in your projects.</p>
+                </section>
+                <section id="section-api" style="min-height: 300px">
+                    <h2>API Reference</h2>
+                    <p>Complete API documentation with examples.</p>
+                </section>
+            </div>
+        </div>
 </div>
     <div class="preview_box__info">
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-6739')"
+            onclick="ClipboardHelper.copyById('code-snippet-3610')"
         >
             Copy
         </button>
@@ -1237,88 +1682,200 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-6739" class="language-html">&lt;div style=&quot;display: grid; grid-template-columns: 200px 1fr; gap: 32px;&quot;&gt;
-    &lt;!-- Scrollspy navigation --&gt;
-    &lt;nav data-ss=&quot;scrollspy&quot;
-         data-ss-scrollspy-nav=&quot;.spy-link&quot;
-         data-ss-scrollspy-threshold=&quot;0.3&quot;
-         data-ss-scrollspy-smooth=&quot;true&quot;
-         data-ss-scrollspy-offset=&quot;-80&quot;
-         style=&quot;position: sticky; top: 20px; height: fit-content;&quot;&gt;
-        &lt;ul style=&quot;list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;&quot;&gt;
-            &lt;li&gt;
-                &lt;a href=&quot;#section-intro&quot; class=&quot;spy-link active&quot; style=&quot;display: block; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: white; background: var(--color_fill_primary);&quot;&gt;Introduction&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-                &lt;a href=&quot;#section-features&quot; class=&quot;spy-link&quot; style=&quot;display: block; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: inherit;&quot;&gt;Features&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-                &lt;a href=&quot;#section-usage&quot; class=&quot;spy-link&quot; style=&quot;display: block; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: inherit;&quot;&gt;Usage&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-                &lt;a href=&quot;#section-api&quot; class=&quot;spy-link&quot; style=&quot;display: block; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: inherit;&quot;&gt;API&lt;/a&gt;
-            &lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/nav&gt;
+        ><code id="code-snippet-3610" class="language-html">&lt;div
+            style=&quot;display: grid; grid-template-columns: 200px 1fr; gap: 32px&quot;
+        &gt;
+            &lt;!-- Scrollspy navigation --&gt;
+            &lt;nav
+                data-ss=&quot;scrollspy&quot;
+                data-ss-scrollspy-nav=&quot;.spy-link&quot;
+                data-ss-scrollspy-threshold=&quot;0.3&quot;
+                data-ss-scrollspy-smooth=&quot;true&quot;
+                data-ss-scrollspy-offset=&quot;-80&quot;
+                style=&quot;position: sticky; top: 20px; height: fit-content&quot;
+            &gt;
+                &lt;ul
+                    style=&quot;
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+                    &quot;
+                &gt;
+                    &lt;li&gt;
+                        &lt;a
+                            href=&quot;#section-intro&quot;
+                            class=&quot;spy-link active&quot;
+                            style=&quot;
+                                display: block;
+                                padding: 10px 16px;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: white;
+                                background: var(--color_fill_primary);
+                            &quot;
+                        &gt;
+                            Introduction
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;a
+                            href=&quot;#section-features&quot;
+                            class=&quot;spy-link&quot;
+                            style=&quot;
+                                display: block;
+                                padding: 10px 16px;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: inherit;
+                            &quot;
+                        &gt;
+                            Features
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;a
+                            href=&quot;#section-usage&quot;
+                            class=&quot;spy-link&quot;
+                            style=&quot;
+                                display: block;
+                                padding: 10px 16px;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: inherit;
+                            &quot;
+                        &gt;
+                            Usage
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;a
+                            href=&quot;#section-api&quot;
+                            class=&quot;spy-link&quot;
+                            style=&quot;
+                                display: block;
+                                padding: 10px 16px;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: inherit;
+                            &quot;
+                        &gt;
+                            API
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/nav&gt;
 
-    &lt;!-- Scrollable content --&gt;
-    &lt;div style=&quot;height: 400px; overflow-y: auto; border: 1px solid var(--color_line_secondary); border-radius: 12px; padding: 24px;&quot;&gt;
-        &lt;section id=&quot;section-intro&quot; style=&quot;min-height: 300px; margin-bottom: 32px;&quot;&gt;
-            &lt;h2&gt;Introduction&lt;/h2&gt;
-            &lt;p&gt;Welcome to the documentation. This section provides an overview of the library and its capabilities.&lt;/p&gt;
-        &lt;/section&gt;
-        &lt;section id=&quot;section-features&quot; style=&quot;min-height: 300px; margin-bottom: 32px;&quot;&gt;
-            &lt;h2&gt;Features&lt;/h2&gt;
-            &lt;p&gt;Discover all the powerful features available in this library.&lt;/p&gt;
-        &lt;/section&gt;
-        &lt;section id=&quot;section-usage&quot; style=&quot;min-height: 300px; margin-bottom: 32px;&quot;&gt;
-            &lt;h2&gt;Usage&lt;/h2&gt;
-            &lt;p&gt;Learn how to use the library in your projects.&lt;/p&gt;
-        &lt;/section&gt;
-        &lt;section id=&quot;section-api&quot; style=&quot;min-height: 300px;&quot;&gt;
-            &lt;h2&gt;API Reference&lt;/h2&gt;
-            &lt;p&gt;Complete API documentation with examples.&lt;/p&gt;
-        &lt;/section&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+            &lt;!-- Scrollable content --&gt;
+            &lt;div
+                style=&quot;
+                    height: 400px;
+                    overflow-y: auto;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 12px;
+                    padding: 24px;
+                &quot;
+            &gt;
+                &lt;section
+                    id=&quot;section-intro&quot;
+                    style=&quot;min-height: 300px; margin-bottom: 32px&quot;
+                &gt;
+                    &lt;h2&gt;Introduction&lt;/h2&gt;
+                    &lt;p&gt;
+                        Welcome to the documentation. This section provides an
+                        overview of the library and its capabilities.
+                    &lt;/p&gt;
+                &lt;/section&gt;
+                &lt;section
+                    id=&quot;section-features&quot;
+                    style=&quot;min-height: 300px; margin-bottom: 32px&quot;
+                &gt;
+                    &lt;h2&gt;Features&lt;/h2&gt;
+                    &lt;p&gt;
+                        Discover all the powerful features available in this
+                        library.
+                    &lt;/p&gt;
+                &lt;/section&gt;
+                &lt;section
+                    id=&quot;section-usage&quot;
+                    style=&quot;min-height: 300px; margin-bottom: 32px&quot;
+                &gt;
+                    &lt;h2&gt;Usage&lt;/h2&gt;
+                    &lt;p&gt;Learn how to use the library in your projects.&lt;/p&gt;
+                &lt;/section&gt;
+                &lt;section id=&quot;section-api&quot; style=&quot;min-height: 300px&quot;&gt;
+                    &lt;h2&gt;API Reference&lt;/h2&gt;
+                    &lt;p&gt;Complete API documentation with examples.&lt;/p&gt;
+                &lt;/section&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;</code></pre>
     </div>
 </div>
     </section>
 
-    
-    <section class="demo__subsection" data-label="Scroll To" data-level="2">
+         <section
+        class="demo__subsection"
+        data-label="Scroll To"
+        data-level="2"
+    >
         <h3>Scroll To</h3>
         <p>Smooth scrolling for anchor links with configurable offset.</p>
-   
+    
 <div class="preview_box--vertical">
-    <div class="preview_box__live"><!-- Scroll to links -->
-<div style="display: flex; gap: 12px; flex-wrap: wrap;">
-    <a href="#target-section"
-       data-ss="scroll-to"
-       data-ss-scroll-target="#target-section"
-       data-ss-scroll-offset="-80"
-       style="padding: 10px 20px; background: var(--color_fill_primary); color: white; text-decoration: none; border-radius: 6px;">
-        Scroll to Section
-    </a>
-    <a href="#footer"
-       data-ss="scroll-to"
-       data-ss-scroll-target="#footer"
-       style="padding: 10px 20px; background: var(--color_fill_secondary); text-decoration: none; border-radius: 6px;">
-        Scroll to Footer
-    </a>
-</div>
+    <div class="preview_box__live">        <!-- Scroll to links -->
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+            <a
+                href="#target-section"
+                data-ss="scroll-to"
+                data-ss-scroll-target="#target-section"
+                data-ss-scroll-offset="-80"
+                style="
+                    padding: 10px 20px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 6px;
+                "
+            >
+                Scroll to Section
+            </a>
+            <a
+                href="#footer"
+                data-ss="scroll-to"
+                data-ss-scroll-target="#footer"
+                style="
+                    padding: 10px 20px;
+                    background: var(--color_fill_secondary);
+                    text-decoration: none;
+                    border-radius: 6px;
+                "
+            >
+                Scroll to Footer
+            </a>
+        </div>
 
-<!-- Target section -->
-<div id="target-section" style="margin-top: 200px; padding: 40px; background: var(--color_fill_secondary); border-radius: 12px; text-align: center;">
-    <h3 style="margin: 0 0 8px;">Target Section</h3>
-    <p style="margin: 0; opacity: 0.7;">You scrolled here smoothly!</p>
-</div>
+        <!-- Target section -->
+        <div
+            id="target-section"
+            style="
+                margin-top: 200px;
+                padding: 40px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+                text-align: center;
+            "
+        >
+            <h3 style="margin: 0 0 8px">Target Section</h3>
+            <p style="margin: 0; opacity: 0.7">You scrolled here smoothly!</p>
+        </div>
 </div>
     <div class="preview_box__info">
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-8264')"
+            onclick="ClipboardHelper.copyById('code-snippet-7667')"
         >
             Copy
         </button>
@@ -1326,74 +1883,180 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-8264" class="language-html">&lt;!-- Scroll to links --&gt;
-&lt;div style=&quot;display: flex; gap: 12px; flex-wrap: wrap;&quot;&gt;
-    &lt;a href=&quot;#target-section&quot;
-       data-ss=&quot;scroll-to&quot;
-       data-ss-scroll-target=&quot;#target-section&quot;
-       data-ss-scroll-offset=&quot;-80&quot;
-       style=&quot;padding: 10px 20px; background: var(--color_fill_primary); color: white; text-decoration: none; border-radius: 6px;&quot;&gt;
-        Scroll to Section
-    &lt;/a&gt;
-    &lt;a href=&quot;#footer&quot;
-       data-ss=&quot;scroll-to&quot;
-       data-ss-scroll-target=&quot;#footer&quot;
-       style=&quot;padding: 10px 20px; background: var(--color_fill_secondary); text-decoration: none; border-radius: 6px;&quot;&gt;
-        Scroll to Footer
-    &lt;/a&gt;
-&lt;/div&gt;
+        ><code id="code-snippet-7667" class="language-html">&lt;!-- Scroll to links --&gt;
+        &lt;div style=&quot;display: flex; gap: 12px; flex-wrap: wrap&quot;&gt;
+            &lt;a
+                href=&quot;#target-section&quot;
+                data-ss=&quot;scroll-to&quot;
+                data-ss-scroll-target=&quot;#target-section&quot;
+                data-ss-scroll-offset=&quot;-80&quot;
+                style=&quot;
+                    padding: 10px 20px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 6px;
+                &quot;
+            &gt;
+                Scroll to Section
+            &lt;/a&gt;
+            &lt;a
+                href=&quot;#footer&quot;
+                data-ss=&quot;scroll-to&quot;
+                data-ss-scroll-target=&quot;#footer&quot;
+                style=&quot;
+                    padding: 10px 20px;
+                    background: var(--color_fill_secondary);
+                    text-decoration: none;
+                    border-radius: 6px;
+                &quot;
+            &gt;
+                Scroll to Footer
+            &lt;/a&gt;
+        &lt;/div&gt;
 
-&lt;!-- Target section --&gt;
-&lt;div id=&quot;target-section&quot; style=&quot;margin-top: 200px; padding: 40px; background: var(--color_fill_secondary); border-radius: 12px; text-align: center;&quot;&gt;
-    &lt;h3 style=&quot;margin: 0 0 8px;&quot;&gt;Target Section&lt;/h3&gt;
-    &lt;p style=&quot;margin: 0; opacity: 0.7;&quot;&gt;You scrolled here smoothly!&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+        &lt;!-- Target section --&gt;
+        &lt;div
+            id=&quot;target-section&quot;
+            style=&quot;
+                margin-top: 200px;
+                padding: 40px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+                text-align: center;
+            &quot;
+        &gt;
+            &lt;h3 style=&quot;margin: 0 0 8px&quot;&gt;Target Section&lt;/h3&gt;
+            &lt;p style=&quot;margin: 0; opacity: 0.7&quot;&gt;You scrolled here smoothly!&lt;/p&gt;
+        &lt;/div&gt;</code></pre>
     </div>
 </div>
     </section>
 
-    
-    <section class="demo__subsection" data-label="Scroll To Top Button" data-level="2">
+         <section
+        class="demo__subsection"
+        data-label="Scroll To Top Button"
+        data-level="2"
+    >
         <h3>Scroll To Top Button</h3>
         <p>Scroll-to-top button that appears after scrolling down.</p>
-   
+    
 <div class="preview_box--vertical">
-    <div class="preview_box__live"><!-- Scroll to top button -->
-<button data-ss="scroll-to-top"
-        data-ss-scroll-threshold="300"
-        style="position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; border-radius: 50%; background: var(--color_fill_primary); color: white; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; opacity: 0; transition: opacity 0.3s, transform 0.3s; transform: translateY(20px);">
-    ↑
-</button>
+    <div class="preview_box__live">        <!-- Scroll to top button -->
+        <button
+            data-ss="scroll-to-top"
+            data-ss-scroll-threshold="300"
+            style="
+                position: fixed;
+                bottom: 24px;
+                right: 24px;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: var(--color_fill_primary);
+                color: white;
+                border: none;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                opacity: 0;
+                transition:
+                    opacity 0.3s,
+                    transform 0.3s;
+                transform: translateY(20px);
+            "
+        >
+            ↑
+        </button>
 
-<!-- Button visible state -->
-<button style="position: relative; width: 48px; height: 48px; border-radius: 50%; background: var(--color_fill_primary); color: white; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px;">
-    ↑
-</button>
+        <!-- Button visible state -->
+        <button
+            style="
+                position: relative;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: var(--color_fill_primary);
+                color: white;
+                border: none;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+            "
+        >
+            ↑
+        </button>
 
-<!-- Alternative styles -->
-<div style="display: flex; gap: 16px; margin-top: 16px;">
-    <!-- With text -->
-    <button style="padding: 12px 20px; border-radius: 24px; background: var(--color_fill_primary); color: white; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-        <span>↑</span>
-        <span>Back to top</span>
-    </button>
+        <!-- Alternative styles -->
+        <div style="display: flex; gap: 16px; margin-top: 16px">
+            <!-- With text -->
+            <button
+                style="
+                    padding: 12px 20px;
+                    border-radius: 24px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                "
+            >
+                <span>↑</span>
+                <span>Back to top</span>
+            </button>
 
-    <!-- Outline style -->
-    <button style="width: 48px; height: 48px; border-radius: 50%; background: white; color: var(--color_fill_primary); border: 2px solid var(--color_fill_primary); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px;">
-        ↑
-    </button>
+            <!-- Outline style -->
+            <button
+                style="
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    background: white;
+                    color: var(--color_fill_primary);
+                    border: 2px solid var(--color_fill_primary);
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 20px;
+                "
+            >
+                ↑
+            </button>
 
-    <!-- Gradient style -->
-    <button style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px;">
-        ↑
-    </button>
-</div>
+            <!-- Gradient style -->
+            <button
+                style="
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 12px;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 20px;
+                "
+            >
+                ↑
+            </button>
+        </div>
 </div>
     <div class="preview_box__info">
         <small>HTML</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-5944')"
+            onclick="ClipboardHelper.copyById('code-snippet-9931')"
         >
             Copy
         </button>
@@ -1401,51 +2064,133 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-5944" class="language-html">&lt;!-- Scroll to top button --&gt;
-&lt;button data-ss=&quot;scroll-to-top&quot;
-        data-ss-scroll-threshold=&quot;300&quot;
-        style=&quot;position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; border-radius: 50%; background: var(--color_fill_primary); color: white; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; opacity: 0; transition: opacity 0.3s, transform 0.3s; transform: translateY(20px);&quot;&gt;
-    ↑
-&lt;/button&gt;
+        ><code id="code-snippet-9931" class="language-html">&lt;!-- Scroll to top button --&gt;
+        &lt;button
+            data-ss=&quot;scroll-to-top&quot;
+            data-ss-scroll-threshold=&quot;300&quot;
+            style=&quot;
+                position: fixed;
+                bottom: 24px;
+                right: 24px;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: var(--color_fill_primary);
+                color: white;
+                border: none;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                opacity: 0;
+                transition:
+                    opacity 0.3s,
+                    transform 0.3s;
+                transform: translateY(20px);
+            &quot;
+        &gt;
+            ↑
+        &lt;/button&gt;
 
-&lt;!-- Button visible state --&gt;
-&lt;button style=&quot;position: relative; width: 48px; height: 48px; border-radius: 50%; background: var(--color_fill_primary); color: white; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px;&quot;&gt;
-    ↑
-&lt;/button&gt;
+        &lt;!-- Button visible state --&gt;
+        &lt;button
+            style=&quot;
+                position: relative;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: var(--color_fill_primary);
+                color: white;
+                border: none;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+            &quot;
+        &gt;
+            ↑
+        &lt;/button&gt;
 
-&lt;!-- Alternative styles --&gt;
-&lt;div style=&quot;display: flex; gap: 16px; margin-top: 16px;&quot;&gt;
-    &lt;!-- With text --&gt;
-    &lt;button style=&quot;padding: 12px 20px; border-radius: 24px; background: var(--color_fill_primary); color: white; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px;&quot;&gt;
-        &lt;span&gt;↑&lt;/span&gt;
-        &lt;span&gt;Back to top&lt;/span&gt;
-    &lt;/button&gt;
+        &lt;!-- Alternative styles --&gt;
+        &lt;div style=&quot;display: flex; gap: 16px; margin-top: 16px&quot;&gt;
+            &lt;!-- With text --&gt;
+            &lt;button
+                style=&quot;
+                    padding: 12px 20px;
+                    border-radius: 24px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                &quot;
+            &gt;
+                &lt;span&gt;↑&lt;/span&gt;
+                &lt;span&gt;Back to top&lt;/span&gt;
+            &lt;/button&gt;
 
-    &lt;!-- Outline style --&gt;
-    &lt;button style=&quot;width: 48px; height: 48px; border-radius: 50%; background: white; color: var(--color_fill_primary); border: 2px solid var(--color_fill_primary); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px;&quot;&gt;
-        ↑
-    &lt;/button&gt;
+            &lt;!-- Outline style --&gt;
+            &lt;button
+                style=&quot;
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    background: white;
+                    color: var(--color_fill_primary);
+                    border: 2px solid var(--color_fill_primary);
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 20px;
+                &quot;
+            &gt;
+                ↑
+            &lt;/button&gt;
 
-    &lt;!-- Gradient style --&gt;
-    &lt;button style=&quot;width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px;&quot;&gt;
-        ↑
-    &lt;/button&gt;
-&lt;/div&gt;</code></pre>
+            &lt;!-- Gradient style --&gt;
+            &lt;button
+                style=&quot;
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 12px;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 20px;
+                &quot;
+            &gt;
+                ↑
+            &lt;/button&gt;
+        &lt;/div&gt;</code></pre>
     </div>
 </div>
     </section>
 
-    
-    <section class="demo__subsection" data-label="JavaScript API" data-level="2">
+         <section
+        class="demo__subsection"
+        data-label="JavaScript API"
+        data-level="2"
+    >
         <h3>JavaScript API</h3>
         <p>Programmatic control of scroll components.</p>
-   
+    
 <div class="preview_box--vertical">
     <div class="preview_box__info">
         <small>JavaScript</small>
         <button
             class="preview_box__copy_button"
-            onclick="ClipboardHelper.copyById('code-snippet-9268')"
+            onclick="ClipboardHelper.copyById('code-snippet-8101')"
         >
             Copy
         </button>
@@ -1453,82 +2198,83 @@
     <div class="preview_box__code">
         <pre
             class="line-numbers"
-        ><code id="code-snippet-9268" class="language-javascript">&lt;script&gt;
-// InfiniteScrollManager
-import { InfiniteScrollManager } from &#39;stylescape&#39;;
+        ><code id="code-snippet-8101" class="language-javascript">&lt;script&gt;
+            // InfiniteScrollManager
+            import { InfiniteScrollManager } from &quot;stylescape&quot;;
 
-const infiniteScroll = new InfiniteScrollManager(container, {
-    threshold: 300,
-    url: &#39;/api/items&#39;,
-    page: 1,
-    onLoad: async (page) =&gt; {
-        const response = await fetch(`/api/items?page=${page}`);
-        return response.json();
-    },
-    onRender: (items) =&gt; {
-        items.forEach(item =&gt; container.appendChild(createItemElement(item)));
-    },
-    onEnd: () =&gt; {
-        showEndMessage();
-    }
-});
+            const infiniteScroll = new InfiniteScrollManager(container, {
+                threshold: 300,
+                url: &quot;/api/items&quot;,
+                page: 1,
+                onLoad: async (page) =&gt; {
+                    const response = await fetch(`/api/items?page=${page}`);
+                    return response.json();
+                },
+                onRender: (items) =&gt; {
+                    items.forEach((item) =&gt;
+                        container.appendChild(createItemElement(item)),
+                    );
+                },
+                onEnd: () =&gt; {
+                    showEndMessage();
+                },
+            });
 
-infiniteScroll.loadMore();
-infiniteScroll.reset();
-infiniteScroll.pause();
-infiniteScroll.resume();
+            infiniteScroll.loadMore();
+            infiniteScroll.reset();
+            infiniteScroll.pause();
+            infiniteScroll.resume();
 
-// ParallaxManager
-import { ParallaxManager } from &#39;stylescape&#39;;
+            // ParallaxManager
+            import { ParallaxManager } from &quot;stylescape&quot;;
 
-const parallax = new ParallaxManager(element, {
-    speed: 0.3,
-    direction: &#39;vertical&#39;,
-    overflow: true
-});
+            const parallax = new ParallaxManager(element, {
+                speed: 0.3,
+                direction: &quot;vertical&quot;,
+                overflow: true,
+            });
 
-parallax.enable();
-parallax.disable();
-parallax.update();
+            parallax.enable();
+            parallax.disable();
+            parallax.update();
 
-// ScrollSpyManager
-import { ScrollSpyManager } from &#39;stylescape&#39;;
+            // ScrollSpyManager
+            import { ScrollSpyManager } from &quot;stylescape&quot;;
 
-const scrollSpy = new ScrollSpyManager(navElement, {
-    navSelector: &#39;.nav-link&#39;,
-    sectionSelector: &#39;section[id]&#39;,
-    threshold: 0.3,
-    offset: -80,
-    smooth: true,
-    activeClass: &#39;is-active&#39;,
-    onChange: (activeSection) =&gt; {
-        console.log(&#39;Active section:&#39;, activeSection.id);
-    }
-});
+            const scrollSpy = new ScrollSpyManager(navElement, {
+                navSelector: &quot;.nav-link&quot;,
+                sectionSelector: &quot;section[id]&quot;,
+                threshold: 0.3,
+                offset: -80,
+                smooth: true,
+                activeClass: &quot;is-active&quot;,
+                onChange: (activeSection) =&gt; {
+                    console.log(&quot;Active section:&quot;, activeSection.id);
+                },
+            });
 
-scrollSpy.refresh();
-scrollSpy.destroy();
+            scrollSpy.refresh();
+            scrollSpy.destroy();
 
-// SoftScrollManager
-import { SoftScrollManager } from &#39;stylescape&#39;;
+            // SoftScrollManager
+            import { SoftScrollManager } from &quot;stylescape&quot;;
 
-// Enable smooth scroll for all anchor links
-SoftScrollManager.enableForSelector(&#39;.scroll-link&#39;, 80); // 80px offset
+            // Enable smooth scroll for all anchor links
+            SoftScrollManager.enableForSelector(&quot;.scroll-link&quot;, 80); // 80px offset
 
-// Programmatic scroll
-SoftScrollManager.scrollTo(&#39;#section&#39;, {
-    offset: -80,
-    duration: 500,
-    easing: &#39;easeInOutCubic&#39;
-});
+            // Programmatic scroll
+            SoftScrollManager.scrollTo(&quot;#section&quot;, {
+                offset: -80,
+                duration: 500,
+                easing: &quot;easeInOutCubic&quot;,
+            });
 
-SoftScrollManager.scrollToTop();
-SoftScrollManager.scrollToBottom();
-&lt;/script&gt;</code></pre>
+            SoftScrollManager.scrollToTop();
+            SoftScrollManager.scrollToBottom();
+        &lt;/script&gt;</code></pre>
     </div>
 </div>
     </section>
-
 </section>                </main>
             </div>
 

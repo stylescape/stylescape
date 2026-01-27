@@ -1,316 +1,693 @@
-{% extends "base.html.jinja" %}
-{% set title = "Scroll Components" %}
-{%- block title %}{{ title }}{%- endblock %}
-{%- block content %}
+{% extends "base.html.jinja" %} {% set title = "Scroll Components" %} {%- block
+title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="demo__section" data-label="{{ title }}" data-level="1">
     <header class="demo__section__header">
         <h2>{{ title }}</h2>
-        <p>JavaScript components for infinite scroll, parallax, scroll spy, and smooth scrolling.</p>
+        <p>
+            JavaScript components for infinite scroll, parallax, scroll spy,
+            and smooth scrolling.
+        </p>
     </header>
 
-    {# Infinite Scroll Manager #}
-    {% set section_title = "Infinite Scroll Manager" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Infinite Scroll Manager #} {% set section_title = "Infinite Scroll
+    Manager" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Auto-loads content when scrolling near bottom.</p>
         {% set code_snippet %}
-<!-- Infinite scroll container -->
-<div data-ss="infinite-scroll"
-     data-ss-infinite-scroll-threshold="300"
-     data-ss-infinite-scroll-url="/api/items"
-     style="max-height: 400px; overflow-y: auto; border: 1px solid var(--color_line_secondary); border-radius: 12px;">
+        <!-- Infinite scroll container -->
+        <div
+            data-ss="infinite-scroll"
+            data-ss-infinite-scroll-threshold="300"
+            data-ss-infinite-scroll-url="/api/items"
+            style="
+                max-height: 400px;
+                overflow-y: auto;
+                border: 1px solid var(--color_line_secondary);
+                border-radius: 12px;
+            "
+        >
+            <div
+                class="items-container"
+                style="
+                    padding: 16px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                "
+            >
+                <!-- Loaded items -->
+                <div
+                    class="item"
+                    style="
+                        padding: 16px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 8px;
+                    "
+                >
+                    <strong>Item 1</strong>
+                    <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7">
+                        Content loaded initially
+                    </p>
+                </div>
+                <div
+                    class="item"
+                    style="
+                        padding: 16px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 8px;
+                    "
+                >
+                    <strong>Item 2</strong>
+                    <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7">
+                        Content loaded initially
+                    </p>
+                </div>
+                <div
+                    class="item"
+                    style="
+                        padding: 16px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 8px;
+                    "
+                >
+                    <strong>Item 3</strong>
+                    <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7">
+                        Content loaded initially
+                    </p>
+                </div>
+                <div
+                    class="item"
+                    style="
+                        padding: 16px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 8px;
+                    "
+                >
+                    <strong>Item 4</strong>
+                    <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7">
+                        Scroll down to load more...
+                    </p>
+                </div>
+            </div>
 
-    <div class="items-container" style="padding: 16px; display: flex; flex-direction: column; gap: 12px;">
-        <!-- Loaded items -->
-        <div class="item" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;">
-            <strong>Item 1</strong>
-            <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7;">Content loaded initially</p>
+            <!-- Loading indicator -->
+            <div
+                class="loading-indicator"
+                style="padding: 24px; text-align: center"
+            >
+                <div
+                    style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        color: var(--color_text_secondary);
+                    "
+                >
+                    <span
+                        style="
+                            width: 20px;
+                            height: 20px;
+                            border: 2px solid var(--color_fill_secondary);
+                            border-top-color: var(--color_fill_primary);
+                            border-radius: 50%;
+                            animation: spin 1s linear infinite;
+                        "
+                    ></span>
+                    Loading more...
+                </div>
+            </div>
         </div>
-        <div class="item" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;">
-            <strong>Item 2</strong>
-            <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7;">Content loaded initially</p>
-        </div>
-        <div class="item" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;">
-            <strong>Item 3</strong>
-            <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7;">Content loaded initially</p>
-        </div>
-        <div class="item" style="padding: 16px; background: var(--color_fill_secondary); border-radius: 8px;">
-            <strong>Item 4</strong>
-            <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7;">Scroll down to load more...</p>
-        </div>
-    </div>
 
-    <!-- Loading indicator -->
-    <div class="loading-indicator" style="padding: 24px; text-align: center;">
-        <div style="display: inline-flex; align-items: center; gap: 8px; color: var(--color_text_secondary);">
-            <span style="width: 20px; height: 20px; border: 2px solid var(--color_fill_secondary); border-top-color: var(--color_fill_primary); border-radius: 50%; animation: spin 1s linear infinite;"></span>
-            Loading more...
+        <!-- End of list message -->
+        <div
+            style="
+                max-width: 400px;
+                margin-top: 16px;
+                padding: 16px;
+                background: var(--color_fill_secondary);
+                border-radius: 8px;
+                text-align: center;
+            "
+        >
+            <p style="margin: 0; opacity: 0.6">You've reached the end! 🎉</p>
         </div>
-    </div>
-</div>
-
-<!-- End of list message -->
-<div style="max-width: 400px; margin-top: 16px; padding: 16px; background: var(--color_fill_secondary); border-radius: 8px; text-align: center;">
-    <p style="margin: 0; opacity: 0.6;">You've reached the end! 🎉</p>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Parallax Manager #}
-    {% set section_title = "Parallax Manager" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Parallax Manager #} {% set section_title = "Parallax Manager" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Parallax scrolling effects for backgrounds.</p>
         {% set code_snippet %}
-<!-- Parallax section -->
-<div class="parallax"
-     data-speed="0.3"
-     style="position: relative; height: 400px; overflow: hidden; border-radius: 12px;">
-    <div style="position: absolute; inset: -50px; background: linear-gradient(135deg, #667eea, #764ba2); background-size: cover; transform: translateY(0);"></div>
-    <div style="position: relative; height: 100%; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
-        <div>
-            <h2 style="margin: 0 0 16px; font-size: 48px;">Parallax Effect</h2>
-            <p style="margin: 0; font-size: 18px; opacity: 0.9;">Scroll to see the background move at a different speed</p>
+        <!-- Parallax section -->
+        <div
+            class="parallax"
+            data-speed="0.3"
+            style="
+                position: relative;
+                height: 400px;
+                overflow: hidden;
+                border-radius: 12px;
+            "
+        >
+            <div
+                style="
+                    position: absolute;
+                    inset: -50px;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    background-size: cover;
+                    transform: translateY(0);
+                "
+            ></div>
+            <div
+                style="
+                    position: relative;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    text-align: center;
+                "
+            >
+                <div>
+                    <h2 style="margin: 0 0 16px; font-size: 48px">
+                        Parallax Effect
+                    </h2>
+                    <p style="margin: 0; font-size: 18px; opacity: 0.9">
+                        Scroll to see the background move at a different speed
+                    </p>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<!-- Multiple parallax layers -->
-<div style="position: relative; height: 500px; overflow: hidden; border-radius: 12px; margin-top: 24px;">
-    <!-- Background layer (slowest) -->
-    <div class="parallax" data-speed="0.2" style="position: absolute; inset: -100px; background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);"></div>
+        <!-- Multiple parallax layers -->
+        <div
+            style="
+                position: relative;
+                height: 500px;
+                overflow: hidden;
+                border-radius: 12px;
+                margin-top: 24px;
+            "
+        >
+            <!-- Background layer (slowest) -->
+            <div
+                class="parallax"
+                data-speed="0.2"
+                style="
+                    position: absolute;
+                    inset: -100px;
+                    background: linear-gradient(
+                        to bottom,
+                        #0f0c29,
+                        #302b63,
+                        #24243e
+                    );
+                "
+            ></div>
 
-    <!-- Stars layer -->
-    <div class="parallax" data-speed="0.3" style="position: absolute; inset: -50px; background-image: radial-gradient(white 1px, transparent 1px); background-size: 50px 50px; opacity: 0.5;"></div>
+            <!-- Stars layer -->
+            <div
+                class="parallax"
+                data-speed="0.3"
+                style="
+                    position: absolute;
+                    inset: -50px;
+                    background-image: radial-gradient(
+                        white 1px,
+                        transparent 1px
+                    );
+                    background-size: 50px 50px;
+                    opacity: 0.5;
+                "
+            ></div>
 
-    <!-- Moon layer -->
-    <div class="parallax" data-speed="0.4" style="position: absolute; top: 50px; right: 100px; width: 80px; height: 80px; background: #fef3c7; border-radius: 50%; box-shadow: 0 0 40px rgba(254, 243, 199, 0.5);"></div>
+            <!-- Moon layer -->
+            <div
+                class="parallax"
+                data-speed="0.4"
+                style="
+                    position: absolute;
+                    top: 50px;
+                    right: 100px;
+                    width: 80px;
+                    height: 80px;
+                    background: #fef3c7;
+                    border-radius: 50%;
+                    box-shadow: 0 0 40px rgba(254, 243, 199, 0.5);
+                "
+            ></div>
 
-    <!-- Content layer (fastest) -->
-    <div class="parallax" data-speed="0.6" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
-        <h2 style="color: white; font-size: 36px; text-shadow: 0 2px 20px rgba(0,0,0,0.5);">Multi-Layer Parallax</h2>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+            <!-- Content layer (fastest) -->
+            <div
+                class="parallax"
+                data-speed="0.6"
+                style="
+                    position: absolute;
+                    inset: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                "
+            >
+                <h2
+                    style="
+                        color: white;
+                        font-size: 36px;
+                        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+                    "
+                >
+                    Multi-Layer Parallax
+                </h2>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Scroll Spy Manager #}
-    {% set section_title = "Scroll Spy Manager" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Scroll Spy Manager #} {% set section_title = "Scroll Spy Manager" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
-        <p>Updates navigation based on scroll position for single-page sites.</p>
+        <p>
+            Updates navigation based on scroll position for single-page sites.
+        </p>
         {% set code_snippet %}
-<div style="display: grid; grid-template-columns: 200px 1fr; gap: 32px;">
-    <!-- Scrollspy navigation -->
-    <nav data-ss="scrollspy"
-         data-ss-scrollspy-nav=".spy-link"
-         data-ss-scrollspy-threshold="0.3"
-         data-ss-scrollspy-smooth="true"
-         data-ss-scrollspy-offset="-80"
-         style="position: sticky; top: 20px; height: fit-content;">
-        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">
-            <li>
-                <a href="#section-intro" class="spy-link active" style="display: block; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: white; background: var(--color_fill_primary);">Introduction</a>
-            </li>
-            <li>
-                <a href="#section-features" class="spy-link" style="display: block; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: inherit;">Features</a>
-            </li>
-            <li>
-                <a href="#section-usage" class="spy-link" style="display: block; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: inherit;">Usage</a>
-            </li>
-            <li>
-                <a href="#section-api" class="spy-link" style="display: block; padding: 10px 16px; border-radius: 6px; text-decoration: none; color: inherit;">API</a>
-            </li>
-        </ul>
-    </nav>
+        <div
+            style="display: grid; grid-template-columns: 200px 1fr; gap: 32px"
+        >
+            <!-- Scrollspy navigation -->
+            <nav
+                data-ss="scrollspy"
+                data-ss-scrollspy-nav=".spy-link"
+                data-ss-scrollspy-threshold="0.3"
+                data-ss-scrollspy-smooth="true"
+                data-ss-scrollspy-offset="-80"
+                style="position: sticky; top: 20px; height: fit-content"
+            >
+                <ul
+                    style="
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+                    "
+                >
+                    <li>
+                        <a
+                            href="#section-intro"
+                            class="spy-link active"
+                            style="
+                                display: block;
+                                padding: 10px 16px;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: white;
+                                background: var(--color_fill_primary);
+                            "
+                        >
+                            Introduction
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#section-features"
+                            class="spy-link"
+                            style="
+                                display: block;
+                                padding: 10px 16px;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: inherit;
+                            "
+                        >
+                            Features
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#section-usage"
+                            class="spy-link"
+                            style="
+                                display: block;
+                                padding: 10px 16px;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: inherit;
+                            "
+                        >
+                            Usage
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#section-api"
+                            class="spy-link"
+                            style="
+                                display: block;
+                                padding: 10px 16px;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: inherit;
+                            "
+                        >
+                            API
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-    <!-- Scrollable content -->
-    <div style="height: 400px; overflow-y: auto; border: 1px solid var(--color_line_secondary); border-radius: 12px; padding: 24px;">
-        <section id="section-intro" style="min-height: 300px; margin-bottom: 32px;">
-            <h2>Introduction</h2>
-            <p>Welcome to the documentation. This section provides an overview of the library and its capabilities.</p>
-        </section>
-        <section id="section-features" style="min-height: 300px; margin-bottom: 32px;">
-            <h2>Features</h2>
-            <p>Discover all the powerful features available in this library.</p>
-        </section>
-        <section id="section-usage" style="min-height: 300px; margin-bottom: 32px;">
-            <h2>Usage</h2>
-            <p>Learn how to use the library in your projects.</p>
-        </section>
-        <section id="section-api" style="min-height: 300px;">
-            <h2>API Reference</h2>
-            <p>Complete API documentation with examples.</p>
-        </section>
-    </div>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+            <!-- Scrollable content -->
+            <div
+                style="
+                    height: 400px;
+                    overflow-y: auto;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 12px;
+                    padding: 24px;
+                "
+            >
+                <section
+                    id="section-intro"
+                    style="min-height: 300px; margin-bottom: 32px"
+                >
+                    <h2>Introduction</h2>
+                    <p>
+                        Welcome to the documentation. This section provides an
+                        overview of the library and its capabilities.
+                    </p>
+                </section>
+                <section
+                    id="section-features"
+                    style="min-height: 300px; margin-bottom: 32px"
+                >
+                    <h2>Features</h2>
+                    <p>
+                        Discover all the powerful features available in this
+                        library.
+                    </p>
+                </section>
+                <section
+                    id="section-usage"
+                    style="min-height: 300px; margin-bottom: 32px"
+                >
+                    <h2>Usage</h2>
+                    <p>Learn how to use the library in your projects.</p>
+                </section>
+                <section id="section-api" style="min-height: 300px">
+                    <h2>API Reference</h2>
+                    <p>Complete API documentation with examples.</p>
+                </section>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Scroll To #}
-    {% set section_title = "Scroll To" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Scroll To #} {% set section_title = "Scroll To" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Smooth scrolling for anchor links with configurable offset.</p>
         {% set code_snippet %}
-<!-- Scroll to links -->
-<div style="display: flex; gap: 12px; flex-wrap: wrap;">
-    <a href="#target-section"
-       data-ss="scroll-to"
-       data-ss-scroll-target="#target-section"
-       data-ss-scroll-offset="-80"
-       style="padding: 10px 20px; background: var(--color_fill_primary); color: white; text-decoration: none; border-radius: 6px;">
-        Scroll to Section
-    </a>
-    <a href="#footer"
-       data-ss="scroll-to"
-       data-ss-scroll-target="#footer"
-       style="padding: 10px 20px; background: var(--color_fill_secondary); text-decoration: none; border-radius: 6px;">
-        Scroll to Footer
-    </a>
-</div>
+        <!-- Scroll to links -->
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+            <a
+                href="#target-section"
+                data-ss="scroll-to"
+                data-ss-scroll-target="#target-section"
+                data-ss-scroll-offset="-80"
+                style="
+                    padding: 10px 20px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 6px;
+                "
+            >
+                Scroll to Section
+            </a>
+            <a
+                href="#footer"
+                data-ss="scroll-to"
+                data-ss-scroll-target="#footer"
+                style="
+                    padding: 10px 20px;
+                    background: var(--color_fill_secondary);
+                    text-decoration: none;
+                    border-radius: 6px;
+                "
+            >
+                Scroll to Footer
+            </a>
+        </div>
 
-<!-- Target section -->
-<div id="target-section" style="margin-top: 200px; padding: 40px; background: var(--color_fill_secondary); border-radius: 12px; text-align: center;">
-    <h3 style="margin: 0 0 8px;">Target Section</h3>
-    <p style="margin: 0; opacity: 0.7;">You scrolled here smoothly!</p>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+        <!-- Target section -->
+        <div
+            id="target-section"
+            style="
+                margin-top: 200px;
+                padding: 40px;
+                background: var(--color_fill_secondary);
+                border-radius: 12px;
+                text-align: center;
+            "
+        >
+            <h3 style="margin: 0 0 8px">Target Section</h3>
+            <p style="margin: 0; opacity: 0.7">You scrolled here smoothly!</p>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# Scroll To Top Button #}
-    {% set section_title = "Scroll To Top Button" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# Scroll To Top Button #} {% set section_title = "Scroll To Top Button" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Scroll-to-top button that appears after scrolling down.</p>
         {% set code_snippet %}
-<!-- Scroll to top button -->
-<button data-ss="scroll-to-top"
-        data-ss-scroll-threshold="300"
-        style="position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; border-radius: 50%; background: var(--color_fill_primary); color: white; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; opacity: 0; transition: opacity 0.3s, transform 0.3s; transform: translateY(20px);">
-    ↑
-</button>
+        <!-- Scroll to top button -->
+        <button
+            data-ss="scroll-to-top"
+            data-ss-scroll-threshold="300"
+            style="
+                position: fixed;
+                bottom: 24px;
+                right: 24px;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: var(--color_fill_primary);
+                color: white;
+                border: none;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                opacity: 0;
+                transition:
+                    opacity 0.3s,
+                    transform 0.3s;
+                transform: translateY(20px);
+            "
+        >
+            ↑
+        </button>
 
-<!-- Button visible state -->
-<button style="position: relative; width: 48px; height: 48px; border-radius: 50%; background: var(--color_fill_primary); color: white; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px;">
-    ↑
-</button>
+        <!-- Button visible state -->
+        <button
+            style="
+                position: relative;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: var(--color_fill_primary);
+                color: white;
+                border: none;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+            "
+        >
+            ↑
+        </button>
 
-<!-- Alternative styles -->
-<div style="display: flex; gap: 16px; margin-top: 16px;">
-    <!-- With text -->
-    <button style="padding: 12px 20px; border-radius: 24px; background: var(--color_fill_primary); color: white; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-        <span>↑</span>
-        <span>Back to top</span>
-    </button>
+        <!-- Alternative styles -->
+        <div style="display: flex; gap: 16px; margin-top: 16px">
+            <!-- With text -->
+            <button
+                style="
+                    padding: 12px 20px;
+                    border-radius: 24px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                "
+            >
+                <span>↑</span>
+                <span>Back to top</span>
+            </button>
 
-    <!-- Outline style -->
-    <button style="width: 48px; height: 48px; border-radius: 50%; background: white; color: var(--color_fill_primary); border: 2px solid var(--color_fill_primary); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px;">
-        ↑
-    </button>
+            <!-- Outline style -->
+            <button
+                style="
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    background: white;
+                    color: var(--color_fill_primary);
+                    border: 2px solid var(--color_fill_primary);
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 20px;
+                "
+            >
+                ↑
+            </button>
 
-    <!-- Gradient style -->
-    <button style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px;">
-        ↑
-    </button>
-</div>
-        {% endset %}
-        {% set language="HTML" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+            <!-- Gradient style -->
+            <button
+                style="
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 12px;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 20px;
+                "
+            >
+                ↑
+            </button>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
 
-    {# JavaScript API #}
-    {% set section_title = "JavaScript API" %}
-    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+    {# JavaScript API #} {% set section_title = "JavaScript API" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
         <h3>{{ section_title }}</h3>
         <p>Programmatic control of scroll components.</p>
         {% set code_snippet %}
-<script>
-// InfiniteScrollManager
-import { InfiniteScrollManager } from 'stylescape';
+        <script>
+            // InfiniteScrollManager
+            import { InfiniteScrollManager } from "stylescape";
 
-const infiniteScroll = new InfiniteScrollManager(container, {
-    threshold: 300,
-    url: '/api/items',
-    page: 1,
-    onLoad: async (page) => {
-        const response = await fetch(`/api/items?page=${page}`);
-        return response.json();
-    },
-    onRender: (items) => {
-        items.forEach(item => container.appendChild(createItemElement(item)));
-    },
-    onEnd: () => {
-        showEndMessage();
-    }
-});
+            const infiniteScroll = new InfiniteScrollManager(container, {
+                threshold: 300,
+                url: "/api/items",
+                page: 1,
+                onLoad: async (page) => {
+                    const response = await fetch(`/api/items?page=${page}`);
+                    return response.json();
+                },
+                onRender: (items) => {
+                    items.forEach((item) =>
+                        container.appendChild(createItemElement(item)),
+                    );
+                },
+                onEnd: () => {
+                    showEndMessage();
+                },
+            });
 
-infiniteScroll.loadMore();
-infiniteScroll.reset();
-infiniteScroll.pause();
-infiniteScroll.resume();
+            infiniteScroll.loadMore();
+            infiniteScroll.reset();
+            infiniteScroll.pause();
+            infiniteScroll.resume();
 
-// ParallaxManager
-import { ParallaxManager } from 'stylescape';
+            // ParallaxManager
+            import { ParallaxManager } from "stylescape";
 
-const parallax = new ParallaxManager(element, {
-    speed: 0.3,
-    direction: 'vertical',
-    overflow: true
-});
+            const parallax = new ParallaxManager(element, {
+                speed: 0.3,
+                direction: "vertical",
+                overflow: true,
+            });
 
-parallax.enable();
-parallax.disable();
-parallax.update();
+            parallax.enable();
+            parallax.disable();
+            parallax.update();
 
-// ScrollSpyManager
-import { ScrollSpyManager } from 'stylescape';
+            // ScrollSpyManager
+            import { ScrollSpyManager } from "stylescape";
 
-const scrollSpy = new ScrollSpyManager(navElement, {
-    navSelector: '.nav-link',
-    sectionSelector: 'section[id]',
-    threshold: 0.3,
-    offset: -80,
-    smooth: true,
-    activeClass: 'is-active',
-    onChange: (activeSection) => {
-        console.log('Active section:', activeSection.id);
-    }
-});
+            const scrollSpy = new ScrollSpyManager(navElement, {
+                navSelector: ".nav-link",
+                sectionSelector: "section[id]",
+                threshold: 0.3,
+                offset: -80,
+                smooth: true,
+                activeClass: "is-active",
+                onChange: (activeSection) => {
+                    console.log("Active section:", activeSection.id);
+                },
+            });
 
-scrollSpy.refresh();
-scrollSpy.destroy();
+            scrollSpy.refresh();
+            scrollSpy.destroy();
 
-// SoftScrollManager
-import { SoftScrollManager } from 'stylescape';
+            // SoftScrollManager
+            import { SoftScrollManager } from "stylescape";
 
-// Enable smooth scroll for all anchor links
-SoftScrollManager.enableForSelector('.scroll-link', 80); // 80px offset
+            // Enable smooth scroll for all anchor links
+            SoftScrollManager.enableForSelector(".scroll-link", 80); // 80px offset
 
-// Programmatic scroll
-SoftScrollManager.scrollTo('#section', {
-    offset: -80,
-    duration: 500,
-    easing: 'easeInOutCubic'
-});
+            // Programmatic scroll
+            SoftScrollManager.scrollTo("#section", {
+                offset: -80,
+                duration: 500,
+                easing: "easeInOutCubic",
+            });
 
-SoftScrollManager.scrollToTop();
-SoftScrollManager.scrollToBottom();
-</script>
-        {% endset %}
-        {% set language="JavaScript" %}
-        {%- include "includes/preview/preview_box_code.html.jinja" %}
+            SoftScrollManager.scrollToTop();
+            SoftScrollManager.scrollToBottom();
+        </script>
+        {% endset %} {% set language="JavaScript" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
     </section>
-
 </section>
 
 {%- endblock %}
