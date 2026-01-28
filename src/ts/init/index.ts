@@ -248,18 +248,19 @@ export function initializeStylescape(): void {
 }
 
 // ============================================================================
-// Auto-start (opt-in)
+// Auto-start (enabled by default)
 // ============================================================================
 
-// Check for auto-start attribute on script tag or global flag
+// Auto-initialize by default when the module loads
+// To disable, set window.STYLESCAPE_AUTO_INIT = false before loading the script
 if (typeof document !== "undefined") {
     const scriptTag = document.currentScript;
-    const shouldAutoStart =
-        scriptTag?.hasAttribute("data-ss-auto") ||
+    const shouldSkipAutoStart =
+        scriptTag?.hasAttribute("data-ss-no-auto") ||
         (window as unknown as { STYLESCAPE_AUTO_INIT?: boolean })
-            .STYLESCAPE_AUTO_INIT === true;
+            .STYLESCAPE_AUTO_INIT === false;
 
-    if (shouldAutoStart) {
+    if (!shouldSkipAutoStart) {
         autoStart();
     }
 }

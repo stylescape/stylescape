@@ -116,6 +116,9 @@
                     class="sidebar--left"
                     id="sidebar_left"
                     role="navigation"
+                    data-ss="aside"
+                    data-ss-aside-menu="sidebar_left_menu"
+                    data-ss-aside-switch="sidebar_left_switch"
                 >
                     <nav
                         id="sidebar_left_navigation"
@@ -262,6 +265,9 @@
                     class="sidebar--right"
                     id="sidebar_right"
                     role="navigation"
+                    data-ss="aside"
+                    data-ss-aside-menu="sidebar_right_menu"
+                    data-ss-aside-switch="sidebar_right_switch"
                 >
                     <nav
                         id="sidebar_right_menu"
@@ -316,12 +322,40 @@
             </div>
         </div>
 
-        <!-- Initialize Stylescape -->
+        <!-- Stylescape auto-initializes when imported -->
         <script type="module">
-            import { initializeStylescape } from "./src/ts/init/index.js";
+            // Just importing the module is enough - it auto-initializes
+            import "./src/ts/init/index.js";
 
-            // Initialize the framework
-            initializeStylescape();
+            // Get auto-initialized instances via Stylescape global
+            document.addEventListener("DOMContentLoaded", () => {
+                setTimeout(() => {
+                    // Get aside instances from auto-init
+                    const leftSidebar =
+                        document.getElementById("sidebar_left");
+                    const rightSidebar =
+                        document.getElementById("sidebar_right");
+
+                    if (window.Stylescape) {
+                        const leftHandler = window.Stylescape.getInstance(
+                            leftSidebar,
+                            "aside",
+                        );
+                        const rightHandler = window.Stylescape.getInstance(
+                            rightSidebar,
+                            "aside",
+                        );
+                        window.asideHandlers = [
+                            leftHandler,
+                            rightHandler,
+                        ].filter(Boolean);
+                        console.log(
+                            "[Test] AsideHandlers from auto-init:",
+                            window.asideHandlers,
+                        );
+                    }
+                }, 100);
+            });
 
             // Logging helper
             function log(msg) {
