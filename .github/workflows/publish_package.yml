@@ -36,7 +36,8 @@ jobs:
       - name: NPM Install
         # if: steps.check.outputs.changed == 'true'
         run: |
-          npm clean-install
+          rm -rf node_modules package-lock.json
+          npm install
 
       # -
       #   name: NPM Run Lint
