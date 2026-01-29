@@ -2,7 +2,8 @@
 // Stylescape | Auto-Initialization System
 // ============================================================================
 // Automatically initializes components based on data-ss-* attributes.
-// Supports multiple components per element and dynamic content via MutationObserver.
+// Supports multiple components per element and dynamic content via
+// MutationObserver.
 // ============================================================================
 
 import type { ComponentConfig } from "./registry.js";

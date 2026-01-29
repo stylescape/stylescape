@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Stylescape Test - UNPKG CDN</title>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <!-- Load Stylescape CSS from UNPKG -->
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/stylescape@0.3.9/css/stylescape.css"
+        />
+    </head>
+
+    <body class="">
+        <div class="frame_main">
+            <!-- TOP RIBBON -->
+            <div class="frame_main__area--top">
+                <header class="ribbon--top" role="navigation">
+                    <div class="ribbon__slot--horizontal_left">
+                        <h1
+                            class="ribbon__title"
+                            role="heading"
+                            aria-level="1"
+                        >
+                            <div class="ribbon__title__text">
+                                <a href="/">STYLESCAPE UNPKG TEST</a>
+                            </div>
+                        </h1>
+                    </div>
+
+                    <div class="ribbon__slot--horizontal_center">
+                        <button
+                            aria-label="Toggle navigation"
+                            aria-expanded="false"
+                            type="button"
+                            id="ribbon__nav_button"
+                            class="menu_button ribbon__nav_button"
+                        >
+                            ☰
+                        </button>
+                    </div>
+
+                    <div class="ribbon__slot--horizontal_right">
+                        <menu
+                            id="ribbon__menu"
+                            class="ribbon__menu"
+                            role="menubar"
+                        >
+                            <li class="ribbon__menu__item">
+                                <input
+                                    type="checkbox"
+                                    id="themeToggle"
+                                    data-ss="theme-toggle"
+                                />
+                            </li>
+                        </menu>
+                    </div>
+                </header>
+            </div>
+
+            <!-- LEFT SIDEBAR -->
+            <div class="frame_main__area--middle_left">
+                <aside
+                    class="sidebar--left"
+                    id="sidebar_left"
+                    role="navigation"
+                    data-ss="aside"
+                    data-ss-aside-menu="sidebar_left_menu"
+                    data-ss-aside-switch="sidebar_left_switch"
+                >
+                    <nav
+                        id="sidebar_left_navigation"
+                        class="ribbon--left ribbon--inverted"
+                        aria-label="Sidebar Left Navigation"
+                    ></nav>
+
+                    <nav
+                        id="sidebar_left_menu"
+                        class="sidebar__menu"
+                        aria-label="Sidebar Left Content Navigation"
+                    >
+                        <section
+                            id="sidebar_left_content"
+                            class="sidebar__content rail"
+                            role="region"
+                        >
+                            <h2 id="sidebar-left-label">Left Sidebar</h2>
+                            <p>This sidebar is managed by AsideHandler.</p>
+                            <p>It persists its state in localStorage.</p>
+                            <hr />
+                            <h3>Navigation</h3>
+                            <ul>
+                                <li><a href="#section1">Section 1</a></li>
+                                <li><a href="#section2">Section 2</a></li>
+                                <li><a href="#section3">Section 3</a></li>
+                            </ul>
+                        </section>
+                    </nav>
+
+                    <div
+                        class="sidebar__control"
+                        role="group"
+                        aria-label="Sidebar Toggle"
+                    >
+                        <button
+                            class="flipper--left"
+                            id="sidebar_left_switch"
+                            aria-pressed="false"
+                            aria-label="Toggle Left Sidebar"
+                        ></button>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="frame_main__area--middle_center">
+                <main id="main_content" class="main_content rail" role="main">
+                    <section id="section1">
+                        <h1>Stylescape UNPKG CDN Test</h1>
+                        <p>
+                            This page tests Stylescape loaded directly from
+                            <strong>UNPKG CDN</strong>
+                            without any build tools or local JavaScript.
+                        </p>
+
+                        <h4>📦 CDN Resources</h4>
+                        <ul>
+                            <li>
+                                <strong>CSS:</strong>
+                                <code>
+                                    unpkg.com/stylescape@0.3.9/css/stylescape.css
+                                </code>
+                            </li>
+                            <li>
+                                <strong>JS:</strong>
+                                <code>
+                                    unpkg.com/stylescape@0.3.9/js/stylescape.iife.js
+                                </code>
+                            </li>
+                        </ul>
+
+                        <p>Features being tested:</p>
+                        <ul>
+                            <li>
+                                <strong>Sidebar</strong>
+                                - Toggle sidebars using flipper buttons
+                            </li>
+                            <li>
+                                <strong>Theme Toggle</strong>
+                                - Light/dark theme switching
+                            </li>
+                            <li>
+                                <strong>Accordion</strong>
+                                - Collapsible content sections
+                            </li>
+                        </ul>
+                    </section>
+
+                    <hr />
+
+                    <section id="section2">
+                        <h2>Test Controls</h2>
+
+                        <h3>Sidebar Controls</h3>
+                        <div class="button_group">
+                            <button class="button" id="btn-toggle-left">
+                                Toggle Left Sidebar
+                            </button>
+                            <button class="button" id="btn-toggle-right">
+                                Toggle Right Sidebar
+                            </button>
+                        </div>
+                    </section>
+
+                    <hr />
+
+                    <section id="section3">
+                        <h2>Components Test</h2>
+
+                        <h3>Accordion</h3>
+                        <div data-ss="accordion">
+                            <details>
+                                <summary>Accordion Item 1</summary>
+                                <p>Content for accordion item 1.</p>
+                            </details>
+                            <details>
+                                <summary>Accordion Item 2</summary>
+                                <p>Content for accordion item 2.</p>
+                            </details>
+                            <details>
+                                <summary>Accordion Item 3</summary>
+                                <p>Content for accordion item 3.</p>
+                            </details>
+                        </div>
+
+                        <h3>Modal Test</h3>
+                        <button class="button" id="open-modal-btn">
+                            Open Modal
+                        </button>
+
+                        <h3>Tooltip Test</h3>
+                        <button
+                            class="button"
+                            data-ss="tooltip"
+                            data-ss-tooltip-content="This is a tooltip!"
+                        >
+                            Hover for Tooltip
+                        </button>
+                    </section>
+                </main>
+            </div>
+
+            <!-- RIGHT SIDEBAR -->
+            <div class="frame_main__area--middle_right rail">
+                <aside
+                    class="sidebar--right"
+                    id="sidebar_right"
+                    role="navigation"
+                    data-ss="aside"
+                    data-ss-aside-menu="sidebar_right_menu"
+                    data-ss-aside-switch="sidebar_right_switch"
+                >
+                    <nav
+                        id="sidebar_right_menu"
+                        class="sidebar__menu"
+                        aria-label="Sidebar Right Content Navigation"
+                    >
+                        <section
+                            id="sidebar_right_content"
+                            class="sidebar__content rail"
+                            role="region"
+                        >
+                            <h2>Right Sidebar</h2>
+                            <p>Another sidebar managed by AsideHandler.</p>
+                            <hr />
+                            <h3>Info</h3>
+                            <p>
+                                Both sidebars persist their open/closed state.
+                            </p>
+                        </section>
+                    </nav>
+
+                    <div
+                        class="sidebar__control"
+                        role="group"
+                        aria-label="Sidebar Toggle"
+                    >
+                        <button
+                            class="flipper--right"
+                            id="sidebar_right_switch"
+                            aria-pressed="false"
+                            aria-label="Toggle Right Sidebar"
+                        ></button>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- BOTTOM -->
+            <div class="frame_main__area--bottom">
+                <footer class="ribbon--bottom">
+                    <p>Stylescape UNPKG CDN Test Page</p>
+                </footer>
+            </div>
+        </div>
+
+        <!-- Modal Element -->
+        <div id="test-modal" class="modal" aria-hidden="true" hidden>
+            <div class="modal__backdrop" id="modal-backdrop"></div>
+            <div class="modal__content" data-ss-modal-content>
+                <h2>Test Modal</h2>
+                <p>This modal was opened via JavaScript.</p>
+                <button class="button" id="close-modal-btn">Close</button>
+            </div>
+        </div>
+
+        <!-- Load Stylescape JS from UNPKG - should auto-initialize components -->
+        <script src="https://unpkg.com/stylescape@0.3.9/js/stylescape.iife.js"></script>
+    </body>
+</html>
