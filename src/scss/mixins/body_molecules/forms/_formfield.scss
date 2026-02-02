@@ -176,8 +176,8 @@
     font-weight: 700;
     line-height: q(18);
     position: absolute;
-    right: -6px;
-    top: -9px;
+    right: q(-6);
+    top: q(-9);
     padding: 0 q(12);
     text-transform: uppercase;
 }
@@ -203,4 +203,71 @@
             background-color: #e6e6e6;
         }
     }
+}
+
+// ============================================================================
+// Form Field Layout Mixins
+// ============================================================================
+
+/// Form field layout with ordered elements
+/// Reorders form elements: label first, help text second, input third, errors fourth
+/// @group Forms.Formfield
+@mixin formfield--ordered {
+    display: flex;
+    flex-direction: column;
+}
+
+/// Form field label element - appears first in visual order
+/// @group Forms.Formfield
+@mixin formfield__label--ordered {
+    order: 1;
+    font-size: q(12);
+    font-weight: 600;
+}
+
+/// Form field help text element - appears second in visual order
+/// @group Forms.Formfield
+@mixin formfield__help--ordered {
+    order: 2;
+    margin-bottom: q(2);
+    font-size: q(12);
+}
+
+/// Form field input element - appears third in visual order
+/// @group Forms.Formfield
+@mixin formfield__input--ordered {
+    order: 3;
+    margin-bottom: q(16);
+}
+
+/// Form field error element - appears fourth in visual order
+/// @group Forms.Formfield
+@mixin formfield__error--ordered {
+    order: 4;
+}
+
+/// Form field with square image preview
+/// Creates a square container that crops images to fit
+/// @group Forms.Formfield
+@mixin formfield__image-preview {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; // Makes it a square
+    overflow: hidden;
+
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/// Form field full-width input
+/// @group Forms.Formfield
+@mixin formfield__input--full-width {
+    width: 100%;
 }

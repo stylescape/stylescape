@@ -166,3 +166,69 @@
     height: q(1);
     display: inline-block;
 }
+
+// ============================================================================
+// Rule Modifiers (horizontal rule variants)
+// ============================================================================
+
+/// Subtle rule with reduced visual weight
+/// @group Rules
+@mixin hr--subtle {
+    opacity: 0.5;
+}
+
+/// Accent colored rule using primary accent
+/// @group Rules
+@mixin hr--accent {
+    border-top-color: var(--color_accent_primary);
+}
+
+/// Secondary accent colored rule
+/// @group Rules
+@mixin hr--accent-secondary {
+    border-top-color: var(--color_accent_secondary);
+}
+
+/// Compact rule with reduced margins
+/// @group Rules
+@mixin hr--compact {
+    margin: q(12) 0;
+}
+
+/// Spacious rule with larger margins
+/// @group Rules
+@mixin hr--spacious {
+    margin: q(48) 0;
+}
+
+/// Flush rule with no margins
+/// @group Rules
+@mixin hr--flush {
+    margin: 0;
+}
+
+/// Gradient rule - decorative fade effect
+/// @group Rules
+@mixin hr--gradient {
+    border: none;
+    height: q(2);
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--color_line_primary),
+        transparent
+    );
+}
+
+/// Accent gradient rule - decorative fade with accent color
+/// @group Rules
+@mixin hr--gradient-accent {
+    border: none;
+    height: q(2);
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--color_accent_primary),
+        transparent
+    );
+}

@@ -283,3 +283,44 @@ $tooltip_unit: q(6);
     transform: translateY(-50%);
     margin-left: q(8);
 }
+
+// ============================================================================
+// Tooltip Theme Variants
+// ============================================================================
+
+/// Tooltip with hover background color theme
+/// Uses the state hover color for background and matching arrow
+/// @group Tooltip
+@mixin tooltip--themed-hover {
+    &::before {
+        background-color: var(--color_state_hover);
+        border-color: var(--color_state_hover);
+        border-radius: 0;
+    }
+}
+
+/// Tooltip right arrow with hover theme
+/// @group Tooltip
+@mixin tooltip__arrow--right-themed {
+    border-color: transparent var(--color_state_hover) transparent transparent;
+}
+
+/// Tooltip with accent color theme
+/// @group Tooltip
+@mixin tooltip--themed-accent {
+    &::before {
+        background-color: var(--color_accent_primary);
+        border-color: var(--color_accent_primary);
+        color: var(--color_fill_primary);
+    }
+}
+
+/// Tooltip with dark theme
+/// @group Tooltip
+@mixin tooltip--themed-dark {
+    &::before {
+        background-color: var(--color_text_primary);
+        border-color: var(--color_text_primary);
+        color: var(--color_fill_primary);
+    }
+}

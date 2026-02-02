@@ -26,7 +26,10 @@ export { ThemeToggler } from "./utilities/ThemeToggler.js";
 export { ScrollElementManager } from "./scroll/ScrollElementManager.js";
 export { ScrollPageManager } from "./scroll/ScrollPageManager.js";
 
-// 5. AUTO-INIT SYSTEM
+// 5. STORAGE
+export { AccordionState } from "./storage/AccordionState.js";
+
+// 6. AUTO-INIT SYSTEM
 export {
     autoStart,
     // Registry

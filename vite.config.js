@@ -80,6 +80,8 @@ export default defineConfig({
     resolve: {
         alias: {
             "~": path.resolve(__dirname, "./node_modules"),
+            "/js": path.resolve(__dirname, "./dist/js"),
+            "/css": path.resolve(__dirname, "./dist/css"),
         },
     },
     plugins: [

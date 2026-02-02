@@ -16,6 +16,7 @@ import { PasswordToggleManager } from "../elements/PasswordToggleManager.js";
 import { ImageCompareSlider } from "../media/ImageCompareSlider.js";
 import { ScrollElementManager } from "../scroll/ScrollElementManager.js";
 import { ScrollPageManager } from "../scroll/ScrollPageManager.js";
+import { AccordionState } from "../storage/AccordionState.js";
 import { ClipboardHelper } from "../utilities/ClipboardHelper.js";
 import { FontPreview } from "../utilities/FontPreview.js";
 import { GridManager } from "../utilities/GridManager.js";
@@ -202,6 +203,12 @@ export function initializeStylescape(): void {
         new ExclusiveDetails(".ribbon_menu_button");
 
         new DetailManager();
+
+        // Initialize accordion state persistence for sidebar
+        new AccordionState(
+            "details.sidebar__accordion",
+            "sidebar-accordion-state",
+        );
 
         const current = location.pathname.split("/").pop();
         const activeLink = document.querySelector(`a[href$="${current}"]`);

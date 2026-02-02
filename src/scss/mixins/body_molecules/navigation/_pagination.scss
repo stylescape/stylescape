@@ -141,6 +141,78 @@
 }
 
 // ============================================================================
+// Pagination Layout Mixins
+// ============================================================================
+
+/// Horizontal pagination layout
+/// Ensures pagination elements are displayed in a row, not stacked vertically
+/// @group Pagination
+@mixin pagination--horizontal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: q(4);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        display: inline-flex;
+    }
+
+    a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: q(32);
+        padding: q(4) q(8);
+    }
+}
+
+/// Neighbor pagination (Previous/Next navigation)
+/// Creates a space-between layout for previous/next navigation
+/// @group Pagination
+@mixin pagination--neighbor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: q(32);
+    padding-top: q(16);
+    border-top: q(1) solid var(--color_line_primary);
+
+    li {
+        list-style: none;
+
+        a {
+            display: inline-flex;
+            align-items: center;
+            gap: q(8);
+            padding: q(8) q(16);
+            border-radius: q(4);
+            text-decoration: none;
+            color: var(--color_text_primary);
+            transition:
+                background-color 0.2s ease,
+                color 0.2s ease;
+
+            &:hover {
+                background-color: var(--color_fill_secondary);
+                color: var(--color_accent_primary);
+            }
+        }
+
+        &.disabled a {
+            color: var(--color_state_muted);
+            cursor: not-allowed;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    }
+}
+
+// ============================================================================
 // Utility Classes are defined in:
 // src/scss/classes/body_molecules/navigation/_pagination.scss
 // ============================================================================

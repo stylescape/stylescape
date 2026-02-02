@@ -121,8 +121,8 @@ $button_size_map: (
 /// @param {Number} $h - Height in baseline units
 /// @group Buttons
 ///
-@mixin button--size($val) {
-    $size: baseline($val);
+@mixin button--size($value) {
+    $size: baseline($value);
     height: $size;
     min-height: $size;
     max-height: $size;
@@ -199,6 +199,28 @@ $button_size_map: (
     }
     &:disabled {
         background: var(--color_accent_primary--25);
+        color: var(--color_state_disabled);
+        cursor: not-allowed;
+    }
+}
+
+/// Secondary accent variant (uses accent_secondary color)
+/// @group Buttons
+@mixin button--accent-secondary {
+    background: var(--color_accent_secondary);
+    color: var(--color_fill_primary);
+
+    &:hover {
+        background: var(--color_accent_secondary);
+    }
+    &:active {
+        background: var(--color_accent_secondary);
+    }
+    &:focus-within {
+        border: q(2) solid var(--color_accent_secondary);
+    }
+    &:disabled {
+        background: var(--color_accent_secondary--25);
         color: var(--color_state_disabled);
         cursor: not-allowed;
     }

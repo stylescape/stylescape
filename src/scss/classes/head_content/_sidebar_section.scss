@@ -54,3 +54,49 @@
 .sidebar__meta {
     @include sidebar__list-meta;
 }
+
+// ============================================================================
+// Sidebar Accordion Classes
+// ============================================================================
+
+.sidebar__accordion {
+    @include sidebar__accordion;
+
+    // When accordion is open, rotate the icon
+    &[open] > .sidebar__accordion__header > .sidebar__accordion__icon {
+        transform: rotate(90deg);
+    }
+}
+
+.sidebar__accordion__header {
+    @include sidebar__accordion__header;
+}
+
+.sidebar__accordion__header--nested {
+    @include sidebar__accordion__header--nested;
+}
+
+.sidebar__accordion__icon {
+    @include sidebar__accordion__icon;
+}
+
+.sidebar__accordion__content {
+    @include sidebar__accordion__content;
+}
+
+.sidebar__accordion--nested {
+    @include sidebar__accordion--nested;
+
+    // When nested accordion is open, rotate the icon
+    &[open] > .sidebar__accordion__header--nested > .sidebar__accordion__icon {
+        transform: rotate(90deg);
+    }
+}
+
+.sidebar__subsection__list {
+    @include sidebar__subsection__list;
+}
+
+.sidebar__subsection__description {
+    @include sidebar__subsection__description;
+}

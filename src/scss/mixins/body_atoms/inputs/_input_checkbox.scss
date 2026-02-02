@@ -16,6 +16,8 @@
     width: baseline(4);
     height: baseline(4);
     flex-shrink: 0;
+    flex-grow: 0;
+    aspect-ratio: 1 / 1;
     // border-radius: q(4);
     border: q(1) solid var(--color_text_primary);
     position: relative;
@@ -67,5 +69,37 @@
         border-color: var(--color_state_muted);
         background-color: var(--color_fill_primary);
         cursor: not-allowed;
+    }
+}
+
+/// Square checkbox variant (no border-radius)
+/// Useful for dropdown menus and option lists
+/// @group Form
+@mixin checkbox--square {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: q(16);
+    height: q(16);
+    border: q(2) solid currentColor;
+    border-radius: 0;
+    background-color: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+    flex-grow: 0;
+    aspect-ratio: 1 / 1;
+
+    // Hide the default ::before and ::after pseudo-elements
+    &::before,
+    &::after {
+        display: none;
+    }
+
+    &:checked {
+        background-color: currentColor;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
     }
 }

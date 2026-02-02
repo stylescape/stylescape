@@ -71,7 +71,7 @@ $table_cell_padding_x: q(4);
 /// Table size: Small
 /// Reduces padding and font size for compact tables.
 @mixin table--size--sm {
-    font-size: 0.875rem;
+    font-size: q(14);
 
     th,
     td {
@@ -83,7 +83,7 @@ $table_cell_padding_x: q(4);
 /// Table size: Large
 /// Increases padding and font size for spacious display tables.
 @mixin table--size--lg {
-    font-size: 1.125rem;
+    font-size: q(18);
 
     th,
     td {
@@ -255,6 +255,29 @@ $table_cell_padding_x: q(4);
     }
     tbody tr:last-child td {
         border-bottom: q(1) solid $table_border_color;
+    }
+}
+
+/// Horizontal bordered table with consistent row height
+/// Ensures uniform padding and vertical alignment across all cells
+/// @group Table
+@mixin table--lined--horizontal--consistent {
+    @include table--lined--horizontal;
+
+    th,
+    td {
+        padding: q(8) q(12);
+        vertical-align: middle;
+        height: q(24);
+        line-height: 1.5;
+    }
+
+    thead th {
+        font-weight: 600;
+    }
+
+    tbody td {
+        font-weight: normal;
     }
 }
 
