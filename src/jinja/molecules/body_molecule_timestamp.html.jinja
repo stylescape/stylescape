@@ -1,0 +1,121 @@
+{% extends "../base.html.jinja" %} {% set title = "Timestamp" %} {%- block title
+%}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    {% set section_title = "Basic Timestamp" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <time class="timestamp" datetime="2026-01-21T10:30:00">
+            January 21, 2026 at 10:30 AM
+        </time>
+        {% endset %}
+        <div class="demo__preview">{{ code_snippet | safe }}</div>
+        <div class="demo__code">
+            <pre><code class="language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Elevated Timestamp" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="timestamp-elevate">
+            <div class="timestamp__container">
+                <time
+                    class="timestamp__time-since"
+                    datetime="2026-01-21T08:00:00"
+                >
+                    3 hours ago
+                </time>
+                <button
+                    class="timestamp__expand-button"
+                    aria-label="Expand timestamp details"
+                ></button>
+            </div>
+            <div class="timestamp__details">
+                <time datetime="2026-01-21T08:00:00">
+                    January 21, 2026 at 8:00 AM
+                </time>
+            </div>
+        </div>
+        {% endset %}
+        <div class="demo__preview">{{ code_snippet | safe }}</div>
+        <div class="demo__code">
+            <pre><code class="language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Active Timestamp" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="timestamp-elevate">
+            <div class="timestamp__container">
+                <time
+                    class="timestamp__time-since timestamp__time-since--active"
+                    datetime="2026-01-21T10:00:00"
+                >
+                    Just now
+                </time>
+            </div>
+        </div>
+        {% endset %}
+        <div class="demo__preview">{{ code_snippet | safe }}</div>
+        <div class="demo__code">
+            <pre><code class="language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Expanded Timestamp" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="timestamp-elevate timestamp-elevate--expanded">
+            <div class="timestamp__container">
+                <time
+                    class="timestamp__time-since"
+                    datetime="2026-01-20T14:30:00"
+                >
+                    Yesterday
+                </time>
+                <button
+                    class="timestamp__expand-button"
+                    aria-label="Collapse timestamp details"
+                ></button>
+            </div>
+            <div class="timestamp__details" style="display: block">
+                <time datetime="2026-01-20T14:30:00">
+                    January 20, 2026 at 2:30 PM
+                </time>
+            </div>
+        </div>
+        {% endset %}
+        <div class="demo__preview">{{ code_snippet | safe }}</div>
+        <div class="demo__code">
+            <pre><code class="language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+</section>
+
+{%- endblock %}

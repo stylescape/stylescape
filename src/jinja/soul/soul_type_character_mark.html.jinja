@@ -1,0 +1,185 @@
+{% extends "../base.html.jinja" %} {% set title = "Mark Characters" %} {%- block
+title %}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }}</h2>
+        <p>Highlighted and marked text for emphasis and search results.</p>
+    </header>
+
+    {# Basic Mark #} {% set section_title = "Basic Mark" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <p>
+            The
+            <mark>mark element</mark>
+            is used to highlight text that is relevant to the current context,
+            such as search results or important passages.
+        </p>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Mark Variations #} {% set section_title = "Mark Variations" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div style="display: flex; flex-direction: column; gap: 16px">
+            <p>
+                Default:
+                <mark>highlighted text</mark>
+            </p>
+            <p>
+                Yellow:
+                <mark
+                    style="
+                        background: #fff3cd;
+                        padding: 2px 6px;
+                        border-radius: 3px;
+                    "
+                >
+                    important note
+                </mark>
+            </p>
+            <p>
+                Success:
+                <mark
+                    style="
+                        background: #d4edda;
+                        color: #155724;
+                        padding: 2px 6px;
+                        border-radius: 3px;
+                    "
+                >
+                    approved
+                </mark>
+            </p>
+            <p>
+                Error:
+                <mark
+                    style="
+                        background: #f8d7da;
+                        color: #721c24;
+                        padding: 2px 6px;
+                        border-radius: 3px;
+                    "
+                >
+                    critical
+                </mark>
+            </p>
+            <p>
+                Info:
+                <mark
+                    style="
+                        background: #cce5ff;
+                        color: #004085;
+                        padding: 2px 6px;
+                        border-radius: 3px;
+                    "
+                >
+                    reference
+                </mark>
+            </p>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Search Highlighting #} {% set section_title = "Search Result
+    Highlighting" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div
+            class="search-results"
+            style="
+                padding: 16px;
+                background: var(--color_fill_secondary);
+                border-radius: 8px;
+            "
+        >
+            <p style="margin: 0 0 12px; font-size: 14px; opacity: 0.7">
+                3 results for "typography"
+            </p>
+            <div
+                style="
+                    padding: 12px;
+                    background: white;
+                    border-radius: 6px;
+                    margin-bottom: 8px;
+                "
+            >
+                <h4 style="margin: 0 0 4px">
+                    Introduction to
+                    <mark
+                        style="
+                            background: #fff59d;
+                            padding: 1px 4px;
+                            border-radius: 2px;
+                        "
+                    >
+                        Typography
+                    </mark>
+                </h4>
+                <p style="margin: 0; font-size: 14px; opacity: 0.8">
+                    Learn the fundamentals of
+                    <mark
+                        style="
+                            background: #fff59d;
+                            padding: 1px 4px;
+                            border-radius: 2px;
+                        "
+                    >
+                        typography
+                    </mark>
+                    and how it affects...
+                </p>
+            </div>
+            <div style="padding: 12px; background: white; border-radius: 6px">
+                <h4 style="margin: 0 0 4px">
+                    Advanced
+                    <mark
+                        style="
+                            background: #fff59d;
+                            padding: 1px 4px;
+                            border-radius: 2px;
+                        "
+                    >
+                        Typography
+                    </mark>
+                    Techniques
+                </h4>
+                <p style="margin: 0; font-size: 14px; opacity: 0.8">
+                    Explore advanced
+                    <mark
+                        style="
+                            background: #fff59d;
+                            padding: 1px 4px;
+                            border-radius: 2px;
+                        "
+                    >
+                        typography
+                    </mark>
+                    methods for...
+                </p>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{%- endblock %}

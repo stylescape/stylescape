@@ -1,0 +1,167 @@
+{% extends "../base.html.jinja" %} {% set title = "Paragraph Alignment" %} {%-
+block title %}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    {% set section_title = "Alignment Overview" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <p class="paragraph--default">This is default aligned paragraph.</p>
+        <p class="paragraph--normal">
+            This is normal aligned paragraph, using the default alignment and
+            typography settings defined in the `paragraph--normal` mixin.
+        </p>
+        <p class="paragraph--left">
+            This is left aligned paragraph. It's useful for enforcing left
+            alignment in multilingual or layout-sensitive contexts.
+        </p>
+        <p class="paragraph--right">
+            This is right aligned paragraph. Right-aligned text may be used for
+            captions, pull quotes, or RTL languages.
+        </p>
+        <p class="paragraph--center">
+            This is center aligned paragraph. Centered text works well for
+            titles or callouts, but should be used sparingly in body content.
+        </p>
+        <p class="paragraph--justify">
+            This is normal justified paragraph, creating clean left and right
+            edges. While justified text can appear more formal, it may reduce
+            readability on small screens or short lines.
+        </p>
+        <p class="paragraph--justify--left">
+            This is left justified paragraph.
+        </p>
+        <p class="paragraph--justify--right">
+            This is right justified paragraph.
+        </p>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {% set lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+    anim id est laborum." %} {% set section_title = "Normal Alignment" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <section class="paragraph--normal">
+            <h5>{{ section_title }}</h5>
+            <p>{{ lorem }}</p>
+        </section>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Left Alignment" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <section class="paragraph--left">
+            <h5>{{ section_title }}</h5>
+            <p>{{ lorem }}</p>
+        </section>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Right Alignment" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <section class="paragraph--right">
+            <h5>{{ section_title }}</h5>
+            <p>{{ lorem }}</p>
+        </section>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Center Alignment" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <section class="paragraph--center">
+            <h5>{{ section_title }}</h5>
+            <p>{{ lorem }}</p>
+        </section>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Justified Alignment" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <section class="paragraph--justify">
+            <h5>{{ section_title }}</h5>
+            <p>{{ lorem }}</p>
+        </section>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Left Justified Alignment" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <section class="paragraph--justify--left">
+            <h5>{{ section_title }}</h5>
+            <p>{{ lorem }}</p>
+        </section>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Right Justified Alignment" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <section class="paragraph--justify--right">
+            <h5>{{ section_title }}</h5>
+            <p>{{ lorem }}</p>
+        </section>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock content %}

@@ -1,0 +1,730 @@
+{% extends "../base.html.jinja" %} {% set title = "Form Components" %} {%- block
+title %}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }}</h2>
+        <p>
+            JavaScript components for autocomplete suggestions and form
+            validation.
+        </p>
+    </header>
+
+    {# Autocomplete Manager #} {% set section_title = "Autocomplete Manager" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>Autocomplete suggestions with keyboard navigation.</p>
+        {% set code_snippet %}
+        <!-- Basic autocomplete -->
+        <div style="position: relative; max-width: 400px">
+            <input
+                type="text"
+                data-ss="autocomplete"
+                data-ss-autocomplete-min-chars="2"
+                placeholder="Search countries..."
+                style="
+                    width: 100%;
+                    padding: 12px 16px;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 8px;
+                    font-size: 16px;
+                "
+            />
+
+            <!-- Suggestions dropdown (shown when typing) -->
+            <ul
+                class="autocomplete-suggestions"
+                style="
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    margin: 4px 0 0;
+                    padding: 8px 0;
+                    background: white;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 8px;
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                    list-style: none;
+                    max-height: 240px;
+                    overflow-y: auto;
+                "
+            >
+                <li style="padding: 10px 16px; cursor: pointer">
+                    <span style="font-weight: 500">Uni</span>
+                    ted States
+                </li>
+                <li
+                    style="
+                        padding: 10px 16px;
+                        cursor: pointer;
+                        background: var(--color_fill_secondary);
+                    "
+                >
+                    <span style="font-weight: 500">Uni</span>
+                    ted Kingdom
+                </li>
+                <li style="padding: 10px 16px; cursor: pointer">
+                    <span style="font-weight: 500">Uni</span>
+                    ted Arab Emirates
+                </li>
+            </ul>
+        </div>
+
+        <!-- Autocomplete with API fetch -->
+        <div style="position: relative; max-width: 400px; margin-top: 24px">
+            <label
+                style="display: block; margin-bottom: 8px; font-weight: 500"
+            >
+                Search Users
+            </label>
+            <div style="position: relative">
+                <input
+                    type="text"
+                    data-ss="autocomplete"
+                    data-ss-autocomplete-min-chars="1"
+                    data-ss-autocomplete-url="/api/users/search"
+                    placeholder="Type a name..."
+                    style="
+                        width: 100%;
+                        padding: 12px 16px 12px 44px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 8px;
+                        font-size: 16px;
+                    "
+                />
+                <span
+                    style="
+                        position: absolute;
+                        left: 16px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        opacity: 0.5;
+                    "
+                >
+                    🔍
+                </span>
+            </div>
+        </div>
+
+        <!-- Autocomplete with custom template -->
+        <div style="position: relative; max-width: 400px; margin-top: 24px">
+            <input
+                type="text"
+                data-ss="autocomplete"
+                placeholder="Search products..."
+                style="
+                    width: 100%;
+                    padding: 12px 16px;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 8px;
+                "
+            />
+
+            <ul
+                class="autocomplete-suggestions"
+                style="
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    margin: 4px 0 0;
+                    padding: 8px;
+                    background: white;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 8px;
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                    list-style: none;
+                "
+            >
+                <li
+                    style="
+                        padding: 8px;
+                        cursor: pointer;
+                        display: flex;
+                        gap: 12px;
+                        align-items: center;
+                        border-radius: 6px;
+                    "
+                >
+                    <div
+                        style="
+                            width: 48px;
+                            height: 48px;
+                            background: var(--color_fill_secondary);
+                            border-radius: 8px;
+                        "
+                    ></div>
+                    <div>
+                        <strong style="display: block">Product Name</strong>
+                        <span style="font-size: 14px; opacity: 0.6">
+                            $99.00
+                        </span>
+                    </div>
+                </li>
+                <li
+                    style="
+                        padding: 8px;
+                        cursor: pointer;
+                        display: flex;
+                        gap: 12px;
+                        align-items: center;
+                        border-radius: 6px;
+                        background: var(--color_fill_secondary);
+                    "
+                >
+                    <div
+                        style="
+                            width: 48px;
+                            height: 48px;
+                            background: var(--color_line_secondary);
+                            border-radius: 8px;
+                        "
+                    ></div>
+                    <div>
+                        <strong style="display: block">Another Product</strong>
+                        <span style="font-size: 14px; opacity: 0.6">
+                            $149.00
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Form Validator #} {% set section_title = "Form Validator" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>Form validation with customizable rules and real-time feedback.</p>
+        {% set code_snippet %}
+        <form
+            data-ss="validate"
+            data-ss-validate-on-blur="true"
+            style="
+                max-width: 500px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            "
+        >
+            <!-- Email field -->
+            <div class="form-field">
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 6px;
+                        font-weight: 500;
+                    "
+                >
+                    Email *
+                </label>
+                <input
+                    type="email"
+                    name="email"
+                    data-ss-validate-required="Email is required"
+                    data-ss-validate-email="Please enter a valid email"
+                    style="
+                        width: 100%;
+                        padding: 12px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 8px;
+                    "
+                />
+                <span
+                    class="form-field__error"
+                    style="
+                        display: none;
+                        color: var(--color_state_error);
+                        font-size: 14px;
+                        margin-top: 4px;
+                    "
+                ></span>
+            </div>
+
+            <!-- Password field -->
+            <div class="form-field">
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 6px;
+                        font-weight: 500;
+                    "
+                >
+                    Password *
+                </label>
+                <input
+                    type="password"
+                    name="password"
+                    data-ss-validate-required="Password is required"
+                    data-ss-validate-min-length="8"
+                    data-ss-validate-pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)"
+                    data-ss-validate-pattern-message="Must contain uppercase, lowercase, and number"
+                    style="
+                        width: 100%;
+                        padding: 12px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 8px;
+                    "
+                />
+                <span
+                    class="form-field__hint"
+                    style="
+                        display: block;
+                        font-size: 13px;
+                        opacity: 0.6;
+                        margin-top: 4px;
+                    "
+                >
+                    Min 8 characters with mixed case and numbers
+                </span>
+            </div>
+
+            <!-- Confirm password -->
+            <div class="form-field">
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 6px;
+                        font-weight: 500;
+                    "
+                >
+                    Confirm Password *
+                </label>
+                <input
+                    type="password"
+                    name="confirmPassword"
+                    data-ss-validate-required="Please confirm your password"
+                    data-ss-validate-match="password"
+                    data-ss-validate-match-message="Passwords do not match"
+                    style="
+                        width: 100%;
+                        padding: 12px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 8px;
+                    "
+                />
+            </div>
+
+            <!-- Terms checkbox -->
+            <div class="form-field">
+                <label
+                    style="
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 8px;
+                        cursor: pointer;
+                    "
+                >
+                    <input
+                        type="checkbox"
+                        name="terms"
+                        data-ss-validate-required="You must accept the terms"
+                        style="margin-top: 4px"
+                    />
+                    <span>
+                        I agree to the
+                        <a href="#">Terms of Service</a>
+                        and
+                        <a href="#">Privacy Policy</a>
+                        *
+                    </span>
+                </label>
+            </div>
+
+            <button
+                type="submit"
+                style="
+                    padding: 14px 28px;
+                    background: var(--color_fill_primary);
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    cursor: pointer;
+                "
+            >
+                Create Account
+            </button>
+        </form>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Validation States #} {% set section_title = "Validation States" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>Visual feedback for different validation states.</p>
+        {% set code_snippet %}
+        <div
+            style="
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                max-width: 400px;
+            "
+        >
+            <!-- Default state -->
+            <div class="form-field">
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 6px;
+                        font-weight: 500;
+                    "
+                >
+                    Default
+                </label>
+                <input
+                    type="text"
+                    placeholder="Enter value..."
+                    style="
+                        width: 100%;
+                        padding: 12px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 8px;
+                    "
+                />
+            </div>
+
+            <!-- Focus state -->
+            <div class="form-field">
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 6px;
+                        font-weight: 500;
+                    "
+                >
+                    Focus
+                </label>
+                <input
+                    type="text"
+                    placeholder="Focused input..."
+                    style="
+                        width: 100%;
+                        padding: 12px 16px;
+                        border: 2px solid var(--color_fill_primary);
+                        border-radius: 8px;
+                        outline: none;
+                        box-shadow: 0 0 0 3px
+                            rgba(var(--color_fill_primary_rgb), 0.1);
+                    "
+                />
+            </div>
+
+            <!-- Valid state -->
+            <div class="form-field is-valid">
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 6px;
+                        font-weight: 500;
+                    "
+                >
+                    Valid
+                </label>
+                <div style="position: relative">
+                    <input
+                        type="text"
+                        value="valid@email.com"
+                        style="
+                            width: 100%;
+                            padding: 12px 40px 12px 16px;
+                            border: 2px solid var(--color_state_success);
+                            border-radius: 8px;
+                            background: rgba(34, 197, 94, 0.05);
+                        "
+                    />
+                    <span
+                        style="
+                            position: absolute;
+                            right: 12px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: var(--color_state_success);
+                        "
+                    >
+                        ✓
+                    </span>
+                </div>
+                <span
+                    style="
+                        display: block;
+                        color: var(--color_state_success);
+                        font-size: 14px;
+                        margin-top: 4px;
+                    "
+                >
+                    Email is valid
+                </span>
+            </div>
+
+            <!-- Invalid state -->
+            <div class="form-field is-invalid">
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 6px;
+                        font-weight: 500;
+                    "
+                >
+                    Invalid
+                </label>
+                <div style="position: relative">
+                    <input
+                        type="text"
+                        value="invalid-email"
+                        style="
+                            width: 100%;
+                            padding: 12px 40px 12px 16px;
+                            border: 2px solid var(--color_state_error);
+                            border-radius: 8px;
+                            background: rgba(239, 68, 68, 0.05);
+                        "
+                    />
+                    <span
+                        style="
+                            position: absolute;
+                            right: 12px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: var(--color_state_error);
+                        "
+                    >
+                        ✕
+                    </span>
+                </div>
+                <span
+                    style="
+                        display: block;
+                        color: var(--color_state_error);
+                        font-size: 14px;
+                        margin-top: 4px;
+                    "
+                >
+                    Please enter a valid email address
+                </span>
+            </div>
+
+            <!-- Warning state -->
+            <div class="form-field is-warning">
+                <label
+                    style="
+                        display: block;
+                        margin-bottom: 6px;
+                        font-weight: 500;
+                    "
+                >
+                    Warning
+                </label>
+                <input
+                    type="text"
+                    value="weak_password"
+                    style="
+                        width: 100%;
+                        padding: 12px 16px;
+                        border: 2px solid var(--color_state_warning);
+                        border-radius: 8px;
+                        background: rgba(245, 158, 11, 0.05);
+                    "
+                />
+                <span
+                    style="
+                        display: block;
+                        color: var(--color_state_warning);
+                        font-size: 14px;
+                        margin-top: 4px;
+                    "
+                >
+                    Password is weak. Consider using a stronger one.
+                </span>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Password Toggle #} {% set section_title = "Password Toggle" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>Show/hide password functionality.</p>
+        {% set code_snippet %}
+        <div style="max-width: 400px">
+            <label
+                style="display: block; margin-bottom: 6px; font-weight: 500"
+            >
+                Password
+            </label>
+            <div style="position: relative">
+                <input
+                    type="password"
+                    id="userPassword"
+                    value="mysecretpassword"
+                    style="
+                        width: 100%;
+                        padding: 12px 48px 12px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 8px;
+                    "
+                />
+                <button
+                    type="button"
+                    data-password-toggle="userPassword"
+                    style="
+                        position: absolute;
+                        right: 8px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        padding: 8px;
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                        opacity: 0.6;
+                    "
+                >
+                    👁️
+                </button>
+            </div>
+        </div>
+
+        <!-- Password visible state -->
+        <div style="max-width: 400px; margin-top: 16px">
+            <label
+                style="display: block; margin-bottom: 6px; font-weight: 500"
+            >
+                Password (Visible)
+            </label>
+            <div style="position: relative">
+                <input
+                    type="text"
+                    value="mysecretpassword"
+                    style="
+                        width: 100%;
+                        padding: 12px 48px 12px 16px;
+                        border: 1px solid var(--color_line_secondary);
+                        border-radius: 8px;
+                    "
+                />
+                <button
+                    type="button"
+                    style="
+                        position: absolute;
+                        right: 8px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        padding: 8px;
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                    "
+                >
+                    🙈
+                </button>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# JavaScript API #} {% set section_title = "JavaScript API" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>Programmatic control of form components.</p>
+        {% set code_snippet %}
+        <script>
+            // AutocompleteManager
+            import { AutocompleteManager } from "stylescape";
+
+            const autocomplete = new AutocompleteManager(inputElement, {
+                minChars: 2,
+                debounce: 300,
+                maxResults: 10,
+                source: async (query) => {
+                    const response = await fetch(`/api/search?q=${query}`);
+                    return response.json();
+                },
+                renderItem: (item) => `
+        <div class="autocomplete-item">
+            <img src="${item.avatar}" alt="">
+            <span>${item.name}</span>
+        </div>
+    `,
+                onSelect: (item) => {
+                    console.log("Selected:", item);
+                },
+            });
+
+            autocomplete.setSource(newDataArray);
+            autocomplete.clear();
+            autocomplete.destroy();
+
+            // FormValidator
+            import { FormValidator } from "stylescape";
+
+            const validator = new FormValidator(formElement, {
+                validateOnBlur: true,
+                validateOnInput: false,
+                showErrors: true,
+                rules: {
+                    email: {
+                        required: true,
+                        email: true,
+                        message: "Please enter a valid email",
+                    },
+                    password: {
+                        required: true,
+                        minLength: 8,
+                        pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+                        message:
+                            "Password must be 8+ chars with mixed case and numbers",
+                    },
+                    confirmPassword: {
+                        required: true,
+                        match: "password",
+                        message: "Passwords must match",
+                    },
+                },
+                onSubmit: async (data, form) => {
+                    // Handle valid form submission
+                    await submitForm(data);
+                },
+                onError: (errors) => {
+                    console.log("Validation errors:", errors);
+                },
+            });
+
+            validator.validate(); // Validate all fields
+            validator.validateField("email"); // Validate single field
+            validator.isValid(); // Check if form is valid
+            validator.getErrors(); // Get all error messages
+            validator.reset(); // Reset validation state
+            validator.setFieldError("email", "Custom error");
+        </script>
+        {% endset %} {% set language="JavaScript" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{%- endblock %}

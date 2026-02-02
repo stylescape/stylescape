@@ -1,0 +1,692 @@
+{% extends "../base.html.jinja" %} {% set title = "VCard / Contact Card" %} {%-
+block title %}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }}</h2>
+        <p>
+            Contact cards for displaying user profiles, team members, and
+            contact information.
+        </p>
+    </header>
+
+    {# Basic VCard #} {% set section_title = "Basic VCard" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>Simple contact card with avatar and basic info.</p>
+        {% set code_snippet %}
+        <div
+            class="vcard"
+            style="
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                padding: 20px;
+                background: white;
+                border: 1px solid var(--color_line_secondary);
+                border-radius: 12px;
+                max-width: 350px;
+            "
+        >
+            <div
+                class="vcard__avatar"
+                style="
+                    width: 64px;
+                    height: 64px;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-size: 24px;
+                    font-weight: 600;
+                "
+            >
+                JD
+            </div>
+            <div class="vcard__info">
+                <h4 style="margin: 0 0 4px; font-size: 18px">John Doe</h4>
+                <p style="margin: 0 0 4px; font-size: 14px; opacity: 0.7">
+                    Senior Developer
+                </p>
+                <a
+                    href="mailto:john@example.com"
+                    style="
+                        font-size: 14px;
+                        color: var(--color_fill_primary);
+                        text-decoration: none;
+                    "
+                >
+                    john@example.com
+                </a>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# VCard with Image #} {% set section_title = "VCard with Photo" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>Contact card with profile photo and social links.</p>
+        {% set code_snippet %}
+        <div
+            class="vcard vcard--photo"
+            style="
+                padding: 24px;
+                background: white;
+                border: 1px solid var(--color_line_secondary);
+                border-radius: 16px;
+                max-width: 300px;
+                text-align: center;
+            "
+        >
+            <div
+                class="vcard__avatar"
+                style="
+                    width: 100px;
+                    height: 100px;
+                    margin: 0 auto 16px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    border: 4px solid var(--color_fill_secondary);
+                "
+            >
+                <img
+                    src="https://picsum.photos/100"
+                    alt="Profile"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                />
+            </div>
+            <h4 style="margin: 0 0 4px; font-size: 20px">Sarah Johnson</h4>
+            <p
+                style="
+                    margin: 0 0 12px;
+                    font-size: 14px;
+                    color: var(--color_fill_primary);
+                "
+            >
+                Product Designer
+            </p>
+            <p
+                style="
+                    margin: 0 0 16px;
+                    font-size: 14px;
+                    opacity: 0.7;
+                    line-height: 1.5;
+                "
+            >
+                Creating delightful user experiences for web and mobile
+                products.
+            </p>
+            <div
+                class="vcard__social"
+                style="display: flex; justify-content: center; gap: 12px"
+            >
+                <a
+                    href="#"
+                    style="
+                        width: 36px;
+                        height: 36px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-decoration: none;
+                    "
+                >
+                    🐦
+                </a>
+                <a
+                    href="#"
+                    style="
+                        width: 36px;
+                        height: 36px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-decoration: none;
+                    "
+                >
+                    💼
+                </a>
+                <a
+                    href="#"
+                    style="
+                        width: 36px;
+                        height: 36px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-decoration: none;
+                    "
+                >
+                    📧
+                </a>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Horizontal VCard #} {% set section_title = "Horizontal VCard" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>Wide format card with detailed contact information.</p>
+        {% set code_snippet %}
+        <div
+            class="vcard vcard--horizontal"
+            style="
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                gap: 24px;
+                padding: 24px;
+                background: white;
+                border: 1px solid var(--color_line_secondary);
+                border-radius: 16px;
+                max-width: 600px;
+                align-items: center;
+            "
+        >
+            <div
+                class="vcard__avatar"
+                style="
+                    width: 80px;
+                    height: 80px;
+                    background: linear-gradient(135deg, #f093fb, #f5576c);
+                    border-radius: 12px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-size: 28px;
+                "
+            >
+                👩
+            </div>
+            <div class="vcard__info">
+                <h4 style="margin: 0 0 4px; font-size: 18px">Emily Chen</h4>
+                <p
+                    style="
+                        margin: 0 0 8px;
+                        font-size: 14px;
+                        color: var(--color_fill_primary);
+                    "
+                >
+                    CTO @ TechCorp
+                </p>
+                <div
+                    style="
+                        display: flex;
+                        gap: 16px;
+                        font-size: 13px;
+                        opacity: 0.7;
+                    "
+                >
+                    <span>📍 San Francisco</span>
+                    <span>📞 +1 (555) 123-4567</span>
+                </div>
+            </div>
+            <div
+                class="vcard__actions"
+                style="display: flex; flex-direction: column; gap: 8px"
+            >
+                <button
+                    style="
+                        padding: 10px 20px;
+                        background: var(--color_fill_primary);
+                        color: white;
+                        border: none;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        font-size: 14px;
+                    "
+                >
+                    Connect
+                </button>
+                <button
+                    style="
+                        padding: 10px 20px;
+                        background: var(--color_fill_secondary);
+                        border: none;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        font-size: 14px;
+                    "
+                >
+                    Message
+                </button>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Team Grid #} {% set section_title = "Team Grid" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>Grid of team member cards.</p>
+        {% set code_snippet %}
+        <div
+            style="
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            "
+        >
+            <!-- Team Member 1 -->
+            <div
+                class="vcard"
+                style="
+                    padding: 24px;
+                    background: white;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 12px;
+                    text-align: center;
+                "
+            >
+                <div
+                    style="
+                        width: 80px;
+                        height: 80px;
+                        margin: 0 auto 12px;
+                        background: linear-gradient(135deg, #667eea, #764ba2);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 28px;
+                    "
+                >
+                    AK
+                </div>
+                <h5 style="margin: 0 0 4px; font-size: 16px">Alex Kim</h5>
+                <p style="margin: 0; font-size: 13px; opacity: 0.6">
+                    Frontend Lead
+                </p>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div
+                class="vcard"
+                style="
+                    padding: 24px;
+                    background: white;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 12px;
+                    text-align: center;
+                "
+            >
+                <div
+                    style="
+                        width: 80px;
+                        height: 80px;
+                        margin: 0 auto 12px;
+                        background: linear-gradient(135deg, #f093fb, #f5576c);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 28px;
+                    "
+                >
+                    MR
+                </div>
+                <h5 style="margin: 0 0 4px; font-size: 16px">
+                    Maria Rodriguez
+                </h5>
+                <p style="margin: 0; font-size: 13px; opacity: 0.6">
+                    UX Designer
+                </p>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div
+                class="vcard"
+                style="
+                    padding: 24px;
+                    background: white;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 12px;
+                    text-align: center;
+                "
+            >
+                <div
+                    style="
+                        width: 80px;
+                        height: 80px;
+                        margin: 0 auto 12px;
+                        background: linear-gradient(135deg, #4facfe, #00f2fe);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 28px;
+                    "
+                >
+                    JP
+                </div>
+                <h5 style="margin: 0 0 4px; font-size: 16px">James Park</h5>
+                <p style="margin: 0; font-size: 13px; opacity: 0.6">
+                    Backend Dev
+                </p>
+            </div>
+
+            <!-- Team Member 4 -->
+            <div
+                class="vcard"
+                style="
+                    padding: 24px;
+                    background: white;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 12px;
+                    text-align: center;
+                "
+            >
+                <div
+                    style="
+                        width: 80px;
+                        height: 80px;
+                        margin: 0 auto 12px;
+                        background: linear-gradient(135deg, #43e97b, #38f9d7);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 28px;
+                    "
+                >
+                    SL
+                </div>
+                <h5 style="margin: 0 0 4px; font-size: 16px">Sophie Lee</h5>
+                <p style="margin: 0; font-size: 13px; opacity: 0.6">DevOps</p>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Compact VCard #} {% set section_title = "Compact VCard" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>Minimal inline contact cards for lists.</p>
+        {% set code_snippet %}
+        <div
+            style="
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                max-width: 400px;
+            "
+        >
+            <div
+                class="vcard vcard--compact"
+                style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    padding: 12px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 8px;
+                "
+            >
+                <div
+                    style="
+                        width: 40px;
+                        height: 40px;
+                        background: var(--color_fill_primary);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 14px;
+                        font-weight: 600;
+                    "
+                >
+                    JD
+                </div>
+                <div style="flex: 1">
+                    <strong style="font-size: 14px">John Doe</strong>
+                    <span
+                        style="font-size: 13px; opacity: 0.6; margin-left: 8px"
+                    >
+                        john@example.com
+                    </span>
+                </div>
+                <span
+                    style="
+                        font-size: 12px;
+                        padding: 4px 8px;
+                        background: var(--color_state_success);
+                        color: white;
+                        border-radius: 4px;
+                    "
+                >
+                    Online
+                </span>
+            </div>
+
+            <div
+                class="vcard vcard--compact"
+                style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    padding: 12px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 8px;
+                "
+            >
+                <div
+                    style="
+                        width: 40px;
+                        height: 40px;
+                        background: #f093fb;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 14px;
+                        font-weight: 600;
+                    "
+                >
+                    SJ
+                </div>
+                <div style="flex: 1">
+                    <strong style="font-size: 14px">Sarah Johnson</strong>
+                    <span
+                        style="font-size: 13px; opacity: 0.6; margin-left: 8px"
+                    >
+                        sarah@example.com
+                    </span>
+                </div>
+                <span
+                    style="
+                        font-size: 12px;
+                        padding: 4px 8px;
+                        background: var(--color_line_secondary);
+                        border-radius: 4px;
+                    "
+                >
+                    Away
+                </span>
+            </div>
+
+            <div
+                class="vcard vcard--compact"
+                style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    padding: 12px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 8px;
+                "
+            >
+                <div
+                    style="
+                        width: 40px;
+                        height: 40px;
+                        background: #4facfe;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 14px;
+                        font-weight: 600;
+                    "
+                >
+                    MK
+                </div>
+                <div style="flex: 1">
+                    <strong style="font-size: 14px">Mike Kim</strong>
+                    <span
+                        style="font-size: 13px; opacity: 0.6; margin-left: 8px"
+                    >
+                        mike@example.com
+                    </span>
+                </div>
+                <span
+                    style="
+                        font-size: 12px;
+                        padding: 4px 8px;
+                        background: var(--color_state_error);
+                        color: white;
+                        border-radius: 4px;
+                    "
+                >
+                    Busy
+                </span>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {# Business Card Style #} {% set section_title = "Business Card Style" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>Professional business card layout.</p>
+        {% set code_snippet %}
+        <div
+            class="vcard vcard--business"
+            style="
+                width: 350px;
+                padding: 32px;
+                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                border-radius: 16px;
+                color: white;
+                position: relative;
+                overflow: hidden;
+            "
+        >
+            <!-- Decorative element -->
+            <div
+                style="
+                    position: absolute;
+                    top: -50px;
+                    right: -50px;
+                    width: 150px;
+                    height: 150px;
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 50%;
+                "
+            ></div>
+
+            <div style="position: relative">
+                <div
+                    style="
+                        font-size: 24px;
+                        font-weight: 700;
+                        margin-bottom: 4px;
+                    "
+                >
+                    Robert Smith
+                </div>
+                <div
+                    style="font-size: 14px; opacity: 0.7; margin-bottom: 24px"
+                >
+                    Chief Technology Officer
+                </div>
+
+                <div
+                    style="
+                        display: flex;
+                        flex-direction: column;
+                        gap: 8px;
+                        font-size: 14px;
+                    "
+                >
+                    <div style="display: flex; align-items: center; gap: 12px">
+                        <span style="opacity: 0.5">📧</span>
+                        <span>robert@techcorp.io</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px">
+                        <span style="opacity: 0.5">📞</span>
+                        <span>+1 (555) 987-6543</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px">
+                        <span style="opacity: 0.5">🌐</span>
+                        <span>techcorp.io</span>
+                    </div>
+                </div>
+
+                <div
+                    style="
+                        margin-top: 24px;
+                        padding-top: 24px;
+                        border-top: 1px solid rgba(255, 255, 255, 0.1);
+                    "
+                >
+                    <div style="font-size: 18px; font-weight: 600">
+                        TechCorp
+                    </div>
+                    <div style="font-size: 13px; opacity: 0.6">
+                        Innovation through technology
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{%- endblock content %}

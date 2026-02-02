@@ -4,49 +4,54 @@
     role="region"
     aria-labelledby="section-{{ loop.index }}"
 >
-    <header class="sidebar__section__header">
-        <h2 id="section-{{ loop.index }}">{{ section.title }}</h2>
-    </header>
+    <details class="sidebar__accordion">
+        <summary class="sidebar__accordion__header">
+            <span class="sidebar__accordion__icon">▶</span>
+            <h2 id="section-{{ loop.index }}">{{ section.title }}</h2>
+        </summary>
 
-    {% for group in section.groups %}
-    <div
-        class="sidebar__subsection"
-        role="group"
-        aria-labelledby="group-{{ loop.index }}-{{ loop.parent.loop.index }}"
-        data-group="{{ group.data_group }}"
-    >
-        <h3 id="group-{{ loop.index }}-{{ loop.parent.loop.index }}">
-            {{ group.heading }}
-        </h3>
+        <div class="sidebar__accordion__content">
+            {% for group in section.groups %}
+            <details class="sidebar__accordion sidebar__accordion--nested">
+                <summary class="sidebar__accordion__header sidebar__accordion__header--nested">
+                    <span class="sidebar__accordion__icon">▶</span>
+                    <h3 id="group-{{ loop.index }}-{{ loop.parent.loop.index }}">
+                        {{ group.heading }}
+                    </h3>
+                </summary>
 
-        {% if group.description %}
-        <p
-            class="sidebar__subsection__description"
-            id="group-desc-{{ loop.index }}-{{ loop.parent.loop.index }}"
-        >
-            <small>{{ group.description }}</small>
-        </p>
-        {% endif %}
+                <div class="sidebar__accordion__content">
+                    {% if group.description %}
+                    <p
+                        class="sidebar__subsection__description"
+                        id="group-desc-{{ loop.index }}-{{ loop.parent.loop.index }}"
+                    >
+                        <small>{{ group.description }}</small>
+                    </p>
+                    {% endif %}
 
-        <ul
-            class="sidebar__subsection__list"
-            {%
-            if
-            group.description
-            %}
-            aria-describedby="group-desc-{{ loop.index }}-{{ loop.parent.loop.index }}"
-            {%
-            endif
-            %}
-        >
-            {% for item in group.items %}
-            <li>
-                {% set link = item[0] %} {% set label = item[1] %}
-                <a href="{{ link }}">{{ label }}</a>
-            </li>
+                    <ul
+                        class="sidebar__subsection__list"
+                        {%
+                        if
+                        group.description
+                        %}
+                        aria-describedby="group-desc-{{ loop.index }}-{{ loop.parent.loop.index }}"
+                        {%
+                        endif
+                        %}
+                    >
+                        {% for item in group.items %}
+                        <li>
+                            {% set link = item[0] %} {% set label = item[1] %}
+                            <a href="{{ link }}">{{ label }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </details>
             {% endfor %}
-        </ul>
-    </div>
-    {% endfor %}
+        </div>
+    </details>
 </section>
 {% endfor %}
