@@ -14,6 +14,9 @@ options:
       - config/**
     ignoredPaths:
       - node_modules/**
+      - src/html/**
+      - src/jinja/data/**
+      - dist/**
   logLevel: debug
 
 # =============================================================================
@@ -59,16 +62,19 @@ stages:
             declarationDir: "./dist/types"
             emitDeclarationOnly: false
 
-      # Render Templates
+      # Generate Sections JSON (auto-generate navigation from folder structure)
+      # -----------------------------------------------------------------
+      - name: GenerateSections
+        action: RunScriptAction
+        options:
+          scriptPath: "./bin/generate_sections.mjs"
+
+      # Render Templates (recursive with mirrored output structure)
       # -----------------------------------------------------------------
       - name: RenderTemplates
-        action: TemplateRenderAction
+        action: RunScriptAction
         options:
-          contextFiles:
-            - ./src/jinja/data/sections.json
-          templatesDir: "./src/jinja"
-          outputDir: "./src/html"
-          renderAllFromDir: true
+          scriptPath: "./bin/render_templates.mjs"
 
       # Compile TS to JS
       # -----------------------------------------------------------------
