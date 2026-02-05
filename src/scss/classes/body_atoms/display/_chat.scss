@@ -25,6 +25,10 @@
    Chat theme 1: Dark V1
 ========================= */
 
+@mixin bg_white {
+    background: #fff;
+}
+
 @mixin bodychat_1 {
     background: #f5f5f5;
     color: #111;
@@ -184,7 +188,7 @@
     max-width: 70%;
     align-self: center;
     margin-top: 10px;
-    background: #fff;
+    @include bg_white;
     color: #111;
 }
 
@@ -795,7 +799,7 @@
     @include fab_width_height;
     border: none;
     border-radius: 50%;
-    background: #fff;
+    @include bg_white;
     color: #111;
     cursor: pointer;
     display: grid;
@@ -918,4 +922,116 @@
     @include stagger_animation_5;
 }
 
-/*  */
+/* fab corner speed dial */
+.fab_corner {
+    @include margin_ish;
+}
+
+@mixin robins_dial {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 260px;
+    height: 260px;
+    z-index: 999;
+}
+
+.data-robins-dial {
+    @include robins_dial;
+}
+
+@mixin robins_position {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+@mixin robins_dial_main {
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.08);
+    @include bg_white;
+    cursor: pointer;
+    font: 700 22px/1 sans-serif;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+// /* main FAB */
+.robins_diag_fab {
+    @include robins_position;
+    @include fab_width_height;
+    @include robins_dial_main;
+}
+
+// /* actions wrapper */
+@mixin robins_actions {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+.robins_diag_actions {
+    @include robins_actions;
+}
+// action button //
+@mixin robinson_diag_actions {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.robins_diag_actions {
+    @include robinson_diag_actions;
+}
+
+@mixin robins_diag_actions {
+    @include fab_width_height;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.08);
+    @include bg_white;
+    font: 700 22px/1 sans-serif;
+    display: grid;
+    place-items: center;
+
+    @include opacity_0;
+    transform: translate(0, 0) scale(0.7);
+    transition:
+        transform 320ms cubic-bezier(0.2, 0.9, 0.2, 1),
+        opacity 180ms ease;
+}
+
+// /* action buttons
+//   width: 64px;
+//   height: 64px;
+//   border-radius: 50%;
+//   border: 2px solid rgba(0,0,0,.08);
+//   background: #fff;
+
+//   font: 700 22px/1 system-ui, sans-serif;
+//   display: grid;
+//   place-items: center;
+
+//   opacity: 0;
+//   transform: translate(0,0) scale(.7);
+//   transition:
+//     transform 320ms cubic-bezier(.2,.9,.2,1),
+//     opacity 180ms ease;
+// }
+
+// /* open state */
+// .diag-dial.is-open .diag-actions{ pointer-events: auto; }
+
+// .diag-dial.is-open .diag-action{
+//   opacity: 1;
+//   transform: translate(var(--dx), var(--dy)) scale(1);
+// }
+
+// /* positions (diagonal arc) */
+// .diag-action:nth-child(1){ --dx: -145px; --dy: -40px;  }
+// .diag-action:nth-child(2){ --dx: -175px; --dy: -105px; }
+// .diag-action:nth-child(3){ --dx: -130px; --dy: -165px; }
+// .diag-action:nth-child(4){ --dx: -45px;  --dy: -195px; }
+
+// /* stagger */
+// .diag-dial.is-open .diag-action:nth-child(1){ transition-delay: 0ms; }
+// .diag-dial.is-open .diag-action:nth-child(2){ transition-delay: 40ms; }
+// .diag-dial.is-open .diag-action:nth-child(3){ transition-delay: 80ms; }
+// .diag-dial.is-open .diag-action:nth-child(4){ transition-delay: 120ms; }
