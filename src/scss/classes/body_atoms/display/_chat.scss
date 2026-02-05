@@ -1,7 +1,8 @@
 /* =========================
-   Chat theme 1: Light V1
+   Chat Mixins
 ========================= */
 
+// Base mixins
 @mixin theme_chat_dark($bg: #000) {
     background: $bg;
     color: #fff;
@@ -20,13 +21,26 @@
     line-height: 1.4;
 }
 
-/* Chat container */
-.bodychat.dark {
+/* =========================
+   Chat theme 1: Dark V1
+========================= */
+
+@mixin bodychat_1 {
+    background: #f5f5f5;
+    color: #111;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+@mixin bodychat_1_dark {
     @include theme_chat_dark(#000);
 }
 
-/* LEFT message group (User) */
-.bodychat.dark .theme_chat_left_1 {
+@mixin theme_chat_left_1 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -50,8 +64,7 @@
     }
 }
 
-/* RIGHT message group (Support) */
-.bodychat.dark .theme_chat_right_1 {
+@mixin theme_chat_right_1 {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -78,8 +91,7 @@
     }
 }
 
-/* INPUT */
-.bodychat.dark .chat-input_delta {
+@mixin chat_input_delta {
     border: 1px solid #555;
     border-radius: 12px;
     padding: 10px 14px;
@@ -95,7 +107,7 @@
    Chat theme 2: Light Red/Blue
 ========================= */
 
-.themechat_2 {
+@mixin themechat_2 {
     background: #f2f2f2;
     color: #111;
     padding: 10px;
@@ -103,6 +115,270 @@
     flex-direction: column;
     gap: 10px;
     border: 1px solid #ccc;
+}
+
+@mixin theme_chat_left_2 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+
+    .chat-message_left {
+        background: #ffe5e5; /* light red */
+        color: #111;
+        padding: 10px 14px;
+        border-radius: 12px;
+        max-width: 70%;
+        margin: 0;
+    }
+
+    .chat_time_3 {
+        font-size: 12px;
+        color: #777;
+        margin: 4px 0 0;
+    }
+
+    .chat_name_3 {
+        font-size: 14px;
+        color: #b00000; /* red name */
+        margin: 2px 0 0;
+    }
+}
+
+@mixin theme_chat_right_2 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-end;
+
+    .chat-message {
+        background: #e6f0ff; /* light blue */
+        color: #111;
+        padding: 10px 14px;
+        border-radius: 12px;
+        max-width: 70%;
+        margin: 0;
+        text-align: right;
+    }
+
+    .chat_time_4 {
+        font-size: 12px;
+        color: #777;
+        margin: 4px 0 0;
+        text-align: right;
+    }
+
+    .chat_name_4 {
+        font-size: 14px;
+        color: #004aad; /* blue name */
+        margin: 2px 0 0;
+        text-align: right;
+    }
+}
+
+@mixin chat_input_alpha {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 10px 14px;
+    width: 100%;
+    max-width: 70%;
+    align-self: center;
+    margin-top: 10px;
+    background: #fff;
+    color: #111;
+}
+
+/* =========================
+   Chat theme 3: Power Rangers
+========================= */
+
+@mixin themechat_3 {
+    background: #f5f5f5;
+    color: #111;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+    border-radius: 8px;
+}
+
+@mixin theme_chat {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 14px;
+    border-radius: 12px;
+    max-width: 70%;
+
+    p {
+        margin: 0;
+    }
+
+    .chat_message {
+        line-height: 1.4;
+    }
+
+    .chat_time {
+        font-size: 10px;
+        opacity: 0.7;
+        margin-top: 4px;
+    }
+
+    .chat_name {
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 2px;
+    }
+}
+
+@mixin theme_chat_left {
+    align-self: flex-start;
+    background: #e74c3c; /* Red ranger */
+    color: #fff;
+    align-items: flex-start;
+
+    .chat_name {
+        color: #ffcccc;
+    }
+}
+
+@mixin theme_chat_right {
+    align-self: flex-end;
+    background: #3498db; /* Blue ranger */
+    color: #fff;
+    align-items: flex-end;
+    text-align: right;
+
+    .chat_name {
+        color: #cce5ff;
+    }
+}
+
+/* =========================
+   Chat theme 4: Gradient
+========================= */
+
+@mixin themechat_4 {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px;
+    border-radius: 16px;
+}
+
+@mixin theme_chat_4_base {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px;
+    border-radius: 16px;
+    max-width: 75%;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1); /* Default fallback */
+
+    p {
+        margin: 0;
+    }
+
+    .chat_message {
+        line-height: 1.5;
+        font-size: 14px;
+    }
+
+    .chat_time {
+        font-size: 10px;
+        opacity: 0.6;
+        margin-top: 6px;
+    }
+
+    .chat_name {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 4px;
+    }
+}
+
+@mixin theme_chat_4_left {
+    align-self: flex-start;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    align-items: flex-start;
+    border-bottom-left-radius: 4px;
+
+    .chat_name {
+        color: #e0d4f7;
+    }
+}
+
+@mixin theme_chat_4_right {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: #fff;
+    align-items: flex-end;
+    text-align: right;
+    border-bottom-right-radius: 4px;
+
+    .chat_name {
+        color: #ffe0e6;
+    }
+}
+
+/* =========================
+   Responsive Mixin
+========================= */
+
+@mixin responsive_chat {
+    @media (max-width: 768px) {
+        .theme_chat {
+            padding: 8px 12px;
+
+            .chat_message {
+                font-size: 14px;
+            }
+
+            .chat_time {
+                font-size: 9px;
+            }
+
+            .chat_name {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+/* =========================
+   Classes using Mixins
+========================= */
+
+// Theme 1 Classes
+.bodychat_1 {
+    @include bodychat_1;
+}
+
+.bodychat_1.dark {
+    @include bodychat_1_dark;
+}
+
+.bodychat.dark .theme_chat_left_1 {
+    @include theme_chat_left_1;
+}
+
+.bodychat.dark .theme_chat_right_1 {
+    @include theme_chat_right_1;
+}
+
+.bodychat.dark .chat-input_delta {
+    @include chat_input_delta;
+}
+
+// Theme 2 Classes
+.themechat_2 {
+    @include themechat_2;
 
     .theme_chat_left_2,
     .theme_chat_right_2 {
@@ -112,67 +388,534 @@
     }
 
     .theme_chat_left_2 {
-        align-items: flex-start;
-
-        .chat-message_left {
-            background: #ffe5e5; /* light red */
-            color: #111;
-            padding: 10px 14px;
-            border-radius: 12px;
-            max-width: 70%;
-            margin: 0;
-        }
-
-        .chat_time_3 {
-            font-size: 12px;
-            color: #777;
-            margin: 4px 0 0;
-        }
-
-        .chat_name_3 {
-            font-size: 14px;
-            color: #b00000; /* red name */
-            margin: 2px 0 0;
-        }
+        @include theme_chat_left_2;
     }
 
     .theme_chat_right_2 {
-        align-items: flex-end;
-
-        .chat-message {
-            background: #e6f0ff; /* light blue */
-            color: #111;
-            padding: 10px 14px;
-            border-radius: 12px;
-            max-width: 70%;
-            margin: 0;
-            text-align: right;
-        }
-
-        .chat_time_4 {
-            font-size: 12px;
-            color: #777;
-            margin: 4px 0 0;
-            text-align: right;
-        }
-
-        .chat_name_4 {
-            font-size: 14px;
-            color: #004aad; /* blue name */
-            margin: 2px 0 0;
-            text-align: right;
-        }
+        @include theme_chat_right_2;
     }
 
     .chat-input_alpha {
-        border: 1px solid #ccc;
-        border-radius: 12px;
-        padding: 10px 14px;
-        width: 100%;
-        max-width: 70%;
-        align-self: center;
-        margin-top: 10px;
-        background: #fff;
-        color: #111;
+        @include chat_input_alpha;
     }
 }
+
+// Theme 3 Classes
+@mixin margin_top_robin {
+    margin-top: 20px;
+}
+
+.themechat_3 {
+    @include themechat_3;
+
+    .theme_chat {
+        @include themechat_4();
+
+        &.left {
+            @include theme_chat_left;
+        }
+
+        &.right {
+            @include theme_chat_right;
+        }
+    }
+}
+
+// Theme 4 Classes
+.themechat_4 {
+    @include themechat_4;
+
+    .theme_chat_4 {
+        @include theme_chat_4_base;
+
+        &.left {
+            @include theme_chat_4_left;
+        }
+
+        &.right {
+            @include theme_chat_4_right;
+        }
+    }
+}
+// Theme 6 but it works
+@mixin bgworks {
+    background-color: #667eea;
+    padding: 30px;
+    display: grid;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+@mixin workingmessage {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+@mixin workinguser_size {
+    font-size: 12px;
+}
+@mixin workinguser_r_color {
+    color: #f093fb;
+}
+@mixin workingheader {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    margin: 0;
+}
+@mixin workingh2 {
+    margin: 0;
+    color: whitesmoke;
+}
+.workingsection {
+    @include bgworks;
+}
+.workingsection_title {
+    @include workingh2;
+}
+
+// avatar indicators
+@mixin avatar_indicators {
+    background-color: #000;
+    align-items: center;
+    justify-self: center;
+    text-transform: uppercase;
+    text-align: center;
+}
+.avatar_indicators {
+    @include avatar_indicators;
+}
+@mixin indicator_size {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@mixin workingr {
+    margin: 0;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.avatar_indicators_example {
+    @include indicator_size;
+    @include avatar_indicators;
+    @include workingr;
+}
+
+@mixin indibody {
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+    color: #fff;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+@mixin avatar_indicators {
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 30px;
+    height: 30px;
+}
+@mixin avatarcolorgreen {
+    background-color: #00fa9a;
+}
+.avatar_indicator.online {
+    @include avatar_indicators;
+    @include avatarcolorgreen;
+}
+.avatar_indicator.offline {
+    @include avatar_indicators;
+    background-color: #f44336; /* Red for offline */
+}
+.avatar_indicator.busy {
+    @include avatar_indicators;
+    background-color: #cc5500; /* Orange for busy */
+}
+.avatar_indicator.away {
+    @include avatar_indicators;
+    background-color: #4169e1; /* Blue for away */
+}
+.avatarsbody {
+    @include indibody;
+}
+@mixin avatarpreview {
+    .status-dot {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        box-sizing: border-box;
+    }
+}
+
+@mixin avatarsize {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+@mixin placeholder_indicator {
+    margin-bottom: 72px;
+    border-color: white;
+    border: 4px solid;
+    margin-left: 59px;
+}
+.placeholder_indicator {
+    @include placeholder_indicator;
+    @include avatarcolorgreen;
+    @include avatarsize;
+}
+
+/* icon swaps */
+@mixin icon_body {
+    display: flex;
+    flex-direction: column;
+}
+
+.swaps_icon_header {
+    @include workingh2;
+}
+.swap_icons_body {
+    @include icon_body;
+}
+@mixin icon_alignment {
+    align-items: center;
+    align-self: center;
+}
+@mixin swap_icon_item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border: white solid 2px;
+    background: none;
+    cursor: pointer;
+}
+
+@mixin toggle_standard_button {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    transition:
+        transform 0.35s ease,
+        opacity 0.25s ease;
+}
+
+.icon_swap {
+    @include swap_icon_item;
+    @include icon_alignment;
+}
+
+.icon_a,
+.icon_b {
+    @include toggle_standard_button;
+}
+
+@mixin irobin_icon_a {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+@mixin irobin_icon_b {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+}
+
+/* default state */
+.icon_a {
+    @include irobin_icon_a;
+}
+
+.icon_b {
+    @include irobin_icon_b;
+}
+
+@mixin active_swapped_1 {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+}
+@mixin active_swapped_2 {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* active (swapped) state */
+.icon_swap.is-active .icon_a {
+    @include active_swapped_1;
+}
+
+.icon_swap.is-active .icon_b {
+    @include active_swapped_2;
+}
+
+// Speed Dial (FAB)
+/* Position bottom-right */
+@mixin margin_ish {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+@mixin margin_ish_ult {
+    margin-top: 230px;
+    margin-bottom: 180px;
+}
+@mixin margin_ish_bottom {
+    margin-bottom: 30px;
+}
+@mixin fab_width_height {
+    width: 100px;
+    height: 100px;
+}
+.speed_dial_robin {
+    @include icon_body;
+    @include margin_ish;
+}
+.swaps_icon_header {
+    @include workingh2;
+    @include margin_ish_bottom;
+}
+
+@mixin fab_start {
+    position: relative;
+
+    bottom: 20px;
+    @include fab_width_height;
+    z-index: 999;
+    align-self: center;
+}
+
+.fab-wrap {
+    @include fab_start;
+    @include margin_ish_ult;
+}
+/* Main FAB */
+
+@mixin fab_rob {
+    position: relative;
+    inset: 0;
+    @include fab_width_height;
+    margin: auto;
+    border: none;
+    border-radius: 50%;
+    background: #111; /* change later */
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 200ms ease;
+}
+.fab {
+    @include fab_rob;
+}
+@mixin fab_transform_a {
+    transform: scale(0.98);
+}
+.fab:active {
+    @include fab_transform_a;
+}
+
+@mixin fab_icons {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    transition:
+        transform 260ms ease,
+        opacity 200ms ease;
+}
+
+/* icon swap inside FAB */
+
+.fab__icon {
+    @include fab_icons;
+}
+@mixin opa_0 {
+    opacity: 0;
+}
+@mixin opa_1 {
+    opacity: 1;
+}
+@mixin fab_icon_open {
+    @include opa_1;
+    transform: rotate(0deg) scale(1);
+}
+
+@mixin fab_icon_close {
+    @include opa_0;
+    transform: rotate(-90deg) scale(0.6);
+}
+@mixin fab_icon_close_active {
+    @include opa_0;
+    transform: rotate(90deg) scale(0.6);
+}
+
+.fab__icon--open {
+    @include fab_icon_open;
+}
+
+.fab__icon--close {
+    @include fab_icon_close;
+}
+
+/* Active state swaps icons */
+.fab-wrap.is-open .fab__icon--open {
+    @include fab_icon_close_active;
+}
+
+.fab-wrap.is-open .fab__icon--close {
+    @include fab_icon_open;
+}
+
+/* Flower container */
+@mixin fab_flower {
+    position: absolute;
+    inset: 0;
+    @include fab_width_height;
+    margin: auto;
+    pointer-events: none; /* only enable when open */
+}
+
+.flower {
+    @include fab_flower;
+}
+
+@mixin petals {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include fab_width_height;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    color: #111;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+
+    /* hidden by default */
+    @include opa_0;
+    transform: translate(-50%, -50%) translate(0, 0) scale(0.6);
+    transition:
+        transform 320ms cubic-bezier(2, 0.9, 0.2, 1),
+        opacity 200ms ease;
+}
+
+/* Petal buttons (actions) */
+.petal {
+    @include petals;
+}
+
+/* Open: enable clicking */
+@mixin fab_flower_open {
+    pointer-events: auto;
+}
+.fab-wrap.is-open .flower {
+    @include fab_flower_open;
+}
+
+/* --- Flower positions (5 petals) --- */
+/* distance from center */
+@mixin flower_positions {
+    --petal-radius: 150px;
+}
+
+:root {
+    @include flower_positions;
+}
+
+@mixin open_petals {
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(1);
+}
+
+.fab-wrap.is-open .petal {
+    @include opa_1;
+    @include open_petals;
+}
+
+@mixin petal_setting_1 {
+    --tx: 0px;
+    --ty: calc(var(--petal-radius) * -1);
+}
+
+@mixin petal_setting_2 {
+    --tx: calc(var(--petal-radius) * 0.95);
+    --ty: calc(var(--petal-radius) * -0.31);
+}
+@mixin petal_setting_3 {
+    --tx: calc(var(--petal-radius) * 0.59);
+    --ty: calc(var(--petal-radius) * 0.81);
+}
+@mixin petal_setting_4 {
+    --tx: calc(var(--petal-radius) * -0.59);
+    --ty: calc(var(--petal-radius) * 0.81);
+}
+@mixin petal_setting_5 {
+    --tx: calc(var(--petal-radius) * -0.95);
+    --ty: calc(var(--petal-radius) * -0.31);
+}
+
+/* place each petal by setting --tx/--ty */
+.petal:nth-child(1) {
+    @include petal_setting_1;
+}
+.petal:nth-child(2) {
+    @include petal_setting_2;
+}
+.petal:nth-child(3) {
+    @include petal_setting_3;
+}
+.petal:nth-child(4) {
+    @include petal_setting_4;
+}
+.petal:nth-child(5) {
+    @include petal_setting_5;
+}
+
+@mixin stagger_animation {
+    transition-delay: 10ms;
+}
+
+@mixin stagger_animation_2 {
+    transition-delay: 50ms;
+}
+
+@mixin stagger_animation_3 {
+    transition-delay: 80ms;
+}
+
+@mixin stagger_animation_4 {
+    transition-delay: 100ms;
+}
+
+@mixin stagger_animation_5 {
+    transition-delay: 140ms;
+}
+
+/* stagger animation */
+.fab-wrap.is-open .petal:nth-child(1) {
+    @include stagger_animation;
+}
+.fab-wrap.is-open .petal:nth-child(2) {
+    @include stagger_animation_2;
+}
+.fab-wrap.is-open .petal:nth-child(3) {
+    @include stagger_animation_3;
+}
+.fab-wrap.is-open .petal:nth-child(4) {
+    @include stagger_animation_4;
+}
+.fab-wrap.is-open .petal:nth-child(5) {
+    @include stagger_animation_5;
+}
+
+/*  */
