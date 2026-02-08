@@ -43,13 +43,57 @@ stages:
           outputFile: "./dist/css/stylescape.min.css"
           styleOption: "compressed"
 
-      # Build JS bundles + sourcemaps (Vite bundling - ESM + IIFE)
-      # Note: Kept as RunScriptAction since Vite bundling is complex
+      # Build JS bundles + sourcemaps (ESM + IIFE) via tsup
       # -----------------------------------------------------------------
-      - name: BuildJS
-        action: RunScriptAction
+      - name: BuildJSEsm
+        action: BundleAction
         options:
-          scriptPath: "./bin/build_js.mjs"
+          entry:
+            stylescape: "./src/ts/index.ts"
+            index: "./src/ts/index.ts"
+          outDir: "./dist/js"
+          format: esm
+          sourcemap: true
+          minify: false
+          dts: false
+          clean: false
+
+      - name: BuildJSEsmMin
+        action: BundleAction
+        options:
+          entry:
+            stylescape.min: "./src/ts/index.ts"
+            index.min: "./src/ts/index.ts"
+          outDir: "./dist/js"
+          format: esm
+          sourcemap: true
+          minify: true
+          dts: false
+          clean: false
+
+      - name: BuildJSIife
+        action: BundleAction
+        options:
+          entry:
+            stylescape.iife: "./src/ts/index.ts"
+          outDir: "./dist/js"
+          format: iife
+          sourcemap: true
+          minify: false
+          dts: false
+          clean: false
+
+      - name: BuildJSIifeMin
+        action: BundleAction
+        options:
+          entry:
+            stylescape.iife.min: "./src/ts/index.ts"
+          outDir: "./dist/js"
+          format: iife
+          sourcemap: true
+          minify: true
+          dts: false
+          clean: false
 
       # Build folder-based ESM modules (unbundled) + sourcemaps
       # -----------------------------------------------------------------
