@@ -1,0 +1,89 @@
+---
+# =============================================================================
+# Options
+# =============================================================================
+
+options:
+  mode: development
+  logLevel: info
+
+# =============================================================================
+# Stages
+# =============================================================================
+
+stages:
+  # Build
+  # =========================================================================
+  - name: Build
+    description: "Development build for stylescape"
+
+    steps:
+      # Clean dist directory
+      # -----------------------------------------------------------------
+      - name: CleanDistDirectory
+        action: DirectoryCleanAction
+        options:
+          dirPath: "./dist"
+
+      # Build CSS (expanded) via kist action
+      # -----------------------------------------------------------------
+      - name: BuildCSSExpanded
+        action: StyleProcessingAction
+        options:
+          inputFile: "./src/scss/index.scss"
+          outputFile: "./dist/css/stylescape.css"
+          styleOption: "expanded"
+
+      # Build JS bundles + sourcemaps (ESM + IIFE) via tsup
+      # -----------------------------------------------------------------
+      - name: BuildJSEsm
+        action: BundleAction
+        options:
+          entry:
+            stylescape: "./src/ts/index.ts"
+            index: "./src/ts/index.ts"
+          outDir: "./dist/js"
+          format: esm
+          sourcemap: true
+          minify: false
+          dts: false
+          clean: false
+
+      - name: BuildJSIife
+        action: BundleAction
+        options:
+          entry:
+            stylescape.iife: "./src/ts/index.ts"
+          outDir: "./dist/js"
+          format: iife
+          sourcemap: true
+          minify: false
+          dts: false
+          clean: false
+
+      # Generate Sections JSON (auto-generate navigation from folder structure)
+      # -----------------------------------------------------------------
+      - name: GenerateSections
+        action: RunScriptAction
+        options:
+          scriptPath: "./bin/generate_sections.mjs"
+
+      # Render Templates via kist action
+      # -----------------------------------------------------------------
+      - name: RenderTemplates
+        action: TemplateRenderAction
+        options:
+          inputDir: "./src/jinja"
+          outputDir: "./src/html"
+          pattern: "**/*.html.jinja"
+          contextFiles:
+            - "./src/jinja/data/sections.json"
+          removeExtension: ".jinja"
+
+      # Copy rendered HTML to dist
+      # -----------------------------------------------------------------
+      - name: CopySrcHTML
+        action: DirectoryCopyAction
+        options:
+          srcDir: "./src/html"
+          destDir: "./dist/html"

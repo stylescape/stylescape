@@ -30,17 +30,7 @@
                     </p>
                     {% endif %}
 
-                    <ul
-                        class="sidebar__subsection__list"
-                        {%
-                        if
-                        group.description
-                        %}
-                        aria-describedby="group-desc-{{ loop.index }}-{{ loop.parent.loop.index }}"
-                        {%
-                        endif
-                        %}
-                    >
+                    <ul class="sidebar__subsection__list">
                         {% for item in group.items %}
                         <li>
                             {% set link = item[0] %} {% set label = item[1] %}
@@ -55,3 +45,4 @@
     </details>
 </section>
 {% endfor %}
+

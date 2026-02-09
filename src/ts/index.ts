@@ -57,5 +57,5 @@ export {
     type ComponentConfig,
     type ComponentHandler,
     type RegistryEntry,
-    type StylescapeGlobal,
+    type StylescapeGlobal
 } from "./init/index.js";
