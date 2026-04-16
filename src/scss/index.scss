@@ -35,9 +35,8 @@
 // Imports
 // ============================================================================
 
-// Note: "dev" is NOT forwarded directly - it's included via "variables" module
-// Forwarding both causes "Two forwarded modules both define..." conflicts
-@use "dev" as _dev;
+// Forward dev utilities (external packages: unit.gl, hue.gl)
+@forward "dev";
 
 @forward "functions" hide px-to-rem, rem-to-px, px-to-em, strip-unit,
     modular-scale, fluid-value, tint, shade, tone;
