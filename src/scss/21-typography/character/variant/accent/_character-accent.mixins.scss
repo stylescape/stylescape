@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "./character-accent.config" as config;
+
+////
+/// Character Variant — Accent
+/// Mixins
+////
+
+@mixin ss-character-accent($override: ()) {
+    $settings: map.merge(config.$ss-character-accent-config, $override);
+
+    color: map.get($settings, accent-color);
+}
+
+@mixin ss-character-primary($override: ()) {
+    $settings: map.merge(config.$ss-character-accent-config, $override);
+
+    color: map.get($settings, primary-color);
+}
+
+@mixin ss-character-highlight($override: ()) {
+    $settings: map.merge(config.$ss-character-accent-config, $override);
+
+    background-color: map.get($settings, highlight-bg);
+    color: map.get($settings, highlight-color);
+    padding-inline: map.get($settings, highlight-padding-inline);
+}

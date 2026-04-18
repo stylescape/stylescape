@@ -1,0 +1,55 @@
+////
+///
+/// Paragraph Lead Mixins
+/// ===========================================================================
+///
+/// Mixins for lead/intro paragraph styles.
+///
+/// @group Typography.Paragraph.Hierarchy.Lead
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-lead.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base lead paragraph styles
+@mixin paragraph-lead-base {
+    $cfg: config.$ss-paragraph-lead-config;
+
+    font-size: map.get($cfg, font-size);
+    line-height: map.get($cfg, line-height);
+    font-weight: map.get($cfg, font-weight);
+    color: map.get($cfg, color);
+    max-width: map.get($cfg, max-width);
+}
+
+/// Lead paragraph with spacing
+@mixin paragraph-lead-spaced {
+    $cfg: config.$ss-paragraph-lead-config;
+
+    @include paragraph-lead-base;
+    margin-block-end: map.get($cfg, margin-block-end);
+
+    &:last-child {
+        margin-block-end: 0;
+    }
+}
+
+/// Lead paragraph size variant
+/// @param {String} $size - Size name
+@mixin paragraph-lead-size($size) {
+    $sizes: config.$ss-paragraph-lead-sizes;
+    $variant: map.get($sizes, $size);
+
+    @if $variant {
+        font-size: map.get($variant, font-size);
+    }
+}

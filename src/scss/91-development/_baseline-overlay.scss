@@ -1,0 +1,61 @@
+////
+///
+/// Baseline Overlay
+/// ===========================================================================
+///
+/// Development tool to visualize the baseline grid.
+/// Imported only in dev build. No @layer.
+///
+/// @group Dev.Baseline
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Configuration
+// ============================================================================
+
+$ss-baseline-overlay-color: rgb(255 0 0 / 0.1) !default;
+$ss-baseline-overlay-size: var(--ss-baseline, 0.25rem) !default;
+
+// ============================================================================
+// Mixin
+// ============================================================================
+
+/// Apply baseline grid overlay to an element
+@mixin baseline-overlay {
+    background-image: linear-gradient(
+        to bottom,
+        $ss-baseline-overlay-color 1px,
+        transparent 1px
+    );
+    background-size: 100% $ss-baseline-overlay-size;
+}
+
+/// Apply baseline grid overlay to the entire page
+@mixin baseline-overlay-body {
+    body {
+        @include baseline-overlay;
+    }
+}
+
+// ============================================================================
+// Debug Class
+// ============================================================================
+
+.ss-debug-baseline {
+    @include baseline-overlay;
+}
+
+// Enable via data attribute
+[data-ss-debug="baseline"] {
+    @include baseline-overlay;
+}
+
+// Enable on body via data attribute
+body[data-ss-debug="baseline"] {
+    @include baseline-overlay;
+}

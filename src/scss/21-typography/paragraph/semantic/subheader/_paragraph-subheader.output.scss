@@ -1,0 +1,24 @@
+@use "../../../../01-core/prefix" as *;
+@use "./paragraph-subheader.mixins" as sub;
+
+@layer ss.typography {
+    .#{$ss-prefix-typography}-subheader {
+        @include sub.ss-subheader();
+    }
+
+    .#{$ss-prefix-typography}-subheader--center {
+        @include sub.ss-subheader($align: center);
+    }
+
+    .#{$ss-prefix-typography}-subheader--caps {
+        @include sub.ss-subheader($caps: true);
+    }
+
+    .#{$ss-prefix-typography}-subheader--h3 {
+        @include sub.ss-subheader($size: h3);
+    }
+
+    .#{$ss-prefix-typography}-subheader--bold {
+        @include sub.ss-subheader($weight: bold);
+    }
+}

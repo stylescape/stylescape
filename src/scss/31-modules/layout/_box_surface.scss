@@ -1,0 +1,38 @@
+// ============================================================================
+// Elements | Surface Boxes
+// ============================================================================
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+@use "../../soul_object" as *;
+
+// Surface Box Base
+// ----------------------------------------------------------------------------
+
+///
+/// Base mixin for any surface box.
+/// Applies box styles using the given surface level (1, 2, or 3).
+///
+/// @param {Number} $level - Surface depth level (1–3)
+/// @param {String} $radius [baseline(1)] - Optional border radius
+///
+@mixin box--surface($level: 1, $radius: baseline(1)) {
+    background-color: var(--color_surface_#{$level});
+    // border-radius: $radius;
+    color: var(--color_text_default);
+    // box-shadow: 0 q(1) q(3) rgba(0, 0, 0, 0.06);
+    // padding: baseline(2);
+    @include sizing--border;
+}
+
+@mixin box--surface_1 {
+    @include box--surface(1);
+}
+
+@mixin box--surface_2 {
+    @include box--surface(2);
+}
+
+@mixin box--surface_3 {
+    @include box--surface(3);
+}

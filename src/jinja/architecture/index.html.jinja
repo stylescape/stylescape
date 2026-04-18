@@ -1,0 +1,116 @@
+{% extends "../base.html.jinja" %}
+{% set title = "Architecture" %}
+{%- block title %}{{ title }} | StyleScape{%- endblock %}
+{%- block content %}
+
+<section class="page__hero">
+    <div class="hero__container">
+        <h1 class="page__title">StyleScape Architecture</h1>
+        <p class="page__subtitle">
+            Layered CSS architecture with numbered prefixes for explicit load order.
+        </p>
+    </div>
+</section>
+
+<section class="demo__section" data-label="Overview" data-level="1">
+    <header class="demo__section__header">
+        <h2>Layer Constitution</h2>
+    </header>
+    <div class="demo__subsection">
+        <p>
+            StyleScape uses a numbered prefix system for explicit CSS layer ordering.
+            Each layer has a specific role in the cascade and should be loaded in order.
+        </p>
+        <table class="ss-table">
+            <thead>
+                <tr>
+                    <th>Layer</th>
+                    <th>Purpose</th>
+                    <th>Demo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>01-core</code></td>
+                    <td>Governance, prefixes, external dependencies</td>
+                    <td><a href="01_core.html">View Demo</a></td>
+                </tr>
+                <tr>
+                    <td><code>11-reset</code></td>
+                    <td>Browser resets and normalization</td>
+                    <td><a href="11_reset.html">View Demo</a></td>
+                </tr>
+                <tr>
+                    <td><code>12-lexicon</code></td>
+                    <td>Design tokens (color, spacing, typography scales)</td>
+                    <td><a href="12_lexicon.html">View Demo</a></td>
+                </tr>
+                <tr>
+                    <td><code>13-rhythm</code></td>
+                    <td>Vertical rhythm and baseline grid</td>
+                    <td><a href="13_rhythm.html">View Demo</a></td>
+                </tr>
+                <tr>
+                    <td><code>21-typography</code></td>
+                    <td>Character and paragraph typography</td>
+                    <td><a href="21_typography.html">View Demo</a></td>
+                </tr>
+                <tr>
+                    <td><code>22-flow</code></td>
+                    <td>Content flow and spacing</td>
+                    <td><a href="22_flow.html">View Demo</a></td>
+                </tr>
+                <tr>
+                    <td><code>23-layout</code></td>
+                    <td>Grid, flexbox, and layout patterns</td>
+                    <td><a href="23_layout.html">View Demo</a></td>
+                </tr>
+                <tr>
+                    <td><code>24-appearance</code></td>
+                    <td>Visual appearance (borders, shadows, etc.)</td>
+                    <td><a href="24_appearance.html">View Demo</a></td>
+                </tr>
+                <tr>
+                    <td><code>31-modules</code></td>
+                    <td>Reusable component modules</td>
+                    <td><a href="31_modules.html">View Demo</a></td>
+                </tr>
+                <tr>
+                    <td><code>32-utilities</code></td>
+                    <td>Utility classes</td>
+                    <td><a href="32_utilities.html">View Demo</a></td>
+                </tr>
+                <tr>
+                    <td><code>33-overrides</code></td>
+                    <td>Final override layer</td>
+                    <td><a href="33_overrides.html">View Demo</a></td>
+                </tr>
+                <tr>
+                    <td><code>91-development</code></td>
+                    <td>Development-only styles</td>
+                    <td><a href="91_development.html">View Demo</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="demo__section" data-label="Layer Order" data-level="1">
+    <header class="demo__section__header">
+        <h2>CSS Layer Order</h2>
+    </header>
+    <div class="demo__subsection">
+        <pre><code>@layer ss.reset,
+       ss.lexicon,
+       ss.rhythm,
+       ss.typography,
+       ss.flow,
+       ss.layout,
+       ss.appearance,
+       ss.modules,
+       ss.utilities,
+       ss.overrides;</code></pre>
+    </div>
+</section>
+
+{%- endblock %}

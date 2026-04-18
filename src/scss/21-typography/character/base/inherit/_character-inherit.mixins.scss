@@ -1,0 +1,30 @@
+////
+///
+/// Character Normal Mixins
+/// ===========================================================================
+///
+/// Mixins for normal/standard character styles.
+///
+/// @group Typography.Character.Foundation.Normal
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./character-inherit.config" as config;
+
+@mixin ss-character-inherit {
+    font-family: map.get(config.$ss-character-inherit-config, font-family);
+    font-size: map.get(config.$ss-character-inherit-config, font-size);
+    font-weight: map.get(config.$ss-character-inherit-config, font-weight);
+    font-style: map.get(config.$ss-character-inherit-config, font-style);
+    line-height: map.get(config.$ss-character-inherit-config, line-height);
+    letter-spacing: map.get(
+        config.$ss-character-inherit-config,
+        letter-spacing
+    );
+    color: map.get(config.$ss-character-inherit-config, color);
+}

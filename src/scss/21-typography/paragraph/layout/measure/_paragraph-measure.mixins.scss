@@ -1,0 +1,72 @@
+////
+///
+/// Paragraph Measure Mixins
+/// ===========================================================================
+///
+/// Mixins for optimal paragraph line length (measure).
+///
+/// @group Typography.Paragraph.Layout.Measure
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-measure.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Custom measure
+/// @param {Length} $width - Maximum line width
+@mixin paragraph-measure($width: 65ch) {
+    max-width: $width;
+}
+
+/// Narrow measure (45ch)
+@mixin paragraph-measure-narrow {
+    $variant: map.get(config.$ss-paragraph-measure-variants, narrow);
+    max-width: map.get($variant, max-width);
+}
+
+/// Short measure (55ch)
+@mixin paragraph-measure-short {
+    $variant: map.get(config.$ss-paragraph-measure-variants, short);
+    max-width: map.get($variant, max-width);
+}
+
+/// Default measure (65ch)
+@mixin paragraph-measure-default {
+    $variant: map.get(config.$ss-paragraph-measure-variants, default);
+    max-width: map.get($variant, max-width);
+}
+
+/// Wide measure (75ch)
+@mixin paragraph-measure-wide {
+    $variant: map.get(config.$ss-paragraph-measure-variants, wide);
+    max-width: map.get($variant, max-width);
+}
+
+/// Full measure (100%)
+@mixin paragraph-measure-full {
+    $variant: map.get(config.$ss-paragraph-measure-variants, full);
+    max-width: map.get($variant, max-width);
+}
+
+/// Prose measure (centered, optimal width)
+@mixin paragraph-measure-prose {
+    $variant: map.get(config.$ss-paragraph-measure-variants, prose);
+    max-width: map.get($variant, max-width);
+    margin-inline: map.get($variant, margin-inline);
+}
+
+/// Centered measure
+@mixin paragraph-measure-centered {
+    $variant: map.get(config.$ss-paragraph-measure-variants, centered);
+    max-width: map.get($variant, max-width);
+    margin-inline: map.get($variant, margin-inline);
+    text-align: map.get($variant, text-align);
+}

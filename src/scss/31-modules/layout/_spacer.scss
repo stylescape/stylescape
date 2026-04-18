@@ -1,0 +1,117 @@
+@use "../../../dev" as *;
+
+// ============================================================================
+// Spacer Components
+// Flexible spacing elements for layouts
+// ============================================================================
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+// Vertical Spacer - creates vertical space
+@mixin spacer_vertical {
+    display: block;
+    width: 100%;
+}
+
+@mixin spacer_vertical--xs {
+    height: q(4);
+}
+
+@mixin spacer_vertical--sm {
+    height: q(8);
+}
+
+@mixin spacer_vertical--md {
+    height: q(16);
+}
+
+@mixin spacer_vertical--lg {
+    height: q(24);
+}
+
+@mixin spacer_vertical--xl {
+    height: q(32);
+}
+
+@mixin spacer_vertical--2xl {
+    height: q(48);
+}
+
+@mixin spacer_vertical--3xl {
+    height: q(64);
+}
+
+@mixin spacer_vertical--default {
+    height: q(16);
+}
+
+// Horizontal Spacer - creates horizontal space (inline)
+@mixin spacer_horizontal {
+    display: inline-block;
+    height: 100%;
+}
+
+@mixin spacer_horizontal--xs {
+    width: q(4);
+}
+
+@mixin spacer_horizontal--sm {
+    width: q(8);
+}
+
+@mixin spacer_horizontal--md {
+    width: q(16);
+}
+
+@mixin spacer_horizontal--lg {
+    width: q(24);
+}
+
+@mixin spacer_horizontal--xl {
+    width: q(32);
+}
+
+@mixin spacer_horizontal--2xl {
+    width: q(48);
+}
+
+@mixin spacer_horizontal--3xl {
+    width: q(64);
+}
+
+@mixin spacer_horizontal--default {
+    width: q(16);
+}
+
+// Flexible Spacer - grows to fill available space
+@mixin spacer_flex {
+    flex-grow: 1;
+}
+
+// Divider Spacer - spacer with a line
+@mixin spacer_divider {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &::before {
+        content: "";
+        flex: 1;
+        height: q(1);
+        background: var(--color_border_01);
+    }
+}
+
+@mixin spacer_divider--vertical {
+    flex-direction: column;
+    height: 100%;
+    width: auto;
+
+    &::before {
+        height: auto;
+        width: q(1);
+        flex: 1;
+    }
+}

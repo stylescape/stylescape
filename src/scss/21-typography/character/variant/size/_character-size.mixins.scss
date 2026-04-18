@@ -1,0 +1,91 @@
+////
+///
+/// Character Size Mixins
+/// ===========================================================================
+///
+/// Mixins for font-size character variants.
+///
+/// @group Typography.Character.Variants.Size
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./character-size.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Apply specific font size
+/// @param {String} $size - Size name from config
+@mixin character-size($size) {
+    $sizes: config.$ss-character-size-config;
+
+    @if map.has-key($sizes, $size) {
+        font-size: map.get($sizes, $size);
+    }
+}
+
+/// Font size: xs
+@mixin character-size-xs {
+    font-size: map.get(config.$ss-character-size-config, xs);
+}
+
+/// Font size: sm
+@mixin character-size-sm {
+    font-size: map.get(config.$ss-character-size-config, sm);
+}
+
+/// Font size: base
+@mixin character-size-base {
+    font-size: map.get(config.$ss-character-size-config, base);
+}
+
+/// Font size: lg
+@mixin character-size-lg {
+    font-size: map.get(config.$ss-character-size-config, lg);
+}
+
+/// Font size: xl
+@mixin character-size-xl {
+    font-size: map.get(config.$ss-character-size-config, xl);
+}
+
+/// Font size: 2xl
+@mixin character-size-2xl {
+    font-size: map.get(config.$ss-character-size-config, 2xl);
+}
+
+/// Font size: 3xl
+@mixin character-size-3xl {
+    font-size: map.get(config.$ss-character-size-config, 3xl);
+}
+
+/// Font size: 4xl
+@mixin character-size-4xl {
+    font-size: map.get(config.$ss-character-size-config, 4xl);
+}
+
+/// Font size: 5xl
+@mixin character-size-5xl {
+    font-size: map.get(config.$ss-character-size-config, 5xl);
+}
+
+/// Font size: 6xl
+@mixin character-size-6xl {
+    font-size: map.get(config.$ss-character-size-config, 6xl);
+}
+
+/// Relative font size: smaller
+@mixin character-size-smaller {
+    font-size: smaller;
+}
+
+/// Relative font size: larger
+@mixin character-size-larger {
+    font-size: larger;
+}

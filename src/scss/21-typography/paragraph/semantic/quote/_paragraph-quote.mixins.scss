@@ -1,0 +1,91 @@
+////
+///
+/// Paragraph Quote Mixins
+/// ===========================================================================
+///
+/// Mixins for blockquote paragraph styles.
+///
+/// @group Typography.Paragraph.Semantic.Quote
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-quote.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base blockquote styles
+@mixin paragraph-quote-base {
+    $cfg: config.$ss-paragraph-quote-config;
+    
+    font-size: map.get($cfg, font-size);
+    line-height: map.get($cfg, line-height);
+    font-style: map.get($cfg, font-style);
+    font-weight: map.get($cfg, font-weight);
+    color: map.get($cfg, color);
+    padding-inline-start: map.get($cfg, padding-inline-start);
+    border-inline-start: map.get($cfg, border-inline-start);
+    margin-block: map.get($cfg, margin-block);
+}
+
+/// Simple quote (no border)
+@mixin paragraph-quote-simple {
+    $cfg: map.get(config.$ss-paragraph-quote-variants, simple);
+    $base: config.$ss-paragraph-quote-config;
+    
+    font-size: map.get($base, font-size);
+    line-height: map.get($base, line-height);
+    font-style: map.get($cfg, font-style);
+    border-inline-start: map.get($cfg, border-inline-start);
+    padding-inline-start: map.get($cfg, padding-inline-start);
+    margin-block: map.get($base, margin-block);
+}
+
+/// Highlighted quote with background
+@mixin paragraph-quote-highlight {
+    $cfg: map.get(config.$ss-paragraph-quote-variants, highlight);
+    $base: config.$ss-paragraph-quote-config;
+    
+    font-size: map.get($base, font-size);
+    line-height: map.get($base, line-height);
+    font-style: map.get($base, font-style);
+    background-color: map.get($cfg, background-color);
+    padding: map.get($cfg, padding);
+    border-radius: map.get($cfg, border-radius);
+    border-inline-start: map.get($cfg, border-inline-start);
+    margin-block: map.get($base, margin-block);
+}
+
+/// Pull quote (large, centered)
+@mixin paragraph-quote-pull {
+    $cfg: map.get(config.$ss-paragraph-quote-variants, pull);
+    $base: config.$ss-paragraph-quote-config;
+    
+    font-size: map.get($cfg, font-size);
+    font-weight: map.get($cfg, font-weight);
+    line-height: map.get($base, line-height);
+    text-align: map.get($cfg, text-align);
+    padding: map.get($cfg, padding);
+    border: map.get($cfg, border);
+    margin-block: map.get($base, margin-block);
+}
+
+/// Testimonial quote
+@mixin paragraph-quote-testimonial {
+    $cfg: map.get(config.$ss-paragraph-quote-variants, testimonial);
+    $base: config.$ss-paragraph-quote-config;
+    
+    font-size: map.get($cfg, font-size);
+    font-style: map.get($cfg, font-style);
+    line-height: map.get($base, line-height);
+    text-align: map.get($cfg, text-align);
+    padding: map.get($cfg, padding);
+    border: map.get($cfg, border);
+    margin-block: map.get($base, margin-block);
+}

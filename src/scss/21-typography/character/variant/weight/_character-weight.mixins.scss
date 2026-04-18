@@ -1,0 +1,88 @@
+////
+///
+/// Character Weight Mixins
+/// ===========================================================================
+///
+/// Mixins for font-weight character variants.
+///
+/// @group Typography.Character.Variants.Weight
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./character-weight.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Apply specific font weight
+/// @param {String} $weight - Weight name from config
+@mixin character-weight($weight) {
+    $weights: config.$ss-character-weight-config;
+
+    @if map.has-key($weights, $weight) {
+        font-weight: map.get($weights, $weight);
+    }
+}
+
+/// Font weight: thin (100)
+@mixin character-weight-thin {
+    font-weight: map.get(config.$ss-character-weight-config, thin);
+}
+
+/// Font weight: extralight (200)
+@mixin character-weight-extralight {
+    font-weight: map.get(config.$ss-character-weight-config, extralight);
+}
+
+/// Font weight: light (300)
+@mixin character-weight-light {
+    font-weight: map.get(config.$ss-character-weight-config, light);
+}
+
+/// Font weight: normal (400)
+@mixin character-weight-normal {
+    font-weight: map.get(config.$ss-character-weight-config, normal);
+}
+
+/// Font weight: medium (500)
+@mixin character-weight-medium {
+    font-weight: map.get(config.$ss-character-weight-config, medium);
+}
+
+/// Font weight: semibold (600)
+@mixin character-weight-semibold {
+    font-weight: map.get(config.$ss-character-weight-config, semibold);
+}
+
+/// Font weight: bold (700)
+@mixin character-weight-bold {
+    font-weight: map.get(config.$ss-character-weight-config, bold);
+}
+
+/// Font weight: extrabold (800)
+@mixin character-weight-extrabold {
+    font-weight: map.get(config.$ss-character-weight-config, extrabold);
+}
+
+/// Font weight: black (900)
+@mixin character-weight-black {
+    font-weight: map.get(config.$ss-character-weight-config, black);
+}
+
+// @use "sass:map";
+// @use "./character-weight.config" as config;
+
+// ////
+// /// Character Variant — Weight
+// /// Mixins
+// ////
+
+// @mixin ss-character-weight($key) {
+//   font-weight: map.get(config.$ss-character-weight-config, $key);
+// }

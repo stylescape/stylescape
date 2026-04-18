@@ -1,0 +1,103 @@
+{% extends "../base.html.jinja" %}
+{% set title = "24-Appearance" %}
+{%- block title %}{{ title }} | StyleScape Architecture{%- endblock %}
+{%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }} — Visual Appearance</h2>
+        <p>Backgrounds, borders, effects, and decorative styling.</p>
+    </header>
+
+    {% set section_title = "Background Colors" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <div class="demo__preview">
+            <div class="demo__preview__content" style="padding: var(--ss-space-4); display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--ss-space-3);">
+                <div class="ss-bg-primary" style="background: var(--ss-color-primary, #3b82f6); padding: var(--ss-space-4); color: white;">.ss-bg-primary</div>
+                <div class="ss-bg-secondary" style="background: var(--ss-color-secondary, #6366f1); padding: var(--ss-space-4); color: white;">.ss-bg-secondary</div>
+                <div class="ss-bg-surface" style="background: var(--ss-color-surface, #f8fafc); padding: var(--ss-space-4);">.ss-bg-surface</div>
+                <div class="ss-bg-muted" style="background: var(--ss-color-muted, #64748b); padding: var(--ss-space-4); color: white;">.ss-bg-muted</div>
+            </div>
+        </div>
+    </section>
+
+    {% set section_title = "Borders" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <div class="demo__preview">
+            <div class="demo__preview__content" style="padding: var(--ss-space-4); display: flex; gap: var(--ss-space-4); flex-wrap: wrap;">
+                <div style="border: 1px solid var(--ss-color-border, #e2e8f0); padding: var(--ss-space-4);">.ss-border</div>
+                <div style="border: 2px solid var(--ss-color-border, #e2e8f0); padding: var(--ss-space-4);">.ss-border-2</div>
+                <div style="border: 1px solid var(--ss-color-primary, #3b82f6); padding: var(--ss-space-4);">.ss-border-primary</div>
+                <div style="border-top: 4px solid var(--ss-color-primary, #3b82f6); border: 1px solid var(--ss-color-border, #e2e8f0); padding: var(--ss-space-4);">.ss-border-t-4</div>
+            </div>
+        </div>
+    </section>
+
+    {% set section_title = "Opacity" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <div class="demo__preview">
+            <div class="demo__preview__content" style="padding: var(--ss-space-4); display: flex; gap: var(--ss-space-4); flex-wrap: wrap; background: repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 10px, #e0e0e0 10px, #e0e0e0 20px);">
+                <div style="background: var(--ss-color-primary, #3b82f6); opacity: 1; padding: var(--ss-space-4); color: white;">100%</div>
+                <div style="background: var(--ss-color-primary, #3b82f6); opacity: 0.75; padding: var(--ss-space-4); color: white;">75%</div>
+                <div style="background: var(--ss-color-primary, #3b82f6); opacity: 0.5; padding: var(--ss-space-4); color: white;">50%</div>
+                <div style="background: var(--ss-color-primary, #3b82f6); opacity: 0.25; padding: var(--ss-space-4); color: white;">25%</div>
+            </div>
+        </div>
+    </section>
+
+    {% set section_title = "Transitions" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <div class="demo__preview">
+            <div class="demo__preview__content" style="padding: var(--ss-space-4); display: flex; gap: var(--ss-space-4); flex-wrap: wrap;">
+                <button style="background: var(--ss-color-primary, #3b82f6); color: white; padding: var(--ss-space-2) var(--ss-space-4); border: none; border-radius: var(--ss-radius-md, 0.375rem); cursor: pointer; transition: all 150ms ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Hover me (fast)</button>
+                <button style="background: var(--ss-color-primary, #3b82f6); color: white; padding: var(--ss-space-2) var(--ss-space-4); border: none; border-radius: var(--ss-radius-md, 0.375rem); cursor: pointer; transition: all 300ms ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Hover me (normal)</button>
+                <button style="background: var(--ss-color-primary, #3b82f6); color: white; padding: var(--ss-space-2) var(--ss-space-4); border: none; border-radius: var(--ss-radius-md, 0.375rem); cursor: pointer; transition: all 500ms ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Hover me (slow)</button>
+            </div>
+        </div>
+    </section>
+
+    {% set section_title = "Appearance Classes" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <table class="ss-table">
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>.ss-bg-{color}</code></td>
+                    <td>Background color</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-text-{color}</code></td>
+                    <td>Text color</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-border-{color}</code></td>
+                    <td>Border color</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-shadow-{size}</code></td>
+                    <td>Box shadow</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-opacity-{value}</code></td>
+                    <td>Opacity level</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-transition</code></td>
+                    <td>Default transition</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+{%- endblock %}

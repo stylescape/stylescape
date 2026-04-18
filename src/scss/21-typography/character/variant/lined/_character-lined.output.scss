@@ -1,0 +1,51 @@
+@use "../../../../01-core/prefix" as *;
+@use "./character-lined.mixins" as lined;
+
+@layer ss.typography {
+    // ---------------------------------------------------------------------------
+    // Base Variants
+    // ---------------------------------------------------------------------------
+
+    .#{$ss-prefix-typography}-underline {
+        @include lined.ss-character-underline();
+    }
+
+    .#{$ss-prefix-typography}-overline {
+        @include lined.ss-character-overline();
+    }
+
+    .#{$ss-prefix-typography}-line-through {
+        @include lined.ss-character-line-through();
+    }
+
+    // ---------------------------------------------------------------------------
+    // Alternate Color Variants
+    // ---------------------------------------------------------------------------
+
+    .#{$ss-prefix-typography}-underline-alt {
+        @include lined.ss-character-underline-alt();
+    }
+
+    .#{$ss-prefix-typography}-overline-alt {
+        @include lined.ss-character-overline-alt();
+    }
+
+    .#{$ss-prefix-typography}-line-through-alt {
+        @include lined.ss-character-line-through-alt();
+    }
+}
+
+// Optional Semantic Binding
+
+// @layer ss.typography {
+
+//   u {
+//     @include lined.ss-character-underline();
+//   }
+
+//   s,
+//   del {
+//     @include lined.ss-character-line-through();
+//   }
+
+// }

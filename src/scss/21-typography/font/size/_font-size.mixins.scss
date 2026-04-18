@@ -1,0 +1,19 @@
+@use "sass:map";
+@use "./font-size.config" as config;
+
+// -----------------------------------------------------------------------------
+// Core Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-font-size($step) {
+    $scale: map.get(config.$ss-font-size-config, scale);
+
+    @if map.has-key($scale, $step) {
+        $value: map.get($scale, $step);
+
+        font-size: basepoint($value);
+        line-height: baseline($value);
+    } @else {
+        @warn "Font size step `#{$step}` not found in scale.";
+    }
+}

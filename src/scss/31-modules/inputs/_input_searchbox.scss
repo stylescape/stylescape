@@ -1,0 +1,40 @@
+////
+///
+/// Searchbox Mixins
+/// ===========================================================================
+///
+/// Mixins for styling search input elements.
+///
+/// @group Mixins.BodyAtoms.Inputs
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.2.10
+/// @access public
+///
+////
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+
+@use "../../head_layout" as *;
+
+@use "../../soul_type" as *;
+
+/// Mixin for number input spin buttons
+/// @group Form
+@mixin input--number-spin-buttons {
+    height: auto; // Corrects the cursor style of increment and decrement buttons in Chrome
+}
+
+/// Mixin for search input styling
+/// @group Form
+@mixin input--search {
+    -webkit-appearance: textfield; // Corrects the odd appearance in Chrome and Safari
+    outline-offset: -q(2); // Corrects the outline style in Safari
+}
+
+/// Mixin to remove search decoration
+/// @group Form
+@mixin input--search-decoration {
+    -webkit-appearance: none; // Removes the inner padding in Chrome and Safari on macOS
+}

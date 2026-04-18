@@ -1,0 +1,96 @@
+////
+///
+/// Paragraph Dropcap Mixins
+/// ===========================================================================
+///
+/// Mixins for paragraph drop capitals.
+///
+/// @group Typography.Paragraph.Layout.Dropcap
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-dropcap.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base dropcap styles (applied to ::first-letter)
+@mixin paragraph-dropcap-base {
+    $cfg: config.$ss-paragraph-dropcap-config;
+    
+    float: map.get($cfg, float);
+    font-size: map.get($cfg, font-size);
+    line-height: map.get($cfg, line-height);
+    font-weight: map.get($cfg, font-weight);
+    margin-right: map.get($cfg, margin-right);
+    margin-bottom: map.get($cfg, margin-bottom);
+    color: map.get($cfg, color);
+}
+
+/// Apply dropcap to first letter
+@mixin paragraph-dropcap {
+    &::first-letter {
+        @include paragraph-dropcap-base;
+    }
+}
+
+/// Small dropcap
+@mixin paragraph-dropcap-small {
+    $variant: map.get(config.$ss-paragraph-dropcap-variants, small);
+    
+    &::first-letter {
+        @include paragraph-dropcap-base;
+        font-size: map.get($variant, font-size);
+    }
+}
+
+/// Large dropcap
+@mixin paragraph-dropcap-large {
+    $variant: map.get(config.$ss-paragraph-dropcap-variants, large);
+    
+    &::first-letter {
+        @include paragraph-dropcap-base;
+        font-size: map.get($variant, font-size);
+    }
+}
+
+/// Decorative dropcap
+@mixin paragraph-dropcap-decorative {
+    $variant: map.get(config.$ss-paragraph-dropcap-variants, decorative);
+    
+    &::first-letter {
+        @include paragraph-dropcap-base;
+        font-size: map.get($variant, font-size);
+        font-family: map.get($variant, font-family);
+        color: map.get($variant, color);
+    }
+}
+
+/// Boxed dropcap
+@mixin paragraph-dropcap-boxed {
+    $variant: map.get(config.$ss-paragraph-dropcap-variants, boxed);
+    
+    &::first-letter {
+        @include paragraph-dropcap-base;
+        background-color: map.get($variant, background-color);
+        padding: map.get($variant, padding);
+        line-height: map.get($variant, line-height);
+    }
+}
+
+/// Outlined dropcap
+@mixin paragraph-dropcap-outlined {
+    $variant: map.get(config.$ss-paragraph-dropcap-variants, outlined);
+    
+    &::first-letter {
+        @include paragraph-dropcap-base;
+        color: map.get($variant, color);
+        -webkit-text-stroke: map.get($variant, -webkit-text-stroke);
+    }
+}

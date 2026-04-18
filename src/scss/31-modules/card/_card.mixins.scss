@@ -1,0 +1,114 @@
+// ============================================================================
+// Card — Mixins
+// ============================================================================
+
+@use "sass:map";
+@use "./card.config" as config;
+
+// @mixin c-card-base {
+//   $cfg: config.$ss-card-config;
+
+//   padding: map.get($cfg, padding);
+//   border-radius: map.get($cfg, radius);
+//   box-shadow: map.get($cfg, shadow);
+
+//   background: var(--ss-card-bg, var(--ss-color-surface));
+//   color: var(--ss-card-color, var(--ss-color-text-primary));
+// }
+
+// @mixin c-card-variant($variant) {
+//   @if $variant == "elevated" {
+//     box-shadow: var(--ss-shadow-lg);
+//   }
+// }
+
+// ============================================================================
+
+// @mixin c-card-base {
+//     $cfg: config.$ss-card-config;
+
+//     // Define component-level runtime variables
+//     --ss-card-padding: var(--ss-space-#{map.get($cfg, padding-token)});
+//     --ss-card-radius: var(--ss-radius-#{map.get($cfg, radius-token)});
+//     --ss-card-shadow: var(--ss-shadow-#{map.get($cfg, shadow-token)});
+//     --ss-card-bg: var(--ss-color-surface);
+//     --ss-card-color: var(--ss-color-text-primary);
+
+//     // Apply them
+//     padding: var(--ss-card-padding);
+//     border-radius: var(--ss-card-radius);
+//     box-shadow: var(--ss-card-shadow);
+//     background: var(--ss-card-bg);
+//     color: var(--ss-card-color);
+// }
+
+// @mixin c-card-variant($variant) {
+//     @if $variant == "elevated" {
+//         --ss-card-shadow: var(--ss-shadow-md);
+//     }
+
+//     @if $variant == "flat" {
+//         --ss-card-shadow: none;
+//     }
+// }
+
+@mixin c-card-base {
+    $cfg: config.$ss-card-config;
+
+    --ss-card-padding: var(--ss-space-#{map.get($cfg, padding-token)});
+    --ss-card-radius: var(--ss-radius-#{map.get($cfg, radius-token)});
+    --ss-card-shadow: var(--ss-shadow-#{map.get($cfg, shadow-token)});
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+
+    padding: var(--ss-card-padding);
+    border-radius: var(--ss-card-radius);
+    box-shadow: var(--ss-card-shadow);
+
+    background: var(--ss-card-bg, var(--ss-color-surface));
+    color: var(--ss-card-color, var(--ss-color-text-primary));
+    border: map.get($cfg, border-width) solid var(--ss-color-line-secondary);
+}
+
+// Variants
+
+@mixin c-card-variant($variant) {
+    @if $variant == "elevated" {
+        --ss-card-shadow: var(--ss-shadow-md);
+        border: none;
+    }
+
+    @if $variant == "flat" {
+        --ss-card-shadow: none;
+        border: none;
+    }
+
+    @if $variant == "outlined" {
+        border-width: 2px;
+    }
+}
+
+// Parts
+
+@mixin c-card-header {
+    padding-bottom: var(--ss-space-md);
+    border-bottom: 1px solid var(--ss-color-line-primary);
+}
+
+@mixin c-card-body {
+    flex: 1 1 auto;
+}
+
+@mixin c-card-footer {
+    padding-top: var(--ss-space-md);
+    border-top: 1px solid var(--ss-color-line-primary);
+}
+
+@mixin c-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}

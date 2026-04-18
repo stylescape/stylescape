@@ -1,0 +1,55 @@
+@use "sass:map";
+@use "./pull-quote.config" as config;
+
+// ----------------------------------------------------------------------------
+// Base Container
+// ----------------------------------------------------------------------------
+
+@mixin ss-pull-quote {
+    $c: config.$ss-pull-quote-config;
+
+    display: block;
+    margin: map.get($c, margin);
+    padding-inline-start: map.get($c, padding-inline-start);
+
+    border-inline-start-width: map.get($c, border-width);
+    border-inline-start-style: map.get($c, border-style);
+    border-inline-start-color: map.get($c, border-color);
+}
+
+// ----------------------------------------------------------------------------
+// Text
+// ----------------------------------------------------------------------------
+
+@mixin ss-pull-quote__text {
+    $c: config.$ss-pull-quote-config;
+
+    font-family: map.get($c, text-font-family);
+    font-size: map.get($c, text-font-size);
+    font-weight: map.get($c, text-font-weight);
+    line-height: map.get($c, text-line-height);
+
+    display: block;
+}
+
+// ----------------------------------------------------------------------------
+// Attribution
+// ----------------------------------------------------------------------------
+
+@mixin ss-pull-quote__attribution {
+    $c: config.$ss-pull-quote-config;
+
+    font-size: map.get($c, attribution-font-size);
+    color: map.get($c, attribution-color);
+}
+
+// ----------------------------------------------------------------------------
+// Decorative Variant
+// ----------------------------------------------------------------------------
+
+@mixin ss-pull-quote--elevated {
+    background: var(--ss-color-surface-muted);
+    border-width: 6px;
+    padding: var(--ss-space-8);
+    border-radius: var(--ss-radius-md);
+}

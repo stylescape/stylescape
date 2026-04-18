@@ -1,0 +1,67 @@
+////
+///
+/// Mark Character Typography Mixins Module
+/// ===========================================================================
+///
+/// @group Character
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+// @use "../../mixins" as *;
+
+@use "../../font/font/font_default" as *;
+@use "../../font/font/font_weight" as *;
+@use "../../font/font/font_size" as *;
+
+@use "base_default" as *;
+@use "base_normal" as *;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+// ============================================================================
+// Typography | Character | Mark
+// ============================================================================
+
+// Color Variables
+$color_mark_text: var(--color_surface_primary); // Fallback for white color
+$color_mark_bg: #ff0; // Fallback for a yellow highlight, typical for <mark>
+
+/// Theme color overrides.
+///
+/// These variables define the default colors for marked text and background,
+/// which can be overridden if needed.
+$color_white: $color_mark_text !default;
+$color_accent_1: $color_mark_bg !default;
+
+///
+/// Mixin for styling `<mark>` elements.
+/// ---------------------------------------------------------------------------
+///
+/// This mixin styles the `<mark>` element, applying text color, background
+/// color, padding, and optional rounded corners.
+///
+/// @param {Color} $text_color [$color_white] - The color of the text inside
+/// the `<mark>` element.
+/// @param {Color} $bg_color [color_accent_1] - The background color of the `<mark>` element.
+///
+@mixin mark_style($text_color: $color_white, $bg_color: $color_accent_1) {
+    color: $text_color;
+    background-color: $bg_color;
+    padding: 0Q (32); // Adds padding for better readability
+    border-radius: q(4); // Optional: Adds rounded corners
+}
+
+// Note: Tag-level styles for mark have been moved to src/scss/tags/_inline.scss

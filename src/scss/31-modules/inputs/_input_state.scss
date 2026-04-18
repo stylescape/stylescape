@@ -1,0 +1,113 @@
+// ============================================================================
+// Elements | Form
+// ============================================================================
+
+@use "sass:map";
+@use "sass:list";
+@use "sass:color";
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+@use "../../soul_type" as *;
+
+/// @group Form
+
+// ----------------------------------------------------------------------------
+// Additional States
+// ----------------------------------------------------------------------------
+// Default
+// Hover
+// Focus
+// Typing
+// Entered
+// Disabled
+// Error
+// Error focus
+
+// ----------------------------------------------------------------------------
+// State Mixins
+// ----------------------------------------------------------------------------
+
+@mixin input--state--focus {
+    // outline-color: var(--color_accent_primary);
+    // border-color: transparent !important;
+    box-shadow: 0 0 0 q(1) var(--color_accent_primary);
+    @content;
+
+    outline: none;
+
+    &:focus-visible {
+        outline-color: var(--color_accent_primary);
+        box-shadow: 0 0 0 q(1) var(--color_accent_primary);
+    }
+}
+
+@mixin input--state--visible {
+    // background-color: var(--color_disabled_bg);
+    // color: var(--color_state_muted);
+    // cursor: not-allowed;
+    @content;
+}
+
+@mixin input--state--disabled {
+    background-color: var(--color_disabled_bg);
+    color: var(--color_state_muted);
+    cursor: not-allowed;
+    @content;
+}
+
+@mixin input--state--readonly {
+    background-color: var(--color_readonly_bg);
+    color: var(--color_state_muted);
+    cursor: default;
+    @content;
+}
+
+@mixin input--state--optional {
+    border-color: var(--color_accent_secondary);
+    @content;
+}
+
+@mixin input--state--required {
+    border-color: var(--color_accent_secondary);
+    @content;
+}
+
+@mixin input--state--invalid {
+    border-color: var(--color_log_error);
+    background-color: hue_color("N3601");
+    color: var(--color_log_error);
+    @content;
+}
+
+// ----------------------------------------------------------------------------
+
+@mixin input--state--is_success {
+    border-color: var(--color_log_success);
+    background-color: hue_color("N1651");
+    color: var(--color_log_success);
+    @content;
+}
+
+@mixin input--state--is_warning {
+    border-color: var(--color_log_warning);
+    background-color: hue_color("N0301");
+    color: var(--color_log_warning);
+    @content;
+}
+
+@mixin input--state--is_error {
+    border-color: var(--color_log_error);
+    background-color: hue_color("N3601");
+    color: var(--color_log_error);
+    @content;
+}
+
+$color-log-info: #2196f3;
+
+@mixin input--state--is_info {
+    border-color: var(--color_log_info);
+    background-color: color.adjust($color-log-info, $lightness: 20%);
+    color: var(--color_log_info);
+    @content;
+}

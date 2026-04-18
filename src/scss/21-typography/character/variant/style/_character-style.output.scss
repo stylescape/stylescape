@@ -1,0 +1,67 @@
+////
+///
+/// Character Style Output
+/// ===========================================================================
+///
+/// CSS output for font-style character variants.
+///
+/// @group Typography.Character.Variants.Style
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../../../../01-core/prefix" as *;
+@use "./character-style.mixins" as mixins;
+
+// ============================================================================
+// Font Style Output
+// ============================================================================
+
+@layer ss.typography {
+    .#{$ss-prefix-typography}-style-normal {
+        @include mixins.character-style-normal;
+    }
+
+    .#{$ss-prefix-typography}-italic {
+        @include mixins.character-style-italic;
+    }
+
+    .#{$ss-prefix-typography}-oblique {
+        @include mixins.character-style-oblique;
+    }
+
+    // ============================================================================
+    // Text Decoration Output
+    // ============================================================================
+
+    .#{$ss-prefix-typography}-underline {
+        @include mixins.character-underline;
+    }
+
+    .#{$ss-prefix-typography}-underline-dotted {
+        @include mixins.character-underline(dotted);
+    }
+
+    .#{$ss-prefix-typography}-underline-dashed {
+        @include mixins.character-underline(dashed);
+    }
+
+    .#{$ss-prefix-typography}-underline-wavy {
+        @include mixins.character-underline(wavy);
+    }
+
+    .#{$ss-prefix-typography}-overline {
+        @include mixins.character-overline;
+    }
+
+    .#{$ss-prefix-typography}-strikethrough {
+        @include mixins.character-strikethrough;
+    }
+
+    .#{$ss-prefix-typography}-no-decoration {
+        @include mixins.character-no-decoration;
+    }
+}

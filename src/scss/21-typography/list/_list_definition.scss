@@ -1,0 +1,47 @@
+////
+///
+/// List Typography Mixins Module
+/// ===========================================================================
+/// ...
+///
+/// @group List
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../variables" as *;
+
+@use "../character" as *;
+@use "../font" as *;
+
+@use "list_base" as *;
+@use "list_style" as *;
+
+// ============================================================================
+// Typography | List
+// ============================================================================
+
+@mixin dl {
+    @include list;
+    @include list--nested;
+    dt {
+        @include character--bold;
+        display: list-item;
+        list-style-type: $list-style-type; //var
+    }
+
+    dd {
+        display: list-item;
+        list-style-type: $list-nested-style-type; //var
+        margin-left: $list-nested-indent; //To Var
+    }
+}

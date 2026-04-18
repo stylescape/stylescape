@@ -1,0 +1,90 @@
+{% extends "../base.html.jinja" %}
+{% set title = "22-Flow" %}
+{%- block title %}{{ title }} | StyleScape Architecture{%- endblock %}
+{%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }} — Content Flow</h2>
+        <p>Prose content styling and automatic spacing between elements.</p>
+    </header>
+
+    {% set section_title = "Prose Styling" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>The flow layer applies opinionated styling to long-form content containers.</p>
+        <div class="demo__preview">
+            <div class="demo__preview__content ss-prose" style="padding: var(--ss-space-4); max-width: 65ch;">
+                <h2>Article Heading</h2>
+                <p>This is prose content. When you apply the <code>.ss-prose</code> class, all child elements receive tasteful default styling optimized for reading.</p>
+                <p>Paragraphs, lists, and other block elements get consistent vertical spacing automatically.</p>
+                <ul>
+                    <li>List items are properly spaced</li>
+                    <li>Nested content works correctly</li>
+                    <li>Links are styled for visibility</li>
+                </ul>
+                <blockquote>
+                    <p>Blockquotes receive distinctive styling to stand out from body text.</p>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    {% set section_title = "Flow Space" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Automatic "lobotomized owl" spacing using the <code>* + *</code> selector.</p>
+        <div class="demo__preview">
+            <div class="demo__preview__content ss-flow" style="padding: var(--ss-space-4);">
+                <div style="background: var(--ss-color-primary, #3b82f6); color: white; padding: var(--ss-space-3);">First element</div>
+                <div style="background: var(--ss-color-primary, #3b82f6); color: white; padding: var(--ss-space-3);">Auto-spaced</div>
+                <div style="background: var(--ss-color-primary, #3b82f6); color: white; padding: var(--ss-space-3);">Auto-spaced</div>
+                <div style="background: var(--ss-color-primary, #3b82f6); color: white; padding: var(--ss-space-3);">Auto-spaced</div>
+            </div>
+        </div>
+        <pre><code>.ss-flow > * + * {
+  margin-top: var(--ss-flow-space, 1em);
+}</code></pre>
+    </section>
+
+    {% set section_title = "Flow Utilities" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <table class="ss-table">
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>.ss-flow</code></td>
+                    <td>Apply flow spacing to children</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-flow-space-sm</code></td>
+                    <td>Smaller flow spacing</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-flow-space-lg</code></td>
+                    <td>Larger flow spacing</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-prose</code></td>
+                    <td>Full prose styling</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-prose-sm</code></td>
+                    <td>Smaller prose variant</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-prose-lg</code></td>
+                    <td>Larger prose variant</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+{%- endblock %}

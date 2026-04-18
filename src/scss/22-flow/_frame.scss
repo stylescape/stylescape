@@ -1,0 +1,50 @@
+////
+///
+/// Frame
+/// ===========================================================================
+///
+/// Aspect ratio frame (geometry only).
+/// Pure spatial logic. No colors. No shadows.
+///
+/// @group Flow
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+.ss-frame {
+    aspect-ratio: var(--ss-frame-ratio, 16 / 9);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ss-frame > img,
+.ss-frame > video {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+}
+
+// Frame ratio variants
+.ss-frame-square {
+    --ss-frame-ratio: 1 / 1;
+}
+.ss-frame-video {
+    --ss-frame-ratio: 16 / 9;
+}
+.ss-frame-cinema {
+    --ss-frame-ratio: 21 / 9;
+}
+.ss-frame-portrait {
+    --ss-frame-ratio: 3 / 4;
+}
+.ss-frame-landscape {
+    --ss-frame-ratio: 4 / 3;
+}
+.ss-frame-golden {
+    --ss-frame-ratio: 1.618 / 1;
+}

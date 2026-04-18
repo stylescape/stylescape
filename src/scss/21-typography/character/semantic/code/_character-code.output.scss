@@ -1,0 +1,102 @@
+////
+///
+/// Character Code Output
+/// ===========================================================================
+///
+/// CSS output for inline code character styles.
+///
+/// @group Typography.Character.Semantics.Code
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../../../../01-core/prefix" as *;
+@use "./character-code.mixins" as code;
+
+@layer ss.typography {
+    code,
+    kbd,
+    samp {
+        @include code.ss-character-code();
+    }
+
+    // Native pre block
+    pre[data-line-numbers] {
+        @include code.ss-character-code-line-numbers();
+    }
+
+    // Utility class
+    .#{$ss-prefix-typography}-code--numbered {
+        @include code.ss-character-code-line-numbers();
+    }
+}
+
+// @use "./character-code.mixins" as mixins;
+
+// // ============================================================================
+// // Output
+// // ============================================================================
+
+// .ss-code {
+//     @include mixins.character-code-base;
+// }
+
+// .ss-kbd {
+//     @include mixins.character-kbd;
+// }
+
+// .ss-samp {
+//     @include mixins.character-samp;
+// }
+
+// .ss-var {
+//     @include mixins.character-var;
+// }
+
+// .ss-output {
+//     @include mixins.character-output;
+// }
+
+// ---
+
+// ////
+// ///
+// /// Code Character
+// /// ===========================================================================
+// ///
+// /// Code/monospace character styles.
+// ///
+// /// @group Typography.Character
+// /// @author Scape Agency
+// /// @link https://scape.style
+// /// @since 0.1.0 initial release
+// /// @access public
+// ///
+// ////
+
+// .ss-code {
+//     font-family:
+//         ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo,
+//         monospace;
+//     font-size: 0.875em;
+//     background-color: var(--ss-color-muted);
+//     padding-inline: var(--ss-spacing-1);
+//     padding-block: var(--ss-spacing-0-5);
+//     border-radius: var(--ss-radius-sm);
+// }
+
+// .ss-kbd {
+//     font-family:
+//         ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo,
+//         monospace;
+//     font-size: 0.875em;
+//     background-color: var(--ss-color-muted);
+//     border: var(--ss-border-width) solid var(--ss-color-border);
+//     border-radius: var(--ss-radius-sm);
+//     padding-inline: var(--ss-spacing-1-5);
+//     padding-block: var(--ss-spacing-0-5);
+//     box-shadow: 0 1px 0 var(--ss-color-border);
+// }

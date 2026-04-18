@@ -1,0 +1,36 @@
+////
+///
+/// Paragraph Small Output
+/// ===========================================================================
+///
+/// CSS output for small paragraph styles.
+///
+/// @group Typography.Paragraph.Hierarchy.Small
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../../../../01-core/prefix" as *;
+@use "./paragraph-small.mixins" as mixins;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.typography {
+    .#{$ss-prefix-typography}-small {
+        @include mixins.paragraph-small-spaced;
+    }
+
+    .#{$ss-prefix-typography}-xs {
+        @include mixins.paragraph-xs;
+    }
+
+    .#{$ss-prefix-typography}-fine-print {
+        @include mixins.paragraph-small-base;
+        color: var(--ss-color-muted-foreground);
+    }
+}

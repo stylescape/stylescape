@@ -1,0 +1,104 @@
+{% extends "../base.html.jinja" %}
+{% set title = "11-Reset" %}
+{%- block title %}{{ title }} | StyleScape Architecture{%- endblock %}
+{%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }} — Browser Reset</h2>
+        <p>Normalize browser inconsistencies and establish baseline defaults.</p>
+    </header>
+
+    {% set section_title = "Base Reset" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Core reset styles that normalize box-sizing, margins, and default behaviors.</p>
+        <div class="demo__preview">
+            <div class="demo__preview__content" style="padding: var(--ss-space-4);">
+                <div style="border: 2px dashed var(--ss-color-border); padding: var(--ss-space-4);">
+                    <p><strong>Box-sizing:</strong> All elements use <code>border-box</code></p>
+                    <p><strong>Margins:</strong> Default margins removed from body, headings, paragraphs</p>
+                    <p><strong>Images:</strong> Max-width 100%, display block</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% set section_title = "Typography Reset" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Reset typographic elements to a consistent baseline.</p>
+        <div class="demo__preview">
+            <div class="demo__preview__content">
+                <h1>Heading 1 (reset)</h1>
+                <h2>Heading 2 (reset)</h2>
+                <h3>Heading 3 (reset)</h3>
+                <p>Paragraph text after reset — font-size inherits, margins normalized.</p>
+                <ul>
+                    <li>List item 1</li>
+                    <li>List item 2</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    {% set section_title = "Form Reset" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Normalize form elements across browsers.</p>
+        <div class="demo__preview">
+            <div class="demo__preview__content" style="padding: var(--ss-space-4);">
+                <form style="display: flex; flex-direction: column; gap: var(--ss-space-3);">
+                    <label>
+                        Text Input (reset):
+                        <input type="text" placeholder="Enter text...">
+                    </label>
+                    <label>
+                        Select (reset):
+                        <select>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                        </select>
+                    </label>
+                    <label>
+                        Textarea (reset):
+                        <textarea rows="2" placeholder="Enter text..."></textarea>
+                    </label>
+                    <div>
+                        <button type="button">Button (reset)</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    {% set section_title = "Reset Classes" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Utility classes for applying resets manually.</p>
+        <table class="ss-table">
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>.ss-reset</code></td>
+                    <td>Full element reset</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-reset-list</code></td>
+                    <td>Remove list styling</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-reset-button</code></td>
+                    <td>Remove button styling</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+{%- endblock %}

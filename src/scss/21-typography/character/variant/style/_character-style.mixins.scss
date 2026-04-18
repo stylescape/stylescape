@@ -1,0 +1,81 @@
+////
+///
+/// Character Style Mixins
+/// ===========================================================================
+///
+/// Mixins for font-style character variants.
+///
+/// @group Typography.Character.Variants.Style
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./character-style.config" as config;
+
+// ============================================================================
+// Font Style Mixins
+// ============================================================================
+
+/// Apply specific font style
+/// @param {String} $style - Style name from config
+@mixin character-style($style) {
+    $styles: config.$ss-character-style-config;
+
+    @if map.has-key($styles, $style) {
+        font-style: map.get($styles, $style);
+    }
+}
+
+/// Font style: normal
+@mixin character-style-normal {
+    font-style: normal;
+}
+
+/// Font style: italic
+@mixin character-style-italic {
+    font-style: italic;
+}
+
+/// Font style: oblique
+@mixin character-style-oblique {
+    font-style: oblique;
+}
+
+// ============================================================================
+// Text Decoration Mixins
+// ============================================================================
+
+/// Apply text decoration
+/// @param {String} $decoration - Decoration type
+/// @param {String} $style [solid] - Decoration style
+@mixin character-decoration($decoration, $style: solid) {
+    text-decoration-line: $decoration;
+    text-decoration-style: $style;
+}
+
+/// Text decoration: underline
+@mixin character-underline($style: solid) {
+    text-decoration-line: underline;
+    text-decoration-style: $style;
+    text-underline-offset: 0.2em;
+}
+
+/// Text decoration: overline
+@mixin character-overline($style: solid) {
+    text-decoration-line: overline;
+    text-decoration-style: $style;
+}
+
+/// Text decoration: line-through (strikethrough)
+@mixin character-strikethrough {
+    text-decoration-line: line-through;
+}
+
+/// Text decoration: none
+@mixin character-no-decoration {
+    text-decoration: none;
+}

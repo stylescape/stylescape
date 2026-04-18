@@ -1,0 +1,48 @@
+////
+///
+/// Paragraph Lead Output
+/// ===========================================================================
+///
+/// CSS output for lead/intro paragraph styles.
+///
+/// @group Typography.Paragraph.Hierarchy.Lead
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../../../../01-core/prefix" as *;
+@use "./paragraph-lead.mixins" as mixins;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.typography {
+    .#{$ss-prefix-typography}-lead {
+        @include mixins.paragraph-lead-spaced;
+    }
+
+    .#{$ss-prefix-typography}-lead-sm {
+        @include mixins.paragraph-lead-base;
+        @include mixins.paragraph-lead-size(sm);
+    }
+
+    .#{$ss-prefix-typography}-lead-md {
+        @include mixins.paragraph-lead-base;
+        @include mixins.paragraph-lead-size(md);
+    }
+
+    .#{$ss-prefix-typography}-lead-lg {
+        @include mixins.paragraph-lead-base;
+        @include mixins.paragraph-lead-size(lg);
+    }
+
+    .#{$ss-prefix-typography}-lead-center {
+        @include mixins.paragraph-lead-base;
+        text-align: center;
+        margin-inline: auto;
+    }
+}

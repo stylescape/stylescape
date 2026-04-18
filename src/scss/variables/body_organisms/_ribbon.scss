@@ -38,7 +38,8 @@ $ribbon_width_right: $ribbon_width !default;
 $ribbon_border_width: q(1) !default;
 
 /// Inner slot width, accounting for horizontal padding
-$ribbon_slot_width: $ribbon_width - ($ribbon_padding * 2) !default;
+/// Uses calc() because q() returns calc expressions that can't use SCSS math
+$ribbon_slot_width: calc(#{$ribbon_width} - (#{$ribbon_padding} * 2)) !default;
 
 /// Colors
 /// Background

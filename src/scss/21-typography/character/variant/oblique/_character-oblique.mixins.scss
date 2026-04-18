@@ -1,0 +1,18 @@
+@use "sass:map";
+@use "./character-oblique.config" as config;
+@use "../../base/normal/character-normal.mixins" as normal;
+
+////
+/// Character Variant — Oblique
+/// Mixins
+////
+
+@mixin ss-character-oblique($override: ()) {
+    $settings: map.merge(config.$ss-character-oblique-config, $override);
+
+    @include normal.ss-character-normal();
+
+    font-style: map.get($settings, font-style);
+    font-weight: map.get($settings, font-weight);
+    font-size: map.get($settings, font-size);
+}

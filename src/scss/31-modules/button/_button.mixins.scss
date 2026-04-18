@@ -1,0 +1,14 @@
+@use "sass:map";
+@use "./button.config" as config;
+
+@mixin c-button-base {
+    $cfg: config.$ss-button-config;
+
+    padding-inline: map.get($cfg, padding-x);
+    padding-block: map.get($cfg, padding-y);
+    border-radius: map.get($cfg, radius);
+    font-weight: map.get($cfg, font-weight);
+
+    background: var(--ss-button-bg, var(--ss-color-primary));
+    color: var(--ss-button-color, white);
+}

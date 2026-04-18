@@ -1,0 +1,124 @@
+{% extends "../base.html.jinja" %}
+{% set title = "91-Development" %}
+{%- block title %}{{ title }} | StyleScape Architecture{%- endblock %}
+{%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }} — Development Tools</h2>
+        <p>Debug utilities, visual guides, and development-only styles.</p>
+    </header>
+
+    {% set section_title = "Debug Outlines" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Visual debugging utilities to inspect layout structure.</p>
+        <div class="demo__preview">
+            <div class="demo__preview__content" style="padding: var(--ss-space-4);">
+                <div class="ss-debug" style="outline: 2px dashed red;">
+                    <header style="outline: 2px dashed blue; padding: var(--ss-space-2);">Header (blue)</header>
+                    <main style="outline: 2px dashed green; padding: var(--ss-space-2);">
+                        Main content (green)
+                        <aside style="outline: 2px dashed orange; padding: var(--ss-space-2);">Aside (orange)</aside>
+                    </main>
+                    <footer style="outline: 2px dashed purple; padding: var(--ss-space-2);">Footer (purple)</footer>
+                </div>
+            </div>
+        </div>
+        <pre><code>/* Enable debug mode */
+.ss-debug * {
+  outline: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.ss-debug *:hover {
+  outline: 2px solid red;
+}</code></pre>
+    </section>
+
+    {% set section_title = "Baseline Grid Overlay" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Visualize the baseline grid for vertical rhythm debugging.</p>
+        <div class="demo__preview">
+            <div class="demo__preview__content ss-show-baseline" style="padding: var(--ss-space-4); background: repeating-linear-gradient(to bottom, transparent, transparent 7px, rgba(59, 130, 246, 0.1) 7px, rgba(59, 130, 246, 0.1) 8px);">
+                <h2 style="margin-bottom: var(--ss-space-4);">Heading on Grid</h2>
+                <p>This content shows the baseline grid overlay for debugging vertical rhythm.</p>
+            </div>
+        </div>
+    </section>
+
+    {% set section_title = "Breakpoint Indicator" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Shows current responsive breakpoint during development.</p>
+        <div class="demo__preview">
+            <div class="demo__preview__content" style="padding: var(--ss-space-4); position: relative;">
+                <div style="position: absolute; top: var(--ss-space-2); right: var(--ss-space-2); background: var(--ss-color-primary, #3b82f6); color: white; padding: var(--ss-space-1) var(--ss-space-2); font-size: 0.75rem; border-radius: var(--ss-radius-sm, 0.125rem); font-family: monospace;">
+                    md
+                </div>
+                <p style="padding-top: var(--ss-space-4);">The breakpoint indicator shows in the corner during development.</p>
+            </div>
+        </div>
+        <pre><code>/* Automatically inserted when $ss-dev-mode: true */
+body::after {
+  content: 'xs';
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  /* ... */
+}
+
+@media (min-width: 640px) { body::after { content: 'sm'; } }
+@media (min-width: 768px) { body::after { content: 'md'; } }
+/* ... */</code></pre>
+    </section>
+
+    {% set section_title = "Development Classes" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <table class="ss-table">
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>.ss-debug</code></td>
+                    <td>Outline all child elements</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-show-baseline</code></td>
+                    <td>Show baseline grid overlay</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-show-columns</code></td>
+                    <td>Show column grid overlay</td>
+                </tr>
+                <tr>
+                    <td><code>.ss-placeholder</code></td>
+                    <td>Placeholder box for layout testing</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    {% set section_title = "Configuration" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Development tools are conditionally included based on build configuration.</p>
+        <pre><code>// In your SCSS configuration
+$ss-dev-mode: true; // Enable dev tools
+$ss-show-breakpoints: true;
+$ss-show-baseline-grid: false;
+
+// Production build
+$ss-dev-mode: false; // Strips all dev utilities</code></pre>
+        <div style="background: var(--ss-color-info, #e0f2fe); border-left: 4px solid var(--ss-color-info-dark, #0284c7); padding: var(--ss-space-4);">
+            <strong>Note:</strong> Development tools are automatically excluded from production builds.
+        </div>
+    </section>
+</section>
+
+{%- endblock %}

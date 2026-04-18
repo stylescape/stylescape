@@ -1,0 +1,156 @@
+////
+///
+/// Character Link Mixins
+/// ===========================================================================
+///
+/// Mixins for hyperlink character styles.
+///
+/// @group Typography.Character.Semantics.Link
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../base/normal/character-normal.mixins" as normal;
+@use "../../variant/lined/character-lined.mixins" as lined;
+@use "./character-hyperlink.config" as config;
+
+///
+/// Base hyperlink semantic
+///
+@mixin ss-character-hyperlink {
+    @include normal.ss-character-normal;
+
+    color: map.get(config.$ss-character-hyperlink-config, color);
+    text-decoration: map.get(
+        config.$ss-character-hyperlink-config,
+        text-decoration
+    );
+    cursor: map.get(config.$ss-character-hyperlink-config, cursor);
+
+    &:hover {
+        color: map.get(config.$ss-character-hyperlink-config, color-hover);
+    }
+
+    &:active {
+        color: map.get(config.$ss-character-hyperlink-config, color-active);
+    }
+}
+
+// Underlined Variant
+
+@mixin ss-character-hyperlink-underlined {
+    @include ss-character-hyperlink;
+    @include lined.ss-character-underline;
+}
+
+@mixin ss-character-hyperlink-underlined-alt {
+    @include ss-character-hyperlink;
+    @include lined.ss-character-underline-alt;
+}
+
+// @use "sass:map";
+// @use "./character-link.config" as config;
+
+// // ============================================================================
+// // Mixins
+// // ============================================================================
+
+// /// Base link styles
+// @mixin character-link-base {
+//     $cfg: config.$ss-character-link-config;
+
+//     color: map.get($cfg, color);
+//     text-decoration: map.get($cfg, text-decoration);
+//     text-underline-offset: map.get($cfg, text-underline-offset);
+//     text-decoration-thickness: map.get($cfg, text-decoration-thickness);
+//     transition: map.get($cfg, transition);
+//     cursor: pointer;
+
+//     &:hover {
+//         color: map.get($cfg, color-hover);
+//         text-decoration: map.get($cfg, text-decoration-hover);
+//     }
+
+//     &:active {
+//         color: map.get($cfg, color-active);
+//     }
+
+//     &:visited {
+//         color: map.get($cfg, color-visited);
+//     }
+
+//     &:focus-visible {
+//         outline: map.get($cfg, outline-width) solid var(--ss-focus-ring-color);
+//         outline-offset: map.get($cfg, outline-offset);
+//     }
+// }
+
+// /// Subtle link variant
+// @mixin character-link-subtle {
+//     $cfg: map.get(config.$ss-character-link-variants, subtle);
+//     $base: config.$ss-character-link-config;
+
+//     color: map.get($cfg, color);
+//     text-decoration: map.get($cfg, text-decoration);
+//     transition: map.get($base, transition);
+
+//     &:hover {
+//         text-decoration: map.get($cfg, text-decoration-hover);
+//     }
+// }
+
+// /// Muted link variant
+// @mixin character-link-muted {
+//     $cfg: map.get(config.$ss-character-link-variants, muted);
+//     $base: config.$ss-character-link-config;
+
+//     color: map.get($cfg, color);
+//     text-decoration: map.get($cfg, text-decoration);
+//     transition: map.get($base, transition);
+
+//     &:hover {
+//         color: map.get($cfg, color-hover);
+//     }
+// }
+
+// /// External link variant
+// @mixin character-link-external {
+//     $cfg: map.get(config.$ss-character-link-variants, external);
+
+//     color: map.get($cfg, color);
+//     text-decoration: map.get($cfg, text-decoration);
+//     text-decoration-style: map.get($cfg, text-decoration-style);
+// }
+
+// /// Navigation link variant
+// @mixin character-link-nav {
+//     $cfg: map.get(config.$ss-character-link-variants, nav);
+//     $base: config.$ss-character-link-config;
+
+//     color: map.get($cfg, color);
+//     text-decoration: map.get($cfg, text-decoration);
+//     transition: map.get($base, transition);
+
+//     &:hover {
+//         color: map.get($cfg, color-hover);
+//     }
+// }
+
+// /// Link variant by name
+// /// @param {String} $variant - Variant name
+// @mixin character-link-variant($variant) {
+//     $variants: config.$ss-character-link-variants;
+//     $cfg: map.get($variants, $variant);
+
+//     @if $cfg {
+//         @each $prop, $value in $cfg {
+//             @if $prop != color-hover and $prop != text-decoration-hover {
+//                 #{$prop}: $value;
+//             }
+//         }
+//     }
+// }

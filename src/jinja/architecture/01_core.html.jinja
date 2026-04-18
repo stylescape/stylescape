@@ -1,0 +1,88 @@
+{% extends "../base.html.jinja" %}
+{% set title = "01-Core" %}
+{%- block title %}{{ title }} | StyleScape Architecture{%- endblock %}
+{%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }} — Governance & Core</h2>
+        <p>Foundation layer for configuration, prefixes, and external dependencies.</p>
+    </header>
+
+    {% set section_title = "Layer Constitution" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>The core layer establishes the CSS layer order for the entire system.</p>
+        <pre><code>@layer ss.reset,
+       ss.lexicon,
+       ss.rhythm,
+       ss.typography,
+       ss.flow,
+       ss.layout,
+       ss.appearance,
+       ss.modules,
+       ss.utilities,
+       ss.overrides;</code></pre>
+    </section>
+
+    {% set section_title = "Namespace Prefixes" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>StyleScape uses consistent prefixes for all generated classes and custom properties.</p>
+        <table class="ss-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Prefix</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Namespace</td>
+                    <td><code>ss</code></td>
+                    <td><code>.ss-button</code></td>
+                </tr>
+                <tr>
+                    <td>Custom Properties</td>
+                    <td><code>--ss-</code></td>
+                    <td><code>--ss-color-primary</code></td>
+                </tr>
+                <tr>
+                    <td>Typography</td>
+                    <td><code>ss-type-</code></td>
+                    <td><code>.ss-type-h1</code></td>
+                </tr>
+                <tr>
+                    <td>Layout</td>
+                    <td><code>ss-layout-</code></td>
+                    <td><code>.ss-layout-grid</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    {% set section_title = "External Dependencies" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>External CSS files and third-party integrations are loaded in this layer.</p>
+        <ul>
+            <li>Font imports</li>
+            <li>Icon libraries</li>
+            <li>Third-party component styles</li>
+        </ul>
+    </section>
+
+    {% set section_title = "Governance" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Configuration and feature flags for the design system.</p>
+        <pre><code>// Feature flags
+$ss-enable-dark-mode: true;
+$ss-enable-rtl: false;
+$ss-enable-print-styles: true;
+$ss-enable-reduced-motion: true;</code></pre>
+    </section>
+</section>
+
+{%- endblock %}

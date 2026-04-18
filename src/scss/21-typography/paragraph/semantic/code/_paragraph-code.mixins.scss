@@ -1,0 +1,33 @@
+@use "sass:map";
+@use "./paragraph-code.config" as config;
+
+// -----------------------------------------------------------------------------
+// Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-paragraph-code($override: ()) {
+    $settings: map.merge(config.$ss-paragraph-code-config, $override);
+
+    font-family: map.get($settings, font-family);
+
+    max-width: map.get($settings, max-width);
+    overflow: map.get($settings, overflow);
+
+    white-space: map.get($settings, white-space);
+    word-wrap: map.get($settings, word-wrap);
+
+    -moz-tab-size: map.get($settings, tab-size);
+    -o-tab-size: map.get($settings, tab-size);
+    tab-size: map.get($settings, tab-size);
+
+    color: map.get($settings, color);
+    background-color: map.get($settings, background);
+
+    border-width: map.get($settings, border-width);
+    border-style: map.get($settings, border-style);
+    border-color: map.get($settings, border-color);
+    border-radius: map.get($settings, border-radius);
+
+    padding: map.get($settings, padding);
+    margin: map.get($settings, margin);
+}

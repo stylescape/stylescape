@@ -1,0 +1,103 @@
+// ============================================================================
+// Atoms | Labels
+// ============================================================================
+
+@use "sass:map";
+@use "sass:list";
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+@use "../../soul_type" as *;
+@use "../../soul_object" as *;
+@use "../../head_layout" as *;
+
+/// Unified label styling for both `<label>` elements and `.label` classes.
+/// Size map for label styles
+$label-size-map: (
+    "sm": (
+        "02",
+        0,
+    ),
+    "md": (
+        "03",
+        1,
+    ),
+    "lg": (
+        "04",
+        2,
+    ),
+) !default;
+
+/// @mixin label_base
+/// Unified label styling for both `<label>` elements and `.label` classes.
+///
+/// @param {String} $size ['m'] - Size key: 's', 'm', or 'l'.
+///
+@mixin label--base($size: "md") {
+    @include reset_bleed;
+
+    $font-size: list.nth(map.get($label-size-map, $size), 1);
+    $margin: list.nth(map.get($label-size-map, $size), 2);
+
+    @include font--size($font-size);
+    display: block;
+    width: 100%;
+    // margin-top: 0;
+    // margin-bottom: baseline($margin);
+    padding-bottom: baseline($margin);
+    // color: var(#{$color});
+    user-select: none;
+    cursor: default;
+    font-weight: 500;
+    color: var(--color_text_primary);
+}
+
+/// Form label mixin
+/// @group Forms
+// @mixin label--base {
+//     display: block;
+//     font-size: q(14);
+//     font-weight: 500;
+//     color: var(--color_text_primary);
+// }
+
+//   @include object--height--fixed(md); // uses 20q
+
+@mixin label--hidden {
+    @include visually-hidden;
+}
+
+@mixin label--sm {
+    @include label--base("sm");
+    @include object--height--fixed(sm);
+}
+
+@mixin label--md {
+    @include label--base("md");
+    @include object--height--fixed(md); // uses 20q
+}
+
+@mixin label--lg {
+    @include label--base("lg");
+    @include object--height--fixed(lg);
+}
+
+// ============================================================================
+// Form Label Mixins
+// ============================================================================
+
+/// Small label mixin
+/// @group Forms
+@mixin label--base--sm {
+    font-size: q(12);
+}
+
+/// Large label mixin
+/// @group Forms
+@mixin label--base--lg {
+    font-size: q(16);
+}
+// .form_field_label {
+//     font-size: 1.17rem;
+//     font-variation-settings: 'wght' 700;
+// }

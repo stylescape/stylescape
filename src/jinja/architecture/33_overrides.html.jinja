@@ -1,0 +1,128 @@
+{% extends "../base.html.jinja" %}
+{% set title = "33-Overrides" %}
+{%- block title %}{{ title }} | StyleScape Architecture{%- endblock %}
+{%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }} — Overrides Layer</h2>
+        <p>The highest-specificity layer for exceptions, theming, and project-specific customizations.</p>
+    </header>
+
+    {% set section_title = "Layer Specificity" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>The overrides layer sits at the end of the cascade, giving it the highest priority among CSS layers.</p>
+        <pre><code>@layer ss.reset,
+       ss.lexicon,
+       ss.rhythm,
+       ss.typography,
+       ss.flow,
+       ss.layout,
+       ss.appearance,
+       ss.modules,
+       ss.utilities,
+       ss.overrides; /* ← Highest priority */</code></pre>
+    </section>
+
+    {% set section_title = "Theme Overrides" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Apply theme-specific custom properties that override lexicon tokens.</p>
+        <div class="demo__preview">
+            <div class="demo__preview__content" style="padding: var(--ss-space-4);">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--ss-space-4);">
+                    <div style="padding: var(--ss-space-4); background: white; border-radius: var(--ss-radius-lg, 0.5rem);">
+                        <h4 style="margin: 0 0 var(--ss-space-2);">Light Theme (Default)</h4>
+                        <div style="background: var(--ss-color-primary, #3b82f6); color: white; padding: var(--ss-space-2); border-radius: var(--ss-radius-md, 0.375rem);">Primary Color</div>
+                    </div>
+                    <div style="padding: var(--ss-space-4); background: #1e293b; border-radius: var(--ss-radius-lg, 0.5rem); color: white;">
+                        <h4 style="margin: 0 0 var(--ss-space-2); color: white;">Dark Theme Override</h4>
+                        <div style="background: #60a5fa; color: #0f172a; padding: var(--ss-space-2); border-radius: var(--ss-radius-md, 0.375rem);">Primary Color</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <pre><code>/* In the overrides layer */
+@layer ss.overrides {
+  [data-theme="dark"] {
+    --ss-color-primary: #60a5fa;
+    --ss-color-background: #0f172a;
+    --ss-color-text: #f8fafc;
+  }
+}</code></pre>
+    </section>
+
+    {% set section_title = "Important Overrides" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Emergency overrides using <code>!important</code> should be rare and documented.</p>
+        <pre><code>@layer ss.overrides {
+  /* Only use when absolutely necessary */
+  .force-hidden {
+    display: none !important;
+  }
+  
+  .force-visible {
+    display: block !important;
+    visibility: visible !important;
+  }
+}</code></pre>
+    </section>
+
+    {% set section_title = "Component Patches" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Fix or extend third-party component behavior.</p>
+        <pre><code>@layer ss.overrides {
+  /* Patch third-party plugin */
+  .third-party-modal {
+    z-index: var(--ss-z-modal);
+    border-radius: var(--ss-radius-lg);
+  }
+  
+  /* Project-specific exception */
+  .hero-section .ss-button {
+    padding: var(--ss-space-4) var(--ss-space-8);
+    font-size: var(--ss-font-size-lg);
+  }
+}</code></pre>
+    </section>
+
+    {% set section_title = "Best Practices" %}
+    <section class="demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <table class="ss-table">
+            <thead>
+                <tr>
+                    <th>Do</th>
+                    <th>Don't</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Use for theme switching</td>
+                    <td>Put base styles here</td>
+                </tr>
+                <tr>
+                    <td>Document all overrides</td>
+                    <td>Use without comments</td>
+                </tr>
+                <tr>
+                    <td>Scope to specific contexts</td>
+                    <td>Apply global changes</td>
+                </tr>
+                <tr>
+                    <td>Use custom properties</td>
+                    <td>Hard-code values</td>
+                </tr>
+                <tr>
+                    <td>Keep overrides minimal</td>
+                    <td>Build features here</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+{%- endblock %}

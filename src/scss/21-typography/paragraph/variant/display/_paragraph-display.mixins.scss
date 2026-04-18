@@ -1,0 +1,21 @@
+@use "sass:map";
+@use "./paragraph-display.config" as config;
+
+// -----------------------------------------------------------------------------
+// Core Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-paragraph-display($level, $override: ()) {
+    $base: map.get(config.$ss-paragraph-display-config, $level);
+
+    @if $base == null {
+        @error "Display level `#{$level}` does not exist.";
+    }
+
+    $settings: map.merge($base, $override);
+
+    font-size: map.get($settings, size);
+    font-weight: map.get($settings, weight);
+    line-height: map.get($settings, line-height);
+    letter-spacing: map.get($settings, tracking);
+}

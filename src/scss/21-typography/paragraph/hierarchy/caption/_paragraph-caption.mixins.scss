@@ -1,0 +1,82 @@
+////
+///
+/// Paragraph Caption Mixins
+/// ===========================================================================
+///
+/// Mixins for caption paragraph styles.
+///
+/// @group Typography.Paragraph.Hierarchy.Caption
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-caption.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base caption styles
+@mixin paragraph-caption-base {
+    $cfg: config.$ss-paragraph-caption-config;
+    
+    font-size: map.get($cfg, font-size);
+    line-height: map.get($cfg, line-height);
+    font-weight: map.get($cfg, font-weight);
+    color: map.get($cfg, color);
+    margin-block-start: map.get($cfg, margin-block-start);
+    text-align: map.get($cfg, text-align);
+}
+
+/// Figure caption
+@mixin paragraph-caption-figure {
+    $cfg: map.get(config.$ss-paragraph-caption-variants, figure);
+    
+    @include paragraph-caption-base;
+    text-align: map.get($cfg, text-align);
+    font-style: map.get($cfg, font-style);
+}
+
+/// Table caption
+@mixin paragraph-caption-table {
+    $cfg: map.get(config.$ss-paragraph-caption-variants, table);
+    
+    @include paragraph-caption-base;
+    text-align: map.get($cfg, text-align);
+    font-weight: map.get($cfg, font-weight);
+}
+
+/// Image caption
+@mixin paragraph-caption-image {
+    $cfg: map.get(config.$ss-paragraph-caption-variants, image);
+    
+    @include paragraph-caption-base;
+    text-align: map.get($cfg, text-align);
+    font-style: map.get($cfg, font-style);
+}
+
+/// Code caption
+@mixin paragraph-caption-code {
+    $cfg: map.get(config.$ss-paragraph-caption-variants, code);
+    
+    @include paragraph-caption-base;
+    font-family: map.get($cfg, font-family);
+    text-align: map.get($cfg, text-align);
+}
+
+/// Caption variant by name
+/// @param {String} $variant - Variant name
+@mixin paragraph-caption-variant($variant) {
+    $variants: config.$ss-paragraph-caption-variants;
+    $cfg: map.get($variants, $variant);
+    
+    @if $cfg {
+        @each $prop, $value in $cfg {
+            #{$prop}: $value;
+        }
+    }
+}

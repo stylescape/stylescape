@@ -1,0 +1,92 @@
+////
+///
+/// Hero Output
+/// ===========================================================================
+///
+/// CSS output for hero components.
+///
+/// @group Modules.Hero
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./hero.config" as config;
+@use "./hero.mixins" as mixins;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-hero {
+        @include mixins.hero-base;
+    }
+
+    .#{$ss-prefix-module}-hero-content {
+        @include mixins.hero-content;
+    }
+
+    // Size variants
+    .#{$ss-prefix-module}-hero-sm {
+        @include mixins.hero-size(sm);
+    }
+    .#{$ss-prefix-module}-hero-md {
+        @include mixins.hero-size(md);
+    }
+    .#{$ss-prefix-module}-hero-lg {
+        @include mixins.hero-size(lg);
+    }
+    .#{$ss-prefix-module}-hero-full {
+        @include mixins.hero-size(full);
+    }
+    .#{$ss-prefix-module}-hero-dynamic {
+        @include mixins.hero-size(dynamic);
+    }
+
+    // With background
+    .#{$ss-prefix-module}-hero-bg {
+        @include mixins.hero-background;
+    }
+
+    // With overlay
+    .#{$ss-prefix-module}-hero-overlay {
+        @include mixins.hero-overlay(0.5);
+    }
+
+    .#{$ss-prefix-module}-hero-overlay-light {
+        @include mixins.hero-overlay(0.3);
+    }
+
+    .#{$ss-prefix-module}-hero-overlay-dark {
+        @include mixins.hero-overlay(0.7);
+    }
+
+    // Hero title
+    .#{$ss-prefix-module}-hero-title {
+        font-size: var(--ss-font-size-5xl);
+        font-weight: var(--ss-font-weight-bold);
+        line-height: var(--ss-leading-tight);
+        letter-spacing: var(--ss-tracking-tight);
+    }
+
+    // Hero subtitle
+    .#{$ss-prefix-module}-hero-subtitle {
+        font-size: var(--ss-font-size-xl);
+        color: var(--ss-color-muted-foreground);
+        max-width: var(--ss-measure-default);
+    }
+
+    // Hero actions (button group)
+    .#{$ss-prefix-module}-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--ss-spacing-4);
+        justify-content: center;
+        margin-block-start: var(--ss-spacing-4);
+    }
+}

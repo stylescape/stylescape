@@ -1,0 +1,127 @@
+////
+///
+/// Deafult Paragraph Typography Mixins Module
+/// ===========================================================================
+/// ...
+///
+/// @group Paragraph
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "sass:map";
+
+@use "../../../dev" as *;
+@use "../../../variables" as *;
+
+@use "../../character" as *;
+@use "../../font" as *;
+@use "../../text" as *;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+// Type | Paragraph Styles |
+// ============================================================================
+
+///
+/// Mixin for default paragraph styles.
+///
+/// This mixin applies the base styles for paragraphs, ensuring consistent
+/// formatting across all text blocks. It resets potential overflow and text
+/// transformations.
+///
+@mixin paragraph--default {
+    @include reset_bleed;
+    @include character--default;
+    text-indent: 0;
+    text-justify: none;
+    text-overflow: clip;
+    text-transform: none;
+    text-decoration: none;
+    margin-bottom: baseline(4);
+
+    :empty {
+        display: none;
+    }
+    :last-of-type {
+        margin-bottom: 0;
+    }
+
+    // Ensure paragraphs do not overflow their container
+    overflow-wrap: break-word;
+    word-break: break-word;
+    // white-space: pre-wrap; // Allows for line breaks and respects whitespace
+}
+
+///
+/// Mixin for normal paragraph styles.
+///
+/// This mixin builds upon the default paragraph styles, applying additional
+/// character formatting as defined by the design system.
+///
+@mixin paragraph--normal {
+    @include paragraph--default;
+    @include character--normal;
+}
+
+///
+/// Mixin for left-aligned paragraph styles.
+///
+/// This mixin applies left alignment to the paragraph, ensuring text starts
+/// from the left.
+///
+@mixin paragraph--left {
+    @include paragraph--normal;
+    @include text_align--left;
+}
+
+///
+/// Mixin for right-aligned paragraph styles.
+///
+/// This mixin applies right alignment to the paragraph, aligning text to the
+/// right side.
+///
+@mixin paragraph--right {
+    @include paragraph--normal;
+    @include text_align--right;
+}
+
+///
+/// Mixin for center-aligned paragraph styles.
+///
+/// This mixin centers the text within the paragraph.
+///
+@mixin paragraph--center {
+    @include paragraph--normal;
+    @include text_align--center;
+}
+
+///
+/// Mixin for justified paragraph styles.
+///
+/// This mixin justifies the text, spreading it evenly across the line.
+///
+@mixin paragraph--justify {
+    @include paragraph--normal;
+    @include text_align--justify;
+}
+
+@mixin paragraph--justify--left {
+    @include paragraph--normal;
+    @include text_align--justify--left;
+}
+
+@mixin paragraph--justify--right {
+    @include paragraph--normal;
+    @include text_align--justify--right;
+}

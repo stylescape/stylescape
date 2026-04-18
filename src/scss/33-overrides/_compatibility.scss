@@ -1,0 +1,77 @@
+////
+///
+/// Compatibility Overrides
+/// ===========================================================================
+///
+/// Browser compatibility and legacy support overrides.
+/// Should remain minimal.
+///
+/// @group Overrides
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Browser Compatibility
+// ============================================================================
+
+// Safari flexbox gap fallback
+@supports not (gap: 1rem) {
+    .ss-cluster > * {
+        margin: calc(var(--ss-cluster-gap, var(--ss-spacing-4)) / 2);
+    }
+
+    .ss-cluster {
+        margin: calc(var(--ss-cluster-gap, var(--ss-spacing-4)) / -2);
+    }
+}
+
+// Aspect ratio fallback
+@supports not (aspect-ratio: 1 / 1) {
+    .ss-frame {
+        position: relative;
+
+        &::before {
+            content: "";
+            display: block;
+            padding-block-start: 56.25%; // 16:9 default
+        }
+
+        > * {
+            position: absolute;
+            inset: 0;
+        }
+    }
+}
+
+// ============================================================================
+// Print Compatibility
+// ============================================================================
+
+@media print {
+    .ss-no-print {
+        display: none !important;
+    }
+
+    .ss-print-only {
+        display: block !important;
+    }
+}
+
+// ============================================================================
+// Reduced Motion
+// ============================================================================
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

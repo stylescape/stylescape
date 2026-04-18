@@ -1,0 +1,81 @@
+////
+///
+/// Hero Mixins
+/// ===========================================================================
+///
+/// Reusable mixins for hero components.
+///
+/// @group Modules.Hero
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./hero.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base hero container
+@mixin hero-base {
+    $cfg: config.$ss-hero-config;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: map.get($cfg, min-height);
+    padding-inline: map.get($cfg, padding-x);
+    padding-block: map.get($cfg, padding-y);
+}
+
+/// Hero content wrapper
+@mixin hero-content {
+    $cfg: config.$ss-hero-config;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: map.get($cfg, content-max-width);
+    gap: map.get($cfg, content-gap);
+}
+
+/// Hero size variant
+/// @param {String} $size - Size name from $ss-hero-sizes
+@mixin hero-size($size) {
+    $sizes: config.$ss-hero-sizes;
+    $height: map.get($sizes, $size);
+
+    @if $height {
+        min-height: $height;
+    }
+}
+
+/// Hero with background image
+@mixin hero-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/// Hero overlay
+@mixin hero-overlay($opacity: 0.5) {
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgb(0 0 0 / #{$opacity});
+        z-index: 0;
+    }
+
+    > * {
+        position: relative;
+        z-index: 1;
+    }
+}

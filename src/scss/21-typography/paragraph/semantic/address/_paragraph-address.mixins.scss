@@ -1,0 +1,16 @@
+@use "sass:map";
+@use "./paragraph-address.config" as config;
+
+// -----------------------------------------------------------------------------
+// Core Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-paragraph-address($override: ()) {
+    $settings: map.merge(config.$ss-paragraph-address-config, $override);
+
+    font-size: map.get($settings, font-size);
+    font-weight: map.get($settings, font-weight);
+    font-style: map.get($settings, font-style);
+    margin-block: map.get($settings, margin-block);
+    color: map.get($settings, color);
+}

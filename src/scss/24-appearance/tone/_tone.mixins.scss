@@ -1,0 +1,19 @@
+@use "sass:map";
+@use "./tone.config" as config;
+
+////
+/// Tone Modifiers
+/// Mixins
+////
+
+@mixin ss-tone($key) {
+    @if not map.has-key(config.$ss-tone-config, $key) {
+        @error "Unknown tone modifier: #{$key}";
+    }
+
+    $settings: map.get(config.$ss-tone-config, $key);
+
+    @each $property, $value in $settings {
+        #{$property}: #{$value};
+    }
+}

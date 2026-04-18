@@ -1,0 +1,79 @@
+////
+///
+/// Paragraph Intro Mixins
+/// ===========================================================================
+///
+/// Mixins for intro/standfirst paragraph styles.
+///
+/// @group Typography.Paragraph.Semantic.Intro
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-intro.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base intro paragraph styles
+@mixin paragraph-intro-base {
+    $cfg: config.$ss-paragraph-intro-config;
+    
+    font-size: map.get($cfg, font-size);
+    line-height: map.get($cfg, line-height);
+    font-weight: map.get($cfg, font-weight);
+    color: map.get($cfg, color);
+    max-width: map.get($cfg, max-width);
+    margin-block-end: map.get($cfg, margin-block-end);
+    border-block-end: map.get($cfg, border-block-end);
+    padding-block-end: map.get($cfg, padding-block-end);
+}
+
+/// Simple intro (no border)
+@mixin paragraph-intro-simple {
+    $cfg: map.get(config.$ss-paragraph-intro-variants, simple);
+    $base: config.$ss-paragraph-intro-config;
+    
+    font-size: map.get($base, font-size);
+    line-height: map.get($base, line-height);
+    font-weight: map.get($base, font-weight);
+    color: map.get($base, color);
+    max-width: map.get($base, max-width);
+    margin-block-end: map.get($base, margin-block-end);
+    border-block-end: map.get($cfg, border-block-end);
+    padding-block-end: map.get($cfg, padding-block-end);
+}
+
+/// Bold intro
+@mixin paragraph-intro-bold {
+    $cfg: map.get(config.$ss-paragraph-intro-variants, bold);
+    $base: config.$ss-paragraph-intro-config;
+    
+    font-size: map.get($cfg, font-size);
+    line-height: map.get($base, line-height);
+    font-weight: map.get($cfg, font-weight);
+    color: map.get($base, color);
+    max-width: map.get($base, max-width);
+    margin-block-end: map.get($base, margin-block-end);
+}
+
+/// Highlighted intro with background
+@mixin paragraph-intro-highlight {
+    $cfg: map.get(config.$ss-paragraph-intro-variants, highlight);
+    $base: config.$ss-paragraph-intro-config;
+    
+    font-size: map.get($base, font-size);
+    line-height: map.get($base, line-height);
+    font-weight: map.get($base, font-weight);
+    color: map.get($base, color);
+    max-width: map.get($base, max-width);
+    margin-block-end: map.get($base, margin-block-end);
+    background-color: map.get($cfg, background-color);
+    padding: map.get($cfg, padding);
+    border-radius: map.get($cfg, border-radius);
+}

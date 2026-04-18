@@ -1,0 +1,78 @@
+////
+///
+/// Character Quote Output
+/// ===========================================================================
+///
+/// CSS output for inline quotation character styles.
+///
+/// @group Typography.Character.Semantics.Quote
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "./character-quote.mixins" as quote;
+@use "../../../../01-core/prefix" as *;
+
+@layer ss.typography {
+    // Utility-style class
+    .#{$ss-prefix-typography}-quote {
+        @include quote.ss-character-quote-base();
+    }
+
+    .#{$ss-prefix-typography}-quote-symbols {
+        @include quote.ss-character-quote-symbols();
+    }
+
+    // Semantic binding
+
+    q {
+        @include quote.ss-character-quote-inline();
+    }
+
+    blockquote {
+        @include quote.ss-character-quote-base();
+    }
+}
+
+// @use "./character-quote.mixins" as mixins;
+
+// // ============================================================================
+// // Output
+// // ============================================================================
+
+// .ss-quote {
+//     @include mixins.character-quote-base;
+// }
+
+// .ss-quote-inline {
+//     @include mixins.character-quote-inline;
+// }
+
+// .ss-quote-emphasis {
+//     @include mixins.character-quote-emphasis;
+// }
+
+// .ss-cite {
+//     @include mixins.character-cite;
+// }
+
+// // Localized quotes
+// .ss-quote-french {
+//     @include mixins.character-quote-marks(french);
+// }
+
+// .ss-quote-german {
+//     @include mixins.character-quote-marks(german);
+// }
+
+// .ss-quote-japanese {
+//     @include mixins.character-quote-marks(japanese);
+// }
+
+// // No quotes
+// .ss-quote-none {
+//     @include mixins.character-quote-none;
+// }

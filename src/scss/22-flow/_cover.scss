@@ -1,0 +1,49 @@
+////
+///
+/// Cover
+/// ===========================================================================
+///
+/// Full viewport/container cover layout.
+/// Pure spatial logic. No colors. No shadows.
+///
+/// @group Flow
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+.ss-cover {
+    display: flex;
+    flex-direction: column;
+    min-block-size: var(--ss-cover-min, 100vh);
+    padding: var(--ss-cover-padding, var(--ss-spacing-4));
+}
+
+.ss-cover > * {
+    margin-block: var(--ss-spacing-4);
+}
+
+.ss-cover > :first-child:not(.ss-cover-center) {
+    margin-block-start: 0;
+}
+
+.ss-cover > :last-child:not(.ss-cover-center) {
+    margin-block-end: 0;
+}
+
+.ss-cover-center {
+    margin-block: auto;
+}
+
+// Cover variants
+.ss-cover-half {
+    --ss-cover-min: 50vh;
+}
+.ss-cover-full {
+    --ss-cover-min: 100vh;
+}
+.ss-cover-dynamic {
+    --ss-cover-min: 100dvh;
+}

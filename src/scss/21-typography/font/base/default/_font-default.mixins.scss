@@ -1,0 +1,54 @@
+@use "sass:map";
+@use "./font-default.config" as config;
+
+// -----------------------------------------------------------------------------
+// Rendering Base
+// -----------------------------------------------------------------------------
+
+@mixin ss-font-rendering {
+    font-smooth: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
+    font-style: normal;
+    font-language-override: normal;
+    font-optical-sizing: auto;
+
+    font-variant-alternates: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-variant-position: normal;
+
+    font-kerning: normal;
+    font-feature-settings: map.get(
+        config.$ss-font-default-config,
+        feature-settings
+    );
+
+    font-size-adjust: none;
+    font-stretch: 100%;
+
+    color: map.get(config.$ss-font-default-config, color);
+    background-color: transparent;
+}
+
+// -----------------------------------------------------------------------------
+// Family Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-font-family($family: sans) {
+    $families: map.get(config.$ss-font-default-config, families);
+    font-family: map.get($families, $family);
+}
+
+// -----------------------------------------------------------------------------
+// Full Base
+// -----------------------------------------------------------------------------
+
+@mixin ss-font-base($family: sans) {
+    @include ss-font-rendering;
+    @include ss-font-family($family);
+}

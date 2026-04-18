@@ -1,0 +1,144 @@
+////
+///
+/// Character Quote Mixins
+/// ===========================================================================
+///
+/// Mixins for inline quotation character styles.
+///
+/// @group Typography.Character.Semantics.Quote
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./character-quote.config" as config;
+
+////
+/// Character Semantic — Quote
+/// Mixins
+////
+
+@mixin ss-character-quote-base($override: ()) {
+    $settings: map.merge(config.$ss-character-quote-config, $override);
+
+    color: map.get($settings, color);
+    font-style: map.get($settings, font-style);
+    margin: map.get($settings, margin);
+    padding: map.get($settings, padding);
+}
+
+@mixin ss-character-quote-symbols($override: ()) {
+    $settings: map.merge(config.$ss-character-quote-config, $override);
+
+    &::before {
+        content: map.get($settings, open-symbol);
+        padding-right: map.get($settings, open-padding);
+    }
+
+    &::after {
+        content: map.get($settings, close-symbol);
+        padding-left: map.get($settings, close-padding);
+    }
+}
+
+@mixin ss-character-quote-inline($override: ()) {
+    @include ss-character-quote-base($override);
+
+    quotes: none;
+
+    &::before,
+    &::after {
+        content: none;
+    }
+}
+
+// @use "sass:map";
+// @use "./character-quote.config" as config;
+
+// // ============================================================================
+// // Mixins
+// // ============================================================================
+
+// /// Base inline quote styles
+// @mixin character-quote-base {
+//     $cfg: config.$ss-character-quote-config;
+
+//     font-style: map.get($cfg, font-style);
+//     color: map.get($cfg, color);
+//     quotes: map.get($cfg, quotes);
+
+//     &::before {
+//         content: open-quote;
+//     }
+
+//     &::after {
+//         content: close-quote;
+//     }
+// }
+
+// /// Inline quote without styling
+// @mixin character-quote-inline {
+//     $cfg: map.get(config.$ss-character-quote-variants, inline);
+
+//     font-style: map.get($cfg, font-style);
+//     color: map.get($cfg, color);
+
+//     &::before {
+//         content: open-quote;
+//     }
+
+//     &::after {
+//         content: close-quote;
+//     }
+// }
+
+// /// Emphasis quote style
+// @mixin character-quote-emphasis {
+//     $cfg: map.get(config.$ss-character-quote-variants, emphasis);
+
+//     font-style: map.get($cfg, font-style);
+//     color: map.get($cfg, color);
+
+//     &::before {
+//         content: open-quote;
+//     }
+
+//     &::after {
+//         content: close-quote;
+//     }
+// }
+
+// /// Citation style
+// @mixin character-cite {
+//     $cfg: map.get(config.$ss-character-quote-variants, cite);
+
+//     font-style: map.get($cfg, font-style);
+//     color: map.get($cfg, color);
+//     font-size: map.get($cfg, font-size);
+// }
+
+// /// Apply localized quote marks
+// /// @param {String} $locale - Locale name (default, french, german, japanese)
+// @mixin character-quote-marks($locale: default) {
+//     $marks: map.get(config.$ss-character-quote-marks, $locale);
+
+//     @if $marks {
+//         $open: map.get($marks, open);
+//         $close: map.get($marks, close);
+//         $open-alt: map.get($marks, open-alt);
+//         $close-alt: map.get($marks, close-alt);
+
+//         quotes: $open $close $open-alt $close-alt;
+//     }
+// }
+
+// /// No quote marks
+// @mixin character-quote-none {
+//     &::before,
+//     &::after {
+//         content: none;
+//     }
+// }

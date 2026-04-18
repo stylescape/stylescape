@@ -1,0 +1,52 @@
+////
+///
+/// Warnings Governance
+/// ===========================================================================
+///
+/// Development warnings and notices for StyleScape.
+/// Used for flagging potential issues during development.
+///
+/// @group Core.Governance
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Warning Configuration
+// ============================================================================
+
+/// Enable/disable warnings globally
+/// @type Bool
+$ss-enable-warnings: true !default;
+
+// ============================================================================
+// Warning Mixins
+// ============================================================================
+
+/// Emit a development warning
+/// @param {String} $message - The warning message
+@mixin warn($message) {
+    @if $ss-enable-warnings {
+        @warn "StyleScape: #{$message}";
+    }
+}
+
+/// Emit an info notice
+/// @param {String} $message - The info message
+@mixin info($message) {
+    @if $ss-enable-warnings {
+        @debug "StyleScape Info: #{$message}";
+    }
+}
+
+/// Emit a compatibility warning
+/// @param {String} $feature - The feature with compatibility issues
+/// @param {String} $browser - The affected browser
+@mixin compat-warn($feature, $browser) {
+    @if $ss-enable-warnings {
+        @warn "COMPATIBILITY: `#{$feature}` may have issues in #{$browser}.";
+    }
+}

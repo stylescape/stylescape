@@ -1,0 +1,175 @@
+////
+///
+/// Character Code Mixins
+/// ===========================================================================
+///
+/// Mixins for inline code character styles.
+///
+/// @group Typography.Character.Semantics.Code
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./character-code.config" as config;
+
+////
+/// Character Semantic — Code
+/// Mixins
+////
+
+@mixin ss-character-code($override: ()) {
+    $settings: map.merge(config.$ss-character-code-config, $override);
+
+    font-family: map.get($settings, font-family);
+    font-size: map.get($settings, font-size);
+    font-weight: map.get($settings, font-weight);
+    color: map.get($settings, color);
+    background-color: map.get($settings, background-color);
+
+    padding-inline: map.get($settings, padding-inline);
+    padding-block: map.get($settings, padding-block);
+
+    border-radius: map.get($settings, border-radius);
+}
+
+// -----------------------------------------------------------------------------
+// Line Numbers Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-character-code-line-numbers($override: ()) {
+    $settings: map.merge(
+        config.$ss-character-code-line-numbers-config,
+        $override
+    );
+
+    position: relative;
+    padding-inline-start: map.get($settings, padding-inline-start);
+
+    .line-number {
+        position: absolute;
+        inset-inline-start: 0;
+        width: map.get($settings, width);
+        text-align: map.get($settings, text-align);
+        color: map.get($settings, color);
+        background-color: map.get($settings, background);
+        border-inline-end: map.get($settings, border-width) solid
+            map.get($settings, border-color);
+
+        padding-inline-end: 0.5em;
+        line-height: map.get($settings, line-height);
+
+        user-select: none;
+        pointer-events: none;
+    }
+}
+
+// @use "sass:map";
+// @use "./character-code.config" as config;
+
+// // ============================================================================
+// // Mixins
+// // ============================================================================
+
+// /// Base inline code styles
+// @mixin character-code-base {
+//     $cfg: config.$ss-character-code-config;
+
+//     font-family: map.get($cfg, font-family);
+//     font-size: map.get($cfg, font-size);
+//     font-weight: map.get($cfg, font-weight);
+//     line-height: map.get($cfg, line-height);
+//     color: map.get($cfg, color);
+//     background-color: map.get($cfg, background-color);
+//     padding-inline: map.get($cfg, padding-inline);
+//     padding-block: map.get($cfg, padding-block);
+//     border-radius: map.get($cfg, border-radius);
+//     white-space: nowrap;
+// }
+
+// /// Keyboard input styles
+// @mixin character-kbd {
+//     $cfg: map.get(config.$ss-character-code-variants, kbd);
+
+//     font-family: map.get($cfg, font-family);
+//     font-size: map.get($cfg, font-size);
+//     background-color: map.get($cfg, background-color);
+//     border: map.get($cfg, border);
+//     border-radius: map.get($cfg, border-radius);
+//     padding-inline: map.get($cfg, padding-inline);
+//     padding-block: map.get($cfg, padding-block);
+//     box-shadow: map.get($cfg, box-shadow);
+// }
+
+// /// Sample output styles
+// @mixin character-samp {
+//     $cfg: map.get(config.$ss-character-code-variants, samp);
+
+//     font-family: map.get($cfg, font-family);
+//     font-size: map.get($cfg, font-size);
+//     color: map.get($cfg, color);
+// }
+
+// /// Variable styles
+// @mixin character-var {
+//     $cfg: map.get(config.$ss-character-code-variants, var);
+
+//     font-family: map.get($cfg, font-family);
+//     font-style: map.get($cfg, font-style);
+//     color: map.get($cfg, color);
+// }
+
+// /// Output styles
+// @mixin character-output {
+//     $cfg: map.get(config.$ss-character-code-variants, output);
+
+//     font-family: map.get($cfg, font-family);
+//     font-size: map.get($cfg, font-size);
+//     color: map.get($cfg, color);
+// }
+
+// ---
+
+// ///
+// /// Mixin for Inline Code and Keyboard Styling
+// /// ===========================================================================
+// /// Provides styling for inline code and keyboard input elements (`<code>`, `<kbd>`),
+// /// ensuring they are distinct from regular text through monospace fonts, background
+// /// colors, and padding.
+// ///
+// /// ### Features:
+// /// - Monospace fonts for technical text presentation.
+// /// - Background color and padding for visual emphasis.
+// /// - Slightly reduced font size to differentiate inline code.
+// ///
+// /// @param {List} $font_stack - Monospace font stack for inline code. Default is
+// ///        `$font_stack_mono`.
+// /// @param {Length} $font_size - Font size for inline code. Default is
+// ///        `$character_code_font--size`.
+// /// @param {List} $padding - Padding around inline code for spacing. Default is
+// ///        `$character_code_padding`.
+// /// @param {Color} $text_color - Text color for inline code. Default is
+// ///        `$character_code_text_color`.
+// /// @param {Color} $bg_color - Background color for inline code. Default is
+// ///        `$character_code_bg_color`.
+// /// @param {Length} $border_radius - Border radius for inline code. Default is
+// ///        `$character_code_border_radius`.
+// ///
+// @mixin character--code(
+//     $font_stack: $font_stack_mono,
+//     $font_size: $character_code_font--size,
+//     $padding: $character_code_padding,
+//     $text_color: $character_code_text_color,
+//     $bg_color: $character_code_bg_color,
+//     $border_radius: $character_code_border_radius
+// ) {
+//     font-family: $font_stack;
+//     font-size: $font_size;
+//     // padding: $padding;
+//     color: $text_color;
+//     // border-radius: $border_radius;
+//     // background-color: $bg_color;
+// }

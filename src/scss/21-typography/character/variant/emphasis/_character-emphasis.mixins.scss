@@ -1,0 +1,150 @@
+////
+///
+/// Character Emphasis Mixins
+/// ===========================================================================
+///
+/// Reusable mixins for emphasis and text decoration styles.
+///
+/// @group Typography.Character.Emphasis
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./character-emphasis.config" as config;
+
+@use "sass:map";
+@use "./character-emphasis.config" as config;
+
+///
+/// Core emphasis mixin
+///
+@mixin ss-character-emphasis(
+    $style: map.get(config.$ss-character-emphasis-config, style),
+    $color: map.get(config.$ss-character-emphasis-config, color),
+    $position: map.get(config.$ss-character-emphasis-config, position)
+) {
+    text-emphasis-style: $style;
+    text-emphasis-color: $color;
+    text-emphasis-position: $position;
+
+    // WebKit compatibility
+    -webkit-text-emphasis: #{$style} #{$color};
+}
+
+@mixin ss-character-emphasis-dot {
+    @include ss-character-emphasis(filled dot);
+}
+
+@mixin ss-character-emphasis-circle {
+    @include ss-character-emphasis(filled circle);
+}
+
+@mixin ss-character-emphasis-double-circle {
+    @include ss-character-emphasis(double-circle);
+}
+
+@mixin ss-character-emphasis-triangle {
+    @include ss-character-emphasis(triangle);
+}
+
+@mixin ss-character-emphasis-sesame {
+    @include ss-character-emphasis(sesame);
+}
+
+// // ============================================================================
+// // Mixins
+// // ============================================================================
+
+// /// Strong/bold text
+// @mixin character-strong {
+//     $cfg: map.get(config.$ss-character-emphasis-variants, strong);
+//     font-weight: map.get($cfg, font-weight);
+// }
+
+// /// Semibold text
+// @mixin character-semibold {
+//     $cfg: map.get(config.$ss-character-emphasis-variants, semibold);
+//     font-weight: map.get($cfg, font-weight);
+// }
+
+// /// Medium weight text
+// @mixin character-medium {
+//     $cfg: map.get(config.$ss-character-emphasis-variants, medium);
+//     font-weight: map.get($cfg, font-weight);
+// }
+
+// /// Light weight text
+// @mixin character-light {
+//     $cfg: map.get(config.$ss-character-emphasis-variants, light);
+//     font-weight: map.get($cfg, font-weight);
+// }
+
+// /// Italic text
+// @mixin character-italic {
+//     $cfg: map.get(config.$ss-character-emphasis-variants, italic);
+//     font-style: map.get($cfg, font-style);
+// }
+
+// /// Underlined text
+// @mixin character-underline {
+//     $cfg: map.get(config.$ss-character-emphasis-variants, underline);
+//     text-decoration: map.get($cfg, text-decoration);
+//     text-underline-offset: map.get($cfg, text-underline-offset);
+// }
+
+// /// Strikethrough text
+// @mixin character-strikethrough {
+//     $cfg: map.get(config.$ss-character-emphasis-variants, strikethrough);
+//     text-decoration: map.get($cfg, text-decoration);
+// }
+
+// /// Uppercase text
+// @mixin character-uppercase {
+//     $cfg: map.get(config.$ss-character-emphasis-variants, uppercase);
+//     text-transform: map.get($cfg, text-transform);
+//     letter-spacing: map.get($cfg, letter-spacing);
+// }
+
+// /// Lowercase text
+// @mixin character-lowercase {
+//     $cfg: map.get(config.$ss-character-emphasis-variants, lowercase);
+//     text-transform: map.get($cfg, text-transform);
+// }
+
+// /// Capitalized text
+// @mixin character-capitalize {
+//     $cfg: map.get(config.$ss-character-emphasis-variants, capitalize);
+//     text-transform: map.get($cfg, text-transform);
+// }
+
+// /// Highlighted text (underline effect)
+// @mixin character-highlight {
+//     $cfg: map.get(config.$ss-character-emphasis-variants, highlight);
+//     background: map.get($cfg, background);
+// }
+
+// /// Gradient text
+// @mixin character-gradient {
+//     $cfg: map.get(config.$ss-character-emphasis-variants, gradient);
+//     background: map.get($cfg, background);
+//     background-clip: text;
+//     -webkit-background-clip: text;
+//     color: transparent;
+// }
+
+// /// Emphasis variant
+// /// @param {String} $variant - Variant name from $ss-character-emphasis-variants
+// @mixin character-emphasis-variant($variant) {
+//     $variants: config.$ss-character-emphasis-variants;
+//     $cfg: map.get($variants, $variant);
+
+//     @if $cfg {
+//         @each $prop, $value in $cfg {
+//             #{$prop}: $value;
+//         }
+//     }
+// }
