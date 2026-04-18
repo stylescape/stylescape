@@ -1,0 +1,33 @@
+////
+///
+/// Dev Module Wrapper
+/// ===========================================================================
+///
+/// Minimal wrapper that exports only the safe parts of the dev module
+/// to avoid circular dependencies when used by other modules like variables.
+///
+/// Stylescape has an internal conflict: both dev and variables modules define
+/// $transition-default. This file imports the working parts individually.
+///
+/// This wrapper intentionally excludes:
+/// - External package imports (unit.gl, hue.gl, move.gl)
+/// 
+/// Use this wrapper instead of the main dev module when circular 
+/// dependencies need to be avoided.
+///
+/// @group Dev.Wrapper
+/// @author Scape Agency
+/// @link https://scape.style
+/// @since 0.3.17 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Forward
+// ============================================================================
+
+// Re-export safe utilities only
+@forward "banner";
+@forward "debug";
+@forward "deprecation";
