@@ -32,9 +32,12 @@
     &::before {
         color: config.$ribbon-color;
     }
+    // Full outline on all four sides — gives every ribbon variant
+    // a visible frame regardless of orientation. Adjacent ribbons share
+    // their seam (the inner edges collapse to a single 1q line).
     border-color: config.$ribbon-border-color;
     border-style: solid;
-    border-width: 0;
+    border-width: config.$ribbon-border-width;
 
     font-size: config.$ribbon-font-size;
     line-height: config.$ribbon-line-height;
@@ -81,13 +84,11 @@
 @mixin ss-ribbon-top {
     @include ss-ribbon-horizontal;
     height: config.$ribbon-height-top;
-    border-bottom-width: config.$ribbon-border-width;
 }
 
 @mixin ss-ribbon-bottom {
     @include ss-ribbon-horizontal;
     height: config.$ribbon-height-bottom;
-    border-top-width: config.$ribbon-border-width;
 }
 
 // ----------------------------------------------------------------------------
@@ -112,13 +113,11 @@
 @mixin ss-ribbon-left {
     @include ss-ribbon-vertical;
     width: config.$ribbon-width-left;
-    border-right-width: config.$ribbon-border-width;
 }
 
 @mixin ss-ribbon-right {
     @include ss-ribbon-vertical;
     width: config.$ribbon-width-right;
-    border-left-width: config.$ribbon-border-width;
 }
 
 // ----------------------------------------------------------------------------
@@ -210,10 +209,23 @@
 // ----------------------------------------------------------------------------
 
 @mixin ss-ribbon-title {
+    // Title row contains a logo + text element side-by-side.
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: config.$ribbon-slot-gap;
+    margin: 0;
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    // Children of the title (logo + text wrappers) also lay out inline
+    // so anchors / icons sit on the baseline rather than stacking.
+    > * {
+        display: inline-flex;
+        align-items: center;
+    }
 }
 
 @mixin ss-ribbon-button {
