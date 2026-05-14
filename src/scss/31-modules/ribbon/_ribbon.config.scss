@@ -3,30 +3,108 @@
 // =============================================================================
 //
 // Ribbon = top-level chrome rail (top, bottom, left, right) anchored to the
-// frame edges. Ported from legacy `body_organisms/ribbon` while preserving
-// the part vocabulary (`__menu`, `__nav`, `__panel`, `__title`, `__slot`,
-// `__button`, `__search`) and modifiers (`--horizontal`, `--vertical`,
-// `--top`, `--bottom`, `--left`, `--right`, `--inverted`).
+// frame edges. Geometry mirrors the legacy
+// `bup/scss/variables/body_organisms/_ribbon.scss` defaults — every length
+// is expressed via `q()` from unit.gl so the ribbon scales with the global
+// rhythm instead of using hard-coded `rem` / `px`.
 //
 // =============================================================================
 
 @use "sass:map";
+@use "../../01-core/external" as *;
 
+// ----------------------------------------------------------------------------
+// Dimensions (q-units)
+// ----------------------------------------------------------------------------
+$ribbon-padding: q(10) !default;
+$ribbon-spacing: q(8) !default;
+$ribbon-width: q(40) !default;
+$ribbon-height: $ribbon-width !default;
+
+$ribbon-height-top: $ribbon-height !default;
+$ribbon-height-bottom: $ribbon-height !default;
+$ribbon-width-left: $ribbon-width !default;
+$ribbon-width-right: $ribbon-width !default;
+
+$ribbon-border-width: q(0.25) !default;
+
+/// Inner slot width = ribbon width minus horizontal padding on both sides.
+$ribbon-slot-width: calc(#{$ribbon-width} - (#{$ribbon-padding} * 2)) !default;
+
+$ribbon-slot-gap: q(2) !default;
+$ribbon-slot-track: q(4) !default;
+
+// ----------------------------------------------------------------------------
+// Colors (legacy var names with new --ss-* fallbacks)
+// ----------------------------------------------------------------------------
+$ribbon-background: var(
+    --color_text_primary,
+    var(--ss-color-text, #1a1a1a)
+) !default;
+$ribbon-color: var(
+    --color_fill_primary,
+    var(--ss-color-fill, #ffffff)
+) !default;
+$ribbon-border-color: var(
+    --color_fill_primary,
+    var(--ss-color-line, #ffffff)
+) !default;
+
+$ribbon-background-inverted: var(
+    --color_fill_primary,
+    var(--ss-color-fill, #ffffff)
+) !default;
+$ribbon-color-inverted: var(
+    --color_text_primary,
+    var(--ss-color-text, #1a1a1a)
+) !default;
+$ribbon-border-color-inverted: var(
+    --color_text_primary,
+    var(--ss-color-text, #1a1a1a)
+) !default;
+
+// ----------------------------------------------------------------------------
+// Type / layering
+// ----------------------------------------------------------------------------
+$ribbon-font-size: q(3) !default;
+$ribbon-line-height: q(4) !default;
+$ribbon-z-index: 100 !default;
+
+// ----------------------------------------------------------------------------
+// Grid area names (mirrors legacy mixin set)
+// ----------------------------------------------------------------------------
+$ribbon-areas: (
+    "horizontal_left": ribbon_area--horizontal_left,
+    "horizontal_center": ribbon_area--horizontal_center,
+    "horizontal_right": ribbon_area--horizontal_right,
+    "vertical_top": ribbon_area--vertical_top,
+    "vertical_center": ribbon_area--vertical_center,
+    "vertical_bottom": ribbon_area--vertical_bottom,
+) !default;
+
+// ----------------------------------------------------------------------------
+// Aggregate map (kept for parity with other modules' config-map convention).
+// ----------------------------------------------------------------------------
 $ribbon-config: (
-    "padding": 0.25rem,
-    "border-width": 1px,
-    "height-top": 2.5rem,
-    "height-bottom": 2.5rem,
-    "width-left": 2.5rem,
-    "width-right": 2.5rem,
-    "slot-width": auto,
-    "background": var(--ss-color-fill, #ffffff),
-    "color": var(--ss-color-text, #1a1a1a),
-    "border-color": var(--ss-color-line, #e5e5e5),
-    "background-inverted": var(--ss-color-text, #1a1a1a),
-    "color-inverted": var(--ss-color-fill, #ffffff),
-    "border-color-inverted": var(--ss-color-fill, #ffffff),
-    "z-index": 1030,
-    "font-size": 0.875rem,
-    "line-height": 1.4,
+    "padding": $ribbon-padding,
+    "spacing": $ribbon-spacing,
+    "width": $ribbon-width,
+    "height": $ribbon-height,
+    "height-top": $ribbon-height-top,
+    "height-bottom": $ribbon-height-bottom,
+    "width-left": $ribbon-width-left,
+    "width-right": $ribbon-width-right,
+    "slot-width": $ribbon-slot-width,
+    "slot-gap": $ribbon-slot-gap,
+    "slot-track": $ribbon-slot-track,
+    "border-width": $ribbon-border-width,
+    "background": $ribbon-background,
+    "color": $ribbon-color,
+    "border-color": $ribbon-border-color,
+    "background-inverted": $ribbon-background-inverted,
+    "color-inverted": $ribbon-color-inverted,
+    "border-color-inverted": $ribbon-border-color-inverted,
+    "font-size": $ribbon-font-size,
+    "line-height": $ribbon-line-height,
+    "z-index": $ribbon-z-index,
 ) !default;

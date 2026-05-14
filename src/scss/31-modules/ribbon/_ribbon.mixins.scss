@@ -1,91 +1,213 @@
 // =============================================================================
 // 31-modules / ribbon / mixins
 // =============================================================================
+//
+// Geometry and styling mixins for the ribbon container and its slots.
+// Ports the layout from the legacy
+// `bup/scss/mixins/body_organisms/ribbon/_ribbon_base.scss` and
+// `_ribbon_slot.scss`, expressed entirely in unit.gl `q()` values via
+// `./ribbon.config`. Used by `_ribbon.output.scss` to emit both the
+// modern `.ss-c-ribbon` BEM block and the legacy `.ribbon_base` /
+// `.ribbon__slot--*` selectors.
+//
+// =============================================================================
 
 @use "sass:map";
+@use "../../01-core/external" as *;
 @use "./ribbon.config" as config;
 
-@mixin ss-ribbon {
+// ----------------------------------------------------------------------------
+// Base
+// ----------------------------------------------------------------------------
+
+@mixin ss-ribbon-base {
     display: grid;
     gap: 0;
     box-sizing: border-box;
-    padding: map.get(config.$ribbon-config, "padding");
+    padding: config.$ribbon-padding;
     pointer-events: all;
-    background-color: map.get(config.$ribbon-config, "background");
-    color: map.get(config.$ribbon-config, "color");
-    border-color: map.get(config.$ribbon-config, "border-color");
+
+    background-color: config.$ribbon-background;
+    color: config.$ribbon-color;
+    &::before {
+        color: config.$ribbon-color;
+    }
+    border-color: config.$ribbon-border-color;
     border-style: solid;
     border-width: 0;
-    font-size: map.get(config.$ribbon-config, "font-size");
-    line-height: map.get(config.$ribbon-config, "line-height");
-    z-index: map.get(config.$ribbon-config, "z-index");
+
+    font-size: config.$ribbon-font-size;
+    line-height: config.$ribbon-line-height;
+    z-index: config.$ribbon-z-index;
     position: relative;
 
-    a {
+    a,
+    a:link,
+    a:visited,
+    a:hover,
+    a:active,
+    a:focus {
         color: inherit;
         text-decoration: none;
     }
 }
 
+@mixin ss-ribbon-inverted {
+    background-color: config.$ribbon-background-inverted;
+    color: config.$ribbon-color-inverted;
+    &::before {
+        color: config.$ribbon-color-inverted;
+    }
+    border-color: config.$ribbon-border-color-inverted;
+}
+
+// ----------------------------------------------------------------------------
+// Horizontal (top / bottom)
+// ----------------------------------------------------------------------------
+
 @mixin ss-ribbon-horizontal {
-    @include ss-ribbon;
+    @include ss-ribbon-base;
     grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: map.get(config.$ribbon-config, "slot-width");
+    grid-template-rows: config.$ribbon-slot-width;
     grid-auto-rows: unset;
     grid-auto-flow: column;
+    grid-template-areas: "#{map.get(config.$ribbon-areas, 'horizontal_left')} #{map.get(config.$ribbon-areas, 'horizontal_center')} #{map.get(config.$ribbon-areas, 'horizontal_right')}";
     align-items: center;
     align-content: center;
     width: 100%;
-    height: map.get(config.$ribbon-config, "height-top");
-}
-
-@mixin ss-ribbon-vertical {
-    @include ss-ribbon;
-    grid-template-rows: 1fr auto 1fr;
-    grid-template-columns: map.get(config.$ribbon-config, "slot-width");
-    grid-auto-columns: unset;
-    grid-auto-flow: row;
-    justify-items: center;
-    height: 100%;
-    width: map.get(config.$ribbon-config, "width-left");
+    height: config.$ribbon-height;
 }
 
 @mixin ss-ribbon-top {
     @include ss-ribbon-horizontal;
-    height: map.get(config.$ribbon-config, "height-top");
-    border-bottom-width: map.get(config.$ribbon-config, "border-width");
+    height: config.$ribbon-height-top;
+    border-bottom-width: config.$ribbon-border-width;
 }
 
 @mixin ss-ribbon-bottom {
     @include ss-ribbon-horizontal;
-    height: map.get(config.$ribbon-config, "height-bottom");
-    border-top-width: map.get(config.$ribbon-config, "border-width");
+    height: config.$ribbon-height-bottom;
+    border-top-width: config.$ribbon-border-width;
+}
+
+// ----------------------------------------------------------------------------
+// Vertical (left / right)
+// ----------------------------------------------------------------------------
+
+@mixin ss-ribbon-vertical {
+    @include ss-ribbon-base;
+    grid-template-rows: 1fr auto 1fr;
+    grid-template-columns: config.$ribbon-slot-width;
+    grid-auto-columns: unset;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "#{map.get(config.$ribbon-areas, 'vertical_top')}"
+        "#{map.get(config.$ribbon-areas, 'vertical_center')}"
+        "#{map.get(config.$ribbon-areas, 'vertical_bottom')}";
+    justify-items: center;
+    height: 100%;
+    width: config.$ribbon-width;
 }
 
 @mixin ss-ribbon-left {
     @include ss-ribbon-vertical;
-    width: map.get(config.$ribbon-config, "width-left");
-    border-right-width: map.get(config.$ribbon-config, "border-width");
+    width: config.$ribbon-width-left;
+    border-right-width: config.$ribbon-border-width;
 }
 
 @mixin ss-ribbon-right {
     @include ss-ribbon-vertical;
-    width: map.get(config.$ribbon-config, "width-right");
-    border-left-width: map.get(config.$ribbon-config, "border-width");
+    width: config.$ribbon-width-right;
+    border-left-width: config.$ribbon-border-width;
 }
 
-@mixin ss-ribbon-inverted {
-    background-color: map.get(config.$ribbon-config, "background-inverted");
-    color: map.get(config.$ribbon-config, "color-inverted");
-    border-color: map.get(config.$ribbon-config, "border-color-inverted");
-}
+// ----------------------------------------------------------------------------
+// Slots — base + orientation
+// ----------------------------------------------------------------------------
 
-@mixin ss-ribbon-slot {
-    display: flex;
+@mixin ss-ribbon-slot-base {
+    display: grid;
+    box-sizing: border-box;
+    gap: config.$ribbon-slot-gap;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
     align-items: center;
-    gap: 0.25rem;
-    min-width: 0;
+    align-self: center;
+    white-space: nowrap;
 }
+
+@mixin ss-ribbon-slot-horizontal {
+    @include ss-ribbon-slot-base;
+    grid-auto-flow: column;
+    grid-auto-columns: min-content;
+    grid-template-rows: config.$ribbon-slot-track;
+    width: 100%;
+    height: config.$ribbon-slot-width;
+    min-height: config.$ribbon-slot-width;
+    max-height: config.$ribbon-slot-width;
+}
+
+@mixin ss-ribbon-slot-vertical {
+    @include ss-ribbon-slot-base;
+    grid-auto-flow: row;
+    grid-auto-rows: min-content;
+    grid-template-columns: config.$ribbon-slot-track;
+    width: config.$ribbon-slot-width;
+    min-width: config.$ribbon-slot-width;
+    max-width: config.$ribbon-slot-width;
+    height: 100%;
+}
+
+// ----------------------------------------------------------------------------
+// Slots — positioned
+// ----------------------------------------------------------------------------
+
+@mixin ss-ribbon-slot-horizontal-left {
+    @include ss-ribbon-slot-horizontal;
+    grid-area: map.get(config.$ribbon-areas, "horizontal_left");
+    justify-content: start;
+    justify-items: start;
+}
+
+@mixin ss-ribbon-slot-horizontal-center {
+    @include ss-ribbon-slot-horizontal;
+    grid-area: map.get(config.$ribbon-areas, "horizontal_center");
+    justify-content: center;
+    justify-items: center;
+}
+
+@mixin ss-ribbon-slot-horizontal-right {
+    @include ss-ribbon-slot-horizontal;
+    grid-area: map.get(config.$ribbon-areas, "horizontal_right");
+    justify-content: end;
+    justify-items: end;
+}
+
+@mixin ss-ribbon-slot-vertical-top {
+    @include ss-ribbon-slot-vertical;
+    grid-area: map.get(config.$ribbon-areas, "vertical_top");
+    align-content: start;
+    align-items: start;
+}
+
+@mixin ss-ribbon-slot-vertical-center {
+    @include ss-ribbon-slot-vertical;
+    grid-area: map.get(config.$ribbon-areas, "vertical_center");
+    align-content: center;
+    align-items: center;
+}
+
+@mixin ss-ribbon-slot-vertical-bottom {
+    @include ss-ribbon-slot-vertical;
+    grid-area: map.get(config.$ribbon-areas, "vertical_bottom");
+    align-content: end;
+    align-items: end;
+}
+
+// ----------------------------------------------------------------------------
+// Auxiliary parts
+// ----------------------------------------------------------------------------
 
 @mixin ss-ribbon-title {
     font-weight: 600;
@@ -102,7 +224,7 @@
     border: 0;
     color: inherit;
     cursor: pointer;
-    padding: 0.25rem 0.5rem;
+    padding: q(1) q(2);
     font: inherit;
 
     &:hover {
@@ -113,7 +235,7 @@
 @mixin ss-ribbon-menu {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: config.$ribbon-slot-gap;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -123,24 +245,23 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0.25rem;
+    gap: config.$ribbon-slot-gap;
 }
 
 @mixin ss-ribbon-panel {
     position: absolute;
-    background-color: map.get(config.$ribbon-config, "background");
-    color: map.get(config.$ribbon-config, "color");
-    border: map.get(config.$ribbon-config, "border-width") solid
-        map.get(config.$ribbon-config, "border-color");
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 0.75rem;
-    z-index: calc(#{map.get(config.$ribbon-config, "z-index")} + 1);
+    background-color: config.$ribbon-background;
+    color: config.$ribbon-color;
+    border: config.$ribbon-border-width solid config.$ribbon-border-color;
+    box-shadow: 0 q(1) q(3) rgba(0, 0, 0, 0.08);
+    padding: q(3);
+    z-index: calc(#{config.$ribbon-z-index} + 1);
 }
 
 @mixin ss-ribbon-search {
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: config.$ribbon-slot-gap;
 
     input {
         font: inherit;
@@ -148,6 +269,6 @@
         background: transparent;
         border: 0;
         outline: 0;
-        padding: 0.25rem 0.5rem;
+        padding: q(1) q(2);
     }
 }

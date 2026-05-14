@@ -1,13 +1,29 @@
 // =============================================================================
 // 31-modules / ribbon / output
 // =============================================================================
+//
+// Emits two parallel selector sets:
+//
+//  1. Modern BEM: `.ss-c-ribbon`, `.ss-c-ribbon--*`, `.ss-c-ribbon__*`.
+//  2. Legacy un-prefixed: `.ribbon_base`, `.ribbon--*`, `.ribbon__slot--*`,
+//     used by `base.html.jinja`, `31-modules/ribbon.html.jinja` and the
+//     test pages that pre-date the `.ss-c-` rename.
+//
+// Both surfaces share the same mixin set (`./ribbon.mixins`) so behaviour
+// stays in lockstep.
+//
+// =============================================================================
 
 @use "../../01-core/prefix" as *;
 @use "./ribbon.mixins" as *;
 
 @layer ss.modules {
+    // ========================================================================
+    // Modern BEM (.ss-c-ribbon)
+    // ========================================================================
+
     .#{$ss-prefix-module}-ribbon {
-        @include ss-ribbon;
+        @include ss-ribbon-base;
 
         &--horizontal {
             @include ss-ribbon-horizontal;
@@ -32,8 +48,28 @@
         }
 
         &__slot {
-            @include ss-ribbon-slot;
+            @include ss-ribbon-slot-base;
+
+            &--horizontal_left {
+                @include ss-ribbon-slot-horizontal-left;
+            }
+            &--horizontal_center {
+                @include ss-ribbon-slot-horizontal-center;
+            }
+            &--horizontal_right {
+                @include ss-ribbon-slot-horizontal-right;
+            }
+            &--vertical_top {
+                @include ss-ribbon-slot-vertical-top;
+            }
+            &--vertical_center {
+                @include ss-ribbon-slot-vertical-center;
+            }
+            &--vertical_bottom {
+                @include ss-ribbon-slot-vertical-bottom;
+            }
         }
+
         &__title {
             @include ss-ribbon-title;
         }
@@ -52,5 +88,53 @@
         &__search {
             @include ss-ribbon-search;
         }
+    }
+
+    // ========================================================================
+    // Legacy un-prefixed selectors
+    // ========================================================================
+
+    .ribbon_base {
+        @include ss-ribbon-base;
+    }
+    .ribbon--inverted {
+        @include ss-ribbon-inverted;
+    }
+    .ribbon--horizontal {
+        @include ss-ribbon-horizontal;
+    }
+    .ribbon--vertical {
+        @include ss-ribbon-vertical;
+    }
+    .ribbon--top {
+        @include ss-ribbon-top;
+    }
+    .ribbon--bottom {
+        @include ss-ribbon-bottom;
+    }
+    .ribbon--left {
+        @include ss-ribbon-left;
+    }
+    .ribbon--right {
+        @include ss-ribbon-right;
+    }
+
+    .ribbon__slot--horizontal_left {
+        @include ss-ribbon-slot-horizontal-left;
+    }
+    .ribbon__slot--horizontal_center {
+        @include ss-ribbon-slot-horizontal-center;
+    }
+    .ribbon__slot--horizontal_right {
+        @include ss-ribbon-slot-horizontal-right;
+    }
+    .ribbon__slot--vertical_top {
+        @include ss-ribbon-slot-vertical-top;
+    }
+    .ribbon__slot--vertical_center {
+        @include ss-ribbon-slot-vertical-center;
+    }
+    .ribbon__slot--vertical_bottom {
+        @include ss-ribbon-slot-vertical-bottom;
     }
 }
