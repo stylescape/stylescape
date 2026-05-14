@@ -32,12 +32,15 @@
     &::before {
         color: config.$ribbon-color;
     }
-    // Full outline on all four sides — gives every ribbon variant
-    // a visible frame regardless of orientation. Adjacent ribbons share
-    // their seam (the inner edges collapse to a single 1q line).
-    border-color: config.$ribbon-border-color;
+    // Inward-only border. The base draws no border by default; each
+    // orientation variant (top/bottom/left/right) sets the single edge
+    // that faces the page interior. The colour is `currentColor` so it
+    // picks up the ribbon's foreground (which is always the opposite of
+    // the page theme — light text on dark chrome, dark text on inverted
+    // chrome) and therefore reads as the opposite-theme contrast line.
+    border-color: currentColor;
     border-style: solid;
-    border-width: config.$ribbon-border-width;
+    border-width: 0;
 
     font-size: config.$ribbon-font-size;
     line-height: config.$ribbon-line-height;
@@ -61,7 +64,8 @@
     &::before {
         color: config.$ribbon-color-inverted;
     }
-    border-color: config.$ribbon-border-color-inverted;
+    // currentColor is now the inverted foreground, so the inward border
+    // automatically flips with the variant — no explicit override needed.
 }
 
 // ----------------------------------------------------------------------------
@@ -84,11 +88,13 @@
 @mixin ss-ribbon-top {
     @include ss-ribbon-horizontal;
     height: config.$ribbon-height-top;
+    border-bottom-width: config.$ribbon-border-width;
 }
 
 @mixin ss-ribbon-bottom {
     @include ss-ribbon-horizontal;
     height: config.$ribbon-height-bottom;
+    border-top-width: config.$ribbon-border-width;
 }
 
 // ----------------------------------------------------------------------------
@@ -113,11 +119,13 @@
 @mixin ss-ribbon-left {
     @include ss-ribbon-vertical;
     width: config.$ribbon-width-left;
+    border-right-width: config.$ribbon-border-width;
 }
 
 @mixin ss-ribbon-right {
     @include ss-ribbon-vertical;
     width: config.$ribbon-width-right;
+    border-left-width: config.$ribbon-border-width;
 }
 
 // ----------------------------------------------------------------------------
