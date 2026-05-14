@@ -3,17 +3,21 @@
 /// StyleScape Design System
 /// ===========================================================================
 ///
-/// Main entry point for the StyleScape SCSS library. This file orchestrates
-/// the loading order of all design system components:
+/// Main entry point for the StyleScape SCSS library. Layer cascade
+/// follows the SSX constitution (see `ssx/layers.md`):
 ///
-/// 1. **dev** - Development utilities, banners, and debug tools
-/// 2. **functions** - Utility functions for calculations and helpers
-/// 3. **variables** - Design tokens and CSS custom properties
-/// 4. **mixins** - Reusable style patterns and component builders
-/// 5. **classes** - Ready-to-use utility and component classes
-/// 6. **maps** - Sass maps for programmatic value lookups
-/// 7. **tags** - Base HTML element styles
-/// 8. **demo** - Demo and preview styles (development only)
+/// 0x  **01-core**       — infrastructure (functions, maps, layer decl)
+/// 1x  **11-reset**      — base reset (`ss.reset`)
+/// 1x  **12-lexicon**    — design tokens (`ss.lexicon`)
+/// 1x  **13-rhythm**     — spacing/typography rhythm (`ss.rhythm`)
+/// 2x  **21-typography** — type primitives (`ss.typography`)
+/// 2x  **22-flow**       — micro spatial grammar (`ss.flow`)
+/// 2x  **23-layout**     — macro structure (`ss.layout`)
+/// 2x  **24-appearance** — surface styling (`ss.appearance`)
+/// 3x  **31-modules**    — components `.ss-c-*` (`ss.modules`)
+/// 3x  **32-utilities**  — utilities `.ss-u-*` (`ss.utilities`)
+/// 3x  **33-overrides**  — last-mile patches (`ss.overrides`)
+/// 9x  **91-development** — dev/debug helpers (loaded only by tooling)
 ///
 /// @group Core
 /// @author Scape Press
@@ -56,9 +60,9 @@
 /* -------------------------------------------------------------------------- */
 
 @use "21-typography" as *;
-// @use "22-flow";
-// @use "23-layout";
-// @use "24-appearance";
+@use "22-flow" as *;
+@use "23-layout" as *;
+@use "24-appearance" as *;
 
 /* -------------------------------------------------------------------------- */
 /* 3x - Assembly — Meaning & Composition                                           */
@@ -69,32 +73,11 @@
 @use "33-overrides" as *;
 
 // ============================================================================
-// Legacy Compatibility (Phase 5, ROADMAP.md — severance)
+// Notes
 // ============================================================================
 //
-// The legacy `@forward` chain that re-exported the old `classes/`,
-// `mixins/`, `variables/`, `dev/`, `functions/`, `maps/`, `tags/` trees is
-// now severed. Consumers should use tier-prefixed `@use` paths
-// (`@use "01-core/functions"`, `@use "21-typography"`, …) directly.
-//
-// The legacy folders themselves still exist on disk during Phase 5 because
-// some consumer files inside them still cross-reference each other. They
-// no longer participate in the bundled CSS output. They will be `git rm`-ed
-// once the cross-repo audit (Phase 6) confirms no external consumer imports
-// from them.
-// ============================================================================
-
-// @forward "dev";
-// @forward "functions" hide px-to-rem, rem-to-px, px-to-em, strip-unit,
-//     modular-scale, fluid-value, tint, shade, tone;
-// @forward "variables";
-// @forward "mixins";
-// @forward "classes";
-// @forward "maps";
-// @forward "tags";
-// @forward "demo";
-
-// @forward "pkg:icon.gl" with (
-//     $icon_dir: "https://unpkg.com/icon.gl@0.0.35/font",
-//     $icon-color-default: inherit
-// );
+// The legacy `classes/`, `dev/`, `functions/`, `maps/`, `root/`, `tags/`
+// trees were removed in Phase 5 Step B. The `mixins/` and
+// `12-lexicon/_legacy_variables/` trees remain as compatibility shims for
+// the `_legacy_*` siblings inside the tier folders; they will be retired
+// in Phase 6 once new-module authoring (Phase 3 Step C) supersedes them.

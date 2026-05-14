@@ -353,74 +353,88 @@ they belong elsewhere or are obsolete:
 
 - [x] Wrap `_cms.scss` and `_compatibility.scss` in `@layer ss.overrides`
       (already populated with selectors during a prior cycle).
-- [x] Move `_dark.scss` from `@layer ss.themes` to `@layer ss.overrides`
-      (no `ss.themes` layer exists in
-      [01-core/_layers.scss](src/scss/01-core/_layers.scss)). Wire into
+- [x] Move `_dark.scss` from `@layer ss.themes` to `@layer ss.overrides` (no
+      `ss.themes` layer exists in
+      [01-core/\_layers.scss](src/scss/01-core/_layers.scss)). Wire into
       `33-overrides/_index.scss`.
-- [x] Verify `_third-party.scss` is intentionally empty (placeholder for
-      future integrations).
+- [x] Verify `_third-party.scss` is intentionally empty (placeholder for future
+      integrations).
 
 ### Phase 5 — Tooling & cleanup
 
 #### Phase 5 — Step A (legacy chain severance, completed)
 
-- [x] Comment out the seven legacy `@forward "dev/functions/variables/
-      mixins/classes/maps/tags"` lines in `src/scss/index.scss` (the chain
-      that re-exported the old tree into the bundle).
-- [x] **CSS bundle drops from 1.18 MB → 731 KB (-447 KB, -38%)**. The
-      legacy `classes/` tree was nearly half the bundle. The remaining
-      731 KB is the canonical tier output.
-- [x] Audit external consumers: cross-repo grep across `semiosys/` and
-      `ssx/` returns zero references to `src/scss/{classes,mixins,
-      variables,functions,maps,tags,root,dev}/`. Safe to physically remove
-      these trees in a future commit.
+- [x] Comment out the seven legacy
+      `@forward "dev/functions/variables/     mixins/classes/maps/tags"` lines
+      in `src/scss/index.scss` (the chain that re-exported the old tree into
+      the bundle).
+- [x] **CSS bundle drops from 1.18 MB → 731 KB (-447 KB, -38%)**. The legacy
+      `classes/` tree was nearly half the bundle. The remaining 731 KB is the
+      canonical tier output.
+- [x] Audit external consumers: cross-repo grep across `semiosys/` and `ssx/`
+      returns zero references to
+      `src/scss/{classes,mixins,     variables,functions,maps,tags,root,dev}/`.
+      Safe to physically remove these trees in a future commit.
 
 #### Phase 5 — Step B (legacy folder pruning, completed)
 
-The 124 tier-side legacy `@use`/`@forward` references audited at the
-end of Step A have been rewritten via bulk `perl -i -pe` substitutions
-followed by build verification. The legacy top-level folders have been
-pruned to the minimum surface needed to keep the import graph valid:
+The 124 tier-side legacy `@use`/`@forward` references audited at the end of
+Step A have been rewritten via bulk `perl -i -pe` substitutions followed by
+build verification. The legacy top-level folders have been pruned to the
+minimum surface needed to keep the import graph valid:
 
-- [x] **Deleted outright:** `classes/` (no consumers), `dev/`,
-      `functions/`, `maps/`, `root/`, `tags/` (after rewriting tier
-      consumers).
-- [x] **Slimmed to shims:** `mixins/` now contains only the 5 subfolder
-      indexes (`head_frame/`, `head_layout/`, `soul_object/`,
-      `soul_line/`, `soul_type/`) and a 5-line root `_index.scss` that
-      `@forward`s them. The body_atoms/body_molecules/body_organisms/
-      body_skeletons/head_content/utilities subtrees have been
-      `git rm`'d (no tier consumers after the Phase 5 Step A severance).
+- [x] **Deleted outright:** `classes/` (no consumers), `dev/`, `functions/`,
+      `maps/`, `root/`, `tags/` (after rewriting tier consumers).
+- [x] **Slimmed to shims:** `mixins/` now contains only the 5 subfolder indexes
+      (`head_frame/`, `head_layout/`, `soul_object/`, `soul_line/`,
+      `soul_type/`) and a 5-line root `_index.scss` that `@forward`s them. The
+      body_atoms/body_molecules/body_organisms/
+      body_skeletons/head_content/utilities subtrees have been `git rm`'d (no
+      tier consumers after the Phase 5 Step A severance).
 - [x] **Relocated into tier:** `variables/` → `12-lexicon/_legacy_variables/`
-      (preserved via `git mv`, internal `@use` depths bumped, all 41
-      tier consumers rewritten).
+      (preserved via `git mv`, internal `@use` depths bumped, all 41 tier
+      consumers rewritten).
 - [x] **Path rewrites applied uniformly:** `../../dev` →
-      `../../91-development/_legacy_dev`; `../../maps` →
-      `../../01-core/maps`; `../../variables` →
-      `../../12-lexicon/_legacy_variables` (and equivalent 3-deep forms),
-      executed across both tier files and the previously-relocated
-      `_legacy_*` siblings (`23-layout/_legacy_head_layout/`,
-      `_legacy_head_frame/`, `24-appearance/_legacy_soul_object/`,
-      `_legacy_soul_line/`, `21-typography/_legacy_soul_type/`).
-- [x] **Build verified:** stylescape standalone compiles to 695,149 bytes
-      (down from 730,891 — a further -35 KB drop from removing duplicate
-      legacy files). Semiosys via local working tree compiles to 709,027
-      bytes.
+      `../../91-development/_legacy_dev`; `../../maps` → `../../01-core/maps`;
+      `../../variables` → `../../12-lexicon/_legacy_variables` (and equivalent
+      3-deep forms), executed across both tier files and the
+      previously-relocated `_legacy_*` siblings
+      (`23-layout/_legacy_head_layout/`, `_legacy_head_frame/`,
+      `24-appearance/_legacy_soul_object/`, `_legacy_soul_line/`,
+      `21-typography/_legacy_soul_type/`).
+- [x] **Build verified:** stylescape standalone compiles to 695,149 bytes (down
+      from 730,891 — a further -35 KB drop from removing duplicate legacy
+      files). Semiosys via local working tree compiles to 709,027 bytes.
 
 Result: `src/scss/` now lists only tier folders + `mixins/` (thin shim)
-+ `index.scss` + `icons.scss`. The legacy bloat is gone; what remains is
-either renamed to a tier-appropriate `_legacy_*` sibling (eligible for
-gradual replacement during Phase 3 Step C) or kept as a 6-file
-compatibility shim.
 
-#### Phase 5 — Step C (tooling, backlog)
+- `index.scss` + `icons.scss`. The legacy bloat is gone; what remains is either
+  renamed to a tier-appropriate `_legacy_*` sibling (eligible for gradual
+  replacement during Phase 3 Step C) or kept as a 6-file compatibility shim.
 
-- [ ] Remove the commented-out `@forward` block from
-      `src/scss/index.scss` once Step B lands.
-- [ ] Update `bin/check_scss_coverage.mjs` and `bin/generate_sections.mjs`
-      to walk the new tier layout.
-- [ ] Update `vite.config.js` / `vitest.config.ts` aliases if they
-      reference legacy paths.
+#### Phase 5 — Step C (tooling & tier activation, completed)
+
+- [x] **Activated `22-flow`, `23-layout`, `24-appearance`** in
+      `src/scss/index.scss`. Previously commented out because each tier's
+      `_index.scss` wrapped `@forward` inside `@layer`, which Sass forbids.
+- [x] **Wrapped each selector-bearing partial** in those three tiers with its
+      own `@layer ss.<tier> { ... }` block (17 partials); moved the tier
+      `_index.scss` forwards outside the layer following the pattern already
+      used by `31-modules` and `32-utilities`.
+- [x] **Removed the dead legacy `@forward` comment block** from
+      `src/scss/index.scss`; rewrote the entry-file doc comment to reflect the
+      SSX layer constitution instead of the legacy folder list.
+- [x] **Deleted `bin/check_scss_coverage.mjs`** — orphaned (no consumers in
+      `package.json`, `kist.yml`, `kist.dev.yml`, or `.github/workflows/`);
+      hard-wired to the deleted `mixins/` and `classes/` trees.
+- [x] **`bin/generate_sections.mjs` left intact** — operates on `src/jinja/`
+      (templates), not on SCSS.
+- [x] **`vite.config.js` and `vitest.config.ts` aliases audited** — no
+      legacy-path references found.
+
+Build verified after activation: standalone bundle now **708,615 bytes**
+(+13,466 from 695,149 — the new `flow`/`layout`/`appearance` selectors landing
+in their proper layers). Semiosys via local working tree compiles unchanged.
 
 ### Phase 6 — Cross-repo synchronization
 
@@ -431,40 +445,39 @@ compatibility shim.
       `@use "pkg:stylescape/scss" as *;` (resolved by
       `sass.NodePackageImporter()` already configured in
       `semiosys/vite.config.ts`).
-- [x] Create `semiosys/src/semiosys_static/scss/overrides/_dashboard.scss`
-      that re-bundles the Django-admin-specific dashboard slice. Layered
-      under `ss.overrides` once those selectors are migrated to the
-      `ss-c-*` / `ss-u-*` convention (deferred — Step B).
-- [x] Verify two compile paths:
-      - **Published package** (`stylescape@0.3.17` from npm): 802 KB CSS.
-      - **Local working tree** via custom `pkg:stylescape/scss` rewrite:
-        745 KB CSS (matches `731 KB stylescape tier + 14 KB semiosys
-        overrides`).
-- [x] Existing `dashboard.scss` entry kept untouched for backward
-      compatibility — vite still picks it as the build input until
-      `index.scss` becomes the entrypoint.
+- [x] Create `semiosys/src/semiosys_static/scss/overrides/_dashboard.scss` that
+      re-bundles the Django-admin-specific dashboard slice. Layered under
+      `ss.overrides` once those selectors are migrated to the `ss-c-*` /
+      `ss-u-*` convention (deferred — Step B).
+- [x] Verify two compile paths: - **Published package** (`stylescape@0.3.17`
+      from npm): 802 KB CSS. - **Local working tree** via custom
+      `pkg:stylescape/scss` rewrite: 745 KB CSS (matches
+      `731 KB stylescape tier + 14 KB semiosys       overrides`).
+- [x] Existing `dashboard.scss` entry kept untouched for backward compatibility
+      — vite still picks it as the build input until `index.scss` becomes the
+      entrypoint.
 
 #### Phase 6 — Step B (semiosys override migration, backlog)
 
 - [ ] Inventory the ~110 dashboard selectors (`.btn`, `.alert`, `.badge`,
-      `.dashboard`, `.data-table`, `.form__field`, …) and decide
-      per-selector: (1) upstream into stylescape `31-modules/`, (2) keep
-      as semiosys override, (3) delete (already covered by stylescape).
+      `.dashboard`, `.data-table`, `.form__field`, …) and decide per-selector:
+      (1) upstream into stylescape `31-modules/`, (2) keep as semiosys
+      override, (3) delete (already covered by stylescape).
 - [ ] Re-prefix kept selectors to `ss-c-*` per the spec.
 - [ ] Replace semiosys' standalone `_variables.scss` with references to
       `--ss-color-*` tokens from `12-lexicon/`.
 - [ ] Switch vite entry from `dashboard.scss` to `index.scss`.
-- [ ] Delete legacy `semiosys/src/semiosys_static/scss/{components,
-      layout,_variables.scss,_base.scss,_layout.scss,dashboard.scss}`
+- [ ] Delete legacy
+      `semiosys/src/semiosys_static/scss/{components,     layout,_variables.scss,_base.scss,_layout.scss,dashboard.scss}`
       once nothing references them.
 
 #### Phase 6 — Step C (ssx & stylescape release, backlog)
 
 - [ ] **`ssx`**: keep `layers.md`, `folder_structure.md`,
-      `component_blueprint.md`, `component_checklist.md`, `prefix.md` as
-      the spec; tag `v1.0.0` once Phase 5 Step B ships.
-- [ ] **`stylescape`**: bump `VERSION` and changelog; publish migration
-      notes for downstream consumers; tag `v1.0.0`.
+      `component_blueprint.md`, `component_checklist.md`, `prefix.md` as the
+      spec; tag `v1.0.0` once Phase 5 Step B ships.
+- [ ] **`stylescape`**: bump `VERSION` and changelog; publish migration notes
+      for downstream consumers; tag `v1.0.0`.
 - [ ] **`semiosys`**: bump `stylescape` peer dep to `^1.0.0`.
 
 ---
