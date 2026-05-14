@@ -1,0 +1,49 @@
+// =============================================================================
+// 31-modules / demo / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/external" as *;
+@use "./demo.config" as config;
+
+@mixin ss-demo-section {
+    display: block;
+    margin: 0 0 map.get(config.$demo-config, "section-gap");
+
+    > * + * {
+        margin-top: q(16);
+    }
+}
+
+@mixin ss-demo-section-header {
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$demo-config, "header-gap");
+    margin: 0 0 q(24);
+
+    > h1,
+    > h2,
+    > h3,
+    > h4 {
+        margin: 0;
+    }
+
+    > p {
+        margin: 0;
+        color: map.get(config.$demo-config, "label-color");
+    }
+}
+
+@mixin ss-demo-subsection {
+    display: block;
+    margin: 0 0 map.get(config.$demo-config, "subsection-gap");
+
+    > h3,
+    > h4 {
+        margin: 0 0 q(12);
+    }
+
+    > * + * {
+        margin-top: q(12);
+    }
+}

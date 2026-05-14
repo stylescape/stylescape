@@ -1,14 +1,14 @@
 {% extends "../base.html.jinja" %} {% set title = "Font Sizes" %} {%- block title
 %}{{ title }}{%- endblock %} {%- block content %}
 
-<section class="demo__section" data-label="{{ title }}" data-level="1">
-    <header class="demo__section__header">
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
         <h2>{{ title }}</h2>
     </header>
 
     {% set section_title = "Numbered Font Sizes" %}
     <section
-        class="demo__subsection"
+        class="ss-c-demo__subsection"
         data-label="{{ section_title }}"
         data-level="2"
     >
@@ -17,13 +17,13 @@
         {% for i in range(1, 13) %} {% if i < 10 %} {% set padded='0' ~ i %} {%
         else %} {% set padded=i|string %} {% endif %} {% set
         label=".font--size_" ~ padded %} {% set class="font--size_" ~ padded %}
-        {%- include "includes/preview/preview_box_font.html.jinja" %} {% endfor
+        {%- include "includes/preview/ss-c-preview_font.html.jinja" %} {% endfor
         %}
     </section>
 
     {% set section_title = "Semantic Font Sizes" %}
     <section
-        class="demo__subsection"
+        class="ss-c-demo__subsection"
         data-label="{{ section_title }}"
         data-level="2"
     >
@@ -34,8 +34,8 @@
         "font--md" }, { label: ".font--lg", class: "font--lg" }, { label:
         ".font--xl", class: "font--xl" } ] %} {% for font in fonts %} {% set
         label = font.label %} {% set class = font.class %} {#
-        <div class="demo__subsection">
-            #} {%- include "includes/preview/preview_box_font.html.jinja" %} {#
+        <div class="ss-c-demo__subsection">
+            #} {%- include "includes/preview/ss-c-preview_font.html.jinja" %} {#
         </div>
         #} {% endfor %}
     </section>

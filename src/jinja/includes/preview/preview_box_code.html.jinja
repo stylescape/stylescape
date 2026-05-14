@@ -6,21 +6,21 @@ Font Preview Box Component
 lang = language | lower | default("html") %} {% set show_preview = show_preview
 | default(true) %}
 
-<div class="preview_box--vertical">
+<div class="ss-c-preview--vertical">
     {% if show_preview and lang != 'javascript' and lang != 'js' and lang !=
     'typescript' and lang != 'ts' %}
-    <div class="preview_box__live">{{ code_snippet | safe }}</div>
+    <div class="ss-c-preview__live">{{ code_snippet | safe }}</div>
     {% endif %}
-    <div class="preview_box__info">
+    <div class="ss-c-preview__info">
         <small>{{ language | default("HTML") }}</small>
         <button
-            class="preview_box__copy_button"
+            class="ss-c-preview__copy-button"
             onclick="ClipboardHelper.copyById('{{ snippet_id }}')"
         >
             Copy
         </button>
     </div>
-    <div class="preview_box__code">
+    <div class="ss-c-preview__code">
         <pre
             class="line-numbers"
         ><code id="{{ snippet_id }}" class="language-{{ lang }}">{{ code_snippet | default('') | trim | escape }}</code></pre>
