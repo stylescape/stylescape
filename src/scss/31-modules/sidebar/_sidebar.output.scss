@@ -34,5 +34,40 @@
         &__control {
             @include ss-sidebar-control;
         }
+
+        &__section {
+            @include ss-sidebar-section;
+        }
+
+        &__accordion {
+            @include ss-sidebar-accordion;
+
+            &__header {
+                @include ss-sidebar-accordion-header;
+            }
+
+            &__icon {
+                @include ss-sidebar-accordion-icon;
+            }
+
+            &__content {
+                @include ss-sidebar-accordion-content;
+            }
+
+            // Rotate the .__icon span when the parent <details> is open
+            // so the ▶ visually becomes a ▼.
+            &[open] > &__header > &__icon {
+                transform: rotate(90deg);
+            }
+        }
+
+        &__subsection {
+            &__list {
+                @include ss-sidebar-subsection-list;
+            }
+            &__description {
+                @include ss-sidebar-subsection-description;
+            }
+        }
     }
 }

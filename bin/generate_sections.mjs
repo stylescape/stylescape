@@ -33,7 +33,7 @@ const SECTION_CONFIG = {
         ],
     },
     "12-lexicon": {
-        title: "12. Lexicon (Design Tokens)",
+        title: "12. Lexicon",
         order: 12,
         groups: [{ heading: "Color", data_group: "color", pattern: /^color/ }],
     },
