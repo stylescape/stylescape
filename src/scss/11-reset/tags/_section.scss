@@ -20,36 +20,41 @@
 
 @use "../../01-core/external" as *;
 
-main {
-    display: block;
-}
+// All sectioning-element resets live in `@layer ss.reset` so they don't
+// clobber rules in higher layers (e.g. `@layer ss.modules` that gives the
+// ribbon its inward 1q border on a <nav> or <aside> element).
+@layer ss.reset {
+    main {
+        display: block;
+    }
 
-section,
-article,
-header,
-footer,
-nav,
-aside {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
+    section,
+    article,
+    header,
+    footer,
+    nav,
+    aside {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
 
-hr {
-    overflow: visible;
-    height: 0;
-    color: inherit;
-    box-sizing: content-box;
+    hr {
+        overflow: visible;
+        height: 0;
+        color: inherit;
+        box-sizing: content-box;
 
-    border: none;
-    border-top: q(1) solid var(--ss-color-border, currentColor);
+        border: none;
+        border-top: q(1) solid var(--ss-color-border, currentColor);
 
-    margin-block: q(32);
-    margin-inline: 0;
+        margin-block: q(32);
+        margin-inline: 0;
 
-    width: 100%;
-    opacity: 1;
+        width: 100%;
+        opacity: 1;
+    }
 }
