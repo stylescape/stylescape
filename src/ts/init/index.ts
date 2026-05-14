@@ -206,7 +206,7 @@ export function initializeStylescape(): void {
 
         // Initialize accordion state persistence for sidebar
         new AccordionState(
-            "details.sidebar__accordion",
+            "details.ss-c-sidebar__accordion",
             "sidebar-accordion-state",
         );
 
