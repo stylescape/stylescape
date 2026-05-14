@@ -19,6 +19,9 @@ function getReloadPath() {
         new URL("http://localhost:3000" + (globalThis.__CURRENT_PATH__ || "/"))
             .pathname,
     ).pathname;
+    if (pathname === "/" || pathname === "/index.html") {
+        return "/pages/index.html";
+    }
     return pathname.endsWith("/") ? pathname + "index.html" : pathname;
 }
 
@@ -103,9 +106,11 @@ export default defineConfig({
                     serveStatic(path.join(pathToDist, "font")),
                 );
 
-                // Serve / as index.html
+                // Serve / as pages/index.html
                 server.middlewares.use((req, res, next) => {
-                    if (req.url === "/") req.url = "/index.html";
+                    if (req.url === "/" || req.url === "/index.html") {
+                        req.url = "/pages/index.html";
+                    }
                     next();
                 });
 
