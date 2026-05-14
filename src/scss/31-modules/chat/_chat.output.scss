@@ -1,0 +1,48 @@
+// =============================================================================
+// 31-modules / chat / output
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./chat.config" as config;
+@use "./chat.mixins" as *;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-chat {
+        @include ss-chat;
+
+        &__message {
+            @include ss-chat-message;
+
+            &--inbound {
+                @include ss-chat-message-inbound;
+            }
+            &--outbound {
+                @include ss-chat-message-outbound;
+                > .#{$ss-prefix-module}-chat__bubble {
+                    background-color: map.get(
+                        config.$chat-config,
+                        "bubble-bg-outbound"
+                    );
+                    color: map.get(
+                        config.$chat-config,
+                        "bubble-color-outbound"
+                    );
+                }
+            }
+        }
+
+        &__bubble {
+            @include ss-chat-bubble;
+        }
+        &__avatar {
+            @include ss-chat-avatar;
+        }
+        &__timestamp {
+            @include ss-chat-timestamp;
+        }
+        &__composer {
+            @include ss-chat-composer;
+        }
+    }
+}

@@ -1,0 +1,67 @@
+// =============================================================================
+// 31-modules / preloader / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./preloader.config" as config;
+
+@mixin ss-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: map.get(config.$preloader-config, "z-index");
+    background-color: map.get(config.$preloader-config, "background");
+    color: map.get(config.$preloader-config, "color");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+
+    &.is-hidden,
+    &--hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}
+
+@mixin ss-preloader-lines {
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: flex-end;
+    height: map.get(config.$preloader-config, "pulse-size");
+
+    > span {
+        width: map.get(config.$preloader-config, "line-width");
+        background-color: map.get(config.$preloader-config, "line-color");
+        animation: ss-preloader-lines
+            #{map.get(config.$preloader-config, "duration")} ease-in-out
+            infinite;
+
+        &:nth-child(1) {
+            animation-delay: 0s;
+        }
+        &:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        &:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+        &:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+        &:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+    }
+}
+
+@mixin ss-preloader-pulse {
+    width: map.get(config.$preloader-config, "pulse-size");
+    height: map.get(config.$preloader-config, "pulse-size");
+    border-radius: 50%;
+    background-color: map.get(config.$preloader-config, "pulse-color");
+    animation: ss-preloader-pulse
+        #{map.get(config.$preloader-config, "duration")} ease-in-out infinite;
+}

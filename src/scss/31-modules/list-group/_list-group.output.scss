@@ -1,0 +1,105 @@
+// =============================================================================
+// 31-modules / list-group / output
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./list-group.config" as config;
+@use "./list-group.mixins" as *;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-list-group {
+        @include ss-list-group;
+
+        &--flush {
+            > .#{$ss-prefix-module}-list-group__item {
+                border-radius: 0;
+                border-left: 0;
+                border-right: 0;
+                &:first-child {
+                    border-top: 0;
+                }
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
+        }
+        &--horizontal {
+            @include ss-list-group-horizontal;
+        }
+        &--numbered {
+            counter-reset: ss-list-group;
+            > .#{$ss-prefix-module}-list-group__item::before {
+                counter-increment: ss-list-group;
+                content: counter(ss-list-group) ". ";
+                font-variant-numeric: tabular-nums;
+            }
+        }
+
+        &__item {
+            @include ss-list-group-item;
+
+            &--primary {
+                color: #ffffff;
+                background-color: map.get(
+                    config.$list-group-config,
+                    "color-primary"
+                );
+                border-color: map.get(
+                    config.$list-group-config,
+                    "color-primary"
+                );
+            }
+            &--success {
+                color: #ffffff;
+                background-color: map.get(
+                    config.$list-group-config,
+                    "color-success"
+                );
+                border-color: map.get(
+                    config.$list-group-config,
+                    "color-success"
+                );
+            }
+            &--warning {
+                color: #1a1a1a;
+                background-color: map.get(
+                    config.$list-group-config,
+                    "color-warning"
+                );
+                border-color: map.get(
+                    config.$list-group-config,
+                    "color-warning"
+                );
+            }
+            &--danger {
+                color: #ffffff;
+                background-color: map.get(
+                    config.$list-group-config,
+                    "color-danger"
+                );
+                border-color: map.get(
+                    config.$list-group-config,
+                    "color-danger"
+                );
+            }
+            &--info {
+                color: #1a1a1a;
+                background-color: map.get(
+                    config.$list-group-config,
+                    "color-info"
+                );
+                border-color: map.get(config.$list-group-config, "color-info");
+            }
+
+            &__heading {
+                font-weight: 600;
+                margin: 0 0 0.25rem;
+            }
+            &__text {
+                margin: 0;
+                font-size: 0.875rem;
+            }
+        }
+    }
+}

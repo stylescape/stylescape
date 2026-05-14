@@ -1,0 +1,67 @@
+// =============================================================================
+// 31-modules / chat / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./chat.config" as config;
+
+@mixin ss-chat {
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$chat-config, "gap");
+    padding: map.get(config.$chat-config, "padding");
+    width: 100%;
+}
+
+@mixin ss-chat-message {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    max-width: map.get(config.$chat-config, "max-width");
+}
+
+@mixin ss-chat-message-inbound {
+    align-self: flex-start;
+}
+
+@mixin ss-chat-message-outbound {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+@mixin ss-chat-bubble {
+    padding: map.get(config.$chat-config, "bubble-padding");
+    border-radius: map.get(config.$chat-config, "bubble-radius");
+    background-color: map.get(config.$chat-config, "bubble-bg-inbound");
+    color: map.get(config.$chat-config, "bubble-color-inbound");
+    word-break: break-word;
+}
+
+@mixin ss-chat-avatar {
+    width: map.get(config.$chat-config, "avatar-size");
+    height: map.get(config.$chat-config, "avatar-size");
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+@mixin ss-chat-timestamp {
+    color: map.get(config.$chat-config, "timestamp-color");
+    font-size: map.get(config.$chat-config, "timestamp-font-size");
+    margin-top: 0.125rem;
+}
+
+@mixin ss-chat-composer {
+    display: flex;
+    gap: 0.5rem;
+    padding: map.get(config.$chat-config, "composer-padding");
+    background-color: map.get(config.$chat-config, "composer-bg");
+    border-top: 1px solid map.get(config.$chat-config, "composer-border");
+
+    > input,
+    > textarea {
+        flex: 1 1 auto;
+        min-width: 0;
+        font: inherit;
+    }
+}

@@ -1,0 +1,53 @@
+// =============================================================================
+// 31-modules / drilldown / output
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./drilldown.config" as config;
+@use "./drilldown.mixins" as *;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-drilldown {
+        @include ss-drilldown;
+
+        &--bordered {
+            @include ss-drilldown-bordered;
+        }
+        &--dark {
+            @include ss-drilldown-dark;
+        }
+        &--compact .#{$ss-prefix-module}-drilldown__item {
+            padding: 0.5rem;
+        }
+
+        &__wrapper {
+            @include ss-drilldown-wrapper;
+        }
+        &__level {
+            @include ss-drilldown-level;
+        }
+        &__item {
+            @include ss-drilldown-item;
+
+            &.is-active,
+            &--active {
+                color: map.get(config.$drilldown-config, "color-active");
+            }
+            &.is-disabled,
+            &--disabled {
+                color: map.get(config.$drilldown-config, "color-disabled");
+                pointer-events: none;
+            }
+        }
+        &__back {
+            @include ss-drilldown-back;
+        }
+        &__submenu-title {
+            font-weight: 600;
+            padding: map.get(config.$drilldown-config, "padding");
+            border-bottom: 1px solid
+                map.get(config.$drilldown-config, "border-color");
+        }
+    }
+}

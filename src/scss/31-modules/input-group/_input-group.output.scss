@@ -1,0 +1,30 @@
+// =============================================================================
+// 31-modules / input-group / output
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./input-group.config" as config;
+@use "./input-group.mixins" as *;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-input-group {
+        @include ss-input-group;
+
+        &--sm > * {
+            padding: map.get(config.$input-group-config, "addon-padding-sm");
+        }
+        &--lg > * {
+            padding: map.get(config.$input-group-config, "addon-padding-lg");
+        }
+
+        &--focus,
+        &:focus-within {
+            box-shadow: map.get(config.$input-group-config, "focus-ring");
+        }
+
+        &__text {
+            @include ss-input-group-text;
+        }
+    }
+}

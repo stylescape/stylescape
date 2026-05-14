@@ -1,0 +1,33 @@
+// =============================================================================
+// 31-modules / gallery / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./gallery.config" as config;
+
+@mixin ss-gallery {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(map.get(config.$gallery-config, "min-column"), 1fr)
+    );
+    gap: map.get(config.$gallery-config, "gap");
+}
+
+@mixin ss-gallery-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: map.get(config.$gallery-config, "radius");
+
+    > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+@mixin ss-gallery-border {
+    border: map.get(config.$gallery-config, "border-width") solid
+        map.get(config.$gallery-config, "border-color");
+}

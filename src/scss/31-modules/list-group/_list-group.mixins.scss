@@ -1,0 +1,70 @@
+// =============================================================================
+// 31-modules / list-group / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./list-group.config" as config;
+
+@mixin ss-list-group {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    border-radius: map.get(config.$list-group-config, "radius");
+    list-style: none;
+}
+
+@mixin ss-list-group-flush {
+    > * {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        &:first-child {
+            border-top: 0;
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+}
+
+@mixin ss-list-group-horizontal {
+    flex-direction: row;
+}
+
+@mixin ss-list-group-item {
+    display: block;
+    position: relative;
+    padding: map.get(config.$list-group-config, "item-padding");
+    color: map.get(config.$list-group-config, "color");
+    background-color: map.get(config.$list-group-config, "background");
+    border: map.get(config.$list-group-config, "border-width") solid
+        map.get(config.$list-group-config, "border-color");
+
+    &:not(:first-child) {
+        border-top-width: 0;
+    }
+    &:first-child {
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+    }
+    &:last-child {
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
+    }
+
+    &.is-active,
+    &--active {
+        z-index: 2;
+        color: #ffffff;
+        background-color: map.get(config.$list-group-config, "color-primary");
+        border-color: map.get(config.$list-group-config, "color-primary");
+    }
+
+    &.is-disabled,
+    &--disabled {
+        color: var(--ss-color-text-muted, #999999);
+        pointer-events: none;
+        background-color: var(--ss-color-fill-muted, #f4f4f4);
+    }
+}

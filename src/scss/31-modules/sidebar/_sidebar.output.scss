@@ -1,0 +1,37 @@
+// =============================================================================
+// 31-modules / sidebar / output
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./sidebar.config" as config;
+@use "./sidebar.mixins" as *;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-sidebar {
+        @include ss-sidebar;
+
+        &--left {
+            @include ss-sidebar-left;
+            > .#{$ss-prefix-module}-sidebar__menu {
+                border-right: 1px solid
+                    map.get(config.$sidebar-config, "border-color");
+            }
+        }
+
+        &--right {
+            @include ss-sidebar-right;
+            > .#{$ss-prefix-module}-sidebar__menu {
+                border-left: 1px solid
+                    map.get(config.$sidebar-config, "border-color");
+            }
+        }
+
+        &__menu {
+            @include ss-sidebar-menu;
+        }
+        &__control {
+            @include ss-sidebar-control;
+        }
+    }
+}

@@ -1,0 +1,48 @@
+// =============================================================================
+// 31-modules / formfield / output
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "./formfield.mixins" as *;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-formfield {
+        @include ss-formfield;
+
+        &__label {
+            @include ss-formfield-label;
+        }
+        &__help {
+            @include ss-formfield-help;
+        }
+        &__error {
+            @include ss-formfield-error;
+        }
+        &__image-preview {
+            @include ss-formfield-image-preview;
+        }
+
+        &__input--full-width {
+            @include ss-formfield-input-full;
+        }
+
+        &--ordered {
+            display: grid;
+            grid-template-areas: "label" "input" "help" "error";
+            gap: 0.375rem;
+
+            > .#{$ss-prefix-module}-formfield__label {
+                grid-area: label;
+            }
+            > .#{$ss-prefix-module}-formfield__input {
+                grid-area: input;
+            }
+            > .#{$ss-prefix-module}-formfield__help {
+                grid-area: help;
+            }
+            > .#{$ss-prefix-module}-formfield__error {
+                grid-area: error;
+            }
+        }
+    }
+}

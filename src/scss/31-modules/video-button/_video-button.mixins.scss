@@ -1,0 +1,44 @@
+// =============================================================================
+// 31-modules / video-button / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./video-button.config" as config;
+
+@mixin ss-video-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: map.get(config.$video-button-config, "size");
+    height: map.get(config.$video-button-config, "size");
+    background-color: map.get(config.$video-button-config, "background");
+    color: map.get(config.$video-button-config, "color");
+    border: 0;
+    border-radius: map.get(config.$video-button-config, "border-radius");
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+
+    &::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: map.get(config.$video-button-config, "icon-size") solid
+            currentColor;
+        border-top: calc(
+                #{map.get(config.$video-button-config, "icon-size")} * 0.6
+            )
+            solid transparent;
+        border-bottom: calc(
+                #{map.get(config.$video-button-config, "icon-size")} * 0.6
+            )
+            solid transparent;
+        margin-left: 0.25rem;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+}

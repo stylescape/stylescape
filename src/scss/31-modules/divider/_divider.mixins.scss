@@ -1,0 +1,51 @@
+// =============================================================================
+// 31-modules / divider / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./divider.config" as config;
+
+@mixin ss-divider {
+    border: 0;
+    border-top: map.get(config.$divider-config, "thickness") solid
+        map.get(config.$divider-config, "color");
+    margin: map.get(config.$divider-config, "spacing") 0;
+    height: 0;
+    width: 100%;
+}
+
+@mixin ss-divider-vertical {
+    border: 0;
+    border-left: map.get(config.$divider-config, "thickness") solid
+        map.get(config.$divider-config, "color");
+    margin: 0 map.get(config.$divider-config, "spacing");
+    width: 0;
+    height: auto;
+    align-self: stretch;
+    display: inline-block;
+}
+
+@mixin ss-divider-dashed {
+    border-top-style: dashed;
+}
+
+@mixin ss-divider-dotted {
+    border-top-style: dotted;
+}
+
+@mixin ss-divider-with-label {
+    display: flex;
+    align-items: center;
+    gap: map.get(config.$divider-config, "label-padding");
+    color: map.get(config.$divider-config, "label-color");
+    margin: map.get(config.$divider-config, "spacing") 0;
+    font-size: 0.8125rem;
+
+    &::before,
+    &::after {
+        content: "";
+        flex: 1 1 auto;
+        border-top: map.get(config.$divider-config, "thickness") solid
+            map.get(config.$divider-config, "color");
+    }
+}

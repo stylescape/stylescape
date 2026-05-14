@@ -1,0 +1,39 @@
+// =============================================================================
+// 31-modules / icon-bar / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./icon-bar.config" as config;
+
+@mixin ss-icon-bar {
+    display: inline-flex;
+    gap: map.get(config.$icon-bar-config, "gap");
+    background-color: map.get(config.$icon-bar-config, "background");
+    align-items: center;
+}
+
+@mixin ss-icon-bar-horizontal {
+    @include ss-icon-bar;
+    flex-direction: row;
+}
+
+@mixin ss-icon-bar-vertical {
+    @include ss-icon-bar;
+    flex-direction: column;
+}
+
+@mixin ss-icon-bar-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: map.get(config.$icon-bar-config, "item-padding");
+    color: map.get(config.$icon-bar-config, "item-color");
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: color 0.15s ease;
+
+    &:hover {
+        color: map.get(config.$icon-bar-config, "item-color-active");
+    }
+}

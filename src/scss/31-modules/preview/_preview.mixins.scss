@@ -1,0 +1,66 @@
+// =============================================================================
+// 31-modules / preview / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./preview.config" as config;
+
+@mixin ss-preview {
+    border: map.get(config.$preview-config, "border-width") solid
+        map.get(config.$preview-config, "border-color");
+    border-radius: map.get(config.$preview-config, "radius");
+    background-color: map.get(config.$preview-config, "background");
+    overflow: hidden;
+    display: grid;
+    gap: 0;
+}
+
+@mixin ss-preview-horizontal {
+    grid-template-columns: 1fr 1fr;
+}
+
+@mixin ss-preview-vertical {
+    grid-template-rows: auto auto;
+}
+
+@mixin ss-preview-live {
+    padding: map.get(config.$preview-config, "padding");
+}
+
+@mixin ss-preview-code {
+    padding: map.get(config.$preview-config, "padding");
+    background-color: map.get(config.$preview-config, "code-bg");
+    color: map.get(config.$preview-config, "code-color");
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    overflow: auto;
+}
+
+@mixin ss-preview-info {
+    padding: 0.5rem map.get(config.$preview-config, "padding");
+    border-bottom: map.get(config.$preview-config, "border-width") solid
+        map.get(config.$preview-config, "border-color");
+    font-size: 0.8125rem;
+}
+
+@mixin ss-preview-swatch {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+
+    &__color {
+        width: map.get(config.$preview-config, "swatch-size");
+        height: map.get(config.$preview-config, "swatch-size");
+        border-radius: map.get(config.$preview-config, "radius");
+        border: map.get(config.$preview-config, "border-width") solid
+            map.get(config.$preview-config, "border-color");
+    }
+
+    &__code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.75rem;
+    }
+}

@@ -1,0 +1,35 @@
+// =============================================================================
+// 31-modules / box / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./box.config" as config;
+
+@mixin ss-box {
+    display: block;
+    box-sizing: border-box;
+    padding: map.get(config.$box-config, "padding");
+    background-color: map.get(config.$box-config, "background");
+    color: map.get(config.$box-config, "color");
+}
+
+@mixin ss-box-bordered {
+    border: map.get(config.$box-config, "border-width") solid
+        map.get(config.$box-config, "border-color");
+}
+
+@mixin ss-box-rounded {
+    border-radius: map.get(config.$box-config, "radius");
+}
+
+@mixin ss-box-surface {
+    @include ss-box;
+    @include ss-box-rounded;
+    box-shadow: map.get(config.$box-config, "shadow-surface");
+}
+
+@mixin ss-box-elevated {
+    @include ss-box;
+    @include ss-box-rounded;
+    box-shadow: map.get(config.$box-config, "shadow-elevated");
+}

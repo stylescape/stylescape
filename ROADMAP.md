@@ -251,8 +251,8 @@ components: `badge`, `button`, `card`, `dropcap`, `hero`, `modal`,
 #### Phase 3 — Step C (new-module authoring, in progress)
 
 Each new module ships the 4-file blueprint (`_<m>.config.scss`,
-`_<m>.mixins.scss`, `_<m>.output.scss`, `_index.scss`) and emits
-`.ss-c-<m>*` selectors inside `@layer ss.modules`.
+`_<m>.mixins.scss`, `_<m>.output.scss`, `_index.scss`) and emits `.ss-c-<m>*`
+selectors inside `@layer ss.modules`.
 
 **Round 1 — 10 baseline modules:**
 
@@ -288,21 +288,77 @@ described in the spec.
 - [x] `radio` (`appearance: none` circle + radial-gradient dot; `__label`
       companion)
 - [x] `toggle` (switch with translated knob; checked + disabled states)
-- [x] `nav` (flex list + `--vertical` modifier, `__item`, `__link`,
-      `is-active` / `aria-current="page"`)
+- [x] `nav` (flex list + `--vertical` modifier, `__item`, `__link`, `is-active`
+      / `aria-current="page"`)
 - [x] `dropdown` (relative wrapper + absolute `__menu`, `__item`, `__divider`;
       `is-open` / hidden states)
-- [x] `toast` (`__region` with 4 `data-position` placements +
-      `__variant` info/success/warning/danger)
+- [x] `toast` (`__region` with 4 `data-position` placements + `__variant`
+      info/success/warning/danger)
 - [x] `popover` (absolute container with 4 `data-placement` variants +
       `__title`, `__body`)
 
-Build verified after Round 2: standalone bundle now **728,769 bytes**
-(+12,090 from 716,679); 119 unique `.ss-c-*` selectors across 27 wired
-modules.
+Build verified after Round 2: standalone bundle now **728,769 bytes** (+12,090
+from 716,679); 119 unique `.ss-c-*` selectors across 27 wired modules.
 
-Remaining authoring backlog (lower priority — not blocking v1.0.0):
-preloader, carousel, slideshow, image, video, figure, tag, status.
+**Round 3 — 44 modules ported from legacy `bup/` tree:**
+
+The legacy `bup/classes/{body_atoms,body_molecules,body_organisms}/` tree was
+inventoried and every component re-authored against the blueprint with its
+BEM vocabulary preserved (parts as `__name`, modifiers as `--name`, state
+classes as `is-*`). All emit `.ss-c-<m>*` selectors inside
+`@layer ss.modules`.
+
+- Organisms (8): `ribbon` (with `__menu/__nav/__panel/__title/__slot/
+  __button/__search`; `--horizontal/--vertical/--top/--bottom/--left/
+  --right/--inverted`), `offcanvas` (`--start/--end/--top/--bottom`,
+  `--sm/--lg/--xl`, `--dark/--static`, `__backdrop/__header/__title/
+  __body/__close`), `sidebar` (`--left/--right`, `__menu/__control`),
+  `rail` (`--horizontal/--top/--bottom/--inverted`), `ticker`
+  (`--horizontal--top/--horizontal--bottom/--vertical--left/
+  --vertical--right/--inverted`, `__track/__item`), `gallery` (`__image`,
+  `--bordered`), `widget` (`--squared/--rounded/--pill`), `video-button`.
+- Content molecules (10): `collapse` (`--horizontal/--fade`), `cookie`
+  (`__message/__actions`), `cover` (`--full/--semi`, `__image/__title/
+  __arrow`), `figure` (`--1x1/--3x2/--4x3/--3x4/--2x3/--16x9`,
+  `--bordered/--rounded`, `__caption`), `graphic` (`--elevate/
+  --no-margins`), `summary` (with `details` parent), `timeline` (`__year/
+  __list/__item/__title/__description`), `timestamp` (`--elevate/
+  --active`, `__container`), `toc`, `vcard` (`__org/__name/__role/__email/
+  __tel/__address`).
+- Media molecules (8): `carousel` (`__track/__item/__indicators/
+  __indicator`, `__control--prev/--next`), `image` (`--cover/--contain/
+  --rounded/--circle/--bordered`), `image-slider` (compare slider; `__handle/
+  __before/__after`), `video` (`--responsive/--rounded`), `map` (`__canvas/
+  __control`), `placeholder` (skeleton; sizes/widths/`--glow/--wave`/color
+  variants), `portfolio` (`__item/__caption`), `preview` (`--horizontal/
+  --vertical`, `__live/__code/__info/__swatch/__copy-button`).
+- Navigation molecules (7): `button-group` (`--vertical`), `drilldown`
+  (`__wrapper/__level/__item/__back/__submenu-title`, `--bordered/--dark/
+  --compact`), `icon-bar` (`--horizontal/--vertical`, `__item`),
+  `list-group` (`--flush/--horizontal/--numbered`, `__item` with
+  primary/success/warning/danger/info variants + `__heading/__text`),
+  `scrollspy` (`__nav/__progress-bar/__progress-dots`), `social` (`__link`
+  with facebook/twitter/instagram/linkedin/youtube/github/mastodon/rss
+  brand colors), `tags-list` (`__item`).
+- Forms molecules (4): `floating-label`, `formfield` (`__label/__help/
+  __error/__image-preview`, `--ordered`), `input-group` (`--sm/--lg/
+  --focus`, `__text`), `validation` (cross-cuts `ss-c-input` and
+  `ss-c-label` for `is-invalid/is-valid/is-warning` and `--required/
+  --optional`).
+- Display atoms (3): `caption`, `chat` (with `__message--inbound/
+  --outbound`, `__bubble/__avatar/__timestamp/__composer`), `tab`
+  (`__list/__item/__panel`, `[aria-selected]` + `is-active`).
+- Layout primitives (4): `box` (`--bordered/--rounded/--surface/
+  --elevated`), `divider` (`--vertical/--dashed/--dotted/--with-label`),
+  `spacer` (`--xs/--sm/--md/--lg/--xl/--inline`), `preloader` (full-page
+  overlay, `__lines/__pulse`).
+
+Build verified after Round 3: standalone bundle now **784,716 bytes**
+(+55,947 from 728,769); 380 unique `.ss-c-*` selectors across 71 wired
+modules. Coverage of `bup/classes/` is now complete modulo two stubs that
+remain in the round-4 backlog: `status` and `tag`.
+
+Remaining authoring backlog: status, tag.
 
 ### Phase 4 — Utilities & overrides
 

@@ -1,0 +1,63 @@
+// =============================================================================
+// 31-modules / rail / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./rail.config" as config;
+
+// Scrollable container with hidden scrollbars.
+@mixin ss-rail {
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    max-height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+    flex-shrink: 1;
+    flex-grow: 1;
+    box-sizing: border-box;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+}
+
+@mixin ss-rail-horizontal {
+    @include ss-rail;
+    display: grid;
+    gap: 0;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: map.get(config.$rail-config, "height");
+    background-color: map.get(config.$rail-config, "background");
+    color: map.get(config.$rail-config, "color");
+    width: 100%;
+    height: map.get(config.$rail-config, "height");
+    padding-left: map.get(config.$rail-config, "padding-x");
+    padding-right: map.get(config.$rail-config, "padding-x");
+    align-items: center;
+    font-size: map.get(config.$rail-config, "font-size");
+    line-height: map.get(config.$rail-config, "line-height");
+}
+
+@mixin ss-rail-top {
+    @include ss-rail-horizontal;
+    border-bottom: map.get(config.$rail-config, "border-width") solid
+        map.get(config.$rail-config, "border-color");
+}
+
+@mixin ss-rail-bottom {
+    @include ss-rail-horizontal;
+    border-top: map.get(config.$rail-config, "border-width") solid
+        map.get(config.$rail-config, "border-color");
+}
+
+@mixin ss-rail-inverted {
+    background-color: var(--ss-color-fill, #ffffff);
+    color: var(--ss-color-text, #1a1a1a);
+}

@@ -1,0 +1,55 @@
+// =============================================================================
+// 31-modules / tab / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./tab.config" as config;
+
+@mixin ss-tab {
+    display: block;
+}
+
+@mixin ss-tab-list {
+    display: flex;
+    gap: map.get(config.$tab-config, "list-gap");
+    border-bottom: 1px solid map.get(config.$tab-config, "border-color");
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    role: tablist;
+}
+
+@mixin ss-tab-item {
+    padding: map.get(config.$tab-config, "item-padding");
+    color: map.get(config.$tab-config, "item-color");
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-bottom: map.get(config.$tab-config, "indicator-height") solid
+        transparent;
+    margin-bottom: -1px;
+    font: inherit;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+
+    &:hover {
+        color: map.get(config.$tab-config, "item-color-active");
+    }
+
+    &.is-active,
+    &--active,
+    &[aria-selected="true"] {
+        color: map.get(config.$tab-config, "item-color-active");
+        border-bottom-color: map.get(config.$tab-config, "indicator-color");
+    }
+}
+
+@mixin ss-tab-panel {
+    padding: map.get(config.$tab-config, "panel-padding") 0;
+
+    &[hidden],
+    &.is-hidden {
+        display: none;
+    }
+}

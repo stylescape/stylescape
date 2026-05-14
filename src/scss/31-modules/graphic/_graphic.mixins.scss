@@ -1,0 +1,26 @@
+// =============================================================================
+// 31-modules / graphic / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./graphic.config" as config;
+
+@mixin ss-graphic {
+    margin: map.get(config.$graphic-config, "margin-y-base") 0;
+
+    > img,
+    > picture > img {
+        width: 100%;
+        display: block;
+    }
+}
+
+@mixin ss-graphic-elevate {
+    margin-top: 0;
+    margin-bottom: map.get(config.$graphic-config, "margin-bottom-elevate");
+    max-width: map.get(config.$graphic-config, "max-width-elevate");
+}
+
+@mixin ss-graphic-no-margins {
+    margin: 0;
+}

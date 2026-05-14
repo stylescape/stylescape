@@ -1,0 +1,45 @@
+// =============================================================================
+// 31-modules / preview / output
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "./preview.mixins" as *;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-preview {
+        @include ss-preview;
+
+        &--horizontal {
+            @include ss-preview-horizontal;
+        }
+        &--vertical {
+            @include ss-preview-vertical;
+        }
+
+        &__live {
+            @include ss-preview-live;
+        }
+        &__code {
+            @include ss-preview-code;
+        }
+        &__info {
+            @include ss-preview-info;
+        }
+        &__swatch {
+            @include ss-preview-swatch;
+        }
+
+        &__copy-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            border: 0;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            border-radius: 0.25rem;
+        }
+    }
+}

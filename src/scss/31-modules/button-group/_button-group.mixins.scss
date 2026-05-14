@@ -1,0 +1,82 @@
+// =============================================================================
+// 31-modules / button-group / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./button-group.config" as config;
+
+@mixin ss-button-group {
+    display: inline-flex;
+    vertical-align: middle;
+
+    > * {
+        position: relative;
+        flex: 0 1 auto;
+        border-radius: 0;
+
+        &:not(:last-child) {
+            margin-right: -1px;
+        }
+        &:first-child {
+            border-top-left-radius: map.get(
+                config.$button-group-config,
+                "border-radius"
+            );
+            border-bottom-left-radius: map.get(
+                config.$button-group-config,
+                "border-radius"
+            );
+        }
+        &:last-child {
+            border-top-right-radius: map.get(
+                config.$button-group-config,
+                "border-radius"
+            );
+            border-bottom-right-radius: map.get(
+                config.$button-group-config,
+                "border-radius"
+            );
+        }
+        &:hover,
+        &:focus,
+        &:active {
+            z-index: 1;
+        }
+    }
+}
+
+@mixin ss-button-group-vertical {
+    @include ss-button-group;
+    flex-direction: column;
+    align-items: stretch;
+
+    > * {
+        width: 100%;
+        &:not(:last-child) {
+            margin-right: 0;
+            margin-bottom: -1px;
+        }
+        &:first-child {
+            border-radius: 0;
+            border-top-left-radius: map.get(
+                config.$button-group-config,
+                "border-radius"
+            );
+            border-top-right-radius: map.get(
+                config.$button-group-config,
+                "border-radius"
+            );
+        }
+        &:last-child {
+            border-radius: 0;
+            border-bottom-left-radius: map.get(
+                config.$button-group-config,
+                "border-radius"
+            );
+            border-bottom-right-radius: map.get(
+                config.$button-group-config,
+                "border-radius"
+            );
+        }
+    }
+}

@@ -1,0 +1,44 @@
+// =============================================================================
+// 31-modules / figure / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./figure.config" as config;
+
+@mixin ss-figure {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+
+    > img,
+    > picture > img {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    > figcaption {
+        margin-top: map.get(config.$figure-config, "caption-margin-top");
+        padding: map.get(config.$figure-config, "padding");
+        text-align: map.get(config.$figure-config, "caption-text-align");
+        font-style: map.get(config.$figure-config, "caption-font-style");
+        font-size: 0.875rem;
+        line-height: 1.4;
+    }
+}
+
+@mixin ss-figure-bordered {
+    border: map.get(config.$figure-config, "border-width") solid
+        map.get(config.$figure-config, "border-color");
+}
+
+@mixin ss-figure-rounded {
+    border-radius: map.get(config.$figure-config, "radius-rounded");
+    overflow: hidden;
+}
+
+@mixin ss-figure-ratio($w, $h) {
+    aspect-ratio: #{$w} / #{$h};
+}

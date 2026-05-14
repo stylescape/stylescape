@@ -1,0 +1,24 @@
+// =============================================================================
+// 31-modules / portfolio / output
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "./portfolio.mixins" as *;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-portfolio {
+        @include ss-portfolio;
+
+        &__item {
+            @include ss-portfolio-item;
+        }
+        &__caption {
+            position: absolute;
+            inset: auto 0 0 0;
+            padding: 0.5rem 0.75rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            font-size: 0.875rem;
+        }
+    }
+}

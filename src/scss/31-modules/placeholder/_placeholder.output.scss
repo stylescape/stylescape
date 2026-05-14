@@ -1,0 +1,98 @@
+// =============================================================================
+// 31-modules / placeholder / output
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./placeholder.config" as config;
+@use "./placeholder.mixins" as *;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-placeholder {
+        @include ss-placeholder;
+
+        &--xs {
+            min-height: map.get(config.$placeholder-config, "height-xs");
+        }
+        &--sm {
+            min-height: map.get(config.$placeholder-config, "height-sm");
+        }
+        &--lg {
+            min-height: map.get(config.$placeholder-config, "height-lg");
+        }
+
+        &--w-25 {
+            width: 25%;
+        }
+        &--w-50 {
+            width: 50%;
+        }
+        &--w-75 {
+            width: 75%;
+        }
+        &--w-100 {
+            width: 100%;
+        }
+
+        &--glow {
+            @include ss-placeholder-glow;
+        }
+        &--wave {
+            @include ss-placeholder-wave;
+        }
+
+        &--primary {
+            background-color: map.get(
+                config.$placeholder-config,
+                "color-primary"
+            );
+        }
+        &--success {
+            background-color: map.get(
+                config.$placeholder-config,
+                "color-success"
+            );
+        }
+        &--danger {
+            background-color: map.get(
+                config.$placeholder-config,
+                "color-danger"
+            );
+        }
+        &--warning {
+            background-color: map.get(
+                config.$placeholder-config,
+                "color-warning"
+            );
+        }
+        &--info {
+            background-color: map.get(
+                config.$placeholder-config,
+                "color-info"
+            );
+        }
+        &--light {
+            background-color: map.get(
+                config.$placeholder-config,
+                "color-light"
+            );
+        }
+        &--dark {
+            background-color: map.get(
+                config.$placeholder-config,
+                "color-dark"
+            );
+        }
+    }
+
+    @keyframes ss-placeholder-glow {
+        50% {
+            opacity: 0.2;
+        }
+    }
+    @keyframes ss-placeholder-wave {
+        100% {
+            mask-position: -200% 0%;
+        }
+    }
+}

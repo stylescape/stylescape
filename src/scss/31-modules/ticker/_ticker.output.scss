@@ -1,0 +1,87 @@
+// =============================================================================
+// 31-modules / ticker / output
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./ticker.config" as config;
+@use "./ticker.mixins" as *;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-ticker {
+        @include ss-ticker;
+
+        &--horizontal--top,
+        &--horizontal--bottom {
+            @include ss-ticker;
+        }
+        &--vertical--left,
+        &--vertical--right {
+            @include ss-ticker;
+        }
+        &--inverted {
+            @include ss-ticker-inverted;
+        }
+
+        &__track {
+            display: inline-flex;
+            gap: map.get(config.$ticker-config, "gap");
+            white-space: nowrap;
+            will-change: transform;
+        }
+
+        &--horizontal--top &__track,
+        &--horizontal--bottom &__track {
+            @include ss-ticker-track-horizontal(left);
+        }
+        &--vertical--left &__track,
+        &--vertical--right &__track {
+            @include ss-ticker-track-vertical(up);
+        }
+
+        &:hover &__track,
+        &__track:focus {
+            animation-play-state: paused;
+        }
+
+        &__item {
+            display: inline-block;
+            padding: 0 map.get(config.$ticker-config, "item-padding-x");
+            font-size: map.get(config.$ticker-config, "item-font-size");
+            white-space: nowrap;
+        }
+    }
+
+    @keyframes ss-ticker-h-left {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+    @keyframes ss-ticker-h-right {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
+    @keyframes ss-ticker-v-up {
+        0% {
+            transform: translateY(100%);
+        }
+        100% {
+            transform: translateY(-100%);
+        }
+    }
+    @keyframes ss-ticker-v-down {
+        0% {
+            transform: translateY(-100%);
+        }
+        100% {
+            transform: translateY(100%);
+        }
+    }
+}

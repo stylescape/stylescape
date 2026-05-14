@@ -1,0 +1,70 @@
+// =============================================================================
+// 31-modules / scrollspy / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./scrollspy.config" as config;
+
+@mixin ss-scrollspy {
+    scroll-padding-top: map.get(config.$scrollspy-config, "scroll-padding");
+    scroll-behavior: smooth;
+}
+
+@mixin ss-scrollspy-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        padding: 0.25rem 0.5rem;
+
+        &.is-active,
+        &.active {
+            color: map.get(config.$scrollspy-config, "color-active");
+            font-weight: 600;
+        }
+    }
+}
+
+@mixin ss-scrollspy-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: map.get(config.$scrollspy-config, "progress-height");
+    background-color: map.get(config.$scrollspy-config, "progress-color");
+    z-index: 1080;
+    transition: width 0.1s linear;
+}
+
+@mixin ss-scrollspy-progress-dots {
+    position: fixed;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$scrollspy-config, "dot-gap");
+
+    > * {
+        width: map.get(config.$scrollspy-config, "dot-size");
+        height: map.get(config.$scrollspy-config, "dot-size");
+        border-radius: 50%;
+        background-color: map.get(config.$scrollspy-config, "dot-color");
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+
+        &.is-active,
+        &.active {
+            background-color: map.get(
+                config.$scrollspy-config,
+                "color-active"
+            );
+        }
+    }
+}

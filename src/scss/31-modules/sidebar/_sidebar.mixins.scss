@@ -1,0 +1,67 @@
+// =============================================================================
+// 31-modules / sidebar / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./sidebar.config" as config;
+
+@mixin ss-sidebar {
+    position: relative;
+    display: flex;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+@mixin ss-sidebar-menu {
+    position: relative;
+    transition: width #{map.get(config.$sidebar-config, "transition")};
+    width: 0;
+    display: none;
+    visibility: hidden;
+    overflow: visible;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+
+    &.is-active,
+    &.active {
+        display: block;
+        visibility: visible;
+        width: map.get(config.$sidebar-config, "menu-width");
+    }
+}
+
+@mixin ss-sidebar-control {
+    position: relative;
+    width: map.get(config.$sidebar-config, "control-size");
+    height: map.get(config.$sidebar-config, "control-size");
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99999;
+    pointer-events: auto;
+    overflow: visible;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+}
+
+@mixin ss-sidebar-left {
+    @include ss-sidebar;
+    flex-direction: row;
+    transition: width #{map.get(config.$sidebar-config, "transition")};
+}
+
+@mixin ss-sidebar-right {
+    @include ss-sidebar;
+    flex-direction: row-reverse;
+    transition: width #{map.get(config.$sidebar-config, "transition")};
+}

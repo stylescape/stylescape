@@ -1,0 +1,24 @@
+// =============================================================================
+// 31-modules / timestamp / output
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "./timestamp.mixins" as *;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-timestamp {
+        @include ss-timestamp;
+
+        &--elevate {
+            @include ss-timestamp-elevate;
+        }
+        &--active,
+        &.is-active {
+            @include ss-timestamp-active;
+        }
+
+        &__container {
+            @include ss-timestamp-container;
+        }
+    }
+}
