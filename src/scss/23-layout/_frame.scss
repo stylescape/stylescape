@@ -1,0 +1,192 @@
+////
+///
+/// Frame
+/// ===========================================================================
+///
+/// Full-viewport 3×3 layout grid. Ported from legacy
+/// `bup/scss/classes/head_frame/_frame_main.scss` and the related
+/// `mixins/head_frame/_frame_*.scss` partials.
+///
+/// Activate by applying `.frame_main` to a wrapper element. Children opt
+/// into one of the nine cells with `.frame_main__area--<cell>` (e.g.
+/// `top_left`, `middle_center`, `bottom_right`) or one of the six grouped
+/// regions (`top`, `middle`, `bottom`, `left`, `center`, `right`).
+///
+/// @group Layout
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@layer ss.layout {
+    // ========================================================================
+    // Root
+    // ========================================================================
+
+    .frame_main {
+        box-sizing: border-box;
+        display: grid;
+        width: 100vw;
+        height: 100vh;
+        min-width: 100vw;
+        min-height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        overflow: hidden;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+
+        // Outer columns / rows hug their content; centre absorbs the rest.
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas:
+            "top_left      top_center       top_right"
+            "middle_left   middle_center    middle_right"
+            "bottom_left   bottom_center    bottom_right";
+    }
+
+    // ========================================================================
+    // Cell base
+    // ========================================================================
+
+    %frame_main__area {
+        box-sizing: border-box;
+        display: grid;
+        max-height: 100%;
+        max-width: 100%;
+        min-width: 0;
+        min-height: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    %frame_main__area--flex {
+        flex-shrink: 1;
+        flex-grow: 1;
+    }
+
+    // ========================================================================
+    // Single cells (3×3)
+    // ========================================================================
+
+    .frame_main__area--top_left {
+        @extend %frame_main__area;
+        grid-area: top_left;
+    }
+
+    .frame_main__area--top_center {
+        @extend %frame_main__area;
+        @extend %frame_main__area--flex;
+        grid-area: top_center;
+    }
+
+    .frame_main__area--top_right {
+        @extend %frame_main__area;
+        grid-area: top_right;
+    }
+
+    .frame_main__area--middle_left {
+        @extend %frame_main__area;
+        @extend %frame_main__area--flex;
+        grid-area: middle_left;
+        height: 100%;
+    }
+
+    .frame_main__area--middle_center {
+        @extend %frame_main__area;
+        @extend %frame_main__area--flex;
+        grid-area: middle_center;
+        // Center is the only scrollable region by default.
+        overflow: auto;
+    }
+
+    .frame_main__area--middle_right {
+        @extend %frame_main__area;
+        @extend %frame_main__area--flex;
+        grid-area: middle_right;
+    }
+
+    .frame_main__area--bottom_left {
+        @extend %frame_main__area;
+        grid-area: bottom_left;
+    }
+
+    .frame_main__area--bottom_center {
+        @extend %frame_main__area;
+        @extend %frame_main__area--flex;
+        grid-area: bottom_center;
+    }
+
+    .frame_main__area--bottom_right {
+        @extend %frame_main__area;
+        grid-area: bottom_right;
+    }
+
+    // ========================================================================
+    // Grouped regions (rows / columns)
+    // ========================================================================
+
+    .frame_main__area--top {
+        @extend %frame_main__area;
+        grid-row-start: top_left;
+        grid-column-start: top_left;
+        grid-row-end: top_right;
+        grid-column-end: top_right;
+    }
+
+    .frame_main__area--middle {
+        @extend %frame_main__area;
+        grid-row-start: middle_left;
+        grid-column-start: middle_left;
+        grid-row-end: middle_right;
+        grid-column-end: middle_right;
+    }
+
+    .frame_main__area--bottom {
+        @extend %frame_main__area;
+        grid-row-start: bottom_left;
+        grid-column-start: bottom_left;
+        grid-row-end: bottom_right;
+        grid-column-end: bottom_right;
+    }
+
+    .frame_main__area--left {
+        @extend %frame_main__area;
+        grid-row-start: top_left;
+        grid-column-start: top_left;
+        grid-row-end: bottom_left;
+        grid-column-end: bottom_left;
+    }
+
+    .frame_main__area--center {
+        @extend %frame_main__area;
+        grid-row-start: top_center;
+        grid-column-start: top_center;
+        grid-row-end: bottom_center;
+        grid-column-end: bottom_center;
+    }
+
+    .frame_main__area--right {
+        @extend %frame_main__area;
+        grid-row-start: top_right;
+        grid-column-start: top_right;
+        grid-row-end: bottom_right;
+        grid-column-end: bottom_right;
+    }
+
+    // ========================================================================
+    // Inner content slot
+    // ========================================================================
+
+    .main_content {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        min-height: 0;
+        overflow: auto;
+    }
+}
