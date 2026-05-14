@@ -5,32 +5,32 @@
     aria-labelledby="section-{{ loop.index }}"
 >
     <details class="ss-c-sidebar__accordion">
-        <summary class="sidebar__accordion__header">
-            <span class="sidebar__accordion__icon">▶</span>
+        <summary class="ss-c-sidebar__accordion__header">
+            <span class="ss-c-sidebar__accordion__icon">▶</span>
             <h2 id="section-{{ loop.index }}">{{ section.title }}</h2>
         </summary>
 
-        <div class="sidebar__accordion__content">
+        <div class="ss-c-sidebar__accordion__content">
             {% for group in section.groups %}
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
-                <summary class="sidebar__accordion__header sidebar__accordion__header--nested">
-                    <span class="sidebar__accordion__icon">▶</span>
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <span class="ss-c-sidebar__accordion__icon">▶</span>
                     <h3 id="group-{{ loop.index }}-{{ loop.parent.loop.index }}">
                         {{ group.heading }}
                     </h3>
                 </summary>
 
-                <div class="sidebar__accordion__content">
+                <div class="ss-c-sidebar__accordion__content">
                     {% if group.description %}
                     <p
-                        class="sidebar__subsection__description"
+                        class="ss-c-sidebar__subsection__description"
                         id="group-desc-{{ loop.index }}-{{ loop.parent.loop.index }}"
                     >
                         <small>{{ group.description }}</small>
                     </p>
                     {% endif %}
 
-                    <ul class="sidebar__subsection__list">
+                    <ul class="ss-c-sidebar__subsection__list">
                         {% for item in group.items %}
                         <li>
                             {% set link = item[0] %} {% set label = item[1] %}

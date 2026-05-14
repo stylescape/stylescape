@@ -1,0 +1,144 @@
+// =============================================================================
+// 31-modules / flipper / mixins
+// =============================================================================
+
+@use "../../01-core/external" as *;
+@use "./flipper.config" as config;
+
+@mixin ss-flipper-base {
+    position: absolute;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    display: block;
+    z-index: 9999;
+    overflow: visible;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: config.$flipper-arrow-size;
+        height: config.$flipper-bar-height;
+        background-color: config.$flipper-color;
+        transition: all config.$flipper-duration config.$flipper-easing;
+        transform-origin: center center;
+    }
+
+    &.is-active,
+    &.active {
+        &::before,
+        &::after {
+            background-color: config.$flipper-color-active;
+        }
+    }
+}
+
+@mixin ss-flipper-base-vertical {
+    @include ss-flipper-base;
+    width: calc(#{config.$flipper-arrow-size} * 2);
+    height: config.$flipper-arrow-size;
+}
+
+@mixin ss-flipper-base-horizontal {
+    @include ss-flipper-base;
+    width: config.$flipper-arrow-size;
+    height: calc(#{config.$flipper-arrow-size} * 2);
+}
+
+@mixin ss-flipper-left {
+    @include ss-flipper-base-horizontal;
+
+    &::before {
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+    &::after {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+    &.is-active,
+    &.active {
+        &::before {
+            transform: translate(-50%, -50%) rotate(120deg);
+        }
+        &::after {
+            transform: translate(-50%, -50%) rotate(-120deg);
+        }
+    }
+}
+
+@mixin ss-flipper-right {
+    @include ss-flipper-base-horizontal;
+
+    &::before {
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+    &::after {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+    &.is-active,
+    &.active {
+        &::before {
+            transform: translate(-50%, -50%) rotate(-120deg);
+        }
+        &::after {
+            transform: translate(-50%, -50%) rotate(120deg);
+        }
+    }
+}
+
+@mixin ss-flipper-up {
+    @include ss-flipper-base-vertical;
+
+    &::before {
+        top: 50%;
+        left: 15%;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    &::after {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    &.is-active,
+    &.active {
+        &::before {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        &::after {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+    }
+}
+
+@mixin ss-flipper-down {
+    @include ss-flipper-base-vertical;
+
+    &::before {
+        top: 50%;
+        left: 15%;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    &::after {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    &.is-active,
+    &.active {
+        &::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        &::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+    }
+}
