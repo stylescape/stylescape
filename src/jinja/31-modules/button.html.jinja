@@ -1,5 +1,5 @@
-{% extends "../base.html.jinja" %} {%- block title %}Buttons{%- endblock %} {%-
-block content %} {#
+{% extends "../base.html.jinja" %} {%- block title %}Buttons{%- endblock %} {%- block content %}
+{#
 ============================================================================
 Button Variants
 ============================================================================ #}
@@ -638,4 +638,393 @@ Combining Classes
     </section>
 </section>
 
-{%- endblock content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h2>{{ title }}</h2>
+        <p>Animated buttons with flip effects on hover and interaction.</p>
+    </header>
+
+    {# Basic Flipper Button #} {% set section_title = "Basic Flipper Button" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <button
+            class="flipper"
+            style="
+                position: relative;
+                padding: 14px 28px;
+                border: none;
+                background: var(--color_fill_primary);
+                color: white;
+                cursor: pointer;
+                overflow: hidden;
+                border-radius: 8px;
+                font-size: 16px;
+                perspective: 1000px;
+            "
+        >
+            <span
+                class="flipper--front"
+                style="display: block; transition: transform 0.3s"
+            >
+                Click Me
+            </span>
+            <span
+                class="flipper--back"
+                style="
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) rotateX(90deg);
+                    opacity: 0;
+                    transition: all 0.3s;
+                "
+            >
+                Done! ✓
+            </span>
+        </button>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {# Flip Directions #} {% set section_title = "Flip Directions" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div style="display: flex; gap: 16px; flex-wrap: wrap">
+            <!-- Flip Left -->
+            <button
+                class="flipper ss-c-flipper--left"
+                style="
+                    position: relative;
+                    min-width: 120px;
+                    padding: 14px 24px;
+                    border: 2px solid var(--color_fill_primary);
+                    background: transparent;
+                    color: var(--color_fill_primary);
+                    cursor: pointer;
+                    overflow: hidden;
+                    border-radius: 8px;
+                    transition: all 0.3s;
+                "
+            >
+                <span>Flip Left ←</span>
+            </button>
+
+            <!-- Flip Right -->
+            <button
+                class="flipper ss-c-flipper--right"
+                style="
+                    position: relative;
+                    min-width: 120px;
+                    padding: 14px 24px;
+                    border: 2px solid var(--color_fill_primary);
+                    background: transparent;
+                    color: var(--color_fill_primary);
+                    cursor: pointer;
+                    overflow: hidden;
+                    border-radius: 8px;
+                    transition: all 0.3s;
+                "
+            >
+                <span>Flip Right →</span>
+            </button>
+
+            <!-- Flip Up -->
+            <button
+                class="flipper ss-c-flipper--up"
+                style="
+                    position: relative;
+                    min-width: 120px;
+                    padding: 14px 24px;
+                    border: 2px solid var(--color_fill_primary);
+                    background: transparent;
+                    color: var(--color_fill_primary);
+                    cursor: pointer;
+                    overflow: hidden;
+                    border-radius: 8px;
+                    transition: all 0.3s;
+                "
+            >
+                <span>Flip Up ↑</span>
+            </button>
+
+            <!-- Flip Down -->
+            <button
+                class="flipper ss-c-flipper--down"
+                style="
+                    position: relative;
+                    min-width: 120px;
+                    padding: 14px 24px;
+                    border: 2px solid var(--color_fill_primary);
+                    background: transparent;
+                    color: var(--color_fill_primary);
+                    cursor: pointer;
+                    overflow: hidden;
+                    border-radius: 8px;
+                    transition: all 0.3s;
+                "
+            >
+                <span>Flip Down ↓</span>
+            </button>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {# Icon Flipper #} {% set section_title = "Icon Flipper" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div style="display: flex; gap: 16px; flex-wrap: wrap">
+            <button
+                class="flipper"
+                style="
+                    position: relative;
+                    width: 56px;
+                    height: 56px;
+                    border: none;
+                    background: var(--color_state_success);
+                    color: white;
+                    cursor: pointer;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    font-size: 20px;
+                    transition:
+                        transform 0.3s,
+                        box-shadow 0.3s;
+                "
+            >
+                <span class="flipper--front">✓</span>
+            </button>
+
+            <button
+                class="flipper"
+                style="
+                    position: relative;
+                    width: 56px;
+                    height: 56px;
+                    border: none;
+                    background: var(--color_state_error);
+                    color: white;
+                    cursor: pointer;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    font-size: 20px;
+                    transition:
+                        transform 0.3s,
+                        box-shadow 0.3s;
+                "
+            >
+                <span class="flipper--front">✕</span>
+            </button>
+
+            <button
+                class="flipper"
+                style="
+                    position: relative;
+                    width: 56px;
+                    height: 56px;
+                    border: none;
+                    background: var(--color_state_info);
+                    color: white;
+                    cursor: pointer;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    font-size: 20px;
+                    transition:
+                        transform 0.3s,
+                        box-shadow 0.3s;
+                "
+            >
+                <span class="flipper--front">ℹ</span>
+            </button>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {# Toggle Flipper #} {% set section_title = "Toggle Flipper" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div style="display: flex; gap: 16px; flex-wrap: wrap">
+            <!-- Play/Pause Toggle -->
+            <button
+                class="flipper ss-c-toggle"
+                style="
+                    position: relative;
+                    width: 64px;
+                    height: 64px;
+                    border: 2px solid var(--color_fill_primary);
+                    background: transparent;
+                    color: var(--color_fill_primary);
+                    cursor: pointer;
+                    overflow: hidden;
+                    border-radius: 12px;
+                    font-size: 24px;
+                    transition: all 0.3s;
+                "
+                data-state="play"
+            >
+                <span class="flipper--front">▶</span>
+                <span class="flipper--back" style="display: none">⏸</span>
+            </button>
+
+            <!-- Like Toggle -->
+            <button
+                class="flipper ss-c-toggle"
+                style="
+                    position: relative;
+                    width: 64px;
+                    height: 64px;
+                    border: 2px solid var(--color_state_error);
+                    background: transparent;
+                    color: var(--color_state_error);
+                    cursor: pointer;
+                    overflow: hidden;
+                    border-radius: 12px;
+                    font-size: 24px;
+                    transition: all 0.3s;
+                "
+            >
+                <span class="flipper--front">♡</span>
+                <span class="flipper--back" style="display: none">♥</span>
+            </button>
+
+            <!-- Bookmark Toggle -->
+            <button
+                class="flipper ss-c-toggle"
+                style="
+                    position: relative;
+                    width: 64px;
+                    height: 64px;
+                    border: 2px solid var(--color_state_warning);
+                    background: transparent;
+                    color: var(--color_state_warning);
+                    cursor: pointer;
+                    overflow: hidden;
+                    border-radius: 12px;
+                    font-size: 24px;
+                    transition: all 0.3s;
+                "
+            >
+                <span class="flipper--front">☆</span>
+                <span class="flipper--back" style="display: none">★</span>
+            </button>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {# 3D Card Flip #} {% set section_title = "3D Card Flip" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div
+            class="flipper-card"
+            style="perspective: 1000px; width: 200px; height: 280px"
+        >
+            <div
+                style="
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    transition: transform 0.6s;
+                    transform-style: preserve-3d;
+                    cursor: pointer;
+                "
+            >
+                <div
+                    class="flipper--front"
+                    style="
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        backface-visibility: hidden;
+                        background: linear-gradient(
+                            135deg,
+                            var(--color_fill_primary),
+                            var(--color_fill_secondary)
+                        );
+                        border-radius: 16px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        padding: 24px;
+                        box-sizing: border-box;
+                    "
+                >
+                    <div style="font-size: 48px; margin-bottom: 16px">🎴</div>
+                    <div style="font-size: 18px; font-weight: 600">
+                        Hover to Flip
+                    </div>
+                </div>
+                <div
+                    class="flipper--back"
+                    style="
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        backface-visibility: hidden;
+                        transform: rotateY(180deg);
+                        background: var(--color_fill_secondary);
+                        border-radius: 16px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 24px;
+                        box-sizing: border-box;
+                    "
+                >
+                    <div style="font-size: 24px; margin-bottom: 12px">🎉</div>
+                    <div
+                        style="
+                            font-size: 16px;
+                            font-weight: 600;
+                            margin-bottom: 8px;
+                        "
+                    >
+                        Back Side
+                    </div>
+                    <p
+                        style="
+                            font-size: 13px;
+                            opacity: 0.8;
+                            text-align: center;
+                            margin: 0;
+                        "
+                    >
+                        This is the revealed content on the back of the card.
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}
