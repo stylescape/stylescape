@@ -16,8 +16,17 @@
 // ----------------------------------------------------------------------------
 // Forward (public API surface)
 // ----------------------------------------------------------------------------
+//
+// We deliberately forward the unit.gl sub-modules individually (functions,
+// variables, mixins, maps) instead of `@forward "pkg:unit.gl"` because the
+// umbrella module also pulls in `unit.gl/_reset.scss`, which emits an
+// *unlayered* CSS reset that always wins over our `@layer ss.modules`
+// rules (e.g. `aside { display: block }` overrides `.ss-c-sidebar
+// { display: flex }`). Our own `11-reset` layer covers the same ground.
 
-@forward "pkg:unit.gl";
+@forward "../../../node_modules/unit.gl/scss/functions";
+@forward "../../../node_modules/unit.gl/scss/variables";
+@forward "../../../node_modules/unit.gl/scss/mixins";
 
 // NOTE: hue.gl and move.gl disabled - using fallbacks
 // @forward "pkg:hue.gl";
