@@ -1,0 +1,114 @@
+{% extends "../base.html.jinja" %} {% set title = "Labels" %} {%- block title %}{{
+title }}{%- endblock %} {%- block content %}
+
+<section class="demo__section" data-label="{{ title }}" data-level="1">
+    <header class="demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    {% set section_title = "Label Size Variants" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+
+        {% set code_snippet %}
+        <!-- Small Input -->
+        <div class="">
+            <label class="ss-c-label ss-c-label--sm">Small Input</label>
+            <input
+                type="text"
+                class="ss-c-input ss-c-input--sm"
+                placeholder="Small size (sm)"
+            />
+        </div>
+
+        <!-- Medium (Default) Input -->
+        <div class="">
+            <label class="ss-c-label ss-c-label--md">Medium Input (Default)</label>
+            <input
+                type="text"
+                class="ss-c-input ss-c-input--md"
+                placeholder="Medium size (md)"
+            />
+        </div>
+
+        <!-- Large Input -->
+        <div class="">
+            <label class="ss-c-label ss-c-label--lg">Large Input</label>
+            <input
+                type="text"
+                class="ss-c-input ss-c-input--lg"
+                placeholder="Large size (lg)"
+            />
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Label Variations" %}
+    <section
+        class="demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+
+        {% set code_snippet %}
+        <!-- Disabled Label -->
+        <div class="">
+            <label class="ss-c-label ss-c-label--muted">Disabled Label</label>
+            <input
+                type="text"
+                class="ss-c-input"
+                disabled
+                placeholder="Disabled Label"
+            />
+        </div>
+
+        <!-- Accent/Info Label -->
+        <div class="">
+            <label class="ss-c-label">Info Label</label>
+            <input
+                type="text"
+                class="ss-c-input is_info"
+                placeholder="Info Label"
+            />
+        </div>
+
+        <!-- Success Label -->
+        <div class="">
+            <label class="ss-c-label">Success Label</label>
+            <input
+                type="text"
+                class="ss-c-input is_success"
+                placeholder="Success Label"
+            />
+        </div>
+
+        <!-- Warning Label -->
+        <div class="">
+            <label class="ss-c-label">Warning Label</label>
+            <input
+                type="text"
+                class="ss-c-input is_warning"
+                placeholder="Warning Label"
+            />
+        </div>
+
+        <!-- Error Label -->
+        <div class="">
+            <label class="ss-c-label">Error Label</label>
+            <input
+                type="text"
+                class="ss-c-input is_error"
+                placeholder="Error Label"
+            />
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

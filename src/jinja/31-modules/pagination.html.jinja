@@ -1,0 +1,358 @@
+{% extends "../base.html.jinja" %} {%- block title %}Pagination{%- endblock %} {%-
+block content %} {#
+============================================================================
+Basic Pagination
+============================================================================ #}
+<section class="demo__section" data-label="Basic Pagination" data-level="1">
+    <header class="demo__section__header">
+        <h3>Basic Pagination</h3>
+        <p>Navigate through pages of content.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Simple Pagination</h4>
+        {% set code_snippet %}
+        <nav aria-label="Page navigation">
+            <ul class="ss-c-pagination">
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link" aria-label="Previous">
+                        ←
+                    </a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">1</a>
+                </li>
+                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                    <a href="#" class="ss-c-pagination__link" aria-current="page">
+                        2
+                    </a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">3</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link" aria-label="Next">
+                        →
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>With First/Last</h4>
+        {% set code_snippet %}
+        <nav aria-label="Page navigation">
+            <ul class="ss-c-pagination">
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link" aria-label="First">
+                        ««
+                    </a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link" aria-label="Previous">
+                        «
+                    </a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">1</a>
+                </li>
+                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                    <a href="#" class="ss-c-pagination__link" aria-current="page">
+                        2
+                    </a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">3</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link" aria-label="Next">
+                        »
+                    </a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link" aria-label="Last">
+                        »»
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Pagination States
+============================================================================ #}
+<section class="demo__section" data-label="States" data-level="1">
+    <header class="demo__section__header">
+        <h3>Pagination States</h3>
+        <p>Disabled and active states.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Disabled Items</h4>
+        {% set code_snippet %}
+        <nav aria-label="Page navigation">
+            <ul class="ss-c-pagination">
+                <li class="ss-c-pagination__item ss-c-pagination__item--disabled">
+                    <a
+                        href="#"
+                        class="ss-c-pagination__link"
+                        tabindex="-1"
+                        aria-disabled="true"
+                    >
+                        Previous
+                    </a>
+                </li>
+                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                    <a href="#" class="ss-c-pagination__link" aria-current="page">
+                        1
+                    </a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">2</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">3</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">Next</a>
+                </li>
+            </ul>
+        </nav>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Pagination Sizes
+============================================================================ #}
+<section class="demo__section" data-label="Sizes" data-level="1">
+    <header class="demo__section__header">
+        <h3>Pagination Sizes</h3>
+        <p>Different size variations.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Size Variations</h4>
+        {% set code_snippet %}
+        <nav aria-label="Small pagination">
+            <ul class="ss-c-pagination ss-c-pagination--sm">
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">«</a>
+                </li>
+                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                    <a href="#" class="ss-c-pagination__link">1</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">2</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">»</a>
+                </li>
+            </ul>
+        </nav>
+
+        <nav aria-label="Default pagination" class="mt--02">
+            <ul class="ss-c-pagination">
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">«</a>
+                </li>
+                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                    <a href="#" class="ss-c-pagination__link">1</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">2</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">»</a>
+                </li>
+            </ul>
+        </nav>
+
+        <nav aria-label="Large pagination" class="mt--02">
+            <ul class="ss-c-pagination ss-c-pagination--lg">
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">«</a>
+                </li>
+                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                    <a href="#" class="ss-c-pagination__link">1</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">2</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">»</a>
+                </li>
+            </ul>
+        </nav>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Pagination Alignment
+============================================================================ #}
+<section class="demo__section" data-label="Alignment" data-level="1">
+    <header class="demo__section__header">
+        <h3>Pagination Alignment</h3>
+        <p>Different alignment options.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Centered</h4>
+        {% set code_snippet %}
+        <nav aria-label="Centered pagination">
+            <ul class="ss-c-pagination ss-c-pagination--center">
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">«</a>
+                </li>
+                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                    <a href="#" class="ss-c-pagination__link">1</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">2</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">3</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">»</a>
+                </li>
+            </ul>
+        </nav>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Right Aligned</h4>
+        {% set code_snippet %}
+        <nav aria-label="Right aligned pagination">
+            <ul class="ss-c-pagination ss-c-pagination--end">
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">«</a>
+                </li>
+                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                    <a href="#" class="ss-c-pagination__link">1</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">2</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">3</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">»</a>
+                </li>
+            </ul>
+        </nav>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Ellipsis Pagination
+============================================================================ #}
+<section class="demo__section" data-label="Ellipsis" data-level="1">
+    <header class="demo__section__header">
+        <h3>Ellipsis Pagination</h3>
+        <p>Truncated pagination for many pages.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>With Ellipsis</h4>
+        {% set code_snippet %}
+        <nav aria-label="Ellipsis pagination">
+            <ul class="ss-c-pagination">
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">«</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">1</a>
+                </li>
+                <li class="ss-c-pagination__item ss-c-pagination__item--ellipsis">
+                    <span>…</span>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">4</a>
+                </li>
+                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                    <a href="#" class="ss-c-pagination__link">5</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">6</a>
+                </li>
+                <li class="ss-c-pagination__item ss-c-pagination__item--ellipsis">
+                    <span>…</span>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">20</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">»</a>
+                </li>
+            </ul>
+        </nav>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Previous/Next Only
+============================================================================ #}
+<section class="demo__section" data-label="Simple Navigation" data-level="1">
+    <header class="demo__section__header">
+        <h3>Simple Navigation</h3>
+        <p>Previous/Next only pagination.</p>
+    </header>
+
+    <section class="demo__subsection">
+        <h4>Prev/Next with Labels</h4>
+        {% set code_snippet %}
+        <nav aria-label="Simple pagination">
+            <ul class="ss-c-pagination ss-c-pagination--simple">
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">
+                        <span>← Previous</span>
+                    </a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">
+                        <span>Next →</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+
+    <section class="demo__subsection">
+        <h4>Page Info</h4>
+        {% set code_snippet %}
+        <nav aria-label="Pagination with info" class="ss-c-pagination__wrapper">
+            <span class="ss-c-pagination__info">Page 5 of 20</span>
+            <ul class="ss-c-pagination">
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">Previous</a>
+                </li>
+                <li class="ss-c-pagination__item">
+                    <a href="#" class="ss-c-pagination__link">Next</a>
+                </li>
+            </ul>
+        </nav>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/preview_box_code.html.jinja" %}
+    </section>
+</section>
+
+{%- endblock content %}

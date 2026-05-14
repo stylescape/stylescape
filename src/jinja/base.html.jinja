@@ -24,34 +24,34 @@
     </head>
 
     <body class="">
-        <div class="frame_main">
-            <div class="frame_main__area--top">
+        <div class="ss-page-sidebar-both">
+            <header class="ss-page__header">
                 {%- block ribbon_top -%} {%- include
                 "includes/layout/_ribbon_top.html.jinja" -%} {%- endblock
                 ribbon_top -%}
-            </div>
+            </header>
 
-            <div class="frame_main__area--middle_left">
-                {%- include "includes/layout/_sidebar_left.html.jinja" %}
-            </div>
+            <div class="ss-page__body">
+                <aside class="ss-page__sidebar ss-page__sidebar--left">
+                    {%- include "includes/layout/_sidebar_left.html.jinja" %}
+                </aside>
 
-            <div class="frame_main__area--middle_center">
-                <main id="main_content" class="main_content rail" role="main">
+                <main id="main_content" class="ss-page__main ss-c-rail" role="main">
                     {%- block content %}{%- endblock %}
                 </main>
+
+                <aside class="ss-page__sidebar ss-page__sidebar--right ss-c-rail">
+                    {%- include "includes/layout/_sidebar_right.html.jinja" %}
+                </aside>
             </div>
 
-            <div class="frame_main__area--middle_right rail">
-                {%- include "includes/layout/_sidebar_right.html.jinja" %}
-            </div>
-
-            <div class="frame_main__area--bottom">
+            <footer class="ss-page__footer">
                 {%- block ticker_bottom -%} {%- include
                 "includes/layout/_ticker_bottom.html.jinja" -%} {%- endblock
                 ticker_bottom -%} {%- block ribbon_bottom -%} {%- include
                 "includes/layout/_ribbon_bottom.html.jinja" -%} {%- endblock
                 ribbon_bottom -%}
-            </div>
+            </footer>
         </div>
 
         <aside class="">

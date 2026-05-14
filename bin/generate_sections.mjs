@@ -32,116 +32,126 @@ const SECTION_CONFIG = {
             { heading: "Layout", data_group: "layout" },
         ],
     },
-    layout: {
-        title: "01. Layout",
-        order: 1,
-        groups: [{ heading: "Layout & Utilities", data_group: "layout" }],
+    "12-lexicon": {
+        title: "12. Lexicon (Design Tokens)",
+        order: 12,
+        groups: [
+            { heading: "Color", data_group: "color", pattern: /^color/ },
+        ],
     },
-    soul: {
-        title: "02. Soul (Design Tokens)",
-        order: 2,
+    "21-typography": {
+        title: "21. Typography",
+        order: 21,
         groups: [
             {
-                heading: "Typography | Font",
+                heading: "Font",
                 data_group: "typography_font",
-                pattern: /soul_type_font/,
+                pattern: /^type-font/,
             },
             {
-                heading: "Typography | Character",
+                heading: "Character",
                 data_group: "typography_character",
-                pattern: /soul_type_character/,
+                pattern: /^type-character/,
             },
             {
-                heading: "Typography | Paragraph",
+                heading: "Paragraph",
                 data_group: "typography_paragraph",
-                pattern: /soul_type_paragraph/,
+                pattern: /^type-paragraph/,
             },
             {
-                heading: "Typography | List",
+                heading: "List",
                 data_group: "typography_list",
-                pattern: /soul_type_list/,
+                pattern: /^type-list/,
             },
-            { heading: "Color", data_group: "color", pattern: /soul_color/ },
+        ],
+    },
+    "23-layout": {
+        title: "23. Layout",
+        order: 23,
+        groups: [
+            { heading: "Layout Primitives", data_group: "layout" },
+        ],
+    },
+    "24-appearance": {
+        title: "24. Appearance",
+        order: 24,
+        groups: [
             {
                 heading: "Object Properties",
                 data_group: "object",
-                pattern: /soul_object/,
+                pattern: /^object/,
             },
             {
                 heading: "Line & Rules",
                 data_group: "line",
-                pattern: /soul_line/,
+                pattern: /^line/,
             },
         ],
     },
-    atoms: {
-        title: "03. Atoms",
-        order: 3,
+    "31-modules": {
+        title: "31. Modules",
+        order: 31,
         groups: [
-            { heading: "Buttons", data_group: "buttons", pattern: /button/ },
-            { heading: "Inputs", data_group: "inputs", pattern: /input/ },
             {
-                heading: "Status",
-                data_group: "status",
-                pattern: /status|spinner|progress/,
+                heading: "Buttons",
+                data_group: "buttons",
+                pattern: /^button/,
             },
             {
-                heading: "Display",
-                data_group: "display",
+                heading: "Inputs & Forms",
+                data_group: "inputs",
                 pattern:
-                    /badge|alert|tooltip|icon|box|caption|divider|spacer|tab|cursor|dimensions|interactive/,
+                    /^(input|checkbox|radio|toggle|select|dropdown|drilldown|form|formfield|label|range|textarea|switch)/,
             },
-        ],
-    },
-    molecules: {
-        title: "04. Molecules",
-        order: 4,
-        groups: [
+            {
+                heading: "Status & Feedback",
+                data_group: "status",
+                pattern:
+                    /^(spinner|progress|alert|toast|tooltip|popover|notification|preloader|badge|skeleton)/,
+            },
             {
                 heading: "Navigation",
                 data_group: "navigation",
-                pattern: /nav|breadcrumb|pagination|toc|dropdown/,
+                pattern:
+                    /^(nav|breadcrumb|pagination|tabs|toc|menu|sidebar|ribbon|ticker|rail|tabset)/,
             },
             {
                 heading: "Cards & Content",
                 data_group: "cards",
                 pattern:
-                    /card|hero|cover|blogpost|summary|figure|graphic|placeholder|preview/,
+                    /^(card|hero|cover|blogpost|summary|figure|graphic|placeholder|preview|chip|accordion|widget)/,
             },
             {
                 heading: "Media",
                 data_group: "media",
-                pattern: /image|video|carousel|slideshow|iframe|map/,
-            },
-            {
-                heading: "Forms",
-                data_group: "forms",
-                pattern: /form|button_group/,
-            },
-            {
-                heading: "Feedback",
-                data_group: "feedback",
-                pattern: /toast|modal|popover|cookie|preloader/,
+                pattern:
+                    /^(image|video|carousel|slideshow|iframe|map|gallery)/,
             },
             {
                 heading: "Data Display",
                 data_group: "data",
                 pattern:
-                    /table|timeline|timestamp|portfolio|social|address|vcard|tags_list|chip|accordion|icon_bar/,
+                    /^(table|timeline|timestamp|portfolio|social|address|vcard|tags-list|list-group|chat|icon|stat|kpi)/,
+            },
+            {
+                heading: "Misc",
+                data_group: "misc",
+                pattern:
+                    /^(box|caption|divider|spacer|cursor|dimensions|interactive|cookie|modal|callout|divider)/,
             },
         ],
     },
-    organisms: {
-        title: "05. Organisms",
-        order: 5,
-        groups: [{ heading: "Layout Components", data_group: "layout" }],
-    },
     typescript: {
-        title: "06. TypeScript Features",
-        order: 6,
+        title: "61. TypeScript Features",
+        order: 61,
         groups: [
             { heading: "Interactive Features", data_group: "typescript" },
         ],
+    },
+    architecture: {
+        title: "90. Architecture",
+        order: 90,
+        groups: [{ heading: "Architecture Reference", data_group: "architecture" }],
     },
     tests: {
         title: "99. Tests",
@@ -156,7 +166,7 @@ const SECTION_CONFIG = {
  * @returns {string} Human-readable title
  */
 function filenameToTitle(filename) {
-    // Remove prefix and extension
+    // Remove extension; strip any legacy prefixes that may still appear.
     let name = filename
         .replace(/\.html\.jinja$/, "")
         .replace(/^body_atom_/, "")
@@ -166,11 +176,16 @@ function filenameToTitle(filename) {
         .replace(/^head_/, "")
         .replace(/^ts_/, "")
         .replace(/^test_/, "")
-        .replace(/^layout_/, "");
+        .replace(/^layout_/, "")
+        .replace(/^type-/, "")
+        .replace(/^object-/, "")
+        .replace(/^color-/, "")
+        .replace(/^line-?/, "Line ");
 
-    // Convert to title case
+    // Convert kebab/snake to spaced title case.
     return name
-        .split("_")
+        .split(/[_-]/)
+        .filter(Boolean)
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
 }
@@ -184,12 +199,13 @@ function filenameToTitle(filename) {
 function filenameToDescription(filename, folder) {
     const title = filenameToTitle(filename);
     const categoryMap = {
-        atoms: "Atomic component",
-        molecules: "Molecule component",
-        organisms: "Organism component",
-        soul: "Design token",
-        layout: "Layout utility",
+        "12-lexicon": "Design token",
+        "21-typography": "Typography token",
+        "23-layout": "Layout primitive",
+        "24-appearance": "Appearance token",
+        "31-modules": "Module",
         typescript: "TypeScript feature",
+        architecture: "Architecture reference",
         pages: "Page template",
         tests: "Test page",
     };
