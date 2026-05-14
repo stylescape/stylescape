@@ -1,0 +1,167 @@
+////
+///
+/// Alert Component Classes
+/// ===========================================================================
+///
+/// CSS classes for alert and notification components.
+///
+/// @group Classes.BodyAtoms
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../dev" as *;
+@use "../../mixins" as *;
+
+// ============================================================================
+// Base Alert Classes
+// ============================================================================
+
+/// Base alert styles
+.alert {
+    display: flex;
+    align-items: flex-start;
+    gap: q(12);
+    padding: q(12) q(16);
+    border-radius: var(--corner_radius_02);
+    border: q(1) solid transparent;
+    font-size: q(14);
+    line-height: 1.5;
+}
+
+// ============================================================================
+// Alert Variants
+// ============================================================================
+
+/// Info alert
+.alert--info {
+    background-color: var(--color_info_bg, rgba(59, 130, 246, 0.1));
+    border-color: var(--color_info_border, rgba(59, 130, 246, 0.3));
+    color: var(--color_info_text, #1e40af);
+}
+
+/// Success alert
+.alert--success {
+    background-color: var(--color_success_bg, rgba(34, 197, 94, 0.1));
+    border-color: var(--color_success_border, rgba(34, 197, 94, 0.3));
+    color: var(--color_success_text, #166534);
+}
+
+/// Warning alert
+.alert--warning {
+    background-color: var(--color_warning_bg, rgba(234, 179, 8, 0.1));
+    border-color: var(--color_warning_border, rgba(234, 179, 8, 0.3));
+    color: var(--color_warning_text, #854d0e);
+}
+
+/// Error/Danger alert
+.alert--error,
+.alert--danger {
+    background-color: var(--color_error_bg, rgba(239, 68, 68, 0.1));
+    border-color: var(--color_error_border, rgba(239, 68, 68, 0.3));
+    color: var(--color_error_text, #991b1b);
+}
+
+/// Neutral alert
+.alert--neutral {
+    background-color: var(--color_fill_secondary);
+    border-color: var(--color_border_primary);
+    color: var(--color_text_primary);
+}
+
+// ============================================================================
+// Alert Parts
+// ============================================================================
+
+/// Alert icon
+.alert__icon {
+    flex-shrink: 0;
+    width: q(20);
+    height: q(20);
+}
+
+/// Alert content wrapper
+.alert__content {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+/// Alert title
+.alert__title {
+    font-weight: 600;
+    margin-bottom: q(4);
+}
+
+/// Alert message
+.alert__message {
+    opacity: 0.9;
+}
+
+/// Alert close button
+.alert__close {
+    flex-shrink: 0;
+    padding: q(4);
+    margin: q(-4) q(-4) q(-4) q(8);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+// ============================================================================
+// Alert Modifiers
+// ============================================================================
+
+/// Filled alert (solid background)
+.alert--filled {
+    &.alert--info {
+        background-color: var(--color_info);
+        color: white;
+    }
+
+    &.alert--success {
+        background-color: var(--color_success);
+        color: white;
+    }
+
+    &.alert--warning {
+        background-color: var(--color_warning);
+        color: white;
+    }
+
+    &.alert--error,
+    &.alert--danger {
+        background-color: var(--color_error);
+        color: white;
+    }
+}
+
+/// Outline alert
+.alert--outline {
+    background-color: transparent;
+    border-width: q(2);
+}
+
+/// Compact alert
+.alert--compact {
+    padding: q(8) q(12);
+}
+
+/// Banner-style alert (full width, no radius)
+.alert--banner {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+}

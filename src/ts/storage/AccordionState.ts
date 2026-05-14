@@ -5,7 +5,7 @@
  * Automatically saves state when accordions are toggled and restores on page load.
  *
  * @module AccordionState
- * @author Scape Agency
+ * @author Scape Press
  * @since 0.3.10
  */
 
