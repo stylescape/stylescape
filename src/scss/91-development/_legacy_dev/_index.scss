@@ -1,28 +1,19 @@
 ////
 ///
-/// Development Utilities
+/// Compatibility shim
 /// ===========================================================================
 ///
-/// Development tools and utilities for debugging, deprecation warnings,
-/// build banners, and external module integration. These utilities are
-/// primarily used during development and build processes.
+/// Forwards the dev tooling and external `pkg:` packages so the legacy
+/// `@use ".../91-development/_legacy_dev"` import paths continue to resolve.
+/// New code should import from `01-core/external` (for `q()`, hue, move) and
+/// from `91-development` directly (for banner/debug/deprecation).
 ///
-/// @group Dev
-/// @author Scape Press
-/// @link https://scape.style
-/// @since 0.1.0 initial release
+/// @group Development
 /// @access public
 ///
 ////
 
-// ============================================================================
-// Forward
-// ============================================================================
-
-// Re-export unit.gl from 01-core/external for backward compatibility
+@forward "../banner";
+@forward "../debug";
+@forward "../deprecation";
 @forward "../../01-core/external";
-
-@forward "banner";
-// @forward "modules"; // Disabled - pkg: imports not available
-@forward "debug";
-@forward "deprecation";

@@ -16,197 +16,223 @@
 ////
 
 @layer ss.layout {
+    // ============================================================================
+    // Base page shapes
+    // ============================================================================
 
-// ============================================================================
-// Base page shapes
-// ============================================================================
-
-%ss-page-base {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    min-height: 100dvh;
-}
-
-.ss-page-standard {
-    @extend %ss-page-base;
-
-    > header { flex-shrink: 0; }
-    > main   { flex-grow: 1; }
-    > footer { flex-shrink: 0; }
-}
-
-.ss-page-fixed-header {
-    @extend %ss-page-base;
-
-    > header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: var(--ss-z-fixed, 100);
-    }
-    > main {
-        flex-grow: 1;
-        padding-top: var(--ss-page-header-offset, 4rem);
-    }
-    > footer { flex-shrink: 0; }
-}
-
-.ss-page-sticky-header {
-    @extend %ss-page-base;
-
-    > header {
-        position: sticky;
-        top: 0;
-        z-index: var(--ss-z-sticky, 100);
-    }
-    > main   { flex-grow: 1; }
-    > footer { flex-shrink: 0; }
-}
-
-// ============================================================================
-// Sidebar layouts
-// ============================================================================
-
-.ss-page-sidebar-left,
-.ss-page-sidebar-right,
-.ss-page-sidebar-both {
-    @extend %ss-page-base;
-
-    > .ss-page__body {
-        display: flex;
-        flex-grow: 1;
-
-        > main {
-            flex-grow: 1;
-            min-width: 0;
-        }
-    }
-}
-
-.ss-page-sidebar-left > .ss-page__body > aside {
-    flex-shrink: 0;
-    width: var(--ss-page-sidebar-width, 17.5rem);
-    order: -1;
-}
-
-.ss-page-sidebar-right > .ss-page__body > aside {
-    flex-shrink: 0;
-    width: var(--ss-page-sidebar-width, 17.5rem);
-}
-
-.ss-page-sidebar-both > .ss-page__body {
-    > aside:first-of-type {
-        flex-shrink: 0;
-        width: var(--ss-page-sidebar-width, 15rem);
-        order: -1;
-    }
-    > aside:last-of-type {
-        flex-shrink: 0;
-        width: var(--ss-page-sidebar-width, 15rem);
-    }
-}
-
-// ============================================================================
-// Dashboard
-// ============================================================================
-
-.ss-page-dashboard {
-    display: flex;
-    min-height: 100vh;
-    min-height: 100dvh;
-
-    > nav {
-        flex-shrink: 0;
-        width: var(--ss-page-nav-width, 15rem);
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        overflow-y: auto;
-    }
-
-    > .ss-page__content {
-        flex-grow: 1;
-        margin-left: var(--ss-page-nav-width, 15rem);
+    %ss-page-base {
         display: flex;
         flex-direction: column;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    .ss-page-standard {
+        @extend %ss-page-base;
 
         > header {
             flex-shrink: 0;
-            position: sticky;
-            top: 0;
-            z-index: var(--ss-z-sticky, 50);
         }
         > main {
             flex-grow: 1;
-            padding: var(--ss-spacing-6, 1.5rem);
+        }
+        > footer {
+            flex-shrink: 0;
         }
     }
-}
 
-// ============================================================================
-// Holy Grail
-// ============================================================================
+    .ss-page-fixed-header {
+        @extend %ss-page-base;
 
-.ss-page-holy-grail {
-    display: grid;
-    grid-template-areas:
-        "header header header"
-        "nav    main   aside"
-        "footer footer footer";
-    grid-template-columns: var(--ss-page-nav-width, 12.5rem) 1fr var(--ss-page-aside-width, 12.5rem);
-    grid-template-rows: auto 1fr auto;
-    min-height: 100vh;
-    min-height: 100dvh;
-
-    > header { grid-area: header; }
-    > nav    { grid-area: nav; }
-    > main   { grid-area: main; min-width: 0; }
-    > aside  { grid-area: aside; }
-    > footer { grid-area: footer; }
-
-    @media (max-width: 48rem) {
-        grid-template-areas:
-            "header"
-            "nav"
-            "main"
-            "aside"
-            "footer";
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto 1fr auto auto;
-    }
-}
-
-// ============================================================================
-// Landing
-// ============================================================================
-
-.ss-page-landing {
-    @extend %ss-page-base;
-
-    > header {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: var(--ss-z-fixed, 100);
+        > header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--ss-z-fixed, 100);
+        }
+        > main {
+            flex-grow: 1;
+            padding-top: var(--ss-page-header-offset, 4rem);
+        }
+        > footer {
+            flex-shrink: 0;
+        }
     }
 
-    > main {
-        flex-grow: 1;
+    .ss-page-sticky-header {
+        @extend %ss-page-base;
 
-        > section:first-child {
-            min-height: 100vh;
-            min-height: 100dvh;
+        > header {
+            position: sticky;
+            top: 0;
+            z-index: var(--ss-z-sticky, 100);
+        }
+        > main {
+            flex-grow: 1;
+        }
+        > footer {
+            flex-shrink: 0;
+        }
+    }
+
+    // ============================================================================
+    // Sidebar layouts
+    // ============================================================================
+
+    .ss-page-sidebar-left,
+    .ss-page-sidebar-right,
+    .ss-page-sidebar-both {
+        @extend %ss-page-base;
+
+        > .ss-page__body {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-grow: 1;
+
+            > main {
+                flex-grow: 1;
+                min-width: 0;
+            }
         }
     }
 
-    > footer { flex-shrink: 0; }
-}
+    .ss-page-sidebar-left > .ss-page__body > aside {
+        flex-shrink: 0;
+        width: var(--ss-page-sidebar-width, 17.5rem);
+        order: -1;
+    }
 
+    .ss-page-sidebar-right > .ss-page__body > aside {
+        flex-shrink: 0;
+        width: var(--ss-page-sidebar-width, 17.5rem);
+    }
+
+    .ss-page-sidebar-both > .ss-page__body {
+        > aside:first-of-type {
+            flex-shrink: 0;
+            width: var(--ss-page-sidebar-width, 15rem);
+            order: -1;
+        }
+        > aside:last-of-type {
+            flex-shrink: 0;
+            width: var(--ss-page-sidebar-width, 15rem);
+        }
+    }
+
+    // ============================================================================
+    // Dashboard
+    // ============================================================================
+
+    .ss-page-dashboard {
+        display: flex;
+        min-height: 100vh;
+        min-height: 100dvh;
+
+        > nav {
+            flex-shrink: 0;
+            width: var(--ss-page-nav-width, 15rem);
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+
+        > .ss-page__content {
+            flex-grow: 1;
+            margin-left: var(--ss-page-nav-width, 15rem);
+            display: flex;
+            flex-direction: column;
+
+            > header {
+                flex-shrink: 0;
+                position: sticky;
+                top: 0;
+                z-index: var(--ss-z-sticky, 50);
+            }
+            > main {
+                flex-grow: 1;
+                padding: var(--ss-spacing-6, 1.5rem);
+            }
+        }
+    }
+
+    // ============================================================================
+    // Holy Grail
+    // ============================================================================
+
+    .ss-page-holy-grail {
+        display: grid;
+        grid-template-areas:
+            "header header header"
+            "nav    main   aside"
+            "footer footer footer";
+        grid-template-columns: var(--ss-page-nav-width, 12.5rem) 1fr var(
+                --ss-page-aside-width,
+                12.5rem
+            );
+        grid-template-rows: auto 1fr auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+
+        > header {
+            grid-area: header;
+        }
+        > nav {
+            grid-area: nav;
+        }
+        > main {
+            grid-area: main;
+            min-width: 0;
+        }
+        > aside {
+            grid-area: aside;
+        }
+        > footer {
+            grid-area: footer;
+        }
+
+        @media (max-width: 48rem) {
+            grid-template-areas:
+                "header"
+                "nav"
+                "main"
+                "aside"
+                "footer";
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto 1fr auto auto;
+        }
+    }
+
+    // ============================================================================
+    // Landing
+    // ============================================================================
+
+    .ss-page-landing {
+        @extend %ss-page-base;
+
+        > header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--ss-z-fixed, 100);
+        }
+
+        > main {
+            flex-grow: 1;
+
+            > section:first-child {
+                min-height: 100vh;
+                min-height: 100dvh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        > footer {
+            flex-shrink: 0;
+        }
+    }
 }
