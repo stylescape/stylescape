@@ -64,25 +64,34 @@
 /* 3x - Assembly — Meaning & Composition                                           */
 /* -------------------------------------------------------------------------- */
 
-// @use "31-modules";
-// @use "32-utilities";
-// @use "33-overrides";
+@use "31-modules" as *;
+@use "32-utilities" as *;
+@use "33-overrides" as *;
 
-@forward "dev";
+// ============================================================================
+// Legacy Compatibility (Phase 5, ROADMAP.md — severance)
+// ============================================================================
+//
+// The legacy `@forward` chain that re-exported the old `classes/`,
+// `mixins/`, `variables/`, `dev/`, `functions/`, `maps/`, `tags/` trees is
+// now severed. Consumers should use tier-prefixed `@use` paths
+// (`@use "01-core/functions"`, `@use "21-typography"`, …) directly.
+//
+// The legacy folders themselves still exist on disk during Phase 5 because
+// some consumer files inside them still cross-reference each other. They
+// no longer participate in the bundled CSS output. They will be `git rm`-ed
+// once the cross-repo audit (Phase 6) confirms no external consumer imports
+// from them.
+// ============================================================================
 
-@forward "functions" hide px-to-rem, rem-to-px, px-to-em, strip-unit,
-    modular-scale, fluid-value, tint, shade, tone;
-
-@forward "variables";
-
-@forward "mixins";
-
-@forward "classes";
-
-@forward "maps";
-
-@forward "tags";
-
+// @forward "dev";
+// @forward "functions" hide px-to-rem, rem-to-px, px-to-em, strip-unit,
+//     modular-scale, fluid-value, tint, shade, tone;
+// @forward "variables";
+// @forward "mixins";
+// @forward "classes";
+// @forward "maps";
+// @forward "tags";
 // @forward "demo";
 
 // @forward "pkg:icon.gl" with (

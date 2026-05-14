@@ -1,0 +1,67 @@
+@use "../../91-development/_legacy_dev" as *;
+@use "../../12-lexicon/_legacy_variables" as *;
+
+// ============================================================================
+// StyleScape | Borders | Effects
+// ============================================================================
+
+// Mixin: vignette
+// Adds a strong inset box-shadow around an element,
+// creating a "vignette" effect at the edges.
+// @example
+// .element {
+// @include vignette;
+// }
+@mixin vignette {
+    box-shadow: 0 0 q(200) rgba(0, 0, 0, 0.9) inset;
+}
+
+/// Mixin for adding a hover effect on the border.
+/// The border color changes to blue on hover.
+/// @example
+/// .element { @include border_hover_effect; }
+@mixin border_hover_effect {
+    transition: border-color 0.3s ease;
+
+    &:hover {
+        @include border_color(blue);
+    }
+}
+
+/// Mixin for creating an animated border.
+/// The border width increases on hover.
+/// @param {Time} $duration - The duration of the border width transition.
+/// @param {Color} $color - The border color.
+/// @example
+/// .element { @include border_animated(0.5s, red); }
+@mixin border_animated($duration: 0.5s, $color: blue) {
+    border: q(2) solid $color;
+    transition: border-width $duration ease;
+
+    &:hover {
+        border-width: q(4);
+    }
+}
+
+/// Mixin for creating an animated dotted border.
+/// The border color alternates between transparent and blue.
+/// @example
+/// .element { @include border_dotted-animated; }
+@mixin border_dotted-animated {
+    border-style: dotted;
+    animation: dotted-border-animation 1s linear infinite;
+}
+
+/// Keyframes for the dotted border animation.
+/// The border color alternates between transparent and blue.
+@keyframes dotted-border-animation {
+    0% {
+        border-color: transparent;
+    }
+    50% {
+        border-color: blue;
+    }
+    100% {
+        border-color: transparent;
+    }
+}

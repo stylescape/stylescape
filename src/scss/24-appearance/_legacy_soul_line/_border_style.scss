@@ -1,0 +1,101 @@
+//
+// StyleScape | Borders | Style
+// ============================================================================
+// @group Borders
+// @since 0.1.0
+// @link https://scape.style
+//
+
+@use "../../91-development/_legacy_dev" as *;
+@use "../../12-lexicon/_legacy_variables" as *;
+
+// ============================================================================
+// Border Style Mixins
+// ============================================================================
+
+///
+/// Mixin for setting the border style.
+///
+/// @param {String} $style - The style of the border (e.g., solid, dotted, dashed).
+///
+@mixin border_style($style) {
+    border-style: $style !important;
+}
+
+///
+/// Mixin for setting the border color to transparent.
+///
+@mixin border_transparent {
+    border-color: transparent !important;
+}
+
+///
+/// Mixin for setting a custom border style.
+///
+/// @param {String} $style – The style (e.g., `solid`)
+/// @param {String} $width – The width (e.g., `q(1)`)
+/// @param {Color} $color – The color (e.g., `#000` or `var(--color_text_primary)`)
+///
+@mixin border_style_custom($style, $width, $color) {
+    border-style: $style;
+    border-width: $width;
+    border-color: $color;
+}
+
+// Border Style Specific Mixins
+// ----------------------------------------------------------------------------
+
+/// Mixin for setting no border style.
+@mixin border--none {
+    border-style: none !important;
+}
+
+/// Mixin for setting a hidden border style.
+@mixin border--hidden {
+    border-style: hidden !important;
+}
+
+/// Mixin for setting a solid border style.
+@mixin border--solid {
+    @include border_style(solid);
+}
+
+/// Mixin for setting a dashed border style.
+@mixin border--dashed {
+    @include border_style(dashed);
+}
+
+/// Mixin for setting a dotted border style.
+@mixin border--dotted {
+    @include border_style(dotted);
+}
+
+/// Mixin for setting a double border style.
+@mixin border--double {
+    @include border_style(double);
+}
+
+/// Mixin for setting a groove border style (3D effect).
+@mixin border--groove {
+    @include border_style(groove);
+}
+
+/// Mixin for setting a ridge border style.
+@mixin border--ridge {
+    @include border_style(ridge);
+}
+
+/// Mixin for setting an inset border style.
+@mixin border--inset {
+    @include border_style(inset);
+}
+
+/// Mixin for setting an outset border style.
+@mixin border--outset {
+    @include border_style(outset);
+}
+
+/// Mixin for setting a transparent border.
+@mixin border--transparent {
+    @include border_transparent;
+}

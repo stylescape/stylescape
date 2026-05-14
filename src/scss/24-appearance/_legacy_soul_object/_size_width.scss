@@ -1,0 +1,231 @@
+// ////
+// ///
+// /// Layout Mixins Module
+// /// ===========================================================================
+// ///
+// /// @group Layout
+// /// @author Scape Press
+// /// @link https://scape.style
+// /// @since 0.1.0 initial release
+// /// @todo None
+// /// @access public
+// ///
+// ////
+
+@use "sass:map";
+@use "../../12-lexicon/_legacy_variables" as *;
+@use "../../91-development/_legacy_dev" as *;
+
+// ============================================================================
+// Height Utilities
+// ============================================================================
+
+// Height Tokens Map
+$object_width_map: (
+    xs: 10,
+    sm: 15,
+    md: 20,
+    lg: 30,
+    xl: 40,
+) !default;
+
+// ============================================================================
+
+///
+/// Resolves a width value from a number or a map token key.
+///
+@function resolve-width($value) {
+    @if map.has-key($object_width_map, $value) {
+        @return map.get($object_width_map, $value);
+    }
+    @return $value;
+}
+
+// ============================================================================
+
+///
+/// Sets a width value for an element.
+///
+/// @param {Number | String} $value - The width value to apply (in q units).
+/// @example scss - Set width to 64q
+///   @include object--width(64);
+///
+@mixin object--width($value) {
+    width: q(resolve-width($value));
+}
+
+///
+/// Sets a minimum width value for an element.
+///
+/// @param {Number | String} $value - The minimum width value to apply (in q units).
+/// @example scss - Set min-width to 32q
+///   @include object--width--min(32);
+///
+@mixin object--width--min($value) {
+    min-width: q(resolve-width($value));
+}
+
+///
+/// Sets a maximum width value for an element.
+///
+/// @param {Number | String} $value - The maximum width value to apply (in q units).
+/// @example scss - Set max-width to 96q
+///   @include object--width--max(96);
+///
+@mixin object--width--max($value) {
+    max-width: q(resolve-width($value));
+}
+
+///
+/// Sets a fixed width (both width and max-width).
+///
+/// @param {Number | String} $value - The fixed width value (in q units).
+/// @example scss - Set fixed width to 48q
+///   @include object--width--fixed(48);
+///
+@mixin object--width--fixed($value) {
+    @include object--width($value);
+    @include object--width--min($value);
+    @include object--width--max($value);
+}
+
+// ============================================================================
+
+/// Generate width utility classes from map
+/// @group ObjectSize
+@each $key, $val in $object_width_map {
+    .object--width--#{$key} {
+        width: q($val);
+    }
+
+    .object--width--min--#{$key} {
+        min-width: q($val);
+    }
+
+    .object--width--max--#{$key} {
+        max-width: q($val);
+    }
+
+    .object--width--fixed--#{$key} {
+        width: q($val);
+        max-width: q($val);
+    }
+}
+
+// Mixins
+// ----------------------------------------------------------------------------
+
+/// Mixin for setting the width of an element to full-screen (100vh).
+@mixin object--width--full_screen {
+    width: 100vh;
+}
+
+@mixin object--width--full_screen--min {
+    min-width: 100vh;
+}
+
+@mixin object--width--full_screen--max {
+    max-width: 100vh;
+}
+
+/// Mixin for setting the width of an element to full-width (100%).
+@mixin object--width--full_width {
+    width: 100%;
+}
+
+@mixin object--width--full_width--min {
+    min-width: 100%;
+}
+
+@mixin object--width--full_width--max {
+    max-width: 100%;
+}
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+// @use "../../12-lexicon/_legacy_variables" as *;
+
+// Layout | Width Enhancements
+// ============================================================================
+
+// /// Generate utility classes for fixed widths.
+// ///
+// /// This loop generates classes that set a fixed width based on a predefined list
+// /// of values, offering flexible width options for various design elements.
+// @each $size
+//     in (
+//         q(1),
+//         q(2),
+//         q(3),
+//         q(4),
+//         q(5),
+//         q(6),
+//         q(8),
+//         q(8),
+//         q(8),
+//         q(10),
+//         q(15),
+//         q(20),
+//         q(25),
+//         q(32),
+//         3q(4),
+//         q(140),
+//         q(50),
+//         5q(4),
+//         q(60),
+//         6q(4),
+//         q(72),
+//         7q(4),
+//         q(80),
+//         8q(4),
+//          q(90),
+//         q(100),
+//         1q(10),
+//         1q(20),
+//         1q(32),
+//         1q(50),
+//         q(180),
+//         q(200),
+//         2q(50),
+//          q(300)
+//         3q(50),
+//         400px,
+//         4q(50),
+//         q(500),
+//         5q(50),
+//         600px,
+//         6q(50),
+//         700px,
+//         7q(50),
+//         800px,
+//         8q(50),
+//         900px,
+//         9q(50),
+//         1000px
+//     )
+// {
+//     .w-#{$size} {
+//         width: $size;
+//     }
+// }
+
+// /// Generate utility classes for percentage-based widths.
+// ///
+// /// This loop creates classes that apply a percentage-based width,
+// /// offering a range of options from 5% to 100% in increments of 5%.
+// @for $i from 5 through 100 {
+//     @if ($i % 5 == 0) {
+//         .w-#{$i} {
+//             width: $i * 1%;
+//         }
+//     }
+// }
+
+// /// Utility class for setting width to auto.
+// ///
+// /// This class allows an element's width to be determined by its content or parent container.
+// .w-auto {
+//     width: auto;
+// }

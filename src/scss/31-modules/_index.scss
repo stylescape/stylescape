@@ -18,11 +18,19 @@
 // Forward
 // ============================================================================
 
-@layer ss.modules {
-    @forward "alert";
-    @forward "button";
-    @forward "card";
-    @forward "hero";
-    @forward "modal";
-    @forward "tooltip";
-}
+// Modules already converted to the component blueprint
+// (`_<m>.config.scss`, `_<m>.mixins.scss`, `_<m>.output.scss`,
+// `_index.scss`). Each module's `_<m>.output.scss` already wraps its
+// selectors in `@layer ss.modules`, so we forward outside of any layer
+// here to avoid double-nesting.
+//
+// Modules pending conversion (Phase 3 backlog, see ROADMAP.md):
+//   buttons/, cards/, content/, display/, feedback/, form/, inputs/,
+//   label/, layout/, media/, navigation/, preloader/, status/, table/
+@forward "badge";
+@forward "button";
+@forward "card";
+@forward "dropcap";
+@forward "hero";
+@forward "modal";
+@forward "pull-quote";

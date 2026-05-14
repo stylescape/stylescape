@@ -1,0 +1,64 @@
+////
+///
+/// Layout Mixins Module
+/// ===========================================================================
+///
+/// Sticky Positioning Utilities
+///
+/// @group Layout
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 Initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Layout | Sticky Positioning Utilities
+// ============================================================================
+
+@use "../../../12-lexicon/_legacy_variables" as *;
+
+/// Base sticky mixin.
+/// Applies cross-browser `sticky` positioning.
+/// @param {String} $axis - The direction ('top', 'bottom', 'left', 'right').
+/// @param {Number | String} $offset - The offset value (e.g. `0`, `q(4)`, `2rem`).
+/// @param {Number | null} $z-index - Optional z-index value.
+@mixin position--sticky--base($axis, $offset: 0, $z-index: null) {
+    position: -webkit-sticky;
+    position: sticky;
+    #{$axis}: $offset;
+
+    @if $z-index != null {
+        z-index: $z-index;
+    }
+}
+
+/// Sticky top
+/// @param {Number | String} $offset [0] - Offset from top.
+/// @param {Number | null} $z-index [null] - Optional z-index.
+@mixin position--sticky--top($offset: 0, $z-index: null) {
+    @include position--sticky--base(top, $offset, $z-index);
+}
+
+/// Sticky bottom
+/// @param {Number | String} $offset [0] - Offset from bottom.
+/// @param {Number | null} $z-index [null] - Optional z-index.
+@mixin position--sticky--bottom($offset: 0, $z-index: null) {
+    @include position--sticky--base(bottom, $offset, $z-index);
+}
+
+/// Sticky left
+/// @param {Number | String} $offset [0] - Offset from left.
+/// @param {Number | null} $z-index [null] - Optional z-index.
+@mixin position--sticky--left($offset: 0, $z-index: null) {
+    @include position--sticky--base(left, $offset, $z-index);
+}
+
+/// Sticky right
+/// @param {Number | String} $offset [0] - Offset from right.
+/// @param {Number | null} $z-index [null] - Optional z-index.
+@mixin position--sticky--right($offset: 0, $z-index: null) {
+    @include position--sticky--base(right, $offset, $z-index);
+}
