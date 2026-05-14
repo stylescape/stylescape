@@ -34,11 +34,11 @@
     }
     // Inward-only border. The base draws no border by default; each
     // orientation variant (top/bottom/left/right) sets the single edge
-    // that faces the page interior. The colour is `currentColor` so it
-    // picks up the ribbon's foreground (which is always the opposite of
-    // the page theme — light text on dark chrome, dark text on inverted
-    // chrome) and therefore reads as the opposite-theme contrast line.
-    border-color: currentColor;
+    // that faces the page interior. The default colour is the ribbon's
+    // own foreground (the opposite of the page theme); the --inverted
+    // variant overrides this explicitly so it doesn't rely on
+    // currentColor inheritance through the layer cascade.
+    border-color: config.$ribbon-color;
     border-style: solid;
     border-width: 0;
 
@@ -64,8 +64,9 @@
     &::before {
         color: config.$ribbon-color-inverted;
     }
-    // currentColor is now the inverted foreground, so the inward border
-    // automatically flips with the variant — no explicit override needed.
+    // Match the inverted foreground so the inward seam stays opposite-
+    // theme (dark line on white chrome).
+    border-color: config.$ribbon-color-inverted;
 }
 
 // ----------------------------------------------------------------------------
