@@ -66,10 +66,14 @@
     }
     &.is-active,
     &.active {
+        // Nudge the two bars 1q toward each other so their tips meet at
+        // the chevron point instead of leaving a vertical gap.
         &::before {
+            top: q(1);
             transform: translate(-50%, -50%) rotate(120deg);
         }
         &::after {
+            top: calc(50% - #{q(1)});
             transform: translate(-50%, -50%) rotate(-120deg);
         }
     }
@@ -91,9 +95,11 @@
     &.is-active,
     &.active {
         &::before {
+            top: q(1);
             transform: translate(-50%, -50%) rotate(-120deg);
         }
         &::after {
+            top: calc(50% - #{q(1)});
             transform: translate(-50%, -50%) rotate(120deg);
         }
     }

@@ -209,21 +209,23 @@
 // ----------------------------------------------------------------------------
 
 @mixin ss-ribbon-title {
-    // Title row contains a logo + text element side-by-side.
-    display: inline-flex;
+    // Title row: logo + text element side-by-side. The element is normally
+    // an <h1>; force flex layout so its children flow horizontally instead
+    // of stacking as block siblings.
+    display: flex;
     flex-direction: row;
     align-items: center;
     gap: config.$ribbon-slot-gap;
     margin: 0;
+    padding: 0;
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    height: 100%;
 
-    // Children of the title (logo + text wrappers) also lay out inline
-    // so anchors / icons sit on the baseline rather than stacking.
     > * {
-        display: inline-flex;
+        display: flex;
         align-items: center;
     }
 }
