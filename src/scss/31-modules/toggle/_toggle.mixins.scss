@@ -1,0 +1,57 @@
+@use "sass:map";
+@use "./toggle.config" as config;
+
+@mixin ss-toggle {
+    appearance: none;
+    position: relative;
+
+    display: inline-block;
+    width: map.get(config.$ss-toggle-config, width);
+    height: map.get(config.$ss-toggle-config, height);
+
+    background: map.get(config.$ss-toggle-config, bg-off);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    vertical-align: middle;
+
+    transition: background map.get(config.$ss-toggle-config, duration) ease;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: map.get(config.$ss-toggle-config, knob-inset);
+        left: map.get(config.$ss-toggle-config, knob-inset);
+
+        width: calc(map.get(config.$ss-toggle-config, height) -
+            map.get(config.$ss-toggle-config, knob-inset) * 2);
+        height: calc(map.get(config.$ss-toggle-config, height) -
+            map.get(config.$ss-toggle-config, knob-inset) * 2);
+
+        background: map.get(config.$ss-toggle-config, knob);
+        border-radius: 50%;
+
+        transition: transform map.get(config.$ss-toggle-config, duration) ease;
+    }
+
+    &:checked {
+        background: map.get(config.$ss-toggle-config, bg-on);
+
+        &::after {
+            transform: translateX(calc(
+                map.get(config.$ss-toggle-config, width) -
+                map.get(config.$ss-toggle-config, height)
+            ));
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid map.get(config.$ss-toggle-config, bg-on);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}

@@ -1,0 +1,16 @@
+@use "sass:map";
+@use "./popover.config" as config;
+
+@mixin ss-popover {
+    position: absolute;
+    z-index: map.get(config.$ss-popover-config, z-index);
+
+    max-width: map.get(config.$ss-popover-config, max-width);
+    padding: map.get(config.$ss-popover-config, padding);
+
+    background: map.get(config.$ss-popover-config, bg);
+    color: map.get(config.$ss-popover-config, fg);
+    border: 1px solid map.get(config.$ss-popover-config, border);
+    border-radius: map.get(config.$ss-popover-config, radius);
+    box-shadow: map.get(config.$ss-popover-config, shadow);
+}

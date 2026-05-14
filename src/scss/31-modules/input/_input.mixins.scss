@@ -1,0 +1,69 @@
+@use "sass:map";
+@use "./input.config" as config;
+
+@mixin ss-input {
+    display: block;
+    width: 100%;
+    height: map.get(config.$ss-input-config, height);
+    padding: map.get(config.$ss-input-config, padding);
+
+    background: map.get(config.$ss-input-config, bg);
+    color: map.get(config.$ss-input-config, fg);
+    border: map.get(config.$ss-input-config, border-width) solid
+        map.get(config.$ss-input-config, border);
+    border-radius: map.get(config.$ss-input-config, radius);
+
+    font: inherit;
+    font-size: map.get(config.$ss-input-config, font-size);
+    line-height: map.get(config.$ss-input-config, line-height);
+
+    appearance: none;
+
+    &::placeholder {
+        color: map.get(config.$ss-input-config, placeholder-color);
+        opacity: 1;
+    }
+
+    &:focus,
+    &:focus-visible {
+        outline: none;
+        border-color: map.get(config.$ss-input-config, border-focus);
+        box-shadow: 0 0 0 2px
+            color-mix(in srgb,
+                map.get(config.$ss-input-config, border-focus) 25%,
+                transparent);
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+        opacity: map.get(config.$ss-input-config, disabled-opacity);
+        cursor: not-allowed;
+    }
+}
+
+@mixin ss-input-textarea {
+    height: auto;
+    min-height: calc(map.get(config.$ss-input-config, height) * 2);
+    resize: vertical;
+}
+
+@mixin ss-input-size($size: md) {
+    $s: map.get(map.get(config.$ss-input-config, sizes), $size);
+
+    height: map.get($s, height);
+    padding: map.get($s, padding);
+    font-size: map.get($s, font-size);
+}
+
+@mixin ss-input-error {
+    border-color: map.get(config.$ss-input-config, border-error);
+
+    &:focus,
+    &:focus-visible {
+        border-color: map.get(config.$ss-input-config, border-error);
+        box-shadow: 0 0 0 2px
+            color-mix(in srgb,
+                map.get(config.$ss-input-config, border-error) 25%,
+                transparent);
+    }
+}

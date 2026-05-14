@@ -1,0 +1,41 @@
+@use "sass:map";
+@use "./form.config" as config;
+
+@mixin ss-form {
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$ss-form-config, fields-gap);
+}
+
+@mixin ss-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$ss-form-config, field-gap);
+}
+
+@mixin ss-form-label {
+    font-weight: map.get(config.$ss-form-config, label-weight);
+}
+
+@mixin ss-form-required {
+    &::after {
+        content: " " + map.get(config.$ss-form-config, required-glyph);
+        color: map.get(config.$ss-form-config, required-color);
+    }
+}
+
+@mixin ss-form-help {
+    color: map.get(config.$ss-form-config, help-color);
+    font-size: map.get(config.$ss-form-config, help-font-size);
+}
+
+@mixin ss-form-error {
+    color: map.get(config.$ss-form-config, error-color);
+    font-size: map.get(config.$ss-form-config, help-font-size);
+}
+
+@mixin ss-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: map.get(config.$ss-form-config, actions-gap);
+}

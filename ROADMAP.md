@@ -250,11 +250,11 @@ components: `badge`, `button`, `card`, `dropcap`, `hero`, `modal`,
 
 #### Phase 3 — Step C (new-module authoring, in progress)
 
-10 new modules authored against the blueprint and wired into
-`31-modules/_index.scss`. Each ships the 4-file set
-(`_<m>.config.scss`, `_<m>.mixins.scss`, `_<m>.output.scss`,
-`_index.scss`) and emits `.ss-c-<m>*` selectors inside
-`@layer ss.modules`:
+Each new module ships the 4-file blueprint (`_<m>.config.scss`,
+`_<m>.mixins.scss`, `_<m>.output.scss`, `_index.scss`) and emits
+`.ss-c-<m>*` selectors inside `@layer ss.modules`.
+
+**Round 1 — 10 baseline modules:**
 
 - [x] `alert` (info / success / warning / danger variants + `__title`,
       `__body`, `__close` parts)
@@ -263,29 +263,46 @@ components: `badge`, `button`, `card`, `dropcap`, `hero`, `modal`,
 - [x] `breadcrumb` (`__item`, `__link`, `aria-current="page"` styling,
       configurable separator)
 - [x] `table` (base + `--bordered`, `--striped`, `--hover` modifiers)
-- [x] `pagination` (`__item` + `is-active`, `is-disabled`,
-      `aria-disabled` states)
+- [x] `pagination` (`__item` + `is-active`, `is-disabled`, `aria-disabled`
+      states)
 - [x] `tooltip` (base + `data-placement="top|bottom|left|right"`)
-- [x] `accordion` (`__item`, `__header`, `__body` + `is-open`,
-      `aria-expanded` states)
+- [x] `accordion` (`__item`, `__header`, `__body` + `is-open`, `aria-expanded`
+      states)
 - [x] `progress` (track + `__bar` driven by `--ss-progress-value`)
-- [x] `spinner` (base + `--sm/--md/--lg` size modifiers, keyframe
-      animation)
+- [x] `spinner` (base + `--sm/--md/--lg` size modifiers, keyframe animation)
 
 Also re-aligned `01-core/_prefix.scss` with the SSX constitution:
 `$ss-prefix-module` changed from `ss-m` (legacy) to `ss-c` (per
-`ssx/prefix.md`); added `$ss-prefix-object: ss-o` for the layout
-objects layer described in the spec. All 17 modules in the build now
-emit `.ss-c-*` selectors as the spec mandates.
+`ssx/prefix.md`); added `$ss-prefix-object: ss-o` for the layout objects layer
+described in the spec.
 
-Build verified: standalone bundle now **716,679 bytes** (+8,064 from
-708,615); 84 unique `.ss-c-*` selectors across 17 modules. Semiosys via
-local working tree compiles to **731,128 bytes**.
+**Round 2 — 10 form / nav / overlay modules:**
+
+- [x] `form` (`__field`, `__label`, `__required`, `__help`, `__error`,
+      `__actions` parts; configurable field-gap and label-weight)
+- [x] `input` (base + `--sm/--md/--lg` size modifiers; focus, disabled,
+      `[aria-invalid="true"]` / `.is-invalid` states; sibling `.ss-c-textarea`)
+- [x] `select` (extends `input` mixin + chevron via background gradient)
+- [x] `checkbox` (`appearance: none` box + checked-state via gradient;
+      `__label` companion)
+- [x] `radio` (`appearance: none` circle + radial-gradient dot; `__label`
+      companion)
+- [x] `toggle` (switch with translated knob; checked + disabled states)
+- [x] `nav` (flex list + `--vertical` modifier, `__item`, `__link`,
+      `is-active` / `aria-current="page"`)
+- [x] `dropdown` (relative wrapper + absolute `__menu`, `__item`, `__divider`;
+      `is-open` / hidden states)
+- [x] `toast` (`__region` with 4 `data-position` placements +
+      `__variant` info/success/warning/danger)
+- [x] `popover` (absolute container with 4 `data-placement` variants +
+      `__title`, `__body`)
+
+Build verified after Round 2: standalone bundle now **728,769 bytes**
+(+12,090 from 716,679); 119 unique `.ss-c-*` selectors across 27 wired
+modules.
 
 Remaining authoring backlog (lower priority — not blocking v1.0.0):
-form, input, select, checkbox, radio, toggle, dropdown, nav, toast,
-popover, preloader, carousel, slideshow, image, video, figure, tag,
-status.
+preloader, carousel, slideshow, image, video, figure, tag, status.
 
 ### Phase 4 — Utilities & overrides
 

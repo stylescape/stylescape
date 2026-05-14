@@ -1,0 +1,40 @@
+@use "sass:map";
+@use "./toast.config" as config;
+
+@mixin ss-toast-region {
+    position: fixed;
+    z-index: map.get(config.$ss-toast-config, z-index);
+
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$ss-toast-config, region-gap);
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    pointer-events: none;
+}
+
+@mixin ss-toast {
+    pointer-events: auto;
+
+    display: flex;
+    align-items: flex-start;
+    gap: map.get(config.$ss-toast-config, gap);
+
+    min-width: map.get(config.$ss-toast-config, min-width);
+    max-width: map.get(config.$ss-toast-config, max-width);
+    padding: map.get(config.$ss-toast-config, padding);
+
+    background: map.get(config.$ss-toast-config, bg);
+    color: map.get(config.$ss-toast-config, fg);
+    border-radius: map.get(config.$ss-toast-config, radius);
+    box-shadow: map.get(config.$ss-toast-config, shadow);
+}
+
+@mixin ss-toast-variant($variant) {
+    $v: map.get(map.get(config.$ss-toast-config, variants), $variant);
+
+    background: map.get($v, bg);
+    color: map.get($v, fg);
+}

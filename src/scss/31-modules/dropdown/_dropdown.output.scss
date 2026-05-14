@@ -1,0 +1,30 @@
+@use "../../01-core/prefix" as *;
+@use "./dropdown.mixins" as dropdown;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-dropdown {
+        @include dropdown.ss-dropdown;
+    }
+
+    .#{$ss-prefix-module}-dropdown__menu {
+        @include dropdown.ss-dropdown-menu;
+    }
+
+    .#{$ss-prefix-module}-dropdown:not(.is-open)
+        .#{$ss-prefix-module}-dropdown__menu {
+        display: none;
+    }
+
+    .#{$ss-prefix-module}-dropdown__item {
+        @include dropdown.ss-dropdown-item;
+    }
+
+    .#{$ss-prefix-module}-dropdown__item.is-active,
+    .#{$ss-prefix-module}-dropdown__item[aria-current="true"] {
+        @include dropdown.ss-dropdown-item-active;
+    }
+
+    .#{$ss-prefix-module}-dropdown__divider {
+        @include dropdown.ss-dropdown-divider;
+    }
+}

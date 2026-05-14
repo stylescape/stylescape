@@ -1,0 +1,40 @@
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./popover.config" as config;
+@use "./popover.mixins" as popover;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-popover {
+        @include popover.ss-popover;
+    }
+
+    .#{$ss-prefix-module}-popover[data-placement="top"] {
+        bottom: calc(100% + map.get(config.$ss-popover-config, offset));
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .#{$ss-prefix-module}-popover[data-placement="bottom"] {
+        top: calc(100% + map.get(config.$ss-popover-config, offset));
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .#{$ss-prefix-module}-popover[data-placement="left"] {
+        right: calc(100% + map.get(config.$ss-popover-config, offset));
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .#{$ss-prefix-module}-popover[data-placement="right"] {
+        left: calc(100% + map.get(config.$ss-popover-config, offset));
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .#{$ss-prefix-module}-popover__title {
+        font-weight: 600;
+        margin-block-end: 0.25rem;
+    }
+
+    .#{$ss-prefix-module}-popover__body {
+        margin: 0;
+    }
+}
