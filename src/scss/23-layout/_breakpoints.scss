@@ -72,7 +72,10 @@ $ss-breakpoints: (
 @mixin breakpoint-only($breakpoint) {
     $keys: map-keys($ss-breakpoints);
     $index: index($keys, $breakpoint);
-    $next: if($index < length($keys), nth($keys, $index + 1), null);
+    $next: null;
+    @if $index < length($keys) {
+        $next: nth($keys, $index + 1);
+    }
 
     @if $next {
         @include breakpoint-between($breakpoint, $next) {

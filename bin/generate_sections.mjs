@@ -35,9 +35,7 @@ const SECTION_CONFIG = {
     "12-lexicon": {
         title: "12. Lexicon (Design Tokens)",
         order: 12,
-        groups: [
-            { heading: "Color", data_group: "color", pattern: /^color/ },
-        ],
+        groups: [{ heading: "Color", data_group: "color", pattern: /^color/ }],
     },
     "21-typography": {
         title: "21. Typography",
@@ -68,9 +66,7 @@ const SECTION_CONFIG = {
     "23-layout": {
         title: "23. Layout",
         order: 23,
-        groups: [
-            { heading: "Layout Primitives", data_group: "layout" },
-        ],
+        groups: [{ heading: "Layout Primitives", data_group: "layout" }],
     },
     "24-appearance": {
         title: "24. Appearance",
@@ -151,7 +147,9 @@ const SECTION_CONFIG = {
     architecture: {
         title: "90. Architecture",
         order: 90,
-        groups: [{ heading: "Architecture Reference", data_group: "architecture" }],
+        groups: [
+            { heading: "Architecture Reference", data_group: "architecture" },
+        ],
     },
     tests: {
         title: "99. Tests",

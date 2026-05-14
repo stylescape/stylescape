@@ -22,3 +22,40 @@
 // NOTE: hue.gl and move.gl disabled - using fallbacks
 // @forward "pkg:hue.gl";
 // @forward "pkg:move.gl";
+
+// ----------------------------------------------------------------------------
+// hue.gl fallback
+// ----------------------------------------------------------------------------
+//
+// Minimal Sass-side palette lookup for the codes referenced by
+// `12-lexicon/color/_roles.scss`. Mirrors the CSS custom properties
+// declared in `12-lexicon/color/_palette.scss` so role tokens resolve to
+// real Sass colors (required for `tint()` and other color operations).
+
+@use "sass:map";
+
+$_hue_palette: (
+    "N0004": #a0a0a0,
+    "N0155": #c6727d,
+    "N0305": #c4756e,
+    "N2255": #1a99b7,
+    "N2402": #acd2e9,
+    "N2403": #8abedc,
+    "N2404": #65aace,
+    "N2405": #3696c1,
+    "N2407": #346a85,
+    "N2555": #5192c8,
+    "N2704": #87a2d6,
+    "N2705": #6a8dca,
+    "N2855": #8188c8,
+    "N3005": #9582c2,
+    "N3154": #b994c7,
+    "N3155": #a77cb9,
+    "N3305": #b577ac,
+    "N3455": #bf739d,
+    "N3605": #c5728d,
+) !default;
+
+@function hue_color($key) {
+    @return map.get($_hue_palette, $key);
+}
