@@ -3,8 +3,8 @@
 /// Section Tags Module
 /// ===========================================================================
 ///
-/// Base styles for HTML sectioning elements including main, article,
-/// section, aside, and other structural elements.
+/// Base styles for HTML sectioning elements (main, section, article,
+/// header, footer, nav, aside, hr).
 ///
 /// @group Tags.Section
 /// @author Scape Press
@@ -15,35 +15,39 @@
 ////
 
 // ============================================================================
-// Use
-// ============================================================================
-
-@use "../../91-development/_legacy_dev" as *;
-@use "../../mixins" as *;
-
-// ============================================================================
 // Tags
 // ============================================================================
 
 main {
     display: block;
-    /* Render the `main` element consistently in IE. */
 }
 
-/// Reset margins and padding for sectioning elements
 section,
 article,
 header,
 footer,
 nav,
 aside {
-    @include reset_bleed;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 
-/// Base styling for horizontal rules
-///
-/// Normalizes the <hr> element across browsers and applies
-/// consistent border and spacing from the design system.
 hr {
-    @include hr--base;
+    overflow: visible;
+    height: 0;
+    color: inherit;
+    box-sizing: content-box;
+
+    border: none;
+    border-top: 1px solid var(--ss-color-border, currentColor);
+
+    margin-block: 2rem;
+    margin-inline: 0;
+
+    width: 100%;
+    opacity: 1;
 }
