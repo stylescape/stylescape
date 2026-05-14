@@ -1,0 +1,28 @@
+@use "sass:map";
+@use "./spinner.config" as config;
+
+@mixin ss-spinner {
+    display: inline-block;
+
+    width: map.get(config.$ss-spinner-config, size);
+    height: map.get(config.$ss-spinner-config, size);
+
+    border: map.get(config.$ss-spinner-config, border-width) solid
+        map.get(config.$ss-spinner-config, track-color);
+    border-top-color: map.get(config.$ss-spinner-config, bar-color);
+    border-radius: 50%;
+
+    animation: ss-spinner-spin map.get(config.$ss-spinner-config, duration)
+        linear infinite;
+}
+
+@mixin ss-spinner-size($size: md) {
+    $s: map.get(map.get(config.$ss-spinner-config, sizes), $size);
+
+    width: $s;
+    height: $s;
+}
+
+@keyframes ss-spinner-spin {
+    to { transform: rotate(360deg); }
+}

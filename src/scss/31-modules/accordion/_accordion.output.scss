@@ -1,0 +1,30 @@
+@use "../../01-core/prefix" as *;
+@use "./accordion.mixins" as accordion;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-accordion {
+        @include accordion.ss-accordion;
+    }
+
+    .#{$ss-prefix-module}-accordion__item {
+        @include accordion.ss-accordion-item;
+    }
+
+    .#{$ss-prefix-module}-accordion__header {
+        @include accordion.ss-accordion-header;
+    }
+
+    .#{$ss-prefix-module}-accordion__header[aria-expanded="true"],
+    .#{$ss-prefix-module}-accordion__header.is-active {
+        @include accordion.ss-accordion-header-active;
+    }
+
+    .#{$ss-prefix-module}-accordion__body {
+        @include accordion.ss-accordion-body;
+    }
+
+    .#{$ss-prefix-module}-accordion__item:not(.is-open)
+        .#{$ss-prefix-module}-accordion__body {
+        display: none;
+    }
+}

@@ -1,0 +1,34 @@
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./breadcrumb.config" as config;
+@use "./breadcrumb.mixins" as breadcrumb;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-breadcrumb {
+        @include breadcrumb.ss-breadcrumb;
+    }
+
+    .#{$ss-prefix-module}-breadcrumb__item {
+        display: inline-flex;
+        align-items: center;
+
+        &:not(:first-child)::before {
+            @include breadcrumb.ss-breadcrumb-separator;
+        }
+    }
+
+    .#{$ss-prefix-module}-breadcrumb__item[aria-current="page"] {
+        color: map.get(config.$ss-breadcrumb-config, color-current);
+        font-weight: 500;
+    }
+
+    .#{$ss-prefix-module}-breadcrumb__link {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover,
+        &:focus-visible {
+            text-decoration: underline;
+        }
+    }
+}

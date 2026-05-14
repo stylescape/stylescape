@@ -1,0 +1,25 @@
+@use "sass:map";
+@use "./chip.config" as config;
+
+@mixin ss-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: map.get(config.$ss-chip-config, gap);
+
+    height: map.get(config.$ss-chip-config, height);
+    padding-inline: map.get(config.$ss-chip-config, padding-inline);
+
+    background: map.get(config.$ss-chip-config, bg);
+    color: map.get(config.$ss-chip-config, fg);
+    border: 1px solid map.get(config.$ss-chip-config, border);
+    border-radius: map.get(config.$ss-chip-config, radius);
+
+    font-size: map.get(config.$ss-chip-config, font-size);
+    line-height: 1;
+    white-space: nowrap;
+    user-select: none;
+}
+
+@mixin ss-chip-removable {
+    cursor: default;
+}

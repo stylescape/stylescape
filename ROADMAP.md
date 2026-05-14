@@ -248,29 +248,44 @@ After Step B, `31-modules/` contains exactly the 7 blueprint-conformant
 components: `badge`, `button`, `card`, `dropcap`, `hero`, `modal`,
 `pull-quote`.
 
-#### Phase 3 — Step C (new-module authoring, backlog)
+#### Phase 3 — Step C (new-module authoring, in progress)
 
-Real component modules still need to be authored from scratch (or by extracting
-selectors out of the legacy `classes/body_*` tree). They are **not** in the
-build yet because they don't yet exist as blueprint folders.
+10 new modules authored against the blueprint and wired into
+`31-modules/_index.scss`. Each ships the 4-file set
+(`_<m>.config.scss`, `_<m>.mixins.scss`, `_<m>.output.scss`,
+`_index.scss`) and emits `.ss-c-<m>*` selectors inside
+`@layer ss.modules`:
 
-For each new module, follow the blueprint:
+- [x] `alert` (info / success / warning / danger variants + `__title`,
+      `__body`, `__close` parts)
+- [x] `label` (base + `--required` modifier with glyph)
+- [x] `chip` (base + `--removable` + `__remove` button)
+- [x] `breadcrumb` (`__item`, `__link`, `aria-current="page"` styling,
+      configurable separator)
+- [x] `table` (base + `--bordered`, `--striped`, `--hover` modifiers)
+- [x] `pagination` (`__item` + `is-active`, `is-disabled`,
+      `aria-disabled` states)
+- [x] `tooltip` (base + `data-placement="top|bottom|left|right"`)
+- [x] `accordion` (`__item`, `__header`, `__body` + `is-open`,
+      `aria-expanded` states)
+- [x] `progress` (track + `__bar` driven by `--ss-progress-value`)
+- [x] `spinner` (base + `--sm/--md/--lg` size modifiers, keyframe
+      animation)
 
-- [ ] Create `_<m>.config.scss` (`!default` map, no CSS).
-- [ ] Create `_<m>.mixins.scss` (uses config only).
-- [ ] Create `_<m>.output.scss` (`.ss-c-<m>` selectors only, wrapped in
-      `@layer ss.modules`).
-- [ ] Create `_index.scss` with the 3-line `@forward` chain.
-- [ ] Add forward to `31-modules/_index.scss`.
+Also re-aligned `01-core/_prefix.scss` with the SSX constitution:
+`$ss-prefix-module` changed from `ss-m` (legacy) to `ss-c` (per
+`ssx/prefix.md`); added `$ss-prefix-object: ss-o` for the layout
+objects layer described in the spec. All 17 modules in the build now
+emit `.ss-c-*` selectors as the spec mandates.
 
-Authoring order (low-risk → high-risk):
+Build verified: standalone bundle now **716,679 bytes** (+8,064 from
+708,615); 84 unique `.ss-c-*` selectors across 17 modules. Semiosys via
+local working tree compiles to **731,128 bytes**.
 
-1. `label`, `status`, `alert`, `tooltip`
-2. `accordion`, `breadcrumb`, `chip`, `tag`
-3. `form`, `input`, `select`, `checkbox`, `radio`, `toggle`
-4. `table`, `pagination`, `dropdown`, `nav`
-5. `toast`, `popover`, `preloader`, `progress`, `spinner`
-6. `carousel`, `slideshow`, `image`, `video`, `figure`
+Remaining authoring backlog (lower priority — not blocking v1.0.0):
+form, input, select, checkbox, radio, toggle, dropdown, nav, toast,
+popover, preloader, carousel, slideshow, image, video, figure, tag,
+status.
 
 ### Phase 4 — Utilities & overrides
 

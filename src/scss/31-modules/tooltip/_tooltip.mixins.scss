@@ -1,0 +1,19 @@
+@use "sass:map";
+@use "./tooltip.config" as config;
+
+@mixin ss-tooltip {
+    position: absolute;
+    z-index: map.get(config.$ss-tooltip-config, z-index);
+
+    max-width: map.get(config.$ss-tooltip-config, max-width);
+    padding: map.get(config.$ss-tooltip-config, padding);
+
+    background: map.get(config.$ss-tooltip-config, bg);
+    color: map.get(config.$ss-tooltip-config, fg);
+    border-radius: map.get(config.$ss-tooltip-config, radius);
+
+    font-size: map.get(config.$ss-tooltip-config, font-size);
+    line-height: 1.4;
+    white-space: normal;
+    pointer-events: none;
+}

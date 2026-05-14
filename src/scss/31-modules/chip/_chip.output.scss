@@ -1,0 +1,28 @@
+@use "../../01-core/prefix" as *;
+@use "./chip.mixins" as chip;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-chip {
+        @include chip.ss-chip;
+    }
+
+    .#{$ss-prefix-module}-chip--removable {
+        @include chip.ss-chip-removable;
+    }
+
+    .#{$ss-prefix-module}-chip__remove {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 1rem;
+        height: 1rem;
+
+        background: transparent;
+        border: 0;
+        border-radius: 50%;
+        cursor: pointer;
+        color: inherit;
+        line-height: 1;
+    }
+}

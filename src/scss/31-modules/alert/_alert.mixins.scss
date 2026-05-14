@@ -1,0 +1,20 @@
+@use "sass:map";
+@use "./alert.config" as config;
+
+@mixin ss-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: map.get(config.$ss-alert-config, gap);
+
+    padding: map.get(config.$ss-alert-config, padding);
+    border: map.get(config.$ss-alert-config, border-width) solid transparent;
+    border-radius: map.get(config.$ss-alert-config, radius);
+}
+
+@mixin ss-alert-variant($variant: info) {
+    $v: map.get(map.get(config.$ss-alert-config, variants), $variant);
+
+    background: map.get($v, bg);
+    color: map.get($v, fg);
+    border-color: map.get($v, border);
+}

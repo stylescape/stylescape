@@ -1,0 +1,44 @@
+@use "sass:map";
+@use "./pagination.config" as config;
+
+@mixin ss-pagination {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: map.get(config.$ss-pagination-config, gap);
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin ss-pagination-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: map.get(config.$ss-pagination-config, item-min-size);
+    height: map.get(config.$ss-pagination-config, item-min-size);
+    padding-inline: map.get(config.$ss-pagination-config, item-padding-inline);
+
+    background: map.get(config.$ss-pagination-config, bg);
+    color: map.get(config.$ss-pagination-config, fg);
+    border: 1px solid map.get(config.$ss-pagination-config, border);
+    border-radius: map.get(config.$ss-pagination-config, radius);
+
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+@mixin ss-pagination-active {
+    background: map.get(config.$ss-pagination-config, active-bg);
+    color: map.get(config.$ss-pagination-config, active-fg);
+    border-color: map.get(config.$ss-pagination-config, active-bg);
+}
+
+@mixin ss-pagination-disabled {
+    opacity: map.get(config.$ss-pagination-config, disabled-opacity);
+    pointer-events: none;
+    cursor: not-allowed;
+}

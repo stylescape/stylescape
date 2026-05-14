@@ -1,0 +1,31 @@
+@use "../../01-core/prefix" as *;
+@use "./alert.mixins" as alert;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-alert {
+        @include alert.ss-alert;
+        @include alert.ss-alert-variant(info);
+    }
+
+    .#{$ss-prefix-module}-alert--info    { @include alert.ss-alert-variant(info); }
+    .#{$ss-prefix-module}-alert--success { @include alert.ss-alert-variant(success); }
+    .#{$ss-prefix-module}-alert--warning { @include alert.ss-alert-variant(warning); }
+    .#{$ss-prefix-module}-alert--danger  { @include alert.ss-alert-variant(danger); }
+
+    .#{$ss-prefix-module}-alert__title {
+        font-weight: 600;
+        margin-block-end: 0.25rem;
+    }
+
+    .#{$ss-prefix-module}-alert__body {
+        margin: 0;
+    }
+
+    .#{$ss-prefix-module}-alert__close {
+        margin-inline-start: auto;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        color: inherit;
+    }
+}

@@ -1,0 +1,21 @@
+@use "../../01-core/prefix" as *;
+@use "./pagination.mixins" as pagination;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-pagination {
+        @include pagination.ss-pagination;
+    }
+
+    .#{$ss-prefix-module}-pagination__item {
+        @include pagination.ss-pagination-item;
+    }
+
+    .#{$ss-prefix-module}-pagination__item.is-active {
+        @include pagination.ss-pagination-active;
+    }
+
+    .#{$ss-prefix-module}-pagination__item.is-disabled,
+    .#{$ss-prefix-module}-pagination__item[aria-disabled="true"] {
+        @include pagination.ss-pagination-disabled;
+    }
+}

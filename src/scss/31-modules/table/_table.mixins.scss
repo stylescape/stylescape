@@ -1,0 +1,40 @@
+@use "sass:map";
+@use "./table.config" as config;
+
+@mixin ss-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: start;
+}
+
+@mixin ss-table-cell {
+    padding: map.get(config.$ss-table-config, cell-padding);
+    border-bottom: map.get(config.$ss-table-config, border);
+    vertical-align: middle;
+}
+
+@mixin ss-table-head {
+    background: map.get(config.$ss-table-config, head-bg);
+    color: map.get(config.$ss-table-config, head-fg);
+    font-weight: map.get(config.$ss-table-config, head-weight);
+}
+
+@mixin ss-table-bordered {
+    border: map.get(config.$ss-table-config, border);
+
+    th, td {
+        border: map.get(config.$ss-table-config, border);
+    }
+}
+
+@mixin ss-table-striped {
+    tbody tr:nth-of-type(even) {
+        background: map.get(config.$ss-table-config, row-stripe-bg);
+    }
+}
+
+@mixin ss-table-hover {
+    tbody tr:hover {
+        background: map.get(config.$ss-table-config, row-hover-bg);
+    }
+}

@@ -1,0 +1,23 @@
+@use "sass:map";
+@use "./progress.config" as config;
+
+@mixin ss-progress {
+    display: block;
+    width: 100%;
+    height: map.get(config.$ss-progress-config, height);
+
+    background: map.get(config.$ss-progress-config, track-bg);
+    border-radius: map.get(config.$ss-progress-config, radius);
+    overflow: hidden;
+}
+
+@mixin ss-progress-bar {
+    display: block;
+    height: 100%;
+    width: var(--ss-progress-value, 0%);
+
+    background: map.get(config.$ss-progress-config, bar-bg);
+    border-radius: inherit;
+
+    transition: width 0.2s ease;
+}
