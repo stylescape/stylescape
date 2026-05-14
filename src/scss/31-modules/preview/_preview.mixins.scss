@@ -7,42 +7,85 @@
 @use "../../01-core/external" as *;
 
 @mixin ss-preview {
+    position: relative;
     border: map.get(config.$preview-config, "border-width") solid
         map.get(config.$preview-config, "border-color");
     border-radius: map.get(config.$preview-config, "radius");
     background-color: map.get(config.$preview-config, "background");
     overflow: hidden;
-    display: grid;
-    gap: 0;
+    width: 100%;
+    max-width: 100%;
+    display: block;
 }
 
 @mixin ss-preview-horizontal {
+    display: grid;
     grid-template-columns: 1fr 1fr;
+
+    > *:not(:last-child) {
+        border-right: map.get(config.$preview-config, "border-width") solid
+            map.get(config.$preview-config, "border-color");
+    }
 }
 
 @mixin ss-preview-vertical {
-    grid-template-rows: auto auto;
+    display: block;
+
+    > *:not(:last-child) {
+        border-bottom: map.get(config.$preview-config, "border-width") solid
+            map.get(config.$preview-config, "border-color");
+    }
 }
 
 @mixin ss-preview-live {
+    position: relative;
     padding: map.get(config.$preview-config, "padding");
+    background-color: map.get(config.$preview-config, "background");
 }
 
 @mixin ss-preview-code {
-    padding: map.get(config.$preview-config, "padding");
+    position: relative;
     background-color: map.get(config.$preview-config, "code-bg");
     color: map.get(config.$preview-config, "code-color");
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: q(13);
     line-height: 1.5;
     overflow: auto;
+
+    pre {
+        margin: 0;
+        padding: map.get(config.$preview-config, "padding");
+        background: transparent;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        overflow: auto;
+    }
+
+    code {
+        font-family: inherit;
+        font-size: inherit;
+        background: transparent;
+        color: inherit;
+    }
 }
 
 @mixin ss-preview-info {
-    padding: q(8) map.get(config.$preview-config, "padding");
-    border-bottom: map.get(config.$preview-config, "border-width") solid
-        map.get(config.$preview-config, "border-color");
-    font-size: q(13);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: q(8);
+    padding: q(6) map.get(config.$preview-config, "padding");
+    background-color: map.get(config.$preview-config, "info-bg");
+    color: map.get(config.$preview-config, "info-color");
+    font-size: q(11);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    small {
+        font-size: inherit;
+    }
 }
 
 @mixin ss-preview-swatch {
