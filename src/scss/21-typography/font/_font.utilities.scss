@@ -1,0 +1,110 @@
+////
+///
+/// Font Utility Class Output
+/// ===========================================================================
+///
+/// Emits utility classes for the legacy `.font--*` API used by the
+/// font example pages (Font Default, Font Size, Font Weight, Font
+/// Letter Spacing). Wraps the existing mixins from `_font_default`,
+/// `_font_size`, `_font_weight` and `_font_letter_spacing` and writes
+/// them into the `ss.utilities` cascade layer.
+///
+/// @group Typography.Font
+/// @author Scape Press
+/// @link https://scape.style
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+@use "./font_default" as defaults;
+@use "./font_size" as sizes;
+@use "./font_weight" as weights;
+@use "./font_letter_spacing" as tracking;
+
+@layer ss.utilities {
+    // -----------------------------------------------------------------------
+    // Font families
+    // -----------------------------------------------------------------------
+
+    .font--default {
+        @include defaults.font--default;
+    }
+    .font--sans {
+        @include defaults.font--sans;
+    }
+    .font--serif {
+        @include defaults.font--serif;
+    }
+    .font--slab {
+        @include defaults.font--slab;
+    }
+    .font--mono {
+        @include defaults.font--mono;
+    }
+
+    // Aliases used in some example pages
+    .font--xs {
+        @include sizes.font--size_02;
+    }
+    .font--sm {
+        @include sizes.font--size_03;
+    }
+    .font--md {
+        @include sizes.font--size_04;
+    }
+    .font--lg {
+        @include sizes.font--size_06;
+    }
+    .font--xl {
+        @include sizes.font--size_08;
+    }
+
+    // -----------------------------------------------------------------------
+    // Font sizes (numbered ladder, 01..12)
+    // -----------------------------------------------------------------------
+
+    .font--size_01 { @include sizes.font--size_01; }
+    .font--size_02 { @include sizes.font--size_02; }
+    .font--size_03 { @include sizes.font--size_03; }
+    .font--size_04 { @include sizes.font--size_04; }
+    .font--size_05 { @include sizes.font--size_05; }
+    .font--size_06 { @include sizes.font--size_06; }
+    .font--size_07 { @include sizes.font--size_07; }
+    .font--size_08 { @include sizes.font--size_08; }
+    .font--size_09 { @include sizes.font--size_09; }
+    .font--size_10 { @include sizes.font--size_10; }
+    .font--size_11 { @include sizes.font--size_11; }
+    .font--size_12 { @include sizes.font--size_12; }
+
+    // -----------------------------------------------------------------------
+    // Font weights (100..900)
+    // -----------------------------------------------------------------------
+
+    .font--weight_100 { @include weights.font--weight_100; }
+    .font--weight_200 { @include weights.font--weight_200; }
+    .font--weight_300 { @include weights.font--weight_300; }
+    .font--weight_400 { @include weights.font--weight_400; }
+    .font--weight_500 { @include weights.font--weight_500; }
+    .font--weight_600 { @include weights.font--weight_600; }
+    .font--weight_700 { @include weights.font--weight_700; }
+    .font--weight_800 { @include weights.font--weight_800; }
+    .font--weight_900 { @include weights.font--weight_900; }
+
+    // -----------------------------------------------------------------------
+    // Letter spacing (01..12)
+    // -----------------------------------------------------------------------
+
+    .font--letter_spacing_01 { @include tracking.letter_spacing_01; }
+    .font--letter_spacing_02 { @include tracking.letter_spacing_02; }
+    .font--letter_spacing_03 { @include tracking.letter_spacing_03; }
+    .font--letter_spacing_04 { @include tracking.letter_spacing_04; }
+    .font--letter_spacing_05 { @include tracking.letter_spacing_05; }
+    .font--letter_spacing_06 { @include tracking.letter_spacing_06; }
+    .font--letter_spacing_07 { @include tracking.letter_spacing_07; }
+    .font--letter_spacing_08 { @include tracking.letter_spacing_08; }
+    .font--letter_spacing_09 { @include tracking.letter_spacing_09; }
+    .font--letter_spacing_10 { @include tracking.letter_spacing_10; }
+    .font--letter_spacing_11 { @include tracking.letter_spacing_11; }
+    .font--letter_spacing_12 { @include tracking.letter_spacing_12; }
+}
