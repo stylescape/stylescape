@@ -1,0 +1,53 @@
+////
+///
+/// List Typography Mixins Module
+/// ===========================================================================
+/// ...
+///
+/// @group List
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../../01-core/external" as *;
+@use "../../../12-lexicon/tokens" as *;
+// @use "../../mixins" as *;
+
+@use "../../character" as *;
+@use "../../font" as *;
+
+@use "../base/list-base.mixins" as *;
+@use "../style/list-style.mixins" as *;
+
+// ============================================================================
+// Typography | List | Unordered
+// ============================================================================
+
+@mixin ul {
+    @include list;
+    @include list--nested;
+    list-style-type: $list-style-type; //var
+}
+
+/// Mixin for nested list styles
+/// ---------------------------------------------------------------------------
+///
+/// Styles for nested unordered lists (`<ul>`).
+///
+/// This mixin defines styles for unordered lists that are nested within other lists.
+/// It applies specific list style types and margins to create a clear hierarchy.
+@mixin ul--nested-list-style {
+    /// Apply square bullet points and left margin to nested `<ul>` elements.
+    ul {
+        @include list_style_type(square);
+        margin-left: q(20);
+    }
+}

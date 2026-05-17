@@ -12,9 +12,9 @@ three complementary tiers:
 
 | Tier     | Metaphor             | Purpose                                                             |
 | -------- | -------------------- | ------------------------------------------------------------------- |
-| **Head** | 🧠 The Brain         | Structural intelligence — layout, positioning, spatial organization |
-| **Body** | 💪 The Physical Form | Composition anatomy — UI components following Atomic Design         |
-| **Soul** | ✨ The Personality   | Aesthetic experience — typography, colors, shadows, motion          |
+| **Head** | ◐ The Brain         | Structural intelligence — layout, positioning, spatial organization |
+| **Body** | ▲ The Physical Form | Composition anatomy — UI components following Atomic Design         |
+| **Soul** | ✦ The Personality   | Aesthetic experience — typography, colors, shadows, motion          |
 
 This separation ensures that **structure**, **components**, and **styling**
 remain decoupled, making the system more maintainable, scalable, and
@@ -26,7 +26,7 @@ composable.
 
 ```mermaid
 flowchart TB
-    subgraph HEAD ["🧠 HEAD — Structural Intelligence"]
+    subgraph HEAD ["◐ HEAD — Structural Intelligence"]
         direction LR
         HF[head_frame]
         HC[head_content]
@@ -34,7 +34,7 @@ flowchart TB
         HP[head_position]
     end
 
-    subgraph BODY ["💪 BODY — Composition Anatomy"]
+    subgraph BODY ["▲ BODY — Composition Anatomy"]
         direction LR
         BA[body_atoms]
         BM[body_molecules]
@@ -44,7 +44,7 @@ flowchart TB
         BA --> BM --> BO --> BS
     end
 
-    subgraph SOUL ["✨ SOUL — Aesthetic Experience"]
+    subgraph SOUL ["✦ SOUL — Aesthetic Experience"]
         direction LR
         ST[soul_type]
         SL[soul_line]
@@ -62,7 +62,7 @@ flowchart TB
 
 ## The Three Tiers
 
-### 🧠 HEAD — Structural Intelligence
+### ◐ HEAD — Structural Intelligence
 
 The **Head** tier controls the skeleton of your application—how elements are
 positioned, how space is distributed, and how the overall page structure is
@@ -117,7 +117,7 @@ head_layout/
 
 ---
 
-### 💪 BODY — Composition Anatomy
+### ▲ BODY — Composition Anatomy
 
 The **Body** tier contains all UI components, organized following **Atomic
 Design** methodology. Components are built from small, reusable pieces that
@@ -130,7 +130,7 @@ combine into increasingly complex structures.
 
 ```mermaid
 flowchart LR
-    A[🔵 Atoms] --> M[🟢 Molecules] --> O[🟠 Organisms] --> S[🔴 Skeletons]
+    A[● Atoms] --> M[● Molecules] --> O[● Organisms] --> S[● Skeletons]
 
     A1[Button]
     A2[Input]
@@ -232,7 +232,7 @@ body_organisms/
 
 ---
 
-### ✨ SOUL — Aesthetic Experience
+### ✦ SOUL — Aesthetic Experience
 
 The **Soul** tier defines the visual personality of your design—how things look
 and feel. This includes typography, colors, borders, shadows, and motion.
@@ -372,18 +372,18 @@ graph TD
 
         subgraph mixins["mixins/"]
             direction TB
-            M_HEAD["🧠 HEAD
+            M_HEAD["◐ HEAD
             ├── head_frame/
             ├── head_content/
             └── head_layout/"]
 
-            M_BODY["💪 BODY
+            M_BODY["▲ BODY
             ├── body_atoms/
             ├── body_molecules/
             ├── body_organisms/
             └── body_skeletons/"]
 
-            M_SOUL["✨ SOUL
+            M_SOUL["✦ SOUL
             ├── soul_type/
             ├── soul_line/
             └── soul_object/"]
@@ -391,19 +391,19 @@ graph TD
 
         subgraph classes["classes/"]
             direction TB
-            C_HEAD["🧠 HEAD
+            C_HEAD["◐ HEAD
             ├── head_frame/
             ├── head_content/
             ├── head_layout/
             └── head_position/"]
 
-            C_BODY["💪 BODY
+            C_BODY["▲ BODY
             ├── body_atoms/
             ├── body_molecules/
             ├── body_organisms/
             └── body_skeletons/"]
 
-            C_SOUL["✨ SOUL
+            C_SOUL["✦ SOUL
             ├── soul_type/
             ├── soul_line/
             └── soul_object/"]

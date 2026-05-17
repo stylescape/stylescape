@@ -33,3 +33,11 @@
     @include ss-box-rounded;
     box-shadow: map.get(config.$box-config, "shadow-elevated");
 }
+
+// Surface depth variants. Ported from legacy
+// `bup/mixins/body_atoms/layout/_box_surface.scss`. Each level maps to
+// a `--ss-color-surface-N` token; consumers can override per level.
+@mixin ss-box-surface-level($level) {
+    background-color: var(--ss-color-surface-#{$level});
+    color: var(--ss-color-text-default, var(--ss-color-text-primary));
+}

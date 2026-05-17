@@ -16,23 +16,19 @@ title }}{%- endblock %} {%- block content %}
         <h3>{{ section_title }}</h3>
         {% set code_snippet %}
         <div>
-            <p class="font--default">
+            <p class="ss-font-sans">
                 {{ preview_text|default('The quick brown fox jumps over the
                 lazy dog. 0123456789') }}
             </p>
-            <p class="font--sans">
+            <p class="ss-font-serif">
                 {{ preview_text|default('The quick brown fox jumps over the
                 lazy dog. 0123456789') }}
             </p>
-            <p class="font--serif">
+            <p class="ss-font-slab">
                 {{ preview_text|default('The quick brown fox jumps over the
                 lazy dog. 0123456789') }}
             </p>
-            <p class="font--slab">
-                {{ preview_text|default('The quick brown fox jumps over the
-                lazy dog. 0123456789') }}
-            </p>
-            <p class="font--mono">
+            <p class="ss-font-mono">
                 {{ preview_text|default('The quick brown fox jumps over the
                 lazy dog. 0123456789') }}
             </p>
@@ -58,11 +54,13 @@ title }}{%- endblock %} {%- block content %}
         </div>
     </section>
 
-    {% set fonts = [ { label: ".font--default", class: "font--default" }, {
-    label: ".font--sans", class: "font--sans" }, { label: ".font--serif",
-    class: "font--serif" }, { label: ".font--slab", class: "font--slab" }, {
-    label: ".font--mono", class: "font--mono" } ] %} {% for font in fonts %} {%
-    set label = font.label %} {% set class = font.class %}
+    {% set fonts = [
+        { label: ".ss-font-sans",  class: "ss-font-sans"  },
+        { label: ".ss-font-serif", class: "ss-font-serif" },
+        { label: ".ss-font-slab",  class: "ss-font-slab"  },
+        { label: ".ss-font-mono",  class: "ss-font-mono"  }
+    ] %} {% for font in fonts %} {% set label = font.label %} {% set class =
+    font.class %}
     <div class="ss-c-demo__subsection">
         {%- include "includes/preview/ss-c-preview_font.html.jinja" %}
     </div>

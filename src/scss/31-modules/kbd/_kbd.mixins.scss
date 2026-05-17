@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "./kbd.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.2em;
+
+    font-family: var(--ss-font-family-mono, monospace);
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+
+    color: var(--ss-color-text-primary);
+    background-color: var(--ss-color-surface-1, var(--ss-color-surface));
+    border: 1px solid var(--ss-color-border, currentColor);
+    border-bottom-width: 2px;
+    border-radius: map.get(config.$ss-kbd-config, radius);
+}
+
+@mixin ss-kbd-size($size) {
+    $s: map.get(map.get(config.$ss-kbd-config, sizes), $size);
+    font-size: map.get($s, font-size);
+    padding: map.get($s, padding);
+}

@@ -1,0 +1,47 @@
+@use "../../01-core/external" as *;
+
+@mixin ss-join {
+    display: inline-flex;
+    align-items: stretch;
+    border-radius: var(--ss-radius-sm, q(4));
+
+    > :where(*) {
+        border-radius: 0;
+    }
+    > :where(*):not(:first-child) {
+        margin-inline-start: -1px;
+    }
+    > :where(*:first-child) {
+        border-start-start-radius: inherit;
+        border-end-start-radius: inherit;
+    }
+    > :where(*:last-child) {
+        border-start-end-radius: inherit;
+        border-end-end-radius: inherit;
+    }
+    > :where(*):focus,
+    > :where(*):focus-within,
+    > :where(*):hover {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+@mixin ss-join-vertical {
+    flex-direction: column;
+
+    > :where(*):not(:first-child) {
+        margin-inline-start: 0;
+        margin-block-start: -1px;
+    }
+    > :where(*:first-child) {
+        border-radius: 0;
+        border-start-start-radius: inherit;
+        border-start-end-radius: inherit;
+    }
+    > :where(*:last-child) {
+        border-radius: 0;
+        border-end-start-radius: inherit;
+        border-end-end-radius: inherit;
+    }
+}

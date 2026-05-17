@@ -1,0 +1,25 @@
+@use "../../01-core/prefix" as *;
+@use "./file-input.mixins" as fi;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-file-input {
+        @include fi.ss-file-input;
+        @include fi.ss-file-input-size(md);
+    }
+    .#{$ss-prefix-module}-file-input--xs { @include fi.ss-file-input-size(xs); }
+    .#{$ss-prefix-module}-file-input--sm { @include fi.ss-file-input-size(sm); }
+    .#{$ss-prefix-module}-file-input--lg { @include fi.ss-file-input-size(lg); }
+
+    .#{$ss-prefix-module}-file-input--bordered { @include fi.ss-file-input-bordered; }
+    .#{$ss-prefix-module}-file-input--ghost { @include fi.ss-file-input-ghost; }
+
+    .#{$ss-prefix-module}-file-input--primary {
+        @include fi.ss-file-input-variant(var(--ss-color-primary, var(--ss-color-accent)), var(--ss-color-on-accent, #fff));
+    }
+    .#{$ss-prefix-module}-file-input--success {
+        @include fi.ss-file-input-variant(var(--ss-color-success), var(--ss-color-on-success, #fff));
+    }
+    .#{$ss-prefix-module}-file-input--error {
+        @include fi.ss-file-input-variant(var(--ss-color-error), var(--ss-color-on-error, #fff));
+    }
+}

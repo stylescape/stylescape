@@ -18,9 +18,13 @@
 @use "../../../../01-core/external" as *;
 
 @layer ss.typography {
-    code,
-    kbd,
-    samp {
+    // Inline code-like elements. The `:not(pre *)` guard prevents the
+    // inline chrome (background, padding, radius) from being re-applied
+    // to a `<code>` nested inside `<pre>`, which would otherwise paint
+    // visible horizontal lines on every wrapped line.
+    code:not(pre *),
+    kbd:not(pre *),
+    samp:not(pre *) {
         @include code.ss-character-code();
     }
 
@@ -95,7 +99,7 @@
 //         monospace;
 //     font-size: 0.875em;
 //     background-color: var(--ss-color-muted);
-//     border: var(--ss-border-width) solid var(--ss-color-border);
+//     border: var(--ss-a-border-width) solid var(--ss-color-border);
 //     border-radius: var(--ss-radius-sm);
 //     padding-inline: var(--ss-spacing-1-5);
 //     padding-block: var(--ss-spacing-0-5);

@@ -1,0 +1,66 @@
+////
+///
+/// Canvas Layout
+/// ===========================================================================
+///
+/// Full-bleed absolute-positioned wrapper for backdrop canvases
+/// (`<canvas>` elements, particle systems like particles.js, decorative
+/// SVG/WebGL layers). Sits behind the foreground content.
+///
+/// Ported from legacy `bup/mixins/body_organisms/_canvas.scss`.
+///
+/// @group Layout
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.4.0
+/// @access public
+///
+////
+
+@layer ss.layout {
+    %ss-l-canvas-base {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    // Default canvas region — sits inside its containing block.
+    .ss-l-canvas {
+        @extend %ss-l-canvas-base;
+    }
+
+    // Direct children also fill the canvas (e.g. nested layers).
+    .ss-l-canvas > * {
+        @extend %ss-l-canvas-base;
+    }
+
+    // Viewport-sized variants — used when the canvas should fill the
+    // entire viewport regardless of its container.
+    .ss-l-canvas--viewport {
+        @extend %ss-l-canvas-base;
+
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+    }
+
+    // Decorative gradient backdrop — preserves the legacy
+    // `.canvas_gradient` look as an opt-in modifier.
+    .ss-l-canvas--gradient {
+        @extend .ss-l-canvas--viewport;
+
+        color: hsla(0, 0%, 100%, 0.85);
+        background-color: #170d24;
+        background-image:
+            radial-gradient(ellipse at 10% 90%, #0d1f7a 0%, transparent 55%),
+            radial-gradient(ellipse at 90% 90%, #439cc5 0%, transparent 55%),
+            radial-gradient(ellipse at 90% 10%, #4a74dc 0%, transparent 55%),
+            radial-gradient(ellipse at 10% 10%, #35244f 0%, transparent 55%);
+    }
+}

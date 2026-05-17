@@ -300,7 +300,7 @@ described in the spec.
 Build verified after Round 2: standalone bundle now **728,769 bytes** (+12,090
 from 716,679); 119 unique `.ss-c-*` selectors across 27 wired modules.
 
-**Round 3 — 44 modules ported from legacy `bup/` tree:**
+**Round 3 — 44 modules `bup/` tree:**
 
 The legacy `bup/classes/{body_atoms,body_molecules,body_organisms}/` tree was
 inventoried and every component re-authored against the blueprint with its BEM

@@ -1,0 +1,21 @@
+@use "../../01-core/prefix" as *;
+@use "./steps.mixins" as steps;
+
+@layer ss.modules {
+    .#{$ss-prefix-module}-steps { @include steps.ss-steps; }
+    .#{$ss-prefix-module}-steps--vertical { @include steps.ss-steps-vertical; }
+
+    .#{$ss-prefix-module}-step { @include steps.ss-step; }
+    .#{$ss-prefix-module}-step--primary {
+        @include steps.ss-step-variant(var(--ss-color-primary, var(--ss-color-accent)), var(--ss-color-on-accent, #fff));
+    }
+    .#{$ss-prefix-module}-step--success {
+        @include steps.ss-step-variant(var(--ss-color-success), var(--ss-color-on-success, #fff));
+    }
+    .#{$ss-prefix-module}-step--warning {
+        @include steps.ss-step-variant(var(--ss-color-warning), var(--ss-color-on-warning, #fff));
+    }
+    .#{$ss-prefix-module}-step--error {
+        @include steps.ss-step-variant(var(--ss-color-error), var(--ss-color-on-error, #fff));
+    }
+}

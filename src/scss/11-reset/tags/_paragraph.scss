@@ -18,16 +18,14 @@
 // ============================================================================
 
 @use "../../01-core/external" as *;
-@use "../../21-typography/paragraph/paragraph/address" as *;
-@use "../../21-typography/paragraph/paragraph/preformatted" as *;
-@use "../../21-typography/paragraph/paragraph/cite" as *;
+@use "../../21-typography/paragraph" as *;
 
 // ============================================================================
 // Tags
 // ============================================================================
 
 address {
-    @include paragraph_address();
+    @include ss-paragraph-address();
 }
 
 ///
@@ -40,18 +38,29 @@ address {
 /// and uppercase text transformation.
 ///
 cite {
-    @include paragraph_cite;
+    @include ss-paragraph-cite;
 }
 
 /// Applying preformatted block styles to `<pre>` elements.
 pre {
-    @include paragraph_code;
+    @include ss-paragraph-code;
 }
 
-/// Applying code styles within `<pre>` blocks.
-/// Styles for code elements inside preformatted text blocks (`<pre><code></code></pre>`).
+/// Code elements inside preformatted text blocks (`<pre><code></code></pre>`).
 ///
-/// Ensures that code within preformatted blocks inherits the correct text color.
+/// The outer `<pre>` already carries the block chrome (border, padding,
+/// background, radius). The inner `<code>` is inline by default, so any
+/// border/padding/background on it would be painted on every wrapped
+/// visual line — producing stray horizontal rules. Strip its chrome and
+/// let it inherit color/typography from the surrounding `<pre>`.
 pre code {
-    @include paragraph_code;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    white-space: inherit;
 }

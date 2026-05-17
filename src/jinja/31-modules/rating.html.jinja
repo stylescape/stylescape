@@ -1,0 +1,30 @@
+{% extends "../base.html.jinja" %} {% set title = "Rating" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-rating</code> module.</p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="ss-c-rating">
+            <input type="radio" name="r1" value="5"><input type="radio" name="r1" value="4">
+            <input type="radio" name="r1" value="3" checked><input type="radio" name="r1" value="2"><input type="radio" name="r1" value="1">
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Sizes" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="ss-c-rating ss-c-rating--xs"><input type="radio" name="rs-xs" checked><input type="radio" name="rs-xs"><input type="radio" name="rs-xs"></div>
+        <div class="ss-c-rating ss-c-rating--sm"><input type="radio" name="rs-sm" checked><input type="radio" name="rs-sm"><input type="radio" name="rs-sm"></div>
+        <div class="ss-c-rating ss-c-rating--lg"><input type="radio" name="rs-lg" checked><input type="radio" name="rs-lg"><input type="radio" name="rs-lg"></div>
+        <div class="ss-c-rating ss-c-rating--xl"><input type="radio" name="rs-xl" checked><input type="radio" name="rs-xl"><input type="radio" name="rs-xl"></div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

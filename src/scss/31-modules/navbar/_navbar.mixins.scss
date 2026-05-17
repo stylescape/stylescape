@@ -1,0 +1,33 @@
+@use "../../01-core/external" as *;
+
+@mixin ss-navbar {
+    display: flex;
+    align-items: center;
+    gap: q(12);
+
+    padding: q(8) q(16);
+    width: 100%;
+    min-height: q(56);
+
+    color: var(--ss-color-text-primary);
+    background-color: var(--ss-color-surface-1, var(--ss-color-surface));
+}
+
+@mixin ss-navbar-section($side) {
+    display: flex;
+    align-items: center;
+    gap: q(8);
+
+    @if $side == start { margin-inline-end: auto; }
+    @if $side == center {
+        flex: 1;
+        justify-content: center;
+    }
+    @if $side == end { margin-inline-start: auto; }
+}
+
+@mixin ss-navbar-sticky {
+    position: sticky;
+    top: 0;
+    z-index: var(--ss-z-navbar, 100);
+}

@@ -138,23 +138,23 @@ module.exports = {
                 // Organize changelog by commit type
                 presetConfig: {
                     types: [
-                        { type: "feat", section: "✨ Features" },
-                        { type: "fix", section: "🐛 Bug Fixes" },
-                        { type: "perf", section: "⚡ Performance" },
+                        { type: "feat", section: "✦ Features" },
+                        { type: "fix", section: "◉ Bug Fixes" },
+                        { type: "perf", section: "↯ Performance" },
                         { type: "revert", section: "⏪ Reverts" },
-                        { type: "docs", section: "📚 Documentation" },
-                        { type: "refactor", section: "♻️ Refactoring" },
+                        { type: "docs", section: "▤ Documentation" },
+                        { type: "refactor", section: "♻ Refactoring" },
 
                         // Hidden sections (not in changelog)
                         {
                             type: "style",
-                            section: "💎 Code Style",
+                            section: "◆ Code Style",
                             hidden: true,
                         },
-                        { type: "test", section: "✅ Tests", hidden: true },
-                        { type: "build", section: "📦 Build", hidden: true },
-                        { type: "ci", section: "👷 CI/CD", hidden: true },
-                        { type: "chore", section: "🔧 Chores", hidden: true },
+                        { type: "test", section: "✓ Tests", hidden: true },
+                        { type: "build", section: "▣ Build", hidden: true },
+                        { type: "ci", section: "☻ CI/CD", hidden: true },
+                        { type: "chore", section: "⚙ Chores", hidden: true },
                     ],
                 },
             },

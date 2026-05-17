@@ -1,14 +1,156 @@
 @use "sass:map";
 @use "./button.config" as config;
 
+// ============================================================================
+// Base
+// ============================================================================
+
 @mixin c-button-base {
-    $cfg: config.$ss-button-config;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    font: inherit;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: var(--ss-radius-sm, 0.25rem);
+    background: var(--color_text_primary, #1a1a1a);
+    color: var(--color_fill_primary, #ffffff);
+    transition:
+        background 0.2s ease,
+        border 0.2s ease,
+        opacity 0.2s ease;
 
-    padding-inline: map.get($cfg, padding-x);
-    padding-block: map.get($cfg, padding-y);
-    border-radius: map.get($cfg, radius);
-    font-weight: map.get($cfg, font-weight);
+    &:hover {
+        opacity: 0.9;
+    }
 
-    background: var(--ss-button-bg, var(--ss-color-primary));
-    color: var(--ss-button-color, white);
+    &:active {
+        opacity: 0.8;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--ss-color-primary, #0066cc);
+        outline-offset: 2px;
+    }
+
+    &:disabled,
+    &[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+}
+
+// ============================================================================
+// Variants
+// ============================================================================
+
+@mixin c-button-primary {
+    background: var(--ss-color-primary, #0066cc);
+    color: #ffffff;
+}
+
+@mixin c-button-secondary {
+    background: var(--ss-color-secondary, #666666);
+    color: #ffffff;
+}
+
+@mixin c-button-outline {
+    background: transparent;
+    border-color: var(--color_text_primary, #1a1a1a);
+    color: var(--color_text_primary, #1a1a1a);
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+}
+
+@mixin c-button-ghost {
+    background: transparent;
+    color: var(--color_text_primary, #1a1a1a);
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+}
+
+@mixin c-button-solid {
+    background: var(--color_text_primary, #1a1a1a);
+    color: var(--color_fill_primary, #ffffff);
+}
+
+@mixin c-button-link {
+    background: transparent;
+    color: var(--ss-color-primary, #0066cc);
+    padding: 0;
+    border: 0;
+    text-decoration: underline;
+}
+
+@mixin c-button-accent {
+    background: var(--color_accent_primary, #ff6600);
+    color: #ffffff;
+}
+
+@mixin c-button-clear {
+    background: transparent;
+    color: inherit;
+}
+
+// ============================================================================
+// Sizes
+// ============================================================================
+
+@mixin c-button-size-xs {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+@mixin c-button-size-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+@mixin c-button-size-md {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+@mixin c-button-size-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+}
+
+@mixin c-button-size-xl {
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+}
+
+// ============================================================================
+// Icon-only / Menu button
+// ============================================================================
+
+@mixin c-button-menu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    padding: 0.5rem;
+    font: inherit;
+    font-size: 1.25rem;
+
+    &:hover {
+        opacity: 0.75;
+    }
 }

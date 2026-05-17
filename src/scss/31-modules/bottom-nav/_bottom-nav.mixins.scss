@@ -1,0 +1,50 @@
+@use "sass:map";
+@use "./bottom-nav.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-bottom-nav {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: var(--ss-z-bottom-nav, 90);
+
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+
+    width: 100%;
+    height: map.get(config.$ss-bottom-nav-config, height);
+
+    color: var(--ss-color-text-primary);
+    background-color: var(--ss-color-surface-1, var(--ss-color-surface));
+    border-top: 1px solid var(--ss-color-border, currentColor);
+
+    padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+@mixin ss-bottom-nav-item {
+    flex: 1;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: q(2);
+
+    padding: q(4) q(8);
+    font-size: var(--ss-font-size-xs);
+    color: var(--ss-color-text-secondary, var(--ss-color-text-muted));
+
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover { color: var(--ss-color-text-primary); }
+    &.is-active,
+    &[aria-current],
+    &--active {
+        color: var(--ss-color-accent);
+        border-top: 2px solid var(--ss-color-accent);
+        margin-top: -2px;
+    }
+}

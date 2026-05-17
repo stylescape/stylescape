@@ -25,4 +25,14 @@
         @include input.ss-input;
         @include input.ss-input-textarea;
     }
+
+    // Datalist <input list="...">. Ported from legacy
+    // `bup/mixins/body_atoms/inputs/_input_list.scss`. The native
+    // calendar-picker indicator is hidden so the field behaves as a
+    // plain combobox.
+    .#{$ss-prefix-module}-input[list] {
+        &::-webkit-calendar-picker-indicator {
+            display: none;
+        }
+    }
 }

@@ -1,0 +1,60 @@
+@use "sass:map";
+@use "./file-input.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-file-input {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+
+    font-size: var(--ss-font-size-sm);
+    color: var(--ss-color-text-primary);
+    background-color: var(--ss-color-surface-1, var(--ss-color-surface));
+    border: 1px solid var(--ss-color-border, currentColor);
+    border-radius: var(--ss-radius-sm, q(4));
+    overflow: hidden;
+    cursor: pointer;
+
+    &::file-selector-button {
+        height: 100%;
+        padding-inline: q(16);
+        margin-inline-end: q(12);
+        font: inherit;
+        font-weight: 600;
+        color: var(--ss-color-on-accent, #fff);
+        background-color: var(--ss-color-accent);
+        border: 0;
+        cursor: pointer;
+    }
+    &:focus-visible {
+        outline: 2px solid var(--ss-color-accent);
+        outline-offset: 2px;
+    }
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+@mixin ss-file-input-size($size) {
+    $s: map.get(map.get(config.$ss-file-input-config, sizes), $size);
+    height: map.get($s, height);
+    font-size: map.get($s, font);
+}
+
+@mixin ss-file-input-variant($bg, $fg) {
+    &::file-selector-button {
+        background-color: $bg;
+        color: $fg;
+    }
+}
+
+@mixin ss-file-input-bordered {
+    background: transparent;
+}
+
+@mixin ss-file-input-ghost {
+    background: transparent;
+    border-color: transparent;
+}

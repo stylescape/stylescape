@@ -24,4 +24,57 @@
     .#{$ss-prefix-module}-table--hover {
         @include table.ss-table-hover;
     }
+
+    // Responsive stacked variant. Ported from legacy
+    // `bup/mixins/body_molecules/table/_table_responsive.scss`. Cells use
+    // `data-label="..."` to render their column name when the layout
+    // collapses to a single column on narrow viewports.
+    .#{$ss-prefix-module}-table--stacked {
+        width: 100%;
+
+        @media screen and (max-width: 48em) {
+            thead {
+                display: none;
+            }
+
+            tbody tr {
+                display: block;
+                margin-bottom: var(--ss-space-md, 1rem);
+                border: 1px solid var(--ss-color-line-secondary);
+                border-radius: var(--ss-radius-sm, 0.25rem);
+                background-color: var(--ss-color-fill, #fff);
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            tbody td {
+                display: block;
+                padding: var(--ss-space-sm, 0.75rem) var(--ss-space-md, 1rem);
+                text-align: right;
+                border-bottom: 1px solid var(--ss-color-line-secondary);
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                &::before {
+                    content: attr(data-label);
+                    float: left;
+                    font-weight: 600;
+                    color: var(--ss-color-text-primary);
+                }
+
+                &:empty {
+                    display: none;
+                }
+            }
+
+            colgroup,
+            col {
+                display: none;
+            }
+        }
+    }
 }

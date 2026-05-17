@@ -1,0 +1,351 @@
+////
+///
+/// List Typography Mixins Module
+/// ===========================================================================
+/// ...
+///
+/// @group List
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../../01-core/external" as *;
+@use "../../../12-lexicon/tokens" as *;
+@use "../../character" as *;
+@use "../../font" as *;
+
+///
+/// Mixin for resetting list styles.
+/// ---------------------------------------------------------------------------
+///
+/// This mixin resets the default browser styling for lists, allowing full customization.
+///
+
+ul li:before {
+    content: none;
+}
+// Remove :before from nested lis, set content: none for those list:
+ul li li:before {
+    content: none;
+}
+
+@mixin list {
+    margin-bottom: 0;
+    margin: 0;
+    padding: 0;
+    padding-left: $list-indent; //q(16); //To Var
+    list-style-type: none;
+    list-style-position: outside;
+}
+
+@mixin list--nested {
+    ol {
+        //nested ol
+        list-style-type: lower-latin;
+        ol {
+            list-style-type: lower-greek;
+        }
+    }
+
+    ul {
+        list-style-type: $list-nested-style-type;
+        ul {
+            list-style-type: $list-nested-style-type-level-2;
+        }
+    }
+
+    dl dt {
+        list-style-type: $list-nested-style-type;
+    }
+
+    dl dd {
+        list-style-type: $list-nested-style-type-level-2;
+    }
+}
+
+@mixin li {
+    &:before {
+        content: "";
+        margin-left: $list-item-spacing;
+    }
+}
+
+// @mixin nav {
+//     ul {
+//         @include list;
+//         padding-left: 0px;
+//         list-style: none;
+//         li {
+//             margin: 0;
+//             padding: 0;
+//             &:before {
+//                 margin: 0;
+//                 padding: 0;
+//             }
+//         }
+//     }
+// }
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Mixin for list container base styles
+@mixin list-base {
+    font-size: q(16);
+    margin: q(16) 0;
+    position: relative;
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--theme-component-list-list-gap);
+    align-self: stretch;
+    margin-top: var(--primitive-space-16);
+    margin-bottom: var(--primitive-space-16);
+    margin-left: var(--primitive-space-none);
+    margin-right: var(--primitive-space-none);
+}
+
+/// Mixin for list items container
+@mixin list__items {
+    counter-reset: listitem;
+    margin: 0;
+}
+
+/// Mixin for list item base styles
+@mixin list__item {
+    counter-increment: listitem;
+    padding: 0 0 q(4);
+    color: var(--theme-semantic-color-type-primary);
+    font-size: var(--theme-semantic-type-body--lg-font-size);
+    line-height: var(--theme-paragraph__line-height);
+    font-family: var(--theme-semantic-type-body-font-family);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: var(--theme-semantic-type-body-letter-spacing);
+}
+
+/// Mixin for list item link styles
+@mixin list__item-link {
+    color: var(--theme-paragraph__link-color);
+    font-family: var(--theme-semantic-type-body-font-family);
+    font-size: var(--theme-semantic-type-body--lg-font-size);
+    font-weight: 400;
+    letter-spacing: var(--theme-semantic-type-body-letter-spacing);
+    font-style: normal;
+    line-height: var(--theme-semantic-type-body--lg-line-height);
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    gap: q(10);
+    -webkit-text-decoration-line: var(--theme-paragraph__link-decoration);
+    text-decoration-line: var(--theme-paragraph__link-decoration);
+    -webkit-text-decoration-color: var(
+        --theme-paragraph__link-decoration-color
+    );
+    text-decoration-color: var(--theme-paragraph__link-decoration-color);
+    text-decoration-thickness: var(
+        --theme-paragraph__link-decoration-thickness
+    );
+    text-underline-offset: var(--theme-paragraph__hover-link-offset);
+    -webkit-text-decoration-skip-ink: var(--theme-underline-skip-ink);
+    text-decoration-skip-ink: var(--theme-underline-skip-ink);
+    -webkit-text-decoration-skip: var(--theme-underline-skip-ink);
+    text-decoration-skip: var(--theme-underline-skip-ink);
+}
+
+/// Mixin for list item link hover state
+@mixin list__item-link-hover {
+    color: var(--theme-link-color-hover);
+    align-items: center;
+    justify-content: center;
+    -webkit-text-decoration-line: var(--primitive-type-text-decoration-none);
+    text-decoration-line: var(--primitive-type-text-decoration-none);
+    -webkit-text-decoration: var(--theme-paragraph__hover-link-decoration);
+    text-decoration: var(--theme-paragraph__hover-link-decoration);
+    display: inline;
+    gap: q(10);
+}
+
+/// Mixin for list item link active state
+@mixin list__item-link-active {
+    color: var(--theme-semantic-color-component-link-primary-overrides-press);
+    align-items: center;
+    justify-content: center;
+    -webkit-text-decoration-line: var(--primitive-type-text-decoration-none);
+    text-decoration-line: var(--primitive-type-text-decoration-none);
+    display: inline;
+    gap: q(10);
+}
+
+/// Mixin for list item link focus state
+@mixin list__item-link-focus {
+    color: var(--theme-semantic-color-component-link-primary-overrides-focus);
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    gap: q(10);
+    border-radius: var(--theme-semantic-corner-radius-focus-primary);
+    border: var(--theme-semantic-border-focus-secondary) solid
+        var(--theme-semantic-color-border-focus-primary);
+    -webkit-text-decoration-line: var(
+        --primitive-type-text-decoration-underline
+    );
+    text-decoration-line: var(--primitive-type-text-decoration-underline);
+    text-underline-offset: var(--primitive-space-02);
+}
+
+/// Mixin for custom indicator list styles
+@mixin list--custom-indicator {
+    .list {
+        clear: none;
+    }
+
+    .list__items {
+        padding: 0;
+    }
+
+    .list__item {
+        display: flex;
+        align-items: baseline;
+        list-style-type: none;
+        position: relative;
+    }
+
+    .list__item:before {
+        flex: 0 0 auto;
+        margin: 0 q(12) 0 q(24);
+    }
+
+    .list__items--ul .list__item:before {
+        background-color: #d50000;
+        border-radius: 50%;
+        content: "";
+        position: relative;
+        top: -q(3);
+        width: q(6);
+        height: q(6);
+    }
+
+    .list__items--ol .list__item:before {
+        color: #d50000;
+        content: counter(listitem) ".";
+        font-weight: 700;
+    }
+}
+
+/// Mixin for elevated list styles
+@mixin list-elevate {
+    max-width: q(660);
+    margin: 0 0 q(24);
+    padding-left: q(8);
+
+    .list__items {
+        padding-left: q(18);
+    }
+
+    .list__item {
+        font-family:
+            noto_serif,
+            Georgia,
+            Times New Roman,
+            serif;
+        font-size: q(16);
+        font-weight: 400;
+        color: var(--color_text_primary);
+        padding-bottom: q(16);
+        line-height: q(28);
+    }
+
+    .list__item:last-child {
+        padding-bottom: 0;
+    }
+
+    .list__text {
+        display: block;
+        padding-left: q(16);
+    }
+
+    .list__text a {
+        color: var(--theme-paragraph__link-color);
+        -webkit-text-decoration-line: var(--theme-paragraph__link-decoration);
+        text-decoration-line: var(--theme-paragraph__link-decoration);
+        -webkit-text-decoration-color: var(
+            --theme-paragraph__link-decoration-color
+        );
+        text-decoration-color: var(--theme-paragraph__link-decoration-color);
+        text-decoration-thickness: var(
+            --theme-paragraph__link-decoration-thickness
+        );
+        -webkit-text-decoration-skip-ink: var(--theme-underline-skip-ink);
+        text-decoration-skip-ink: var(--theme-underline-skip-ink);
+        -webkit-text-decoration-skip: var(--theme-underline-skip-ink);
+        text-decoration-skip: var(--theme-underline-skip-ink);
+        text-underline-offset: q(4);
+    }
+
+    .list__text a:hover {
+        color: var(--theme-link-color-hover);
+        -webkit-text-decoration: var(--theme-paragraph__hover-link-decoration);
+        text-decoration: var(--theme-paragraph__hover-link-decoration);
+    }
+}
+
+/// Mixin for live story list items container
+@mixin list_live-story__items {
+    margin: 0;
+    padding-left: q(16);
+
+    &:not(.list_live-story__items--ol) {
+        list-style: none;
+    }
+}
+
+/// Mixin for live story list item
+@mixin list_live-story__item {
+    margin: q(8) 0;
+    line-height: 1.625;
+
+    &:before {
+        content: "▪";
+        position: absolute;
+        color: #8c8c8c;
+        width: q(16);
+        margin-left: -q(16);
+    }
+}
+
+/// Mixin for live story list link styles
+@mixin list_live-story-link {
+    color: var(--theme-paragraph__link-color);
+    -webkit-text-decoration-line: var(--theme-paragraph__link-decoration);
+    text-decoration-line: var(--theme-paragraph__link-decoration);
+    -webkit-text-decoration-color: var(
+        --theme-paragraph__link-decoration-color
+    );
+    text-decoration-color: var(--theme-paragraph__link-decoration-color);
+    text-decoration-thickness: var(
+        --theme-paragraph__link-decoration-thickness
+    );
+    -webkit-text-decoration-skip-ink: var(--theme-underline-skip-ink);
+    text-decoration-skip-ink: var(--theme-underline-skip-ink);
+    -webkit-text-decoration-skip: var(--theme-underline-skip-ink);
+    text-decoration-skip: var(--theme-underline-skip-ink);
+    text-underline-offset: var(--theme-paragraph__hover-link-offset);
+}
+
+/// Mixin for live story list link hover state
+@mixin list_live-story-link-hover {
+    color: var(--theme-link-color-hover);
+    -webkit-text-decoration: var(--theme-paragraph__hover-link-decoration);
+    text-decoration: var(--theme-paragraph__hover-link-decoration);
+}

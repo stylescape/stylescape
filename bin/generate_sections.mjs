@@ -333,7 +333,7 @@ function generateSections() {
  * Main execution
  */
 function main() {
-    console.log("🔍 Scanning Jinja template folders...");
+    console.log("⌕ Scanning Jinja template folders...");
 
     const data = generateSections();
 
@@ -346,7 +346,7 @@ function main() {
     }
 
     console.log(
-        `📁 Found ${data.sections.length} sections with ${totalTemplates} templates`,
+        `▤ Found ${data.sections.length} sections with ${totalTemplates} templates`,
     );
 
     // Generate new output
@@ -361,14 +361,14 @@ function main() {
     }
 
     if (output === existingContent) {
-        console.log(`⏭️  No changes detected, skipping write.`);
+        console.log(`⏭  No changes detected, skipping write.`);
     } else {
         fs.writeFileSync(OUTPUT_FILE, output, "utf-8");
-        console.log(`✅ Generated: ${OUTPUT_FILE}`);
+        console.log(`✓ Generated: ${OUTPUT_FILE}`);
     }
 
     // Print summary
-    console.log("\n📋 Section Summary:");
+    console.log("\n▤ Section Summary:");
     for (const section of data.sections) {
         const itemCount = section.groups.reduce(
             (sum, g) => sum + g.items.length,

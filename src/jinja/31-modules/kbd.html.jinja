@@ -1,0 +1,36 @@
+{% extends "../base.html.jinja" %} {% set title = "Kbd" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-kbd</code> module.</p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        Press <kbd class="ss-c-kbd">Esc</kbd> to dismiss.
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Sizes" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <kbd class="ss-c-kbd ss-c-kbd--xs">XS</kbd>
+        <kbd class="ss-c-kbd ss-c-kbd--sm">SM</kbd>
+        <kbd class="ss-c-kbd">MD</kbd>
+        <kbd class="ss-c-kbd ss-c-kbd--lg">LG</kbd>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Combination" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <kbd class="ss-c-kbd">Ctrl</kbd> + <kbd class="ss-c-kbd">Shift</kbd> + <kbd class="ss-c-kbd">P</kbd>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

@@ -1,6 +1,23 @@
 {% extends "../base.html.jinja" %} {% set title = "Font Weights" %} {%- block
 title %}{{ title }}{%- endblock %} {%- block content %}
 
+{% set weights = [
+    { name: "thin",        num: 100 },
+    { name: "extra-light", num: 200 },
+    { name: "light",       num: 300 },
+    { name: "regular",     num: 400 },
+    { name: "medium",      num: 500 },
+    { name: "semibold",    num: 600 },
+    { name: "bold",        num: 700 },
+    { name: "extra-bold",  num: 800 },
+    { name: "black",       num: 900 }
+] %} {% set families = [
+    { label: "Sans",  class: "ss-font-sans"  },
+    { label: "Serif", class: "ss-font-serif" },
+    { label: "Slab",  class: "ss-font-slab"  },
+    { label: "Mono",  class: "ss-font-mono"  }
+] %}
+
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
         <h2>{{ title }}</h2>
@@ -9,78 +26,24 @@ title %}{{ title }}{%- endblock %} {%- block content %}
     <div class="ss-c-demo__subsection">
         <p>
             These examples demonstrate utility classes from
-            <code>.font--weight_100</code>
-            to
-            <code>.font--weight_900</code>
-            .
+            <code>.ss-weight-thin</code>
+            (100) to
+            <code>.ss-weight-black</code>
+            (900).
         </p>
     </div>
 </section>
 
+{% for fam in families %}
 <section class="ss-c-demo__section">
     <header class="ss-c-demo__section__header">
-        <h3>Font Default</h3>
+        <h3>Font {{ fam.label }}</h3>
     </header>
-    {% for i in range(1, 10) %} {% set label = ".font--weight_" ~ i ~ "00" %}
-    {% set class = "font--weight_" ~ i ~ "00" %}
-    <div class="ss-c-demo__subsection">
-        {%- include "includes/preview/ss-c-preview_font.html.jinja" %}
-    </div>
-
-    {% endfor %}
-</section>
-
-<section class="ss-c-demo__section">
-    <header class="ss-c-demo__section__header">
-        <h3>Font Sans</h3>
-    </header>
-    {% for i in range(1, 10) %} {% set label = ".font--weight_" ~ i ~ "00" %}
-    {% set class = "font--sans font--weight_" ~ i ~ "00" %}
-
-    <div class="ss-c-demo__subsection">
-        {%- include "includes/preview/ss-c-preview_font.html.jinja" %}
-    </div>
-
-    {% endfor %}
-</section>
-
-<section class="ss-c-demo__section">
-    <header class="ss-c-demo__section__header">
-        <h3>Font Serif</h3>
-    </header>
-    {% for i in range(1, 10) %} {% set label = ".font--weight_" ~ i ~ "00" %}
-    {% set class = "font--serif font--weight_" ~ i ~ "00" %}
-
+    {% for w in weights %} {% set label = ".ss-weight-" ~ w.name ~ " (" ~ w.num
+    ~ ")" %} {% set class = fam.class ~ " ss-weight-" ~ w.name %}
     <div class="ss-c-demo__subsection">
         {%- include "includes/preview/ss-c-preview_font.html.jinja" %}
     </div>
     {% endfor %}
 </section>
-
-<section class="ss-c-demo__section">
-    <header class="ss-c-demo__section__header">
-        <h3>Font Slab</h3>
-    </header>
-    {% for i in range(1, 10) %} {% set label = ".font--weight_" ~ i ~ "00" %}
-    {% set class = "font--slab font--weight_" ~ i ~ "00" %}
-
-    <div class="ss-c-demo__subsection">
-        {%- include "includes/preview/ss-c-preview_font.html.jinja" %}
-    </div>
-    {% endfor %}
-</section>
-
-<section class="ss-c-demo__section">
-    <header class="ss-c-demo__section__header">
-        <h3>Font Mono</h3>
-    </header>
-    {% for i in range(1, 10) %} {% set label = ".font--weight_" ~ i ~ "00" %}
-    {% set class = "font--mono font--weight_" ~ i ~ "00" %}
-
-    <div class="ss-c-demo__subsection">
-        {%- include "includes/preview/ss-c-preview_font.html.jinja" %}
-    </div>
-    {% endfor %}
-</section>
-
-{%- endblock %}
+{% endfor %} {%- endblock %}

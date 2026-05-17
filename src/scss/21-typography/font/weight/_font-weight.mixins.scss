@@ -5,20 +5,22 @@
 @mixin ss-font-weight($key, $width: null) {
     $value: fn.ss-font-weight-value($key);
 
-    @if $value == null {
-        @return;
-    }
+    @if $value != null {
+        $is-variable: map.get(config.$ss-font-weight-config, variable);
+        $axis-weight: map.get(config.$ss-font-weight-config, axis-weight);
+        $axis-width: map.get(config.$ss-font-weight-config, axis-width);
+        $default-width: map.get(config.$ss-font-weight-config, default-width);
 
-    $is-variable: map.get(config.$ss-font-weight-config, variable);
-    $axis-weight: map.get(config.$ss-font-weight-config, axis-weight);
-    $axis-width: map.get(config.$ss-font-weight-config, axis-width);
-    $default-width: map.get(config.$ss-font-weight-config, default-width);
+        font-weight: $value;
 
-    font-weight: $value;
-
-    @if $is-variable {
-        font-variation-settings:
-            "#{$axis-weight}" $value,
-            "#{$axis-width}" if($width != null, $width, $default-width);
+        @if $is-variable {
+            $resolved-width: $default-width;
+            @if $width != null {
+                $resolved-width: $width;
+            }
+            font-variation-settings:
+                "#{$axis-weight}" $value,
+                "#{$axis-width}" $resolved-width;
+        }
     }
 }

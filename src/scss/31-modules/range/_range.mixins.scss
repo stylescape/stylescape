@@ -1,0 +1,71 @@
+@use "sass:map";
+@use "./range.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-range {
+    -webkit-appearance: none;
+    appearance: none;
+
+    width: 100%;
+    background: transparent;
+    cursor: pointer;
+
+    &::-webkit-slider-runnable-track {
+        height: q(8);
+        border-radius: q(999);
+        background: var(--ss-color-surface-2, var(--ss-color-surface));
+    }
+    &::-moz-range-track {
+        height: q(8);
+        border-radius: q(999);
+        background: var(--ss-color-surface-2, var(--ss-color-surface));
+    }
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: q(20);
+        height: q(20);
+        margin-top: q(-6);
+        border-radius: 50%;
+        background: var(--ss-color-accent, currentColor);
+        border: 2px solid var(--ss-color-background);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    &::-moz-range-thumb {
+        width: q(20);
+        height: q(20);
+        border-radius: 50%;
+        background: var(--ss-color-accent, currentColor);
+        border: 2px solid var(--ss-color-background);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--ss-color-accent);
+        outline-offset: 4px;
+    }
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+@mixin ss-range-size($size) {
+    $s: map.get(map.get(config.$ss-range-config, sizes), $size);
+    $t: map.get($s, track);
+    $h: map.get($s, thumb);
+
+    &::-webkit-slider-runnable-track { height: $t; }
+    &::-moz-range-track { height: $t; }
+    &::-webkit-slider-thumb {
+        width: $h; height: $h;
+        margin-top: calc((#{$t} - #{$h}) / 2);
+    }
+    &::-moz-range-thumb { width: $h; height: $h; }
+}
+
+@mixin ss-range-variant($color) {
+    &::-webkit-slider-thumb { background: $color; }
+    &::-moz-range-thumb { background: $color; }
+}

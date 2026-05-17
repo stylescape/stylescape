@@ -1,0 +1,38 @@
+{% extends "../base.html.jinja" %} {% set title = "Range" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-range</code> module.</p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <input type="range" class="ss-c-range" min="0" max="100" value="50">
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Sizes" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <input type="range" class="ss-c-range ss-c-range--xs" min="0" max="100" value="50">
+        <input type="range" class="ss-c-range ss-c-range--sm" min="0" max="100" value="50">
+        <input type="range" class="ss-c-range ss-c-range--lg" min="0" max="100" value="50">
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Variants" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <input type="range" class="ss-c-range ss-c-range--primary" min="0" max="100" value="50">
+        <input type="range" class="ss-c-range ss-c-range--success" min="0" max="100" value="50">
+        <input type="range" class="ss-c-range ss-c-range--warning" min="0" max="100" value="50">
+        <input type="range" class="ss-c-range ss-c-range--error" min="0" max="100" value="50">
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

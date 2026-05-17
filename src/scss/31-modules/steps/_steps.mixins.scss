@@ -1,0 +1,60 @@
+@use "../../01-core/external" as *;
+
+@mixin ss-steps {
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    overflow: hidden;
+    counter-reset: ss-step;
+}
+
+@mixin ss-steps-vertical {
+    display: inline-grid;
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+}
+
+@mixin ss-step {
+    position: relative;
+    display: grid;
+    grid-template-rows: q(40) 1fr;
+    place-items: center;
+    text-align: center;
+    min-width: q(64);
+
+    counter-increment: ss-step;
+
+    &::before {
+        content: counter(ss-step);
+        z-index: 1;
+        grid-row-start: 1;
+        place-self: center;
+
+        display: grid;
+        place-items: center;
+        width: q(32);
+        height: q(32);
+        border-radius: 50%;
+        background: var(--ss-color-surface-2, var(--ss-color-surface));
+        color: var(--ss-color-text-primary);
+        font-weight: 600;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        top: q(20);
+        inset-inline: 50%;
+        height: 2px;
+        background: var(--ss-color-surface-2, var(--ss-color-surface));
+    }
+    &:last-child::after { display: none; }
+    > * {
+        grid-row-start: 2;
+        padding-top: q(8);
+    }
+}
+
+@mixin ss-step-variant($bg, $fg) {
+    &::before { background: $bg; color: $fg; }
+    &::after { background: $bg; }
+}
