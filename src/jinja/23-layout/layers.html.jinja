@@ -87,16 +87,16 @@ unit.gl{%- endblock %} {%- block header %}
 </style>
 {%- endblock %} {%- block content %}
 
-<div class="layer-controls">
+<div class="ss-c-layer-controls">
     {% set layers = ["guides", "modal", "interface", "content", "canvas"] %} {%
     for layer in layers %}
     <button onclick="toggleLayer('{{ layer }}')">Toggle {{ layer }}</button>
     {% endfor %}
 </div>
 
-<div class="layer-demo">
+<div class="ss-c-layer-demo">
     {% for layer in layers %}
-    <div class="layer-box z-{{ layer }}" id="layer-{{ layer }}">
+    <div class="ss-c-layer-box z-{{ ss-c-layer }}" id="layer-{{ layer }}">
         {{ layer }}
         <br />
         <small>z({{ layer }})</small>

@@ -1,0 +1,56 @@
+name: SSX Parity Check
+
+on:
+  push:
+    branches: [main, dev]
+    paths:
+      - "src/scss/**"
+      - "bin/check_ssx_parity.py"
+  pull_request:
+    branches: [main, dev]
+    paths:
+      - "src/scss/**"
+      - "bin/check_ssx_parity.py"
+  schedule:
+    # Run weekly on Monday at 10 AM UTC
+    - cron: "0 10 * * 1"
+
+jobs:
+  parity-check:
+    name: Check SSX Spec Parity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout stylescape
+        uses: actions/checkout@v6
+
+      - name: Checkout SSX spec
+        uses: actions/checkout@v6
+        with:
+          repository: stylescape/ssx
+          path: ssx
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Run parity check
+        run: |
+          python bin/check_ssx_parity.py \
+            --ssx-path ssx/doc \
+            --output parity-report.md
+
+      - name: Upload parity report
+        uses: actions/upload-artifact@v6
+        with:
+          name: parity-report
+          path: parity-report.md
+          retention-days: 30
+
+      - name: Check for issues
+        run: |
+          if grep -q "Found .* issue" parity-report.md; then
+            echo "::warning::Parity issues found - see artifact for details"
+          else
+            echo "✓ No parity issues found"
+          fi

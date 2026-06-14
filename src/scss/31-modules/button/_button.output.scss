@@ -1,7 +1,7 @@
 @use "../../01-core/prefix" as *;
 @use "./button.mixins" as *;
 
-@layer ss.modules {
+@layer ss.components {
     .#{$ss-prefix-module}-button {
         @include c-button-base;
 
@@ -30,19 +30,69 @@
             @include c-button-clear;
         }
 
-        &--size-xs {
+        // Status variants
+        &--success {
+            @include c-button-success;
+        }
+        &--warning {
+            @include c-button-warning;
+        }
+        &--danger {
+            @include c-button-danger;
+        }
+        &--info {
+            @include c-button-info;
+        }
+
+        // Shapes
+        &--rounded {
+            @include c-button-rounded;
+        }
+        &--pill {
+            @include c-button-pill;
+        }
+        &--square {
+            @include c-button-square;
+        }
+        &--icon {
+            @include c-button-icon;
+        }
+
+        // State / modifier
+        &--block {
+            @include c-button-block;
+        }
+        &--disabled {
+            @include c-button-disabled;
+        }
+        &--loading {
+            @include c-button-loading;
+        }
+
+        // Sizes — `--size-*` is the canonical form; `--xs/--sm/--md/--lg/--xl`
+        // and `--small/--large` are convenience aliases so downstream
+        // templates that adopted the shorter form (notably semiosys) don't
+        // have to rewrite hundreds of class strings at upgrade time.
+        &--size-xs,
+        &--xs {
             @include c-button-size-xs;
         }
-        &--size-sm {
+        &--size-sm,
+        &--sm,
+        &--small {
             @include c-button-size-sm;
         }
-        &--size-md {
+        &--size-md,
+        &--md {
             @include c-button-size-md;
         }
-        &--size-lg {
+        &--size-lg,
+        &--lg,
+        &--large {
             @include c-button-size-lg;
         }
-        &--size-xl {
+        &--size-xl,
+        &--xl {
             @include c-button-size-xl;
         }
 

@@ -12,14 +12,14 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         'Teal', 'Capri', 'Sky', 'Blue', 'Azure', 'Indigo', 'Violet', 'Magenta',
         'Purple', 'Rose', 'Pink', 'Red' ] %} {% for family in families %}
 
-        <div class="grid--size--col--12">
-            <h6 class="col--3">{{ family }}</h6>
+        <div class="ss-c-grid--size--col--12">
+            <h6 class="ss-c-col--3">{{ family }}</h6>
             {% set base = 1 + (loop.index0 * 150) %} {% for j in range(9) %} {%
             set number = base + j %} {% if number < 10 %} {% set code='N000' ~
             number %} {% elif number < 100 %} {% set code='N00' ~ number %} {%
             elif number < 1000 %} {% set code='N0' ~ number %} {% else %} {%
             set code='N' ~ number %} {% endif %}
-            <div class="swatch" style="background-color: var(--{{ code }})">
+            <div class="ss-c-swatch" style="background-color: var(--{{ code }})">
                 <code>{{ code }}</code>
             </div>
             {% endfor %}

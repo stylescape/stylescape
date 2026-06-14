@@ -1,598 +1,369 @@
 # StyleScape Roadmap
 
-> Migration plan for restructuring `src/scss/` into the canonical tier
-> architecture defined by the [SSX Layer Constitution](../ssx/layers.md) and
-> [Folder Structure](../ssx/folder_structure.md), and aligning the Semiosys
-> consumer with the same import contract.
-
-This roadmap is the single source of truth for the SCSS migration. It is
-binding. No structural deviation is permitted without amending this document
-and the corresponding SSX specification.
-
----
-
-## 1. Goals
-
-1. Replace the legacy `classes/`, `mixins/`, `variables/`, `functions/`,
-   `maps/`, `root/`, `tags/`, `dev/` folders with the **numeric tier system**
-   (`01`, `11–13`, `21–24`, `31–33`, `91`).
-2. Apply the **Component Blueprint** (`config → mixins → output → index`) to
-   every module under `31-modules/` and to internal sub-systems where it makes
-   sense.
-3. Enforce the **SSX prefix convention** (`ss-c-*`, `ss-o-*`, `ss-u-*`, `is-*`,
-   `has-*`) across all output.
-4. Keep the [`stylescape`](../stylescape) (framework), [`ssx`](../ssx)
-   (specification) and [`semiosys`](../semiosys) (Django consumer) repositories
-   in lockstep.
+> Forward-looking plan for the three-repo system:
+> [`ssx`](../ssx) (spec) · [`stylescape`](../stylescape) (implementation) ·
+> [`semiosys`](../semiosys) (Django consumer).
+>
+> The 2024–2026 SCSS migration (tier folders, blueprint modules, prefix
+> conversion, legacy folder pruning) is **complete** — see
+> [§ Completed Work](#completed-work) for the abbreviated record. This document
+> now drives **alignment & release**, not migration.
 
 ---
 
-## 2. Target Tier Layout
+## Status snapshot — verified 2026-06-14
 
-```
-src/scss/
-├── 01-core/          # Infrastructure: layers, prefix, banner, governance
-├── 11-reset/         # Browser normalization (ss.reset)
-├── 12-lexicon/       # Tokens: color, spacing, type, motion, z-index, …
-├── 13-rhythm/        # Baseline grid, leading, vertical spacing
-├── 21-typography/    # Character, paragraph, font, list, text
-├── 22-flow/          # Stack, cluster, inline, split, cover, center, frame
-├── 23-layout/        # Container, grid, columns, region, breakpoints
-├── 24-appearance/    # Background, border, color, elevation, filter, …
-├── 31-modules/       # ss-c-* components (blueprint enforced)
-├── 32-utilities/     # ss-u-* atomic helpers (layout/spacing/typography)
-├── 33-overrides/     # CMS, third-party, dark, compatibility patches
-├── 91-development/   # Debug, baseline overlay, deprecation, demo
-└── index.scss        # Explicit, ordered entry point (no globs)
-```
+A full pass over all three repos found the codebase **well ahead** of the
+checkbox state this document carried. Verified outcomes:
 
-Folder ↔ `@layer` mapping is fixed by
-[SSX layers.md](../ssx/layers.md#i-global-layer-order).
+| Phase                                   | State            | Evidence                                                                                       |
+| --------------------------------------- | ---------------- | ---------------------------------------------------------------------------------------------- |
+| **A** — SSX spec consolidation          | ✅ Done          | `ssx/doc/*` carry the six-prefix contract, `ss-o-` deprecation + mapping, `variants.md`, ITCSS/BEM/OOCSS links |
+| **B** — Stylescape prefix alignment     | ✅ Done           | Build compiles to 974 KB; emitted prefixes are `ss-a/c/f/l/t/u` only; **zero** `ss-o-` selectors |
+| **C** — Semiosys consumer migration     | 🟡 C.2 done; C.3/C.4 declined | **C.2 done + verified on a running dashboard** (all template *blocks* on `.ss-c-*`); build green at 1.03 MB. **C.3/C.4 trialled with before/after screenshots → regress the UI** (stylescape badges lose `--success`/`--warning` colour; buttons go dark/low-contrast). Bespoke shims kept by design |
+| **D** — Semiosys cascade-layer model    | ✅ Done           | Model + seed of all 10 layers (`0010`), FK on 3 style models (`0012`), admin + CRUD views + doc; **runtime-confirmed** (migrate + 10 seeded rows) |
+| **E** — Semiosys UX polish              | ✅ Done           | White logo on dark navbar, flat nav (no BEM group), horizontal filters w/ right-aligned search, compact labeled pagination — **screenshot-verified** |
+| **F** — Release trinity                 | ⬜ Open (unblocked) | Packaging blocker **fixed + verified** (`bundleDependencies`); remaining work is the actual version-tag + `npm publish` (outward-facing — left to maintainer) |
 
----
+### ⚠ Build blocker (found, root-caused, fixed + verified 2026-06-14)
 
-## 3. Module Sub-Structure (Component Blueprint)
+Consumer SCSS builds of stylescape fail to resolve `unit.gl`. Two distinct
+faults were found:
 
-Every folder under `31-modules/` **must** follow this structure — no
-exceptions, per [SSX component_blueprint.md](../ssx/component_blueprint.md):
+1. **Published `0.3.18`** declared **zero dependencies** (so `unit.gl`/`hue.gl`
+   never installed) and its flattened `scss/index.scss` `@forward`ed a dev-only
+   module needing them. Superseded by the current source, which declares the
+   deps and doesn't forward `dev`.
+2. **Current source (root cause):** `01-core/_external.scss` reaches unit.gl's
+   sub-modules by **relative path** (`../../../node_modules/unit.gl/...`) — a
+   deliberate choice to skip unit.gl's umbrella (which emits an *unlayered*
+   reset that beats `@layer ss.components`). But that path assumes `unit.gl` is
+   *nested* under stylescape; on a normal `npm install` it **hoists** to the
+   consumer top level, so the path can't resolve. Reproduced via
+   `npm pack` → fresh install → `sass pkg:stylescape/scss` (fails).
 
-```
-31-modules/<module>/
-├── _<module>.config.scss   # Public Sass config map, `!default`, no CSS
-├── _<module>.mixins.scss   # Mixins/functions, may use config only
-├── _<module>.output.scss   # `.ss-c-<module>` selectors only
-└── _index.scss             # `@forward` control surface
-```
+- **Fix applied + verified:** added `"bundleDependencies": ["unit.gl"]` to
+  stylescape `package.json`. Re-pack → fresh hoisted install now keeps
+  `unit.gl` nested under stylescape, and `pkg:stylescape/scss` compiles clean
+  (997 KB). stylescape's own build and the semiosys link are unaffected
+  (metadata-only change). *(unit.gl can't be imported via `pkg:` sub-paths —
+  it doesn't export its `functions`/`variables`/`mixins` sub-modules — so
+  bundling is the pragmatic fix; vendoring is fragile due to cross-imports.)*
+- **Local workaround (still in place, belt-and-braces):** semiosys
+  `package.json` links the sibling tree (`"stylescape": "file:../stylescape"`).
+  Once stylescape ≥ 0.3.19 is **published with the bundle fix**, restore
+  semiosys's `^0.3.19` range and drop the `file:` link.
 
-Dependency direction is one-way: `config → mixins → output → index`.
+Phase C's template migration (**C.2**) is complete and verified on a running
+dashboard. The remaining items **C.3** (delete the `@extend` shims) and **C.4**
+(swap `_variables.scss` for `--ss-*` tokens) were trialled with before/after
+screenshots and **declined**: they regress the dashboard's appearance
+(stylescape's badges/buttons don't match semiosys's design) rather than improve
+it. The semiosys bespoke component + token layer is intentional and is kept.
+What this means for the **North Star**: semiosys consumes stylescape's
+foundation (reset/lexicon/rhythm/typography/flow/layout/utilities + the layer
+constitution) and contributes its components/palette in `@layer ss.overrides` —
+which is spec-conformant. Full visual adoption of stylescape's components is a
+separate design project, not a migration task.
 
-The same pattern is recommended (but not strictly required) for non-trivial
-sub-systems inside `12-lexicon/`, `21-typography/`, `22-flow/`, `23-layout/`,
-`24-appearance/` when they grow beyond a handful of files.
-
----
-
-## 4. Legacy → Target Mapping
-
-| Legacy path                    | Destination                                                                                |
-| ------------------------------ | ------------------------------------------------------------------------------------------ |
-| `scss/dev/`                    | `91-development/`                                                                          |
-| `scss/functions/`              | `01-core/functions/` (forwarded)                                                           |
-| `scss/variables/`              | `12-lexicon/` (split per token family)                                                     |
-| `scss/maps/`                   | `01-core/maps/` (or inline into tokens)                                                    |
-| `scss/root/`                   | `12-lexicon/_tokens.scss` (`:root`)                                                        |
-| `scss/mixins/`                 | Split per layer (`22-flow`, `23-layout`, `24-appearance`, `31-modules/<m>/_*.mixins.scss`) |
-| `scss/classes/`                | Split per layer (`32-utilities`, `31-modules`)                                             |
-| `scss/tags/`                   | `11-reset/` + `21-typography/`                                                             |
-| `scss/31-modules/_badge.scss`  | `31-modules/badge/_badge.output.scss`                                                      |
-| `scss/31-modules/_button.scss` | `31-modules/button/_button.output.scss`                                                    |
-| `scss/31-modules/buttons/`     | merge into `31-modules/button/`                                                            |
-| `scss/31-modules/cards/`       | merge into `31-modules/card/`                                                              |
-| `scss/31-modules/inputs copy/` | **delete** (stale duplicate)                                                               |
-| `scss/31-modules/layout copy/` | **delete** (stale duplicate)                                                               |
+**Phase F** (release tagging) remains gated on republishing a fixed
+`stylescape` package (see the Build blocker note above).
 
 ---
 
-## 5. Phased Plan
-
-### Phase 0 — Baseline
-
-- [x] Tier folders scaffolded (`01`, `11–13`, `21–24`, `31–33`, `91`).
-- [x] `src/scss/index.scss` references tier folders for `01`, `11`, `12`, `13`,
-      `21`.
-- [x] ROADMAP published (this document).
-
-### Phase 1 — Foundation freeze
-
-- [x] Delete stale `12-lexicon/_tokens.scss` stub (conflicting `--ss-space-*`
-      names that shadowed the proper `--ss-spacing-*` token scale).
-- [x] `git mv src/scss/dev` → `src/scss/91-development/_legacy_dev/` and
-      forward it from `91-development/_index.scss`.
-- [x] `git mv src/scss/functions` → `src/scss/01-core/functions/` and forward
-      it from `01-core/_index.scss`.
-- [x] `git mv src/scss/maps` → `src/scss/01-core/maps/` and forward it from
-      `01-core/_index.scss`.
-- [x] `git mv src/scss/root` → `src/scss/12-lexicon/root/` and forward it from
-      `12-lexicon/_index.scss`.
-- [x] `git mv src/scss/tags` → `src/scss/11-reset/tags/` and forward it from
-      `11-reset/_index.scss` (typography-only tag rules will move on to
-      `21-typography/` in Phase 2).
-- [x] Install **compatibility re-forward shims** at every legacy path (`dev/`,
-      `functions/`, `maps/`, `root/`, `tags/`) so the ~200 existing
-      `@use "../dev"` / `@use "../variables"` style imports inside
-      `variables/`, `mixins/`, `classes/`, `21-typography/`, `31-modules/` keep
-      resolving. Each shim is marked `@deprecated` and is scheduled for removal
-      in Phase 5.
-- [ ] Migrate `scss/variables/**` into `12-lexicon/` split by family
-      (`_color/`, `_spacing.scss`, `_typescale.scss`, `_motion.scss`,
-      `_radius.scss`, `_shadow.scss`, `_z-index.scss`, `_border.scss`).
-      _(Deferred — current 12-lexicon already provides the canonical `--ss-*`
-      token scale; legacy
-      `$color_\*`Sass vars in`variables/`are     still consumed by`mixins/` and
-      will be retired alongside Phase 3.)\_
-
-#### Compatibility shim contract
-
-Every shim is a 7-line file that does nothing but `@forward` to the new
-location. Example — `src/scss/functions/_index.scss`:
-
-```scss
-////
-/// Compatibility shim — `functions/` was relocated to `01-core/functions/`.
-/// New code should `@use "../01-core/functions"`.
-/// Scheduled for removal once Phase 5 of ROADMAP.md ships.
-/// @deprecated Use 01-core/functions directly.
-////
-@forward "../01-core/functions";
-```
-
-New code **must not** use shim paths. Touching a file that still imports from a
-shim is the trigger to migrate that file's imports as part of the edit.
-
-### Phase 2 — Expression layers
-
-- [x] Move legacy mixin sub-trees into their tier homes (sibling-preserving
-      relocations, history kept via `git mv`): - `mixins/head_layout/` →
-      `23-layout/_legacy_head_layout/` - `mixins/head_frame/` →
-      `23-layout/_legacy_head_frame/` - `mixins/soul_object/` →
-      `24-appearance/_legacy_soul_object/` - `mixins/soul_line/` →
-      `24-appearance/_legacy_soul_line/` - `mixins/soul_type/` →
-      `21-typography/_legacy_soul_type/`
-- [x] Install
-      `mixins/{head_layout,head_frame,soul_object,soul_line,soul_type}/_index.scss`
-      compatibility shims (Phase 1 contract). All `@forward` re-export to the
-      new tier locations and are scheduled for removal in Phase 5.
-- [x] Repoint sibling cross-imports inside `23-layout/_legacy_head_frame/*`
-      that referenced `../head_layout` and `../soul_object` to their new
-      tier-relative paths.
-- [x] Repoint `mixins/utilities/_*.scss` deep `@forward`s
-      (`../head_layout/...`, `../soul_line/...`) to the new tier paths.
-- [x] Bulk-rewrite the ~28 deep consumer references of the form
-      `mixins/<sub>/<file>` in `classes/` and `21-typography/` to the new tier
-      paths via `perl -i -pe`.
-- [x] Fix Phase 1 oversight — update relative depth in `11-reset/tags/_*.scss`
-      (`../dev` → `../../dev`, etc.) since `tags/` moved one level deeper.
-- [x] Wire `_legacy_*` forwards into `21-typography/_index.scss`,
-      `23-layout/_index.scss`, `24-appearance/_index.scss` (outside their
-      `@layer` blocks because these are mixin libraries with no selectors).
-- [x] Comment out broken `@forward "buttons"` in
-      `mixins/body_atoms/_index.scss` (target subfolder never existed —
-      pre-existing gap).
-- [x] **Build now compiles end-to-end** (1.15 MB CSS) — the long-standing
-      pre-existing failure at `mixins/body_atoms/_index.scss` is gone.
-
-#### Deferred to Phase 3
-
-- [ ] Split `_legacy_head_layout/` into proper `22-flow/` (stacks, flex,
-      position) and `23-layout/` (grid, paper, display, overflow, spacing)
-      primitives, per the layer constitution.
-- [ ] Split `_legacy_soul_object/` into
-      `24-appearance/{color,fill,shadow,size,shape}/`.
-- [ ] Split `_legacy_soul_line/` into `24-appearance/border/`.
-- [ ] Re-home `_legacy_soul_type/` mixins into the proper
-      `21-typography/{character,font,paragraph,list,text}/` sub-folders.
-
-### Phase 3 — Modules (blueprint conversion)
-
-For every existing module folder in `31-modules/`:
-
-- [ ] Create `_<m>.config.scss`, `_<m>.mixins.scss`, `_<m>.output.scss`,
-      `_index.scss`.
-- [ ] Move all selectors into `_<m>.output.scss`, prefixed `.ss-c-<m>`.
-- [ ] Replace BEM modifiers with `data-variant="…"` and `is-*`/`has-*` state
-      classes (per [SSX prefix.md](../ssx/prefix.md)).
-- [ ] Remove flat `_badge.scss`, `_button.scss` aggregator files once the
-      folder versions are wired through `31-modules/_index.scss`.
-
-#### Phase 3 — Step A (foundation activation, completed)
-
-- [x] Populate empty `badge/_index.scss` and `pull-quote/_index.scss` with the
-      blueprint forward chain.
-- [x] Fix dropcap internal imports (`./dropcap.config` →
-      `./character-dropcap.config`, ditto for mixins).
-- [x] Fix button internal import (`./button.api` → `./button.mixins`).
-- [x] Delete shadowing orphan stubs `31-modules/_badge.scss` and
-      `31-modules/_button.scss` (both were one-line `@forward` shims to
-      `status/badge` / `buttons/button`; their content is preserved in the
-      legacy submodules and the new blueprint `badge/`/`button/` folders are
-      now authoritative).
-- [x] Rewrite `31-modules/_index.scss` to forward only blueprint-conformant
-      modules (`badge`, `button`, `card`, `dropcap`, `hero`, `modal`,
-      `pull-quote`); removed broken `alert`/`tooltip` references that pointed
-      at non-existent siblings (those live under `display/`).
-- [x] Activate `@use "31-modules" as *;` in main `index.scss`.
-- [x] **Build still compiles end-to-end** (1.16 MB CSS, +8 KB from the seven
-      modules now in the bundle).
-
-#### Phase 3 — Step B (stale-duplicate purge, completed)
-
-A code-archaeology audit revealed that the following `31-modules/` folders were
-**stale duplicates** of legacy mixin libraries from `mixins/body_atoms/` and
-`mixins/body_molecules/`. They were copied into `31-modules/` mid-way through
-an earlier refactor without fixing their internal `@use` paths (references like
-`../../../dev`, `../../head_layout` no longer resolve from their new depth).
-Cross-repo grep confirmed **zero references** to any of them — they had never
-been wired into the build and never compiled.
-
-- [x] `git rm -r` the entire stale set (17 folders): `buttons/`, `cards/`,
-      `content/`, `display/`, `feedback/`, `form/`, `inputs/`, `inputs copy/`,
-      `label/`, `layout/`, `layout copy/`, `media/`, `navigation/`,
-      `preloader/`, `status/`, `table/`, `hero/hero/`.
-- [x] Authoritative mixin sources
-      (`mixins/body_atoms/{layout,inputs,status,     label,display,media}/` and
-      `mixins/body_molecules/`) remain untouched and continue to serve the
-      legacy `classes/` consumers until Phase 4 retires them.
-- [x] **Build verified clean** (1.16 MB CSS, no regressions).
-
-After Step B, `31-modules/` contains exactly the 7 blueprint-conformant
-components: `badge`, `button`, `card`, `dropcap`, `hero`, `modal`,
-`pull-quote`.
-
-#### Phase 3 — Step C (new-module authoring, in progress)
-
-Each new module ships the 4-file blueprint (`_<m>.config.scss`,
-`_<m>.mixins.scss`, `_<m>.output.scss`, `_index.scss`) and emits `.ss-c-<m>*`
-selectors inside `@layer ss.modules`.
-
-**Round 1 — 10 baseline modules:**
-
-- [x] `alert` (info / success / warning / danger variants + `__title`,
-      `__body`, `__close` parts)
-- [x] `label` (base + `--required` modifier with glyph)
-- [x] `chip` (base + `--removable` + `__remove` button)
-- [x] `breadcrumb` (`__item`, `__link`, `aria-current="page"` styling,
-      configurable separator)
-- [x] `table` (base + `--bordered`, `--striped`, `--hover` modifiers)
-- [x] `pagination` (`__item` + `is-active`, `is-disabled`, `aria-disabled`
-      states)
-- [x] `tooltip` (base + `data-placement="top|bottom|left|right"`)
-- [x] `accordion` (`__item`, `__header`, `__body` + `is-open`, `aria-expanded`
-      states)
-- [x] `progress` (track + `__bar` driven by `--ss-progress-value`)
-- [x] `spinner` (base + `--sm/--md/--lg` size modifiers, keyframe animation)
-
-Also re-aligned `01-core/_prefix.scss` with the SSX constitution:
-`$ss-prefix-module` changed from `ss-m` (legacy) to `ss-c` (per
-`ssx/prefix.md`); added `$ss-prefix-object: ss-o` for the layout objects layer
-described in the spec.
-
-**Round 2 — 10 form / nav / overlay modules:**
-
-- [x] `form` (`__field`, `__label`, `__required`, `__help`, `__error`,
-      `__actions` parts; configurable field-gap and label-weight)
-- [x] `input` (base + `--sm/--md/--lg` size modifiers; focus, disabled,
-      `[aria-invalid="true"]` / `.is-invalid` states; sibling `.ss-c-textarea`)
-- [x] `select` (extends `input` mixin + chevron via background gradient)
-- [x] `checkbox` (`appearance: none` box + checked-state via gradient;
-      `__label` companion)
-- [x] `radio` (`appearance: none` circle + radial-gradient dot; `__label`
-      companion)
-- [x] `toggle` (switch with translated knob; checked + disabled states)
-- [x] `nav` (flex list + `--vertical` modifier, `__item`, `__link`, `is-active`
-      / `aria-current="page"`)
-- [x] `dropdown` (relative wrapper + absolute `__menu`, `__item`, `__divider`;
-      `is-open` / hidden states)
-- [x] `toast` (`__region` with 4 `data-position` placements + `__variant`
-      info/success/warning/danger)
-- [x] `popover` (absolute container with 4 `data-placement` variants +
-      `__title`, `__body`)
-
-Build verified after Round 2: standalone bundle now **728,769 bytes** (+12,090
-from 716,679); 119 unique `.ss-c-*` selectors across 27 wired modules.
-
-**Round 3 — 44 modules `bup/` tree:**
-
-The legacy `bup/classes/{body_atoms,body_molecules,body_organisms}/` tree was
-inventoried and every component re-authored against the blueprint with its BEM
-vocabulary preserved (parts as `__name`, modifiers as `--name`, state classes
-as `is-*`). All emit `.ss-c-<m>*` selectors inside `@layer ss.modules`.
-
-- Organisms (8): `ribbon` (with
-  `__menu/__nav/__panel/__title/__slot/ __button/__search`;
-  `--horizontal/--vertical/--top/--bottom/--left/ --right/--inverted`),
-  `offcanvas` (`--start/--end/--top/--bottom`, `--sm/--lg/--xl`,
-  `--dark/--static`, `__backdrop/__header/__title/ __body/__close`), `sidebar`
-  (`--left/--right`, `__menu/__control`), `rail`
-  (`--horizontal/--top/--bottom/--inverted`), `ticker`
-  (`--horizontal--top/--horizontal--bottom/--vertical--left/ --vertical--right/--inverted`,
-  `__track/__item`), `gallery` (`__image`, `--bordered`), `widget`
-  (`--squared/--rounded/--pill`), `video-button`.
-- Content molecules (10): `collapse` (`--horizontal/--fade`), `cookie`
-  (`__message/__actions`), `cover` (`--full/--semi`,
-  `__image/__title/ __arrow`), `figure`
-  (`--1x1/--3x2/--4x3/--3x4/--2x3/--16x9`, `--bordered/--rounded`,
-  `__caption`), `graphic` (`--elevate/ --no-margins`), `summary` (with
-  `details` parent), `timeline`
-  (`__year/ __list/__item/__title/__description`), `timestamp`
-  (`--elevate/ --active`, `__container`), `toc`, `vcard`
-  (`__org/__name/__role/__email/ __tel/__address`).
-- Media molecules (8): `carousel` (`__track/__item/__indicators/ __indicator`,
-  `__control--prev/--next`), `image`
-  (`--cover/--contain/ --rounded/--circle/--bordered`), `image-slider` (compare
-  slider; `__handle/ __before/__after`), `video` (`--responsive/--rounded`),
-  `map` (`__canvas/ __control`), `placeholder` (skeleton;
-  sizes/widths/`--glow/--wave`/color variants), `portfolio`
-  (`__item/__caption`), `preview` (`--horizontal/ --vertical`,
-  `__live/__code/__info/__swatch/__copy-button`).
-- Navigation molecules (7): `button-group` (`--vertical`), `drilldown`
-  (`__wrapper/__level/__item/__back/__submenu-title`,
-  `--bordered/--dark/ --compact`), `icon-bar` (`--horizontal/--vertical`,
-  `__item`), `list-group` (`--flush/--horizontal/--numbered`, `__item` with
-  primary/success/warning/danger/info variants + `__heading/__text`),
-  `scrollspy` (`__nav/__progress-bar/__progress-dots`), `social` (`__link` with
-  facebook/twitter/instagram/linkedin/youtube/github/mastodon/rss brand
-  colors), `tags-list` (`__item`).
-- Forms molecules (4): `floating-label`, `formfield`
-  (`__label/__help/ __error/__image-preview`, `--ordered`), `input-group`
-  (`--sm/--lg/ --focus`, `__text`), `validation` (cross-cuts `ss-c-input` and
-  `ss-c-label` for `is-invalid/is-valid/is-warning` and
-  `--required/ --optional`).
-- Display atoms (3): `caption`, `chat` (with `__message--inbound/ --outbound`,
-  `__bubble/__avatar/__timestamp/__composer`), `tab` (`__list/__item/__panel`,
-  `[aria-selected]` + `is-active`).
-- Layout primitives (4): `box` (`--bordered/--rounded/--surface/ --elevated`),
-  `divider` (`--vertical/--dashed/--dotted/--with-label`), `spacer`
-  (`--xs/--sm/--md/--lg/--xl/--inline`), `preloader` (full-page overlay,
-  `__lines/__pulse`).
-
-Build verified after Round 3: standalone bundle now **784,716 bytes** (+55,947
-from 728,769); 380 unique `.ss-c-*` selectors across 71 wired modules. Coverage
-of `bup/classes/` is now complete modulo two stubs that remain in the round-4
-backlog: `status` and `tag`.
-
-Remaining authoring backlog: status, tag.
-
-### Phase 4 — Utilities & overrides
-
-#### Phase 4 — Step A (tier activation, completed)
-
-- [x] Audit `32-utilities/` — found pre-populated tier with 7 partials
-      (`layout/{display,position,visibility}.scss`,
-      `spacing/{margin,padding}.scss`, `typography/{text-align,truncate}.scss`)
-      defining ~137 selectors but using the wrong prefix (`ss-*` instead of
-      `ss-u-*`).
-- [x] Re-prefix every utility selector from `.ss-*` → `.ss-u-*` per
-      [SSX prefix.md](../ssx/prefix.md) (`ss-u-block`, `ss-u-mt-1`,
-      `ss-u-text-center`, `ss-u-truncate`, `ss-u-sr-only`, …).
-- [x] Wrap each utility partial body in `@layer ss.utilities { ... }` so the
-      cascade order matches the constitution.
-- [x] Drop `@layer` wrappers from `32-utilities/_index.scss` and
-      `33-overrides/_index.scss` (Sass forbids `@forward` inside `@layer`);
-      layer assignment is now per-file.
-- [x] Activate `@use "32-utilities" as *;` and `@use "33-overrides" as *;` in
-      `src/scss/index.scss`.
-- [x] **Build verified** (1.17 MB CSS, +10 KB from utilities now in the
-      bundle).
-
-#### Phase 4 — Step B (legacy utilities migration, in progress)
-
-The legacy `classes/utilities/` (~17 partials) and `mixins/utilities/` (~14
-partials) still hold helpers that aren't yet in the tier:
-
-- [x] **High-value migration completed** — added 11 fresh blueprint-shaped
-      partials with proper `ss-u-*` prefix and `@layer ss.utilities`
-      wrapping: - `accessibility/_visually-hidden.scss`
-      (`ss-u-visually-hidden`, `ss-u-visually-hidden-focusable`) -
-      `accessibility/_focus-ring.scss` (`ss-u-focus-ring`,
-      `ss-u-no-focus-ring`) - `interaction/_pointer-events.scss`
-      (`ss-u-pe-{none,auto}`) - `interaction/_user-select.scss`
-      (`ss-u-user-select-{all,auto,none,text}`) -
-      `interaction/_stretched-link.scss` (`ss-u-stretched-link`) -
-      `media/_object-fit.scss`
-      (`ss-u-object-{contain,cover,fill,none,       scale-down,top,bottom,center,start,end}`) -
-      `media/_ratio.scss` (`ss-u-ratio`, `ss-u-ratio-{1x1,4x3,16x9,21x9}`) -
-      `layout/_float.scss` (`ss-u-float-{start,end,none}`, `ss-u-clearfix`) -
-      `layout/_flex.scss` (~25 helpers: direction, wrap, grow/shrink, justify,
-      items) - `typography/_text-wrap.scss`
-      (`ss-u-text-{wrap,nowrap,balance,       pretty}`,
-      `ss-u-break-{normal,words,all,keep}`) - `print/_print.scss`
-      (`ss-u-print-*`, `ss-u-screen-none` — wrapped in `@media print` /
-      `@media screen` then `@layer ss.utilities`)
-- [x] All new partials wired into `32-utilities/_index.scss`.
-- [x] **Build verified** (1.18 MB CSS, +5 KB).
-
-#### Deferred (not migrated — low value or modules-domain)
-
-These legacy `classes/utilities/` files won't be migrated to the tier because
-they belong elsewhere or are obsolete:
-
-- [ ] `_gradient.scss` → belongs in `24-appearance/background/` (not a utility
-      — it's an appearance primitive). Defer to Phase 3 backlog.
-- [ ] `_icon_link.scss` → use the `icon.gl` package directly; no longer a core
-      utility.
-- [ ] `_negative_margin.scss` → BEM-style `.m--n-01` classes are spec
-      violations and rarely useful; if needed, add to `spacing/_margin.scss`
-      with `ss-u-m-n1` style names.
-- [ ] `_stacks.scss` → belongs in `22-flow/` (stack primitive), not a utility.
-- [ ] `_vertical_rule.scss` → belongs in `24-appearance/border/` as a
-      decorative element; not a utility.
-- [ ] `_text_truncate.scss` → already covered by `typography/_truncate.scss`
-      (`ss-u-truncate`, `ss-u-line-clamp-{1..4,none}`).
-
-#### Phase 4 — Step C (overrides population, backlog)
-
-- [ ] Move `_dark.scss` content (currently using `@layer ss.themes` — should be
-      `@layer ss.overrides` per the constitution) into `33-overrides/`.
-- [ ] Identify CMS-specific selectors in legacy `classes/` (Wagtail, Django
-      admin) and route to `33-overrides/_cms.scss`.
-- [ ] Identify third-party patches (icon.gl, google maps, video.js, etc.) and
-      route to `33-overrides/_third-party.scss`.
-- [ ] Browser compatibility shims → `33-overrides/_compatibility.scss`.
-
-#### Phase 4 — Step C results (completed)
-
-- [x] Wrap `_cms.scss` and `_compatibility.scss` in `@layer ss.overrides`
-      (already populated with selectors during a prior cycle).
-- [x] Move `_dark.scss` from `@layer ss.themes` to `@layer ss.overrides` (no
-      `ss.themes` layer exists in
-      [01-core/\_layers.scss](src/scss/01-core/_layers.scss)). Wire into
-      `33-overrides/_index.scss`.
-- [x] Verify `_third-party.scss` is intentionally empty (placeholder for future
-      integrations).
-
-### Phase 5 — Tooling & cleanup
-
-#### Phase 5 — Step A (legacy chain severance, completed)
-
-- [x] Comment out the seven legacy
-      `@forward "dev/functions/variables/     mixins/classes/maps/tags"` lines
-      in `src/scss/index.scss` (the chain that re-exported the old tree into
-      the bundle).
-- [x] **CSS bundle drops from 1.18 MB → 731 KB (-447 KB, -38%)**. The legacy
-      `classes/` tree was nearly half the bundle. The remaining 731 KB is the
-      canonical tier output.
-- [x] Audit external consumers: cross-repo grep across `semiosys/` and `ssx/`
-      returns zero references to
-      `src/scss/{classes,mixins,     variables,functions,maps,tags,root,dev}/`.
-      Safe to physically remove these trees in a future commit.
-
-#### Phase 5 — Step B (legacy folder pruning, completed)
-
-The 124 tier-side legacy `@use`/`@forward` references audited at the end of
-Step A have been rewritten via bulk `perl -i -pe` substitutions followed by
-build verification. The legacy top-level folders have been pruned to the
-minimum surface needed to keep the import graph valid:
-
-- [x] **Deleted outright:** `classes/` (no consumers), `dev/`, `functions/`,
-      `maps/`, `root/`, `tags/` (after rewriting tier consumers).
-- [x] **Slimmed to shims:** `mixins/` now contains only the 5 subfolder indexes
-      (`head_frame/`, `head_layout/`, `soul_object/`, `soul_line/`,
-      `soul_type/`) and a 5-line root `_index.scss` that `@forward`s them. The
-      body_atoms/body_molecules/body_organisms/
-      body_skeletons/head_content/utilities subtrees have been `git rm`'d (no
-      tier consumers after the Phase 5 Step A severance).
-- [x] **Relocated into tier:** `variables/` → `12-lexicon/_legacy_variables/`
-      (preserved via `git mv`, internal `@use` depths bumped, all 41 tier
-      consumers rewritten).
-- [x] **Path rewrites applied uniformly:** `../../dev` →
-      `../../91-development/_legacy_dev`; `../../maps` → `../../01-core/maps`;
-      `../../variables` → `../../12-lexicon/_legacy_variables` (and equivalent
-      3-deep forms), executed across both tier files and the
-      previously-relocated `_legacy_*` siblings
-      (`23-layout/_legacy_head_layout/`, `_legacy_head_frame/`,
-      `24-appearance/_legacy_soul_object/`, `_legacy_soul_line/`,
-      `21-typography/_legacy_soul_type/`).
-- [x] **Build verified:** stylescape standalone compiles to 695,149 bytes (down
-      from 730,891 — a further -35 KB drop from removing duplicate legacy
-      files). Semiosys via local working tree compiles to 709,027 bytes.
-
-Result: `src/scss/` now lists only tier folders + `mixins/` (thin shim)
-
-- `index.scss` + `icons.scss`. The legacy bloat is gone; what remains is either
-  renamed to a tier-appropriate `_legacy_*` sibling (eligible for gradual
-  replacement during Phase 3 Step C) or kept as a 6-file compatibility shim.
-
-#### Phase 5 — Step C (tooling & tier activation, completed)
-
-- [x] **Activated `22-flow`, `23-layout`, `24-appearance`** in
-      `src/scss/index.scss`. Previously commented out because each tier's
-      `_index.scss` wrapped `@forward` inside `@layer`, which Sass forbids.
-- [x] **Wrapped each selector-bearing partial** in those three tiers with its
-      own `@layer ss.<tier> { ... }` block (17 partials); moved the tier
-      `_index.scss` forwards outside the layer following the pattern already
-      used by `31-modules` and `32-utilities`.
-- [x] **Removed the dead legacy `@forward` comment block** from
-      `src/scss/index.scss`; rewrote the entry-file doc comment to reflect the
-      SSX layer constitution instead of the legacy folder list.
-- [x] **Deleted `bin/check_scss_coverage.mjs`** — orphaned (no consumers in
-      `package.json`, `kist.yml`, `kist.dev.yml`, or `.github/workflows/`);
-      hard-wired to the deleted `mixins/` and `classes/` trees.
-- [x] **`bin/generate_sections.mjs` left intact** — operates on `src/jinja/`
-      (templates), not on SCSS.
-- [x] **`vite.config.js` and `vitest.config.ts` aliases audited** — no
-      legacy-path references found.
-
-Build verified after activation: standalone bundle now **708,615 bytes**
-(+13,466 from 695,149 — the new `flow`/`layout`/`appearance` selectors landing
-in their proper layers). Semiosys via local working tree compiles unchanged.
-
-### Phase 6 — Cross-repo synchronization
-
-#### Phase 6 — Step A (semiosys consumer wiring, completed)
-
-- [x] Create `semiosys/src/semiosys_static/scss/index.scss` — canonical
-      consumer entry that pulls in the StyleScape framework via
-      `@use "pkg:stylescape/scss" as *;` (resolved by
-      `sass.NodePackageImporter()` already configured in
-      `semiosys/vite.config.ts`).
-- [x] Create `semiosys/src/semiosys_static/scss/overrides/_dashboard.scss` that
-      re-bundles the Django-admin-specific dashboard slice. Layered under
-      `ss.overrides` once those selectors are migrated to the `ss-c-*` /
-      `ss-u-*` convention (deferred — Step B).
-- [x] Verify two compile paths: - **Published package** (`stylescape@0.3.17`
-      from npm): 802 KB CSS. - **Local working tree** via custom
-      `pkg:stylescape/scss` rewrite: 745 KB CSS (matches
-      `731 KB stylescape tier + 14 KB semiosys       overrides`).
-- [x] Existing `dashboard.scss` entry kept untouched for backward compatibility
-      — vite still picks it as the build input until `index.scss` becomes the
-      entrypoint.
-
-#### Phase 6 — Step B (semiosys override migration, backlog)
-
-- [ ] Inventory the ~110 dashboard selectors (`.btn`, `.alert`, `.badge`,
-      `.dashboard`, `.data-table`, `.form__field`, …) and decide per-selector:
-      (1) upstream into stylescape `31-modules/`, (2) keep as semiosys
-      override, (3) delete (already covered by stylescape).
-- [ ] Re-prefix kept selectors to `ss-c-*` per the spec.
-- [ ] Replace semiosys' standalone `_variables.scss` with references to
-      `--ss-color-*` tokens from `12-lexicon/`.
-- [ ] Switch vite entry from `dashboard.scss` to `index.scss`.
-- [ ] Delete legacy
-      `semiosys/src/semiosys_static/scss/{components,     layout,_variables.scss,_base.scss,_layout.scss,dashboard.scss}`
-      once nothing references them.
-
-#### Phase 6 — Step C (ssx & stylescape release, backlog)
-
-- [ ] **`ssx`**: keep `layers.md`, `folder_structure.md`,
-      `component_blueprint.md`, `component_checklist.md`, `prefix.md` as the
-      spec; tag `v1.0.0` once Phase 5 Step B ships.
-- [ ] **`stylescape`**: bump `VERSION` and changelog; publish migration notes
-      for downstream consumers; tag `v1.0.0`.
-- [ ] **`semiosys`**: bump `stylescape` peer dep to `^1.0.0`.
+## North Star
+
+A **single source of truth** in `ssx/`, faithfully implemented by `stylescape/`,
+and consumed without deviation by `semiosys/`. Three repos, one taxonomy, one
+layer constitution, one prefix convention — locked at `v1.0.0`.
 
 ---
 
-## 6. Acceptance Criteria
+## Phases
 
-A migration step is **done** only when all of the following hold:
+### Phase A — SSX spec consolidation ✅
 
-- `src/scss/index.scss` imports tiers in strict numeric order, with no glob
-  imports and no references to legacy folders.
-- Every module under `31-modules/` matches the blueprint, dependency direction
-  is enforced, and `_index.scss` is the only public surface.
-- All public class names match the prefix convention (`ss-c-*`, `ss-o-*`,
-  `ss-u-*`); state uses `is-*` / `has-*`; variants use `data-*`.
-- No layer references a higher layer (no upward dependencies).
-- `poetry`/`npm` test suites and `check_scss_coverage.mjs` pass.
-- Semiosys consumes the framework via the documented entry point and
-  contributes no rules outside its own override slice.
+The spec is the contract. It must be internally consistent before anything
+downstream is aligned to it.
+
+- [x] **A.1** `ssx/README.md` quick-reference table reconciled with
+      `ssx/doc/naming.md` (six prefixes: `ss-c-`, `ss-u-`, `ss-a-`, `ss-l-`,
+      `ss-t-`, `ss-f-`; no `ss-o-`).
+- [x] **A.2** Explicit *deprecation note* for `ss-o-` (objects) present in
+      `ssx/doc/naming.md`, with the `ss-f-` / `ss-l-` replacement mapping for
+      each former object pattern (`naming.md:62-88`).
+- [x] **A.3** `ssx/doc/components.md` and `ssx/doc/layers.md` carry no stale
+      3-prefix references; both are inline with the six-prefix contract.
+- [x] **A.4** Variants vs Modifier promoted into its own
+      [`ssx/doc/variants.md`](../ssx/doc/variants.md), cross-linked from
+      `components.md` and `naming.md`. Covers `data-variant` vs `data-size` vs
+      `is-*`/`has-*` vs utility classes.
+- [x] **A.5** "Component Architecture" renamed → "Style Organization"
+      (`ssx/doc/components.md:1`).
+- [x] **A.6** ITCSS, BEM, OOCSS (plus SUIT, Atomic, DaisyUI) inline-linked in
+      `ssx/doc/introduction.md:3-9`.
+
+### Phase B — Stylescape prefix alignment ✅
+
+Bring the implementation up to the consolidated spec.
+
+- [x] **B.1** `01-core/_prefix.scss` defines the six prefix constants
+      (`$ss-prefix-typography/flow/layout/appearance/module/utility`) with a
+      governance comment pointing to `ssx/doc/naming.md`.
+- [x] **B.2** `$ss-prefix-object: ss-o` retired; no `ss-o-*` selector is
+      emitted anywhere (only two `ss-o-` mentions remain, both comments).
+- [x] **B.3** `22-flow/*` selectors emit `ss-f-*` exclusively.
+- [x] **B.4** `23-layout/*` selectors emit `ss-l-*` exclusively.
+- [x] **B.5** `24-appearance/*` selectors emit `ss-a-*` exclusively.
+- [x] **B.6** `21-typography/*` class-shaped helpers emit `ss-t-*` (via
+      `#{$ss-prefix-typography}` interpolation); raw-element rules untouched.
+- [x] **B.7** `01-core/_layers.scss` governance comments cite the six prefixes.
+- [x] **B.8** Build verified: `sass --pkg-importer=node src/scss/index.scss`
+      compiles to **974 KB**; emitted prefixes are `ss-a` (95), `ss-c` (8108),
+      `ss-f` (59), `ss-l` (148), `ss-t` (163), `ss-u` (577) — all conforming,
+      **zero** `ss-o-`.
+
+### Phase C — Semiosys consumer migration 🟡
+
+Picks up Phase 6 Step B of the legacy roadmap.
+
+> **Note on the actual layout** — the path the legacy roadmap quoted
+> (`src/semiosys_static/scss/`) is stale. The real location is
+> [`semiosys/src/static/scss/`](../semiosys/src/static/scss). The "legacy"
+> convention in semiosys is Bootstrap-style `.btn` / `.alert` / `.badge` /
+> `.card`; the `.ss-c-*` blocks already in the same files are *@extend shims*
+> that map the framework prefix back to the legacy classes — i.e. they
+> *shadow* stylescape's authoritative `31-modules/` rules. Migration is
+> therefore the inverse direction: **remove the shims, migrate Django
+> templates from `.btn` → `.ss-c-button`**, then delete the legacy partials.
+
+**Inventory** (`semiosys/src/static/scss/`):
+
+| Path                          | Lines | Notes                                                                                                          |
+| ----------------------------- | ----- | -------------------------------------------------------------------------------------------------------------- |
+| `index.scss`                  |    50 | Canonical entry; already `@use 'pkg:stylescape/scss' as *;`                                                    |
+| `dashboard.scss`              |    19 | Still `@use`d by `index.scss` (alerts + dashboard slice) — see C.5b                                            |
+| `_base.scss`                  |   230 | App-frame typography + reset; wrapped in `@layer ss.overrides`                                                 |
+| `_layout.scss`                |   351 | `.app`, `.header`, `.footer`, `.nav`, `.main`, `.container`                                                    |
+| `_utilities.scss`             |   104 | Duplicates stylescape `ss-u-*` (`.mb-*`, `.text-center`, `.hidden`, `.flex`, `.gap-*`)                         |
+| `_variables.scss`             |   226 | Bootstrap-style `$spacing-*`, `$color-*`, `$font-*` — to replace with `--ss-*` token refs (C.4)               |
+| `components/_buttons.scss`    |   168 | `.btn` + `.btn--*` + `.ss-c-button { @extend .btn }` shim                                                      |
+| `components/_alerts.scss`     |    41 | `.alert` + variants + `.ss-c-alert` shim                                                                       |
+| `components/_badges.scss`     |   113 | `.badge` + variants + `.ss-c-badge` shim                                                                       |
+| `components/_cards.scss`      |   147 | `.card` + `.stats-card` + `.ss-c-stats-card`/`stats-grid` shims                                                |
+| `components/_forms.scss`      |   302 | `.form`, `.form-field`, … + `.ss-c-form__*` shims (**no `.ss-c-form` *block* shim** — see C.2)                 |
+| `components/_messages.scss`   |    92 | `.messages`, `.success`/`.warning`/`.error`/`.info`                                                            |
+| `components/_pagination.scss` |   150 | `.pagination` + `.ss-c-pagination` shim                                                                        |
+| `components/_tables.scss`     |   200 | `.data-table` + `.ss-c-data-table` shim                                                                        |
+| `layout/_dashboard.scss`      |   130 | `.detail-view`, `.list-view`, `.form-view`, `.delete-view`, `.quick-actions`, `.page-header`                   |
+| `layout/_views.scss`          |   270 | View-level layouts that pair with the dashboard partials                                                       |
+
+#### C.1 template audit (done 2026-06-14)
+
+Templates are already ~90 % migrated to `.ss-c-*`. Remaining legacy **block**
+selectors (element classes like `data-table__actions`, `pagination__link` are
+kept by current repo convention):
+
+| Legacy block in templates  | Locations                                                            | Block `ss-c-` shim? | Action                                |
+| -------------------------- | ------------------------------------------------------------------- | :-----------------: | ------------------------------------- |
+| `.btn` / `.btn--primary`   | `partials/_list-header`, `partials/_empty-state`                    |         ✅          | **Re-prefixed** (C.2, appearance-neutral) |
+| `.badge` / `.badge--info`  | `component/list.html.jinja`                                         |         ✅          | **Re-prefixed** (C.2, appearance-neutral) |
+| `.data-table` (block)      | `component/list.html.jinja`                                         |         ✅          | **Re-prefixed** (C.2, appearance-neutral) |
+| `.form` (block)            | all 13 `*/form.html.jinja` + `cascade_layer/delete` + `component_type/delete` | ✅ (added) | **Re-prefixed** (C.2) — `.ss-c-form { @extend .form }` block shim added to `_forms.scss` |
+| `.pagination` (block)      | `partials/_pagination.html.jinja`                                  |         ✅          | **Re-prefixed** (C.2, appearance-neutral) |
+| `badge--{{size}}` parametric | `partials/_badge.html.jinja`                                       |       partial       | **Unused partial** (no includes) — left as-is |
+
+- [x] **C.1** Per-template audit produced (table above). Templates were already
+      ~90 % on `.ss-c-*`; only a handful of legacy *blocks* remained.
+- [x] **C.2** All template *block* classes now on `.ss-c-*` (element/modifier
+      classes kept legacy per the repo's existing convention). Added the
+      `.ss-c-form { @extend .form }` block shim, re-prefixed `class="form"`
+      ×13, the `_pagination` partial block, and the `.btn`/`.badge`/`.data-table`
+      stragglers. **Verified on a running dashboard**: build green (1.03 MB),
+      `/components/`, `/components/create/`, `/css-pseudo-classes/` render with
+      the migrated classes; CSS asset serves 200. All appearance-neutral (the
+      `@extend` shims still win in `@layer ss.overrides`).
+- [✗] **C.3** Delete the shim blocks so stylescape's `31-modules/` rules take
+      over. **Trialled and declined (2026-06-14).** A before/after on
+      `/html-elements/` (badge + button shims removed, rebuilt, screenshotted)
+      showed clear regressions:
+      - **Badges broke** — stylescape's badge has no `--success`/`--warning`
+        variants (only `--info`/`--danger`), so the ACTIVE/DEPRECATED status
+        pills lost their background and became near-invisible.
+      - **Buttons degraded** — View/Edit/Delete went dark-filled with
+        low-contrast labels, replacing the clean bordered design.
+
+      Conclusion: the shims are **not** legacy cruft — they encode the intended,
+      better-looking dashboard design. They were restored (build byte-identical
+      at 1.03 MB) and annotated in-file. Full stylescape adoption would require
+      remapping every variant to stylescape's API *and* a deliberate decision to
+      change the dashboard's look — a separate design project, not a migration.
+- [✗] **C.4** Replace `_variables.scss` with `--ss-*` token refs.
+      **Declined for the same reason.** Technically mostly feasible (no
+      `darken`/`lighten`/`mix` on color vars; only **8 `rgba($color-*, α)`**
+      calls in `_alerts.scss` would need a custom-property-safe rewrite), but it
+      would replace semiosys's deliberate **black `#000` + red `#e63946`**
+      palette with stylescape's token values — the same unwanted aesthetic
+      shift C.3 demonstrated. Keep the local token layer.
+- [x] **C.5a** Deleted `overrides/_dashboard.scss` (pure re-`@use`);
+      `@use 'overrides/dashboard';` removed from `index.scss`.
+- [ ] **C.5b** Delete `dashboard.scss` once nothing references it. Still
+      actively `@use`d by `index.scss:49` for the `components/alerts` +
+      `layout/dashboard` slice; `vite.config.ts:131-133` also falls back to it.
+      Fold that slice into `index.scss` first, then remove both.
+
+#### Phase C drift resolution (done)
+
+The shim blocks in `components/_*.scss` bridged a modifier-naming
+mismatch between semiosys templates and stylescape's `31-modules/`. The
+drift has now been resolved at the **stylescape** end (no template
+rewrites required):
+
+| Selector in semiosys templates | Hits | Resolution                                                          |
+| ------------------------------ | ---: | ------------------------------------------------------------------- |
+| `.ss-c-button--small`          |   46 | stylescape `31-modules/button` now emits `--small` as alias for `--size-sm` |
+| `.ss-c-button--large`          |   46 | likewise, `--large` is an alias for `--size-lg`                     |
+| `.ss-c-badge--info`            |    ? | stylescape `31-modules/badge` now exposes `--info` variant          |
+| `.ss-c-badge--danger`          |    ? | stylescape `31-modules/badge` now exposes `--danger` (aliased to `--error`) |
+| `.ss-c-button--primary`        |   36 | already matched ✅                                                  |
+| `.ss-c-button--secondary`      |   61 | already matched ✅                                                  |
+| `.ss-c-button--danger`         |   33 | already matched ✅                                                  |
+| `--xs/--md/--xl`               |  n/a | full set of short-form size aliases added at the same time          |
+
+See `31-modules/button/_button.output.scss:72-96` and
+`31-modules/badge/_badge.output.scss:35-42`.
+
+#### Phase C.5c (semiosys override layering, done)
+
+All 13 semiosys SCSS partials are wrapped in `@layer ss.overrides`, landing
+them in the correct cascade position per the
+[SSX layer constitution](../ssx/doc/layers.md):
+
+- `src/static/scss/_base.scss`
+- `src/static/scss/_layout.scss`
+- `src/static/scss/_utilities.scss`
+- `src/static/scss/components/_{alerts,badges,buttons,cards,forms,messages,pagination,tables}.scss`
+- `src/static/scss/layout/_{dashboard,views}.scss`
+
+Wrapping preserves all in-file `@extend` semantics (both extender and
+extended selectors live in the same layer); a full pipeline compile after
+the wrap produced **1.03 MB** of CSS with the layer distribution:
+`ss.reset: 5`, `ss.lexicon: 1`, `ss.rhythm: 1`, `ss.typography: 53`,
+`ss.flow: 8`, `ss.layout: 11`, `ss.appearance: 7`,
+**`ss.components: 94`** (stylescape), `ss.utilities: 26`,
+**`ss.overrides: 17`** (semiosys — now correctly placed).
+
+- [x] **C.5c** All 13 semiosys partials live in `@layer ss.overrides`. The
+      remaining shim deletion (C.3) and re-prefix of dashboard-specific
+      selectors can now proceed safely template-by-template against a running
+      dashboard; the architecture is already correct cascade-wise.
+
+### Phase D — Semiosys data model: cascade layers ✅
+
+The data model includes `model_cascade_layer.py` and `model_modifier.py`,
+wired through end-to-end.
+
+- [x] **D.1** `model_cascade_layer.py` covers the ten SSX layers; migration
+      `0010_cascade_layer.py` seeds all ten (`ss.reset` … `ss.overrides`) with
+      order/prefix/color/description via idempotent `update_or_create`.
+- [x] **D.2** `cascade_layer` FK added to `ComponentModel`, `MixinModel`,
+      `StyleClassModel` (migration `0012_add_cascade_layer_to_style_models.py`),
+      with a backfill pointing components/mixins at `ss.components`.
+- [x] **D.3** Cascade-layer management exposed: `admin/admin_cascade_layer.py`
+      (`@admin.register`) plus full CRUD front-end
+      (`views/view_cascade_layer.py`: List/Detail/Create/Update/Delete,
+      `urls/urls_cascade_layer.py`, `templates/.../cascade_layer/*`).
+- [x] **D.4** Modifiers (cross-cutting state) vs variants (component-scoped)
+      documented in [`semiosys/doc/variants-modifiers.md`](../semiosys/doc/variants-modifiers.md),
+      mirroring `ssx/doc/variants.md`.
+
+### Phase E — Semiosys UX polish ✅
+
+Quality-of-life fixes captured from operator feedback.
+
+- [x] **E.1** Navbar logo renders white on the dark navbar — the inline brand
+      SVG uses `currentColor`, coloured `$color-surface` (`#ffffff`) against
+      `.header`/`.nav` `$color-gray-900` (`#111`) (`_layout.scss:67-86`).
+- [x] **E.2** Primary nav is flat: BEM-section items (Components, Component
+      Types, Modifiers, Modifier Types, Mixins, BEM Tree) are top-level; no
+      redundant "BEM" dropdown group remains (`partials/_nav.html.jinja`).
+- [x] **E.3** List-view filter bar is horizontal
+      (`.filters__form { display:flex; flex-wrap:nowrap }`) with the search
+      field pushed to the far right (`.filters__search { margin-left:auto;
+      order:99 }`) (`components/_forms.scss:159-205`).
+- [x] **E.4** Pagination is compact (`.pagination__link` height 26 px,
+      `padding-top` only), page numbers centered between prev/next
+      (`.pagination__center`/`__current`), and prev/next carry both icon and
+      text (`partials/_pagination.html.jinja`, `components/_pagination.scss`).
+
+### Phase F — Release trinity ⬜
+
+Lockstep `v1.0.0` across all three repos. **Gated on Phase C close-out and an
+explicit release go-ahead** (tagging/publishing is outward-facing).
+
+- [ ] **F.1** `ssx`: tag `v1.0.0` once Phase A lands; ship `ssx.dev` site.
+- [ ] **F.2** `stylescape`: bump `VERSION`, write migration notes (esp.
+      `ss-o-` → `ss-f-`/`ss-l-` for downstream consumers), tag `v1.0.0`.
+      **Packaging prerequisite is done** — `bundleDependencies: ["unit.gl"]`
+      added + verified so consumer SCSS builds resolve (see Build blocker). The
+      remaining step is the actual `npm publish` (maintainer / outward-facing).
+- [ ] **F.3** `semiosys`: bump `stylescape` peer dep to `^1.0.0`, tag a
+      matching release.
+- [ ] **F.4** Update each repo's `README.md` to cross-link the trio with a
+      short "How these repos relate" paragraph.
 
 ---
 
-## 7. Governance
+## Acceptance Criteria
 
-- Spec authority: [`ssx/`](../ssx) — cannot be overridden by implementation.
-- Implementation authority: this repository.
-- Consumer authority: [`semiosys/`](../semiosys) — must follow both.
+A phase is **done** when:
+
+- The spec (`ssx/`) is internally consistent and free of contradictions.
+- The implementation (`stylescape/`) emits selectors that match the spec's
+  prefix table; no spec-deprecated prefixes remain.
+- The consumer (`semiosys/`) imports stylescape via the canonical entry
+  (`@use "pkg:stylescape/scss" as *;`) and contributes only override-layer
+  selectors that follow the spec.
+- The build verifies on each repo's CI green.
+- No `@use` / `@forward` paths point at deleted or shimmed locations.
+
+---
+
+## Governance
+
+- **Spec authority:** [`ssx/`](../ssx) — cannot be overridden.
+- **Implementation authority:** this repository.
+- **Consumer authority:** [`semiosys/`](../semiosys) — must follow both.
 
 > Structure is strict. Styling is flexible. No layer may violate its mandate.
+
+---
+
+## Completed Work
+
+The full SCSS migration shipped over Phases 0–5 + Phase 6 Step A. Git history
+holds the detail; the headlines:
+
+- **Phase 0–1** — Tier folders (`01`/`11`/`12`/`13`/`21`/`22`/`23`/`24`/`31`/`32`/`33`/`91`) scaffolded; legacy
+  `dev/functions/maps/root/tags/` relocated under `git mv` with compat shims.
+- **Phase 2** — Legacy mixin sub-trees relocated into tier `_legacy_*`
+  siblings; cross-imports rewritten; build compiles end-to-end.
+- **Phase 3** — 71 blueprint-conformant modules under `31-modules/` emitting
+  `.ss-c-*` selectors inside `@layer ss.components` (Round 1+2+3 covering
+  alerts, forms, nav, overlay, organisms, content molecules, media, display
+  atoms, layout primitives).
+- **Phase 4** — Utilities tier active and prefix-corrected (`ss-u-*`),
+  `@layer ss.utilities` enforced, 11 new helper partials added (a11y, focus
+  rings, pointer/select, object-fit, ratio, float, flex, text-wrap, print).
+  Overrides tier wired (`_cms`, `_dark`, `_compatibility`).
+- **Phase 5** — Legacy `@forward` chain severed (bundle dropped 1.18 MB → 731 KB
+  / −38 %). Legacy top-level folders deleted or slimmed to shims. Flow / layout
+  / appearance tiers activated with per-partial layer wrapping.
+- **Phase 6A** — Semiosys consumer wired via `pkg:stylescape/scss` import,
+  both published-package and local-tree compile paths verified.
+- **Phases A, B, D, E** — Spec consolidated, implementation prefix-aligned and
+  build-verified, semiosys cascade-layer model wired end-to-end, and semiosys
+  UX polish landed (see § Status snapshot, verified 2026-06-14).
+
+Anything still in `_legacy_*` siblings under tier folders is eligible for
+gradual replacement as new prefix work touches those files.

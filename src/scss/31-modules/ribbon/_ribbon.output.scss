@@ -11,7 +11,68 @@
 @use "../../01-core/prefix" as *;
 @use "./ribbon.mixins" as *;
 
-@layer ss.modules {
+@layer ss.components {
+    // Typography / list neutralization for the ribbon. Applied to the base
+    // block AND every orientation modifier so that templates which use
+    // ONLY `.ss-c-ribbon--top` (without the base class) still get the
+    // descendant resets — otherwise global <h1> typography paints titles
+    // at heading scale in heading color.
+    .#{$ss-prefix-module}-ribbon,
+    .#{$ss-prefix-module}-ribbon--top,
+    .#{$ss-prefix-module}-ribbon--bottom,
+    .#{$ss-prefix-module}-ribbon--left,
+    .#{$ss-prefix-module}-ribbon--right {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0;
+        }
+        ul,
+        ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        p {
+            margin: 0;
+        }
+        a,
+        a:link,
+        a:visited,
+        a:hover,
+        a:active,
+        a:focus {
+            color: inherit;
+            text-decoration: none;
+        }
+        // Inline icons inside the ribbon should follow the ribbon
+        // font-size, not balloon to whatever the global <i> / icon-font
+        // rule sets. width/height are 1em so the icon box matches the
+        // surrounding text height.
+        i,
+        .i,
+        [class^="i_"],
+        [class*=" i_"],
+        .octicon,
+        svg {
+            font-size: inherit;
+            line-height: 1;
+            width: 1em;
+            height: 1em;
+            color: inherit;
+            fill: currentColor;
+            vertical-align: middle;
+        }
+    }
+
     .#{$ss-prefix-module}-ribbon {
         @include ss-ribbon-base;
 

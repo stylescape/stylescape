@@ -1,0 +1,57 @@
+////
+///
+/// Gap Utilities
+/// ===========================================================================
+///
+/// Gap (row + column) for flex/grid containers.
+/// Scale matches the baseline grid via `q()`.
+/// Mirrors legacy `.gap--0N`, `.gap--row--0N`, `.gap--col--0N` (1..12)
+/// with the new `ss-u-gap-N` namespace.
+///
+/// @group Utilities.Spacing
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.4.0 ported from legacy
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+@layer ss.utilities {
+    .ss-u-gap-0 {
+        gap: 0;
+    }
+    .ss-u-gap-x-0 {
+        column-gap: 0;
+    }
+    .ss-u-gap-y-0 {
+        row-gap: 0;
+    }
+
+    @for $i from 1 through 12 {
+        .ss-u-gap-#{$i} {
+            gap: q($i);
+        }
+        .ss-u-gap-x-#{$i} {
+            column-gap: q($i);
+        }
+        .ss-u-gap-y-#{$i} {
+            row-gap: q($i);
+        }
+    }
+
+    // Larger steps
+    .ss-u-gap-16 {
+        gap: q(16);
+    }
+    .ss-u-gap-20 {
+        gap: q(20);
+    }
+    .ss-u-gap-24 {
+        gap: q(24);
+    }
+    .ss-u-gap-32 {
+        gap: q(32);
+    }
+}

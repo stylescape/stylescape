@@ -8,16 +8,19 @@
 //
 // Conceptual progression:
 //
-//   1. Prepare the medium
-//   2. Define the vocabulary
-//   3. Establish rhythm
-//   4. Define typographic hierarchy
-//   5. Arrange spatial flow
-//   6. Construct page structure
-//   7. Apply visual appearance
-//   8. Assemble editorial modules
-//   9. Permit controlled adjustments
-//  10. Support integration and legacy
+//   1. Prepare the medium                      (ss.reset)
+//   2. Define the vocabulary                   (ss.lexicon)
+//   3. Establish rhythm                        (ss.rhythm)
+//   4. Define typographic hierarchy            (ss.typography  — ss-t-*)
+//   5. Arrange spatial flow                    (ss.flow        — ss-f-*)
+//   6. Construct page structure                (ss.layout      — ss-l-*)
+//   7. Apply visual appearance                 (ss.appearance  — ss-a-*)
+//   8. Assemble editorial components           (ss.components  — ss-c-*)
+//   9. Permit controlled adjustments           (ss.utilities   — ss-u-*)
+//  10. Support integration and legacy          (ss.overrides)
+//
+// Canonical prefix contract: ssx/doc/naming.md. Six prefixes; `ss-o-` is
+// deprecated — layout abstractions emit under `ss-f-` or `ss-l-`.
 //
 // This order is non-negotiable.
 // ============================================================================
@@ -48,7 +51,7 @@
 /* ↑ Assembly — Meaning & Integration                                          */
 /* ========================================================================= */
 
-@layer ss.modules; /* Named editorial compositions */
+@layer ss.components; /* Named editorial compositions (UI components) */
 
 @layer ss.utilities; /* Explicit, opt-in overrides */
 

@@ -1,7 +1,7 @@
 @use "../../01-core/prefix" as *;
 @use "./badge.mixins" as badge;
 
-@layer ss.modules {
+@layer ss.components {
     .#{$ss-prefix-module}-badge {
         @include badge.ss-badge;
         @include badge.ss-badge-size(md);
@@ -32,8 +32,12 @@
     .#{$ss-prefix-module}-badge--warning {
         @include badge.ss-badge-variant(warning);
     }
-    .#{$ss-prefix-module}-badge--error {
+    .#{$ss-prefix-module}-badge--error,
+    .#{$ss-prefix-module}-badge--danger {
         @include badge.ss-badge-variant(error);
+    }
+    .#{$ss-prefix-module}-badge--info {
+        @include badge.ss-badge-variant(info);
     }
 
     // Shape

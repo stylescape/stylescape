@@ -1,0 +1,124 @@
+# =============================================================================
+# MkDocs Base Configuration
+# =============================================================================
+#
+# Shared MkDocs configuration for all Stylescape repositories.
+# This file contains common theme, plugin, and extension settings.
+#
+# Usage:
+#   Each repo's mkdocs.yml should define repo-specific settings (site_name,
+#   site_url, nav, etc.) and use the same theme/plugin configuration.
+#
+# =============================================================================
+
+# =============================================================================
+# Theme Configuration
+# =============================================================================
+
+theme:
+  name: material
+  locale: en
+  language: en
+  # custom_dir: doc/overrides  # Uncomment if repo has custom theme overrides
+  palette:
+    - scheme: default
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    # Navigation
+    - navigation.footer
+    - navigation.indexes
+    - navigation.tracking
+    - navigation.expand
+    - navigation.top
+    # Search
+    - search.highlight
+    - search.share
+    - search.suggest
+    # Content
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+    # TOC
+    - toc.follow
+
+# =============================================================================
+# Plugins
+# =============================================================================
+
+plugins:
+  - search:
+      lang: en
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+  # - git-revision-date      # Shows last updated date
+  # - macros                 # Template variables in markdown
+  # - mermaid2               # Mermaid diagrams
+
+# =============================================================================
+# Markdown Extensions
+# =============================================================================
+
+markdown_extensions:
+  # Standard
+  - tables
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+
+  # PyMdown Extensions
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+
+# =============================================================================
+# Extra
+# =============================================================================
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/stylescape
+
+# =============================================================================
+# Navigation Order (canonical)
+# =============================================================================
+#
+# Each repo should follow this nav structure order:
+#
+#   - Home: index.md
+#   - Introduction: introduction.md
+#   - [Topic-specific pages]
+#   - Reference:
+#       - [API/Reference docs]
+#   - Resources:
+#       - Glossary: resources/glossary.md
+#       - Links: resources/links.md
+#   - Changelog: changelog.md
+#
+# =============================================================================
