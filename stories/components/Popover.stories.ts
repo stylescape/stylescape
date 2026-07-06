@@ -1,0 +1,191 @@
+// ==========================================================================
+// Stylescape | Storybook — Popover
+// ==========================================================================
+// Auto-generated from src/jinja/31-modules/popover.html.jinja.
+// Regenerate with `npm run generate:stories` (do not edit by hand).
+// ==========================================================================
+
+import type { Meta, StoryObj } from "@storybook/html-vite";
+import { html } from "../html";
+
+const meta: Meta = {
+    title: "Components/Popover",
+    tags: ["autodocs"],
+};
+
+export default meta;
+type Story = StoryObj;
+
+export const SectionTitle: Story = {
+    render: () => html`
+        <div
+            class="ss-c-popover-wrapper"
+            style="display: inline-block; position: relative"
+        >
+            <button class="ss-c-button ss-c-popover-trigger">Hover me</button>
+            <div class="ss-c-popover ss-c-popover--top">
+                <div class="ss-c-popover__content">
+                    <p>This is a basic popover content.</p>
+                </div>
+                <div class="ss-c-popover__arrow"></div>
+            </div>
+        </div>
+    `,
+};
+
+export const SectionTitle2: Story = {
+    render: () => html`
+        <div
+            style="
+                display: flex;
+                gap: 48px;
+                flex-wrap: wrap;
+                padding: 80px 20px;
+            "
+        >
+            <div class="ss-c-popover-wrapper" style="position: relative">
+                <button class="ss-c-button">Top</button>
+                <div
+                    class="ss-c-popover ss-c-popover--top show"
+                    style="
+                        position: absolute;
+                        bottom: 100%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        margin-bottom: 8px;
+                    "
+                >
+                    <div class="ss-c-popover__content">Popover on top</div>
+                </div>
+            </div>
+
+            <div class="ss-c-popover-wrapper" style="position: relative">
+                <button class="ss-c-button">Bottom</button>
+                <div
+                    class="ss-c-popover ss-c-popover--bottom show"
+                    style="
+                        position: absolute;
+                        top: 100%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        margin-top: 8px;
+                    "
+                >
+                    <div class="ss-c-popover__content">Popover on bottom</div>
+                </div>
+            </div>
+        </div>
+    `,
+};
+
+export const SectionTitle3: Story = {
+    render: () => html`
+        <div
+            class="ss-c-popover-wrapper"
+            style="display: inline-block; position: relative"
+        >
+            <button class="ss-c-button">Click for details</button>
+            <div
+                class="ss-c-popover ss-c-popover--bottom"
+                style="
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    margin-top: 8px;
+                    min-width: 250px;
+                "
+            >
+                <div
+                    class="ss-c-popover__header"
+                    style="
+                        padding: 12px;
+                        border-bottom: 1px solid var(--color_line_secondary);
+                        font-weight: 600;
+                    "
+                >
+                    Popover Title
+                </div>
+                <div class="ss-c-popover__content" style="padding: 12px">
+                    <p>
+                        Detailed information goes here with a header for
+                        organization.
+                    </p>
+                </div>
+            </div>
+        </div>
+    `,
+};
+
+export const SectionTitle4: Story = {
+    render: () => html`
+        <div
+            class="ss-c-popover-wrapper"
+            style="display: inline-block; position: relative"
+        >
+            <button class="ss-c-button ss-c-button--primary">User Profile</button>
+            <div
+                class="ss-c-popover ss-c-popover--bottom"
+                style="
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    margin-top: 8px;
+                    min-width: 220px;
+                    background: var(--color_fill_primary);
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                "
+            >
+                <div class="ss-c-popover__content" style="padding: 16px">
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            margin-bottom: 12px;
+                        "
+                    >
+                        <div
+                            style="
+                                width: 40px;
+                                height: 40px;
+                                border-radius: 50%;
+                                background: var(--color_fill_secondary);
+                            "
+                        ></div>
+                        <div>
+                            <strong>John Doe</strong>
+                            <p
+                                style="
+                                    margin: 0;
+                                    font-size: 12px;
+                                    opacity: 0.7;
+                                "
+                            >
+                                john@example.com
+                            </p>
+                        </div>
+                    </div>
+                    <hr class="ss-c-divider" />
+                    <a href="#" style="display: block; padding: 8px 0">
+                        View Profile
+                    </a>
+                    <a href="#" style="display: block; padding: 8px 0">
+                        Settings
+                    </a>
+                    <a
+                        href="#"
+                        style="
+                            display: block;
+                            padding: 8px 0;
+                            color: var(--color_state_error);
+                        "
+                    >
+                        Sign Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    `,
+};

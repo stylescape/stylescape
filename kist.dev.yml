@@ -34,32 +34,18 @@ stages:
           outputFile: "./dist/css/stylescape.css"
           styleOption: "expanded"
 
-      # Build JS bundles + sourcemaps (ESM + IIFE) via tsup
+      # Build JS bundle + sourcemaps (ESM) via esbuild
       # -----------------------------------------------------------------
-      - name: BuildJSEsm
-        action: BundleAction
+      # NOTE: kist's `BundleAction` (from `@getkist/action-tsup`) can't load in
+      # this workspace — the plugin package ships no built `dist/`, so kist's
+      # plugin discovery skips it and the action never registers, which aborts
+      # the whole build. We bundle directly with the `esbuild` devDependency
+      # instead; see `bin/bundle_js.mjs`. This produces `dist/js/stylescape.js`
+      # (the module the demo pages load) so the `data-ss-*` behaviour layer runs.
+      - name: BuildJS
+        action: RunScriptAction
         options:
-          entry:
-            stylescape: "./src/ts/index.ts"
-            index: "./src/ts/index.ts"
-          outDir: "./dist/js"
-          format: esm
-          sourcemap: true
-          minify: false
-          dts: false
-          clean: false
-
-      - name: BuildJSIife
-        action: BundleAction
-        options:
-          entry:
-            stylescape.iife: "./src/ts/index.ts"
-          outDir: "./dist/js"
-          format: iife
-          sourcemap: true
-          minify: false
-          dts: false
-          clean: false
+          scriptPath: "./bin/bundle_js.mjs"
 
       # Generate Sections JSON (auto-generate navigation from folder structure)
       # -----------------------------------------------------------------

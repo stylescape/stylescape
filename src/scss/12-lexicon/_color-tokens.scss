@@ -7,6 +7,16 @@
 /// default (light) theme. Dark theme overrides live in
 /// `33-overrides/_dark.scss`.
 ///
+/// Values are aligned to the historical StyleScape identity: a desaturated
+/// steel-blue accent family (`hue.gl` N24xx) with blue / purple / mauve
+/// feedback colors, rather than a generic green / amber / red set. The
+/// `--ss-color-*` token *names* and structure are unchanged — only the
+/// resolved values differ — so every component keeps the new format while
+/// rendering in the old palette.
+///
+/// Tints (`-bg`, `-soft`, `-foreground`) are derived from the base hue via
+/// `color.mix()` so the whole family stays in gamut with the accent.
+///
 /// Only :root CSS custom properties, no selectors.
 ///
 /// @group Lexicon
@@ -17,7 +27,35 @@
 ///
 ////
 
+@use "sass:color";
 @use "../01-core/external" as *;
+
+// ----------------------------------------------------------------------------
+// Base hues (old StyleScape / hue.gl identity)
+// Leading `_` keeps these private so they are not re-exported by `@forward`.
+// ----------------------------------------------------------------------------
+
+$_accent: hue_color("N2405"); // #3696c1 steel blue
+$_accent-dark: hue_color("N2407"); // #346a85 deep teal-blue
+$_accent-light: hue_color("N2403"); // #8abedc light sky
+$_state-link: hue_color("N2404"); // #65aace
+$_visited: hue_color("N2704"); // #87a2d6
+
+$_success: hue_color("N2555"); // #5192c8 blue
+$_warning: hue_color("N3005"); // #9582c2 violet
+$_error: hue_color("N3305"); // #b577ac mauve
+$_info: hue_color("N2705"); // #6a8dca indigo-blue
+
+// Tint helpers ---------------------------------------------------------------
+@function _bg($c) {
+    @return color.mix(#ffffff, $c, 88%);
+} // pale fill
+@function _soft($c) {
+    @return color.mix(#ffffff, $c, 94%);
+} // faintest fill
+@function _fg($c) {
+    @return color.mix(#111111, $c, 62%);
+} // readable dark tint
 
 :root {
     // ========================================================================
@@ -32,7 +70,7 @@
     // ========================================================================
 
     --ss-color-background: #ffffff;
-    --ss-color-foreground: #1a1a1a;
+    --ss-color-foreground: #000000;
 
     --ss-color-surface: #ffffff;
     --ss-color-surface-alt: #fafafa;
@@ -47,18 +85,18 @@
     // Text
     // ========================================================================
 
-    --ss-color-text: #1a1a1a;
-    --ss-color-text-primary: #1a1a1a;
-    --ss-color-text-muted: #666666;
-    --ss-color-muted: #888888;
-    --ss-color-muted-foreground: #666666;
+    --ss-color-text: #000000;
+    --ss-color-text-primary: #000000;
+    --ss-color-text-muted: #414141;
+    --ss-color-muted: #a0a0a0;
+    --ss-color-muted-foreground: #414141;
 
     // ========================================================================
     // Lines / Borders
     // ========================================================================
 
     --ss-color-line: #cccccc;
-    --ss-color-line-primary: #1a1a1a;
+    --ss-color-line-primary: #000000;
     --ss-color-line-secondary: #cccccc;
 
     --ss-color-border: #cccccc;
@@ -69,63 +107,63 @@
     // Brand / Accent
     // ========================================================================
 
-    --ss-color-primary: #1a1a1a;
-    --ss-color-secondary: #555555;
+    --ss-color-primary: #000000;
+    --ss-color-secondary: #414141;
 
-    --ss-color-accent: #2563eb;
-    --ss-color-accent-bg: #eff6ff;
+    --ss-color-accent: #{$_accent};
+    --ss-color-accent-bg: #{_bg($_accent)};
     --ss-color-accent-foreground: #ffffff;
-    --ss-color-accent-highlight: #1d4ed8;
-    --ss-color-accent-tertiary: #93c5fd;
+    --ss-color-accent-highlight: #{$_accent-dark};
+    --ss-color-accent-tertiary: #{$_accent-light};
 
-    --ss-color-highlight: #fef3c7;
-    --ss-color-highlight-foreground: #78350f;
+    --ss-color-highlight: #{_bg($_accent)};
+    --ss-color-highlight-foreground: #{_fg($_accent)};
 
     // ========================================================================
     // Links
     // ========================================================================
 
-    --ss-color-link: var(--ss-color-accent, #2563eb);
-    --ss-color-link-hover: var(--ss-color-accent-highlight, #1d4ed8);
-    --ss-color-link-active: var(--ss-color-accent-highlight, #1d4ed8);
-    --ss-color-link-visited: #7c3aed;
+    --ss-color-link: var(--ss-color-accent, #{$_accent});
+    --ss-color-link-hover: var(--ss-color-accent-highlight, #{$_accent-dark});
+    --ss-color-link-active: var(--ss-color-accent-highlight, #{$_accent-dark});
+    --ss-color-link-visited: #{$_visited};
 
     // ========================================================================
     // States
     // ========================================================================
 
-    --ss-color-focus: var(--ss-color-accent, #2563eb);
+    --ss-color-focus: var(--ss-color-accent, #{$_accent});
 
     --ss-color-state-hover: rgba(0, 0, 0, 0.04);
     --ss-color-state-active: rgba(0, 0, 0, 0.08);
-    --ss-color-state-link: var(--ss-color-link, #2563eb);
+    --ss-color-state-link: var(--ss-color-link, #{$_state-link});
 
     // ========================================================================
     // Status / Feedback
     // ========================================================================
 
-    --ss-color-success: #16a34a;
-    --ss-color-success-bg: #dcfce7;
-    --ss-color-success-soft: #f0fdf4;
-    --ss-color-success-foreground: #14532d;
+    --ss-color-success: #{$_success};
+    --ss-color-success-bg: #{_bg($_success)};
+    --ss-color-success-soft: #{_soft($_success)};
+    --ss-color-success-foreground: #{_fg($_success)};
     --ss-color-on-success: #ffffff;
 
-    --ss-color-warning: #d97706;
-    --ss-color-warning-bg: #fef3c7;
-    --ss-color-warning-soft: #fffbeb;
-    --ss-color-warning-foreground: #78350f;
+    --ss-color-warning: #{$_warning};
+    --ss-color-warning-bg: #{_bg($_warning)};
+    --ss-color-warning-soft: #{_soft($_warning)};
+    --ss-color-warning-foreground: #{_fg($_warning)};
     --ss-color-on-warning: #ffffff;
 
-    --ss-color-error: #dc2626;
-    --ss-color-error-bg: #fee2e2;
-    --ss-color-error-soft: #fef2f2;
-    --ss-color-error-foreground: #7f1d1d;
+    --ss-color-error: #{$_error};
+    --ss-color-error-bg: #{_bg($_error)};
+    --ss-color-error-soft: #{_soft($_error)};
+    --ss-color-error-foreground: #{_fg($_error)};
     --ss-color-on-error: #ffffff;
 
-    --ss-color-info: #0284c7;
-    --ss-color-info-bg: #e0f2fe;
-    --ss-color-info-soft: #f0f9ff;
-    --ss-color-info-foreground: #0c4a6e;
+    --ss-color-info: #{$_info};
+    --ss-color-info-bg: #{_bg($_info)};
+    --ss-color-info-soft: #{_soft($_info)};
+    --ss-color-info-foreground: #{_fg($_info)};
     --ss-color-on-info: #ffffff;
 
     --ss-color-on-accent: #ffffff;

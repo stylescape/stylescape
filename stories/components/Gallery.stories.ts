@@ -1,0 +1,405 @@
+// ==========================================================================
+// Stylescape | Storybook — Gallery
+// ==========================================================================
+// Auto-generated from src/jinja/31-modules/gallery.html.jinja.
+// Regenerate with `npm run generate:stories` (do not edit by hand).
+// ==========================================================================
+
+import type { Meta, StoryObj } from "@storybook/html-vite";
+import { html } from "../html";
+
+const meta: Meta = {
+    title: "Components/Gallery",
+    tags: ["autodocs"],
+};
+
+export default meta;
+type Story = StoryObj;
+
+export const SectionTitle: Story = {
+    render: () => html`
+        <div
+            class="ss-c-gallery ss-c-gallery--grid"
+            style="
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 12px;
+            "
+        >
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    aspect-ratio: 1;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    border-radius: 8px;
+                "
+            ></div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    aspect-ratio: 1;
+                    background: linear-gradient(135deg, #f093fb, #f5576c);
+                    border-radius: 8px;
+                "
+            ></div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    aspect-ratio: 1;
+                    background: linear-gradient(135deg, #4facfe, #00f2fe);
+                    border-radius: 8px;
+                "
+            ></div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    aspect-ratio: 1;
+                    background: linear-gradient(135deg, #43e97b, #38f9d7);
+                    border-radius: 8px;
+                "
+            ></div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    aspect-ratio: 1;
+                    background: linear-gradient(135deg, #fa709a, #fee140);
+                    border-radius: 8px;
+                "
+            ></div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    aspect-ratio: 1;
+                    background: linear-gradient(135deg, #a8edea, #fed6e3);
+                    border-radius: 8px;
+                "
+            ></div>
+        </div>
+    `,
+};
+
+export const SectionTitle2: Story = {
+    render: () => html`
+        <div
+            class="ss-c-gallery ss-c-gallery--masonry"
+            style="columns: 3; column-gap: 12px"
+        >
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    break-inside: avoid;
+                    margin-bottom: 12px;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    border-radius: 8px;
+                    height: 200px;
+                "
+            ></div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    break-inside: avoid;
+                    margin-bottom: 12px;
+                    background: linear-gradient(135deg, #f093fb, #f5576c);
+                    border-radius: 8px;
+                    height: 150px;
+                "
+            ></div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    break-inside: avoid;
+                    margin-bottom: 12px;
+                    background: linear-gradient(135deg, #4facfe, #00f2fe);
+                    border-radius: 8px;
+                    height: 280px;
+                "
+            ></div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    break-inside: avoid;
+                    margin-bottom: 12px;
+                    background: linear-gradient(135deg, #43e97b, #38f9d7);
+                    border-radius: 8px;
+                    height: 180px;
+                "
+            ></div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    break-inside: avoid;
+                    margin-bottom: 12px;
+                    background: linear-gradient(135deg, #fa709a, #fee140);
+                    border-radius: 8px;
+                    height: 220px;
+                "
+            ></div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    break-inside: avoid;
+                    margin-bottom: 12px;
+                    background: linear-gradient(135deg, #a8edea, #fed6e3);
+                    border-radius: 8px;
+                    height: 160px;
+                "
+            ></div>
+        </div>
+    `,
+};
+
+export const SectionTitle3: Story = {
+    render: () => html`
+        <div
+            class="ss-c-gallery ss-c-gallery--captioned"
+            style="
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            "
+        >
+            <figure class="ss-c-gallery--item" style="margin: 0">
+                <div
+                    style="
+                        aspect-ratio: 4/3;
+                        background: linear-gradient(135deg, #667eea, #764ba2);
+                        border-radius: 8px 8px 0 0;
+                    "
+                ></div>
+                <figcaption
+                    style="
+                        padding: 12px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 0 0 8px 8px;
+                    "
+                >
+                    <h4 style="margin: 0 0 4px; font-size: 14px">
+                        Mountain Sunset
+                    </h4>
+                    <p style="margin: 0; font-size: 12px; opacity: 0.7">
+                        Beautiful evening light
+                    </p>
+                </figcaption>
+            </figure>
+            <figure class="ss-c-gallery--item" style="margin: 0">
+                <div
+                    style="
+                        aspect-ratio: 4/3;
+                        background: linear-gradient(135deg, #4facfe, #00f2fe);
+                        border-radius: 8px 8px 0 0;
+                    "
+                ></div>
+                <figcaption
+                    style="
+                        padding: 12px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 0 0 8px 8px;
+                    "
+                >
+                    <h4 style="margin: 0 0 4px; font-size: 14px">
+                        Ocean Waves
+                    </h4>
+                    <p style="margin: 0; font-size: 12px; opacity: 0.7">
+                        Coastal photography
+                    </p>
+                </figcaption>
+            </figure>
+            <figure class="ss-c-gallery--item" style="margin: 0">
+                <div
+                    style="
+                        aspect-ratio: 4/3;
+                        background: linear-gradient(135deg, #43e97b, #38f9d7);
+                        border-radius: 8px 8px 0 0;
+                    "
+                ></div>
+                <figcaption
+                    style="
+                        padding: 12px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 0 0 8px 8px;
+                    "
+                >
+                    <h4 style="margin: 0 0 4px; font-size: 14px">
+                        Forest Trail
+                    </h4>
+                    <p style="margin: 0; font-size: 12px; opacity: 0.7">
+                        Nature walk series
+                    </p>
+                </figcaption>
+            </figure>
+        </div>
+    `,
+};
+
+export const SectionTitle4: Story = {
+    render: () => html`
+        <div
+            class="ss-c-gallery ss-c-gallery--overlay"
+            style="
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 16px;
+            "
+        >
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    position: relative;
+                    aspect-ratio: 1;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    cursor: pointer;
+                "
+            >
+                <div
+                    style="
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(135deg, #667eea, #764ba2);
+                    "
+                ></div>
+                <div
+                    class="ss-c-gallery--overlay"
+                    style="
+                        position: absolute;
+                        inset: 0;
+                        background: rgba(0, 0, 0, 0.6);
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: 0;
+                        transition: opacity 0.3s;
+                        color: white;
+                    "
+                >
+                    <span style="font-size: 24px; margin-bottom: 8px">◉</span>
+                    <span style="font-size: 14px">View Image</span>
+                </div>
+            </div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    position: relative;
+                    aspect-ratio: 1;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    cursor: pointer;
+                "
+            >
+                <div
+                    style="
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(135deg, #f093fb, #f5576c);
+                    "
+                ></div>
+                <div
+                    class="ss-c-gallery--overlay"
+                    style="
+                        position: absolute;
+                        inset: 0;
+                        background: rgba(0, 0, 0, 0.6);
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: 0;
+                        transition: opacity 0.3s;
+                        color: white;
+                    "
+                >
+                    <span style="font-size: 24px; margin-bottom: 8px">◉</span>
+                    <span style="font-size: 14px">View Image</span>
+                </div>
+            </div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    position: relative;
+                    aspect-ratio: 1;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    cursor: pointer;
+                "
+            >
+                <div
+                    style="
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(135deg, #4facfe, #00f2fe);
+                    "
+                ></div>
+                <div
+                    class="ss-c-gallery--overlay"
+                    style="
+                        position: absolute;
+                        inset: 0;
+                        background: rgba(0, 0, 0, 0.6);
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: 0;
+                        transition: opacity 0.3s;
+                        color: white;
+                    "
+                >
+                    <span style="font-size: 24px; margin-bottom: 8px">◉</span>
+                    <span style="font-size: 14px">View Image</span>
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 12px; font-size: 13px; opacity: 0.7">
+            Hover over images to see the overlay effect.
+        </p>
+    `,
+};
+
+export const SectionTitle5: Story = {
+    render: () => html`
+        <div
+            class="ss-c-gallery ss-c-gallery--featured"
+            style="
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                gap: 12px;
+                height: 400px;
+            "
+        >
+            <div
+                class="ss-c-gallery--item ss-c-featured"
+                style="
+                    grid-row: span 2;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    border-radius: 12px;
+                    display: flex;
+                    align-items: end;
+                    padding: 20px;
+                "
+            >
+                <div style="color: white">
+                    <h3 style="margin: 0 0 8px">Featured Image</h3>
+                    <p style="margin: 0; opacity: 0.8; font-size: 14px">
+                        Main gallery highlight
+                    </p>
+                </div>
+            </div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    background: linear-gradient(135deg, #f093fb, #f5576c);
+                    border-radius: 12px;
+                "
+            ></div>
+            <div
+                class="ss-c-gallery--item"
+                style="
+                    background: linear-gradient(135deg, #4facfe, #00f2fe);
+                    border-radius: 12px;
+                "
+            ></div>
+        </div>
+    `,
+};

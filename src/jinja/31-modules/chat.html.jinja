@@ -100,7 +100,7 @@
 {% set count = 0 %}
 {% for chat in myList %}
   {% set count = count + 1 %}
-  <div class="ss-c-theme_chat {% ss-c-if ss-c-count % 2 == 0 %}left{% ss-c-else %}right{% ss-c-endif %}" data-chat-message="{{ count }}">
+  <div class="ss-c-theme_chat {% if count % 2 == 0 %}left{% else %}right{% endif %}" data-chat-message="{{ count }}">
     <p class="ss-c-chat_message">{{ chat.message }}</p>
     <p class="ss-c-chat_time">{{ times[loop.index0] }}</p>
     <p class="ss-c-chat_name">{{ chat.name }}</p>
@@ -139,7 +139,7 @@
 {% set count2 = 0 %}
 {% for chat in myList2 %}
   {% set count2 = count2 + 1 %}
-  <div class="ss-c-theme_chat_4 {% ss-c-if ss-c-count2 % 2 == 0 %}left{% ss-c-else %}right{% ss-c-endif %}" data-chat-message="{{ count2 }}">
+  <div class="ss-c-theme_chat_4 {% if count2 % 2 == 0 %}left{% else %}right{% endif %}" data-chat-message="{{ count2 }}">
     <p class="ss-c-chat_message">{{ chat.message }}</p>
     <p class="ss-c-chat_time">{{ times2[loop.index0] }}</p>
     <p class="ss-c-chat_name">{{ chat.name }}</p>

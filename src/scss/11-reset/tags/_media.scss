@@ -28,33 +28,39 @@
 // ============================================================================
 // Tags
 // ============================================================================
+//
+// Emitted inside `@layer ss.reset` so media components (`.ss-c-figure`,
+// `.ss-c-video`, …) in `31-modules` override these element-level defaults
+// instead of being beaten by them.
 
-/// Resets border styling on images to remove borders when inside an `<a>`
-/// element.
-img {
-    // Reset
-    // Remove border when inside `a` element in IE 8/9/10
-    border-style: none;
-}
-
-/// Basic video element styling.
-///
-/// Ensures responsiveness and adds a subtle border and shadow for distinction.
-video {
-    max-width: 100%; // Ensure responsiveness
-    height: auto; // Maintain aspect ratio
-    border: q(1) solid #ddd; // Add a light border for distinction
-    box-shadow: 0 q(2) q(4) rgba(0, 0, 0, 0.1); // Add a subtle shadow for depth
-
-    // Customizing the video controls
-    &:hover::controls {
-        background: rgba(0, 0, 0, 0.75);
-        color: var(--surface_primary);
+@layer ss.reset {
+    /// Resets border styling on images to remove borders when inside an `<a>`
+    /// element.
+    img {
+        // Reset
+        // Remove border when inside `a` element in IE 8/9/10
+        border-style: none;
     }
-}
 
-/// Global styles for iFrame elements.
-/// Removes the default border styling from iFrames for a cleaner look.
-iframe {
-    border-style: none;
+    /// Basic video element styling.
+    ///
+    /// Ensures responsiveness and adds a subtle border and shadow for distinction.
+    video {
+        max-width: 100%; // Ensure responsiveness
+        height: auto; // Maintain aspect ratio
+        border: q(1) solid #ddd; // Add a light border for distinction
+        box-shadow: 0 q(2) q(4) rgba(0, 0, 0, 0.1); // Add a subtle shadow for depth
+
+        // Customizing the video controls
+        &:hover::controls {
+            background: rgba(0, 0, 0, 0.75);
+            color: var(--surface_primary);
+        }
+    }
+
+    /// Global styles for iFrame elements.
+    /// Removes the default border styling from iFrames for a cleaner look.
+    iframe {
+        border-style: none;
+    }
 }
