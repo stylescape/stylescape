@@ -24,10 +24,10 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    height: q(26);
-    padding: q(6) q(8) q(6) q(20);
-    margin: 0 0 q(24);
-    border-radius: q(4);
+    height: map.get($cfg, "badge-height");
+    padding: map.get($cfg, "badge-padding");
+    margin: map.get($cfg, "badge-margin");
+    border-radius: map.get($cfg, "badge-radius");
 
     background: linear-gradient(
         0.25turn,
@@ -43,9 +43,9 @@
         content: "";
         position: absolute;
         top: 50%;
-        left: q(8);
-        width: q(6);
-        height: q(6);
+        left: map.get($cfg, "dot-left");
+        width: map.get($cfg, "dot-size");
+        height: map.get($cfg, "dot-size");
         border-radius: 100%;
         background-color: map.get($cfg, "live-dot");
         transform: translateY(-50%);
@@ -58,10 +58,10 @@
     $cfg: config.$ss-headline-config;
 
     display: inline-block;
-    margin-bottom: q(16);
-    color: var(--ss-color-text-primary);
+    margin-bottom: map.get($cfg, "kicker-margin-bottom");
+    color: map.get($cfg, "kicker-color");
     font-size: map.get($cfg, "kicker-size");
-    line-height: q(18);
+    line-height: map.get($cfg, "kicker-leading");
     font-weight: 500;
     letter-spacing: map.get($cfg, "kicker-tracking");
     text-transform: uppercase;
@@ -69,8 +69,10 @@
 
 // Main headline text.
 @mixin c-headline-text {
-    margin: 0 0 q(24);
-    color: var(--ss-color-text-primary);
+    $cfg: config.$ss-headline-config;
+
+    margin: map.get($cfg, "text-margin");
+    color: map.get($cfg, "text-color");
     font-family: var(--ss-font-family-display, inherit);
     font-weight: var(--ss-font-weight-bold, 700);
     font-size: var(--ss-font-size-h2);
@@ -81,27 +83,27 @@
 @mixin c-headline-teaser {
     $cfg: config.$ss-headline-config;
 
-    margin-top: q(8);
-    margin-bottom: q(16);
+    margin-top: map.get($cfg, "teaser-margin-top");
+    margin-bottom: map.get($cfg, "teaser-margin-bottom");
     font-size: map.get($cfg, "teaser-size");
     line-height: map.get($cfg, "teaser-leading");
-    color: var(--ss-color-text-secondary, var(--ss-color-text-primary));
+    color: map.get($cfg, "teaser-color");
 }
 
 // Sub-container (byline + meta) row.
 @mixin c-headline-sub {
     display: flex;
     align-items: center;
-    gap: q(8);
+    gap: map.get(config.$ss-headline-config, "sub-gap");
 }
 
 // Muted meta text inside the sub-container.
 @mixin c-headline-sub-description {
     color: map.get(config.$ss-headline-config, "muted");
-    font-size: q(14);
-    line-height: q(20);
+    font-size: map.get(config.$ss-headline-config, "meta-size");
+    line-height: map.get(config.$ss-headline-config, "meta-leading");
     font-weight: 400;
-    margin: q(2) q(4) 0 0;
+    margin: map.get(config.$ss-headline-config, "meta-margin");
 
     &::after {
         content: "\00B7";

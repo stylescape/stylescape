@@ -1,0 +1,48 @@
+@use "sass:map";
+@use "./state.config" as config;
+@use "../../01-core/external" as *;
+
+/// Base block: centred loading / error / empty state.
+@mixin ss-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: map.get(config.$ss-state-config, gap);
+    padding: map.get(config.$ss-state-config, padding);
+
+    text-align: center;
+    color: var(--ss-color-muted);
+}
+
+@mixin ss-state-icon {
+    font-size: map.get(config.$ss-state-config, icon-size);
+    line-height: 1;
+    opacity: map.get(config.$ss-state-config, icon-opacity);
+}
+
+@mixin ss-state-title {
+    font-size: map.get(config.$ss-state-config, title-size);
+    font-weight: map.get(config.$ss-state-config, title-weight);
+    color: var(--ss-color-text-primary);
+}
+
+@mixin ss-state-message {
+    margin: 0;
+    max-width: map.get(config.$ss-state-config, message-measure);
+    color: var(--ss-color-muted);
+}
+
+@mixin ss-state-action {
+    margin-top: map.get(config.$ss-state-config, action-offset);
+}
+
+/// Compact, left-aligned row — e.g. inside a card.
+@mixin ss-state-inline {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: map.get(config.$ss-state-config, inline-gap);
+    padding: map.get(config.$ss-state-config, inline-padding);
+    text-align: left;
+}

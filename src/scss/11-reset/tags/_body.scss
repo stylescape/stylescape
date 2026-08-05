@@ -25,7 +25,11 @@
 @use "../../21-typography/character/base/normal/character-normal.mixins" as
     normal;
 
-body {
-    @include normal.ss-character-normal;
-    background: var(--color_fill_primary);
+// Emitted inside `@layer ss.reset` so layered rules can override the body
+// defaults.
+@layer ss.reset {
+    body {
+        @include normal.ss-character-normal;
+        // Page background lives in 24-appearance/_relocated-surfaces.scss
+    }
 }

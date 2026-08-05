@@ -1,5 +1,8 @@
 @use "../../01-core/prefix" as *;
 @use "./button.mixins" as *;
+@use "./button.config" as config;
+@use "sass:map";
+@use "../../01-core/external" as *;
 
 @layer ss.components {
     .#{$ss-prefix-module}-button {
@@ -103,7 +106,7 @@
 
     .#{$ss-prefix-module}-button-group {
         display: inline-flex;
-        gap: 0.5rem;
+        gap: map.get(config.$ss-button-config, gap);
         align-items: center;
     }
 }

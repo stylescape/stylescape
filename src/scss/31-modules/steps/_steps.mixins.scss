@@ -1,3 +1,5 @@
+@use "sass:map";
+@use "./steps.config" as config;
 @use "../../01-core/external" as *;
 
 @mixin ss-steps {
@@ -17,10 +19,10 @@
 @mixin ss-step {
     position: relative;
     display: grid;
-    grid-template-rows: q(40) 1fr;
+    grid-template-rows: map.get(config.$ss-steps-config, marker-row-height) 1fr;
     place-items: center;
     text-align: center;
-    min-width: q(64);
+    min-width: map.get(config.$ss-steps-config, min-width);
 
     counter-increment: ss-step;
 
@@ -32,25 +34,25 @@
 
         display: grid;
         place-items: center;
-        width: q(32);
-        height: q(32);
+        width: map.get(config.$ss-steps-config, marker-size);
+        height: map.get(config.$ss-steps-config, marker-size);
         border-radius: 50%;
-        background: var(--ss-color-surface-2, var(--ss-color-surface));
-        color: var(--ss-color-text-primary);
+        background: map.get(config.$ss-steps-config, marker-bg);
+        color: map.get(config.$ss-steps-config, marker-fg);
         font-weight: 600;
     }
     &::after {
         content: "";
         position: absolute;
-        top: q(20);
+        top: map.get(config.$ss-steps-config, connector-top);
         inset-inline: 50%;
-        height: 2px;
-        background: var(--ss-color-surface-2, var(--ss-color-surface));
+        height: map.get(config.$ss-steps-config, connector-height);
+        background: map.get(config.$ss-steps-config, connector-bg);
     }
     &:last-child::after { display: none; }
     > * {
         grid-row-start: 2;
-        padding-top: q(8);
+        padding-top: map.get(config.$ss-steps-config, label-padding-top);
     }
 }
 

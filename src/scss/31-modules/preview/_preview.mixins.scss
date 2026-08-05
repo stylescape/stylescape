@@ -40,7 +40,11 @@
 @mixin ss-preview-live {
     position: relative;
     padding: map.get(config.$preview-config, "padding");
-    background-color: map.get(config.$preview-config, "background");
+    // No background here: the panel container already paints it, and an
+    // opaque fill would sit on top of demo classes composed onto the live
+    // area (e.g. `ss-c-preview__live ss-t-paragraph--code`, whose dark
+    // background otherwise loses to this layer and leaves light-on-white
+    // invisible text).
 }
 
 @mixin ss-preview-code {
@@ -48,7 +52,7 @@
     background-color: map.get(config.$preview-config, "code-bg");
     color: map.get(config.$preview-config, "code-color");
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: q(13);
+    font-size: map.get(config.$preview-config, "code-font-size");
     line-height: 1.5;
     overflow: auto;
 
@@ -61,6 +65,11 @@
         font-size: inherit;
         line-height: inherit;
         overflow: auto;
+        // Strip the `ss-paragraph-code` block chrome that bare <pre> carries
+        // from the typography layer — inside the dark preview panel its light
+        // border/radius reads as a stray inner outline.
+        border: 0;
+        border-radius: 0;
     }
 
     code {
@@ -68,6 +77,9 @@
         font-size: inherit;
         background: transparent;
         color: inherit;
+        // Same: drop inline character-code chrome inside the panel.
+        border: 0;
+        padding: 0;
     }
 }
 
@@ -75,11 +87,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: q(8);
-    padding: q(6) map.get(config.$preview-config, "padding");
+    gap: map.get(config.$preview-config, "info-gap");
+    padding: map.get(config.$preview-config, "info-padding-block")
+        map.get(config.$preview-config, "padding");
     background-color: map.get(config.$preview-config, "info-bg");
     color: map.get(config.$preview-config, "info-color");
-    font-size: q(11);
+    font-size: map.get(config.$preview-config, "info-font-size");
     text-transform: uppercase;
     letter-spacing: 0.05em;
 
@@ -92,8 +105,8 @@
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    gap: q(4);
-    padding: q(8);
+    gap: map.get(config.$preview-config, "swatch-gap");
+    padding: map.get(config.$preview-config, "swatch-padding");
 
     &__color {
         width: map.get(config.$preview-config, "swatch-size");
@@ -105,6 +118,6 @@
 
     &__code {
         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-        font-size: q(12);
+        font-size: map.get(config.$preview-config, "swatch-code-font-size");
     }
 }

@@ -1,0 +1,56 @@
+{% extends "../base.html.jinja" %} {% set title = "State" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-state</code> module.</p>
+
+    {% set section_title = "Empty" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="ss-c-state ss-c-state--empty">
+            <div class="ss-c-state__icon">&#9671;</div>
+            <div class="ss-c-state__title">No studies yet</div>
+            <p class="ss-c-state__message">Create your first study to get started.</p>
+            <button class="ss-c-button ss-c-state__action">Create study</button>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Error" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="ss-c-state ss-c-state--error" role="alert">
+            <div class="ss-c-state__title">Couldn't load studies</div>
+            <p class="ss-c-state__message">The network request failed.</p>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Loading" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="ss-c-state">
+            <span class="ss-c-spinner"></span>
+            <p class="ss-c-state__message">Loading studies&hellip;</p>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Inline" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="ss-c-state ss-c-state--inline">
+            <span class="ss-c-state__icon">&#9671;</span>
+            <span class="ss-c-state__message">Nothing to show.</span>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

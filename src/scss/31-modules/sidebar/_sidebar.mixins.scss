@@ -4,6 +4,10 @@
 
 @use "sass:map";
 @use "./sidebar.config" as config;
+// `q()` and friends — without this the q(...) calls below are emitted as a
+// literal (unknown) CSS function and every declaration using them is dropped
+// by the browser.
+@use "../../01-core/external" as *;
 
 @mixin ss-sidebar {
     position: relative;
@@ -92,10 +96,10 @@
 @mixin ss-sidebar-accordion-header {
     display: flex;
     align-items: center;
-    gap: q(6);
+    gap: map.get(config.$sidebar-config, "header-gap");
     cursor: pointer;
     user-select: none;
-    padding: q(6) q(10);
+    padding: map.get(config.$sidebar-config, "header-padding");
     margin: 0;
     list-style: none;
 
@@ -112,15 +116,36 @@
     > h3 {
         margin: 0;
         padding: 0;
-        font-size: inherit;
-        font-weight: 600;
         line-height: 1.2;
         flex: 1 1 auto;
         min-width: 0;
     }
 
+    // Level 1 — section label: small caps, heavy.
+    > h2 {
+        font-size: map.get(config.$sidebar-config, "section-font-size");
+        font-weight: map.get(config.$sidebar-config, "section-font-weight");
+        text-transform: uppercase;
+        letter-spacing: map.get(config.$sidebar-config, "section-letter-spacing");
+    }
+
+    // Level 2 — group label: sentence case, medium.
+    > h3 {
+        font-size: map.get(config.$sidebar-config, "group-font-size");
+        font-weight: map.get(config.$sidebar-config, "group-font-weight");
+    }
+
     &:hover {
-        background-color: rgba(0, 0, 0, 0.04);
+        background-color: map.get(config.$sidebar-config, "header-hover-bg");
+    }
+}
+
+// Nested (level-2) header delta: slightly tighter, visually subordinate.
+@mixin ss-sidebar-accordion-header-nested {
+    padding-block: map.get(config.$sidebar-config, "nested-padding-block");
+
+    > h3 {
+        color: map.get(config.$sidebar-config, "group-color");
     }
 }
 
@@ -128,19 +153,23 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: q(12);
-    height: q(12);
+    width: map.get(config.$sidebar-config, "icon-size");
+    height: map.get(config.$sidebar-config, "icon-size");
     margin-left: auto;
     flex-shrink: 0;
-    font-size: q(14);
+    font-size: map.get(config.$sidebar-config, "icon-font-size");
     line-height: 1;
-    opacity: 0.6;
+    opacity: map.get(config.$sidebar-config, "icon-opacity");
     transition: transform 0.2s ease;
     transform: rotate(0deg);
 }
 
 @mixin ss-sidebar-accordion-content {
-    padding: q(2) q(10) q(8) q(20);
+    // Indent each level and draw a guide line so the tree depth stays
+    // legible even with several sections open.
+    margin-left: map.get(config.$sidebar-config, "content-margin-left");
+    padding: map.get(config.$sidebar-config, "content-padding");
+    border-left: map.get(config.$sidebar-config, "guide-border");
 }
 
 @mixin ss-sidebar-subsection-list {
@@ -149,11 +178,33 @@
     padding: 0;
 
     > li {
-        padding: q(2) 0;
+        padding: 0;
+    }
+
+    // Level 3 — leaf links. Nav items, not prose hyperlinks: they inherit
+    // the sidebar's monochrome treatment instead of the global link color,
+    // and light up on hover.
+    a {
+        display: block;
+        padding: map.get(config.$sidebar-config, "link-padding");
+        border-radius: map.get(config.$sidebar-config, "link-radius");
+        font-size: map.get(config.$sidebar-config, "link-font-size");
+        color: map.get(config.$sidebar-config, "link-color");
+        text-decoration: none;
+
+        &:visited {
+            color: map.get(config.$sidebar-config, "link-color");
+        }
+
+        &:hover {
+            color: map.get(config.$sidebar-config, "link-hover-color");
+            background-color: map.get(config.$sidebar-config, "link-hover-bg");
+            text-decoration: none;
+        }
     }
 }
 
 @mixin ss-sidebar-subsection-description {
-    margin: 0 0 q(4);
-    opacity: 0.7;
+    margin: map.get(config.$sidebar-config, "description-margin");
+    opacity: map.get(config.$sidebar-config, "description-opacity");
 }

@@ -1,0 +1,38 @@
+@use "sass:map";
+@use "./panel.config" as config;
+@use "../../01-core/external" as *;
+
+/// Surface with explicit header / body / footer slots.
+///
+/// Distinct from `card` (an editorial content surface) and `box`
+/// (a bare surface with no slots).
+@mixin ss-panel {
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--ss-color-surface);
+    border: map.get(config.$ss-panel-config, border);
+    border-radius: map.get(config.$ss-panel-config, radius);
+    overflow: hidden;
+}
+
+@mixin ss-panel-header {
+    padding: map.get(config.$ss-panel-config, header-padding);
+    background-color: var(--ss-color-surface-alt);
+    border-bottom: map.get(config.$ss-panel-config, border);
+
+    font-size: map.get(config.$ss-panel-config, header-size);
+    font-weight: map.get(config.$ss-panel-config, header-weight);
+}
+
+@mixin ss-panel-body {
+    flex: 1;
+    padding: map.get(config.$ss-panel-config, body-padding);
+    overflow: auto;
+}
+
+@mixin ss-panel-footer {
+    padding: map.get(config.$ss-panel-config, footer-padding);
+    background-color: var(--ss-color-surface-alt);
+    border-top: map.get(config.$ss-panel-config, border);
+}

@@ -14,17 +14,19 @@
     height: var(--ss-radial-size);
     border-radius: 50%;
 
+    // Inner disc punches a hole in the conic ring (page background), the
+    // conic paints value-arc in currentColor over a visible grey track.
     background:
         radial-gradient(
             farthest-side,
-            currentColor 98%,
+            var(--ss-color-background, #ffffff) 98%,
             transparent 100% 0
         ) center / calc(100% - var(--ss-radial-thickness) * 2)
             calc(100% - var(--ss-radial-thickness) * 2)
             no-repeat,
         conic-gradient(
             currentColor calc(var(--ss-radial-value) * 1%),
-            var(--ss-color-surface-2, var(--ss-color-surface)) 0
+            var(--ss-color-line-secondary, #cccccc) 0
         );
 
     color: var(--ss-color-accent, currentColor);

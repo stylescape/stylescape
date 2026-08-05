@@ -17,6 +17,8 @@ export { ImageCompareSlider } from "./media/ImageCompareSlider.js";
 
 // 3. CONTENT & UTILITIES
 export { ActiveLinkHighlighter } from "./content/ActiveLinkHighlighter.js";
+export { CodeBlockFormatter } from "./content/CodeBlockFormatter.js";
+export { Countdown } from "./content/Countdown.js";
 export { TableOfContentsBuilder } from "./content/TableOfContentsBuilder.js";
 export { ClipboardHelper } from "./utilities/ClipboardHelper.js";
 export { GridManager } from "./utilities/GridManager.js";

@@ -18,16 +18,21 @@
     vertical-align: middle;
 
     &:checked {
-        background: map.get(config.$ss-checkbox-config, bg-checked);
+        background-color: map.get(config.$ss-checkbox-config, bg-checked);
         border-color: map.get(config.$ss-checkbox-config, border-checked);
-        background-image: linear-gradient(
-            45deg,
-            transparent 45%,
-            map.get(config.$ss-checkbox-config, fg-checked) 45%,
-            map.get(config.$ss-checkbox-config, fg-checked) 55%,
-            transparent 55%
-        );
-        background-size: 60% 60%;
+        // White check glyph (SVG so it scales with the box).
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='square' d='M3 8.5 6.5 12 13 4.5'/%3E%3C/svg%3E");
+        background-size: 75% 75%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    // Indeterminate — horizontal bar (set via JS: `input.indeterminate = true`).
+    &:indeterminate {
+        background-color: map.get(config.$ss-checkbox-config, bg-checked);
+        border-color: map.get(config.$ss-checkbox-config, border-checked);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='square' d='M4 8h8'/%3E%3C/svg%3E");
+        background-size: 75% 75%;
         background-position: center;
         background-repeat: no-repeat;
     }
@@ -40,6 +45,28 @@
     &:disabled {
         opacity: 0.6;
         cursor: not-allowed;
+    }
+}
+
+// Size modifiers ------------------------------------------------------------
+
+@mixin ss-checkbox-sm {
+    width: map.get(config.$ss-checkbox-config, size-sm);
+    height: map.get(config.$ss-checkbox-config, size-sm);
+}
+
+@mixin ss-checkbox-lg {
+    width: map.get(config.$ss-checkbox-config, size-lg);
+    height: map.get(config.$ss-checkbox-config, size-lg);
+}
+
+// Status variants — recolor the checked/indeterminate fill ------------------
+
+@mixin ss-checkbox-status($color) {
+    &:checked,
+    &:indeterminate {
+        background-color: $color;
+        border-color: $color;
     }
 }
 

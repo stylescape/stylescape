@@ -35,11 +35,12 @@
 // Leading `_` keeps these private so they are not re-exported by `@forward`.
 // ----------------------------------------------------------------------------
 
-$_accent: hue_color("N2405"); // #3696c1 steel blue
-$_accent-dark: hue_color("N2407"); // #346a85 deep teal-blue
-$_accent-light: hue_color("N2403"); // #8abedc light sky
-$_state-link: hue_color("N2404"); // #65aace
-$_visited: hue_color("N2704"); // #87a2d6
+$_accent: hue_color("N2405"); // #3696c1 steel blue  (= state_active)
+$_accent-dark: hue_color("N2407"); // #346a85 deep teal-blue (accent_secondary)
+$_accent-light: hue_color("N2403"); // #8abedc light sky (accent_tertiary)
+$_state-link: hue_color("N2404"); // #65aace (= state_link / state_focus)
+$_state-hover: hue_color("N2402"); // #acd2e9 (state_hover)
+$_visited: hue_color("N2704"); // #87a2d6 (state_visited)
 
 $_success: hue_color("N2555"); // #5192c8 blue
 $_warning: hue_color("N3005"); // #9582c2 violet
@@ -65,6 +66,19 @@ $_info: hue_color("N2705"); // #6a8dca indigo-blue
     --ss-color-white: #ffffff;
     --ss-color-black: #000000;
 
+    // Neutral gray ramp for consumers that need stepped grays beyond the
+    // semantic surface/border/text roles (dashboards, admin chrome, …).
+    --ss-color-gray-50: #fafafa;
+    --ss-color-gray-100: #f0f0f0;
+    --ss-color-gray-200: #e0e0e0;
+    --ss-color-gray-300: #b3b3b3;
+    --ss-color-gray-400: #888888;
+    --ss-color-gray-500: #666666;
+    --ss-color-gray-600: #4a4a4a;
+    --ss-color-gray-700: #333333;
+    --ss-color-gray-800: #1a1a1a;
+    --ss-color-gray-900: #111111;
+
     // ========================================================================
     // Surface / Background
     // ========================================================================
@@ -78,6 +92,13 @@ $_info: hue_color("N2705"); // #6a8dca indigo-blue
     --ss-color-surface-hover: #f0f0f0;
     --ss-color-surface-primary: #ffffff;
 
+    // Stepped neutral surfaces (avatar chips, stack demos, progress tracks…).
+    // Several modules reference these; without definitions they collapsed to
+    // white-on-white.
+    --ss-color-surface-1: #ececec;
+    --ss-color-surface-2: #dedede;
+    --ss-color-surface-3: #cfcfcf;
+
     --ss-color-fill: #ffffff;
     --ss-color-fill-muted: #f5f5f5;
 
@@ -87,7 +108,9 @@ $_info: hue_color("N2705"); // #6a8dca indigo-blue
 
     --ss-color-text: #000000;
     --ss-color-text-primary: #000000;
+    --ss-color-text-default: var(--ss-color-text-primary);
     --ss-color-text-muted: #414141;
+    --ss-color-text-secondary: var(--ss-color-text-muted);
     --ss-color-muted: #a0a0a0;
     --ss-color-muted-foreground: #414141;
 
@@ -123,20 +146,35 @@ $_info: hue_color("N2705"); // #6a8dca indigo-blue
     // Links
     // ========================================================================
 
-    --ss-color-link: var(--ss-color-accent, #{$_accent});
-    --ss-color-link-hover: var(--ss-color-accent-highlight, #{$_accent-dark});
-    --ss-color-link-active: var(--ss-color-accent-highlight, #{$_accent-dark});
+    // Link colors follow the old `_color_system` state roles exactly:
+    // link = state_link (N2404), hover = state_hover (N2402),
+    // active = state_active (N2405), visited = state_visited (N2704).
+    --ss-color-link: #{$_state-link};
+    --ss-color-link-hover: #{$_state-hover};
+    --ss-color-link-active: #{$_accent};
     --ss-color-link-visited: #{$_visited};
 
     // ========================================================================
     // States
     // ========================================================================
 
-    --ss-color-focus: var(--ss-color-accent, #{$_accent});
+    // state_focus == state_link == N2404 in the old system.
+    --ss-color-focus: #{$_state-link};
 
-    --ss-color-state-hover: rgba(0, 0, 0, 0.04);
-    --ss-color-state-active: rgba(0, 0, 0, 0.08);
-    --ss-color-state-link: var(--ss-color-link, #{$_state-link});
+    // Focus ring (outline/box-shadow based focus indicators).
+    --ss-focus-ring-color: var(--ss-color-focus);
+    --ss-focus-ring-width: #{q(2)};
+    --ss-focus-ring-offset: #{q(2)};
+
+    // Overlay behind modals / offcanvas panels.
+    --ss-color-backdrop: rgb(0 0 0 / 0.5);
+
+    // These are consumed as real colors (hyperlink hover/active text, legacy
+    // compat backgrounds), so they carry the old state_* hues rather than a
+    // neutral overlay — otherwise link hover text renders near-invisible.
+    --ss-color-state-hover: #{$_state-hover};
+    --ss-color-state-active: #{$_accent};
+    --ss-color-state-link: #{$_state-link};
 
     // ========================================================================
     // Status / Feedback

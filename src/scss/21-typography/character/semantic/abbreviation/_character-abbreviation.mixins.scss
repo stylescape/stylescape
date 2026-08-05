@@ -32,6 +32,27 @@
     cursor: map.get(config.$ss-character-abbreviation-config, cursor);
 }
 
+/// CSS-only tooltip surfacing the `title` attribute on hover/focus.
+/// Ported from the old `abbreviation_tooltip` mixin so `<abbr title="…">`
+/// behaves like it did in the previous StyleScape.
+@mixin ss-character-abbreviation-tooltip {
+    $cfg: config.$ss-character-abbreviation-tooltip-config;
+
+    position: relative;
+
+    &:hover::after,
+    &:focus::after {
+        content: attr(title);
+        left: 0;
+        bottom: calc(-1 * #{map.get($cfg, offset)});
+        white-space: nowrap;
+        color: map.get($cfg, color);
+        font-size: map.get($cfg, font-size);
+        padding: map.get($cfg, padding);
+        pointer-events: none;
+    }
+}
+
 // /// Base abbreviation styles
 // @mixin character-abbr-base {
 //     $cfg: config.$ss-character-abbr-config;

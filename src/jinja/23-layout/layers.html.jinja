@@ -1,114 +1,115 @@
-{% extends "../base.html.jinja" %} {%- block title %}Layering System Demo |
-unit.gl{%- endblock %} {%- block header %}
-<h1>Layering System Demo</h1>
-<p>
-    Demonstrates the z-index stack defined in
-    <code>$layer-map</code>
-    . Use the buttons below to toggle each layer.
-</p>
-{%- endblock %} {%- block styles %} {{ super() }}
-<style>
-    .layer-demo {
-        position: relative;
-        height: 400px;
-        border: q(1) solid #ddd;
-        margin-bottom: q(32);
-        background: #f7f7f7;
-        overflow: hidden;
-    }
+{% extends "../base.html.jinja" %} {%- block title %}Layering System
+Demo{%- endblock %} {%- block content %}
 
-    .layer-box {
-        position: absolute;
-        width: q(200);
-        height: q(200);
-        padding: q(16);
-        color: white;
-        font-weight: bold;
-        border-radius: q(8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0.9;
-        cursor: pointer;
-        transition:
-            transform 0.2s,
-            opacity 0.2s;
-    }
+<section class="ss-c-demo__section" data-label="Layering System" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h2>Layering System</h2>
+        <p>
+            Demonstrates the z-index stack defined in
+            <code>$layer-map</code>. Use the buttons below to toggle each
+            layer.
+        </p>
+    </header>
 
-    .layer-controls {
-        margin-bottom: q(16);
-    }
+    <style>
+        .ss-c-layer-demo {
+            position: relative;
+            height: 400px;
+            border: 1px solid var(--ss-color-line-secondary, #cccccc);
+            margin-bottom: 32px;
+            background: var(--ss-color-surface-muted, #f5f5f5);
+            overflow: hidden;
+        }
 
-    .layer-controls button {
-        margin-right: q(8);
-        padding: q(4) q(12);
-        font-size: 0.875rem;
-        border: q(1) solid #ccc;
-        background: white;
-        cursor: pointer;
-        border-radius: q(4);
-    }
+        .ss-c-layer-box {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            padding: 16px;
+            color: #ffffff;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.92;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            transition:
+                transform 0.2s,
+                opacity 0.2s;
+        }
 
-    .hidden {
-        opacity: 0 !important;
-        pointer-events: none;
-    }
+        .ss-c-layer-controls {
+            margin-bottom: 16px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
 
-    .z-guides {
-        z-index: 9998;
-        background: rgba(0, 200, 255, 0.8);
-        top: q(20);
-        left: q(20);
-    }
-    .z-modal {
-        z-index: 7000;
-        background: rgba(255, 0, 0, 0.8);
-        top: q(60);
-        left: q(60);
-    }
-    .z-interface {
-        z-index: 4000;
-        background: rgba(0, 200, 100, 0.8);
-        top: q(100);
-        left: q(100);
-    }
-    .z-content {
-        z-index: 2000;
-        background: rgba(100, 100, 255, 0.8);
-        top: q(140);
-        left: q(140);
-    }
-    .z-canvas {
-        z-index: -1000;
-        background: rgba(0, 0, 0, 0.2);
-        top: q(180);
-        left: q(180);
-    }
-</style>
-{%- endblock %} {%- block content %}
+        .ss-c-layer-box.hidden {
+            opacity: 0 !important;
+            pointer-events: none;
+        }
 
-<div class="ss-c-layer-controls">
-    {% set layers = ["guides", "modal", "interface", "content", "canvas"] %} {%
-    for layer in layers %}
-    <button onclick="toggleLayer('{{ layer }}')">Toggle {{ layer }}</button>
-    {% endfor %}
-</div>
+        /* Old-palette layer colors (steel-blue family) */
+        .z-guides {
+            z-index: 9998;
+            background: var(--ss-color-accent, #3696c1);
+            top: 20px;
+            left: 20px;
+        }
+        .z-modal {
+            z-index: 7000;
+            background: var(--ss-color-error, #b577ac);
+            top: 60px;
+            left: 100px;
+        }
+        .z-interface {
+            z-index: 4000;
+            background: var(--ss-color-success, #5192c8);
+            top: 100px;
+            left: 180px;
+        }
+        .z-content {
+            z-index: 2000;
+            background: var(--ss-color-warning, #9582c2);
+            top: 140px;
+            left: 260px;
+        }
+        .z-canvas {
+            z-index: 0;
+            background: var(--ss-color-muted, #a0a0a0);
+            top: 180px;
+            left: 340px;
+        }
+    </style>
 
-<div class="ss-c-layer-demo">
-    {% for layer in layers %}
-    <div class="ss-c-layer-box z-{{ ss-c-layer }}" id="layer-{{ layer }}">
-        {{ layer }}
-        <br />
-        <small>z({{ layer }})</small>
+    <div class="ss-c-layer-controls">
+        {% set layers = ["guides", "modal", "interface", "content", "canvas"]
+        %} {% for layer in layers %}
+        <button class="ss-c-button ss-c-button--outline" onclick="toggleLayer('{{ layer }}')">
+            Toggle {{ layer }}
+        </button>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
-<script>
-    function toggleLayer(id) {
-        const el = document.getElementById("layer-" + id);
-        el.classList.toggle("hidden");
-    }
-</script>
+    <div class="ss-c-layer-demo">
+        {% for layer in layers %}
+        <div class="ss-c-layer-box z-{{ layer }}" id="layer-{{ layer }}">
+            {{ layer }}
+            <br />
+            <small>z({{ layer }})</small>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function toggleLayer(id) {
+            const el = document.getElementById("layer-" + id);
+            el.classList.toggle("hidden");
+        }
+    </script>
+</section>
 
 {%- endblock %}

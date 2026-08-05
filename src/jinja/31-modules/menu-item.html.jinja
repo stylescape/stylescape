@@ -1,0 +1,56 @@
+{% extends "../base.html.jinja" %} {% set title = "Menu Item" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-menu-item</code> module.</p>
+
+    {% set section_title = "Menu" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <nav class="ss-c-menu">
+            <a class="ss-c-menu-item" href="#">
+                <span class="ss-c-menu-item__icon">&#9642;</span>
+                <span class="ss-c-menu-item__label">Dashboard</span>
+            </a>
+            <a class="ss-c-menu-item" href="#">
+                <span class="ss-c-menu-item__icon">&#9642;</span>
+                <span class="ss-c-menu-item__label">Projects</span>
+            </a>
+        </nav>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Active" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        <p>Active state is driven by <code>aria-current="page"</code>, <code>data-active="true"</code> or <code>.is-active</code>.</p>
+        {% set code_snippet %}
+        <nav class="ss-c-menu">
+            <a class="ss-c-menu-item" href="#">
+                <span class="ss-c-menu-item__label">Dashboard</span>
+            </a>
+            <a class="ss-c-menu-item" href="#" aria-current="page">
+                <span class="ss-c-menu-item__label">Projects</span>
+            </a>
+        </nav>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "With badge" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <nav class="ss-c-menu">
+            <a class="ss-c-menu-item" href="#">
+                <span class="ss-c-menu-item__icon">&#9642;</span>
+                <span class="ss-c-menu-item__label">Inbox</span>
+                <span class="ss-c-menu-item__badge">12</span>
+            </a>
+        </nav>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

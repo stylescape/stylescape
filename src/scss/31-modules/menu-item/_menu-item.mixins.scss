@@ -1,0 +1,57 @@
+@use "sass:map";
+@use "./menu-item.config" as config;
+@use "../../01-core/external" as *;
+
+/// Single entry inside a sidebar or menu: icon + label + optional
+/// trailing badge, with hover / active / focus treatment.
+@mixin ss-menu-item {
+    display: flex;
+    align-items: center;
+    gap: map.get(config.$ss-menu-item-config, gap);
+    width: 100%;
+    padding: map.get(config.$ss-menu-item-config, padding);
+    border-radius: map.get(config.$ss-menu-item-config, radius);
+
+    color: var(--ss-color-text-primary);
+    font-size: map.get(config.$ss-menu-item-config, font-size);
+    line-height: map.get(config.$ss-menu-item-config, line-height);
+    text-decoration: none;
+    cursor: pointer;
+
+    transition:
+        background-color map.get(config.$ss-menu-item-config, transition-duration)
+            map.get(config.$ss-menu-item-config, transition-easing),
+        color map.get(config.$ss-menu-item-config, transition-duration)
+            map.get(config.$ss-menu-item-config, transition-easing);
+}
+
+@mixin ss-menu-item-icon {
+    $size: map.get(config.$ss-menu-item-config, icon-size);
+    flex: 0 0 $size;
+    width: $size;
+    height: $size;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ss-color-muted);
+}
+
+@mixin ss-menu-item-label {
+    flex: 1;
+    min-width: 0;
+}
+
+@mixin ss-menu-item-badge {
+    flex: 0 0 auto;
+    font-size: map.get(config.$ss-menu-item-config, badge-size);
+    color: var(--ss-color-muted);
+}
+
+/// Vertical menu container.
+@mixin ss-menu {
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$ss-menu-item-config, menu-gap);
+    padding: map.get(config.$ss-menu-item-config, menu-padding);
+}

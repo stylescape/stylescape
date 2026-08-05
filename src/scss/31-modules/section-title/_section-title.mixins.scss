@@ -1,0 +1,13 @@
+@use "sass:map";
+@use "./section-title.config" as config;
+@use "../../01-core/external" as *;
+
+/// Small uppercase section label.
+@mixin ss-section-title {
+    font-size: map.get(config.$ss-section-title-config, font-size);
+    font-weight: map.get(config.$ss-section-title-config, font-weight);
+    text-transform: uppercase;
+    letter-spacing: map.get(config.$ss-section-title-config, tracking);
+    color: var(--ss-color-muted);
+    margin: map.get(config.$ss-section-title-config, margin);
+}

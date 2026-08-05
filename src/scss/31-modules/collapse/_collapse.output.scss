@@ -3,7 +3,10 @@
 // =============================================================================
 
 @use "../../01-core/prefix" as *;
+@use "sass:map";
+@use "./collapse.config" as config;
 @use "./collapse.mixins" as *;
+@use "../../01-core/external" as *;
 
 @layer ss.components {
     .#{$ss-prefix-module}-collapse {
@@ -18,5 +21,20 @@
         &.is-collapsing {
             @include ss-collapsing;
         }
+    }
+
+    // Native `<details class="ss-c-collapse">` usage: the element handles its
+    // own open/close, so the JS-driven `display: none` default must not hide
+    // it (it was swallowing the <summary> too). The `:not()` chain matches
+    // the specificity of the hiding rule so this wins by source order.
+    details.#{$ss-prefix-module}-collapse,
+    details.#{$ss-prefix-module}-collapse:not(.is-open):not(.show) {
+        display: block;
+    }
+
+    details.#{$ss-prefix-module}-collapse > summary {
+        cursor: pointer;
+        padding: map.get(config.$collapse-config, "summary-padding");
+        font-weight: map.get(config.$collapse-config, "summary-font-weight");
     }
 }

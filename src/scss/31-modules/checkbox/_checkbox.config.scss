@@ -3,7 +3,7 @@
 
 $ss-checkbox-config: (
     size: q(16),
-    radius: var(--ss-radius-xs, q(2)),
+    radius: 0, // sharp corners by default (aligned with old StyleScape forms)
     border-width: q(1),
 
     bg: var(--ss-color-background),
@@ -12,4 +12,15 @@ $ss-checkbox-config: (
     border-checked: var(--ss-color-accent),
     fg-checked: var(--ss-color-on-accent, var(--ss-color-background)),
     label-gap: q(8),
+
+    // Size modifiers
+    size-sm: q(14),
+    size-lg: q(20),
+
+    // Status variants (checked/indeterminate fill recolor)
+    status: (
+        success: var(--ss-color-success, #5192c8),
+        warning: var(--ss-color-warning, #9582c2),
+        danger: var(--ss-color-error, #b577ac),
+    ),
 ) !default;

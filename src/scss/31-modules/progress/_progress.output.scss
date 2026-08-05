@@ -1,5 +1,8 @@
 @use "../../01-core/prefix" as *;
+@use "sass:map";
+@use "./progress.config" as config;
 @use "./progress.mixins" as progress;
+@use "../../01-core/external" as *;
 
 @layer ss.components {
     .#{$ss-prefix-module}-progress {
@@ -8,5 +11,32 @@
 
     .#{$ss-prefix-module}-progress__bar {
         @include progress.ss-progress-bar;
+    }
+
+    // Native <progress> — accent fill on a grey track, sharp corners,
+    // consistent with the form-control family.
+    progress {
+        appearance: none;
+        -webkit-appearance: none;
+        display: block;
+        width: 100%;
+        height: map.get(config.$ss-progress-config, native-height);
+        border: 0;
+        border-radius: 0;
+        background: map.get(config.$ss-progress-config, native-track-bg);
+        color: map.get(config.$ss-progress-config, native-bar-bg);
+
+        &::-webkit-progress-bar {
+            background: map.get(config.$ss-progress-config, native-track-bg);
+            border-radius: 0;
+        }
+        &::-webkit-progress-value {
+            background: map.get(config.$ss-progress-config, native-bar-bg);
+            border-radius: 0;
+        }
+        &::-moz-progress-bar {
+            background: map.get(config.$ss-progress-config, native-bar-bg);
+            border-radius: 0;
+        }
     }
 }

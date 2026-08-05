@@ -115,5 +115,11 @@ generate-sections: ## Generate SCSS section files
 render-templates: ## Render Jinja templates
 	$(NPM) run render:templates
 
-parity-check: ## Check SSX spec parity
-	python bin/check_ssx_parity.py --ssx-path ../ssx/doc
+parity-check: ## Gate on new SSX drift (baseline = accepted debt)
+	$(NPM) run lint:ssx
+
+parity-report: ## Full SSX conformance report, styles and templates
+	$(NPM) run lint:ssx:report
+
+parity-baseline: ## Re-record the SSX baseline after fixing findings
+	$(NPM) run lint:ssx:baseline

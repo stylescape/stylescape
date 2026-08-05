@@ -1,5 +1,29 @@
+// =============================================================================
+// 31-modules / button / mixins
+// =============================================================================
+//
+// Logic layer only — every design value is read from `$ss-button-config`
+// (see `_button.config.scss`). No hardcoded measurements or colors.
+//
+// =============================================================================
+
 @use "sass:map";
+@use "sass:math";
 @use "./button.config" as config;
+
+// Internal shorthands --------------------------------------------------------
+
+@function cfg($key) {
+    @return map.get(config.$ss-button-config, $key);
+}
+
+@function vcolor($name, $key) {
+    @return map.get(map.get(cfg(variants), $name), $key);
+}
+
+@function bsize($name, $key) {
+    @return map.get(map.get(cfg(sizes), $name), $key);
+}
 
 // ============================================================================
 // Base
@@ -9,43 +33,54 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    gap: cfg(gap);
+    padding: cfg(padding);
     font: inherit;
-    font-weight: 500;
-    line-height: 1.5;
+    font-weight: cfg(font-weight);
+    line-height: cfg(line-height);
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
     cursor: pointer;
     user-select: none;
-    border: 1px solid transparent;
-    border-radius: var(--ss-radius-sm, 0.25rem);
-    background: var(--ss-color-text-primary, #1a1a1a);
-    color: var(--ss-color-surface, #ffffff);
-    transition:
-        background 0.2s ease,
-        border 0.2s ease,
-        opacity 0.2s ease;
+    border: cfg(border-width) solid transparent;
+    border-radius: cfg(radius);
+    background: cfg(bg);
+    color: cfg(fg);
+    transition: cfg(transition);
 
     &:hover {
-        opacity: 0.9;
+        opacity: cfg(hover-opacity);
     }
 
     &:active {
-        opacity: 0.8;
+        opacity: cfg(active-opacity);
     }
 
     &:focus-visible {
-        outline: 2px solid var(--ss-color-primary, #0066cc);
-        outline-offset: 2px;
+        outline: cfg(focus-ring-width) solid cfg(focus-ring-color);
+        outline-offset: cfg(focus-ring-offset);
     }
 
     &:disabled,
     &[disabled] {
-        opacity: 0.5;
+        opacity: cfg(disabled-opacity);
         cursor: not-allowed;
         pointer-events: none;
+    }
+
+    // Inline icons follow the button's font-size instead of ballooning to the
+    // global icon-font size; 1em box keeps the glyph on the text baseline.
+    i,
+    [class^="i_"],
+    [class*=" i_"],
+    svg {
+        font-size: inherit;
+        line-height: 1;
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+        fill: currentColor;
     }
 }
 
@@ -53,10 +88,18 @@
 // Variants
 // ============================================================================
 
+/// Apply a named color variant from the config `variants` map.
+@mixin c-button-variant($name) {
+    background: vcolor($name, bg);
+    color: vcolor($name, fg);
+
+    @if vcolor($name, border) {
+        border-color: vcolor($name, border);
+    }
+}
+
 @mixin c-button-primary {
-    background: var(--ss-color-accent, #2563eb);
-    color: var(--ss-color-accent-foreground, #ffffff);
-    border-color: var(--ss-color-accent, #2563eb);
+    @include c-button-variant(primary);
 }
 
 // ----------------------------------------------------------------------------
@@ -64,69 +107,58 @@
 // ----------------------------------------------------------------------------
 
 @mixin c-button-success {
-    background: var(--ss-color-success, #16a34a);
-    color: #ffffff;
-    border-color: var(--ss-color-success, #16a34a);
+    @include c-button-variant(success);
 }
 
 @mixin c-button-warning {
-    background: var(--ss-color-warning, #f59e0b);
-    color: #ffffff;
-    border-color: var(--ss-color-warning, #f59e0b);
+    @include c-button-variant(warning);
 }
 
 @mixin c-button-danger {
-    background: var(--ss-color-error, #dc2626);
-    color: #ffffff;
-    border-color: var(--ss-color-error, #dc2626);
+    @include c-button-variant(danger);
 }
 
 @mixin c-button-info {
-    background: var(--ss-color-info, #0ea5e9);
-    color: #ffffff;
-    border-color: var(--ss-color-info, #0ea5e9);
+    @include c-button-variant(info);
 }
 
 @mixin c-button-secondary {
-    background: var(--ss-color-secondary, #555555);
-    color: #ffffff;
+    @include c-button-variant(secondary);
 }
 
 @mixin c-button-outline {
     background: transparent;
-    border-color: var(--ss-color-text-primary, #1a1a1a);
-    color: var(--ss-color-text-primary, #1a1a1a);
+    border-color: cfg(outline-color);
+    color: cfg(outline-color);
 
     &:hover {
-        background: rgba(0, 0, 0, 0.05);
+        background: cfg(hover-wash);
     }
 }
 
 @mixin c-button-ghost {
     background: transparent;
-    color: var(--ss-color-text-primary, #1a1a1a);
+    color: cfg(outline-color);
 
     &:hover {
-        background: rgba(0, 0, 0, 0.05);
+        background: cfg(hover-wash);
     }
 }
 
 @mixin c-button-solid {
-    background: var(--ss-color-text-primary, #1a1a1a);
-    color: var(--ss-color-surface, #ffffff);
+    @include c-button-variant(solid);
 }
 
 @mixin c-button-link {
     background: transparent;
-    color: var(--ss-color-link, #2563eb);
+    color: cfg(link-color);
     padding: 0;
     border: 0;
     text-decoration: underline;
 }
 
 @mixin c-button-accent {
-    background: var(--ss-color-accent, #2563eb);
-    color: var(--ss-color-accent-foreground, #ffffff);
+    @include c-button-variant(accent);
 }
 
 @mixin c-button-clear {
@@ -138,29 +170,29 @@
 // Sizes
 // ============================================================================
 
+@mixin c-button-size($name) {
+    padding: bsize($name, padding);
+    font-size: bsize($name, font-size);
+}
+
 @mixin c-button-size-xs {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
+    @include c-button-size(xs);
 }
 
 @mixin c-button-size-sm {
-    padding: 0.375rem 0.75rem;
-    font-size: 0.875rem;
+    @include c-button-size(sm);
 }
 
 @mixin c-button-size-md {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    @include c-button-size(md);
 }
 
 @mixin c-button-size-lg {
-    padding: 0.75rem 1.5rem;
-    font-size: 1.125rem;
+    @include c-button-size(lg);
 }
 
 @mixin c-button-size-xl {
-    padding: 1rem 2rem;
-    font-size: 1.25rem;
+    @include c-button-size(xl);
 }
 
 // ============================================================================
@@ -175,12 +207,12 @@
     border: 0;
     color: inherit;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: cfg(menu-padding);
     font: inherit;
-    font-size: 1.25rem;
+    font-size: cfg(menu-font-size);
 
     &:hover {
-        opacity: 0.75;
+        opacity: cfg(menu-hover-opacity);
     }
 }
 
@@ -189,11 +221,13 @@
 // ============================================================================
 
 @mixin c-button-rounded {
-    border-radius: var(--ss-radius-md, 0.5rem);
+    // Distinctly rounded — the base button is near-square, so this needs a
+    // visibly larger radius to read as a variant.
+    border-radius: cfg(rounded-radius);
 }
 
 @mixin c-button-pill {
-    border-radius: 9999px;
+    border-radius: cfg(pill-radius);
 }
 
 @mixin c-button-square {
@@ -202,7 +236,10 @@
 
 @mixin c-button-icon {
     aspect-ratio: 1 / 1;
-    padding: 0.5rem;
+    padding: cfg(icon-padding);
+    // Icon-only buttons: keep the box square regardless of glyph width.
+    width: cfg(icon-width);
+    justify-content: center;
 }
 
 // ============================================================================
@@ -215,7 +252,7 @@
 }
 
 @mixin c-button-disabled {
-    opacity: 0.5;
+    opacity: cfg(disabled-opacity);
     cursor: not-allowed;
     pointer-events: none;
 }
@@ -230,14 +267,15 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 1rem;
-        height: 1rem;
-        margin: -0.5rem 0 0 -0.5rem;
-        border: 2px solid currentColor;
+        width: cfg(loading-size);
+        height: cfg(loading-size);
+        margin: math.div(cfg(loading-size), -2) 0 0
+            math.div(cfg(loading-size), -2);
+        border: cfg(loading-border-width) solid currentColor;
         border-top-color: transparent;
         border-radius: 50%;
-        color: #ffffff;
-        animation: ss-c-button-spin 0.8s linear infinite;
+        color: cfg(loading-color);
+        animation: ss-c-button-spin cfg(loading-speed) linear infinite;
     }
 }
 

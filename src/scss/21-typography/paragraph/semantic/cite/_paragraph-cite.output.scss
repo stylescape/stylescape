@@ -1,14 +1,19 @@
 @use "../../../../01-core/prefix" as *;
 @use "./paragraph-cite.mixins" as cite;
 
+@use "./paragraph-cite.config" as config;
+
 @layer ss.typography {
-    // Native element
+    // Native element — inline italic, composes mid-sentence.
     cite {
         @include cite.ss-paragraph-cite();
     }
 
-    // Explicit class
+    // Explicit class — the old StyleScape standalone attribution line
+    // (uppercase block, small size).
     .#{$ss-prefix-typography}-paragraph--cite {
-        @include cite.ss-paragraph-cite();
+        @include cite.ss-paragraph-cite(
+            config.$ss-paragraph-cite-standalone-config
+        );
     }
 }

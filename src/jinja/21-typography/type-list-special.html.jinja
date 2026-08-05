@@ -209,4 +209,65 @@ Horizontal Rules in Lists
     </section>
 </section>
 
+
+{% set section_title = "Custom Markers" %}
+<section
+    class="ss-c-demo__subsection"
+    data-label="{{ section_title }}"
+    data-level="2"
+>
+    <h3>{{ section_title }}</h3>
+    {% set code_snippet %}
+    <ul style="list-style: none; padding-left: 0">
+        <li style="padding-left: 1.5em; text-indent: -1.5em">
+            <span style="color: var(--ss-color-accent)">■</span>
+            Accent square marker
+        </li>
+        <li style="padding-left: 1.5em; text-indent: -1.5em">
+            <span style="color: var(--ss-color-accent)">→</span>
+            Arrow marker for action items
+        </li>
+        <li style="padding-left: 1.5em; text-indent: -1.5em">
+            <span style="color: var(--ss-color-success)">✓</span>
+            Check marker for completed items
+        </li>
+        <li style="padding-left: 1.5em; text-indent: -1.5em">
+            <span style="color: var(--ss-color-error)">✕</span>
+            Cross marker for removed items
+        </li>
+    </ul>
+    <ol style="list-style: none; counter-reset: item; padding-left: 0">
+        <li
+            style="counter-increment: item; padding-left: 2em; text-indent: -2em"
+        >
+            <span
+                style="
+                    display: inline-block;
+                    width: 1.5em;
+                    font-weight: 700;
+                    color: var(--ss-color-accent);
+                "
+                >01</span
+            >
+            Numbered with leading-zero markers
+        </li>
+        <li
+            style="counter-increment: item; padding-left: 2em; text-indent: -2em"
+        >
+            <span
+                style="
+                    display: inline-block;
+                    width: 1.5em;
+                    font-weight: 700;
+                    color: var(--ss-color-accent);
+                "
+                >02</span
+            >
+            Editorial numbering in accent
+        </li>
+    </ol>
+    {% endset %} {% set language="HTML" %} {%- include
+    "includes/preview/ss-c-preview_code.html.jinja" %}
+</section>
+
 {%- endblock content %}

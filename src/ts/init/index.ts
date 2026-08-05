@@ -6,6 +6,8 @@
 // ============================================================================
 
 import { ActiveLinkHighlighter } from "../content/ActiveLinkHighlighter.js";
+import { CodeBlockFormatter } from "../content/CodeBlockFormatter.js";
+import { Countdown } from "../content/Countdown.js";
 import { TableOfContentsBuilder } from "../content/TableOfContentsBuilder.js";
 import { AsideHandler } from "../elements/AsideHandler.js";
 import { CollapsibleTableHandler } from "../elements/CollapsibleTableHandler.js";
@@ -175,7 +177,18 @@ if (typeof window !== "undefined") {
  * @deprecated Use data-ss attributes and auto-init instead
  */
 export function initializeStylescape(): void {
-    document.addEventListener("DOMContentLoaded", () => {
+    // If the document is already parsed when we're called (late module
+    // execution, dynamic import), DOMContentLoaded has fired and a bare
+    // addEventListener would never run — invoke the setup directly instead.
+    const onReady = (fn: () => void): void => {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    };
+
+    onReady(() => {
         // Initialize auto-init system
         init();
         observe();
@@ -195,6 +208,13 @@ export function initializeStylescape(): void {
 
         new ActiveLinkHighlighter();
         new PasswordToggleManager();
+
+        // Normalize the indentation of demo-page code snippets (the Jinja
+        // pipeline bakes template-source whitespace into the HTML).
+        CodeBlockFormatter.formatAll();
+
+        // Drive countdown components (data-countdown-to / -seconds).
+        Countdown.initAll();
         ThemeToggler.registerOnLoad("themeToggle");
 
         const tocBuilder = new TableOfContentsBuilder("main_content", "toc");
@@ -247,11 +267,17 @@ export function initializeStylescape(): void {
         }
     });
 
-    window.addEventListener("load", () => {
+    if (document.readyState === "complete") {
         requestAnimationFrame(() => {
             new GridManager();
         });
-    });
+    } else {
+        window.addEventListener("load", () => {
+            requestAnimationFrame(() => {
+                new GridManager();
+            });
+        });
+    }
 }
 
 // ============================================================================

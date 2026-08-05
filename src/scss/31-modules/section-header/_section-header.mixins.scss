@@ -1,0 +1,21 @@
+@use "sass:map";
+@use "./section-header.config" as config;
+@use "../../01-core/external" as *;
+
+/// Section heading row: a title on the left, an optional count on the
+/// right, over a bottom rule. Use to head a grid or list.
+@mixin ss-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    padding-bottom: map.get(config.$ss-section-header-config, padding-bottom);
+    margin-bottom: map.get(config.$ss-section-header-config, margin-bottom);
+    border-bottom: map.get(config.$ss-section-header-config, border);
+}
+
+@mixin ss-section-count {
+    font-family: var(--ss-font-family-mono, monospace);
+    font-size: map.get(config.$ss-section-header-config, count-size);
+    color: var(--ss-color-muted);
+}

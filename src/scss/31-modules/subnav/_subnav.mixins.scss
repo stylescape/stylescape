@@ -1,0 +1,15 @@
+@use "sass:map";
+@use "./subnav.config" as config;
+@use "../../01-core/external" as *;
+
+/// Secondary navigation strip, sitting beneath the primary navbar.
+@mixin ss-subnav {
+    display: flex;
+    align-items: center;
+    gap: map.get(config.$ss-subnav-config, gap);
+    padding: map.get(config.$ss-subnav-config, padding);
+    min-height: map.get(config.$ss-subnav-config, min-height);
+
+    background-color: var(--ss-color-surface-alt);
+    border-bottom: map.get(config.$ss-subnav-config, border);
+}

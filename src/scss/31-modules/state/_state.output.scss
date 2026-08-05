@@ -1,0 +1,29 @@
+@use "../../01-core/prefix" as *;
+@use "./state.mixins" as state;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-state {
+        @include state.ss-state;
+
+        &__icon { @include state.ss-state-icon; }
+        &__title { @include state.ss-state-title; }
+        &__message { @include state.ss-state-message; }
+        &__action { @include state.ss-state-action; }
+    }
+
+    .#{$ss-prefix-module}-state--error {
+        color: var(--ss-color-error);
+
+        .#{$ss-prefix-module}-state__title {
+            color: var(--ss-color-error);
+        }
+    }
+
+    .#{$ss-prefix-module}-state--empty {
+        color: var(--ss-color-muted);
+    }
+
+    .#{$ss-prefix-module}-state--inline {
+        @include state.ss-state-inline;
+    }
+}

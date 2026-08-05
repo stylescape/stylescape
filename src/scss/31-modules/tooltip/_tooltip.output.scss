@@ -31,4 +31,23 @@
         top: 50%;
         transform: translateY(-50%);
     }
+
+    // Legacy wrapper API: the class wraps the trigger and carries the tip
+    // text in a `tooltip-data` attribute (see mixins for the contract).
+    .#{$ss-prefix-module}-tooltip[tooltip-data] {
+        @include tooltip.ss-tooltip-wrapper;
+
+        &.#{$ss-prefix-module}-tooltip--right {
+            @include tooltip.ss-tooltip-wrapper-right;
+        }
+        &.#{$ss-prefix-module}-tooltip--left {
+            @include tooltip.ss-tooltip-wrapper-left;
+        }
+        &.#{$ss-prefix-module}-tooltip--top {
+            @include tooltip.ss-tooltip-wrapper-top;
+        }
+        &.#{$ss-prefix-module}-tooltip--bottom {
+            @include tooltip.ss-tooltip-wrapper-bottom;
+        }
+    }
 }

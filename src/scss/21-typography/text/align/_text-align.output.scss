@@ -2,8 +2,8 @@
 // Text align | Output
 // =============================================================================
 //
-// Utility-class output for the text align module.  Currently a placeholder until
-// the legacy `text_align--*` mixins are reorganised into a class API.
+// Text-alignment utility classes — new-format port of the old
+// `.text_align--*` family (dev `classes/soul_type/text/_text_align.scss`).
 //
 // =============================================================================
 
@@ -11,5 +11,22 @@
 @use "./text-align.mixins" as *;
 
 @layer ss.typography {
-    // (No utility selectors emitted yet.)
+    .#{$ss-prefix-typography}-text-align--left {
+        @include text_align--left;
+    }
+    .#{$ss-prefix-typography}-text-align--center {
+        @include text_align--center;
+    }
+    .#{$ss-prefix-typography}-text-align--right {
+        @include text_align--right;
+    }
+    .#{$ss-prefix-typography}-text-align--justify {
+        @include text_align--justify;
+    }
+    .#{$ss-prefix-typography}-text-align--justify--left {
+        @include text_align--justify--left;
+    }
+    .#{$ss-prefix-typography}-text-align--justify--right {
+        @include text_align--justify--right;
+    }
 }

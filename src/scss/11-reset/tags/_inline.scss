@@ -28,46 +28,51 @@
 // ============================================================================
 // Tags
 // ============================================================================
+//
+// Emitted inside `@layer ss.reset` so layered typography/components can
+// override these element-level defaults.
 
-/// Apply the bold character styles to <b> and <strong> tags.
-///
-/// Ensures that both <b> and <strong> elements use the defined bold styles
-/// from the design system.
-b,
-strong {
-    @include ss-character-bold;
-}
+@layer ss.reset {
+    /// Apply the bold character styles to <b> and <strong> tags.
+    ///
+    /// Ensures that both <b> and <strong> elements use the defined bold
+    /// styles from the design system.
+    b,
+    strong {
+        @include ss-character-bold;
+    }
 
-/// Styles for the `<abbr>` HTML element.
-///
-/// The abbreviation element is styled to be inline, and the title attribute
-/// is used to generate a tooltip on hover or focus.
-abbr {
-    @include ss-character-abbreviation;
-    display: inline;
-}
+    /// Styles for the `<abbr>` HTML element.
+    ///
+    /// The abbreviation element is styled to be inline, and the title
+    /// attribute is used to generate a tooltip on hover or focus.
+    abbr {
+        @include ss-character-abbreviation;
+        display: inline;
+    }
 
-/// Styles for `<abbr>` elements with a title attribute.
-///
-/// Adds a tooltip on hover and focus, and removes the default underline for
-/// better control over the decoration.
-abbr[title] {
-    position: relative;
-    border-bottom: none;
-    text-decoration: underline;
-    text-decoration: underline dotted;
-}
+    /// Styles for `<abbr>` elements with a title attribute.
+    ///
+    /// Adds a tooltip on hover and focus, and removes the default underline
+    /// for better control over the decoration.
+    abbr[title] {
+        position: relative;
+        border-bottom: none;
+        text-decoration: underline;
+        text-decoration: underline dotted;
+    }
 
-/// Applying the mixin to `<mark>` elements.
-///
-/// This ensures that all `<mark>` elements in the document are styled
-/// consistently using the mark_style mixin.
-mark {
-    @include ss-character-highlight;
-}
+    /// Applying the mixin to `<mark>` elements.
+    ///
+    /// This ensures that all `<mark>` elements in the document are styled
+    /// consistently using the mark_style mixin.
+    mark {
+        @include ss-character-highlight;
+    }
 
-/// Applying Inline Quote Styles with Custom Symbols to `<q>` elements.
-q {
-    @include ss-character-quote-inline;
-    @include ss-character-quote-symbols;
+    /// Applying Inline Quote Styles with Custom Symbols to `<q>` elements.
+    q {
+        @include ss-character-quote-inline;
+        @include ss-character-quote-symbols;
+    }
 }

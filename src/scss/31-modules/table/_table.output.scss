@@ -1,5 +1,6 @@
 @use "../../01-core/prefix" as *;
 @use "./table.mixins" as table;
+@use "../../01-core/external" as *;
 
 @layer ss.components {
     .#{$ss-prefix-module}-table {
@@ -39,9 +40,9 @@
 
             tbody tr {
                 display: block;
-                margin-bottom: var(--ss-space-md, 1rem);
-                border: 1px solid var(--ss-color-line-secondary);
-                border-radius: var(--ss-radius-sm, 0.25rem);
+                margin-bottom: var(--ss-space-md, q(16));
+                border: q(1) solid var(--ss-color-line-secondary);
+                border-radius: var(--ss-radius-sm, q(4));
                 background-color: var(--ss-color-fill, #fff);
 
                 &:last-child {
@@ -51,9 +52,9 @@
 
             tbody td {
                 display: block;
-                padding: var(--ss-space-sm, 0.75rem) var(--ss-space-md, 1rem);
+                padding: var(--ss-space-sm, q(12)) var(--ss-space-md, q(16));
                 text-align: right;
-                border-bottom: 1px solid var(--ss-color-line-secondary);
+                border-bottom: q(1) solid var(--ss-color-line-secondary);
 
                 &:last-child {
                     border-bottom: none;

@@ -27,17 +27,97 @@ title %}{{ title }}{%- endblock %} {%- block content %}
 
         {% set fonts = [ { label: ".ss-t-char-link", class:
         "ss-t-char-link" }, { label:
-        ".ss-t-char-link", class: "ss-t-char-link" }, {
-        label: ".ss-t-char-link", class:
-        "ss-t-char-link" }, { label:
-        ".ss-t-char-link-underlined", class: "ss-t-char-link-underlined" }, {
-        label: ".ss-t-char-link-underlined-alt", class:
-        "ss-t-char-link-underlined-alt" } ] %} {% for font in fonts %} {% set
+        ".ss-t-char-link-underlined", class: "ss-t-char-link-underlined" } ] %}
+        {% for font in fonts %} {% set
         label = font.label %} {% set class = font.class %} {#
         <div class="ss-c-demo__subsection">
             #} {%- include "includes/preview/ss-c-preview_font.html.jinja" %} {#
         </div>
         #} {% endfor %}
+    </section>
+
+    {# Link usage in prose #} {% set section_title = "Links in Prose" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <p>
+            A paragraph with an <a href="#">inline link</a>, an
+            <a href="#" class="ss-t-char-link-underlined">underlined link</a>,
+            and an
+            <a href="https://scape.style" target="_blank" rel="noopener">
+                external link</a
+            >. Hover them to see the state colors.
+        </p>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {# Link state colors #} {% set section_title = "Link State Colors" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+            <div style="width: 150px">
+                <div
+                    style="
+                        height: 40px;
+                        border: 1px solid var(--ss-color-border-muted);
+                        background: var(--ss-color-link);
+                    "
+                ></div>
+                <small>link</small>
+            </div>
+            <div style="width: 150px">
+                <div
+                    style="
+                        height: 40px;
+                        border: 1px solid var(--ss-color-border-muted);
+                        background: var(--ss-color-state-hover);
+                    "
+                ></div>
+                <small>hover</small>
+            </div>
+            <div style="width: 150px">
+                <div
+                    style="
+                        height: 40px;
+                        border: 1px solid var(--ss-color-border-muted);
+                        background: var(--ss-color-state-active);
+                    "
+                ></div>
+                <small>active</small>
+            </div>
+            <div style="width: 150px">
+                <div
+                    style="
+                        height: 40px;
+                        border: 1px solid var(--ss-color-border-muted);
+                        background: var(--ss-color-link-visited);
+                    "
+                ></div>
+                <small>visited</small>
+            </div>
+            <div style="width: 150px">
+                <div
+                    style="
+                        height: 40px;
+                        border: 1px solid var(--ss-color-border-muted);
+                        background: var(--ss-color-focus);
+                    "
+                ></div>
+                <small>focus</small>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 </section>
 
