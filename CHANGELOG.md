@@ -103,14 +103,24 @@ breaking for every theme and site that consumes the core.**
   and surfaced the `--small`/`--size-sm` modifier drift between semiosys
   templates and stylescape `31-modules/`.
 
+### Fixed
+
+- `npm install` resolves again on a clean checkout. `eslint-plugin-import@2.32.0`
+  declares no ESLint 10 peer range, which broke the bare `npm install` the
+  publish workflow runs after deleting the lockfile. An `overrides` entry now
+  maps the plugin's `eslint` dependency to the root spec (`$eslint`), so no
+  `--legacy-peer-deps` flag is needed anywhere. Revert the override once
+  upstream ships ESLint 10 support.
+
 ### Known issues
 
 - `npm run lint` does not run: `eslint.config.js` imports
   `eslint-config-prettier` and `globals`, and the `format` script needs
   `prettier`, but none are declared in `devDependencies`. Pre-existing on
   `dev`, not introduced by this release.
-- `eslint-plugin-import@2.32.0` declares no ESLint 10 peer range, so
-  installs need `--legacy-peer-deps` until upstream ships support.
+- Re-rendering `src/html/` mints fresh random `code-snippet-*` IDs on every
+  build, so a no-op build still dirties ~141 files. Discard that churn rather
+  than committing it.
 
 ---
 
