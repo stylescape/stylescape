@@ -1,0 +1,722 @@
+////
+///
+/// Legacy Class Compatibility Shim
+/// ===========================================================================
+///
+/// Aliases the v0.2 / `bup/` class names so existing demo HTML and any
+/// downstream consumers keep working with the new architecture.
+/// Every selector here maps onto modern utilities (no new behavior).
+///
+/// All rules live in `@layer ss.ss-c-utilities` so they participate in the
+/// normal cascade and can be overridden by `33-overrides`.
+///
+/// @group Utilities.ss-c-Legacy
+/// @author Scape Press
+/// @link https://scape.ss-c-style
+/// @since 0.4.0 compat layer
+/// @access public
+///
+////
+
+@use "sass:list";
+@use "../01-core/external" as *;
+@use "../23-layout/breakpoints" as *;
+
+// ============================================================================
+// Scales
+// ============================================================================
+
+$_legacy-space-keys: (xs, sm, md, lg, xl);
+$_legacy-space-vals: (
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 20,
+    xl: 32,
+);
+$_legacy-space-numeric: (0, 1, 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64);
+$_legacy-grid-max: 24;
+
+@layer ss.ss-c-utilities {
+    // ========================================================================
+    // Legacy spacing demo utilities (.margin--*/.padding--*)
+    // Referenced by the object-margin / object-padding demo pages; generated
+    // from the spacing scale (xs 4 / sm 8 / md 16 / lg 24 / xl 40).
+    // ========================================================================
+
+    $legacy-space: (xs: q(4), sm: q(8), md: q(16), lg: q(24), xl: q(40));
+    $legacy-sides: (top: top, right: right, bottom: bottom, left: left);
+
+    @each $k, $v in $legacy-space {
+        .margin--#{$k}  { margin: $v; }
+        .padding--#{$k} { padding: $v; }
+        @each $side, $prop in $legacy-sides {
+            .margin--#{$k}_#{$side}  { margin-#{$prop}: $v; }
+            .padding--#{$k}_#{$side} { padding-#{$prop}: $v; }
+        }
+        .margin--#{$k}_x  { margin-inline: $v; }
+        .margin--#{$k}_y  { margin-block: $v; }
+        .padding--#{$k}_x { padding-inline: $v; }
+        .padding--#{$k}_y { padding-block: $v; }
+    }
+
+    // ========================================================================
+    // Display
+    // ========================================================================
+
+    .ss-c-display_none {
+        display: none !important;
+    }
+    .ss-c-display_block {
+        display: block;
+    }
+    .ss-c-display_inline {
+        display: inline;
+    }
+    .ss-c-display_inline-block {
+        display: inline-block;
+    }
+    .ss-c-display_flex {
+        display: flex;
+    }
+    .ss-c-display_grid {
+        display: grid;
+    }
+
+    // ========================================================================
+    // Flex
+    // ========================================================================
+
+    .ss-c-flex {
+        display: flex;
+    }
+    // Direction modifiers are self-sufficient (`display: flex` included):
+    // demo markup uses them without the base `.ss-c-flex` class.
+    .ss-c-flex--col {
+        display: flex;
+        flex-direction: column;
+    }
+    .ss-c-flex--col--reverse {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .ss-c-flex--row {
+        display: flex;
+        flex-direction: row;
+    }
+    .ss-c-flex--row--reverse {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .ss-c-flex--wrap {
+        flex-wrap: wrap;
+    }
+    .ss-c-flex--wrap--reverse {
+        flex-wrap: wrap-reverse;
+    }
+    .ss-c-flex--keep {
+        flex-shrink: 0;
+    }
+    .ss-c-flex--fill {
+        flex: 1 1 auto;
+    }
+
+    // ========================================================================
+    // Align Self
+    // ========================================================================
+
+    .ss-c-align_self--auto {
+        align-self: auto;
+    }
+    .ss-c-align_self--normal {
+        align-self: normal;
+    }
+    .ss-c-align_self--center {
+        align-self: center;
+    }
+    .ss-c-align_self--start {
+        align-self: start;
+    }
+    .ss-c-align_self--self_start {
+        align-self: self-start;
+    }
+    .ss-c-align_self--flex_start {
+        align-self: flex-start;
+    }
+    .ss-c-align_self--end {
+        align-self: end;
+    }
+    .ss-c-align_self--self_end {
+        align-self: self-end;
+    }
+    .ss-c-align_self--flex_end {
+        align-self: flex-end;
+    }
+    .ss-c-align_self--stretch {
+        align-self: stretch;
+    }
+    .ss-c-align_self--baseline {
+        align-self: baseline;
+    }
+
+    // ========================================================================
+    // Align / Justify aliases
+    // ========================================================================
+
+    .ss-c-align-items--center,
+    .ss-c-align--center,
+    .ss-c-align-center {
+        align-items: center;
+    }
+    .ss-c-align-left {
+        text-align: left;
+    }
+    .ss-c-align-right {
+        text-align: right;
+    }
+    .ss-c-justify--center,
+    .ss-c-justify-content--center {
+        justify-content: center;
+    }
+
+    // ========================================================================
+    // Gap (1..12 → baseline(N))
+    // ========================================================================
+
+    @for $i from 1 through 12 {
+        $n: if($i < 10, "0#{$i}", "#{$i}");
+        .ss-c-gap--#{$n} {
+            gap: baseline($i);
+        }
+        .ss-c-gap--row--#{$n} {
+            row-gap: baseline($i);
+        }
+        .ss-c-gap--col--#{$n} {
+            column-gap: baseline($i);
+        }
+    }
+
+    // ========================================================================
+    // Grid frames (1..24)
+    // ========================================================================
+
+    @for $i from 1 through $_legacy-grid-max {
+        // Container with gap
+        .ss-c-grid--#{$i},
+        .ss-c-grid__frame--#{$i} {
+            display: grid;
+            grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+            gap: baseline(4);
+        }
+        // Container without gap
+        .ss-c-grid__frame--clean--#{$i} {
+            display: grid;
+            grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+        }
+        // Inline container
+        .ss-c-grid__frame--inline--#{$i} {
+            display: inline-grid;
+            grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+            gap: baseline(4);
+        }
+        // Spans
+        .ss-c-grid--span--col--#{$i} {
+            grid-column: span #{$i} / span #{$i};
+        }
+        .ss-c-grid--span--row--#{$i} {
+            grid-row: span #{$i} / span #{$i};
+        }
+        // Sizes (same as grid template repeat)
+        .ss-c-grid--size--col--#{$i} {
+            grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+        }
+        .ss-c-grid--size--row--#{$i} {
+            grid-template-rows: repeat(#{$i}, minmax(0, 1fr));
+        }
+    }
+    .ss-c-grid--base {
+        display: grid;
+    }
+    .ss-c-grid--base--inline {
+        display: inline-grid;
+    }
+    .ss-c-grid--size--row--auto {
+        grid-template-rows: auto;
+    }
+    .ss-c-grid__frame--flex {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: baseline(4);
+        grid-auto-rows: minmax(baseline(2.5), auto);
+        @media (max-width: q(640)) {
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
+    }
+
+    // Responsive span variants
+    @include breakpoint-up(sm) {
+        @for $i from 1 through $_legacy-grid-max {
+            .ss-c-grid--span--col--sm--#{$i} {
+                grid-column: span #{$i} / span #{$i};
+            }
+            .ss-c-grid--span--row--sm--#{$i} {
+                grid-row: span #{$i} / span #{$i};
+            }
+        }
+    }
+    @include breakpoint-up(md) {
+        @for $i from 1 through $_legacy-grid-max {
+            .ss-c-grid--span--col--md--#{$i} {
+                grid-column: span #{$i} / span #{$i};
+            }
+            .ss-c-grid--span--row--md--#{$i} {
+                grid-row: span #{$i} / span #{$i};
+            }
+        }
+    }
+    @include breakpoint-up(lg) {
+        @for $i from 1 through $_legacy-grid-max {
+            .ss-c-grid--span--col--lg--#{$i} {
+                grid-column: span #{$i} / span #{$i};
+            }
+            .ss-c-grid--span--row--lg--#{$i} {
+                grid-row: span #{$i} / span #{$i};
+            }
+        }
+    }
+
+    // ========================================================================
+    // Grid placeholder (demo visual)
+    // ========================================================================
+
+    .ss-c-grid--placeholder,
+    .ss-c-demo-grid-placeholder {
+        background-color: rgba(0, 0, 0, 0.03);
+        padding: q(2);
+
+        > * {
+            background-color: #d9e4ed;
+            border: q(1) solid #1a3a5c;
+            text-align: center;
+            font-size: q(12);
+            padding: q(2) q(1);
+            min-height: q(24);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    // ========================================================================
+    // Margin / Padding — name-based (xs, sm, md, lg, xl)
+    // ========================================================================
+
+    @each $key in $_legacy-space-keys {
+        $v: q(map-get($_legacy-space-vals, $key));
+
+        .ss-c-margin--#{$key} {
+            margin: $v;
+        }
+        .ss-c-margin--#{$key}_top {
+            margin-top: $v;
+        }
+        .ss-c-margin--#{$key}_right {
+            margin-right: $v;
+        }
+        .ss-c-margin--#{$key}_bottom {
+            margin-bottom: $v;
+        }
+        .ss-c-margin--#{$key}_left {
+            margin-left: $v;
+        }
+        .ss-c-margin--#{$key}_vertical {
+            margin-top: $v;
+            margin-bottom: $v;
+        }
+        .ss-c-margin--#{$key}_horizontal {
+            margin-left: $v;
+            margin-right: $v;
+        }
+
+        .ss-c-padding--#{$key} {
+            padding: $v;
+        }
+        .ss-c-padding--#{$key}_top {
+            padding-top: $v;
+        }
+        .ss-c-padding--#{$key}_right {
+            padding-right: $v;
+        }
+        .ss-c-padding--#{$key}_bottom {
+            padding-bottom: $v;
+        }
+        .ss-c-padding--#{$key}_left {
+            padding-left: $v;
+        }
+        .ss-c-padding--#{$key}_vertical {
+            padding-top: $v;
+            padding-bottom: $v;
+        }
+        .ss-c-padding--#{$key}_horizontal {
+            padding-left: $v;
+            padding-right: $v;
+        }
+    }
+
+    // ========================================================================
+    // Margin / Padding — numeric (common steps)
+    // ========================================================================
+
+    @each $i in $_legacy-space-numeric {
+        $v: q($i);
+
+        .ss-c-margin--#{$i} {
+            margin: $v;
+        }
+        .ss-c-margin--#{$i}_top {
+            margin-top: $v;
+        }
+        .ss-c-margin--#{$i}_right {
+            margin-right: $v;
+        }
+        .ss-c-margin--#{$i}_bottom {
+            margin-bottom: $v;
+        }
+        .ss-c-margin--#{$i}_left {
+            margin-left: $v;
+        }
+        .ss-c-margin--#{$i}_vertical {
+            margin-top: $v;
+            margin-bottom: $v;
+        }
+        .ss-c-margin--#{$i}_horizontal {
+            margin-left: $v;
+            margin-right: $v;
+        }
+
+        .ss-c-padding--#{$i} {
+            padding: $v;
+        }
+        .ss-c-padding--#{$i}_top {
+            padding-top: $v;
+        }
+        .ss-c-padding--#{$i}_right {
+            padding-right: $v;
+        }
+        .ss-c-padding--#{$i}_bottom {
+            padding-bottom: $v;
+        }
+        .ss-c-padding--#{$i}_left {
+            padding-left: $v;
+        }
+        .ss-c-padding--#{$i}_vertical {
+            padding-top: $v;
+            padding-bottom: $v;
+        }
+        .ss-c-padding--#{$i}_horizontal {
+            padding-left: $v;
+            padding-right: $v;
+        }
+    }
+}
+
+// ============================================================================
+// Token Maps (for the legacy `object--color/fill` families)
+// ============================================================================
+
+$_legacy-color-map: (
+    accent_primary:    var(--ss-color-accent),
+    accent_secondary:  var(--ss-color-accent-highlight),
+    accent_tertiary:   var(--ss-color-accent-tertiary),
+    fill_primary:      var(--ss-color-fill),
+    fill_secondary:    var(--ss-color-surface-alt),
+    fill_tertiary:     var(--ss-color-surface-muted),
+    line_primary:      var(--ss-color-line-primary),
+    line_secondary:    var(--ss-color-line-secondary),
+    line_tertiary:     var(--ss-color-border-subtle),
+    text_primary:      var(--ss-color-text-primary),
+    text_secondary:    var(--ss-color-text-muted),
+    text_tertiary:     var(--ss-color-muted),
+    log_alert:         var(--ss-color-warning),
+    log_audit:         var(--ss-color-info),
+    log_critical:      var(--ss-color-error),
+    log_debug:         var(--ss-color-muted),
+    log_emergency:     var(--ss-color-error),
+    log_error:         var(--ss-color-error),
+    log_info:          var(--ss-color-info),
+    log_notice:        var(--ss-color-info),
+    log_security:      var(--ss-color-warning),
+    log_success:       var(--ss-color-success),
+    log_trace:         var(--ss-color-muted),
+    log_warning:       var(--ss-color-warning),
+    state_active:      var(--ss-color-state-active),
+    state_checked:     var(--ss-color-success),
+    state_current:     var(--ss-color-accent),
+    state_disabled:    var(--ss-color-muted),
+    state_enabled:     var(--ss-color-text-primary),
+    state_focus:       var(--ss-color-focus),
+    state_hover:       var(--ss-color-state-hover),
+    state_invalid:     var(--ss-color-error),
+    state_link:        var(--ss-color-link),
+    state_muted:       var(--ss-color-muted),
+    state_visited:     var(--ss-color-link-visited),
+);
+
+@layer ss.ss-c-utilities {
+
+    // ========================================================================
+    // object--color--{key} / object--fill--{key}
+    // ========================================================================
+
+    @each $key, $value in $_legacy-color-map {
+        .ss-c-object--color--#{$key} { color: #{$value}; }
+        .ss-c-object--fill--#{$key}  { background-color: #{$value}; }
+    }
+
+    // ========================================================================
+    // object--corner / rounded--*
+    // ========================================================================
+
+    .ss-c-object--corner--0,
+    .ss-c-object--corner--squared,
+    .ss-c-rounded--00          { border-radius: 0; }
+    .ss-c-object--corner--50,
+    .ss-c-rounded--01          { border-radius: var(--ss-radius-sm, q(4)); }
+    .ss-c-rounded--02          { border-radius: var(--ss-radius-md, q(8)); }
+    .ss-c-object--corner--rounded,
+    .ss-c-rounded--03          { border-radius: var(--ss-radius-lg, q(12)); }
+    .ss-c-object--corner--100,
+    .ss-c-object--corner--pill,
+    .ss-c-rounded--full,
+    .ss-c-rounded--circle      { border-radius: q(9999); }
+    .ss-c-object--corner--top,
+    .ss-c-rounded--top         {
+        border-top-left-radius: var(--ss-radius-md, q(8));
+        border-top-right-radius: var(--ss-radius-md, q(8));
+    }
+    .ss-c-object--corner--bottom,
+    .ss-c-rounded--bottom      {
+        border-bottom-left-radius: var(--ss-radius-md, q(8));
+        border-bottom-right-radius: var(--ss-radius-md, q(8));
+    }
+    .ss-c-object--corner--start,
+    .ss-c-rounded--left        {
+        border-top-left-radius: var(--ss-radius-md, q(8));
+        border-bottom-left-radius: var(--ss-radius-md, q(8));
+    }
+    .ss-c-object--corner--end,
+    .ss-c-rounded--right       {
+        border-top-right-radius: var(--ss-radius-md, q(8));
+        border-bottom-right-radius: var(--ss-radius-md, q(8));
+    }
+    .ss-c-object--corner--top-start    { border-top-left-radius: var(--ss-radius-md, q(8)); }
+    .ss-c-object--corner--top-end      { border-top-right-radius: var(--ss-radius-md, q(8)); }
+    .ss-c-object--corner--bottom-start { border-bottom-left-radius: var(--ss-radius-md, q(8)); }
+    .ss-c-object--corner--bottom-end   { border-bottom-right-radius: var(--ss-radius-md, q(8)); }
+
+    // ========================================================================
+    // object--height--{size}
+    // ========================================================================
+
+    $_legacy-height-map: (xs: q(16), sm: q(24), md: q(32), lg: q(48), xl: q(64));
+    @each $key, $value in $_legacy-height-map {
+        .ss-c-object--height--#{$key}              { height: $value; }
+        .ss-c-object--height--fixed--#{$key}       { height: $value; min-height: $value; max-height: $value; }
+    }
+
+    // ========================================================================
+    // box--size_NN (00..12 → q(N*8))
+    // ========================================================================
+
+    @for $i from 0 through 12 {
+        $n: if($i < 10, "0#{$i}", "#{$i}");
+        .ss-c-box--size_#{$n} {
+            width: q($i * 8);
+            height: q($i * 8);
+        }
+    }
+
+    // ========================================================================
+    // Width utilities
+    // ========================================================================
+
+    .ss-c-w--25      { width: 25%; }
+    .ss-c-w--50      { width: 50%; }
+    .ss-c-w--75      { width: 75%; }
+    .ss-c-w--100     { width: 100%; }
+    .ss-c-w--50vw    { width: 50vw; }
+    .ss-c-w--100vw   { width: 100vw; }
+    .ss-c-w--auto    { width: auto; }
+    .ss-c-w--fit     { width: fit-content; }
+    .ss-c-w--max     { width: max-content; }
+    .ss-c-w--min     { width: min-content; }
+    .ss-c-w--64      { width: q(64); }
+    .ss-c-w--128     { width: q(128); }
+    .ss-c-w--256     { width: q(256); }
+    .ss-c-w--512     { width: q(512); }
+    .ss-c-h--64      { height: q(64); }
+
+    // ========================================================================
+    // Aspect ratios
+    // ========================================================================
+
+    .ss-c-aspect_ratio--16x9 { aspect-ratio: 16 / 9; }
+    .ss-c-aspect_ratio--3x2  { aspect-ratio: 3 / 2; }
+
+    // ========================================================================
+    // Border utilities
+    // ========================================================================
+
+    .ss-c-border--none        { border: none; }
+    .ss-c-border--hidden      { border-style: hidden; }
+    .ss-c-border--transparent { border-color: transparent; }
+    .ss-c-border--solid       { border-style: solid; border-width: q(1); }
+    .ss-c-border--dashed      { border-style: dashed; border-width: q(1); }
+    .ss-c-border--dotted      { border-style: dotted; border-width: q(1); }
+    .ss-c-border--double      { border-style: double; border-width: q(3); }
+    .ss-c-border--groove      { border-style: groove; border-width: q(2); }
+    .ss-c-border--ridge       { border-style: ridge; border-width: q(2); }
+    .ss-c-border--inset       { border-style: inset; border-width: q(2); }
+    .ss-c-border--outset      { border-style: outset; border-width: q(2); }
+    .ss-c-border--top         { border-top: q(1) solid var(--ss-color-border); }
+    .ss-c-border--right       { border-right: q(1) solid var(--ss-color-border); }
+    .ss-c-border--bottom      { border-bottom: q(1) solid var(--ss-color-border); }
+    .ss-c-border--left        { border-left: q(1) solid var(--ss-color-border); }
+    .ss-c-border--x           {
+        border-left: q(1) solid var(--ss-color-border);
+        border-right: q(1) solid var(--ss-color-border);
+    }
+    .ss-c-border--y           {
+        border-top: q(1) solid var(--ss-color-border);
+        border-bottom: q(1) solid var(--ss-color-border);
+    }
+    .ss-c-border--01          { border: q(1) solid var(--ss-color-border); }
+    .ss-c-border--w--01       { border-width: q(1); border-style: solid; }
+    .ss-c-border--w--02       { border-width: q(2); border-style: solid; }
+    .ss-c-border--w--03       { border-width: q(3); border-style: solid; }
+    .ss-c-border--w--04       { border-width: q(4); border-style: solid; }
+    .ss-c-border--primary     { border: q(1) solid var(--ss-color-primary); }
+    .ss-c-border--secondary   { border: q(1) solid var(--ss-color-secondary); }
+    .ss-c-border--success     { border: q(1) solid var(--ss-color-success); }
+    .ss-c-border--warning     { border: q(1) solid var(--ss-color-warning); }
+    .ss-c-border--danger      { border: q(1) solid var(--ss-color-error); }
+
+    // ========================================================================
+    // Shadow utilities
+    // ========================================================================
+
+    .ss-c-shadow--none     { box-shadow: none; }
+    .ss-c-shadow--sm       { box-shadow: var(--ss-shadow-sm, 0 q(1) q(2) rgba(0,0,0,.06)); }
+    .ss-c-shadow--md       { box-shadow: var(--ss-shadow-md, 0 q(2) q(6) rgba(0,0,0,.08)); }
+    .ss-c-shadow--lg       { box-shadow: var(--ss-shadow-lg, 0 q(8) q(16) rgba(0,0,0,.12)); }
+    .ss-c-shadow--xl       { box-shadow: var(--ss-shadow-xl, 0 q(16) q(32) rgba(0,0,0,.16)); }
+    .ss-c-shadow--inset    { box-shadow: inset 0 0 0 q(1) rgba(0,0,0,.08); }
+    .ss-c-shadow--inset-sm { box-shadow: inset 0 q(1) q(2) rgba(0,0,0,.06); }
+    .ss-c-shadow--inset-lg { box-shadow: inset 0 q(4) q(8) rgba(0,0,0,.12); }
+    .ss-c-shadow--top      { box-shadow: 0 q(-4) q(8) rgba(0,0,0,.08); }
+    .ss-c-shadow--bottom   { box-shadow: 0  q(4) q(8) rgba(0,0,0,.08); }
+    .ss-c-shadow--left     { box-shadow: q(-4) 0 q(8) rgba(0,0,0,.08); }
+    .ss-c-shadow--right    { box-shadow:  q(4) 0 q(8) rgba(0,0,0,.08); }
+    .ss-c-shadow--primary  { box-shadow: 0 q(4) q(14) 0 rgba(0,0,0,.20); }
+    .ss-c-shadow--success  { box-shadow: 0 q(4) q(14) 0 rgba(22,163,74,.30); }
+    .ss-c-shadow--warning  { box-shadow: 0 q(4) q(14) 0 rgba(217,119,6,.30); }
+    .ss-c-shadow--danger   { box-shadow: 0 q(4) q(14) 0 rgba(220,38,38,.30); }
+
+    // ========================================================================
+    // Elevation (alias of shadow scale)
+    // ========================================================================
+
+    .ss-c-elevation--01 { box-shadow: var(--ss-shadow-xs, 0 q(1) q(1) rgba(0,0,0,.04)); }
+    .ss-c-elevation--02 { box-shadow: var(--ss-shadow-sm, 0 q(1) q(2) rgba(0,0,0,.06)); }
+    .ss-c-elevation--03 { box-shadow: var(--ss-shadow-md, 0 q(2) q(6) rgba(0,0,0,.08)); }
+    .ss-c-elevation--04 { box-shadow: var(--ss-shadow-lg, 0 q(8) q(16) rgba(0,0,0,.12)); }
+    .ss-c-elevation--05 { box-shadow: var(--ss-shadow-xl, 0 q(16) q(32) rgba(0,0,0,.16)); }
+
+    // ========================================================================
+    // Background colors
+    // ========================================================================
+
+    .ss-c-bg--primary    { background-color: var(--ss-color-primary); }
+    .ss-c-bg--accent_01  { background-color: var(--ss-color-accent); }
+    .ss-c-bg--fill_01    { background-color: var(--ss-color-surface); }
+    .ss-c-bg--fill_02    { background-color: var(--ss-color-surface-alt); }
+
+    // ========================================================================
+    // Z-index named layers (legacy)
+    // ========================================================================
+
+    .ss-c-z-canvas    { z-index: 0; }
+    .ss-c-z-content   { z-index: 1; }
+    .ss-c-z-guides    { z-index: 5; }
+    .ss-c-z-interface { z-index: var(--ss-z-sticky, 1020); }
+    .ss-c-z-modal     { z-index: var(--ss-z-modal, 1050); }
+
+    .ss-c-layer-box      { position: relative; z-index: 1; }
+    .ss-c-layer-controls { position: relative; z-index: 2; }
+    .ss-c-layer-demo     { position: relative; z-index: 0; }
+
+    // ========================================================================
+    // Position-named anchor helpers (used by demo widgets)
+    // ========================================================================
+
+    .ss-c-top-left      { position: absolute; top: 0; left: 0; }
+    .ss-c-top-center    { position: absolute; top: 0; left: 50%; transform: translateX(-50%); }
+    .ss-c-top-right     { position: absolute; top: 0; right: 0; }
+    .ss-c-bottom-left   { position: absolute; bottom: 0; left: 0; }
+    .ss-c-bottom-center { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); }
+    .ss-c-bottom-right  { position: absolute; bottom: 0; right: 0; }
+    .ss-c-center        {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    // ========================================================================
+    // Dim / arrow / hr / state classes
+    // ========================================================================
+
+    .ss-c-dim--top    { box-shadow: inset 0  q(8) q(12) q(-8) rgba(0,0,0,.18); }
+    .ss-c-dim--right  { box-shadow: inset q(-8) 0 q(12) q(-8) rgba(0,0,0,.18); }
+    .ss-c-dim--bottom { box-shadow: inset 0 q(-8) q(12) q(-8) rgba(0,0,0,.18); }
+    .ss-c-dim--left   { box-shadow: inset q(8)  0 q(12) q(-8) rgba(0,0,0,.18); }
+
+    .ss-c-arrow--left  { width: 0; height: 0; border-top: q(6) solid transparent; border-bottom: q(6) solid transparent; border-right: q(8) solid currentColor; display: inline-block; }
+    .ss-c-arrow--right { width: 0; height: 0; border-top: q(6) solid transparent; border-bottom: q(6) solid transparent; border-left:  q(8) solid currentColor; display: inline-block; }
+
+    .ss-c-hr--base   { border: 0; border-top: q(1) solid var(--ss-color-border); margin: q(16) 0; }
+    .ss-c-hr--thick  { border: 0; border-top: q(3) solid var(--ss-color-border); margin: q(16) 0; }
+    .ss-c-hr--dashed { border: 0; border-top: q(1) dashed var(--ss-color-border); margin: q(16) 0; }
+    .ss-c-hr--dotted { border: 0; border-top: q(1) dotted var(--ss-color-border); margin: q(16) 0; }
+    .ss-c-hr--double { border: 0; border-top: q(3) double var(--ss-color-border); margin: q(16) 0; }
+    .ss-c-hr--faded  {
+        border: 0;
+        height: q(1);
+        background: linear-gradient(to right, transparent, var(--ss-color-border), transparent);
+        margin: q(16) 0;
+    }
+
+    // ========================================================================
+    // State classes
+    // ========================================================================
+
+    .is-loading  { opacity: 0.6; pointer-events: none; cursor: progress; }
+    .is-success  { color: var(--ss-color-success); border-color: var(--ss-color-success); }
+    .is-warning  { color: var(--ss-color-warning); border-color: var(--ss-color-warning); }
+    .is-invalid  { color: var(--ss-color-error);   border-color: var(--ss-color-error); }
+    .is-valid    { color: var(--ss-color-success); border-color: var(--ss-color-success); }
+    .is-current  { font-weight: 600; color: var(--ss-color-accent); }
+    .is-expanded { /* ARIA hook; component-specific styles handle */ }
+    .is-open     { /* ARIA hook */ }
+    .is-copied   { color: var(--ss-color-success); }
+
+    // ========================================================================
+    // Theme markers
+    // ========================================================================
+
+    .ss-c-accent     { color: var(--ss-color-accent); }
+    .active     { color: var(--ss-color-accent); font-weight: 600; }
+    .ss-c-icon-font  { font-family: var(--ss-font-icons, system-ui), sans-serif; line-height: 1; }
+    .ss-c-animate_fade { transition: opacity 200ms ease-out; }
+    .ss-c-app__view  { display: block; width: 100%; }
+}

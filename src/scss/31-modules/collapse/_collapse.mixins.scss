@@ -1,0 +1,40 @@
+// =============================================================================
+// 31-modules / collapse / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./collapse.config" as config;
+
+@mixin ss-collapse {
+    &:not(.is-open):not(.show) {
+        display: none;
+    }
+}
+
+@mixin ss-collapsing {
+    height: 0;
+    overflow: hidden;
+    transition: height #{map.get(config.$collapse-config, "transition")};
+}
+
+@mixin ss-collapse-horizontal {
+    width: 0;
+    height: auto;
+    overflow: hidden;
+    transition: width #{map.get(config.$collapse-config, "transition")};
+
+    &.is-open,
+    &.show {
+        width: auto;
+    }
+}
+
+@mixin ss-collapse-fade {
+    opacity: 0;
+    transition: opacity #{map.get(config.$collapse-config, "transition")};
+
+    &.is-open,
+    &.show {
+        opacity: 1;
+    }
+}

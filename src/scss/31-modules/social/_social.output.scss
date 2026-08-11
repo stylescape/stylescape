@@ -1,0 +1,52 @@
+// =============================================================================
+// 31-modules / social / output
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./social.config" as config;
+@use "./social.mixins" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-social {
+        @include ss-social;
+
+        &__link {
+            @include ss-social-link;
+
+            &--facebook:hover {
+                background-color: #1877f2;
+                color: map.get(config.$social-config, "color-hover");
+            }
+            &--twitter:hover,
+            &--x:hover {
+                background-color: #000000;
+                color: map.get(config.$social-config, "color-hover");
+            }
+            &--instagram:hover {
+                background-color: #e4405f;
+                color: map.get(config.$social-config, "color-hover");
+            }
+            &--linkedin:hover {
+                background-color: #0a66c2;
+                color: map.get(config.$social-config, "color-hover");
+            }
+            &--youtube:hover {
+                background-color: #ff0000;
+                color: map.get(config.$social-config, "color-hover");
+            }
+            &--github:hover {
+                background-color: #181717;
+                color: map.get(config.$social-config, "color-hover");
+            }
+            &--mastodon:hover {
+                background-color: #6364ff;
+                color: map.get(config.$social-config, "color-hover");
+            }
+            &--rss:hover {
+                background-color: #f26522;
+                color: map.get(config.$social-config, "color-hover");
+            }
+        }
+    }
+}

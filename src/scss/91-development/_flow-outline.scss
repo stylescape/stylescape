@@ -1,0 +1,98 @@
+////
+///
+/// Flow Outline
+/// ===========================================================================
+///
+/// Development tool to visualize element boundaries and flow.
+/// Imported only in dev build. No @layer.
+///
+/// @group Dev.Flow
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Configuration
+// ============================================================================
+
+@use "../01-core/external" as *;
+
+$ss-flow-outline-color: rgb(0 150 255 / 0.3) !default;
+$ss-flow-outline-width: q(1) !default;
+
+// ============================================================================
+// Mixin
+// ============================================================================
+
+/// Apply outline to all child elements
+@mixin flow-outline {
+    * {
+        outline: $ss-flow-outline-width solid $ss-flow-outline-color;
+    }
+}
+
+/// Apply colored outlines based on element depth
+@mixin flow-outline-depth {
+    * {
+        outline: q(1) solid rgb(255 0 0 / 0.2);
+    }
+    * * {
+        outline: q(1) solid rgb(0 255 0 / 0.2);
+    }
+    * * * {
+        outline: q(1) solid rgb(0 0 255 / 0.2);
+    }
+    * * * * {
+        outline: q(1) solid rgb(255 255 0 / 0.2);
+    }
+    * * * * * {
+        outline: q(1) solid rgb(255 0 255 / 0.2);
+    }
+}
+
+/// Apply background colors to visualize box model
+@mixin flow-outline-box-model {
+    * {
+        background: rgb(255 0 0 / 0.05);
+    }
+
+    * > * {
+        background: rgb(0 255 0 / 0.05);
+    }
+
+    * > * > * {
+        background: rgb(0 0 255 / 0.05);
+    }
+}
+
+// ============================================================================
+// Debug Classes
+// ============================================================================
+
+.ss-u-debug-flow {
+    @include flow-outline;
+}
+
+.ss-u-debug-flow-depth {
+    @include flow-outline-depth;
+}
+
+.ss-u-debug-flow-boxes {
+    @include flow-outline-box-model;
+}
+
+// Enable via data attribute
+[data-ss-debug="flow"] {
+    @include flow-outline;
+}
+
+[data-ss-debug="flow-depth"] {
+    @include flow-outline-depth;
+}
+
+[data-ss-debug="flow-boxes"] {
+    @include flow-outline-box-model;
+}

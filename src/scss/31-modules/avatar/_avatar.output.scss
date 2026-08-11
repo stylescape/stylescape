@@ -1,0 +1,26 @@
+@use "../../01-core/prefix" as *;
+@use "./avatar.mixins" as avatar;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-avatar {
+        @include avatar.ss-avatar;
+        @include avatar.ss-avatar-size(md);
+    }
+    .#{$ss-prefix-module}-avatar--xs { @include avatar.ss-avatar-size(xs); }
+    .#{$ss-prefix-module}-avatar--sm { @include avatar.ss-avatar-size(sm); }
+    .#{$ss-prefix-module}-avatar--lg { @include avatar.ss-avatar-size(lg); }
+    .#{$ss-prefix-module}-avatar--xl { @include avatar.ss-avatar-size(xl); }
+
+    .#{$ss-prefix-module}-avatar--ring { @include avatar.ss-avatar-ring; }
+    .#{$ss-prefix-module}-avatar--online {
+        @include avatar.ss-avatar-status(var(--ss-color-success, #16a34a));
+    }
+    .#{$ss-prefix-module}-avatar--offline {
+        @include avatar.ss-avatar-status(var(--ss-color-text-muted, #9ca3af));
+    }
+    .#{$ss-prefix-module}-avatar--placeholder {
+        @include avatar.ss-avatar-placeholder;
+    }
+
+    .#{$ss-prefix-module}-avatar-group { @include avatar.ss-avatar-group; }
+}

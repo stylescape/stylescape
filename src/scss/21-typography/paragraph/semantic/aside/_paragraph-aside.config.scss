@@ -1,0 +1,61 @@
+////
+///
+/// Paragraph Aside Configuration
+/// ===========================================================================
+///
+/// Configuration for aside/secondary paragraph styles.
+///
+/// @group Typography.Paragraph.Semantic.Aside
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../../../01-core/external" as *;
+
+// ============================================================================
+// Configuration
+// ============================================================================
+
+$ss-paragraph-aside-config: (
+    font-size: var(--ss-font-size-sm),
+    line-height: var(--ss-leading-relaxed),
+    font-weight: var(--ss-font-weight-normal),
+    font-style: italic,
+    color: var(--ss-color-muted-foreground),
+    padding: var(--ss-space-4),
+    background-color: var(--ss-color-muted),
+    border-radius: var(--ss-radius-md),
+    margin-block: var(--ss-vspace-md),
+) !default;
+
+// ============================================================================
+// Aside Variants
+// ============================================================================
+
+$ss-paragraph-aside-variants: (
+    note: (
+        border-inline-start: q(4) solid var(--ss-color-info),
+        background-color: var(--ss-color-info-bg),
+    ),
+    tip: (
+        border-inline-start: q(4) solid var(--ss-color-success),
+        background-color: var(--ss-color-success-bg),
+    ),
+    warning: (
+        border-inline-start: q(4) solid var(--ss-color-warning),
+        background-color: var(--ss-color-warning-bg),
+    ),
+    callout: (
+        border: q(1) solid var(--ss-color-border),
+        background-color: transparent,
+    ),
+    sidebar: (
+        max-width: 30ch,
+        float: right,
+        margin-inline-start: var(--ss-space-4),
+    ),
+) !default;

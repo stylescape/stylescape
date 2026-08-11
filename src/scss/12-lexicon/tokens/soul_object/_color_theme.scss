@@ -1,0 +1,87 @@
+////
+///
+/// line Variables Module
+/// ===========================================================================
+/// ...
+///
+/// @group Color
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+@use "sass:map";
+@use "sass:color";
+@use "sass:meta";
+@use "../../../01-core/external" as *;
+@use "./color_system" as *;
+
+/// This allows easy access to tokens in stylesheets:
+@function get_color($key) {
+    @return map.get($color_theme, $key);
+}
+
+// ============================================================================
+// ============================================================================
+
+/// List of tint percentages and their color.adjust lightness values
+$tint-levels: (
+    25: 20%,
+    50: 40%,
+    75: 60%,
+);
+
+@function tint($key, $weight) {
+    $base: map.get($color_theme, $key);
+
+    @if meta.type-of($base) == color {
+        @return color.mix(white, $base, $weight);
+    } @else {
+        @warn "Cannot tint `#{$key}`: not a color.";
+        @return null;
+    }
+}
+
+$theme_mode: "light" !default;
+
+$color_theme: null;
+@if $theme_mode == "dark" {
+    $color_theme: $color_system_dark;
+} @else {
+    $color_theme: $color_system_light;
+}
+
+// :root {
+//     @each $key, $value in $color_system_light {
+//         --color_#{$key}: #{$value};
+//     }
+// }
+
+:root {
+    @each $key, $value in $color_system_light {
+        --color_#{$key}: #{$value};
+
+        // Tinted variants
+        --color_#{$key}--25: #{tint($key, 35%)};
+        --color_#{$key}--50: #{tint($key, 50%)};
+        --color_#{$key}--75: #{tint($key, 75%)};
+    }
+}
+
+[data-theme="dark"] {
+    @each $key, $value in $color_system_dark {
+        --color_#{$key}: #{$value};
+        // --color_#{$key}: #{$value};
+
+        // Tinted variants
+        --color_#{$key}--25: #{tint($key, 35%)};
+        --color_#{$key}--50: #{tint($key, 50%)};
+        --color_#{$key}--75: #{tint($key, 75%)};
+    }
+}

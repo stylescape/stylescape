@@ -1,0 +1,84 @@
+////
+///
+/// Paragraph Legal Mixins
+/// ===========================================================================
+///
+/// Mixins for legal/disclaimer paragraph styles.
+///
+/// @group Typography.Paragraph.Semantic.Legal
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-legal.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base legal paragraph styles
+@mixin paragraph-legal-base {
+    $cfg: config.$ss-paragraph-legal-config;
+    
+    font-size: map.get($cfg, font-size);
+    line-height: map.get($cfg, line-height);
+    font-weight: map.get($cfg, font-weight);
+    color: map.get($cfg, color);
+    margin-block: map.get($cfg, margin-block);
+    padding-block-start: map.get($cfg, padding-block-start);
+    border-block-start: map.get($cfg, border-block-start);
+}
+
+/// Plain legal text (no border)
+@mixin paragraph-legal-plain {
+    $cfg: map.get(config.$ss-paragraph-legal-variants, plain);
+    $base: config.$ss-paragraph-legal-config;
+    
+    font-size: map.get($base, font-size);
+    line-height: map.get($base, line-height);
+    color: map.get($base, color);
+    margin-block: map.get($base, margin-block);
+    border-block-start: map.get($cfg, border-block-start);
+    padding-block-start: map.get($cfg, padding-block-start);
+}
+
+/// Disclaimer style
+@mixin paragraph-legal-disclaimer {
+    $cfg: map.get(config.$ss-paragraph-legal-variants, disclaimer);
+    $base: config.$ss-paragraph-legal-config;
+    
+    font-size: map.get($base, font-size);
+    line-height: map.get($base, line-height);
+    color: map.get($base, color);
+    font-style: map.get($cfg, font-style);
+    padding: map.get($cfg, padding);
+    margin-block: map.get($base, margin-block);
+}
+
+/// Copyright style
+@mixin paragraph-legal-copyright {
+    $cfg: map.get(config.$ss-paragraph-legal-variants, copyright);
+    $base: config.$ss-paragraph-legal-config;
+    
+    font-size: map.get($base, font-size);
+    line-height: map.get($base, line-height);
+    color: map.get($base, color);
+    text-align: map.get($cfg, text-align);
+    padding: map.get($cfg, padding);
+}
+
+/// Terms and conditions style
+@mixin paragraph-legal-terms {
+    $cfg: map.get(config.$ss-paragraph-legal-variants, terms);
+    $base: config.$ss-paragraph-legal-config;
+    
+    font-size: map.get($cfg, font-size);
+    line-height: map.get($base, line-height);
+    color: map.get($base, color);
+    max-width: map.get($cfg, max-width);
+    margin-block: map.get($base, margin-block);
+}

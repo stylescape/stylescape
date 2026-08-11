@@ -1,0 +1,22 @@
+// =============================================================================
+// 31-modules / summary / output
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./summary.config" as config;
+@use "./summary.mixins" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-details {
+        @include ss-details;
+
+        > .#{$ss-prefix-module}-details__summary {
+            @include ss-summary;
+        }
+
+        &[open] > .#{$ss-prefix-module}-details__summary::before {
+            transform: rotate(90deg);
+        }
+    }
+}

@@ -1,0 +1,100 @@
+{% extends "../base.html.jinja" %} {% set title = "Tags List" %} {%- block title
+%}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    {% set section_title = "Basic Tags List" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div>
+            <span class="ss-c-tags__title">Tags:</span>
+            <ul class="ss-c-tags__list">
+                <li class="ss-c-tags__list-item">
+                    <a href="#" class="ss-c-tags__link">Design</a>
+                </li>
+                <li class="ss-c-tags__list-item">
+                    <a href="#" class="ss-c-tags__link">Development</a>
+                </li>
+                <li class="ss-c-tags__list-item">
+                    <a href="#" class="ss-c-tags__link">CSS</a>
+                </li>
+            </ul>
+        </div>
+        {% endset %}
+        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
+        <div class="ss-c-demo__code">
+            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Tags with Hidden Items" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div>
+            <span class="ss-c-tags__title">Categories:</span>
+            <ul class="ss-c-tags__list">
+                <li class="ss-c-tags__list-item">
+                    <a href="#" class="ss-c-tags__link">JavaScript</a>
+                </li>
+                <li class="ss-c-tags__list-item">
+                    <a href="#" class="ss-c-tags__link">TypeScript</a>
+                </li>
+                <li class="ss-c-tags__list-item ss-c-tags__list-item--hidden">
+                    <a href="#" class="ss-c-tags__link">Hidden Tag</a>
+                </li>
+                <li class="ss-c-tags__list-item">
+                    <a href="#" class="ss-c-tags__link">React</a>
+                </li>
+            </ul>
+            <span class="ss-c-tags__more-link">Show more...</span>
+        </div>
+        {% endset %}
+        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
+        <div class="ss-c-demo__code">
+            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Tags List Inline" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <p>Filed under:</p>
+
+        <ul class="ss-c-tags__list">
+            <li class="ss-c-tags__list-item">
+                <a href="#" class="ss-c-tags__link">News</a>
+            </li>
+            <li class="ss-c-tags__list-item">
+                <a href="#" class="ss-c-tags__link">Technology</a>
+            </li>
+            <li class="ss-c-tags__list-item">
+                <a href="#" class="ss-c-tags__link">Updates</a>
+            </li>
+        </ul>
+        {% endset %}
+        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
+        <div class="ss-c-demo__code">
+            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+</section>
+
+{%- endblock %}

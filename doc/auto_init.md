@@ -394,7 +394,7 @@ components to a single element:
     data-ss-tooltip-position="top"
     data-ss-modal-target="#settingsModal"
 >
-    ⚙️ Settings
+    ⚙ Settings
 </button>
 ```
 

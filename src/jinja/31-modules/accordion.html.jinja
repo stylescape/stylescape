@@ -1,0 +1,266 @@
+{% extends "../base.html.jinja" %} {%- block title %}Accordion{%- endblock %} {%-
+block content %} {#
+============================================================================
+Basic Accordion
+============================================================================ #}
+<section class="ss-c-demo__section" data-label="Basic Accordion" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h3>Basic Accordion</h3>
+        <p>Expandable content panels using native HTML details element.</p>
+    </header>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Single Accordion</h4>
+        {% set code_snippet %}
+        <details class="ss-c-accordion">
+            <summary class="ss-c-accordion__header">
+                <span class="ss-c-accordion__title">Accordion Title</span>
+                <span class="ss-c-accordion__icon"></span>
+            </summary>
+            <div class="ss-c-accordion__content">
+                <p>
+                    This is the accordion content. It can contain any HTML
+                    elements including text, images, lists, and more.
+                </p>
+            </div>
+        </details>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Initially Open</h4>
+        {% set code_snippet %}
+        <details class="ss-c-accordion" open>
+            <summary class="ss-c-accordion__header">
+                <span class="ss-c-accordion__title">
+                    This accordion starts open
+                </span>
+                <span class="ss-c-accordion__icon"></span>
+            </summary>
+            <div class="ss-c-accordion__content">
+                <p>
+                    Use the "open" attribute on the details element to have it
+                    expanded by default.
+                </p>
+            </div>
+        </details>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Accordion Group
+============================================================================ #}
+<section class="ss-c-demo__section" data-label="Accordion Group" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h3>Accordion Group</h3>
+        <p>Multiple accordions grouped together.</p>
+    </header>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Stacked Accordions</h4>
+        {% set code_snippet %}
+        <div class="ss-c-accordion_group">
+            <details class="ss-c-accordion">
+                <summary class="ss-c-accordion__header">
+                    <span class="ss-c-accordion__title">What is Stylescape?</span>
+                    <span class="ss-c-accordion__icon"></span>
+                </summary>
+                <div class="ss-c-accordion__content">
+                    <p>
+                        Stylescape is a visual identity framework that provides
+                        a comprehensive design system for building consistent
+                        user interfaces.
+                    </p>
+                </div>
+            </details>
+
+            <details class="ss-c-accordion">
+                <summary class="ss-c-accordion__header">
+                    <span class="ss-c-accordion__title">How do I get started?</span>
+                    <span class="ss-c-accordion__icon"></span>
+                </summary>
+                <div class="ss-c-accordion__content">
+                    <p>
+                        Install Stylescape via npm and import the styles into
+                        your project. Check the documentation for detailed
+                        setup instructions.
+                    </p>
+                </div>
+            </details>
+
+            <details class="ss-c-accordion">
+                <summary class="ss-c-accordion__header">
+                    <span class="ss-c-accordion__title">Is it customizable?</span>
+                    <span class="ss-c-accordion__icon"></span>
+                </summary>
+                <div class="ss-c-accordion__content">
+                    <p>
+                        Yes! Stylescape uses CSS custom properties that can be
+                        easily customized to match your brand colors,
+                        typography, and spacing.
+                    </p>
+                </div>
+            </details>
+        </div>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Exclusive Accordion (name attribute)</h4>
+        <p>
+            Using the same name attribute creates an exclusive group where only
+            one can be open.
+        </p>
+        {% set code_snippet %}
+        <div class="ss-c-accordion_group">
+            <details class="ss-c-accordion" name="faq-group" open>
+                <summary class="ss-c-accordion__header">
+                    <span class="ss-c-accordion__title">First Question</span>
+                    <span class="ss-c-accordion__icon"></span>
+                </summary>
+                <div class="ss-c-accordion__content">
+                    <p>
+                        Only one accordion in this group can be open at a time.
+                    </p>
+                </div>
+            </details>
+
+            <details class="ss-c-accordion" name="faq-group">
+                <summary class="ss-c-accordion__header">
+                    <span class="ss-c-accordion__title">Second Question</span>
+                    <span class="ss-c-accordion__icon"></span>
+                </summary>
+                <div class="ss-c-accordion__content">
+                    <p>Opening this will automatically close the other.</p>
+                </div>
+            </details>
+
+            <details class="ss-c-accordion" name="faq-group">
+                <summary class="ss-c-accordion__header">
+                    <span class="ss-c-accordion__title">Third Question</span>
+                    <span class="ss-c-accordion__icon"></span>
+                </summary>
+                <div class="ss-c-accordion__content">
+                    <p>This behavior uses the native HTML "name" attribute.</p>
+                </div>
+            </details>
+        </div>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Accordion Variants
+============================================================================ #}
+<section class="ss-c-demo__section" data-label="Accordion Variants" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h3>Accordion Variants</h3>
+        <p>Different visual styles for accordions.</p>
+    </header>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Bordered Accordion</h4>
+        {% set code_snippet %}
+        <details class="ss-c-accordion ss-c-accordion--bordered">
+            <summary class="ss-c-accordion__header">
+                <span class="ss-c-accordion__title">Bordered Style</span>
+                <span class="ss-c-accordion__icon"></span>
+            </summary>
+            <div class="ss-c-accordion__content">
+                <p>This accordion has a visible border around it.</p>
+            </div>
+        </details>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Filled Accordion</h4>
+        {% set code_snippet %}
+        <details class="ss-c-accordion ss-c-accordion--filled">
+            <summary class="ss-c-accordion__header">
+                <span class="ss-c-accordion__title">Filled Background</span>
+                <span class="ss-c-accordion__icon"></span>
+            </summary>
+            <div class="ss-c-accordion__content">
+                <p>This accordion has a filled background color.</p>
+            </div>
+        </details>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Flush Accordion</h4>
+        {% set code_snippet %}
+        <div class="ss-c-accordion_group ss-c-accordion_group--flush">
+            <details class="ss-c-accordion">
+                <summary class="ss-c-accordion__header">
+                    <span class="ss-c-accordion__title">Flush Item One</span>
+                    <span class="ss-c-accordion__icon"></span>
+                </summary>
+                <div class="ss-c-accordion__content">
+                    <p>
+                        No outer borders or rounded corners for a cleaner look.
+                    </p>
+                </div>
+            </details>
+
+            <details class="ss-c-accordion">
+                <summary class="ss-c-accordion__header">
+                    <span class="ss-c-accordion__title">Flush Item Two</span>
+                    <span class="ss-c-accordion__icon"></span>
+                </summary>
+                <div class="ss-c-accordion__content">
+                    <p>
+                        Works well when embedded in cards or other containers.
+                    </p>
+                </div>
+            </details>
+        </div>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Rich Content
+============================================================================ #}
+<section class="ss-c-demo__section" data-label="Rich Content" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h3>Rich Content</h3>
+        <p>Accordions with various content types.</p>
+    </header>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Mixed Content</h4>
+        {% set code_snippet %}
+        <details class="ss-c-accordion">
+            <summary class="ss-c-accordion__header">
+                <span class="ss-c-accordion__title">
+                    Accordion with Rich Content
+                </span>
+                <span class="ss-c-accordion__icon"></span>
+            </summary>
+            <div class="ss-c-accordion__content">
+                <h4>Section Heading</h4>
+                <p>Paragraph content explaining the section.</p>
+                <ul>
+                    <li>List item one</li>
+                    <li>List item two</li>
+                    <li>List item three</li>
+                </ul>
+                <button class="ss-c-button ss-c-button--primary">Action Button</button>
+            </div>
+        </details>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{%- endblock content %}

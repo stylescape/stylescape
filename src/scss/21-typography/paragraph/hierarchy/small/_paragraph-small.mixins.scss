@@ -1,0 +1,53 @@
+////
+///
+/// Paragraph Small Mixins
+/// ===========================================================================
+///
+/// Mixins for small paragraph styles.
+///
+/// @group Typography.Paragraph.Hierarchy.Small
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-small.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base small paragraph styles
+@mixin paragraph-small-base {
+    $cfg: config.$ss-paragraph-small-config;
+
+    font-size: map.get($cfg, font-size);
+    line-height: map.get($cfg, line-height);
+    font-weight: map.get($cfg, font-weight);
+    color: map.get($cfg, color);
+}
+
+/// Small paragraph with spacing
+@mixin paragraph-small-spaced {
+    $cfg: config.$ss-paragraph-small-config;
+
+    @include paragraph-small-base;
+    margin-block-end: map.get($cfg, margin-block-end);
+
+    &:last-child {
+        margin-block-end: 0;
+    }
+}
+
+/// Extra small paragraph
+@mixin paragraph-xs {
+    $cfg: config.$ss-paragraph-small-config;
+    $variant: map.get(config.$ss-paragraph-small-sizes, xs);
+
+    font-size: map.get($variant, font-size);
+    line-height: map.get($cfg, line-height);
+    color: map.get($cfg, color);
+}

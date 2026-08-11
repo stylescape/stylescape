@@ -1,0 +1,87 @@
+////
+///
+/// Paragraph Columns Mixins
+/// ===========================================================================
+///
+/// Mixins for multi-column paragraph layouts.
+///
+/// @group Typography.Paragraph.Layout.Columns
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-columns.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base column styles
+@mixin paragraph-columns-base {
+    $cfg: config.$ss-paragraph-columns-config;
+
+    column-gap: map.get($cfg, column-gap);
+    column-rule: map.get($cfg, column-rule);
+    orphans: map.get($cfg, orphans);
+    widows: map.get($cfg, widows);
+}
+
+/// Fixed column count
+/// @param {Number} $count - Number of columns
+@mixin paragraph-columns($count) {
+    @include paragraph-columns-base;
+    column-count: $count;
+}
+
+/// 2-column layout
+@mixin paragraph-columns-2 {
+    @include paragraph-columns-base;
+    column-count: 2;
+}
+
+/// 3-column layout
+@mixin paragraph-columns-3 {
+    @include paragraph-columns-base;
+    column-count: 3;
+}
+
+/// 4-column layout
+@mixin paragraph-columns-4 {
+    @include paragraph-columns-base;
+    column-count: 4;
+}
+
+/// Auto columns (responsive)
+@mixin paragraph-columns-auto {
+    $cfg: config.$ss-paragraph-columns-config;
+    $variant: map.get(config.$ss-paragraph-columns-variants, auto);
+
+    @include paragraph-columns-base;
+    column-count: map.get($variant, column-count);
+    column-width: map.get($variant, column-width);
+}
+
+/// Narrow columns
+@mixin paragraph-columns-narrow {
+    $variant: map.get(config.$ss-paragraph-columns-variants, narrow);
+
+    @include paragraph-columns-base;
+    column-width: map.get($variant, column-width);
+}
+
+/// Wide columns
+@mixin paragraph-columns-wide {
+    $variant: map.get(config.$ss-paragraph-columns-variants, wide);
+
+    @include paragraph-columns-base;
+    column-width: map.get($variant, column-width);
+}
+
+/// Column span (for headings etc)
+@mixin paragraph-column-span-all {
+    column-span: all;
+}

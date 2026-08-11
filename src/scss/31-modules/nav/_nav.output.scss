@@ -1,0 +1,25 @@
+@use "../../01-core/prefix" as *;
+@use "./nav.mixins" as nav;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-nav {
+        @include nav.ss-nav;
+    }
+
+    .#{$ss-prefix-module}-nav--vertical {
+        @include nav.ss-nav-vertical;
+    }
+
+    .#{$ss-prefix-module}-nav__item {
+        display: inline-flex;
+    }
+
+    .#{$ss-prefix-module}-nav__link {
+        @include nav.ss-nav-link;
+    }
+
+    .#{$ss-prefix-module}-nav__link.is-active,
+    .#{$ss-prefix-module}-nav__link[aria-current="page"] {
+        @include nav.ss-nav-link-active;
+    }
+}

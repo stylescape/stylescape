@@ -1,0 +1,38 @@
+////
+///
+/// Deprecation Governance
+/// ===========================================================================
+///
+/// Deprecation warnings and migration helpers for StyleScape.
+/// This file manages deprecated features and provides upgrade paths.
+///
+/// @group Core.Governance
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Deprecation Mixins
+// ============================================================================
+
+/// Emit a deprecation warning
+/// @param {String} $feature - The deprecated feature name
+/// @param {String} $version - The version when it was deprecated
+/// @param {String} $replacement [null] - The recommended replacement
+@mixin deprecated($feature, $version, $replacement: null) {
+    @if $replacement {
+        @warn "DEPRECATED: `#{$feature}` was deprecated in v#{$version}. Use `#{$replacement}` instead.";
+    } @else {
+        @warn "DEPRECATED: `#{$feature}` was deprecated in v#{$version} and will be removed in a future release.";
+    }
+}
+
+/// Emit a removal warning for features scheduled for removal
+/// @param {String} $feature - The feature scheduled for removal
+/// @param {String} $removal-version - The version when it will be removed
+@mixin scheduled-removal($feature, $removal-version) {
+    @warn "REMOVAL SCHEDULED: `#{$feature}` will be removed in v#{$removal-version}. Please migrate.";
+}

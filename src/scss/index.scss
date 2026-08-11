@@ -3,20 +3,24 @@
 /// StyleScape Design System
 /// ===========================================================================
 ///
-/// Main entry point for the StyleScape SCSS library. This file orchestrates
-/// the loading order of all design system components:
+/// Main entry point for the StyleScape SCSS library. Layer cascade
+/// follows the SSX constitution (see `ssx/layers.md`):
 ///
-/// 1. **dev** - Development utilities, banners, and debug tools
-/// 2. **functions** - Utility functions for calculations and helpers
-/// 3. **variables** - Design tokens and CSS custom properties
-/// 4. **mixins** - Reusable style patterns and component builders
-/// 5. **classes** - Ready-to-use utility and component classes
-/// 6. **maps** - Sass maps for programmatic value lookups
-/// 7. **tags** - Base HTML element styles
-/// 8. **demo** - Demo and preview styles (development only)
+/// 0x  **01-core**       — infrastructure (functions, maps, layer decl)
+/// 1x  **11-reset**      — base reset (`ss.reset`)
+/// 1x  **12-lexicon**    — design tokens (`ss.lexicon`)
+/// 1x  **13-rhythm**     — spacing/typography rhythm (`ss.rhythm`)
+/// 2x  **21-typography** — type primitives (`ss.typography`)
+/// 2x  **22-flow**       — micro spatial grammar (`ss.flow`)
+/// 2x  **23-layout**     — macro structure (`ss.layout`)
+/// 2x  **24-appearance** — surface styling (`ss.appearance`)
+/// 3x  **31-modules**    — components `.ss-c-*` (`ss.components`)
+/// 3x  **32-utilities**  — utilities `.ss-u-*` (`ss.utilities`)
+/// 3x  **33-overrides**  — last-mile patches (`ss.overrides`)
+/// 9x  **91-development** — dev/debug helpers (loaded only by tooling)
 ///
 /// @group Core
-/// @author Scape Agency
+/// @author Scape Press
 /// @link https://scape.style
 /// @since 0.1.0 initial release
 /// @access public
@@ -32,28 +36,50 @@
 @use "sass:map";
 
 // ============================================================================
+// Configuration
+// ============================================================================
+
+// Forwarded first so build flags can be set at the entry point:
+//
+//     @use "pkg:stylescape/scss" with ($scapepress-parity: false);
+//
+// All flags default to the historical build, so passing nothing changes
+// nothing. See `01-core/_config.scss`.
+@forward "01-core/config";
+
+// ============================================================================
 // Imports
 // ============================================================================
 
-// Forward dev utilities (external packages: unit.gl, hue.gl)
-@forward "dev";
+/* -------------------------------------------------------------------------- */
+/* 0x - Core Infrastructure                                                        */
+/* -------------------------------------------------------------------------- */
 
-@forward "functions" hide px-to-rem, rem-to-px, px-to-em, strip-unit,
-    modular-scale, fluid-value, tint, shade, tone;
+// @use "01-core/banner";
+// @use "01-core/prefix";
+@use "01-core/layers";
 
-@forward "variables";
+/* -------------------------------------------------------------------------- */
+/* 1x - Foundation — System Laws                                                   */
+/* -------------------------------------------------------------------------- */
 
-@forward "mixins";
+@use "11-reset" as *;
+@use "12-lexicon" as *;
+@use "13-rhythm" as *;
 
-@forward "classes";
+/* -------------------------------------------------------------------------- */
+/* 2x - Expression — Design Systems                                                */
+/* -------------------------------------------------------------------------- */
 
-@forward "maps";
+@use "21-typography" as *;
+@use "22-flow" as *;
+@use "23-layout" as *;
+@use "24-appearance" as *;
 
-@forward "tags";
+/* -------------------------------------------------------------------------- */
+/* 3x - Assembly — Meaning & Composition                                           */
+/* -------------------------------------------------------------------------- */
 
-@forward "demo";
-
-// @forward "pkg:icon.gl" with (
-//     $icon_dir: "https://unpkg.com/icon.gl@0.0.35/font",
-//     $icon-color-default: inherit
-// );
+@use "31-modules" as *;
+@use "32-utilities" as *;
+@use "33-overrides" as *;

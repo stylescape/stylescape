@@ -1,0 +1,20 @@
+{% extends "../base.html.jinja" %} {% set title = "Subnav" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-subnav</code> module.</p>
+    <p>Secondary navigation strip, sitting beneath the primary navbar.</p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <nav class="ss-c-subnav">
+            <span class="ss-c-brand">Acme</span>
+            <a href="#">Overview</a>
+            <a href="#">Settings</a>
+        </nav>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

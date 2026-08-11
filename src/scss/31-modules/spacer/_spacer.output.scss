@@ -1,0 +1,37 @@
+// =============================================================================
+// 31-modules / spacer / output
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./spacer.config" as config;
+@use "./spacer.mixins" as *;
+@use "../../01-core/external" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-spacer {
+        @include ss-spacer;
+
+        &--xs {
+            height: map.get(config.$spacer-config, "size-xs");
+        }
+        &--sm {
+            height: map.get(config.$spacer-config, "size-sm");
+        }
+        &--md {
+            height: map.get(config.$spacer-config, "size-md");
+        }
+        &--lg {
+            height: map.get(config.$spacer-config, "size-lg");
+        }
+        &--xl {
+            height: map.get(config.$spacer-config, "size-xl");
+        }
+
+        &--inline {
+            display: inline-block;
+            width: map.get(config.$spacer-config, "size-md");
+            height: q(1);
+        }
+    }
+}

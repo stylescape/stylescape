@@ -1,0 +1,68 @@
+// =============================================================================
+// 31-modules / preview / output
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "sass:map";
+@use "./preview.config" as config;
+@use "./preview.mixins" as *;
+@use "../../01-core/external" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-preview {
+        @include ss-preview;
+
+        // Modifiers are self-sufficient: demo pages use
+        // `ss-c-preview--horizontal` / `--vertical` without the base class,
+        // so each modifier carries the frame (border, radius, background).
+        &--horizontal {
+            @include ss-preview;
+            @include ss-preview-horizontal;
+
+            // Center each cell's content vertically so the label cell and
+            // the sample line up on the same axis.
+            > .#{$ss-prefix-module}-preview__code,
+            > .#{$ss-prefix-module}-preview__live {
+                display: flex;
+                align-items: center;
+            }
+            > .#{$ss-prefix-module}-preview__code {
+                padding: map.get(config.$preview-config, "label-cell-padding");
+            }
+        }
+        &--vertical {
+            @include ss-preview;
+            @include ss-preview-vertical;
+        }
+
+        &__live {
+            @include ss-preview-live;
+        }
+        &__code {
+            @include ss-preview-code;
+        }
+        &__info {
+            @include ss-preview-info;
+        }
+        &__swatch {
+            @include ss-preview-swatch;
+        }
+
+        &__copy-button {
+            background: map.get(config.$preview-config, "copy-bg");
+            color: map.get(config.$preview-config, "copy-fg");
+            border: 0;
+            padding: map.get(config.$preview-config, "copy-padding");
+            font-size: map.get(config.$preview-config, "copy-font-size");
+            line-height: 1;
+            cursor: pointer;
+            border-radius: map.get(config.$preview-config, "copy-radius");
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+
+            &:hover {
+                background: map.get(config.$preview-config, "copy-bg-hover");
+            }
+        }
+    }
+}

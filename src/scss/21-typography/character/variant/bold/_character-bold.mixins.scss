@@ -1,0 +1,18 @@
+@use "sass:map";
+@use "./character-bold.config" as config;
+@use "../../base/normal/character-normal.mixins" as normal;
+
+////
+/// Character Variant — Bold
+/// Mixins
+////
+
+@mixin ss-character-bold($override: ()) {
+    $settings: map.merge(config.$ss-character-bold-config, $override);
+
+    @include normal.ss-character-normal();
+
+    font-weight: map.get($settings, font-weight);
+    font-style: map.get($settings, font-style);
+    font-size: map.get($settings, font-size);
+}

@@ -1,0 +1,48 @@
+@use "sass:map";
+@use "./paragraph-blockquote.config" as config;
+
+// -----------------------------------------------------------------------------
+// Base Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-paragraph-blockquote {
+    $c: config.$ss-paragraph-blockquote-config;
+
+    padding: map.get($c, padding);
+    margin: map.get($c, margin);
+
+    border-left-width: map.get($c, border-width);
+    border-left-style: map.get($c, border-style);
+    border-left-color: map.get($c, border-color);
+
+    color: map.get($c, color);
+
+    font-size: map.get($c, font-size);
+    font-style: map.get($c, font-style);
+    font-weight: map.get($c, font-weight);
+    line-height: map.get($c, line-height);
+
+    position: relative;
+
+    > p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Decorative Quote Variant
+// -----------------------------------------------------------------------------
+
+@mixin ss-paragraph-blockquote--decorated {
+    $c: config.$ss-paragraph-blockquote-config;
+
+    &::before {
+        content: open-quote;
+        top: 0;
+        font-size: map.get($c, quote-size);
+        color: map.get($c, quote-color);
+        line-height: 1;
+    }
+
+    quotes: "“" "”" "‘" "’";
+}

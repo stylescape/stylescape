@@ -1,0 +1,59 @@
+@use "../../01-core/prefix" as *;
+@use "./badge.mixins" as badge;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-badge {
+        @include badge.ss-badge;
+        @include badge.ss-badge-size(md);
+        @include badge.ss-badge-variant(default);
+    }
+
+    // Size modifiers
+    .#{$ss-prefix-module}-badge--xs {
+        @include badge.ss-badge-size(xs);
+    }
+    .#{$ss-prefix-module}-badge--sm {
+        @include badge.ss-badge-size(sm);
+    }
+    .#{$ss-prefix-module}-badge--lg {
+        @include badge.ss-badge-size(lg);
+    }
+    .#{$ss-prefix-module}-badge--xl {
+        @include badge.ss-badge-size(xl);
+    }
+
+    // Color modifiers
+    .#{$ss-prefix-module}-badge--accent {
+        @include badge.ss-badge-variant(accent);
+    }
+    .#{$ss-prefix-module}-badge--success {
+        @include badge.ss-badge-variant(success);
+    }
+    .#{$ss-prefix-module}-badge--warning {
+        @include badge.ss-badge-variant(warning);
+    }
+    .#{$ss-prefix-module}-badge--error,
+    .#{$ss-prefix-module}-badge--danger {
+        @include badge.ss-badge-variant(error);
+    }
+    .#{$ss-prefix-module}-badge--info {
+        @include badge.ss-badge-variant(info);
+    }
+
+    // Shape
+    .#{$ss-prefix-module}-badge--pill {
+        @include badge.ss-badge-pill;
+    }
+    .#{$ss-prefix-module}-badge--square {
+        @include badge.ss-badge-squared;
+    }
+
+    // Positioned
+    .#{$ss-prefix-module}-badge--positioned {
+        @include badge.ss-badge-positioned;
+    }
+
+    .#{$ss-prefix-module}-badge--dot {
+        @include badge.ss-badge-dot;
+    }
+}

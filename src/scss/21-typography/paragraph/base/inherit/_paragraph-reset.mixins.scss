@@ -1,0 +1,53 @@
+////
+///
+/// Paragraph Reset Mixins
+/// ===========================================================================
+///
+/// Mixins for paragraph reset styles.
+///
+/// @group Typography.Paragraph.Base.Reset
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-reset.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Full paragraph reset
+@mixin paragraph-reset {
+    $cfg: config.$ss-paragraph-reset-config;
+
+    margin: map.get($cfg, margin);
+    padding: map.get($cfg, padding);
+    font-size: map.get($cfg, font-size);
+    font-weight: map.get($cfg, font-weight);
+    line-height: map.get($cfg, line-height);
+    text-indent: map.get($cfg, text-indent);
+    text-align: map.get($cfg, text-align);
+    hyphens: map.get($cfg, hyphens);
+    word-break: map.get($cfg, word-break);
+    overflow-wrap: map.get($cfg, overflow-wrap);
+}
+
+/// Minimal reset (spacing only)
+@mixin paragraph-reset-spacing {
+    margin: 0;
+    padding: 0;
+}
+
+/// Text behavior reset
+@mixin paragraph-reset-text {
+    $cfg: config.$ss-paragraph-reset-config;
+
+    text-indent: map.get($cfg, text-indent);
+    hyphens: map.get($cfg, hyphens);
+    word-break: map.get($cfg, word-break);
+    overflow-wrap: map.get($cfg, overflow-wrap);
+}

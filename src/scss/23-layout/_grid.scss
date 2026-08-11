@@ -1,0 +1,71 @@
+////
+///
+/// Grid
+/// ===========================================================================
+///
+/// CSS Grid layout system.
+///
+/// @group Layout
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../01-core/external" as *;
+
+@layer ss.layout {
+    .ss-l-grid {
+        display: grid;
+        gap: var(--ss-l-grid-gap, var(--ss-spacing-4));
+    }
+
+    // Auto-fit grid (responsive columns)
+    .ss-l-grid-auto {
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(var(--ss-l-grid-min, q(250)), 1fr)
+        );
+    }
+
+    // Fixed column grids
+    .ss-l-grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .ss-l-grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .ss-l-grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .ss-l-grid-5 {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .ss-l-grid-6 {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .ss-l-grid-12 {
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    // Gap variants
+    .ss-l-grid-gap-0 {
+        --ss-l-grid-gap: 0;
+    }
+    .ss-l-grid-gap-xs {
+        --ss-l-grid-gap: var(--ss-spacing-1);
+    }
+    .ss-l-grid-gap-sm {
+        --ss-l-grid-gap: var(--ss-spacing-2);
+    }
+    .ss-l-grid-gap-md {
+        --ss-l-grid-gap: var(--ss-spacing-4);
+    }
+    .ss-l-grid-gap-lg {
+        --ss-l-grid-gap: var(--ss-spacing-6);
+    }
+    .ss-l-grid-gap-xl {
+        --ss-l-grid-gap: var(--ss-spacing-8);
+    }
+}

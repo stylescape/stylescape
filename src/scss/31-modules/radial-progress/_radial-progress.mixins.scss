@@ -1,0 +1,41 @@
+@use "../../01-core/external" as *;
+
+@mixin ss-radial-progress {
+    --ss-radial-value: 0;
+    --ss-radial-size: #{q(64)};
+    --ss-radial-thickness: calc(var(--ss-radial-size) / 10);
+
+    position: relative;
+    display: inline-grid;
+    place-content: center;
+    box-sizing: content-box;
+
+    width: var(--ss-radial-size);
+    height: var(--ss-radial-size);
+    border-radius: 50%;
+
+    // Inner disc punches a hole in the conic ring (page background), the
+    // conic paints value-arc in currentColor over a visible grey track.
+    background:
+        radial-gradient(
+            farthest-side,
+            var(--ss-color-background, #ffffff) 98%,
+            transparent 100% 0
+        ) center / calc(100% - var(--ss-radial-thickness) * 2)
+            calc(100% - var(--ss-radial-thickness) * 2)
+            no-repeat,
+        conic-gradient(
+            currentColor calc(var(--ss-radial-value) * 1%),
+            var(--ss-color-line-secondary, #cccccc) 0
+        );
+
+    color: var(--ss-color-accent, currentColor);
+    font-variant-numeric: tabular-nums;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+    }
+}

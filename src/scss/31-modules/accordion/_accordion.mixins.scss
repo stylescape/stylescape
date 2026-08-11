@@ -1,0 +1,41 @@
+@use "sass:map";
+@use "./accordion.config" as config;
+
+@mixin ss-accordion {
+    display: block;
+    border: map.get(config.$ss-accordion-config, border);
+    border-radius: map.get(config.$ss-accordion-config, radius);
+    overflow: hidden;
+}
+
+@mixin ss-accordion-item {
+    display: block;
+
+    & + & {
+        border-top: map.get(config.$ss-accordion-config, border);
+    }
+}
+
+@mixin ss-accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    padding: map.get(config.$ss-accordion-config, header-padding);
+
+    background: map.get(config.$ss-accordion-config, header-bg);
+    color: inherit;
+    border: 0;
+    cursor: pointer;
+    text-align: start;
+    font-weight: map.get(config.$ss-accordion-config, header-weight);
+}
+
+@mixin ss-accordion-header-active {
+    background: map.get(config.$ss-accordion-config, header-bg-active);
+}
+
+@mixin ss-accordion-body {
+    padding: map.get(config.$ss-accordion-config, body-padding);
+}

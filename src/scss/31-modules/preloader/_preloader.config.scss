@@ -1,0 +1,25 @@
+// =============================================================================
+// 31-modules / preloader / config
+// =============================================================================
+//
+// Full-page loading overlay. Combines the legacy preloader_base, _lines, and
+// _pulse families into one module with `--lines` and `--pulse` modifiers.
+//
+// =============================================================================
+
+@use "../../01-core/external" as *;
+
+$preloader-config: (
+    "background": color-mix(
+            in srgb,
+            var(--ss-color-background, #ffffff) 95%,
+            transparent
+        ),
+    "color": var(--ss-color-text, #1a1a1a),
+    "z-index": 1090,
+    "line-width": q(4),
+    "line-color": var(--ss-color-accent, #007aff),
+    "pulse-size": q(48),
+    "pulse-color": var(--ss-color-accent, #007aff),
+    "duration": 1.4s,
+) !default;

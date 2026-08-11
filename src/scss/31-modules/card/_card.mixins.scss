@@ -1,0 +1,189 @@
+// ============================================================================
+// Card — Mixins
+// ============================================================================
+
+@use "sass:map";
+@use "./card.config" as config;
+@use "../../01-core/external" as *;
+
+// @mixin c-card-base {
+//   $cfg: config.$ss-card-config;
+
+//   padding: map.get($cfg, padding);
+//   border-radius: map.get($cfg, radius);
+//   box-shadow: map.get($cfg, shadow);
+
+//   background: var(--ss-card-bg, var(--ss-color-surface));
+//   color: var(--ss-card-color, var(--ss-color-text-primary));
+// }
+
+// @mixin c-card-variant($variant) {
+//   @if $variant == "elevated" {
+//     box-shadow: var(--ss-a-shadow-lg);
+//   }
+// }
+
+// ============================================================================
+
+// @mixin c-card-base {
+//     $cfg: config.$ss-card-config;
+
+//     // Define component-level runtime variables
+//     --ss-card-padding: var(--ss-space-#{map.get($cfg, padding-token)});
+//     --ss-card-radius: var(--ss-radius-#{map.get($cfg, radius-token)});
+//     --ss-card-shadow: var(--ss-a-shadow-#{map.get($cfg, shadow-token)});
+//     --ss-card-bg: var(--ss-color-surface);
+//     --ss-card-color: var(--ss-color-text-primary);
+
+//     // Apply them
+//     padding: var(--ss-card-padding);
+//     border-radius: var(--ss-card-radius);
+//     box-shadow: var(--ss-card-shadow);
+//     background: var(--ss-card-bg);
+//     color: var(--ss-card-color);
+// }
+
+// @mixin c-card-variant($variant) {
+//     @if $variant == "elevated" {
+//         --ss-card-shadow: var(--ss-a-shadow-md);
+//     }
+
+//     @if $variant == "flat" {
+//         --ss-card-shadow: none;
+//     }
+// }
+
+@mixin c-card-base {
+    $cfg: config.$ss-card-config;
+
+    --ss-card-padding: var(--ss-space-#{map.get($cfg, padding-token)});
+    --ss-card-radius: var(--ss-radius-#{map.get($cfg, radius-token)});
+    --ss-card-shadow: var(--ss-a-shadow-#{map.get($cfg, shadow-token)});
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+
+    padding: var(--ss-card-padding);
+    border-radius: var(--ss-card-radius);
+    box-shadow: var(--ss-card-shadow);
+
+    background: var(--ss-card-bg, var(--ss-color-surface));
+    color: var(--ss-card-color, var(--ss-color-text-primary));
+    border: map.get($cfg, border-width) solid var(--ss-color-line-secondary);
+}
+
+// Variants
+
+@mixin c-card-variant($variant) {
+    @if $variant == "elevated" {
+        --ss-card-shadow: var(--ss-a-shadow-md);
+        border: none;
+    }
+
+    @if $variant == "flat" {
+        --ss-card-shadow: none;
+        border: none;
+    }
+
+    @if $variant == "outlined" {
+        border-width: q(2);
+    }
+}
+
+// Parts
+
+@mixin c-card-header {
+    padding-bottom: var(--ss-space-md);
+    border-bottom: q(1) solid var(--ss-color-line-primary);
+}
+
+@mixin c-card-body {
+    flex: 1 1 auto;
+}
+
+@mixin c-card-footer {
+    padding-top: var(--ss-space-md);
+    border-top: q(1) solid var(--ss-color-line-primary);
+}
+
+@mixin c-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+// ---------------------------------------------------------------------------
+// Card extension parts (legacy `_card_extended.scss`)
+// ---------------------------------------------------------------------------
+
+// Image positioned absolutely over the card surface.
+@mixin c-card-image-overlay {
+    position: absolute;
+    inset: 0;
+    padding: var(--ss-card-padding);
+    border-radius: var(--ss-card-radius);
+}
+
+// Image flush to the top edge of the card.
+@mixin c-card-image-top {
+    border-top-left-radius: var(--ss-card-radius);
+    border-top-right-radius: var(--ss-card-radius);
+}
+
+// Image flush to the bottom edge of the card.
+@mixin c-card-image-bottom {
+    border-bottom-left-radius: var(--ss-card-radius);
+    border-bottom-right-radius: var(--ss-card-radius);
+}
+
+// Horizontal layout: image left, content right.
+@mixin c-card-horizontal {
+    flex-direction: row;
+
+    > img {
+        width: auto;
+        max-width: 40%;
+        object-fit: cover;
+        border-radius: var(--ss-card-radius) 0 0 var(--ss-card-radius);
+    }
+}
+
+// Group: equal-width cards in a row, sharing borders.
+@mixin c-card-group {
+    display: flex;
+    flex-flow: row wrap;
+
+    > * {
+        flex: 1 0 0%;
+        margin-bottom: 0;
+
+        + * {
+            margin-left: 0;
+            border-left: 0;
+        }
+
+        &:not(:last-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+}
+
+// Deck: equal-width cards in a row with gutters.
+@mixin c-card-deck {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--ss-space-md, q(16));
+
+    > * {
+        flex: 1 0 0%;
+        margin-bottom: 0;
+    }
+}

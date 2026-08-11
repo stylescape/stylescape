@@ -1,0 +1,28 @@
+// =============================================================================
+// 31-modules / widget / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./widget.config" as config;
+
+@mixin ss-widget {
+    display: block;
+    box-sizing: border-box;
+    padding: map.get(config.$widget-config, "padding");
+    background-color: map.get(config.$widget-config, "background");
+    color: map.get(config.$widget-config, "color");
+    border: map.get(config.$widget-config, "border-width") solid
+        map.get(config.$widget-config, "border-color");
+}
+
+@mixin ss-widget-squared {
+    border-radius: map.get(config.$widget-config, "radius-squared");
+}
+
+@mixin ss-widget-rounded {
+    border-radius: map.get(config.$widget-config, "radius-rounded");
+}
+
+@mixin ss-widget-pill {
+    border-radius: map.get(config.$widget-config, "radius-pill");
+}

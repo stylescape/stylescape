@@ -1,0 +1,98 @@
+////
+///
+/// Character Default Mixins
+/// ===========================================================================
+///
+/// Base mixins for default character/inline text styles.
+///
+/// @group Typography.Character.Foundation.Default
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+/// Allowed properties:
+// • text-decoration
+// • text-shadow
+// • text-emphasis
+// • color
+// • letter-spacing
+// • font-*
+////
+
+@use "sass:map";
+@use "./character-default.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+@mixin ss-character-default {
+    text-decoration: map.get(
+        config.$ss-character-default-config,
+        text-decoration
+    );
+    text-shadow: map.get(config.$ss-character-default-config, text-shadow);
+
+    text-emphasis: map.get(config.$ss-character-default-config, text-emphasis);
+    -webkit-text-emphasis: map.get(
+        config.$ss-character-default-config,
+        text-emphasis
+    );
+}
+
+// // ============================================================================
+// // StyleScape — Character Default (Mixins)
+// // ============================================================================
+
+// @use "sass:map";
+// @use "./character-default.config" as config;
+
+// @mixin ss-character-default {
+//     text-decoration: map.get(
+//         config.$ss-character-default-config,
+//         text-decoration
+//     );
+
+//     text-decoration-color: map.get(
+//         config.$ss-character-default-config,
+//         text-decoration-color
+//     );
+
+//     text-shadow: map.get(config.$ss-character-default-config, text-shadow);
+
+//     text-emphasis: map.get(config.$ss-character-default-config, text-emphasis);
+//     -webkit-text-emphasis: map.get(
+//         config.$ss-character-default-config,
+//         text-emphasis
+//     );
+// }
+
+// /// Reset inline element to default inherited styles
+// @mixin character-default-reset {
+//     $cfg: config.$ss-character-default-config;
+
+//     font-family: map.get($cfg, font-family);
+//     font-size: map.get($cfg, font-size);
+//     font-weight: map.get($cfg, font-weight);
+//     font-style: map.get($cfg, font-style);
+//     line-height: map.get($cfg, line-height);
+//     letter-spacing: map.get($cfg, letter-spacing);
+//     color: map.get($cfg, color);
+//     text-decoration: map.get($cfg, text-decoration);
+// }
+
+// /// Base inline element styles
+// @mixin character-default-base {
+//     display: inline;
+//     vertical-align: baseline;
+// }
+
+// @mixin character--default {
+//     //text-decoration: ;
+//     text-decoration-color: var(--color_text_primary);
+//     text-shadow: none;
+//     text-emphasis: none;
+//     -webkit-text-emphasis: none;
+//     text-decoration: none;
+// }

@@ -1,0 +1,69 @@
+////
+///
+/// Paragraph Typography Tags Module
+/// ===========================================================================
+/// ...
+///
+/// @group Paragraph
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../01-core/external" as *;
+@use "../../21-typography/paragraph" as *;
+
+// ============================================================================
+// Tags
+// ============================================================================
+//
+// Emitted inside `@layer ss.reset` so components (e.g. `.ss-c-preview__code`)
+// can override these element-level defaults.
+
+@layer ss.reset {
+    address {
+        @include ss-paragraph-address();
+    }
+
+    ///
+    /// Styles for the `<cite>` HTML element.
+    ///
+    /// Ensures that all `<cite>` elements are styled consistently according
+    /// to the design system's standards for citations.
+    ///
+    cite {
+        @include ss-paragraph-cite;
+    }
+
+    /// Applying preformatted block styles to `<pre>` elements.
+    pre {
+        @include ss-paragraph-code;
+    }
+
+    /// Code elements inside preformatted text blocks
+    /// (`<pre><code></code></pre>`).
+    ///
+    /// The outer `<pre>` already carries the block chrome (border, padding,
+    /// background, radius). The inner `<code>` is inline by default, so any
+    /// border/padding/background on it would be painted on every wrapped
+    /// visual line — producing stray horizontal rules. Strip its chrome and
+    /// let it inherit color/typography from the surrounding `<pre>`.
+    pre code {
+        display: inline;
+        padding: 0;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        white-space: inherit;
+    }
+}

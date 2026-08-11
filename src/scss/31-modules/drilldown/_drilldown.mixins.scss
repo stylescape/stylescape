@@ -1,0 +1,64 @@
+// =============================================================================
+// 31-modules / drilldown / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./drilldown.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-drilldown {
+    position: relative;
+    overflow: hidden;
+    background-color: map.get(config.$drilldown-config, "background");
+    color: map.get(config.$drilldown-config, "color");
+    width: 100%;
+}
+
+@mixin ss-drilldown-wrapper {
+    display: flex;
+    transition: transform #{map.get(config.$drilldown-config, "transition")};
+    will-change: transform;
+}
+
+@mixin ss-drilldown-level {
+    flex: 0 0 100%;
+    min-width: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin ss-drilldown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: map.get(config.$drilldown-config, "padding");
+    border-bottom: q(1) solid map.get(config.$drilldown-config, "border-color");
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+}
+
+@mixin ss-drilldown-back {
+    @include ss-drilldown-item;
+    font-weight: 600;
+    color: map.get(config.$drilldown-config, "color-active");
+
+    &::before {
+        content: "‹";
+        margin-right: q(8);
+        font-size: 1.25em;
+    }
+}
+
+@mixin ss-drilldown-bordered {
+    border: q(1) solid map.get(config.$drilldown-config, "border-color");
+}
+
+@mixin ss-drilldown-dark {
+    background-color: var(--ss-color-text, #1a1a1a);
+    color: var(--ss-color-fill, #ffffff);
+}

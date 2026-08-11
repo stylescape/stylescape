@@ -1,0 +1,281 @@
+// ============================================================================
+// Appearance — Relocated Surfaces
+// ============================================================================
+//
+// Surface decoration (backgrounds, borders, radii, shadows, ornament
+// placement) for elements whose *typography* lives in `ss.typography` and
+// whose page chrome previously leaked into `ss.reset` / `ss.layout`.
+//
+// Per SSX, painted surfaces belong to `ss.appearance`; a higher layer may
+// style a lower layer's selectors. Each block reads the same config map as
+// the typography mixin it decorates, so values stay single-sourced.
+//
+// ============================================================================
+
+@use "sass:map";
+@use "../01-core/external" as *;
+@use "../01-core/prefix" as *;
+@use "../12-lexicon/tokens" as tokens;
+@use "../21-typography/paragraph/semantic/aside/paragraph-aside.config" as aside;
+@use "../21-typography/paragraph/semantic/intro/paragraph-intro.config" as intro;
+@use "../21-typography/paragraph/semantic/legal/paragraph-legal.config" as legal;
+@use "../21-typography/paragraph/semantic/quote/paragraph-quote.config" as quote;
+@use "../21-typography/paragraph/semantic/code/paragraph-code.config" as pcode;
+@use "../21-typography/paragraph/semantic/blockquote/paragraph-blockquote.config"
+    as bq;
+@use "../21-typography/paragraph/layout/dropcap/paragraph-dropcap.config"
+    as dropcap;
+@use "../21-typography/character/semantic/abbreviation/character-abbreviation.config"
+    as abbr-cfg;
+@use "../21-typography/character/semantic/code/character-code.config" as ccode;
+@use "../21-typography/character/variant/accent/character-accent.config"
+    as accent;
+
+@layer ss.appearance {
+    // ------------------------------------------------------------------------
+    // Page surface (relocated from 11-reset/tags/_body.scss)
+    // ------------------------------------------------------------------------
+
+    body {
+        background: var(--color_fill_primary);
+    }
+
+    // ------------------------------------------------------------------------
+    // Inline code chip (relocated from character-code mixins)
+    // ------------------------------------------------------------------------
+
+    code:not(pre *),
+    kbd:not(pre *),
+    samp:not(pre *) {
+        background-color: map.get(
+            ccode.$ss-character-code-config,
+            background-color
+        );
+        border-radius: map.get(ccode.$ss-character-code-config, border-radius);
+    }
+
+    a > code,
+    a > kbd,
+    a > samp {
+        color: tokens.$character_code_text_color;
+    }
+
+    // Line-number gutter overlay (relocated from character-code mixins)
+    pre[data-line-numbers] .line-number,
+    .#{$ss-prefix-typography}-code--numbered .line-number {
+        position: absolute;
+        width: map.get(ccode.$ss-character-code-line-numbers-config, width);
+        background-color: map.get(
+            ccode.$ss-character-code-line-numbers-config,
+            background
+        );
+    }
+
+    // ------------------------------------------------------------------------
+    // Code block panel (relocated from paragraph-code mixins)
+    // ------------------------------------------------------------------------
+
+    pre,
+    .#{$ss-prefix-typography}-paragraph--code {
+        background-color: map.get(pcode.$ss-paragraph-code-config, background);
+        border-width: map.get(pcode.$ss-paragraph-code-config, border-width);
+        border-style: map.get(pcode.$ss-paragraph-code-config, border-style);
+        border-color: map.get(pcode.$ss-paragraph-code-config, border-color);
+        border-radius: map.get(pcode.$ss-paragraph-code-config, border-radius);
+    }
+
+    // ------------------------------------------------------------------------
+    // Abbreviation tooltip surface (relocated from abbreviation mixins)
+    // ------------------------------------------------------------------------
+
+    abbr[title]:hover::after,
+    abbr[title]:focus::after,
+    .#{$ss-prefix-typography}-char-abbr:hover::after,
+    .#{$ss-prefix-typography}-char-abbr:focus::after {
+        position: absolute;
+        z-index: 10;
+        background-color: map.get(
+            abbr-cfg.$ss-character-abbreviation-tooltip-config,
+            background
+        );
+        border-radius: map.get(
+            abbr-cfg.$ss-character-abbreviation-tooltip-config,
+            radius
+        );
+        box-shadow: map.get(
+            abbr-cfg.$ss-character-abbreviation-tooltip-config,
+            shadow
+        );
+    }
+
+    // ------------------------------------------------------------------------
+    // Highlight accent (relocated from character-accent mixins)
+    // ------------------------------------------------------------------------
+
+    mark,
+    .#{$ss-prefix-typography}-highlight {
+        background-color: map.get(
+            accent.$ss-character-accent-config,
+            highlight-bg
+        );
+    }
+
+    // ------------------------------------------------------------------------
+    // Aside panels (relocated from paragraph-aside mixins)
+    // ------------------------------------------------------------------------
+
+    .#{$ss-prefix-typography}-aside,
+    .#{$ss-prefix-typography}-aside-note,
+    .#{$ss-prefix-typography}-aside-tip,
+    .#{$ss-prefix-typography}-aside-warning,
+    .#{$ss-prefix-typography}-callout,
+    .#{$ss-prefix-typography}-sidebar {
+        background-color: map.get(
+            aside.$ss-paragraph-aside-config,
+            background-color
+        );
+        border-radius: map.get(
+            aside.$ss-paragraph-aside-config,
+            border-radius
+        );
+    }
+
+    .#{$ss-prefix-typography}-aside-note {
+        background-color: map.get(
+            map.get(aside.$ss-paragraph-aside-variants, note),
+            background-color
+        );
+    }
+
+    .#{$ss-prefix-typography}-aside-tip {
+        background-color: map.get(
+            map.get(aside.$ss-paragraph-aside-variants, tip),
+            background-color
+        );
+    }
+
+    .#{$ss-prefix-typography}-aside-warning {
+        background-color: map.get(
+            map.get(aside.$ss-paragraph-aside-variants, warning),
+            background-color
+        );
+    }
+
+    .#{$ss-prefix-typography}-callout {
+        border: map.get(
+            map.get(aside.$ss-paragraph-aside-variants, callout),
+            border
+        );
+        background-color: map.get(
+            map.get(aside.$ss-paragraph-aside-variants, callout),
+            background-color
+        );
+    }
+
+    // ------------------------------------------------------------------------
+    // Intro highlight (relocated from paragraph-intro mixins)
+    // ------------------------------------------------------------------------
+
+    .#{$ss-prefix-typography}-intro-highlight {
+        background-color: map.get(
+            map.get(intro.$ss-paragraph-intro-variants, highlight),
+            background-color
+        );
+        border-radius: map.get(
+            map.get(intro.$ss-paragraph-intro-variants, highlight),
+            border-radius
+        );
+    }
+
+    // ------------------------------------------------------------------------
+    // Legal variants (relocated from paragraph-legal mixins)
+    // ------------------------------------------------------------------------
+
+    .#{$ss-prefix-typography}-disclaimer {
+        background-color: map.get(
+            map.get(legal.$ss-paragraph-legal-variants, disclaimer),
+            background-color
+        );
+        border-radius: map.get(
+            map.get(legal.$ss-paragraph-legal-variants, disclaimer),
+            border-radius
+        );
+    }
+
+    .#{$ss-prefix-typography}-copyright {
+        border: map.get(
+            map.get(legal.$ss-paragraph-legal-variants, copyright),
+            border
+        );
+    }
+
+    // ------------------------------------------------------------------------
+    // Quote variants (relocated from paragraph-quote mixins)
+    // ------------------------------------------------------------------------
+
+    .#{$ss-prefix-typography}-blockquote-highlight {
+        background-color: map.get(
+            map.get(quote.$ss-paragraph-quote-variants, highlight),
+            background-color
+        );
+        border-radius: map.get(
+            map.get(quote.$ss-paragraph-quote-variants, highlight),
+            border-radius
+        );
+    }
+
+    .#{$ss-prefix-typography}-pullquote {
+        border: map.get(map.get(quote.$ss-paragraph-quote-variants, pull), border);
+    }
+
+    .#{$ss-prefix-typography}-testimonial {
+        border: map.get(
+            map.get(quote.$ss-paragraph-quote-variants, testimonial),
+            border
+        );
+    }
+
+    // ------------------------------------------------------------------------
+    // Blockquote surface and ornament (relocated from blockquote mixins)
+    // ------------------------------------------------------------------------
+
+    blockquote,
+    .#{$ss-prefix-typography}-blockquote,
+    .#{$ss-prefix-typography}-blockquote--decorated {
+        background: map.get(bq.$ss-paragraph-blockquote-config, background);
+    }
+
+    .#{$ss-prefix-typography}-blockquote--decorated::before {
+        position: absolute;
+        left: -0.5em;
+    }
+
+    // ------------------------------------------------------------------------
+    // Boxed dropcap (relocated from paragraph-dropcap mixins)
+    // ------------------------------------------------------------------------
+
+    .#{$ss-prefix-typography}-dropcap-boxed::first-letter {
+        background-color: map.get(
+            map.get(dropcap.$ss-paragraph-dropcap-variants, boxed),
+            background-color
+        );
+    }
+
+    // ------------------------------------------------------------------------
+    // Layout chrome (relocated from 23-layout)
+    // ------------------------------------------------------------------------
+
+    .#{$ss-prefix-layout}-canvas--gradient {
+        color: hsla(0, 0%, 100%, 0.85);
+        background-color: #170d24;
+        background-image:
+            radial-gradient(ellipse at 10% 90%, #0d1f7a 0%, transparent 55%),
+            radial-gradient(ellipse at 90% 90%, #439cc5 0%, transparent 55%),
+            radial-gradient(ellipse at 90% 10%, #4a74dc 0%, transparent 55%),
+            radial-gradient(ellipse at 10% 10%, #35244f 0%, transparent 55%);
+    }
+
+    .#{$ss-prefix-layout}-article__footer {
+        border-top: q(1) solid var(--ss-color-border, currentColor);
+    }
+}

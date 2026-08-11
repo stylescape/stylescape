@@ -1,0 +1,50 @@
+////
+///
+/// Stack
+/// ===========================================================================
+///
+/// Vertical stacking layout primitive.
+/// Pure spatial logic. No colors. No shadows.
+///
+/// @group Flow
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@layer ss.flow {
+
+.ss-f-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.ss-f-stack > * {
+    margin-block: 0;
+}
+
+.ss-f-stack > * + * {
+    margin-block-start: var(--ss-f-stack-gap, var(--ss-vspace-md));
+}
+
+// Stack variants with predefined gaps
+.ss-f-stack-xs {
+    --ss-f-stack-gap: var(--ss-vspace-xs);
+}
+.ss-f-stack-sm {
+    --ss-f-stack-gap: var(--ss-vspace-sm);
+}
+.ss-f-stack-md {
+    --ss-f-stack-gap: var(--ss-vspace-md);
+}
+.ss-f-stack-lg {
+    --ss-f-stack-gap: var(--ss-vspace-lg);
+}
+.ss-f-stack-xl {
+    --ss-f-stack-gap: var(--ss-vspace-xl);
+}
+
+}

@@ -1,0 +1,57 @@
+@use "sass:map";
+@use "./dropdown.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+@mixin ss-dropdown-menu {
+    position: absolute;
+    z-index: map.get(config.$ss-dropdown-config, z-index);
+    top: calc(100% + map.get(config.$ss-dropdown-config, offset));
+    inset-inline-start: 0;
+
+    min-width: map.get(config.$ss-dropdown-config, min-width);
+    padding-block: map.get(config.$ss-dropdown-config, padding-block);
+
+    background: map.get(config.$ss-dropdown-config, bg);
+    color: map.get(config.$ss-dropdown-config, fg);
+    border: q(1) solid map.get(config.$ss-dropdown-config, border);
+    border-radius: map.get(config.$ss-dropdown-config, radius);
+    box-shadow: map.get(config.$ss-dropdown-config, shadow);
+
+    margin: 0;
+    list-style: none;
+}
+
+@mixin ss-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: map.get(config.$ss-dropdown-config, item-padding);
+
+    background: transparent;
+    border: 0;
+    color: inherit;
+    text-align: start;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+        background: map.get(config.$ss-dropdown-config, item-hover-bg);
+    }
+}
+
+@mixin ss-dropdown-item-active {
+    background: map.get(config.$ss-dropdown-config, item-active-bg);
+    color: map.get(config.$ss-dropdown-config, item-active-fg);
+}
+
+@mixin ss-dropdown-divider {
+    display: block;
+    height: q(1);
+    margin-block: map.get(config.$ss-dropdown-config, padding-block);
+    background: map.get(config.$ss-dropdown-config, border);
+}

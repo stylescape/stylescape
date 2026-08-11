@@ -1,0 +1,81 @@
+////
+///
+/// Breakpoints Variables
+/// ===========================================================================
+///
+/// Responsive breakpoint tokens for the StyleScape design system.
+/// Based on common device widths and Bootstrap-compatible breakpoints.
+///
+/// @group Variables.HeadFrame
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../../01-core/external" as *;
+
+// ============================================================================
+// Breakpoint Map
+// ============================================================================
+
+/// Breakpoint map for responsive design
+/// Note: Named with ss- prefix to avoid conflicts with unit.gl $breakpoints
+/// @type Map
+$ss-breakpoints: (
+    "xs": 0,
+    "sm": q(576),
+    "md": q(768),
+    "lg": q(992),
+    "xl": q(1200),
+    "xxl": q(1400),
+) !default;
+
+/// Get breakpoint value by key
+/// @param {String} $key - Breakpoint key (xs, sm, md, lg, xl, xxl)
+/// @return {Number} Breakpoint value in pixels
+@function ss-breakpoint($key) {
+    @if map.has-key($ss-breakpoints, $key) {
+        @return map.get($ss-breakpoints, $key);
+    }
+    @warn "Breakpoint '#{$key}' not found in $ss-breakpoints map.";
+    @return null;
+}
+
+// ============================================================================
+// CSS Custom Properties
+// ============================================================================
+
+:root {
+    // Primitive breakpoint tokens
+    --ss-breakpoint-xs: #{map.get($ss-breakpoints, "xs")};
+    --ss-breakpoint-sm: #{map.get($ss-breakpoints, "sm")};
+    --ss-breakpoint-md: #{map.get($ss-breakpoints, "md")};
+    --ss-breakpoint-lg: #{map.get($ss-breakpoints, "lg")};
+    --ss-breakpoint-xl: #{map.get($ss-breakpoints, "xl")};
+    --ss-breakpoint-xxl: #{map.get($ss-breakpoints, "xxl")};
+}
+
+// ============================================================================
+// Breakpoint Aliases
+// ============================================================================
+
+/// Mobile-first breakpoint (portrait phones)
+$ss-breakpoint-mobile: map.get($ss-breakpoints, "xs") !default;
+
+/// Small devices (landscape phones)
+$ss-breakpoint-phone: map.get($ss-breakpoints, "sm") !default;
+
+/// Medium devices (tablets)
+$ss-breakpoint-tablet: map.get($ss-breakpoints, "md") !default;
+
+/// Large devices (desktops)
+$ss-breakpoint-desktop: map.get($ss-breakpoints, "lg") !default;
+
+/// Extra large devices (large desktops)
+$ss-breakpoint-desktop-lg: map.get($ss-breakpoints, "xl") !default;
+
+/// Extra extra large devices (larger desktops)
+$ss-breakpoint-desktop-xl: map.get($ss-breakpoints, "xxl") !default;

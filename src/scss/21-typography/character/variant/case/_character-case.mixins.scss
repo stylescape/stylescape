@@ -1,0 +1,151 @@
+////
+///
+/// Character Case Mixins
+/// ===========================================================================
+///
+/// Mixins for text-transform character variants.
+///
+/// @group Typography.Character.Variants.Case
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./character-case.config" as config;
+
+///
+/// Core case mixin
+///
+@mixin ss-character-case($transform: null, $caps: null) {
+    @if $transform != null {
+        text-transform: $transform;
+    }
+
+    @if $caps != null {
+        font-variant-caps: $caps;
+    }
+}
+
+// Text Transform Variants
+
+@mixin ss-character-uppercase {
+    @include ss-character-case(uppercase);
+}
+
+@mixin ss-character-lowercase {
+    @include ss-character-case(lowercase);
+}
+
+@mixin ss-character-capitalize {
+    @include ss-character-case(capitalize);
+}
+
+// Caps Variants
+
+@mixin ss-character-small-caps {
+    @include ss-character-case(null, small-caps);
+}
+
+@mixin ss-character-all-small-caps {
+    @include ss-character-case(null, all-small-caps);
+}
+
+@mixin ss-character-petite-caps {
+    @include ss-character-case(null, petite-caps);
+}
+
+@mixin ss-character-all-petite-caps {
+    @include ss-character-case(null, all-petite-caps);
+}
+
+@mixin ss-character-unicase {
+    @include ss-character-case(null, unicase);
+}
+
+@mixin ss-character-titling-caps {
+    @include ss-character-case(null, titling-caps);
+}
+
+// Reset / Inherit / Unset
+
+@mixin ss-character-case-initial {
+    @include ss-character-case(none, initial);
+}
+
+@mixin ss-character-case-inherit {
+    @include ss-character-case(null, inherit);
+}
+
+@mixin ss-character-case-unset {
+    @include ss-character-case(none, unset);
+}
+
+// // ============================================================================
+// // Text Transform Mixins
+// // ============================================================================
+
+// /// Apply text transform with associated letter-spacing
+// /// @param {String} $case - Case name from config
+// @mixin character-case($case) {
+//     $cases: config.$ss-character-case-config;
+//     $cfg: map.get($cases, $case);
+
+//     @if $cfg {
+//         text-transform: map.get($cfg, text-transform);
+//         letter-spacing: map.get($cfg, letter-spacing);
+//     }
+// }
+
+// /// Text transform: uppercase
+// @mixin character-uppercase {
+//     $cfg: map.get(config.$ss-character-case-config, uppercase);
+//     text-transform: map.get($cfg, text-transform);
+//     letter-spacing: map.get($cfg, letter-spacing);
+// }
+
+// /// Text transform: lowercase
+// @mixin character-lowercase {
+//     text-transform: lowercase;
+// }
+
+// /// Text transform: capitalize
+// @mixin character-capitalize {
+//     text-transform: capitalize;
+// }
+
+// /// Text transform: none
+// @mixin character-case-none {
+//     text-transform: none;
+// }
+
+// // ============================================================================
+// // Font Variant Mixins
+// // ============================================================================
+
+// /// Font variant: small-caps
+// @mixin character-small-caps {
+//     font-variant: small-caps;
+// }
+
+// /// Font variant: all-small-caps
+// @mixin character-all-small-caps {
+//     font-variant-caps: all-small-caps;
+// }
+
+// /// Font variant: petite-caps
+// @mixin character-petite-caps {
+//     font-variant-caps: petite-caps;
+// }
+
+// /// Font variant: unicase
+// @mixin character-unicase {
+//     font-variant-caps: unicase;
+// }
+
+// /// Font variant: titling-caps
+// @mixin character-titling-caps {
+//     font-variant-caps: titling-caps;
+// }

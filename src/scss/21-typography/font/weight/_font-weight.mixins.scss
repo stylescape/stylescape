@@ -1,0 +1,26 @@
+@use "sass:map";
+@use "./font-weight.config" as config;
+@use "./font-weight.functions" as fn;
+
+@mixin ss-font-weight($key, $width: null) {
+    $value: fn.ss-font-weight-value($key);
+
+    @if $value != null {
+        $is-variable: map.get(config.$ss-font-weight-config, variable);
+        $axis-weight: map.get(config.$ss-font-weight-config, axis-weight);
+        $axis-width: map.get(config.$ss-font-weight-config, axis-width);
+        $default-width: map.get(config.$ss-font-weight-config, default-width);
+
+        font-weight: $value;
+
+        @if $is-variable {
+            $resolved-width: $default-width;
+            @if $width != null {
+                $resolved-width: $width;
+            }
+            font-variation-settings:
+                "#{$axis-weight}" $value,
+                "#{$axis-width}" $resolved-width;
+        }
+    }
+}

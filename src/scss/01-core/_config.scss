@@ -1,0 +1,39 @@
+////
+///
+/// Build Configuration
+/// ===========================================================================
+///
+/// Compile-time feature flags for the SCSS build. Every flag is `!default`, so
+/// a consumer configures them at the entry point:
+///
+///     @use "pkg:stylescape/scss" with ($scapepress-parity: false);
+///
+/// Defaults reproduce the historical build exactly — a consumer that passes no
+/// configuration gets the same stylesheet as before this module existed.
+///
+/// @group Core
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.3.19
+/// @access public
+///
+////
+
+// ============================================================================
+// Flags
+// ============================================================================
+
+/// Emit the scapepress parity layer (`32-utilities/_scapepress-parity.scss`).
+///
+/// The parity layer re-emits every class found in the scapepress-sites SCSS
+/// under the `ss-c-*` prefix so those sites can migrate onto core without
+/// losing their legacy styling. It is by far the largest part of the compiled
+/// stylesheet (~890 KiB of source), and it is dead weight for any consumer
+/// whose markup never used those classes — a site built fresh against the
+/// module layer, for example.
+///
+/// Turning it off drops the layer entirely; nothing in `31-modules` or
+/// `32-utilities` depends on it.
+///
+/// @type Bool
+$scapepress-parity: true !default;

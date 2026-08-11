@@ -1,0 +1,211 @@
+{% extends "../base.html.jinja" %} {% set title = "Citation Characters" %} {%-
+block title %}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h2>{{ title }}</h2>
+        <p>Citation and reference markup for attributing sources.</p>
+    </header>
+
+    {# Basic Citation #} {% set section_title = "Basic Citation" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <p>
+            As mentioned in
+            <cite>The Elements of Typographic Style</cite>
+            by Robert Bringhurst, typography is the craft of endowing human
+            language with a durable visual form.
+        </p>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {# Citation with Blockquote #} {% set section_title = "Citation with
+    Blockquote" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <blockquote
+            style="
+                border-left: 4px solid var(--color_text_primary);
+                padding: 20px 24px;
+                margin: 0;
+                background: var(--color_fill_secondary);
+            "
+        >
+            <p
+                style="
+                    margin: 0 0 12px;
+                    font-size: 18px;
+                    font-style: italic;
+                    line-height: 1.6;
+                "
+            >
+                "Design is not just what it looks like and feels like. Design
+                is how it works."
+            </p>
+            <footer style="font-size: 14px; opacity: 0.8">
+                — <cite>Steve Jobs</cite>, in an interview with The New York
+                Times, 2003
+            </footer>
+        </blockquote>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {# Academic Citation Styles #} {% set section_title = "Academic Citation
+    Formats" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div style="display: flex; flex-direction: column; gap: 20px">
+            <!-- APA Style -->
+            <div
+                style="
+                    padding: 16px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 2px;
+                "
+            >
+                <span
+                    style="
+                        font-size: 12px;
+                        opacity: 0.6;
+                        text-transform: uppercase;
+                    "
+                >
+                    APA Style
+                </span>
+                <p style="margin: 8px 0 0; font-size: 14px">
+                    Bringhurst, R. (2004).
+                    <cite style="font-style: italic">
+                        The elements of typographic style
+                    </cite>
+                    (3rd ed.). Hartley & Marks.
+                </p>
+            </div>
+            <!-- MLA Style -->
+            <div
+                style="
+                    padding: 16px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 2px;
+                "
+            >
+                <span
+                    style="
+                        font-size: 12px;
+                        opacity: 0.6;
+                        text-transform: uppercase;
+                    "
+                >
+                    MLA Style
+                </span>
+                <p style="margin: 8px 0 0; font-size: 14px">
+                    Bringhurst, Robert.
+                    <cite style="font-style: italic">
+                        The Elements of Typographic Style
+                    </cite>
+                    . 3rd ed., Hartley & Marks, 2004.
+                </p>
+            </div>
+            <!-- Chicago Style -->
+            <div
+                style="
+                    padding: 16px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 2px;
+                "
+            >
+                <span
+                    style="
+                        font-size: 12px;
+                        opacity: 0.6;
+                        text-transform: uppercase;
+                    "
+                >
+                    Chicago Style
+                </span>
+                <p style="margin: 8px 0 0; font-size: 14px">
+                    Bringhurst, Robert.
+                    <cite style="font-style: italic">
+                        The Elements of Typographic Style
+                    </cite>
+                    . 3rd ed. Point Roberts, WA: Hartley & Marks, 2004.
+                </p>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {# Inline Citations #} {% set section_title = "Inline Citations" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <p style="line-height: 1.8">
+            Typography has been described as "the craft of endowing human
+            language with a durable visual form"
+            <cite
+                style="
+                    font-size: 13px;
+                    vertical-align: super;
+                    color: var(--ss-color-link);
+                "
+            >
+                [1]
+            </cite>
+            . This definition emphasizes the relationship between language and
+            visual representation. Recent studies have shown that good
+            typography can improve reading comprehension by up to 20%
+            <cite
+                style="
+                    font-size: 13px;
+                    vertical-align: super;
+                    color: var(--ss-color-link);
+                "
+            >
+                [2]
+            </cite>
+            .
+        </p>
+        <div
+            style="
+                margin-top: 16px;
+                padding-top: 16px;
+                border-top: 1px solid var(--color_line_secondary);
+                font-size: 13px;
+            "
+        >
+            <p style="margin: 0 0 4px"><strong>References:</strong></p>
+            <p style="margin: 0; opacity: 0.8">
+                [1] Bringhurst, R. (2004). The Elements of Typographic Style
+            </p>
+            <p style="margin: 0; opacity: 0.8">
+                [2] Smith, J. (2020). Typography and Reading Comprehension
+                Study
+            </p>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{%- endblock %}

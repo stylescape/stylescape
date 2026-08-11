@@ -1,0 +1,13 @@
+@use "sass:map";
+@use "./font-weight.config" as config;
+
+@function ss-font-weight-value($key) {
+    $weights: map.get(config.$ss-font-weight-config, weights);
+
+    @if map.has-key($weights, $key) {
+        @return map.get($weights, $key);
+    }
+
+    @warn "Unknown font weight `#{$key}`.";
+    @return null;
+}

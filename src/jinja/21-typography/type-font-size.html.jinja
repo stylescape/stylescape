@@ -1,0 +1,23 @@
+{% extends "../base.html.jinja" %} {% set title = "Font Sizes" %} {%- block title
+%}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    {% set section_title = "Numbered Font Sizes" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+
+        {% for i in range(1, 13) %} {% set label=".ss-text-" ~ i %} {% set
+        class="ss-text-" ~ i %} {%- include
+        "includes/preview/ss-c-preview_font.html.jinja" %} {% endfor %}
+    </section>
+</section>
+
+{%- endblock %}

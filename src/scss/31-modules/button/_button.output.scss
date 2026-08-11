@@ -1,0 +1,112 @@
+@use "../../01-core/prefix" as *;
+@use "./button.mixins" as *;
+@use "./button.config" as config;
+@use "sass:map";
+@use "../../01-core/external" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-button {
+        @include c-button-base;
+
+        &--primary {
+            @include c-button-primary;
+        }
+        &--secondary {
+            @include c-button-secondary;
+        }
+        &--outline {
+            @include c-button-outline;
+        }
+        &--ghost {
+            @include c-button-ghost;
+        }
+        &--solid {
+            @include c-button-solid;
+        }
+        &--link {
+            @include c-button-link;
+        }
+        &--accent {
+            @include c-button-accent;
+        }
+        &--clear {
+            @include c-button-clear;
+        }
+
+        // Status variants
+        &--success {
+            @include c-button-success;
+        }
+        &--warning {
+            @include c-button-warning;
+        }
+        &--danger {
+            @include c-button-danger;
+        }
+        &--info {
+            @include c-button-info;
+        }
+
+        // Shapes
+        &--rounded {
+            @include c-button-rounded;
+        }
+        &--pill {
+            @include c-button-pill;
+        }
+        &--square {
+            @include c-button-square;
+        }
+        &--icon {
+            @include c-button-icon;
+        }
+
+        // State / modifier
+        &--block {
+            @include c-button-block;
+        }
+        &--disabled {
+            @include c-button-disabled;
+        }
+        &--loading {
+            @include c-button-loading;
+        }
+
+        // Sizes — `--size-*` is the canonical form; `--xs/--sm/--md/--lg/--xl`
+        // and `--small/--large` are convenience aliases so downstream
+        // templates that adopted the shorter form (notably semiosys) don't
+        // have to rewrite hundreds of class strings at upgrade time.
+        &--size-xs,
+        &--xs {
+            @include c-button-size-xs;
+        }
+        &--size-sm,
+        &--sm,
+        &--small {
+            @include c-button-size-sm;
+        }
+        &--size-md,
+        &--md {
+            @include c-button-size-md;
+        }
+        &--size-lg,
+        &--lg,
+        &--large {
+            @include c-button-size-lg;
+        }
+        &--size-xl,
+        &--xl {
+            @include c-button-size-xl;
+        }
+
+        &--menu {
+            @include c-button-menu;
+        }
+    }
+
+    .#{$ss-prefix-module}-button-group {
+        display: inline-flex;
+        gap: map.get(config.$ss-button-config, gap);
+        align-items: center;
+    }
+}

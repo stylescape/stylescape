@@ -1,0 +1,60 @@
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./popover.config" as config;
+@use "./popover.mixins" as popover;
+@use "../../01-core/external" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-popover {
+        @include popover.ss-popover;
+    }
+
+    .#{$ss-prefix-module}-popover[data-placement="top"] {
+        bottom: calc(100% + map.get(config.$ss-popover-config, offset));
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .#{$ss-prefix-module}-popover[data-placement="bottom"] {
+        top: calc(100% + map.get(config.$ss-popover-config, offset));
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .#{$ss-prefix-module}-popover[data-placement="left"] {
+        right: calc(100% + map.get(config.$ss-popover-config, offset));
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .#{$ss-prefix-module}-popover[data-placement="right"] {
+        left: calc(100% + map.get(config.$ss-popover-config, offset));
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .#{$ss-prefix-module}-popover__title {
+        font-weight: 600;
+        margin-block-end: q(4);
+    }
+
+    .#{$ss-prefix-module}-popover__body {
+        margin: 0;
+    }
+
+    // ------------------------------------------------------------------------
+    // Native Popover API (https://developer.mozilla.org/docs/Web/API/Popover_API)
+    // `<div class="ss-c-popover" popover id="p1">` + `<button popovertarget="p1">`.
+    // The UA promotes the element to the top layer; we keep the panel skin and
+    // let the default fixed/auto-margin centering position it.
+    // ------------------------------------------------------------------------
+    .#{$ss-prefix-module}-popover[popover] {
+        position: fixed;
+        inset: 0;
+        margin: auto;
+        width: fit-content;
+        height: fit-content;
+        transform: none;
+    }
+
+    .#{$ss-prefix-module}-popover[popover]::backdrop {
+        background: rgba(0, 0, 0, 0.25);
+    }
+}

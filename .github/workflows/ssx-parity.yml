@@ -1,0 +1,89 @@
+name: SSX Conformance
+
+# =============================================================================
+# Conformance against the SSX spec.
+#
+# The gate is "no new drift": `ssx-baseline.json` grandfathers the findings
+# that existed when the linter was adopted, so any finding this build reports
+# is one this change introduced. Shrink the baseline over time — it is the
+# debt ledger, not a permanent exemption.
+#
+# The spec and the linter both live in the sibling `ssx` repo; this repo owns
+# no conformance logic of its own.
+# =============================================================================
+
+on:
+  push:
+    branches: [main, dev]
+    paths:
+      - "src/scss/**"
+      - "src/jinja/**"
+      - "ssx.config.json"
+      - "ssx-baseline.json"
+  pull_request:
+    branches: [main, dev]
+    paths:
+      - "src/scss/**"
+      - "src/jinja/**"
+      - "ssx.config.json"
+      - "ssx-baseline.json"
+  schedule:
+    # Weekly, to catch drift introduced by a spec change rather than a commit.
+    - cron: "0 10 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    name: Lint against the SSX spec
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout stylescape
+        uses: actions/checkout@v6
+
+      - name: Checkout SSX spec and linter
+        uses: actions/checkout@v6
+        with:
+          repository: stylescape/ssx
+          path: ssx
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
+
+      - name: Gate on new drift
+        run: |
+          node ssx/bin/ssx.mjs lint src/scss \
+            --baseline ssx-baseline.json \
+            --max-warnings 0
+
+      - name: Full report (informational)
+        if: always()
+        run: |
+          node ssx/bin/ssx.mjs lint src/scss src/jinja --json > ssx-report.json || true
+          {
+            echo "## SSX conformance"
+            echo
+            python3 -c "
+          import json
+          from collections import Counter
+          r = json.load(open('ssx-report.json'))
+          print(f\"**{r['errors']} errors**, {r['warnings']} warnings across {len(r['files'])} files\")
+          print()
+          c = Counter(f['rule'] for file in r['files'] for f in file['findings'])
+          print('| Rule | Count |')
+          print('| --- | --- |')
+          for rule, n in c.most_common():
+              print(f'| {rule} | {n} |')
+          "
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ssx-report
+          path: ssx-report.json
+          retention-days: 30

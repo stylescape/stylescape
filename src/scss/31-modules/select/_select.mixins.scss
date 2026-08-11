@@ -1,0 +1,24 @@
+@use "sass:map";
+@use "../input/input.mixins" as input;
+@use "./select.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-select {
+    @include input.ss-input;
+
+    padding-inline-end: map.get(
+        config.$ss-select-config,
+        chevron-padding-inline-end
+    );
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, currentColor 50%),
+        linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position:
+        right q(16) top 50%,
+        right calc(q(16) - q(5)) top 50%;
+    background-size:
+        q(5) q(5),
+        q(5) q(5);
+    background-repeat: no-repeat;
+}

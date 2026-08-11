@@ -1,0 +1,60 @@
+////
+///
+/// Section Tags Module
+/// ===========================================================================
+///
+/// Base styles for HTML sectioning elements (main, section, article,
+/// header, footer, nav, aside, hr).
+///
+/// @group Tags.Section
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Tags
+// ============================================================================
+
+@use "../../01-core/external" as *;
+
+// All sectioning-element resets live in `@layer ss.reset` so they don't
+// clobber rules in higher layers (e.g. `@layer ss.components` that gives the
+// ribbon its inward 1q border on a <nav> or <aside> element).
+@layer ss.reset {
+    main {
+        display: block;
+    }
+
+    section,
+    article,
+    header,
+    footer,
+    nav,
+    aside {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+
+    hr {
+        overflow: visible;
+        height: 0;
+        color: inherit;
+        box-sizing: content-box;
+
+        border: none;
+        border-top: q(1) solid var(--ss-color-border, currentColor);
+
+        margin-block: q(32);
+        margin-inline: 0;
+
+        width: 100%;
+        opacity: 1;
+    }
+}

@@ -1,0 +1,47 @@
+////
+///
+/// Visually Hidden Utilities
+/// ===========================================================================
+///
+/// Hide content visually while keeping it available to assistive
+/// technologies. Companion to `ss-u-sr-only` in `layout/_visibility.scss`.
+///
+/// @group Utilities.Accessibility
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.3.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+@layer ss.utilities {
+    .ss-u-visually-hidden {
+        position: absolute !important;
+        width: q(1) !important;
+        height: q(1) !important;
+        padding: 0 !important;
+        margin: q(-1) !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+    }
+
+    .ss-u-visually-hidden-focusable {
+        @extend .ss-u-visually-hidden;
+
+        &:active,
+        &:focus {
+            position: static !important;
+            width: auto !important;
+            height: auto !important;
+            padding: revert !important;
+            margin: revert !important;
+            overflow: visible !important;
+            clip: auto !important;
+            white-space: normal !important;
+        }
+    }
+}

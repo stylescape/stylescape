@@ -1,0 +1,36 @@
+// =============================================================================
+// 31-modules / box / output
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "./box.mixins" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-box {
+        @include ss-box;
+
+        &--bordered {
+            @include ss-box-bordered;
+        }
+        &--rounded {
+            @include ss-box-rounded;
+        }
+        &--surface {
+            @include ss-box-surface;
+        }
+        &--elevated {
+            @include ss-box-elevated;
+        }
+
+        // Depth-tinted surfaces (legacy parity with `box--surface_1..3`).
+        &--surface-1 {
+            @include ss-box-surface-level(1);
+        }
+        &--surface-2 {
+            @include ss-box-surface-level(2);
+        }
+        &--surface-3 {
+            @include ss-box-surface-level(3);
+        }
+    }
+}

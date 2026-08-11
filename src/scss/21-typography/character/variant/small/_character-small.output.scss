@@ -1,0 +1,21 @@
+@use "./character-small.mixins" as small;
+@use "../../../../01-core/prefix" as *;
+
+@layer ss.typography {
+    .#{$ss-prefix-typography}-small {
+        @include small.ss-character-small();
+    }
+
+    .#{$ss-prefix-typography}-small-bold {
+        @include small.ss-character-small-bold();
+    }
+
+    .#{$ss-prefix-typography}-small-italic {
+        @include small.ss-character-small-italic();
+    }
+
+    // Optional semantic binding
+    small {
+        @include small.ss-character-small();
+    }
+}

@@ -1,0 +1,114 @@
+////
+///
+/// Character Abbreviation Mixins
+/// ===========================================================================
+///
+/// Mixins for abbreviation character styles.
+///
+/// @group Typography.Character.Semantics.Abbreviation
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../base/normal/character-normal.mixins" as normal;
+@use "./character-abbreviation.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+@mixin ss-character-abbreviation {
+    @include normal.ss-character-normal;
+
+    text-decoration: map.get(
+        config.$ss-character-abbreviation-config,
+        text-decoration
+    );
+
+    cursor: map.get(config.$ss-character-abbreviation-config, cursor);
+}
+
+/// CSS-only tooltip surfacing the `title` attribute on hover/focus.
+/// Ported from the old `abbreviation_tooltip` mixin so `<abbr title="…">`
+/// behaves like it did in the previous StyleScape.
+@mixin ss-character-abbreviation-tooltip {
+    $cfg: config.$ss-character-abbreviation-tooltip-config;
+
+    position: relative;
+
+    &:hover::after,
+    &:focus::after {
+        content: attr(title);
+        left: 0;
+        bottom: calc(-1 * #{map.get($cfg, offset)});
+        white-space: nowrap;
+        color: map.get($cfg, color);
+        font-size: map.get($cfg, font-size);
+        padding: map.get($cfg, padding);
+        pointer-events: none;
+    }
+}
+
+// /// Base abbreviation styles
+// @mixin character-abbr-base {
+//     $cfg: config.$ss-character-abbr-config;
+
+//     text-decoration: map.get($cfg, text-decoration);
+//     text-decoration-color: map.get($cfg, text-decoration-color);
+//     text-underline-offset: map.get($cfg, text-underline-offset);
+//     cursor: map.get($cfg, cursor);
+//     font-style: map.get($cfg, font-style);
+// }
+
+// /// Subtle abbreviation (no underline)
+// @mixin character-abbr-subtle {
+//     $cfg: map.get(config.$ss-character-abbr-variants, subtle);
+
+//     text-decoration: map.get($cfg, text-decoration);
+//     cursor: map.get($cfg, cursor);
+// }
+
+// /// Dashed underline abbreviation
+// @mixin character-abbr-dashed {
+//     $cfg: map.get(config.$ss-character-abbr-variants, dashed);
+
+//     text-decoration: map.get($cfg, text-decoration);
+//     text-decoration-color: map.get($cfg, text-decoration-color);
+//     text-underline-offset: map.get(config.$ss-character-abbr-config, text-underline-offset);
+//     cursor: map.get($cfg, cursor);
+// }
+
+// /// Tooltip-styled abbreviation
+// @mixin character-abbr-tooltip {
+//     $cfg: map.get(config.$ss-character-abbr-variants, tooltip);
+
+//     text-decoration: map.get($cfg, text-decoration);
+//     text-decoration-color: map.get($cfg, text-decoration-color);
+//     text-underline-offset: map.get(config.$ss-character-abbr-config, text-underline-offset);
+//     cursor: map.get($cfg, cursor);
+// }
+
+// /// Abbreviation variant by name
+// /// @param {String} $variant - Variant name
+// @mixin character-abbr-variant($variant) {
+//     $variants: config.$ss-character-abbr-variants;
+//     $cfg: map.get($variants, $variant);
+
+//     @if $cfg {
+//         @each $prop, $value in $cfg {
+//             #{$prop}: $value;
+//         }
+//     }
+// }
+
+// /// Acronym style (all caps, smaller)
+// @mixin character-acronym {
+//     @include character-abbr-base;
+//     text-transform: uppercase;
+//     font-size: 0.9em;
+//     letter-spacing: 0.05em;
+// }

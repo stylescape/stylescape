@@ -1,0 +1,59 @@
+@use "sass:map";
+@use "./overlay.config" as config;
+@use "../../01-core/external" as *;
+
+/// Full-cover, click-through layer for floating UI over an immersive view
+/// (map, canvas, 3D). The layer itself is transparent to pointer events so
+/// the view underneath stays interactive; each direct slot re-enables them.
+///
+/// Requires a positioning context on the parent.
+@mixin ss-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: map.get(config.$ss-overlay-config, z-index);
+    pointer-events: none;
+
+    > * {
+        pointer-events: auto;
+    }
+}
+
+/// Full-height side panel, pinned left or right by its modifier.
+@mixin ss-overlay-aside {
+    position: absolute;
+    top: map.get(config.$ss-overlay-config, inset);
+    bottom: map.get(config.$ss-overlay-config, inset);
+    width: map.get(config.$ss-overlay-config, aside-width);
+
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$ss-overlay-config, aside-gap);
+    overflow-y: auto;
+    padding: map.get(config.$ss-overlay-config, aside-padding);
+
+    background-color: var(--ss-color-surface);
+    border: map.get(config.$ss-overlay-config, border);
+    border-radius: map.get(config.$ss-overlay-config, aside-radius);
+    box-shadow: map.get(config.$ss-overlay-config, shadow);
+    color: var(--ss-color-text-primary);
+}
+
+/// Centred feedback bar — live readouts, coordinates, status.
+@mixin ss-overlay-bar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: map.get(config.$ss-overlay-config, bar-max-width);
+    padding: map.get(config.$ss-overlay-config, bar-padding);
+
+    background-color: var(--ss-color-surface);
+    border: map.get(config.$ss-overlay-config, border);
+    border-radius: map.get(config.$ss-overlay-config, bar-radius);
+    box-shadow: map.get(config.$ss-overlay-config, shadow);
+
+    color: var(--ss-color-text-primary);
+    font-size: var(--ss-font-size-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

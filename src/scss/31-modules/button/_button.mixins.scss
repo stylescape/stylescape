@@ -1,0 +1,286 @@
+// =============================================================================
+// 31-modules / button / mixins
+// =============================================================================
+//
+// Logic layer only — every design value is read from `$ss-button-config`
+// (see `_button.config.scss`). No hardcoded measurements or colors.
+//
+// =============================================================================
+
+@use "sass:map";
+@use "sass:math";
+@use "./button.config" as config;
+
+// Internal shorthands --------------------------------------------------------
+
+@function cfg($key) {
+    @return map.get(config.$ss-button-config, $key);
+}
+
+@function vcolor($name, $key) {
+    @return map.get(map.get(cfg(variants), $name), $key);
+}
+
+@function bsize($name, $key) {
+    @return map.get(map.get(cfg(sizes), $name), $key);
+}
+
+// ============================================================================
+// Base
+// ============================================================================
+
+@mixin c-button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: cfg(gap);
+    padding: cfg(padding);
+    font: inherit;
+    font-weight: cfg(font-weight);
+    line-height: cfg(line-height);
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    border: cfg(border-width) solid transparent;
+    border-radius: cfg(radius);
+    background: cfg(bg);
+    color: cfg(fg);
+    transition: cfg(transition);
+
+    &:hover {
+        opacity: cfg(hover-opacity);
+    }
+
+    &:active {
+        opacity: cfg(active-opacity);
+    }
+
+    &:focus-visible {
+        outline: cfg(focus-ring-width) solid cfg(focus-ring-color);
+        outline-offset: cfg(focus-ring-offset);
+    }
+
+    &:disabled,
+    &[disabled] {
+        opacity: cfg(disabled-opacity);
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    // Inline icons follow the button's font-size instead of ballooning to the
+    // global icon-font size; 1em box keeps the glyph on the text baseline.
+    i,
+    [class^="i_"],
+    [class*=" i_"],
+    svg {
+        font-size: inherit;
+        line-height: 1;
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+        fill: currentColor;
+    }
+}
+
+// ============================================================================
+// Variants
+// ============================================================================
+
+/// Apply a named color variant from the config `variants` map.
+@mixin c-button-variant($name) {
+    background: vcolor($name, bg);
+    color: vcolor($name, fg);
+
+    @if vcolor($name, border) {
+        border-color: vcolor($name, border);
+    }
+}
+
+@mixin c-button-primary {
+    @include c-button-variant(primary);
+}
+
+// ----------------------------------------------------------------------------
+// Status variants
+// ----------------------------------------------------------------------------
+
+@mixin c-button-success {
+    @include c-button-variant(success);
+}
+
+@mixin c-button-warning {
+    @include c-button-variant(warning);
+}
+
+@mixin c-button-danger {
+    @include c-button-variant(danger);
+}
+
+@mixin c-button-info {
+    @include c-button-variant(info);
+}
+
+@mixin c-button-secondary {
+    @include c-button-variant(secondary);
+}
+
+@mixin c-button-outline {
+    background: transparent;
+    border-color: cfg(outline-color);
+    color: cfg(outline-color);
+
+    &:hover {
+        background: cfg(hover-wash);
+    }
+}
+
+@mixin c-button-ghost {
+    background: transparent;
+    color: cfg(outline-color);
+
+    &:hover {
+        background: cfg(hover-wash);
+    }
+}
+
+@mixin c-button-solid {
+    @include c-button-variant(solid);
+}
+
+@mixin c-button-link {
+    background: transparent;
+    color: cfg(link-color);
+    padding: 0;
+    border: 0;
+    text-decoration: underline;
+}
+
+@mixin c-button-accent {
+    @include c-button-variant(accent);
+}
+
+@mixin c-button-clear {
+    background: transparent;
+    color: inherit;
+}
+
+// ============================================================================
+// Sizes
+// ============================================================================
+
+@mixin c-button-size($name) {
+    padding: bsize($name, padding);
+    font-size: bsize($name, font-size);
+}
+
+@mixin c-button-size-xs {
+    @include c-button-size(xs);
+}
+
+@mixin c-button-size-sm {
+    @include c-button-size(sm);
+}
+
+@mixin c-button-size-md {
+    @include c-button-size(md);
+}
+
+@mixin c-button-size-lg {
+    @include c-button-size(lg);
+}
+
+@mixin c-button-size-xl {
+    @include c-button-size(xl);
+}
+
+// ============================================================================
+// Icon-only / Menu button
+// ============================================================================
+
+@mixin c-button-menu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    padding: cfg(menu-padding);
+    font: inherit;
+    font-size: cfg(menu-font-size);
+
+    &:hover {
+        opacity: cfg(menu-hover-opacity);
+    }
+}
+
+// ============================================================================
+// Shapes
+// ============================================================================
+
+@mixin c-button-rounded {
+    // Distinctly rounded — the base button is near-square, so this needs a
+    // visibly larger radius to read as a variant.
+    border-radius: cfg(rounded-radius);
+}
+
+@mixin c-button-pill {
+    border-radius: cfg(pill-radius);
+}
+
+@mixin c-button-square {
+    border-radius: 0;
+}
+
+@mixin c-button-icon {
+    aspect-ratio: 1 / 1;
+    padding: cfg(icon-padding);
+    // Icon-only buttons: keep the box square regardless of glyph width.
+    width: cfg(icon-width);
+    justify-content: center;
+}
+
+// ============================================================================
+// States / modifiers
+// ============================================================================
+
+@mixin c-button-block {
+    display: flex;
+    width: 100%;
+}
+
+@mixin c-button-disabled {
+    opacity: cfg(disabled-opacity);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+@mixin c-button-loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: cfg(loading-size);
+        height: cfg(loading-size);
+        margin: math.div(cfg(loading-size), -2) 0 0
+            math.div(cfg(loading-size), -2);
+        border: cfg(loading-border-width) solid currentColor;
+        border-top-color: transparent;
+        border-radius: 50%;
+        color: cfg(loading-color);
+        animation: ss-c-button-spin cfg(loading-speed) linear infinite;
+    }
+}
+
+@keyframes ss-c-button-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -42,7 +42,7 @@ export interface CountdownTime {
  * @example JavaScript
  * ```typescript
  * const countdown = new CountdownTimer("#countdown", {
- *     endTime: "2025-12-31T00:00:00",
+ *     endTime: "2026-12-31T00:00:00",
  *     onComplete: () => console.log("Happy New Year!")
  * })
  * ```
@@ -50,7 +50,7 @@ export interface CountdownTime {
  * @example HTML with data-ss
  * ```html
  * <div data-ss="countdown"
- *      data-ss-countdown-end-time="2025-12-31T00:00:00"
+ *      data-ss-countdown-end-time="2026-12-31T00:00:00"
  *      data-ss-countdown-format="DD:HH:MM:SS"
  *      data-ss-countdown-end-text="Time's up!">
  * </div>

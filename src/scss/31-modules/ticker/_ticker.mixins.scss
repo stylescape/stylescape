@@ -1,0 +1,44 @@
+// =============================================================================
+// 31-modules / ticker / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./ticker.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-ticker {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    width: 100%;
+    z-index: map.get(config.$ticker-config, "z-index");
+    background-color: map.get(config.$ticker-config, "background");
+    color: map.get(config.$ticker-config, "color");
+    border-color: map.get(config.$ticker-config, "border-color");
+    border-style: solid;
+    border-width: 0;
+}
+
+@mixin ss-ticker-track-horizontal($direction: left) {
+    display: inline-flex;
+    gap: map.get(config.$ticker-config, "gap");
+    white-space: nowrap;
+    will-change: transform;
+    animation: ss-ticker-h-#{$direction}
+        map.get(config.$ticker-config, "duration") linear infinite;
+}
+
+@mixin ss-ticker-track-vertical($direction: up) {
+    display: flex;
+    flex-direction: column;
+    gap: q(4);
+    will-change: transform;
+    animation: ss-ticker-v-#{$direction}
+        map.get(config.$ticker-config, "duration") linear infinite;
+}
+
+@mixin ss-ticker-inverted {
+    background-color: var(--ss-color-fill, #ffffff);
+    color: var(--ss-color-text, #1a1a1a);
+    border-color: var(--ss-color-text, #1a1a1a);
+}

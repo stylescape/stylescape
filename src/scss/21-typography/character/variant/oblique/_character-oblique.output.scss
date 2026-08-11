@@ -1,0 +1,21 @@
+@use "./character-oblique.mixins" as oblique;
+@use "../../../../01-core/prefix" as *;
+
+@layer ss.typography {
+    .#{$ss-prefix-typography}-oblique {
+        @include oblique.ss-character-oblique();
+    }
+}
+
+// Or if you want semantic tag binding:
+// @layer ss.typography {
+
+//   i,
+//   em[data-style="oblique"] {
+//     @include oblique.ss-character-oblique();
+//   }
+
+// }
+// But be careful:
+// Italic and oblique are typographically different.
+// You may want them separate.

@@ -1,0 +1,51 @@
+// =============================================================================
+// 31-modules / floating-label / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./floating-label.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-floating-label {
+    position: relative;
+
+    > input,
+    > textarea,
+    > select {
+        height: auto;
+        padding-top: map.get(config.$floating-label-config, "padding-top");
+        padding-bottom: map.get(
+            config.$floating-label-config,
+            "padding-bottom"
+        );
+        padding-left: map.get(config.$floating-label-config, "padding-x");
+        padding-right: map.get(config.$floating-label-config, "padding-x");
+
+        &::placeholder {
+            color: transparent;
+        }
+    }
+
+    > label {
+        position: absolute;
+        top: 0;
+        left: map.get(config.$floating-label-config, "padding-x");
+        height: 100%;
+        padding: map.get(config.$floating-label-config, "padding-bottom") 0;
+        pointer-events: none;
+        color: map.get(config.$floating-label-config, "label-color");
+        transform-origin: 0 0;
+        transition:
+            opacity #{map.get(config.$floating-label-config, "transition")},
+            transform #{map.get(config.$floating-label-config, "transition")};
+    }
+
+    > input:focus ~ label,
+    > input:not(:placeholder-shown) ~ label,
+    > textarea:focus ~ label,
+    > textarea:not(:placeholder-shown) ~ label,
+    > select ~ label {
+        opacity: 0.65;
+        transform: scale(0.85) translateY(q(-8)) translateX(q(2.4));
+    }
+}

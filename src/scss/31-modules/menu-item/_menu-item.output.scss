@@ -1,0 +1,37 @@
+@use "../../01-core/prefix" as *;
+@use "./menu-item.mixins" as menu-item;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-menu-item {
+        @include menu-item.ss-menu-item;
+
+        &__icon { @include menu-item.ss-menu-item-icon; }
+        &__label { @include menu-item.ss-menu-item-label; }
+        &__badge { @include menu-item.ss-menu-item-badge; }
+
+        &:hover {
+            background-color: var(--ss-color-surface-alt);
+        }
+
+        &[aria-current="page"],
+        &[data-active="true"],
+        &.is-active {
+            background-color: var(--ss-color-accent);
+            color: var(--ss-color-on-accent);
+
+            .#{$ss-prefix-module}-menu-item__icon,
+            .#{$ss-prefix-module}-menu-item__badge {
+                color: var(--ss-color-on-accent);
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--ss-color-focus);
+            outline-offset: -2px;
+        }
+    }
+
+    .#{$ss-prefix-module}-menu {
+        @include menu-item.ss-menu;
+    }
+}

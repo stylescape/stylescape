@@ -1,0 +1,124 @@
+{% extends "../base.html.jinja" %} {% set title = "Preloader" %} {%- block title
+%}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    {% set section_title = "Preloader Container" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>
+            The preloader container normally covers the full viewport. Below is
+            a constrained demo.
+        </p>
+        {% set code_snippet %}
+        <div
+            class="ss-c-preloader"
+            style="position: relative; width: 100%; height: 200px"
+        >
+            <!-- Preloader content goes here -->
+            <span>Loading...</span>
+        </div>
+        {% endset %}
+        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
+        <div class="ss-c-demo__code">
+            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Lines Preloader" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div
+            style="
+                position: relative;
+                width: 100%;
+                height: 200px;
+                background: var(--color_surface_primary, #f5f5f5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            "
+        >
+            <div class="ss-c-preloader_lines">
+                <div class="ss-c-preloader_line ss-c-preloader_line_1"></div>
+                <div class="ss-c-preloader_line ss-c-preloader_line_2"></div>
+                <div class="ss-c-preloader_line ss-c-preloader_line_3"></div>
+                <div class="ss-c-preloader_line ss-c-preloader_line_4"></div>
+                <div class="ss-c-preloader_line ss-c-preloader_line_5"></div>
+            </div>
+        </div>
+        {% endset %}
+        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
+        <div class="ss-c-demo__code">
+            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Pulse Preloader" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div
+            style="
+                position: relative;
+                width: 100%;
+                height: 200px;
+                background: var(--color_surface_primary, #f5f5f5);
+            "
+        >
+            <div
+                class="ss-c-preloader_pulse"
+                style="top: 50%; left: 50%; transform: translate(-50%, -50%)"
+            ></div>
+        </div>
+        {% endset %}
+        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
+        <div class="ss-c-demo__code">
+            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Hidden Preloader State" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        <p>
+            Add the
+            <code>preloader_hidden</code>
+            class to hide the preloader after content loads.
+        </p>
+        {% set code_snippet %}
+        <div
+            class="ss-c-preloader ss-c-preloader_hidden"
+            style="position: relative; width: 100%; height: 100px"
+        >
+            <span>This preloader is hidden</span>
+        </div>
+        {% endset %}
+        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
+        <div class="ss-c-demo__code">
+            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+</section>
+
+{%- endblock %}

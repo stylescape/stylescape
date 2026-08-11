@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "./character-small.config" as config;
+@use "../../base/normal/character-normal.mixins" as normal;
+
+////
+/// Character Variant — Small
+/// Mixins
+////
+
+@mixin ss-character-small($override: ()) {
+    $settings: map.merge(config.$ss-character-small-config, $override);
+
+    @include normal.ss-character-normal();
+
+    font-size: map.get($settings, font-size);
+    line-height: map.get($settings, line-height);
+}
+
+@mixin ss-character-small-bold($override: ()) {
+    $settings: map.merge(config.$ss-character-small-config, $override);
+
+    @include ss-character-small($settings);
+    font-weight: map.get($settings, weight-bold);
+}
+
+@mixin ss-character-small-italic($override: ()) {
+    $settings: map.merge(config.$ss-character-small-config, $override);
+
+    @include ss-character-small($settings);
+    font-style: map.get($settings, style-italic);
+}

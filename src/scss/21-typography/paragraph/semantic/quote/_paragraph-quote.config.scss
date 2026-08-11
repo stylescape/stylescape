@@ -1,0 +1,64 @@
+////
+///
+/// Paragraph Quote Configuration
+/// ===========================================================================
+///
+/// Configuration for blockquote paragraph styles.
+///
+/// @group Typography.Paragraph.Semantic.Quote
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../../../01-core/external" as *;
+
+// ============================================================================
+// Configuration
+// ============================================================================
+
+$ss-paragraph-quote-config: (
+    font-size: var(--ss-font-size-lg),
+    line-height: var(--ss-leading-relaxed),
+    font-style: italic,
+    font-weight: var(--ss-font-weight-normal),
+    color: var(--ss-color-foreground),
+    padding-inline-start: var(--ss-space-6),
+    border-inline-start: q(4) solid var(--ss-color-border),
+    margin-block: var(--ss-vspace-lg)
+) !default;
+
+// ============================================================================
+// Quote Variants
+// ============================================================================
+
+$ss-paragraph-quote-variants: (
+    simple: (
+        border-inline-start: none,
+        padding-inline-start: 0,
+        font-style: italic
+    ),
+    highlight: (
+        background-color: var(--ss-color-muted),
+        padding: var(--ss-space-4) var(--ss-space-6),
+        border-radius: var(--ss-radius-md),
+        border-inline-start: q(4) solid var(--ss-color-accent)
+    ),
+    pull: (
+        font-size: var(--ss-font-size-2xl),
+        font-weight: var(--ss-font-weight-medium),
+        text-align: center,
+        border: none,
+        padding: var(--ss-space-8) 0
+    ),
+    testimonial: (
+        font-size: var(--ss-font-size-lg),
+        font-style: italic,
+        text-align: center,
+        padding: var(--ss-space-6),
+        border: none
+    )
+) !default;

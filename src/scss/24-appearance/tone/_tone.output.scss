@@ -1,0 +1,13 @@
+@use "sass:map";
+@use "./tone.config" as config;
+@use "../../01-core/prefix" as *;
+
+@layer ss.appearance {
+    @each $name, $settings in config.$ss-tone-config {
+        .#{$ss-prefix-appearance}-#{$name} {
+            @each $property, $value in $settings {
+                #{$property}: #{$value};
+            }
+        }
+    }
+}

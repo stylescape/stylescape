@@ -1,0 +1,39 @@
+@use "../../01-core/prefix" as *;
+@use "sass:map";
+@use "./radio.config" as config;
+@use "./radio.mixins" as radio;
+@use "../../01-core/external" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-radio {
+        @include radio.ss-radio;
+
+        // Sizes
+        &--sm {
+            width: map.get(config.$ss-radio-config, size-sm);
+            height: map.get(config.$ss-radio-config, size-sm);
+        }
+        &--lg {
+            width: map.get(config.$ss-radio-config, size-lg);
+            height: map.get(config.$ss-radio-config, size-lg);
+        }
+
+        // Status variants — recolor the checked ring/dot
+        @each $name, $color in map.get(config.$ss-radio-config, status) {
+            &--#{$name}:checked {
+                background-color: $color;
+                border-color: $color;
+            }
+        }
+    }
+
+    .#{$ss-prefix-module}-radio__label {
+        @include radio.ss-radio-label;
+    }
+
+    // Legacy demo alias — pages that predate the module use
+    // `.ss-c-input--radio`.
+    .#{$ss-prefix-module}-input--radio {
+        @include radio.ss-radio;
+    }
+}

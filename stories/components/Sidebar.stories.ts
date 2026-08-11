@@ -1,0 +1,969 @@
+// ==========================================================================
+// Stylescape | Storybook — Sidebar
+// ==========================================================================
+// Auto-generated from src/jinja/31-modules/sidebar.html.jinja.
+// Regenerate with `npm run generate:stories` (do not edit by hand).
+// ==========================================================================
+
+import type { Meta, StoryObj } from "@storybook/html-vite";
+import { html } from "../html";
+
+const meta: Meta = {
+    title: "Components/Sidebar",
+    tags: ["autodocs"],
+};
+
+export default meta;
+type Story = StoryObj;
+
+export const SectionTitle: Story = {
+    render: () => html`
+        <div style="display: flex; gap: 24px">
+            <aside
+                class="ss-c-sidebar"
+                style="
+                    width: 250px;
+                    background: var(--color_fill_secondary);
+                    border-radius: 12px;
+                    padding: 20px;
+                    flex-shrink: 0;
+                "
+            >
+                <div
+                    class="ss-c-sidebar__header"
+                    style="
+                        padding-bottom: 16px;
+                        border-bottom: 1px solid var(--color_line_secondary);
+                        margin-bottom: 16px;
+                    "
+                >
+                    <h4 style="margin: 0; font-size: 16px; font-weight: 600">
+                        Navigation
+                    </h4>
+                </div>
+                <nav class="ss-c-sidebar__nav">
+                    <ul
+                        style="
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 4px;
+                        "
+                    >
+                        <li>
+                            <a
+                                href="#"
+                                style="
+                                    display: block;
+                                    padding: 10px 12px;
+                                    background: var(--color_fill_primary);
+                                    color: white;
+                                    border-radius: 8px;
+                                    text-decoration: none;
+                                "
+                            >
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                style="
+                                    display: block;
+                                    padding: 10px 12px;
+                                    border-radius: 8px;
+                                    text-decoration: none;
+                                    color: inherit;
+                                "
+                            >
+                                Projects
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                style="
+                                    display: block;
+                                    padding: 10px 12px;
+                                    border-radius: 8px;
+                                    text-decoration: none;
+                                    color: inherit;
+                                "
+                            >
+                                Messages
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                style="
+                                    display: block;
+                                    padding: 10px 12px;
+                                    border-radius: 8px;
+                                    text-decoration: none;
+                                    color: inherit;
+                                "
+                            >
+                                Settings
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            <div
+                style="
+                    flex: 1;
+                    padding: 20px;
+                    background: white;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 12px;
+                "
+            >
+                <p style="margin: 0; opacity: 0.6">Main content area</p>
+            </div>
+        </div>
+    `,
+};
+
+export const SectionTitle2: Story = {
+    render: () => html`
+        <aside
+            class="ss-c-sidebar"
+            style="
+                width: 280px;
+                background: #1a1a2e;
+                color: white;
+                border-radius: 12px;
+                padding: 20px;
+            "
+        >
+            <div
+                class="ss-c-sidebar__brand"
+                style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    padding-bottom: 24px;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                    margin-bottom: 16px;
+                "
+            >
+                <div
+                    style="
+                        width: 40px;
+                        height: 40px;
+                        background: linear-gradient(135deg, #667eea, #764ba2);
+                        border-radius: 10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 18px;
+                    "
+                >
+                    ◐
+                </div>
+                <span style="font-size: 18px; font-weight: 700">
+                    Stylescape
+                </span>
+            </div>
+
+            <nav>
+                <ul
+                    style="
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+                    "
+                >
+                    <li>
+                        <a
+                            href="#"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 12px 14px;
+                                background: rgba(255, 255, 255, 0.1);
+                                border-radius: 8px;
+                                text-decoration: none;
+                                color: white;
+                            "
+                        >
+                            <span>⌂</span>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 12px 14px;
+                                border-radius: 8px;
+                                text-decoration: none;
+                                color: rgba(255, 255, 255, 0.7);
+                            "
+                        >
+                            <span>▤</span>
+                            Projects
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 12px 14px;
+                                border-radius: 8px;
+                                text-decoration: none;
+                                color: rgba(255, 255, 255, 0.7);
+                            "
+                        >
+                            <span>☺</span>
+                            Team
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 12px 14px;
+                                border-radius: 8px;
+                                text-decoration: none;
+                                color: rgba(255, 255, 255, 0.7);
+                            "
+                        >
+                            <span>▦</span>
+                            Analytics
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 12px 14px;
+                                border-radius: 8px;
+                                text-decoration: none;
+                                color: rgba(255, 255, 255, 0.7);
+                            "
+                        >
+                            <span>⚙</span>
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div
+                style="
+                    margin-top: 24px;
+                    padding-top: 24px;
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
+                "
+            >
+                <div style="display: flex; align-items: center; gap: 12px">
+                    <div
+                        style="
+                            width: 36px;
+                            height: 36px;
+                            background: #667eea;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 14px;
+                        "
+                    >
+                        JD
+                    </div>
+                    <div style="flex: 1">
+                        <div style="font-size: 14px; font-weight: 500">
+                            John Doe
+                        </div>
+                        <div style="font-size: 12px; opacity: 0.6">
+                            john@email.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    `,
+};
+
+export const SectionTitle3: Story = {
+    render: () => html`
+        <aside
+            class="ss-c-sidebar"
+            style="
+                width: 280px;
+                background: white;
+                border: 1px solid var(--color_line_secondary);
+                border-radius: 12px;
+                padding: 16px;
+            "
+        >
+            <nav>
+                <ul
+                    style="
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 8px;
+                    "
+                >
+                    <!-- Section: Main -->
+                    <li>
+                        <details open>
+                            <summary
+                                style="
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                    padding: 8px 12px;
+                                    cursor: pointer;
+                                    font-weight: 600;
+                                    font-size: 12px;
+                                    text-transform: uppercase;
+                                    letter-spacing: 0.5px;
+                                    opacity: 0.6;
+                                "
+                            >
+                                Main
+                                <span>▼</span>
+                            </summary>
+                            <ul
+                                style="
+                                    list-style: none;
+                                    padding: 4px 0 0 0;
+                                    margin: 0;
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 2px;
+                                "
+                            >
+                                <li>
+                                    <a
+                                        href="#"
+                                        style="
+                                            display: block;
+                                            padding: 10px 12px;
+                                            background: var(
+                                                --color_fill_primary
+                                            );
+                                            color: white;
+                                            border-radius: 6px;
+                                            text-decoration: none;
+                                        "
+                                    >
+                                        Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        style="
+                                            display: block;
+                                            padding: 10px 12px;
+                                            border-radius: 6px;
+                                            text-decoration: none;
+                                            color: inherit;
+                                        "
+                                    >
+                                        Analytics
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <!-- Section: Projects -->
+                    <li>
+                        <details>
+                            <summary
+                                style="
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                    padding: 8px 12px;
+                                    cursor: pointer;
+                                    font-weight: 600;
+                                    font-size: 12px;
+                                    text-transform: uppercase;
+                                    letter-spacing: 0.5px;
+                                    opacity: 0.6;
+                                "
+                            >
+                                Projects
+                                <span>▶</span>
+                            </summary>
+                            <ul
+                                style="
+                                    list-style: none;
+                                    padding: 4px 0 0 0;
+                                    margin: 0;
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 2px;
+                                "
+                            >
+                                <li>
+                                    <a
+                                        href="#"
+                                        style="
+                                            display: block;
+                                            padding: 10px 12px;
+                                            border-radius: 6px;
+                                            text-decoration: none;
+                                            color: inherit;
+                                        "
+                                    >
+                                        All Projects
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        style="
+                                            display: block;
+                                            padding: 10px 12px;
+                                            border-radius: 6px;
+                                            text-decoration: none;
+                                            color: inherit;
+                                        "
+                                    >
+                                        Active
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        style="
+                                            display: block;
+                                            padding: 10px 12px;
+                                            border-radius: 6px;
+                                            text-decoration: none;
+                                            color: inherit;
+                                        "
+                                    >
+                                        Archived
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <!-- Section: Settings -->
+                    <li>
+                        <details>
+                            <summary
+                                style="
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                    padding: 8px 12px;
+                                    cursor: pointer;
+                                    font-weight: 600;
+                                    font-size: 12px;
+                                    text-transform: uppercase;
+                                    letter-spacing: 0.5px;
+                                    opacity: 0.6;
+                                "
+                            >
+                                Settings
+                                <span>▶</span>
+                            </summary>
+                            <ul
+                                style="
+                                    list-style: none;
+                                    padding: 4px 0 0 0;
+                                    margin: 0;
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 2px;
+                                "
+                            >
+                                <li>
+                                    <a
+                                        href="#"
+                                        style="
+                                            display: block;
+                                            padding: 10px 12px;
+                                            border-radius: 6px;
+                                            text-decoration: none;
+                                            color: inherit;
+                                        "
+                                    >
+                                        Account
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        style="
+                                            display: block;
+                                            padding: 10px 12px;
+                                            border-radius: 6px;
+                                            text-decoration: none;
+                                            color: inherit;
+                                        "
+                                    >
+                                        Preferences
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    `,
+};
+
+export const SectionTitle4: Story = {
+    render: () => html`
+        <aside
+            class="ss-c-sidebar ss-c-sidebar--mini"
+            style="
+                width: 64px;
+                background: #1a1a2e;
+                border-radius: 12px;
+                padding: 12px;
+            "
+        >
+            <div
+                style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 8px;
+                "
+            >
+                <div
+                    style="
+                        width: 40px;
+                        height: 40px;
+                        background: linear-gradient(135deg, #667eea, #764ba2);
+                        border-radius: 10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 16px;
+                        margin-bottom: 16px;
+                    "
+                >
+                    ◐
+                </div>
+
+                <a
+                    href="#"
+                    style="
+                        width: 40px;
+                        height: 40px;
+                        background: rgba(255, 255, 255, 0.1);
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-decoration: none;
+                    "
+                >
+                    ⌂
+                </a>
+                <a
+                    href="#"
+                    style="
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-decoration: none;
+                    "
+                >
+                    ▤
+                </a>
+                <a
+                    href="#"
+                    style="
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-decoration: none;
+                    "
+                >
+                    ☺
+                </a>
+                <a
+                    href="#"
+                    style="
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-decoration: none;
+                    "
+                >
+                    ▦
+                </a>
+
+                <div style="flex: 1; min-height: 40px"></div>
+
+                <a
+                    href="#"
+                    style="
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-decoration: none;
+                    "
+                >
+                    ⚙
+                </a>
+                <div
+                    style="
+                        width: 36px;
+                        height: 36px;
+                        background: #667eea;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 12px;
+                        font-weight: 600;
+                    "
+                >
+                    JD
+                </div>
+            </div>
+        </aside>
+    `,
+};
+
+export const SectionTitle5: Story = {
+    render: () => html`
+        <aside
+            class="ss-c-sidebar"
+            style="
+                width: 260px;
+                background: white;
+                border: 1px solid var(--color_line_secondary);
+                border-radius: 12px;
+                padding: 16px;
+            "
+        >
+            <nav>
+                <ul
+                    style="
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+                    "
+                >
+                    <li>
+                        <a
+                            href="#"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 12px 14px;
+                                background: var(--color_fill_primary);
+                                color: white;
+                                border-radius: 8px;
+                                text-decoration: none;
+                            "
+                        >
+                            <span>⇩</span>
+                            <span style="flex: 1">Inbox</span>
+                            <span
+                                style="
+                                    background: white;
+                                    color: var(--color_fill_primary);
+                                    padding: 2px 8px;
+                                    border-radius: 10px;
+                                    font-size: 12px;
+                                    font-weight: 600;
+                                "
+                            >
+                                24
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 12px 14px;
+                                border-radius: 8px;
+                                text-decoration: none;
+                                color: inherit;
+                            "
+                        >
+                            <span>⭐</span>
+                            <span style="flex: 1">Starred</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 12px 14px;
+                                border-radius: 8px;
+                                text-decoration: none;
+                                color: inherit;
+                            "
+                        >
+                            <span>⇧</span>
+                            <span style="flex: 1">Sent</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 12px 14px;
+                                border-radius: 8px;
+                                text-decoration: none;
+                                color: inherit;
+                            "
+                        >
+                            <span>✎</span>
+                            <span style="flex: 1">Drafts</span>
+                            <span
+                                style="
+                                    background: var(--color_state_warning);
+                                    color: white;
+                                    padding: 2px 8px;
+                                    border-radius: 10px;
+                                    font-size: 12px;
+                                    font-weight: 600;
+                                "
+                            >
+                                3
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 12px 14px;
+                                border-radius: 8px;
+                                text-decoration: none;
+                                color: inherit;
+                            "
+                        >
+                            <span>␡</span>
+                            <span style="flex: 1">Trash</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    `,
+};
+
+export const SectionTitle6: Story = {
+    render: () => html`
+        <div style="display: flex; gap: 24px">
+            <div
+                style="
+                    flex: 1;
+                    padding: 20px;
+                    background: white;
+                    border: 1px solid var(--color_line_secondary);
+                    border-radius: 12px;
+                "
+            >
+                <h3 style="margin: 0 0 12px">Article Title</h3>
+                <p style="margin: 0; opacity: 0.7; line-height: 1.6">
+                    Main content area with the primary article or page content.
+                    The sidebar provides supplementary information and
+                    navigation.
+                </p>
+            </div>
+            <aside
+                class="ss-c-sidebar ss-c-sidebar--content"
+                style="width: 260px; flex-shrink: 0"
+            >
+                <div
+                    style="
+                        padding: 20px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 12px;
+                        margin-bottom: 16px;
+                    "
+                >
+                    <h5
+                        style="
+                            margin: 0 0 12px;
+                            font-size: 14px;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                            opacity: 0.6;
+                        "
+                    >
+                        On This Page
+                    </h5>
+                    <ul
+                        style="
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 8px;
+                            font-size: 14px;
+                        "
+                    >
+                        <li>
+                            <a
+                                href="#"
+                                style="
+                                    color: var(--color_fill_primary);
+                                    text-decoration: none;
+                                "
+                            >
+                                Introduction
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                style="
+                                    color: inherit;
+                                    text-decoration: none;
+                                    opacity: 0.7;
+                                "
+                            >
+                                Getting Started
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                style="
+                                    color: inherit;
+                                    text-decoration: none;
+                                    opacity: 0.7;
+                                "
+                            >
+                                Configuration
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                style="
+                                    color: inherit;
+                                    text-decoration: none;
+                                    opacity: 0.7;
+                                "
+                            >
+                                API Reference
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div
+                    style="
+                        padding: 20px;
+                        background: var(--color_fill_secondary);
+                        border-radius: 12px;
+                    "
+                >
+                    <h5
+                        style="
+                            margin: 0 0 12px;
+                            font-size: 14px;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                            opacity: 0.6;
+                        "
+                    >
+                        Related
+                    </h5>
+                    <ul
+                        style="
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 8px;
+                            font-size: 14px;
+                        "
+                    >
+                        <li>
+                            <a
+                                href="#"
+                                style="
+                                    color: inherit;
+                                    text-decoration: none;
+                                    opacity: 0.7;
+                                "
+                            >
+                                Similar Article 1
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                style="
+                                    color: inherit;
+                                    text-decoration: none;
+                                    opacity: 0.7;
+                                "
+                            >
+                                Similar Article 2
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    `,
+};

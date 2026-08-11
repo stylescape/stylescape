@@ -1,0 +1,30 @@
+@use "sass:map";
+@use "./font-tracking.config" as config;
+
+// -----------------------------------------------------------------------------
+// Core Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-font-tracking($step) {
+    $scale: map.get(config.$ss-font-tracking-config, scale);
+
+    @if map.has-key($scale, $step) {
+        letter-spacing: map.get($scale, $step);
+    } @else {
+        @warn "Tracking step `#{$step}` not found in scale.";
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Negative Tracking
+// -----------------------------------------------------------------------------
+
+@mixin ss-font-tracking-negative($step) {
+    $scale: map.get(config.$ss-font-tracking-config, scale);
+
+    @if map.has-key($scale, $step) {
+        letter-spacing: -map.get($scale, $step);
+    } @else {
+        @warn "Tracking step `#{$step}` not found in scale.";
+    }
+}

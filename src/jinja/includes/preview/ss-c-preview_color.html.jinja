@@ -1,0 +1,24 @@
+{#
+-----------------------------------------------------------------------------
+Font Preview Box Component
+-----------------------------------------------------------------------------
+#} {% set snippet_id = "code-snippet-" + range(1000, 9999) | random %} {% set
+lang = language | lower | default("html") %}
+
+<div class="ss-c-preview--vertical">
+    <div class="ss-c-preview__live">{{ code_snippet | safe }}</div>
+    <div class="ss-c-preview__info">
+        <small>{{ language | default("HTML") }}</small>
+        <button
+            class="ss-c-preview__copy-button"
+            onclick="ClipboardHelper.copyById('{{ snippet_id }}')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="ss-c-preview__code">
+        <pre
+            class="ss-c-line-numbers"
+        ><code id="{{ snippet_id }}" class="language-{{ lang }}">{{ code_snippet | default('') | trim | escape }}</code></pre>
+    </div>
+</div>

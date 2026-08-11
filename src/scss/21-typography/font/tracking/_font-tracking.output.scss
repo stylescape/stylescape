@@ -1,0 +1,18 @@
+@use "sass:map";
+@use "../../../01-core/prefix" as *;
+@use "./font-tracking.mixins" as tracking;
+@use "./font-tracking.config" as config;
+
+@layer ss.typography {
+    $scale: map.get(config.$ss-font-tracking-config, scale);
+
+    @each $step, $value in $scale {
+        .#{$ss-namespace}-tracking-#{$step} {
+            letter-spacing: $value;
+        }
+
+        .#{$ss-namespace}-tracking--#{$step} {
+            letter-spacing: -$value;
+        }
+    }
+}

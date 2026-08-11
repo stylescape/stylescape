@@ -1,0 +1,127 @@
+////
+///
+/// Line Types
+/// ===========================================================================
+///
+/// Technical line-type utilities modeled on graphic-design and CAD drafting
+/// conventions (ISO 128 / ASME Y14.2): continuous, hidden, center, phantom,
+/// cutting-plane, dimension. Dash patterns are drawn with
+/// `repeating-linear-gradient` in `currentColor`, so lines inherit the text
+/// color and can be recolored with the color utilities.
+///
+/// Works on `<hr class="ss-a-line …">` or any block element.
+///
+/// @group Appearance
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../01-core/external" as *;
+
+@layer ss.appearance {
+    // Base rule — thin continuous line.
+    .ss-a-line {
+        display: block;
+        width: 100%;
+        height: q(1);
+        margin: q(8) 0;
+        border: 0;
+        background: currentColor;
+    }
+
+    // Weights (ISO 128 line-width groups)
+    .ss-a-line--thin {
+        height: q(1);
+    }
+    .ss-a-line--medium {
+        height: q(2);
+    }
+    .ss-a-line--thick {
+        height: q(3);
+    }
+
+    // Continuous (default) — visible edges, outlines.
+    .ss-a-line--continuous {
+        background: currentColor;
+    }
+
+    // Hidden — short dashes; concealed edges.
+    .ss-a-line--hidden {
+        background: repeating-linear-gradient(
+            90deg,
+            currentColor 0 q(5),
+            transparent q(5) q(9)
+        );
+    }
+
+    // Center — long-short alternating; axes and symmetry lines.
+    .ss-a-line--center {
+        background: repeating-linear-gradient(
+            90deg,
+            currentColor 0 q(20),
+            transparent q(20) q(24),
+            currentColor q(24) q(28),
+            transparent q(28) q(32)
+        );
+    }
+
+    // Phantom — long, short, short; alternate positions / motion paths.
+    .ss-a-line--phantom {
+        background: repeating-linear-gradient(
+            90deg,
+            currentColor 0 q(24),
+            transparent q(24) q(28),
+            currentColor q(28) q(32),
+            transparent q(32) q(36),
+            currentColor q(36) q(40),
+            transparent q(40) q(44)
+        );
+    }
+
+    // Cutting plane — center pattern at heavy weight; section cuts.
+    .ss-a-line--cutting {
+        height: q(3);
+        background: repeating-linear-gradient(
+            90deg,
+            currentColor 0 q(20),
+            transparent q(20) q(24),
+            currentColor q(24) q(28),
+            transparent q(28) q(32)
+        );
+    }
+
+    // Dimension / leader — thin continuous (pair with arrowheads in markup).
+    .ss-a-line--dimension {
+        height: q(1);
+        background: currentColor;
+    }
+
+    // Dotted — closely spaced dots.
+    .ss-a-line--dotted {
+        background: repeating-linear-gradient(
+            90deg,
+            currentColor 0 q(1),
+            transparent q(1) q(4)
+        );
+    }
+
+    // Dash-dot — single alternation; property/boundary lines in mapping.
+    .ss-a-line--dashdot {
+        background: repeating-linear-gradient(
+            90deg,
+            currentColor 0 q(10),
+            transparent q(10) q(13),
+            currentColor q(13) q(14),
+            transparent q(14) q(17)
+        );
+    }
+
+    // Border/frame — heavy continuous; drawing frames and title blocks.
+    .ss-a-line--border {
+        height: q(4);
+        background: currentColor;
+    }
+}

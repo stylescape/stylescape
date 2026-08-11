@@ -1,0 +1,130 @@
+@use "../21-typography/font" as *;
+@use "../21-typography/text" as *;
+@use "../21-typography/character" as *;
+@use "../21-typography/paragraph" as *;
+@use "../21-typography/list" as *;
+@use "../01-core/external" as *;
+
+.demo__section {
+    @include grid--span--col(24);
+    @include grid--size--col(24);
+    // @include gap(baseline(1));
+    margin-bottom: baseline(4);
+}
+
+.demo__section__header,
+.demo__subsection {
+    @include grid--span--col(24);
+    margin-bottom: baseline(4);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+.font--preview {
+    margin-bottom: q(24);
+}
+
+.font-preview-controls {
+    margin-bottom: q(16);
+    display: flex;
+    gap: q(8);
+    align-items: center;
+}
+
+.font-preview_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(2Q (20), 1fr));
+    gap: q(16);
+}
+
+// code {
+//     display: block;
+//     padding: q(8);
+// }
+
+.grid_layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: z("guides");
+}
+
+.grid-status {
+    font-size: q(12);
+    margin-left: q(8);
+    background: #eee;
+    color: #444;
+    padding: q(2) q(64);
+    border-radius: q(4);
+}
+
+/// ENGINE
+
+// ----------------------------------------------------------------------------
+
+.box-preview {
+    background: #e0e0e0;
+}
+
+.box-label {
+    font-size: q(12);
+    margin-top: q(8);
+    color: #666;
+}
+
+.demo-grid {
+    display: flex;
+    flex-direction: column;
+    gap: q(16);
+
+    .button-size-row {
+        display: flex;
+        flex-direction: column;
+        gap: q(16);
+    }
+
+    .button-style-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(20), 1fr));
+        gap: q(16);
+
+        .demo-item {
+            display: flex;
+            flex-direction: column;
+            gap: q(8);
+
+            .label {
+                font-size: q(12);
+                color: var(--color_dark, #333);
+                opacity: 0.6;
+                height: q(32);
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+}
+
+//////////////////
+///
+///
+///
+///
+
+// ============================================================================
+// Demo Grid Placeholder — moved to 32-utilities/_legacy-compat.scss so it
+// participates in the production bundle (the 91-development layer is not
+// loaded by the default entrypoint).
+// ============================================================================

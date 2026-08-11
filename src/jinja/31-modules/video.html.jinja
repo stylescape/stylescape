@@ -1,0 +1,266 @@
+{% extends "../base.html.jinja" %} {%- block title %}Video{%- endblock %} {%-
+block content %} {#
+============================================================================
+Basic Video
+============================================================================ #}
+<section class="ss-c-demo__section" data-label="Basic Video" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h3>Basic Video</h3>
+        <p>HTML5 video element with native controls.</p>
+    </header>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Video with Controls</h4>
+        {% set code_snippet %}
+        <video class="ss-c-video" controls width="100%">
+            <source src="video.mp4" type="video/mp4" />
+            <source src="video.webm" type="video/webm" />
+            Your browser does not support the video tag.
+        </video>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Video with Poster</h4>
+        {% set code_snippet %}
+        <video class="ss-c-video" controls poster="thumbnail.jpg" width="100%">
+            <source src="video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Autoplay Muted</h4>
+        {% set code_snippet %}
+        <video class="ss-c-video" autoplay muted loop playsinline width="100%">
+            <source src="background-video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Video Container
+============================================================================ #}
+<section class="ss-c-demo__section" data-label="Video Container" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h3>Video Container</h3>
+        <p>Responsive video wrapper with aspect ratio.</p>
+    </header>
+
+    <section class="ss-c-demo__subsection">
+        <h4>16:9 Aspect Ratio</h4>
+        {% set code_snippet %}
+        <div class="ss-c-video_container ss-c-video_container--16x9">
+            <video class="ss-c-video_container__video" controls>
+                <source src="video.mp4" type="video/mp4" />
+            </video>
+        </div>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    <section class="ss-c-demo__subsection">
+        <h4>4:3 Aspect Ratio</h4>
+        {% set code_snippet %}
+        <div class="ss-c-video_container ss-c-video_container--4x3">
+            <video class="ss-c-video_container__video" controls>
+                <source src="video.mp4" type="video/mp4" />
+            </video>
+        </div>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    <section class="ss-c-demo__subsection">
+        <h4>21:9 Cinematic</h4>
+        {% set code_snippet %}
+        <div class="ss-c-video_container ss-c-video_container--21x9">
+            <video class="ss-c-video_container__video" controls>
+                <source src="video.mp4" type="video/mp4" />
+            </video>
+        </div>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Embedded Video
+============================================================================ #}
+<section class="ss-c-demo__section" data-label="Embedded Video" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h3>Embedded Video</h3>
+        <p>YouTube and Vimeo embedded players.</p>
+    </header>
+
+    <section class="ss-c-demo__subsection">
+        <h4>YouTube Embed</h4>
+        {% set code_snippet %}
+        <div class="ss-c-video_container ss-c-video_container--16x9">
+            <iframe
+                class="ss-c-video_container__iframe"
+                src="https://www.youtube.com/embed/VIDEO_ID"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+        </div>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Vimeo Embed</h4>
+        {% set code_snippet %}
+        <div class="ss-c-video_container ss-c-video_container--16x9">
+            <iframe
+                class="ss-c-video_container__iframe"
+                src="https://player.vimeo.com/video/VIDEO_ID"
+                title="Vimeo video player"
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+        </div>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Video with Custom Controls
+============================================================================ #}
+<section class="ss-c-demo__section" data-label="Custom Controls" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h3>Custom Controls</h3>
+        <p>Video player with custom control overlay.</p>
+    </header>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Custom Player UI</h4>
+        {% set code_snippet %}
+        <div class="ss-c-video_player">
+            <video class="ss-c-video_player__video" id="customVideo">
+                <source src="video.mp4" type="video/mp4" />
+            </video>
+            <div class="ss-c-video_player__overlay">
+                <button class="ss-c-video_player__play" aria-label="Play">
+                    ▶
+                </button>
+            </div>
+            <div class="ss-c-video_player__controls">
+                <button class="ss-c-video_player__button" aria-label="Play/Pause">
+                    ▶
+                </button>
+                <div class="ss-c-video_player__progress">
+                    <div class="ss-c-video_player__progress-bar"></div>
+                </div>
+                <span class="ss-c-video_player__time">0:00 / 3:45</span>
+                <button class="ss-c-video_player__button" aria-label="Mute">
+                    ◀
+                </button>
+                <input
+                    type="range"
+                    class="ss-c-video_player__volume"
+                    min="0"
+                    max="100"
+                    value="100"
+                />
+                <button class="ss-c-video_player__button" aria-label="Fullscreen">
+                    □
+                </button>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Video Gallery
+============================================================================ #}
+<section class="ss-c-demo__section" data-label="Video Gallery" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h3>Video Gallery</h3>
+        <p>Grid of video thumbnails.</p>
+    </header>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Video Grid</h4>
+        {% set code_snippet %}
+        <div class="ss-c-video_gallery">
+            <article class="ss-c-video_card">
+                <div class="ss-c-video_card__thumbnail">
+                    <img src="thumb1.jpg" alt="Video thumbnail" />
+                    <span class="ss-c-video_card__duration">3:45</span>
+                    <button class="ss-c-video_card__play" aria-label="Play video">
+                        ▶
+                    </button>
+                </div>
+                <div class="ss-c-video_card__info">
+                    <h4 class="ss-c-video_card__title">Video Title</h4>
+                    <p class="ss-c-video_card__meta">1.2K views • 2 days ago</p>
+                </div>
+            </article>
+
+            <article class="ss-c-video_card">
+                <div class="ss-c-video_card__thumbnail">
+                    <img src="thumb2.jpg" alt="Video thumbnail" />
+                    <span class="ss-c-video_card__duration">5:20</span>
+                    <button class="ss-c-video_card__play" aria-label="Play video">
+                        ▶
+                    </button>
+                </div>
+                <div class="ss-c-video_card__info">
+                    <h4 class="ss-c-video_card__title">Another Video</h4>
+                    <p class="ss-c-video_card__meta">3.5K views • 1 week ago</p>
+                </div>
+            </article>
+        </div>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{# ============================================================================
+Background Video
+============================================================================ #}
+<section class="ss-c-demo__section" data-label="Background Video" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h3>Background Video</h3>
+        <p>Full-width video background with overlay.</p>
+    </header>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Hero with Video Background</h4>
+        {% set code_snippet %}
+        <div class="ss-c-video_hero">
+            <video
+                class="ss-c-video_hero__background"
+                autoplay
+                muted
+                loop
+                playsinline
+            >
+                <source src="hero-video.mp4" type="video/mp4" />
+            </video>
+            <div class="ss-c-video_hero__overlay"></div>
+            <div class="ss-c-video_hero__content">
+                <h1>Welcome</h1>
+                <p>Engaging hero section with video background</p>
+                <button class="ss-c-button ss-c-button--primary">Get Started</button>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {% include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{%- endblock content %}

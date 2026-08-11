@@ -1,0 +1,172 @@
+////
+///
+/// Character Dropcap Mixins
+/// ===========================================================================
+///
+/// Mixins for drop capital character styles.
+///
+/// @group Typography.Character.Specials.Dropcap
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./character-dropcap.config" as config;
+
+///
+/// Core dropcap base
+///
+@mixin ss-dropcap-base($variant: standard) {
+    $settings: map.get(config.$ss-dropcap-config, $variant);
+
+    float: left;
+
+    font-size: map.get($settings, font-size);
+    font-weight: map.get($settings, font-weight);
+    line-height: map.get($settings, line-height);
+
+    margin: map.get($settings, margin);
+    padding: map.get($settings, padding);
+
+    border: map.get($settings, border);
+    border-radius: map.get($settings, border-radius);
+}
+
+// Variant Mixins
+
+@mixin ss-dropcap-standard {
+    @include ss-dropcap-base(standard);
+}
+
+@mixin ss-dropcap-block {
+    @include ss-dropcap-base(block);
+
+    height: map.get(map.get(config.$ss-dropcap-config, block), height);
+
+    width: map.get(map.get(config.$ss-dropcap-config, block), width);
+}
+
+// Application Mixins
+
+@mixin ss-dropcap {
+    &:first-child::first-letter {
+        @include ss-dropcap-standard;
+    }
+}
+
+@mixin ss-dropcap-blocked {
+    &:first-child::first-letter {
+        @include ss-dropcap-block;
+    }
+}
+
+// @use "sass:map";
+// @use "./character-dropcap.config" as config;
+
+// // ============================================================================
+// // Mixins
+// // ============================================================================
+
+// /// Base dropcap styles
+// @mixin character-dropcap-base {
+//     $cfg: config.$ss-character-dropcap-config;
+
+//     float: map.get($cfg, float);
+//     font-size: map.get($cfg, font-size);
+//     line-height: map.get($cfg, line-height);
+//     font-weight: map.get($cfg, font-weight);
+//     color: map.get($cfg, color);
+//     margin-inline-end: map.get($cfg, margin-inline-end);
+//     margin-block-start: map.get($cfg, margin-block-start);
+//     padding: map.get($cfg, padding);
+// }
+
+// /// Small dropcap
+// @mixin character-dropcap-small {
+//     $cfg: map.get(config.$ss-character-dropcap-variants, small);
+//     @include character-dropcap-base;
+
+//     font-size: map.get($cfg, font-size);
+//     margin-inline-end: map.get($cfg, margin-inline-end);
+// }
+
+// /// Large dropcap
+// @mixin character-dropcap-large {
+//     $cfg: map.get(config.$ss-character-dropcap-variants, large);
+//     @include character-dropcap-base;
+
+//     font-size: map.get($cfg, font-size);
+//     margin-inline-end: map.get($cfg, margin-inline-end);
+// }
+
+// /// Elegant/serif dropcap
+// @mixin character-dropcap-elegant {
+//     $cfg: map.get(config.$ss-character-dropcap-variants, elegant);
+//     @include character-dropcap-base;
+
+//     font-size: map.get($cfg, font-size);
+//     font-family: map.get($cfg, font-family);
+//     font-style: map.get($cfg, font-style);
+//     color: map.get($cfg, color);
+// }
+
+// /// Boxed dropcap
+// @mixin character-dropcap-boxed {
+//     $cfg: map.get(config.$ss-character-dropcap-variants, boxed);
+//     @include character-dropcap-base;
+
+//     font-size: map.get($cfg, font-size);
+//     background-color: map.get($cfg, background-color);
+//     color: map.get($cfg, color);
+//     padding: map.get($cfg, padding);
+//     border-radius: map.get($cfg, border-radius);
+// }
+
+// /// Outlined dropcap
+// @mixin character-dropcap-outlined {
+//     $cfg: map.get(config.$ss-character-dropcap-variants, outlined);
+//     @include character-dropcap-base;
+
+//     font-size: map.get($cfg, font-size);
+//     color: map.get($cfg, color);
+//     -webkit-text-stroke: map.get($cfg, -webkit-text-stroke);
+// }
+
+// /// Gradient dropcap
+// @mixin character-dropcap-gradient {
+//     $cfg: map.get(config.$ss-character-dropcap-variants, gradient);
+//     @include character-dropcap-base;
+
+//     font-size: map.get($cfg, font-size);
+//     background: map.get($cfg, background);
+//     background-clip: text;
+//     -webkit-background-clip: text;
+//     color: map.get($cfg, color);
+// }
+
+// /// Dropcap variant by name
+// /// @param {String} $variant - Variant name
+// @mixin character-dropcap-variant($variant) {
+//     $variants: config.$ss-character-dropcap-variants;
+//     $cfg: map.get($variants, $variant);
+
+//     @if $cfg {
+//         @each $prop, $value in $cfg {
+//             #{$prop}: $value;
+//         }
+//     }
+// }
+
+// /// Initial letter (CSS native)
+// /// @param {Number} $lines [3] - Number of lines to span
+// @mixin character-initial-letter($lines: 3) {
+//     initial-letter: $lines;
+
+//     // Fallback for browsers without initial-letter support
+//     @supports not (initial-letter: 3) {
+//         @include character-dropcap-base;
+//     }
+// }

@@ -1,0 +1,31 @@
+{% extends "../base.html.jinja" %} {% set title = "Panel" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-panel</code> module.</p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__header">Panel header</div>
+            <div class="ss-c-panel__body">Body content sits here.</div>
+            <div class="ss-c-panel__footer">Footer</div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Header and body only" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="ss-c-panel">
+            <div class="ss-c-panel__header">Layers</div>
+            <div class="ss-c-panel__body">The footer slot is optional.</div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

@@ -1,0 +1,73 @@
+@use "sass:map";
+@use "./character-lined.config" as config;
+
+// -----------------------------------------------------------------------------
+// Core Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-character-line(
+    $line,
+    $color: map.get(config.$ss-character-lined-config, color)
+) {
+    text-decoration-line: $line;
+    text-decoration-style: map.get(config.$ss-character-lined-config, style);
+    text-decoration-thickness: map.get(
+        config.$ss-character-lined-config,
+        thickness
+    );
+    text-decoration-color: $color;
+}
+
+// -----------------------------------------------------------------------------
+// Variants
+// -----------------------------------------------------------------------------
+
+@mixin ss-character-underline(
+    $color: map.get(config.$ss-character-lined-config, color)
+) {
+    @include ss-character-line(underline, $color);
+
+    text-decoration-skip-ink: map.get(
+        config.$ss-character-lined-config,
+        skip-ink
+    );
+    text-underline-position: map.get(
+        config.$ss-character-lined-config,
+        position
+    );
+    text-underline-offset: map.get(config.$ss-character-lined-config, offset);
+}
+
+@mixin ss-character-overline(
+    $color: map.get(config.$ss-character-lined-config, color)
+) {
+    @include ss-character-line(overline, $color);
+}
+
+@mixin ss-character-line-through(
+    $color: map.get(config.$ss-character-lined-config, color)
+) {
+    @include ss-character-line(line-through, $color);
+}
+
+// -----------------------------------------------------------------------------
+// Alternate Color Variants
+// -----------------------------------------------------------------------------
+
+@mixin ss-character-underline-alt {
+    @include ss-character-underline(
+        map.get(config.$ss-character-lined-config, alternate-color)
+    );
+}
+
+@mixin ss-character-overline-alt {
+    @include ss-character-overline(
+        map.get(config.$ss-character-lined-config, alternate-color)
+    );
+}
+
+@mixin ss-character-line-through-alt {
+    @include ss-character-line-through(
+        map.get(config.$ss-character-lined-config, alternate-color)
+    );
+}

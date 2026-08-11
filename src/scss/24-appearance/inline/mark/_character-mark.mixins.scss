@@ -1,0 +1,101 @@
+////
+///
+/// Character Mark Mixins
+/// ===========================================================================
+///
+/// Mixins for marked/highlighted text character styles.
+///
+/// @group Typography.Character.Semantics.Mark
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./mark.config" as config;
+
+@mixin ss-mark {
+    color: map.get(config.$ss-mark-config, color);
+    background-color: map.get(config.$ss-mark-config, background);
+
+    padding-inline: map.get(config.$ss-mark-config, padding-inline);
+    border-radius: map.get(config.$ss-mark-config, border-radius);
+}
+
+// @use "sass:map";
+// @use "./character-mark.config" as config;
+
+// // ============================================================================
+// // Mixins
+// // ============================================================================
+
+// /// Base mark/highlight styles
+// @mixin character-mark-base {
+//     $cfg: config.$ss-character-mark-config;
+
+//     background-color: map.get($cfg, background-color);
+//     color: map.get($cfg, color);
+//     padding-inline: map.get($cfg, padding-inline);
+//     padding-block: map.get($cfg, padding-block);
+//     border-radius: map.get($cfg, border-radius);
+// }
+
+// /// Mark variant by name
+// /// @param {String} $variant - Variant name
+// @mixin character-mark-variant($variant) {
+//     $variants: config.$ss-character-mark-variants;
+//     $cfg: map.get($variants, $variant);
+
+//     @if $cfg {
+//         @if map.has-key($cfg, background) {
+//             background: map.get($cfg, background);
+//         } @else {
+//             background-color: map.get($cfg, background-color);
+//         }
+//         color: map.get($cfg, color);
+//     }
+// }
+
+// /// Success mark
+// @mixin character-mark-success {
+//     @include character-mark-variant(success);
+//     padding-inline: map.get(config.$ss-character-mark-config, padding-inline);
+//     border-radius: map.get(config.$ss-character-mark-config, border-radius);
+// }
+
+// /// Warning mark
+// @mixin character-mark-warning {
+//     @include character-mark-variant(warning);
+//     padding-inline: map.get(config.$ss-character-mark-config, padding-inline);
+//     border-radius: map.get(config.$ss-character-mark-config, border-radius);
+// }
+
+// /// Error mark
+// @mixin character-mark-error {
+//     @include character-mark-variant(error);
+//     padding-inline: map.get(config.$ss-character-mark-config, padding-inline);
+//     border-radius: map.get(config.$ss-character-mark-config, border-radius);
+// }
+
+// /// Info mark
+// @mixin character-mark-info {
+//     @include character-mark-variant(info);
+//     padding-inline: map.get(config.$ss-character-mark-config, padding-inline);
+//     border-radius: map.get(config.$ss-character-mark-config, border-radius);
+// }
+
+// /// Accent mark
+// @mixin character-mark-accent {
+//     @include character-mark-variant(accent);
+//     padding-inline: map.get(config.$ss-character-mark-config, padding-inline);
+//     border-radius: map.get(config.$ss-character-mark-config, border-radius);
+// }
+
+// /// Gradient underline highlight
+// @mixin character-mark-gradient {
+//     $cfg: map.get(config.$ss-character-mark-variants, gradient);
+//     background: map.get($cfg, background);
+//     color: map.get($cfg, color);
+// }

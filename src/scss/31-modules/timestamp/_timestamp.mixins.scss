@@ -1,0 +1,35 @@
+// =============================================================================
+// 31-modules / timestamp / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./timestamp.config" as config;
+
+@mixin ss-timestamp {
+    color: map.get(config.$timestamp-config, "color");
+    font-size: map.get(config.$timestamp-config, "font-size");
+    font-weight: map.get(config.$timestamp-config, "font-weight");
+    line-height: map.get(config.$timestamp-config, "line-height");
+    font-style: normal;
+    margin: 0;
+}
+
+@mixin ss-timestamp-elevate {
+    font-size: map.get(config.$timestamp-config, "elevate-font-size");
+    line-height: 1.7;
+    font-weight: map.get(config.$timestamp-config, "elevate-font-weight");
+    text-transform: uppercase;
+    width: fit-content;
+    margin: 0;
+}
+
+@mixin ss-timestamp-container {
+    display: flex;
+    align-items: center;
+    gap: map.get(config.$timestamp-config, "gap");
+    width: fit-content;
+}
+
+@mixin ss-timestamp-active {
+    color: map.get(config.$timestamp-config, "color-active");
+}

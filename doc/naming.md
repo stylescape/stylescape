@@ -83,9 +83,9 @@ StyleScape uses a three-tier **Head Body Soul** architecture. See the
 
 | Prefix  | Tier | Purpose                                         |
 | ------- | ---- | ----------------------------------------------- |
-| `head_` | Head | 🧠 Structure & Layout (Structural Intelligence) |
-| `body_` | Body | 💪 UI Components (Atomic Design Composition)    |
-| `soul_` | Soul | ✨ Visual Styling (Aesthetic Experience)        |
+| `head_` | Head | ◐ Structure & Layout (Structural Intelligence) |
+| `body_` | Body | ▲ UI Components (Atomic Design Composition)    |
+| `soul_` | Soul | ✦ Visual Styling (Aesthetic Experience)        |
 
 ### Category Suffixes
 

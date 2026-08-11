@@ -1,0 +1,33 @@
+// =============================================================================
+// 31-modules / portfolio / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./portfolio.config" as config;
+
+@mixin ss-portfolio {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(map.get(config.$portfolio-config, "min-column"), 1fr)
+    );
+    gap: map.get(config.$portfolio-config, "gap");
+}
+
+@mixin ss-portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: map.get(config.$portfolio-config, "item-radius");
+
+    > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    &:hover > img {
+        transform: scale(1.04);
+    }
+}

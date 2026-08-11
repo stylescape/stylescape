@@ -1,0 +1,19 @@
+// =============================================================================
+// 31-modules / gallery / output
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "./gallery.mixins" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-gallery {
+        @include ss-gallery;
+
+        &__image {
+            @include ss-gallery-image;
+        }
+        &--bordered &__image {
+            @include ss-gallery-border;
+        }
+    }
+}

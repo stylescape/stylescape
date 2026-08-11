@@ -1,0 +1,30 @@
+{% extends "../base.html.jinja" %} {% set title = "Details + Summary" %} {%- block
+title %}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    <section class="ss-c-demo__subsection">
+        <h4>Details & Summary Component</h4>
+        {% set code_snippet %}
+        <details class="ss-c-details">
+            <summary class="ss-c-details__summary">Click to expand details</summary>
+            <div class="ss-c-details__content">
+                <p>
+                    This is the hidden content that appears when the summary is
+                    clicked.
+                </p>
+                <p>
+                    You can add any elements here: text, links, or even nested
+                    components.
+                </p>
+            </div>
+        </details>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{%- endblock %}

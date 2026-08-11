@@ -1,0 +1,51 @@
+////
+///
+/// Container
+/// ===========================================================================
+///
+/// Container/wrapper layout system.
+///
+/// @group Layout
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../01-core/external" as *;
+
+@layer ss.layout {
+    .ss-l-container {
+        width: 100%;
+        margin-inline: auto;
+        padding-inline: var(--ss-l-container-padding, var(--ss-spacing-4));
+        max-width: var(--ss-l-container-max, q(1280));
+    }
+
+    // Container size variants
+    .ss-l-container-sm {
+        --ss-l-container-max: #{q(640)};
+    }
+    .ss-l-container-md {
+        --ss-l-container-max: #{q(768)};
+    }
+    .ss-l-container-lg {
+        --ss-l-container-max: #{q(1024)};
+    }
+    .ss-l-container-xl {
+        --ss-l-container-max: #{q(1280)};
+    }
+    .ss-l-container-2xl {
+        --ss-l-container-max: #{q(1536)};
+    }
+    .ss-l-container-full {
+        --ss-l-container-max: 100%;
+    }
+
+    // Fluid container (no max-width)
+    .ss-l-container-fluid {
+        width: 100%;
+        padding-inline: var(--ss-l-container-padding, var(--ss-spacing-4));
+    }
+}

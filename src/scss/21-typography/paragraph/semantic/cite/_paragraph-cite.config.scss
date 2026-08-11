@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "../../../../01-core/external" as *;
+
+// -----------------------------------------------------------------------------
+// Cite Paragraph Configuration
+// -----------------------------------------------------------------------------
+
+// Element default: inline italic so `<cite>` composes mid-sentence
+// ("As mentioned in <cite>…</cite> by …") without breaking the line.
+$ss-paragraph-cite-config: (
+    font-size: inherit,
+    font-style: italic,
+    line-height: inherit,
+    text-transform: none,
+    margin: 0,
+    color: var(--ss-color-muted-foreground),
+    display: inline,
+) !default;
+
+// Standalone attribution line — the old StyleScape identity (uppercase
+// block, small size; see dev `variables/soul_type/_paragraph.scss`).
+// Applied via the explicit `.ss-t-paragraph--cite` class.
+$ss-paragraph-cite-standalone-config: (
+    font-size: q(14),
+    font-style: normal,
+    line-height: 1.42,
+    text-transform: uppercase,
+    margin: q(16) 0 0,
+    color: var(--ss-color-muted-foreground),
+    display: block,
+) !default;

@@ -1,0 +1,23 @@
+// =============================================================================
+// 31-modules / vcard / output
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "./vcard.mixins" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-vcard {
+        @include ss-vcard;
+
+        &__org {
+            @include ss-vcard-org;
+        }
+        &__name,
+        &__role,
+        &__email,
+        &__tel,
+        &__address {
+            display: block;
+        }
+    }
+}

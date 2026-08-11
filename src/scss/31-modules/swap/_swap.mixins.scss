@@ -1,0 +1,58 @@
+@use "../../01-core/external" as *;
+
+@mixin ss-swap {
+    position: relative;
+    display: inline-grid;
+    place-content: center;
+    cursor: pointer;
+    user-select: none;
+
+    > input[type="checkbox"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    > .#{""}ss-c-swap__on,
+    > .#{""}ss-c-swap__off,
+    > .#{""}ss-c-swap__indeterminate {
+        grid-column-start: 1;
+        grid-row-start: 1;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    > .#{""}ss-c-swap__on,
+    > .#{""}ss-c-swap__indeterminate { opacity: 0; }
+    > .#{""}ss-c-swap__off { opacity: 1; }
+
+    > input[type="checkbox"]:checked ~ .#{""}ss-c-swap__on { opacity: 1; }
+    > input[type="checkbox"]:checked ~ .#{""}ss-c-swap__off { opacity: 0; }
+    > input[type="checkbox"]:indeterminate ~ .#{""}ss-c-swap__indeterminate { opacity: 1; }
+    > input[type="checkbox"]:indeterminate ~ .#{""}ss-c-swap__off { opacity: 0; }
+}
+
+@mixin ss-swap-rotate {
+    > .#{""}ss-c-swap__on { transform: rotate(-45deg); }
+    > input[type="checkbox"]:checked ~ .#{""}ss-c-swap__on { transform: rotate(0); }
+    > input[type="checkbox"]:checked ~ .#{""}ss-c-swap__off { transform: rotate(45deg); }
+}
+
+@mixin ss-swap-flip {
+    transform-style: preserve-3d;
+    perspective: 16em;
+
+    > .#{""}ss-c-swap__on,
+    > .#{""}ss-c-swap__off {
+        backface-visibility: hidden;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    > .#{""}ss-c-swap__on { transform: rotateY(180deg); }
+    > input[type="checkbox"]:checked ~ .#{""}ss-c-swap__on {
+        opacity: 1;
+        transform: rotateY(0);
+    }
+    > input[type="checkbox"]:checked ~ .#{""}ss-c-swap__off {
+        opacity: 0;
+        transform: rotateY(-180deg);
+    }
+}

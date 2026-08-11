@@ -1,0 +1,13 @@
+@use "../../01-core/prefix" as *;
+@use "./swap.mixins" as swap;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-swap { @include swap.ss-swap; }
+    .#{$ss-prefix-module}-swap--rotate { @include swap.ss-swap-rotate; }
+    .#{$ss-prefix-module}-swap--flip { @include swap.ss-swap-flip; }
+
+    // children
+    .#{$ss-prefix-module}-swap__on,
+    .#{$ss-prefix-module}-swap__off,
+    .#{$ss-prefix-module}-swap__indeterminate { /* positioned by parent */ }
+}

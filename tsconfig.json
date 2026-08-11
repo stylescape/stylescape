@@ -5,6 +5,12 @@
     "compilerOptions": {
         /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
+        /* Silence TS 6 deprecation errors for `moduleResolution: "node"`
+           (node10) and `downlevelIteration`, which otherwise fail the build
+           (e.g. kist's BuildESMModules step) until these are migrated ahead of
+           TypeScript 7.0. */
+        "ignoreDeprecations": "6.0",
+
         /* Projects */
         // "incremental": true,                                 /* Enable incremental compilation */
         // "composite": true,                                   /* Enable constraints that allow a TypeScript project to be used with project references. */

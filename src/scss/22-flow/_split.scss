@@ -1,0 +1,43 @@
+////
+///
+/// Split
+/// ===========================================================================
+///
+/// Split layout with items at opposite ends.
+/// Pure spatial logic. No colors. No shadows.
+///
+/// @group Flow
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@layer ss.flow {
+
+.ss-f-split {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: var(--ss-f-split-align, center);
+    gap: var(--ss-f-split-gap, var(--ss-spacing-4));
+}
+
+// Split alignment variants
+.ss-f-split-start {
+    --ss-f-split-align: flex-start;
+}
+.ss-f-split-end {
+    --ss-f-split-align: flex-end;
+}
+.ss-f-split-stretch {
+    --ss-f-split-align: stretch;
+}
+
+// Split with specific break behavior
+.ss-f-split-nowrap {
+    flex-wrap: nowrap;
+}
+
+}

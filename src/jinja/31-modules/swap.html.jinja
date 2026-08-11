@@ -1,0 +1,45 @@
+{% extends "../base.html.jinja" %} {% set title = "Swap" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-swap</code> module.</p>
+
+    {% set section_title = "Text" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <label class="ss-c-swap">
+            <input type="checkbox">
+            <span class="ss-c-swap__on">ON</span>
+            <span class="ss-c-swap__off">OFF</span>
+        </label>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Rotate" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <label class="ss-c-swap ss-c-swap--rotate">
+            <input type="checkbox">
+            <span class="ss-c-swap__on">+</span>
+            <span class="ss-c-swap__off">x</span>
+        </label>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Flip" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <label class="ss-c-swap ss-c-swap--flip">
+            <input type="checkbox">
+            <span class="ss-c-swap__on">&#9728;</span>
+            <span class="ss-c-swap__off">&#9790;</span>
+        </label>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

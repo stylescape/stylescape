@@ -1,0 +1,96 @@
+////
+///
+/// Modal Output
+/// ===========================================================================
+///
+/// CSS output for modal components.
+///
+/// @group Modules.Modal
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./modal.config" as config;
+@use "./modal.mixins" as mixins;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    .#{$ss-prefix-module}-modal-backdrop {
+        @include mixins.modal-backdrop;
+    }
+
+    .#{$ss-prefix-module}-modal {
+        @include mixins.modal-container;
+    }
+
+    .#{$ss-prefix-module}-modal-content {
+        @include mixins.modal-content;
+    }
+
+    // Size variants
+    .#{$ss-prefix-module}-modal-sm .#{$ss-prefix-module}-modal-content {
+        @include mixins.modal-size(sm);
+    }
+    .#{$ss-prefix-module}-modal-md .#{$ss-prefix-module}-modal-content {
+        @include mixins.modal-size(md);
+    }
+    .#{$ss-prefix-module}-modal-lg .#{$ss-prefix-module}-modal-content {
+        @include mixins.modal-size(lg);
+    }
+    .#{$ss-prefix-module}-modal-xl .#{$ss-prefix-module}-modal-content {
+        @include mixins.modal-size(xl);
+    }
+    .#{$ss-prefix-module}-modal-full .#{$ss-prefix-module}-modal-content {
+        @include mixins.modal-size(full);
+    }
+
+    // Modal header
+    .#{$ss-prefix-module}-modal-header {
+        $cfg: config.$ss-modal-config;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: map.get($cfg, padding);
+        border-bottom: var(--ss-a-border-width) solid var(--ss-color-border);
+    }
+
+    // Modal body
+    .#{$ss-prefix-module}-modal-body {
+        $cfg: config.$ss-modal-config;
+
+        padding: map.get($cfg, padding);
+    }
+
+    // Modal footer
+    .#{$ss-prefix-module}-modal-footer {
+        $cfg: config.$ss-modal-config;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: var(--ss-spacing-3);
+        padding: map.get($cfg, padding);
+        border-top: var(--ss-a-border-width) solid var(--ss-color-border);
+    }
+
+    // Modal close button
+    .#{$ss-prefix-module}-modal-close {
+        padding: var(--ss-spacing-1);
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity var(--ss-transition-default);
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

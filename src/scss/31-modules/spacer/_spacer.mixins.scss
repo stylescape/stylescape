@@ -1,0 +1,21 @@
+// =============================================================================
+// 31-modules / spacer / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./spacer.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-spacer($size: map.get(config.$spacer-config, "size-md")) {
+    display: block;
+    width: 100%;
+    height: $size;
+    flex-shrink: 0;
+}
+
+@mixin ss-spacer-inline($size: map.get(config.$spacer-config, "size-md")) {
+    display: inline-block;
+    width: $size;
+    height: q(1);
+    flex-shrink: 0;
+}

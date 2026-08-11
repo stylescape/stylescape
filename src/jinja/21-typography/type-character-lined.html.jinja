@@ -1,0 +1,61 @@
+{% extends "../base.html.jinja" %} {% set title = "Character Styles" %} {%- block
+title %}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    <section class="ss-c-demo__section">
+        <div class="ss-c-font-preview-controls">
+            <label for="font-preview-input">Preview text:</label>
+            <input
+                id="font-preview-input"
+                type="text"
+                placeholder="The quick brown fox…"
+            />
+        </div>
+    </section>
+
+    {% set section_title = "Hyperlink Character Styles" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set fonts = [ { label: ".ss-t-char-link", class:
+        "ss-t-char-link" }, { label:
+        ".ss-t-char-link", class: "ss-t-char-link" }, {
+        label: ".ss-t-char-link", class:
+        "ss-t-char-link" }, { label:
+        ".ss-t-char-link-underlined", class: "ss-t-char-link-underlined" }, {
+        label: ".ss-t-char-link-underlined-alt", class:
+        "ss-t-char-link-underlined-alt" } ] %} {% for font in fonts %} {% set
+        label = font.label %} {% set class = font.class %} {%- include
+        "includes/preview/ss-c-preview_font.html.jinja" %} {% endfor %}
+    </section>
+
+    {% set section_title = "Lined Character Styles" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set fonts = [ { label: ".ss-t-underline", class: "ss-t-underline"
+        }, { label: ".ss-t-underline", class: "ss-t-underline"
+        }, { label: ".ss-t-overline", class: "ss-t-overline" },
+        { label: ".ss-t-line-through", class: "ss-t-line-through"
+        }, { label: ".ss-t-underline-alt", class: "ss-t-underline-alt" }, {
+        label: ".ss-t-underline-alt", class:
+        "ss-t-underline-alt" }, { label: ".ss-t-overline-alt",
+        class: "ss-t-overline-alt" }, { label:
+        ".ss-t-line-through-alt", class: "ss-t-line-through-alt"
+        } ] %} {% for font in fonts %} {% set label = font.label %} {% set
+        class = font.class %} {%- include
+        "includes/preview/ss-c-preview_font.html.jinja" %} {% endfor %}
+    </section>
+</section>
+
+{%- endblock %}

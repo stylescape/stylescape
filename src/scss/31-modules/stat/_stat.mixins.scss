@@ -1,0 +1,64 @@
+@use "sass:map";
+@use "./stat.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-stats {
+    display: inline-flex;
+    overflow-x: auto;
+
+    background-color: map.get(config.$ss-stat-config, bg);
+    color: map.get(config.$ss-stat-config, fg);
+    border-radius: map.get(config.$ss-stat-config, radius);
+    box-shadow: map.get(config.$ss-stat-config, shadow);
+}
+
+@mixin ss-stats-vertical {
+    flex-direction: column;
+    overflow-x: visible;
+}
+
+@mixin ss-stat {
+    display: inline-grid;
+    grid-template:
+        "figure title actions" auto
+        "figure value actions" auto
+        "figure desc actions" auto / auto 1fr auto;
+    column-gap: map.get(config.$ss-stat-config, column-gap);
+    padding: map.get(config.$ss-stat-config, padding);
+
+    & + & {
+        border-inline-start: map.get(config.$ss-stat-config, divider);
+    }
+}
+
+@mixin ss-stat-title {
+    grid-area: title;
+    font-size: var(--ss-font-size-sm);
+    color: map.get(config.$ss-stat-config, title-color);
+}
+
+@mixin ss-stat-value {
+    grid-area: value;
+    font-size: map.get(config.$ss-stat-config, value-font-size);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+@mixin ss-stat-desc {
+    grid-area: desc;
+    font-size: var(--ss-font-size-xs);
+    color: map.get(config.$ss-stat-config, desc-color);
+}
+
+@mixin ss-stat-figure {
+    grid-area: figure;
+    display: flex;
+    align-items: center;
+    color: map.get(config.$ss-stat-config, figure-color);
+}
+
+@mixin ss-stat-actions {
+    grid-area: actions;
+    display: flex;
+    align-items: center;
+}

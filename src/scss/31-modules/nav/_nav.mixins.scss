@@ -1,0 +1,47 @@
+@use "sass:map";
+@use "./nav.config" as config;
+
+@mixin ss-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: map.get(config.$ss-nav-config, gap);
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin ss-nav-vertical {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+@mixin ss-nav-link {
+    display: inline-flex;
+    align-items: center;
+
+    padding: map.get(config.$ss-nav-config, item-padding);
+    border-radius: map.get(config.$ss-nav-config, radius);
+
+    color: map.get(config.$ss-nav-config, fg);
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+        color: map.get(config.$ss-nav-config, fg-hover);
+        background: map.get(config.$ss-nav-config, bg-hover);
+    }
+}
+
+@mixin ss-nav-link-active {
+    background: map.get(config.$ss-nav-config, active-bg);
+    color: map.get(config.$ss-nav-config, active-fg);
+
+    &:hover,
+    &:focus-visible {
+        background: map.get(config.$ss-nav-config, active-bg);
+        color: map.get(config.$ss-nav-config, active-fg);
+    }
+}

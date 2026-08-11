@@ -1,0 +1,59 @@
+////
+///
+/// Paragraph Dropcap Configuration
+/// ===========================================================================
+///
+/// Configuration for paragraph drop capitals.
+///
+/// @group Typography.Paragraph.Layout.Dropcap
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../../../01-core/external" as *;
+
+// ============================================================================
+// Configuration
+// ============================================================================
+
+$ss-paragraph-dropcap-config: (
+    float: left,
+    font-size: 4em,
+    line-height: 0.8,
+    font-weight: 700,
+    margin-right: var(--ss-space-2),
+    margin-bottom: 0,
+    color: inherit,
+) !default;
+
+// ============================================================================
+// Dropcap Variants
+// ============================================================================
+
+$ss-paragraph-dropcap-variants: (
+    small: (
+        font-size: 3em,
+    ),
+    large: (
+        font-size: 5em,
+    ),
+    decorative: (
+        font-size: 4.5em,
+        font-family: var(--ss-font-family-display),
+        color: var(--ss-color-accent),
+    ),
+    boxed: (
+        background-color: var(--ss-color-surface-alt),
+        padding: var(--ss-space-2),
+        line-height: 1,
+    ),
+    outlined: (
+        color: transparent,
+        -webkit-text-stroke: q(2) var(--ss-color-text),
+        text-stroke: q(2) var(--ss-color-text),
+    ),
+) !default;

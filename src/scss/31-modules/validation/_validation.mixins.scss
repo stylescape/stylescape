@@ -1,0 +1,73 @@
+// =============================================================================
+// 31-modules / validation / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./validation.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-validation-error {
+    display: none;
+    color: map.get(config.$validation-config, "color-invalid");
+    font-size: map.get(config.$validation-config, "message-font-size");
+    margin-top: q(4);
+
+    &.is-visible,
+    &--visible {
+        display: block;
+    }
+}
+
+@mixin ss-validation-success {
+    display: none;
+    color: map.get(config.$validation-config, "color-valid");
+    font-size: map.get(config.$validation-config, "message-font-size");
+    margin-top: q(4);
+
+    &.is-visible,
+    &--visible {
+        display: block;
+    }
+}
+
+@mixin ss-validation-input-invalid {
+    border-color: map.get(config.$validation-config, "color-invalid");
+
+    &:focus {
+        box-shadow: map.get(config.$validation-config, "ring-invalid");
+    }
+}
+
+@mixin ss-validation-input-valid {
+    border-color: map.get(config.$validation-config, "color-valid");
+
+    &:focus {
+        box-shadow: map.get(config.$validation-config, "ring-valid");
+    }
+}
+
+@mixin ss-validation-input-warning {
+    border-color: map.get(config.$validation-config, "color-warning");
+
+    &:focus {
+        box-shadow: map.get(config.$validation-config, "ring-warning");
+    }
+}
+
+@mixin ss-validation-label-required {
+    &::after {
+        content: "*";
+        color: map.get(config.$validation-config, "color-invalid");
+        margin-left: q(4);
+    }
+}
+
+@mixin ss-validation-label-optional {
+    &::after {
+        content: "(optional)";
+        color: var(--ss-color-text-muted, #666666);
+        font-weight: 400;
+        font-size: 0.75em;
+        margin-left: q(8);
+    }
+}

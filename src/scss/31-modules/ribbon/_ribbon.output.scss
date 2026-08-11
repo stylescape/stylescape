@@ -1,0 +1,171 @@
+// =============================================================================
+// 31-modules / ribbon / output
+// =============================================================================
+//
+// Emits the modern `.ss-c-ribbon` BEM block. Legacy un-prefixed selectors
+// were dropped — all consumers (jinja templates, examples) now use the
+// `ss-c-` prefix.
+//
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "./ribbon.mixins" as *;
+
+@layer ss.components {
+    // Typography / list neutralization for the ribbon. Applied to the base
+    // block AND every orientation modifier so that templates which use
+    // ONLY `.ss-c-ribbon--top` (without the base class) still get the
+    // descendant resets — otherwise global <h1> typography paints titles
+    // at heading scale in heading color.
+    .#{$ss-prefix-module}-ribbon,
+    .#{$ss-prefix-module}-ribbon--top,
+    .#{$ss-prefix-module}-ribbon--bottom,
+    .#{$ss-prefix-module}-ribbon--left,
+    .#{$ss-prefix-module}-ribbon--right {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0;
+        }
+        ul,
+        ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        p {
+            margin: 0;
+        }
+        a,
+        a:link,
+        a:visited,
+        a:hover,
+        a:active,
+        a:focus {
+            color: inherit;
+            text-decoration: none;
+        }
+        // Inline icons inside the ribbon should follow the ribbon
+        // font-size, not balloon to whatever the global <i> / icon-font
+        // rule sets. width/height are 1em so the icon box matches the
+        // surrounding text height.
+        i,
+        .i,
+        [class^="i_"],
+        [class*=" i_"],
+        .octicon,
+        svg {
+            font-size: inherit;
+            line-height: 1;
+            width: 1em;
+            height: 1em;
+            color: inherit;
+            fill: currentColor;
+            vertical-align: middle;
+        }
+    }
+
+    .#{$ss-prefix-module}-ribbon {
+        @include ss-ribbon-base;
+
+        // Neutralize typography inside the ribbon: headings used as titles
+        // (e.g. <h1>) should not inherit the global heading scale or the
+        // big margin-block — the ribbon controls its own font-size /
+        // height. Lists used as menus should not get bullets or padding.
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0;
+        }
+        ul,
+        ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        p {
+            margin: 0;
+        }
+
+        &--horizontal {
+            @include ss-ribbon-horizontal;
+        }
+        &--vertical {
+            @include ss-ribbon-vertical;
+        }
+        &--top {
+            @include ss-ribbon-top;
+        }
+        &--bottom {
+            @include ss-ribbon-bottom;
+        }
+        &--left {
+            @include ss-ribbon-left;
+        }
+        &--right {
+            @include ss-ribbon-right;
+        }
+        &--inverted {
+            @include ss-ribbon-inverted;
+        }
+
+        &__slot {
+            @include ss-ribbon-slot-base;
+
+            &--horizontal_left {
+                @include ss-ribbon-slot-horizontal-left;
+            }
+            &--horizontal_center {
+                @include ss-ribbon-slot-horizontal-center;
+            }
+            &--horizontal_right {
+                @include ss-ribbon-slot-horizontal-right;
+            }
+            &--vertical_top {
+                @include ss-ribbon-slot-vertical-top;
+            }
+            &--vertical_center {
+                @include ss-ribbon-slot-vertical-center;
+            }
+            &--vertical_bottom {
+                @include ss-ribbon-slot-vertical-bottom;
+            }
+        }
+
+        &__title {
+            @include ss-ribbon-title;
+        }
+        &__button,
+        &__nav_button {
+            @include ss-ribbon-button;
+        }
+        &__menu {
+            @include ss-ribbon-menu;
+        }
+        &__nav {
+            @include ss-ribbon-nav;
+        }
+        &__panel {
+            @include ss-ribbon-panel;
+        }
+        &__search {
+            @include ss-ribbon-search;
+        }
+    }
+}

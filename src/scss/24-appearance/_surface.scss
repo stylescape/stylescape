@@ -1,0 +1,48 @@
+////
+///
+/// Surface
+/// ===========================================================================
+///
+/// Surface/card-like appearance styles.
+/// No layout logic.
+///
+/// @group Appearance
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@layer ss.appearance {
+
+.ss-a-surface {
+    background-color: var(--ss-a-surface-bg, var(--ss-color-background));
+    color: var(--ss-a-surface-color, var(--ss-color-foreground));
+}
+
+.ss-a-surface-muted {
+    --ss-a-surface-bg: var(--ss-color-muted);
+}
+
+.ss-a-surface-primary {
+    --ss-a-surface-bg: var(--ss-color-primary);
+    --ss-a-surface-color: var(--ss-color-white);
+}
+
+.ss-a-surface-inverted {
+    --ss-a-surface-bg: var(--ss-color-foreground);
+    --ss-a-surface-color: var(--ss-color-background);
+}
+
+// Interactive surfaces
+.ss-a-surface-interactive {
+    cursor: pointer;
+    transition: background-color var(--ss-transition-default);
+
+    &:hover {
+        background-color: var(--ss-color-muted);
+    }
+}
+
+}

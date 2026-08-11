@@ -79,6 +79,22 @@ For detailed setup and usage instructions, refer to our official website:
 
 ---
 
+## Project Family
+
+StyleScape ships as a three-repo system:
+
+| Repo                                                     | Role                                                                                        |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| [`ssx`](https://github.com/stylescape/ssx)               | The specification — naming, layers, component blueprint, variants. The authoritative spec.  |
+| [`stylescape`](https://github.com/stylescape/stylescape) | This repo — the SCSS implementation that emits `.ss-c-*`, `.ss-u-*`, `.ss-a-*`, etc.        |
+| [`semiosys`](https://github.com/stylescape/semiosys)     | A Django consumer that models the data side (components, modifiers, cascade layers).        |
+
+Spec authority is `ssx`; implementation authority is `stylescape`; consumer
+authority is `semiosys`. All three release in lockstep — see
+[ROADMAP.md](ROADMAP.md) Phase F.
+
+---
+
 ## Contribution
 
 Contributions are always welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for
@@ -87,5 +103,5 @@ ways to get started.
 ---
 
 <p align="center">
-    <b>Made with ❤️ by <a href="https://www.scape.agency" target="_blank">Scape Agency</a></b>
+    <b>Made with ♥ by <a href="https://www.scape.press" target="_blank">Scape Press</a></b>
 </p>

@@ -1,0 +1,62 @@
+////
+///
+/// Shadow Tokens
+/// ===========================================================================
+///
+/// Design token definitions for box shadows.
+/// Only :root CSS custom properties, no selectors.
+///
+/// @group Lexicon
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../01-core/external" as *;
+
+:root {
+    // ========================================================================
+    // Shadow Color
+    // ========================================================================
+
+    --ss-a-shadow-color: rgb(0 0 0 / 0.1);
+    --ss-a-shadow-color-heavy: rgb(0 0 0 / 0.25);
+
+    // ========================================================================
+    // Scale
+    // ========================================================================
+
+    --ss-a-shadow-none: none;
+    --ss-a-shadow-sm: 0 #{q(1)} #{q(2)} 0 var(--ss-a-shadow-color);
+    --ss-a-shadow-default:
+        0 #{q(1)} #{q(3)} 0 var(--ss-a-shadow-color),
+        0 #{q(1)} #{q(2)} #{q(-1)} var(--ss-a-shadow-color);
+    --ss-a-shadow-md:
+        0 #{q(4)} #{q(6)} #{q(-1)} var(--ss-a-shadow-color),
+        0 #{q(2)} #{q(4)} #{q(-2)} var(--ss-a-shadow-color);
+    --ss-a-shadow-lg:
+        0 #{q(10)} #{q(15)} #{q(-3)} var(--ss-a-shadow-color),
+        0 #{q(4)} #{q(6)} #{q(-4)} var(--ss-a-shadow-color);
+    --ss-a-shadow-xl:
+        0 #{q(20)} #{q(25)} #{q(-5)} var(--ss-a-shadow-color),
+        0 #{q(8)} #{q(10)} #{q(-6)} var(--ss-a-shadow-color);
+    --ss-a-shadow-2xl: 0 #{q(25)} #{q(50)} #{q(-12)} var(--ss-a-shadow-color-heavy);
+    --ss-a-shadow-inner: inset 0 #{q(2)} #{q(4)} 0 var(--ss-a-shadow-color);
+
+    // ========================================================================
+    // Unprefixed elevation aliases
+    // ========================================================================
+    //
+    // Several modules and utilities reference the shorter `--ss-shadow-*`
+    // names; keep them in lockstep with the `--ss-a-shadow-*` scale.
+
+    --ss-shadow-none: none;
+    --ss-shadow-xs: 0 #{q(1)} #{q(2)} 0 rgb(0 0 0 / 0.04);
+    --ss-shadow-1: var(--ss-shadow-xs);
+    --ss-shadow-sm: var(--ss-a-shadow-sm);
+    --ss-shadow-md: var(--ss-a-shadow-md);
+    --ss-shadow-lg: var(--ss-a-shadow-lg);
+    --ss-shadow-xl: var(--ss-a-shadow-xl);
+}

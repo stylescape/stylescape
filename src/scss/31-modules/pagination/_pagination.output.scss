@@ -1,0 +1,32 @@
+@use "../../01-core/prefix" as *;
+@use "sass:map";
+@use "./pagination.config" as config;
+@use "./pagination.mixins" as pagination;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-pagination {
+        @include pagination.ss-pagination;
+    }
+
+    .#{$ss-prefix-module}-pagination__item {
+        @include pagination.ss-pagination-item;
+    }
+
+    .#{$ss-prefix-module}-pagination__item.is-active,
+    .#{$ss-prefix-module}-pagination__item--active {
+        @include pagination.ss-pagination-active;
+
+        // Demo markup nests an <a class="…__link"> — carry the active
+        // colors onto it.
+        > .#{$ss-prefix-module}-pagination__link {
+            background: map.get(config.$ss-pagination-config, active-bg);
+            color: map.get(config.$ss-pagination-config, active-fg);
+            border-color: map.get(config.$ss-pagination-config, active-bg);
+        }
+    }
+
+    .#{$ss-prefix-module}-pagination__item.is-disabled,
+    .#{$ss-prefix-module}-pagination__item[aria-disabled="true"] {
+        @include pagination.ss-pagination-disabled;
+    }
+}

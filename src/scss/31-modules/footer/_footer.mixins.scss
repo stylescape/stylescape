@@ -1,0 +1,37 @@
+@use "../../01-core/external" as *;
+
+@mixin ss-footer {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, q(180)), 1fr)
+    );
+    gap: q(24);
+
+    padding: q(32);
+    width: 100%;
+    color: var(--ss-color-text-primary);
+    background-color: var(--ss-color-surface-1, var(--ss-color-surface));
+
+    > * {
+        display: flex;
+        flex-direction: column;
+        gap: q(8);
+    }
+}
+
+@mixin ss-footer-center {
+    place-items: center;
+    text-align: center;
+
+    > * { align-items: center; }
+}
+
+@mixin ss-footer-title {
+    font-size: var(--ss-font-size-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ss-color-text-secondary, var(--ss-color-text-muted));
+    margin-bottom: q(4);
+}

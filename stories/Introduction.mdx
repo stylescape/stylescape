@@ -1,0 +1,54 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# Stylescape
+
+**Stylescape** is a visual identity framework by Scape Press — a class-based CSS
+system (`.ss-c-*` components, `.ss-u-*` utilities) with a small `data-ss-*`
+auto-init behaviour layer.
+
+This Storybook renders the framework straight from source:
+
+- **Styles** come from `src/scss/index.scss`, compiled on the fly by Vite (the
+  `pkg:` imports from `unit.gl` / `hue.gl` resolve through Sass's Node package
+  importer). No `dist/` build is needed — edits to the SCSS hot-reload here.
+- **Behaviour** comes from `src/ts/index.ts`. The preview calls `autoStart()`,
+  which scans for `data-ss-*` attributes and wires up the matching component
+  managers, so interactive stories work as they would on a real page.
+
+## Writing a story
+
+Components are markup plus classes, so stories return HTML strings. Use the
+`html` tagged template from `stories/html.ts` for editor highlighting:
+
+```ts
+import type { Meta, StoryObj } from "@storybook/html-vite";
+import { html } from "../html";
+
+const meta: Meta = {
+    title: "Components/Badge",
+    render: () => html`<span class="ss-c-badge ss-c-accent">New</span>`,
+};
+export default meta;
+
+export const Default: StoryObj = {};
+```
+
+## Theming
+
+Use the **theme** toolbar control (top of the canvas) to flip between
+`data-theme="light"` and `data-theme="dark"`. The attribute is set on the
+preview's `<html>` element — the exact hook Stylescape's lexicon and dark
+overrides key off.
+
+## Accessibility
+
+Every story is checked by the **Accessibility** panel (`addon-a11y`). Findings
+are reported but non-blocking; tighten the `a11y.test` setting in
+`.storybook/preview.ts` to fail builds on violations.
+
+## Explore
+
+- **Foundations → Colors** — the live `--ss-color-*` token palette.
+- **Components** — Button, Alert, Badge, each with an interactive playground.

@@ -1,0 +1,73 @@
+////
+///
+/// Utilities Layer
+/// ===========================================================================
+///
+/// Explicit overrides. One responsibility per file.
+///
+/// @group Utilities
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+// ============================================================================
+// Forward
+// ============================================================================
+
+// `@layer` is declared per-file inside each utility partial (see
+// 01-core/layers and the constitution). `@forward` may not appear inside
+// `@layer`, so this index just exposes the partials.
+
+// Spacing
+@forward "spacing/margin";
+@forward "spacing/padding";
+@forward "spacing/gap";
+
+// Layout
+@forward "layout/display";
+@forward "layout/position";
+@forward "layout/visibility";
+@forward "layout/float";
+@forward "layout/flex";
+@forward "layout/grid";
+@forward "layout/align";
+@forward "layout/z-index";
+
+// Typography
+@forward "typography/text-align";
+@forward "typography/truncate";
+@forward "typography/text-wrap";
+
+// Accessibility
+@forward "accessibility/visually-hidden";
+@forward "accessibility/focus-ring";
+
+// Interaction
+@forward "interaction/pointer-events";
+@forward "interaction/user-select";
+@forward "interaction/stretched-link";
+@forward "interaction/cursor";
+
+// Media
+@forward "media/object-fit";
+@forward "media/ratio";
+
+// Print
+@forward "print/print";
+
+// Legacy v0.2 class shim (display_*, flex--*, gap--*, grid--*,
+// grid__frame--*, margin--*, padding--*, align_self--*, ...)
+@forward "legacy-compat";
+
+// Legacy component class shim (carousel-*, slideshow_*, video_*, chat_*,
+// blogpost--*, lightbox*, preloader_*, ribbon__*, toast-*, toggle_*, ...)
+@forward "legacy-components-compat";
+
+// Scapepress parity layer — every class found in scapepress-sites SCSS
+// is re-emitted here under the `ss-c-*` prefix. Loaded LAST so that
+// legacy site-specific styling wins over modern modules whenever the
+// class names collide.
+@forward "scapepress-parity";

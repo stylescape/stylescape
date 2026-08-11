@@ -1,0 +1,37 @@
+// =============================================================================
+// 31-modules / carousel / output
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "./carousel.mixins" as *;
+@use "../../01-core/external" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-carousel {
+        @include ss-carousel;
+
+        &__track {
+            @include ss-carousel-track;
+        }
+        &__item {
+            @include ss-carousel-item;
+        }
+        &__indicators {
+            @include ss-carousel-indicators;
+        }
+        &__indicator {
+            @include ss-carousel-indicator;
+        }
+
+        &__control {
+            @include ss-carousel-control;
+
+            &--prev {
+                left: q(8);
+            }
+            &--next {
+                right: q(8);
+            }
+        }
+    }
+}

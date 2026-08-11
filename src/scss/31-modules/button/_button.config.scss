@@ -1,0 +1,131 @@
+// =============================================================================
+// 31-modules / button / config
+// =============================================================================
+//
+// Public configuration for the button module. Override any key (or the whole
+// map) before importing to retheme buttons without touching mixins/output.
+//
+// =============================================================================
+
+@use "../../01-core/external" as *;
+
+$ss-button-config: (
+    // Base box
+    gap: q(8),
+    padding: q(8) q(16),
+    border-width: q(1),
+    radius: var(--ss-radius-sm, q(4)),
+    font-weight: 500,
+    line-height: 1.5,
+    transition: (
+        background 0.2s ease,
+        border 0.2s ease,
+        opacity 0.2s ease,
+    ),
+
+    // Base colors
+    bg: var(--ss-color-text-primary, #1a1a1a),
+    fg: var(--ss-color-surface, #ffffff),
+
+    // Interaction states
+    hover-opacity: 0.9,
+    active-opacity: 0.8,
+    disabled-opacity: 0.5,
+    focus-ring-width: q(2),
+    focus-ring-color: var(--ss-color-primary, #0066cc),
+    focus-ring-offset: q(2),
+    hover-wash: rgba(0, 0, 0, 0.05),
+
+    // Variants — bg / fg / border (null border = leave unset)
+    variants: (
+        primary: (
+            bg: var(--ss-color-accent, #2563eb),
+            fg: var(--ss-color-accent-foreground, #ffffff),
+            border: var(--ss-color-accent, #2563eb),
+        ),
+        secondary: (
+            bg: var(--ss-color-secondary, #555555),
+            fg: #ffffff,
+            border: null,
+        ),
+        solid: (
+            bg: var(--ss-color-text-primary, #1a1a1a),
+            fg: var(--ss-color-surface, #ffffff),
+            border: null,
+        ),
+        accent: (
+            bg: var(--ss-color-accent, #2563eb),
+            fg: var(--ss-color-accent-foreground, #ffffff),
+            border: null,
+        ),
+        success: (
+            bg: var(--ss-color-success, #16a34a),
+            fg: #ffffff,
+            border: var(--ss-color-success, #16a34a),
+        ),
+        warning: (
+            bg: var(--ss-color-warning, #f59e0b),
+            fg: #ffffff,
+            border: var(--ss-color-warning, #f59e0b),
+        ),
+        danger: (
+            bg: var(--ss-color-error, #dc2626),
+            fg: #ffffff,
+            border: var(--ss-color-error, #dc2626),
+        ),
+        info: (
+            bg: var(--ss-color-info, #0ea5e9),
+            fg: #ffffff,
+            border: var(--ss-color-info, #0ea5e9),
+        ),
+    ),
+
+    // Outline / ghost share fg + hover wash
+    outline-color: var(--ss-color-text-primary, #1a1a1a),
+
+    // Link variant
+    link-color: var(--ss-color-link, #2563eb),
+
+    // Sizes — padding / font-size
+    sizes: (
+        xs: (
+            padding: q(4) q(8),
+            font-size: q(12),
+        ),
+        sm: (
+            padding: q(6) q(12),
+            font-size: q(14),
+        ),
+        md: (
+            padding: q(8) q(16),
+            font-size: q(16),
+        ),
+        lg: (
+            padding: q(12) q(24),
+            font-size: q(18),
+        ),
+        xl: (
+            padding: q(16) q(32),
+            font-size: q(20),
+        ),
+    ),
+
+    // Shapes
+    rounded-radius: var(--ss-radius-lg, q(8)),
+    pill-radius: q(9999),
+
+    // Icon-only button
+    icon-padding: q(8),
+    icon-width: q(40),
+
+    // Menu (hamburger-style) button
+    menu-padding: q(8),
+    menu-font-size: q(20),
+    menu-hover-opacity: 0.75,
+
+    // Loading spinner
+    loading-size: q(16),
+    loading-border-width: q(2),
+    loading-color: #ffffff,
+    loading-speed: 0.8s,
+) !default;

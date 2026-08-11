@@ -1,0 +1,67 @@
+@use "sass:map";
+@use "../../01-core/external" as *;
+
+// -----------------------------------------------------------------------------
+// Badge Configuration
+// -----------------------------------------------------------------------------
+
+$ss-badge-config: (
+    sizes: (
+        xs: (
+            height: q(20),
+            font-size: var(--ss-font-size-xs),
+        ),
+        sm: (
+            height: q(24),
+            font-size: var(--ss-font-size-sm),
+        ),
+        md: (
+            height: q(28),
+            font-size: var(--ss-font-size-sm),
+        ),
+        lg: (
+            height: q(32),
+            font-size: var(--ss-font-size-md),
+        ),
+        xl: (
+            height: q(36),
+            font-size: var(--ss-font-size-lg),
+        ),
+    ),
+
+    colors: (
+        default: (
+            bg: var(--ss-color-foreground),
+            fg: var(--ss-color-background),
+        ),
+        accent: (
+            bg: var(--ss-color-accent),
+            fg: var(--ss-color-on-accent),
+        ),
+        success: (
+            bg: var(--ss-color-success),
+            fg: var(--ss-color-on-success),
+        ),
+        warning: (
+            bg: var(--ss-color-warning),
+            fg: var(--ss-color-on-warning),
+        ),
+        error: (
+            bg: var(--ss-color-error),
+            fg: var(--ss-color-on-error),
+        ),
+        // `danger` is an alias for `error` so semantic semantic
+        // naming used elsewhere (alert, button) is consistent on badge too.
+        danger: (
+            bg: var(--ss-color-error),
+            fg: var(--ss-color-on-error),
+        ),
+        info: (
+            bg: var(--ss-color-info),
+            fg: var(--ss-color-on-info),
+        ),
+    ),
+
+    radius: var(--ss-radius-sm),
+    padding-inline: 0.5em,
+) !default;

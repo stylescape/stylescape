@@ -78,6 +78,7 @@ export default tseslint.config(
             "dist/**",
             "build/**",
             "public/**",
+            "storybook-static/**",
 
             // Dependencies
             "node_modules/**",

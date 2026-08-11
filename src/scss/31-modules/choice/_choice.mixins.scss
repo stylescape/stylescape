@@ -1,0 +1,13 @@
+@use "sass:map";
+@use "./choice.config" as config;
+@use "../../01-core/external" as *;
+
+/// Label row pairing a checkbox or radio with its text, e.g.
+/// `<label class="ss-c-choice"><input class="ss-c-checkbox"> Remember me</label>`.
+@mixin ss-choice {
+    display: inline-flex;
+    align-items: center;
+    gap: map.get(config.$ss-choice-config, gap);
+    cursor: pointer;
+    color: var(--ss-color-text-primary);
+}

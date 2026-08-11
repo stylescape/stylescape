@@ -1,0 +1,23 @@
+{% extends "../base.html.jinja" %} {% set title = "Diff" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-diff</code> module.</p>
+
+    {% set section_title = "Image diff (50%)" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <figure class="ss-c-diff" style="--ss-diff-position: 50%; aspect-ratio: 16/9; max-width: 480px;">
+            <div class="ss-c-diff__item-1">
+                <img src="https://picsum.photos/seed/diff-a/480/270" alt="">
+            </div>
+            <div class="ss-c-diff__item-2">
+                <img src="https://picsum.photos/seed/diff-b/480/270" alt="">
+            </div>
+            <div class="ss-c-diff__resizer"></div>
+        </figure>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

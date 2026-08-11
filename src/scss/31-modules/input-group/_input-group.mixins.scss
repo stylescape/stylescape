@@ -1,0 +1,58 @@
+// =============================================================================
+// 31-modules / input-group / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./input-group.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-input-group {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+
+    > * {
+        position: relative;
+        flex: 1 1 auto;
+        width: 1%;
+        min-width: 0;
+        border-radius: 0;
+
+        &:not(:last-child) {
+            margin-right: q(-1);
+        }
+        &:first-child {
+            border-top-left-radius: map.get(
+                config.$input-group-config,
+                "border-radius"
+            );
+            border-bottom-left-radius: map.get(
+                config.$input-group-config,
+                "border-radius"
+            );
+        }
+        &:last-child {
+            border-top-right-radius: map.get(
+                config.$input-group-config,
+                "border-radius"
+            );
+            border-bottom-right-radius: map.get(
+                config.$input-group-config,
+                "border-radius"
+            );
+        }
+    }
+}
+
+@mixin ss-input-group-text {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    width: auto;
+    padding: map.get(config.$input-group-config, "addon-padding");
+    background-color: map.get(config.$input-group-config, "addon-background");
+    color: map.get(config.$input-group-config, "addon-color");
+    border: q(1) solid map.get(config.$input-group-config, "border-color");
+    text-align: center;
+    white-space: nowrap;
+}

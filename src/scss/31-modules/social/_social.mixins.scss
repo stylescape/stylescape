@@ -1,0 +1,30 @@
+// =============================================================================
+// 31-modules / social / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./social.config" as config;
+
+@mixin ss-social {
+    display: inline-flex;
+    align-items: center;
+    gap: map.get(config.$social-config, "gap");
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin ss-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: map.get(config.$social-config, "size");
+    height: map.get(config.$social-config, "size");
+    border-radius: map.get(config.$social-config, "radius");
+    background-color: map.get(config.$social-config, "background");
+    color: map.get(config.$social-config, "color");
+    text-decoration: none;
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}

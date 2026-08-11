@@ -12,7 +12,7 @@
  * Behavior:
  * - Accordion mode: only one <details> can stay open at a time.
  * - Clicking outside any <details> closes all of them.
- * - Elements with class 'sidebar__accordion' are excluded from exclusive behavior.
+ * - Elements with class 'ss-c-sidebar__accordion' are excluded from exclusive behavior.
  */
 export class DetailManager {
     private details: NodeListOf<HTMLDetailsElement>;
@@ -23,9 +23,9 @@ export class DetailManager {
      * Selects all <details> elements and attaches a single document-level listener.
      * Excludes sidebar accordions from the exclusive behavior.
      *
-     * @param selector - CSS selector for <details> elements (default: "details:not(.sidebar__accordion)").
+     * @param selector - CSS selector for <details> elements (default: "details:not(.ss-c-sidebar__accordion)").
      */
-    constructor(selector: string = "details:not(.sidebar__accordion)") {
+    constructor(selector: string = "details:not(.ss-c-sidebar__accordion)") {
         this.details = document.querySelectorAll<HTMLDetailsElement>(selector);
         this.boundHandler = this.handleClick.bind(this);
 

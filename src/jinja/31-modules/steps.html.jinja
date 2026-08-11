@@ -1,0 +1,34 @@
+{% extends "../base.html.jinja" %} {% set title = "Steps" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-steps</code> module.</p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <ul class="ss-c-steps">
+            <li class="ss-c-step ss-c-step--primary">Choose</li>
+            <li class="ss-c-step ss-c-step--primary">Configure</li>
+            <li class="ss-c-step">Purchase</li>
+            <li class="ss-c-step">Ship</li>
+        </ul>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Vertical" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <ul class="ss-c-steps ss-c-steps--vertical">
+            <li class="ss-c-step ss-c-step--success">Plan</li>
+            <li class="ss-c-step ss-c-step--success">Build</li>
+            <li class="ss-c-step ss-c-step--warning">Test</li>
+            <li class="ss-c-step">Ship</li>
+        </ul>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

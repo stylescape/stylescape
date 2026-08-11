@@ -1,0 +1,60 @@
+@use "sass:map";
+@use "./rating.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: q(2);
+
+    direction: rtl; // reverse for ":checked ~" technique with radios
+
+    > input[type="radio"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: q(20);
+        height: q(20);
+        margin: 0;
+        background-color: var(--ss-color-border, currentColor);
+        background-image: var(--ss-rating-mask-url, none);
+        -webkit-mask-image: var(
+            --ss-rating-mask,
+            url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595z'/></svg>")
+        );
+        mask-image: var(
+            --ss-rating-mask,
+            url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595z'/></svg>")
+        );
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        cursor: pointer;
+    }
+    > input[type="radio"]:checked,
+    > input[type="radio"]:checked ~ input[type="radio"] {
+        background-color: var(--ss-color-warning, #f5a623);
+    }
+    > input[type="radio"]:hover,
+    > input[type="radio"]:hover ~ input[type="radio"] {
+        background-color: var(--ss-color-warning, #f5a623);
+        opacity: 0.85;
+    }
+}
+
+@mixin ss-rating-size($size) {
+    $s: map.get(map.get(config.$ss-rating-config, sizes), $size);
+    > input[type="radio"] { width: $s; height: $s; }
+}
+
+@mixin ss-rating-half {
+    > input[type="radio"] {
+        width: q(10);
+        clip-path: inset(0 0 0 50%);
+
+        & + input {
+            clip-path: inset(0 50% 0 0);
+            margin-inline-start: q(-10);
+        }
+    }
+}

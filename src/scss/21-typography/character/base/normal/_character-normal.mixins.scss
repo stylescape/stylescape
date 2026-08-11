@@ -1,0 +1,51 @@
+////
+///
+/// Character Normal Mixins
+/// ===========================================================================
+///
+/// Mixins for normal/standard character styles.
+///
+/// @group Typography.Character.Foundation.Normal
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../inherit/character-inherit.mixins" as inherit;
+@use "../default/character-default.mixins" as reset;
+@use "./character-normal.config" as config;
+
+@mixin ss-character-normal {
+    @include inherit.ss-character-inherit;
+    @include reset.ss-character-default;
+
+    font-weight: map.get(config.$ss-character-normal-config, font-weight);
+    font-style: map.get(config.$ss-character-normal-config, font-style);
+}
+
+// /// Apply normal character styles
+// @mixin character-normal {
+//     $cfg: config.$ss-character-normal-config;
+
+//     font-family: map.get($cfg, font-family);
+//     font-size: map.get($cfg, font-size);
+//     font-weight: map.get($cfg, font-weight);
+//     font-style: map.get($cfg, font-style);
+//     line-height: map.get($cfg, line-height);
+//     letter-spacing: map.get($cfg, letter-spacing);
+//     color: map.get($cfg, color);
+//     text-decoration: map.get($cfg, text-decoration);
+// }
+
+// /// Apply only font-related normal properties
+// @mixin character-normal-font {
+//     $cfg: config.$ss-character-normal-config;
+
+//     font-family: map.get($cfg, font-family);
+//     font-size: map.get($cfg, font-size);
+//     font-weight: map.get($cfg, font-weight);
+//     font-style: map.get($cfg, font-style);
+// }

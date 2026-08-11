@@ -1,0 +1,188 @@
+////
+///
+/// Grid Utilities
+/// ===========================================================================
+///
+/// Grid template + placement utilities.
+/// Mirrors legacy `.grid--N`, `.grid--span--col--N`, `.grid--span--row--N`,
+/// `.grid--size--col--N`, `.grid--size--row--N`, plus `sm/md/lg` breakpoint
+/// variants, all moved to the `ss-u-*` namespace.
+///
+/// Scale: 1..24 columns / 1..12 rows (covers legacy `.grid--N` 1..24).
+///
+/// @group Utilities.Layout
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.4.0 ported from legacy
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints" as *;
+
+@layer ss.utilities {
+    // ========================================================================
+    // Template columns / rows
+    // ========================================================================
+
+    @for $i from 1 through 24 {
+        .ss-u-grid-cols-#{$i} {
+            grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+        }
+    }
+    @for $i from 1 through 12 {
+        .ss-u-grid-rows-#{$i} {
+            grid-template-rows: repeat(#{$i}, minmax(0, 1fr));
+        }
+    }
+    .ss-u-grid-cols-none {
+        grid-template-columns: none;
+    }
+    .ss-u-grid-rows-none {
+        grid-template-rows: none;
+    }
+
+    // ========================================================================
+    // Auto flow
+    // ========================================================================
+
+    .ss-u-grid-flow-row {
+        grid-auto-flow: row;
+    }
+    .ss-u-grid-flow-col {
+        grid-auto-flow: column;
+    }
+    .ss-u-grid-flow-dense {
+        grid-auto-flow: dense;
+    }
+    .ss-u-grid-flow-row-dense {
+        grid-auto-flow: row dense;
+    }
+    .ss-u-grid-flow-col-dense {
+        grid-auto-flow: column dense;
+    }
+
+    // ========================================================================
+    // Auto cols / rows
+    // ========================================================================
+
+    .ss-u-auto-cols-auto {
+        grid-auto-columns: auto;
+    }
+    .ss-u-auto-cols-min {
+        grid-auto-columns: min-content;
+    }
+    .ss-u-auto-cols-max {
+        grid-auto-columns: max-content;
+    }
+    .ss-u-auto-cols-fr {
+        grid-auto-columns: minmax(0, 1fr);
+    }
+
+    .ss-u-auto-rows-auto {
+        grid-auto-rows: auto;
+    }
+    .ss-u-auto-rows-min {
+        grid-auto-rows: min-content;
+    }
+    .ss-u-auto-rows-max {
+        grid-auto-rows: max-content;
+    }
+    .ss-u-auto-rows-fr {
+        grid-auto-rows: minmax(0, 1fr);
+    }
+
+    // ========================================================================
+    // Column / row span
+    // ========================================================================
+
+    @for $i from 1 through 24 {
+        .ss-u-col-span-#{$i} {
+            grid-column: span #{$i} / span #{$i};
+        }
+    }
+    @for $i from 1 through 12 {
+        .ss-u-row-span-#{$i} {
+            grid-row: span #{$i} / span #{$i};
+        }
+    }
+    .ss-u-col-span-full {
+        grid-column: 1 / -1;
+    }
+    .ss-u-row-span-full {
+        grid-row: 1 / -1;
+    }
+    .ss-u-col-span-auto {
+        grid-column: auto;
+    }
+    .ss-u-row-span-auto {
+        grid-row: auto;
+    }
+
+    // ========================================================================
+    // Column / row start & end (1..13 to allow N+1 lines for 12-col)
+    // ========================================================================
+
+    @for $i from 1 through 13 {
+        .ss-u-col-start-#{$i} {
+            grid-column-start: #{$i};
+        }
+        .ss-u-col-end-#{$i} {
+            grid-column-end: #{$i};
+        }
+        .ss-u-row-start-#{$i} {
+            grid-row-start: #{$i};
+        }
+        .ss-u-row-end-#{$i} {
+            grid-row-end: #{$i};
+        }
+    }
+    .ss-u-col-start-auto {
+        grid-column-start: auto;
+    }
+    .ss-u-col-end-auto {
+        grid-column-end: auto;
+    }
+    .ss-u-row-start-auto {
+        grid-row-start: auto;
+    }
+    .ss-u-row-end-auto {
+        grid-row-end: auto;
+    }
+
+    // ========================================================================
+    // Responsive variants (sm / md / lg) for col-span and grid-cols
+    // ========================================================================
+
+    @include breakpoint-up(sm) {
+        @for $i from 1 through 12 {
+            .ss-u-grid-cols-sm-#{$i} {
+                grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+            }
+            .ss-u-col-span-sm-#{$i} {
+                grid-column: span #{$i} / span #{$i};
+            }
+        }
+    }
+    @include breakpoint-up(md) {
+        @for $i from 1 through 12 {
+            .ss-u-grid-cols-md-#{$i} {
+                grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+            }
+            .ss-u-col-span-md-#{$i} {
+                grid-column: span #{$i} / span #{$i};
+            }
+        }
+    }
+    @include breakpoint-up(lg) {
+        @for $i from 1 through 12 {
+            .ss-u-grid-cols-lg-#{$i} {
+                grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+            }
+            .ss-u-col-span-lg-#{$i} {
+                grid-column: span #{$i} / span #{$i};
+            }
+        }
+    }
+}

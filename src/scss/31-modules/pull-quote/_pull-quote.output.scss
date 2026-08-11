@@ -1,0 +1,71 @@
+@use "../../01-core/prefix" as *;
+@use "sass:map";
+@use "./pull-quote.config" as config;
+@use "./pull-quote.mixins" as pq;
+@use "../../01-core/external" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-pull-quote {
+        @include pq.ss-pull-quote;
+    }
+
+    .#{$ss-prefix-module}-pull-quote__text {
+        @include pq.ss-pull-quote__text;
+    }
+
+    .#{$ss-prefix-module}-pull-quote__attribution {
+        @include pq.ss-pull-quote__attribution;
+    }
+
+    .#{$ss-prefix-module}-pull-quote--elevated {
+        @include pq.ss-pull-quote;
+        @include pq.ss-pull-quote--elevated;
+    }
+
+    // Additional designs -----------------------------------------------------
+
+    // Accent rule — heavy steel-blue bar on the reading edge.
+    .#{$ss-prefix-module}-pull-quote--accent {
+        @include pq.ss-pull-quote;
+        border-left: map.get(config.$ss-pull-quote-config, accent-border);
+        padding-left: map.get(config.$ss-pull-quote-config, accent-padding-left);
+    }
+
+    // Inverted — old-StyleScape black panel.
+    .#{$ss-prefix-module}-pull-quote--inverted {
+        @include pq.ss-pull-quote;
+        background: map.get(config.$ss-pull-quote-config, inverted-bg);
+        color: map.get(config.$ss-pull-quote-config, inverted-fg);
+        padding: map.get(config.$ss-pull-quote-config, inverted-padding);
+
+        .#{$ss-prefix-module}-pull-quote__attribution {
+            color: map.get(config.$ss-pull-quote-config, inverted-attribution-color);
+        }
+    }
+
+    // Oversized quotation mark backdrop.
+    .#{$ss-prefix-module}-pull-quote--marked {
+        @include pq.ss-pull-quote;
+        position: relative;
+        padding: map.get(config.$ss-pull-quote-config, marked-padding);
+
+        &::before {
+            content: "\201C";
+            position: absolute;
+            top: 0;
+            left: map.get(config.$ss-pull-quote-config, marked-glyph-left);
+            font-size: map.get(config.$ss-pull-quote-config, marked-glyph-size);
+            line-height: 1;
+            font-family: Georgia, serif;
+            color: map.get(config.$ss-pull-quote-config, marked-glyph-color);
+        }
+    }
+
+    // Centered display quote — hairline rules above and below.
+    .#{$ss-prefix-module}-pull-quote--centered {
+        @include pq.ss-pull-quote;
+        text-align: center;
+        border-block: map.get(config.$ss-pull-quote-config, centered-border);
+        padding-block: map.get(config.$ss-pull-quote-config, centered-padding-block);
+    }
+}

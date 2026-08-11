@@ -1,0 +1,210 @@
+// =============================================================================
+// 31-modules / sidebar / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./sidebar.config" as config;
+// `q()` and friends — without this the q(...) calls below are emitted as a
+// literal (unknown) CSS function and every declaration using them is dropped
+// by the browser.
+@use "../../01-core/external" as *;
+
+@mixin ss-sidebar {
+    position: relative;
+    display: flex;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+@mixin ss-sidebar-menu {
+    position: relative;
+    transition: width #{map.get(config.$sidebar-config, "transition")};
+    width: 0;
+    display: none;
+    visibility: hidden;
+    overflow: visible;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+
+    &.is-active,
+    &.active {
+        display: block;
+        visibility: visible;
+        width: map.get(config.$sidebar-config, "menu-width");
+    }
+}
+
+@mixin ss-sidebar-control {
+    position: relative;
+    width: map.get(config.$sidebar-config, "control-size");
+    height: map.get(config.$sidebar-config, "control-size");
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99999;
+    pointer-events: auto;
+    overflow: visible;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+}
+
+@mixin ss-sidebar-left {
+    @include ss-sidebar;
+    flex-direction: row;
+    transition: width #{map.get(config.$sidebar-config, "transition")};
+}
+
+@mixin ss-sidebar-right {
+    @include ss-sidebar;
+    flex-direction: row-reverse;
+    transition: width #{map.get(config.$sidebar-config, "transition")};
+}
+
+// ----------------------------------------------------------------------------
+// Accordion (sidebar content tree)
+// ----------------------------------------------------------------------------
+//
+// `<section class="ss-c-sidebar__section">` wraps each top-level
+// `<details class="ss-c-sidebar__accordion">`. Nested groups use the same
+// class with the `--nested` modifier. The hardcoded `<span>▶</span>` in
+// the markup acts as the disclosure indicator; the native
+// `summary { display: list-item }` marker is suppressed here so we don't
+// see two arrows.
+
+@mixin ss-sidebar-section {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin ss-sidebar-accordion {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin ss-sidebar-accordion-header {
+    display: flex;
+    align-items: center;
+    gap: map.get(config.$sidebar-config, "header-gap");
+    cursor: pointer;
+    user-select: none;
+    padding: map.get(config.$sidebar-config, "header-padding");
+    margin: 0;
+    list-style: none;
+
+    // Suppress browser disclosure markers — the .__icon span replaces them.
+    &::-webkit-details-marker {
+        display: none;
+    }
+    &::marker {
+        display: none;
+        content: "";
+    }
+
+    > h2,
+    > h3 {
+        margin: 0;
+        padding: 0;
+        line-height: 1.2;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    // Level 1 — section label: small caps, heavy.
+    > h2 {
+        font-size: map.get(config.$sidebar-config, "section-font-size");
+        font-weight: map.get(config.$sidebar-config, "section-font-weight");
+        text-transform: uppercase;
+        letter-spacing: map.get(config.$sidebar-config, "section-letter-spacing");
+    }
+
+    // Level 2 — group label: sentence case, medium.
+    > h3 {
+        font-size: map.get(config.$sidebar-config, "group-font-size");
+        font-weight: map.get(config.$sidebar-config, "group-font-weight");
+    }
+
+    &:hover {
+        background-color: map.get(config.$sidebar-config, "header-hover-bg");
+    }
+}
+
+// Nested (level-2) header delta: slightly tighter, visually subordinate.
+@mixin ss-sidebar-accordion-header-nested {
+    padding-block: map.get(config.$sidebar-config, "nested-padding-block");
+
+    > h3 {
+        color: map.get(config.$sidebar-config, "group-color");
+    }
+}
+
+@mixin ss-sidebar-accordion-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: map.get(config.$sidebar-config, "icon-size");
+    height: map.get(config.$sidebar-config, "icon-size");
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: map.get(config.$sidebar-config, "icon-font-size");
+    line-height: 1;
+    opacity: map.get(config.$sidebar-config, "icon-opacity");
+    transition: transform 0.2s ease;
+    transform: rotate(0deg);
+}
+
+@mixin ss-sidebar-accordion-content {
+    // Indent each level and draw a guide line so the tree depth stays
+    // legible even with several sections open.
+    margin-left: map.get(config.$sidebar-config, "content-margin-left");
+    padding: map.get(config.$sidebar-config, "content-padding");
+    border-left: map.get(config.$sidebar-config, "guide-border");
+}
+
+@mixin ss-sidebar-subsection-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+        padding: 0;
+    }
+
+    // Level 3 — leaf links. Nav items, not prose hyperlinks: they inherit
+    // the sidebar's monochrome treatment instead of the global link color,
+    // and light up on hover.
+    a {
+        display: block;
+        padding: map.get(config.$sidebar-config, "link-padding");
+        border-radius: map.get(config.$sidebar-config, "link-radius");
+        font-size: map.get(config.$sidebar-config, "link-font-size");
+        color: map.get(config.$sidebar-config, "link-color");
+        text-decoration: none;
+
+        &:visited {
+            color: map.get(config.$sidebar-config, "link-color");
+        }
+
+        &:hover {
+            color: map.get(config.$sidebar-config, "link-hover-color");
+            background-color: map.get(config.$sidebar-config, "link-hover-bg");
+            text-decoration: none;
+        }
+    }
+}
+
+@mixin ss-sidebar-subsection-description {
+    margin: map.get(config.$sidebar-config, "description-margin");
+    opacity: map.get(config.$sidebar-config, "description-opacity");
+}

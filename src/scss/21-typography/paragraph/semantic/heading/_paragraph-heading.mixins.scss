@@ -1,0 +1,101 @@
+////
+///
+/// Paragraph Heading Mixins
+/// ===========================================================================
+///
+/// Reusable mixins for heading paragraph styles.
+///
+/// @group Typography.Paragraph.Heading
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-heading.config" as config;
+
+// -----------------------------------------------------------------------------
+// Core Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-paragraph-heading-base($override: ()) {
+    $settings: map.merge(config.$ss-paragraph-heading-config, $override);
+
+    font-family: map.get($settings, font-family);
+    font-weight: map.get($settings, font-weight);
+    color: map.get($settings, color);
+    line-height: map.get($settings, line-height);
+
+    margin-block: map.get($settings, margin-block);
+}
+
+// -----------------------------------------------------------------------------
+// Level Variant
+// -----------------------------------------------------------------------------
+
+@mixin ss-paragraph-heading($level, $caps: false) {
+    $levels: map.get(config.$ss-paragraph-heading-config, levels);
+    $level-settings: map.get($levels, $level);
+
+    @include ss-paragraph-heading-base();
+
+    font-size: map.get($level-settings, size);
+
+    @if $caps == true {
+        text-transform: uppercase;
+    }
+}
+
+// @use "sass:map";
+// @use "./paragraph-heading.config" as config;
+
+// // ============================================================================
+// // Mixins
+// // ============================================================================
+
+// /// Base heading styles
+// @mixin paragraph-heading-base {
+//     $cfg: config.$ss-paragraph-heading-config;
+
+//     font-weight: map.get($cfg, font-weight);
+//     line-height: map.get($cfg, line-height);
+//     letter-spacing: map.get($cfg, letter-spacing);
+//     color: map.get($cfg, color);
+// }
+
+// /// Heading with spacing
+// @mixin paragraph-heading-spaced {
+//     $cfg: config.$ss-paragraph-heading-config;
+
+//     @include paragraph-heading-base;
+//     margin-block-start: map.get($cfg, margin-block-start);
+//     margin-block-end: map.get($cfg, margin-block-end);
+
+//     &:first-child {
+//         margin-block-start: 0;
+//     }
+// }
+
+// /// Heading level variant
+// /// @param {String} $level - Level name from $ss-paragraph-heading-levels (h1-h6)
+// @mixin paragraph-heading-level($level) {
+//     $levels: config.$ss-paragraph-heading-levels;
+//     $variant: map.get($levels, $level);
+
+//     @if $variant {
+//         font-size: map.get($variant, font-size);
+//         font-weight: map.get($variant, font-weight);
+//         letter-spacing: map.get($variant, letter-spacing);
+//     }
+// }
+
+// /// Generate all heading levels
+// @mixin paragraph-heading-all-levels {
+//     @each $level, $props in config.$ss-paragraph-heading-levels {
+//         &-#{$level} {
+//             @include paragraph-heading-level($level);
+//         }
+//     }
+// }

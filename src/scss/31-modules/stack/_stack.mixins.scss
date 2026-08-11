@@ -1,0 +1,38 @@
+@use "../../01-core/external" as *;
+
+@mixin ss-stack {
+    display: inline-grid;
+    place-items: center;
+
+    > * {
+        grid-column-start: 1;
+        grid-row-start: 1;
+
+        z-index: 1;
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    > *:nth-child(2) {
+        z-index: 0;
+        transform: translateY(8%) scale(0.94);
+        opacity: 0.8;
+    }
+    > *:nth-child(3) {
+        z-index: -1;
+        transform: translateY(16%) scale(0.88);
+        opacity: 0.6;
+    }
+    > *:nth-child(n + 4) {
+        z-index: -2;
+        transform: translateY(24%) scale(0.82);
+        opacity: 0.4;
+    }
+}
+
+@mixin ss-stack-top {
+    > * { transform: translateY(0) scale(1); }
+    > *:nth-child(2) { transform: translateY(-8%) scale(0.94); }
+    > *:nth-child(3) { transform: translateY(-16%) scale(0.88); }
+    > *:nth-child(n + 4) { transform: translateY(-24%) scale(0.82); }
+}

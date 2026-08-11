@@ -1,0 +1,188 @@
+{% extends "../base.html.jinja" %} {% set title = "Checkbox" %} {%- block
+title %}{{ title }}{%- endblock %} {%- block content %}
+
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h2>{{ title }}</h2>
+        <p>
+            Styled checkboxes — sharp corners by default, aligned with the
+            other form elements.
+        </p>
+    </header>
+
+    {% set section_title = "Basic Checkbox" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+
+        {% set code_snippet %}
+        <div style="display: flex; flex-direction: column; gap: 8px">
+            <label class="ss-c-checkbox__label">
+                <input type="checkbox" class="ss-c-checkbox" />
+                Unchecked
+            </label>
+            <label class="ss-c-checkbox__label">
+                <input type="checkbox" class="ss-c-checkbox" checked />
+                Checked
+            </label>
+            <label class="ss-c-checkbox__label">
+                <input type="checkbox" class="ss-c-checkbox" disabled />
+                Disabled
+            </label>
+            <label class="ss-c-checkbox__label">
+                <input type="checkbox" class="ss-c-checkbox" checked disabled />
+                Checked disabled
+            </label>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Sizes" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+
+        {% set code_snippet %}
+        <div style="display: flex; align-items: center; gap: 24px">
+            <label class="ss-c-checkbox__label">
+                <input
+                    type="checkbox"
+                    class="ss-c-checkbox ss-c-checkbox--sm"
+                    checked
+                />
+                Small
+            </label>
+            <label class="ss-c-checkbox__label">
+                <input type="checkbox" class="ss-c-checkbox" checked />
+                Default
+            </label>
+            <label class="ss-c-checkbox__label">
+                <input
+                    type="checkbox"
+                    class="ss-c-checkbox ss-c-checkbox--lg"
+                    checked
+                />
+                Large
+            </label>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Status Variants" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+
+        {% set code_snippet %}
+        <div style="display: flex; align-items: center; gap: 24px">
+            <label class="ss-c-checkbox__label">
+                <input type="checkbox" class="ss-c-checkbox" checked />
+                Accent
+            </label>
+            <label class="ss-c-checkbox__label">
+                <input
+                    type="checkbox"
+                    class="ss-c-checkbox ss-c-checkbox--success"
+                    checked
+                />
+                Success
+            </label>
+            <label class="ss-c-checkbox__label">
+                <input
+                    type="checkbox"
+                    class="ss-c-checkbox ss-c-checkbox--warning"
+                    checked
+                />
+                Warning
+            </label>
+            <label class="ss-c-checkbox__label">
+                <input
+                    type="checkbox"
+                    class="ss-c-checkbox ss-c-checkbox--danger"
+                    checked
+                />
+                Danger
+            </label>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Indeterminate" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+
+        {% set code_snippet %}
+        <label class="ss-c-checkbox__label">
+            <input
+                type="checkbox"
+                class="ss-c-checkbox"
+                id="indeterminate-demo"
+            />
+            Indeterminate (set from JS:
+            <code>input.indeterminate = true</code>)
+        </label>
+        <script>
+            document.getElementById("indeterminate-demo").indeterminate = true;
+        </script>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Checkbox Group" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+
+        {% set code_snippet %}
+        <fieldset style="border: 0; margin: 0; padding: 0">
+            <legend
+                style="
+                    font-size: 12px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.06em;
+                    margin-bottom: 8px;
+                "
+            >
+                Notifications
+            </legend>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+                <label class="ss-c-checkbox__label">
+                    <input type="checkbox" class="ss-c-checkbox" checked />
+                    Email
+                </label>
+                <label class="ss-c-checkbox__label">
+                    <input type="checkbox" class="ss-c-checkbox" checked />
+                    Push
+                </label>
+                <label class="ss-c-checkbox__label">
+                    <input type="checkbox" class="ss-c-checkbox" />
+                    SMS
+                </label>
+            </div>
+        </fieldset>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{%- endblock content %}

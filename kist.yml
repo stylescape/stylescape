@@ -43,70 +43,43 @@ stages:
           outputFile: "./dist/css/stylescape.min.css"
           styleOption: "compressed"
 
-      # Build JS bundles + sourcemaps (ESM + IIFE) via tsup
+      # Build JS bundles + sourcemaps (ESM + min + IIFE) via esbuild
       # -----------------------------------------------------------------
-      - name: BuildJSEsm
-        action: BundleAction
+      # NOTE: kist's `BundleAction` (from `@getkist/action-tsup`) can't load in
+      # this workspace — the plugin package ships no built `dist/`, so kist's
+      # plugin discovery skips it and the action never registers, which aborts
+      # the build. We bundle directly with the `esbuild` devDependency instead;
+      # see `bin/bundle_js.mjs`. `--prod` emits ESM + minified ESM + IIFE
+      # (`stylescape[.min].js`, `index[.min].js`, `stylescape.iife[.min].js`),
+      # matching the four BundleAction steps this replaces.
+      - name: BuildJS
+        action: RunScriptAction
         options:
-          entry:
-            stylescape: "./src/ts/index.ts"
-            index: "./src/ts/index.ts"
-          outDir: "./dist/js"
-          format: esm
-          sourcemap: true
-          minify: false
-          dts: false
-          clean: false
-
-      - name: BuildJSEsmMin
-        action: BundleAction
-        options:
-          entry:
-            stylescape.min: "./src/ts/index.ts"
-            index.min: "./src/ts/index.ts"
-          outDir: "./dist/js"
-          format: esm
-          sourcemap: true
-          minify: true
-          dts: false
-          clean: false
-
-      - name: BuildJSIife
-        action: BundleAction
-        options:
-          entry:
-            stylescape.iife: "./src/ts/index.ts"
-          outDir: "./dist/js"
-          format: iife
-          sourcemap: true
-          minify: false
-          dts: false
-          clean: false
-
-      - name: BuildJSIifeMin
-        action: BundleAction
-        options:
-          entry:
-            stylescape.iife.min: "./src/ts/index.ts"
-          outDir: "./dist/js"
-          format: iife
-          sourcemap: true
-          minify: true
-          dts: false
-          clean: false
+          scriptPath: "./bin/bundle_js.mjs"
+          args:
+            - "--prod"
 
       # Build folder-based ESM modules (unbundled) + sourcemaps
       # -----------------------------------------------------------------
+      # Emits the per-module ESM the package's subpath exports point at
+      # (`./dist/js/esm/**`, e.g. `stylescape/buttons/*`) plus declarations to
+      # `./dist/types` (via tsconfig's `declarationDir`).
+      #
+      # NOTE: `outDir` is set inside `compilerOptions`, NOT via the top-level
+      # `outputDir` option — kist's TypeScriptCompilerAction has a bug where it
+      # assigns `outputDir` to the options object *after* the final options are
+      # already merged, so `outputDir` is silently ignored and tsc would fall
+      # back to tsconfig's `outDir: ./dist/js`. Setting it here is respected.
       - name: BuildESMModules
         action: TypeScriptCompilerAction
         options:
           tsConfigPath: "./tsconfig.json"
           filePaths:
             - "src/ts/index.ts"
-          outputDir: "./dist/js/esm"
           compilerOptions:
             target: "ES2020"
             module: "ESNext"
+            outDir: "./dist/js/esm"
             sourceMap: true
             declaration: true
             declarationMap: true

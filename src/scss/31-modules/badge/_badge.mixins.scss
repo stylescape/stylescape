@@ -1,0 +1,77 @@
+@use "sass:map";
+@use "./badge.config" as config;
+@use "../../01-core/external" as *;
+
+// -----------------------------------------------------------------------------
+// Base
+// -----------------------------------------------------------------------------
+
+@mixin ss-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    white-space: nowrap;
+    vertical-align: middle;
+
+    padding-inline: map.get(config.$ss-badge-config, padding-inline);
+    border-radius: map.get(config.$ss-badge-config, radius);
+
+    user-select: none;
+}
+
+// -----------------------------------------------------------------------------
+// Size
+// -----------------------------------------------------------------------------
+
+@mixin ss-badge-size($size: md) {
+    $sizes: map.get(config.$ss-badge-config, sizes);
+    $s: map.get($sizes, $size);
+
+    height: map.get($s, height);
+    min-height: map.get($s, height);
+
+    font-size: map.get($s, font-size);
+}
+
+// -----------------------------------------------------------------------------
+// Color Variant
+// -----------------------------------------------------------------------------
+
+@mixin ss-badge-variant($variant: default) {
+    $colors: map.get(config.$ss-badge-config, colors);
+    $c: map.get($colors, $variant);
+
+    background: map.get($c, bg);
+    color: map.get($c, fg);
+}
+
+// -----------------------------------------------------------------------------
+// Shape
+// -----------------------------------------------------------------------------
+
+@mixin ss-badge-pill {
+    border-radius: q(999);
+}
+
+@mixin ss-badge-squared {
+    border-radius: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Positioned Variant
+// -----------------------------------------------------------------------------
+
+@mixin ss-badge-positioned {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+@mixin ss-badge-dot {
+    width: q(12);
+    height: q(12);
+    padding: 0;
+    border-radius: 50%;
+}

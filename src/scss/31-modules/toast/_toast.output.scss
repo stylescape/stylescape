@@ -1,0 +1,44 @@
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./toast.config" as config;
+@use "./toast.mixins" as toast;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-toast-region {
+        @include toast.ss-toast-region;
+    }
+
+    .#{$ss-prefix-module}-toast-region[data-position="top-right"] {
+        top: map.get(config.$ss-toast-config, region-inset);
+        right: map.get(config.$ss-toast-config, region-inset);
+    }
+    .#{$ss-prefix-module}-toast-region[data-position="top-left"] {
+        top: map.get(config.$ss-toast-config, region-inset);
+        left: map.get(config.$ss-toast-config, region-inset);
+    }
+    .#{$ss-prefix-module}-toast-region[data-position="bottom-right"] {
+        bottom: map.get(config.$ss-toast-config, region-inset);
+        right: map.get(config.$ss-toast-config, region-inset);
+    }
+    .#{$ss-prefix-module}-toast-region[data-position="bottom-left"] {
+        bottom: map.get(config.$ss-toast-config, region-inset);
+        left: map.get(config.$ss-toast-config, region-inset);
+    }
+
+    .#{$ss-prefix-module}-toast {
+        @include toast.ss-toast;
+    }
+
+    .#{$ss-prefix-module}-toast--info {
+        @include toast.ss-toast-variant(info);
+    }
+    .#{$ss-prefix-module}-toast--success {
+        @include toast.ss-toast-variant(success);
+    }
+    .#{$ss-prefix-module}-toast--warning {
+        @include toast.ss-toast-variant(warning);
+    }
+    .#{$ss-prefix-module}-toast--danger {
+        @include toast.ss-toast-variant(danger);
+    }
+}

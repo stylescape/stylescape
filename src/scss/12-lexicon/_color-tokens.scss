@@ -1,0 +1,217 @@
+////
+///
+/// Color Tokens
+/// ===========================================================================
+///
+/// Semantic `--ss-color-*` design tokens emitted at `:root` for the
+/// default (light) theme. Dark theme overrides live in
+/// `33-overrides/_dark.scss`.
+///
+/// Values are aligned to the historical StyleScape identity: a desaturated
+/// steel-blue accent family (`hue.gl` N24xx) with blue / purple / mauve
+/// feedback colors, rather than a generic green / amber / red set. The
+/// `--ss-color-*` token *names* and structure are unchanged — only the
+/// resolved values differ — so every component keeps the new format while
+/// rendering in the old palette.
+///
+/// Tints (`-bg`, `-soft`, `-foreground`) are derived from the base hue via
+/// `color.mix()` so the whole family stays in gamut with the accent.
+///
+/// Only :root CSS custom properties, no selectors.
+///
+/// @group Lexicon
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:color";
+@use "../01-core/external" as *;
+
+// ----------------------------------------------------------------------------
+// Base hues (old StyleScape / hue.gl identity)
+// Leading `_` keeps these private so they are not re-exported by `@forward`.
+// ----------------------------------------------------------------------------
+
+$_accent: hue_color("N2405"); // #3696c1 steel blue  (= state_active)
+$_accent-dark: hue_color("N2407"); // #346a85 deep teal-blue (accent_secondary)
+$_accent-light: hue_color("N2403"); // #8abedc light sky (accent_tertiary)
+$_state-link: hue_color("N2404"); // #65aace (= state_link / state_focus)
+$_state-hover: hue_color("N2402"); // #acd2e9 (state_hover)
+$_visited: hue_color("N2704"); // #87a2d6 (state_visited)
+
+$_success: hue_color("N2555"); // #5192c8 blue
+$_warning: hue_color("N3005"); // #9582c2 violet
+$_error: hue_color("N3305"); // #b577ac mauve
+$_info: hue_color("N2705"); // #6a8dca indigo-blue
+
+// Tint helpers ---------------------------------------------------------------
+@function _bg($c) {
+    @return color.mix(#ffffff, $c, 88%);
+} // pale fill
+@function _soft($c) {
+    @return color.mix(#ffffff, $c, 94%);
+} // faintest fill
+@function _fg($c) {
+    @return color.mix(#111111, $c, 62%);
+} // readable dark tint
+
+:root {
+    // ========================================================================
+    // Neutrals
+    // ========================================================================
+
+    --ss-color-white: #ffffff;
+    --ss-color-black: #000000;
+
+    // Neutral gray ramp for consumers that need stepped grays beyond the
+    // semantic surface/border/text roles (dashboards, admin chrome, …).
+    --ss-color-gray-50: #fafafa;
+    --ss-color-gray-100: #f0f0f0;
+    --ss-color-gray-200: #e0e0e0;
+    --ss-color-gray-300: #b3b3b3;
+    --ss-color-gray-400: #888888;
+    --ss-color-gray-500: #666666;
+    --ss-color-gray-600: #4a4a4a;
+    --ss-color-gray-700: #333333;
+    --ss-color-gray-800: #1a1a1a;
+    --ss-color-gray-900: #111111;
+
+    // ========================================================================
+    // Surface / Background
+    // ========================================================================
+
+    --ss-color-background: #ffffff;
+    --ss-color-foreground: #000000;
+
+    --ss-color-surface: #ffffff;
+    --ss-color-surface-alt: #fafafa;
+    --ss-color-surface-muted: #f5f5f5;
+    --ss-color-surface-hover: #f0f0f0;
+    --ss-color-surface-primary: #ffffff;
+
+    // Stepped neutral surfaces (avatar chips, stack demos, progress tracks…).
+    // Several modules reference these; without definitions they collapsed to
+    // white-on-white.
+    --ss-color-surface-1: #ececec;
+    --ss-color-surface-2: #dedede;
+    --ss-color-surface-3: #cfcfcf;
+
+    --ss-color-fill: #ffffff;
+    --ss-color-fill-muted: #f5f5f5;
+
+    // ========================================================================
+    // Text
+    // ========================================================================
+
+    --ss-color-text: #000000;
+    --ss-color-text-primary: #000000;
+    --ss-color-text-default: var(--ss-color-text-primary);
+    --ss-color-text-muted: #414141;
+    --ss-color-text-secondary: var(--ss-color-text-muted);
+    --ss-color-muted: #a0a0a0;
+    --ss-color-muted-foreground: #414141;
+
+    // ========================================================================
+    // Lines / Borders
+    // ========================================================================
+
+    --ss-color-line: #cccccc;
+    --ss-color-line-primary: #000000;
+    --ss-color-line-secondary: #cccccc;
+
+    --ss-color-border: #cccccc;
+    --ss-color-border-muted: #e5e5e5;
+    --ss-color-border-subtle: #ededed;
+
+    // ========================================================================
+    // Brand / Accent
+    // ========================================================================
+
+    --ss-color-primary: #000000;
+    --ss-color-secondary: #414141;
+
+    --ss-color-accent: #{$_accent};
+    --ss-color-accent-bg: #{_bg($_accent)};
+    --ss-color-accent-foreground: #ffffff;
+    --ss-color-accent-highlight: #{$_accent-dark};
+    --ss-color-accent-tertiary: #{$_accent-light};
+
+    --ss-color-highlight: #{_bg($_accent)};
+    --ss-color-highlight-foreground: #{_fg($_accent)};
+
+    // ========================================================================
+    // Links
+    // ========================================================================
+
+    // Link colors follow the old `_color_system` state roles exactly:
+    // link = state_link (N2404), hover = state_hover (N2402),
+    // active = state_active (N2405), visited = state_visited (N2704).
+    --ss-color-link: #{$_state-link};
+    --ss-color-link-hover: #{$_state-hover};
+    --ss-color-link-active: #{$_accent};
+    --ss-color-link-visited: #{$_visited};
+
+    // ========================================================================
+    // States
+    // ========================================================================
+
+    // state_focus == state_link == N2404 in the old system.
+    --ss-color-focus: #{$_state-link};
+
+    // Focus ring (outline/box-shadow based focus indicators).
+    --ss-focus-ring-color: var(--ss-color-focus);
+    --ss-focus-ring-width: #{q(2)};
+    --ss-focus-ring-offset: #{q(2)};
+
+    // Overlay behind modals / offcanvas panels.
+    --ss-color-backdrop: rgb(0 0 0 / 0.5);
+
+    // These are consumed as real colors (hyperlink hover/active text, legacy
+    // compat backgrounds), so they carry the old state_* hues rather than a
+    // neutral overlay — otherwise link hover text renders near-invisible.
+    --ss-color-state-hover: #{$_state-hover};
+    --ss-color-state-active: #{$_accent};
+    --ss-color-state-link: #{$_state-link};
+
+    // ========================================================================
+    // Status / Feedback
+    // ========================================================================
+
+    --ss-color-success: #{$_success};
+    --ss-color-success-bg: #{_bg($_success)};
+    --ss-color-success-soft: #{_soft($_success)};
+    --ss-color-success-foreground: #{_fg($_success)};
+    --ss-color-on-success: #ffffff;
+
+    --ss-color-warning: #{$_warning};
+    --ss-color-warning-bg: #{_bg($_warning)};
+    --ss-color-warning-soft: #{_soft($_warning)};
+    --ss-color-warning-foreground: #{_fg($_warning)};
+    --ss-color-on-warning: #ffffff;
+
+    --ss-color-error: #{$_error};
+    --ss-color-error-bg: #{_bg($_error)};
+    --ss-color-error-soft: #{_soft($_error)};
+    --ss-color-error-foreground: #{_fg($_error)};
+    --ss-color-on-error: #ffffff;
+
+    --ss-color-info: #{$_info};
+    --ss-color-info-bg: #{_bg($_info)};
+    --ss-color-info-soft: #{_soft($_info)};
+    --ss-color-info-foreground: #{_fg($_info)};
+    --ss-color-on-info: #ffffff;
+
+    --ss-color-on-accent: #ffffff;
+
+    // ========================================================================
+    // Code / Keyboard
+    // ========================================================================
+
+    --ss-color-code-bg: #1e1e1e;
+    --ss-color-code-background: #1e1e1e;
+    --ss-color-code-foreground: #f4f4f4;
+    --ss-color-kbd-bg: #f5f5f5;
+}

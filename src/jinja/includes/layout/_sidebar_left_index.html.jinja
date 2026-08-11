@@ -1,36 +1,36 @@
 {% for section in sections %}
 <section
-    class="sidebar__section"
+    class="ss-c-sidebar__section"
     role="region"
     aria-labelledby="section-{{ loop.index }}"
 >
-    <details class="sidebar__accordion">
-        <summary class="sidebar__accordion__header">
-            <span class="sidebar__accordion__icon">▶</span>
+    <details class="ss-c-sidebar__accordion">
+        <summary class="ss-c-sidebar__accordion__header">
             <h2 id="section-{{ loop.index }}">{{ section.title }}</h2>
+            <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
         </summary>
 
-        <div class="sidebar__accordion__content">
+        <div class="ss-c-sidebar__accordion__content">
             {% for group in section.groups %}
-            <details class="sidebar__accordion sidebar__accordion--nested">
-                <summary class="sidebar__accordion__header sidebar__accordion__header--nested">
-                    <span class="sidebar__accordion__icon">▶</span>
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
                     <h3 id="group-{{ loop.index }}-{{ loop.parent.loop.index }}">
                         {{ group.heading }}
                     </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
                 </summary>
 
-                <div class="sidebar__accordion__content">
+                <div class="ss-c-sidebar__accordion__content">
                     {% if group.description %}
                     <p
-                        class="sidebar__subsection__description"
+                        class="ss-c-sidebar__subsection__description"
                         id="group-desc-{{ loop.index }}-{{ loop.parent.loop.index }}"
                     >
                         <small>{{ group.description }}</small>
                     </p>
                     {% endif %}
 
-                    <ul class="sidebar__subsection__list">
+                    <ul class="ss-c-sidebar__subsection__list">
                         {% for item in group.items %}
                         <li>
                             {% set link = item[0] %} {% set label = item[1] %}

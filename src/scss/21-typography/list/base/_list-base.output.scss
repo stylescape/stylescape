@@ -1,0 +1,53 @@
+// =============================================================================
+// List base | Output
+// =============================================================================
+//
+// Restores semantic list rendering for content lists. The reset layer strips
+// `list-style`/`padding` from every ul/ol (right for app chrome); typography
+// gives bare content lists their bullets, numbering, and indent back.
+// Components that use lists as chrome (ribbon menus, sidebar trees, …) reset
+// them again in `ss.components`, which outranks this layer.
+//
+// =============================================================================
+
+@use "../../../01-core/external" as *;
+@use "../../../01-core/prefix" as *;
+@use "./list-base.mixins" as *;
+
+@layer ss.typography {
+    ul,
+    ol {
+        padding-inline-start: q(24);
+        margin-block: q(8);
+    }
+
+    ul {
+        list-style-type: disc;
+
+        ul {
+            list-style-type: circle;
+            margin-block: q(2);
+
+            ul {
+                list-style-type: square;
+            }
+        }
+    }
+
+    ol {
+        list-style-type: decimal;
+
+        ol {
+            list-style-type: lower-latin;
+            margin-block: q(2);
+
+            ol {
+                list-style-type: lower-greek;
+            }
+        }
+    }
+
+    li {
+        padding-block: q(1);
+    }
+}

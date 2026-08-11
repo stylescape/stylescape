@@ -1,0 +1,53 @@
+// =============================================================================
+// 31-modules / formfield / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./formfield.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-formfield {
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$formfield-config, "gap");
+}
+
+@mixin ss-formfield-label {
+    font-weight: map.get(config.$formfield-config, "label-weight");
+}
+
+@mixin ss-formfield-help {
+    color: map.get(config.$formfield-config, "help-color");
+    font-size: map.get(config.$formfield-config, "help-font-size");
+}
+
+@mixin ss-formfield-error {
+    color: map.get(config.$formfield-config, "error-color");
+    font-size: map.get(config.$formfield-config, "help-font-size");
+}
+
+@mixin ss-formfield-input-full {
+    width: 100%;
+}
+
+@mixin ss-formfield-image-preview {
+    width: map.get(config.$formfield-config, "preview-size");
+    height: map.get(config.$formfield-config, "preview-size");
+    object-fit: cover;
+    border: q(1) solid map.get(config.$formfield-config, "border-color");
+    border-radius: map.get(config.$formfield-config, "preview-radius");
+}
+
+@mixin ss-formfield-ordered {
+    display: grid;
+    grid-template-areas:
+        "label"
+        "input"
+        "help"
+        "error";
+    gap: map.get(config.$formfield-config, "gap");
+
+    > .#{"" + "_label"} {
+        grid-area: label;
+    }
+}

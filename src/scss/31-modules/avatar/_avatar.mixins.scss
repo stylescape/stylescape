@@ -1,0 +1,68 @@
+@use "sass:map";
+@use "./avatar.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-avatar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: map.get(config.$ss-avatar-config, bg);
+    color: map.get(config.$ss-avatar-config, fg);
+
+    > img,
+    > svg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+@mixin ss-avatar-size($size) {
+    $s: map.get(map.get(config.$ss-avatar-config, sizes), $size);
+    width: $s;
+    height: $s;
+    font-size: calc(#{$s} * 0.4);
+}
+
+@mixin ss-avatar-ring($color: var(--ss-color-accent)) {
+    box-shadow: 0 0 0 map.get(config.$ss-avatar-config, ring-width) $color,
+        0 0 0 calc(map.get(config.$ss-avatar-config, ring-width) + map.get(config.$ss-avatar-config, ring-gap))
+            map.get(config.$ss-avatar-config, ring-halo);
+}
+
+@mixin ss-avatar-status($color) {
+    &::after {
+        content: "";
+        position: absolute;
+        right: 5%;
+        bottom: 5%;
+        width: map.get(config.$ss-avatar-config, indicator-size);
+        height: map.get(config.$ss-avatar-config, indicator-size);
+        border-radius: 50%;
+        background-color: $color;
+        box-shadow: map.get(config.$ss-avatar-config, indicator-ring);
+    }
+}
+
+@mixin ss-avatar-placeholder {
+    background-color: map.get(config.$ss-avatar-config, placeholder-bg);
+    color: map.get(config.$ss-avatar-config, placeholder-fg);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+@mixin ss-avatar-group {
+    display: inline-flex;
+
+    > .#{""}ss-c-avatar {
+        border: map.get(config.$ss-avatar-config, group-border);
+    }
+    > .#{""}ss-c-avatar + .#{""}ss-c-avatar {
+        margin-inline-start: -0.75em;
+    }
+}

@@ -1,0 +1,36 @@
+@use "sass:map";
+@use "./paragraph-subheader.config" as config;
+
+// -----------------------------------------------------------------------------
+// Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-subheader($size: h2, $weight: regular, $align: left, $caps: false) {
+    // Base
+    @each $prop, $val in config.$ss-subheader-base {
+        #{$prop}: $val;
+    }
+
+    // Size
+    $size-map: map.get(config.$ss-subheader-sizes, $size);
+
+    @if $size-map == null {
+        @error "Subheader size `#{$size}` not defined.";
+    }
+
+    @each $prop, $val in $size-map {
+        #{$prop}: $val;
+    }
+
+    // Weight
+    font-weight: map.get(config.$ss-subheader-weights, $weight);
+
+    // Alignment
+    text-align: map.get(config.$ss-subheader-alignments, $align);
+
+    // Caps
+    @if $caps == true {
+        text-transform: uppercase;
+        letter-spacing: var(--theme-semantic-type-title-letter-spacing);
+    }
+}

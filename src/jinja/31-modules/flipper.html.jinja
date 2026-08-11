@@ -1,0 +1,29 @@
+{% extends "../base.html.jinja" %} {% set title = "Flipper" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-flipper</code> module.</p>
+
+    {% set section_title = "Down" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <span class="ss-c-flipper ss-c-flipper--down" aria-expanded="false">
+            <span class="ss-c-flipper__icon">v</span>
+        </span>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "All directions" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <span class="ss-c-flipper ss-c-flipper--up"><span class="ss-c-flipper__icon">^</span></span>
+        <span class="ss-c-flipper ss-c-flipper--down"><span class="ss-c-flipper__icon">v</span></span>
+        <span class="ss-c-flipper ss-c-flipper--left"><span class="ss-c-flipper__icon"><</span></span>
+        <span class="ss-c-flipper ss-c-flipper--right"><span class="ss-c-flipper__icon">></span></span>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

@@ -1,0 +1,14 @@
+@use "sass:map";
+@use "../../../01-core/prefix" as *;
+@use "./font-weight.config" as config;
+@use "./font-weight.mixins" as mixins;
+
+@layer ss.typography {
+    $weights: map.get(config.$ss-font-weight-config, weights);
+
+    @each $name, $value in $weights {
+        .#{$ss-namespace}-weight-#{"" + $name} {
+            @include mixins.ss-font-weight($name);
+        }
+    }
+}

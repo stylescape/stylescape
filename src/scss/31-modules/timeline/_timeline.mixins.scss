@@ -1,0 +1,41 @@
+// =============================================================================
+// 31-modules / timeline / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./timeline.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-timeline {
+    display: block;
+}
+
+@mixin ss-timeline-year {
+    margin-bottom: map.get(config.$timeline-config, "year-margin-bottom");
+    text-transform: uppercase;
+    color: map.get(config.$timeline-config, "year-color");
+    font-size: map.get(config.$timeline-config, "year-font-size");
+    font-weight: map.get(config.$timeline-config, "year-font-weight");
+    letter-spacing: map.get(config.$timeline-config, "year-letter-spacing");
+}
+
+@mixin ss-timeline-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    > li + li {
+        margin-top: map.get(config.$timeline-config, "item-gap");
+    }
+}
+
+@mixin ss-timeline-title {
+    font-weight: map.get(config.$timeline-config, "title-font-weight");
+    font-size: map.get(config.$timeline-config, "title-font-size");
+    margin: 0 0 q(4);
+}
+
+@mixin ss-timeline-description {
+    margin: 0;
+    color: var(--ss-color-text, #1a1a1a);
+}

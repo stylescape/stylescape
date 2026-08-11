@@ -1,0 +1,97 @@
+{% extends "../base.html.jinja" %} {% set title = "Image" %} {%- block title %}{{
+title }}{%- endblock %} {%- block content %}
+
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    {% set section_title = "Basic Image with Caption" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <figure class="ss-c-image">
+            <picture class="ss-c-image__picture">
+                <img
+                    class="ss-c-image__img"
+                    src="https://picsum.photos/800/450"
+                    alt="Sample image"
+                />
+            </picture>
+            <div class="ss-c-image__metadata">
+                <figcaption class="ss-c-image__caption">
+                    This is a sample image caption with a
+                    <a href="#">link example</a>
+                    .
+                </figcaption>
+                <span class="ss-c-image__credit">
+                    Photo Credit: Photographer Name
+                </span>
+            </div>
+        </figure>
+        {% endset %}
+        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
+        <div class="ss-c-demo__code">
+            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Inline Small Image" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <figure class="ss-c-image ss-c-image_inline-small">
+            <picture class="ss-c-image__picture">
+                <img
+                    class="ss-c-image__img"
+                    src="https://picsum.photos/400/300"
+                    alt="Small inline image"
+                />
+            </picture>
+            <div class="ss-c-image__metadata">
+                <figcaption class="ss-c-image__caption">
+                    A smaller inline image variant.
+                </figcaption>
+            </div>
+        </figure>
+        {% endset %}
+        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
+        <div class="ss-c-demo__code">
+            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+
+    {% set section_title = "Image Container" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="ss-c-image__container">
+            <figure class="ss-c-image">
+                <img
+                    class="ss-c-image__img"
+                    src="https://picsum.photos/400/400"
+                    alt="Contained image"
+                />
+            </figure>
+        </div>
+        {% endset %}
+        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
+        <div class="ss-c-demo__code">
+            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
+        </div>
+    </section>
+</section>
+
+{%- endblock %}

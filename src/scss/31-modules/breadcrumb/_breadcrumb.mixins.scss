@@ -1,0 +1,22 @@
+@use "sass:map";
+@use "./breadcrumb.config" as config;
+
+@mixin ss-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: map.get(config.$ss-breadcrumb-config, gap);
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    font-size: map.get(config.$ss-breadcrumb-config, font-size);
+    color: map.get(config.$ss-breadcrumb-config, color);
+}
+
+@mixin ss-breadcrumb-separator {
+    content: map.get(config.$ss-breadcrumb-config, separator);
+    color: map.get(config.$ss-breadcrumb-config, separator-color);
+    margin-inline-start: map.get(config.$ss-breadcrumb-config, gap);
+}

@@ -1,0 +1,240 @@
+////
+///
+/// Page Skeletons
+/// ===========================================================================
+///
+/// Top-level page layout templates.
+/// `bup/classes/body_skeletons/_page.scss`. Each skeleton arranges
+/// `<header>`, `<main>`, `<aside>` and `<footer>` for a common page shape.
+///
+/// @group Layout
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../01-core/external" as *;
+
+@layer ss.layout {
+    // ============================================================================
+    // Base page shapes
+    // ============================================================================
+
+    %ss-page-base {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    .ss-l-page-standard {
+        @extend %ss-page-base;
+
+        > header {
+            flex-shrink: 0;
+        }
+        > main {
+            flex-grow: 1;
+        }
+        > footer {
+            flex-shrink: 0;
+        }
+    }
+
+    .ss-l-page-fixed-header {
+        @extend %ss-page-base;
+
+        > header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--ss-z-fixed, 100);
+        }
+        > main {
+            flex-grow: 1;
+            padding-top: var(--ss-page-header-offset, q(64));
+        }
+        > footer {
+            flex-shrink: 0;
+        }
+    }
+
+    .ss-l-page-sticky-header {
+        @extend %ss-page-base;
+
+        > header {
+            position: sticky;
+            top: 0;
+            z-index: var(--ss-z-sticky, 100);
+        }
+        > main {
+            flex-grow: 1;
+        }
+        > footer {
+            flex-shrink: 0;
+        }
+    }
+
+    // ============================================================================
+    // Sidebar layouts
+    // ============================================================================
+
+    .ss-l-page-sidebar-left,
+    .ss-l-page-sidebar-right,
+    .ss-l-page-sidebar-both {
+        @extend %ss-page-base;
+
+        > .ss-l-page__body {
+            display: flex;
+            flex-grow: 1;
+
+            > main {
+                flex-grow: 1;
+                min-width: 0;
+            }
+        }
+    }
+
+    .ss-l-page-sidebar-left > .ss-l-page__body > aside {
+        flex-shrink: 0;
+        width: var(--ss-page-sidebar-width, q(280));
+        order: -1;
+    }
+
+    .ss-l-page-sidebar-right > .ss-l-page__body > aside {
+        flex-shrink: 0;
+        width: var(--ss-page-sidebar-width, q(280));
+    }
+
+    .ss-l-page-sidebar-both > .ss-l-page__body {
+        > aside:first-of-type {
+            flex-shrink: 0;
+            width: var(--ss-page-sidebar-width, q(240));
+            order: -1;
+        }
+        > aside:last-of-type {
+            flex-shrink: 0;
+            width: var(--ss-page-sidebar-width, q(240));
+        }
+    }
+
+    // ============================================================================
+    // Dashboard
+    // ============================================================================
+
+    .ss-l-page-dashboard {
+        display: flex;
+        min-height: 100vh;
+        min-height: 100dvh;
+
+        > nav {
+            flex-shrink: 0;
+            width: var(--ss-page-nav-width, q(240));
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+
+        > .ss-page__content {
+            flex-grow: 1;
+            margin-left: var(--ss-page-nav-width, q(240));
+            display: flex;
+            flex-direction: column;
+
+            > header {
+                flex-shrink: 0;
+                position: sticky;
+                top: 0;
+                z-index: var(--ss-z-sticky, 50);
+            }
+            > main {
+                flex-grow: 1;
+                padding: var(--ss-spacing-6, q(24));
+            }
+        }
+    }
+
+    // ============================================================================
+    // Holy Grail
+    // ============================================================================
+
+    .ss-l-page-holy-grail {
+        display: grid;
+        grid-template-areas:
+            "header header header"
+            "nav    main   aside"
+            "footer footer footer";
+        grid-template-columns: var(--ss-page-nav-width, q(200)) 1fr var(
+                --ss-page-aside-width,
+                q(200)
+            );
+        grid-template-rows: auto 1fr auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+
+        > header {
+            grid-area: header;
+        }
+        > nav {
+            grid-area: nav;
+        }
+        > main {
+            grid-area: main;
+            min-width: 0;
+        }
+        > aside {
+            grid-area: aside;
+        }
+        > footer {
+            grid-area: footer;
+        }
+
+        @media (max-width: q(768)) {
+            grid-template-areas:
+                "header"
+                "nav"
+                "main"
+                "aside"
+                "footer";
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto 1fr auto auto;
+        }
+    }
+
+    // ============================================================================
+    // Landing
+    // ============================================================================
+
+    .ss-l-page-landing {
+        @extend %ss-page-base;
+
+        > header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--ss-z-fixed, 100);
+        }
+
+        > main {
+            flex-grow: 1;
+
+            > section:first-child {
+                min-height: 100vh;
+                min-height: 100dvh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        > footer {
+            flex-shrink: 0;
+        }
+    }
+}

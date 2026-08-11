@@ -1,0 +1,70 @@
+////
+///
+/// Modal Mixins
+/// ===========================================================================
+///
+/// Reusable mixins for modal components.
+///
+/// @group Modules.Modal
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./modal.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Modal backdrop
+@mixin modal-backdrop {
+    $cfg: config.$ss-modal-config;
+
+    position: fixed;
+    inset: 0;
+    background-color: map.get($cfg, backdrop-color);
+    backdrop-filter: blur(map.get($cfg, backdrop-blur));
+    z-index: map.get($cfg, backdrop-z-index);
+}
+
+/// Modal container
+@mixin modal-container {
+    $cfg: config.$ss-modal-config;
+
+    position: fixed;
+    inset: 0;
+    z-index: map.get($cfg, z-index);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--ss-spacing-4);
+}
+
+/// Modal content
+@mixin modal-content {
+    $cfg: config.$ss-modal-config;
+
+    position: relative;
+    width: 100%;
+    max-width: map.get($cfg, max-width);
+    max-height: map.get($cfg, max-height);
+    background-color: var(--ss-color-background);
+    border-radius: map.get($cfg, border-radius);
+    box-shadow: map.get($cfg, shadow);
+    overflow: auto;
+}
+
+/// Modal size variant
+/// @param {String} $size - Size name from $ss-modal-sizes
+@mixin modal-size($size) {
+    $sizes: config.$ss-modal-sizes;
+    $width: map.get($sizes, $size);
+
+    @if $width {
+        max-width: $width;
+    }
+}

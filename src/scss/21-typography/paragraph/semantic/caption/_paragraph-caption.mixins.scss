@@ -1,0 +1,38 @@
+@use "sass:map";
+@use "./paragraph-caption.config" as config;
+
+// -----------------------------------------------------------------------------
+// Core Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-paragraph-role($type) {
+    $settings: map.get(config.$ss-paragraph-caption-config, $type);
+
+    @if $settings == null {
+        @error "Paragraph role `#{$type}` does not exist.";
+    }
+
+    @each $property, $value in $settings {
+        @if $property == measure {
+            max-width: $value;
+        } @else {
+            #{$property}: #{$value};
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Public Mixins
+// -----------------------------------------------------------------------------
+
+@mixin ss-paragraph-caption {
+    @include ss-paragraph-role(caption);
+}
+
+@mixin ss-paragraph-label {
+    @include ss-paragraph-role(label);
+}
+
+@mixin ss-paragraph-overline {
+    @include ss-paragraph-role(overline);
+}

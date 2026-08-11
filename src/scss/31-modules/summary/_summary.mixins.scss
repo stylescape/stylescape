@@ -1,0 +1,44 @@
+// =============================================================================
+// 31-modules / summary / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./summary.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-details {
+    border: map.get(config.$summary-config, "border-width") solid
+        map.get(config.$summary-config, "border-color");
+    border-radius: map.get(config.$summary-config, "radius");
+    padding: 0;
+    background-color: map.get(config.$summary-config, "background");
+    color: map.get(config.$summary-config, "color");
+
+    &[open] > summary {
+        border-bottom: map.get(config.$summary-config, "border-width") solid
+            map.get(config.$summary-config, "border-color");
+    }
+}
+
+@mixin ss-summary {
+    cursor: pointer;
+    padding: map.get(config.$summary-config, "padding");
+    list-style: none;
+    user-select: none;
+    font-weight: 600;
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+    &::marker {
+        color: map.get(config.$summary-config, "marker-color");
+    }
+
+    &::before {
+        content: "▸";
+        margin-right: q(8);
+        color: map.get(config.$summary-config, "marker-color");
+        transition: transform 0.2s ease;
+        display: inline-block;
+    }
+}

@@ -1,0 +1,46 @@
+////
+///
+/// Interface Layer
+/// ===========================================================================
+///
+/// Fixed, full-viewport, pointer-events-transparent overlay that sits
+/// above content. Used to host floating UI affordances (back-to-top
+/// arrows, persistent action buttons, toasts) without intercepting
+/// clicks on the page itself.
+///
+/// Children opt back into pointer events via `.ss-l-interface > *`
+/// styling or component-local rules.
+///
+/// Ported from legacy `bup/mixins/body_organisms/_interface.scss`.
+///
+/// @group Layout
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.4.0
+/// @access public
+///
+////
+
+@layer ss.layout {
+    .ss-l-interface {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: var(--ss-z-interface, 200);
+    }
+
+    // Header strip inside the interface overlay.
+    .ss-l-interface__header {
+        display: flex;
+        flex-direction: row;
+    }
+
+    // Children of the interface should accept pointer events explicitly.
+    .ss-l-interface > [data-pointer-events="auto"] {
+        pointer-events: auto;
+    }
+}

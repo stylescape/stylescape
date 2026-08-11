@@ -1,0 +1,55 @@
+////
+///
+/// Paragraph Columns Configuration
+/// ===========================================================================
+///
+/// Configuration for multi-column paragraph layouts.
+///
+/// @group Typography.Paragraph.Layout.Columns
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../../../01-core/external" as *;
+
+// ============================================================================
+// Configuration
+// ============================================================================
+
+$ss-paragraph-columns-config: (
+    column-gap: var(--ss-space-6),
+    column-rule: q(1) solid var(--ss-color-border),
+    column-width: 20ch,
+    orphans: 3,
+    widows: 3,
+) !default;
+
+// ============================================================================
+// Column Variants
+// ============================================================================
+
+$ss-paragraph-columns-variants: (
+    2: (
+        column-count: 2,
+    ),
+    3: (
+        column-count: 3,
+    ),
+    4: (
+        column-count: 4,
+    ),
+    auto: (
+        column-count: auto,
+        column-width: 25ch,
+    ),
+    narrow: (
+        column-width: 15ch,
+    ),
+    wide: (
+        column-width: 30ch,
+    ),
+) !default;

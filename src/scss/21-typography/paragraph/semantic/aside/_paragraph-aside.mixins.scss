@@ -1,0 +1,75 @@
+////
+///
+/// Paragraph Aside Mixins
+/// ===========================================================================
+///
+/// Mixins for aside/secondary paragraph styles.
+///
+/// @group Typography.Paragraph.Semantic.Aside
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-aside.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Base aside paragraph styles
+@mixin paragraph-aside-base {
+    $cfg: config.$ss-paragraph-aside-config;
+    
+    font-size: map.get($cfg, font-size);
+    line-height: map.get($cfg, line-height);
+    font-weight: map.get($cfg, font-weight);
+    font-style: map.get($cfg, font-style);
+    color: map.get($cfg, color);
+    padding: map.get($cfg, padding);
+    margin-block: map.get($cfg, margin-block);
+}
+
+/// Note aside
+@mixin paragraph-aside-note {
+    $cfg: map.get(config.$ss-paragraph-aside-variants, note);
+    
+    @include paragraph-aside-base;
+    border-inline-start: map.get($cfg, border-inline-start);
+}
+
+/// Tip aside
+@mixin paragraph-aside-tip {
+    $cfg: map.get(config.$ss-paragraph-aside-variants, tip);
+    
+    @include paragraph-aside-base;
+    border-inline-start: map.get($cfg, border-inline-start);
+}
+
+/// Warning aside
+@mixin paragraph-aside-warning {
+    $cfg: map.get(config.$ss-paragraph-aside-variants, warning);
+    
+    @include paragraph-aside-base;
+    border-inline-start: map.get($cfg, border-inline-start);
+}
+
+/// Callout aside
+@mixin paragraph-aside-callout {
+    $cfg: map.get(config.$ss-paragraph-aside-variants, callout);
+    
+    @include paragraph-aside-base;
+}
+
+/// Sidebar aside (floated)
+@mixin paragraph-aside-sidebar {
+    $cfg: map.get(config.$ss-paragraph-aside-variants, sidebar);
+    
+    @include paragraph-aside-base;
+    max-width: map.get($cfg, max-width);
+    float: map.get($cfg, float);
+    margin-inline-start: map.get($cfg, margin-inline-start);
+}

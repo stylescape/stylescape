@@ -1,0 +1,43 @@
+// =============================================================================
+// 31-modules / image-slider / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./image-slider.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-image-slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    user-select: none;
+
+    > img,
+    > picture {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+@mixin ss-image-slider-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: map.get(config.$image-slider-config, "divider-width");
+    background-color: map.get(config.$image-slider-config, "handle-color");
+    cursor: ew-resize;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: map.get(config.$image-slider-config, "handle-size");
+        height: map.get(config.$image-slider-config, "handle-size");
+        background-color: map.get(config.$image-slider-config, "handle-color");
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 0 q(1) rgba(0, 0, 0, 0.2);
+    }
+}

@@ -1,0 +1,18 @@
+@use "sass:map";
+@use "./label.config" as config;
+
+@mixin ss-label {
+    display: inline-block;
+
+    font-size: map.get(config.$ss-label-config, font-size);
+    font-weight: map.get(config.$ss-label-config, font-weight);
+    line-height: map.get(config.$ss-label-config, line-height);
+    color: map.get(config.$ss-label-config, color);
+}
+
+@mixin ss-label-required {
+    &::after {
+        content: " " + map.get(config.$ss-label-config, required-glyph);
+        color: map.get(config.$ss-label-config, required-color);
+    }
+}

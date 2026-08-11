@@ -1,0 +1,25 @@
+@use "../../01-core/external" as *;
+
+@mixin ss-indicator {
+    position: relative;
+    display: inline-flex;
+    width: max-content;
+}
+
+@mixin ss-indicator-item {
+    position: absolute;
+    z-index: 1;
+    white-space: nowrap;
+    transform: translate(50%, -50%);
+    top: 0;
+    right: 0;
+}
+
+@mixin ss-indicator-item-at($v, $h) {
+    @if $v == top { top: 0; }
+    @if $v == middle { top: 50%; }
+    @if $v == bottom { top: 100%; }
+    @if $h == start { right: auto; left: 0; transform: translate(-50%, -50%); }
+    @if $h == center { right: 50%; left: auto; transform: translate(50%, -50%); }
+    @if $h == end { right: 0; left: auto; transform: translate(50%, -50%); }
+}

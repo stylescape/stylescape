@@ -1,0 +1,113 @@
+// =============================================================================
+// 31-modules / headline / mixins
+// =============================================================================
+//
+// Editorial headline patterns. Ported from legacy
+// `bup/mixins/body_organisms/_headline.scss`. The original code targeted
+// a live-news style component (`headline_live-story`) with a blinking
+// red "LIVE" badge and a kicker/teaser/sub-text stack.
+//
+// =============================================================================
+
+@use "sass:map";
+@use "./headline.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin c-headline {
+    flex-grow: 1;
+}
+
+// "LIVE" indicator badge.
+@mixin c-headline-live-badge {
+    $cfg: config.$ss-headline-config;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: map.get($cfg, "badge-height");
+    padding: map.get($cfg, "badge-padding");
+    margin: map.get($cfg, "badge-margin");
+    border-radius: map.get($cfg, "badge-radius");
+
+    background: linear-gradient(
+        0.25turn,
+        map.get($cfg, "live-bg-from"),
+        map.get($cfg, "live-bg-to")
+    );
+    color: map.get($cfg, "live-fg");
+    font-size: map.get($cfg, "live-size");
+    font-weight: 700;
+    text-transform: uppercase;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: map.get($cfg, "dot-left");
+        width: map.get($cfg, "dot-size");
+        height: map.get($cfg, "dot-size");
+        border-radius: 100%;
+        background-color: map.get($cfg, "live-dot");
+        transform: translateY(-50%);
+        animation: ss-c-headline-live-blink 2s ease infinite;
+    }
+}
+
+// Kicker — small uppercase eyebrow above the headline.
+@mixin c-headline-kicker {
+    $cfg: config.$ss-headline-config;
+
+    display: inline-block;
+    margin-bottom: map.get($cfg, "kicker-margin-bottom");
+    color: map.get($cfg, "kicker-color");
+    font-size: map.get($cfg, "kicker-size");
+    line-height: map.get($cfg, "kicker-leading");
+    font-weight: 500;
+    letter-spacing: map.get($cfg, "kicker-tracking");
+    text-transform: uppercase;
+}
+
+// Main headline text.
+@mixin c-headline-text {
+    $cfg: config.$ss-headline-config;
+
+    margin: map.get($cfg, "text-margin");
+    color: map.get($cfg, "text-color");
+    font-family: var(--ss-font-family-display, inherit);
+    font-weight: var(--ss-font-weight-bold, 700);
+    font-size: var(--ss-font-size-h2);
+    line-height: var(--ss-leading-tight, 1.2);
+}
+
+// Teaser paragraph below the headline.
+@mixin c-headline-teaser {
+    $cfg: config.$ss-headline-config;
+
+    margin-top: map.get($cfg, "teaser-margin-top");
+    margin-bottom: map.get($cfg, "teaser-margin-bottom");
+    font-size: map.get($cfg, "teaser-size");
+    line-height: map.get($cfg, "teaser-leading");
+    color: map.get($cfg, "teaser-color");
+}
+
+// Sub-container (byline + meta) row.
+@mixin c-headline-sub {
+    display: flex;
+    align-items: center;
+    gap: map.get(config.$ss-headline-config, "sub-gap");
+}
+
+// Muted meta text inside the sub-container.
+@mixin c-headline-sub-description {
+    color: map.get(config.$ss-headline-config, "muted");
+    font-size: map.get(config.$ss-headline-config, "meta-size");
+    line-height: map.get(config.$ss-headline-config, "meta-leading");
+    font-weight: 400;
+    margin: map.get(config.$ss-headline-config, "meta-margin");
+
+    &::after {
+        content: "\00B7";
+        color: map.get(config.$ss-headline-config, "muted");
+        margin: 0 q(2);
+    }
+}

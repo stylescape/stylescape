@@ -1,0 +1,53 @@
+////
+///
+/// Visibility Utilities
+/// ===========================================================================
+///
+/// Explicit visibility override utilities.
+/// One responsibility per file.
+///
+/// @group Utilities.Layout
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+@layer ss.utilities {
+    .ss-u-visible {
+        visibility: visible;
+    }
+    .ss-u-invisible {
+        visibility: hidden;
+    }
+    .ss-u-collapse {
+        visibility: collapse;
+    }
+    
+    // Screen reader only
+    .ss-u-sr-only {
+        position: absolute;
+        width: q(1);
+        height: q(1);
+        padding: 0;
+        margin: q(-1);
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+    
+    .ss-u-not-sr-only {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        overflow: visible;
+        clip: auto;
+        white-space: normal;
+    }
+}

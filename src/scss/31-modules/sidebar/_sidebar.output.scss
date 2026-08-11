@@ -1,0 +1,77 @@
+// =============================================================================
+// 31-modules / sidebar / output
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./sidebar.config" as config;
+@use "./sidebar.mixins" as *;
+@use "../../01-core/external" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-sidebar {
+        @include ss-sidebar;
+
+        &--left {
+            @include ss-sidebar-left;
+            > .#{$ss-prefix-module}-sidebar__menu {
+                border-right: q(1) solid
+                    map.get(config.$sidebar-config, "border-color");
+            }
+        }
+
+        &--right {
+            @include ss-sidebar-right;
+            > .#{$ss-prefix-module}-sidebar__menu {
+                border-left: q(1) solid
+                    map.get(config.$sidebar-config, "border-color");
+            }
+        }
+
+        &__menu {
+            @include ss-sidebar-menu;
+        }
+        &__control {
+            @include ss-sidebar-control;
+        }
+
+        &__section {
+            @include ss-sidebar-section;
+        }
+
+        &__accordion {
+            @include ss-sidebar-accordion;
+
+            &__header {
+                @include ss-sidebar-accordion-header;
+
+                &--nested {
+                    @include ss-sidebar-accordion-header-nested;
+                }
+            }
+
+            &__icon {
+                @include ss-sidebar-accordion-icon;
+            }
+
+            &__content {
+                @include ss-sidebar-accordion-content;
+            }
+
+            // Rotate the .__icon span when the parent <details> is open
+            // so the ▶ visually becomes a ▼.
+            &[open] > &__header > &__icon {
+                transform: rotate(90deg);
+            }
+        }
+
+        &__subsection {
+            &__list {
+                @include ss-sidebar-subsection-list;
+            }
+            &__description {
+                @include ss-sidebar-subsection-description;
+            }
+        }
+    }
+}

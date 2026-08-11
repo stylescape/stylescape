@@ -1,0 +1,39 @@
+{% extends "../base.html.jinja" %} {% set title = "Overlay" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-overlay</code> module.</p>
+    <p>
+        A full-cover, click-through layer for floating UI over a map, canvas or 3D
+        view. The layer itself is transparent to pointer events; each direct slot
+        re-enables them. Requires a positioning context on the parent.
+    </p>
+
+    {% set section_title = "Slots" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div style="position: relative; height: 260px; background: var(--ss-color-surface-2);">
+            <div class="ss-c-overlay">
+                <aside class="ss-c-overlay__aside ss-c-overlay__aside--left">Layers</aside>
+                <aside class="ss-c-overlay__aside ss-c-overlay__aside--right">Inspector</aside>
+                <div class="ss-c-overlay__bottom-center">Lon 5.29 &middot; Lat 52.13 &middot; z14</div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Top bar only" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div style="position: relative; height: 160px; background: var(--ss-color-surface-2);">
+            <div class="ss-c-overlay">
+                <div class="ss-c-overlay__top-center">Rendering &hellip; 62%</div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

@@ -1,0 +1,126 @@
+{% extends "../base.html.jinja" %} {% set title = "Input Dropdown" %} {%- block
+title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    {% set section_title = "Dropdown w/o Select" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+
+        {% set code_snippet %}
+        <div class="ss-c-dropdown--menu">
+            <label>
+                Option 1
+                <input type="checkbox" />
+            </label>
+            <label>
+                Option 2
+                <input type="checkbox" />
+            </label>
+            <label>
+                Option 3
+                <input type="checkbox" />
+            </label>
+            <label>
+                Option 4
+                <input type="checkbox" />
+            </label>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Dropdown w/ Select" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+
+        {% set code_snippet %}
+        <div class="ss-c-select_dropdown">
+            <div class="ss-c-select_dropdown--header">
+                <span id="selected-count">Selected: 0 options</span>
+                <button class="active ss-c-flipper--down" type="button"></button>
+            </div>
+            <div class="ss-c-select_dropdown--menu ss-c-dropdown ss-c-dropdown--collapse">
+                <label>
+                    <span>Option 1</span>
+                    <input type="checkbox" />
+                </label>
+                <label>
+                    <span>Option 2</span>
+                    <input type="checkbox" checked />
+                </label>
+                <label>
+                    <span>Option 3</span>
+                    <input type="checkbox" />
+                </label>
+                <label>
+                    <span>Option 4</span>
+                    <input type="checkbox" checked />
+                </label>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h2>{{ title }}</h2>
+    </header>
+
+    {% set section_title = "Demo Code" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="ss-c-dropdown">
+            <button onclick="myFunction()" class="ss-c-dropbutton">Dropdown</button>
+            <div id="myDropdown" class="ss-c-dropdown-content">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+            </div>
+        </div>
+
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    <script>
+        /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches(".dropbutton")) {
+                var dropdowns =
+                    document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains("show")) {
+                        openDropdown.classList.remove("show");
+                    }
+                }
+            }
+        };
+    </script>
+</section>
+{%- endblock %}

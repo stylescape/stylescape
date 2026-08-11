@@ -74,7 +74,7 @@ data-ss-manual                           → Disable auto-init for element
 ### Theme Toggle
 
 ```html
-<button id="themeToggle" data-ss="theme-toggle">🌓</button>
+<button id="themeToggle" data-ss="theme-toggle">☽</button>
 ```
 
 ### Dropdown

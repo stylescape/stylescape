@@ -1,0 +1,23 @@
+{% extends "../base.html.jinja" %} {% set title = "Offcanvas" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-offcanvas</code> module.</p>
+
+    {% set section_title = "Static (start)" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <aside class="ss-c-offcanvas ss-c-offcanvas--start ss-c-offcanvas--static" style="position:relative; height:240px">
+            <header class="ss-c-offcanvas__header">
+                <h4 class="ss-c-offcanvas__title">Menu</h4>
+                <button class="ss-c-offcanvas__close" aria-label="Close"></button>
+            </header>
+            <div class="ss-c-offcanvas__body">
+                <p>Drawer content.</p>
+            </div>
+        </aside>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

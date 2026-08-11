@@ -1,0 +1,50 @@
+{% extends "../base.html.jinja" %} {% set title = "Countdown" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-countdown</code> module.</p>
+
+    {% set section_title = "Inline numbers" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <span class="ss-c-countdown">
+            <span style="--ss-countdown-value: 23"></span>:
+            <span style="--ss-countdown-value: 47"></span>:
+            <span style="--ss-countdown-value: 12"></span>
+        </span>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+
+{% set section_title = "Live Countdown (TypeScript-driven)" %}
+<section
+    class="ss-c-demo__subsection"
+    data-label="{{ section_title }}"
+    data-level="2"
+>
+    <h3>{{ section_title }}</h3>
+    <p>
+        Driven by the <code>Countdown</code> class
+        (<code>src/ts/content/Countdown.ts</code>), auto-initialized by
+        <code>initializeStylescape()</code>. Set
+        <code>data-countdown-seconds</code> or
+        <code>data-countdown-to</code> on the container.
+    </p>
+    {% set code_snippet %}
+    <span
+        class="ss-c-countdown"
+        data-countdown-seconds="3600"
+        style="font-size: 2rem"
+    >
+        <span data-unit="hours" style="--ss-countdown-value: 0"></span>
+        :
+        <span data-unit="minutes" style="--ss-countdown-value: 0"></span>
+        :
+        <span data-unit="seconds" style="--ss-countdown-value: 0"></span>
+    </span>
+    {% endset %} {% set language="HTML" %} {%- include
+    "includes/preview/ss-c-preview_code.html.jinja" %}
+</section>
+
+{%- endblock %}

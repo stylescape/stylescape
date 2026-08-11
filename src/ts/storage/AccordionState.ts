@@ -5,7 +5,7 @@
  * Automatically saves state when accordions are toggled and restores on page load.
  *
  * @module AccordionState
- * @author Scape Agency
+ * @author Scape Press
  * @since 0.3.10
  */
 
@@ -20,7 +20,7 @@ export class AccordionState {
      * @param storageKey - Key to use for localStorage (default: 'accordion-state')
      */
     constructor(
-        selector: string = "details.sidebar__accordion",
+        selector: string = "details.ss-c-sidebar__accordion",
         storageKey: string = "accordion-state",
     ) {
         this.selector = selector;

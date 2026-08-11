@@ -1,0 +1,25 @@
+{#
+-----------------------------------------------------------------------------
+Font Preview Box Component
+-----------------------------------------------------------------------------
+#}
+
+<section
+    class="ss-c-demo__subsection"
+    data-label="{{ title or 'Grid Layout ' ~ cols ~ '×' ~ rows }} Grid"
+    data-level="3"
+>
+    <header class="ss-c-demo__section__header">
+        <h4>{{ title or 'Grid Layout ' ~ cols ~ '×' ~ rows }} Grid</h4>
+    </header>
+    <code>.ss-u-grid-cols-{{ cols }}</code>
+
+    <section class="ss-c-demo__subsection">
+        <div class="ss-u-grid ss-u-grid-cols-{{ cols }} ss-u-gap-4 ss-c-demo-grid-placeholder">
+            {% for row in range(1, rows + 1) %} {% for col in range(1, cols +
+            1) %}
+            <div>{{ alphabet[col-1] | default('C') }}{{ row }}</div>
+            {% endfor %} {% endfor %}
+        </div>
+    </section>
+</section>

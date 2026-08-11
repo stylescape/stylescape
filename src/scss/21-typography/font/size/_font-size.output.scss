@@ -1,0 +1,15 @@
+@use "sass:map";
+@use "./font-size.config" as config;
+@use "../../../01-core/external" as *;
+@use "../../../01-core/prefix" as *;
+
+@layer ss.typography {
+    $scale: map.get(config.$ss-font-size-config, scale);
+
+    @each $step, $value in $scale {
+        .#{$ss-namespace}-text-#{$step} {
+            font-size: basepoint($value);
+            line-height: baseline($value);
+        }
+    }
+}

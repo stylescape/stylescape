@@ -1,0 +1,46 @@
+@use "sass:map";
+@use "./radio.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-radio {
+    appearance: none;
+    display: inline-block;
+
+    width: map.get(config.$ss-radio-config, size);
+    height: map.get(config.$ss-radio-config, size);
+
+    background: map.get(config.$ss-radio-config, bg);
+    border: map.get(config.$ss-radio-config, border-width) solid
+        map.get(config.$ss-radio-config, border);
+    border-radius: 50%;
+
+    cursor: pointer;
+    vertical-align: middle;
+
+    &:checked {
+        background: map.get(config.$ss-radio-config, bg-checked);
+        border-color: map.get(config.$ss-radio-config, border-checked);
+        background-image: radial-gradient(
+            circle,
+            map.get(config.$ss-radio-config, dot-color) 35%,
+            transparent 40%
+        );
+    }
+
+    &:focus-visible {
+        outline: q(2) solid map.get(config.$ss-radio-config, border-checked);
+        outline-offset: q(2);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+@mixin ss-radio-label {
+    display: inline-flex;
+    align-items: center;
+    gap: map.get(config.$ss-radio-config, label-gap);
+    cursor: pointer;
+}

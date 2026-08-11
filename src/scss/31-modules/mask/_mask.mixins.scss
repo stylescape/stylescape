@@ -1,0 +1,43 @@
+@use "../../01-core/external" as *;
+
+@mixin ss-mask-base {
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+@mixin ss-mask-shape($shape) {
+    @include ss-mask-base;
+
+    @if $shape == squircle {
+        -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path fill='black' d='M100 0C20 0 0 20 0 100s20 100 100 100 100-20 100-100S180 0 100 0Z'/></svg>");
+                mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path fill='black' d='M100 0C20 0 0 20 0 100s20 100 100 100 100-20 100-100S180 0 100 0Z'/></svg>");
+    } @else if $shape == circle {
+        -webkit-mask-image: radial-gradient(circle, #000 99%, transparent 100%);
+                mask-image: radial-gradient(circle, #000 99%, transparent 100%);
+    } @else if $shape == hexagon {
+        -webkit-clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
+                clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
+    } @else if $shape == triangle {
+        -webkit-clip-path: polygon(50% 0, 100% 100%, 0 100%);
+                clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    } @else if $shape == pentagon {
+        -webkit-clip-path: polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%);
+                clip-path: polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%);
+    } @else if $shape == decagon {
+        -webkit-clip-path: polygon(50% 0, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0 70%, 0 35%, 20% 10%);
+                clip-path: polygon(50% 0, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0 70%, 0 35%, 20% 10%);
+    } @else if $shape == diamond {
+        -webkit-clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+                clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    } @else if $shape == star {
+        -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+                clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    } @else if $shape == heart {
+        -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 29.6'><path fill='black' d='M23.6 0c-3.4 0-6.3 2.7-7.6 5.6C14.7 2.7 11.8 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.4 9.5 11.9 16 21.2 6.5-9.3 16-11.8 16-21.2 0-4.6-3.8-8.4-8.4-8.4Z'/></svg>");
+                mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 29.6'><path fill='black' d='M23.6 0c-3.4 0-6.3 2.7-7.6 5.6C14.7 2.7 11.8 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.4 9.5 11.9 16 21.2 6.5-9.3 16-11.8 16-21.2 0-4.6-3.8-8.4-8.4-8.4Z'/></svg>");
+    }
+}

@@ -1,0 +1,113 @@
+////
+///
+/// Character Script Mixins
+/// ===========================================================================
+///
+/// Mixins for superscript/subscript character styles.
+///
+/// @group Typography.Character.Specials.Script
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./character-script.config" as config;
+
+////
+/// Character Variant — Script
+/// Mixins
+////
+
+@mixin ss-character-script-base($override: ()) {
+    $settings: map.merge(config.$ss-character-script-config, $override);
+
+    font-size: map.get($settings, font-size);
+    line-height: map.get($settings, line-height);
+    position: relative;
+    vertical-align: baseline;
+}
+
+@mixin ss-character-sub($override: ()) {
+    $settings: map.merge(config.$ss-character-script-config, $override);
+
+    @include ss-character-script-base($settings);
+    bottom: map.get($settings, sub-offset);
+}
+
+@mixin ss-character-super($override: ()) {
+    $settings: map.merge(config.$ss-character-script-config, $override);
+
+    @include ss-character-script-base($settings);
+    top: map.get($settings, super-offset);
+}
+
+// @use "sass:map";
+// @use "./character-script.config" as config;
+
+// // ============================================================================
+// // Mixins
+// // ============================================================================
+
+// /// Base script styles (shared by super/sub)
+// @mixin character-script-base {
+//     $cfg: config.$ss-character-script-config;
+
+//     font-size: map.get($cfg, font-size);
+//     line-height: map.get($cfg, line-height);
+//     position: map.get($cfg, position);
+//     vertical-align: map.get($cfg, vertical-align);
+// }
+
+// /// Superscript styles
+// @mixin character-superscript {
+//     @include character-script-base;
+//     top: map.get(config.$ss-character-superscript-config, top);
+// }
+
+// /// Subscript styles
+// @mixin character-subscript {
+//     @include character-script-base;
+//     bottom: map.get(config.$ss-character-subscript-config, bottom);
+// }
+
+// /// Ordinal superscript (1st, 2nd, 3rd)
+// @mixin character-ordinal {
+//     $cfg: map.get(config.$ss-character-script-variants, ordinal);
+//     @include character-script-base;
+
+//     font-size: map.get($cfg, font-size);
+//     top: map.get($cfg, top);
+//     font-weight: map.get($cfg, font-weight);
+// }
+
+// /// Footnote reference (linked superscript)
+// @mixin character-footnote-ref {
+//     $cfg: map.get(config.$ss-character-script-variants, footnote);
+//     @include character-script-base;
+
+//     font-size: map.get($cfg, font-size);
+//     top: map.get($cfg, top);
+//     color: map.get($cfg, color);
+// }
+
+// /// Chemical formula subscript (H₂O)
+// @mixin character-chemical {
+//     $cfg: map.get(config.$ss-character-script-variants, chemical);
+//     @include character-script-base;
+
+//     font-size: map.get($cfg, font-size);
+//     bottom: map.get($cfg, bottom);
+//     font-weight: map.get($cfg, font-weight);
+// }
+
+// /// Math script style
+// @mixin character-math-script {
+//     $cfg: map.get(config.$ss-character-script-variants, math);
+//     @include character-script-base;
+
+//     font-size: map.get($cfg, font-size);
+//     font-style: map.get($cfg, font-style);
+// }

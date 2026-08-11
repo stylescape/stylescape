@@ -1,0 +1,33 @@
+// =============================================================================
+// 31-modules / map / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./map.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-map {
+    position: relative;
+    width: 100%;
+    min-height: map.get(config.$map-config, "min-height");
+    background-color: map.get(config.$map-config, "background");
+    overflow: hidden;
+}
+
+@mixin ss-map-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin ss-map-control {
+    position: absolute;
+    top: q(8);
+    right: q(8);
+    background-color: map.get(config.$map-config, "control-bg");
+    color: map.get(config.$map-config, "control-color");
+    padding: map.get(config.$map-config, "control-padding");
+    border-radius: map.get(config.$map-config, "control-radius");
+    box-shadow: 0 q(1) q(4) rgba(0, 0, 0, 0.15);
+}

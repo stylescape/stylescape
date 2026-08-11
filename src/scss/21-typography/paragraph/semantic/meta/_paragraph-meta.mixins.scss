@@ -1,0 +1,25 @@
+@use "sass:map";
+@use "./paragraph-meta.config" as config;
+
+// -----------------------------------------------------------------------------
+// Core Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-paragraph-meta($type, $override: ()) {
+    $base: map.get(config.$ss-paragraph-meta-config, $type);
+
+    @if $base == null {
+        @error "Meta paragraph type `#{$type}` does not exist.";
+    }
+
+    $settings: map.merge($base, $override);
+
+    font-size: map.get($settings, size);
+    line-height: map.get($settings, leading);
+    color: map.get($settings, color);
+    font-style: map.get($settings, style);
+
+    @if map.get($settings, numeric) != null {
+        font-variant-numeric: map.get($settings, numeric);
+    }
+}

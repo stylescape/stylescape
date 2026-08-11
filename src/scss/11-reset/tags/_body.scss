@@ -1,0 +1,35 @@
+////
+///
+/// Body Typography Tags Module
+/// ===========================================================================
+/// ...
+///
+/// @group Body
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+///
+////
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../../21-typography/font" as *;
+@use "../../21-typography/text" as *;
+@use "../../21-typography/character" as *;
+@use "../../21-typography/paragraph" as *;
+@use "../../21-typography/list" as *;
+@use "../../21-typography/character/base/normal/character-normal.mixins" as
+    normal;
+
+// Emitted inside `@layer ss.reset` so layered rules can override the body
+// defaults.
+@layer ss.reset {
+    body {
+        @include normal.ss-character-normal;
+        // Page background lives in 24-appearance/_relocated-surfaces.scss
+    }
+}

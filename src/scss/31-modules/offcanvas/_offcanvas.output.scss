@@ -1,0 +1,63 @@
+// =============================================================================
+// 31-modules / offcanvas / output
+// =============================================================================
+
+@use "sass:map";
+@use "../../01-core/prefix" as *;
+@use "./offcanvas.config" as config;
+@use "./offcanvas.mixins" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-offcanvas {
+        @include ss-offcanvas;
+
+        &--start {
+            @include ss-offcanvas-start;
+        }
+        &--end {
+            @include ss-offcanvas-end;
+        }
+        &--top {
+            @include ss-offcanvas-top;
+        }
+        &--bottom {
+            @include ss-offcanvas-bottom;
+        }
+
+        &--sm {
+            width: map.get(config.$offcanvas-config, "width-sm");
+        }
+        &--lg {
+            width: map.get(config.$offcanvas-config, "width-lg");
+        }
+        &--xl {
+            width: map.get(config.$offcanvas-config, "width-xl");
+        }
+
+        &--dark {
+            background-color: var(--ss-color-text, #1a1a1a);
+            color: var(--ss-color-fill, #ffffff);
+        }
+
+        &--static {
+            transform: none;
+            visibility: visible;
+        }
+
+        &__backdrop {
+            @include ss-offcanvas-backdrop;
+        }
+        &__header {
+            @include ss-offcanvas-header;
+        }
+        &__title {
+            @include ss-offcanvas-title;
+        }
+        &__body {
+            @include ss-offcanvas-body;
+        }
+        &__close {
+            @include ss-offcanvas-close;
+        }
+    }
+}

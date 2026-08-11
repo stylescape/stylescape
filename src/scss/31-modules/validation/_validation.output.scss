@@ -1,0 +1,39 @@
+// =============================================================================
+// 31-modules / validation / output
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "./validation.mixins" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-validation {
+        &__error {
+            @include ss-validation-error;
+        }
+        &__success {
+            @include ss-validation-success;
+        }
+    }
+
+    .#{$ss-prefix-module}-input {
+        &.is-invalid,
+        &--invalid,
+        &[aria-invalid="true"] {
+            @include ss-validation-input-invalid;
+        }
+        &.is-valid,
+        &--valid {
+            @include ss-validation-input-valid;
+        }
+        &.is-warning,
+        &--warning {
+            @include ss-validation-input-warning;
+        }
+    }
+
+    .#{$ss-prefix-module}-label {
+        &--optional {
+            @include ss-validation-label-optional;
+        }
+    }
+}

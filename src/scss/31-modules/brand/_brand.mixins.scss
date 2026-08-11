@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "./brand.config" as config;
+@use "../../01-core/external" as *;
+
+/// Wordmark lockup for a navbar or ribbon.
+@mixin ss-brand {
+    font-size: map.get(config.$ss-brand-config, font-size);
+    font-weight: map.get(config.$ss-brand-config, font-weight);
+    letter-spacing: map.get(config.$ss-brand-config, tracking);
+    text-transform: uppercase;
+    color: var(--ss-color-text-primary);
+}

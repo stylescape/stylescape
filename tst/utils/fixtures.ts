@@ -170,8 +170,8 @@ export const themeTogglerFixture = `
 <button id="theme-toggle"
         data-ss="theme-toggle"
         aria-label="Toggle dark mode">
-    <span class="theme-icon theme-icon--light">☀️</span>
-    <span class="theme-icon theme-icon--dark">🌙</span>
+    <span class="theme-icon theme-icon--light">☀</span>
+    <span class="theme-icon theme-icon--dark">☾</span>
 </button>
 `;
 

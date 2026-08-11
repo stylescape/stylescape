@@ -1,0 +1,24 @@
+// =============================================================================
+// 31-modules / cookie / mixins
+// =============================================================================
+
+@use "sass:map";
+@use "./cookie.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-cookie {
+    position: fixed;
+    bottom: q(16);
+    left: q(16);
+    right: q(16);
+    margin: 0 auto;
+    z-index: map.get(config.$cookie-config, "z-index");
+    max-width: map.get(config.$cookie-config, "max-width");
+    padding: map.get(config.$cookie-config, "padding");
+    background-color: map.get(config.$cookie-config, "background");
+    color: map.get(config.$cookie-config, "color");
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$cookie-config, "gap");
+    box-shadow: 0 q(4) q(16) rgba(0, 0, 0, 0.2);
+}

@@ -1,7 +1,7 @@
 {
     "name": "stylescape",
-    "description": "Stylescape is a visual identity framework developed by Scape Agency.",
-    "version": "0.3.18",
+    "description": "Stylescape is a visual identity framework developed by Scape Press.",
+    "version": "0.4.0",
     "config": {
         "version_short": "0.1"
     },
@@ -17,7 +17,7 @@
     "homepage": "https://www.scape.style/",
     "author": "Lars van Vianen",
     "contributors": [
-        "Scape Agency"
+        "Scape Press"
     ],
     "license": "MIT",
     "repository": {
@@ -45,12 +45,18 @@
         "watch": "npx kist --config ./kist.yml --live",
         "preview": "vite preview",
         "generate:sections": "node bin/generate_sections.mjs",
+        "generate:stories": "python3 bin/generate_stories.py",
         "render:templates": "node bin/render_templates.mjs",
         "lint": "eslint . --ext .js,.ts",
         "lint:fix": "eslint . --ext .js,.ts --fix",
+        "lint:ssx": "node ../ssx/bin/ssx.mjs lint src/scss --baseline ssx-baseline.json --max-warnings 0",
+        "lint:ssx:report": "node ../ssx/bin/ssx.mjs lint src/scss src/jinja",
+        "lint:ssx:baseline": "node ../ssx/bin/ssx.mjs lint src/scss --write-baseline ssx-baseline.json",
         "format": "prettier --write \"**/*.{js,ts,json,md,yml,yaml,scss,css,html,jinja}\"",
         "format:check": "prettier --check \"**/*.{js,ts,json,md,yml,yaml,scss,css,html,jinja}\"",
         "typecheck": "tsc --noEmit",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build",
         "test": "vitest",
         "test:run": "vitest run",
         "test:ui": "vitest --ui",
@@ -58,10 +64,13 @@
         "test:watch": "vitest --watch"
     },
     "dependencies": {
-        "hue.gl": "^0.0.36",
+        "hue.gl": "^0.1.2",
         "page.gl": "^0.0.3",
-        "unit.gl": "^0.3.1"
+        "unit.gl": "^0.3.3"
     },
+    "bundleDependencies": [
+        "unit.gl"
+    ],
     "peerDependencies": {
         "icon.gl": "^0.0.47"
     },
@@ -72,26 +81,33 @@
     },
     "devDependencies": {
         "@eslint/js": "^10.0.1",
-        "@getkist/action-nunjucks": "^2.0.9",
-        "@getkist/action-sass": "^1.0.4",
+        "@getkist/action-nunjucks": "^2.0.28",
+        "@getkist/action-sass": "^1.0.23",
         "@getkist/action-tsup": "^1.0.7",
-        "@typescript-eslint/eslint-plugin": "^8.0.0",
-        "@typescript-eslint/parser": "^8.0.0",
-        "@vitest/coverage-v8": "^4.0.17",
-        "@vitest/ui": "^4.0.17",
-        "eslint": "^10.2.0",
+        "@storybook/addon-a11y": "^10.4.2",
+        "@storybook/addon-docs": "^10.4.2",
+        "@storybook/addon-themes": "^10.4.2",
+        "@storybook/html-vite": "^10.4.2",
+        "@stylescape/ssx": "file:../ssx",
+        "@typescript-eslint/eslint-plugin": "^8.59.3",
+        "@typescript-eslint/parser": "^8.59.3",
+        "@vitest/coverage-v8": "^4.1.6",
+        "@vitest/ui": "^4.1.6",
+        "esbuild": "^0.28.0",
+        "eslint": "^10.4.0",
         "eslint-plugin-import": "^2.32.0",
-        "jsdom": "^29.0.2",
-        "kist": "^0.1.67",
+        "jsdom": "^29.1.1",
+        "kist": "^0.1.74",
         "micromatch": "^4.0.8",
         "nunjucks": "^3.2.4",
-        "sass": "^1.87.0",
+        "sass": "^1.99.0",
         "serve-static": "^2.2.1",
+        "storybook": "^10.4.2",
         "ts-node": "^10.9.2",
-        "typescript": "^6.0.2",
-        "typescript-eslint": "^8.53.1",
-        "vite": "^8.0.8",
-        "vitest": "^4.0.17"
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.59.3",
+        "vite": "^8.0.13",
+        "vitest": "^4.1.6"
     },
     "overrides": {
         "tinyglobby": "0.2.15",
@@ -184,32 +200,8 @@
         "./scss": {
             "default": "./scss/index.scss"
         },
-        "./scss/classes": {
-            "default": "./scss/classes/_index.scss"
-        },
-        "./scss/dev": {
-            "default": "./scss/dev/_index.scss"
-        },
-        "./scss/functions": {
-            "default": "./scss/functions/_index.scss"
-        },
-        "./scss/maps": {
-            "default": "./scss/maps/_index.scss"
-        },
-        "./scss/mixins": {
-            "default": "./scss/mixins/_index.scss"
-        },
-        "./scss/root": {
-            "default": "./scss/root/_index.scss"
-        },
-        "./scss/tags": {
-            "default": "./scss/tags/_index.scss"
-        },
-        "./scss/variables": {
-            "default": "./scss/variables/_index.scss"
-        },
-        "./scss/icons": {
-            "default": "./scss/icons.scss"
+        "./scss/*": {
+            "default": "./scss/*/_index.scss"
         },
         "./package.json": "./package.json"
     }

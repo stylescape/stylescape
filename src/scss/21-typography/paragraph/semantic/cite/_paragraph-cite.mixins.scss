@@ -1,0 +1,18 @@
+@use "sass:map";
+@use "./paragraph-cite.config" as config;
+
+// -----------------------------------------------------------------------------
+// Engine
+// -----------------------------------------------------------------------------
+
+@mixin ss-paragraph-cite($override: ()) {
+    $settings: map.merge(config.$ss-paragraph-cite-config, $override);
+
+    font-size: map.get($settings, font-size);
+    font-style: map.get($settings, font-style);
+    line-height: map.get($settings, line-height);
+    text-transform: map.get($settings, text-transform);
+    margin: map.get($settings, margin);
+    color: map.get($settings, color);
+    display: map.get($settings, display);
+}

@@ -1,0 +1,29 @@
+@use "../../01-core/prefix" as *;
+@use "sass:map";
+@use "./checkbox.config" as config;
+@use "./checkbox.mixins" as checkbox;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-checkbox {
+        @include checkbox.ss-checkbox;
+
+        // Sizes
+        &--sm {
+            @include checkbox.ss-checkbox-sm;
+        }
+        &--lg {
+            @include checkbox.ss-checkbox-lg;
+        }
+
+        // Status variants
+        @each $name, $color in map.get(config.$ss-checkbox-config, status) {
+            &--#{$name} {
+                @include checkbox.ss-checkbox-status($color);
+            }
+        }
+    }
+
+    .#{$ss-prefix-module}-checkbox__label {
+        @include checkbox.ss-checkbox-label;
+    }
+}

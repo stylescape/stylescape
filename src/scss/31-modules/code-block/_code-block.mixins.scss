@@ -1,0 +1,26 @@
+@use "sass:map";
+@use "./code-block.config" as config;
+@use "../../01-core/external" as *;
+
+/// Block form of preformatted code. Inline `code` keeps its element-level
+/// typography from the typography layer; this is the block treatment.
+///
+/// Uses the lexicon's code surface tokens rather than a generic surface: the
+/// reset already colours `pre` with `--ss-color-code-foreground`, which is
+/// light-on-dark, so a light surface here would render illegibly.
+@mixin ss-code-block {
+    padding: map.get(config.$ss-code-block-config, padding);
+
+    background-color: var(--ss-color-code-background);
+    color: var(--ss-color-code-foreground);
+    border-left: map.get(config.$ss-code-block-config, rule-width) solid
+        var(--ss-color-accent);
+    border-radius: map.get(config.$ss-code-block-config, radius);
+
+    font-family: var(--ss-font-family-mono, monospace);
+    font-size: map.get(config.$ss-code-block-config, font-size);
+    line-height: map.get(config.$ss-code-block-config, line-height);
+
+    white-space: pre;
+    overflow-x: auto;
+}

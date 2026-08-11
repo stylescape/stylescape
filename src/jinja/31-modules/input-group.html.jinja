@@ -1,0 +1,34 @@
+{% extends "../base.html.jinja" %} {% set title = "Input Group" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-input-group</code> module.</p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="ss-c-input-group">
+            <span class="ss-c-input-group__text">@</span>
+            <input type="text" class="ss-c-input" placeholder="username">
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Sizes" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <div class="ss-c-input-group ss-c-input-group--sm">
+            <span class="ss-c-input-group__text">$</span>
+            <input type="text" class="ss-c-input" placeholder="0.00">
+        </div>
+        <div class="ss-c-input-group ss-c-input-group--lg">
+            <span class="ss-c-input-group__text">https://</span>
+            <input type="text" class="ss-c-input" placeholder="domain">
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

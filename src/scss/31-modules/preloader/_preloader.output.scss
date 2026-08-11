@@ -1,0 +1,41 @@
+// =============================================================================
+// 31-modules / preloader / output
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "./preloader.mixins" as *;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-preloader {
+        @include ss-preloader;
+
+        &__lines {
+            @include ss-preloader-lines;
+        }
+        &__pulse {
+            @include ss-preloader-pulse;
+        }
+    }
+
+    @keyframes ss-preloader-lines {
+        0%,
+        40%,
+        100% {
+            height: 30%;
+        }
+        20% {
+            height: 100%;
+        }
+    }
+
+    @keyframes ss-preloader-pulse {
+        0% {
+            transform: scale(0);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 0;
+        }
+    }
+}

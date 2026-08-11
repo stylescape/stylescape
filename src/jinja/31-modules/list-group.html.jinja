@@ -1,0 +1,60 @@
+{% extends "../base.html.jinja" %} {% set title = "List Group" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <p>Examples for the <code>ss-c-list-group</code> module.</p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <ul class="ss-c-list-group">
+            <li class="ss-c-list-group__item">An item</li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--active">An active item</li>
+            <li class="ss-c-list-group__item">A third item</li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--disabled">A disabled item</li>
+        </ul>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Variants" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <ul class="ss-c-list-group">
+            <li class="ss-c-list-group__item ss-c-list-group__item--primary">Primary</li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--success">Success</li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--warning">Warning</li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--danger">Danger</li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--info">Info</li>
+        </ul>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Flush" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <ul class="ss-c-list-group ss-c-list-group--flush">
+            <li class="ss-c-list-group__item">No outer borders</li>
+            <li class="ss-c-list-group__item">Just inner separators</li>
+        </ul>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Numbered" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h3>{{ section_title }}</h3>
+        {% set code_snippet %}
+        <ol class="ss-c-list-group ss-c-list-group--numbered">
+            <li class="ss-c-list-group__item">First</li>
+            <li class="ss-c-list-group__item">Second</li>
+            <li class="ss-c-list-group__item">Third</li>
+        </ol>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

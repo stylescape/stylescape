@@ -1,0 +1,52 @@
+////
+///
+/// Paragraph Normal Mixins
+/// ===========================================================================
+///
+/// Mixins for normal/standard paragraph styles.
+///
+/// @group Typography.Paragraph.Base.Normal
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.1.0 initial release
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "./paragraph-normal.config" as config;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+/// Apply normal paragraph styles
+@mixin paragraph-normal {
+    $cfg: config.$ss-paragraph-normal-config;
+
+    font-family: map.get($cfg, font-family);
+    font-size: map.get($cfg, font-size);
+    font-weight: map.get($cfg, font-weight);
+    line-height: map.get($cfg, line-height);
+    color: map.get($cfg, color);
+    margin-block-end: map.get($cfg, margin-block-end);
+    max-width: map.get($cfg, max-width);
+    text-align: map.get($cfg, text-align);
+    hyphens: map.get($cfg, hyphens);
+    overflow-wrap: map.get($cfg, overflow-wrap);
+
+    &:last-child {
+        margin-block-end: 0;
+    }
+}
+
+/// Apply only typography properties
+@mixin paragraph-normal-typography {
+    $cfg: config.$ss-paragraph-normal-config;
+
+    font-family: map.get($cfg, font-family);
+    font-size: map.get($cfg, font-size);
+    font-weight: map.get($cfg, font-weight);
+    line-height: map.get($cfg, line-height);
+    color: map.get($cfg, color);
+}
