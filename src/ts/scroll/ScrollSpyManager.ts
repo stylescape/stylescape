@@ -248,6 +248,9 @@ export class ScrollSpyManager {
     private handleScroll = (): void => {
         if (!this.ticking) {
             window.requestAnimationFrame(() => {
+                // The frame can fire after the document (and jsdom's Window) is
+                // gone, e.g. during teardown; there is nothing to update then.
+                if (typeof Window === "undefined") return;
                 this.updateActiveLink();
                 this.ticking = false;
             });
