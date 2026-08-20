@@ -104,7 +104,7 @@ stages:
         action: DirectoryCopyAction
         options:
           srcDir: "./src/scss"
-          destDir: "./dist/scss"
+          destDir: "./dist/src/scss"
 
       - name: CopySrcTS
         action: DirectoryCopyAction
@@ -169,6 +169,20 @@ stages:
             - sass
             - style
             - exports
+            - dependencies
+            - peerDependencies
+          customConfig:
+            # What ships in the tarball. scss lives under src/scss so the
+            # exports map is identical for the repo and the published package.
+            files:
+              - "css/**/*.{css,map}"
+              - "font/**/*"
+              - "html/**/*"
+              - "js/**/*.{js,map,d.ts}"
+              - "src/scss/**/*.scss"
+              - "ts/**/*.ts"
+              - "types/**/*.d.ts"
+              - "!.DS_Store"
 
       # Version synchronization
       # -----------------------------------------------------------------
