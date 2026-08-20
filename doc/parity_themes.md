@@ -222,3 +222,16 @@ covers 2 of ~65 tokens and is neutralised by a cascade-layer bug (see
 - I did not search outside `stylescape-themes` and the three working dirs for
   markup consumers, so a site repo elsewhere could still reference the legacy
   classes.
+
+## Addendum — themes outside `stylescape-themes/` (2026-08-19)
+
+- **`stylescape-glace`** (`@glacedb/stylescape-glace`, lives in the `glace/`
+  workspace next to its consumers) is a working example of the token-override
+  contract this report calls for: it loads core via `pkg:stylescape/scss`
+  (peer `stylescape >=0.4.0`), overrides the `--ss-*` token defaults unlayered
+  at `:root`, and ships a core-free `./glace` entry for sites that render
+  their own components. Three consumers build against it
+  (`site-glacedb_com`, `site-glacedb_com-docs`, `glace-explorer`); its
+  `doc/index.md` documents the cascade, and `doc/parity_themes.md` (this file)
+  is what its token file cites for why unlayered-source-order is the only
+  working customization surface.
