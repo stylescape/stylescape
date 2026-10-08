@@ -137,7 +137,10 @@ export const SectionTitle2: Story = {
                     professional websites. From atoms to organisms, everything
                     is customizable.
                 </p>
-                <div class="ss-c-hero__actions" style="display: flex; gap: 12px">
+                <div
+                    class="ss-c-hero__actions"
+                    style="display: flex; gap: 12px"
+                >
                     <button
                         style="
                             padding: 14px 28px;
@@ -214,13 +217,13 @@ export const SectionTitle3: Story = {
             <!-- Background image layer -->
             <div
                 class="ss-c-hero__bg"
-                style="
+                style='
                     position: absolute;
                     inset: 0;
-                    background: url(&quot;https://picsum.photos/1200/600&quot;)
+                    background: url("https://picsum.photos/1200/600")
                         center/cover;
                     z-index: 0;
-                "
+                '
             ></div>
             <!-- Overlay -->
             <div
@@ -453,11 +456,7 @@ export const SectionTitle5: Story = {
                             font-size: 16px;
                         "
                     />
-                    <button class="ss-c-button--primary"
-
-                    >
-                        Get Access
-                    </button>
+                    <button class="ss-c-button--primary">Get Access</button>
                 </div>
             </div>
         </section>

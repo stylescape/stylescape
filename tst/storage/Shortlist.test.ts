@@ -19,7 +19,8 @@ describe("Shortlist module (currently no implementation)", () => {
     it("exposes no runtime members", () => {
         const runtimeKeys = Object.keys(ShortlistModule).filter(
             (key) =>
-                (ShortlistModule as Record<string, unknown>)[key] !== undefined,
+                (ShortlistModule as Record<string, unknown>)[key] !==
+                undefined,
         );
         expect(runtimeKeys).toHaveLength(0);
     });

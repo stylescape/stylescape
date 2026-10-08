@@ -70,7 +70,9 @@ export const SectionTitle: Story = {
                     class="ss-c-cover__actions"
                     style="display: flex; gap: 12px; justify-content: center"
                 >
-                    <button class="ss-c-button ss-c-button--primary ss-c-button--large">
+                    <button
+                        class="ss-c-button ss-c-button--primary ss-c-button--large"
+                    >
                         Get Started
                     </button>
                     <button
@@ -123,7 +125,9 @@ export const SectionTitle2: Story = {
                 >
                     Half-Height Cover
                 </h2>
-                <p class="ss-c-cover__subtitle">Perfect for secondary sections</p>
+                <p class="ss-c-cover__subtitle">
+                    Perfect for secondary sections
+                </p>
             </div>
         </div>
     `,
@@ -143,12 +147,12 @@ export const SectionTitle3: Story = {
         >
             <div
                 class="ss-c-cover__image"
-                style="
+                style='
                     position: absolute;
                     inset: 0;
-                    background: url(&quot;https://via.placeholder.com/1920x1080&quot;)
+                    background: url("https://via.placeholder.com/1920x1080")
                         center/cover;
-                "
+                '
             ></div>
             <div
                 class="ss-c-cover__overlay"
@@ -211,7 +215,9 @@ export const SectionTitle4: Story = {
                     Ideal for announcements, CTAs, and feature highlights with
                     centered content alignment.
                 </p>
-                <button class="ss-c-button ss-c-button--primary">Explore Now</button>
+                <button class="ss-c-button ss-c-button--primary">
+                    Explore Now
+                </button>
             </div>
         </div>
     `,

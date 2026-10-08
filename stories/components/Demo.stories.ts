@@ -18,9 +18,19 @@ type Story = StoryObj;
 
 export const SectionTitle: Story = {
     render: () => html`
-        <section class="ss-c-demo__section" data-label="Section" data-level="1">
-            <header class="ss-c-demo__section__header"><h2>Section title</h2></header>
-            <section class="ss-c-demo__subsection" data-label="Subsection" data-level="2">
+        <section
+            class="ss-c-demo__section"
+            data-label="Section"
+            data-level="1"
+        >
+            <header class="ss-c-demo__section__header">
+                <h2>Section title</h2>
+            </header>
+            <section
+                class="ss-c-demo__subsection"
+                data-label="Subsection"
+                data-level="2"
+            >
                 <h3>Subsection title</h3>
                 <p>Subsection content goes here.</p>
             </section>

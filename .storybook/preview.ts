@@ -32,12 +32,7 @@ const preview: Preview = {
         },
         options: {
             storySort: {
-                order: [
-                    "Introduction",
-                    "Foundations",
-                    "Components",
-                    "*",
-                ],
+                order: ["Introduction", "Foundations", "Components", "*"],
             },
         },
         a11y: {

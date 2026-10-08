@@ -18,7 +18,10 @@ type Story = StoryObj;
 
 export const SectionTitle: Story = {
     render: () => html`
-        <div class="ss-c-placeholder ss-c-placeholder--text" style="max-width: 500px">
+        <div
+            class="ss-c-placeholder ss-c-placeholder--text"
+            style="max-width: 500px"
+        >
             <div
                 class="ss-c-placeholder__line"
                 style="
@@ -227,7 +230,10 @@ export const SectionTitle3: Story = {
 
 export const SectionTitle4: Story = {
     render: () => html`
-        <div class="ss-c-placeholder ss-c-placeholder--list" style="max-width: 500px">
+        <div
+            class="ss-c-placeholder ss-c-placeholder--list"
+            style="max-width: 500px"
+        >
             <div
                 style="
                     display: flex;
@@ -498,7 +504,10 @@ export const SectionTitle5: Story = {
 
 export const SectionTitle6: Story = {
     render: () => html`
-        <div class="ss-c-placeholder ss-c-placeholder--pulse" style="max-width: 400px">
+        <div
+            class="ss-c-placeholder ss-c-placeholder--pulse"
+            style="max-width: 400px"
+        >
             <div style="display: flex; gap: 16px; margin-bottom: 16px">
                 <div
                     style="

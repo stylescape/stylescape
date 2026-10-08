@@ -105,7 +105,9 @@ describe("TableOfContentsBuilder", () => {
             expect(topItems.length).toBe(2);
 
             // The second top-level item ("Getting Started") holds a nested list.
-            const nestedUl = topItems[1].querySelector("ul") as HTMLUListElement;
+            const nestedUl = topItems[1].querySelector(
+                "ul",
+            ) as HTMLUListElement;
             expect(nestedUl).not.toBeNull();
             const nestedItems = nestedUl.querySelectorAll(":scope > li");
             expect(nestedItems.length).toBe(2);

@@ -19,9 +19,8 @@ describe("GalleryManager", () => {
 
     beforeEach(() => {
         document.body.innerHTML = galleryFixture;
-        images = document.querySelectorAll<HTMLImageElement>(
-            "#imageGallery img",
-        );
+        images =
+            document.querySelectorAll<HTMLImageElement>("#imageGallery img");
     });
 
     describe("Construction", () => {

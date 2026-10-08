@@ -17,7 +17,5 @@ export default meta;
 type Story = StoryObj;
 
 export const SectionTitle: Story = {
-    render: () => html`
-        <p class="ss-c-section-title">Recent studies</p>
-    `,
+    render: () => html` <p class="ss-c-section-title">Recent studies</p> `,
 };

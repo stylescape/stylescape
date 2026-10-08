@@ -48,10 +48,7 @@ export class ContentRevealer {
 
     constructor(
         selectorOrElements:
-            | string
-            | HTMLElement
-            | HTMLElement[]
-            | NodeListOf<HTMLElement>,
+            string | HTMLElement | HTMLElement[] | NodeListOf<HTMLElement>,
         options: ContentRevealerOptions = {},
     ) {
         // Normalize input to array

@@ -24,14 +24,27 @@ export const SectionTitle: Story = {
 
 export const SectionTitle2: Story = {
     render: () => html`
-        <button type="button" class="ss-c-close ss-c-close--sm" aria-label="Close"></button>
+        <button
+            type="button"
+            class="ss-c-close ss-c-close--sm"
+            aria-label="Close"
+        ></button>
         <button type="button" class="ss-c-close" aria-label="Close"></button>
-        <button type="button" class="ss-c-close ss-c-close--lg" aria-label="Close"></button>
+        <button
+            type="button"
+            class="ss-c-close ss-c-close--lg"
+            aria-label="Close"
+        ></button>
     `,
 };
 
 export const SectionTitle3: Story = {
     render: () => html`
-        <button type="button" class="ss-c-close" aria-label="Close" disabled></button>
+        <button
+            type="button"
+            class="ss-c-close"
+            aria-label="Close"
+            disabled
+        ></button>
     `,
 };

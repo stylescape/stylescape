@@ -25,45 +25,31 @@ export const SectionTitle: Story = {
 };
 
 export const SectionTitle2: Story = {
-    render: () => html`
-        <hr class="ss-c-divider ss-c-divider--thin" />
-    `,
+    render: () => html` <hr class="ss-c-divider ss-c-divider--thin" /> `,
 };
 
 export const SectionTitle3: Story = {
-    render: () => html`
-        <hr class="ss-c-divider ss-c-divider--thick" />
-    `,
+    render: () => html` <hr class="ss-c-divider ss-c-divider--thick" /> `,
 };
 
 export const SectionTitle4: Story = {
-    render: () => html`
-        <hr class="ss-c-divider ss-c-divider--dotted" />
-    `,
+    render: () => html` <hr class="ss-c-divider ss-c-divider--dotted" /> `,
 };
 
 export const SectionTitle5: Story = {
-    render: () => html`
-        <div class="ss-c-divider--vertical"></div>
-    `,
+    render: () => html` <div class="ss-c-divider--vertical"></div> `,
 };
 
 export const SectionTitle6: Story = {
-    render: () => html`
-        <div class="ss-c-divider--vertical--thin"></div>
-    `,
+    render: () => html` <div class="ss-c-divider--vertical--thin"></div> `,
 };
 
 export const SectionTitle7: Story = {
-    render: () => html`
-        <div class="ss-c-divider--vertical--thick"></div>
-    `,
+    render: () => html` <div class="ss-c-divider--vertical--thick"></div> `,
 };
 
 export const SectionTitle8: Story = {
-    render: () => html`
-        <div class="ss-c-divider--vertical--dotted"></div>
-    `,
+    render: () => html` <div class="ss-c-divider--vertical--dotted"></div> `,
 };
 
 export const SectionTitle9: Story = {

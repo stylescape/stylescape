@@ -21,15 +21,25 @@ export const SimplePagination: Story = {
         <nav aria-label="Page navigation">
             <ul class="ss-c-pagination">
                 <li class="ss-c-pagination__item">
-                    <a href="#" class="ss-c-pagination__link" aria-label="Previous">
+                    <a
+                        href="#"
+                        class="ss-c-pagination__link"
+                        aria-label="Previous"
+                    >
                         ←
                     </a>
                 </li>
                 <li class="ss-c-pagination__item">
                     <a href="#" class="ss-c-pagination__link">1</a>
                 </li>
-                <li class="ss-c-pagination__item ss-c-pagination__item--active">
-                    <a href="#" class="ss-c-pagination__link" aria-current="page">
+                <li
+                    class="ss-c-pagination__item ss-c-pagination__item--active"
+                >
+                    <a
+                        href="#"
+                        class="ss-c-pagination__link"
+                        aria-current="page"
+                    >
                         2
                     </a>
                 </li>
@@ -37,7 +47,11 @@ export const SimplePagination: Story = {
                     <a href="#" class="ss-c-pagination__link">3</a>
                 </li>
                 <li class="ss-c-pagination__item">
-                    <a href="#" class="ss-c-pagination__link" aria-label="Next">
+                    <a
+                        href="#"
+                        class="ss-c-pagination__link"
+                        aria-label="Next"
+                    >
                         →
                     </a>
                 </li>
@@ -51,20 +65,34 @@ export const WithFirstLast: Story = {
         <nav aria-label="Page navigation">
             <ul class="ss-c-pagination">
                 <li class="ss-c-pagination__item">
-                    <a href="#" class="ss-c-pagination__link" aria-label="First">
+                    <a
+                        href="#"
+                        class="ss-c-pagination__link"
+                        aria-label="First"
+                    >
                         ««
                     </a>
                 </li>
                 <li class="ss-c-pagination__item">
-                    <a href="#" class="ss-c-pagination__link" aria-label="Previous">
+                    <a
+                        href="#"
+                        class="ss-c-pagination__link"
+                        aria-label="Previous"
+                    >
                         «
                     </a>
                 </li>
                 <li class="ss-c-pagination__item">
                     <a href="#" class="ss-c-pagination__link">1</a>
                 </li>
-                <li class="ss-c-pagination__item ss-c-pagination__item--active">
-                    <a href="#" class="ss-c-pagination__link" aria-current="page">
+                <li
+                    class="ss-c-pagination__item ss-c-pagination__item--active"
+                >
+                    <a
+                        href="#"
+                        class="ss-c-pagination__link"
+                        aria-current="page"
+                    >
                         2
                     </a>
                 </li>
@@ -72,12 +100,20 @@ export const WithFirstLast: Story = {
                     <a href="#" class="ss-c-pagination__link">3</a>
                 </li>
                 <li class="ss-c-pagination__item">
-                    <a href="#" class="ss-c-pagination__link" aria-label="Next">
+                    <a
+                        href="#"
+                        class="ss-c-pagination__link"
+                        aria-label="Next"
+                    >
                         »
                     </a>
                 </li>
                 <li class="ss-c-pagination__item">
-                    <a href="#" class="ss-c-pagination__link" aria-label="Last">
+                    <a
+                        href="#"
+                        class="ss-c-pagination__link"
+                        aria-label="Last"
+                    >
                         »»
                     </a>
                 </li>
@@ -90,7 +126,9 @@ export const DisabledItems: Story = {
     render: () => html`
         <nav aria-label="Page navigation">
             <ul class="ss-c-pagination">
-                <li class="ss-c-pagination__item ss-c-pagination__item--disabled">
+                <li
+                    class="ss-c-pagination__item ss-c-pagination__item--disabled"
+                >
                     <a
                         href="#"
                         class="ss-c-pagination__link"
@@ -100,8 +138,14 @@ export const DisabledItems: Story = {
                         Previous
                     </a>
                 </li>
-                <li class="ss-c-pagination__item ss-c-pagination__item--active">
-                    <a href="#" class="ss-c-pagination__link" aria-current="page">
+                <li
+                    class="ss-c-pagination__item ss-c-pagination__item--active"
+                >
+                    <a
+                        href="#"
+                        class="ss-c-pagination__link"
+                        aria-current="page"
+                    >
                         1
                     </a>
                 </li>
@@ -126,7 +170,9 @@ export const SizeVariations: Story = {
                 <li class="ss-c-pagination__item">
                     <a href="#" class="ss-c-pagination__link">«</a>
                 </li>
-                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                <li
+                    class="ss-c-pagination__item ss-c-pagination__item--active"
+                >
                     <a href="#" class="ss-c-pagination__link">1</a>
                 </li>
                 <li class="ss-c-pagination__item">
@@ -143,7 +189,9 @@ export const SizeVariations: Story = {
                 <li class="ss-c-pagination__item">
                     <a href="#" class="ss-c-pagination__link">«</a>
                 </li>
-                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                <li
+                    class="ss-c-pagination__item ss-c-pagination__item--active"
+                >
                     <a href="#" class="ss-c-pagination__link">1</a>
                 </li>
                 <li class="ss-c-pagination__item">
@@ -160,7 +208,9 @@ export const SizeVariations: Story = {
                 <li class="ss-c-pagination__item">
                     <a href="#" class="ss-c-pagination__link">«</a>
                 </li>
-                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                <li
+                    class="ss-c-pagination__item ss-c-pagination__item--active"
+                >
                     <a href="#" class="ss-c-pagination__link">1</a>
                 </li>
                 <li class="ss-c-pagination__item">
@@ -181,7 +231,9 @@ export const Centered: Story = {
                 <li class="ss-c-pagination__item">
                     <a href="#" class="ss-c-pagination__link">«</a>
                 </li>
-                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                <li
+                    class="ss-c-pagination__item ss-c-pagination__item--active"
+                >
                     <a href="#" class="ss-c-pagination__link">1</a>
                 </li>
                 <li class="ss-c-pagination__item">
@@ -205,7 +257,9 @@ export const RightAligned: Story = {
                 <li class="ss-c-pagination__item">
                     <a href="#" class="ss-c-pagination__link">«</a>
                 </li>
-                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                <li
+                    class="ss-c-pagination__item ss-c-pagination__item--active"
+                >
                     <a href="#" class="ss-c-pagination__link">1</a>
                 </li>
                 <li class="ss-c-pagination__item">
@@ -232,19 +286,25 @@ export const WithEllipsis: Story = {
                 <li class="ss-c-pagination__item">
                     <a href="#" class="ss-c-pagination__link">1</a>
                 </li>
-                <li class="ss-c-pagination__item ss-c-pagination__item--ellipsis">
+                <li
+                    class="ss-c-pagination__item ss-c-pagination__item--ellipsis"
+                >
                     <span>…</span>
                 </li>
                 <li class="ss-c-pagination__item">
                     <a href="#" class="ss-c-pagination__link">4</a>
                 </li>
-                <li class="ss-c-pagination__item ss-c-pagination__item--active">
+                <li
+                    class="ss-c-pagination__item ss-c-pagination__item--active"
+                >
                     <a href="#" class="ss-c-pagination__link">5</a>
                 </li>
                 <li class="ss-c-pagination__item">
                     <a href="#" class="ss-c-pagination__link">6</a>
                 </li>
-                <li class="ss-c-pagination__item ss-c-pagination__item--ellipsis">
+                <li
+                    class="ss-c-pagination__item ss-c-pagination__item--ellipsis"
+                >
                     <span>…</span>
                 </li>
                 <li class="ss-c-pagination__item">
@@ -279,7 +339,10 @@ export const PrevNextWithLabels: Story = {
 
 export const PageInfo: Story = {
     render: () => html`
-        <nav aria-label="Pagination with info" class="ss-c-pagination__wrapper">
+        <nav
+            aria-label="Pagination with info"
+            class="ss-c-pagination__wrapper"
+        >
             <span class="ss-c-pagination__info">Page 5 of 20</span>
             <ul class="ss-c-pagination">
                 <li class="ss-c-pagination__item">

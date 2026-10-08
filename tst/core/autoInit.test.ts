@@ -16,9 +16,8 @@ describe("Auto-Init System", () => {
                 <div data-ss="tooltip" data-ss-tooltip-content="Hello World"></div>
             `);
 
-            const { parseConfigFromElement } = await import(
-                "./helpers/config-parser"
-            );
+            const { parseConfigFromElement } =
+                await import("./helpers/config-parser");
             const config = parseConfigFromElement(element, "tooltip");
 
             expect(config.content).toBe("Hello World");
@@ -29,9 +28,8 @@ describe("Auto-Init System", () => {
                 <div data-ss="modal" data-ss-modal-close-backdrop="true"></div>
             `);
 
-            const { parseConfigFromElement } = await import(
-                "./helpers/config-parser"
-            );
+            const { parseConfigFromElement } =
+                await import("./helpers/config-parser");
             const config = parseConfigFromElement(element, "modal");
 
             expect(config.closeBackdrop).toBe(true);
@@ -42,9 +40,8 @@ describe("Auto-Init System", () => {
                 <div data-ss="modal" data-ss-modal-close-escape="false"></div>
             `);
 
-            const { parseConfigFromElement } = await import(
-                "./helpers/config-parser"
-            );
+            const { parseConfigFromElement } =
+                await import("./helpers/config-parser");
             const config = parseConfigFromElement(element, "modal");
 
             expect(config.closeEscape).toBe(false);
@@ -55,9 +52,8 @@ describe("Auto-Init System", () => {
                 <div data-ss="preloader" data-ss-preloader-timeout="500"></div>
             `);
 
-            const { parseConfigFromElement } = await import(
-                "./helpers/config-parser"
-            );
+            const { parseConfigFromElement } =
+                await import("./helpers/config-parser");
             const config = parseConfigFromElement(element, "preloader");
 
             expect(config.timeout).toBe(500);
@@ -72,9 +68,8 @@ describe("Auto-Init System", () => {
                 <div data-ss="tooltip" data-ss-tooltip-config='${jsonConfig}'></div>
             `);
 
-            const { parseConfigFromElement } = await import(
-                "./helpers/config-parser"
-            );
+            const { parseConfigFromElement } =
+                await import("./helpers/config-parser");
             const config = parseConfigFromElement(element, "tooltip");
 
             expect(config.content).toBe("Test");
@@ -86,9 +81,8 @@ describe("Auto-Init System", () => {
                 <div data-ss="modal" data-ss-modal-animation-duration="300"></div>
             `);
 
-            const { parseConfigFromElement } = await import(
-                "./helpers/config-parser"
-            );
+            const { parseConfigFromElement } =
+                await import("./helpers/config-parser");
             const config = parseConfigFromElement(element, "modal");
 
             expect(config.animationDuration).toBe(300);
@@ -165,9 +159,8 @@ describe("Auto-Init System", () => {
 
 describe("Component Registry", () => {
     it("should have registered core components", async () => {
-        const { componentRegistry } = await import(
-            "../../src/ts/init/registry"
-        );
+        const { componentRegistry } =
+            await import("../../src/ts/init/registry");
 
         // Check for core components
         expect(componentRegistry.has("tooltip")).toBe(true);
@@ -176,18 +169,16 @@ describe("Component Registry", () => {
     });
 
     it("should return undefined for unregistered components", async () => {
-        const { componentRegistry } = await import(
-            "../../src/ts/init/registry"
-        );
+        const { componentRegistry } =
+            await import("../../src/ts/init/registry");
 
         expect(componentRegistry.has("nonexistent")).toBe(false);
         expect(componentRegistry.get("nonexistent")).toBeUndefined();
     });
 
     it("should allow custom component registration", async () => {
-        const { componentRegistry } = await import(
-            "../../src/ts/init/registry"
-        );
+        const { componentRegistry } =
+            await import("../../src/ts/init/registry");
 
         const customHandler = vi.fn();
         componentRegistry.set("custom-test", {

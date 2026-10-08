@@ -183,7 +183,9 @@ describe("InfiniteScrollManager", () => {
         });
 
         it("logs when the bottom is reached in debug mode", () => {
-            const logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+            const logSpy = vi
+                .spyOn(console, "log")
+                .mockImplementation(() => {});
             const container = nearBottomContainer();
             new InfiniteScrollManager({
                 loadMoreCallback: vi.fn(),

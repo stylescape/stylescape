@@ -29,7 +29,9 @@ export const SectionTitle: Story = {
                 </p>
             </div>
             <div class="ss-c-card--footer">
-                <button class="ss-c-button ss-c-button--small ss-c-button--primary">
+                <button
+                    class="ss-c-button ss-c-button--small ss-c-button--primary"
+                >
                     Action
                 </button>
             </div>
@@ -52,7 +54,9 @@ export const SectionTitle2: Story = {
                 </p>
             </div>
             <div class="ss-c-card--footer">
-                <button class="ss-c-button ss-c-button--small">Learn More</button>
+                <button class="ss-c-button ss-c-button--small">
+                    Learn More
+                </button>
             </div>
         </div>
     `,
@@ -140,7 +144,9 @@ export const SectionTitle5: Story = {
                     </p>
                 </div>
                 <div class="ss-c-card--footer">
-                    <button class="ss-c-button ss-c-button--small">View</button>
+                    <button class="ss-c-button ss-c-button--small">
+                        View
+                    </button>
                 </div>
             </div>
         </div>

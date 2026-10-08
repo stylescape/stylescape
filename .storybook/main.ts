@@ -12,10 +12,7 @@ import { NodePackageImporter } from "sass";
 const config: StorybookConfig = {
     // Hand-written stories live in `stories/`. Add `../src/**/*.stories.@(js|ts)`
     // here too if you ever want to co-locate stories next to source.
-    stories: [
-        "../stories/**/*.mdx",
-        "../stories/**/*.stories.@(js|ts)",
-    ],
+    stories: ["../stories/**/*.mdx", "../stories/**/*.stories.@(js|ts)"],
 
     addons: [
         "@storybook/addon-docs",

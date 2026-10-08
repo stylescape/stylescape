@@ -19,8 +19,12 @@ type Story = StoryObj;
 export const SectionTitle: Story = {
     render: () => html`
         <blockquote class="ss-c-pull-quote">
-            <p class="ss-c-pull-quote__text">Design systems are products that serve products.</p>
-            <footer class="ss-c-pull-quote__attribution">&mdash; Nathan Curtis</footer>
+            <p class="ss-c-pull-quote__text">
+                Design systems are products that serve products.
+            </p>
+            <footer class="ss-c-pull-quote__attribution">
+                &mdash; Nathan Curtis
+            </footer>
         </blockquote>
     `,
 };
@@ -28,8 +32,12 @@ export const SectionTitle: Story = {
 export const SectionTitle2: Story = {
     render: () => html`
         <blockquote class="ss-c-pull-quote ss-c-pull-quote--elevated">
-            <p class="ss-c-pull-quote__text">Constraints liberate, freedom imprisons.</p>
-            <footer class="ss-c-pull-quote__attribution">&mdash; Anonymous</footer>
+            <p class="ss-c-pull-quote__text">
+                Constraints liberate, freedom imprisons.
+            </p>
+            <footer class="ss-c-pull-quote__attribution">
+                &mdash; Anonymous
+            </footer>
         </blockquote>
     `,
 };

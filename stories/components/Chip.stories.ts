@@ -132,7 +132,10 @@ export const SectionTitle4: Story = {
             >
                 Success
             </span>
-            <span class="ss-c-chip" style="background: var(--color_state_warning)">
+            <span
+                class="ss-c-chip"
+                style="background: var(--color_state_warning)"
+            >
                 Warning
             </span>
             <span

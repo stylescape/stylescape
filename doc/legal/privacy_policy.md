@@ -20,15 +20,15 @@ This document is based upon the Automattic Privacy Policy and is licensed under
 Creative Commons Attribution Share-Alike License 2.5. Basically, this means you
 can use it verbatim or edited, but you must release new versions under the same
 license and you have to credit Automattic somewhere (like this!). Automattic is
-not connected with and does not sponsor or endorse Scape Press BV or its use
-of the work.
+not connected with and does not sponsor or endorse Scape Press BV or its use of
+the work.
 
-Scape Press BV ("Scape Press") makes available services such as our web
-sites, including [www.scape.press](https://www.scape.press), our API, and any
-other software, sites, and services offered by Scape Press BV in connection to
-any of those (taken together, the "Service"). It is Scape Press BV's policy to
-respect your privacy regarding any information we may collect while operating
-our websites.
+Scape Press BV ("Scape Press") makes available services such as our web sites,
+including [www.scape.press](https://www.scape.press), our API, and any other
+software, sites, and services offered by Scape Press BV in connection to any of
+those (taken together, the "Service"). It is Scape Press BV's policy to respect
+your privacy regarding any information we may collect while operating our
+websites.
 
 ## Questions
 
@@ -37,15 +37,14 @@ If you have question about this Privacy Policy, please contact us at:
 
 ## Visitors
 
-Like most website operators, Scape Press BV collects
-non-personally-identifying information of the sort that web browsers and
-servers typically make available, such as the browser type, language
-preference, referring site, and the date and time of each visitor request.
-Scape Press BV's purpose in collecting non-personally identifying information
-is to better understand how Scape Press BV's visitors use its website. From
-time to time, Scape Press BV may release non-personally-identifying
-information in the aggregate, e.g., by publishing a report on trends in the
-usage of its website.
+Like most website operators, Scape Press BV collects non-personally-identifying
+information of the sort that web browsers and servers typically make available,
+such as the browser type, language preference, referring site, and the date and
+time of each visitor request. Scape Press BV's purpose in collecting
+non-personally identifying information is to better understand how Scape Press
+BV's visitors use its website. From time to time, Scape Press BV may release
+non-personally-identifying information in the aggregate, e.g., by publishing a
+report on trends in the usage of its website.
 
 Scape Press BV also collects potentially personally-identifying information
 like Internet Protocol (IP) addresses. Scape Press BV does not use such
@@ -76,8 +75,8 @@ optional and is only displayed for the benefit and the convenience of the user.
 ## Aggregated Statistics
 
 Scape Press BV may collect statistics about the behavior of visitors to the
-Service. For instance, Scape Press BV may monitor the most popular parts of
-the URL of its sites and services. Scape Press BV may display this information
+Service. For instance, Scape Press BV may monitor the most popular parts of the
+URL of its sites and services. Scape Press BV may display this information
 publicly or provide it to others. However, Scape Press BV does not disclose
 personally-identifying information other than as described below.
 
@@ -86,29 +85,29 @@ personally-identifying information other than as described below.
 Scape Press BV discloses potentially personally-identifying and
 personally-identifying information only to those of its employees, contractors
 and affiliated organizations that (i) need to know that information in order to
-process it on Scape Press BV's behalf or to provide services available at
-Scape Press BV's websites, and (ii) that have agreed not to disclose it to
-others. Some of those employees, contractors and affiliated organizations may
-be located outside of your home country; by using the Service, you consent to
-the transfer of such information to them. Scape Press BV will not rent or sell
+process it on Scape Press BV's behalf or to provide services available at Scape
+Press BV's websites, and (ii) that have agreed not to disclose it to others.
+Some of those employees, contractors and affiliated organizations may be
+located outside of your home country; by using the Service, you consent to the
+transfer of such information to them. Scape Press BV will not rent or sell
 potentially personally-identifying and personally-identifying information to
 anyone. Other than to its employees, contractors and affiliated organizations,
-as described above, Scape Press BV discloses potentially
-personally-identifying and personally-identifying information only when
-required to do so by law, or when Scape Press BV believes in good faith that
-disclosure is reasonably necessary to protect the property or rights of Scape
-Agency BV, third parties or the public at large. If you are a registered user
-of the Service and have supplied your email address, Scape Press BV may
-occasionally send you an email to tell you about new features, solicit your
-feedback, or just keep you up to date with what's going on with Scape Press BV
-and our products. We primarily use our website and blog to communicate this
-type of information, so we expect to keep this type of email to a minimum. If
-you send us a request (for example via a support email or via one of our
-feedback mechanisms), we reserve the right to publish it in order to help us
-clarify or respond to your request or to help us support other users. Scape
-Agency BV takes all measures reasonably necessary to protect against the
-unauthorized access, use, alteration or destruction of potentially
-personally-identifying and personally-identifying information.
+as described above, Scape Press BV discloses potentially personally-identifying
+and personally-identifying information only when required to do so by law, or
+when Scape Press BV believes in good faith that disclosure is reasonably
+necessary to protect the property or rights of Scape Agency BV, third parties
+or the public at large. If you are a registered user of the Service and have
+supplied your email address, Scape Press BV may occasionally send you an email
+to tell you about new features, solicit your feedback, or just keep you up to
+date with what's going on with Scape Press BV and our products. We primarily
+use our website and blog to communicate this type of information, so we expect
+to keep this type of email to a minimum. If you send us a request (for example
+via a support email or via one of our feedback mechanisms), we reserve the
+right to publish it in order to help us clarify or respond to your request or
+to help us support other users. Scape Agency BV takes all measures reasonably
+necessary to protect against the unauthorized access, use, alteration or
+destruction of potentially personally-identifying and personally-identifying
+information.
 
 ## Cookies
 
@@ -119,8 +118,7 @@ and track visitors, their usage of Scape Press BV Service, and their Service
 access preferences. Scape Press BV visitors who do not wish to have cookies
 placed on their computers should set their browsers to refuse cookies before
 using Scape Press BV's websites, with the drawback that certain features of
-Scape Press BV's websites may not function properly without the aid of
-cookies.
+Scape Press BV's websites may not function properly without the aid of cookies.
 
 ## Data Storage
 

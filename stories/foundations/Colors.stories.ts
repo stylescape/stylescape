@@ -42,7 +42,9 @@ const meta: Meta = {
     title: "Foundations/Colors",
     parameters: { layout: "fullscreen" },
     render: () => html`
-        <div style="padding:1.5rem; color:var(--ss-color-foreground); background:var(--ss-color-background);">
+        <div
+            style="padding:1.5rem; color:var(--ss-color-foreground); background:var(--ss-color-background);"
+        >
             <div
                 style="display:grid; gap:0.75rem;
                        grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));"

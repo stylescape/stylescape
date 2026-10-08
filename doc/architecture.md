@@ -10,8 +10,8 @@ Just as humans have distinct systems working together—a brain for thinking, a
 body for action, and a soul for expression—StyleScape separates concerns into
 three complementary tiers:
 
-| Tier     | Metaphor             | Purpose                                                             |
-| -------- | -------------------- | ------------------------------------------------------------------- |
+| Tier     | Metaphor            | Purpose                                                             |
+| -------- | ------------------- | ------------------------------------------------------------------- |
 | **Head** | ◐ The Brain         | Structural intelligence — layout, positioning, spatial organization |
 | **Body** | ▲ The Physical Form | Composition anatomy — UI components following Atomic Design         |
 | **Soul** | ✦ The Personality   | Aesthetic experience — typography, colors, shadows, motion          |

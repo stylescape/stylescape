@@ -79,7 +79,9 @@ describe("PasswordToggleManager", () => {
                 <button data-password-toggle="">Show</button>
             `;
             const input = document.getElementById("pw") as HTMLInputElement;
-            const button = document.querySelector("button") as HTMLButtonElement;
+            const button = document.querySelector(
+                "button",
+            ) as HTMLButtonElement;
             new PasswordToggleManager();
 
             click(button);

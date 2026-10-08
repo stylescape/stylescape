@@ -18,7 +18,10 @@ type Story = StoryObj;
 
 export const SectionTitle: Story = {
     render: () => html`
-        <div class="ss-c-tooltip ss-c-tooltip--top" tooltip-data="Tooltip on top">
+        <div
+            class="ss-c-tooltip ss-c-tooltip--top"
+            tooltip-data="Tooltip on top"
+        >
             Hover me (Top)
         </div>
     `,
@@ -26,7 +29,10 @@ export const SectionTitle: Story = {
 
 export const SectionTitle2: Story = {
     render: () => html`
-        <div class="ss-c-tooltip ss-c-tooltip--right" tooltip-data="Tooltip on right">
+        <div
+            class="ss-c-tooltip ss-c-tooltip--right"
+            tooltip-data="Tooltip on right"
+        >
             Hover me (Right)
         </div>
     `,
@@ -34,7 +40,10 @@ export const SectionTitle2: Story = {
 
 export const SectionTitle3: Story = {
     render: () => html`
-        <div class="ss-c-tooltip ss-c-tooltip--bottom" tooltip-data="Tooltip on bottom">
+        <div
+            class="ss-c-tooltip ss-c-tooltip--bottom"
+            tooltip-data="Tooltip on bottom"
+        >
             Hover me (Bottom)
         </div>
     `,
@@ -42,7 +51,10 @@ export const SectionTitle3: Story = {
 
 export const SectionTitle4: Story = {
     render: () => html`
-        <div class="ss-c-tooltip ss-c-tooltip--left" tooltip-data="Tooltip on left">
+        <div
+            class="ss-c-tooltip ss-c-tooltip--left"
+            tooltip-data="Tooltip on left"
+        >
             Hover me (Left)
         </div>
     `,

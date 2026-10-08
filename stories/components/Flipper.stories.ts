@@ -26,9 +26,17 @@ export const SectionTitle: Story = {
 
 export const SectionTitle2: Story = {
     render: () => html`
-        <span class="ss-c-flipper ss-c-flipper--up"><span class="ss-c-flipper__icon">^</span></span>
-        <span class="ss-c-flipper ss-c-flipper--down"><span class="ss-c-flipper__icon">v</span></span>
-        <span class="ss-c-flipper ss-c-flipper--left"><span class="ss-c-flipper__icon"><</span></span>
-        <span class="ss-c-flipper ss-c-flipper--right"><span class="ss-c-flipper__icon">></span></span>
+        <span class="ss-c-flipper ss-c-flipper--up"
+            ><span class="ss-c-flipper__icon">^</span></span
+        >
+        <span class="ss-c-flipper ss-c-flipper--down"
+            ><span class="ss-c-flipper__icon">v</span></span
+        >
+        <span class="ss-c-flipper ss-c-flipper--left"
+            ><span class="ss-c-flipper__icon"><</span></span
+        >
+        <span class="ss-c-flipper ss-c-flipper--right"
+            ><span class="ss-c-flipper__icon">></span></span
+        >
     `,
 };

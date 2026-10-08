@@ -18,12 +18,15 @@ type Story = StoryObj;
 
 export const SectionTitle: Story = {
     render: () => html`
-        <figure class="ss-c-diff" style="--ss-diff-position: 50%; aspect-ratio: 16/9; max-width: 480px;">
+        <figure
+            class="ss-c-diff"
+            style="--ss-diff-position: 50%; aspect-ratio: 16/9; max-width: 480px;"
+        >
             <div class="ss-c-diff__item-1">
-                <img src="https://picsum.photos/seed/diff-a/480/270" alt="">
+                <img src="https://picsum.photos/seed/diff-a/480/270" alt="" />
             </div>
             <div class="ss-c-diff__item-2">
-                <img src="https://picsum.photos/seed/diff-b/480/270" alt="">
+                <img src="https://picsum.photos/seed/diff-b/480/270" alt="" />
             </div>
             <div class="ss-c-diff__resizer"></div>
         </figure>

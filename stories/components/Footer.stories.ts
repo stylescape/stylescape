@@ -21,15 +21,18 @@ export const SectionTitle: Story = {
         <footer class="ss-c-footer">
             <section>
                 <h4 class="ss-c-footer__title">Product</h4>
-                <a href="#">Features</a><a href="#">Pricing</a><a href="#">Changelog</a>
+                <a href="#">Features</a><a href="#">Pricing</a
+                ><a href="#">Changelog</a>
             </section>
             <section>
                 <h4 class="ss-c-footer__title">Company</h4>
-                <a href="#">About</a><a href="#">Contact</a><a href="#">Careers</a>
+                <a href="#">About</a><a href="#">Contact</a
+                ><a href="#">Careers</a>
             </section>
             <section>
                 <h4 class="ss-c-footer__title">Legal</h4>
-                <a href="#">Terms</a><a href="#">Privacy</a><a href="#">Cookies</a>
+                <a href="#">Terms</a><a href="#">Privacy</a
+                ><a href="#">Cookies</a>
             </section>
         </footer>
     `,
@@ -38,7 +41,9 @@ export const SectionTitle: Story = {
 export const SectionTitle2: Story = {
     render: () => html`
         <footer class="ss-c-footer ss-c-footer--center">
-            <section><p>&copy; 2026 Scape Press. All rights reserved.</p></section>
+            <section>
+                <p>&copy; 2026 Scape Press. All rights reserved.</p>
+            </section>
         </footer>
     `,
 };

@@ -26,8 +26,10 @@ interface Widget {
 
 class WidgetManager extends BaseElementManager<Widget> {
     /** Records every (element, config) pair passed to createElement. */
-    public created: Array<{ el: HTMLElement; config: Record<string, unknown> }> =
-        [];
+    public created: Array<{
+        el: HTMLElement;
+        config: Record<string, unknown>;
+    }> = [];
 
     protected getComponentName(): string {
         return "widget";
@@ -148,7 +150,9 @@ describe("BaseElementManager (abstract)", () => {
         });
 
         it("assigns an auto id to elements without one", async () => {
-            const el = appendToBody(createElement(`<div data-ss-widget></div>`));
+            const el = appendToBody(
+                createElement(`<div data-ss-widget></div>`),
+            );
 
             const mgr = new WidgetManager({ autoInit: false });
             await mgr.init();
@@ -174,7 +178,9 @@ describe("BaseElementManager (abstract)", () => {
                     `<div><div data-ss-widget id="inside"></div></div>`,
                 ),
             );
-            appendToBody(createElement(`<div data-ss-widget id="outside"></div>`));
+            appendToBody(
+                createElement(`<div data-ss-widget id="outside"></div>`),
+            );
 
             const mgr = new WidgetManager({ autoInit: false, root });
             await mgr.init();
@@ -213,7 +219,9 @@ describe("BaseElementManager (abstract)", () => {
 
     describe("get / getAll / has", () => {
         it("has() reflects whether an id is initialised", async () => {
-            appendToBody(createElement(`<div data-ss-widget id="known"></div>`));
+            appendToBody(
+                createElement(`<div data-ss-widget id="known"></div>`),
+            );
             const mgr = new WidgetManager({ autoInit: false });
             await mgr.init();
 
@@ -236,7 +244,9 @@ describe("BaseElementManager (abstract)", () => {
     });
 
     describe("parseConfig (via captured createElement config)", () => {
-        async function configFor(html: string): Promise<Record<string, unknown>> {
+        async function configFor(
+            html: string,
+        ): Promise<Record<string, unknown>> {
             const el = appendToBody(createElement(html));
             const mgr = new WidgetManager({ autoInit: false });
             await mgr.initElement(el);
@@ -396,7 +406,9 @@ describe("BaseElementManager (abstract)", () => {
 
     describe("auto-init behaviour", () => {
         it("auto-initialises immediately when readyState is not 'loading'", async () => {
-            appendToBody(createElement(`<div data-ss-autowidget id="auto"></div>`));
+            appendToBody(
+                createElement(`<div data-ss-autowidget id="auto"></div>`),
+            );
 
             const mgr = new AutoWidgetManager(); // autoInit defaults true
             // init() is async and not awaited by the constructor; flush microtasks.
@@ -406,7 +418,9 @@ describe("BaseElementManager (abstract)", () => {
         });
 
         it("does NOT auto-initialise when autoInit is false", async () => {
-            appendToBody(createElement(`<div data-ss-widget id="noauto"></div>`));
+            appendToBody(
+                createElement(`<div data-ss-widget id="noauto"></div>`),
+            );
 
             const mgr = new WidgetManager({ autoInit: false });
             await new Promise((r) => setTimeout(r, 0));
@@ -415,7 +429,9 @@ describe("BaseElementManager (abstract)", () => {
         });
 
         it("defers init to DOMContentLoaded while readyState is 'loading'", async () => {
-            appendToBody(createElement(`<div data-ss-widget id="deferred"></div>`));
+            appendToBody(
+                createElement(`<div data-ss-widget id="deferred"></div>`),
+            );
 
             // Shadow the readyState getter to simulate a still-loading document.
             Object.defineProperty(document, "readyState", {
@@ -427,7 +443,8 @@ describe("BaseElementManager (abstract)", () => {
             expect(mgr.has("deferred")).toBe(false);
 
             // Restore real readyState, then fire the event the manager waits for.
-            delete (document as unknown as { readyState?: unknown }).readyState;
+            delete (document as unknown as { readyState?: unknown })
+                .readyState;
             document.dispatchEvent(new Event("DOMContentLoaded"));
             await new Promise((r) => setTimeout(r, 0));
 

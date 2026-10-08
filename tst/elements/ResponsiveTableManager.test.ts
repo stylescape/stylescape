@@ -38,29 +38,35 @@ describe("ResponsiveTableManager", () => {
     it("auto-generates data-label attributes from headers", () => {
         new ResponsiveTableManager("#myTable", { autoLabels: true });
 
-        const firstRowCells = document.querySelectorAll("tbody tr:first-child td");
+        const firstRowCells = document.querySelectorAll(
+            "tbody tr:first-child td",
+        );
         expect(firstRowCells[0].getAttribute("data-label")).toBe("Name");
         expect(firstRowCells[1].getAttribute("data-label")).toBe("Email");
         expect(firstRowCells[2].getAttribute("data-label")).toBe("Status");
     });
 
     it("does not overwrite existing data-label attributes", () => {
-        document.querySelector("tbody td")?.setAttribute("data-label", "Custom");
+        document
+            .querySelector("tbody td")
+            ?.setAttribute("data-label", "Custom");
         new ResponsiveTableManager("#myTable");
-        expect(document.querySelector("tbody td")?.getAttribute("data-label")).toBe(
-            "Custom",
-        );
+        expect(
+            document.querySelector("tbody td")?.getAttribute("data-label"),
+        ).toBe("Custom");
     });
 
     it("skips data-label generation when autoLabels is false", () => {
         new ResponsiveTableManager("#myTable", { autoLabels: false });
-        expect(document.querySelector("tbody td")?.hasAttribute("data-label")).toBe(
-            false,
-        );
+        expect(
+            document.querySelector("tbody td")?.hasAttribute("data-label"),
+        ).toBe(false);
     });
 
     it("starts in normal mode above the breakpoint", () => {
-        const mgr = new ResponsiveTableManager("#myTable", { breakpoint: 768 });
+        const mgr = new ResponsiveTableManager("#myTable", {
+            breakpoint: 768,
+        });
         expect(mgr.getMode()).toBe("normal");
         expect(mgr.isStacked()).toBe(false);
     });
@@ -75,15 +81,17 @@ describe("ResponsiveTableManager", () => {
 
         expect(mgr.isStacked()).toBe(true);
         expect(
-            document.getElementById("myTable")?.classList.contains(
-                "table--stacked",
-            ),
+            document
+                .getElementById("myTable")
+                ?.classList.contains("table--stacked"),
         ).toBe(true);
         expect(onModeChange).toHaveBeenCalledWith("stacked");
     });
 
     it("reacts to window resize events", () => {
-        const mgr = new ResponsiveTableManager("#myTable", { breakpoint: 768 });
+        const mgr = new ResponsiveTableManager("#myTable", {
+            breakpoint: 768,
+        });
         expect(mgr.isStacked()).toBe(false);
 
         setWidth(400);
@@ -101,7 +109,9 @@ describe("ResponsiveTableManager", () => {
 
     it("setBreakpoint re-evaluates the current mode", () => {
         setWidth(700);
-        const mgr = new ResponsiveTableManager("#myTable", { breakpoint: 600 });
+        const mgr = new ResponsiveTableManager("#myTable", {
+            breakpoint: 600,
+        });
         expect(mgr.isStacked()).toBe(false);
         mgr.setBreakpoint(800);
         expect(mgr.isStacked()).toBe(true);
@@ -126,27 +136,27 @@ describe("ResponsiveTableManager", () => {
             document.getElementById("wrap") as HTMLElement,
         );
         expect(mgr.getMode()).toBe("normal");
-        expect(document.querySelector("tbody td")?.hasAttribute("data-label")).toBe(
-            true,
-        );
+        expect(
+            document.querySelector("tbody td")?.hasAttribute("data-label"),
+        ).toBe(true);
     });
 
     it("is a no-op when no table is present", () => {
         document.body.innerHTML = `<div id="empty"></div>`;
-        expect(
-            () => new ResponsiveTableManager("#empty"),
-        ).not.toThrow();
+        expect(() => new ResponsiveTableManager("#empty")).not.toThrow();
     });
 
     it("destroy removes the stacked class and listeners", () => {
         setWidth(400);
-        const mgr = new ResponsiveTableManager("#myTable", { breakpoint: 768 });
+        const mgr = new ResponsiveTableManager("#myTable", {
+            breakpoint: 768,
+        });
         expect(mgr.isStacked()).toBe(true);
         mgr.destroy();
         expect(
-            document.getElementById("myTable")?.classList.contains(
-                "table--stacked",
-            ),
+            document
+                .getElementById("myTable")
+                ?.classList.contains("table--stacked"),
         ).toBe(false);
     });
 

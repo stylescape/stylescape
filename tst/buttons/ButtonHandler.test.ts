@@ -133,9 +133,8 @@ describe("ToggleSwitchManager", () => {
 
     describe("Initialization", () => {
         it("should initialize toggle switch", async () => {
-            const { ToggleSwitchManager } = await import(
-                "../../src/ts/buttons/ToggleSwitchManager"
-            );
+            const { ToggleSwitchManager } =
+                await import("../../src/ts/buttons/ToggleSwitchManager");
             const toggle = new ToggleSwitchManager(toggleElement);
             expect(toggle).toBeDefined();
         });
@@ -143,9 +142,8 @@ describe("ToggleSwitchManager", () => {
 
     describe("Toggle Behavior", () => {
         it("should toggle checked state", async () => {
-            const { ToggleSwitchManager } = await import(
-                "../../src/ts/buttons/ToggleSwitchManager"
-            );
+            const { ToggleSwitchManager } =
+                await import("../../src/ts/buttons/ToggleSwitchManager");
             new ToggleSwitchManager(toggleElement);
 
             expect(toggleElement.checked).toBe(false);
@@ -157,9 +155,8 @@ describe("ToggleSwitchManager", () => {
             const changeSpy = vi.fn();
             toggleElement.addEventListener("change", changeSpy);
 
-            const { ToggleSwitchManager } = await import(
-                "../../src/ts/buttons/ToggleSwitchManager"
-            );
+            const { ToggleSwitchManager } =
+                await import("../../src/ts/buttons/ToggleSwitchManager");
             new ToggleSwitchManager(toggleElement);
 
             click(toggleElement);
@@ -169,9 +166,8 @@ describe("ToggleSwitchManager", () => {
 
     describe("Accessibility", () => {
         it("should be keyboard accessible", async () => {
-            const { ToggleSwitchManager } = await import(
-                "../../src/ts/buttons/ToggleSwitchManager"
-            );
+            const { ToggleSwitchManager } =
+                await import("../../src/ts/buttons/ToggleSwitchManager");
             new ToggleSwitchManager(toggleElement);
 
             toggleElement.focus();

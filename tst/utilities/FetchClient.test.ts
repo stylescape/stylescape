@@ -2,14 +2,7 @@
 // Stylescape | Fetch Client Tests
 // ============================================================================
 
-import {
-    afterEach,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    vi,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
     FetchClient,
     FetchError,
@@ -33,9 +26,12 @@ function fakeResponse({
         status,
         statusText,
         ok: status >= 200 && status < 300,
-        headers: { get: (h: string) => (h === "Content-Type" ? contentType : null) },
+        headers: {
+            get: (h: string) => (h === "Content-Type" ? contentType : null),
+        },
         json: async () => body,
-        text: async () => (typeof body === "string" ? body : JSON.stringify(body)),
+        text: async () =>
+            typeof body === "string" ? body : JSON.stringify(body),
         blob: async () => body,
     };
 }
@@ -86,9 +82,9 @@ describe("FetchClient", () => {
             const [, init] = fetchMock.mock.calls[0];
             expect(init.method).toBe("POST");
             expect(init.body).toBe(JSON.stringify({ name: "Ada" }));
-            expect((init.headers as Record<string, string>)["Content-Type"]).toBe(
-                "application/json",
-            );
+            expect(
+                (init.headers as Record<string, string>)["Content-Type"],
+            ).toBe("application/json");
         });
 
         it("supports PUT, PATCH and DELETE", async () => {
@@ -104,7 +100,10 @@ describe("FetchClient", () => {
 
         it("parses text responses when Content-Type is text/*", async () => {
             fetchMock.mockResolvedValueOnce(
-                fakeResponse({ contentType: "text/plain", body: "plain body" }),
+                fakeResponse({
+                    contentType: "text/plain",
+                    body: "plain body",
+                }),
             );
             const api = new FetchClient();
             const res = await api.get("https://x.test/thing");

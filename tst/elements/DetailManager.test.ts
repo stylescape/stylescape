@@ -165,9 +165,7 @@ describe("DetailManager", () => {
 
     describe("toggle()", () => {
         it("opens and closes a specific details element", () => {
-            buildDetails(
-                `<details id="d1"><summary>One</summary></details>`,
-            );
+            buildDetails(`<details id="d1"><summary>One</summary></details>`);
             manager = new DetailManager();
             const d1 = document.getElementById("d1") as HTMLDetailsElement;
 

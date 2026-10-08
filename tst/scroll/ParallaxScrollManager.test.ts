@@ -62,12 +62,12 @@ describe("ParallaxScrollManager", () => {
         window.dispatchEvent(new Event("scroll"));
         flushFrame();
 
-        expect(
-            document.getElementById("slow")!.style.backgroundPosition,
-        ).toBe("center -20px");
-        expect(
-            document.getElementById("fast")!.style.backgroundPosition,
-        ).toBe("center -80px");
+        expect(document.getElementById("slow")!.style.backgroundPosition).toBe(
+            "center -20px",
+        );
+        expect(document.getElementById("fast")!.style.backgroundPosition).toBe(
+            "center -80px",
+        );
     });
 
     it("skips elements with a non-numeric data-speed", () => {

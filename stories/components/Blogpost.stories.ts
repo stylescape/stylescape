@@ -230,7 +230,10 @@ export const SectionTitle4: Story = {
                     gap: 16px;
                 "
             >
-                <div class="ss-c-blogpost--tags" style="display: flex; gap: 8px">
+                <div
+                    class="ss-c-blogpost--tags"
+                    style="display: flex; gap: 8px"
+                >
                     <span
                         class="ss-c-chip"
                         style="

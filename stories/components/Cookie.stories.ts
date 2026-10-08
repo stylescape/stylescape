@@ -36,8 +36,12 @@ export const SectionTitle: Story = {
                 continuing to use this site, you agree to our use of cookies.
             </p>
             <div style="display: flex; gap: 8px">
-                <button class="ss-c-button ss-c-button--secondary">Decline</button>
-                <button class="ss-c-button ss-c-button--primary">Accept All</button>
+                <button class="ss-c-button ss-c-button--secondary">
+                    Decline
+                </button>
+                <button class="ss-c-button ss-c-button--primary">
+                    Accept All
+                </button>
             </div>
         </div>
     `,
@@ -86,7 +90,9 @@ export const SectionTitle2: Story = {
                 <button class="ss-c-button ss-c-button--primary">
                     Save Preferences
                 </button>
-                <button class="ss-c-button ss-c-button--secondary">Accept All</button>
+                <button class="ss-c-button ss-c-button--secondary">
+                    Accept All
+                </button>
             </div>
         </div>
     `,
@@ -110,10 +116,14 @@ export const SectionTitle3: Story = {
                 <a href="#">Learn more</a>
             </span>
             <div style="display: flex; gap: 8px">
-                <button class="ss-c-button ss-c-button--small ss-c-button--secondary">
+                <button
+                    class="ss-c-button ss-c-button--small ss-c-button--secondary"
+                >
                     Decline
                 </button>
-                <button class="ss-c-button ss-c-button--small ss-c-button--primary">
+                <button
+                    class="ss-c-button ss-c-button--small ss-c-button--primary"
+                >
                     Accept
                 </button>
             </div>
@@ -163,7 +173,9 @@ export const SectionTitle4: Story = {
                         "
                     >
                         <strong>Strictly Necessary</strong>
-                        <span class="ss-c-badge ss-c-badge--success">Always Active</span>
+                        <span class="ss-c-badge ss-c-badge--success"
+                            >Always Active</span
+                        >
                     </div>
                     <small style="opacity: 0.7">
                         Required for the website to function properly.
@@ -219,10 +231,16 @@ export const SectionTitle4: Story = {
             </div>
 
             <div style="display: flex; gap: 12px">
-                <button class="ss-c-button ss-c-button--secondary" style="flex: 1">
+                <button
+                    class="ss-c-button ss-c-button--secondary"
+                    style="flex: 1"
+                >
                     Reject All
                 </button>
-                <button class="ss-c-button ss-c-button--primary" style="flex: 1">
+                <button
+                    class="ss-c-button ss-c-button--primary"
+                    style="flex: 1"
+                >
                     Accept All
                 </button>
             </div>

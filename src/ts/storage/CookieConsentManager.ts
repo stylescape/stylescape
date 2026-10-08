@@ -9,10 +9,7 @@
  * Cookie categories for granular consent
  */
 export type CookieCategory =
-    | "necessary"
-    | "analytics"
-    | "marketing"
-    | "preferences";
+    "necessary" | "analytics" | "marketing" | "preferences";
 
 /**
  * Consent state for all categories
@@ -294,9 +291,7 @@ export class CookieConsentManager {
         return new CookieConsentManager({
             message: element.dataset.ssCookieMessage,
             position: element.dataset.ssCookiePosition as
-                | "top"
-                | "bottom"
-                | "center",
+                "top" | "bottom" | "center",
             privacyPolicyUrl: element.dataset.ssCookiePrivacyUrl,
             cssClass: element.dataset.ssCookieClass,
             showSettings: element.dataset.ssCookieShowSettings !== "false",

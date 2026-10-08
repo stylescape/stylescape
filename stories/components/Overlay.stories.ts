@@ -18,11 +18,19 @@ type Story = StoryObj;
 
 export const SectionTitle: Story = {
     render: () => html`
-        <div style="position: relative; height: 260px; background: var(--ss-color-surface-2);">
+        <div
+            style="position: relative; height: 260px; background: var(--ss-color-surface-2);"
+        >
             <div class="ss-c-overlay">
-                <aside class="ss-c-overlay__aside ss-c-overlay__aside--left">Layers</aside>
-                <aside class="ss-c-overlay__aside ss-c-overlay__aside--right">Inspector</aside>
-                <div class="ss-c-overlay__bottom-center">Lon 5.29 &middot; Lat 52.13 &middot; z14</div>
+                <aside class="ss-c-overlay__aside ss-c-overlay__aside--left">
+                    Layers
+                </aside>
+                <aside class="ss-c-overlay__aside ss-c-overlay__aside--right">
+                    Inspector
+                </aside>
+                <div class="ss-c-overlay__bottom-center">
+                    Lon 5.29 &middot; Lat 52.13 &middot; z14
+                </div>
             </div>
         </div>
     `,
@@ -30,9 +38,13 @@ export const SectionTitle: Story = {
 
 export const SectionTitle2: Story = {
     render: () => html`
-        <div style="position: relative; height: 160px; background: var(--ss-color-surface-2);">
+        <div
+            style="position: relative; height: 160px; background: var(--ss-color-surface-2);"
+        >
             <div class="ss-c-overlay">
-                <div class="ss-c-overlay__top-center">Rendering &hellip; 62%</div>
+                <div class="ss-c-overlay__top-center">
+                    Rendering &hellip; 62%
+                </div>
             </div>
         </div>
     `,

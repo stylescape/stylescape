@@ -2,12 +2,12 @@
 
 Generated: 2026-05-16
 
-Status: SCSS source is fully prefixed (ss-{c,l,u,t,f,a,o}-*).
-Layout-critical jinja (base.html.jinja + includes/layout/*) is migrated.
+Status: SCSS source is fully prefixed (ss-{c,l,u,t,f,a,o}-_). Layout-critical
+jinja (base.html.jinja + includes/layout/_) is migrated.
 
-The following classes are referenced in jinja demo templates but lack a
-layer prefix because the corresponding SCSS module has not yet been
-ported. Migrate each as the module is rebuilt under src/scss/31-modules/.
+The following classes are referenced in jinja demo templates but lack a layer
+prefix because the corresponding SCSS module has not yet been ported. Migrate
+each as the module is rebuilt under src/scss/31-modules/.
 
 ## Utility-like (85 classes → ss-u-*)
 

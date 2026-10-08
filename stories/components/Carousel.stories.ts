@@ -433,7 +433,10 @@ export const SectionTitle6: Story = {
                 border-radius: 12px;
             "
         >
-            <div class="ss-c-slideshow__slides" style="display: flex; height: 100%">
+            <div
+                class="ss-c-slideshow__slides"
+                style="display: flex; height: 100%"
+            >
                 <div
                     class="ss-c-slideshow__slide active"
                     style="
@@ -683,7 +686,10 @@ export const SectionTitle8: Story = {
 
 export const SectionTitle9: Story = {
     render: () => html`
-        <div class="ss-c-slideshow ss-c-slideshow--thumbnails" style="max-width: 600px">
+        <div
+            class="ss-c-slideshow ss-c-slideshow--thumbnails"
+            style="max-width: 600px"
+        >
             <div
                 style="
                     position: relative;
@@ -706,7 +712,10 @@ export const SectionTitle9: Story = {
                     "
                 ></div>
             </div>
-            <div class="ss-c-slideshow__thumbs" style="display: flex; gap: 8px">
+            <div
+                class="ss-c-slideshow__thumbs"
+                style="display: flex; gap: 8px"
+            >
                 <button
                     class="ss-c-slideshow__thumb active"
                     style="
@@ -887,7 +896,10 @@ export const SectionTitle10: Story = {
 
 export const SectionTitle11: Story = {
     render: () => html`
-        <div class="ss-c-slideshow ss-c-slideshow--cards" style="padding: 20px 0">
+        <div
+            class="ss-c-slideshow ss-c-slideshow--cards"
+            style="padding: 20px 0"
+        >
             <div
                 style="
                     display: flex;
@@ -988,7 +1000,10 @@ export const SectionTitle11: Story = {
 
 export const SectionTitle12: Story = {
     render: () => html`
-        <div class="ss-c-slideshow ss-c-slideshow--progress" style="max-width: 600px">
+        <div
+            class="ss-c-slideshow ss-c-slideshow--progress"
+            style="max-width: 600px"
+        >
             <div
                 class="ss-c-slideshow__progress"
                 style="display: flex; gap: 4px; margin-bottom: 12px"

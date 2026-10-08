@@ -17,9 +17,7 @@ export default meta;
 type Story = StoryObj;
 
 export const SectionTitle: Story = {
-    render: () => html`
-        Press <kbd class="ss-c-kbd">Esc</kbd> to dismiss.
-    `,
+    render: () => html` Press <kbd class="ss-c-kbd">Esc</kbd> to dismiss. `,
 };
 
 export const SectionTitle2: Story = {
@@ -33,6 +31,7 @@ export const SectionTitle2: Story = {
 
 export const SectionTitle3: Story = {
     render: () => html`
-        <kbd class="ss-c-kbd">Ctrl</kbd> + <kbd class="ss-c-kbd">Shift</kbd> + <kbd class="ss-c-kbd">P</kbd>
+        <kbd class="ss-c-kbd">Ctrl</kbd> + <kbd class="ss-c-kbd">Shift</kbd> +
+        <kbd class="ss-c-kbd">P</kbd>
     `,
 };

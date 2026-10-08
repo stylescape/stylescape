@@ -27,7 +27,13 @@ export const SectionTitle: Story = {
 export const SectionTitle2: Story = {
     render: () => html`
         <label class="ss-c-choice">
-            <input type="radio" name="demo-choice" class="ss-c-radio" checked /> Daily
+            <input
+                type="radio"
+                name="demo-choice"
+                class="ss-c-radio"
+                checked
+            />
+            Daily
         </label>
         <label class="ss-c-choice">
             <input type="radio" name="demo-choice" class="ss-c-radio" /> Weekly

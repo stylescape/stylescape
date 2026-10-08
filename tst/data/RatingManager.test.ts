@@ -44,7 +44,9 @@ describe("RatingManager", () => {
     it("creates star elements when none are present", () => {
         document.body.innerHTML = `<div id="empty"></div>`;
         new RatingManager("#empty", { max: 4 });
-        expect(document.querySelectorAll("#empty .rating__star")).toHaveLength(4);
+        expect(document.querySelectorAll("#empty .rating__star")).toHaveLength(
+            4,
+        );
     });
 
     it("reflects the initial value with active classes", () => {
@@ -103,16 +105,25 @@ describe("RatingManager", () => {
 
     it("uses half-steps for keyboard nav when half is enabled", () => {
         const rating = new RatingManager("#rating", { value: 2, half: true });
-        keyDown(document.getElementById("rating") as HTMLElement, "ArrowRight");
+        keyDown(
+            document.getElementById("rating") as HTMLElement,
+            "ArrowRight",
+        );
         expect(rating.getValue()).toBe(2.5);
     });
 
     it("shows a hover preview on mouseenter", () => {
         new RatingManager("#rating");
         mouseEnter(stars()[2]); // hover value 3
-        expect(stars()[0].classList.contains("rating__star--hover")).toBe(true);
-        expect(stars()[2].classList.contains("rating__star--hover")).toBe(true);
-        expect(stars()[3].classList.contains("rating__star--hover")).toBe(false);
+        expect(stars()[0].classList.contains("rating__star--hover")).toBe(
+            true,
+        );
+        expect(stars()[2].classList.contains("rating__star--hover")).toBe(
+            true,
+        );
+        expect(stars()[3].classList.contains("rating__star--hover")).toBe(
+            false,
+        );
     });
 
     it("does not attach interaction in read-only mode", () => {

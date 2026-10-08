@@ -86,9 +86,8 @@ describe("LazyLoadManager", () => {
     describe("Intersection handling", () => {
         it("swaps data-src into src and unobserves on intersection", () => {
             new LazyLoadManager(".lazy-image");
-            const img = document.querySelectorAll<HTMLImageElement>(
-                ".lazy-image",
-            )[0];
+            const img =
+                document.querySelectorAll<HTMLImageElement>(".lazy-image")[0];
 
             observers[0].trigger([entry(img, true)]);
 
@@ -98,9 +97,8 @@ describe("LazyLoadManager", () => {
 
         it("does nothing while an element is not intersecting", () => {
             new LazyLoadManager(".lazy-image");
-            const img = document.querySelectorAll<HTMLImageElement>(
-                ".lazy-image",
-            )[0];
+            const img =
+                document.querySelectorAll<HTMLImageElement>(".lazy-image")[0];
 
             observers[0].trigger([entry(img, false)]);
 
@@ -110,9 +108,8 @@ describe("LazyLoadManager", () => {
 
         it("still unobserves an intersecting element that has no data-src", () => {
             new LazyLoadManager(".lazy-image");
-            const img = document.querySelectorAll<HTMLImageElement>(
-                ".lazy-image",
-            )[2];
+            const img =
+                document.querySelectorAll<HTMLImageElement>(".lazy-image")[2];
 
             observers[0].trigger([entry(img, true)]);
 
@@ -123,14 +120,10 @@ describe("LazyLoadManager", () => {
 
         it("processes a batch of entries in one callback", () => {
             new LazyLoadManager(".lazy-image");
-            const imgs = document.querySelectorAll<HTMLImageElement>(
-                ".lazy-image",
-            );
+            const imgs =
+                document.querySelectorAll<HTMLImageElement>(".lazy-image");
 
-            observers[0].trigger([
-                entry(imgs[0], true),
-                entry(imgs[1], true),
-            ]);
+            observers[0].trigger([entry(imgs[0], true), entry(imgs[1], true)]);
 
             expect(imgs[0].getAttribute("src")).toBe("real-1.jpg");
             expect(imgs[1].getAttribute("src")).toBe("real-2.jpg");

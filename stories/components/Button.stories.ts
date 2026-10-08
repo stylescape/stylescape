@@ -81,29 +81,29 @@ type Story = StoryObj<ButtonArgs>;
 export const Playground: Story = {};
 
 export const Variants: Story = {
-    render: () =>
-        html`
-            <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
-                ${VARIANTS.map(
-                    (v) =>
-                        `<button class="ss-c-button ss-c-button--${v}">${v}</button>`,
-                ).join("")}
-            </div>
-        `,
+    render: () => html`
+        <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+            ${VARIANTS.map(
+                (v) =>
+                    `<button class="ss-c-button ss-c-button--${v}">${v}</button>`,
+            ).join("")}
+        </div>
+    `,
 };
 
 export const Sizes: Story = {
-    render: () =>
-        html`
-            <div style="display:flex; align-items:center; flex-wrap:wrap; gap:0.75rem;">
-                ${["size-xs", "size-sm", "size-md", "size-lg", "size-xl"]
-                    .map(
-                        (s) =>
-                            `<button class="ss-c-button ss-c-button--primary ss-c-button--${s}">${s}</button>`,
-                    )
-                    .join("")}
-            </div>
-        `,
+    render: () => html`
+        <div
+            style="display:flex; align-items:center; flex-wrap:wrap; gap:0.75rem;"
+        >
+            ${["size-xs", "size-sm", "size-md", "size-lg", "size-xl"]
+                .map(
+                    (s) =>
+                        `<button class="ss-c-button ss-c-button--primary ss-c-button--${s}">${s}</button>`,
+                )
+                .join("")}
+        </div>
+    `,
 };
 
 export const Disabled: Story = {

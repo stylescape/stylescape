@@ -23,7 +23,9 @@ export const FigureDefault: Story = {
                 src="https://via.placeholder.com/600x400"
                 alt="Image with title caption"
             />
-            <figcaption class="ss-c-figcaption--title">Figure Title</figcaption>
+            <figcaption class="ss-c-figcaption--title">
+                Figure Title
+            </figcaption>
             <figcaption>Standard description below the image.</figcaption>
         </figure>
     `,
@@ -36,7 +38,9 @@ export const FigureRounded: Story = {
                 src="https://via.placeholder.com/600x400"
                 alt="Image with title caption"
             />
-            <figcaption class="ss-c-figcaption--title">Figure Title</figcaption>
+            <figcaption class="ss-c-figcaption--title">
+                Figure Title
+            </figcaption>
             <figcaption>Standard description below the image.</figcaption>
         </figure>
     `,
@@ -51,10 +55,11 @@ export const FigureAspectRatioRatio: Story = {
                     alt=" Aspect Ratio"
                 />
             </div>
-            <figcaption class="ss-c-figcaption--title">Figure Title</figcaption>
+            <figcaption class="ss-c-figcaption--title">
+                Figure Title
+            </figcaption>
             <figcaption>
-                Image constrained to  ratio
-                using utility class.
+                Image constrained to ratio using utility class.
             </figcaption>
         </figure>
     `,

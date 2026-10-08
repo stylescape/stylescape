@@ -38,9 +38,15 @@ export const DeepNavigation: Story = {
         <nav aria-label="Breadcrumb">
             <ol class="ss-c-breadcrumb">
                 <li class="ss-c-breadcrumb__item"><a href="#">Home</a></li>
-                <li class="ss-c-breadcrumb__item"><a href="#">Documentation</a></li>
-                <li class="ss-c-breadcrumb__item"><a href="#">Components</a></li>
-                <li class="ss-c-breadcrumb__item"><a href="#">Navigation</a></li>
+                <li class="ss-c-breadcrumb__item">
+                    <a href="#">Documentation</a>
+                </li>
+                <li class="ss-c-breadcrumb__item">
+                    <a href="#">Components</a>
+                </li>
+                <li class="ss-c-breadcrumb__item">
+                    <a href="#">Navigation</a>
+                </li>
                 <li
                     class="ss-c-breadcrumb__item ss-c-breadcrumb__item--active"
                     aria-current="page"
@@ -174,7 +180,9 @@ export const EllipsisCollapse: Story = {
         <nav aria-label="Breadcrumb">
             <ol class="ss-c-breadcrumb">
                 <li class="ss-c-breadcrumb__item"><a href="#">Home</a></li>
-                <li class="ss-c-breadcrumb__item ss-c-breadcrumb__item--collapsed">
+                <li
+                    class="ss-c-breadcrumb__item ss-c-breadcrumb__item--collapsed"
+                >
                     <button
                         class="ss-c-breadcrumb__expand"
                         aria-label="Show hidden items"

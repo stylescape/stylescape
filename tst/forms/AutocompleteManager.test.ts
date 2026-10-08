@@ -2,14 +2,7 @@
 // Stylescape | Autocomplete Manager Tests
 // ============================================================================
 
-import {
-    afterEach,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    vi,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { AutocompleteManager } from "../../src/ts/forms/AutocompleteManager";
 import { keyDown, mouseEnter } from "../utils";
 
@@ -57,7 +50,9 @@ describe("AutocompleteManager", () => {
     // ------------------------------------------------------------------
     describe("construction", () => {
         it("warns and does nothing when the input is not found", () => {
-            const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+            const warn = vi
+                .spyOn(console, "warn")
+                .mockImplementation(() => {});
 
             const ac = new AutocompleteManager("#does-not-exist");
 
@@ -240,7 +235,9 @@ describe("AutocompleteManager", () => {
             type(input, "ap");
             await vi.advanceTimersByTimeAsync(DEBOUNCE);
 
-            const mark = getItems()[0].querySelector(".autocomplete__highlight");
+            const mark = getItems()[0].querySelector(
+                ".autocomplete__highlight",
+            );
             expect(mark).not.toBeNull();
             expect(mark!.textContent!.toLowerCase()).toBe("ap");
         });
@@ -455,7 +452,10 @@ describe("AutocompleteManager", () => {
 
             const item = getItems()[0];
             item.dispatchEvent(
-                new MouseEvent("mousedown", { bubbles: true, cancelable: true }),
+                new MouseEvent("mousedown", {
+                    bubbles: true,
+                    cancelable: true,
+                }),
             );
 
             expect(input.value).toBe("Avocado");

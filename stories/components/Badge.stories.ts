@@ -43,7 +43,9 @@ export const Playground: Story = {};
 
 export const Tones: Story = {
     render: () => html`
-        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;">
+        <div
+            style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;"
+        >
             ${TONES.map((t) => {
                 const cls = ["ss-c-badge", t ? `ss-c-${t}` : ""]
                     .filter(Boolean)
@@ -56,7 +58,9 @@ export const Tones: Story = {
 
 export const Shapes: Story = {
     render: () => html`
-        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;">
+        <div
+            style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;"
+        >
             ${["squared", "rounded", "pill"]
                 .map(
                     (s) =>

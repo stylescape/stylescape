@@ -599,7 +599,10 @@ export const SectionTitle5: Story = {
 
 export const SectionTitle6: Story = {
     render: () => html`
-        <div class="ss-c-social ss-c-social--minimal" style="display: flex; gap: 16px">
+        <div
+            class="ss-c-social ss-c-social--minimal"
+            style="display: flex; gap: 16px"
+        >
             <a
                 href="#"
                 style="opacity: 0.6; transition: opacity 0.2s"

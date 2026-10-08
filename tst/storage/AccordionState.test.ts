@@ -163,9 +163,9 @@ describe("AccordionState", () => {
             ]);
             new AccordionState(SELECTOR, KEY);
             toggle(details, true);
-            expect(Object.keys(JSON.parse(localStorage.getItem(KEY)!))).toEqual([
-                "explicit",
-            ]);
+            expect(
+                Object.keys(JSON.parse(localStorage.getItem(KEY)!)),
+            ).toEqual(["explicit"]);
         });
 
         it("slugifies the summary heading text when no id is set", () => {

@@ -26,14 +26,18 @@ export const SpacerSizes: Story = {
         <div class="ss-c-spacer_vertical ss-c-spacer--04"></div>
         <div class="ss-c-bg--fill_02 ss-c-p--02">Large spacer (16px)</div>
         <div class="ss-c-spacer_vertical ss-c-spacer--08"></div>
-        <div class="ss-c-bg--fill_02 ss-c-p--02">Extra large spacer (32px)</div>
+        <div class="ss-c-bg--fill_02 ss-c-p--02">
+            Extra large spacer (32px)
+        </div>
     `,
 };
 
 export const VisibleSpacerForDemonstration: Story = {
     render: () => html`
         <div class="ss-c-bg--fill_02 ss-c-p--02">Content above</div>
-        <div class="ss-c-spacer_vertical ss-c-spacer--04 ss-c-bg--accent_01"></div>
+        <div
+            class="ss-c-spacer_vertical ss-c-spacer--04 ss-c-bg--accent_01"
+        ></div>
         <div class="ss-c-bg--fill_02 ss-c-p--02">
             Content below (spacer is visible with background)
         </div>

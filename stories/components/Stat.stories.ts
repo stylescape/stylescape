@@ -41,8 +41,14 @@ export const SectionTitle: Story = {
 export const SectionTitle2: Story = {
     render: () => html`
         <div class="ss-c-stats ss-c-stats--vertical">
-            <div class="ss-c-stat"><div class="ss-c-stat__title">Stars</div><div class="ss-c-stat__value">2.4K</div></div>
-            <div class="ss-c-stat"><div class="ss-c-stat__title">Forks</div><div class="ss-c-stat__value">312</div></div>
+            <div class="ss-c-stat">
+                <div class="ss-c-stat__title">Stars</div>
+                <div class="ss-c-stat__value">2.4K</div>
+            </div>
+            <div class="ss-c-stat">
+                <div class="ss-c-stat__title">Forks</div>
+                <div class="ss-c-stat__value">312</div>
+            </div>
         </div>
     `,
 };

@@ -2,14 +2,7 @@
 // Stylescape | Clipboard Helper Tests
 // ============================================================================
 
-import {
-    afterEach,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    vi,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ClipboardHelper } from "../../src/ts/utilities/ClipboardHelper";
 import { click, wait } from "../utils";
 
@@ -134,7 +127,9 @@ describe("ClipboardHelper", () => {
         });
 
         it("warns and returns when the id is not found", () => {
-            const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+            const warn = vi
+                .spyOn(console, "warn")
+                .mockImplementation(() => {});
             ClipboardHelper.copyById("missing");
 
             expect(warn).toHaveBeenCalled();

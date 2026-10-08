@@ -5,7 +5,10 @@
 // static-init coverage.
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { ButtonHandler, initButtons } from "../../src/ts/buttons/ButtonHandler";
+import {
+    ButtonHandler,
+    initButtons,
+} from "../../src/ts/buttons/ButtonHandler";
 import { click } from "../utils";
 
 function button(): HTMLButtonElement {
@@ -128,8 +131,8 @@ describe("ButtonHandler (behaviour)", () => {
         `;
         expect(() => initButtons()).not.toThrow();
         // Ripple button gets relative positioning from its handler init.
-        expect((document.getElementById("a") as HTMLElement).style.position).toBe(
-            "relative",
-        );
+        expect(
+            (document.getElementById("a") as HTMLElement).style.position,
+        ).toBe("relative");
     });
 });

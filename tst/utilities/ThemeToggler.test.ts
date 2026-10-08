@@ -28,9 +28,8 @@ describe("ThemeToggler", () => {
 
     describe("Initialization", () => {
         it("should initialize with element ID", async () => {
-            const { ThemeToggler } = await import(
-                "../../src/ts/utilities/ThemeToggler"
-            );
+            const { ThemeToggler } =
+                await import("../../src/ts/utilities/ThemeToggler");
             ThemeToggler.registerOnLoad("theme-toggle");
             expect(toggleElement).toBeDefined();
         });
@@ -48,18 +47,16 @@ describe("ThemeToggler", () => {
                 dispatchEvent: vi.fn(),
             }));
 
-            const { ThemeToggler } = await import(
-                "../../src/ts/utilities/ThemeToggler"
-            );
+            const { ThemeToggler } =
+                await import("../../src/ts/utilities/ThemeToggler");
             // System preference should be detected
         });
 
         it("should restore theme from localStorage", async () => {
             localStorage.setItem("theme", "dark");
 
-            const { ThemeToggler } = await import(
-                "../../src/ts/utilities/ThemeToggler"
-            );
+            const { ThemeToggler } =
+                await import("../../src/ts/utilities/ThemeToggler");
             ThemeToggler.registerOnLoad("theme-toggle");
 
             // Theme should be restored from storage
@@ -68,9 +65,8 @@ describe("ThemeToggler", () => {
 
     describe("Toggle Behavior", () => {
         it("should toggle from light to dark", async () => {
-            const { ThemeToggler } = await import(
-                "../../src/ts/utilities/ThemeToggler"
-            );
+            const { ThemeToggler } =
+                await import("../../src/ts/utilities/ThemeToggler");
             ThemeToggler.registerOnLoad("theme-toggle");
 
             document.documentElement.setAttribute("data-theme", "light");
@@ -82,9 +78,8 @@ describe("ThemeToggler", () => {
         });
 
         it("should toggle from dark to light", async () => {
-            const { ThemeToggler } = await import(
-                "../../src/ts/utilities/ThemeToggler"
-            );
+            const { ThemeToggler } =
+                await import("../../src/ts/utilities/ThemeToggler");
             ThemeToggler.registerOnLoad("theme-toggle");
 
             document.documentElement.setAttribute("data-theme", "dark");
@@ -96,9 +91,8 @@ describe("ThemeToggler", () => {
         });
 
         it("should update data-theme attribute", async () => {
-            const { ThemeToggler } = await import(
-                "../../src/ts/utilities/ThemeToggler"
-            );
+            const { ThemeToggler } =
+                await import("../../src/ts/utilities/ThemeToggler");
             // Use initializeToggleSwitch directly since registerOnLoad waits for window.load
             ThemeToggler.initializeToggleSwitch("theme-toggle");
 
@@ -116,9 +110,8 @@ describe("ThemeToggler", () => {
 
     describe("Persistence", () => {
         it("should save theme to localStorage", async () => {
-            const { ThemeToggler } = await import(
-                "../../src/ts/utilities/ThemeToggler"
-            );
+            const { ThemeToggler } =
+                await import("../../src/ts/utilities/ThemeToggler");
             ThemeToggler.registerOnLoad("theme-toggle");
 
             click(toggleElement);
@@ -138,9 +131,8 @@ describe("ThemeToggler", () => {
         });
 
         it("should be keyboard accessible", async () => {
-            const { ThemeToggler } = await import(
-                "../../src/ts/utilities/ThemeToggler"
-            );
+            const { ThemeToggler } =
+                await import("../../src/ts/utilities/ThemeToggler");
             ThemeToggler.registerOnLoad("theme-toggle");
 
             toggleElement.focus();

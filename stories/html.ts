@@ -11,7 +11,8 @@ export function html(
     ...values: unknown[]
 ): string {
     return strings.reduce(
-        (acc, str, i) => acc + str + (i < values.length ? String(values[i]) : ""),
+        (acc, str, i) =>
+            acc + str + (i < values.length ? String(values[i]) : ""),
         "",
     );
 }

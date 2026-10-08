@@ -31,7 +31,10 @@ export const SectionTitle: Story = {
                 placeholder="Name"
             />
             <span>and I live in</span>
-            <label for="input_text_place" class="ss-c-label ss-c-label--hidden">
+            <label
+                for="input_text_place"
+                class="ss-c-label ss-c-label--hidden"
+            >
                 Place
             </label>
             <input
@@ -54,7 +57,10 @@ export const SectionTitle: Story = {
                 placeholder="Name"
             />
             <span>and I live in</span>
-            <label for="input_text_place" class="ss-c-label ss-c-label--hidden">
+            <label
+                for="input_text_place"
+                class="ss-c-label ss-c-label--hidden"
+            >
                 Place
             </label>
             <input
@@ -77,7 +83,10 @@ export const SectionTitle: Story = {
                 placeholder="Name"
             />
             <span>and I live in</span>
-            <label for="input_text_place" class="ss-c-label ss-c-label--hidden">
+            <label
+                for="input_text_place"
+                class="ss-c-label ss-c-label--hidden"
+            >
                 Place
             </label>
             <input
@@ -100,7 +109,10 @@ export const SectionTitle: Story = {
                 placeholder="Name"
             />
             <span>and I live in</span>
-            <label for="input_text_place" class="ss-c-label ss-c-label--hidden">
+            <label
+                for="input_text_place"
+                class="ss-c-label ss-c-label--hidden"
+            >
                 Place
             </label>
             <input
@@ -123,7 +135,10 @@ export const SectionTitle: Story = {
                 placeholder="Name"
             />
             <span>and I live in</span>
-            <label for="input_text_place" class="ss-c-label ss-c-label--hidden">
+            <label
+                for="input_text_place"
+                class="ss-c-label ss-c-label--hidden"
+            >
                 Place
             </label>
             <input
@@ -365,8 +380,12 @@ export const SectionTitle5: Story = {
                 rows="4"
                 placeholder="Tell us something..."
             ></textarea>
-            <button type="submit" class="ss-c-button ss-c-button--solid">Submit</button>
-            <button type="reset" class="ss-c-button ss-c-button--solid">Reset</button>
+            <button type="submit" class="ss-c-button ss-c-button--solid">
+                Submit
+            </button>
+            <button type="reset" class="ss-c-button ss-c-button--solid">
+                Reset
+            </button>
         </form>
     `,
 };
@@ -440,8 +459,12 @@ export const SectionTitle7: Story = {
                 rows="4"
                 placeholder="Tell us something..."
             ></textarea>
-            <button type="submit" class="ss-c-button ss-c-button--solid">Submit</button>
-            <button type="reset" class="ss-c-button ss-c-button--solid">Reset</button>
+            <button type="submit" class="ss-c-button ss-c-button--solid">
+                Submit
+            </button>
+            <button type="reset" class="ss-c-button ss-c-button--solid">
+                Reset
+            </button>
         </form>
     `,
 };
@@ -644,23 +667,23 @@ export const SectionTitle11: Story = {
 export const SectionTitle12: Story = {
     render: () => html`
         <div
-                    style="
+            style="
                         display: flex;
                         flex-direction: column;
                         gap: 20px;
                         max-width: 400px;
                     "
-                >
-                    <!-- Focus State -->
-                    <div>
-                        <label style="display: block; margin-bottom: 6px">
-                            Focused
-                        </label>
-                        <textarea
-                            class="ss-c-textarea focus"
-                            rows="3"
-                            placeholder="Focused textarea..."
-                            style="
+        >
+            <!-- Focus State -->
+            <div>
+                <label style="display: block; margin-bottom: 6px">
+                    Focused
+                </label>
+                <textarea
+                    class="ss-c-textarea focus"
+                    rows="3"
+                    placeholder="Focused textarea..."
+                    style="
                                 width: 100%;
                                 padding: 12px;
                                 border: 2px solid var(--color_fill_primary);
@@ -673,21 +696,21 @@ export const SectionTitle12: Story = {
                                 box-shadow: 0 0 0 3px
                                     rgba(var(--color_fill_primary), 0.2);
                             "
-                        ></textarea>
-                    </div>
-                    <!-- Disabled State -->
-                    <div>
-                        <label
-                            style="display: block; margin-bottom: 6px; opacity: 0.5"
-                        >
-                            Disabled
-                        </label>
-                        <textarea
-                            class="ss-c-textarea disabled"
-                            rows="3"
-                            disabled
-                            placeholder="Disabled textarea..."
-                            style="
+                ></textarea>
+            </div>
+            <!-- Disabled State -->
+            <div>
+                <label
+                    style="display: block; margin-bottom: 6px; opacity: 0.5"
+                >
+                    Disabled
+                </label>
+                <textarea
+                    class="ss-c-textarea disabled"
+                    rows="3"
+                    disabled
+                    placeholder="Disabled textarea..."
+                    style="
                                 width: 100%;
                                 padding: 12px;
                                 border: 1px solid var(--color_line_secondary);
@@ -700,16 +723,16 @@ export const SectionTitle12: Story = {
                                 opacity: 0.6;
                                 cursor: not-allowed;
                             "
-                        ></textarea>
-                    </div>
-                    <!-- Error State -->
-                    <div>
-                        <label style="display: block; margin-bottom: 6px">Error</label>
-                        <textarea
-                            class="ss-c-textarea ss-c-error"
-                            rows="3"
-                            placeholder="Error textarea..."
-                            style="
+                ></textarea>
+            </div>
+            <!-- Error State -->
+            <div>
+                <label style="display: block; margin-bottom: 6px">Error</label>
+                <textarea
+                    class="ss-c-textarea ss-c-error"
+                    rows="3"
+                    placeholder="Error textarea..."
+                    style="
                                 width: 100%;
                                 padding: 12px;
                                 border: 2px solid var(--color_state_error);
@@ -719,27 +742,27 @@ export const SectionTitle12: Story = {
                                 resize: vertical;
                                 box-sizing: border-box;
                             "
-                        ></textarea>
-                        <span
-                            style="
+                ></textarea>
+                <span
+                    style="
                                 display: block;
                                 margin-top: 6px;
                                 font-size: 13px;
                                 color: var(--color_state_error);
                             "
-                        >
-                            This field is required
-                        </span>
-                    </div>
-                    <!-- Success State -->
-                    <div>
-                        <label style="display: block; margin-bottom: 6px">
-                            Success
-                        </label>
-                        <textarea
-                            class="ss-c-textarea ss-c-success"
-                            rows="3"
-                            style="
+                >
+                    This field is required
+                </span>
+            </div>
+            <!-- Success State -->
+            <div>
+                <label style="display: block; margin-bottom: 6px">
+                    Success
+                </label>
+                <textarea
+                    class="ss-c-textarea ss-c-success"
+                    rows="3"
+                    style="
                                 width: 100%;
                                 padding: 12px;
                                 border: 2px solid var(--color_state_success);
@@ -749,21 +772,20 @@ export const SectionTitle12: Story = {
                                 resize: vertical;
                                 box-sizing: border-box;
                             "
-                        >
-        Valid content here</textarea
-                        >
-                        <span
-                            style="
+                >
+        Valid content here</textarea>
+                <span
+                    style="
                                 display: block;
                                 margin-top: 6px;
                                 font-size: 13px;
                                 color: var(--color_state_success);
                             "
-                        >
-                            ✓ Looks good!
-                        </span>
-                    </div>
-                </div>
+                >
+                    ✓ Looks good!
+                </span>
+            </div>
+        </div>
     `,
 };
 

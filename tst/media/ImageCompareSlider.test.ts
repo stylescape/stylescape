@@ -219,7 +219,9 @@ describe("ImageCompareSlider", () => {
             new ImageCompareSlider(container);
             await new Promise((r) => setTimeout(r, 0));
 
-            expect(handleOf(container).querySelector(".dark--left")).toBeNull();
+            expect(
+                handleOf(container).querySelector(".dark--left"),
+            ).toBeNull();
         });
 
         it("skips brightness handling when no data-dark-side is set", () => {

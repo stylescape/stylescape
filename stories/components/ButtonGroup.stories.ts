@@ -18,7 +18,11 @@ type Story = StoryObj;
 
 export const SimpleButtonGroup: Story = {
     render: () => html`
-        <div class="ss-c-button-group" role="group" aria-label="Basic button group">
+        <div
+            class="ss-c-button-group"
+            role="group"
+            aria-label="Basic button group"
+        >
             <button class="ss-c-button">Left</button>
             <button class="ss-c-button">Middle</button>
             <button class="ss-c-button">Right</button>
@@ -28,7 +32,11 @@ export const SimpleButtonGroup: Story = {
 
 export const WithLinks: Story = {
     render: () => html`
-        <div class="ss-c-button-group" role="group" aria-label="Navigation group">
+        <div
+            class="ss-c-button-group"
+            role="group"
+            aria-label="Navigation group"
+        >
             <a href="#" class="ss-c-button">Previous</a>
             <a href="#" class="ss-c-button">Current</a>
             <a href="#" class="ss-c-button">Next</a>
@@ -97,7 +105,11 @@ export const VerticalMenuStyle: Story = {
 
 export const SizeVariations: Story = {
     render: () => html`
-        <div class="ss-c-button-group ss-c-mb--02" role="group" aria-label="Small group">
+        <div
+            class="ss-c-button-group ss-c-mb--02"
+            role="group"
+            aria-label="Small group"
+        >
             <button class="ss-c-button ss-c-button--sm">Small</button>
             <button class="ss-c-button ss-c-button--sm">Small</button>
             <button class="ss-c-button ss-c-button--sm">Small</button>
@@ -142,7 +154,10 @@ export const SingleSelection: Story = {
             role="group"
             aria-label="View mode"
         >
-            <button class="ss-c-button ss-c-button--active" aria-pressed="true">
+            <button
+                class="ss-c-button ss-c-button--active"
+                aria-pressed="true"
+            >
                 List
             </button>
             <button class="ss-c-button" aria-pressed="false">Grid</button>
@@ -158,11 +173,19 @@ export const MultipleSelection: Story = {
             role="group"
             aria-label="Text formatting"
         >
-            <button class="ss-c-button ss-c-button--active" aria-pressed="true">
+            <button
+                class="ss-c-button ss-c-button--active"
+                aria-pressed="true"
+            >
                 <strong>B</strong>
             </button>
-            <button class="ss-c-button" aria-pressed="false"><em>I</em></button>
-            <button class="ss-c-button ss-c-button--active" aria-pressed="true">
+            <button class="ss-c-button" aria-pressed="false">
+                <em>I</em>
+            </button>
+            <button
+                class="ss-c-button ss-c-button--active"
+                aria-pressed="true"
+            >
                 <u>U</u>
             </button>
         </div>

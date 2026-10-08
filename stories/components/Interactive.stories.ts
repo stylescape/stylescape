@@ -30,5 +30,6 @@ export const Example: Story = {
                 <p>Hello from Dialog</p>
                 <button onclick="this.closest('dialog').close()">Close</button>
             </dialog>
+        </section>
     `,
 };

@@ -56,9 +56,8 @@ describe("Auto-Init Integration", () => {
 
     describe("MutationObserver Integration", () => {
         it("should initialize dynamically added elements", async () => {
-            const { init, observe } = await import(
-                "../../src/ts/init/autoInit"
-            );
+            const { init, observe } =
+                await import("../../src/ts/init/autoInit");
             await init();
             observe();
 
@@ -79,9 +78,8 @@ describe("Auto-Init Integration", () => {
                 <button data-ss="tooltip" id="existing">Existing</button>
             `;
 
-            const { init, getInstance } = await import(
-                "../../src/ts/init/autoInit"
-            );
+            const { init, getInstance } =
+                await import("../../src/ts/init/autoInit");
             await init();
 
             const element = document.getElementById("existing");
@@ -186,9 +184,8 @@ describe("Auto-Init Integration", () => {
                 <button data-ss="tooltip" id="my-tooltip">Hover</button>
             `;
 
-            const { init, getInstance } = await import(
-                "../../src/ts/init/autoInit"
-            );
+            const { init, getInstance } =
+                await import("../../src/ts/init/autoInit");
             await init();
 
             const element = document.getElementById("my-tooltip");
@@ -203,9 +200,8 @@ describe("Auto-Init Integration", () => {
                 <button data-ss="tooltip" id="destroy-test">Hover</button>
             `;
 
-            const { init, destroy } = await import(
-                "../../src/ts/init/autoInit"
-            );
+            const { init, destroy } =
+                await import("../../src/ts/init/autoInit");
             await init();
 
             const element = document.getElementById("destroy-test");
@@ -218,18 +214,16 @@ describe("Auto-Init Integration", () => {
 
     describe("Global API", () => {
         it("should expose Stylescape on window", async () => {
-            const { initializeStylescape } = await import(
-                "../../src/ts/init/index"
-            );
+            const { initializeStylescape } =
+                await import("../../src/ts/init/index");
             initializeStylescape();
 
             // window.Stylescape should exist
         });
 
         it("should allow programmatic component registration", async () => {
-            const { registerComponent, componentRegistry } = await import(
-                "../../src/ts/init/registry"
-            );
+            const { registerComponent, componentRegistry } =
+                await import("../../src/ts/init/registry");
 
             const customHandler = vi.fn();
             registerComponent("custom-test", {

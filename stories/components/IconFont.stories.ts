@@ -28,46 +28,46 @@ export const SectionTitle: Story = {
         >
             <span
                 class="ss-c-icon-font"
-                style="
-                    font-family: &quot;Material Icons&quot;, sans-serif;
+                style='
+                    font-family: "Material Icons", sans-serif;
                     font-size: 24px;
-                "
+                '
             >
                 home
             </span>
             <span
                 class="ss-c-icon-font"
-                style="
-                    font-family: &quot;Material Icons&quot;, sans-serif;
+                style='
+                    font-family: "Material Icons", sans-serif;
                     font-size: 24px;
-                "
+                '
             >
                 search
             </span>
             <span
                 class="ss-c-icon-font"
-                style="
-                    font-family: &quot;Material Icons&quot;, sans-serif;
+                style='
+                    font-family: "Material Icons", sans-serif;
                     font-size: 24px;
-                "
+                '
             >
                 settings
             </span>
             <span
                 class="ss-c-icon-font"
-                style="
-                    font-family: &quot;Material Icons&quot;, sans-serif;
+                style='
+                    font-family: "Material Icons", sans-serif;
                     font-size: 24px;
-                "
+                '
             >
                 favorite
             </span>
             <span
                 class="ss-c-icon-font"
-                style="
-                    font-family: &quot;Material Icons&quot;, sans-serif;
+                style='
+                    font-family: "Material Icons", sans-serif;
                     font-size: 24px;
-                "
+                '
             >
                 mail
             </span>

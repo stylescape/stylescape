@@ -26,7 +26,7 @@ export const SectionTitle: Story = {
             </label>
             <select
                 class="ss-c-select"
-                style="
+                style='
                     width: 100%;
                     padding: 12px 16px;
                     border: 1px solid var(--color_line_secondary);
@@ -36,10 +36,10 @@ export const SectionTitle: Story = {
                     background: white;
                     cursor: pointer;
                     appearance: none;
-                    background-image: url(&quot;data:image/svg+xml;charset=US-ASCII,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22><path fill=%22%23666%22 d=%22M6 9L1 4h10z%22/></svg>&quot;);
+                    background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22><path fill=%22%23666%22 d=%22M6 9L1 4h10z%22/></svg>");
                     background-repeat: no-repeat;
                     background-position: right 12px center;
-                "
+                '
             >
                 <option value="">Select a country</option>
                 <option value="us">United States</option>

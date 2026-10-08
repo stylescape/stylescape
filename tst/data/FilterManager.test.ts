@@ -58,9 +58,9 @@ describe("FilterManager", () => {
     it("shows all items when query is under minChars", () => {
         const fm = new FilterManager("#search", { minChars: 3 });
         fm.filter("a");
-        expect(items().every((i) => !i.classList.contains("filter--hidden"))).toBe(
-            true,
-        );
+        expect(
+            items().every((i) => !i.classList.contains("filter--hidden")),
+        ).toBe(true);
     });
 
     it("invokes onFilter with matches and onEmpty when nothing matches", () => {
@@ -95,12 +95,12 @@ describe("FilterManager", () => {
         fm.filter("apple");
         fm.clear();
 
-        expect((document.getElementById("search") as HTMLInputElement).value).toBe(
-            "",
-        );
-        expect(items().every((i) => !i.classList.contains("filter--hidden"))).toBe(
-            true,
-        );
+        expect(
+            (document.getElementById("search") as HTMLInputElement).value,
+        ).toBe("");
+        expect(
+            items().every((i) => !i.classList.contains("filter--hidden")),
+        ).toBe(true);
     });
 
     it("getMatches returns currently visible items", () => {
@@ -137,7 +137,8 @@ describe("FilterManager", () => {
     });
 
     it("applies an initial filter when the input already has a value", () => {
-        (document.getElementById("search") as HTMLInputElement).value = "Cherry";
+        (document.getElementById("search") as HTMLInputElement).value =
+            "Cherry";
         const onFilter = vi.fn();
         new FilterManager("#search", { onFilter });
         expect(onFilter).toHaveBeenCalled();

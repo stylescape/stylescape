@@ -33,7 +33,9 @@ export const TextInputField: Story = {
 export const RequiredField: Story = {
     render: () => html`
         <div class="ss-c-formfield ss-c-formfield--required">
-            <label class="ss-c-formfield__label" for="email">Email Address</label>
+            <label class="ss-c-formfield__label" for="email"
+                >Email Address</label
+            >
             <input
                 class="ss-c-formfield__input"
                 type="email"
@@ -48,14 +50,18 @@ export const RequiredField: Story = {
 export const WithHelperText: Story = {
     render: () => html`
         <div class="ss-c-formfield">
-            <label class="ss-c-formfield__label" for="password">Password</label>
+            <label class="ss-c-formfield__label" for="password"
+                >Password</label
+            >
             <input
                 class="ss-c-formfield__input"
                 type="password"
                 id="password"
                 placeholder="Enter password"
             />
-            <span class="ss-c-formfield__hint">Must be at least 8 characters</span>
+            <span class="ss-c-formfield__hint"
+                >Must be at least 8 characters</span
+            >
         </div>
     `,
 };
@@ -63,7 +69,9 @@ export const WithHelperText: Story = {
 export const SuccessState: Story = {
     render: () => html`
         <div class="ss-c-formfield ss-c-formfield--success">
-            <label class="ss-c-formfield__label" for="username">Username</label>
+            <label class="ss-c-formfield__label" for="username"
+                >Username</label
+            >
             <input
                 class="ss-c-formfield__input"
                 type="text"
@@ -80,7 +88,9 @@ export const SuccessState: Story = {
 export const ErrorState: Story = {
     render: () => html`
         <div class="ss-c-formfield ss-c-formfield--error">
-            <label class="ss-c-formfield__label" for="email-error">Email</label>
+            <label class="ss-c-formfield__label" for="email-error"
+                >Email</label
+            >
             <input
                 class="ss-c-formfield__input"
                 type="email"
@@ -128,7 +138,9 @@ export const BasicRadioGroup: Story = {
                 </label>
                 <label class="ss-c-formfield__radio">
                     <input type="radio" name="option" value="3" />
-                    <span class="ss-c-formfield__radio-label">Option Three</span>
+                    <span class="ss-c-formfield__radio-label"
+                        >Option Three</span
+                    >
                 </label>
             </div>
         </fieldset>
@@ -139,10 +151,14 @@ export const InlineRadioGroup: Story = {
     render: () => html`
         <fieldset class="ss-c-formfield ss-c-formfield--group">
             <legend class="ss-c-formfield__label">Payment Method</legend>
-            <div class="ss-c-formfield__options ss-c-formfield__options--inline">
+            <div
+                class="ss-c-formfield__options ss-c-formfield__options--inline"
+            >
                 <label class="ss-c-formfield__radio">
                     <input type="radio" name="payment" value="card" checked />
-                    <span class="ss-c-formfield__radio-label">Credit Card</span>
+                    <span class="ss-c-formfield__radio-label"
+                        >Credit Card</span
+                    >
                 </label>
                 <label class="ss-c-formfield__radio">
                     <input type="radio" name="payment" value="paypal" />
@@ -150,7 +166,9 @@ export const InlineRadioGroup: Story = {
                 </label>
                 <label class="ss-c-formfield__radio">
                     <input type="radio" name="payment" value="bank" />
-                    <span class="ss-c-formfield__radio-label">Bank Transfer</span>
+                    <span class="ss-c-formfield__radio-label"
+                        >Bank Transfer</span
+                    >
                 </label>
             </div>
         </fieldset>
@@ -160,7 +178,9 @@ export const InlineRadioGroup: Story = {
 export const CheckboxGroup: Story = {
     render: () => html`
         <fieldset class="ss-c-formfield ss-c-formfield--group">
-            <legend class="ss-c-formfield__label">Select your interests</legend>
+            <legend class="ss-c-formfield__label">
+                Select your interests
+            </legend>
             <div class="ss-c-formfield__options">
                 <label class="ss-c-formfield__checkbox">
                     <input
@@ -177,11 +197,15 @@ export const CheckboxGroup: Story = {
                         name="interest"
                         value="development"
                     />
-                    <span class="ss-c-formfield__checkbox-label">Development</span>
+                    <span class="ss-c-formfield__checkbox-label"
+                        >Development</span
+                    >
                 </label>
                 <label class="ss-c-formfield__checkbox">
                     <input type="checkbox" name="interest" value="marketing" />
-                    <span class="ss-c-formfield__checkbox-label">Marketing</span>
+                    <span class="ss-c-formfield__checkbox-label"
+                        >Marketing</span
+                    >
                 </label>
             </div>
         </fieldset>

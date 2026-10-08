@@ -17,9 +17,7 @@ export default meta;
 type Story = StoryObj;
 
 export const SectionTitle: Story = {
-    render: () => html`
-        <progress value="3333" max="10000">33%</progress>
-    `,
+    render: () => html` <progress value="3333" max="10000">33%</progress> `,
 };
 
 export const SectionTitle2: Story = {

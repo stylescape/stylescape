@@ -100,14 +100,30 @@ export const SectionTitle2: Story = {
         <div
             style="display: flex; gap: 16px; flex-wrap: wrap; font-size: 32px"
         >
-            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="home">⌂</span>
-            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="settings">⚙</span>
-            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="star">⭐</span>
-            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="bell">♪</span>
-            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="mail">✉</span>
-            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="user">☻</span>
-            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="calendar">▦</span>
-            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="folder">▤</span>
+            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="home"
+                >⌂</span
+            >
+            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="settings"
+                >⚙</span
+            >
+            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="star"
+                >⭐</span
+            >
+            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="bell"
+                >♪</span
+            >
+            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="mail"
+                >✉</span
+            >
+            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="user"
+                >☻</span
+            >
+            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="calendar"
+                >▦</span
+            >
+            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="folder"
+                >▤</span
+            >
         </div>
     `,
 };

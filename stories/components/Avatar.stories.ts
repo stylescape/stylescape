@@ -17,9 +17,7 @@ export default meta;
 type Story = StoryObj;
 
 export const SectionTitle: Story = {
-    render: () => html`
-        <span class="ss-c-avatar">SP</span>
-    `,
+    render: () => html` <span class="ss-c-avatar">SP</span> `,
 };
 
 export const SectionTitle2: Story = {
@@ -33,9 +31,7 @@ export const SectionTitle2: Story = {
 };
 
 export const SectionTitle3: Story = {
-    render: () => html`
-        <span class="ss-c-avatar ss-c-avatar--ring">A</span>
-    `,
+    render: () => html` <span class="ss-c-avatar ss-c-avatar--ring">A</span> `,
 };
 
 export const SectionTitle4: Story = {

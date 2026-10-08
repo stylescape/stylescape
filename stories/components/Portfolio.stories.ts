@@ -19,43 +19,68 @@ type Story = StoryObj;
 export const Example: Story = {
     render: () => html`
         <div class="ss-c-portfolio" id="galleryImages">
-
             <figure class="ss-c-portfolio--item">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80" class="ss-c-animate_fade" />
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80"
+                    class="ss-c-animate_fade"
+                />
             </figure>
 
             <figure class="ss-c-portfolio--item">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80" class="ss-c-animate_fade" />
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80"
+                    class="ss-c-animate_fade"
+                />
             </figure>
 
             <figure class="ss-c-portfolio--item">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80" class="ss-c-animate_fade" />
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80"
+                    class="ss-c-animate_fade"
+                />
             </figure>
 
             <figure class="ss-c-portfolio--item">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80" class="ss-c-animate_fade" />
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80"
+                    class="ss-c-animate_fade"
+                />
             </figure>
 
             <figure class="ss-c-portfolio--item">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80" class="ss-c-animate_fade" />
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80"
+                    class="ss-c-animate_fade"
+                />
             </figure>
 
             <figure class="ss-c-portfolio--item">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80" class="ss-c-animate_fade" />
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80"
+                    class="ss-c-animate_fade"
+                />
             </figure>
 
             <figure class="ss-c-portfolio--item">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80" class="ss-c-animate_fade" />
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80"
+                    class="ss-c-animate_fade"
+                />
             </figure>
 
             <figure class="ss-c-portfolio--item">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80" class="ss-c-animate_fade" />
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80"
+                    class="ss-c-animate_fade"
+                />
             </figure>
 
             <figure class="ss-c-portfolio--item">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80" class="ss-c-animate_fade" />
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80"
+                    class="ss-c-animate_fade"
+                />
             </figure>
-
         </div>
     `,
 };

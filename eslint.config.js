@@ -350,6 +350,21 @@ export default tseslint.config(
     },
 
     // =========================================================================
+    // Storybook Overrides
+    // =========================================================================
+    //
+    // Stories and the Storybook config sit outside tsconfig.json (rootDir is
+    // src/ts), so `parserOptions.project` cannot find them and every file
+    // fails to parse. None of the rules above need type information, so
+    // these files are linted without it.
+    //
+    // -------------------------------------------------------------------------
+    {
+        files: ["stories/**/*.{ts,tsx}", ".storybook/**/*.{ts,tsx}"],
+        ...tseslint.configs.disableTypeChecked,
+    },
+
+    // =========================================================================
     // Test File Overrides
     // =========================================================================
     //

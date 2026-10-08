@@ -44,9 +44,14 @@ export const SectionTitle2: Story = {
         <div class="ss-c-select_dropdown">
             <div class="ss-c-select_dropdown--header">
                 <span id="selected-count">Selected: 0 options</span>
-                <button class="active ss-c-flipper--down" type="button"></button>
+                <button
+                    class="active ss-c-flipper--down"
+                    type="button"
+                ></button>
             </div>
-            <div class="ss-c-select_dropdown--menu ss-c-dropdown ss-c-dropdown--collapse">
+            <div
+                class="ss-c-select_dropdown--menu ss-c-dropdown ss-c-dropdown--collapse"
+            >
                 <label>
                     <span>Option 1</span>
                     <input type="checkbox" />
@@ -71,7 +76,9 @@ export const SectionTitle2: Story = {
 export const SectionTitle3: Story = {
     render: () => html`
         <div class="ss-c-dropdown">
-            <button onclick="myFunction()" class="ss-c-dropbutton">Dropdown</button>
+            <button onclick="myFunction()" class="ss-c-dropbutton">
+                Dropdown
+            </button>
             <div id="myDropdown" class="ss-c-dropdown-content">
                 <a href="#">Link 1</a>
                 <a href="#">Link 2</a>

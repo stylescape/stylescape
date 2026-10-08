@@ -18,7 +18,11 @@ type Story = StoryObj;
 
 export const SectionTitle: Story = {
     render: () => html`
-        <form class="ss-c-form--col" method="post" action="/authentication/login/">
+        <form
+            class="ss-c-form--col"
+            method="post"
+            action="/authentication/login/"
+        >
             <div class="ss-c-form__field">
                 <input
                     type="text"
@@ -109,7 +113,9 @@ export const SectionTitle: Story = {
                 ◉ Toggle
             </button>
 
-            <button type="submit" class="ss-c-button ss-c-button--solid">Login</button>
+            <button type="submit" class="ss-c-button ss-c-button--solid">
+                Login
+            </button>
 
             <p>
                 <span class="ss-c-req">*</span>

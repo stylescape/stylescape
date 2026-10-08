@@ -18,9 +18,29 @@ type Story = StoryObj;
 
 export const SectionTitle: Story = {
     render: () => html`
-        <div class="ss-c-radial-progress" style="--ss-radial-value: 10; --ss-radial-size: 5em">10%</div>
-        <div class="ss-c-radial-progress" style="--ss-radial-value: 33; --ss-radial-size: 5em">33%</div>
-        <div class="ss-c-radial-progress" style="--ss-radial-value: 66; --ss-radial-size: 5em">66%</div>
-        <div class="ss-c-radial-progress" style="--ss-radial-value: 90; --ss-radial-size: 5em">90%</div>
+        <div
+            class="ss-c-radial-progress"
+            style="--ss-radial-value: 10; --ss-radial-size: 5em"
+        >
+            10%
+        </div>
+        <div
+            class="ss-c-radial-progress"
+            style="--ss-radial-value: 33; --ss-radial-size: 5em"
+        >
+            33%
+        </div>
+        <div
+            class="ss-c-radial-progress"
+            style="--ss-radial-value: 66; --ss-radial-size: 5em"
+        >
+            66%
+        </div>
+        <div
+            class="ss-c-radial-progress"
+            style="--ss-radial-value: 90; --ss-radial-size: 5em"
+        >
+            90%
+        </div>
     `,
 };

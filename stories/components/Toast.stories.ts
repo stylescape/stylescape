@@ -242,10 +242,14 @@ export const SectionTitle3: Story = {
             >
                 <span>New update available.</span>
                 <div style="display: flex; gap: 8px; margin-left: auto">
-                    <button class="ss-c-button ss-c-button--small ss-c-button--primary">
+                    <button
+                        class="ss-c-button ss-c-button--small ss-c-button--primary"
+                    >
                         Update
                     </button>
-                    <button class="ss-c-button ss-c-button--small ss-c-button--secondary">
+                    <button
+                        class="ss-c-button ss-c-button--small ss-c-button--secondary"
+                    >
                         Later
                     </button>
                 </div>

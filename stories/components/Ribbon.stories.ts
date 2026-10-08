@@ -37,13 +37,17 @@ export const SectionTitle2: Story = {
         <div class="ss-c-ribbon ss-c-ribbon--top">
             <div class="ss-c-ribbon__slot--horizontal_left">
                 <details>
-                    <summary class="ss-c-flex ss-c-justify--center ss-c-align--center">
+                    <summary
+                        class="ss-c-flex ss-c-justify--center ss-c-align--center"
+                    >
                         Top Ribbon
                         <i class="ss-c-i i_shape_triangle_fill_md_down"></i>
                     </summary>
 
                     <ul class="ss-c-ribbon__panel ss-c-left">
-                        <h4 class="ss-c-ribbon__panel__section__header">Projects</h4>
+                        <h4 class="ss-c-ribbon__panel__section__header">
+                            Projects
+                        </h4>
 
                         <ul class="ss-c-ribbon__panel__section">
                             <li class="ss-c-ribbon__panel__section__item">
@@ -56,7 +60,9 @@ export const SectionTitle2: Story = {
 
                         <hr class="ss-c-ribbon__panel__line" />
 
-                        <h4 class="ss-c-ribbon__panel__section__header">Studies</h4>
+                        <h4 class="ss-c-ribbon__panel__section__header">
+                            Studies
+                        </h4>
 
                         <ul class="ss-c-ribbon__panel__section">
                             <li class="ss-c-ribbon__panel__section__item">
@@ -74,13 +80,17 @@ export const SectionTitle2: Story = {
         <div class="ss-c-ribbon ss-c-ribbon--top">
             <div class="ss-c-ribbon__slot--horizontal_center">
                 <details>
-                    <summary class="ss-c-flex ss-c-justify--center ss-c-align--center">
+                    <summary
+                        class="ss-c-flex ss-c-justify--center ss-c-align--center"
+                    >
                         Top Ribbon
                         <i class="ss-c-i i_shape_triangle_fill_md_down"></i>
                     </summary>
 
                     <ul class="ss-c-ribbon__panel ss-c-center">
-                        <h4 class="ss-c-ribbon__panel__section__header">Projects</h4>
+                        <h4 class="ss-c-ribbon__panel__section__header">
+                            Projects
+                        </h4>
 
                         <ul class="ss-c-ribbon__panel__section">
                             <li class="ss-c-ribbon__panel__section__item">
@@ -93,7 +103,9 @@ export const SectionTitle2: Story = {
 
                         <hr class="ss-c-ribbon__panel__line" />
 
-                        <h4 class="ss-c-ribbon__panel__section__header">Studies</h4>
+                        <h4 class="ss-c-ribbon__panel__section__header">
+                            Studies
+                        </h4>
 
                         <ul class="ss-c-ribbon__panel__section">
                             <li class="ss-c-ribbon__panel__section__item">
@@ -111,13 +123,17 @@ export const SectionTitle2: Story = {
         <div class="ss-c-ribbon ss-c-ribbon--top">
             <div class="ss-c-ribbon__slot--horizontal_right">
                 <details>
-                    <summary class="ss-c-flex ss-c-justify--center ss-c-align--center">
+                    <summary
+                        class="ss-c-flex ss-c-justify--center ss-c-align--center"
+                    >
                         Top Ribbon
                         <i class="ss-c-i i_shape_triangle_fill_md_down"></i>
                     </summary>
 
                     <ul class="ss-c-ribbon__panel ss-c-right">
-                        <h4 class="ss-c-ribbon__panel__section__header">Projects</h4>
+                        <h4 class="ss-c-ribbon__panel__section__header">
+                            Projects
+                        </h4>
 
                         <ul class="ss-c-ribbon__panel__section">
                             <li class="ss-c-ribbon__panel__section__item">
@@ -130,7 +146,9 @@ export const SectionTitle2: Story = {
 
                         <hr class="ss-c-ribbon__panel__line" />
 
-                        <h4 class="ss-c-ribbon__panel__section__header">Studies</h4>
+                        <h4 class="ss-c-ribbon__panel__section__header">
+                            Studies
+                        </h4>
 
                         <ul class="ss-c-ribbon__panel__section">
                             <li class="ss-c-ribbon__panel__section__item">
@@ -151,20 +169,33 @@ export const SectionTitle3: Story = {
     render: () => html`
         <div class="ss-c-ribbon ss-c-ribbon--top">
             <div class="ss-c-ribbon__slot--horizontal_left">
-                <nav id="ribbon__nav" class="ss-c-ribbon__nav" role="navigation">
+                <nav
+                    id="ribbon__nav"
+                    class="ss-c-ribbon__nav"
+                    role="navigation"
+                >
                     <ul id="ribbon__nav__list" class="ss-c-ribbon__nav__list">
                         <li class="ss-c-ribbon__nav__list__item">
-                            <a href="/" class="ss-c-ribbon__nav__list__item__text">
+                            <a
+                                href="/"
+                                class="ss-c-ribbon__nav__list__item__text"
+                            >
                                 Studio
                             </a>
                         </li>
                         <li class="ss-c-ribbon__nav__list__item">
-                            <a href="/" class="ss-c-ribbon__nav__list__item__text">
+                            <a
+                                href="/"
+                                class="ss-c-ribbon__nav__list__item__text"
+                            >
                                 Stories
                             </a>
                         </li>
                         <li class="ss-c-ribbon__nav__list__item">
-                            <a href="/" class="ss-c-ribbon__nav__list__item__text">
+                            <a
+                                href="/"
+                                class="ss-c-ribbon__nav__list__item__text"
+                            >
                                 Services
                             </a>
                         </li>
@@ -175,20 +206,33 @@ export const SectionTitle3: Story = {
         <br />
         <div class="ss-c-ribbon ss-c-ribbon--top">
             <div class="ss-c-ribbon__slot--horizontal_center">
-                <nav id="ribbon__nav" class="ss-c-ribbon__nav" role="navigation">
+                <nav
+                    id="ribbon__nav"
+                    class="ss-c-ribbon__nav"
+                    role="navigation"
+                >
                     <ul id="ribbon__nav__list" class="ss-c-ribbon__nav__list">
                         <li class="ss-c-ribbon__nav__list__item">
-                            <a href="/" class="ss-c-ribbon__nav__list__item__text">
+                            <a
+                                href="/"
+                                class="ss-c-ribbon__nav__list__item__text"
+                            >
                                 Studio
                             </a>
                         </li>
                         <li class="ss-c-ribbon__nav__list__item">
-                            <a href="/" class="ss-c-ribbon__nav__list__item__text">
+                            <a
+                                href="/"
+                                class="ss-c-ribbon__nav__list__item__text"
+                            >
                                 Stories
                             </a>
                         </li>
                         <li class="ss-c-ribbon__nav__list__item">
-                            <a href="/" class="ss-c-ribbon__nav__list__item__text">
+                            <a
+                                href="/"
+                                class="ss-c-ribbon__nav__list__item__text"
+                            >
                                 Services
                             </a>
                         </li>
@@ -199,20 +243,33 @@ export const SectionTitle3: Story = {
         <br />
         <div class="ss-c-ribbon ss-c-ribbon--top">
             <div class="ss-c-ribbon__slot--horizontal_right">
-                <nav id="ribbon__nav" class="ss-c-ribbon__nav" role="navigation">
+                <nav
+                    id="ribbon__nav"
+                    class="ss-c-ribbon__nav"
+                    role="navigation"
+                >
                     <ul id="ribbon__nav__list" class="ss-c-ribbon__nav__list">
                         <li class="ss-c-ribbon__nav__list__item">
-                            <a href="/" class="ss-c-ribbon__nav__list__item__text">
+                            <a
+                                href="/"
+                                class="ss-c-ribbon__nav__list__item__text"
+                            >
                                 Studio
                             </a>
                         </li>
                         <li class="ss-c-ribbon__nav__list__item">
-                            <a href="/" class="ss-c-ribbon__nav__list__item__text">
+                            <a
+                                href="/"
+                                class="ss-c-ribbon__nav__list__item__text"
+                            >
                                 Stories
                             </a>
                         </li>
                         <li class="ss-c-ribbon__nav__list__item">
-                            <a href="/" class="ss-c-ribbon__nav__list__item__text">
+                            <a
+                                href="/"
+                                class="ss-c-ribbon__nav__list__item__text"
+                            >
                                 Services
                             </a>
                         </li>
@@ -227,7 +284,11 @@ export const TopRibbonMenuInline: Story = {
     render: () => html`
         <div class="ss-c-ribbon ss-c-ribbon--top">
             <div class="ss-c-ribbon__slot--horizontal_left">
-                <menu id="ribbon__menu" class="ss-c-ribbon__menu" role="menubar">
+                <menu
+                    id="ribbon__menu"
+                    class="ss-c-ribbon__menu"
+                    role="menubar"
+                >
                     <li class="ss-c-ribbon__menu__item">
                         <button class="ss-c-ribbon__button">
                             <a href="">
@@ -256,7 +317,11 @@ export const TopRibbonMenuInline: Story = {
         <br />
         <div class="ss-c-ribbon ss-c-ribbon--top">
             <div class="ss-c-ribbon__slot--horizontal_center">
-                <menu id="ribbon__menu" class="ss-c-ribbon__menu" role="menubar">
+                <menu
+                    id="ribbon__menu"
+                    class="ss-c-ribbon__menu"
+                    role="menubar"
+                >
                     <li class="ss-c-ribbon__menu__item">
                         <button class="ss-c-ribbon__button">
                             <a href="">
@@ -285,7 +350,11 @@ export const TopRibbonMenuInline: Story = {
         <br />
         <div class="ss-c-ribbon ss-c-ribbon--top">
             <div class="ss-c-ribbon__slot--horizontal_right">
-                <menu id="ribbon__menu" class="ss-c-ribbon__menu" role="menubar">
+                <menu
+                    id="ribbon__menu"
+                    class="ss-c-ribbon__menu"
+                    role="menubar"
+                >
                     <li class="ss-c-ribbon__menu__item">
                         <button class="ss-c-ribbon__button">
                             <a href="">

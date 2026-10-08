@@ -28,7 +28,9 @@ export const SectionTitle: Story = {
                 <a href="#">About</a>
             </div>
             <div class="ss-c-navbar__end">
-                <button class="ss-c-button ss-c-button--primary">Sign in</button>
+                <button class="ss-c-button ss-c-button--primary">
+                    Sign in
+                </button>
             </div>
         </nav>
     `,

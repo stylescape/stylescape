@@ -57,7 +57,9 @@ export const StackedAccordions: Story = {
         <div class="ss-c-accordion_group">
             <details class="ss-c-accordion">
                 <summary class="ss-c-accordion__header">
-                    <span class="ss-c-accordion__title">What is Stylescape?</span>
+                    <span class="ss-c-accordion__title"
+                        >What is Stylescape?</span
+                    >
                     <span class="ss-c-accordion__icon"></span>
                 </summary>
                 <div class="ss-c-accordion__content">
@@ -71,7 +73,9 @@ export const StackedAccordions: Story = {
 
             <details class="ss-c-accordion">
                 <summary class="ss-c-accordion__header">
-                    <span class="ss-c-accordion__title">How do I get started?</span>
+                    <span class="ss-c-accordion__title"
+                        >How do I get started?</span
+                    >
                     <span class="ss-c-accordion__icon"></span>
                 </summary>
                 <div class="ss-c-accordion__content">
@@ -85,7 +89,9 @@ export const StackedAccordions: Story = {
 
             <details class="ss-c-accordion">
                 <summary class="ss-c-accordion__header">
-                    <span class="ss-c-accordion__title">Is it customizable?</span>
+                    <span class="ss-c-accordion__title"
+                        >Is it customizable?</span
+                    >
                     <span class="ss-c-accordion__icon"></span>
                 </summary>
                 <div class="ss-c-accordion__content">
@@ -213,7 +219,9 @@ export const MixedContent: Story = {
                     <li>List item two</li>
                     <li>List item three</li>
                 </ul>
-                <button class="ss-c-button ss-c-button--primary">Action Button</button>
+                <button class="ss-c-button ss-c-button--primary">
+                    Action Button
+                </button>
             </div>
         </details>
     `,

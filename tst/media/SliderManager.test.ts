@@ -77,9 +77,9 @@ describe("SliderManager", () => {
             document.body.innerHTML = `<div id="mySlider"></div>`;
             const slider = new SliderManager("#mySlider");
             expect(() => slider.nextSlide()).not.toThrow();
-            expect(
-                document.querySelectorAll("#mySlider .slide").length,
-            ).toBe(0);
+            expect(document.querySelectorAll("#mySlider .slide").length).toBe(
+                0,
+            );
         });
     });
 });

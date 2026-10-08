@@ -41,9 +41,9 @@ describe("CollapsibleSectionManager", () => {
         const c = new CollapsibleSectionManager("#faq");
         expect(c.expanded).toBe(false);
         expect(
-            document.getElementById("faq")?.classList.contains(
-                "collapsible--collapsed",
-            ),
+            document
+                .getElementById("faq")
+                ?.classList.contains("collapsible--collapsed"),
         ).toBe(true);
         expect(trigger().getAttribute("aria-expanded")).toBe("false");
     });
@@ -59,9 +59,9 @@ describe("CollapsibleSectionManager", () => {
         const c = new CollapsibleSectionManager("#faq", { expanded: true });
         expect(c.expanded).toBe(true);
         expect(
-            document.getElementById("faq")?.classList.contains(
-                "collapsible--expanded",
-            ),
+            document
+                .getElementById("faq")
+                ?.classList.contains("collapsible--expanded"),
         ).toBe(true);
         expect(trigger().getAttribute("aria-expanded")).toBe("true");
         expect(content().hidden).toBe(false);

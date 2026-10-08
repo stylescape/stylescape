@@ -2,14 +2,7 @@
 // Stylescape | Component Registry Tests
 // ============================================================================
 
-import {
-    afterEach,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    vi,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
     componentRegistry,
     getComponent,
@@ -221,29 +214,29 @@ describe("Component Registry", () => {
             });
 
             const slides = el.querySelectorAll("[data-ss-carousel-slide]");
-            expect(slides[0].classList.contains("carousel-slide--active")).toBe(
-                true,
-            );
+            expect(
+                slides[0].classList.contains("carousel-slide--active"),
+            ).toBe(true);
 
             api.next();
-            expect(slides[1].classList.contains("carousel-slide--active")).toBe(
-                true,
-            );
-            expect(slides[0].classList.contains("carousel-slide--active")).toBe(
-                false,
-            );
+            expect(
+                slides[1].classList.contains("carousel-slide--active"),
+            ).toBe(true);
+            expect(
+                slides[0].classList.contains("carousel-slide--active"),
+            ).toBe(false);
 
             // prev wraps back to the first slide
             api.prev();
-            expect(slides[0].classList.contains("carousel-slide--active")).toBe(
-                true,
-            );
+            expect(
+                slides[0].classList.contains("carousel-slide--active"),
+            ).toBe(true);
 
             // Next button click also advances
             click(el.querySelector("[data-ss-carousel-next]")!);
-            expect(slides[1].classList.contains("carousel-slide--active")).toBe(
-                true,
-            );
+            expect(
+                slides[1].classList.contains("carousel-slide--active"),
+            ).toBe(true);
 
             api.destroy();
         });

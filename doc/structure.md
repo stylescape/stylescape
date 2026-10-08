@@ -87,12 +87,12 @@ sm, md, lg, xl) • font-weight-_(100–900 or light–bold) • line-height-_ (
 normal, loose) • text-transform (uppercase, lowercase, capitalize) •
 letter-spacing, word-spacing
 
-△ Spacing & Sizing • padding-_, margin-_, gap-_ • $q, $baseline (unit scales)
-• width-_, height-\*, max-width, min-height • Grid and flex gap units
+△ Spacing & Sizing • padding-_, margin-_, gap-_ • $q, $baseline (unit scales) •
+width-_, height-\*, max-width, min-height • Grid and flex gap units
 
-─ Layout & Position • .container, .grid, .flex • display: block | inline |
-flex | grid • justify-_, align-_, place-\* • position: relative | absolute |
-fixed • z-index: z('ribbon'), z('overlay'), etc.
+─ Layout & Position • .container, .grid, .flex • display: block | inline | flex
+| grid • justify-_, align-_, place-\* • position: relative | absolute | fixed •
+z-index: z('ribbon'), z('overlay'), etc.
 
 UI Atoms • .button • .icon • .badge • .divider • .label • .checkbox, .radio,
 .input, .select

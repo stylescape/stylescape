@@ -25,9 +25,11 @@ describe("NotificationManager", () => {
         expect(container).not.toBeNull();
         expect(container?.getAttribute("role")).toBe("region");
         expect(container?.getAttribute("aria-live")).toBe("polite");
-        expect(container?.classList.contains(
-            "ss-notification-container--top-right",
-        )).toBe(true);
+        expect(
+            container?.classList.contains(
+                "ss-notification-container--top-right",
+            ),
+        ).toBe(true);
     });
 
     it("success() renders a notification with the message and type class", () => {
@@ -147,9 +149,13 @@ describe("NotificationManager", () => {
 
     it("destroy removes the container from the DOM", () => {
         manager = new NotificationManager();
-        expect(document.querySelector(".ss-notification-container")).not.toBeNull();
+        expect(
+            document.querySelector(".ss-notification-container"),
+        ).not.toBeNull();
         manager.destroy();
         manager = null;
-        expect(document.querySelector(".ss-notification-container")).toBeNull();
+        expect(
+            document.querySelector(".ss-notification-container"),
+        ).toBeNull();
     });
 });

@@ -39,7 +39,10 @@ export const HorizontalNav: Story = {
 
 export const VerticalNav: Story = {
     render: () => html`
-        <nav class="ss-c-nav ss-c-nav--vertical" aria-label="Sidebar navigation">
+        <nav
+            class="ss-c-nav ss-c-nav--vertical"
+            aria-label="Sidebar navigation"
+        >
             <ul class="ss-c-nav__list">
                 <li class="ss-c-nav__item ss-c-nav__item--active">
                     <a href="#" class="ss-c-nav__link">Dashboard</a>
@@ -88,7 +91,10 @@ export const HorizontalPills: Story = {
 
 export const FillPills: Story = {
     render: () => html`
-        <nav class="ss-c-nav ss-c-nav--pills ss-c-nav--fill" aria-label="Full width pills">
+        <nav
+            class="ss-c-nav ss-c-nav--pills ss-c-nav--fill"
+            aria-label="Full width pills"
+        >
             <ul class="ss-c-nav__list">
                 <li class="ss-c-nav__item ss-c-nav__item--active">
                     <a href="#" class="ss-c-nav__link">Active</a>
@@ -145,10 +151,17 @@ export const BasicTabs: Story = {
 
 export const UnderlineTabs: Story = {
     render: () => html`
-        <nav class="ss-c-nav ss-c-nav--tabs ss-c-nav--underline" aria-label="Underline tabs">
+        <nav
+            class="ss-c-nav ss-c-nav--tabs ss-c-nav--underline"
+            aria-label="Underline tabs"
+        >
             <ul class="ss-c-nav__list" role="tablist">
                 <li class="ss-c-nav__item" role="presentation">
-                    <a href="#" class="ss-c-nav__link ss-c-nav__link--active" role="tab">
+                    <a
+                        href="#"
+                        class="ss-c-nav__link ss-c-nav__link--active"
+                        role="tab"
+                    >
                         Active
                     </a>
                 </li>
@@ -199,21 +212,32 @@ export const IconNavigation: Story = {
 
 export const IconOnlyNavigation: Story = {
     render: () => html`
-        <nav class="ss-c-nav ss-c-nav--icons" aria-label="Icon-only navigation">
+        <nav
+            class="ss-c-nav ss-c-nav--icons"
+            aria-label="Icon-only navigation"
+        >
             <ul class="ss-c-nav__list">
                 <li class="ss-c-nav__item">
                     <a href="#" class="ss-c-nav__link" aria-label="Home">⌂</a>
                 </li>
                 <li class="ss-c-nav__item">
-                    <a href="#" class="ss-c-nav__link" aria-label="Search">⌕</a>
+                    <a href="#" class="ss-c-nav__link" aria-label="Search"
+                        >⌕</a
+                    >
                 </li>
                 <li class="ss-c-nav__item ss-c-nav__item--active">
-                    <a href="#" class="ss-c-nav__link" aria-label="Notifications">
+                    <a
+                        href="#"
+                        class="ss-c-nav__link"
+                        aria-label="Notifications"
+                    >
                         ♪
                     </a>
                 </li>
                 <li class="ss-c-nav__item">
-                    <a href="#" class="ss-c-nav__link" aria-label="Profile">☻</a>
+                    <a href="#" class="ss-c-nav__link" aria-label="Profile"
+                        >☻</a
+                    >
                 </li>
             </ul>
         </nav>
@@ -260,7 +284,10 @@ export const CollapsibleSubmenu: Story = {
 
 export const GroupedNavigation: Story = {
     render: () => html`
-        <nav class="ss-c-nav ss-c-nav--vertical" aria-label="Grouped navigation">
+        <nav
+            class="ss-c-nav ss-c-nav--vertical"
+            aria-label="Grouped navigation"
+        >
             <span class="ss-c-nav__heading">Main</span>
             <ul class="ss-c-nav__list">
                 <li class="ss-c-nav__item">

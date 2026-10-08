@@ -52,9 +52,9 @@ describe("ResponsiveMenuManager", () => {
         const toggle = document.getElementById("menuToggle") as HTMLElement;
         expect(toggle.getAttribute("aria-controls")).toBe("mainNav");
         expect(toggle.getAttribute("aria-expanded")).toBe("false");
-        expect(
-            document.getElementById("mainNav")?.getAttribute("role"),
-        ).toBe("navigation");
+        expect(document.getElementById("mainNav")?.getAttribute("role")).toBe(
+            "navigation",
+        );
     });
 
     it("opens and closes when the toggle is clicked", () => {
@@ -65,9 +65,9 @@ describe("ResponsiveMenuManager", () => {
         expect(menu.expanded).toBe(true);
         expect(toggle.getAttribute("aria-expanded")).toBe("true");
         expect(
-            document.getElementById("mainNav")?.classList.contains(
-                "nav--expanded",
-            ),
+            document
+                .getElementById("mainNav")
+                ?.classList.contains("nav--expanded"),
         ).toBe(true);
 
         click(toggle);

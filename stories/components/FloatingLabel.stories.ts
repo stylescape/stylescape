@@ -19,7 +19,7 @@ type Story = StoryObj;
 export const SectionTitle: Story = {
     render: () => html`
         <label class="ss-c-floating-label">
-            <input type="text" class="ss-c-input" placeholder=" ">
+            <input type="text" class="ss-c-input" placeholder=" " />
             <span>Email address</span>
         </label>
     `,

@@ -19,7 +19,9 @@ type Story = StoryObj;
 export const SectionTitle: Story = {
     render: () => html`
         <nav class="ss-c-bottom-nav" style="position:relative">
-            <a class="ss-c-bottom-nav__item" href="#" aria-current="page">Home</a>
+            <a class="ss-c-bottom-nav__item" href="#" aria-current="page"
+                >Home</a
+            >
             <a class="ss-c-bottom-nav__item" href="#">Search</a>
             <a class="ss-c-bottom-nav__item" href="#">Inbox</a>
             <a class="ss-c-bottom-nav__item" href="#">Profile</a>

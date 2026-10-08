@@ -26,7 +26,9 @@ function mainMenu(): HTMLElement {
     return document.querySelector("[data-ss-drilldown-menu]") as HTMLElement;
 }
 function subMenu(): HTMLElement {
-    return document.querySelector("[data-ss-drilldown-submenu]") as HTMLElement;
+    return document.querySelector(
+        "[data-ss-drilldown-submenu]",
+    ) as HTMLElement;
 }
 
 describe("DrilldownMenuManager", () => {

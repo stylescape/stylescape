@@ -67,19 +67,27 @@ export const AllVariants: Story = {
         <div style="display:flex; flex-direction:column; gap:0.75rem;">
             <div class="ss-c-alert--success">
                 <strong class="ss-c-alert__title">Success</strong>
-                <span class="ss-c-alert__message">Your submission was successful.</span>
+                <span class="ss-c-alert__message"
+                    >Your submission was successful.</span
+                >
             </div>
             <div class="ss-c-alert--warning">
                 <strong class="ss-c-alert__title">Warning</strong>
-                <span class="ss-c-alert__message">There are unsaved changes.</span>
+                <span class="ss-c-alert__message"
+                    >There are unsaved changes.</span
+                >
             </div>
             <div class="ss-c-alert--error">
                 <strong class="ss-c-alert__title">Error</strong>
-                <span class="ss-c-alert__message">Something went wrong. Please try again.</span>
+                <span class="ss-c-alert__message"
+                    >Something went wrong. Please try again.</span
+                >
             </div>
             <div class="ss-c-alert--info">
                 <strong class="ss-c-alert__title">Info</strong>
-                <span class="ss-c-alert__message">This is additional information for your context.</span>
+                <span class="ss-c-alert__message"
+                    >This is additional information for your context.</span
+                >
             </div>
         </div>
     `,

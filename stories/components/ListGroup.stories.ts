@@ -20,9 +20,13 @@ export const SectionTitle: Story = {
     render: () => html`
         <ul class="ss-c-list-group">
             <li class="ss-c-list-group__item">An item</li>
-            <li class="ss-c-list-group__item ss-c-list-group__item--active">An active item</li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--active">
+                An active item
+            </li>
             <li class="ss-c-list-group__item">A third item</li>
-            <li class="ss-c-list-group__item ss-c-list-group__item--disabled">A disabled item</li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--disabled">
+                A disabled item
+            </li>
         </ul>
     `,
 };
@@ -30,11 +34,21 @@ export const SectionTitle: Story = {
 export const SectionTitle2: Story = {
     render: () => html`
         <ul class="ss-c-list-group">
-            <li class="ss-c-list-group__item ss-c-list-group__item--primary">Primary</li>
-            <li class="ss-c-list-group__item ss-c-list-group__item--success">Success</li>
-            <li class="ss-c-list-group__item ss-c-list-group__item--warning">Warning</li>
-            <li class="ss-c-list-group__item ss-c-list-group__item--danger">Danger</li>
-            <li class="ss-c-list-group__item ss-c-list-group__item--info">Info</li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--primary">
+                Primary
+            </li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--success">
+                Success
+            </li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--warning">
+                Warning
+            </li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--danger">
+                Danger
+            </li>
+            <li class="ss-c-list-group__item ss-c-list-group__item--info">
+                Info
+            </li>
         </ul>
     `,
 };

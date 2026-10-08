@@ -18,12 +18,18 @@ type Story = StoryObj;
 
 export const SectionTitle: Story = {
     render: () => html`
-        <p class="ss-c-dropcap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="ss-c-dropcap">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
     `,
 };
 
 export const SectionTitle2: Story = {
     render: () => html`
-        <p class="ss-c-dropcap-block">Stylescape provides a structured, layered approach to authoring scalable user interfaces.</p>
+        <p class="ss-c-dropcap-block">
+            Stylescape provides a structured, layered approach to authoring
+            scalable user interfaces.
+        </p>
     `,
 };

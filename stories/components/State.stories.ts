@@ -21,8 +21,12 @@ export const SectionTitle: Story = {
         <div class="ss-c-state ss-c-state--empty">
             <div class="ss-c-state__icon">&#9671;</div>
             <div class="ss-c-state__title">No studies yet</div>
-            <p class="ss-c-state__message">Create your first study to get started.</p>
-            <button class="ss-c-button ss-c-state__action">Create study</button>
+            <p class="ss-c-state__message">
+                Create your first study to get started.
+            </p>
+            <button class="ss-c-button ss-c-state__action">
+                Create study
+            </button>
         </div>
     `,
 };

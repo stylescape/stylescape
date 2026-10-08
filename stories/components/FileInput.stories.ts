@@ -17,25 +17,23 @@ export default meta;
 type Story = StoryObj;
 
 export const SectionTitle: Story = {
-    render: () => html`
-        <input type="file" class="ss-c-file-input">
-    `,
+    render: () => html` <input type="file" class="ss-c-file-input" /> `,
 };
 
 export const SectionTitle2: Story = {
     render: () => html`
-        <input type="file" class="ss-c-file-input ss-c-file-input--xs">
-        <input type="file" class="ss-c-file-input ss-c-file-input--sm">
-        <input type="file" class="ss-c-file-input ss-c-file-input--lg">
+        <input type="file" class="ss-c-file-input ss-c-file-input--xs" />
+        <input type="file" class="ss-c-file-input ss-c-file-input--sm" />
+        <input type="file" class="ss-c-file-input ss-c-file-input--lg" />
     `,
 };
 
 export const SectionTitle3: Story = {
     render: () => html`
-        <input type="file" class="ss-c-file-input ss-c-file-input--primary">
-        <input type="file" class="ss-c-file-input ss-c-file-input--success">
-        <input type="file" class="ss-c-file-input ss-c-file-input--error">
-        <input type="file" class="ss-c-file-input ss-c-file-input--bordered">
-        <input type="file" class="ss-c-file-input ss-c-file-input--ghost">
+        <input type="file" class="ss-c-file-input ss-c-file-input--primary" />
+        <input type="file" class="ss-c-file-input ss-c-file-input--success" />
+        <input type="file" class="ss-c-file-input ss-c-file-input--error" />
+        <input type="file" class="ss-c-file-input ss-c-file-input--bordered" />
+        <input type="file" class="ss-c-file-input ss-c-file-input--ghost" />
     `,
 };

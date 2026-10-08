@@ -19,17 +19,45 @@ type Story = StoryObj;
 export const SectionTitle: Story = {
     render: () => html`
         <div class="ss-c-rating">
-            <input type="radio" name="r1" value="5"><input type="radio" name="r1" value="4">
-            <input type="radio" name="r1" value="3" checked><input type="radio" name="r1" value="2"><input type="radio" name="r1" value="1">
+            <input type="radio" name="r1" value="5" /><input
+                type="radio"
+                name="r1"
+                value="4"
+            />
+            <input type="radio" name="r1" value="3" checked /><input
+                type="radio"
+                name="r1"
+                value="2"
+            /><input type="radio" name="r1" value="1" />
         </div>
     `,
 };
 
 export const SectionTitle2: Story = {
     render: () => html`
-        <div class="ss-c-rating ss-c-rating--xs"><input type="radio" name="rs-xs" checked><input type="radio" name="rs-xs"><input type="radio" name="rs-xs"></div>
-        <div class="ss-c-rating ss-c-rating--sm"><input type="radio" name="rs-sm" checked><input type="radio" name="rs-sm"><input type="radio" name="rs-sm"></div>
-        <div class="ss-c-rating ss-c-rating--lg"><input type="radio" name="rs-lg" checked><input type="radio" name="rs-lg"><input type="radio" name="rs-lg"></div>
-        <div class="ss-c-rating ss-c-rating--xl"><input type="radio" name="rs-xl" checked><input type="radio" name="rs-xl"><input type="radio" name="rs-xl"></div>
+        <div class="ss-c-rating ss-c-rating--xs">
+            <input type="radio" name="rs-xs" checked /><input
+                type="radio"
+                name="rs-xs"
+            /><input type="radio" name="rs-xs" />
+        </div>
+        <div class="ss-c-rating ss-c-rating--sm">
+            <input type="radio" name="rs-sm" checked /><input
+                type="radio"
+                name="rs-sm"
+            /><input type="radio" name="rs-sm" />
+        </div>
+        <div class="ss-c-rating ss-c-rating--lg">
+            <input type="radio" name="rs-lg" checked /><input
+                type="radio"
+                name="rs-lg"
+            /><input type="radio" name="rs-lg" />
+        </div>
+        <div class="ss-c-rating ss-c-rating--xl">
+            <input type="radio" name="rs-xl" checked /><input
+                type="radio"
+                name="rs-xl"
+            /><input type="radio" name="rs-xl" />
+        </div>
     `,
 };

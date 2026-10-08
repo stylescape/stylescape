@@ -29,7 +29,7 @@ export const SectionTitle: Story = {
 export const SectionTitle2: Story = {
     render: () => html`
         <div class="ss-c-join">
-            <input type="text" class="ss-c-input" placeholder="Search">
+            <input type="text" class="ss-c-input" placeholder="Search" />
             <button class="ss-c-button ss-c-button--primary">Go</button>
         </div>
     `,

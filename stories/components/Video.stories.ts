@@ -116,7 +116,10 @@ export const CustomPlayerUI: Story = {
                 </button>
             </div>
             <div class="ss-c-video_player__controls">
-                <button class="ss-c-video_player__button" aria-label="Play/Pause">
+                <button
+                    class="ss-c-video_player__button"
+                    aria-label="Play/Pause"
+                >
                     ▶
                 </button>
                 <div class="ss-c-video_player__progress">
@@ -133,7 +136,10 @@ export const CustomPlayerUI: Story = {
                     max="100"
                     value="100"
                 />
-                <button class="ss-c-video_player__button" aria-label="Fullscreen">
+                <button
+                    class="ss-c-video_player__button"
+                    aria-label="Fullscreen"
+                >
                     □
                 </button>
             </div>
@@ -148,13 +154,18 @@ export const VideoGrid: Story = {
                 <div class="ss-c-video_card__thumbnail">
                     <img src="thumb1.jpg" alt="Video thumbnail" />
                     <span class="ss-c-video_card__duration">3:45</span>
-                    <button class="ss-c-video_card__play" aria-label="Play video">
+                    <button
+                        class="ss-c-video_card__play"
+                        aria-label="Play video"
+                    >
                         ▶
                     </button>
                 </div>
                 <div class="ss-c-video_card__info">
                     <h4 class="ss-c-video_card__title">Video Title</h4>
-                    <p class="ss-c-video_card__meta">1.2K views • 2 days ago</p>
+                    <p class="ss-c-video_card__meta">
+                        1.2K views • 2 days ago
+                    </p>
                 </div>
             </article>
 
@@ -162,13 +173,18 @@ export const VideoGrid: Story = {
                 <div class="ss-c-video_card__thumbnail">
                     <img src="thumb2.jpg" alt="Video thumbnail" />
                     <span class="ss-c-video_card__duration">5:20</span>
-                    <button class="ss-c-video_card__play" aria-label="Play video">
+                    <button
+                        class="ss-c-video_card__play"
+                        aria-label="Play video"
+                    >
                         ▶
                     </button>
                 </div>
                 <div class="ss-c-video_card__info">
                     <h4 class="ss-c-video_card__title">Another Video</h4>
-                    <p class="ss-c-video_card__meta">3.5K views • 1 week ago</p>
+                    <p class="ss-c-video_card__meta">
+                        3.5K views • 1 week ago
+                    </p>
                 </div>
             </article>
         </div>
@@ -191,7 +207,9 @@ export const HeroWithVideoBackground: Story = {
             <div class="ss-c-video_hero__content">
                 <h1>Welcome</h1>
                 <p>Engaging hero section with video background</p>
-                <button class="ss-c-button ss-c-button--primary">Get Started</button>
+                <button class="ss-c-button ss-c-button--primary">
+                    Get Started
+                </button>
             </div>
         </div>
     `,

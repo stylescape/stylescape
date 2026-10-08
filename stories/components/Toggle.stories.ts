@@ -91,7 +91,9 @@ export const DisabledToggle: Story = {
 export const BasicTogglePanel: Story = {
     render: () => html`
         <details class="ss-c-toggle_panel">
-            <summary class="ss-c-toggle_panel__header">Click to expand</summary>
+            <summary class="ss-c-toggle_panel__header">
+                Click to expand
+            </summary>
             <div class="ss-c-toggle_panel__content">
                 <p>
                     This content is hidden until the panel is expanded. Click
@@ -171,10 +173,16 @@ export const ToggleButtonGroup: Story = {
             >
                 Left
             </button>
-            <button class="ss-c-button ss-c-toggle_button" aria-pressed="false">
+            <button
+                class="ss-c-button ss-c-toggle_button"
+                aria-pressed="false"
+            >
                 Center
             </button>
-            <button class="ss-c-button ss-c-toggle_button" aria-pressed="false">
+            <button
+                class="ss-c-button ss-c-toggle_button"
+                aria-pressed="false"
+            >
                 Right
             </button>
         </div>

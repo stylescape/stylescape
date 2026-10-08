@@ -23,7 +23,5 @@ export const Example: Story = {
 };
 
 export const Example2: Story = {
-    render: () => html`
-        <h1>The quick.</h1>
-    `,
+    render: () => html` <h1>The quick.</h1> `,
 };

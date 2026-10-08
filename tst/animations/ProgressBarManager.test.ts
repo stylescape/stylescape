@@ -5,8 +5,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ProgressBarManager } from "../../src/ts/animations/ProgressBarManager";
 
-const withBar = () =>
-    `<div id="pb"><div class="progress__bar"></div></div>`;
+const withBar = () => `<div id="pb"><div class="progress__bar"></div></div>`;
 
 describe("ProgressBarManager", () => {
     let manager: ProgressBarManager | undefined;
@@ -192,7 +191,11 @@ describe("ProgressBarManager", () => {
         it("onChange fires with value and percentage", () => {
             const onChange = vi.fn();
             const el = build();
-            manager = new ProgressBarManager(el, { min: 0, max: 200, onChange });
+            manager = new ProgressBarManager(el, {
+                min: 0,
+                max: 200,
+                onChange,
+            });
             onChange.mockClear(); // ignore the init call
             manager.setProgress(50);
             expect(onChange).toHaveBeenCalledWith(50, 25);
@@ -259,7 +262,9 @@ describe("ProgressBarManager", () => {
             expect(el.getAttribute("aria-valuenow")).toBe("40");
 
             manager.setIndeterminate(true);
-            expect(el.classList.contains("progress--indeterminate")).toBe(true);
+            expect(el.classList.contains("progress--indeterminate")).toBe(
+                true,
+            );
             expect(el.hasAttribute("aria-valuenow")).toBe(false);
 
             manager.setIndeterminate(false);

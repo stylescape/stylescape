@@ -122,7 +122,9 @@ export const SectionTitle4: Story = {
             class="ss-c-popover-wrapper"
             style="display: inline-block; position: relative"
         >
-            <button class="ss-c-button ss-c-button--primary">User Profile</button>
+            <button class="ss-c-button ss-c-button--primary">
+                User Profile
+            </button>
             <div
                 class="ss-c-popover ss-c-popover--bottom"
                 style="

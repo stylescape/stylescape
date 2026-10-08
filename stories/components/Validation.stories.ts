@@ -18,18 +18,26 @@ type Story = StoryObj;
 
 export const SectionTitle: Story = {
     render: () => html`
-        <label>Email
-            <input type="email" class="ss-c-input" value="hello@example.com">
-            <span class="ss-c-validation__success ss-c-validation__success--visible">Looks good.</span>
+        <label
+            >Email
+            <input type="email" class="ss-c-input" value="hello@example.com" />
+            <span
+                class="ss-c-validation__success ss-c-validation__success--visible"
+                >Looks good.</span
+            >
         </label>
     `,
 };
 
 export const SectionTitle2: Story = {
     render: () => html`
-        <label>Email
-            <input type="email" class="ss-c-input" value="not-an-email">
-            <span class="ss-c-validation__error ss-c-validation__error--visible">Please enter a valid email.</span>
+        <label
+            >Email
+            <input type="email" class="ss-c-input" value="not-an-email" />
+            <span
+                class="ss-c-validation__error ss-c-validation__error--visible"
+                >Please enter a valid email.</span
+            >
         </label>
     `,
 };

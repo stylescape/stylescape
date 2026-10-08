@@ -18,6 +18,8 @@ type Story = StoryObj;
 
 export const SectionTitle: Story = {
     render: () => html`
-        <button type="button" class="ss-c-video-button" aria-label="Play">&#9658;</button>
+        <button type="button" class="ss-c-video-button" aria-label="Play">
+            &#9658;
+        </button>
     `,
 };

@@ -19,9 +19,21 @@ type Story = StoryObj;
 export const SectionTitle: Story = {
     render: () => html`
         <div class="ss-c-stack">
-            <div style="background:var(--ss-color-surface-1, #eee); padding:1em; width:8em; text-align:center">Top</div>
-            <div style="background:var(--ss-color-surface-2, #ddd); padding:1em; width:8em; text-align:center">Middle</div>
-            <div style="background:var(--ss-color-surface-3, #ccc); padding:1em; width:8em; text-align:center">Bottom</div>
+            <div
+                style="background:var(--ss-color-surface-1, #eee); padding:1em; width:8em; text-align:center"
+            >
+                Top
+            </div>
+            <div
+                style="background:var(--ss-color-surface-2, #ddd); padding:1em; width:8em; text-align:center"
+            >
+                Middle
+            </div>
+            <div
+                style="background:var(--ss-color-surface-3, #ccc); padding:1em; width:8em; text-align:center"
+            >
+                Bottom
+            </div>
         </div>
     `,
 };

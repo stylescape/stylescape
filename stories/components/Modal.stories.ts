@@ -53,7 +53,9 @@ export const SectionTitle: Story = {
                     >
                         Cancel
                     </button>
-                    <button class="ss-c-button ss-c-button--primary">Confirm</button>
+                    <button class="ss-c-button ss-c-button--primary">
+                        Confirm
+                    </button>
                 </footer>
             </div>
         </div>
@@ -152,7 +154,9 @@ export const SectionTitle3: Story = {
                     >
                         Cancel
                     </button>
-                    <button class="ss-c-button ss-c-button--danger">Delete</button>
+                    <button class="ss-c-button ss-c-button--danger">
+                        Delete
+                    </button>
                 </footer>
             </div>
         </div>

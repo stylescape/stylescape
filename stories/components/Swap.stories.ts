@@ -19,7 +19,7 @@ type Story = StoryObj;
 export const SectionTitle: Story = {
     render: () => html`
         <label class="ss-c-swap">
-            <input type="checkbox">
+            <input type="checkbox" />
             <span class="ss-c-swap__on">ON</span>
             <span class="ss-c-swap__off">OFF</span>
         </label>
@@ -29,7 +29,7 @@ export const SectionTitle: Story = {
 export const SectionTitle2: Story = {
     render: () => html`
         <label class="ss-c-swap ss-c-swap--rotate">
-            <input type="checkbox">
+            <input type="checkbox" />
             <span class="ss-c-swap__on">+</span>
             <span class="ss-c-swap__off">x</span>
         </label>
@@ -39,7 +39,7 @@ export const SectionTitle2: Story = {
 export const SectionTitle3: Story = {
     render: () => html`
         <label class="ss-c-swap ss-c-swap--flip">
-            <input type="checkbox">
+            <input type="checkbox" />
             <span class="ss-c-swap__on">&#9728;</span>
             <span class="ss-c-swap__off">&#9790;</span>
         </label>
