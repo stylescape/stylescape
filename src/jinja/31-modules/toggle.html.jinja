@@ -1,24 +1,29 @@
 {% extends "../base.html.jinja" %} {%- block title %}Toggle & Switch{%- endblock
-%} {%- block content %} {#
+%} {%- block content %}
+<header class="ss-c-demo__section__header">
+    <h1>Toggle &amp; Switch</h1>
+    <p>Switches, collapsible panels and toggle buttons.</p>
+</header>
+ {#
 ============================================================================
 Toggle Switch
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Toggle Switch" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Toggle Switch</h3>
+        <h2>Toggle Switch</h2>
         <p>Binary on/off switches for boolean settings.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Basic Toggle</h4>
+        <h3>Basic Toggle</h3>
         {% set code_snippet %}
         <label class="ss-c-toggle_switch">
-            <input type="checkbox" />
+            <input type="checkbox" role="switch" aria-label="Basic toggle (off)" />
             <span class="ss-c-toggle_switch__slider"></span>
         </label>
 
         <label class="ss-c-toggle_switch">
-            <input type="checkbox" checked />
+            <input type="checkbox" role="switch" aria-label="Basic toggle (on)" checked />
             <span class="ss-c-toggle_switch__slider"></span>
         </label>
         {% endset %} {% set language="HTML" %} {% include
@@ -26,19 +31,19 @@ Toggle Switch
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Toggle with Label</h4>
+        <h3>Toggle with Label</h3>
         {% set code_snippet %}
         <label class="ss-c-toggle_switch__label">
             <span class="ss-c-toggle_switch__text">Enable notifications</span>
             <span class="ss-c-toggle_switch">
-                <input type="checkbox" />
+                <input type="checkbox" role="switch" />
                 <span class="ss-c-toggle_switch__slider"></span>
             </span>
         </label>
 
         <label class="ss-c-toggle_switch__label">
             <span class="ss-c-toggle_switch">
-                <input type="checkbox" checked />
+                <input type="checkbox" role="switch" checked />
                 <span class="ss-c-toggle_switch__slider"></span>
             </span>
             <span class="ss-c-toggle_switch__text">Dark mode enabled</span>
@@ -48,22 +53,22 @@ Toggle Switch
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Toggle Sizes</h4>
+        <h3>Toggle Sizes</h3>
         {% set code_snippet %}
         <label class="ss-c-toggle_switch ss-c-toggle_switch--sm">
-            <input type="checkbox" checked />
+            <input type="checkbox" role="switch" aria-label="Small toggle" checked />
             <span class="ss-c-toggle_switch__slider"></span>
         </label>
         <span class="ss-c-ml--02 ss-c-mr--04">Small</span>
 
         <label class="ss-c-toggle_switch">
-            <input type="checkbox" checked />
+            <input type="checkbox" role="switch" aria-label="Default toggle" checked />
             <span class="ss-c-toggle_switch__slider"></span>
         </label>
         <span class="ss-c-ml--02 ss-c-mr--04">Default</span>
 
         <label class="ss-c-toggle_switch ss-c-toggle_switch--lg">
-            <input type="checkbox" checked />
+            <input type="checkbox" role="switch" aria-label="Large toggle" checked />
             <span class="ss-c-toggle_switch__slider"></span>
         </label>
         <span class="ss-c-ml--02">Large</span>
@@ -72,16 +77,16 @@ Toggle Switch
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Disabled Toggle</h4>
+        <h3>Disabled Toggle</h3>
         {% set code_snippet %}
         <label class="ss-c-toggle_switch">
-            <input type="checkbox" disabled />
+            <input type="checkbox" role="switch" aria-label="Disabled off" disabled />
             <span class="ss-c-toggle_switch__slider"></span>
         </label>
         <span class="ss-c-ml--02 ss-c-mr--04">Disabled off</span>
 
         <label class="ss-c-toggle_switch">
-            <input type="checkbox" checked disabled />
+            <input type="checkbox" role="switch" aria-label="Disabled on" checked disabled />
             <span class="ss-c-toggle_switch__slider"></span>
         </label>
         <span class="ss-c-ml--02">Disabled on</span>
@@ -95,12 +100,12 @@ Toggle Panel
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Toggle Panel" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Toggle Panel</h3>
+        <h2>Toggle Panel</h2>
         <p>Expandable/collapsible content panels.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Basic Toggle Panel</h4>
+        <h3>Basic Toggle Panel</h3>
         {% set code_snippet %}
         <details class="ss-c-toggle_panel">
             <summary class="ss-c-toggle_panel__header">Click to expand</summary>
@@ -116,7 +121,7 @@ Toggle Panel
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Initially Open Panel</h4>
+        <h3>Initially Open Panel</h3>
         {% set code_snippet %}
         <details class="ss-c-toggle_panel" open>
             <summary class="ss-c-toggle_panel__header">
@@ -134,7 +139,7 @@ Toggle Panel
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Multiple Panels</h4>
+        <h3>Multiple Panels</h3>
         {% set code_snippet %}
         <details class="ss-c-toggle_panel ss-c-mb--02">
             <summary class="ss-c-toggle_panel__header">Section One</summary>
@@ -166,12 +171,12 @@ Toggle Button
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Toggle Button" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Toggle Button</h3>
+        <h2>Toggle Button</h2>
         <p>Buttons that toggle between active and inactive states.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Basic Toggle Button</h4>
+        <h3>Basic Toggle Button</h3>
         {% set code_snippet %}
         <button class="ss-c-button ss-c-toggle_button" aria-pressed="false">
             Toggle Off
@@ -188,7 +193,7 @@ Toggle Button
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Toggle Button Group</h4>
+        <h3>Toggle Button Group</h3>
         {% set code_snippet %}
         <div
             class="ss-c-toggle_button_group"
@@ -218,33 +223,33 @@ Toggle States
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Toggle Colors" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Toggle Colors</h3>
+        <h2>Toggle Colors</h2>
         <p>Toggle switches with semantic colors.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Colored Toggles</h4>
+        <h3>Colored Toggles</h3>
         {% set code_snippet %}
         <label class="ss-c-toggle_switch ss-c-toggle_switch--primary">
-            <input type="checkbox" checked />
+            <input type="checkbox" role="switch" aria-label="Primary toggle" checked />
             <span class="ss-c-toggle_switch__slider"></span>
         </label>
         <span class="ss-c-ml--02 ss-c-mr--04">Primary</span>
 
         <label class="ss-c-toggle_switch ss-c-toggle_switch--success">
-            <input type="checkbox" checked />
+            <input type="checkbox" role="switch" aria-label="Success toggle" checked />
             <span class="ss-c-toggle_switch__slider"></span>
         </label>
         <span class="ss-c-ml--02 ss-c-mr--04">Success</span>
 
         <label class="ss-c-toggle_switch ss-c-toggle_switch--warning">
-            <input type="checkbox" checked />
+            <input type="checkbox" role="switch" aria-label="Warning toggle" checked />
             <span class="ss-c-toggle_switch__slider"></span>
         </label>
         <span class="ss-c-ml--02 ss-c-mr--04">Warning</span>
 
         <label class="ss-c-toggle_switch ss-c-toggle_switch--danger">
-            <input type="checkbox" checked />
+            <input type="checkbox" role="switch" aria-label="Danger toggle" checked />
             <span class="ss-c-toggle_switch__slider"></span>
         </label>
         <span class="ss-c-ml--02">Danger</span>

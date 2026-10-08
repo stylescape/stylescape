@@ -1,0 +1,66 @@
+@use "sass:map";
+@use "./empty-state.config" as config;
+@use "../../01-core/external" as *;
+@use "../../01-core/prefix" as *;
+
+$_c: config.$ss-empty-state-config;
+
+/// "Nothing here yet" panel: icon, title, one line of help, actions.
+@mixin ss-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: map.get($_c, gap);
+    padding: map.get($_c, padding);
+    text-align: center;
+    color: var(--ss-color-text-muted);
+}
+
+@mixin ss-empty-state-icon($size: map.get($_c, icon-size)) {
+    inline-size: $size;
+    block-size: $size;
+    margin-block-end: q(8);
+    color: var(--ss-color-muted);
+
+    svg {
+        inline-size: 100%;
+        block-size: 100%;
+    }
+}
+
+@mixin ss-empty-state-title {
+    margin: 0;
+    font-size: var(--ss-font-size-lg);
+    font-weight: 600;
+    color: var(--ss-color-text);
+}
+
+@mixin ss-empty-state-description {
+    max-inline-size: map.get($_c, max-width);
+    margin: 0;
+}
+
+@mixin ss-empty-state-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: q(8);
+    margin-block-start: q(8);
+}
+
+@mixin ss-empty-state-bordered {
+    border: q(1) dashed var(--ss-color-border-strong);
+    border-radius: var(--ss-radius-md);
+}
+
+@mixin ss-empty-state-compact {
+    padding: map.get($_c, padding-compact);
+    gap: q(4);
+
+    .#{$ss-prefix-module}-empty-state__icon {
+        @include ss-empty-state-icon(map.get($_c, icon-size-compact));
+    }
+    .#{$ss-prefix-module}-empty-state__title {
+        font-size: var(--ss-font-size-md);
+    }
+}

@@ -27,14 +27,10 @@
 
     &:focus,
     &:focus-visible {
-        outline: none;
         border-color: map.get(config.$ss-input-config, border-focus);
-        box-shadow: 0 0 0 q(2)
-            color-mix(
-                in srgb,
-                map.get(config.$ss-input-config, border-focus) 25%,
-                transparent
-            );
+        // Shared focus ring; the border colour is an extra cue.
+        outline: var(--ss-focus-ring-width, #{q(2)}) solid var(--ss-focus-ring-color, currentColor);
+        outline-offset: var(--ss-focus-ring-offset, #{q(2)});
     }
 
     &:disabled,
@@ -64,11 +60,8 @@
     &:focus,
     &:focus-visible {
         border-color: map.get(config.$ss-input-config, border-error);
-        box-shadow: 0 0 0 q(2)
-            color-mix(
-                in srgb,
-                map.get(config.$ss-input-config, border-error) 25%,
-                transparent
-            );
+        // Shared focus ring; the border colour is an extra cue.
+        outline: var(--ss-focus-ring-width, #{q(2)}) solid var(--ss-focus-ring-color, currentColor);
+        outline-offset: var(--ss-focus-ring-offset, #{q(2)});
     }
 }

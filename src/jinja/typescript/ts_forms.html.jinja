@@ -3,7 +3,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             JavaScript components for autocomplete suggestions and form
             validation.
@@ -16,11 +16,11 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Autocomplete suggestions with keyboard navigation.</p>
         {% set code_snippet %}
         <!-- Basic autocomplete -->
-        <div style="position: relative; max-width: 400px">
+        <div style="position: relative; max-width: 400px; margin-bottom: 140px">
             <input
                 type="text"
                 data-ss="autocomplete"
@@ -29,8 +29,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 style="
                     width: 100%;
                     padding: 12px 16px;
-                    border: 1px solid var(--color_line_secondary);
-                    border-radius: 8px;
+                    border: 1px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
                     font-size: 16px;
                 "
             />
@@ -45,9 +45,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     right: 0;
                     margin: 4px 0 0;
                     padding: 8px 0;
-                    background: white;
-                    border: 1px solid var(--color_line_secondary);
-                    border-radius: 8px;
+                    background: var(--ss-color-surface);
+                    color: var(--ss-color-text);
+                    border: 1px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
                     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
                     list-style: none;
                     max-height: 240px;
@@ -55,22 +56,19 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 "
             >
                 <li style="padding: 10px 16px; cursor: pointer">
-                    <span style="font-weight: 500">Uni</span>
-                    ted States
+                    <span style="font-weight: 500">Uni</span>ted States
                 </li>
                 <li
                     style="
                         padding: 10px 16px;
                         cursor: pointer;
-                        background: var(--color_fill_secondary);
+                        background: var(--ss-color-surface-alt);
                     "
                 >
-                    <span style="font-weight: 500">Uni</span>
-                    ted Kingdom
+                    <span style="font-weight: 500">Uni</span>ted Kingdom
                 </li>
                 <li style="padding: 10px 16px; cursor: pointer">
-                    <span style="font-weight: 500">Uni</span>
-                    ted Arab Emirates
+                    <span style="font-weight: 500">Uni</span>ted Arab Emirates
                 </li>
             </ul>
         </div>
@@ -78,12 +76,14 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         <!-- Autocomplete with API fetch -->
         <div style="position: relative; max-width: 400px; margin-top: 24px">
             <label
+                for="tsf-search-users"
                 style="display: block; margin-bottom: 8px; font-weight: 500"
             >
                 Search Users
             </label>
             <div style="position: relative">
                 <input
+                    id="tsf-search-users"
                     type="text"
                     data-ss="autocomplete"
                     data-ss-autocomplete-min-chars="1"
@@ -92,12 +92,13 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     style="
                         width: 100%;
                         padding: 12px 16px 12px 44px;
-                        border: 1px solid var(--color_line_secondary);
-                        border-radius: 8px;
+                        border: 1px solid var(--ss-color-border);
+                        border-radius: var(--ss-radius-lg);
                         font-size: 16px;
                     "
                 />
                 <span
+                    aria-hidden="true"
                     style="
                         position: absolute;
                         left: 16px;
@@ -112,7 +113,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         </div>
 
         <!-- Autocomplete with custom template -->
-        <div style="position: relative; max-width: 400px; margin-top: 24px">
+        <div style="position: relative; max-width: 400px; margin-top: 24px; margin-bottom: 180px">
             <input
                 type="text"
                 data-ss="autocomplete"
@@ -120,8 +121,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 style="
                     width: 100%;
                     padding: 12px 16px;
-                    border: 1px solid var(--color_line_secondary);
-                    border-radius: 8px;
+                    border: 1px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
                 "
             />
 
@@ -134,9 +135,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     right: 0;
                     margin: 4px 0 0;
                     padding: 8px;
-                    background: white;
-                    border: 1px solid var(--color_line_secondary);
-                    border-radius: 8px;
+                    background: var(--ss-color-surface);
+                    color: var(--ss-color-text);
+                    border: 1px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
                     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
                     list-style: none;
                 "
@@ -148,15 +150,15 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                         display: flex;
                         gap: 12px;
                         align-items: center;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                     "
                 >
                     <div
                         style="
                             width: 48px;
                             height: 48px;
-                            background: var(--color_fill_secondary);
-                            border-radius: 8px;
+                            background: var(--ss-color-surface-alt);
+                            border-radius: var(--ss-radius-lg);
                         "
                     ></div>
                     <div>
@@ -173,16 +175,16 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                         display: flex;
                         gap: 12px;
                         align-items: center;
-                        border-radius: 6px;
-                        background: var(--color_fill_secondary);
+                        border-radius: var(--ss-radius-md);
+                        background: var(--ss-color-surface-alt);
                     "
                 >
                     <div
                         style="
                             width: 48px;
                             height: 48px;
-                            background: var(--color_line_secondary);
-                            border-radius: 8px;
+                            background: var(--ss-color-border);
+                            border-radius: var(--ss-radius-lg);
                         "
                     ></div>
                     <div>
@@ -204,7 +206,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Form validation with customizable rules and real-time feedback.</p>
         {% set code_snippet %}
         <form
@@ -220,6 +222,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- Email field -->
             <div class="ss-c-form-field">
                 <label
+                    for="tsf-email"
                     style="
                         display: block;
                         margin-bottom: 6px;
@@ -229,6 +232,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     Email *
                 </label>
                 <input
+                    id="tsf-email"
                     type="email"
                     name="email"
                     data-ss-validate-required="Email is required"
@@ -236,15 +240,15 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     style="
                         width: 100%;
                         padding: 12px 16px;
-                        border: 1px solid var(--color_line_secondary);
-                        border-radius: 8px;
+                        border: 1px solid var(--ss-color-border);
+                        border-radius: var(--ss-radius-lg);
                     "
                 />
                 <span
                     class="ss-c-form-field__error"
                     style="
                         display: none;
-                        color: var(--color_state_error);
+                        color: var(--ss-color-error);
                         font-size: 14px;
                         margin-top: 4px;
                     "
@@ -254,6 +258,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- Password field -->
             <div class="ss-c-form-field">
                 <label
+                    for="tsf-password"
                     style="
                         display: block;
                         margin-bottom: 6px;
@@ -263,6 +268,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     Password *
                 </label>
                 <input
+                    id="tsf-password"
                     type="password"
                     name="password"
                     data-ss-validate-required="Password is required"
@@ -272,8 +278,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     style="
                         width: 100%;
                         padding: 12px 16px;
-                        border: 1px solid var(--color_line_secondary);
-                        border-radius: 8px;
+                        border: 1px solid var(--ss-color-border);
+                        border-radius: var(--ss-radius-lg);
                     "
                 />
                 <span
@@ -292,6 +298,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- Confirm password -->
             <div class="ss-c-form-field">
                 <label
+                    for="tsf-confirm-password"
                     style="
                         display: block;
                         margin-bottom: 6px;
@@ -301,6 +308,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     Confirm Password *
                 </label>
                 <input
+                    id="tsf-confirm-password"
                     type="password"
                     name="confirmPassword"
                     data-ss-validate-required="Please confirm your password"
@@ -309,8 +317,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     style="
                         width: 100%;
                         padding: 12px 16px;
-                        border: 1px solid var(--color_line_secondary);
-                        border-radius: 8px;
+                        border: 1px solid var(--ss-color-border);
+                        border-radius: var(--ss-radius-lg);
                     "
                 />
             </div>
@@ -345,10 +353,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 type="submit"
                 style="
                     padding: 14px 28px;
-                    background: var(--color_fill_primary);
-                    color: white;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
                     border: none;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     font-weight: 600;
                     cursor: pointer;
                 "
@@ -366,7 +374,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Visual feedback for different validation states.</p>
         {% set code_snippet %}
         <div
@@ -380,6 +388,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- Default state -->
             <div class="ss-c-form-field">
                 <label
+                    for="tsf-default"
                     style="
                         display: block;
                         margin-bottom: 6px;
@@ -389,13 +398,14 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     Default
                 </label>
                 <input
+                    id="tsf-default"
                     type="text"
                     placeholder="Enter value..."
                     style="
                         width: 100%;
                         padding: 12px 16px;
-                        border: 1px solid var(--color_line_secondary);
-                        border-radius: 8px;
+                        border: 1px solid var(--ss-color-border);
+                        border-radius: var(--ss-radius-lg);
                     "
                 />
             </div>
@@ -403,6 +413,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- Focus state -->
             <div class="ss-c-form-field">
                 <label
+                    for="tsf-focus"
                     style="
                         display: block;
                         margin-bottom: 6px;
@@ -412,16 +423,17 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     Focus
                 </label>
                 <input
+                    id="tsf-focus"
                     type="text"
                     placeholder="Focused input..."
                     style="
                         width: 100%;
                         padding: 12px 16px;
-                        border: 2px solid var(--color_fill_primary);
-                        border-radius: 8px;
+                        border: 2px solid var(--ss-color-accent);
+                        border-radius: var(--ss-radius-lg);
                         outline: none;
                         box-shadow: 0 0 0 3px
-                            rgba(var(--color_fill_primary_rgb), 0.1);
+                            color-mix(in srgb, var(--ss-color-accent) 10%, transparent);
                     "
                 />
             </div>
@@ -429,6 +441,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- Valid state -->
             <div class="ss-c-form-field is-valid">
                 <label
+                    for="tsf-valid"
                     style="
                         display: block;
                         margin-bottom: 6px;
@@ -439,13 +452,14 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 </label>
                 <div style="position: relative">
                     <input
+                        id="tsf-valid"
                         type="text"
                         value="valid@email.com"
                         style="
                             width: 100%;
                             padding: 12px 40px 12px 16px;
-                            border: 2px solid var(--color_state_success);
-                            border-radius: 8px;
+                            border: 2px solid var(--ss-color-success);
+                            border-radius: var(--ss-radius-lg);
                             background: rgba(34, 197, 94, 0.05);
                         "
                     />
@@ -455,7 +469,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             right: 12px;
                             top: 50%;
                             transform: translateY(-50%);
-                            color: var(--color_state_success);
+                            color: var(--ss-color-success);
                         "
                     >
                         ✓
@@ -464,7 +478,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 <span
                     style="
                         display: block;
-                        color: var(--color_state_success);
+                        color: var(--ss-color-success);
                         font-size: 14px;
                         margin-top: 4px;
                     "
@@ -476,6 +490,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- Invalid state -->
             <div class="ss-c-form-field is-invalid">
                 <label
+                    for="tsf-invalid"
                     style="
                         display: block;
                         margin-bottom: 6px;
@@ -486,13 +501,14 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 </label>
                 <div style="position: relative">
                     <input
+                        id="tsf-invalid"
                         type="text"
                         value="invalid-email"
                         style="
                             width: 100%;
                             padding: 12px 40px 12px 16px;
-                            border: 2px solid var(--color_state_error);
-                            border-radius: 8px;
+                            border: 2px solid var(--ss-color-error);
+                            border-radius: var(--ss-radius-lg);
                             background: rgba(239, 68, 68, 0.05);
                         "
                     />
@@ -502,7 +518,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             right: 12px;
                             top: 50%;
                             transform: translateY(-50%);
-                            color: var(--color_state_error);
+                            color: var(--ss-color-error);
                         "
                     >
                         ✕
@@ -511,7 +527,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 <span
                     style="
                         display: block;
-                        color: var(--color_state_error);
+                        color: var(--ss-color-error);
                         font-size: 14px;
                         margin-top: 4px;
                     "
@@ -523,6 +539,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- Warning state -->
             <div class="ss-c-form-field is-warning">
                 <label
+                    for="tsf-warning"
                     style="
                         display: block;
                         margin-bottom: 6px;
@@ -532,20 +549,21 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     Warning
                 </label>
                 <input
+                    id="tsf-warning"
                     type="text"
                     value="weak_password"
                     style="
                         width: 100%;
                         padding: 12px 16px;
-                        border: 2px solid var(--color_state_warning);
-                        border-radius: 8px;
+                        border: 2px solid var(--ss-color-warning);
+                        border-radius: var(--ss-radius-lg);
                         background: rgba(245, 158, 11, 0.05);
                     "
                 />
                 <span
                     style="
                         display: block;
-                        color: var(--color_state_warning);
+                        color: var(--ss-color-warning);
                         font-size: 14px;
                         margin-top: 4px;
                     "
@@ -564,11 +582,12 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Show/hide password functionality.</p>
         {% set code_snippet %}
         <div style="max-width: 400px">
             <label
+                for="userPassword"
                 style="display: block; margin-bottom: 6px; font-weight: 500"
             >
                 Password
@@ -581,8 +600,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     style="
                         width: 100%;
                         padding: 12px 48px 12px 16px;
-                        border: 1px solid var(--color_line_secondary);
-                        border-radius: 8px;
+                        border: 1px solid var(--ss-color-border);
+                        border-radius: var(--ss-radius-lg);
                     "
                 />
                 <button
@@ -608,19 +627,21 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         <!-- Password visible state -->
         <div style="max-width: 400px; margin-top: 16px">
             <label
+                for="tsf-password-visible"
                 style="display: block; margin-bottom: 6px; font-weight: 500"
             >
                 Password (Visible)
             </label>
             <div style="position: relative">
                 <input
+                    id="tsf-password-visible"
                     type="text"
                     value="mysecretpassword"
                     style="
                         width: 100%;
                         padding: 12px 48px 12px 16px;
-                        border: 1px solid var(--color_line_secondary);
-                        border-radius: 8px;
+                        border: 1px solid var(--ss-color-border);
+                        border-radius: var(--ss-radius-lg);
                     "
                 />
                 <button
@@ -650,7 +671,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Programmatic control of form components.</p>
         {% set code_snippet %}
         <script>

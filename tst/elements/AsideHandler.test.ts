@@ -44,6 +44,18 @@ describe("AsideHandler", () => {
         expect(localStorage.getItem("sideMenu_visibility")).toBe("hide");
     });
 
+    it("mirrors visibility in the switch's aria-expanded", () => {
+        const aside = new AsideHandler("sideMenu", "menuToggle");
+        const toggle = document.getElementById("menuToggle") as HTMLElement;
+        expect(toggle.getAttribute("aria-expanded")).toBe("false");
+
+        aside.showMenu();
+        expect(toggle.getAttribute("aria-expanded")).toBe("true");
+
+        aside.hideMenu();
+        expect(toggle.getAttribute("aria-expanded")).toBe("false");
+    });
+
     it("toggleMenu flips visibility", () => {
         const aside = new AsideHandler("sideMenu", "menuToggle");
         const menu = document.getElementById("sideMenu") as HTMLElement;

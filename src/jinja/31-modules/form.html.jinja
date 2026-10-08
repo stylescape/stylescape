@@ -3,7 +3,7 @@ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
     </header>
 
     {% set section_title = "Login Form" %}
@@ -12,7 +12,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
 
         <form class="ss-c-form--col" method="post" action="/authentication/login/">
@@ -50,19 +50,31 @@ title }}{%- endblock %} {%- block content %}
             </div>
 
             <div class="ss-c-form__field">
-                <input
-                    type="password"
-                    name="password"
-                    id="id_password"
-                    class="ss-c-form__field__input"
-                    minlength="3"
-                    maxlength="30"
-                    placeholder="Password"
-                    required
-                    aria-labelledby="id_username_label"
-                    aria-describedby="id_password_help id_password_error"
-                />
-                <label for="id_password" id="id_password_label" class="">
+                <div style="position: relative">
+                    <input
+                        type="password"
+                        name="password"
+                        id="id_password"
+                        class="ss-c-form__field__input"
+                        minlength="3"
+                        maxlength="30"
+                        placeholder="Password"
+                        required
+                        aria-labelledby="id_password_label"
+                        aria-describedby="id_password_help id_password_error"
+                    />
+                    <button
+                        type="button"
+                        class="ss-c-toggle-password"
+                        data-password-toggle="id_password"
+                        aria-pressed="false"
+                        aria-label="Show password"
+                        style="min-block-size: 1.5rem"
+                    >
+                        ◉ Show
+                    </button>
+                </div>
+                <label for="id_password" id="id_password_label" class="ss-c-form__field__label">
                     Password
                 </label>
                 <span id="id_password_help" class="ss-c-form__field__help">
@@ -78,7 +90,7 @@ title }}{%- endblock %} {%- block content %}
             </div>
 
             <div class="ss-c-form__field">
-                <label for="id_remember_me" class="">Remember Me</label>
+                <label for="id_remember_me" class="ss-c-form__field__label">Remember Me</label>
                 <input
                     type="checkbox"
                     name="remember_me"
@@ -97,15 +109,6 @@ title }}{%- endblock %} {%- block content %}
                 </span>
             </div>
 
-            <button
-                type="button"
-                class="ss-c-toggle-password"
-                data-password-toggle="id_password"
-                aria-pressed="false"
-            >
-                ◉ Toggle
-            </button>
-
             <button type="submit" class="ss-c-button ss-c-button--solid">Login</button>
 
             <p>
@@ -118,12 +121,13 @@ title }}{%- endblock %} {%- block content %}
         "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 
-    <section id="forms">
+    <section id="forms" class="ss-c-demo__subsection" aria-labelledby="forms_survey">
+        <h2 id="forms_survey">Survey Form</h2>
         <form method="post">
             <fieldset>
                 <legend>Survey</legend>
-                <p>
-                    Radio:
+                <fieldset>
+                    <legend>Radio:</legend>
                     <label>
                         <input type="radio" name="opt" value="yes" />
                         Yes
@@ -132,10 +136,10 @@ title }}{%- endblock %} {%- block content %}
                         <input type="radio" name="opt" value="no" />
                         No
                     </label>
-                </p>
+                </fieldset>
                 <p>
-                    <label class="ss-c-label">Name:</label>
-                    <input type="text" name="name" class="ss-c-input" />
+                    <label class="ss-c-label" for="survey_name">Name:</label>
+                    <input type="text" name="name" id="survey_name" class="ss-c-input" />
                 </p>
                 <p>
                     Deprecated:
@@ -154,8 +158,8 @@ title }}{%- endblock %} {%- block content %}
                     </label>
                 </p>
                 <p>
-                    <label class="ss-c-label">Favorite:</label>
-                    <select name="fav">
+                    <label class="ss-c-label" for="survey_fav">Favorite:</label>
+                    <select name="fav" id="survey_fav" class="ss-c-select">
                         <optgroup label="Group">
                             <option value="div">div</option>
                             <option value="p">p</option>
@@ -174,27 +178,27 @@ title }}{%- endblock %} {%- block content %}
                     </label>
                 </p>
                 <p>
-                    Progress:
-                    <progress value="50" max="100"></progress>
+                    <label for="survey_progress">Progress:</label>
+                    <progress id="survey_progress" value="50" max="100">50%</progress>
                 </p>
                 <p>
-                    Meter:
-                    <meter value="0.7">70%</meter>
+                    <label for="survey_meter">Meter:</label>
+                    <meter id="survey_meter" value="0.7">70%</meter>
                 </p>
                 <p>
-                    Range Slider:
-                    <input type="range" />
+                    <label for="survey_range">Range Slider:</label>
+                    <input type="range" id="survey_range" />
                 </p>
                 <p>
-                    <button type="submit">Submit</button>
-                    <button type="reset">Reset</button>
+                    <button type="submit" class="ss-c-button ss-c-button--solid">Submit</button>
+                    <button type="reset" class="ss-c-button">Reset</button>
                 </p>
             </fieldset>
         </form>
     </section>
 
-    <section id="forms">
-        <h1 id="form_elements">Fieldsets, Legends, and Form Elements</h1>
+    <section id="form_elements_section" class="ss-c-demo__subsection" aria-labelledby="form_elements">
+        <h2 id="form_elements">Fieldsets, Legends, and Form Elements</h2>
 
         <fieldset>
             <legend>Legend</legend>
@@ -209,7 +213,7 @@ title }}{%- endblock %} {%- block content %}
             </p>
 
             <form>
-                <h2>Form Element</h2>
+                <h3>Form Element</h3>
 
                 <p>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
@@ -220,19 +224,19 @@ title }}{%- endblock %} {%- block content %}
                 <p>
                     <label for="text_field">Text Field:</label>
                     <br />
-                    <input type="text" id="text_field" />
+                    <input type="text" id="text_field" class="ss-c-input" />
                 </p>
 
                 <p>
                     <label for="text_area">Text Area:</label>
                     <br />
-                    <textarea id="text_area"></textarea>
+                    <textarea id="text_area" class="ss-c-input"></textarea>
                 </p>
 
                 <p>
                     <label for="select_element">Select Element:</label>
                     <br />
-                    <select name="select_element">
+                    <select name="select_element" id="select_element" class="ss-c-select">
                         <optgroup label="Option Group 1">
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
@@ -246,74 +250,84 @@ title }}{%- endblock %} {%- block content %}
                     </select>
                 </p>
 
-                <p>
-                    <label for="radio_buttons">Radio Buttons:</label>
+                <fieldset>
+                    <legend>Radio Buttons:</legend>
+                    <label>
+                        <input
+                            type="radio"
+                            class="ss-c-radio"
+                            name="radio_button"
+                            value="radio_1"
+                        />
+                        Radio 1
+                    </label>
                     <br />
-                    <input
-                        type="radio"
-                        class="ss-c-radio"
-                        name="radio_button"
-                        value="radio_1"
-                    />
-                    Radio 1
+                    <label>
+                        <input
+                            type="radio"
+                            class="ss-c-radio"
+                            name="radio_button"
+                            value="radio_2"
+                        />
+                        Radio 2
+                    </label>
                     <br />
-                    <input
-                        type="radio"
-                        class="ss-c-radio"
-                        name="radio_button"
-                        value="radio_2"
-                    />
-                    Radio 2
+                    <label>
+                        <input
+                            type="radio"
+                            class="ss-c-radio"
+                            name="radio_button"
+                            value="radio_3"
+                        />
+                        Radio 3
+                    </label>
                     <br />
-                    <input
-                        type="radio"
-                        class="ss-c-radio"
-                        name="radio_button"
-                        value="radio_3"
-                    />
-                    Radio 3
-                    <br />
-                </p>
+                </fieldset>
 
-                <p>
-                    <label for="checkboxes">Checkboxes:</label>
+                <fieldset>
+                    <legend>Checkboxes:</legend>
+                    <label>
+                        <input
+                            type="checkbox"
+                            class="ss-c-checkbox"
+                            name="checkboxes"
+                            value="check_1"
+                        />
+                        Checkbox 1
+                    </label>
                     <br />
-                    <input
-                        type="checkbox"
-                        class="ss-c-checkbox"
-                        name="checkboxes"
-                        value="check_1"
-                    />
-                    Radio 1
+                    <label>
+                        <input
+                            type="checkbox"
+                            class="ss-c-checkbox"
+                            name="checkboxes"
+                            value="check_2"
+                        />
+                        Checkbox 2
+                    </label>
                     <br />
-                    <input
-                        type="checkbox"
-                        class="ss-c-checkbox"
-                        name="checkboxes"
-                        value="check_2"
-                    />
-                    Radio 2
+                    <label>
+                        <input
+                            type="checkbox"
+                            class="ss-c-checkbox"
+                            name="checkboxes"
+                            value="check_3"
+                        />
+                        Checkbox 3
+                    </label>
                     <br />
-                    <input
-                        type="checkbox"
-                        class="ss-c-checkbox"
-                        name="checkboxes"
-                        value="check_3"
-                    />
-                    Radio 3
-                    <br />
-                </p>
+                </fieldset>
 
                 <p>
                     <label for="password">Password:</label>
                     <br />
-                    <input type="password" class="ss-c-password" name="password" />
+                    <input type="password" class="ss-c-input ss-c-password" name="password" id="password" />
                 </p>
 
                 <p>
                     <label for="file">File Input:</label>
                     <br />
-                    <input type="file" class="ss-c-file" name="file" />
+                    <input type="file" class="ss-c-file" name="file" id="file" />
                 </p>
 
                 <p>
@@ -324,5 +338,5 @@ title }}{%- endblock %} {%- block content %}
         </fieldset>
     </section>
 
-    {%- endblock content %}
 </section>
+{%- endblock content %}

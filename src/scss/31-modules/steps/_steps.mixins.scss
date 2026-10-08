@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "./steps.config" as config;
 @use "../../01-core/external" as *;
+@use "../../01-core/prefix" as *;
 
 @mixin ss-steps {
     display: inline-grid;
@@ -14,7 +15,40 @@
     display: inline-grid;
     grid-auto-flow: row;
     grid-auto-columns: auto;
+
+    // Vertical: marker beside its label, connector from this marker's
+    // centre down to the next one's.
+    > .#{$ss-prefix-module}-step {
+        grid-template-rows: auto;
+        grid-template-columns: map.get(config.$ss-steps-config, marker-row-height) 1fr;
+        place-items: center start;
+        gap: map.get(config.$ss-steps-config, label-gap);
+        min-height: map.get(config.$ss-steps-config, marker-row-height);
+        padding-inline: 0;
+        text-align: start;
+
+        &::before {
+            grid-column-start: 1;
+        }
+
+        > * {
+            grid-row-start: 1;
+            padding-top: 0;
+        }
+
+        &::after {
+            top: 50%;
+            inset-inline-start: calc(
+                #{map.get(config.$ss-steps-config, marker-row-height)} / 2 -
+                    #{map.get(config.$ss-steps-config, connector-height)} / 2
+            );
+            inset-inline-end: auto;
+            width: map.get(config.$ss-steps-config, connector-height);
+            height: 100%;
+        }
+    }
 }
+
 
 @mixin ss-step {
     position: relative;
@@ -23,6 +57,8 @@
     place-items: center;
     text-align: center;
     min-width: map.get(config.$ss-steps-config, min-width);
+    padding-inline: map.get(config.$ss-steps-config, label-gap);
+
 
     counter-increment: ss-step;
 
@@ -44,8 +80,13 @@
     &::after {
         content: "";
         position: absolute;
-        top: map.get(config.$ss-steps-config, connector-top);
-        inset-inline: 50%;
+        // Runs from this marker's centre to the next one's (behind both).
+        top: calc(
+            #{map.get(config.$ss-steps-config, connector-top)} -
+                #{map.get(config.$ss-steps-config, connector-height)} / 2
+        );
+        inset-inline-start: 50%;
+        inset-inline-end: -50%;
         height: map.get(config.$ss-steps-config, connector-height);
         background: map.get(config.$ss-steps-config, connector-bg);
     }

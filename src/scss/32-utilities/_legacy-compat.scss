@@ -7,8 +7,9 @@
 /// downstream consumers keep working with the new architecture.
 /// Every selector here maps onto modern utilities (no new behavior).
 ///
-/// All rules live in `@layer ss.ss-c-utilities` so they participate in the
-/// normal cascade and can be overridden by `33-overrides`.
+/// All rules live in `@layer ss.utilities`: they are utility aliases, so —
+/// like the modern utilities — they win over components and lose to
+/// `33-overrides`. (The component shims sit in `ss.compat`, below components.)
 ///
 /// @group Utilities.ss-c-Legacy
 /// @author Scape Press
@@ -19,6 +20,7 @@
 ////
 
 @use "sass:list";
+@use "sass:map";
 @use "../01-core/external" as *;
 @use "../23-layout/breakpoints" as *;
 
@@ -37,7 +39,7 @@ $_legacy-space-vals: (
 $_legacy-space-numeric: (0, 1, 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64);
 $_legacy-grid-max: 24;
 
-@layer ss.ss-c-utilities {
+@layer ss.utilities {
     // ========================================================================
     // Legacy spacing demo utilities (.margin--*/.padding--*)
     // Referenced by the object-margin / object-padding demo pages; generated
@@ -184,7 +186,10 @@ $_legacy-grid-max: 24;
     // ========================================================================
 
     @for $i from 1 through 12 {
-        $n: if($i < 10, "0#{$i}", "#{$i}");
+        $n: "#{$i}";
+        @if $i < 10 {
+            $n: "0#{$i}";
+        }
         .ss-c-gap--#{$n} {
             gap: baseline($i);
         }
@@ -313,7 +318,7 @@ $_legacy-grid-max: 24;
     // ========================================================================
 
     @each $key in $_legacy-space-keys {
-        $v: q(map-get($_legacy-space-vals, $key));
+        $v: q(map.get($_legacy-space-vals, $key));
 
         .ss-c-margin--#{$key} {
             margin: $v;
@@ -463,7 +468,7 @@ $_legacy-color-map: (
     state_visited:     var(--ss-color-link-visited),
 );
 
-@layer ss.ss-c-utilities {
+@layer ss.utilities {
 
     // ========================================================================
     // object--color--{key} / object--fill--{key}
@@ -481,39 +486,39 @@ $_legacy-color-map: (
     .ss-c-object--corner--0,
     .ss-c-object--corner--squared,
     .ss-c-rounded--00          { border-radius: 0; }
-    .ss-c-object--corner--50,
-    .ss-c-rounded--01          { border-radius: var(--ss-radius-sm, q(4)); }
-    .ss-c-rounded--02          { border-radius: var(--ss-radius-md, q(8)); }
+    .ss-c-rounded--01          { border-radius: var(--ss-radius-sm, q(2)); }
+    .ss-c-rounded--02          { border-radius: var(--ss-radius-md, q(4)); }
     .ss-c-object--corner--rounded,
-    .ss-c-rounded--03          { border-radius: var(--ss-radius-lg, q(12)); }
+    .ss-c-rounded--03          { border-radius: var(--ss-radius-lg, q(8)); }
+    .ss-c-object--corner--50   { border-radius: 50%; }
     .ss-c-object--corner--100,
     .ss-c-object--corner--pill,
     .ss-c-rounded--full,
     .ss-c-rounded--circle      { border-radius: q(9999); }
     .ss-c-object--corner--top,
     .ss-c-rounded--top         {
-        border-top-left-radius: var(--ss-radius-md, q(8));
-        border-top-right-radius: var(--ss-radius-md, q(8));
+        border-top-left-radius: var(--ss-radius-md, q(4));
+        border-top-right-radius: var(--ss-radius-md, q(4));
     }
     .ss-c-object--corner--bottom,
     .ss-c-rounded--bottom      {
-        border-bottom-left-radius: var(--ss-radius-md, q(8));
-        border-bottom-right-radius: var(--ss-radius-md, q(8));
+        border-bottom-left-radius: var(--ss-radius-md, q(4));
+        border-bottom-right-radius: var(--ss-radius-md, q(4));
     }
     .ss-c-object--corner--start,
     .ss-c-rounded--left        {
-        border-top-left-radius: var(--ss-radius-md, q(8));
-        border-bottom-left-radius: var(--ss-radius-md, q(8));
+        border-top-left-radius: var(--ss-radius-md, q(4));
+        border-bottom-left-radius: var(--ss-radius-md, q(4));
     }
     .ss-c-object--corner--end,
     .ss-c-rounded--right       {
-        border-top-right-radius: var(--ss-radius-md, q(8));
-        border-bottom-right-radius: var(--ss-radius-md, q(8));
+        border-top-right-radius: var(--ss-radius-md, q(4));
+        border-bottom-right-radius: var(--ss-radius-md, q(4));
     }
-    .ss-c-object--corner--top-start    { border-top-left-radius: var(--ss-radius-md, q(8)); }
-    .ss-c-object--corner--top-end      { border-top-right-radius: var(--ss-radius-md, q(8)); }
-    .ss-c-object--corner--bottom-start { border-bottom-left-radius: var(--ss-radius-md, q(8)); }
-    .ss-c-object--corner--bottom-end   { border-bottom-right-radius: var(--ss-radius-md, q(8)); }
+    .ss-c-object--corner--top-start    { border-top-left-radius: var(--ss-radius-md, q(4)); }
+    .ss-c-object--corner--top-end      { border-top-right-radius: var(--ss-radius-md, q(4)); }
+    .ss-c-object--corner--bottom-start { border-bottom-left-radius: var(--ss-radius-md, q(4)); }
+    .ss-c-object--corner--bottom-end   { border-bottom-right-radius: var(--ss-radius-md, q(4)); }
 
     // ========================================================================
     // object--height--{size}
@@ -530,7 +535,10 @@ $_legacy-color-map: (
     // ========================================================================
 
     @for $i from 0 through 12 {
-        $n: if($i < 10, "0#{$i}", "#{$i}");
+        $n: "#{$i}";
+        @if $i < 10 {
+            $n: "0#{$i}";
+        }
         .ss-c-box--size_#{$n} {
             width: q($i * 8);
             height: q($i * 8);

@@ -1,36 +1,71 @@
 {% extends "../base.html.jinja" %} {% set title = "Range" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
-    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
     <p>Examples for the <code>ss-c-range</code> module.</p>
 
     {% set section_title = "Default" %}
     <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <input type="range" class="ss-c-range" min="0" max="100" value="50">
+        <input type="range" class="ss-c-range" aria-label="Volume" min="0" max="100" value="50">
         {% endset %} {% set language="HTML" %}
         {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 
     {% set section_title = "Sizes" %}
     <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <input type="range" class="ss-c-range ss-c-range--xs" min="0" max="100" value="50">
-        <input type="range" class="ss-c-range ss-c-range--sm" min="0" max="100" value="50">
-        <input type="range" class="ss-c-range ss-c-range--lg" min="0" max="100" value="50">
+        <div style="display: grid; gap: 24px">
+            <input type="range" class="ss-c-range ss-c-range--xs" aria-label="Range (xs)" min="0" max="100" value="50">
+            <input type="range" class="ss-c-range ss-c-range--sm" aria-label="Range (sm)" min="0" max="100" value="50">
+            <input type="range" class="ss-c-range ss-c-range--lg" aria-label="Range (lg)" min="0" max="100" value="50">
+        </div>
         {% endset %} {% set language="HTML" %}
         {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 
     {% set section_title = "Variants" %}
     <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <input type="range" class="ss-c-range ss-c-range--primary" min="0" max="100" value="50">
-        <input type="range" class="ss-c-range ss-c-range--success" min="0" max="100" value="50">
-        <input type="range" class="ss-c-range ss-c-range--warning" min="0" max="100" value="50">
-        <input type="range" class="ss-c-range ss-c-range--error" min="0" max="100" value="50">
+        <div style="display: grid; gap: 24px">
+            <input type="range" class="ss-c-range ss-c-range--primary" aria-label="Range (primary)" min="0" max="100" value="50">
+            <input type="range" class="ss-c-range ss-c-range--success" aria-label="Range (success)" min="0" max="100" value="50">
+            <input type="range" class="ss-c-range ss-c-range--warning" aria-label="Range (warning)" min="0" max="100" value="50">
+            <input type="range" class="ss-c-range ss-c-range--error" aria-label="Range (error)" min="0" max="100" value="50">
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+    {% set section_title = "Value readout" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            <code>ss-c-range-field</code> puts the label and an
+            <code>&lt;output for="…"&gt;</code> above the slider, with an
+            optional min/max scale below. <code>RangeOutputManager</code>
+            (<code>data-ss="range-output"</code>) keeps the output in sync and
+            sets <code>--ss-range-progress</code> so the track fills up to the
+            thumb (Firefox fills it natively). Format the readout with
+            <code>data-ss-output-suffix</code>, <code>-prefix</code>,
+            <code>-decimals</code> and <code>-locale</code>.
+        </p>
+        {% set code_snippet %}
+        <div style="display: grid; gap: 24px; max-width: 420px" data-ss="range-output">
+            <div class="ss-c-range-field">
+                <label for="range-volume" class="ss-c-range-field__label">Volume</label>
+                <output for="range-volume" class="ss-c-range-field__output" data-ss-output-suffix=" %">40 %</output>
+                <input id="range-volume" type="range" class="ss-c-range" min="0" max="100" value="40" style="--ss-range-progress: 40%">
+                <span class="ss-c-range-field__min" aria-hidden="true">0</span>
+                <span class="ss-c-range-field__max" aria-hidden="true">100</span>
+            </div>
+            <div class="ss-c-range-field ss-c-range-field--inline">
+                <label for="range-opacity" class="ss-c-range-field__label">Opacity</label>
+                <input id="range-opacity" type="range" class="ss-c-range ss-c-range--sm" min="0" max="1" step="0.05" value="0.75" style="--ss-range-progress: 75%">
+                <output for="range-opacity" class="ss-c-range-field__output" data-ss-output-decimals="2">0.75</output>
+            </div>
+        </div>
         {% endset %} {% set language="HTML" %}
         {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>

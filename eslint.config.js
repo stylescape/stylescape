@@ -48,10 +48,13 @@
 import js from "@eslint/js";
 // Prettier integration - disables rules that conflict with Prettier
 import prettier from "eslint-config-prettier";
+// Import/export linting (order, duplicates, etc.). eslint-plugin-import-x is
+// the ESLint 10 compatible fork; registered under the `import` key below so the
+// rule names stay `import/*`.
+import importPlugin from "eslint-plugin-import-x";
 // Global variable definitions (browser, node, etc.)
-import importPlugin from "eslint-plugin-import";
 import globals from "globals";
-// Import/export linting (order, duplicates, etc.)
+// TypeScript parser and rules
 import tseslint from "typescript-eslint";
 
 // =============================================================================
@@ -74,6 +77,10 @@ export default tseslint.config(
     // -------------------------------------------------------------------------
     {
         ignores: [
+            // Config templates synced from the fleet control plane (they
+            // import plugins this repo does not install)
+            ".config-templates/**",
+
             // Build outputs
             "dist/**",
             "build/**",

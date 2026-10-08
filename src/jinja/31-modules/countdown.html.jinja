@@ -1,13 +1,13 @@
 {% extends "../base.html.jinja" %} {% set title = "Countdown" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
-    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
     <p>Examples for the <code>ss-c-countdown</code> module.</p>
 
     {% set section_title = "Inline numbers" %}
     <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <span class="ss-c-countdown">
+        <span class="ss-c-countdown" role="img" aria-label="23 hours, 47 minutes, 12 seconds">
             <span style="--ss-countdown-value: 23"></span>:
             <span style="--ss-countdown-value: 47"></span>:
             <span style="--ss-countdown-value: 12"></span>
@@ -23,13 +23,16 @@
     data-label="{{ section_title }}"
     data-level="2"
 >
-    <h3>{{ section_title }}</h3>
+    <h2>{{ section_title }}</h2>
     <p>
         Driven by the <code>Countdown</code> class
         (<code>src/ts/content/Countdown.ts</code>), auto-initialized by
         <code>initializeStylescape()</code>. Set
         <code>data-countdown-seconds</code> or
-        <code>data-countdown-to</code> on the container.
+        <code>data-countdown-to</code> on the container. The script gives
+        the container <code>role="timer"</code> and an
+        <code>aria-label</code> with the remaining time, and hides the digit
+        columns from assistive technology.
     </p>
     {% set code_snippet %}
     <span

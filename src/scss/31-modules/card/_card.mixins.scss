@@ -63,6 +63,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    gap: var(--ss-space-#{map.get($cfg, gap-token)});
     min-width: 0;
 
     padding: var(--ss-card-padding);
@@ -96,7 +97,7 @@
 
 @mixin c-card-header {
     padding-bottom: var(--ss-space-md);
-    border-bottom: q(1) solid var(--ss-color-line-primary);
+    border-bottom: q(1) solid var(--ss-color-line-secondary);
 }
 
 @mixin c-card-body {
@@ -105,7 +106,7 @@
 
 @mixin c-card-footer {
     padding-top: var(--ss-space-md);
-    border-top: q(1) solid var(--ss-color-line-primary);
+    border-top: q(1) solid var(--ss-color-line-secondary);
 }
 
 @mixin c-card-image {
@@ -117,6 +118,31 @@
 // ---------------------------------------------------------------------------
 // Card extension parts (legacy `_card_extended.scss`)
 // ---------------------------------------------------------------------------
+
+// Clickable card: lifts and deepens its shadow on hover.
+@mixin c-card-interactive {
+    $cfg: config.$ss-card-config;
+
+    cursor: pointer;
+    transition:
+        transform var(--ss-duration-300) var(--ss-ease-out),
+        box-shadow var(--ss-duration-300) var(--ss-ease-out);
+
+    &:hover,
+    &:focus-within {
+        --ss-card-shadow: var(--ss-a-shadow-#{map.get($cfg, hover-shadow-token)});
+        transform: translateY(map.get($cfg, hover-lift));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+
+        &:hover,
+        &:focus-within {
+            transform: none;
+        }
+    }
+}
 
 // Image positioned absolutely over the card surface.
 @mixin c-card-image-overlay {
@@ -185,5 +211,78 @@
     > * {
         flex: 1 0 0%;
         margin-bottom: 0;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Gallery parts: numbered cards with tags, linked as a whole
+// ---------------------------------------------------------------------------
+
+@mixin c-card-title {
+    margin: 0;
+    font-size: var(--ss-font-size-lg);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+// `--numbered`: cards count themselves; an empty `__number` shows 01, 02, …
+@mixin c-card-numbered {
+    counter-increment: ss-card;
+}
+
+@mixin c-card-number {
+    font-family: var(--ss-font-family-mono, monospace);
+    font-size: var(--ss-font-size-xs);
+    color: var(--ss-color-text-secondary);
+
+    &:empty::before {
+        content: counter(ss-card, decimal-leading-zero);
+    }
+}
+
+@mixin c-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ss-space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin c-card-tag {
+    display: inline-block;
+    padding: q(2) var(--ss-space-2);
+    border: q(1) solid var(--ss-color-border);
+    color: var(--ss-color-text-secondary);
+    font-family: var(--ss-font-family-mono, monospace);
+    font-size: var(--ss-font-size-xs);
+    line-height: 1.4;
+}
+
+// The card's main link; its ::after covers the whole card so every part is
+// clickable, while the link text stays the accessible name.
+@mixin c-card-link {
+    color: inherit;
+    text-decoration: none;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        border-radius: var(--ss-card-radius);
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+
+    &:focus-visible::after {
+        outline: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color);
+        outline-offset: var(--ss-focus-ring-offset);
     }
 }

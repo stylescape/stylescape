@@ -1,0 +1,76 @@
+{% extends "../base.html.jinja" %} {% set title = "API Explorer" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-api-explorer</code> module, a frame for GraphiQL,
+        Swagger UI, Redoc or an iframe to any of them. The frame is
+        <code>min(80vh, 45rem)</code> tall (set <code>--ss-api-explorer-height</code> to
+        change it); an iframe or <code>.graphiql-container</code> fills the body, other
+        tools scroll inside it. Inside the frame, GraphiQL's font and radius custom
+        properties and Swagger UI's fonts read the tokens.
+    </p>
+    <p>
+        Neither tool follows <code>--ss-color-*</code>: GraphiQL has its own dark theme
+        (<code>graphiql-dark</code> on <code>body</code>), and Swagger UI has none, so give
+        its body <code>data-theme="light"</code> to keep a light island in a dark page.
+    </p>
+
+    {% set section_title = "GraphQL" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <section class="ss-c-api-explorer" style="--ss-api-explorer-height: 22rem" aria-labelledby="gql-title">
+            <header class="ss-c-api-explorer__header">
+                <h3 class="ss-c-api-explorer__title" id="gql-title">GraphQL</h3>
+                <span class="ss-c-api-explorer__endpoint">POST /api/graphql/</span>
+                <div class="ss-c-api-explorer__actions">
+                    <a class="ss-c-button ss-c-button--sm" href="#schema">Schema</a>
+                </div>
+            </header>
+            <div class="ss-c-api-explorer__body">
+                <div class="graphiql-container" id="graphiql">
+                    <p style="padding: 1rem">GraphiQL mounts here.</p>
+                </div>
+            </div>
+        </section>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "OpenAPI (Swagger UI)" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <section class="ss-c-api-explorer" style="--ss-api-explorer-height: 22rem" aria-labelledby="oas-title">
+            <header class="ss-c-api-explorer__header">
+                <h3 class="ss-c-api-explorer__title" id="oas-title">REST API</h3>
+                <span class="ss-c-badge">v2.1</span>
+                <span class="ss-c-api-explorer__endpoint">/api/schema/</span>
+                <div class="ss-c-api-explorer__actions">
+                    <a class="ss-c-button ss-c-button--sm" href="#openapi.yaml">Download schema</a>
+                </div>
+            </header>
+            <div class="ss-c-api-explorer__body" data-theme="light">
+                <div id="swagger-ui" class="swagger-ui">
+                    <div class="wrapper"><p>Swagger UI renders here and scrolls inside the frame.</p></div>
+                </div>
+            </div>
+        </section>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Iframe" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <section class="ss-c-api-explorer" style="--ss-api-explorer-height: 16rem" aria-label="STAC API browser">
+            <div class="ss-c-api-explorer__body">
+                <iframe title="STAC API browser" srcdoc="&lt;p style='font-family:sans-serif;padding:1rem'&gt;Embedded tool&lt;/p&gt;"></iframe>
+            </div>
+        </section>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

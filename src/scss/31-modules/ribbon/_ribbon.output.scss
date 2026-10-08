@@ -10,6 +10,7 @@
 
 @use "../../01-core/prefix" as *;
 @use "./ribbon.mixins" as *;
+@use "../../01-core/external" as *;
 
 @layer ss.components {
     // Typography / list neutralization for the ribbon. Applied to the base
@@ -150,6 +151,15 @@
 
         &__title {
             @include ss-ribbon-title;
+        }
+        // The logo link is often a single glyph ("+"); keep a 24px target
+        // (WCAG 2.5.8), like the ribbon buttons.
+        &__title__logo a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-inline-size: q(24);
+            min-block-size: q(24);
         }
         &__button,
         &__nav_button {

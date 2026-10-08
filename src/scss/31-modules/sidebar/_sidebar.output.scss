@@ -31,6 +31,32 @@
         &__menu {
             @include ss-sidebar-menu;
         }
+
+        // Narrow viewports: an open menu overlays the content instead of
+        // squeezing the main column to a sliver (WCAG 1.4.10 reflow).
+        @media screen and (max-width: 48em) {
+            &--left > &__menu.active,
+            &--left > &__menu.is-active,
+            &--right > &__menu.active,
+            &--right > &__menu.is-active {
+                position: absolute;
+                inset-block: 0;
+                z-index: var(--ss-z-navbar, 100);
+                max-width: calc(100vw - #{q(80)});
+                overflow-y: auto;
+                background-color: var(--ss-color-background);
+            }
+
+            &--left > &__menu.active,
+            &--left > &__menu.is-active {
+                inset-inline-start: 100%;
+            }
+
+            &--right > &__menu.active,
+            &--right > &__menu.is-active {
+                inset-inline-end: 100%;
+            }
+        }
         &__control {
             @include ss-sidebar-control;
         }

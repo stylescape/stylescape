@@ -1,0 +1,28 @@
+{#-
+    stylescape/macros/page.html.jinja
+    ===========================================================================
+        {% from "stylescape/macros/page.html.jinja" import page_header %}
+
+    page_header(title, description=None, eyebrow=None, level=1)
+        The page's title row (ss-c-title-bar). Actions go in a call block:
+            {% call page_header(_("Projects")) %}
+                <a class="ss-c-button ss-c-button--primary" href="…">New project</a>
+            {% endcall %}
+-#}
+
+{%- macro page_header(title, description=None, eyebrow=None, level=1) -%}
+    <header class="ss-c-title-bar">
+        <div class="ss-c-title-bar__text">
+            {%- if eyebrow %}
+            <p class="ss-c-title-bar__eyebrow">{{ eyebrow }}</p>
+            {%- endif %}
+            <h{{ level }} class="ss-c-title-bar__title">{{ title }}</h{{ level }}>
+            {%- if description %}
+            <p class="ss-c-title-bar__description">{{ description }}</p>
+            {%- endif %}
+        </div>
+        {%- if caller is defined %}
+        <div class="ss-c-title-bar__actions">{{ caller() }}</div>
+        {%- endif %}
+    </header>
+{%- endmacro %}

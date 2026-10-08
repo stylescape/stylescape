@@ -1,0 +1,42 @@
+{#-
+    stylescape/auth/base_auth.html.jinja
+    ===========================================================================
+    Shared layout of the auth pages: a centred ss-c-auth panel instead of
+    the app shell. Blocks: auth_title (also the <title>), auth_lead,
+    auth_body, auth_links. Links use Django's auth URL names
+    (django.contrib.auth.urls) through `url()` when that global exists;
+    pass login_url, register_url, password_reset_url to override them, and
+    register_url to show a sign-up link at all.
+-#}
+{%- extends "stylescape/base.html.jinja" -%}
+{%- from "stylescape/macros/messages.html.jinja" import messages_list -%}
+
+{%- macro auth_url(name, path) -%}
+    {{- url(name) if url is defined else path -}}
+{%- endmacro -%}
+
+{%- block title %}{{ self.auth_title() }}{% endblock -%}
+
+{%- block body %}
+<main class="ss-c-auth" id="main-content" tabindex="-1">
+    <div class="ss-c-auth__panel">
+        {%- if site_name %}
+        <p class="ss-c-auth__brand"><a href="/">{{ site_name }}</a></p>
+        {%- endif %}
+        <h1 class="ss-c-auth__title">{% block auth_title %}{% endblock %}</h1>
+        {%- set _lead = self.auth_lead() | trim %}
+        {%- if _lead %}
+        <p class="ss-c-auth__lead">{{ _lead }}</p>
+        {%- endif %}
+        {%- block messages %}
+        {%- if messages is defined %}{{ messages_list(messages) }}{% endif %}
+        {%- endblock messages %}
+        {%- block auth_body %}{% endblock %}
+        {%- set _links = self.auth_links() | trim %}
+        {%- if _links %}
+        <ul class="ss-c-auth__links">{{ _links }}</ul>
+        {%- endif %}
+    </div>
+</main>
+{%- if false %}{% block auth_lead %}{% endblock %}{% block auth_links %}{% endblock %}{% endif %}
+{%- endblock body %}

@@ -1,4 +1,9 @@
 @use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "../input/input.mixins" as input;
+@use "../select/select.mixins" as select;
+@use "../checkbox/checkbox.mixins" as checkbox;
+@use "../radio/radio.mixins" as radio;
 @use "./form.mixins" as form;
 
 @layer ss.components {
@@ -8,10 +13,20 @@
 
     .#{$ss-prefix-module}-form__field {
         @include form.ss-form-field;
+
+        // Don't stretch checkboxes/radios across the column.
+        > input[type="checkbox"],
+        > input[type="radio"] {
+            align-self: flex-start;
+        }
     }
 
     .#{$ss-prefix-module}-form__label {
         @include form.ss-form-label;
+        // The compat shim gives this class a fixed 14px size and a dark
+        // grey that stays dark in the dark theme; take the page text instead.
+        color: inherit;
+        font-size: inherit;
     }
 
     .#{$ss-prefix-module}-form__required {
@@ -28,5 +43,125 @@
 
     .#{$ss-prefix-module}-form__actions {
         @include form.ss-form-actions;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Explicit classes for hand-written Django templates
+// ---------------------------------------------------------------------------
+// <ul class="ss-c-form__errors ss-c-form__errors--nonfield">…{{ form.non_field_errors }}
+// <div class="ss-c-form__field ss-c-form__field--invalid">
+//   <label class="ss-c-form__label">…  <div class="ss-c-form__help" id="…_helptext">…
+//   <ul class="ss-c-form__errors" id="…_error">…  {{ field }}
+// <fieldset class="ss-c-form__fieldset"><legend class="ss-c-form__legend">…
+@layer ss.components {
+    .#{$ss-prefix-module}-form__errors {
+        @include form.ss-form-errors;
+    }
+    .#{$ss-prefix-module}-form__errors--nonfield {
+        @include form.ss-form-errors-nonfield;
+    }
+    .#{$ss-prefix-module}-form__field--inline {
+        @include form.ss-form-field-inline;
+    }
+    .#{$ss-prefix-module}-form__field--invalid :is(input, select, textarea):not([type="checkbox"], [type="radio"]) {
+        border-color: var(--ss-color-error);
+    }
+    .#{$ss-prefix-module}-form__fieldset {
+        @include form.ss-form-fieldset;
+    }
+    .#{$ss-prefix-module}-form__legend {
+        @include form.ss-form-legend;
+    }
+    .#{$ss-prefix-module}-form__choices {
+        @include form.ss-form-choices;
+    }
+    // Formset: management form (hidden inputs) + one fieldset per form.
+    .#{$ss-prefix-module}-form__formset {
+        display: flex;
+        flex-direction: column;
+        gap: q(12);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Zero-class styling for Django's default form markup
+// ---------------------------------------------------------------------------
+// `<form class="ss-c-form">{{ form }}</form>` (div.html, Django ≥ 5) and
+// `{{ form.as_p }}`. Selectors use :where() so they carry no specificity:
+// any class on a widget (`ss-c-input`, `ss-c-select`, …) wins.
+@layer ss.components {
+    // Field wrappers, recognised by their content (a label, a fieldset,
+    // help or errors) so that layout divs inside the form are left alone.
+    // Direct children of the form, and of a fieldset (formset forms).
+    // Django's choices container (`<div id="id_topic">`) holds its labels
+    // one level deeper, so it is not a field wrapper.
+    :where(.#{$ss-prefix-module}-form, .#{$ss-prefix-module}-form fieldset)
+        > :where(div, p):where(:has(> label, > fieldset, > .helptext, > ul.errorlist)) {
+        @include form.ss-form-field;
+        margin: 0;
+    }
+    :where(.#{$ss-prefix-module}-form, .#{$ss-prefix-module}-form fieldset)
+        > :where(div, p):where(:has(> label + input[type="checkbox"])) {
+        @include form.ss-form-field-inline;
+    }
+    :where(.#{$ss-prefix-module}-form) :where(label, legend) {
+        @include form.ss-form-label;
+    }
+    :where(.#{$ss-prefix-module}-form) :where(label.required, legend.required, .required > label, .required > fieldset > legend) {
+        @include form.ss-form-required;
+    }
+    // Help text: `<div class="helptext">` (div.html) or `<span class="helptext">` (as_p).
+    :where(.#{$ss-prefix-module}-form) :where(.helptext) {
+        @include form.ss-form-help;
+        display: block;
+    }
+    // Errors: `<ul class="errorlist">` per field, `.nonfield` for the form.
+    :where(.#{$ss-prefix-module}-form) :where(ul.errorlist) {
+        @include form.ss-form-errors;
+    }
+    :where(.#{$ss-prefix-module}-form) :where(ul.errorlist.nonfield, ul.errorlist.nonform) {
+        @include form.ss-form-errors-nonfield;
+    }
+    // Widgets.
+    :where(.#{$ss-prefix-module}-form) :where(input:not([type="checkbox"], [type="radio"], [type="hidden"], [type="file"], [type="range"], [type="color"], [type="submit"], [type="button"], [type="reset"], [type="image"])) {
+        @include input.ss-input;
+    }
+    :where(.#{$ss-prefix-module}-form) :where(textarea) {
+        @include input.ss-input;
+        @include input.ss-input-textarea;
+    }
+    :where(.#{$ss-prefix-module}-form) :where(select) {
+        @include select.ss-select;
+    }
+    :where(.#{$ss-prefix-module}-form) :where(select[multiple], select[size]:not([size="1"])) {
+        @include select.ss-select-multiple;
+    }
+    :where(.#{$ss-prefix-module}-form) :where(input[type="checkbox"]) {
+        @include checkbox.ss-checkbox;
+        flex: none;
+        margin: 0;
+    }
+    :where(.#{$ss-prefix-module}-form) :where(input[type="radio"]) {
+        @include radio.ss-radio;
+        flex: none;
+        margin: 0;
+    }
+    :where(.#{$ss-prefix-module}-form) :where([aria-invalid="true"]) {
+        border-color: var(--ss-color-error);
+    }
+    // Fieldsets: a field rendered as a fieldset (RadioSelect,
+    // CheckboxSelectMultiple) has no frame; a fieldset grouping fields does.
+    :where(.#{$ss-prefix-module}-form) :where(fieldset) {
+        @include form.ss-form-fieldset;
+    }
+    :where(.#{$ss-prefix-module}-form) :where(fieldset > legend) {
+        @include form.ss-form-legend;
+    }
+    :where(.#{$ss-prefix-module}-form) :where(div > fieldset:only-child) {
+        @include form.ss-form-fieldset-bare;
+    }
+    :where(.#{$ss-prefix-module}-form) :where(fieldset > div[id]) {
+        @include form.ss-form-choices;
     }
 }

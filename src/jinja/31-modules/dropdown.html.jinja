@@ -2,8 +2,38 @@
 title %}{{ title }}{%- endblock %} {%- block content %}
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
     </header>
+
+    {% set section_title = "Dropdown menu" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h2>{{ section_title }}</h2>
+        <p>
+            The <code>ss-c-dropdown</code> module: a trigger plus a
+            <code>__menu</code> of <code>__item</code>s. Add
+            <code>is-open</code> to the wrapper to show the menu (shown open
+            here).
+        </p>
+        {% set code_snippet %}
+        <div class="ss-c-dropdown is-open" style="margin-block-end: 10rem">
+            <button type="button" class="ss-c-button ss-c-button--outline" aria-expanded="true" aria-controls="demo-dropdown-menu">
+                Options ▾
+            </button>
+            <div class="ss-c-dropdown__menu" id="demo-dropdown-menu">
+                <a href="#" class="ss-c-dropdown__item">Edit</a>
+                <a href="#" class="ss-c-dropdown__item is-active" aria-current="true">Duplicate</a>
+                <a href="#" class="ss-c-dropdown__item">Archive</a>
+                <span class="ss-c-dropdown__divider" role="separator"></span>
+                <a href="#" class="ss-c-dropdown__item">Delete</a>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
 
     {% set section_title = "Dropdown w/o Select" %}
     <section
@@ -11,7 +41,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
         {% set code_snippet %}
         <div class="ss-c-dropdown--menu">
@@ -42,15 +72,17 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
         {% set code_snippet %}
-        <div class="ss-c-select_dropdown">
+        <div class="ss-c-select_dropdown" style="margin-block-end: 8rem">
             <div class="ss-c-select_dropdown--header">
                 <span id="selected-count">Selected: 0 options</span>
-                <button class="active ss-c-flipper--down" type="button"></button>
+                <span style="position: relative; display: inline-block; width: 2rem; height: 1rem; vertical-align: middle">
+                    <button class="active ss-c-flipper--down" type="button" aria-label="Toggle options"></button>
+                </span>
             </div>
-            <div class="ss-c-select_dropdown--menu ss-c-dropdown ss-c-dropdown--collapse">
+            <div class="ss-c-select_dropdown--menu">
                 <label>
                     <span>Option 1</span>
                     <input type="checkbox" />
@@ -85,9 +117,9 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <div class="ss-c-dropdown">
+        <div class="ss-c-dropdown" style="margin-block-end: 6rem">
             <button onclick="myFunction()" class="ss-c-dropbutton">Dropdown</button>
             <div id="myDropdown" class="ss-c-dropdown-content">
                 <a href="#">Link 1</a>
@@ -109,9 +141,9 @@ title %}{{ title }}{%- endblock %} {%- block content %}
 
         // Close the dropdown menu if the user clicks outside of it
         window.onclick = function (event) {
-            if (!event.target.matches(".dropbutton")) {
+            if (!event.target.matches(".ss-c-dropbutton")) {
                 var dropdowns =
-                    document.getElementsByClassName("dropdown-content");
+                    document.getElementsByClassName("ss-c-dropdown-content");
                 var i;
                 for (i = 0; i < dropdowns.length; i++) {
                     var openDropdown = dropdowns[i];

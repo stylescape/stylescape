@@ -1,0 +1,46 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./filter-bar.mixins" as fb;
+
+$_fb: ".#{$ss-prefix-module}-filter-bar";
+
+@layer ss.components {
+    // <form class="ss-c-filter-bar" role="search" aria-label="Filter projects">
+    //   <div class="ss-c-filter-bar__group"><label …>Status</label><select class="ss-c-select">…</select></div>
+    //   …
+    //   <p class="ss-c-filter-bar__summary" role="status">24 projects</p>
+    //   <div class="ss-c-filter-bar__actions"><button type="reset" …>Reset</button></div>
+    //   <ul class="ss-c-filter-bar__chips">…active filters…</ul>
+    // </form>
+    #{$_fb} {
+        @include fb.ss-filter-bar;
+    }
+    #{$_fb}--plain {
+        padding: 0;
+        background: none;
+        border: 0;
+    }
+    #{$_fb}__group {
+        @include fb.ss-filter-bar-group;
+    }
+    // The search field takes the free space.
+    #{$_fb}__group--grow {
+        flex: 1 1 q(256);
+    }
+    #{$_fb}__summary {
+        @include fb.ss-filter-bar-summary;
+        display: flex;
+        align-items: center;
+        // Line up with the 40px controls of the neighbouring filters.
+        min-block-size: q(40);
+        margin: 0;
+    }
+    #{$_fb}__actions {
+        display: flex;
+        gap: q(8);
+        margin-inline-start: auto;
+    }
+    #{$_fb}__chips {
+        @include fb.ss-filter-bar-chips;
+    }
+}

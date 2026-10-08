@@ -1,0 +1,65 @@
+{% extends "../base.html.jinja" %} {% set title = "Description List" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>Examples for the <code>ss-c-description-list</code> module: key-value readouts built on <code>&lt;dl&gt;</code>. Pairs may be wrapped in a <code>&lt;div&gt;</code>, which the inline and grid variants rely on.</p>
+
+    {% set section_title = "Stacked" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <dl class="ss-c-description-list">
+            <dt>Project</dt>
+            <dd>Harbour bridge renovation</dd>
+            <dt>Owner</dt>
+            <dd>Municipality of Rotterdam</dd>
+            <dt>Status</dt>
+            <dd>In review</dd>
+        </dl>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Inline" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <dl class="ss-c-description-list ss-c-description-list--inline">
+            <div><dt>Camera</dt><dd>Perspective, 45° FOV</dd></div>
+            <div><dt>Projection</dt><dd>EPSG:28992</dd></div>
+            <div><dt>Visible objects</dt><dd>12 408</dd></div>
+        </dl>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Divided readout, monospace values" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <dl class="ss-c-description-list ss-c-description-list--inline ss-c-description-list--divided ss-c-description-list--mono" style="max-width: 24rem">
+            <div><dt>X</dt><dd>92 814.203</dd></div>
+            <div><dt>Y</dt><dd>437 551.870</dd></div>
+            <div><dt>Z</dt><dd>4.125</dd></div>
+            <div><dt>Heading</dt><dd>271.4°</dd></div>
+            <div><dt>Pitch</dt><dd>-12.0°</dd></div>
+        </dl>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Grid" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <dl class="ss-c-description-list ss-c-description-list--grid">
+            <div><dt>Spindle</dt><dd>12 000 rpm</dd></div>
+            <div><dt>Feed</dt><dd>850 mm/min</dd></div>
+            <div><dt>Tool</dt><dd>T04 · 6 mm end mill</dd></div>
+            <div><dt>Coolant</dt><dd>On</dd></div>
+            <div><dt>Runtime</dt><dd>01:42:17</dd></div>
+        </dl>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

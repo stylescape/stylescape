@@ -25,8 +25,9 @@
                 }
             }
         }
-        &--horizontal {
-            @include ss-list-group-horizontal;
+
+        > [data-marker] {
+            @include ss-list-group-marker;
         }
         &--numbered {
             counter-reset: ss-list-group;
@@ -41,7 +42,7 @@
             @include ss-list-group-item;
 
             &--primary {
-                color: #ffffff;
+                color: var(--ss-color-background);
                 background-color: map.get(
                     config.$list-group-config,
                     "color-primary"
@@ -52,7 +53,7 @@
                 );
             }
             &--success {
-                color: #ffffff;
+                color: var(--ss-color-on-success);
                 background-color: map.get(
                     config.$list-group-config,
                     "color-success"
@@ -63,7 +64,7 @@
                 );
             }
             &--warning {
-                color: #1a1a1a;
+                color: var(--ss-color-on-warning);
                 background-color: map.get(
                     config.$list-group-config,
                     "color-warning"
@@ -74,7 +75,7 @@
                 );
             }
             &--danger {
-                color: #ffffff;
+                color: var(--ss-color-on-error);
                 background-color: map.get(
                     config.$list-group-config,
                     "color-danger"
@@ -85,7 +86,7 @@
                 );
             }
             &--info {
-                color: #1a1a1a;
+                color: var(--ss-color-on-info);
                 background-color: map.get(
                     config.$list-group-config,
                     "color-info"
@@ -99,7 +100,16 @@
             }
             &__text {
                 margin: 0;
-                font-size: q(14);
+                font-size: var(--ss-font-size-sm);
+            }
+        }
+
+        // After `&__item`, so the row's corner rules override the column ones.
+        &--horizontal {
+            @include ss-list-group-horizontal;
+
+            > .#{$ss-prefix-module}-list-group__item {
+                @include ss-list-group-horizontal-item;
             }
         }
     }

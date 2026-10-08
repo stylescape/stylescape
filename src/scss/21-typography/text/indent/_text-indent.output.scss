@@ -2,14 +2,50 @@
 // Text indent | Output
 // =============================================================================
 //
-// Utility-class output for the text indent module.  Currently a placeholder until
-// the legacy `text_indent--*` mixins are reorganised into a class API.
+// Typography utilities for indentation (SSX `ss-t-` prefix):
+//
+//   .ss-t-indent-none|xs|sm|md|lg|xl   first-line indent, by size
+//   .ss-t-indent-first                 book-style first line (= md)
+//   .ss-t-indent-hanging               hanging indent (bibliographies)
+//   .ss-t-indent-block                 inset block (quotations)
+//   .ss-t-indent-nested                each nested level steps in once
+//
+// No `!important`: these sit in `ss.typography`, and an important declaration
+// in an early layer would beat every later layer, utilities included.
 //
 // =============================================================================
 
 @use "../../../01-core/prefix" as *;
+@use "../../../01-core/external" as *;
 @use "./text-indent.mixins" as *;
 
 @layer ss.typography {
-    // (No utility selectors emitted yet.)
+    .#{$ss-prefix-typography}-indent-none {
+        @include text_indent--none;
+    }
+    .#{$ss-prefix-typography}-indent-xs {
+        @include text_indent--xs;
+    }
+    .#{$ss-prefix-typography}-indent-sm {
+        @include text_indent--sm;
+    }
+    .#{$ss-prefix-typography}-indent-md,
+    .#{$ss-prefix-typography}-indent-first {
+        @include text_indent--md;
+    }
+    .#{$ss-prefix-typography}-indent-lg {
+        @include text_indent--lg;
+    }
+    .#{$ss-prefix-typography}-indent-xl {
+        @include text_indent--xl;
+    }
+    .#{$ss-prefix-typography}-indent-hanging {
+        @include text_indent--hanging;
+    }
+    .#{$ss-prefix-typography}-indent-block {
+        @include text_indent--block;
+    }
+    .#{$ss-prefix-typography}-indent-nested .#{$ss-prefix-typography}-indent-nested {
+        margin-inline-start: baseline(4);
+    }
 }

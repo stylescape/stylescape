@@ -1,0 +1,58 @@
+@use "../../01-core/prefix" as *;
+@use "./theme-toggle.mixins" as tt;
+
+// State sources, most specific first:
+//   `data-theme-state` (cycle buttons: light / dark / auto),
+//   `aria-pressed` (two-state buttons: pressed = dark),
+//   the page's `data-theme` (before ThemeToggler has run).
+$_t: ".#{$ss-prefix-module}-theme-toggle";
+$_dark: '#{$_t}[data-theme-state="dark"], #{$_t}[aria-pressed="true"], :root[data-theme="dark"] #{$_t}:not([aria-pressed]):not([data-theme-state])';
+$_auto: '#{$_t}[data-theme-state="auto"]';
+
+@layer ss.components {
+    #{$_t} {
+        @include tt.ss-theme-toggle;
+    }
+    #{$_t}--ghost {
+        @include tt.ss-theme-toggle-ghost;
+    }
+
+    #{$_t}__icon {
+        @include tt.ss-theme-toggle-icon;
+    }
+    #{$_t}__glyph {
+        @include tt.ss-theme-toggle-glyph;
+    }
+
+    // Light (default): sun.
+    #{$_t}__icon--sun {
+        display: block;
+    }
+
+    // Dark: moon.
+    #{$_dark} {
+        #{$_t}__icon--sun {
+            display: none;
+        }
+        #{$_t}__icon--moon {
+            display: block;
+        }
+        #{$_t}__glyph {
+            @include tt.ss-theme-toggle-glyph-moon;
+        }
+    }
+
+    // Auto: half disc.
+    #{$_auto} {
+        #{$_t}__icon--sun,
+        #{$_t}__icon--moon {
+            display: none;
+        }
+        #{$_t}__icon--auto {
+            display: block;
+        }
+        #{$_t}__glyph {
+            @include tt.ss-theme-toggle-glyph-auto;
+        }
+    }
+}

@@ -1,0 +1,122 @@
+@use "sass:list";
+@use "sass:map";
+@use "./gantt.config" as config;
+@use "../../01-core/external" as *;
+
+$_c: config.$ss-gantt-config;
+
+// Position of the "today" line as a share of the track width.
+$_today: calc(
+    var(--ss-gantt-today) / var(--ss-gantt-columns) * 100%
+);
+
+/// Horizontal track timeline. The container sets `--ss-gantt-columns`
+/// (time steps) and optionally `--ss-gantt-today` (0-based, fractional
+/// column offset); bars set `--start` (1-based column) and `--span`.
+@mixin ss-gantt {
+    --ss-gantt-columns: 12;
+    // Off-track until set, so no today line is drawn.
+    --ss-gantt-today: -1;
+    --ss-gantt-label-width: #{map.get($_c, label-width)};
+    --ss-gantt-min-width: #{map.get($_c, min-width)};
+    overflow-x: auto;
+    font-size: var(--ss-font-size-sm);
+    color: var(--ss-color-text);
+}
+
+@mixin ss-gantt-row {
+    display: grid;
+    grid-template-columns:
+        var(--ss-gantt-label-width)
+        minmax(0, 1fr);
+    min-inline-size: var(--ss-gantt-min-width);
+    min-block-size: map.get($_c, row-height);
+    border-block-end: q(1) solid map.get($_c, row-line);
+}
+
+@mixin ss-gantt-label {
+    align-self: center;
+    overflow: hidden;
+    padding: q(4) q(12) q(4) 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/// Column grid shared by the scale and every track; draws the column rules
+/// and the today line as backgrounds so they run unbroken across rows.
+@mixin ss-gantt-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--ss-gantt-columns), minmax(0, 1fr));
+    align-items: center;
+    background-image:
+        linear-gradient(
+            to right,
+            transparent calc(#{$_today} - #{q(1)}),
+            #{map.get($_c, today-color)} 0 calc(#{$_today} + #{q(1)}),
+            transparent 0
+        ),
+        linear-gradient(to right, #{map.get($_c, grid-line)} #{q(1)}, transparent 0);
+    background-size:
+        100% 100%,
+        calc(100% / var(--ss-gantt-columns)) 100%;
+}
+
+@mixin ss-gantt-scale {
+    font-size: var(--ss-font-size-xs);
+    font-weight: 600;
+    color: var(--ss-color-text-muted);
+}
+
+@mixin ss-gantt-tick {
+    padding: q(6) q(4);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@mixin ss-gantt-bar {
+    grid-row: 1;
+    grid-column: var(--start, 1) / span var(--span, 1);
+    display: flex;
+    align-items: center;
+    min-inline-size: 0;
+    block-size: map.get($_c, bar-height);
+    margin-inline: q(1);
+    padding-inline: q(6);
+    overflow: hidden;
+    font-size: var(--ss-font-size-xs);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--ss-gantt-bar-fg, var(--ss-color-on-accent));
+    background-color: var(--ss-gantt-bar-bg, var(--ss-color-accent));
+    border-radius: var(--ss-radius-sm);
+}
+
+@mixin ss-gantt-bar-tone($tone) {
+    $pair: map.get(map.get($_c, tones), $tone);
+    --ss-gantt-bar-bg: #{list.nth($pair, 1)};
+    --ss-gantt-bar-fg: #{list.nth($pair, 2)};
+}
+
+/// Planned-only bar: outline instead of fill.
+@mixin ss-gantt-bar-outline {
+    color: var(--ss-color-text);
+    background-color: transparent;
+    box-shadow: inset 0 0 0 q(1) var(--ss-gantt-bar-bg, var(--ss-color-accent));
+}
+
+/// Diamond centred on the start edge of column `--start`.
+@mixin ss-gantt-milestone {
+    grid-row: 1;
+    grid-column: var(--start, 1);
+    justify-self: start;
+    inline-size: map.get($_c, milestone-size);
+    block-size: map.get($_c, milestone-size);
+    background-color: var(--ss-gantt-bar-bg, var(--ss-color-text));
+    transform: translateX(-50%) rotate(45deg);
+}
+
+@mixin ss-gantt-group-row {
+    font-weight: 600;
+    background-color: var(--ss-color-surface-alt);
+}

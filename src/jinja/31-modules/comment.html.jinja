@@ -1,0 +1,64 @@
+{% extends "../base.html.jinja" %} {% set title = "Comment" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-comment</code> module: a list of comments
+        (<code>ss-c-comments</code>), each with an avatar, author and meta line, the
+        text and actions, and replies nested in <code>__replies</code> along a thread
+        line. Indentation stops after four levels so deep threads stay readable on
+        small screens. The comment a permalink targets (<code>:target</code> or
+        <code>--highlighted</code>) gets a tinted background.
+    </p>
+
+    {% set section_title = "Thread" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <ol class="ss-c-comments" aria-label="Comments">
+            <li class="ss-c-comment" id="comment-1">
+                <span class="ss-c-avatar ss-c-avatar--placeholder ss-c-comment__avatar" aria-hidden="true">AV</span>
+                <article class="ss-c-comment__body" aria-labelledby="comment-1-author">
+                    <header class="ss-c-comment__header">
+                        <h3 class="ss-c-comment__author" id="comment-1-author">Anna de Vries</h3>
+                        <span class="ss-c-badge ss-c-badge--sm">Author</span>
+                        <span class="ss-c-comment__meta"><a href="#comment-1"><time datetime="2026-10-08T09:12">8 Oct, 09:12</time></a></span>
+                    </header>
+                    <div class="ss-c-comment__content">
+                        <p>Does the new ferry schedule also apply on public holidays?</p>
+                    </div>
+                    <ul class="ss-c-comment__actions">
+                        <li><button class="ss-c-comment__action" type="button">Reply</button></li>
+                        <li><button class="ss-c-comment__action" type="button" aria-pressed="true">Like (4)</button></li>
+                        <li><button class="ss-c-comment__action" type="button">Report</button></li>
+                    </ul>
+                </article>
+                <ol class="ss-c-comment__replies" aria-label="Replies to Anna de Vries">
+                    <li class="ss-c-comment ss-c-comment--highlighted" id="comment-2">
+                        <span class="ss-c-avatar ss-c-avatar--placeholder ss-c-avatar--sm ss-c-comment__avatar" aria-hidden="true">HB</span>
+                        <article class="ss-c-comment__body" aria-labelledby="comment-2-author">
+                            <header class="ss-c-comment__header">
+                                <h4 class="ss-c-comment__author" id="comment-2-author">Harbour office</h4>
+                                <span class="ss-c-comment__meta"><time datetime="2026-10-08T10:03">8 Oct, 10:03</time> · edited</span>
+                            </header>
+                            <div class="ss-c-comment__content"><p>Yes, the Sunday timetable runs on public holidays.</p></div>
+                            <ul class="ss-c-comment__actions">
+                                <li><button class="ss-c-comment__action" type="button">Reply</button></li>
+                            </ul>
+                        </article>
+                        <ol class="ss-c-comment__replies" aria-label="Replies to Harbour office">
+                            <li class="ss-c-comment ss-c-comment--deleted">
+                                <span class="ss-c-avatar ss-c-avatar--placeholder ss-c-avatar--sm ss-c-comment__avatar" aria-hidden="true">?</span>
+                                <div class="ss-c-comment__body">
+                                    <div class="ss-c-comment__content"><p>This comment was removed.</p></div>
+                                </div>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

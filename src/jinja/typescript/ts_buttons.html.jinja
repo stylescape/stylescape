@@ -1,9 +1,36 @@
 {% extends "../base.html.jinja" %} {% set title = "Button Handlers" %} {%- block
 title %}{{ title }}{%- endblock %} {%- block content %}
 
+<style>
+    /* Demo-only visuals for the bare `appearance: none` toggle inputs:
+       a visible track outline, a knob and a checked state. */
+    input[data-ss="toggle"] {
+        border: 2px solid var(--ss-color-text-muted);
+    }
+    input[data-ss="toggle"]::before {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        height: calc(100% - 4px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--ss-color-text-muted);
+    }
+    input[data-ss="toggle"]:checked {
+        background: var(--ss-color-accent) !important;
+        border-color: var(--ss-color-accent);
+    }
+    input[data-ss="toggle"]:checked::before {
+        left: auto;
+        right: 2px;
+        background: var(--ss-color-on-accent);
+    }
+</style>
+
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             JavaScript button interaction components with loading states,
             ripple effects, and toggles.
@@ -16,7 +43,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>
             Manages button click events with loading states and ripple effects.
         </p>
@@ -27,10 +54,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             data-ss-button-loading="true"
             style="
                 padding: 12px 24px;
-                background: var(--color_fill_primary);
-                color: white;
+                background: var(--ss-color-accent);
+                color: var(--ss-color-on-accent);
                 border: none;
-                border-radius: 8px;
+                border-radius: var(--ss-radius-lg);
                 cursor: pointer;
                 position: relative;
                 min-width: 140px;
@@ -70,10 +97,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             data-ss-button-ripple="true"
             style="
                 padding: 12px 24px;
-                background: var(--color_fill_primary);
-                color: white;
+                background: var(--ss-color-accent);
+                color: var(--ss-color-on-accent);
                 border: none;
-                border-radius: 8px;
+                border-radius: var(--ss-radius-lg);
                 cursor: pointer;
                 overflow: hidden;
                 position: relative;
@@ -89,14 +116,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             data-ss-button-ripple="true"
             style="
                 padding: 14px 32px;
-                background: linear-gradient(
-                    135deg,
-                    var(--color_fill_primary),
-                    #764ba2
-                );
-                color: white;
+                background: var(--ss-color-accent);
+                color: var(--ss-color-on-accent);
                 border: none;
-                border-radius: 24px;
+                border-radius: var(--ss-radius-3xl);
                 cursor: pointer;
                 overflow: hidden;
                 position: relative;
@@ -117,7 +140,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>
             Manages toggle switches with optional state persistence via
             localStorage.
@@ -139,8 +162,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     width: 48px;
                     height: 24px;
                     appearance: none;
-                    background: var(--color_fill_secondary);
-                    border-radius: 12px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                     position: relative;
                     cursor: pointer;
                     transition: background 0.2s;
@@ -169,8 +192,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     width: 48px;
                     height: 24px;
                     appearance: none;
-                    background: var(--color_fill_secondary);
-                    border-radius: 12px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                     position: relative;
                     cursor: pointer;
                 "
@@ -183,8 +206,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             style="
                 margin-top: 24px;
                 padding: 20px;
-                background: var(--color_fill_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface-alt);
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
@@ -195,8 +218,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 "
             >
                 <div>
-                    <strong>Auto-save</strong>
-                    <p style="margin: 4px 0 0; font-size: 14px; opacity: 0.7">
+                    <label for="auto-save-toggle" style="font-weight: 700">Auto-save</label>
+                    <p id="auto-save-desc" style="margin: 4px 0 0; font-size: 14px; opacity: 0.7">
                         Automatically save your work
                     </p>
                 </div>
@@ -205,13 +228,15 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     data-ss="toggle"
                     data-ss-toggle-persist="true"
                     data-ss-toggle-storage-key="auto-save"
+                    id="auto-save-toggle"
+                    aria-describedby="auto-save-desc"
                     checked
                     style="
                         width: 52px;
                         height: 28px;
                         appearance: none;
-                        background: var(--color_fill_primary);
-                        border-radius: 14px;
+                        background: var(--ss-color-accent);
+                        border-radius: var(--ss-radius-xl);
                         position: relative;
                         cursor: pointer;
                     "
@@ -228,7 +253,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Different button states managed by the handler.</p>
         {% set code_snippet %}
         <div style="display: flex; flex-wrap: wrap; gap: 16px">
@@ -237,10 +262,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 data-ss="button"
                 style="
                     padding: 12px 24px;
-                    background: var(--color_fill_primary);
-                    color: white;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
                     border: none;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     cursor: pointer;
                 "
             >
@@ -253,10 +278,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 data-ss-button-ripple="true"
                 style="
                     padding: 12px 24px;
-                    background: var(--color_fill_primary);
-                    color: white;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
                     border: none;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     cursor: pointer;
                 "
             >
@@ -269,12 +294,14 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 data-ss-button-loading="true"
                 class="is-loading"
                 disabled
+                aria-label="Processing"
                 style="
+                    position: relative;
                     padding: 12px 24px;
-                    background: var(--color_fill_primary);
-                    color: white;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
                     border: none;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     cursor: not-allowed;
                     opacity: 0.7;
                 "
@@ -297,7 +324,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             width: 16px;
                             height: 16px;
                             border: 2px solid transparent;
-                            border-top-color: white;
+                            border-top-color: currentColor;
                             border-radius: 50%;
                             animation: spin 0.8s linear infinite;
                         "
@@ -311,10 +338,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 disabled
                 style="
                     padding: 12px 24px;
-                    background: var(--color_fill_secondary);
-                    color: var(--color_text_secondary);
+                    background: var(--ss-color-surface-alt);
+                    color: var(--ss-color-text-muted);
                     border: none;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     cursor: not-allowed;
                 "
             >
@@ -327,10 +354,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 class="is-success"
                 style="
                     padding: 12px 24px;
-                    background: var(--color_state_success);
-                    color: white;
+                    background: var(--ss-color-success);
+                    color: var(--ss-color-on-success);
                     border: none;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     cursor: pointer;
                 "
             >
@@ -347,7 +374,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Programmatic control of button handlers.</p>
         {% set code_snippet %}
         <script>

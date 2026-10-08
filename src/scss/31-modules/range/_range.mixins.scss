@@ -13,12 +13,21 @@
     &::-webkit-slider-runnable-track {
         height: map.get(config.$ss-range-config, track-height);
         border-radius: map.get(config.$ss-range-config, track-radius);
-        background: map.get(config.$ss-range-config, track-bg);
+        background: linear-gradient(
+            to right,
+            map.get(config.$ss-range-config, fill) var(--ss-range-progress, 0%),
+            map.get(config.$ss-range-config, track-bg) var(--ss-range-progress, 0%)
+        );
     }
     &::-moz-range-track {
         height: map.get(config.$ss-range-config, track-height);
         border-radius: map.get(config.$ss-range-config, track-radius);
         background: map.get(config.$ss-range-config, track-bg);
+    }
+    &::-moz-range-progress {
+        height: map.get(config.$ss-range-config, track-height);
+        border-radius: map.get(config.$ss-range-config, track-radius);
+        background: map.get(config.$ss-range-config, fill);
     }
 
     &::-webkit-slider-thumb {
@@ -59,7 +68,8 @@
     &::-webkit-slider-runnable-track {
         height: $t;
     }
-    &::-moz-range-track {
+    &::-moz-range-track,
+    &::-moz-range-progress {
         height: $t;
     }
     &::-webkit-slider-thumb {
@@ -74,10 +84,49 @@
 }
 
 @mixin ss-range-variant($color) {
+    --ss-range-fill: #{$color};
+
     &::-webkit-slider-thumb {
         background: $color;
     }
     &::-moz-range-thumb {
         background: $color;
     }
+}
+
+/// Label + `<output>` readout above the slider, optional min/max scale below.
+@mixin ss-range-field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+        "label output"
+        "input input"
+        "min max";
+    align-items: center;
+    gap: map.get(config.$ss-range-config, field-gap);
+}
+
+/// One row: label | slider | readout (property inspectors, toolbars).
+@mixin ss-range-field-inline {
+    grid-template-columns: auto minmax(q(80), 1fr) auto;
+    grid-template-areas: "label input output";
+}
+
+@mixin ss-range-label {
+    grid-area: label;
+    font-weight: map.get(config.$ss-range-config, label-weight);
+}
+
+@mixin ss-range-output {
+    grid-area: output;
+    min-inline-size: 4ch;
+    font-weight: map.get(config.$ss-range-config, output-weight);
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+}
+
+@mixin ss-range-scale {
+    color: map.get(config.$ss-range-config, scale-color);
+    font-size: map.get(config.$ss-range-config, scale-font-size);
+    font-variant-numeric: tabular-nums;
 }

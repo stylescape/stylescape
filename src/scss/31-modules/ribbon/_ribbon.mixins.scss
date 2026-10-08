@@ -249,6 +249,10 @@
     cursor: pointer;
     padding: q(1) q(2);
     font: inherit;
+    // WCAG 2.5.8 minimum target size.
+    min-inline-size: q(24);
+    min-block-size: q(24);
+    gap: q(4);
 
     &:hover {
         opacity: 0.75;
@@ -276,7 +280,8 @@
     background-color: config.$ribbon-background;
     color: config.$ribbon-color;
     border: config.$ribbon-border-width solid config.$ribbon-border-color;
-    box-shadow: 0 q(1) q(3) rgba(0, 0, 0, 0.08);
+    box-shadow: var(--ss-a-shadow-md);
+
     padding: q(3);
     z-index: calc(#{config.$ribbon-z-index} + 1);
 }
@@ -293,5 +298,12 @@
         border: 0;
         outline: 0;
         padding: q(1) q(2);
+
+        // The borderless field still needs a keyboard focus indicator.
+        &:focus-visible {
+            outline: var(--ss-focus-ring-width, #{q(2)}) solid
+                var(--ss-focus-ring-color, currentColor);
+            outline-offset: var(--ss-focus-ring-offset, #{q(2)});
+        }
     }
 }

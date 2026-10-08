@@ -1,0 +1,107 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./dropzone.mixins" as dz;
+
+$_dz: ".#{$ss-prefix-module}-dropzone";
+
+@layer ss.components {
+    // <div class="ss-c-dropzone" data-ss="dropzone">
+    //   <input id="f" type="file" class="ss-c-dropzone__input" multiple aria-describedby="f-hint">
+    //   <label for="f" class="ss-c-dropzone__surface">
+    //     <span class="ss-c-dropzone__icon" aria-hidden="true"></span>
+    //     <span class="ss-c-dropzone__title">Drop files or <span class="ss-c-dropzone__browse">browse</span></span>
+    //     <span class="ss-c-dropzone__hint" id="f-hint">PDF, up to 10 MB</span>
+    //   </label>
+    //   <p class="ss-c-dropzone__status" role="status"></p>
+    //   <ul class="ss-c-dropzone__files"></ul>
+    // </div>
+    // States: `--dragover`, `--invalid` (set by DropZoneManager), disabled
+    // follows the input's `disabled`.
+    #{$_dz} {
+        @include dz.ss-dropzone;
+    }
+    #{$_dz}__input {
+        @include dz.ss-dropzone-input;
+    }
+    #{$_dz}__surface {
+        @include dz.ss-dropzone-surface;
+    }
+    #{$_dz}__input:not(:disabled) + #{$_dz}__surface:hover {
+        @include dz.ss-dropzone-surface-hover;
+    }
+    #{$_dz}__input:focus-visible + #{$_dz}__surface {
+        outline: var(--ss-focus-ring-width, #{q(2)}) solid var(--ss-focus-ring-color, currentColor);
+        outline-offset: var(--ss-focus-ring-offset, #{q(2)});
+    }
+    #{$_dz}__input:disabled + #{$_dz}__surface {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    #{$_dz}--dragover #{$_dz}__surface {
+        @include dz.ss-dropzone-surface-active;
+    }
+    #{$_dz}--invalid #{$_dz}__surface,
+    #{$_dz}__input[aria-invalid="true"] + #{$_dz}__surface {
+        @include dz.ss-dropzone-surface-invalid;
+    }
+    #{$_dz}--compact #{$_dz}__surface {
+        flex-direction: row;
+        padding: q(12) q(16);
+    }
+
+    #{$_dz}__icon {
+        @include dz.ss-dropzone-icon;
+    }
+    #{$_dz}--compact #{$_dz}__icon {
+        inline-size: q(20);
+        block-size: q(20);
+    }
+    #{$_dz}__title {
+        font-weight: 500;
+    }
+    #{$_dz}__browse {
+        color: var(--ss-color-link);
+        text-decoration: underline;
+        text-underline-offset: 0.15em;
+    }
+    #{$_dz}__hint {
+        @include dz.ss-dropzone-hint;
+    }
+    #{$_dz}__status {
+        @include dz.ss-dropzone-hint;
+        margin: 0;
+
+        &:empty {
+            display: none;
+        }
+    }
+    #{$_dz}--invalid #{$_dz}__status {
+        color: var(--ss-color-error);
+    }
+
+    #{$_dz}__files {
+        display: flex;
+        flex-direction: column;
+        gap: q(4);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        &:empty {
+            display: none;
+        }
+    }
+    #{$_dz}__file {
+        display: flex;
+        justify-content: space-between;
+        gap: q(12);
+        padding: q(6) q(10);
+        border: q(1) solid var(--ss-color-border);
+        font-size: var(--ss-font-size-sm);
+    }
+    #{$_dz}__file-size {
+        color: var(--ss-color-text-muted);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
+}

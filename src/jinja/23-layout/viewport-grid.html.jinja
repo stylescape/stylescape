@@ -1,0 +1,82 @@
+{% extends "../base.html.jinja" %} {% set title = "Viewport Grid" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+{% macro cell(label) -%}
+<div class="ss-l-viewport-grid__cell"><span class="ss-l-viewport-grid__label ss-t-text-xs">{{ label }}</span></div>
+{%- endmacro %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-l-viewport-grid</code> layout: equal views for
+        multi-camera, multi-map and comparison pages. It fills its parent (give
+        that a height, e.g. an <code>ss-l-app__main--bleed</code>); each
+        <code>__cell</code> is a positioned, clipped container for a canvas or map
+        and for <code>ss-c-overlay-panel</code>s. Cells are separated by
+        <code>--ss-viewport-grid-gap</code> (a 1 px hairline by default). Below
+        <code>md</code> every layout stacks into one column of cells at least
+        <code>--ss-viewport-grid-min</code> tall.
+    </p>
+
+    {% set section_title = "Two side by side (--2h) and stacked (--2v)" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div style="height: 200px">
+            <div class="ss-l-viewport-grid ss-l-viewport-grid--2h">
+                {{ cell("Before") }}
+                {{ cell("After") }}
+            </div>
+        </div>
+        <div style="height: 240px; margin-top: var(--ss-space-4)">
+            <div class="ss-l-viewport-grid ss-l-viewport-grid--2v">
+                {{ cell("Map") }}
+                {{ cell("Elevation profile") }}
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Four views (--2x2)" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div style="height: 320px">
+            <div class="ss-l-viewport-grid ss-l-viewport-grid--2x2">
+                {{ cell("Top") }}
+                {{ cell("Front") }}
+                {{ cell("Side") }}
+                {{ cell("Perspective") }}
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "One large and three small (--1-3, --1-3-side)" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>The first cell is the large one.</p>
+        {% set code_snippet %}
+        <div style="height: 320px">
+            <div class="ss-l-viewport-grid ss-l-viewport-grid--1-3">
+                {{ cell("Camera 1") }}
+                {{ cell("Camera 2") }}
+                {{ cell("Camera 3") }}
+                {{ cell("Camera 4") }}
+            </div>
+        </div>
+        <div style="height: 320px; margin-top: var(--ss-space-4)">
+            <div class="ss-l-viewport-grid ss-l-viewport-grid--1-3-side">
+                <div class="ss-l-viewport-grid__cell">
+                    <span class="ss-l-viewport-grid__label ss-t-text-xs">Main map</span>
+                    <div class="ss-c-overlay-panel ss-c-overlay-panel--bottom-right">Zoom 12</div>
+                </div>
+                {{ cell("2019") }}
+                {{ cell("2021") }}
+                {{ cell("2023") }}
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

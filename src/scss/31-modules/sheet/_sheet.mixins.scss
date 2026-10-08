@@ -1,0 +1,142 @@
+@use "sass:map";
+@use "./sheet.config" as config;
+@use "../../01-core/external" as *;
+
+/// Bottom sheet (the default edge). Closed: only the handle (`--ss-sheet-peek`)
+/// shows; open: up to `--ss-sheet-size`.
+@mixin ss-sheet {
+    $cfg: config.$ss-sheet-config;
+
+    --ss-sheet-size: #{map.get($cfg, size)};
+    --ss-sheet-peek: #{map.get($cfg, peek)};
+
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    z-index: map.get($cfg, z-index);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    block-size: var(--ss-sheet-size);
+    overflow: hidden;
+
+    background-color: var(--ss-color-surface);
+    color: var(--ss-color-text);
+    border-block-start: map.get($cfg, border);
+    border-start-start-radius: map.get($cfg, radius);
+    border-start-end-radius: map.get($cfg, radius);
+    box-shadow: map.get($cfg, shadow);
+
+    transform: translateY(calc(100% - var(--ss-sheet-peek)));
+    transition: transform map.get($cfg, duration) map.get($cfg, ease);
+
+    &[data-state="open"] {
+        transform: none;
+    }
+
+    &.is-dragging {
+        transition: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+@mixin ss-sheet-side($side) {
+    $cfg: config.$ss-sheet-config;
+
+    --ss-sheet-size: #{map.get($cfg, side-size)};
+
+    inset-block: 0;
+    inline-size: var(--ss-sheet-size);
+    block-size: auto;
+    flex-direction: row;
+    border-block-start: 0;
+    border-radius: 0;
+
+    @if $side == left {
+        inset-inline: 0 auto;
+        border-inline-end: map.get($cfg, border);
+        border-start-end-radius: map.get($cfg, radius);
+        border-end-end-radius: map.get($cfg, radius);
+        transform: translateX(calc(-100% + var(--ss-sheet-peek)));
+    } @else {
+        inset-inline: auto 0;
+        border-inline-start: map.get($cfg, border);
+        border-start-start-radius: map.get($cfg, radius);
+        border-end-start-radius: map.get($cfg, radius);
+        transform: translateX(calc(100% - var(--ss-sheet-peek)));
+    }
+}
+
+/// Full-width (or full-height on a side) button that opens and closes the
+/// sheet. A grip bar is drawn before its optional label.
+@mixin ss-sheet-handle {
+    $cfg: config.$ss-sheet-config;
+
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ss-space-2);
+    box-sizing: border-box;
+    block-size: var(--ss-sheet-peek);
+    inline-size: 100%;
+    margin: 0;
+    padding: 0 var(--ss-space-3);
+
+    background: transparent;
+    color: var(--ss-color-text-secondary);
+    border: 0;
+    font: inherit;
+    font-size: var(--ss-font-size-sm);
+    cursor: pointer;
+    touch-action: none;
+
+    &::before {
+        content: "";
+        flex: none;
+        width: map.get($cfg, grip-length);
+        height: map.get($cfg, grip-thickness);
+        border-radius: var(--ss-radius-full);
+        background-color: var(--ss-color-border-strong);
+    }
+
+    &:hover {
+        color: var(--ss-color-text);
+    }
+
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color);
+        outline-offset: calc(var(--ss-focus-ring-width) * -1);
+    }
+}
+
+/// Side handle: a vertical strip along the inner edge.
+@mixin ss-sheet-handle-side {
+    $cfg: config.$ss-sheet-config;
+
+    // Physical sizes: the vertical writing mode swaps the logical axes.
+    width: var(--ss-sheet-peek);
+    height: 100%;
+    padding: var(--ss-space-3) 0;
+    writing-mode: vertical-rl;
+
+    &::before {
+        width: map.get($cfg, grip-thickness);
+        height: map.get($cfg, grip-length);
+    }
+}
+
+@mixin ss-sheet-body {
+    $cfg: config.$ss-sheet-config;
+
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    min-block-size: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding: map.get($cfg, body-padding);
+    padding-block-start: 0;
+}

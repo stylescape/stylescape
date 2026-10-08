@@ -1,0 +1,123 @@
+@use "sass:map";
+@use "./legend.config" as config;
+@use "../../01-core/external" as *;
+@use "../../01-core/prefix" as *;
+
+$_c: config.$ss-legend-config;
+
+/// Series key for charts and maps. Each swatch reads `--ss-legend-color`
+/// (set inline per item), falling back to the text colour.
+@mixin ss-legend {
+    // Inherited by every swatch; resolves to the swatch's text colour.
+    --ss-legend-color: currentColor;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: q(4) map.get($_c, gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: map.get($_c, font-size);
+    color: var(--ss-color-text);
+}
+
+@mixin ss-legend-vertical {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+@mixin ss-legend-title {
+    flex-basis: 100%;
+    margin: 0;
+    font-size: map.get($_c, font-size);
+    font-weight: 600;
+}
+
+@mixin ss-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: map.get($_c, item-gap);
+}
+
+/// Default swatch: a filled square (bars, categories).
+@mixin ss-legend-swatch {
+    flex: none;
+    display: inline-block;
+    inline-size: map.get($_c, swatch-size);
+    block-size: map.get($_c, swatch-size);
+    background-color: var(--ss-legend-color, currentColor);
+    border-radius: var(--ss-radius-xs, 0);
+}
+
+@mixin ss-legend-swatch-line {
+    inline-size: map.get($_c, line-length);
+    block-size: map.get($_c, line-weight);
+    border-radius: 0;
+}
+
+@mixin ss-legend-swatch-dashed {
+    background-color: transparent;
+    background-image: linear-gradient(
+        90deg,
+        var(--ss-legend-color, currentColor) 60%,
+        transparent 0
+    );
+    background-size: q(6) 100%;
+}
+
+@mixin ss-legend-swatch-point {
+    inline-size: map.get($_c, point-size);
+    block-size: map.get($_c, point-size);
+    border-radius: var(--ss-radius-full);
+}
+
+@mixin ss-legend-swatch-area {
+    background-color: color-mix(
+        in srgb,
+        var(--ss-legend-color, currentColor) #{map.get($_c, area-alpha)},
+        transparent
+    );
+    border: q(1) solid var(--ss-legend-color, currentColor);
+}
+
+@mixin ss-legend-value {
+    margin-inline-start: auto;
+    padding-inline-start: q(8);
+    font-variant-numeric: tabular-nums;
+    color: var(--ss-color-text-muted);
+}
+
+/// Toggle button for interactive legends: `aria-pressed="false"` hides a
+/// series. The label keeps full contrast; the swatch hollows out and the
+/// label is struck through.
+@mixin ss-legend-toggle {
+    @include ss-legend-item;
+    margin: 0;
+    padding: q(2) q(6);
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: q(1) solid transparent;
+    border-radius: var(--ss-radius-sm);
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--ss-color-surface-hover);
+    }
+
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width, #{q(2)}) solid
+            var(--ss-focus-ring-color, currentColor);
+        outline-offset: var(--ss-focus-ring-offset, #{q(2)});
+    }
+
+    &[aria-pressed="false"] {
+        color: var(--ss-color-text-muted);
+        text-decoration: line-through;
+
+        .#{$ss-prefix-module}-legend__swatch {
+            background: transparent;
+            box-shadow: inset 0 0 0 q(1) var(--ss-legend-color, currentColor);
+        }
+    }
+}

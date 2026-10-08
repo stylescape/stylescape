@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
     {% set rail_left = true %} {% set rail_right = true %}
+    {# Per-page counter for preview snippet ids (see
+    includes/preview/ss-c-preview_code.html.jinja). The include pushes onto
+    this list; the list is shared by reference, so ids are sequential and the
+    same on every build. #}
+    {% set _ss_snippet_ids = [] %}
 
     <head>
         <meta charset="UTF-8" />
@@ -10,6 +15,14 @@
             content="width=device-width, initial-scale=1.0"
         />
         <link rel="stylesheet" href="/css/stylescape.css" />
+        {# Apply the saved theme (see ThemeToggler) before first paint so it
+        persists across pages without a light flash. #}
+        <script>
+            try {
+                const theme = localStorage.getItem("preferredTheme");
+                if (theme) document.documentElement.dataset.theme = theme;
+            } catch (e) {}
+        </script>
         {#
         <script type="module" src="/js/stylescape.js"></script>
         #}
@@ -24,6 +37,7 @@
     </head>
 
     <body class="">
+        <a class="ss-c-demo__skip-link" href="#main_content">Skip to content</a>
         <div class="ss-l-frame">
             <div class="ss-l-frame__area--top">
                 {%- block ribbon_top -%} {%- include
@@ -36,7 +50,7 @@
             </div>
 
             <div class="ss-l-frame__area--middle_center">
-                <main id="main_content" class="ss-l-main ss-c-rail" role="main">
+                <main id="main_content" class="ss-l-main ss-c-rail" tabindex="0">
                     {%- block content %}{%- endblock %}
                 </main>
             </div>
@@ -45,18 +59,16 @@
                 {%- include "includes/layout/_sidebar_right.html.jinja" %}
             </div>
 
-            <div class="ss-l-frame__area--bottom">
+            <footer class="ss-l-frame__area--bottom">
                 {%- block ticker_bottom -%} {%- include
                 "includes/layout/_ticker_bottom.html.jinja" -%} {%- endblock
                 ticker_bottom -%} {%- block ribbon_bottom -%} {%- include
                 "includes/layout/_ribbon_bottom.html.jinja" -%} {%- endblock
                 ribbon_bottom -%}
-            </div>
+            </footer>
         </div>
 
-        <aside class="">
-            {%- include "includes/utilities/_utility_guides.html.jinja" %}
-        </aside>
+        {%- include "includes/utilities/_utility_guides.html.jinja" %}
 
         <script type="module">
             import { initializeStylescape } from "/js/index.js";

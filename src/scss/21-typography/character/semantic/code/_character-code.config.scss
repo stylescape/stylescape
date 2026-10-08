@@ -23,14 +23,16 @@
 ////
 
 $ss-character-code-config: (
-    font-family: var(--font-family-mono),
+    font-family: var(--ss-font-family-mono),
     font-size: 0.875em,
     font-weight: 400,
-    color: var(--color_text_primary),
-    background-color: var(--color_fill_secondary),
+    // Theme-aware `--ss-color-*` tokens: hue.gl's dark palette keeps
+    // `--color_fill_secondary` light, which left white text on light gray.
+    color: var(--ss-color-text),
+    background-color: var(--ss-color-surface-muted),
     padding-inline: q(2),
     padding-block: q(1),
-    border-radius: q(2),
+    border-radius: var(--ss-radius-sm),
 ) !default;
 
 // -----------------------------------------------------------------------------
@@ -40,9 +42,9 @@ $ss-character-code-config: (
 $ss-character-code-line-numbers-config: (
     padding-inline-start: 3.5em,
     width: 3em,
-    color: #999,
-    background: #eee,
-    border-color: #ddd,
+    color: var(--ss-color-text-muted),
+    background: var(--ss-color-surface-muted),
+    border-color: var(--ss-color-border),
     text-align: right,
     border-width: q(1),
     line-height: 1.6,

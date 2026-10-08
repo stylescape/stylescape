@@ -52,9 +52,60 @@ describe("ResponsiveMenuManager", () => {
         const toggle = document.getElementById("menuToggle") as HTMLElement;
         expect(toggle.getAttribute("aria-controls")).toBe("mainNav");
         expect(toggle.getAttribute("aria-expanded")).toBe("false");
-        expect(document.getElementById("mainNav")?.getAttribute("role")).toBe(
-            "navigation",
-        );
+    });
+
+    describe("navigation landmark", () => {
+        it("never puts role=navigation on the list inside a <nav>", () => {
+            new ResponsiveMenuManager("#mainNav", "#menuToggle");
+            const list = document.getElementById("mainNav") as HTMLElement;
+            expect(list.hasAttribute("role")).toBe(false);
+            expect(list.parentElement?.hasAttribute("role")).toBe(false);
+        });
+
+        it("puts role=navigation on the list's container when there is no <nav>", () => {
+            document.body.innerHTML = `
+                <div id="wrap">
+                    <button id="menuToggle">Menu</button>
+                    <ul id="mainNav"><li><a href="/">Home</a></li></ul>
+                </div>
+            `;
+            const menu = new ResponsiveMenuManager("#mainNav", "#menuToggle");
+            const wrap = document.getElementById("wrap") as HTMLElement;
+            const list = document.getElementById("mainNav") as HTMLElement;
+            expect(wrap.getAttribute("role")).toBe("navigation");
+            expect(list.hasAttribute("role")).toBe(false);
+
+            menu.destroy();
+            expect(wrap.hasAttribute("role")).toBe(false);
+        });
+
+        it("uses a non-list menu element itself as the landmark", () => {
+            document.body.innerHTML = `
+                <button id="menuToggle">Menu</button>
+                <div id="mainNav"><ul><li><a href="/">Home</a></li></ul></div>
+            `;
+            new ResponsiveMenuManager("#mainNav", "#menuToggle");
+            expect(
+                document.getElementById("mainNav")?.getAttribute("role"),
+            ).toBe("navigation");
+        });
+
+        it("leaves an existing role=navigation ancestor and container roles alone", () => {
+            document.body.innerHTML = `
+                <div role="navigation" id="landmark">
+                    <button id="menuToggle">Menu</button>
+                    <ul id="mainNav"><li><a href="/">Home</a></li></ul>
+                </div>
+            `;
+            const menu = new ResponsiveMenuManager("#mainNav", "#menuToggle");
+            menu.destroy();
+            expect(
+                document.getElementById("landmark")?.getAttribute("role"),
+            ).toBe("navigation");
+            expect(
+                document.getElementById("mainNav")?.hasAttribute("role"),
+            ).toBe(false);
+        });
     });
 
     it("opens and closes when the toggle is clicked", () => {

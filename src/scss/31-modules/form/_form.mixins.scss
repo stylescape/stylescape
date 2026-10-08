@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "./form.config" as config;
+@use "../../01-core/external" as *;
 
 @mixin ss-form {
     display: flex;
@@ -36,6 +37,92 @@
 
 @mixin ss-form-actions {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: map.get(config.$ss-form-config, actions-gap);
+}
+
+/// A list of error messages (`<ul>`), one per line, no bullets.
+@mixin ss-form-errors {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: map.get(config.$ss-form-config, error-color);
+    font-size: map.get(config.$ss-form-config, help-font-size);
+
+    > li {
+        margin: 0;
+    }
+}
+
+/// Form-wide errors (Django `non_field_errors`): a boxed summary at the top.
+@mixin ss-form-errors-nonfield {
+    padding: map.get(config.$ss-form-config, errors-padding);
+    background: map.get(config.$ss-form-config, errors-bg);
+    color: var(--ss-color-text-primary);
+    border-inline-start: map.get(config.$ss-form-config, errors-border-width) solid
+        map.get(config.$ss-form-config, errors-border);
+    font-size: inherit;
+
+    @media (forced-colors: active) {
+        border: q(1) solid CanvasText;
+    }
+}
+
+/// Group of fields with a visible frame and legend.
+@mixin ss-form-fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$ss-form-config, fields-gap);
+    min-inline-size: 0;
+    margin: 0;
+    padding: map.get(config.$ss-form-config, fieldset-padding);
+    border: q(1) solid map.get(config.$ss-form-config, fieldset-border);
+}
+
+@mixin ss-form-legend {
+    padding-inline: q(4);
+    font-weight: map.get(config.$ss-form-config, legend-weight);
+}
+
+/// A field that is a fieldset itself (radio/checkbox group): no frame, the
+/// legend reads as the field label.
+@mixin ss-form-fieldset-bare {
+    gap: map.get(config.$ss-form-config, field-gap);
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    > legend {
+        float: inline-start;
+        inline-size: 100%;
+        margin-block-end: map.get(config.$ss-form-config, field-gap);
+        padding: 0;
+        font-weight: map.get(config.$ss-form-config, label-weight);
+    }
+}
+
+/// Radio/checkbox choices stacked, each label holding its input.
+@mixin ss-form-choices {
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$ss-form-config, choice-gap);
+    clear: both;
+
+    label {
+        display: inline-flex;
+        align-items: center;
+        gap: map.get(config.$ss-form-config, choice-gap);
+        font-weight: normal;
+        cursor: pointer;
+    }
+}
+
+/// Single checkbox field: box first, label after, on one line.
+@mixin ss-form-field-inline {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    gap: map.get(config.$ss-form-config, choice-gap);
 }

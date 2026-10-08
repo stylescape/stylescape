@@ -1,0 +1,62 @@
+{% extends "../base.html.jinja" %} {% set title = "Checkout" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-checkout</code> layout: the progress uses
+        <code>ss-c-steps</code>, the form is split into numbered sections, and the
+        <code>ss-c-order-summary</code> sits beside it (sticky) from the
+        <code>md</code> breakpoint up. A finished section shows a check and a one-line
+        recap.
+    </p>
+
+    {% set section_title = "Checkout page" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <ol class="ss-c-steps" aria-label="Checkout progress">
+            <li class="ss-c-step ss-c-step--primary">Cart</li>
+            <li class="ss-c-step ss-c-step--primary" aria-current="step">Details</li>
+            <li class="ss-c-step">Payment</li>
+            <li class="ss-c-step">Done</li>
+        </ol>
+        <div class="ss-c-checkout">
+            <form class="ss-c-checkout__main ss-c-form" action="#" method="post">
+                <section class="ss-c-checkout__section ss-c-checkout__section--complete" aria-labelledby="co-contact">
+                    <h3 class="ss-c-checkout__section-title" id="co-contact">Contact</h3>
+                    <p class="ss-c-checkout__recap">anna@example.org · <a href="#edit-contact">Edit</a></p>
+                </section>
+                <fieldset class="ss-c-checkout__section">
+                    <legend class="ss-c-checkout__section-title">Shipping address</legend>
+                    <div class="ss-c-form__field">
+                        <label class="ss-c-form__label" for="co-name">Full name</label>
+                        <input class="ss-c-input" id="co-name" name="name" autocomplete="name" />
+                    </div>
+                    <div class="ss-c-form__field">
+                        <label class="ss-c-form__label" for="co-street">Street and number</label>
+                        <input class="ss-c-input" id="co-street" name="street" autocomplete="street-address" />
+                    </div>
+                </fieldset>
+                <fieldset class="ss-c-checkout__section">
+                    <legend class="ss-c-checkout__section-title">Delivery</legend>
+                    <label><input type="radio" name="delivery" checked /> Standard (2–3 days), € 4,95</label>
+                    <label><input type="radio" name="delivery" /> Pick up at the harbour office, free</label>
+                </fieldset>
+                <div class="ss-c-checkout__actions">
+                    <a href="#cart">Back to cart</a>
+                    <button class="ss-c-button ss-c-button--primary" type="submit">Continue to payment</button>
+                </div>
+            </form>
+            <aside class="ss-c-checkout__aside ss-c-order-summary" aria-labelledby="co-summary">
+                <h3 class="ss-c-order-summary__title" id="co-summary">Order summary</h3>
+                <dl class="ss-c-order-summary__rows">
+                    <div class="ss-c-order-summary__row"><dt>Subtotal</dt><dd>€ 57,00</dd></div>
+                    <div class="ss-c-order-summary__row"><dt>Shipping</dt><dd>€ 4,95</dd></div>
+                    <div class="ss-c-order-summary__row ss-c-order-summary__row--total"><dt>Total</dt><dd>€ 61,95</dd></div>
+                </dl>
+            </aside>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

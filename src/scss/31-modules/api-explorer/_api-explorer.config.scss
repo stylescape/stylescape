@@ -1,0 +1,17 @@
+@use "sass:map";
+@use "../../01-core/external" as *;
+
+$ss-api-explorer-config: (
+    height: min(80vh, #{q(720)}),
+    min-height: q(360),
+    bg: var(--ss-color-background),
+    border: q(1) solid var(--ss-color-border),
+    radius: var(--ss-radius-md),
+    header-bg: var(--ss-color-surface),
+    header-padding: q(8) q(12),
+    header-gap: q(12),
+    // GraphiQL and Swagger UI ship unlayered CSS, which beats every layer;
+    // the font/radius mapping is emitted unlayered unless a layer is named
+    // (see the map module's `vendor-layer`).
+    vendor-layer: null,
+) !default;

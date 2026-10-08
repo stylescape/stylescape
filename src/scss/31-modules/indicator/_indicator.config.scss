@@ -1,1 +1,21 @@
-$ss-indicator-config: () !default;
+@use "../../01-core/external" as *;
+
+$ss-indicator-config: (
+    dot-sizes: (
+        sm: q(6),
+        md: q(8),
+        lg: q(12),
+    ),
+    // Status tone → token. Dots always sit next to a text label; the colour
+    // only repeats what the label says.
+    tones: (
+        success: var(--ss-color-success),
+        warning: var(--ss-color-warning),
+        error: var(--ss-color-error),
+        info: var(--ss-color-info),
+        muted: var(--ss-color-muted),
+    ),
+    bar-height: q(28),
+    bar-padding-inline: q(12),
+    bar-gap: q(16),
+) !default;

@@ -18,7 +18,7 @@
 
 @use "../01-core/external" as *;
 
-@layer ss.ss-c-utilities {
+@layer ss.compat {
     // ========================================================================
     // Accordion (legacy bootstrap-ish names)
     // ========================================================================
@@ -281,7 +281,7 @@
 
     .ss-c-chat_time_1 {
         font-size: q(12);
-        color: #888888;
+        color: #5f5f5f; // AA on the light chat panels
         margin: q(4) 0 0;
     }
     .ss-c-chat_name_1,
@@ -339,7 +339,7 @@
             }
             .ss-c-chat_time_3 {
                 font-size: q(12);
-                color: #777777;
+                color: #5f5f5f;
                 margin: q(4) 0 0;
             }
         }
@@ -359,7 +359,7 @@
             }
             .ss-c-chat_time_4 {
                 font-size: q(12);
-                color: #777777;
+                color: #5f5f5f;
                 margin: q(4) 0 0;
             }
         }
@@ -575,7 +575,8 @@
     .ss-c-form__field__input {
         display: block;
         width: 100%;
-        height: q(40);
+        // min-block-size, not height: a textarea with this class keeps `rows`.
+        min-block-size: q(40);
         padding: q(8) q(12);
         background: var(--ss-color-background, #ffffff);
         color: var(--ss-color-foreground, #000000);
@@ -1564,7 +1565,7 @@
 // Remaining v0.2 widgets / utility aliases (final batch)
 // ============================================================================
 
-@layer ss.ss-c-utilities {
+@layer ss.compat {
     // ---- Display / dimension aliases ---------------------------------------
     .ss-c-d--flex          { display: flex; }
     .ss-c-d--inline-block  { display: inline-block; }
@@ -1581,7 +1582,10 @@
 
     // ---- Spacing aliases (mb/ml/mr/mt/mx/p with -- two-digit) ---------------
     @each $i in (0, 2, 4, 8, 12, 16, 24) {
-        $n: if($i < 10, "0#{$i}", "#{$i}");
+        $n: "#{$i}";
+        @if $i < 10 {
+            $n: "0#{$i}";
+        }
         $v: q($i);
         .ss-c-mt--#{$n}, .ss-c-mt-#{$i}  { margin-top: $v; }
         .ss-c-mb--#{$n}, .ss-c-mb-#{$i}  { margin-bottom: $v; }
@@ -1610,7 +1614,6 @@
     .ss-c-text-shadow--md   { text-shadow: 0 q(2) q(4) rgba(0,0,0,.22); }
     .ss-c-text-shadow--lg   { text-shadow: 0 q(4) q(8) rgba(0,0,0,.28); }
     .ss-c-text-shadow--glow { text-shadow: 0 0 q(8) rgba(255,255,255,.7); }
-    .ss-c-text-markup       { background: var(--ss-color-highlight); padding: 0 q(2); }
 
     // ---- Generic state / label classes -------------------------------------
     // Scoped to avoid hijacking common single-word class names.
@@ -1673,7 +1676,7 @@
     .ss-c-details__content    { padding-top: q(8); }
 
     // ---- Dim / drag-handle / dropbutton / dropdown -----------------------
-    .ss-c-dim                 { opacity: 0.5; }
+    .ss-c-dim                 { opacity: 0.6; } // 0.5 dropped text below AA (3.9:1)
     .ss-c-dim__line           { height: q(1); background: var(--ss-color-border); margin: q(8) 0; }
     .ss-c-drag-handle         { cursor: grab; padding: q(4); }
     .ss-c-dropbutton          { padding: q(6) q(12); border: q(1) solid var(--ss-color-border); background: var(--ss-color-surface); border-radius: var(--ss-radius-sm, q(4)); cursor: pointer; }
@@ -1686,11 +1689,13 @@
     .ss-c-filter-item         { display: inline-flex; align-items: center; gap: q(4); padding: q(2) q(6); background: var(--ss-color-surface-alt); border-radius: q(9999); font-size: q(12); }
 
     // ---- Flipper card ------------------------------------------------------
+    // Scoped to `.ss-c-flipper-card`: bare `.ss-c-flipper` is the flipper
+    // (chevron toggle) module.
     .ss-c-flipper-card        { perspective: q(1000); display: inline-block; }
-    .ss-c-flipper             { position: relative; transition: transform 600ms; transform-style: preserve-3d; }
-    .ss-c-flipper--front,
-    .ss-c-flipper--back       { backface-visibility: hidden; position: absolute; inset: 0; }
-    .ss-c-flipper--back       { transform: rotateY(180deg); }
+    .ss-c-flipper-card .ss-c-flipper { position: relative; transition: transform var(--ss-duration-500) var(--ss-ease-in-out); transform-style: preserve-3d; }
+    .ss-c-flipper-card .ss-c-flipper--front,
+    .ss-c-flipper-card .ss-c-flipper--back { backface-visibility: hidden; position: absolute; inset: 0; }
+    .ss-c-flipper-card .ss-c-flipper--back { transform: rotateY(180deg); }
 
     // ---- Decorative flower / petal ---------------------------------------
     .ss-c-flower              { display: inline-block; width: q(40); height: q(40); border-radius: q(9999); background: var(--ss-color-accent); }
@@ -1706,8 +1711,22 @@
     // ---- Icon scaffolding (generic placeholders) ---------------------------
     .ss-c-icon, .ss-c-fa, .octicon { display: inline-block; width: q(16); height: q(16); line-height: 1; }
     .octicon-three-bars::before { content: "\2630"; }
-    .ss-c-icon_a, .ss-c-icon_b, .ss-c-icon_swap,
     .ss-c-icon-font           { display: inline-block; vertical-align: middle; }
+
+    // ---- Icon swap button (legacy chat demo) -------------------------------
+    // `.ss-c-icon_swap` is a button whose two glyphs (`.ss-c-icon_a` /
+    // `.ss-c-icon_b`, both also tagged `.ss-c-irobin`, a contributor's
+    // initials, not a component) cross-fade when it gets `.is-active`. New
+    // markup: the swap module, `<label class="ss-c-swap ss-c-swap--rotate">`
+    // with `ss-c-swap__off` / `ss-c-swap__on`.
+    .ss-c-icon_swap           { display: inline-grid; place-items: center; vertical-align: middle; min-inline-size: q(24); min-block-size: q(24); background: none; border: 0; color: inherit; cursor: pointer; }
+    .ss-c-icon_swap > .ss-c-icon_a,
+    .ss-c-icon_swap > .ss-c-icon_b,
+    .ss-c-icon_swap > .ss-c-irobin { grid-area: 1 / 1; transition: transform var(--ss-duration-200) var(--ss-ease-in-out), opacity var(--ss-duration-200) var(--ss-ease-in-out); }
+    .ss-c-icon_swap > .ss-c-icon_b,
+    .ss-c-icon_swap.is-active > .ss-c-icon_a { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+    .ss-c-icon_swap.is-active > .ss-c-icon_b { opacity: 1; transform: none; }
+    .ss-c-icon_a, .ss-c-icon_b { display: inline-block; vertical-align: middle; }
     .ss-c-image_inline-small  { display: inline-block; height: q(20); width: auto; vertical-align: middle; }
 
     // ---- Generic legacy icon placeholders (i_*) ---------------------------
@@ -1741,7 +1760,7 @@
     // ---- Parallax / password / pill / placeholder -------------------------
     .ss-c-parallax            { background-attachment: fixed; background-size: cover; background-position: center; }
     .ss-c-password            { font-family: monospace; letter-spacing: q(2); }
-    .ss-c-pill                { display: inline-block; padding: q(2) q(8); border-radius: q(9999); background: var(--ss-color-surface-alt); font-size: q(12); }
+    .ss-c-pill                { display: inline-block; padding: q(2) q(8); border-radius: q(9999); background: var(--ss-color-surface-alt); color: var(--ss-color-text); font-size: q(12); }
     .ss-c-placeholder_indicator { display: inline-block; width: q(8); height: q(8); border-radius: q(9999); background: var(--ss-color-muted); }
 
     // ---- Popover / product-card / scroll / search -------------------------
@@ -1843,4 +1862,12 @@
     .ss-c-demo__section .ss-c-md { font-size: q(14); }
     .ss-c-demo__section .ss-c-lg { font-size: q(16); }
     .ss-c-demo__section .ss-c-xl { font-size: q(20); }
+}
+
+// Legacy round switch: `<label class="ss-c-switch"><input><span
+// class="ss-c-slider ss-c-round">`. The switch module reads the variable.
+@layer ss.compat {
+    .ss-c-switch > .ss-c-slider.ss-c-round {
+        --ss-switch-radius: var(--ss-radius-full);
+    }
 }

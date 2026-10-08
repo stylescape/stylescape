@@ -1,0 +1,93 @@
+{% extends "../base.html.jinja" %} {% set title = "Drop zone" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-dropzone</code> module. The surface is the
+        <code>&lt;label&gt;</code> of a visually hidden file input, so a
+        click, or Enter/Space on the focused input, opens the picker without
+        JavaScript. <code>DropZoneManager</code> (<code>data-ss="dropzone"</code>)
+        adds drag-and-drop: the <code>--dragover</code> and
+        <code>--invalid</code> states, <code>accept</code>/<code>multiple</code>/max-size
+        checks, the dropped files copied into the input, a status message
+        and the file list, plus <code>ss:dropzone:files</code> and
+        <code>ss:dropzone:invalid</code> events.
+    </p>
+
+    {% set section_title = "Idle" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-dropzone" data-ss="dropzone" data-ss-dropzone-max-size="10485760">
+            <input id="dz-scans" name="scans" type="file" class="ss-c-dropzone__input" accept="image/*,.pdf" multiple aria-describedby="dz-scans-hint">
+            <label for="dz-scans" class="ss-c-dropzone__surface">
+                <span class="ss-c-dropzone__icon" aria-hidden="true"></span>
+                <span class="ss-c-dropzone__title">Drop scans here or <span class="ss-c-dropzone__browse">browse</span></span>
+                <span class="ss-c-dropzone__hint" id="dz-scans-hint">Images or PDF, up to 10 MB each</span>
+            </label>
+            <p class="ss-c-dropzone__status" role="status"></p>
+            <ul class="ss-c-dropzone__files"></ul>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Drag over" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-dropzone ss-c-dropzone--dragover">
+            <input id="dz-over" type="file" class="ss-c-dropzone__input" multiple>
+            <label for="dz-over" class="ss-c-dropzone__surface">
+                <span class="ss-c-dropzone__icon" aria-hidden="true"></span>
+                <span class="ss-c-dropzone__title">Release to add 3 files</span>
+            </label>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Invalid, with files" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-dropzone ss-c-dropzone--invalid">
+            <input id="dz-invalid" type="file" class="ss-c-dropzone__input" accept=".ifc" aria-invalid="true" aria-describedby="dz-invalid-hint">
+            <label for="dz-invalid" class="ss-c-dropzone__surface">
+                <span class="ss-c-dropzone__icon" aria-hidden="true"></span>
+                <span class="ss-c-dropzone__title">Drop an IFC model or <span class="ss-c-dropzone__browse">browse</span></span>
+                <span class="ss-c-dropzone__hint" id="dz-invalid-hint">One .ifc file</span>
+            </label>
+            <p class="ss-c-dropzone__status" role="status">File type not accepted: plan.dwg.</p>
+            <ul class="ss-c-dropzone__files">
+                <li class="ss-c-dropzone__file"><span class="ss-c-dropzone__file-name">building-a.ifc</span><span class="ss-c-dropzone__file-size">4.2 MB</span></li>
+            </ul>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Compact and disabled" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div style="display: grid; gap: 12px">
+            <div class="ss-c-dropzone ss-c-dropzone--compact">
+                <input id="dz-compact" type="file" class="ss-c-dropzone__input">
+                <label for="dz-compact" class="ss-c-dropzone__surface">
+                    <span class="ss-c-dropzone__icon" aria-hidden="true"></span>
+                    <span class="ss-c-dropzone__title">Attach a file</span>
+                </label>
+            </div>
+            <div class="ss-c-dropzone ss-c-dropzone--compact">
+                <input id="dz-disabled" type="file" class="ss-c-dropzone__input" disabled>
+                <label for="dz-disabled" class="ss-c-dropzone__surface">
+                    <span class="ss-c-dropzone__icon" aria-hidden="true"></span>
+                    <span class="ss-c-dropzone__title">Uploads are closed</span>
+                </label>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

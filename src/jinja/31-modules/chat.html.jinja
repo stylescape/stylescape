@@ -1,4 +1,4 @@
-{% extends "../base.html.jinja" %} {% set title = "chat" %} {%- block title
+{% extends "../base.html.jinja" %} {% set title = "Chat" %} {%- block title
 %}{{ title }}{%- endblock %} {%- block content %}
 {% set user = "Donald D" %}
 {% set user2 = "John Bravo" %}
@@ -7,6 +7,11 @@
 {% set user5 = "blue ranger" %}
 {% set user6 = "green ranger" %}
 {% set user7 = "diamond ranger" %}
+
+<header class="ss-c-demo__section__header">
+  <h1>{{ title }}</h1>
+  <p>Chat bubbles, message input, avatar indicators and floating action buttons.</p>
+</header>
 
 
 
@@ -35,7 +40,7 @@
     <p class="ss-c-chat_name_2">{{ user2 }}</p>
   </div>
 
-  <input type="text" class="ss-c-chat-input_delta" placeholder="Type your message here..." />
+  <input type="text" class="ss-c-chat-input_delta" placeholder="Type your message here..." aria-label="Message" />
 </section>
 
 <section class="ss-c-themechat_2">
@@ -63,7 +68,7 @@
     <p class="ss-c-chat_name_4">Mark</p>
   </div>
 
-  <input type="text" class="ss-c-chat-input_alpha" placeholder="Type your message here..." />
+  <input type="text" class="ss-c-chat-input_alpha" placeholder="Type your message here..." aria-label="Message" />
 </section>
 
 
@@ -145,7 +150,7 @@
     <p class="ss-c-chat_name">{{ chat.name }}</p>
   </div>
 {% endfor %}
-<input type="text" class="ss-c-chat-input_alpha" placeholder="Type your message here..." />
+<input type="text" class="ss-c-chat-input_alpha" placeholder="Type your message here..." aria-label="Message" />
 </section>
 
 
@@ -187,123 +192,64 @@
 </header>
 
 
-<button class="ss-c-icon_swap" aria-label="Toggle">
-  <span class="ss-c-irobin ss-c-icon_a">⟳</span>
-  <span class="ss-c-irobin ss-c-icon_b">✓</span>
-</button>
-
-<script>
-  document.querySelector('.icon_swap')
-    .addEventListener('click', function () {
-      this.classList.toggle('is-active'); // keep hyphen
-    });
-</script>
+<label class="ss-c-swap ss-c-swap--rotate">
+  <input type="checkbox" aria-label="Mark as synced" />
+  <span class="ss-c-swap__off" aria-hidden="true">⟳</span>
+  <span class="ss-c-swap__on" aria-hidden="true">✓</span>
+</label>
 </section>
 
 
 
-{% set speed_dial_robin_title = "Swap icons" %}
+{% set speed_dial_robin_title = "Speed Dial" %}
 <section class="ss-c-speed_dial_robin">
   <header class="ss-c-speed_dial_robin_header">
     <h2 class="ss-c-speed_dial_robin_title">{{ speed_dial_robin_title }}</h2>
   </header>
-  <div class="ss-c-fab-wrap" data-fab>
-    <!-- Main FAB -->
-
-    <button class="ss-c-fab" type="button" aria-label="Open actions" data-fab-toggle>
-      <span class="ss-c-fab__icon ss-c-fab__icon--open" aria-hidden="true">
-        <!-- SVG placeholder -->
-
-        <svg viewBox="0 0 24 24" width="22" height="22">
-          <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-      </span>
-
-      <span class="ss-c-fab__icon ss-c-fab__icon--close" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="22" height="22">
-          <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-      </span>
-    </button>
-
-    <!-- Flower actions -->
-    <div class="ss-c-flower" aria-label="Quick actions">
-      <button class="ss-c-petal" type="button" aria-label="Action 1">
-        <svg viewBox="0 0 24 24" width="20" height="20">
-          <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="2" />
-        </svg>
+  <div style="display: grid; place-items: center; padding-block: 8rem">
+    <div class="ss-c-fab ss-c-fab--radial" data-ss="fab">
+      <button class="ss-c-fab__toggle" type="button" aria-label="Open actions" aria-expanded="false" aria-controls="chat-fab-actions">
+        <span class="ss-c-fab__icon ss-c-fab__icon--open" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </span>
+        <span class="ss-c-fab__icon ss-c-fab__icon--close" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </span>
       </button>
-
-      <button class="ss-c-petal" type="button" aria-label="Action 2">
-        <svg viewBox="0 0 24 24" width="20" height="20">
-          <path d="M12 4l6 16H6z" fill="none" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </button>
-
-      <button class="ss-c-petal" type="button" aria-label="Action 3">
-        <svg viewBox="0 0 24 24" width="20" height="20">
-          <path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-      </button>
-
-      <button class="ss-c-petal" type="button" aria-label="Action 4">
-        <svg viewBox="0 0 24 24" width="20" height="20">
-          <path d="M12 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-      </button>
-
-      <button class="ss-c-petal" type="button" aria-label="Action 5">
-        <svg viewBox="0 0 24 24" width="20" height="20">
-          <rect x="6" y="6" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" />
-        </svg>
-      </button>
+      <div class="ss-c-fab__actions" id="chat-fab-actions" role="group" aria-label="Quick actions">
+        <button class="ss-c-fab__action" type="button" aria-label="New message">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="2" /></svg>
+        </button>
+        <button class="ss-c-fab__action" type="button" aria-label="Attach file">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l6 16H6z" fill="none" stroke="currentColor" stroke-width="2" /></svg>
+        </button>
+        <button class="ss-c-fab__action" type="button" aria-label="Mute">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </button>
+        <button class="ss-c-fab__action" type="button" aria-label="Pin">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </button>
+        <button class="ss-c-fab__action" type="button" aria-label="Archive">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" /></svg>
+        </button>
+      </div>
     </div>
   </div>
 
-  <script>
-    const wrap = document.querySelector('[data-fab]');
-    const toggle = wrap.querySelector('[data-fab-toggle]');
-
-    function setOpen(open) {
-      wrap.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    }
-
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      setOpen(!wrap.classList.contains('is-open'));
-    });
-
-    // dicht wanneer weg
-    document.addEventListener('click', () => setOpen(false));
-
-    // dicht wanneer escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') setOpen(false);
-    });
-
-    wrap.addEventListener('click', (e) => e.stopPropagation());
-  </script>
-
 </section>
-<section class="ss-c-fab_corner">
-<div class="ss-c-robins_diag" data-robins-dial>
-  <!-- Main FAB -->
-  <button class="ss-c-robins_diag_fab" type="button" aria-label="robins open menu" data-diag-toggle>
-    M
+<section class="ss-c-fab_corner" style="padding-block-start: 14rem">
+<div class="ss-c-fab" data-ss="fab">
+  <button class="ss-c-fab__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="chat-dial-actions">
+    <span class="ss-c-fab__icon ss-c-fab__icon--open" aria-hidden="true">M</span>
+    <span class="ss-c-fab__icon ss-c-fab__icon--close" aria-hidden="true">×</span>
   </button>
-
-  <!-- Actions -->
-  <div class="ss-c-robins_diag-actions" aria-label="Actions">
-    <button class="ss-c-robins_diag-action" type="button" aria-label="robins_action A">A</button>
-    <button class="ss-c-robins_diag-action" type="button" aria-label="robins_action B">B</button>
-    <button class="ss-c-robins_diag-action" type="button" aria-label="robins_action C">C</button>
-    <button class="ss-c-robins_diag-action" type="button" aria-label="robins_action D">D</button>
+  <div class="ss-c-fab__actions" id="chat-dial-actions" role="group" aria-label="Actions">
+    <button class="ss-c-fab__action" type="button" aria-label="Action A">A</button>
+    <button class="ss-c-fab__action" type="button" aria-label="Action B">B</button>
+    <button class="ss-c-fab__action" type="button" aria-label="Action C">C</button>
+    <button class="ss-c-fab__action" type="button" aria-label="Action D">D</button>
   </div>
 </div>
-
-
-
 </section>
 
 

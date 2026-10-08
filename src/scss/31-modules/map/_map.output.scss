@@ -3,6 +3,7 @@
 // =============================================================================
 
 @use "../../01-core/prefix" as *;
+@use "sass:map";
 @use "./map.mixins" as *;
 
 @layer ss.components {
@@ -16,4 +17,45 @@
             @include ss-map-control;
         }
     }
+}
+
+// -----------------------------------------------------------------------------
+// Vendor chrome follows the tokens (incl. dark): Leaflet, MapLibre, Mapbox.
+// -----------------------------------------------------------------------------
+
+$_map: ".#{$ss-prefix-module}-map";
+$_vendor-layer: ss-map-config("vendor-layer");
+$_icon-filter-dark: ss-map-config("vendor-icon-filter-dark");
+
+@layer ss.components {
+    #{$_map} {
+        --ss-map-icon-filter: none;
+    }
+    [data-theme="dark"] #{$_map} {
+        --ss-map-icon-filter: #{$_icon-filter-dark};
+    }
+    @media (prefers-color-scheme: dark) {
+        [data-theme="auto"] #{$_map} {
+            --ss-map-icon-filter: #{$_icon-filter-dark};
+        }
+    }
+    [data-theme="light"] #{$_map} {
+        --ss-map-icon-filter: none;
+    }
+}
+
+@mixin _vendor-scope {
+    #{$_map} {
+        @include ss-map-vendor-leaflet;
+        @include ss-map-vendor-gl(maplibregl, "#{$_map}__canvas");
+        @include ss-map-vendor-gl(mapboxgl, "#{$_map}__canvas");
+    }
+}
+
+@if $_vendor-layer {
+    @layer #{$_vendor-layer} {
+        @include _vendor-scope;
+    }
+} @else {
+    @include _vendor-scope;
 }

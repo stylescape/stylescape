@@ -5,7 +5,10 @@
 @mixin ss-rating {
     display: inline-flex;
     align-items: center;
-    gap: q(2);
+    // Stars sit ≥ 24px apart centre to centre, and a row is ≥ 24px tall so
+    // stacked ratings keep that spacing too (WCAG 2.5.8 target spacing).
+    gap: q(4);
+    min-block-size: q(24);
 
     direction: rtl; // reverse for ":checked ~" technique with radios
 
@@ -33,17 +36,18 @@
     }
     > input[type="radio"]:checked,
     > input[type="radio"]:checked ~ input[type="radio"] {
-        background-color: var(--ss-color-warning, #f5a623);
+        background-color: var(--ss-color-warning);
     }
     > input[type="radio"]:hover,
     > input[type="radio"]:hover ~ input[type="radio"] {
-        background-color: var(--ss-color-warning, #f5a623);
+        background-color: var(--ss-color-warning);
         opacity: 0.85;
     }
 }
 
 @mixin ss-rating-size($size) {
     $s: map.get(map.get(config.$ss-rating-config, sizes), $size);
+    gap: max(#{q(4)}, calc(#{q(24)} - #{$s}));
     > input[type="radio"] { width: $s; height: $s; }
 }
 

@@ -30,6 +30,38 @@
 
 @mixin ss-list-group-horizontal {
     flex-direction: row;
+    flex-wrap: wrap;
+}
+
+/// Items of a horizontal group: collapse the shared inline border instead of
+/// the top one, and round only the outer corners of the row.
+@mixin ss-list-group-horizontal-item {
+    border-radius: 0;
+
+    &:not(:first-child) {
+        border-top-width: map.get(config.$list-group-config, "border-width");
+        border-inline-start-width: 0;
+    }
+    &:first-child {
+        border-start-start-radius: inherit;
+        border-end-start-radius: inherit;
+    }
+    &:last-child {
+        border-start-end-radius: inherit;
+        border-end-end-radius: inherit;
+    }
+}
+
+/// `li[data-marker="✓"]`: draws the attribute text as the item's marker.
+@mixin ss-list-group-marker {
+    &::before {
+        content: attr(data-marker);
+        display: inline-block;
+        min-inline-size: 1em;
+        margin-inline-end: map.get(config.$list-group-config, "marker-gap");
+        color: map.get(config.$list-group-config, "marker-color");
+        text-align: center;
+    }
 }
 
 @mixin ss-list-group-item {

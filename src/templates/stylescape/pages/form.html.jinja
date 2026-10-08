@@ -1,0 +1,33 @@
+{#-
+    stylescape/pages/form.html.jinja
+    ===========================================================================
+    For CreateView / UpdateView / FormView. Context: form, and optionally
+    object, formset (rendered after the form's fields), page_title,
+    submit_label, cancel_url, form_action.
+-#}
+{%- extends "stylescape/base.html.jinja" -%}
+{%- from "stylescape/macros/forms.html.jinja" import form_fields, formset as render_formset with context -%}
+
+{%- block title %}
+{%- if page_title %}{{ page_title }}
+{%- elif object is defined and object %}{{ _("Edit %(name)s", name=object) }}
+{%- else %}{{ _("New") }}{% endif %}
+{%- endblock -%}
+
+{%- block content %}
+{%- block form %}
+<form class="ss-c-form" action="{{ form_action | default('', true) }}" method="post"{% if form.is_multipart() or (formset is defined and formset and formset.is_multipart()) %} enctype="multipart/form-data"{% endif %}>
+    {%- if csrf_input is defined %}{{ csrf_input }}{% endif %}
+    {{ form_fields(form) }}
+    {%- if formset is defined and formset %}
+    {{ render_formset(formset) }}
+    {%- endif %}
+    <div class="ss-c-form__actions">
+        <button class="ss-c-button ss-c-button--primary" type="submit">{{ submit_label | default(_("Save"), true) }}</button>
+        {%- if cancel_url %}
+        <a class="ss-c-button ss-c-button--ghost" href="{{ cancel_url }}">{{ _("Cancel") }}</a>
+        {%- endif %}
+    </div>
+</form>
+{%- endblock form %}
+{%- endblock content -%}

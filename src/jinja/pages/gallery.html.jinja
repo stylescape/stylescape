@@ -1,0 +1,119 @@
+{#
+-----------------------------------------------------------------------------
+Demo gallery page template
+-----------------------------------------------------------------------------
+Landing page for a package's demos: app shell (ss-l-app) with a header
+(brand, back link, theme toggle), an "on this page" sidebar, groups of
+numbered demo cards under section headers with counts, and a status footer.
+
+Reuse: copy this file, or `extends` it and override the blocks
+(`back_link`, `lead`, `groups`, `footer`), or just pass `page_title` and a
+`groups` list of {"title", "lead", "demos": [{"href", "title", "text",
+"tags"}]}. Markup works in Nunjucks and Jinja2.
+
+Behaviour (from stylescape's JS): ThemeToggler (`data-ss="theme-toggle"`)
+and SheetManager (the Menu button opens the sidebar on small screens).
+#}
+{%- set page_title = page_title | default("Sturnia Spatial") -%}
+{%- set groups = groups | default([
+    {"title": "Map renderers", "lead": "Map providers and how each one is configured.", "demos": [
+        {"href": "#", "title": "Mapbox renderer", "text": "Mapbox GL JS with GeoJSON layers.", "tags": ["type=\"mapbox\""]},
+        {"href": "#", "title": "MapLibre renderer", "text": "Open-source MapLibre GL.", "tags": ["type=\"maplibre\""]},
+        {"href": "#", "title": "Leaflet renderer", "text": "Raster tiles, no token needed.", "tags": ["type=\"leaflet\""]},
+        {"href": "#", "title": "Deck.gl renderer", "text": "WebGL layers for large data sets.", "tags": ["type=\"deck\"", "webgl"]}
+    ]},
+    {"title": "Feature demos", "lead": "Editing, markers, legends and multi-map views.", "demos": [
+        {"href": "#", "title": "Editable map", "text": "Draw and edit features.", "tags": ["editing"]},
+        {"href": "#", "title": "Interactive legend", "text": "Toggle layers from the legend.", "tags": ["legend"]},
+        {"href": "#", "title": "Multiple maps", "text": "Synchronised map instances.", "tags": ["multi"]}
+    ]}
+]) -%}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ page_title }} | Demos</title>
+        <link rel="stylesheet" href="/css/stylescape.css" />
+        <script>
+            try {
+                const theme = localStorage.getItem("preferredTheme");
+                if (theme) document.documentElement.dataset.theme = theme;
+            } catch (e) {}
+        </script>
+        {%- block head %}{% endblock %}
+    </head>
+
+    <body style="margin: 0">
+        <div class="ss-l-app">
+            <header class="ss-l-app__header">
+                <button type="button" class="ss-c-button ss-c-button--ghost ss-c-button--sm"
+                        data-ss-sheet-toggle aria-controls="gallery-nav">Menu</button>
+                <strong>{{ page_title }}</strong>
+                <span class="ss-l-app__spacer"></span>
+                {% block back_link %}
+                <a class="ss-c-button ss-c-button--ghost ss-c-button--sm" href="#">&larr; All packages</a>
+                {% endblock %}
+                <button type="button" class="ss-c-theme-toggle ss-c-theme-toggle--ghost" id="gallery-theme"
+                        data-ss="theme-toggle" aria-pressed="false" aria-label="Dark mode">
+                    <span class="ss-c-theme-toggle__glyph"></span>
+                </button>
+            </header>
+
+            <nav class="ss-l-app__sidebar" id="gallery-nav" data-ss="sheet" aria-label="On this page">
+                <ul style="margin: 0; padding: var(--ss-space-4); list-style: none">
+                    {%- for group in groups %}
+                    <li><a href="#gallery-group-{{ loop.index }}" style="display: block; padding-block: var(--ss-space-1)">{{ group.title }}</a></li>
+                    {%- endfor %}
+                </ul>
+            </nav>
+
+            <main class="ss-l-app__main" id="main_content">
+                <div style="max-width: 72rem; margin: 0 auto; padding: var(--ss-space-6) var(--ss-space-4)">
+                    <h1 style="margin-top: 0">{{ page_title }}</h1>
+                    <p>{% block lead %}Mapping library with Mapbox, MapLibre and Deck.gl integration.{% endblock %}</p>
+
+                    {% block groups %}
+                    {%- for group in groups %}
+                    {%- set n = group.demos | length %}
+                    <section aria-labelledby="gallery-group-{{ loop.index }}" style="margin-top: var(--ss-space-8)">
+                        <div class="ss-c-section-header">
+                            <h2 class="ss-c-section-title" id="gallery-group-{{ loop.index }}" style="margin: 0">{{ group.title }}</h2>
+                            <span class="ss-c-section-count" aria-label="{{ n }} demos">{{ ("0" ~ n) if n < 10 else n }}</span>
+                        </div>
+                        {%- if group.lead %}
+                        <p style="margin: 0 0 var(--ss-space-4)">{{ group.lead }}</p>
+                        {%- endif %}
+                        <div class="ss-l-dashboard">
+                            {%- for demo in group.demos %}
+                            <article class="ss-c-card ss-c-card--numbered ss-c-card--interactive">
+                                <span class="ss-c-card__number"></span>
+                                <h3 class="ss-c-card__title"><a class="ss-c-card__link" href="{{ demo.href }}">{{ demo.title }}</a></h3>
+                                <p class="ss-c-card__body" style="margin: 0">{{ demo.text }}</p>
+                                {%- if demo.tags %}
+                                <ul class="ss-c-card__tags">
+                                    {%- for tag in demo.tags %}
+                                    <li class="ss-c-card__tag">{{ tag }}</li>
+                                    {%- endfor %}
+                                </ul>
+                                {%- endif %}
+                            </article>
+                            {%- endfor %}
+                        </div>
+                    </section>
+                    {%- endfor %}
+                    {% endblock %}
+                </div>
+            </main>
+
+            <footer class="ss-l-app__footer ss-t-text-sm">
+                {% block footer %}<span>Source in <code>exe/</code> and <code>src/ts/</code>.</span>{% endblock %}
+            </footer>
+        </div>
+
+        <script type="module">
+            import { initializeStylescape } from "/js/index.js";
+            initializeStylescape();
+        </script>
+    </body>
+</html>

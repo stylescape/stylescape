@@ -1,0 +1,66 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./overlay-panel.mixins" as op;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-overlay-panel {
+        @include op.ss-overlay-panel;
+    }
+
+    .#{$ss-prefix-module}-overlay-panel__title {
+        @include op.ss-overlay-panel-title;
+    }
+
+    // Anchors (default: top-start).
+    .#{$ss-prefix-module}-overlay-panel--top-right {
+        @include op.ss-overlay-panel-anchor(top, end);
+    }
+    .#{$ss-prefix-module}-overlay-panel--bottom-left {
+        @include op.ss-overlay-panel-anchor(bottom, start);
+    }
+    .#{$ss-prefix-module}-overlay-panel--bottom-right {
+        @include op.ss-overlay-panel-anchor(bottom, end);
+    }
+    .#{$ss-prefix-module}-overlay-panel--top-center {
+        @include op.ss-overlay-panel-anchor(top, center);
+    }
+    .#{$ss-prefix-module}-overlay-panel--bottom-center {
+        @include op.ss-overlay-panel-anchor(bottom, center);
+    }
+
+    // Opaque surface (busy or high-contrast backgrounds).
+    .#{$ss-prefix-module}-overlay-panel--solid {
+        --ss-overlay-panel-bg: var(--ss-color-surface);
+        backdrop-filter: none;
+    }
+
+    // Stacked icon-button control group.
+    .#{$ss-prefix-module}-overlay-panel--controls {
+        @include op.ss-overlay-panel-controls;
+        max-inline-size: none;
+    }
+    .#{$ss-prefix-module}-overlay-panel__control {
+        @include op.ss-overlay-panel-control;
+    }
+
+    // Several panels in one corner: stack them in a column.
+    .#{$ss-prefix-module}-overlay-panel-stack {
+        position: absolute;
+        inset-block-start: var(--ss-space-3);
+        inset-inline-end: var(--ss-space-3);
+        z-index: var(--ss-z-10, 10);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: var(--ss-space-2);
+
+        // A percentage max-width would resolve against this shrink-to-fit
+        // column and collapse the panels.
+        > .#{$ss-prefix-module}-overlay-panel {
+            position: static;
+            max-inline-size: #{q(320)};
+            max-block-size: none;
+            translate: none;
+        }
+    }
+}

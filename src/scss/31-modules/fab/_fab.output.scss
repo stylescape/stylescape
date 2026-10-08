@@ -1,0 +1,34 @@
+// =============================================================================
+// 31-modules / fab / output
+// =============================================================================
+
+@use "../../01-core/prefix" as *;
+@use "./fab.mixins" as fab;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-fab {
+        @include fab.ss-fab;
+        @include fab.ss-fab-icon-states;
+        @include fab.ss-fab-open;
+        @include fab.ss-fab-reduced-motion;
+
+        &--fixed {
+            @include fab.ss-fab-fixed;
+        }
+        &--radial {
+            @include fab.ss-fab-radial;
+        }
+    }
+    .#{$ss-prefix-module}-fab__toggle {
+        @include fab.ss-fab-toggle;
+    }
+    .#{$ss-prefix-module}-fab__icon {
+        @include fab.ss-fab-icon;
+    }
+    .#{$ss-prefix-module}-fab__actions {
+        @include fab.ss-fab-actions;
+    }
+    .#{$ss-prefix-module}-fab__action {
+        @include fab.ss-fab-action;
+    }
+}

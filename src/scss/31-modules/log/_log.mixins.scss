@@ -1,0 +1,90 @@
+@use "sass:map";
+@use "./log.config" as config;
+@use "../../01-core/external" as *;
+
+$_c: config.$ss-log-config;
+
+/// Scrollable console. `--ss-log-max-height` overrides the height per
+/// instance.
+@mixin ss-log {
+    --ss-log-max-height: #{map.get($_c, max-height)};
+    max-block-size: var(--ss-log-max-height);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    font-family: var(--ss-font-family-mono, monospace);
+    font-size: map.get($_c, font-size);
+    line-height: 1.5;
+
+    color: var(--ss-color-text);
+    background-color: map.get($_c, background);
+    border: map.get($_c, border);
+    border-radius: map.get($_c, radius);
+
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width, #{q(2)}) solid
+            var(--ss-focus-ring-color, currentColor);
+        outline-offset: var(--ss-focus-ring-offset, #{q(2)});
+    }
+}
+
+/// Keeps the newest entry in view: a column-reverse scroller starts at the
+/// bottom and stays pinned there while entries are appended to its single
+/// child (`__list`), unless the reader has scrolled up.
+@mixin ss-log-follow {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+/// The list owns the column tracks; entries join them through subgrid so
+/// times, levels and messages line up across rows.
+@mixin ss-log-list {
+    display: grid;
+    grid-template-columns: auto auto minmax(0, 1fr);
+    margin: 0;
+    padding: q(4) 0;
+    list-style: none;
+}
+
+@mixin ss-log-entry {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    column-gap: map.get($_c, gap);
+    align-items: baseline;
+    padding: map.get($_c, entry-padding);
+    border-inline-start: q(3) solid var(--ss-log-accent, transparent);
+
+    & + & {
+        border-block-start: q(1) solid var(--ss-color-border-subtle);
+    }
+}
+
+@mixin ss-log-entry-level($level) {
+    $l: map.get(map.get($_c, levels), $level);
+    --ss-log-accent: #{map.get($l, accent)};
+    --ss-log-badge-bg: #{map.get($l, bg)};
+    --ss-log-badge-fg: #{map.get($l, fg)};
+}
+
+@mixin ss-log-time {
+    color: var(--ss-color-text-muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+@mixin ss-log-level {
+    min-inline-size: 6ch;
+    padding: 0 q(4);
+    font-size: var(--ss-font-size-xs);
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--ss-log-badge-fg, var(--ss-color-text));
+    background-color: var(--ss-log-badge-bg, var(--ss-color-surface-1));
+}
+
+@mixin ss-log-message {
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}

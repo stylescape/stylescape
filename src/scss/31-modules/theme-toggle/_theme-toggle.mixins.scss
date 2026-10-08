@@ -1,0 +1,94 @@
+@use "sass:map";
+@use "./theme-toggle.config" as config;
+@use "../../01-core/external" as *;
+
+/// Square button (or a pill when it carries a visible label).
+@mixin ss-theme-toggle {
+    $cfg: config.$ss-theme-toggle-config;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: map.get($cfg, gap);
+    box-sizing: border-box;
+    min-inline-size: map.get($cfg, size);
+    min-block-size: map.get($cfg, size);
+    margin: 0;
+    padding: 0 var(--ss-space-2);
+
+    background-color: var(--ss-color-surface);
+    color: var(--ss-color-text);
+    border: map.get($cfg, border);
+    border-radius: 0;
+    font: inherit;
+    font-size: var(--ss-font-size-sm);
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--ss-color-surface-hover);
+    }
+
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color);
+        outline-offset: var(--ss-focus-ring-offset);
+    }
+}
+
+/// Bare variant for toolbars and app headers.
+@mixin ss-theme-toggle-ghost {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+/// Inline SVG icons: one per state; only the current one shows.
+@mixin ss-theme-toggle-icon {
+    $cfg: config.$ss-theme-toggle-config;
+
+    display: none;
+    flex: none;
+    inline-size: map.get($cfg, icon-size);
+    block-size: map.get($cfg, icon-size);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/// Icon drawn in CSS, no SVG or icon font: a sun (disc with a dotted halo),
+/// a moon (crescent) or auto (half-filled disc), set by the state.
+@mixin ss-theme-toggle-glyph {
+    $cfg: config.$ss-theme-toggle-config;
+
+    position: relative;
+    flex: none;
+    box-sizing: border-box;
+    inline-size: calc(#{map.get($cfg, icon-size)} * 0.6);
+    block-size: calc(#{map.get($cfg, icon-size)} * 0.6);
+    border-radius: 50%;
+    background-color: currentColor;
+    outline: q(2) dotted currentColor;
+    outline-offset: q(2);
+}
+
+@mixin ss-theme-toggle-glyph-moon {
+    $cfg: config.$ss-theme-toggle-config;
+
+    inline-size: calc(#{map.get($cfg, icon-size)} * 0.8);
+    block-size: calc(#{map.get($cfg, icon-size)} * 0.8);
+    background-color: transparent;
+    outline: 0;
+    box-shadow: inset q(-4) q(-2) 0 0 currentColor;
+    transform: rotate(-20deg);
+}
+
+@mixin ss-theme-toggle-glyph-auto {
+    $cfg: config.$ss-theme-toggle-config;
+
+    inline-size: calc(#{map.get($cfg, icon-size)} * 0.8);
+    block-size: calc(#{map.get($cfg, icon-size)} * 0.8);
+    background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+    border: q(2) solid currentColor;
+    outline: 0;
+}

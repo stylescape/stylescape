@@ -16,7 +16,8 @@
 }
 
 @mixin ss-breadcrumb-separator {
-    content: map.get(config.$ss-breadcrumb-config, separator);
+    content: var(--ss-breadcrumb-separator, "#{map.get(config.$ss-breadcrumb-config, separator)}");
     color: map.get(config.$ss-breadcrumb-config, separator-color);
-    margin-inline-start: map.get(config.$ss-breadcrumb-config, gap);
+    // The flex `gap` already spaces the item before the separator.
+    margin-inline-end: map.get(config.$ss-breadcrumb-config, gap);
 }

@@ -5,12 +5,13 @@
 @use "../../01-core/external" as *;
 
 $carousel-config: (
-    "transition": 0.6s ease,
+    "transition": var(--ss-duration-500) var(--ss-ease-in-out),
     "indicator-size": q(8),
     "indicator-gap": q(6),
-    "indicator-color": var(--ss-color-white, rgba(255, 255, 255, 0.5)),
-    "indicator-color-active": var(--ss-color-white, #ffffff),
-    "control-color": var(--ss-color-white, #ffffff),
+    // Inactive dots: half-strength white so the active one stands out.
+    "indicator-color": color-mix(in srgb, var(--ss-color-white) 50%, transparent),
+    "indicator-color-active": var(--ss-color-white),
+    "control-color": var(--ss-color-white),
     "control-bg": var(--ss-color-state-active, rgba(0, 0, 0, 0.3)),
     "control-size": q(40),
 ) !default;

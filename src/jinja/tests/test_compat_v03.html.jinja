@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{%- block title %}0.3 Class Names | Stylescape{%- endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/stylescape.css" />
+        <script type="module" src="/js/stylescape.js"></script>
+    </head>
+
+    {#
+        Stylescape 0.3 markup (the sturnus-style base template and the class
+        names the KodW apps use), styled only by
+        32-utilities/_legacy-v03-compat.scss. Nothing here uses an `ss-*`
+        class: if a 0.3 name loses its rule, it shows on this page.
+    #}
+    <body>
+        <div class="frame_main">
+            <div class="frame_main__area--top">
+                <header class="ribbon--top">
+                    <div class="ribbon__slot--horizontal_left">
+                        <p class="ribbon__slot--left ribbon__title">
+                            <span class="ribbon__title__logo"><a href="#main_content">+</a></span>
+                            <span class="ribbon__title__text"><a href="#main_content">Sturnus</a></span>
+                        </p>
+                    </div>
+                    <div class="ribbon__slot--horizontal_center"></div>
+                    <div class="ribbon__slot--horizontal_right">
+                        <menu class="ribbon__menu" aria-label="App menu">
+                            <li class="ribbon__menu__item">
+                                <button class="ribbon__button" type="button" aria-label="Search">⌕</button>
+                            </li>
+                            <li class="ribbon__menu__item">
+                                <button class="ribbon__button" type="button" aria-label="Account">◎</button>
+                            </li>
+                        </menu>
+                    </div>
+                </header>
+            </div>
+
+            <div class="frame_main__area--middle_left">
+                <aside class="sidebar--left" aria-label="Left sidebar" data-ss="aside" data-ss-aside-menu="sidebar_left_menu" data-ss-aside-switch="sidebar_left_switch">
+                    <nav class="ribbon--left ribbon--inverted" aria-label="Sidebar navigation">
+                        <div class="ribbon__slot--vertical_top">
+                            <button class="ribbon__button" type="button" aria-label="Home">⌂</button>
+                        </div>
+                    </nav>
+                    <nav id="sidebar_left_menu" class="sidebar__menu active" aria-label="Sidebar content">
+                        <section class="sidebar__content rail" aria-labelledby="sidebar-left-label">
+                            <h2 id="sidebar-left-label" class="visually-hidden">Left sidebar content</h2>
+                            <ul class="list_none margin--0 padding--0_left">
+                                <li class="padding--5_vertical"><a class="character--hyperlink--base" href="#cards">Cards</a></li>
+                                <li class="padding--5_vertical"><a class="character--hyperlink--base" href="#forms">Forms</a></li>
+                            </ul>
+                        </section>
+                    </nav>
+                    <div class="sidebar__control" role="group" aria-label="Sidebar toggle">
+                        <button class="flipper--left active" id="sidebar_left_switch" type="button" aria-pressed="true" aria-label="Toggle left sidebar"></button>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="frame_main__area--middle_center">
+                <main id="main_content" class="main_content rail" tabindex="0">
+                    <h1 class="h5">0.3 class names on 0.4</h1>
+
+                    <section class="section" id="buttons" aria-labelledby="h-buttons">
+                        <h2 id="h-buttons">Buttons and badges</h2>
+                        <div class="flex--row flex--wrap gap--02 align--center">
+                            <button class="button accent" type="button">Apply</button>
+                            <button class="button solid" type="button">Confirm</button>
+                            <button class="button button--primary" type="button">Primary</button>
+                            <button class="button button--secondary" type="button">Secondary</button>
+                            <button class="button button--danger" type="button">Delete</button>
+                            <span class="badge">3</span>
+                            <span class="badge accent">new</span>
+                            <span class="badge warning pill">late</span>
+                            <span class="badge error">failed</span>
+                            <span class="tooltip tooltip--top" tooltip-data="Shown on hover and focus" tabindex="0">Tooltip</span>
+                        </div>
+                    </section>
+
+                    <section class="section" id="cards" aria-labelledby="h-cards">
+                        <h2 id="h-cards">Cards in a 0.3 grid</h2>
+                        <div class="grid__frame--24">
+                            <article class="card grid--span--col--12 grid--span--col--sm--24">
+                                <header class="card--header"><h3 class="margin--0">System</h3></header>
+                                <div class="card--body flex--col justify--between align--start gap--01">
+                                    <p class="margin--0">Card body with the sturnus <code>card--body</code> spelling.</p>
+                                    <a class="button accent" href="#cards">Open</a>
+                                </div>
+                            </article>
+                            <article class="card grid--span--col--12 grid--span--col--sm--24">
+                                <header class="card__header"><h3 class="margin--0">Instrument</h3></header>
+                                <div class="card__body"><p class="margin--0 small">Card body with the 0.3 <code>card__body</code> spelling.</p></div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="section" id="forms" aria-labelledby="h-forms">
+                        <h2 id="h-forms">Forms, table, pagination</h2>
+                        <form class="form">
+                            <label for="v03-name">Name</label>
+                            <input id="v03-name" class="input" type="text" placeholder="Name" />
+                            <label class="checkbox"><input type="checkbox" checked /> Subscribe</label>
+                            <label class="radio"><input type="radio" name="v03-r" checked /> Option</label>
+                        </form>
+                        <hr class="divider" />
+                        <table class="table--lined--horizontal">
+                            <caption>Recent items</caption>
+                            <thead><tr><th scope="col">Name</th><th scope="col">Status</th></tr></thead>
+                            <tbody>
+                                <tr><td>Alpha</td><td>Open</td></tr>
+                                <tr><td>Beta</td><td>Closed</td></tr>
+                            </tbody>
+                        </table>
+                        <nav class="pagination" aria-label="Pagination">
+                            <a class="pill disabled" aria-disabled="true">« Previous</a>
+                            <span class="small padding--8_horizontal">Page 1 of 3</span>
+                            <a class="pill" href="#forms">Next »</a>
+                        </nav>
+                        <div class="alert alert--warning margin--10_top" role="status">Saved with warnings.</div>
+                    </section>
+                </main>
+            </div>
+
+            <div class="frame_main__area--bottom">
+                <footer class="ribbon--bottom">
+                    <div class="ribbon__slot--horizontal_left"><span>© Sturnus</span></div>
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>

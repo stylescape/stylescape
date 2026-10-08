@@ -1,0 +1,102 @@
+{% extends "../base.html.jinja" %} {% set title = "App Shell" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-l-app</code> layout: a full-height frame with a
+        header, optional left and right sidebars, a main viewport and an optional
+        status bar. Size it with <code>--ss-app-header-height</code>,
+        <code>--ss-app-sidebar-width</code> (or <code>-left-width</code> /
+        <code>-right-width</code>) and <code>--ss-app-footer-height</code>.
+    </p>
+    <p>
+        On a page the shell fills the viewport (<code>100dvh</code>); the examples
+        below use <code>ss-l-app--contained</code> to fill a sized box instead. Below
+        the <code>md</code> breakpoint the sidebars are hidden and open as overlays
+        when their <code>data-state</code> is <code>"open"</code>;
+        <code>"closed"</code> hides them at every width. <code>SheetManager</code>
+        toggles the state from any button with <code>data-ss-sheet-toggle</code>.
+    </p>
+
+    {% set section_title = "Header, sidebars, viewport and status bar" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div style="height: 420px; border: 1px solid var(--ss-color-border)">
+            <div class="ss-l-app ss-l-app--contained" style="--ss-app-sidebar-width: 200px">
+                <div class="ss-l-app__header">
+                    <button type="button" class="ss-c-button ss-c-button--ghost ss-c-button--sm"
+                            data-ss-sheet-toggle aria-controls="demo-app-nav">Menu</button>
+                    <strong>Spatial viewer</strong>
+                    <span class="ss-l-app__spacer"></span>
+                    <a class="ss-c-button ss-c-button--ghost ss-c-button--sm" href="#">&larr; All demos</a>
+                </div>
+                <nav class="ss-l-app__sidebar" id="demo-app-nav" aria-label="Layers">
+                    <ul style="margin: 0; padding: var(--ss-space-4); list-style: none">
+                        <li>Buildings</li>
+                        <li>Roads</li>
+                        <li>Water</li>
+                    </ul>
+                </nav>
+                <div class="ss-l-app__main ss-l-app__main--bleed">
+                    <div class="ss-l-app__fill" style="background: var(--ss-color-surface-2)"></div>
+                </div>
+                <div class="ss-l-app__sidebar ss-l-app__sidebar--right" role="region" aria-label="Inspector">
+                    <p style="margin: 0; padding: var(--ss-space-4)">Inspector</p>
+                </div>
+                <div class="ss-l-app__footer ss-t-text-sm">
+                    <span>Lon 5.2913</span><span>Lat 52.1326</span><span>Zoom 14</span>
+                </div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Collapsed sidebar" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p><code>data-state="closed"</code> hides a sidebar; the main area takes its space.</p>
+        {% set code_snippet %}
+        <div style="height: 240px; border: 1px solid var(--ss-color-border)">
+            <div class="ss-l-app ss-l-app--contained">
+                <div class="ss-l-app__header"><strong>Viewer</strong></div>
+                <nav class="ss-l-app__sidebar" data-state="closed" aria-label="Scene tree">…</nav>
+                <div class="ss-l-app__main" style="padding: var(--ss-space-4)">Main viewport</div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Resizable sidebar" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            A <code>ss-c-split__handle--edge</code> inside the sidebar, driven by
+            <code>SplitPaneManager</code>, writes the sidebar width to
+            <code>--ss-app-sidebar-left-width</code> on the shell
+            (<code>data-ss-split-root</code>).
+        </p>
+        {% set code_snippet %}
+        <div style="height: 240px; border: 1px solid var(--ss-color-border)">
+            <div class="ss-l-app ss-l-app--contained" data-ss-split-root>
+                <div class="ss-l-app__header"><strong>IFC viewer</strong></div>
+                <nav class="ss-l-app__sidebar" id="demo-app-tree" aria-label="Model tree">
+                    <p style="margin: 0; padding: var(--ss-space-4)">Model tree</p>
+                    <div class="ss-c-split__handle ss-c-split__handle--edge" role="separator" tabindex="0"
+                         aria-orientation="vertical" aria-controls="demo-app-tree"
+                         aria-valuenow="25" aria-valuemin="15" aria-valuemax="50"
+                         aria-label="Resize model tree"
+                         data-ss-split-property="--ss-app-sidebar-left-width"
+                         data-ss-split-unit="px"></div>
+                </nav>
+                <div class="ss-l-app__main ss-l-app__main--bleed">
+                    <canvas aria-label="3D view" style="background: var(--ss-color-surface-2)"></canvas>
+                </div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

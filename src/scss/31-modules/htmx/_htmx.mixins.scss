@@ -1,0 +1,42 @@
+@use "sass:map";
+@use "./htmx.config" as config;
+
+@function _cfg($key) {
+    @return map.get(config.$ss-htmx-config, $key);
+}
+
+/// Hidden (and out of the accessibility tree) until a request runs.
+/// `visibility` switches at the end of the fade-out so it doesn't cut the
+/// transition short.
+@mixin ss-htmx-indicator {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity _cfg(duration) _cfg(easing),
+        visibility 0s linear _cfg(duration);
+}
+
+@mixin ss-htmx-indicator-active {
+    opacity: 1;
+    visibility: visible;
+    transition:
+        opacity _cfg(duration) _cfg(easing),
+        visibility 0s;
+}
+
+/// Region whose content htmx replaces. Fades out on swap and new content
+/// fades in while settling.
+@mixin ss-htmx-fragment {
+    transition: opacity _cfg(duration) _cfg(easing);
+}
+
+@mixin ss-htmx-reduced-motion {
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+/// Read one key of `$ss-htmx-config` (for the output file).
+@function ss-htmx-config($key) {
+    @return map.get(config.$ss-htmx-config, $key);
+}

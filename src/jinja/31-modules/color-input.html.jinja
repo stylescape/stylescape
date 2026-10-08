@@ -1,0 +1,109 @@
+{% extends "../base.html.jinja" %} {% set title = "Color input" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-color-input</code> module: a native
+        <code>input[type=color]</code> as a square field, a colour field with
+        its value, and <code>ss-c-swatch-list</code>, a radio group of
+        swatches for fixed palettes.
+    </p>
+
+    {% set section_title = "Color input" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <input type="color" class="ss-c-color-input ss-c-color-input--sm" aria-label="Stroke colour (small)" value="#287192">
+        <input type="color" class="ss-c-color-input" aria-label="Stroke colour" value="#287192">
+        <input type="color" class="ss-c-color-input ss-c-color-input--lg" aria-label="Stroke colour (large)" value="#287192">
+        <input type="color" class="ss-c-color-input" aria-label="Disabled colour" value="#999999" disabled>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Color field with value" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>An <code>&lt;output for&gt;</code> next to the input; <code>RangeOutputManager</code> keeps it in sync for colour inputs too.</p>
+        {% set code_snippet %}
+        <div class="ss-c-color-field" data-ss="range-output">
+            <label for="cursor-colour">Cursor colour</label>
+            <input id="cursor-colour" type="color" class="ss-c-color-input" value="#d9480f">
+            <output for="cursor-colour" class="ss-c-color-field__value">#d9480f</output>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Swatch list" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            Each swatch is a radio; its colour comes from <code>--ss-swatch</code>.
+            Names stay available to screen readers; <code>--labelled</code> shows them.
+            The selected swatch gets a two-tone ring, the focused one the focus ring.
+        </p>
+        {% set code_snippet %}
+        <fieldset class="ss-c-swatch-list">
+            <legend class="ss-c-swatch-list__legend">Highlight</legend>
+            <label class="ss-c-swatch-list__item">
+                <input class="ss-c-swatch-list__input" type="radio" name="swatch" value="#ffffff">
+                <span class="ss-c-swatch-list__chip" style="--ss-swatch: #ffffff"></span>
+                <span class="ss-c-swatch-list__name">White</span>
+            </label>
+            <label class="ss-c-swatch-list__item">
+                <input class="ss-c-swatch-list__input" type="radio" name="swatch" value="#111111">
+                <span class="ss-c-swatch-list__chip" style="--ss-swatch: #111111"></span>
+                <span class="ss-c-swatch-list__name">Black</span>
+            </label>
+            <label class="ss-c-swatch-list__item">
+                <input class="ss-c-swatch-list__input" type="radio" name="swatch" value="#287192" checked>
+                <span class="ss-c-swatch-list__chip" style="--ss-swatch: #287192"></span>
+                <span class="ss-c-swatch-list__name">Blue</span>
+            </label>
+            <label class="ss-c-swatch-list__item">
+                <input class="ss-c-swatch-list__input" type="radio" name="swatch" value="#2b8a3e">
+                <span class="ss-c-swatch-list__chip" style="--ss-swatch: #2b8a3e"></span>
+                <span class="ss-c-swatch-list__name">Green</span>
+            </label>
+            <label class="ss-c-swatch-list__item">
+                <input class="ss-c-swatch-list__input" type="radio" name="swatch" value="#e8590c">
+                <span class="ss-c-swatch-list__chip" style="--ss-swatch: #e8590c"></span>
+                <span class="ss-c-swatch-list__name">Orange</span>
+            </label>
+            <label class="ss-c-swatch-list__item">
+                <input class="ss-c-swatch-list__input" type="radio" name="swatch" value="#c2255c" disabled>
+                <span class="ss-c-swatch-list__chip" style="--ss-swatch: #c2255c"></span>
+                <span class="ss-c-swatch-list__name">Pink (unavailable)</span>
+            </label>
+        </fieldset>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Labelled swatches" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <fieldset class="ss-c-swatch-list ss-c-swatch-list--labelled">
+            <legend class="ss-c-swatch-list__legend">Theme colour</legend>
+            <label class="ss-c-swatch-list__item">
+                <input class="ss-c-swatch-list__input" type="radio" name="swatch-named" checked>
+                <span class="ss-c-swatch-list__chip" style="--ss-swatch: var(--ss-color-accent)"></span>
+                <span class="ss-c-swatch-list__name">Accent</span>
+            </label>
+            <label class="ss-c-swatch-list__item">
+                <input class="ss-c-swatch-list__input" type="radio" name="swatch-named">
+                <span class="ss-c-swatch-list__chip" style="--ss-swatch: var(--ss-color-success)"></span>
+                <span class="ss-c-swatch-list__name">Success</span>
+            </label>
+            <label class="ss-c-swatch-list__item">
+                <input class="ss-c-swatch-list__input" type="radio" name="swatch-named">
+                <span class="ss-c-swatch-list__chip" style="--ss-swatch: var(--ss-color-error)"></span>
+                <span class="ss-c-swatch-list__name">Error</span>
+            </label>
+        </fieldset>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

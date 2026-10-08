@@ -1,0 +1,61 @@
+{% extends "../base.html.jinja" %} {% set title = "Log" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>Examples for the <code>ss-c-log</code> module: a monospace event log or console with timestamped entries. Give the scroller <code>role="log"</code>, an accessible name and <code>tabindex="0"</code> so keyboard users can scroll it; screen readers announce appended entries politely.</p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-log" role="log" aria-label="Socket events" tabindex="0">
+            <ol class="ss-c-log__list">
+                <li class="ss-c-log__entry ss-c-log__entry--info">
+                    <time class="ss-c-log__time" datetime="2026-10-08T14:02:11">14:02:11</time>
+                    <span class="ss-c-log__level">info</span>
+                    <span class="ss-c-log__message">Connecting to wss://socket.example.org/live</span>
+                </li>
+                <li class="ss-c-log__entry ss-c-log__entry--success">
+                    <time class="ss-c-log__time" datetime="2026-10-08T14:02:12">14:02:12</time>
+                    <span class="ss-c-log__level">ok</span>
+                    <span class="ss-c-log__message">Connected (protocol v2, 38 ms)</span>
+                </li>
+                <li class="ss-c-log__entry">
+                    <time class="ss-c-log__time" datetime="2026-10-08T14:02:12">14:02:12</time>
+                    <span class="ss-c-log__level">state</span>
+                    <span class="ss-c-log__message">{"room": "lobby", "peers": 3}</span>
+                </li>
+                <li class="ss-c-log__entry ss-c-log__entry--warn">
+                    <time class="ss-c-log__time" datetime="2026-10-08T14:02:40">14:02:40</time>
+                    <span class="ss-c-log__level">warn</span>
+                    <span class="ss-c-log__message">Heartbeat late by 1200 ms</span>
+                </li>
+                <li class="ss-c-log__entry ss-c-log__entry--error">
+                    <time class="ss-c-log__time" datetime="2026-10-08T14:03:02">14:03:02</time>
+                    <span class="ss-c-log__level">error</span>
+                    <span class="ss-c-log__message">Connection closed (1006): abnormal closure</span>
+                </li>
+            </ol>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Follow newest entry" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-log ss-c-log--follow" role="log" aria-label="Build output" tabindex="0" style="--ss-log-max-height: 9rem">
+            <ol class="ss-c-log__list">
+                <li class="ss-c-log__entry"><span class="ss-c-log__time">00:00.0</span><span class="ss-c-log__level">run</span><span class="ss-c-log__message">npm run build</span></li>
+                <li class="ss-c-log__entry"><span class="ss-c-log__time">00:00.4</span><span class="ss-c-log__level">sass</span><span class="ss-c-log__message">Compiling src/scss/index.scss</span></li>
+                <li class="ss-c-log__entry"><span class="ss-c-log__time">00:03.1</span><span class="ss-c-log__level">sass</span><span class="ss-c-log__message">Wrote dist/css/stylescape.css (412 kB)</span></li>
+                <li class="ss-c-log__entry"><span class="ss-c-log__time">00:03.2</span><span class="ss-c-log__level">esbuild</span><span class="ss-c-log__message">Bundling src/ts/index.ts</span></li>
+                <li class="ss-c-log__entry ss-c-log__entry--warn"><span class="ss-c-log__time">00:04.0</span><span class="ss-c-log__level">warn</span><span class="ss-c-log__message">Unused export "legacyInit"</span></li>
+                <li class="ss-c-log__entry ss-c-log__entry--success"><span class="ss-c-log__time">00:04.6</span><span class="ss-c-log__level">done</span><span class="ss-c-log__message">Build finished in 4.6 s</span></li>
+            </ol>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

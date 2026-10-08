@@ -13,6 +13,12 @@
 // Each `[data-unit]` child gets its `--ss-countdown-value` custom property
 // updated once a second; the SCSS module translates the digit column.
 // Elements without either data attribute are left untouched (static demos).
+//
+// Accessibility: the digit columns are visual only, so they are hidden from
+// assistive technology and the container becomes a `role="timer"` (unless it
+// already has a role) whose `aria-label` carries the readable remaining time.
+// `timer` is an off-by-default live region, so the per-second update is not
+// announced unless the author opts in with `aria-live`.
 // ============================================================================
 
 type CountdownUnit = "days" | "hours" | "minutes" | "seconds";
@@ -55,6 +61,7 @@ export class Countdown {
                 minutes: Math.floor((remaining % 3600) / 60),
                 seconds: remaining % 60,
             };
+            const spoken: string[] = [];
             el.querySelectorAll<HTMLElement>("[data-unit]").forEach((unit) => {
                 const kind = unit.dataset.unit as CountdownUnit;
                 const value = parts[kind];
@@ -64,15 +71,26 @@ export class Countdown {
                         "--ss-countdown-value",
                         String(Math.min(value, 60)),
                     );
-                    unit.setAttribute("aria-label", `${value} ${kind}`);
+                    spoken.push(
+                        `${value} ${value === 1 ? kind.slice(0, -1) : kind}`,
+                    );
                 }
             });
+            if (spoken.length > 0) {
+                el.setAttribute("aria-label", spoken.join(", "));
+            }
             if (remaining <= 0) {
                 const timer = Countdown.timers.get(el);
                 if (timer) window.clearInterval(timer);
                 el.dispatchEvent(new CustomEvent("ss:countdown:finished"));
             }
         };
+
+        if (!el.hasAttribute("role")) el.setAttribute("role", "timer");
+        el.querySelectorAll<HTMLElement>("[data-unit]").forEach((unit) => {
+            unit.setAttribute("aria-hidden", "true");
+            unit.removeAttribute("aria-label");
+        });
 
         tick();
         const timer = window.setInterval(tick, 1000);

@@ -2,9 +2,22 @@
 @use "./dropdown.config" as config;
 @use "../../01-core/external" as *;
 
+// The wrapper is only a positioning context for its menu: it draws nothing
+// itself, so box properties are reset explicitly (a same-named site nav
+// panel in the compat layer would otherwise leak through).
 @mixin ss-dropdown {
     position: relative;
     display: inline-block;
+    inset: auto;
+    transform: none;
+    z-index: auto;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    background: none;
+    color: inherit;
+    border: 0;
+    box-shadow: none;
 }
 
 @mixin ss-dropdown-menu {

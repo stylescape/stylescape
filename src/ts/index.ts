@@ -14,6 +14,19 @@ export { PasswordToggleManager } from "./elements/PasswordToggleManager.js";
 
 // 2. MEDIA
 export { ImageCompareSlider } from "./media/ImageCompareSlider.js";
+export { default as LazyLoadManager } from "./media/LazyLoadManager.js";
+
+// 2b. LAYOUT, DATA DISPLAY & FORM CONTROLS
+export { PRELOADER_HIDDEN_CLASS, Preloader } from "./animations/Preloader.js";
+export { FabManager } from "./buttons/FabManager.js";
+export { TableSortManager } from "./data/TableSortManager.js";
+export { ContextMenuManager } from "./elements/ContextMenuManager.js";
+export { SheetManager } from "./elements/SheetManager.js";
+export { SplitPaneManager } from "./elements/SplitPaneManager.js";
+export { TreeViewManager } from "./elements/TreeViewManager.js";
+export { DropZoneManager } from "./forms/DropZoneManager.js";
+export { NumberStepperManager } from "./forms/NumberStepperManager.js";
+export { RangeOutputManager } from "./forms/RangeOutputManager.js";
 
 // 3. CONTENT & UTILITIES
 export { ActiveLinkHighlighter } from "./content/ActiveLinkHighlighter.js";

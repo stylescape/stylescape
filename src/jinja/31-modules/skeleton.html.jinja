@@ -1,0 +1,51 @@
+{% extends "../base.html.jinja" %} {% set title = "Skeleton" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>Examples for the <code>ss-c-skeleton</code> module: loading placeholders for htmx swaps and lazy panels. Mark the loading region <code>aria-busy="true"</code> and hide the skeletons with <code>aria-hidden="true"</code>. The shimmer stops under <code>prefers-reduced-motion</code>.</p>
+
+    {% set section_title = "Shapes" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div aria-busy="true" style="display: grid; gap: 1rem; max-width: 32rem">
+            <span class="ss-c-skeleton ss-c-skeleton--line" style="--ss-skeleton-width: 40%" aria-hidden="true"></span>
+            <span class="ss-c-skeleton ss-c-skeleton--text" aria-hidden="true"></span>
+            <span class="ss-c-skeleton ss-c-skeleton--block" aria-hidden="true"></span>
+            <span class="ss-c-skeleton ss-c-skeleton--avatar" aria-hidden="true"></span>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Card placeholder" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <article aria-busy="true" aria-label="Loading contact" style="display: flex; gap: 1rem; align-items: flex-start; max-width: 28rem">
+            <span class="ss-c-skeleton ss-c-skeleton--avatar" style="--ss-skeleton-width: 3rem; --ss-skeleton-height: 3rem" aria-hidden="true"></span>
+            <div style="flex: 1">
+                <span class="ss-c-skeleton ss-c-skeleton--line" style="--ss-skeleton-width: 60%" aria-hidden="true"></span>
+                <span class="ss-c-skeleton ss-c-skeleton--text" style="--ss-skeleton-lines: 2" aria-hidden="true"></span>
+            </div>
+        </article>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Table rows" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <table class="ss-c-table" aria-busy="true">
+            <caption>Recent surveys (loading)</caption>
+            <thead><tr><th scope="col">Name</th><th scope="col">Responses</th><th scope="col">Updated</th></tr></thead>
+            <tbody>
+                <tr><td><span class="ss-c-skeleton ss-c-skeleton--line" aria-hidden="true"></span></td><td><span class="ss-c-skeleton ss-c-skeleton--line" style="--ss-skeleton-width: 3rem" aria-hidden="true"></span></td><td><span class="ss-c-skeleton ss-c-skeleton--line" style="--ss-skeleton-width: 6rem" aria-hidden="true"></span></td></tr>
+                <tr><td><span class="ss-c-skeleton ss-c-skeleton--line" style="--ss-skeleton-width: 70%" aria-hidden="true"></span></td><td><span class="ss-c-skeleton ss-c-skeleton--line" style="--ss-skeleton-width: 2rem" aria-hidden="true"></span></td><td><span class="ss-c-skeleton ss-c-skeleton--line" style="--ss-skeleton-width: 6rem" aria-hidden="true"></span></td></tr>
+            </tbody>
+        </table>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

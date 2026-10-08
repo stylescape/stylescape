@@ -1,0 +1,38 @@
+@use "../../01-core/prefix" as *;
+@use "./log.mixins" as log;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-log {
+        @include log.ss-log;
+    }
+    .#{$ss-prefix-module}-log--follow {
+        @include log.ss-log-follow;
+    }
+    .#{$ss-prefix-module}-log__list {
+        @include log.ss-log-list;
+    }
+    .#{$ss-prefix-module}-log__entry {
+        @include log.ss-log-entry;
+    }
+    .#{$ss-prefix-module}-log__entry--info {
+        @include log.ss-log-entry-level(info);
+    }
+    .#{$ss-prefix-module}-log__entry--success {
+        @include log.ss-log-entry-level(success);
+    }
+    .#{$ss-prefix-module}-log__entry--warn {
+        @include log.ss-log-entry-level(warn);
+    }
+    .#{$ss-prefix-module}-log__entry--error {
+        @include log.ss-log-entry-level(error);
+    }
+    .#{$ss-prefix-module}-log__time {
+        @include log.ss-log-time;
+    }
+    .#{$ss-prefix-module}-log__level {
+        @include log.ss-log-level;
+    }
+    .#{$ss-prefix-module}-log__message {
+        @include log.ss-log-message;
+    }
+}

@@ -1,9 +1,19 @@
 {% extends "../base.html.jinja" %} {% set title = "Object | Height" %} {%- block
-title %}{{ title }}{%- endblock %} {%- block content %}
+title %}{{ title }}{%- endblock %} {%- block head %}
+<style>
+    /* Fill tokens sit very close to the preview surface in both themes;
+       outline the demo boxes so their size/shape stays visible. */
+    .ss-c-preview--vertical .ss-c-object--fill--fill_secondary,
+    .ss-c-preview--vertical .ss-c-bg-gray {
+        outline: 1px solid var(--ss-color-border);
+        outline-offset: -1px;
+    }
+</style>
+{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
     </header>
 
     {% set section_title = "Object | Height | Fixed Heights (from map tokens)"
@@ -13,7 +23,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="ss-c-grid">
             <label>.object--height--xs</label>
@@ -41,14 +51,14 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 
-    {% set section_title = "Object | Height | Fixed Heights (from map tokens)"
+    {% set section_title = "Object | Height | Fixed Heights (fixed variants)"
     %}
     <section
         class="ss-c-demo__subsection"
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="ss-c-grid">
             <label>.object--height--fixed--xs</label>
@@ -86,14 +96,14 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 
-    {% set section_title = "Object | Height | Full--smcreen / Full-Height
+    {% set section_title = "Object | Height | Full-Screen / Full-Height
     Utilities" %}
     <section
         class="ss-c-demo__subsection"
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="ss-c-card ss-c-full-screen ss-c-bg-gray">.full-screen (100vh)</div>
         <div class="ss-c-card ss-c-minheight-fullscreen ss-c-bg-gray">

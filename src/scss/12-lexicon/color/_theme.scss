@@ -38,11 +38,18 @@ $tint-levels: (
     75: 60%,
 );
 
-@function tint($key, $weight) {
-    $base: map.get($color_theme, $key);
+/// Mix a role toward its scheme's page fill (white in light, black in dark),
+/// so tints stay quiet in both schemes.
+@function tint($key, $weight, $system: $color_theme) {
+    $base: map.get($system, $key);
+    $toward: map.get($system, "fill_primary");
+
+    @if meta.type-of($toward) != color {
+        $toward: white;
+    }
 
     @if meta.type-of($base) == color {
-        @return color.mix(white, $base, $weight);
+        @return color.mix($toward, $base, $weight);
     } @else {
         @warn "Cannot tint `#{$key}`: not a color.";
         @return null;
@@ -66,24 +73,31 @@ $color_theme: null;
 // CSS Custom Properties Output
 // ============================================================================
 
-:root {
-    @each $key, $value in $color_system_light {
+@mixin _legacy-color-tokens($system) {
+    @each $key, $value in $system {
         --color_#{$key}: #{$value};
 
         // Tinted variants
-        --color_#{$key}--25: #{tint($key, 35%)};
-        --color_#{$key}--50: #{tint($key, 50%)};
-        --color_#{$key}--75: #{tint($key, 75%)};
+        --color_#{$key}--25: #{tint($key, 35%, $system)};
+        --color_#{$key}--50: #{tint($key, 50%, $system)};
+        --color_#{$key}--75: #{tint($key, 75%, $system)};
     }
 }
 
-[data-theme="dark"] {
-    @each $key, $value in $color_system_dark {
-        --color_#{$key}: #{$value};
+// Same entry points as `33-overrides/_dark.scss`: `data-theme="dark"` forces
+// dark, `data-theme="auto"` follows the OS, `data-theme="light"` re-declares
+// the light set so a light island works inside a dark page.
+:root,
+[data-theme="light"] {
+    @include _legacy-color-tokens($color_system_light);
+}
 
-        // Tinted variants
-        --color_#{$key}--25: #{tint($key, 35%)};
-        --color_#{$key}--50: #{tint($key, 50%)};
-        --color_#{$key}--75: #{tint($key, 75%)};
+[data-theme="dark"] {
+    @include _legacy-color-tokens($color_system_dark);
+}
+
+@media (prefers-color-scheme: dark) {
+    [data-theme="auto"] {
+        @include _legacy-color-tokens($color_system_dark);
     }
 }

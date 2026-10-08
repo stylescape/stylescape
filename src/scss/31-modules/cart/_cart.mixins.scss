@@ -1,0 +1,51 @@
+@use "sass:map";
+@use "./cart.config" as config;
+@use "../../01-core/external" as *;
+
+@function _cfg($key) {
+    @return map.get(config.$ss-cart-config, $key);
+}
+
+@mixin ss-cart {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-block-start: _cfg(divider);
+}
+
+@mixin ss-cart-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: _cfg(gap);
+    padding-block: _cfg(padding-block);
+    border-block-end: _cfg(divider);
+}
+
+@mixin ss-cart-media {
+    flex: 0 0 _cfg(media-size);
+    inline-size: _cfg(media-size);
+    block-size: _cfg(media-size);
+    object-fit: cover;
+    background-color: _cfg(media-bg);
+    border-radius: _cfg(media-radius);
+}
+
+@mixin ss-cart-details {
+    flex: 1 1 _cfg(details-min-width);
+    min-inline-size: 0;
+}
+
+@mixin ss-cart-price {
+    flex: 0 0 auto;
+    min-inline-size: q(80);
+    margin: 0;
+    text-align: end;
+    font-weight: var(--ss-font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+}
+
+/// Read one key of `$ss-cart-config` (for the output file).
+@function ss-cart-config($key) {
+    @return map.get(config.$ss-cart-config, $key);
+}

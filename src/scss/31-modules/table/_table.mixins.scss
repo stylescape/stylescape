@@ -39,3 +39,63 @@
         background: map.get(config.$ss-table-config, row-hover-bg);
     }
 }
+
+/// Sort control inside a header cell: `th[aria-sort] > button`. The arrow
+/// reflects the `aria-sort` state on the `th`; unsorted columns show a muted
+/// two-way arrow.
+@mixin ss-table-sort {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    inline-size: 100%;
+    margin: 0;
+    padding: 0;
+
+    font: inherit;
+    font-weight: inherit;
+    text-align: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+
+    &::after {
+        content: "";
+        flex: none;
+        inline-size: 0.6em;
+        block-size: 0.9em;
+        background-color: currentColor;
+        opacity: 0.45;
+        // Up and down triangles joined by a zero-width seam.
+        clip-path: polygon(
+            50% 0,
+            100% 42%,
+            0 42%,
+            50% 0,
+            50% 100%,
+            0 58%,
+            100% 58%,
+            50% 100%
+        );
+    }
+
+    &:hover::after {
+        opacity: 0.8;
+    }
+
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width, 0.125rem) solid
+            var(--ss-focus-ring-color, currentColor);
+        outline-offset: var(--ss-focus-ring-offset, 0.125rem);
+    }
+
+    [aria-sort="ascending"] > &::after {
+        opacity: 1;
+        clip-path: polygon(50% 20%, 100% 75%, 0 75%);
+    }
+
+    [aria-sort="descending"] > &::after {
+        opacity: 1;
+        clip-path: polygon(0 25%, 100% 25%, 50% 80%);
+    }
+}

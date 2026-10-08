@@ -1,41 +1,79 @@
-<section id="media">
-    <h2>Media & Graphics</h2>
+{% extends "../base.html.jinja" %} {% set title = "Media & Graphics" %} {%-
+block title %}{{ title }}{%- endblock %} {%- block head %}
+<style>
+    /* Let media shrink on narrow screens (images keep their aspect ratio). */
+    .ss-c-demo__section img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .ss-c-demo__section :is(audio, video, iframe, embed, object, canvas) {
+        max-width: 100%;
+    }
+</style>
+{%- endblock %} {%- block content %}
+
+<section id="media" class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h1>{{ title }}</h1>
+        <p>Native embedded media elements with default styling.</p>
+    </header>
+
     <figure>
-        <img src="/static/img/photo.jpg" alt="Figure" />
+        <img src="/img/placeholder/600x400.svg" alt="Placeholder landscape illustration" width="600" height="400" />
         <figcaption>Sample Figure</figcaption>
     </figure>
 
     <hr />
 
-    <img src="/static/img/photo.jpg" alt="Mapped" usemap="#map1" />
+    <img
+        src="/img/placeholder/600x400.svg"
+        alt="Image map with one linked area in the top-left corner"
+        usemap="#map1"
+        width="600"
+        height="400"
+    />
 
     <map name="map1">
-        <area shape="rect" coords="0,0,50,50" href="#" alt="Area" />
+        <area shape="rect" coords="0,0,50,50" href="#" alt="Top-left area" />
     </map>
 
-    <audio controls src="/static/audio/sample.mp3"></audio>
+    {# Tiny placeholder media lives in src/html/media/ (served at /media/). #}
+    <audio controls aria-label="Sample audio">
+        <source src="/media/sample.m4a" type="audio/mp4" />
+    </audio>
 
-    <video controls src="/static/video/sample.mp4"></video>
+    <video controls aria-label="Sample video" poster="/img/placeholder/1280x720.svg" width="640">
+        <source src="/media/sample.webm" type="video/webm" />
+        <source src="/media/sample.mp4" type="video/mp4" />
+        <track kind="captions" src="/media/sample.vtt" srclang="en" label="English" />
+    </video>
 
     <picture>
-        <source srcset="/static/img/1x.jpg" media="(max-width: 600px)" />
-        <source srcset="/static/img/2x.jpg" />
-        <img src="/static/img/fallback.jpg" alt="Responsive image" />
+        <source srcset="/img/placeholder/400x300.svg" media="(max-width: 600px)" />
+        <source srcset="/img/placeholder/800x400.svg" />
+        <img src="/img/placeholder/800x400.svg" alt="Responsive image" width="800" height="400" />
     </picture>
 
-    <svg width="100" height="100">
-        <circle cx="50" cy="50" r="40" />
+    <svg width="100" height="100" role="img" aria-label="Circle">
+        <circle cx="50" cy="50" r="40" fill="currentColor" />
     </svg>
 
-    <canvas id="canvasExample"></canvas>
+    <canvas id="canvasExample" aria-label="Empty canvas example">
+        Empty canvas example
+    </canvas>
 
-    <embed src="/static/docs/doc.pdf" type="application/pdf" />
+    <embed src="/media/sample.pdf" type="application/pdf" title="Sample PDF document" />
 
-    <object data="/static/docs/doc.pdf" type="application/pdf"></object>
+    <object data="/media/sample.pdf" type="application/pdf" title="Sample PDF document">
+        <a href="/media/sample.pdf">Sample PDF document</a>
+    </object>
 
-    <iframe src="https://example.com" width="300" height="150"></iframe>
+    <iframe src="https://example.com" width="300" height="150" title="Example.com embedded page"></iframe>
 
-    <video>
-        <track kind="metadata" src="/static/subs.vtt" />
+    <video aria-label="Video with a metadata track" width="640">
+        <source src="/media/sample.mp4" type="video/mp4" />
+        <track kind="metadata" src="/media/sample.vtt" />
     </video>
 </section>
+{%- endblock %}

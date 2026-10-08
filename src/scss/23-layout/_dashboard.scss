@@ -1,0 +1,84 @@
+////
+///
+/// Dashboard Grid
+/// ===========================================================================
+///
+/// Responsive auto-fit grid of widget cards (`ss-c-card`, `ss-c-stat`,
+/// `ss-c-panel`, charts). Columns appear as space allows; each widget is at
+/// least `--ss-dashboard-min` wide.
+///
+///     <div class="ss-l-dashboard">
+///         <article class="ss-c-card">…</article>
+///         <article class="ss-c-card ss-l-dashboard__item--span-2">…</article>
+///         <section class="ss-c-panel ss-l-dashboard__item--full">…</section>
+///     </div>
+///
+/// Span modifiers (`--span-2`, `--span-3`, `--full`, `--tall`) only take
+/// effect when the dashboard is wide enough for that many columns (a
+/// container query on the dashboard), so they never cause overflow.
+///
+/// Tokens: `--ss-dashboard-min` (minimum column width), `--ss-dashboard-gap`.
+///
+/// @group Layout
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.5.0
+/// @access public
+///
+////
+
+@use "../01-core/prefix" as *;
+@use "../01-core/external" as *;
+
+@layer ss.layout {
+    .#{$ss-prefix-layout}-dashboard {
+        --ss-dashboard-min: #{q(240)};
+        --ss-dashboard-gap: var(--ss-space-4);
+
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: repeat(
+            auto-fill,
+            minmax(min(var(--ss-dashboard-min), 100%), 1fr)
+        );
+        grid-auto-flow: row dense;
+        gap: var(--ss-dashboard-gap);
+        align-items: stretch;
+        container: ss-dashboard / inline-size;
+
+        // Stats and cards stretch to the cell instead of shrinking to fit.
+        > * {
+            min-inline-size: 0;
+            margin: 0;
+        }
+    }
+
+    .#{$ss-prefix-layout}-dashboard--compact {
+        --ss-dashboard-min: #{q(160)};
+        --ss-dashboard-gap: var(--ss-space-2);
+    }
+
+    .#{$ss-prefix-layout}-dashboard__item--full {
+        grid-column: 1 / -1;
+    }
+
+    .#{$ss-prefix-layout}-dashboard__item--tall {
+        grid-row: span 2;
+    }
+
+    // Spans only apply once the dashboard itself (a size container) holds
+    // that many default-width columns, so a span never forces overflow.
+    // The thresholds assume the default `--ss-dashboard-min`.
+    @container ss-dashboard (min-width: #{q(496)}) {
+        .#{$ss-prefix-layout}-dashboard__item--span-2,
+        .#{$ss-prefix-layout}-dashboard__item--span-3 {
+            grid-column: span 2;
+        }
+    }
+
+    @container ss-dashboard (min-width: #{q(752)}) {
+        .#{$ss-prefix-layout}-dashboard__item--span-3 {
+            grid-column: span 3;
+        }
+    }
+}

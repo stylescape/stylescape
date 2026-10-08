@@ -9,7 +9,7 @@ import { click } from "../utils";
 const STORAGE_KEY = "unitgl:grid:visibility";
 
 // GridManager auto-initialises in its constructor (jsdom readyState is
-// "complete"), scanning `.guide--layer` elements and `button[data-toggle]`.
+// "complete"), scanning `[data-grid]` layers and `button[data-toggle]`.
 function setupDom(): void {
     document.body.innerHTML = `
         <button data-toggle="grid-a">Toggle A</button>
@@ -81,6 +81,24 @@ describe("GridManager", () => {
         expect(JSON.parse(localStorage.getItem(STORAGE_KEY) as string)).toEqual(
             { "grid-a": false },
         );
+    });
+
+    it("mirrors layer state in the toggle's aria-pressed", () => {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ "grid-a": true }));
+
+        new GridManager();
+
+        const btnA = document.querySelector(
+            'button[data-toggle="grid-a"]',
+        ) as HTMLElement;
+        const btnB = document.querySelector(
+            'button[data-toggle="grid-b"]',
+        ) as HTMLElement;
+        expect(btnA.getAttribute("aria-pressed")).toBe("true");
+        expect(btnB.getAttribute("aria-pressed")).toBe("false");
+
+        click(btnA);
+        expect(btnA.getAttribute("aria-pressed")).toBe("false");
     });
 
     it("recovers from corrupt localStorage without throwing", () => {

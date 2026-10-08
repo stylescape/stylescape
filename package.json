@@ -1,7 +1,7 @@
 {
     "name": "stylescape",
     "description": "Stylescape is a visual identity framework developed by Scape Press.",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "config": {
         "version_short": "0.1"
     },
@@ -49,6 +49,7 @@
         "render:templates": "node bin/render_templates.mjs",
         "lint": "eslint . --ext .js,.ts",
         "lint:fix": "eslint . --ext .js,.ts --fix",
+        "lint:styles": "stylelint --config stylelint.config.mjs \"src/scss/**/*.scss\"",
         "lint:ssx": "node ../ssx/bin/ssx.mjs lint src/scss --baseline ssx-baseline.json --max-warnings 0",
         "lint:ssx:report": "node ../ssx/bin/ssx.mjs lint src/scss src/jinja",
         "lint:ssx:baseline": "node ../ssx/bin/ssx.mjs lint src/scss --write-baseline ssx-baseline.json",
@@ -95,14 +96,19 @@
         "@vitest/ui": "^4.1.6",
         "esbuild": "^0.28.0",
         "eslint": "^10.4.0",
-        "eslint-plugin-import": "^2.32.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-import-x": "^4.17.1",
+        "globals": "^17.13.0",
         "jsdom": "^29.1.1",
         "kist": "^0.1.74",
         "micromatch": "^4.0.8",
         "nunjucks": "^3.2.4",
+        "postcss-scss": "^4.0.9",
         "sass": "^1.99.0",
         "serve-static": "^2.2.1",
         "storybook": "^10.4.2",
+        "stylelint": "^17.16.0",
+        "stylelint-order": "^8.1.1",
         "ts-node": "^10.9.2",
         "typescript": "^6.0.3",
         "typescript-eslint": "^8.59.3",
@@ -112,10 +118,7 @@
     "overrides": {
         "tinyglobby": "0.2.15",
         "make-fetch-happen": "10.2.1",
-        "tar": "^7.5.7",
-        "eslint-plugin-import": {
-            "eslint": "$eslint"
-        }
+        "tar": "^7.5.7"
     },
     "files": [
         "src/**",

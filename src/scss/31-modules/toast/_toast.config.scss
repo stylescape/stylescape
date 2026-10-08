@@ -7,7 +7,8 @@ $ss-toast-config: (
     padding: q(12) q(16),
     radius: var(--ss-radius-md),
     gap: q(8),
-    z-index: 1200,
+    z-index: var(--ss-z-toast),
+
 
     bg: var(--ss-color-foreground),
     fg: var(--ss-color-background),
@@ -15,6 +16,11 @@ $ss-toast-config: (
     region-inset: q(16),
     region-gap: q(8),
     variants: (
+        // Django's DEBUG message level: the neutral default toast.
+        debug: (
+            bg: var(--ss-color-foreground),
+            fg: var(--ss-color-background),
+        ),
         info: (
             bg: var(--ss-color-info),
             fg: var(--ss-color-on-info, var(--ss-color-background)),

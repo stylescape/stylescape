@@ -1,0 +1,53 @@
+{% extends "../base.html.jinja" %} {% set title = "Empty State" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>Examples for the <code>ss-c-empty-state</code> module: what a list, table or search shows when there is nothing to show. Keep the icon decorative (<code>aria-hidden</code>) and say what happened and what to do next in text.</p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-empty-state">
+            <svg class="ss-c-empty-state__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7h6l2 2h10v10H3z"/></svg>
+            <h3 class="ss-c-empty-state__title">No projects yet</h3>
+            <p class="ss-c-empty-state__description">Projects you create or are invited to appear here.</p>
+            <div class="ss-c-empty-state__actions">
+                <a class="ss-c-button" href="#new">New project</a>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Bordered" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-empty-state ss-c-empty-state--bordered">
+            <svg class="ss-c-empty-state__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <h3 class="ss-c-empty-state__title">No results for "bridge 2019"</h3>
+            <p class="ss-c-empty-state__description">Check the spelling or remove a filter.</p>
+            <div class="ss-c-empty-state__actions">
+                <button type="button" class="ss-c-button">Clear filters</button>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Compact, inside a grid" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem">
+            <div class="ss-c-empty-state ss-c-empty-state--compact ss-c-empty-state--bordered ss-c-empty-state--wide">
+                <svg class="ss-c-empty-state__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="4" width="16" height="16"/><path d="M4 15l4-4 4 4 3-3 5 5"/></svg>
+                <h3 class="ss-c-empty-state__title">No images in this album</h3>
+                <p class="ss-c-empty-state__description">Drop files here to upload.</p>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

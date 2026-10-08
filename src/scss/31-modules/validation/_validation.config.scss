@@ -5,14 +5,16 @@
 @use "../../01-core/external" as *;
 
 $validation-config: (
-    "color-valid": var(--ss-color-success, #198754),
-    "color-invalid": var(--ss-color-error, #dc3545),
-    "color-warning": var(--ss-color-warning, #ffc107),
+    "color-valid": var(--ss-color-success),
+    "color-invalid": var(--ss-color-error),
+    "color-warning": var(--ss-color-warning),
+    // Deprecated: no longer emitted (focus uses the shared --ss-focus-ring-*
+    // outline). Kept so downstream `map.get` calls keep compiling.
     "ring-valid": 0 0 0 q(3.2)
-        color-mix(in srgb, var(--ss-color-success, #198754) 25%, transparent),
+        color-mix(in srgb, var(--ss-color-success) 25%, transparent),
     "ring-invalid": 0 0 0 q(3.2)
-        color-mix(in srgb, var(--ss-color-error, #dc3545) 25%, transparent),
+        color-mix(in srgb, var(--ss-color-error) 25%, transparent),
     "ring-warning": 0 0 0 q(3.2)
-        color-mix(in srgb, var(--ss-color-warning, #ffc107) 25%, transparent),
+        color-mix(in srgb, var(--ss-color-warning) 25%, transparent),
     "message-font-size": q(13),
 ) !default;

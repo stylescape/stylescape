@@ -1,0 +1,35 @@
+@use "../../01-core/prefix" as *;
+@use "./stepper.mixins" as stepper;
+
+$_st: ".#{$ss-prefix-module}-stepper";
+
+@layer ss.components {
+    // <div class="ss-c-stepper" data-ss="stepper">
+    //   <button type="button" class="ss-c-stepper__button" data-ss-stepper="down" aria-label="Decrease">−</button>
+    //   <input type="number" class="ss-c-stepper__input" …>
+    //   <button type="button" class="ss-c-stepper__button" data-ss-stepper="up" aria-label="Increase">+</button>
+    // </div>
+    #{$_st} {
+        @include stepper.ss-stepper;
+        @include stepper.ss-stepper-size(md);
+    }
+    #{$_st}--sm {
+        @include stepper.ss-stepper-size(sm);
+    }
+    #{$_st}--lg {
+        @include stepper.ss-stepper-size(lg);
+    }
+    #{$_st}--block {
+        display: flex;
+
+        #{$_st}__input {
+            flex: 1 1 auto;
+        }
+    }
+    #{$_st}__input {
+        @include stepper.ss-stepper-input;
+    }
+    #{$_st}__button {
+        @include stepper.ss-stepper-button;
+    }
+}

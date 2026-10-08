@@ -62,12 +62,23 @@
 // grid__frame--*, margin--*, padding--*, align_self--*, ...)
 @forward "legacy-compat";
 
+// Scapepress parity layer — every class found in scapepress-sites SCSS
+// is re-emitted here under the `ss-c-*` prefix. The two component shims
+// (legacy-components-compat, scapepress-parity) emit into `@layer
+// ss.compat`, which sits below `ss.components`: when a class name collides,
+// the modern module wins. legacy-compat holds utility aliases and stays in
+// `ss.utilities`.
+@forward "scapepress-parity";
+
 // Legacy component class shim (carousel-*, slideshow_*, video_*, chat_*,
-// blogpost--*, lightbox*, preloader_*, ribbon__*, toast-*, toggle_*, ...)
+// blogpost--*, lightbox*, preloader_*, ribbon__*, toast-*, toggle_*, ...).
+// Forwarded after the parity shim so that, inside `ss.compat`, these
+// hand-maintained rules win over the generated ones (as they did before both
+// moved into one layer).
 @forward "legacy-components-compat";
 
-// Scapepress parity layer — every class found in scapepress-sites SCSS
-// is re-emitted here under the `ss-c-*` prefix. Loaded LAST so that
-// legacy site-specific styling wins over modern modules whenever the
-// class names collide.
-@forward "scapepress-parity";
+// Stylescape 0.3 class names (`.button`, `.badge`, `.ribbon--top`,
+// `.frame_main`, `.grid__frame--24`, `.margin--10_right`, …) mapped onto the
+// 0.4 module mixins and tokens, in `@layer ss.compat`. Opt out with
+// `$v03-compat: false`. See doc/migration-0.4.md.
+@forward "legacy-v03-compat";

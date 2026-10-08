@@ -1,0 +1,115 @@
+@use "sass:map";
+@use "./viewport.config" as config;
+@use "../../01-core/external" as *;
+
+@function _cfg($key) {
+    @return map.get(config.$ss-viewport-config, $key);
+}
+
+@mixin ss-viewport {
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+    inline-size: 100%;
+    aspect-ratio: _cfg(aspect-ratio);
+    min-block-size: _cfg(min-height);
+    margin: 0;
+    overflow: hidden;
+    isolation: isolate;
+
+    background-color: _cfg(bg);
+    color: _cfg(fg);
+    border: _cfg(border);
+    border-radius: _cfg(radius);
+}
+
+/// Fill a sized parent (an app shell's main area, a grid cell).
+@mixin ss-viewport-fill {
+    aspect-ratio: auto;
+    block-size: 100%;
+    min-block-size: 0;
+    border: 0;
+    border-radius: 0;
+}
+
+/// The library's drawing surface: a direct canvas / iframe / video child
+/// or anything with `__canvas`.
+@mixin ss-viewport-canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    border: 0;
+    outline-offset: calc(-1 * var(--ss-focus-ring-width));
+}
+
+/// Shared overlay box for the loading and error states.
+@mixin ss-viewport-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: _cfg(overlay-gap);
+    padding: _cfg(overlay-padding);
+
+    background-color: _cfg(bg);
+    background-color: _cfg(overlay-bg);
+    color: _cfg(fg);
+    font-size: var(--ss-font-size-sm);
+    text-align: center;
+}
+
+/// Hidden until the frame is busy. `visibility` flips after the fade so
+/// the overlay leaves the accessibility tree once loading is done.
+@mixin ss-viewport-loading {
+    @include ss-viewport-overlay;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity _cfg(duration) _cfg(easing),
+        visibility 0s linear _cfg(duration);
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+@mixin ss-viewport-loading-active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity _cfg(duration) _cfg(easing);
+}
+
+/// Thin determinate bar along the bottom edge (`<progress>`).
+@mixin ss-viewport-progress {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    inline-size: 100%;
+    block-size: _cfg(progress-height);
+    margin: 0;
+    border: 0;
+    appearance: none;
+    background-color: _cfg(progress-track);
+    accent-color: _cfg(progress-bar);
+    color: _cfg(progress-bar);
+
+    &::-webkit-progress-bar {
+        background-color: _cfg(progress-track);
+    }
+    &::-webkit-progress-value {
+        background-color: _cfg(progress-bar);
+    }
+    &::-moz-progress-bar {
+        background-color: _cfg(progress-bar);
+    }
+}
+
+/// Read one key of `$ss-viewport-config` (for the output file).
+@function ss-viewport-config($key) {
+    @return map.get(config.$ss-viewport-config, $key);
+}

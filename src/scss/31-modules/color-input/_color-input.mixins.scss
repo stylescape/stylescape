@@ -1,0 +1,91 @@
+@use "sass:map";
+@use "./color-input.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-color-input-size($size) {
+    $s: map.get(map.get(config.$ss-color-input-config, sizes), $size);
+
+    inline-size: $s;
+    block-size: $s;
+}
+
+@mixin ss-color-input {
+    appearance: none;
+    display: inline-block;
+    padding: map.get(config.$ss-color-input-config, padding);
+    margin: 0;
+
+    background: map.get(config.$ss-color-input-config, bg);
+    border: map.get(config.$ss-color-input-config, border-width) solid
+        map.get(config.$ss-color-input-config, border);
+    border-radius: 0;
+    cursor: pointer;
+    vertical-align: middle;
+
+    &::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
+    &::-webkit-color-swatch {
+        border: 0;
+        border-radius: 0;
+    }
+    &::-moz-color-swatch {
+        border: 0;
+        border-radius: 0;
+    }
+
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width, #{q(2)}) solid var(--ss-focus-ring-color, currentColor);
+        outline-offset: var(--ss-focus-ring-offset, #{q(2)});
+    }
+    &:disabled {
+        opacity: map.get(config.$ss-color-input-config, disabled-opacity);
+        cursor: not-allowed;
+    }
+}
+
+/// Colour input + value readout (`<output>` or a hex text input) in one row.
+@mixin ss-color-field {
+    display: inline-flex;
+    align-items: center;
+    gap: q(8);
+}
+
+@mixin ss-swatch-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: map.get(config.$ss-color-input-config, swatch-gap);
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/// The colour chip. Its colour comes from `--ss-swatch` on the element (or
+/// an ancestor), set inline: `style="--ss-swatch: #0a7"`.
+@mixin ss-swatch-chip {
+    display: block;
+    inline-size: map.get(config.$ss-color-input-config, swatch-size);
+    block-size: map.get(config.$ss-color-input-config, swatch-size);
+    background: var(--ss-swatch, transparent);
+    // The border keeps light swatches visible on light pages (and dark on dark).
+    border: q(1) solid map.get(config.$ss-color-input-config, swatch-border);
+    border-radius: 0;
+
+    @media (forced-colors: active) {
+        forced-color-adjust: none;
+    }
+}
+
+/// Selected: a two-tone ring (page colour, then text colour) around the
+/// chip, so it shows on any swatch colour.
+@mixin ss-swatch-chip-selected {
+    box-shadow:
+        0 0 0 q(2) map.get(config.$ss-color-input-config, swatch-ring-gap),
+        0 0 0 q(4) map.get(config.$ss-color-input-config, swatch-ring);
+}
+
+@mixin ss-swatch-chip-focus {
+    outline: var(--ss-focus-ring-width, #{q(2)}) solid var(--ss-focus-ring-color, currentColor);
+    outline-offset: q(6);
+}

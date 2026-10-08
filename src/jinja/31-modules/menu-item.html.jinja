@@ -1,19 +1,19 @@
 {% extends "../base.html.jinja" %} {% set title = "Menu Item" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
-    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
     <p>Examples for the <code>ss-c-menu-item</code> module.</p>
 
     {% set section_title = "Menu" %}
     <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <nav class="ss-c-menu">
+        <nav class="ss-c-menu" aria-label="Main menu">
             <a class="ss-c-menu-item" href="#">
-                <span class="ss-c-menu-item__icon">&#9642;</span>
+                <span class="ss-c-menu-item__icon" aria-hidden="true">&#9642;</span>
                 <span class="ss-c-menu-item__label">Dashboard</span>
             </a>
             <a class="ss-c-menu-item" href="#">
-                <span class="ss-c-menu-item__icon">&#9642;</span>
+                <span class="ss-c-menu-item__icon" aria-hidden="true">&#9642;</span>
                 <span class="ss-c-menu-item__label">Projects</span>
             </a>
         </nav>
@@ -23,10 +23,10 @@
 
     {% set section_title = "Active" %}
     <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Active state is driven by <code>aria-current="page"</code>, <code>data-active="true"</code> or <code>.is-active</code>.</p>
         {% set code_snippet %}
-        <nav class="ss-c-menu">
+        <nav class="ss-c-menu" aria-label="Project menu">
             <a class="ss-c-menu-item" href="#">
                 <span class="ss-c-menu-item__label">Dashboard</span>
             </a>
@@ -40,11 +40,11 @@
 
     {% set section_title = "With badge" %}
     <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <nav class="ss-c-menu">
+        <nav class="ss-c-menu" aria-label="Mail menu">
             <a class="ss-c-menu-item" href="#">
-                <span class="ss-c-menu-item__icon">&#9642;</span>
+                <span class="ss-c-menu-item__icon" aria-hidden="true">&#9642;</span>
                 <span class="ss-c-menu-item__label">Inbox</span>
                 <span class="ss-c-menu-item__badge">12</span>
             </a>

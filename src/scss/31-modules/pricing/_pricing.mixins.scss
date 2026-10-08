@@ -1,0 +1,73 @@
+@use "sass:map";
+@use "./pricing.config" as config;
+@use "../../01-core/external" as *;
+
+@function _cfg($key) {
+    @return map.get(config.$ss-pricing-config, $key);
+}
+
+@mixin ss-pricing {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, _cfg(min-plan-width)), 1fr));
+    align-items: stretch;
+    gap: _cfg(gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin ss-pricing-plan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: q(16);
+    box-sizing: border-box;
+    padding: _cfg(padding);
+    background-color: _cfg(bg);
+    color: var(--ss-color-text);
+    border: _cfg(border);
+    border-radius: _cfg(radius);
+}
+
+@mixin ss-pricing-plan-featured {
+    border-color: _cfg(featured-border-color);
+    box-shadow:
+        inset 0 0 0 calc(#{_cfg(featured-border-width)} - #{q(1)}) _cfg(featured-border-color),
+        _cfg(featured-shadow);
+}
+
+@mixin ss-pricing-features {
+    display: flex;
+    flex-direction: column;
+    gap: q(8);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--ss-font-size-sm);
+}
+
+@mixin ss-pricing-feature {
+    display: flex;
+    gap: q(8);
+
+    &::before {
+        content: "\2713";
+        flex: 0 0 auto;
+        color: _cfg(check-color);
+        font-weight: var(--ss-font-weight-bold);
+    }
+}
+
+@mixin ss-pricing-feature-excluded {
+    color: _cfg(muted);
+
+    &::before {
+        content: "\2013";
+        color: inherit;
+    }
+}
+
+/// Read one key of `$ss-pricing-config` (for the output file).
+@function ss-pricing-config($key) {
+    @return map.get(config.$ss-pricing-config, $key);
+}

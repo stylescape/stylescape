@@ -1,0 +1,19 @@
+@use "sass:map";
+@use "../../01-core/external" as *;
+
+$ss-overlay-panel-config: (
+    // Distance from the anchored edges (`--ss-overlay-panel-inset`).
+    inset: var(--ss-space-3),
+    // Layer above the view (`--ss-overlay-panel-z`).
+    z-index: var(--ss-z-10, 10),
+    // Share of the surface colour in the translucent background.
+    opacity: 88%,
+    padding: var(--ss-space-3) var(--ss-space-4),
+    max-width: min(#{q(320)}, calc(100% - 2 * var(--ss-space-3))),
+    radius: var(--ss-radius-md),
+    border: var(--ss-a-border-width-1, #{q(1)}) solid var(--ss-color-border),
+    shadow: var(--ss-a-shadow-md),
+    blur: q(8),
+    // Control group buttons.
+    control-size: q(36)
+) !default;

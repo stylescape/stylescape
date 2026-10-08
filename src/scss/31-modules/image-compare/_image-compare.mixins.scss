@@ -1,0 +1,104 @@
+@use "sass:map";
+@use "./image-compare.config" as config;
+@use "../../01-core/external" as *;
+
+$_c: config.$ss-image-compare-config;
+$_pos: var(--ss-image-compare-position);
+
+/// Before/after slider. `ImageCompareSlider` keeps
+/// `--ss-image-compare-position` (0–100%) on the container in sync with the
+/// handle; without the script the split stays at the configured position.
+@mixin ss-image-compare {
+    --ss-image-compare-position: #{map.get($_c, position)};
+    position: relative;
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    user-select: none;
+    touch-action: pan-y;
+}
+
+@mixin ss-image-compare-image {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+}
+
+/// The "before" image, clipped to the left of the divider.
+@mixin ss-image-compare-overlay {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    clip-path: inset(0 calc(100% - #{$_pos}) 0 0);
+}
+
+/// Divider line plus round knob; the element itself is a wide, invisible
+/// hit area so it is easy to grab (WCAG 2.5.8).
+@mixin ss-image-compare-handle {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: $_pos;
+    z-index: 1;
+    inline-size: map.get($_c, hit-width);
+    transform: translateX(-50%);
+    cursor: ew-resize;
+    touch-action: none;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset-block: 0;
+        inset-inline-start: 50%;
+        inline-size: map.get($_c, divider-width);
+        transform: translateX(-50%);
+        background-color: map.get($_c, divider-color);
+        box-shadow: 0 0 q(3) var(--ss-color-backdrop);
+    }
+
+    // Knob with two chevrons; the empty alt text keeps them out of the
+    // accessible name.
+    &::after {
+        content: "\2039\2002\203A" / "";
+        position: absolute;
+        inset-block-start: 50%;
+        inset-inline-start: 50%;
+        display: grid;
+        place-items: center;
+        inline-size: map.get($_c, knob-size);
+        block-size: map.get($_c, knob-size);
+        transform: translate(-50%, -50%);
+        font-size: var(--ss-font-size-lg);
+        font-weight: 600;
+        line-height: 1;
+        color: map.get($_c, knob-fg);
+        background-color: map.get($_c, knob-bg);
+        border: q(1) solid var(--ss-color-border);
+        border-radius: var(--ss-radius-full);
+        box-shadow: var(--ss-a-shadow-md);
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:focus-visible::after {
+        outline: var(--ss-focus-ring-width, #{q(2)}) solid
+            var(--ss-focus-ring-color, currentColor);
+        outline-offset: var(--ss-focus-ring-offset, #{q(2)});
+    }
+}
+
+@mixin ss-image-compare-label {
+    position: absolute;
+    inset-block-start: q(8);
+    z-index: 1;
+    padding: q(2) q(8);
+    font-size: var(--ss-font-size-xs);
+    font-weight: 600;
+    color: map.get($_c, label-fg);
+    background-color: map.get($_c, label-bg);
+    border-radius: var(--ss-radius-sm);
+    pointer-events: none;
+}

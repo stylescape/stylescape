@@ -1,9 +1,6 @@
 {% for section in sections %}
-<section
-    class="ss-c-sidebar__section"
-    role="region"
-    aria-labelledby="section-{{ loop.index }}"
->
+{% set section_index = loop.index %}
+<section class="ss-c-sidebar__section">
     <details class="ss-c-sidebar__accordion">
         <summary class="ss-c-sidebar__accordion__header">
             <h2 id="section-{{ loop.index }}">{{ section.title }}</h2>
@@ -14,7 +11,7 @@
             {% for group in section.groups %}
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-{{ loop.index }}-{{ loop.parent.loop.index }}">
+                    <h3 id="group-{{ loop.index }}-{{ section_index }}">
                         {{ group.heading }}
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -24,7 +21,7 @@
                     {% if group.description %}
                     <p
                         class="ss-c-sidebar__subsection__description"
-                        id="group-desc-{{ loop.index }}-{{ loop.parent.loop.index }}"
+                        id="group-desc-{{ loop.index }}-{{ section_index }}"
                     >
                         <small>{{ group.description }}</small>
                     </p>

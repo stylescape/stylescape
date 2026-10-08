@@ -3,7 +3,7 @@ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>Flexible content containers with multiple variants and layouts.</p>
     </header>
 
@@ -13,19 +13,19 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="ss-c-card" style="max-width: 350px">
-            <div class="ss-c-card--header">
-                <h4 style="margin: 0">Card Header</h4>
+            <div class="ss-c-card__header">
+                <h3 style="margin: 0">Card Header</h3>
             </div>
-            <div class="ss-c-card--body">
+            <div class="ss-c-card__body">
                 <p>
                     This is the card body content. Cards are flexible
                     containers for displaying related information.
                 </p>
             </div>
-            <div class="ss-c-card--footer">
+            <div class="ss-c-card__footer">
                 <button class="ss-c-button ss-c-button--small ss-c-button--primary">
                     Action
                 </button>
@@ -41,21 +41,21 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="ss-c-card" style="max-width: 350px; overflow: hidden">
             <img
-                src="https://via.placeholder.com/350x200"
+                src="/img/placeholder/350x200.svg"
                 alt="Card image"
                 style="width: 100%; height: 200px; object-fit: cover"
             />
-            <div class="ss-c-card--body">
-                <h4 style="margin: 0 0 8px">Image Card</h4>
-                <p style="margin: 0; opacity: 0.8">
+            <div class="ss-c-card__body">
+                <h3 style="margin: 0 0 8px">Image Card</h3>
+                <p style="margin: 0; color: var(--ss-color-text-muted);">
                     A card with a featured image on top for visual content.
                 </p>
             </div>
-            <div class="ss-c-card--footer">
+            <div class="ss-c-card__footer">
                 <button class="ss-c-button ss-c-button--small">Learn More</button>
             </div>
         </div>
@@ -69,27 +69,20 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
-            class="ss-c-card ss-c-hover"
-            style="
-                max-width: 350px;
-                transition:
-                    transform 0.3s,
-                    box-shadow 0.3s;
-                cursor: pointer;
-            "
+            class="ss-c-card ss-c-card--interactive" style="max-width: 350px"
         >
-            <div class="ss-c-card--header">Interactive Card</div>
-            <div class="ss-c-card--body">
+            <div class="ss-c-card__header">Interactive Card</div>
+            <div class="ss-c-card__body">
                 <p>
                     Hover over this card to see the lift effect. Perfect for
                     clickable content.
                 </p>
             </div>
-            <div class="ss-c-card--footer">
-                <span style="opacity: 0.6">Click to explore →</span>
+            <div class="ss-c-card__footer">
+                <span style="color: var(--ss-color-text-muted);">Click to explore →</span>
             </div>
         </div>
         {% endset %} {% set language="HTML" %} {%- include
@@ -102,35 +95,35 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
                 gap: 24px;
             "
         >
             <div class="ss-c-card">
-                <div class="ss-c-card--body">
-                    <h4 style="margin: 0 0 8px">▦ Analytics</h4>
-                    <p style="margin: 0; opacity: 0.8">
+                <div class="ss-c-card__body">
+                    <h3 style="margin: 0 0 8px">▦ Analytics</h3>
+                    <p style="margin: 0; color: var(--ss-color-text-muted);">
                         Track your performance with detailed insights.
                     </p>
                 </div>
             </div>
             <div class="ss-c-card">
-                <div class="ss-c-card--body">
-                    <h4 style="margin: 0 0 8px">⚿ Security</h4>
-                    <p style="margin: 0; opacity: 0.8">
+                <div class="ss-c-card__body">
+                    <h3 style="margin: 0 0 8px">⚿ Security</h3>
+                    <p style="margin: 0; color: var(--ss-color-text-muted);">
                         Enterprise-grade security for your data.
                     </p>
                 </div>
             </div>
             <div class="ss-c-card">
-                <div class="ss-c-card--body">
-                    <h4 style="margin: 0 0 8px">➤ Performance</h4>
-                    <p style="margin: 0; opacity: 0.8">
+                <div class="ss-c-card__body">
+                    <h3 style="margin: 0 0 8px">➤ Performance</h3>
+                    <p style="margin: 0; color: var(--ss-color-text-muted);">
                         Lightning-fast load times guaranteed.
                     </p>
                 </div>
@@ -146,28 +139,66 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
-            class="ss-c-card"
-            style="display: flex; flex-direction: row; max-width: 500px"
+            class="ss-c-card ss-c-card--horizontal" style="max-width: 500px"
         >
             <img
-                src="https://via.placeholder.com/150"
+                src="/img/placeholder/150x150.svg"
                 alt="Card image"
                 style="width: 150px; object-fit: cover"
             />
             <div style="display: flex; flex-direction: column; flex: 1">
-                <div class="ss-c-card--body">
-                    <h4 style="margin: 0 0 8px">Horizontal Layout</h4>
-                    <p style="margin: 0; opacity: 0.8">
+                <div class="ss-c-card__body">
+                    <h3 style="margin: 0 0 8px">Horizontal Layout</h3>
+                    <p style="margin: 0; color: var(--ss-color-text-muted);">
                         Image on the side for a different presentation.
                     </p>
                 </div>
-                <div class="ss-c-card--footer">
+                <div class="ss-c-card__footer">
                     <button class="ss-c-button ss-c-button--small">View</button>
                 </div>
             </div>
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {# Gallery Card #} {% set section_title = "Gallery Card" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h2>{{ section_title }}</h2>
+        <p>
+            For demo landing pages: <code>ss-c-card--numbered</code> cards count
+            themselves (an empty <code>__number</code> shows 01, 02, …),
+            <code>__tags</code> / <code>__tag</code> list keywords, and the
+            <code>__link</code> in the title makes the whole card clickable while
+            the link text stays its accessible name.
+        </p>
+        {% set code_snippet %}
+        <div class="ss-l-dashboard">
+            <article class="ss-c-card ss-c-card--numbered ss-c-card--interactive">
+                <span class="ss-c-card__number"></span>
+                <h3 class="ss-c-card__title"><a class="ss-c-card__link" href="#">Mapbox renderer</a></h3>
+                <p class="ss-c-card__body" style="margin: 0">Mapbox GL JS with GeoJSON layers.</p>
+                <ul class="ss-c-card__tags"><li class="ss-c-card__tag">type="mapbox"</li></ul>
+            </article>
+            <article class="ss-c-card ss-c-card--numbered ss-c-card--interactive">
+                <span class="ss-c-card__number"></span>
+                <h3 class="ss-c-card__title"><a class="ss-c-card__link" href="#">Deck.gl renderer</a></h3>
+                <p class="ss-c-card__body" style="margin: 0">WebGL layers for large data sets.</p>
+                <ul class="ss-c-card__tags"><li class="ss-c-card__tag">type="deck"</li><li class="ss-c-card__tag">webgl</li></ul>
+            </article>
+            <article class="ss-c-card ss-c-card--numbered ss-c-card--interactive">
+                <span class="ss-c-card__number"></span>
+                <h3 class="ss-c-card__title"><a class="ss-c-card__link" href="#">Multiple maps</a></h3>
+                <p class="ss-c-card__body" style="margin: 0">Synchronised map instances.</p>
+                <ul class="ss-c-card__tags"><li class="ss-c-card__tag">multi</li></ul>
+            </article>
         </div>
         {% endset %} {% set language="HTML" %} {%- include
         "includes/preview/ss-c-preview_code.html.jinja" %}

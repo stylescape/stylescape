@@ -1,0 +1,42 @@
+{% extends "../base.html.jinja" %} {% set title = "Title Bar" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-title-bar</code> module: the title row of an app
+        page, with breadcrumbs or an eyebrow above the heading, an optional description
+        and the page's actions at the end. The Jinja <code>page_header</code> macro and
+        <code>stylescape/base.html.jinja</code> render it.
+    </p>
+
+    {% set section_title = "With actions" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <header class="ss-c-title-bar">
+            <div class="ss-c-title-bar__text">
+                <p class="ss-c-title-bar__eyebrow">Projects</p>
+                <h3 class="ss-c-title-bar__title">Harbour quay renewal</h3>
+                <p class="ss-c-title-bar__description">Renewal of 400 m of quay wall, phase 2 of 3.</p>
+            </div>
+            <div class="ss-c-title-bar__actions">
+                <a class="ss-c-button" href="#edit">Edit</a>
+                <a class="ss-c-button ss-c-button--danger" href="#delete">Delete</a>
+            </div>
+        </header>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Plain" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p><code>--plain</code> drops the divider and its padding.</p>
+        {% set code_snippet %}
+        <header class="ss-c-title-bar ss-c-title-bar--plain">
+            <div class="ss-c-title-bar__text"><h3 class="ss-c-title-bar__title">Settings</h3></div>
+        </header>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

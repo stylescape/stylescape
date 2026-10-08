@@ -3,7 +3,7 @@ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>SVG and emoji icons for visual communication.</p>
     </header>
 
@@ -13,7 +13,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="
@@ -99,7 +99,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="display: flex; gap: 16px; flex-wrap: wrap; font-size: 32px"
@@ -107,7 +107,7 @@ title }}{%- endblock %} {%- block content %}
             <span class="ss-c-icon ss-c-emoji" role="img" aria-label="home">⌂</span>
             <span class="ss-c-icon ss-c-emoji" role="img" aria-label="settings">⚙</span>
             <span class="ss-c-icon ss-c-emoji" role="img" aria-label="star">⭐</span>
-            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="bell">♪</span>
+            <span class="ss-c-icon ss-c-emoji" role="img" aria-label="bell">🔔</span>
             <span class="ss-c-icon ss-c-emoji" role="img" aria-label="mail">✉</span>
             <span class="ss-c-icon ss-c-emoji" role="img" aria-label="user">☻</span>
             <span class="ss-c-icon ss-c-emoji" role="img" aria-label="calendar">▦</span>
@@ -123,7 +123,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="display: flex; gap: 32px; flex-wrap: wrap; align-items: end"
@@ -207,7 +207,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div style="display: flex; gap: 20px; flex-wrap: wrap">
             <svg
@@ -215,7 +215,7 @@ title }}{%- endblock %} {%- block content %}
                 height="32"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="var(--color_fill_primary)"
+                stroke="var(--ss-color-accent)"
                 stroke-width="2"
             >
                 <circle cx="12" cy="12" r="10" />
@@ -226,7 +226,7 @@ title }}{%- endblock %} {%- block content %}
                 height="32"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="var(--color_state_success)"
+                stroke="var(--ss-color-success)"
                 stroke-width="2"
             >
                 <circle cx="12" cy="12" r="10" />
@@ -237,7 +237,7 @@ title }}{%- endblock %} {%- block content %}
                 height="32"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="var(--color_state_warning)"
+                stroke="var(--ss-color-warning)"
                 stroke-width="2"
             >
                 <path
@@ -251,7 +251,7 @@ title }}{%- endblock %} {%- block content %}
                 height="32"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="var(--color_state_error)"
+                stroke="var(--ss-color-error)"
                 stroke-width="2"
             >
                 <circle cx="12" cy="12" r="10" />
@@ -263,7 +263,7 @@ title }}{%- endblock %} {%- block content %}
                 height="32"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="var(--color_state_info)"
+                stroke="var(--ss-color-info)"
                 stroke-width="2"
             >
                 <circle cx="12" cy="12" r="10" />
@@ -281,10 +281,12 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div style="display: flex; gap: 12px; flex-wrap: wrap">
             <button
+                type="button"
+                aria-label="Add"
                 style="
                     display: inline-flex;
                     align-items: center;
@@ -292,9 +294,9 @@ title }}{%- endblock %} {%- block content %}
                     width: 44px;
                     height: 44px;
                     border: none;
-                    background: var(--color_fill_primary);
-                    color: white;
-                    border-radius: 8px;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
+                    border-radius: var(--ss-radius-lg);
                     cursor: pointer;
                 "
             >
@@ -305,21 +307,26 @@ title }}{%- endblock %} {%- block content %}
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
+                    aria-hidden="true"
+                    focusable="false"
                 >
                     <line x1="12" y1="5" x2="12" y2="19" />
                     <line x1="5" y1="12" x2="19" y2="12" />
                 </svg>
             </button>
             <button
+                type="button"
+                aria-label="Edit"
                 style="
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
                     width: 44px;
                     height: 44px;
-                    border: 1px solid var(--color_line_secondary);
+                    border: 1px solid var(--ss-color-border);
                     background: transparent;
-                    border-radius: 8px;
+                    color: var(--ss-color-text);
+                    border-radius: var(--ss-radius-lg);
                     cursor: pointer;
                 "
             >
@@ -330,6 +337,8 @@ title }}{%- endblock %} {%- block content %}
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
+                    aria-hidden="true"
+                    focusable="false"
                 >
                     <path
                         d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"
@@ -337,6 +346,8 @@ title }}{%- endblock %} {%- block content %}
                 </svg>
             </button>
             <button
+                type="button"
+                aria-label="Delete"
                 style="
                     display: inline-flex;
                     align-items: center;
@@ -344,8 +355,8 @@ title }}{%- endblock %} {%- block content %}
                     width: 44px;
                     height: 44px;
                     border: none;
-                    background: var(--color_state_error);
-                    color: white;
+                    background: var(--ss-color-error);
+                    color: var(--ss-color-on-error);
                     border-radius: 50%;
                     cursor: pointer;
                 "
@@ -357,6 +368,8 @@ title }}{%- endblock %} {%- block content %}
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
+                    aria-hidden="true"
+                    focusable="false"
                 >
                     <polyline points="3 6 5 6 21 6" />
                     <path
@@ -375,7 +388,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div style="display: flex; flex-direction: column; gap: 16px">
             <div style="display: flex; align-items: center; gap: 12px">

@@ -5,10 +5,33 @@
 @use "../../01-core/external" as *;
 
 $map-config: (
-    "background": var(--ss-color-fill-muted, #f4f4f4),
+    "background": var(--ss-color-fill-muted),
     "min-height": q(320),
-    "control-bg": var(--ss-color-fill, #ffffff),
-    "control-color": var(--ss-color-text, #1a1a1a),
+    "control-bg": var(--ss-color-fill),
+    "control-color": var(--ss-color-text),
     "control-padding": q(8),
-    "control-radius": q(4),
+    "control-radius": var(--ss-radius-md),
+
+    // Leaflet / MapLibre / Mapbox GL chrome (see _map.mixins.scss).
+    // Their stylesheets are unlayered, which beats every cascade layer, so
+    // the overrides are emitted unlayered too. Set a layer name here when
+    // the vendor CSS is itself imported into a layer below stylescape's
+    // (`@import url(leaflet.css) layer(vendor);`).
+    "vendor-layer": null,
+    "vendor-font-size": var(--ss-font-size-xs),
+    "vendor-surface": var(--ss-color-background),
+    "vendor-surface-hover": var(--ss-color-surface-hover),
+    "vendor-surface-translucent": color-mix(in srgb, var(--ss-color-background) 85%, transparent),
+    "vendor-text": var(--ss-color-text),
+    "vendor-text-muted": var(--ss-color-text-secondary),
+    "vendor-link": var(--ss-color-link),
+    "vendor-border": var(--ss-color-border),
+    "vendor-border-strong": var(--ss-color-border-strong),
+    "vendor-radius": var(--ss-radius-md),
+    "vendor-shadow": var(--ss-a-shadow-md),
+    "vendor-popup-radius": var(--ss-radius-md),
+    "vendor-popup-padding": q(12) q(16),
+    // The vendors draw some icons as dark background images; dark themes
+    // invert them so they stay visible.
+    "vendor-icon-filter-dark": invert(1) hue-rotate(180deg),
 ) !default;

@@ -29,9 +29,9 @@
 /// @param {Color} $color - The color to analyze
 /// @return {Number} - Relative luminance value (0-1)
 @function luminance($color) {
-    $red: color.red($color) / 255;
-    $green: color.green($color) / 255;
-    $blue: color.blue($color) / 255;
+    $red: math.div(color.channel($color, "red", $space: rgb), 255);
+    $green: math.div(color.channel($color, "green", $space: rgb), 255);
+    $blue: math.div(color.channel($color, "blue", $space: rgb), 255);
 
     @if $red <= 0.03928 {
         $red: math.div($red, 12.92);
@@ -79,6 +79,36 @@
     } @else {
         @return $dark;
     }
+}
+
+/// Shift a color's lightness (keeping its hue) until it reaches a minimum
+/// contrast ratio against a background: darker on light backgrounds,
+/// lighter on dark ones. Returns the color unchanged when it already passes.
+/// @param {Color} $color - Color to adjust
+/// @param {Color} $background [#ffffff] - Background it must read against
+/// @param {Number} $min-ratio [4.5] - Minimum contrast ratio (WCAG AA = 4.5)
+/// @return {Color} - Adjusted color
+@function ensure-contrast($color, $background: #ffffff, $min-ratio: 4.5) {
+    $step: 2%;
+    @if luminance($background) > 0.5 {
+        $step: -2%;
+    }
+    $result: $color;
+    $guard: 0;
+
+    @while contrast-ratio($result, $background) < $min-ratio and $guard < 50 {
+        $result: color.scale($result, $lightness: $step);
+        // Snap to whole sRGB channels so the ratio is checked on the color
+        // that is actually emitted (and it serializes as hex).
+        $result: rgb(
+            math.round(color.channel($result, "red", $space: rgb)),
+            math.round(color.channel($result, "green", $space: rgb)),
+            math.round(color.channel($result, "blue", $space: rgb))
+        );
+        $guard: $guard + 1;
+    }
+
+    @return $result;
 }
 
 /// Create a color shade (darken)

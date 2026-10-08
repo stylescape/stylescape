@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
 @use "./breadcrumb.config" as config;
 @use "./breadcrumb.mixins" as breadcrumb;
 
@@ -17,7 +18,37 @@
         }
     }
 
-    .#{$ss-prefix-module}-breadcrumb__item[aria-current="page"] {
+    // Separator styles
+    @each $name, $glyph in map.get(config.$ss-breadcrumb-config, separators) {
+        .#{$ss-prefix-module}-breadcrumb--#{$name} {
+            --ss-breadcrumb-separator: "#{$glyph}";
+        }
+    }
+
+    // Sizes
+    .#{$ss-prefix-module}-breadcrumb--sm {
+        font-size: map.get(config.$ss-breadcrumb-config, font-size-sm);
+    }
+    .#{$ss-prefix-module}-breadcrumb--lg {
+        font-size: map.get(config.$ss-breadcrumb-config, font-size-lg);
+    }
+
+    .#{$ss-prefix-module}-breadcrumb__icon {
+        margin-inline-end: map.get(config.$ss-breadcrumb-config, icon-gap);
+    }
+
+    // "…" toggle inside a collapsed item
+    .#{$ss-prefix-module}-breadcrumb__expand {
+        padding: 0 q(4);
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+    }
+
+    .#{$ss-prefix-module}-breadcrumb__item[aria-current="page"],
+    .#{$ss-prefix-module}-breadcrumb__item--active {
         color: map.get(config.$ss-breadcrumb-config, color-current);
         font-weight: 500;
     }

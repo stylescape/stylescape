@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "../input/input.mixins" as input;
+@use "../input/input.config" as input-config;
 @use "./select.config" as config;
 @use "../../01-core/external" as *;
 
@@ -21,4 +22,41 @@
         q(5) q(5),
         q(5) q(5);
     background-repeat: no-repeat;
+}
+
+/// Size step — follows the input height scale (sm 32 / md 40 / lg 48) and
+/// keeps room for the chevron (the input size mixin resets `padding`).
+/// @param {String} $size - sm | md | lg
+@mixin ss-select-size($size: md) {
+    @include input.ss-input-size($size);
+    padding-inline-end: map.get(
+        config.$ss-select-config,
+        chevron-padding-inline-end
+    );
+}
+
+/// List-box select (`multiple` or `size > 1`): grows with its rows instead
+/// of the fixed single-line height, and drops the chevron.
+@mixin ss-select-multiple {
+    height: auto;
+    min-block-size: map.get(input-config.$ss-input-config, height);
+    padding-block: q(4);
+    padding-inline-end: q(12);
+    background-image: none;
+
+    option {
+        padding-block: q(2);
+    }
+}
+
+/// Validation state — recolours the border (kept on focus; the focus ring
+/// itself stays the shared --ss-focus-ring-* outline).
+/// @param {Color} $color
+@mixin ss-select-state($color) {
+    border-color: $color;
+
+    &:focus,
+    &:focus-visible {
+        border-color: $color;
+    }
 }

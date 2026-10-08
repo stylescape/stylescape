@@ -3,7 +3,7 @@
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             Font-based icons for scalable and customizable interface elements.
         </p>
@@ -15,7 +15,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="
@@ -81,7 +81,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="display: flex; gap: 32px; flex-wrap: wrap; align-items: end"
@@ -162,16 +162,16 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="display: flex; gap: 24px; flex-wrap: wrap; font-size: 32px"
         >
-            <span style="color: var(--color_fill_primary)">♦</span>
-            <span style="color: var(--color_state_success)">✔</span>
-            <span style="color: var(--color_state_warning)">⚠</span>
-            <span style="color: var(--color_state_error)">✖</span>
-            <span style="color: var(--color_state_info)">ℹ</span>
+            <span role="img" aria-label="Featured" style="color: var(--ss-color-accent)">♦</span>
+            <span role="img" aria-label="Success" style="color: var(--ss-color-success)">✔</span>
+            <span role="img" aria-label="Warning" style="color: var(--ss-color-warning)">⚠</span>
+            <span role="img" aria-label="Error" style="color: var(--ss-color-error)">✖</span>
+            <span role="img" aria-label="Information" style="color: var(--ss-color-info)">ℹ</span>
         </div>
         {% endset %} {% set language="HTML" %} {%- include
         "includes/preview/ss-c-preview_code.html.jinja" %}
@@ -183,7 +183,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div style="display: flex; gap: 16px; flex-wrap: wrap">
             <span
@@ -193,9 +193,9 @@
                     justify-content: center;
                     width: 48px;
                     height: 48px;
-                    background: var(--color_fill_primary);
-                    color: white;
-                    border-radius: 8px;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
+                    border-radius: var(--ss-radius-lg);
                     font-size: 24px;
                 "
             >
@@ -208,8 +208,8 @@
                     justify-content: center;
                     width: 48px;
                     height: 48px;
-                    background: var(--color_state_success);
-                    color: white;
+                    background: var(--ss-color-success);
+                    color: var(--ss-color-on-success);
                     border-radius: 50%;
                     font-size: 24px;
                 "
@@ -223,8 +223,8 @@
                     justify-content: center;
                     width: 48px;
                     height: 48px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 8px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                     font-size: 24px;
                 "
             >
@@ -237,8 +237,8 @@
                     justify-content: center;
                     width: 48px;
                     height: 48px;
-                    border: 2px solid var(--color_line_secondary);
-                    border-radius: 8px;
+                    border: 2px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
                     font-size: 24px;
                 "
             >
@@ -255,7 +255,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div style="display: flex; gap: 12px; flex-wrap: wrap">
             <button
@@ -265,14 +265,14 @@
                     gap: 8px;
                     padding: 12px 20px;
                     border: none;
-                    background: var(--color_fill_primary);
-                    color: white;
-                    border-radius: 8px;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
+                    border-radius: var(--ss-radius-lg);
                     cursor: pointer;
                     font-size: 14px;
                 "
             >
-                <span>+</span>
+                <span aria-hidden="true">+</span>
                 Add Item
             </button>
             <button
@@ -282,14 +282,14 @@
                     gap: 8px;
                     padding: 12px 20px;
                     border: none;
-                    background: var(--color_state_error);
-                    color: white;
-                    border-radius: 8px;
+                    background: var(--ss-color-error);
+                    color: var(--ss-color-on-error);
+                    border-radius: var(--ss-radius-lg);
                     cursor: pointer;
                     font-size: 14px;
                 "
             >
-                <span>␡</span>
+                <span aria-hidden="true">␡</span>
                 Delete
             </button>
             <button
@@ -298,14 +298,14 @@
                     align-items: center;
                     gap: 8px;
                     padding: 12px 20px;
-                    border: 1px solid var(--color_line_secondary);
+                    border: 1px solid var(--ss-color-border);
                     background: transparent;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     cursor: pointer;
                     font-size: 14px;
                 "
             >
-                <span>⇧</span>
+                <span aria-hidden="true">⇧</span>
                 Export
             </button>
             <button
@@ -316,13 +316,15 @@
                     width: 44px;
                     height: 44px;
                     border: none;
-                    background: var(--color_fill_secondary);
+                    background: var(--ss-color-surface-alt);
                     border-radius: 50%;
                     cursor: pointer;
                     font-size: 18px;
                 "
+                type="button"
+                aria-label="Settings"
             >
-                ⚙
+                <span aria-hidden="true">⚙</span>
             </button>
         </div>
         {% endset %} {% set language="HTML" %} {%- include
@@ -335,7 +337,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <ul style="list-style: none; padding: 0; margin: 0; max-width: 300px">
             <li
@@ -344,10 +346,10 @@
                     align-items: center;
                     gap: 12px;
                     padding: 12px 0;
-                    border-bottom: 1px solid var(--color_line_secondary);
+                    border-bottom: 1px solid var(--ss-color-border);
                 "
             >
-                <span style="font-size: 20px">▤</span>
+                <span aria-hidden="true" style="font-size: 20px">▤</span>
                 <span>Documents</span>
             </li>
             <li
@@ -356,10 +358,10 @@
                     align-items: center;
                     gap: 12px;
                     padding: 12px 0;
-                    border-bottom: 1px solid var(--color_line_secondary);
+                    border-bottom: 1px solid var(--ss-color-border);
                 "
             >
-                <span style="font-size: 20px">▭</span>
+                <span aria-hidden="true" style="font-size: 20px">▭</span>
                 <span>Images</span>
             </li>
             <li
@@ -368,10 +370,10 @@
                     align-items: center;
                     gap: 12px;
                     padding: 12px 0;
-                    border-bottom: 1px solid var(--color_line_secondary);
+                    border-bottom: 1px solid var(--ss-color-border);
                 "
             >
-                <span style="font-size: 20px">♪</span>
+                <span aria-hidden="true" style="font-size: 20px">♪</span>
                 <span>Music</span>
             </li>
             <li
@@ -382,7 +384,7 @@
                     padding: 12px 0;
                 "
             >
-                <span style="font-size: 20px">▷</span>
+                <span aria-hidden="true" style="font-size: 20px">▷</span>
                 <span>Videos</span>
             </li>
         </ul>

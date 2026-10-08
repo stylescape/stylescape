@@ -1,0 +1,71 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./cart.mixins" as cart;
+
+$_c: ".#{$ss-prefix-module}-cart";
+$_muted: cart.ss-cart-config(muted);
+
+@layer ss.components {
+    #{$_c} {
+        @include cart.ss-cart;
+    }
+
+    #{$_c}__item {
+        @include cart.ss-cart-item;
+    }
+
+    #{$_c}__media {
+        @include cart.ss-cart-media;
+    }
+
+    #{$_c}__details {
+        @include cart.ss-cart-details;
+    }
+
+    #{$_c}__title {
+        margin: 0;
+        font-size: var(--ss-font-size-md);
+        font-weight: var(--ss-font-weight-semibold);
+
+        a {
+            color: inherit;
+        }
+    }
+
+    #{$_c}__meta {
+        margin: q(2) 0 0;
+        color: $_muted;
+        font-size: var(--ss-font-size-sm);
+    }
+
+    #{$_c}__quantity {
+        flex: 0 0 cart.ss-cart-config(quantity-width);
+        inline-size: cart.ss-cart-config(quantity-width);
+    }
+
+    #{$_c}__price {
+        @include cart.ss-cart-price;
+    }
+
+    // Unit price under the line total ("2 × € 12,50").
+    #{$_c}__unit {
+        display: block;
+        color: $_muted;
+        font-size: var(--ss-font-size-xs);
+        font-weight: var(--ss-font-weight-normal);
+    }
+
+    #{$_c}__price--discount {
+        color: var(--ss-color-success);
+    }
+
+    #{$_c}__remove {
+        flex: 0 0 auto;
+    }
+
+    #{$_c}__empty {
+        padding-block: q(32);
+        color: $_muted;
+        text-align: center;
+    }
+}

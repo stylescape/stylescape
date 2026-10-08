@@ -5,4 +5,36 @@
     .#{$ss-prefix-module}-select {
         @include select.ss-select;
     }
+
+    // Sizes — same height scale as `.ss-c-input--*` and buttons.
+    // `--small` / `--large` are the long-form aliases used by older markup.
+    .#{$ss-prefix-module}-select--sm,
+    .#{$ss-prefix-module}-select--small {
+        @include select.ss-select-size(sm);
+    }
+    .#{$ss-prefix-module}-select--md {
+        @include select.ss-select-size(md);
+    }
+    .#{$ss-prefix-module}-select--lg,
+    .#{$ss-prefix-module}-select--large {
+        @include select.ss-select-size(lg);
+    }
+
+    // List-box selects grow with their rows instead of clipping at 40px.
+    .#{$ss-prefix-module}-select[multiple],
+    .#{$ss-prefix-module}-select[size]:not([size="1"]),
+    .#{$ss-prefix-module}-select--multiple {
+        @include select.ss-select-multiple;
+    }
+
+    // Validation states
+    .#{$ss-prefix-module}-select.is-invalid,
+    .#{$ss-prefix-module}-select[aria-invalid="true"],
+    .#{$ss-prefix-module}-select.#{$ss-prefix-module}-error {
+        @include select.ss-select-state(var(--ss-color-error));
+    }
+    .#{$ss-prefix-module}-select.is-valid,
+    .#{$ss-prefix-module}-select.#{$ss-prefix-module}-success {
+        @include select.ss-select-state(var(--ss-color-success));
+    }
 }

@@ -1,0 +1,85 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./pricing.mixins" as pricing;
+
+$_p: ".#{$ss-prefix-module}-pricing";
+$_muted: pricing.ss-pricing-config(muted);
+
+@layer ss.components {
+    #{$_p} {
+        @include pricing.ss-pricing;
+    }
+
+    #{$_p}__plan {
+        @include pricing.ss-pricing-plan;
+    }
+
+    #{$_p}__plan--featured {
+        @include pricing.ss-pricing-plan-featured;
+    }
+
+    // "Most popular" label on the featured plan's top edge.
+    #{$_p}__badge {
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-start: 50%;
+        transform: translate(-50%, -50%);
+        padding: q(2) q(10);
+        background-color: var(--ss-color-accent);
+        color: var(--ss-color-on-accent);
+        border-radius: var(--ss-radius-full);
+        font-size: var(--ss-font-size-xs);
+        font-weight: var(--ss-font-weight-semibold);
+        white-space: nowrap;
+    }
+
+    #{$_p}__name {
+        margin: 0;
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-semibold);
+    }
+
+    #{$_p}__description {
+        margin: 0;
+        color: $_muted;
+        font-size: var(--ss-font-size-sm);
+    }
+
+    #{$_p}__price {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: q(4);
+        margin: 0;
+    }
+
+    #{$_p}__amount {
+        font-size: pricing.ss-pricing-config(amount-size);
+        font-weight: var(--ss-font-weight-bold);
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+    }
+
+    #{$_p}__currency,
+    #{$_p}__period {
+        color: $_muted;
+        font-size: var(--ss-font-size-sm);
+    }
+
+    #{$_p}__features {
+        @include pricing.ss-pricing-features;
+    }
+
+    #{$_p}__feature {
+        @include pricing.ss-pricing-feature;
+    }
+
+    #{$_p}__feature--excluded {
+        @include pricing.ss-pricing-feature-excluded;
+    }
+
+    // Call to action sticks to the bottom so buttons line up across plans.
+    #{$_p}__cta {
+        margin-block-start: auto;
+    }
+}

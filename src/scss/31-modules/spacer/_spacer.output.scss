@@ -28,7 +28,18 @@
             height: map.get(config.$spacer-config, "size-xl");
         }
 
+        // Spacer that carries a divider: when it wraps an <hr>, the rule is
+        // the hr itself (no second border, no extra hr margin).
+        &_divider {
+            > hr {
+                margin-block: 0;
+            }
+            &:has(> hr) {
+                border-top: 0;
+            }
+        }
         &--inline {
+
             display: inline-block;
             width: map.get(config.$spacer-config, "size-md");
             height: q(1);

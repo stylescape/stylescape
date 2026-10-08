@@ -1,4 +1,6 @@
 @use "../../01-core/prefix" as *;
+@use "sass:map";
+@use "./accordion.config" as config;
 @use "./accordion.mixins" as accordion;
 
 @layer ss.components {
@@ -19,8 +21,61 @@
         @include accordion.ss-accordion-header-active;
     }
 
-    .#{$ss-prefix-module}-accordion__body {
+    // `__content` is the body element used with native <details>.
+    .#{$ss-prefix-module}-accordion__body,
+    .#{$ss-prefix-module}-accordion__content {
         @include accordion.ss-accordion-body;
+    }
+
+    // ---- Native <details>/<summary> accordion --------------------------------
+    summary.#{$ss-prefix-module}-accordion__header {
+        list-style: none;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+    }
+
+    .#{$ss-prefix-module}-accordion[open]
+        > .#{$ss-prefix-module}-accordion__header {
+        @include accordion.ss-accordion-header-active;
+    }
+
+    .#{$ss-prefix-module}-accordion__title {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    // Chevron: a rotated corner, pointing down when closed and up when open.
+    .#{$ss-prefix-module}-accordion__icon {
+        @include accordion.ss-accordion-icon;
+    }
+
+    .#{$ss-prefix-module}-accordion[open]
+        > .#{$ss-prefix-module}-accordion__header
+        .#{$ss-prefix-module}-accordion__icon,
+    .#{$ss-prefix-module}-accordion__header[aria-expanded="true"]
+        .#{$ss-prefix-module}-accordion__icon {
+        transform: rotate(-135deg);
+    }
+
+    // ---- Variants -------------------------------------------------------------
+    .#{$ss-prefix-module}-accordion--bordered {
+        border-color: map.get(config.$ss-accordion-config, bordered-color);
+    }
+
+    .#{$ss-prefix-module}-accordion--filled {
+        background: map.get(config.$ss-accordion-config, filled-bg);
+    }
+
+    // ---- Groups: items share the group's frame ---------------------------------
+    .#{$ss-prefix-module}-accordion_group > .#{$ss-prefix-module}-accordion {
+        border: 0;
+        border-radius: 0;
+
+        & + .#{$ss-prefix-module}-accordion {
+            border-top: map.get(config.$ss-accordion-config, border);
+        }
     }
 
     .#{$ss-prefix-module}-accordion__item:not(.is-open)

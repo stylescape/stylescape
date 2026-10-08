@@ -1,20 +1,25 @@
 {% extends "../base.html.jinja" %} {%- block title %}Video{%- endblock %} {%-
-block content %} {#
+block content %}
+<header class="ss-c-demo__section__header">
+    <h1>Video</h1>
+    <p>HTML5 video players, responsive containers and embeds.</p>
+</header>
+ {#
 ============================================================================
 Basic Video
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Basic Video" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Basic Video</h3>
+        <h2>Basic Video</h2>
         <p>HTML5 video element with native controls.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Video with Controls</h4>
+        <h3>Video with Controls</h3>
         {% set code_snippet %}
         <video class="ss-c-video" controls width="100%">
-            <source src="video.mp4" type="video/mp4" />
-            <source src="video.webm" type="video/webm" />
+            <source src="/media/sample.mp4" type="video/mp4" />
+            <source src="/media/sample.webm" type="video/webm" />
             Your browser does not support the video tag.
         </video>
         {% endset %} {% set language="HTML" %} {% include
@@ -22,10 +27,10 @@ Basic Video
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Video with Poster</h4>
+        <h3>Video with Poster</h3>
         {% set code_snippet %}
-        <video class="ss-c-video" controls poster="thumbnail.jpg" width="100%">
-            <source src="video.mp4" type="video/mp4" />
+        <video class="ss-c-video" controls poster="/img/placeholder/1280x720.svg" width="100%">
+            <source src="/media/sample.mp4" type="video/mp4" />
             Your browser does not support the video tag.
         </video>
         {% endset %} {% set language="HTML" %} {% include
@@ -33,10 +38,10 @@ Basic Video
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Autoplay Muted</h4>
+        <h3>Autoplay Muted</h3>
         {% set code_snippet %}
         <video class="ss-c-video" autoplay muted loop playsinline width="100%">
-            <source src="background-video.mp4" type="video/mp4" />
+            <source src="/media/sample.mp4" type="video/mp4" />
             Your browser does not support the video tag.
         </video>
         {% endset %} {% set language="HTML" %} {% include
@@ -49,16 +54,16 @@ Video Container
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Video Container" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Video Container</h3>
+        <h2>Video Container</h2>
         <p>Responsive video wrapper with aspect ratio.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>16:9 Aspect Ratio</h4>
+        <h3>16:9 Aspect Ratio</h3>
         {% set code_snippet %}
         <div class="ss-c-video_container ss-c-video_container--16x9">
             <video class="ss-c-video_container__video" controls>
-                <source src="video.mp4" type="video/mp4" />
+                <source src="/media/sample.mp4" type="video/mp4" />
             </video>
         </div>
         {% endset %} {% set language="HTML" %} {% include
@@ -66,11 +71,11 @@ Video Container
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>4:3 Aspect Ratio</h4>
+        <h3>4:3 Aspect Ratio</h3>
         {% set code_snippet %}
         <div class="ss-c-video_container ss-c-video_container--4x3">
             <video class="ss-c-video_container__video" controls>
-                <source src="video.mp4" type="video/mp4" />
+                <source src="/media/sample.mp4" type="video/mp4" />
             </video>
         </div>
         {% endset %} {% set language="HTML" %} {% include
@@ -78,11 +83,11 @@ Video Container
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>21:9 Cinematic</h4>
+        <h3>21:9 Cinematic</h3>
         {% set code_snippet %}
         <div class="ss-c-video_container ss-c-video_container--21x9">
             <video class="ss-c-video_container__video" controls>
-                <source src="video.mp4" type="video/mp4" />
+                <source src="/media/sample.mp4" type="video/mp4" />
             </video>
         </div>
         {% endset %} {% set language="HTML" %} {% include
@@ -95,37 +100,27 @@ Embedded Video
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Embedded Video" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Embedded Video</h3>
-        <p>YouTube and Vimeo embedded players.</p>
+        <h2>Embedded Video</h2>
+        <p>
+            <code>ss-c-video_container</code> keeps an embedded player at a
+            fixed aspect ratio. The demo embeds the local sample file; for a
+            hosted player, point the iframe at the provider's embed URL
+            (for example <code>https://www.youtube-nocookie.com/embed/&lt;id&gt;</code>
+            or <code>https://player.vimeo.com/video/&lt;id&gt;</code>) and keep
+            a descriptive <code>title</code>.
+        </p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>YouTube Embed</h4>
+        <h3>Embed Container (16:9)</h3>
         {% set code_snippet %}
         <div class="ss-c-video_container ss-c-video_container--16x9">
             <iframe
                 class="ss-c-video_container__iframe"
-                src="https://www.youtube.com/embed/VIDEO_ID"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-            ></iframe>
-        </div>
-        {% endset %} {% set language="HTML" %} {% include
-        "includes/preview/ss-c-preview_code.html.jinja" %}
-    </section>
-
-    <section class="ss-c-demo__subsection">
-        <h4>Vimeo Embed</h4>
-        {% set code_snippet %}
-        <div class="ss-c-video_container ss-c-video_container--16x9">
-            <iframe
-                class="ss-c-video_container__iframe"
-                src="https://player.vimeo.com/video/VIDEO_ID"
-                title="Vimeo video player"
-                frameborder="0"
-                allow="autoplay; fullscreen; picture-in-picture"
+                src="/media/sample.mp4"
+                title="Sample video, embedded"
+                loading="lazy"
+                allow="fullscreen; picture-in-picture"
                 allowfullscreen
             ></iframe>
         </div>
@@ -139,42 +134,43 @@ Video with Custom Controls
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Custom Controls" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Custom Controls</h3>
+        <h2>Custom Controls</h2>
         <p>Video player with custom control overlay.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Custom Player UI</h4>
+        <h3>Custom Player UI</h3>
         {% set code_snippet %}
         <div class="ss-c-video_player">
             <video class="ss-c-video_player__video" id="customVideo">
-                <source src="video.mp4" type="video/mp4" />
+                <source src="/media/sample.mp4" type="video/mp4" />
             </video>
             <div class="ss-c-video_player__overlay">
-                <button class="ss-c-video_player__play" aria-label="Play">
-                    ▶
+                <button type="button" class="ss-c-video_player__play" aria-label="Play">
+                    <span aria-hidden="true">▶</span>
                 </button>
             </div>
             <div class="ss-c-video_player__controls">
-                <button class="ss-c-video_player__button" aria-label="Play/Pause">
-                    ▶
+                <button type="button" class="ss-c-video_player__button" aria-label="Play/Pause">
+                    <span aria-hidden="true">▶</span>
                 </button>
                 <div class="ss-c-video_player__progress">
                     <div class="ss-c-video_player__progress-bar"></div>
                 </div>
                 <span class="ss-c-video_player__time">0:00 / 3:45</span>
-                <button class="ss-c-video_player__button" aria-label="Mute">
-                    ◀
+                <button type="button" class="ss-c-video_player__button" aria-label="Mute">
+                    <span aria-hidden="true">◀</span>
                 </button>
                 <input
                     type="range"
                     class="ss-c-video_player__volume"
+                    aria-label="Volume"
                     min="0"
                     max="100"
                     value="100"
                 />
-                <button class="ss-c-video_player__button" aria-label="Fullscreen">
-                    □
+                <button type="button" class="ss-c-video_player__button" aria-label="Fullscreen">
+                    <span aria-hidden="true">□</span>
                 </button>
             </div>
         </div>
@@ -188,20 +184,20 @@ Video Gallery
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Video Gallery" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Video Gallery</h3>
+        <h2>Video Gallery</h2>
         <p>Grid of video thumbnails.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Video Grid</h4>
+        <h3>Video Grid</h3>
         {% set code_snippet %}
         <div class="ss-c-video_gallery">
             <article class="ss-c-video_card">
                 <div class="ss-c-video_card__thumbnail">
-                    <img src="thumb1.jpg" alt="Video thumbnail" />
+                    <img src="/img/placeholder/800x450.svg" alt="" />
                     <span class="ss-c-video_card__duration">3:45</span>
-                    <button class="ss-c-video_card__play" aria-label="Play video">
-                        ▶
+                    <button type="button" class="ss-c-video_card__play" aria-label="Play video: Video Title">
+                        <span aria-hidden="true">▶</span>
                     </button>
                 </div>
                 <div class="ss-c-video_card__info">
@@ -212,10 +208,10 @@ Video Gallery
 
             <article class="ss-c-video_card">
                 <div class="ss-c-video_card__thumbnail">
-                    <img src="thumb2.jpg" alt="Video thumbnail" />
+                    <img src="/img/placeholder/800x450.svg" alt="" />
                     <span class="ss-c-video_card__duration">5:20</span>
-                    <button class="ss-c-video_card__play" aria-label="Play video">
-                        ▶
+                    <button type="button" class="ss-c-video_card__play" aria-label="Play video: Another Video">
+                        <span aria-hidden="true">▶</span>
                     </button>
                 </div>
                 <div class="ss-c-video_card__info">
@@ -234,14 +230,14 @@ Background Video
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Background Video" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Background Video</h3>
+        <h2>Background Video</h2>
         <p>Full-width video background with overlay.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Hero with Video Background</h4>
+        <h3>Hero with Video Background</h3>
         {% set code_snippet %}
-        <div class="ss-c-video_hero">
+        <div class="ss-c-video_hero" style="background: #111111">
             <video
                 class="ss-c-video_hero__background"
                 autoplay
@@ -249,11 +245,11 @@ Background Video
                 loop
                 playsinline
             >
-                <source src="hero-video.mp4" type="video/mp4" />
+                <source src="/media/sample.mp4" type="video/mp4" />
             </video>
             <div class="ss-c-video_hero__overlay"></div>
             <div class="ss-c-video_hero__content">
-                <h1>Welcome</h1>
+                <h4>Welcome</h4>
                 <p>Engaging hero section with video background</p>
                 <button class="ss-c-button ss-c-button--primary">Get Started</button>
             </div>

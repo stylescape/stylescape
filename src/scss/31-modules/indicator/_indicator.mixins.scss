@@ -1,3 +1,5 @@
+@use "sass:map";
+@use "./indicator.config" as config;
 @use "../../01-core/external" as *;
 
 @mixin ss-indicator {
@@ -40,4 +42,78 @@
         left: auto;
         transform: translate(50%, -50%);
     }
+}
+
+// ---------------------------------------------------------------------------
+// Status dot
+// ---------------------------------------------------------------------------
+
+@mixin ss-indicator-status-dot($size: md) {
+    position: relative;
+    display: inline-block;
+    flex: none;
+    inline-size: map.get(map.get(config.$ss-indicator-config, dot-sizes), $size);
+    block-size: map.get(map.get(config.$ss-indicator-config, dot-sizes), $size);
+    vertical-align: middle;
+    color: var(--ss-status-dot-color, var(--ss-color-muted));
+    background-color: currentColor;
+    border-radius: var(--ss-radius-full);
+}
+
+@mixin ss-indicator-status-dot-size($size) {
+    inline-size: map.get(map.get(config.$ss-indicator-config, dot-sizes), $size);
+    block-size: map.get(map.get(config.$ss-indicator-config, dot-sizes), $size);
+}
+
+@mixin ss-indicator-status-dot-tone($tone) {
+    --ss-status-dot-color: #{map.get(map.get(config.$ss-indicator-config, tones), $tone)};
+}
+
+/// Expanding ring for "live" states; still under reduced motion.
+@mixin ss-indicator-status-dot-pulse {
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        box-shadow: 0 0 0 q(1) currentColor;
+        animation: ss-status-dot-pulse var(--ss-duration-loop) var(--ss-ease-out, ease-out) infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &::after {
+            animation: none;
+            opacity: 0;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Status bar
+// ---------------------------------------------------------------------------
+
+/// Thin application status strip (connection, counts, cursor position).
+@mixin ss-indicator-status-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: map.get(config.$ss-indicator-config, bar-gap);
+    min-block-size: map.get(config.$ss-indicator-config, bar-height);
+    padding-inline: map.get(config.$ss-indicator-config, bar-padding-inline);
+
+    font-size: var(--ss-font-size-sm);
+    color: var(--ss-color-text-muted);
+    background-color: var(--ss-color-surface-alt);
+    border-block-start: q(1) solid var(--ss-color-border);
+}
+
+@mixin ss-indicator-status-bar-item {
+    display: inline-flex;
+    align-items: center;
+    gap: q(6);
+    white-space: nowrap;
+}
+
+@mixin ss-indicator-status-bar-spacer {
+    margin-inline-start: auto;
 }

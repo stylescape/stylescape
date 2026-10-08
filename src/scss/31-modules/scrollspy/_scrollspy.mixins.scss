@@ -39,8 +39,8 @@
     left: 0;
     height: map.get(config.$scrollspy-config, "progress-height");
     background-color: map.get(config.$scrollspy-config, "progress-color");
-    z-index: 1080;
-    transition: width 0.1s linear;
+    z-index: var(--ss-z-fixed);
+    transition: width var(--ss-duration-100) var(--ss-ease-linear);
 }
 
 @mixin ss-scrollspy-progress-dots {
@@ -58,7 +58,8 @@
         border-radius: 50%;
         background-color: map.get(config.$scrollspy-config, "dot-color");
         cursor: pointer;
-        transition: background-color 0.15s ease;
+        transition: background-color var(--ss-duration-150) var(--ss-ease-in-out);
+
 
         &.is-active,
         &.active {

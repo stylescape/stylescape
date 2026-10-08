@@ -4,18 +4,31 @@
 $ss-range-config: (
     // Track
     track-height: q(8),
-    track-radius: q(999),
-    track-bg: var(--ss-color-line-secondary, #cccccc),
+    track-radius: var(--ss-radius-full),
+    track-bg: var(--ss-color-border),
 
     // Thumb
     thumb-size: q(20),
     thumb-bg: var(--ss-color-accent, currentColor),
     thumb-border: q(2) solid var(--ss-color-background),
-    thumb-shadow: 0 q(1) q(3) rgba(0, 0, 0, 0.2),
+    thumb-shadow: var(--ss-a-shadow-sm),
+
     thumb-offset: q(-6),
 
+    // Filled part of the track (left of the thumb). Firefox draws it
+    // natively; WebKit/Blink read `--ss-range-progress`, which
+    // RangeOutputManager keeps in sync (no JS: no fill).
+    fill: var(--ss-range-fill, var(--ss-color-accent)),
+
+    // Readout (`.ss-c-range-field`)
+    field-gap: q(6) q(12),
+    label-weight: 500,
+    output-weight: 600,
+    scale-color: var(--ss-color-text-muted),
+    scale-font-size: var(--ss-font-size-sm),
+
     // Focus / disabled
-    focus-ring: q(2) solid var(--ss-color-accent),
+    focus-ring: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color, currentColor),
     focus-ring-offset: q(4),
     disabled-opacity: 0.5,
 

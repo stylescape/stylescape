@@ -1,16 +1,32 @@
 {% extends "../base.html.jinja" %} {%- block title %}Corner Utilities{%- endblock
-%} {%- block content %} {#
+%} {%- block head %}
+<style>
+    /* Fill tokens sit very close to the preview surface in both themes;
+       outline the demo boxes so their size/shape stays visible. */
+    .ss-c-preview--vertical .ss-c-bg--fill_01,
+    .ss-c-preview--vertical .ss-c-bg--fill_02 {
+        outline: 1px solid var(--ss-color-border);
+        outline-offset: -1px;
+    }
+</style>
+{%- endblock %} {%- block content %}
+<header class="ss-c-demo__section__header">
+    <h1>Corner Utilities</h1>
+    <p>Corner radius utilities: shape variants, percentages, edges and individual corners.</p>
+</header>
+
+{#
 ============================================================================
 Shape Variants
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Shape Variants" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Shape Variants</h3>
+        <h2>Shape Variants</h2>
         <p>Apply predefined border-radius shapes using utility classes.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Squared, Rounded &amp; Pill</h4>
+        <h3>Squared, Rounded &amp; Pill</h3>
         {% set code_snippet %}
         <div class="ss-c-flex--row ss-c-gap--04">
             <div
@@ -18,7 +34,7 @@ Shape Variants
                 style="
                 width: 120px;
                 height: 80px;
-                border: 1px solid var(--color_line_secondary);
+                border: 1px solid var(--ss-color-border);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -31,7 +47,7 @@ Shape Variants
                 style="
                 width: 120px;
                 height: 80px;
-                border: 1px solid var(--color_line_secondary);
+                border: 1px solid var(--ss-color-border);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -44,7 +60,7 @@ Shape Variants
                 style="
                 width: 120px;
                 height: 80px;
-                border: 1px solid var(--color_line_secondary);
+                border: 1px solid var(--ss-color-border);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -63,29 +79,29 @@ Percentage Corners
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Percentage Corners" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Percentage Corners</h3>
+        <h2>Percentage Corners</h2>
         <p>Apply percentage-based border-radius for circular shapes.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Circle &amp; Ellipse Shapes</h4>
+        <h3>Circle &amp; Ellipse Shapes</h3>
         {% set code_snippet %}
         <div class="ss-c-flex--row ss-c-gap--04 ss-c-align--center">
             <div
                 class="ss-c-object--corner--0 ss-c-bg--fill_02 ss-c-p--04"
-                style="width: 80px; height: 80px"
+                style="width: 80px; height: 80px; border: 1px solid var(--ss-color-border)"
             >
                 0%
             </div>
             <div
                 class="ss-c-object--corner--50 ss-c-bg--fill_02 ss-c-p--04"
-                style="width: 80px; height: 80px"
+                style="width: 80px; height: 80px; border: 1px solid var(--ss-color-border)"
             >
                 50%
             </div>
             <div
                 class="ss-c-object--corner--100 ss-c-bg--fill_02 ss-c-p--04"
-                style="width: 80px; height: 80px"
+                style="width: 80px; height: 80px; border: 1px solid var(--ss-color-border)"
             >
                 100%
             </div>
@@ -104,7 +120,7 @@ Edge-Specific Corners
     data-level="1"
 >
     <header class="ss-c-demo__section__header">
-        <h3>Edge-Specific Corners</h3>
+        <h2>Edge-Specific Corners</h2>
         <p>
             Apply border-radius to specific edges of an element (top, bottom,
             start, end).
@@ -112,11 +128,11 @@ Edge-Specific Corners
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Top Edge</h4>
+        <h3>Top Edge</h3>
         {% set code_snippet %}
         <div
             class="ss-c-object--corner--top ss-c-bg--fill_02 ss-c-p--04 ss-c-mb--04"
-            style="width: 200px"
+            style="width: 200px; border: 1px solid var(--ss-color-border)"
         >
             Rounded top corners only
         </div>
@@ -125,11 +141,11 @@ Edge-Specific Corners
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Bottom Edge</h4>
+        <h3>Bottom Edge</h3>
         {% set code_snippet %}
         <div
             class="ss-c-object--corner--bottom ss-c-bg--fill_02 ss-c-p--04 ss-c-mb--04"
-            style="width: 200px"
+            style="width: 200px; border: 1px solid var(--ss-color-border)"
         >
             Rounded bottom corners only
         </div>
@@ -138,11 +154,11 @@ Edge-Specific Corners
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Start Edge (Left)</h4>
+        <h3>Start Edge (Left)</h3>
         {% set code_snippet %}
         <div
             class="ss-c-object--corner--start ss-c-bg--fill_02 ss-c-p--04 ss-c-mb--04"
-            style="width: 200px"
+            style="width: 200px; border: 1px solid var(--ss-color-border)"
         >
             Rounded start (left) corners
         </div>
@@ -151,11 +167,11 @@ Edge-Specific Corners
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>End Edge (Right)</h4>
+        <h3>End Edge (Right)</h3>
         {% set code_snippet %}
         <div
             class="ss-c-object--corner--end ss-c-bg--fill_02 ss-c-p--04 ss-c-mb--04"
-            style="width: 200px"
+            style="width: 200px; border: 1px solid var(--ss-color-border)"
         >
             Rounded end (right) corners
         </div>
@@ -169,12 +185,12 @@ Individual Corners
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Individual Corners" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Individual Corners</h3>
+        <h2>Individual Corners</h2>
         <p>Apply border-radius to a single corner of an element.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Single Corner Variants</h4>
+        <h3>Single Corner Variants</h3>
         {% set code_snippet %}
         <div class="ss-c-flex--row ss-c-gap--04 ss-c-flex--wrap">
             <div
@@ -182,7 +198,7 @@ Individual Corners
                 style="
                 width: 120px;
                 height: 80px;
-                border: 1px solid var(--color_line_secondary);
+                border: 1px solid var(--ss-color-border);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -195,7 +211,7 @@ Individual Corners
                 style="
                 width: 120px;
                 height: 80px;
-                border: 1px solid var(--color_line_secondary);
+                border: 1px solid var(--ss-color-border);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -208,7 +224,7 @@ Individual Corners
                 style="
                 width: 120px;
                 height: 80px;
-                border: 1px solid var(--color_line_secondary);
+                border: 1px solid var(--ss-color-border);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -221,7 +237,7 @@ Individual Corners
                 style="
                 width: 120px;
                 height: 80px;
-                border: 1px solid var(--color_line_secondary);
+                border: 1px solid var(--ss-color-border);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -240,12 +256,12 @@ Custom Combinations
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Custom Combinations" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Custom Combinations</h3>
+        <h2>Custom Combinations</h2>
         <p>Combine corner utilities to create unique shapes.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Diagonal Corners</h4>
+        <h3>Diagonal Corners</h3>
         {% set code_snippet %}
         <div class="ss-c-flex--row ss-c-gap--04">
             <div
@@ -253,7 +269,7 @@ Custom Combinations
                 style="
                 width: 120px;
                 height: 80px;
-                border: 1px solid var(--color_line_secondary);
+                border: 1px solid var(--ss-color-border);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -266,7 +282,7 @@ Custom Combinations
                 style="
                 width: 120px;
                 height: 80px;
-                border: 1px solid var(--color_line_secondary);
+                border: 1px solid var(--ss-color-border);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -280,16 +296,16 @@ Custom Combinations
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Card Header Pattern</h4>
+        <h3>Card Header Pattern</h3>
         {% set code_snippet %}
         <div style="width: 280px">
-            <div class="ss-c-object--corner--top ss-c-bg--primary ss-c-color--white ss-c-p--04">
+            <div class="ss-c-object--corner--top ss-c-bg--primary ss-c-p--04" style="color: var(--ss-color-background)">
                 Card Header
             </div>
             <div class="ss-c-bg--fill_01 ss-c-p--04 ss-c-border--01">
                 Card content with squared bottom corners.
             </div>
-            <div class="ss-c-object--corner--bottom ss-c-bg--fill_02 ss-c-p--04">
+            <div class="ss-c-object--corner--bottom ss-c-bg--fill_02 ss-c-p--04 ss-c-border--01">
                 Card Footer
             </div>
         </div>
@@ -298,12 +314,16 @@ Custom Combinations
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Button Group Pattern</h4>
+        <h3>Segmented Group Pattern</h3>
+        <p>
+            Rounding only the outer corners of a row of flush segments. (Buttons
+            and form controls are square by design and keep radius 0.)
+        </p>
         {% set code_snippet %}
         <div class="ss-c-flex--row">
-            <button class="ss-c-button ss-c-object--corner--start">First</button>
-            <button class="ss-c-button ss-c-object--corner--0">Middle</button>
-            <button class="ss-c-button ss-c-object--corner--end">Last</button>
+            <div class="ss-c-object--corner--start ss-c-bg--fill_02 ss-c-p--04" style="border: 1px solid var(--ss-color-border-strong)">First</div>
+            <div class="ss-c-object--corner--0 ss-c-bg--fill_02 ss-c-p--04" style="border: 1px solid var(--ss-color-border-strong); border-inline-width: 0">Middle</div>
+            <div class="ss-c-object--corner--end ss-c-bg--fill_02 ss-c-p--04" style="border: 1px solid var(--ss-color-border-strong)">Last</div>
         </div>
         {% endset %} {% set language="HTML" %} {% include
         "includes/preview/ss-c-preview_code.html.jinja" %}
@@ -311,74 +331,44 @@ Custom Combinations
 </section>
 
 {# ============================================================================
-SCSS Mixin Reference
+Class Reference
 ============================================================================ #}
-<section class="ss-c-demo__section" data-label="SCSS Reference" data-level="1">
+<section class="ss-c-demo__section" data-label="Class Reference" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>SCSS Mixin Reference</h3>
-        <p>Available mixins for use in custom SCSS.</p>
+        <h2>Class Reference</h2>
+        <p>
+            Every corner class and the radius token it applies. Edge and corner
+            classes use the default container radius
+            (<code>--ss-radius-md</code>).
+        </p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Shape Variant Mixins</h4>
-        {% set code_snippet %} // Token-based shape variants @include
-        object--corner(squared); // border-radius: 0 @include
-        object--corner(rounded); // border-radius: q(2) @include
-        object--corner(pill); // border-radius: 50vh // Or use specific variant
-        mixins @include object--corner--squared; @include
-        object--corner--rounded; @include object--corner--pill; {% endset %} {%
-        set language="SCSS" %} {% set show_preview=false %} {% include
-        "includes/preview/ss-c-preview_code.html.jinja" %}
+        <h3>Shape &amp; Percentage Classes</h3>
+        {% set code_snippet = [
+            ".ss-c-object--corner--squared  /* border-radius: 0 */",
+            ".ss-c-object--corner--0        /* border-radius: 0 */",
+            ".ss-c-object--corner--50       /* border-radius: var(--ss-radius-sm) */",
+            ".ss-c-object--corner--rounded  /* border-radius: var(--ss-radius-lg) */",
+            ".ss-c-object--corner--100      /* border-radius: var(--ss-radius-full) */",
+            ".ss-c-object--corner--pill     /* border-radius: var(--ss-radius-full) */"
+        ] | join("\n") %} {% set language="CSS" %} {% set show_preview=false %}
+        {% include "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Percentage Mixins</h4>
-        {% set code_snippet %} @include object--corner--0; // border-radius: 0
-        @include object--corner--50; // border-radius: 50% (circle) @include
-        object--corner--100; // border-radius: 100% {% endset %} {% set
-        language="SCSS" %} {% set show_preview=false %} {% include
-        "includes/preview/ss-c-preview_code.html.jinja" %}
-    </section>
-
-    <section class="ss-c-demo__subsection">
-        <h4>Edge-Specific Mixins</h4>
-        {% set code_snippet %} // Apply to edges (default: q(2)) @include
-        object--corner--top($radius); // top-left + top-right @include
-        object--corner--bottom($radius); // bottom-left + bottom-right @include
-        object--corner--start($radius); // top-left + bottom-left @include
-        object--corner--end($radius); // top-right + bottom-right {% endset %}
-        {% set language="SCSS" %} {% set show_preview=false %} {% include
-        "includes/preview/ss-c-preview_code.html.jinja" %}
-    </section>
-
-    <section class="ss-c-demo__subsection">
-        <h4>Individual Corner Mixins</h4>
-        {% set code_snippet %} // Apply to single corners (default: q(2))
-        @include object--corner--top-start($radius); // top-left @include
-        object--corner--top-end($radius); // top-right @include
-        object--corner--bottom-start($radius); // bottom-left @include
-        object--corner--bottom-end($radius); // bottom-right {% endset %} {%
-        set language="SCSS" %} {% set show_preview=false %} {% include
-        "includes/preview/ss-c-preview_code.html.jinja" %}
-    </section>
-
-    <section class="ss-c-demo__subsection">
-        <h4>Custom Corners Mixin</h4>
-        {% set code_snippet %} // Full control over each corner @include
-        object--corner--custom( $top-left: q(4), $top-right: q(2),
-        $bottom-right: q(4), $bottom-left: q(2) ); {% endset %} {% set
-        language="SCSS" %} {% set show_preview=false %} {% include
-        "includes/preview/ss-c-preview_code.html.jinja" %}
-    </section>
-
-    <section class="ss-c-demo__subsection">
-        <h4>Generic Radius Mixin</h4>
-        {% set code_snippet %} // Apply any radius value with validation
-        @include object--corner--radius(q(4)); @include
-        object--corner--radius(16px); @include object--corner--radius(1em 2em);
-        // horizontal / vertical {% endset %} {% set language="SCSS" %} {% set
-        show_preview=false %} {% include
-        "includes/preview/ss-c-preview_code.html.jinja" %}
+        <h3>Edge &amp; Corner Classes</h3>
+        {% set code_snippet = [
+            ".ss-c-object--corner--top           /* top-left + top-right */",
+            ".ss-c-object--corner--bottom        /* bottom-left + bottom-right */",
+            ".ss-c-object--corner--start         /* top-left + bottom-left */",
+            ".ss-c-object--corner--end           /* top-right + bottom-right */",
+            ".ss-c-object--corner--top-start     /* top-left */",
+            ".ss-c-object--corner--top-end       /* top-right */",
+            ".ss-c-object--corner--bottom-start  /* bottom-left */",
+            ".ss-c-object--corner--bottom-end    /* bottom-right */"
+        ] | join("\n") %} {% set language="CSS" %} {% set show_preview=false %}
+        {% include "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 </section>
 

@@ -29,5 +29,242 @@
     color: map.get(config.$map-config, "control-color");
     padding: map.get(config.$map-config, "control-padding");
     border-radius: map.get(config.$map-config, "control-radius");
-    box-shadow: 0 q(1) q(4) rgba(0, 0, 0, 0.15);
+    box-shadow: var(--ss-a-shadow-sm);
+}
+
+// =============================================================================
+// Vendor chrome: Leaflet, MapLibre GL, Mapbox GL
+// =============================================================================
+// Selectors stay at the vendor's own structure plus the `.ss-c-map` scope,
+// which is enough to outrank the vendor rules (one class more each). They
+// only recolour: positions and sizes stay the library's.
+
+@function _v($key) {
+    @return map.get(config.$map-config, "vendor-#{$key}");
+}
+
+@mixin _focus-ring {
+    outline: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color);
+    outline-offset: calc(-1 * var(--ss-focus-ring-width));
+    box-shadow: none;
+}
+
+/// Leaflet 1.9 controls, popups and tooltips.
+@mixin ss-map-vendor-leaflet {
+    .leaflet-container {
+        background-color: map.get(config.$map-config, "background");
+        font-family: var(--ss-font-family-base);
+    }
+
+    .leaflet-bar,
+    .leaflet-control-layers {
+        border: q(1) solid _v(border-strong);
+        border-radius: _v(radius);
+        box-shadow: _v(shadow);
+        background-clip: padding-box;
+    }
+
+    .leaflet-bar a {
+        background-color: _v(surface);
+        color: _v(text);
+        border-bottom-color: _v(border);
+
+        &:hover {
+            background-color: _v(surface-hover);
+            color: _v(text);
+        }
+        &:focus-visible {
+            @include _focus-ring;
+        }
+        &.leaflet-disabled {
+            background-color: _v(surface);
+            color: _v(text-muted);
+            opacity: 0.6;
+        }
+    }
+
+    .leaflet-control-zoom-in,
+    .leaflet-control-zoom-out {
+        font-family: var(--ss-font-family-base);
+    }
+
+    .leaflet-control-layers,
+    .leaflet-control-layers-expanded {
+        background-color: _v(surface);
+        color: _v(text);
+    }
+
+    .leaflet-control-layers-separator {
+        border-top-color: _v(border);
+    }
+
+    .leaflet-control-container .leaflet-control-attribution,
+    .leaflet-control-container .leaflet-control-scale-line {
+        background-color: _v(surface-translucent);
+        color: _v(text);
+        font-size: _v(font-size);
+    }
+
+    .leaflet-control-container .leaflet-control-attribution a {
+        color: _v(link);
+    }
+
+    .leaflet-control-scale-line,
+    .leaflet-control-scale-line:not(:first-child),
+    .leaflet-control-scale-line:not(:first-child):not(:last-child) {
+        border-color: _v(text);
+    }
+
+    .leaflet-popup-content-wrapper,
+    .leaflet-popup-tip {
+        background-color: _v(surface);
+        color: _v(text);
+        box-shadow: _v(shadow);
+    }
+
+    .leaflet-popup-content-wrapper {
+        border-radius: _v(popup-radius);
+    }
+
+    .leaflet-popup-content {
+        font-size: var(--ss-font-size-sm);
+        line-height: var(--ss-line-height-normal);
+    }
+
+    .leaflet-container a.leaflet-popup-close-button {
+        color: _v(text-muted);
+
+        &:hover,
+        &:focus {
+            color: _v(text);
+        }
+    }
+
+    .leaflet-tooltip {
+        background-color: _v(surface);
+        border-color: _v(border);
+        color: _v(text);
+        box-shadow: _v(shadow);
+    }
+
+    .leaflet-tooltip-top::before { border-top-color: _v(surface); }
+    .leaflet-tooltip-bottom::before { border-bottom-color: _v(surface); }
+    .leaflet-tooltip-left::before { border-left-color: _v(surface); }
+    .leaflet-tooltip-right::before { border-right-color: _v(surface); }
+
+    .leaflet-control-layers-toggle {
+        filter: var(--ss-map-icon-filter, none);
+    }
+}
+
+/// MapLibre GL / Mapbox GL controls and popups. `$p` is the class prefix:
+/// `maplibregl` or `mapboxgl` (Mapbox GL v1 and v2+ share the structure).
+@mixin ss-map-vendor-gl($p, $canvas: null) {
+    .#{$p}-map {
+        font-family: var(--ss-font-family-base);
+    }
+
+    // The GL map class sets `position: relative`, which would collapse a
+    // `__canvas` container that fills the frame absolutely.
+    @if $canvas {
+        #{$canvas}.#{$p}-map {
+            position: absolute;
+        }
+    }
+
+    .#{$p}-ctrl-group {
+        background-color: _v(surface);
+        border-radius: _v(radius);
+
+        &:not(:empty) {
+            box-shadow:
+                0 0 0 q(1) _v(border-strong),
+                _v(shadow);
+        }
+
+        button + button {
+            border-top-color: _v(border);
+        }
+
+        button:focus:focus-visible {
+            @include _focus-ring;
+        }
+    }
+
+    .#{$p}-ctrl button:not(:disabled):hover {
+        background-color: _v(surface-hover);
+    }
+
+    .#{$p}-ctrl-icon,
+    .#{$p}-ctrl-attrib-button {
+        filter: var(--ss-map-icon-filter, none);
+    }
+
+    .#{$p}-ctrl.#{$p}-ctrl-attrib,
+    .#{$p}-ctrl-attrib.#{$p}-compact {
+        background-color: _v(surface-translucent);
+        color: _v(text);
+        font-size: _v(font-size);
+    }
+
+    .#{$p}-ctrl-attrib a {
+        color: _v(link);
+    }
+
+    .#{$p}-ctrl-attrib a:hover {
+        color: _v(link);
+    }
+
+    .#{$p}-ctrl.#{$p}-ctrl-scale {
+        background-color: _v(surface-translucent);
+        border-color: _v(text);
+        color: _v(text);
+        font-size: _v(font-size);
+    }
+
+    .#{$p}-popup-content {
+        background-color: _v(surface);
+        color: _v(text);
+        border-radius: _v(popup-radius);
+        box-shadow: _v(shadow);
+        padding: _v(popup-padding);
+        font-size: var(--ss-font-size-sm);
+    }
+
+    .#{$p}-popup-close-button {
+        color: _v(text-muted);
+        min-inline-size: q(24);
+        min-block-size: q(24);
+        border-radius: 0 _v(popup-radius) 0 0;
+
+        &:hover {
+            background-color: _v(surface-hover);
+            color: _v(text);
+        }
+        &:focus-visible {
+            @include _focus-ring;
+        }
+    }
+
+    @each $side in top, top-left, top-right {
+        .#{$p}-popup-anchor-#{$side} .#{$p}-popup-tip {
+            border-bottom-color: _v(surface);
+        }
+    }
+    @each $side in bottom, bottom-left, bottom-right {
+        .#{$p}-popup-anchor-#{$side} .#{$p}-popup-tip {
+            border-top-color: _v(surface);
+        }
+    }
+    .#{$p}-popup-anchor-left .#{$p}-popup-tip {
+        border-right-color: _v(surface);
+    }
+    .#{$p}-popup-anchor-right .#{$p}-popup-tip {
+        border-left-color: _v(surface);
+    }
+}
+
+/// Read one key of `$map-config` (for the output file).
+@function ss-map-config($key) {
+    @return map.get(config.$map-config, $key);
 }

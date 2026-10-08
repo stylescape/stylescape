@@ -1,0 +1,116 @@
+{% extends "../base.html.jinja" %} {% set title = "Split" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>Examples for the <code>ss-c-split</code> module.</p>
+    <p>
+        Two panes with a resize handle between them. The handle is a focusable
+        <code>role="separator"</code> whose <code>aria-controls</code> names the
+        primary pane and whose <code>aria-valuenow</code> is that pane's size in
+        percent. <code>SplitPaneManager</code> adds pointer dragging, arrow keys,
+        Home / End (minimum / maximum), Enter (collapse / restore), the
+        <code>aria-valuemin</code> / <code>aria-valuemax</code> limits and, with
+        <code>data-ss-split-key</code>, remembers the size in localStorage.
+    </p>
+
+    <p>
+        A collapse toggle cannot sit inside the separator (a focusable control
+        must not contain another one), so the handle and an
+        <code>ss-c-split__toggle</code> button share an
+        <code>ss-c-split__gutter</code>. A bare handle works without one.
+    </p>
+
+    {% set section_title = "Sidebar and content" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-split" style="height: 220px; border: 1px solid var(--ss-color-border)">
+            <div class="ss-c-split__pane ss-c-split__pane--primary" id="demo-split-tree">
+                <p style="margin: 0; padding: var(--ss-space-4)">Model tree</p>
+            </div>
+            <div class="ss-c-split__gutter">
+                <div class="ss-c-split__handle" role="separator" tabindex="0"
+                     aria-orientation="vertical" aria-controls="demo-split-tree"
+                     aria-valuenow="30" aria-valuemin="15" aria-valuemax="60"
+                     aria-label="Resize model tree" data-ss-split-key="demo-split-tree"></div>
+                <button type="button" class="ss-c-split__toggle" aria-controls="demo-split-tree"
+                        aria-label="Model tree"></button>
+            </div>
+            <div class="ss-c-split__pane">
+                <p style="margin: 0; padding: var(--ss-space-4)">Viewport</p>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Primary pane on the right" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            When the primary pane follows the handle, add
+            <code>ss-c-split__gutter--end</code> so the chevron points at it; the
+            manager reverses the arrow keys.
+        </p>
+        {% set code_snippet %}
+        <div class="ss-c-split" style="height: 180px; border: 1px solid var(--ss-color-border)">
+            <div class="ss-c-split__pane">
+                <p style="margin: 0; padding: var(--ss-space-4)">Map</p>
+            </div>
+            <div class="ss-c-split__gutter ss-c-split__gutter--end">
+                <div class="ss-c-split__handle" role="separator" tabindex="0"
+                     aria-orientation="vertical" aria-controls="demo-split-props"
+                     aria-valuenow="35" aria-valuemin="20" aria-valuemax="60"
+                     aria-label="Resize properties"></div>
+                <button type="button" class="ss-c-split__toggle" aria-controls="demo-split-props"
+                        aria-label="Properties"></button>
+            </div>
+            <div class="ss-c-split__pane ss-c-split__pane--primary" id="demo-split-props">
+                <p style="margin: 0; padding: var(--ss-space-4)">Properties</p>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Vertical" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>Stacked panes: <code>ss-c-split--vertical</code> and <code>aria-orientation="horizontal"</code> on the handle.</p>
+        {% set code_snippet %}
+        <div class="ss-c-split ss-c-split--vertical" style="height: 260px; border: 1px solid var(--ss-color-border)">
+            <div class="ss-c-split__pane ss-c-split__pane--primary" id="demo-split-view">
+                <p style="margin: 0; padding: var(--ss-space-4)">3D view</p>
+            </div>
+            <div class="ss-c-split__handle" role="separator" tabindex="0"
+                 aria-orientation="horizontal" aria-controls="demo-split-view"
+                 aria-valuenow="60" aria-valuemin="20" aria-valuemax="80"
+                 aria-label="Resize 3D view"></div>
+            <div class="ss-c-split__pane">
+                <p style="margin: 0; padding: var(--ss-space-4)">Timeline</p>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Responsive" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p><code>ss-c-split--responsive</code> stacks the panes and hides the handle below <code>md</code>.</p>
+        {% set code_snippet %}
+        <div class="ss-c-split ss-c-split--responsive" style="height: 160px; border: 1px solid var(--ss-color-border)">
+            <div class="ss-c-split__pane ss-c-split__pane--primary" id="demo-split-list">
+                <p style="margin: 0; padding: var(--ss-space-4)">List</p>
+            </div>
+            <div class="ss-c-split__handle" role="separator" tabindex="0"
+                 aria-orientation="vertical" aria-controls="demo-split-list"
+                 aria-valuenow="40" aria-label="Resize list"></div>
+            <div class="ss-c-split__pane">
+                <p style="margin: 0; padding: var(--ss-space-4)">Detail</p>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

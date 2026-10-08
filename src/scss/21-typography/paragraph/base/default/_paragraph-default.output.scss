@@ -18,8 +18,13 @@
 
 @layer ss.typography {
     // Native paragraph
+    // Bare `p` skips the *inherited* resets (indent / justify / transform)
+    // so a wrapper such as `.ss-t-char-uppercase` or an indent utility still
+    // reaches its paragraphs; `.ss-t-paragraph` keeps the full reset.
     p {
-        @include paragraph.ss-paragraph-default();
+        @include paragraph.ss-paragraph-default(
+            (text-indent: null, text-justify: null, text-transform: null)
+        );
     }
 
     // Utility class

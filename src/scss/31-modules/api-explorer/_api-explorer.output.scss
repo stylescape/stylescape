@@ -1,0 +1,63 @@
+@use "../../01-core/prefix" as *;
+@use "./api-explorer.mixins" as api;
+
+$_x: ".#{$ss-prefix-module}-api-explorer";
+$_vendor-layer: api.ss-api-explorer-config(vendor-layer);
+
+@layer ss.components {
+    #{$_x} {
+        @include api.ss-api-explorer;
+    }
+
+    // Fill a sized parent (an app shell's main area) instead.
+    #{$_x}--fill {
+        --ss-api-explorer-height: 100%;
+        min-block-size: 0;
+        border: 0;
+        border-radius: 0;
+    }
+
+    #{$_x}__header {
+        @include api.ss-api-explorer-header;
+    }
+
+    #{$_x}__title {
+        margin: 0;
+        font-size: var(--ss-font-size-md);
+        font-weight: var(--ss-font-weight-semibold);
+    }
+
+    #{$_x}__endpoint {
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-xs);
+        color: var(--ss-color-text-secondary);
+        overflow-wrap: anywhere;
+    }
+
+    // Pushes the remaining header items (links, buttons) to the end.
+    #{$_x}__actions {
+        display: flex;
+        align-items: center;
+        gap: var(--ss-space-2);
+        margin-inline-start: auto;
+    }
+
+    #{$_x}__body {
+        @include api.ss-api-explorer-body;
+    }
+}
+
+@mixin _vendor {
+    #{$_x} {
+        @include api.ss-api-explorer-vendor-graphiql;
+        @include api.ss-api-explorer-vendor-swagger;
+    }
+}
+
+@if $_vendor-layer {
+    @layer #{$_vendor-layer} {
+        @include _vendor;
+    }
+} @else {
+    @include _vendor;
+}

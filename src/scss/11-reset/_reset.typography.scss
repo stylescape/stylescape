@@ -34,8 +34,14 @@
     // Paragraphs & Text
     // ============================================================================
 
+    // Consecutive paragraphs are spaced; the last one in a box adds no
+    // trailing gap. Components set their own margins in later layers.
     p {
-        margin: 0;
+        margin: 0 0 var(--ss-paragraph-spacing, var(--ss-space-md, 1rem));
+    }
+
+    p:last-child {
+        margin-block-end: 0;
     }
 
     // ============================================================================

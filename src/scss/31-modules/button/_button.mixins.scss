@@ -35,6 +35,7 @@
     justify-content: center;
     gap: cfg(gap);
     padding: cfg(padding);
+    min-block-size: cfg(height);
     font: inherit;
     font-weight: cfg(font-weight);
     line-height: cfg(line-height);
@@ -172,6 +173,7 @@
 
 @mixin c-button-size($name) {
     padding: bsize($name, padding);
+    min-block-size: bsize($name, height);
     font-size: bsize($name, font-size);
 }
 
@@ -240,6 +242,8 @@
     // Icon-only buttons: keep the box square regardless of glyph width.
     width: cfg(icon-width);
     justify-content: center;
+    font-size: cfg(icon-font-size);
+    line-height: 1;
 }
 
 // ============================================================================
@@ -249,6 +253,10 @@
 @mixin c-button-block {
     display: flex;
     width: 100%;
+
+    & + & {
+        margin-block-start: cfg(block-stack-gap);
+    }
 }
 
 @mixin c-button-disabled {

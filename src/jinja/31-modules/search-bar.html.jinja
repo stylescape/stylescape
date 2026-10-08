@@ -1,0 +1,43 @@
+{% extends "../base.html.jinja" %} {% set title = "Search bar" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-search-bar</code> module: a search field
+        with a leading magnifier and an attached button, in a
+        <code>&lt;form role="search"&gt;</code>. For a row of list filters see
+        <code>ss-c-filter-bar</code>.
+    </p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <form class="ss-c-search-bar" role="search" action="#">
+            <label for="search-q" class="ss-u-visually-hidden">Search projects</label>
+            <input id="search-q" name="q" type="search" class="ss-c-search-bar__input" placeholder="Search projects">
+            <button type="submit" class="ss-c-button ss-c-search-bar__button">Search</button>
+        </form>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Sizes, without button" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div style="display: grid; gap: 12px">
+            <form class="ss-c-search-bar ss-c-search-bar--sm" role="search" action="#">
+                <label for="search-sm" class="ss-u-visually-hidden">Search tokens</label>
+                <input id="search-sm" name="q" type="search" class="ss-c-search-bar__input" placeholder="Search tokens">
+            </form>
+            <form class="ss-c-search-bar ss-c-search-bar--lg ss-c-search-bar--full" role="search" action="#">
+                <label for="search-lg" class="ss-u-visually-hidden">Search the documentation</label>
+                <input id="search-lg" name="q" type="search" class="ss-c-search-bar__input" value="segmented">
+                <button type="submit" class="ss-c-button ss-c-button--lg ss-c-search-bar__button">Search</button>
+            </form>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

@@ -253,13 +253,23 @@ export class DragAndDropManager {
     }
 
     private setupDropZone(element: HTMLElement): void {
-        element.setAttribute("role", "list");
+        this.syncDropZoneRole(element);
         element.setAttribute("aria-dropeffect", "move");
 
         element.addEventListener("dragover", this.handleDragOver);
         element.addEventListener("dragenter", this.handleDragEnter);
         element.addEventListener("dragleave", this.handleDragLeave);
         element.addEventListener("drop", this.handleDrop);
+    }
+
+    // A list role requires listitem children; empty or file drop zones have
+    // none, so a zone is only a list while it holds draggables.
+    private syncDropZoneRole(element: HTMLElement): void {
+        if (element.querySelector('[role="listitem"]')) {
+            element.setAttribute("role", "list");
+        } else if (element.getAttribute("role") === "list") {
+            element.removeAttribute("role");
+        }
     }
 
     private teardownDropZone(element: HTMLElement): void {
@@ -350,6 +360,8 @@ export class DragAndDropManager {
             }
 
             this.options.onDrop(this.currentDragged, dropZone, event);
+            // onDrop usually moves the item, so both zones may change.
+            this.dropZones.forEach((zone) => this.syncDropZoneRole(zone));
         }
     };
 }

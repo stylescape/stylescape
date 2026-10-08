@@ -3,7 +3,7 @@ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>Embedded content frames for external resources and media.</p>
     </header>
 
@@ -13,7 +13,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <iframe
             src="about:blank"
@@ -21,9 +21,9 @@ title }}{%- endblock %} {%- block content %}
             width="100%"
             height="200"
             style="
-                border: 1px solid var(--color_line_secondary);
-                border-radius: 8px;
-                background: var(--color_fill_secondary);
+                border: 1px solid var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
+                background: var(--ss-color-surface-alt);
             "
         ></iframe>
         {% endset %} {% set language="HTML" %} {%- include
@@ -37,7 +37,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-iframe-container"
@@ -46,7 +46,7 @@ title }}{%- endblock %} {%- block content %}
                 width: 100%;
                 padding-bottom: 56.25%;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <iframe
@@ -83,7 +83,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div style="position: relative; width: 100%; max-width: 600px">
             <div
@@ -103,8 +103,8 @@ title }}{%- endblock %} {%- block content %}
                     style="
                         width: 32px;
                         height: 32px;
-                        border: 3px solid var(--color_fill_secondary);
-                        border-top-color: var(--color_fill_primary);
+                        border: 3px solid var(--ss-color-surface-alt);
+                        border-top-color: var(--ss-color-accent);
                         border-radius: 50%;
                         animation: spin 1s linear infinite;
                     "
@@ -121,9 +121,9 @@ title }}{%- endblock %} {%- block content %}
                 style="
                     position: relative;
                     z-index: 1;
-                    border: 1px solid var(--color_line_secondary);
-                    border-radius: 8px;
-                    background: var(--color_fill_secondary);
+                    border: 1px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
+                    background: var(--ss-color-surface-alt);
                 "
             ></iframe>
         </div>
@@ -145,7 +145,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-video-embed"
@@ -155,7 +155,7 @@ title }}{%- endblock %} {%- block content %}
                 max-width: 640px;
                 padding-bottom: 56.25%;
                 background: #000;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             "
         >
@@ -174,7 +174,7 @@ title }}{%- endblock %} {%- block content %}
                         width: 80px;
                         height: 80px;
                         background: rgba(255, 0, 0, 0.9);
-                        border-radius: 16px;
+                        border-radius: var(--ss-radius-xl);
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -215,7 +215,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-map-embed"
@@ -225,9 +225,9 @@ title }}{%- endblock %} {%- block content %}
                 max-width: 600px;
                 height: 300px;
                 background: linear-gradient(180deg, #e8f4ea 0%, #c8e6c9 100%);
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
-                border: 1px solid var(--color_line_secondary);
+                border: 1px solid var(--ss-color-border);
             "
         >
             <div
@@ -237,13 +237,14 @@ title }}{%- endblock %} {%- block content %}
                     left: 50%;
                     transform: translate(-50%, -50%);
                     text-align: center;
+                    color: #1b3a1f;
                 "
             >
-                <div style="font-size: 48px; margin-bottom: 8px">⌖</div>
-                <p style="margin: 0; font-size: 14px; opacity: 0.8">
+                <div aria-hidden="true" style="font-size: 48px; margin-bottom: 8px">⌖</div>
+                <p style="margin: 0; font-size: 14px">
                     Interactive map placeholder
                 </p>
-                <p style="margin: 8px 0 0; font-size: 12px; opacity: 0.6">
+                <p style="margin: 8px 0 0; font-size: 12px; opacity: 0.85">
                     Replace with Google Maps or Mapbox embed
                 </p>
             </div>
@@ -274,7 +275,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <iframe
             src="about:blank"
@@ -285,17 +286,17 @@ title }}{%- endblock %} {%- block content %}
             loading="lazy"
             referrerpolicy="no-referrer"
             style="
-                border: 2px dashed var(--color_line_secondary);
-                border-radius: 8px;
-                background: var(--color_fill_secondary);
+                border: 2px dashed var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
+                background: var(--ss-color-surface-alt);
             "
         ></iframe>
         <div
             style="
                 margin-top: 12px;
                 padding: 12px;
-                background: var(--color_fill_secondary);
-                border-radius: 8px;
+                background: var(--ss-color-surface-alt);
+                border-radius: var(--ss-radius-lg);
                 font-size: 13px;
             "
         >

@@ -85,13 +85,19 @@ export class ActiveLinkHighlighter {
                 return;
             }
 
-            if (!link.hasAttribute("href") || !link.getAttribute("href")) {
+            const href = link.getAttribute("href");
+            // In-page fragment links ("#", "#section") resolve to the current
+            // URL but aren't links to the current page.
+            if (!href || href.startsWith("#")) {
                 return;
             }
 
             const linkPath = this.normalizeUrl(link.href);
             if (linkPath === currentPath) {
                 link.classList.add(this.activeClass);
+                if (!link.hasAttribute("aria-current")) {
+                    link.setAttribute("aria-current", "page");
+                }
             }
         });
     }

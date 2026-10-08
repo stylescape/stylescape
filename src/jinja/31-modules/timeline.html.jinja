@@ -1,9 +1,17 @@
 {% extends "../base.html.jinja" %} {% set title = "Timeline" %} {%- block title
 %}{{ title }}{%- endblock %} {%- block content %}
 
+{# The demos below draw their own connector lines inline; hide the default
+   .ss-c-timeline::before rail so it doesn't render as a second (light) line. #}
+<style>
+    .ss-c-demo__subsection .ss-c-timeline::before {
+        display: none;
+    }
+</style>
+
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             Display chronological events and milestones in vertical or
             horizontal layouts.
@@ -16,7 +24,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Classic vertical timeline with alternating sides.</p>
         {% set code_snippet %}
         <div
@@ -31,7 +39,7 @@
                     top: 0;
                     bottom: 0;
                     width: 2px;
-                    background: var(--color_line_secondary);
+                    background: var(--ss-color-border);
                 "
             ></div>
 
@@ -46,10 +54,10 @@
                         left: -34px;
                         width: 16px;
                         height: 16px;
-                        background: var(--color_fill_primary);
+                        background: var(--ss-color-accent);
                         border-radius: 50%;
-                        border: 3px solid white;
-                        box-shadow: 0 0 0 2px var(--color_fill_primary);
+                        border: 3px solid var(--ss-color-surface);
+                        box-shadow: 0 0 0 2px var(--ss-color-accent);
                     "
                 ></div>
                 <div
@@ -57,7 +65,7 @@
                     style="
                         font-size: 14px;
                         font-weight: 600;
-                        color: var(--color_fill_primary);
+                        color: var(--ss-color-accent);
                         margin-bottom: 8px;
                     "
                 >
@@ -67,13 +75,13 @@
                     class="ss-c-timeline__card"
                     style="
                         padding: 20px;
-                        background: var(--color_fill_secondary);
-                        border-radius: 12px;
+                        background: var(--ss-color-surface-alt);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
-                    <h4 style="margin: 0 0 8px; font-size: 18px">
+                    <h3 style="margin: 0 0 8px; font-size: 18px">
                         Launched Quantum Camera Project
-                    </h4>
+                    </h3>
                     <p
                         style="
                             margin: 0;
@@ -99,10 +107,10 @@
                         left: -34px;
                         width: 16px;
                         height: 16px;
-                        background: var(--color_fill_primary);
+                        background: var(--ss-color-accent);
                         border-radius: 50%;
-                        border: 3px solid white;
-                        box-shadow: 0 0 0 2px var(--color_fill_primary);
+                        border: 3px solid var(--ss-color-surface);
+                        box-shadow: 0 0 0 2px var(--ss-color-accent);
                     "
                 ></div>
                 <div
@@ -110,7 +118,7 @@
                     style="
                         font-size: 14px;
                         font-weight: 600;
-                        color: var(--color_fill_primary);
+                        color: var(--ss-color-accent);
                         margin-bottom: 8px;
                     "
                 >
@@ -120,13 +128,13 @@
                     class="ss-c-timeline__card"
                     style="
                         padding: 20px;
-                        background: var(--color_fill_secondary);
-                        border-radius: 12px;
+                        background: var(--ss-color-surface-alt);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
-                    <h4 style="margin: 0 0 8px; font-size: 18px">
+                    <h3 style="margin: 0 0 8px; font-size: 18px">
                         Trinkets Exhibition Opened
-                    </h4>
+                    </h3>
                     <p
                         style="
                             margin: 0;
@@ -152,10 +160,10 @@
                         left: -34px;
                         width: 16px;
                         height: 16px;
-                        background: var(--color_fill_primary);
+                        background: var(--ss-color-accent);
                         border-radius: 50%;
-                        border: 3px solid white;
-                        box-shadow: 0 0 0 2px var(--color_fill_primary);
+                        border: 3px solid var(--ss-color-surface);
+                        box-shadow: 0 0 0 2px var(--ss-color-accent);
                     "
                 ></div>
                 <div
@@ -163,7 +171,7 @@
                     style="
                         font-size: 14px;
                         font-weight: 600;
-                        color: var(--color_fill_primary);
+                        color: var(--ss-color-accent);
                         margin-bottom: 8px;
                     "
                 >
@@ -173,13 +181,13 @@
                     class="ss-c-timeline__card"
                     style="
                         padding: 20px;
-                        background: var(--color_fill_secondary);
-                        border-radius: 12px;
+                        background: var(--ss-color-surface-alt);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
-                    <h4 style="margin: 0 0 8px; font-size: 18px">
+                    <h3 style="margin: 0 0 8px; font-size: 18px">
                         Demosphere at DDW
-                    </h4>
+                    </h3>
                     <p
                         style="
                             margin: 0;
@@ -204,7 +212,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Timeline with items alternating left and right.</p>
         {% set code_snippet %}
         <div
@@ -219,7 +227,7 @@
                     top: 0;
                     bottom: 0;
                     width: 2px;
-                    background: var(--color_line_secondary);
+                    background: var(--ss-color-border);
                     transform: translateX(-50%);
                 "
             ></div>
@@ -230,9 +238,9 @@
                     <div
                         style="
                             padding: 20px;
-                            background: white;
-                            border: 1px solid var(--color_line_secondary);
-                            border-radius: 12px;
+                            background: var(--ss-color-surface);
+                            border: 1px solid var(--ss-color-border);
+                            border-radius: var(--ss-radius-lg);
                             display: inline-block;
                             text-align: left;
                             max-width: 300px;
@@ -242,14 +250,14 @@
                             style="
                                 font-size: 12px;
                                 font-weight: 600;
-                                color: var(--color_fill_primary);
+                                color: var(--ss-color-accent);
                             "
                         >
                             2026
                         </span>
-                        <h4 style="margin: 8px 0; font-size: 16px">
+                        <h3 style="margin: 8px 0; font-size: 16px">
                             Project Alpha Launch
-                        </h4>
+                        </h3>
                         <p style="margin: 0; font-size: 14px; opacity: 0.7">
                             Successfully launched our flagship product to
                             market.
@@ -268,7 +276,7 @@
                         style="
                             width: 14px;
                             height: 14px;
-                            background: var(--color_fill_primary);
+                            background: var(--ss-color-accent);
                             border-radius: 50%;
                         "
                     ></div>
@@ -291,7 +299,7 @@
                         style="
                             width: 14px;
                             height: 14px;
-                            background: var(--color_fill_primary);
+                            background: var(--ss-color-accent);
                             border-radius: 50%;
                         "
                     ></div>
@@ -300,9 +308,9 @@
                     <div
                         style="
                             padding: 20px;
-                            background: white;
-                            border: 1px solid var(--color_line_secondary);
-                            border-radius: 12px;
+                            background: var(--ss-color-surface);
+                            border: 1px solid var(--ss-color-border);
+                            border-radius: var(--ss-radius-lg);
                             display: inline-block;
                             max-width: 300px;
                         "
@@ -311,14 +319,14 @@
                             style="
                                 font-size: 12px;
                                 font-weight: 600;
-                                color: var(--color_fill_primary);
+                                color: var(--ss-color-accent);
                             "
                         >
                             2024
                         </span>
-                        <h4 style="margin: 8px 0; font-size: 16px">
+                        <h3 style="margin: 8px 0; font-size: 16px">
                             Series A Funding
-                        </h4>
+                        </h3>
                         <p style="margin: 0; font-size: 14px; opacity: 0.7">
                             Secured $10M in funding to accelerate growth.
                         </p>
@@ -332,9 +340,9 @@
                     <div
                         style="
                             padding: 20px;
-                            background: white;
-                            border: 1px solid var(--color_line_secondary);
-                            border-radius: 12px;
+                            background: var(--ss-color-surface);
+                            border: 1px solid var(--ss-color-border);
+                            border-radius: var(--ss-radius-lg);
                             display: inline-block;
                             text-align: left;
                             max-width: 300px;
@@ -344,14 +352,14 @@
                             style="
                                 font-size: 12px;
                                 font-weight: 600;
-                                color: var(--color_fill_primary);
+                                color: var(--ss-color-accent);
                             "
                         >
                             2023
                         </span>
-                        <h4 style="margin: 8px 0; font-size: 16px">
+                        <h3 style="margin: 8px 0; font-size: 16px">
                             Company Founded
-                        </h4>
+                        </h3>
                         <p style="margin: 0; font-size: 14px; opacity: 0.7">
                             Started with a small team and big dreams.
                         </p>
@@ -369,7 +377,7 @@
                         style="
                             width: 14px;
                             height: 14px;
-                            background: var(--color_fill_primary);
+                            background: var(--ss-color-accent);
                             border-radius: 50%;
                         "
                     ></div>
@@ -387,12 +395,15 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Scrollable horizontal timeline for compact displays.</p>
         {% set code_snippet %}
         <div
             class="ss-c-timeline ss-c-timeline--horizontal"
             style="position: relative; overflow-x: auto; padding: 40px 20px"
+            tabindex="0"
+            role="region"
+            aria-label="Project roadmap"
         >
             <div
                 style="
@@ -410,7 +421,7 @@
                         left: 0;
                         right: 0;
                         height: 2px;
-                        background: var(--color_line_secondary);
+                        background: var(--ss-color-border);
                     "
                 ></div>
 
@@ -426,7 +437,7 @@
                         style="
                             width: 16px;
                             height: 16px;
-                            background: var(--color_fill_primary);
+                            background: var(--ss-color-accent);
                             border-radius: 50%;
                             margin: 0 auto 16px;
                         "
@@ -451,7 +462,7 @@
                         style="
                             width: 16px;
                             height: 16px;
-                            background: var(--color_fill_primary);
+                            background: var(--ss-color-accent);
                             border-radius: 50%;
                             margin: 0 auto 16px;
                         "
@@ -476,7 +487,7 @@
                         style="
                             width: 16px;
                             height: 16px;
-                            background: var(--color_fill_primary);
+                            background: var(--ss-color-accent);
                             border-radius: 50%;
                             margin: 0 auto 16px;
                         "
@@ -501,7 +512,7 @@
                         style="
                             width: 16px;
                             height: 16px;
-                            background: var(--color_fill_primary);
+                            background: var(--ss-color-accent);
                             border-radius: 50%;
                             margin: 0 auto 16px;
                         "
@@ -526,7 +537,7 @@
                         style="
                             width: 16px;
                             height: 16px;
-                            background: var(--color_state_success);
+                            background: var(--ss-color-success);
                             border-radius: 50%;
                             margin: 0 auto 16px;
                         "
@@ -535,7 +546,7 @@
                         style="
                             font-weight: 600;
                             margin-bottom: 4px;
-                            color: var(--color_state_success);
+                            color: var(--ss-color-success);
                         "
                     >
                         Q1 2024
@@ -554,7 +565,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Timeline using icons to indicate event types.</p>
         {% set code_snippet %}
         <div
@@ -568,7 +579,7 @@
                     top: 0;
                     bottom: 0;
                     width: 2px;
-                    background: var(--color_line_secondary);
+                    background: var(--ss-color-border);
                 "
             ></div>
 
@@ -580,7 +591,7 @@
                         left: -50px;
                         width: 40px;
                         height: 40px;
-                        background: var(--color_state_success);
+                        background: var(--ss-color-success);
                         border-radius: 50%;
                         display: flex;
                         align-items: center;
@@ -593,8 +604,8 @@
                 <div
                     style="
                         padding: 16px 20px;
-                        background: var(--color_fill_secondary);
-                        border-radius: 10px;
+                        background: var(--ss-color-surface-alt);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
                     <div
@@ -625,7 +636,7 @@
                         left: -50px;
                         width: 40px;
                         height: 40px;
-                        background: var(--color_state_info);
+                        background: var(--ss-color-info);
                         border-radius: 50%;
                         display: flex;
                         align-items: center;
@@ -638,8 +649,8 @@
                 <div
                     style="
                         padding: 16px 20px;
-                        background: var(--color_fill_secondary);
-                        border-radius: 10px;
+                        background: var(--ss-color-surface-alt);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
                     <div
@@ -669,7 +680,7 @@
                         left: -50px;
                         width: 40px;
                         height: 40px;
-                        background: var(--color_state_warning);
+                        background: var(--ss-color-warning);
                         border-radius: 50%;
                         display: flex;
                         align-items: center;
@@ -682,8 +693,8 @@
                 <div
                     style="
                         padding: 16px 20px;
-                        background: var(--color_fill_secondary);
-                        border-radius: 10px;
+                        background: var(--ss-color-surface-alt);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
                     <div
@@ -715,7 +726,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Minimal timeline for activity feeds.</p>
         {% set code_snippet %}
         <div
@@ -729,7 +740,7 @@
                     top: 8px;
                     bottom: 8px;
                     width: 1px;
-                    background: var(--color_line_secondary);
+                    background: var(--ss-color-border);
                 "
             ></div>
 
@@ -740,7 +751,7 @@
                         left: -20px;
                         width: 8px;
                         height: 8px;
-                        background: var(--color_fill_primary);
+                        background: var(--ss-color-accent);
                         border-radius: 50%;
                     "
                 ></div>
@@ -761,7 +772,7 @@
                         left: -20px;
                         width: 8px;
                         height: 8px;
-                        background: var(--color_state_success);
+                        background: var(--ss-color-success);
                         border-radius: 50%;
                     "
                 ></div>
@@ -782,7 +793,7 @@
                         left: -20px;
                         width: 8px;
                         height: 8px;
-                        background: var(--color_state_warning);
+                        background: var(--ss-color-warning);
                         border-radius: 50%;
                     "
                 ></div>
@@ -803,7 +814,7 @@
                         left: -20px;
                         width: 8px;
                         height: 8px;
-                        background: var(--color_fill_secondary);
+                        background: var(--ss-color-surface-alt);
                         border-radius: 50%;
                     "
                 ></div>

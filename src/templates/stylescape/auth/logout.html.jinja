@@ -1,0 +1,12 @@
+{#-
+    stylescape/auth/logout.html.jinja
+    ===========================================================================
+    Django LogoutView (registration/logged_out.html).
+-#}
+{%- extends "stylescape/auth/base_auth.html.jinja" -%}
+{%- from "stylescape/macros/forms.html.jinja" import form as render_form with context -%}
+{%- block auth_title %}{{ _("You are signed out") }}{% endblock -%}
+{%- block auth_lead %}{{ _("Thanks for spending some quality time with the site today.") }}{% endblock -%}
+{%- block auth_body %}
+<a class="ss-c-button ss-c-button--primary" href="{{ login_url | default(auth_url('login', '/accounts/login/'), true) }}">{{ _("Sign in again") }}</a>
+{%- endblock -%}

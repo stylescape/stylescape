@@ -4,21 +4,24 @@
 $ss-file-input-config: (
     fg: var(--ss-color-text-primary),
     bg: var(--ss-color-surface-1, var(--ss-color-surface)),
-    border: q(1) solid var(--ss-color-border, currentColor),
-    radius: var(--ss-radius-sm, q(4)),
+    border: q(1) solid var(--ss-color-border-strong, currentColor),
+    radius: var(--ss-radius-none, 0), // square, like the other form controls
 
     // Native selector button
     button-padding-inline: q(16),
     button-margin-inline-end: q(12),
-    button-fg: var(--ss-color-on-accent, #fff),
+    button-fg: var(--ss-color-on-accent),
     button-bg: var(--ss-color-accent),
 
     // Focus ring
-    focus-ring: q(2) solid var(--ss-color-accent),
-    focus-ring-offset: q(2),
+    focus-ring: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color, currentColor),
+    focus-ring-offset: var(--ss-focus-ring-offset, q(2)),
+
+    stack-gap: q(8),
 
     sizes: (
-        xs: (height: q(28), font: var(--ss-font-size-xs)),
+        // Heights follow the shared control scale (xs 24 / sm 32 / md 40 / lg 48).
+        xs: (height: q(24), font: var(--ss-font-size-xs)),
         sm: (height: q(32), font: var(--ss-font-size-sm)),
         md: (height: q(40), font: var(--ss-font-size-sm)),
         lg: (height: q(48), font: var(--ss-font-size-md)),

@@ -12,11 +12,11 @@
 
     background: map.get(config.$ss-toggle-config, bg-off);
     border: 0;
-    border-radius: q(999);
+    border-radius: var(--ss-radius-full);
     cursor: pointer;
     vertical-align: middle;
 
-    transition: background map.get(config.$ss-toggle-config, duration) ease;
+    transition: background map.get(config.$ss-toggle-config, duration) var(--ss-ease-in-out);
 
     &::after {
         content: "";
@@ -42,7 +42,8 @@
         background: map.get(config.$ss-toggle-config, knob);
         border-radius: 50%;
 
-        transition: transform map.get(config.$ss-toggle-config, duration) ease;
+        transition: transform map.get(config.$ss-toggle-config, duration) var(--ss-ease-in-out);
+
     }
 
     &:checked {
@@ -61,8 +62,8 @@
     }
 
     &:focus-visible {
-        outline: q(2) solid map.get(config.$ss-toggle-config, bg-on);
-        outline-offset: q(2);
+        outline: var(--ss-focus-ring-width, #{q(2)}) solid var(--ss-focus-ring-color, currentColor);
+        outline-offset: var(--ss-focus-ring-offset, #{q(2)});
     }
 
     &:disabled {

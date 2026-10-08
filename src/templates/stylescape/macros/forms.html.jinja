@@ -1,0 +1,121 @@
+{#-
+    stylescape/macros/forms.html.jinja
+    ===========================================================================
+    Render Django forms with the stylescape form classes (ss-c-form__*).
+
+        {% from "stylescape/macros/forms.html.jinja" import field, form_fields, form, formset with context %}
+
+    Import `with context` so `form()` can read `csrf_input` from the request
+    context (the Django Jinja2 backend puts it there).
+
+    field(bound_field, attrs={})
+        One BoundField: label (or legend for radio/checkbox groups), widget,
+        help text and errors. The widget gets `aria-describedby` pointing at
+        the help text and the errors, and `aria-invalid` when it has errors.
+    form_fields(form)
+        Non-field errors, every visible field, then the hidden fields.
+    form(form, action="", method="post", submit=None, cancel_url=None)
+        The <form> element with CSRF token, enctype for file fields and the
+        actions row. Extra buttons: call it with a block
+        ({% call form(f) %}<button …>{% endcall %}).
+    formset(formset, legend=None)
+        Management form, formset errors and one fieldset per form.
+-#}
+
+{%- macro errors(error_list, id=None, nonfield=False) -%}
+    {%- if error_list -%}
+    {%- if nonfield %}<div role="alert">{% endif %}
+    <ul class="ss-c-form__errors{{ ' ss-c-form__errors--nonfield' if nonfield }}"{% if id %} id="{{ id }}"{% endif %}>
+        {%- for error in error_list %}
+        <li>{{ error }}</li>
+        {%- endfor %}
+    </ul>
+    {%- if nonfield %}</div>{% endif %}
+    {%- endif -%}
+{%- endmacro %}
+
+{%- macro _is_group(bound_field) -%}
+    {#- Radio and checkbox groups render as a fieldset with a legend. -#}
+    {%- set widget = bound_field.field.widget -%}
+    {{- "1" if widget.allow_multiple_selected is defined and widget.input_type is defined and widget.input_type in ("checkbox", "radio") else "" -}}
+{%- endmacro %}
+
+{%- macro field(bound_field, attrs={}) -%}
+    {%- set f = bound_field -%}
+    {%- set auto_id = f.auto_id or f.html_name -%}
+    {%- set help_id = auto_id ~ "_helptext" -%}
+    {%- set error_id = auto_id ~ "_error" -%}
+    {%- set described = [] -%}
+    {%- if f.help_text %}{% set _d = described.append(help_id) %}{% endif -%}
+    {%- if f.errors %}{% set _d = described.append(error_id) %}{% endif -%}
+    {%- set widget_attrs = dict(attrs) -%}
+    {%- if described %}{% set _d = widget_attrs.update({"aria-describedby": described | join(" ")}) %}{% endif -%}
+    {%- if f.errors %}{% set _d = widget_attrs.update({"aria-invalid": "true"}) %}{% endif -%}
+    {%- set input_type = f.field.widget.input_type if f.field.widget.input_type is defined else "" -%}
+    {%- set is_check = input_type == "checkbox" and not _is_group(f) -%}
+    {%- set is_group = _is_group(f) or input_type == "radio" -%}
+    {%- set classes = ["ss-c-form__field"] -%}
+    {%- if is_check %}{% set _d = classes.append("ss-c-form__field--inline") %}{% endif -%}
+    {%- if f.errors %}{% set _d = classes.append("ss-c-form__field--invalid") %}{% endif -%}
+    <div class="{{ classes | join(' ') }}">
+    {%- if is_group %}
+        <fieldset class="ss-c-form__fieldset"{% if described %} aria-describedby="{{ described | join(' ') }}"{% endif %}>
+            <legend class="ss-c-form__legend">{{ f.label }}{% if f.field.required %}<span class="ss-c-form__required" aria-hidden="true"></span>{% endif %}</legend>
+            {{ f.as_widget(attrs=widget_attrs) }}
+        </fieldset>
+    {%- elif is_check %}
+        {#- Label first, as Django renders it; --inline shows the box first. #}
+        <label class="ss-c-form__label" for="{{ f.id_for_label }}">{{ f.label }}</label>
+        {{ f.as_widget(attrs=widget_attrs) }}
+    {%- else %}
+        <label class="ss-c-form__label" for="{{ f.id_for_label }}">{{ f.label }}{% if f.field.required %}<span class="ss-c-form__required" aria-hidden="true"></span>{% endif %}</label>
+        {{ f.as_widget(attrs=widget_attrs) }}
+    {%- endif %}
+    {%- if f.help_text %}
+        <div class="ss-c-form__help" id="{{ help_id }}">{{ f.help_text }}</div>
+    {%- endif %}
+        {{ errors(f.errors, id=error_id) }}
+    </div>
+{%- endmacro %}
+
+{%- macro form_fields(form) -%}
+    {{ errors(form.non_field_errors(), nonfield=True) }}
+    {%- for f in form.visible_fields() %}
+    {{ field(f) }}
+    {%- endfor %}
+    {%- for f in form.hidden_fields() %}
+    {{ errors(f.errors, nonfield=True) }}{{ f }}
+    {%- endfor %}
+{%- endmacro %}
+
+{%- macro form(form, action="", method="post", submit=None, cancel_url=None, id=None, attrs="") -%}
+    <form class="ss-c-form" action="{{ action }}" method="{{ method }}"
+          {%- if id %} id="{{ id }}"{% endif %}
+          {%- if form.is_multipart() %} enctype="multipart/form-data"{% endif %}
+          {%- if attrs %} {{ attrs }}{% endif %}>
+        {%- if method | lower == "post" and csrf_input is defined %}
+        {{ csrf_input }}
+        {%- endif %}
+        {{ form_fields(form) }}
+        <div class="ss-c-form__actions">
+            <button class="ss-c-button ss-c-button--primary" type="submit">{{ submit or _("Save") }}</button>
+            {%- if caller is defined %}{{ caller() }}{% endif %}
+            {%- if cancel_url %}
+            <a class="ss-c-button ss-c-button--ghost" href="{{ cancel_url }}">{{ _("Cancel") }}</a>
+            {%- endif %}
+        </div>
+    </form>
+{%- endmacro %}
+
+{%- macro formset(formset, legend=None) -%}
+    <div class="ss-c-form__formset">
+        {{ formset.management_form }}
+        {{ errors(formset.non_form_errors(), nonfield=True) }}
+        {%- for f in formset.forms %}
+        <fieldset class="ss-c-form__fieldset">
+            <legend class="ss-c-form__legend">{{ legend or _("Item") }} {{ loop.index }}</legend>
+            {{ form_fields(f) }}
+        </fieldset>
+        {%- endfor %}
+    </div>
+{%- endmacro %}

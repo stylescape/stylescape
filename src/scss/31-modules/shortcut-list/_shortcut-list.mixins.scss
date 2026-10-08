@@ -1,0 +1,63 @@
+@use "sass:map";
+@use "./shortcut-list.config" as config;
+@use "../kbd/kbd.mixins" as kbd;
+@use "../../01-core/external" as *;
+
+$_c: config.$ss-shortcut-list-config;
+
+/// Keyboard cheat sheet: a `<dl>` whose `<dt>` holds the keys and `<dd>`
+/// what they do. Bare `<kbd>` keys inside get the kbd module's look; an
+/// outer `<kbd>` wrapping a combination stays unstyled.
+@mixin ss-shortcut-list {
+    display: grid;
+    grid-template-columns:
+        minmax(max-content, #{map.get($_c, keys-width)})
+        minmax(0, 1fr);
+    column-gap: map.get($_c, column-gap);
+    margin: 0;
+    font-size: var(--ss-font-size-sm);
+    color: var(--ss-color-text);
+}
+
+@mixin ss-shortcut-list-row {
+    display: contents;
+
+    > dt,
+    > dd {
+        padding: map.get($_c, row-padding);
+        border-block-end: map.get($_c, divider);
+    }
+}
+
+@mixin ss-shortcut-list-keys {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: q(4);
+    color: var(--ss-color-text-muted);
+
+    kbd:not(:has(kbd)) {
+        @include kbd.ss-kbd;
+        @include kbd.ss-kbd-size(map.get($_c, kbd-size));
+    }
+
+    kbd:has(kbd) {
+        display: contents;
+        font: inherit;
+    }
+}
+
+@mixin ss-shortcut-list-description {
+    margin: 0;
+    align-self: center;
+}
+
+/// Group title placed before a list (`<dl>` cannot contain headings).
+@mixin ss-shortcut-list-heading {
+    margin: q(16) 0 q(4);
+    font-size: var(--ss-font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ss-color-text-muted);
+}

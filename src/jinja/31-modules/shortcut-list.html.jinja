@@ -1,0 +1,56 @@
+{% extends "../base.html.jinja" %} {% set title = "Shortcut List" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>Examples for the <code>ss-c-shortcut-list</code> module: keyboard cheat sheets as a <code>&lt;dl&gt;</code>, keys in <code>&lt;dt&gt;</code> and their action in <code>&lt;dd&gt;</code>. Bare <code>&lt;kbd&gt;</code> keys reuse the <code>ss-c-kbd</code> look; an outer <code>&lt;kbd&gt;</code> around a combination stays unstyled.</p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <dl class="ss-c-shortcut-list">
+            <div class="ss-c-shortcut-list__row">
+                <dt class="ss-c-shortcut-list__keys"><kbd><kbd>Ctrl</kbd> + <kbd>K</kbd></kbd></dt>
+                <dd class="ss-c-shortcut-list__description">Open the command palette</dd>
+            </div>
+            <div class="ss-c-shortcut-list__row">
+                <dt class="ss-c-shortcut-list__keys"><kbd>F</kbd></dt>
+                <dd class="ss-c-shortcut-list__description">Toggle fullscreen</dd>
+            </div>
+            <div class="ss-c-shortcut-list__row">
+                <dt class="ss-c-shortcut-list__keys"><kbd>←</kbd> / <kbd>→</kbd></dt>
+                <dd class="ss-c-shortcut-list__description">Previous / next slide</dd>
+            </div>
+            <div class="ss-c-shortcut-list__row">
+                <dt class="ss-c-shortcut-list__keys"><kbd>G</kbd> then <kbd>H</kbd></dt>
+                <dd class="ss-c-shortcut-list__description">Go to the home view</dd>
+            </div>
+        </dl>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Grouped" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2rem">
+            <section aria-labelledby="sc-nav">
+                <h3 class="ss-c-shortcut-list__heading" id="sc-nav">Navigation</h3>
+                <dl class="ss-c-shortcut-list">
+                    <div class="ss-c-shortcut-list__row"><dt class="ss-c-shortcut-list__keys"><kbd>Home</kbd></dt><dd class="ss-c-shortcut-list__description">First slide</dd></div>
+                    <div class="ss-c-shortcut-list__row"><dt class="ss-c-shortcut-list__keys"><kbd>End</kbd></dt><dd class="ss-c-shortcut-list__description">Last slide</dd></div>
+                </dl>
+            </section>
+            <section aria-labelledby="sc-view">
+                <h3 class="ss-c-shortcut-list__heading" id="sc-view">View</h3>
+                <dl class="ss-c-shortcut-list">
+                    <div class="ss-c-shortcut-list__row"><dt class="ss-c-shortcut-list__keys"><kbd>S</kbd></dt><dd class="ss-c-shortcut-list__description">Speaker notes</dd></div>
+                    <div class="ss-c-shortcut-list__row"><dt class="ss-c-shortcut-list__keys"><kbd>?</kbd></dt><dd class="ss-c-shortcut-list__description">Show this help</dd></div>
+                </dl>
+            </section>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

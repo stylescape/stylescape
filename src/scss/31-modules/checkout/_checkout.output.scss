@@ -1,0 +1,50 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./checkout.mixins" as checkout;
+
+$_k: ".#{$ss-prefix-module}-checkout";
+
+@layer ss.components {
+    #{$_k} {
+        @include checkout.ss-checkout;
+    }
+
+    #{$_k}__main {
+        min-inline-size: 0;
+        counter-reset: ss-checkout-section;
+    }
+
+    #{$_k}__aside {
+        @include checkout.ss-checkout-aside;
+    }
+
+    #{$_k}__section {
+        @include checkout.ss-checkout-section;
+    }
+
+    #{$_k}__section-title {
+        @include checkout.ss-checkout-section-title;
+    }
+
+    // A finished section collapses to a one-line recap with an edit link.
+    #{$_k}__section--complete #{$_k}__section-title::before {
+        content: "\2713";
+        background-color: var(--ss-color-success);
+        color: var(--ss-color-on-success);
+    }
+
+    #{$_k}__recap {
+        margin: 0;
+        color: checkout.ss-checkout-config(muted);
+        font-size: var(--ss-font-size-sm);
+    }
+
+    #{$_k}__actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: q(12);
+        padding-block-start: q(24);
+    }
+}

@@ -1,0 +1,96 @@
+{% extends "../base.html.jinja" %} {% set title = "Sheet" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+{% set view_style = "position: relative; height: 300px; overflow: hidden; background: var(--ss-color-surface-2);" %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>Examples for the <code>ss-c-sheet</code> module.</p>
+    <p>
+        A panel that slides in from the bottom (default), left or right edge of
+        its positioned parent, or of the viewport with <code>--fixed</code>. While
+        closed only its <code>__handle</code> shows; the body is hidden from
+        keyboard and screen readers. State is <code>data-state="open"</code> or
+        <code>"closed"</code>. <code>SheetManager</code> toggles it from the handle
+        or any <code>data-ss-sheet-toggle</code> button, keeps
+        <code>aria-expanded</code> in sync, opens and closes with the arrow keys
+        on the handle, and closes on Escape. Size tokens:
+        <code>--ss-sheet-size</code>, <code>--ss-sheet-peek</code>.
+    </p>
+
+    {% set section_title = "Bottom sheet" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div style="{{ view_style }}">
+            <section class="ss-c-sheet" id="demo-sheet-bottom" data-state="closed" aria-label="Layers">
+                <button type="button" class="ss-c-sheet__handle" aria-controls="demo-sheet-bottom"
+                        aria-expanded="false">Layers</button>
+                <div class="ss-c-sheet__body">
+                    <p style="margin: 0">Buildings, roads and water.</p>
+                </div>
+            </section>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Open" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div style="{{ view_style }}">
+            <section class="ss-c-sheet" id="demo-sheet-open" data-state="open" aria-label="Selection"
+                     style="--ss-sheet-size: 60%">
+                <button type="button" class="ss-c-sheet__handle" aria-controls="demo-sheet-open"
+                        aria-expanded="true">Selection</button>
+                <div class="ss-c-sheet__body">
+                    <p style="margin: 0">Wall 0042 &middot; IfcWallStandardCase &middot; 3.20 m</p>
+                </div>
+            </section>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Dock edges" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p><code>--left</code> and <code>--right</code> dock to a side; the handle becomes a vertical strip.</p>
+        {% set code_snippet %}
+        <div style="{{ view_style }}">
+            <section class="ss-c-sheet ss-c-sheet--left" id="demo-sheet-left" data-state="open" aria-label="Scene">
+                <button type="button" class="ss-c-sheet__handle" aria-controls="demo-sheet-left"
+                        aria-expanded="true">Scene</button>
+                <div class="ss-c-sheet__body"><p style="margin: 0">Camera, lights, meshes.</p></div>
+            </section>
+            <section class="ss-c-sheet ss-c-sheet--right" id="demo-sheet-right" data-state="closed" aria-label="Properties">
+                <button type="button" class="ss-c-sheet__handle" aria-controls="demo-sheet-right"
+                        aria-expanded="false">Properties</button>
+                <div class="ss-c-sheet__body"><p style="margin: 0">Nothing selected.</p></div>
+            </section>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Sheet on small screens, dock on large" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            <code>--dock</code> is a bottom sheet below <code>md</code> and a plain,
+            always-open column from <code>md</code> up (the handle hides). Here it is
+            the right column of a flex row.
+        </p>
+        {% set code_snippet %}
+        <div style="{{ view_style }} display: flex">
+            <div style="flex: 1; padding: var(--ss-space-4)">Map</div>
+            <section class="ss-c-sheet ss-c-sheet--dock" id="demo-sheet-dock" data-state="closed"
+                     aria-label="Panels" style="flex: 0 0 240px; border-inline-start: 1px solid var(--ss-color-border)">
+                <button type="button" class="ss-c-sheet__handle" aria-controls="demo-sheet-dock"
+                        aria-expanded="false">Panels</button>
+                <div class="ss-c-sheet__body"><p style="margin: 0">Panel one, panel two.</p></div>
+            </section>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

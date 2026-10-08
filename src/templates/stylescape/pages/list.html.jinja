@@ -1,0 +1,40 @@
+{#-
+    stylescape/pages/list.html.jinja
+    ===========================================================================
+    For a ListView. Context: object_list, page_obj (when paginated),
+    columns (see macros/tables; defaults to ["__str__"]), and optionally
+    page_title, create_url, create_label, empty_text, request.
+
+        {% extends "stylescape/pages/list.html.jinja" %}
+        {% block title %}{{ _("Projects") }}{% endblock %}
+
+    For per-row links, override `table` and use the macro's call block:
+        {% block table %}{% call(row) render_table(columns, object_list) %}
+            <a href="{{ url('project-update', pk=row.pk) }}">{{ _("Edit") }}</a>
+        {% endcall %}{% endblock %}
+-#}
+{%- extends "stylescape/base.html.jinja" -%}
+{%- from "stylescape/macros/tables.html.jinja" import table as render_table -%}
+{%- from "stylescape/macros/navigation.html.jinja" import pagination -%}
+
+{%- block title %}{{ page_title | default(_("Overview"), true) }}{% endblock -%}
+
+{%- block page_actions %}
+{%- if create_url %}
+<a class="ss-c-button ss-c-button--primary" href="{{ create_url }}">{{ create_label | default(_("Add"), true) }}</a>
+{%- endif %}
+{%- endblock -%}
+
+{%- block content %}
+{%- block table %}
+{%- set _columns = columns | default([{"attr": "__str__", "label": _("Name"), "link": true}], true) %}
+{{ render_table(_columns, object_list, empty=empty_text) }}
+{%- endblock table %}
+{%- block pagination %}
+{%- if page_obj and page_obj.paginator.num_pages > 1 %}
+<div class="ss-l-region ss-l-region-sm">
+    {{ pagination(page_obj, params=request.GET if request is defined and request else none) }}
+</div>
+{%- endif %}
+{%- endblock pagination %}
+{%- endblock content -%}

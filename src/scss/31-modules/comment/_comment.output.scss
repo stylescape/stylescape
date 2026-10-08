@@ -1,0 +1,111 @@
+@use "sass:string";
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./comment.mixins" as comment;
+
+$_c: ".#{$ss-prefix-module}-comment";
+$_muted: comment.ss-comment-config(muted);
+
+@layer ss.components {
+    .#{$ss-prefix-module}-comments {
+        @include comment.ss-comments;
+    }
+
+    #{$_c} {
+        @include comment.ss-comment;
+    }
+
+    #{$_c}__avatar {
+        @include comment.ss-comment-avatar(comment.ss-comment-config(avatar-size));
+    }
+
+    #{$_c}__replies #{$_c}__avatar {
+        @include comment.ss-comment-avatar(comment.ss-comment-config(reply-avatar-size));
+    }
+
+    #{$_c}__body {
+        min-inline-size: 0;
+    }
+
+    #{$_c}__header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        column-gap: q(8);
+        margin: 0 0 q(4);
+    }
+
+    #{$_c}__author {
+        margin: 0;
+        font-size: var(--ss-font-size-md);
+        font-weight: var(--ss-font-weight-semibold);
+        color: var(--ss-color-text);
+
+        a {
+            color: inherit;
+        }
+    }
+
+    #{$_c}__meta {
+        color: $_muted;
+        font-size: var(--ss-font-size-sm);
+
+        a {
+            color: inherit;
+        }
+    }
+
+    #{$_c}__content {
+        overflow-wrap: anywhere;
+
+        > :first-child {
+            margin-block-start: 0;
+        }
+        > :last-child {
+            margin-block-end: 0;
+        }
+    }
+
+    #{$_c}__actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: q(12);
+        margin: q(4) 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    #{$_c}__action {
+        @include comment.ss-comment-action;
+    }
+
+    #{$_c}__replies {
+        @include comment.ss-comment-replies;
+    }
+
+    // Past the maximum depth, replies stop indenting further.
+    $_deep: "";
+    @for $i from 1 through comment.ss-comment-config(max-depth) {
+        $_deep: "#{$_deep} #{$_c}__replies";
+    }
+    #{string.unquote($_deep)} {
+        margin-inline-start: 0;
+        padding-inline-start: 0;
+        border-inline-start: 0;
+    }
+
+    #{$_c}--deleted #{$_c}__content {
+        color: $_muted;
+        font-style: italic;
+    }
+
+    // The comment a permalink points to.
+    #{$_c}--highlighted > #{$_c}__body,
+    #{$_c}:target > #{$_c}__body {
+        margin: q(-8);
+        padding: q(8);
+        background-color: comment.ss-comment-config(highlight-bg);
+        border-radius: var(--ss-radius-sm);
+    }
+}

@@ -1,46 +1,39 @@
-<aside class="ss-c-sidebar ss-c-sidebar--left" id="" role="navigation">
+<aside class="ss-c-sidebar ss-c-sidebar--left" aria-label="Site navigation">
     <nav
         id="sidebar_left_navigation"
         class="ss-c-ribbon--left ss-c-ribbon--inverted"
-        aria-label="Sidebar Left Navigation"
+        aria-label="Quick links"
     >
-        <!-- Add navigation links here -->
         <div class="ss-c-ribbon__slot--vertical_top ss-c-gap--02">
-          <div class="ss-c-tooltip ss-c-tooltip--right" tooltip-data="Portal Home">
-            <button class="ss-c-ribbon__button">
-              <a href="/en/portal/">
-                <i class="ss-c-i i_ui_home_plain"></i>
-              </a>
-            </button>
-          </div>
+            <div class="ss-c-tooltip ss-c-tooltip--right" tooltip-data="Home">
+                <a class="ss-c-ribbon__button" href="/" aria-label="Home">
+                    <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+                        <path d="M2 7.5 8 2l6 5.5V14H10v-4H6v4H2z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" fill="none" />
+                    </svg>
+                </a>
+            </div>
         </div>
     </nav>
 
     <nav
         id="sidebar_left_menu"
         class="ss-c-sidebar__menu"
-        aria-label="Sidebar Left Content Navigation"
+        aria-label="Demo pages"
     >
-
-        <section
-            id="sidebar_left_content"
-            class="ss-c-sidebar__content ss-c-rail"
-            role="region"
-        >
-            <h2 id="sidebar-left-label" class="ss-c-visually-hidden">
-                Left Sidebar Content
-            </h2>
+        <div id="sidebar_left_content" class="ss-c-sidebar__content ss-c-rail">
             {%- block rail_left_content %} {%- include
             "includes/layout/_sidebar_left_index.html.jinja" %} {%- endblock %}
-        </section>
+        </div>
     </nav>
 
-    <div class="ss-c-sidebar__control" role="group" aria-label="Sidebar Toggle">
+    <div class="ss-c-sidebar__control">
         <button
+            type="button"
             class="ss-c-flipper--left"
             id="sidebar_left_switch"
-            aria-pressed="false"
-            aria-label="Toggle Left Sidebar"
+            aria-expanded="false"
+            aria-controls="sidebar_left_menu"
+            aria-label="Show page navigation"
         >
             <span class="ss-c-flipper__icon"></span>
         </button>

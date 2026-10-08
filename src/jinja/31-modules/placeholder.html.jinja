@@ -1,9 +1,25 @@
 {% extends "../base.html.jinja" %} {% set title = "Placeholder" %} {%- block title
 %}{{ title }}{%- endblock %} {%- block content %}
+<style>
+    /* Demo only: these skeleton layouts use .ss-c-placeholder as a block
+       wrapper, so undo the inline "text bar" defaults of the base class. */
+    .ss-c-placeholder--text,
+    .ss-c-placeholder--card,
+    .ss-c-placeholder--profile,
+    .ss-c-placeholder--list,
+    .ss-c-placeholder--image,
+    .ss-c-placeholder--pulse,
+    .ss-c-placeholder--table {
+        display: block;
+        min-height: 0;
+        background-color: transparent;
+        opacity: 1;
+    }
+</style>
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             Placeholder and skeleton loading components for content loading
             states.
@@ -16,7 +32,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="ss-c-placeholder ss-c-placeholder--text" style="max-width: 500px">
             <div
@@ -26,13 +42,13 @@
                     width: 100%;
                     background: linear-gradient(
                         90deg,
-                        var(--color_fill_secondary) 25%,
-                        var(--color_line_secondary) 50%,
-                        var(--color_fill_secondary) 75%
+                        var(--ss-color-surface-muted) 25%,
+                        var(--ss-color-border) 50%,
+                        var(--ss-color-surface-muted) 75%
                     );
                     background-size: 200% 100%;
                     animation: shimmer 1.5s infinite;
-                    border-radius: 4px;
+                    border-radius: var(--ss-radius-md);
                     margin-bottom: 8px;
                 "
             ></div>
@@ -43,13 +59,13 @@
                     width: 90%;
                     background: linear-gradient(
                         90deg,
-                        var(--color_fill_secondary) 25%,
-                        var(--color_line_secondary) 50%,
-                        var(--color_fill_secondary) 75%
+                        var(--ss-color-surface-muted) 25%,
+                        var(--ss-color-border) 50%,
+                        var(--ss-color-surface-muted) 75%
                     );
                     background-size: 200% 100%;
                     animation: shimmer 1.5s infinite;
-                    border-radius: 4px;
+                    border-radius: var(--ss-radius-md);
                     margin-bottom: 8px;
                 "
             ></div>
@@ -60,13 +76,13 @@
                     width: 75%;
                     background: linear-gradient(
                         90deg,
-                        var(--color_fill_secondary) 25%,
-                        var(--color_line_secondary) 50%,
-                        var(--color_fill_secondary) 75%
+                        var(--ss-color-surface-muted) 25%,
+                        var(--ss-color-border) 50%,
+                        var(--ss-color-surface-muted) 75%
                     );
                     background-size: 200% 100%;
                     animation: shimmer 1.5s infinite;
-                    border-radius: 4px;
+                    border-radius: var(--ss-radius-md);
                 "
             ></div>
         </div>
@@ -90,16 +106,17 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-placeholder ss-c-placeholder--card"
             style="
                 max-width: 320px;
                 padding: 16px;
-                background: white;
-                border: 1px solid var(--color_line_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface);
+                color: var(--ss-color-text);
+                border: 1px solid var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
@@ -107,13 +124,13 @@
                     aspect-ratio: 16/9;
                     background: linear-gradient(
                         90deg,
-                        var(--color_fill_secondary) 25%,
-                        var(--color_line_secondary) 50%,
-                        var(--color_fill_secondary) 75%
+                        var(--ss-color-surface-muted) 25%,
+                        var(--ss-color-border) 50%,
+                        var(--ss-color-surface-muted) 75%
                     );
                     background-size: 200% 100%;
                     animation: shimmer 1.5s infinite;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     margin-bottom: 16px;
                 "
             ></div>
@@ -123,13 +140,13 @@
                     width: 70%;
                     background: linear-gradient(
                         90deg,
-                        var(--color_fill_secondary) 25%,
-                        var(--color_line_secondary) 50%,
-                        var(--color_fill_secondary) 75%
+                        var(--ss-color-surface-muted) 25%,
+                        var(--ss-color-border) 50%,
+                        var(--ss-color-surface-muted) 75%
                     );
                     background-size: 200% 100%;
                     animation: shimmer 1.5s infinite;
-                    border-radius: 4px;
+                    border-radius: var(--ss-radius-md);
                     margin-bottom: 12px;
                 "
             ></div>
@@ -139,13 +156,13 @@
                     width: 100%;
                     background: linear-gradient(
                         90deg,
-                        var(--color_fill_secondary) 25%,
-                        var(--color_line_secondary) 50%,
-                        var(--color_fill_secondary) 75%
+                        var(--ss-color-surface-muted) 25%,
+                        var(--ss-color-border) 50%,
+                        var(--ss-color-surface-muted) 75%
                     );
                     background-size: 200% 100%;
                     animation: shimmer 1.5s infinite;
-                    border-radius: 4px;
+                    border-radius: var(--ss-radius-md);
                     margin-bottom: 8px;
                 "
             ></div>
@@ -155,13 +172,13 @@
                     width: 85%;
                     background: linear-gradient(
                         90deg,
-                        var(--color_fill_secondary) 25%,
-                        var(--color_line_secondary) 50%,
-                        var(--color_fill_secondary) 75%
+                        var(--ss-color-surface-muted) 25%,
+                        var(--ss-color-border) 50%,
+                        var(--ss-color-surface-muted) 75%
                     );
                     background-size: 200% 100%;
                     animation: shimmer 1.5s infinite;
-                    border-radius: 4px;
+                    border-radius: var(--ss-radius-md);
                 "
             ></div>
         </div>
@@ -176,7 +193,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-placeholder ss-c-placeholder--profile"
@@ -194,9 +211,9 @@
                     flex-shrink: 0;
                     background: linear-gradient(
                         90deg,
-                        var(--color_fill_secondary) 25%,
-                        var(--color_line_secondary) 50%,
-                        var(--color_fill_secondary) 75%
+                        var(--ss-color-surface-muted) 25%,
+                        var(--ss-color-border) 50%,
+                        var(--ss-color-surface-muted) 75%
                     );
                     background-size: 200% 100%;
                     animation: shimmer 1.5s infinite;
@@ -210,13 +227,13 @@
                         width: 60%;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                         margin-bottom: 10px;
                     "
                 ></div>
@@ -226,13 +243,13 @@
                         width: 80%;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
             </div>
@@ -247,7 +264,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="ss-c-placeholder ss-c-placeholder--list" style="max-width: 500px">
             <div
@@ -256,7 +273,7 @@
                     align-items: center;
                     gap: 12px;
                     padding: 12px 0;
-                    border-bottom: 1px solid var(--color_line_secondary);
+                    border-bottom: 1px solid var(--ss-color-border);
                 "
             >
                 <div
@@ -266,13 +283,13 @@
                         flex-shrink: 0;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 8px;
+                        border-radius: var(--ss-radius-lg);
                     "
                 ></div>
                 <div style="flex: 1">
@@ -282,13 +299,13 @@
                             width: 70%;
                             background: linear-gradient(
                                 90deg,
-                                var(--color_fill_secondary) 25%,
-                                var(--color_line_secondary) 50%,
-                                var(--color_fill_secondary) 75%
+                                var(--ss-color-surface-muted) 25%,
+                                var(--ss-color-border) 50%,
+                                var(--ss-color-surface-muted) 75%
                             );
                             background-size: 200% 100%;
                             animation: shimmer 1.5s infinite;
-                            border-radius: 4px;
+                            border-radius: var(--ss-radius-md);
                             margin-bottom: 8px;
                         "
                     ></div>
@@ -298,13 +315,13 @@
                             width: 40%;
                             background: linear-gradient(
                                 90deg,
-                                var(--color_fill_secondary) 25%,
-                                var(--color_line_secondary) 50%,
-                                var(--color_fill_secondary) 75%
+                                var(--ss-color-surface-muted) 25%,
+                                var(--ss-color-border) 50%,
+                                var(--ss-color-surface-muted) 75%
                             );
                             background-size: 200% 100%;
                             animation: shimmer 1.5s infinite;
-                            border-radius: 4px;
+                            border-radius: var(--ss-radius-md);
                         "
                     ></div>
                 </div>
@@ -315,7 +332,7 @@
                     align-items: center;
                     gap: 12px;
                     padding: 12px 0;
-                    border-bottom: 1px solid var(--color_line_secondary);
+                    border-bottom: 1px solid var(--ss-color-border);
                 "
             >
                 <div
@@ -325,13 +342,13 @@
                         flex-shrink: 0;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 8px;
+                        border-radius: var(--ss-radius-lg);
                     "
                 ></div>
                 <div style="flex: 1">
@@ -341,13 +358,13 @@
                             width: 55%;
                             background: linear-gradient(
                                 90deg,
-                                var(--color_fill_secondary) 25%,
-                                var(--color_line_secondary) 50%,
-                                var(--color_fill_secondary) 75%
+                                var(--ss-color-surface-muted) 25%,
+                                var(--ss-color-border) 50%,
+                                var(--ss-color-surface-muted) 75%
                             );
                             background-size: 200% 100%;
                             animation: shimmer 1.5s infinite;
-                            border-radius: 4px;
+                            border-radius: var(--ss-radius-md);
                             margin-bottom: 8px;
                         "
                     ></div>
@@ -357,13 +374,13 @@
                             width: 35%;
                             background: linear-gradient(
                                 90deg,
-                                var(--color_fill_secondary) 25%,
-                                var(--color_line_secondary) 50%,
-                                var(--color_fill_secondary) 75%
+                                var(--ss-color-surface-muted) 25%,
+                                var(--ss-color-border) 50%,
+                                var(--ss-color-surface-muted) 75%
                             );
                             background-size: 200% 100%;
                             animation: shimmer 1.5s infinite;
-                            border-radius: 4px;
+                            border-radius: var(--ss-radius-md);
                         "
                     ></div>
                 </div>
@@ -383,13 +400,13 @@
                         flex-shrink: 0;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 8px;
+                        border-radius: var(--ss-radius-lg);
                     "
                 ></div>
                 <div style="flex: 1">
@@ -399,13 +416,13 @@
                             width: 65%;
                             background: linear-gradient(
                                 90deg,
-                                var(--color_fill_secondary) 25%,
-                                var(--color_line_secondary) 50%,
-                                var(--color_fill_secondary) 75%
+                                var(--ss-color-surface-muted) 25%,
+                                var(--ss-color-border) 50%,
+                                var(--ss-color-surface-muted) 75%
                             );
                             background-size: 200% 100%;
                             animation: shimmer 1.5s infinite;
-                            border-radius: 4px;
+                            border-radius: var(--ss-radius-md);
                             margin-bottom: 8px;
                         "
                     ></div>
@@ -415,13 +432,13 @@
                             width: 45%;
                             background: linear-gradient(
                                 90deg,
-                                var(--color_fill_secondary) 25%,
-                                var(--color_line_secondary) 50%,
-                                var(--color_fill_secondary) 75%
+                                var(--ss-color-surface-muted) 25%,
+                                var(--ss-color-border) 50%,
+                                var(--ss-color-surface-muted) 75%
                             );
                             background-size: 200% 100%;
                             animation: shimmer 1.5s infinite;
-                            border-radius: 4px;
+                            border-radius: var(--ss-radius-md);
                         "
                     ></div>
                 </div>
@@ -437,7 +454,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-placeholder ss-c-placeholder--image"
@@ -449,13 +466,13 @@
                     aspect-ratio: 1;
                     background: linear-gradient(
                         90deg,
-                        var(--color_fill_secondary) 25%,
-                        var(--color_line_secondary) 50%,
-                        var(--color_fill_secondary) 75%
+                        var(--ss-color-surface-muted) 25%,
+                        var(--ss-color-border) 50%,
+                        var(--ss-color-surface-muted) 75%
                     );
                     background-size: 200% 100%;
                     animation: shimmer 1.5s infinite;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -488,13 +505,13 @@
                     aspect-ratio: 16/9;
                     background: linear-gradient(
                         90deg,
-                        var(--color_fill_secondary) 25%,
-                        var(--color_line_secondary) 50%,
-                        var(--color_fill_secondary) 75%
+                        var(--ss-color-surface-muted) 25%,
+                        var(--ss-color-border) 50%,
+                        var(--ss-color-surface-muted) 75%
                     );
                     background-size: 200% 100%;
                     animation: shimmer 1.5s infinite;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -533,7 +550,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="ss-c-placeholder ss-c-placeholder--pulse" style="max-width: 400px">
             <div style="display: flex; gap: 16px; margin-bottom: 16px">
@@ -542,8 +559,8 @@
                         width: 80px;
                         height: 80px;
                         flex-shrink: 0;
-                        background: var(--color_fill_secondary);
-                        border-radius: 8px;
+                        background: var(--ss-color-surface-muted);
+                        border-radius: var(--ss-radius-lg);
                         animation: pulse 2s ease-in-out infinite;
                     "
                 ></div>
@@ -552,8 +569,8 @@
                         style="
                             height: 20px;
                             width: 80%;
-                            background: var(--color_fill_secondary);
-                            border-radius: 4px;
+                            background: var(--ss-color-surface-muted);
+                            border-radius: var(--ss-radius-md);
                             margin-bottom: 10px;
                             animation: pulse 2s ease-in-out infinite;
                         "
@@ -562,8 +579,8 @@
                         style="
                             height: 14px;
                             width: 60%;
-                            background: var(--color_fill_secondary);
-                            border-radius: 4px;
+                            background: var(--ss-color-surface-muted);
+                            border-radius: var(--ss-radius-md);
                             animation: pulse 2s ease-in-out infinite;
                         "
                     ></div>
@@ -573,8 +590,8 @@
                 style="
                     height: 14px;
                     width: 100%;
-                    background: var(--color_fill_secondary);
-                    border-radius: 4px;
+                    background: var(--ss-color-surface-muted);
+                    border-radius: var(--ss-radius-md);
                     margin-bottom: 8px;
                     animation: pulse 2s ease-in-out infinite;
                 "
@@ -583,8 +600,8 @@
                 style="
                     height: 14px;
                     width: 90%;
-                    background: var(--color_fill_secondary);
-                    border-radius: 4px;
+                    background: var(--ss-color-surface-muted);
+                    border-radius: var(--ss-radius-md);
                     animation: pulse 2s ease-in-out infinite;
                 "
             ></div>
@@ -610,14 +627,14 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-placeholder ss-c-placeholder--table"
             style="
                 max-width: 600px;
-                border: 1px solid var(--color_line_secondary);
-                border-radius: 8px;
+                border: 1px solid var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             "
         >
@@ -626,7 +643,7 @@
                     display: flex;
                     gap: 16px;
                     padding: 12px 16px;
-                    background: var(--color_fill_secondary);
+                    background: var(--ss-color-surface-muted);
                 "
             >
                 <div
@@ -635,13 +652,13 @@
                         height: 16px;
                         background: linear-gradient(
                             90deg,
-                            var(--color_line_secondary) 25%,
+                            var(--ss-color-border) 25%,
                             white 50%,
-                            var(--color_line_secondary) 75%
+                            var(--ss-color-border) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
                 <div
@@ -650,13 +667,13 @@
                         height: 16px;
                         background: linear-gradient(
                             90deg,
-                            var(--color_line_secondary) 25%,
+                            var(--ss-color-border) 25%,
                             white 50%,
-                            var(--color_line_secondary) 75%
+                            var(--ss-color-border) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
                 <div
@@ -665,13 +682,13 @@
                         height: 16px;
                         background: linear-gradient(
                             90deg,
-                            var(--color_line_secondary) 25%,
+                            var(--ss-color-border) 25%,
                             white 50%,
-                            var(--color_line_secondary) 75%
+                            var(--ss-color-border) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
             </div>
@@ -680,7 +697,7 @@
                     display: flex;
                     gap: 16px;
                     padding: 16px;
-                    border-bottom: 1px solid var(--color_line_secondary);
+                    border-bottom: 1px solid var(--ss-color-border);
                 "
             >
                 <div
@@ -689,13 +706,13 @@
                         height: 14px;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
                 <div
@@ -704,13 +721,13 @@
                         height: 14px;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
                 <div
@@ -719,13 +736,13 @@
                         height: 14px;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
             </div>
@@ -734,7 +751,7 @@
                     display: flex;
                     gap: 16px;
                     padding: 16px;
-                    border-bottom: 1px solid var(--color_line_secondary);
+                    border-bottom: 1px solid var(--ss-color-border);
                 "
             >
                 <div
@@ -743,13 +760,13 @@
                         height: 14px;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
                 <div
@@ -758,13 +775,13 @@
                         height: 14px;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
                 <div
@@ -773,13 +790,13 @@
                         height: 14px;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
             </div>
@@ -790,13 +807,13 @@
                         height: 14px;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
                 <div
@@ -805,13 +822,13 @@
                         height: 14px;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
                 <div
@@ -820,13 +837,13 @@
                         height: 14px;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_secondary) 25%,
-                            var(--color_line_secondary) 50%,
-                            var(--color_fill_secondary) 75%
+                            var(--ss-color-surface-muted) 25%,
+                            var(--ss-color-border) 50%,
+                            var(--ss-color-surface-muted) 75%
                         );
                         background-size: 200% 100%;
                         animation: shimmer 1.5s infinite;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                     "
                 ></div>
             </div>

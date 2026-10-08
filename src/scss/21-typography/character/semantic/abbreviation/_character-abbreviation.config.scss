@@ -24,11 +24,13 @@ $ss-character-abbreviation-config: (
 // Hover/focus tooltip that surfaces the `title` attribute (ported from the
 // old `abbreviation_tooltip` mixin in dev `_semantic_abbreviation.scss`).
 $ss-character-abbreviation-tooltip-config: (
-    background: var(--ss-color-code-bg, #1e1e1e),
-    color: var(--ss-color-surface, #ffffff),
-    radius: q(3),
-    shadow: q(1) q(1) q(5) rgba(0, 0, 0, 0.4),
-    font-size: q(14),
+    // Same inverse treatment as the tooltip module (31-modules/tooltip).
+    background: var(--ss-color-foreground),
+    color: var(--ss-color-background),
+    radius: var(--ss-radius-md),
+    shadow: var(--ss-a-shadow-md),
+    z-index: var(--ss-z-tooltip),
+    font-size: var(--ss-font-size-sm),
     padding: q(3) q(5),
     offset: q(32),
 ) !default;

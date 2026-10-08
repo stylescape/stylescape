@@ -1,9 +1,19 @@
-{% extends "../base.html.jinja" %} {% set title = "Grids" %} {%- block title %}{{
-title }}{%- endblock %} {%- block content %}
+{% extends "../base.html.jinja" %} {% set page_title = "Grids" %} {%- block title %}{{
+page_title }}{%- endblock %} {%- block head %}
+<style>
+    /* Theme-aware cells for the grid placeholder demo (shared legacy rule
+       hard-codes a light fill without a text colour). */
+    .ss-c-demo-grid-placeholder > * {
+        background-color: var(--ss-color-surface-alt);
+        border-color: var(--ss-color-border);
+        color: var(--ss-color-text);
+    }
+</style>
+{%- endblock %} {%- block content %}
 
-<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+<section class="ss-c-demo__section" data-label="{{ page_title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ page_title }}</h1>
     </header>
 
     {% set section_title = "Grid Layouts" %}
@@ -12,9 +22,11 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
-        {% set cols = 2 %} {% set rows = 2 %} {% set alphabet =
+        {# The shared grid preview includes emit <h4>; captured and re-levelled to
+        <h3> so they sit directly under this page's <h2> sections. #}
+        {% set grid_previews %} {% set cols = 2 %} {% set rows = 2 %} {% set alphabet =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ" | list %} {%- include
         "includes/preview/ss-c-preview_grid_layout.html.jinja" %} {% set cols =
         3 %} {% set rows = 4 %} {% set alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -34,7 +46,8 @@ title }}{%- endblock %} {%- block content %}
         "includes/preview/ss-c-preview_grid_layout.html.jinja" %} {% set cols =
         24 %} {% set rows = 8 %} {% set alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         | list %} {%- include
-        "includes/preview/ss-c-preview_grid_layout.html.jinja" %}
+        "includes/preview/ss-c-preview_grid_layout.html.jinja" %} {% endset %}
+        {{ grid_previews | replace("<h4>", "<h3>") | replace("</h4>", "</h3>") | safe }}
     </section>
 
     {% set section_title = "Grid Flex" %}
@@ -43,11 +56,8 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
-        <header class="ss-c-demo__section__header">
-            <h4>Grid Flex</h4>
-        </header>
         <div class="ss-u-grid ss-u-grid-cols-12 ss-u-gap-4 ss-c-demo-grid-placeholder">
             <div>A1</div>
             <div>B1</div>
@@ -155,11 +165,12 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
-        {% set cols = 24 %} {% set rows = 8 %} {% set alphabet =
+        {% set grid_previews %} {% set cols = 24 %} {% set rows = 8 %} {% set alphabet =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ" | list %} {%- include
-        "includes/preview/ss-c-preview_grid_clean.html.jinja" %}
+        "includes/preview/ss-c-preview_grid_clean.html.jinja" %} {% endset %}
+        {{ grid_previews | replace("<h4>", "<h3>") | replace("</h4>", "</h3>") | safe }}
     </section>
 </section>
 {%- endblock content %}

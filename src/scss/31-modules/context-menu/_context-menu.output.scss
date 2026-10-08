@@ -1,0 +1,48 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./context-menu.mixins" as cm;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-context-menu {
+        @include cm.ss-context-menu;
+    }
+
+    // Rendered in the page flow (documentation, static previews).
+    .#{$ss-prefix-module}-context-menu--static {
+        position: static;
+        display: inline-flex;
+    }
+
+    .#{$ss-prefix-module}-context-menu__item {
+        @include cm.ss-context-menu-item;
+    }
+
+    .#{$ss-prefix-module}-context-menu__item--danger:not([aria-disabled="true"], :disabled, :focus) {
+        color: var(--ss-color-error);
+    }
+
+    .#{$ss-prefix-module}-context-menu__icon {
+        @include cm.ss-context-menu-icon;
+    }
+
+    .#{$ss-prefix-module}-context-menu__label {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .#{$ss-prefix-module}-context-menu__shortcut {
+        @include cm.ss-context-menu-shortcut;
+    }
+
+    .#{$ss-prefix-module}-context-menu__item:focus :is(.#{$ss-prefix-module}-context-menu__icon, .#{$ss-prefix-module}-context-menu__shortcut) {
+        color: inherit;
+    }
+
+    .#{$ss-prefix-module}-context-menu__separator {
+        @include cm.ss-context-menu-separator;
+    }
+
+    .#{$ss-prefix-module}-context-menu__heading {
+        @include cm.ss-context-menu-heading;
+    }
+}

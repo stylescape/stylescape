@@ -1,0 +1,91 @@
+{% extends "../base.html.jinja" %} {% set title = "Overlay Panel" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+{# Shared stand-in for a map / canvas: a positioned, patterned box. #}
+{% set view_style = "position: relative; height: 300px; background: repeating-linear-gradient(45deg, var(--ss-color-surface-2) 0 12px, var(--ss-color-surface-3) 12px 24px);" %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>Examples for the <code>ss-c-overlay-panel</code> module.</p>
+    <p>
+        A translucent panel anchored to a corner or edge of a canvas, map or 3D
+        view. The parent needs a positioning context (an
+        <code>ss-l-app__main</code>, <code>ss-l-viewport-grid__cell</code> or any
+        <code>position: relative</code> box). The surface mixes
+        <code>--ss-color-surface</code> with transparency (opaque where
+        <code>color-mix()</code> is unsupported or the user prefers reduced
+        transparency). Tokens: <code>--ss-overlay-panel-inset</code>,
+        <code>--ss-overlay-panel-z</code>, <code>--ss-overlay-panel-bg</code>.
+    </p>
+
+    {% set section_title = "Anchors" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div style="{{ view_style }}">
+            <div class="ss-c-overlay-panel">Top left (default)</div>
+            <div class="ss-c-overlay-panel ss-c-overlay-panel--top-center">Top center</div>
+            <div class="ss-c-overlay-panel ss-c-overlay-panel--top-right">Top right</div>
+            <div class="ss-c-overlay-panel ss-c-overlay-panel--bottom-left">Bottom left</div>
+            <div class="ss-c-overlay-panel ss-c-overlay-panel--bottom-center">Lon 5.2913 &middot; Lat 52.1326</div>
+            <div class="ss-c-overlay-panel ss-c-overlay-panel--bottom-right">Bottom right</div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Legend and info panel" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div style="{{ view_style }}">
+            <section class="ss-c-overlay-panel" aria-labelledby="demo-op-legend">
+                <h3 class="ss-c-overlay-panel__title" id="demo-op-legend">Layers</h3>
+                <p style="margin: 0">Districts (GeoJSON)</p>
+            </section>
+            <section class="ss-c-overlay-panel ss-c-overlay-panel--bottom-right ss-c-overlay-panel--solid"
+                     aria-labelledby="demo-op-about">
+                <h3 class="ss-c-overlay-panel__title" id="demo-op-about">About this demo</h3>
+                <p style="margin: 0">Click a district to see its data.</p>
+            </section>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Control group" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            <code>--controls</code> stacks square <code>__control</code> buttons for
+            map and 3D controls. Give each button an accessible name; icons are
+            inline SVG (stroke <code>currentColor</code>). A pressed toggle uses
+            <code>aria-pressed="true"</code>. Several panels in one corner go in an
+            <code>ss-c-overlay-panel-stack</code>.
+        </p>
+        {% set code_snippet %}
+        <div style="{{ view_style }}">
+            <div class="ss-c-overlay-panel-stack">
+                <div class="ss-c-overlay-panel ss-c-overlay-panel--controls" role="group" aria-label="Zoom">
+                    <button type="button" class="ss-c-overlay-panel__control" aria-label="Zoom in">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                    </button>
+                    <button type="button" class="ss-c-overlay-panel__control" aria-label="Zoom out">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+                    </button>
+                </div>
+                <div class="ss-c-overlay-panel ss-c-overlay-panel--controls" role="group" aria-label="View">
+                    <button type="button" class="ss-c-overlay-panel__control" aria-label="Reset view">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.7M4 4v4h4"/></svg>
+                    </button>
+                    <button type="button" class="ss-c-overlay-panel__control" aria-label="3D buildings" aria-pressed="true">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+                    </button>
+                    <button type="button" class="ss-c-overlay-panel__control" aria-label="Fullscreen">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

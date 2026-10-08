@@ -3,7 +3,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             Table of contents and navigation components for document structure.
         </p>
@@ -15,10 +15,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <nav class="ss-c-toc" aria-label="Table of Contents">
-            <h4
+        <nav class="ss-c-toc" aria-label="Contents">
+            <h3
                 class="ss-c-toc__title"
                 style="
                     margin: 0 0 12px;
@@ -29,7 +29,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 "
             >
                 Contents
-            </h4>
+            </h3>
             <ul
                 class="ss-c-toc__list"
                 style="list-style: none; margin: 0; padding: 0"
@@ -38,13 +38,16 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     <a
                         href="#section-1"
                         class="ss-c-toc__link active"
+                        aria-current="location"
                         style="
                             display: block;
                             padding: 8px 12px;
                             text-decoration: none;
-                            border-left: 2px solid var(--color_fill_primary);
-                            background: var(--color_fill_secondary);
-                            border-radius: 0 4px 4px 0;
+                            color: var(--ss-color-text);
+                            font-weight: 600;
+                            border-left: 2px solid var(--ss-color-accent);
+                            background: var(--ss-color-surface-alt);
+                            border-radius: 0 var(--ss-radius-md) var(--ss-radius-md) 0;
                         "
                     >
                         Introduction
@@ -118,12 +121,12 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <nav class="ss-c-toc ss-c-toc--nested" aria-label="Table of Contents">
-            <h4 style="margin: 0 0 16px; font-size: 16px; font-weight: 600">
+        <nav class="ss-c-toc ss-c-toc--nested" aria-label="On this page">
+            <h3 style="margin: 0 0 16px; font-size: 16px; font-weight: 600">
                 On This Page
-            </h4>
+            </h3>
             <ul
                 style="
                     list-style: none;
@@ -269,11 +272,11 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <nav
             class="ss-c-toc ss-c-toc--numbered"
-            aria-label="Table of Contents"
+            aria-label="Numbered contents"
             style="max-width: 300px"
         >
             <ol
@@ -294,13 +297,13 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             padding: 10px 0;
                             text-decoration: none;
                             border-bottom: 1px solid
-                                var(--color_line_secondary);
+                                var(--ss-color-border);
                         "
                     >
                         <span
                             style="
                                 font-weight: 600;
-                                color: var(--color_fill_primary);
+                                color: var(--ss-color-accent);
                             "
                         >
                             01
@@ -318,13 +321,13 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             padding: 10px 0;
                             text-decoration: none;
                             border-bottom: 1px solid
-                                var(--color_line_secondary);
+                                var(--ss-color-border);
                         "
                     >
                         <span
                             style="
                                 font-weight: 600;
-                                color: var(--color_fill_primary);
+                                color: var(--ss-color-accent);
                             "
                         >
                             02
@@ -342,13 +345,13 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             padding: 10px 0;
                             text-decoration: none;
                             border-bottom: 1px solid
-                                var(--color_line_secondary);
+                                var(--ss-color-border);
                         "
                     >
                         <span
                             style="
                                 font-weight: 600;
-                                color: var(--color_fill_primary);
+                                color: var(--ss-color-accent);
                             "
                         >
                             03
@@ -366,13 +369,13 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             padding: 10px 0;
                             text-decoration: none;
                             border-bottom: 1px solid
-                                var(--color_line_secondary);
+                                var(--ss-color-border);
                         "
                     >
                         <span
                             style="
                                 font-weight: 600;
-                                color: var(--color_fill_primary);
+                                color: var(--ss-color-accent);
                             "
                         >
                             04
@@ -394,7 +397,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                         <span
                             style="
                                 font-weight: 600;
-                                color: var(--color_fill_primary);
+                                color: var(--ss-color-accent);
                             "
                         >
                             05
@@ -414,15 +417,15 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-toc-card"
             style="
                 max-width: 400px;
                 padding: 20px;
-                background: var(--color_fill_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface-alt);
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
@@ -432,14 +435,14 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     gap: 12px;
                     margin-bottom: 16px;
                     padding-bottom: 16px;
-                    border-bottom: 1px solid var(--color_line_secondary);
+                    border-bottom: 1px solid var(--ss-color-border);
                 "
             >
-                <span style="font-size: 24px">▤</span>
+                <span aria-hidden="true" style="font-size: 24px">▤</span>
                 <div>
-                    <h4 style="margin: 0; font-size: 16px">
+                    <h3 style="margin: 0; font-size: 16px">
                         Table of Contents
-                    </h4>
+                    </h3>
                     <p style="margin: 0; font-size: 13px; opacity: 0.7">
                         5 sections in this guide
                     </p>
@@ -454,7 +457,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             align-items: center;
                             gap: 8px;
                             padding: 8px;
-                            border-radius: 6px;
+                            border-radius: var(--ss-radius-md);
                             text-decoration: none;
                             transition: background 0.2s;
                         "
@@ -470,7 +473,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             align-items: center;
                             gap: 8px;
                             padding: 8px;
-                            border-radius: 6px;
+                            border-radius: var(--ss-radius-md);
                             text-decoration: none;
                             transition: background 0.2s;
                         "
@@ -486,7 +489,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             align-items: center;
                             gap: 8px;
                             padding: 8px;
-                            border-radius: 6px;
+                            border-radius: var(--ss-radius-md);
                             text-decoration: none;
                             transition: background 0.2s;
                         "
@@ -502,7 +505,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             align-items: center;
                             gap: 8px;
                             padding: 8px;
-                            border-radius: 6px;
+                            border-radius: var(--ss-radius-md);
                             text-decoration: none;
                             transition: background 0.2s;
                         "
@@ -518,7 +521,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             align-items: center;
                             gap: 8px;
                             padding: 8px;
-                            border-radius: 6px;
+                            border-radius: var(--ss-radius-md);
                             text-decoration: none;
                             transition: background 0.2s;
                         "
@@ -538,30 +541,32 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <aside
             class="ss-c-toc-floating"
+            aria-label="Quick links"
             style="
+                position: static;
                 width: 220px;
                 padding: 16px;
-                background: white;
-                border: 1px solid var(--color_line_secondary);
-                border-radius: 8px;
+                background: var(--ss-color-surface);
+                border: 1px solid var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             "
         >
-            <h5
+            <h3
                 style="
                     margin: 0 0 12px;
                     font-size: 12px;
                     text-transform: uppercase;
                     letter-spacing: 1px;
-                    opacity: 0.6;
+                    color: var(--ss-color-text-muted);
                 "
             >
                 Quick Links
-            </h5>
+            </h3>
             <ul
                 style="
                     list-style: none;
@@ -579,9 +584,9 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             padding: 6px 10px;
                             margin: 2px 0;
                             text-decoration: none;
-                            background: var(--color_fill_primary);
-                            color: white;
-                            border-radius: 4px;
+                            background: var(--ss-color-accent);
+                            color: var(--ss-color-on-accent);
+                            border-radius: var(--ss-radius-md);
                         "
                     >
                         Overview
@@ -595,7 +600,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             padding: 6px 10px;
                             margin: 2px 0;
                             text-decoration: none;
-                            border-radius: 4px;
+                            border-radius: var(--ss-radius-md);
                         "
                     >
                         Features
@@ -609,7 +614,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             padding: 6px 10px;
                             margin: 2px 0;
                             text-decoration: none;
-                            border-radius: 4px;
+                            border-radius: var(--ss-radius-md);
                         "
                     >
                         Installation
@@ -623,7 +628,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             padding: 6px 10px;
                             margin: 2px 0;
                             text-decoration: none;
-                            border-radius: 4px;
+                            border-radius: var(--ss-radius-md);
                         "
                     >
                         Examples
@@ -637,7 +642,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             padding: 6px 10px;
                             margin: 2px 0;
                             text-decoration: none;
-                            border-radius: 4px;
+                            border-radius: var(--ss-radius-md);
                         "
                     >
                         API Docs
@@ -648,7 +653,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 style="
                     margin-top: 12px;
                     padding-top: 12px;
-                    border-top: 1px solid var(--color_line_secondary);
+                    border-top: 1px solid var(--ss-color-border);
                 "
             >
                 <a
@@ -676,15 +681,15 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-toc-inline"
             style="
                 padding: 16px;
-                background: var(--color_fill_secondary);
-                border-radius: 8px;
-                border-left: 4px solid var(--color_fill_primary);
+                background: var(--ss-color-surface-alt);
+                border-radius: var(--ss-radius-lg);
+                border-left: 4px solid var(--ss-color-accent);
             "
         >
             <strong
@@ -709,8 +714,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     style="
                         text-decoration: none;
                         padding: 4px 10px;
-                        background: white;
-                        border-radius: 4px;
+                        background: var(--ss-color-surface);
+                        border-radius: var(--ss-radius-md);
                         font-size: 13px;
                     "
                 >
@@ -721,8 +726,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     style="
                         text-decoration: none;
                         padding: 4px 10px;
-                        background: white;
-                        border-radius: 4px;
+                        background: var(--ss-color-surface);
+                        border-radius: var(--ss-radius-md);
                         font-size: 13px;
                     "
                 >
@@ -733,8 +738,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     style="
                         text-decoration: none;
                         padding: 4px 10px;
-                        background: white;
-                        border-radius: 4px;
+                        background: var(--ss-color-surface);
+                        border-radius: var(--ss-radius-md);
                         font-size: 13px;
                     "
                 >
@@ -745,8 +750,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     style="
                         text-decoration: none;
                         padding: 4px 10px;
-                        background: white;
-                        border-radius: 4px;
+                        background: var(--ss-color-surface);
+                        border-radius: var(--ss-radius-md);
                         font-size: 13px;
                     "
                 >
@@ -757,8 +762,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     style="
                         text-decoration: none;
                         padding: 4px 10px;
-                        background: white;
-                        border-radius: 4px;
+                        background: var(--ss-color-surface);
+                        border-radius: var(--ss-radius-md);
                         font-size: 13px;
                     "
                 >

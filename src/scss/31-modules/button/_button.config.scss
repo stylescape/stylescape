@@ -12,120 +12,134 @@
 $ss-button-config: (
     // Base box
     gap: q(8),
-    padding: q(8) q(16),
+    padding: q(6) q(16),
+    // Same height as `.ss-c-input` (md) so buttons and fields line up.
+    height: q(40),
     border-width: q(1),
-    radius: var(--ss-radius-sm, q(4)),
+    // Square, like the form fields (old StyleScape forms).
+    radius: var(--ss-radius-none, 0),
     font-weight: 500,
     line-height: 1.5,
     transition: (
-        background 0.2s ease,
-        border 0.2s ease,
-        opacity 0.2s ease,
+        background var(--ss-duration-200) var(--ss-ease-in-out),
+        border var(--ss-duration-200) var(--ss-ease-in-out),
+        opacity var(--ss-duration-200) var(--ss-ease-in-out),
     ),
 
     // Base colors
-    bg: var(--ss-color-text-primary, #1a1a1a),
-    fg: var(--ss-color-surface, #ffffff),
+    bg: var(--ss-color-text-primary),
+    fg: var(--ss-color-surface),
 
     // Interaction states
     hover-opacity: 0.9,
     active-opacity: 0.8,
     disabled-opacity: 0.5,
-    focus-ring-width: q(2),
-    focus-ring-color: var(--ss-color-primary, #0066cc),
-    focus-ring-offset: q(2),
-    hover-wash: rgba(0, 0, 0, 0.05),
+    focus-ring-width: var(--ss-focus-ring-width),
+    focus-ring-color: var(--ss-focus-ring-color, currentColor),
+    focus-ring-offset: var(--ss-focus-ring-offset, q(2)),
+    hover-wash: var(--ss-color-surface-hover),
 
     // Variants — bg / fg / border (null border = leave unset)
     variants: (
         primary: (
-            bg: var(--ss-color-accent, #2563eb),
-            fg: var(--ss-color-accent-foreground, #ffffff),
-            border: var(--ss-color-accent, #2563eb),
+            bg: var(--ss-color-accent),
+            fg: var(--ss-color-accent-foreground),
+            border: var(--ss-color-accent),
         ),
         secondary: (
-            bg: var(--ss-color-secondary, #555555),
-            fg: #ffffff,
+            bg: var(--ss-color-secondary),
+            fg: var(--ss-color-white),
             border: null,
         ),
         solid: (
-            bg: var(--ss-color-text-primary, #1a1a1a),
-            fg: var(--ss-color-surface, #ffffff),
+            bg: var(--ss-color-text-primary),
+            fg: var(--ss-color-surface),
             border: null,
         ),
         accent: (
-            bg: var(--ss-color-accent, #2563eb),
-            fg: var(--ss-color-accent-foreground, #ffffff),
+            bg: var(--ss-color-accent),
+            fg: var(--ss-color-accent-foreground),
             border: null,
         ),
         success: (
-            bg: var(--ss-color-success, #16a34a),
-            fg: #ffffff,
-            border: var(--ss-color-success, #16a34a),
+            bg: var(--ss-color-success),
+            fg: var(--ss-color-on-success),
+            border: var(--ss-color-success),
         ),
         warning: (
-            bg: var(--ss-color-warning, #f59e0b),
-            fg: #ffffff,
-            border: var(--ss-color-warning, #f59e0b),
+            bg: var(--ss-color-warning),
+            fg: var(--ss-color-on-warning),
+            border: var(--ss-color-warning),
         ),
         danger: (
-            bg: var(--ss-color-error, #dc2626),
-            fg: #ffffff,
-            border: var(--ss-color-error, #dc2626),
+            bg: var(--ss-color-error),
+            fg: var(--ss-color-on-error),
+            border: var(--ss-color-error),
         ),
         info: (
-            bg: var(--ss-color-info, #0ea5e9),
-            fg: #ffffff,
-            border: var(--ss-color-info, #0ea5e9),
+            bg: var(--ss-color-info),
+            fg: var(--ss-color-on-info),
+            border: var(--ss-color-info),
         ),
     ),
 
     // Outline / ghost share fg + hover wash
-    outline-color: var(--ss-color-text-primary, #1a1a1a),
+    outline-color: var(--ss-color-text-primary),
 
     // Link variant
-    link-color: var(--ss-color-link, #2563eb),
+    link-color: var(--ss-color-link),
 
     // Sizes — padding / font-size
     sizes: (
+        // Heights follow the `.ss-c-input` scale (sm 32 / md 40 / lg 48).
         xs: (
-            padding: q(4) q(8),
-            font-size: q(12),
+            padding: q(2) q(8),
+            font-size: var(--ss-font-size-xs),
+            height: q(24),
         ),
         sm: (
-            padding: q(6) q(12),
-            font-size: q(14),
+            padding: q(4) q(12),
+            font-size: var(--ss-font-size-sm),
+            height: q(32),
         ),
         md: (
-            padding: q(8) q(16),
-            font-size: q(16),
+            padding: q(6) q(16),
+            font-size: var(--ss-font-size-md),
+            height: q(40),
         ),
         lg: (
-            padding: q(12) q(24),
-            font-size: q(18),
+            padding: q(8) q(24),
+            font-size: var(--ss-font-size-lg),
+            height: q(48),
         ),
         xl: (
-            padding: q(16) q(32),
-            font-size: q(20),
+            padding: q(10) q(32),
+            font-size: var(--ss-font-size-xl),
+            height: q(56),
         ),
     ),
 
     // Shapes
     rounded-radius: var(--ss-radius-lg, q(8)),
-    pill-radius: q(9999),
+    pill-radius: var(--ss-radius-full),
 
     // Icon-only button
     icon-padding: q(8),
     icon-width: q(40),
+    // Glyph icons read small at text size; bump them inside icon-only buttons.
+    icon-font-size: 1.25em,
+
+    // Vertical rhythm between stacked block buttons
+    block-stack-gap: q(8),
 
     // Menu (hamburger-style) button
     menu-padding: q(8),
-    menu-font-size: q(20),
+    menu-font-size: var(--ss-font-size-xl),
     menu-hover-opacity: 0.75,
 
     // Loading spinner
     loading-size: q(16),
     loading-border-width: q(2),
-    loading-color: #ffffff,
-    loading-speed: 0.8s,
+    loading-color: var(--ss-color-on-accent),
+    loading-speed: var(--ss-duration-loop-fast),
 ) !default;

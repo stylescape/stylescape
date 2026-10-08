@@ -61,7 +61,7 @@ describe("Preloader", () => {
         it("should show preloader", () => {
             preloader.show();
             expect(
-                preloaderElement.classList.contains("preloader--hidden"),
+                preloaderElement.classList.contains("ss-c-preloader--hidden"),
             ).toBe(false);
         });
 
@@ -131,18 +131,59 @@ describe("Preloader", () => {
     });
 
     describe("CSS Classes", () => {
-        it("should add hidden class when hidden", async () => {
+        it("adds the module's ss-c-preloader--hidden class by default", async () => {
+            preloader = new Preloader(preloaderElement);
+
+            preloader.hide();
+            await wait(50);
+
+            expect(
+                preloaderElement.classList.contains("ss-c-preloader--hidden"),
+            ).toBe(true);
+            expect(
+                preloaderElement.classList.contains("preloader--hidden"),
+            ).toBe(false);
+        });
+
+        it("accepts a custom hidden class via options", async () => {
             preloader = new Preloader(preloaderElement, {
-                hiddenClass: "custom-hidden",
+                hiddenClass: "preloader--hidden",
             });
 
             preloader.hide();
-            await wait(100);
+            await wait(50);
 
             expect(
-                preloaderElement.classList.contains("custom-hidden") ||
-                    preloaderElement.classList.contains("preloader--hidden"),
+                preloaderElement.classList.contains("preloader--hidden"),
             ).toBe(true);
+            expect(
+                preloaderElement.classList.contains("ss-c-preloader--hidden"),
+            ).toBe(false);
+        });
+
+        it("reads the hidden class from data-ss-preloader-hidden-class", async () => {
+            preloaderElement.dataset.ssPreloaderHiddenClass =
+                "ss-c-preloader_hidden";
+            preloader = new Preloader(preloaderElement);
+
+            preloader.hide();
+            await wait(50);
+
+            expect(
+                preloaderElement.classList.contains("ss-c-preloader_hidden"),
+            ).toBe(true);
+        });
+
+        it("removes the hidden class again on show()", async () => {
+            preloader = new Preloader(preloaderElement);
+
+            preloader.hide();
+            await wait(50);
+            preloader.show();
+
+            expect(
+                preloaderElement.classList.contains("ss-c-preloader--hidden"),
+            ).toBe(false);
         });
     });
 

@@ -47,17 +47,40 @@
     height: map.get(map.get(config.$ss-dropcap-config, block), height);
 
     width: map.get(map.get(config.$ss-dropcap-config, block), width);
+    text-align: center;
+    background: map.get(map.get(config.$ss-dropcap-config, block), bg);
+    color: map.get(map.get(config.$ss-dropcap-config, block), fg);
+}
+
+/// Writes one entry of `$ss-dropcap-variants` (boxed, circle, outlined,
+/// gradient, serif) onto the current `::first-letter`.
+/// @param {String} $name - Variant name.
+@mixin ss-dropcap-variant($name) {
+    $settings: map.get(config.$ss-dropcap-variants, $name);
+
+    @if not $settings {
+        @error "Unknown dropcap variant `#{$name}`.";
+    }
+
+    @each $prop, $value in $settings {
+        #{$prop}: $value;
+    }
 }
 
 // Application Mixins
 
 @mixin ss-dropcap {
+    // Contain the floated letter so short paragraphs keep their height.
+    display: flow-root;
+
     &:first-child::first-letter {
         @include ss-dropcap-standard;
     }
 }
 
 @mixin ss-dropcap-blocked {
+    display: flow-root;
+
     &:first-child::first-letter {
         @include ss-dropcap-block;
     }
@@ -170,3 +193,12 @@
 //         @include character-dropcap-base;
 //     }
 // }
+
+/// Emits `<$block>--<name>` for every entry of `$ss-dropcap-variants`.
+@mixin ss-dropcap-variant-classes($block) {
+    @each $name, $_ in config.$ss-dropcap-variants {
+        #{$block}--#{$name}:first-child::first-letter {
+            @include ss-dropcap-variant($name);
+        }
+    }
+}

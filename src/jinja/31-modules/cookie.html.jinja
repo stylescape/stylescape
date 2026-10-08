@@ -3,7 +3,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             Cookie consent banners for GDPR compliance and user privacy
             preferences.
@@ -16,14 +16,16 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-cookie-banner"
             style="
+                position: relative;
+                z-index: auto;
                 padding: 16px 24px;
-                background: var(--color_fill_secondary);
-                border-radius: 8px;
+                background: var(--ss-color-surface-muted);
+                border-radius: var(--ss-radius-lg);
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -31,11 +33,11 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 gap: 16px;
             "
         >
-            <p style="margin: 0; flex: 1; min-width: 200px">
+            <p style="margin: 0; flex: 1; min-width: min(200px, 100%)">
                 We use cookies to enhance your browsing experience. By
                 continuing to use this site, you agree to our use of cookies.
             </p>
-            <div style="display: flex; gap: 8px">
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
                 <button class="ss-c-button ss-c-button--secondary">Decline</button>
                 <button class="ss-c-button ss-c-button--primary">Accept All</button>
             </div>
@@ -51,19 +53,22 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-cookie-banner"
             style="
+                position: relative;
+                z-index: auto;
+                display: block;
                 padding: 20px 24px;
-                background: var(--color_fill_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface-muted);
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div style="margin-bottom: 16px">
-                <h4 style="margin: 0 0 8px">◉ Cookie Settings</h4>
-                <p style="margin: 0; opacity: 0.8">
+                <h3 style="margin: 0 0 8px">◉ Cookie Settings</h3>
+                <p style="margin: 0; color: var(--ss-color-text-muted);">
                     We use cookies to improve your experience. Customize your
                     preferences below.
                 </p>
@@ -79,7 +84,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 <label style="display: flex; align-items: center; gap: 8px">
                     <input type="checkbox" checked disabled />
                     <span>Essential Cookies</span>
-                    <small style="opacity: 0.6">(Required)</small>
+                    <small style="color: var(--ss-color-text-muted);">(Required)</small>
                 </label>
                 <label style="display: flex; align-items: center; gap: 8px">
                     <input type="checkbox" checked />
@@ -90,7 +95,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                     <span>Marketing Cookies</span>
                 </label>
             </div>
-            <div style="display: flex; gap: 8px">
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
                 <button class="ss-c-button ss-c-button--primary">
                     Save Preferences
                 </button>
@@ -108,24 +113,28 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-cookie-banner ss-c-cookie-banner--compact"
             style="
+                position: relative;
+                z-index: auto;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 8px;
                 padding: 12px 24px;
-                background: var(--color_fill_secondary);
-                border-radius: 8px;
+                background: var(--ss-color-surface-muted);
+                border-radius: var(--ss-radius-lg);
             "
         >
             <span>
                 ◉ This site uses cookies.
                 <a href="#">Learn more</a>
             </span>
-            <div style="display: flex; gap: 8px">
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
                 <button class="ss-c-button ss-c-button--small ss-c-button--secondary">
                     Decline
                 </button>
@@ -144,21 +153,24 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-cookie-modal"
             style="
+                position: relative;
+                z-index: auto;
+                display: block;
                 max-width: 500px;
                 padding: 24px;
-                background: var(--color_fill_primary);
-                border: 1px solid var(--color_line_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface);
+                border: 1px solid var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
                 box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
             "
         >
             <h3 style="margin: 0 0 16px">Privacy Preferences</h3>
-            <p style="margin-bottom: 20px; opacity: 0.8">
+            <p style="margin-bottom: 20px; color: var(--ss-color-text-muted);">
                 We may store or retrieve information on your browser, mostly in
                 the form of cookies.
             </p>
@@ -174,8 +186,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 <div
                     style="
                         padding: 12px;
-                        background: var(--color_fill_secondary);
-                        border-radius: 8px;
+                        background: var(--ss-color-surface-muted);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
                     <div
@@ -188,7 +200,7 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                         <strong>Strictly Necessary</strong>
                         <span class="ss-c-badge ss-c-badge--success">Always Active</span>
                     </div>
-                    <small style="opacity: 0.7">
+                    <small style="color: var(--ss-color-text-muted);">
                         Required for the website to function properly.
                     </small>
                 </div>
@@ -196,8 +208,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 <div
                     style="
                         padding: 12px;
-                        background: var(--color_fill_secondary);
-                        border-radius: 8px;
+                        background: var(--ss-color-surface-muted);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
                     <div
@@ -208,10 +220,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             margin-bottom: 4px;
                         "
                     >
-                        <strong>Performance Cookies</strong>
-                        <input type="checkbox" checked />
+                        <label for="cookie-performance"><strong>Performance Cookies</strong></label>
+                        <input type="checkbox" id="cookie-performance" checked />
                     </div>
-                    <small style="opacity: 0.7">
+                    <small style="color: var(--ss-color-text-muted);">
                         Help us understand how visitors interact with the
                         website.
                     </small>
@@ -220,8 +232,8 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                 <div
                     style="
                         padding: 12px;
-                        background: var(--color_fill_secondary);
-                        border-radius: 8px;
+                        background: var(--ss-color-surface-muted);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
                     <div
@@ -232,10 +244,10 @@ title %}{{ title }}{%- endblock %} {%- block content %}
                             margin-bottom: 4px;
                         "
                     >
-                        <strong>Targeting Cookies</strong>
-                        <input type="checkbox" />
+                        <label for="cookie-targeting"><strong>Targeting Cookies</strong></label>
+                        <input type="checkbox" id="cookie-targeting" />
                     </div>
-                    <small style="opacity: 0.7">
+                    <small style="color: var(--ss-color-text-muted);">
                         Used to deliver personalized advertisements.
                     </small>
                 </div>

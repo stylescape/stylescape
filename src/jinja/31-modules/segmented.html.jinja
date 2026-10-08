@@ -1,0 +1,89 @@
+{% extends "../base.html.jinja" %} {% set title = "Segmented control" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-segmented</code> module: a row of
+        mutually exclusive options. The base markup is a radio group, so it
+        works without JavaScript, submits with the form and gets arrow-key
+        navigation from the browser. The selected segment is filled and bold.
+    </p>
+
+    {% set section_title = "Radio group" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <fieldset class="ss-c-segmented">
+            <legend class="ss-c-segmented__legend">View</legend>
+            <label class="ss-c-segmented__option">
+                <input class="ss-c-segmented__input" type="radio" name="seg-view" value="list" checked>
+                <span class="ss-c-segmented__label">List</span>
+            </label>
+            <label class="ss-c-segmented__option">
+                <input class="ss-c-segmented__input" type="radio" name="seg-view" value="grid">
+                <span class="ss-c-segmented__label">Grid</span>
+            </label>
+            <label class="ss-c-segmented__option">
+                <input class="ss-c-segmented__input" type="radio" name="seg-view" value="map">
+                <span class="ss-c-segmented__label">Map</span>
+            </label>
+        </fieldset>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Sizes" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>The legend can be hidden with <code>ss-u-visually-hidden</code>; it still names the group.</p>
+        {% set code_snippet %}
+        <div style="display: grid; gap: 16px; justify-items: start">
+            <fieldset class="ss-c-segmented ss-c-segmented--sm">
+                <legend class="ss-u-visually-hidden">Speed (small)</legend>
+                <label class="ss-c-segmented__option"><input class="ss-c-segmented__input" type="radio" name="seg-sm" checked><span class="ss-c-segmented__label">0.5×</span></label>
+                <label class="ss-c-segmented__option"><input class="ss-c-segmented__input" type="radio" name="seg-sm"><span class="ss-c-segmented__label">1×</span></label>
+                <label class="ss-c-segmented__option"><input class="ss-c-segmented__input" type="radio" name="seg-sm"><span class="ss-c-segmented__label">2×</span></label>
+            </fieldset>
+            <fieldset class="ss-c-segmented ss-c-segmented--lg">
+                <legend class="ss-u-visually-hidden">Speed (large)</legend>
+                <label class="ss-c-segmented__option"><input class="ss-c-segmented__input" type="radio" name="seg-lg"><span class="ss-c-segmented__label">0.5×</span></label>
+                <label class="ss-c-segmented__option"><input class="ss-c-segmented__input" type="radio" name="seg-lg" checked><span class="ss-c-segmented__label">1×</span></label>
+                <label class="ss-c-segmented__option"><input class="ss-c-segmented__input" type="radio" name="seg-lg"><span class="ss-c-segmented__label">2×</span></label>
+            </fieldset>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Full width and disabled" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <fieldset class="ss-c-segmented ss-c-segmented--block" style="max-width: 480px">
+            <legend class="ss-c-segmented__legend">Units</legend>
+            <label class="ss-c-segmented__option"><input class="ss-c-segmented__input" type="radio" name="seg-units" checked><span class="ss-c-segmented__label">Metric</span></label>
+            <label class="ss-c-segmented__option"><input class="ss-c-segmented__input" type="radio" name="seg-units"><span class="ss-c-segmented__label">Imperial</span></label>
+            <label class="ss-c-segmented__option"><input class="ss-c-segmented__input" type="radio" name="seg-units" disabled><span class="ss-c-segmented__label">Nautical</span></label>
+        </fieldset>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Buttons (aria-pressed)" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            For actions rather than a form value, use buttons in a
+            <code>role="group"</code>; your script keeps exactly one
+            <code>aria-pressed="true"</code>.
+        </p>
+        {% set code_snippet %}
+        <div class="ss-c-segmented" role="group" aria-label="Text alignment">
+            <button type="button" class="ss-c-segmented__button" aria-pressed="true">Left</button>
+            <button type="button" class="ss-c-segmented__button" aria-pressed="false">Center</button>
+            <button type="button" class="ss-c-segmented__button" aria-pressed="false">Right</button>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

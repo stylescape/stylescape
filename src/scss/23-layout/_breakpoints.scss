@@ -18,6 +18,8 @@
 // Breakpoint Map
 // ============================================================================
 
+@use "sass:list";
+@use "sass:map";
 @use "../01-core/external" as *;
 
 $ss-breakpoints: (
@@ -36,7 +38,7 @@ $ss-breakpoints: (
 /// Media query for minimum width (mobile-first)
 /// @param {String} $breakpoint - Breakpoint name from $ss-breakpoints
 @mixin breakpoint-up($breakpoint) {
-    $value: map-get($ss-breakpoints, $breakpoint);
+    $value: map.get($ss-breakpoints, $breakpoint);
     @if $value == 0 {
         @content;
     } @else {
@@ -49,7 +51,7 @@ $ss-breakpoints: (
 /// Media query for maximum width
 /// @param {String} $breakpoint - Breakpoint name from $ss-breakpoints
 @mixin breakpoint-down($breakpoint) {
-    $value: map-get($ss-breakpoints, $breakpoint);
+    $value: map.get($ss-breakpoints, $breakpoint);
     @if $value > 0 {
         @media (max-width: ($value - q(0.02))) {
             @content;
@@ -61,8 +63,8 @@ $ss-breakpoints: (
 /// @param {String} $lower - Lower breakpoint name
 /// @param {String} $upper - Upper breakpoint name
 @mixin breakpoint-between($lower, $upper) {
-    $lower-value: map-get($ss-breakpoints, $lower);
-    $upper-value: map-get($ss-breakpoints, $upper);
+    $lower-value: map.get($ss-breakpoints, $lower);
+    $upper-value: map.get($ss-breakpoints, $upper);
 
     @media (min-width: $lower-value) and (max-width: ($upper-value - q(0.02))) {
         @content;
@@ -72,11 +74,11 @@ $ss-breakpoints: (
 /// Media query for exact breakpoint only
 /// @param {String} $breakpoint - Breakpoint name from $ss-breakpoints
 @mixin breakpoint-only($breakpoint) {
-    $keys: map-keys($ss-breakpoints);
-    $index: index($keys, $breakpoint);
+    $keys: map.keys($ss-breakpoints);
+    $index: list.index($keys, $breakpoint);
     $next: null;
-    @if $index < length($keys) {
-        $next: nth($keys, $index + 1);
+    @if $index < list.length($keys) {
+        $next: list.nth($keys, $index + 1);
     }
 
     @if $next {

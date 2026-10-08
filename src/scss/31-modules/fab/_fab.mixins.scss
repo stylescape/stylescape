@@ -1,0 +1,219 @@
+// =============================================================================
+// 31-modules / fab / mixins
+// =============================================================================
+//
+// Markup:
+//
+//   <div class="ss-c-fab">
+//     <button class="ss-c-fab__toggle" aria-expanded="false" aria-controls="id">
+//       <span class="ss-c-fab__icon ss-c-fab__icon--open" aria-hidden="true">+</span>
+//       <span class="ss-c-fab__icon ss-c-fab__icon--close" aria-hidden="true">×</span>
+//     </button>
+//     <div class="ss-c-fab__actions" id="id" role="group" aria-label="…">
+//       <button class="ss-c-fab__action" aria-label="…">…</button>
+//     </div>
+//   </div>
+//
+// Open state: `.is-open` on the root, or `aria-expanded="true"` on the
+// toggle. Closed actions are `visibility: hidden`, so they leave the tab
+// order and the accessibility tree.
+//
+// =============================================================================
+
+@use "sass:map";
+@use "sass:math";
+@use "../../01-core/prefix" as *;
+@use "./fab.config" as config;
+
+@function fab($key) {
+    @return map.get(config.$ss-fab-config, $key);
+}
+
+$_c: ".#{$ss-prefix-module}-fab";
+$_open: "&.is-open, &:has(> #{$_c}__toggle[aria-expanded='true'])";
+
+@mixin ss-fab {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    inline-size: fab(size);
+    block-size: fab(size);
+}
+
+/// Pin the dial to the bottom-right corner of the viewport.
+@mixin ss-fab-fixed {
+    position: fixed;
+    inset-block-end: fab(inset);
+    inset-inline-end: fab(inset);
+    z-index: fab(z-index);
+}
+
+/// Round main button.
+@mixin ss-fab-toggle {
+    position: relative;
+    display: grid;
+    place-items: center;
+    inline-size: fab(size);
+    block-size: fab(size);
+    padding: 0;
+    border: 0;
+    border-radius: var(--ss-radius-full);
+    background: fab(background);
+    color: fab(color);
+    font-size: var(--ss-font-size-xl);
+    line-height: 1;
+    box-shadow: fab(shadow);
+    cursor: pointer;
+    transition: transform fab(duration) fab(ease);
+
+    &:active {
+        transform: scale(0.96);
+    }
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color);
+        outline-offset: var(--ss-focus-ring-offset);
+    }
+}
+
+/// Open / close glyphs stacked in the toggle; they cross-fade on open.
+@mixin ss-fab-icon {
+    grid-area: 1 / 1;
+    display: grid;
+    place-items: center;
+    transition:
+        transform fab(duration) fab(ease),
+        opacity fab(duration) fab(ease);
+
+    svg {
+        inline-size: 1.4em;
+        block-size: 1.4em;
+    }
+}
+
+@mixin ss-fab-icon-states {
+    #{$_c}__icon--close {
+        opacity: 0;
+        transform: rotate(-90deg) scale(0.6);
+    }
+
+    #{$_open} {
+        #{$_c}__icon--open {
+            opacity: 0;
+            transform: rotate(90deg) scale(0.6);
+        }
+        #{$_c}__icon--close {
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+
+/// Actions stacked above the toggle.
+@mixin ss-fab-actions {
+    position: absolute;
+    inset-block-end: calc(100% + #{fab(gap)});
+    inset-inline-start: 50%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: fab(gap);
+    translate: -50% 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+@mixin ss-fab-action {
+    display: grid;
+    place-items: center;
+    inline-size: fab(action-size);
+    block-size: fab(action-size);
+    padding: 0;
+    border: var(--ss-a-border-width, 1px) solid fab(action-border);
+    border-radius: var(--ss-radius-full);
+    background: fab(action-background);
+    color: fab(action-color);
+    box-shadow: fab(action-shadow);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(#{fab(gap)}) scale(0.6);
+    transition:
+        transform fab(duration) fab(ease),
+        opacity fab(duration) fab(ease);
+
+    &:hover {
+        background: var(--ss-color-surface-hover);
+    }
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color);
+        outline-offset: var(--ss-focus-ring-offset);
+    }
+
+    svg {
+        inline-size: 1.25em;
+        block-size: 1.25em;
+    }
+}
+
+@mixin ss-fab-open {
+    #{$_open} {
+        #{$_c}__actions {
+            visibility: visible;
+            pointer-events: auto;
+        }
+        #{$_c}__action {
+            opacity: 1;
+            transform: none;
+
+            @for $i from 2 through 8 {
+                &:nth-child(#{$i}) {
+                    transition-delay: #{($i - 1) * 30}ms;
+                }
+            }
+        }
+    }
+}
+
+/// Radial ("flower") layout: up to eight actions on a circle around the
+/// toggle, starting at the top and going clockwise.
+@mixin ss-fab-radial($count: 8) {
+    #{$_c}__actions {
+        inset: 0;
+        translate: none;
+        display: block;
+    }
+    #{$_c}__action {
+        position: absolute;
+        inset-block-start: 50%;
+        inset-inline-start: 50%;
+        margin-block-start: calc(#{fab(action-size)} / -2);
+        margin-inline-start: calc(#{fab(action-size)} / -2);
+        transform: scale(0.6);
+    }
+
+    // Five slots by default (72° apart); `data-count` is not needed because
+    // :nth-child / :nth-last-child pick the spacing from the sibling count.
+    @for $n from 2 through $count {
+        @for $i from 1 through $n {
+            #{$_c}__action:nth-child(#{$i}):nth-last-child(#{$n - $i + 1}) {
+                --ss-fab-angle: #{math.div(($i - 1) * 360, $n) - 90}deg;
+            }
+        }
+    }
+
+    #{$_open} {
+        #{$_c}__action {
+            transform: rotate(var(--ss-fab-angle, -90deg))
+                translateX(#{fab(radius)})
+                rotate(calc(-1 * var(--ss-fab-angle, -90deg)));
+        }
+    }
+}
+
+@mixin ss-fab-reduced-motion {
+    @media (prefers-reduced-motion: reduce) {
+        &,
+        * {
+            transition: none !important;
+        }
+    }
+}

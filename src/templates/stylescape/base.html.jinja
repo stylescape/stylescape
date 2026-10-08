@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+{#-
+    stylescape/base.html.jinja
+    ===========================================================================
+    Base page for Django + Jinja2 (sturnus) apps on stylescape: the app shell
+    (ss-l-app) with a header bar, optional left and right sidebars, the main
+    area and an optional footer.
+
+    Blocks (sturnus-style names where they exist):
+        title           <title> text, and the default page heading
+        page_title      the <h1>; defaults to the title block
+        extra_head      anything else in <head>
+        css             the stylescape stylesheet link
+        extra_css       more stylesheets
+        body_class      classes on <body>
+        body            everything inside <body> except the scripts
+        header          the whole header bar (brand, nav, header_actions)
+        brand           site name / logo link
+        nav             main navigation (rendered inside <nav>)
+        header_actions  end of the header bar (theme toggle, user menu)
+        sidebar_left    left sidebar; omitted when empty
+        page_header     title row: breadcrumbs, page_title, page_actions
+        breadcrumbs     defaults to breadcrumb(breadcrumbs) if set
+        messages        defaults to Django's messages as alerts
+        page_actions    buttons at the end of the title row
+        content         the page
+        sidebar_right   right sidebar; omitted when empty
+        footer          footer bar; omitted when empty
+        scripts         the stylescape script
+        extra_scripts   more scripts
+
+    Context it reads (all optional): site_name, page_title, breadcrumbs
+    (see macros/navigation), messages, LANGUAGE_CODE, app_theme
+    ("light" | "dark" | "auto", default "auto"), stylescape_css_url,
+    stylescape_js_url, and the `static()` and `_()` globals that sturnus'
+    StaticFilesExtension and jinja2.ext.i18n install.
+-#}
+{%- from "stylescape/macros/navigation.html.jinja" import breadcrumb -%}
+{%- from "stylescape/macros/messages.html.jinja" import messages_list -%}
+{%- set _static_root = "/static/" -%}
+{%- set ss_css_url = stylescape_css_url | default(static("stylescape/css/stylescape.min.css") if static is defined else _static_root ~ "stylescape/css/stylescape.min.css", true) -%}
+{%- set ss_js_url = stylescape_js_url | default(static("stylescape/js/stylescape.iife.min.js") if static is defined else _static_root ~ "stylescape/js/stylescape.iife.min.js", true) -%}
+{#- Blocks rendered conditionally are defined here, never output in place. -#}
+{%- if false -%}
+    {%- block page_title %}{{ self.title() }}{% endblock -%}
+    {%- block page_actions %}{% endblock -%}
+    {%- block sidebar_left %}{% endblock -%}
+    {%- block sidebar_right %}{% endblock -%}
+    {%- block footer %}{% endblock -%}
+    {%- block nav %}{% endblock -%}
+    {%- block breadcrumbs %}{% if breadcrumbs is defined %}{{ breadcrumb(breadcrumbs) }}{% endif %}{% endblock -%}
+{%- endif -%}
+{%- set _sidebar_left = self.sidebar_left() | trim -%}
+{%- set _sidebar_right = self.sidebar_right() | trim -%}
+{%- set _footer = self.footer() | trim -%}
+{%- set _nav = self.nav() | trim -%}
+<html lang="{{ LANGUAGE_CODE | default('en', true) }}" data-theme="{{ app_theme | default('auto', true) }}">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% block title %}{{ page_title | default("", true) }}{% endblock %}{% if site_name %} · {{ site_name }}{% endif %}</title>
+        {%- block css %}
+        <link rel="stylesheet" href="{{ ss_css_url }}" />
+        {%- endblock css %}
+        {%- block extra_css %}{% endblock extra_css %}
+        {%- block extra_head %}{% endblock extra_head %}
+    </head>
+    <body class="{% block body_class %}{% endblock %}">
+        <a class="ss-u-visually-hidden-focusable" href="#main-content">{{ _("Skip to content") }}</a>
+        {%- block body %}
+        <div class="ss-l-app">
+            <header class="ss-l-app__header">
+                {%- block header %}
+                {%- if _sidebar_left %}
+                <button class="ss-c-button ss-c-button--ghost ss-c-button--sm" type="button"
+                        data-ss-sheet-toggle aria-controls="ss-sidebar-left" aria-expanded="true">
+                    <span aria-hidden="true">☰</span><span class="ss-u-visually-hidden">{{ _("Toggle sidebar") }}</span>
+                </button>
+                {%- endif %}
+                {%- block brand %}
+                <a class="ss-c-brand" href="/">{{ site_name | default("", true) }}</a>
+                {%- endblock brand %}
+                {%- if _nav %}
+                <nav aria-label="{{ _('Main') }}">{{ _nav }}</nav>
+                {%- endif %}
+                <span class="ss-l-app__spacer"></span>
+                {%- block header_actions %}{% endblock header_actions %}
+                {%- endblock header %}
+            </header>
+            {%- if _sidebar_left %}
+            <aside class="ss-l-app__sidebar" id="ss-sidebar-left" aria-label="{{ _('Sidebar') }}">
+                {{ _sidebar_left }}
+            </aside>
+            {%- endif %}
+            <main class="ss-l-app__main" id="main-content" tabindex="-1">
+                <div class="ss-l-container ss-l-region ss-l-region-md">
+                    {%- block page_header %}
+                    {%- set _crumbs = self.breadcrumbs() | trim %}
+                    {%- set _title = self.page_title() | trim %}
+                    {%- set _actions = self.page_actions() | trim %}
+                    {%- if _title or _actions %}
+                    <header class="ss-c-title-bar">
+                        <div class="ss-c-title-bar__text">
+                            {%- if _crumbs %}
+                            <div class="ss-c-title-bar__eyebrow">{{ _crumbs }}</div>
+                            {%- endif %}
+                            <h1 class="ss-c-title-bar__title">{{ _title }}</h1>
+                        </div>
+                        {%- if _actions %}
+                        <div class="ss-c-title-bar__actions">{{ _actions }}</div>
+                        {%- endif %}
+                    </header>
+                    {%- else %}{{ _crumbs }}
+                    {%- endif %}
+                    {%- endblock page_header %}
+                    {%- block messages %}
+                    {%- if messages is defined %}{{ messages_list(messages) }}{% endif %}
+                    {%- endblock messages %}
+                    {%- block content %}{% endblock content %}
+                </div>
+            </main>
+            {%- if _sidebar_right %}
+            <aside class="ss-l-app__sidebar ss-l-app__sidebar--right" id="ss-sidebar-right" aria-label="{{ _('Details') }}">
+                {{ _sidebar_right }}
+            </aside>
+            {%- endif %}
+            {%- if _footer %}
+            <footer class="ss-l-app__footer ss-t-text-sm">{{ _footer }}</footer>
+            {%- endif %}
+        </div>
+        {%- endblock body %}
+        {%- block scripts %}
+        <script src="{{ ss_js_url }}" defer></script>
+        {%- endblock scripts %}
+        {%- block extra_scripts %}{% endblock extra_scripts %}
+    </body>
+</html>

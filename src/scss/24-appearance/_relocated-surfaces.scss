@@ -37,7 +37,7 @@
     // ------------------------------------------------------------------------
 
     body {
-        background: var(--color_fill_primary);
+        background: var(--ss-color-background);
     }
 
     // ------------------------------------------------------------------------
@@ -93,7 +93,7 @@
     .#{$ss-prefix-typography}-char-abbr:hover::after,
     .#{$ss-prefix-typography}-char-abbr:focus::after {
         position: absolute;
-        z-index: 10;
+        z-index: var(--ss-z-tooltip);
         background-color: map.get(
             abbr-cfg.$ss-character-abbreviation-tooltip-config,
             background
@@ -118,6 +118,7 @@
             accent.$ss-character-accent-config,
             highlight-bg
         );
+        color: map.get(accent.$ss-character-accent-config, highlight-color);
     }
 
     // ------------------------------------------------------------------------
@@ -265,6 +266,8 @@
     // Layout chrome (relocated from 23-layout)
     // ------------------------------------------------------------------------
 
+    // Decorative brand gradient: the colours are the artwork itself, so they
+    // stay literal (same exemption as brand/swatch content).
     .#{$ss-prefix-layout}-canvas--gradient {
         color: hsla(0, 0%, 100%, 0.85);
         background-color: #170d24;

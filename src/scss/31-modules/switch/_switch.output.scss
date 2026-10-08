@@ -1,0 +1,91 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./switch.mixins" as switch;
+
+$_switch: ".#{$ss-prefix-module}-switch";
+
+@layer ss.components {
+    // Wrapper label (`label.ss-c-switch`). Put the text before or after the
+    // input in the source to place it left or right of the switch.
+    #{$_switch} {
+        @include switch.ss-switch;
+    }
+    #{$_switch}--sm {
+        @include switch.ss-switch-size(sm);
+    }
+    #{$_switch}--lg {
+        @include switch.ss-switch-size(lg);
+    }
+    // Settings-list row: text at the start, switch at the end.
+    #{$_switch}--between {
+        display: flex;
+        justify-content: space-between;
+    }
+    // Inline switches in a row keep apart.
+    #{$_switch}:not(#{$_switch}--between) + #{$_switch}:not(#{$_switch}--between) {
+        margin-inline-start: q(16);
+    }
+    #{$_switch}:has(:disabled) {
+        cursor: not-allowed;
+    }
+
+    // Native track: `<input type="checkbox" role="switch" class="ss-c-switch__input">`.
+    // Also used bare (without the wrapper), so it carries the md size itself.
+    #{$_switch}__input {
+        @include switch.ss-switch-size(md);
+        @include switch.ss-switch-track;
+
+        #{$_switch} > & {
+            --ss-switch-width: inherit;
+            --ss-switch-height: inherit;
+        }
+
+        &:checked {
+            @include switch.ss-switch-track-on;
+        }
+        &:focus-visible {
+            @include switch.ss-switch-track-focus;
+        }
+        &:disabled {
+            @include switch.ss-switch-track-disabled;
+        }
+    }
+
+    // Legacy markup: `label.ss-c-switch > input[type=checkbox] + span.ss-c-slider`.
+    // The input stays in the accessibility tree and focus order (visually
+    // hidden on top of the track); the span draws the track.
+    #{$_switch} {
+        position: relative;
+
+        > input[type="checkbox"]:not(#{$_switch}__input) {
+            position: absolute;
+            inset: 0;
+            inline-size: 100%;
+            block-size: 100%;
+            margin: 0;
+            opacity: 0;
+            cursor: inherit;
+        }
+
+        > .#{$ss-prefix-module}-slider {
+            @include switch.ss-switch-track;
+        }
+        > input:checked + .#{$ss-prefix-module}-slider {
+            @include switch.ss-switch-track-on;
+        }
+        > input:focus-visible + .#{$ss-prefix-module}-slider {
+            @include switch.ss-switch-track-focus;
+        }
+        > input:disabled + .#{$ss-prefix-module}-slider {
+            @include switch.ss-switch-track-disabled;
+        }
+    }
+
+    // Pill shape. The legacy `.ss-c-slider.ss-c-round` spelling lives in
+    // 32-utilities/_legacy-components-compat.scss.
+    #{$_switch}--round #{$_switch}__input,
+    #{$_switch}--round > .#{$ss-prefix-module}-slider,
+    #{$_switch}__input#{$_switch}__input--round {
+        @include switch.ss-switch-round;
+    }
+}

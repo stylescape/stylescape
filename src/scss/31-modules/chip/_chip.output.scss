@@ -1,10 +1,32 @@
+@use "sass:map";
 @use "../../01-core/prefix" as *;
+@use "./chip.config" as config;
 @use "./chip.mixins" as chip;
 @use "../../01-core/external" as *;
 
 @layer ss.components {
     .#{$ss-prefix-module}-chip {
         @include chip.ss-chip;
+    }
+
+    // Solid status colours: `.ss-c-chip--info` …
+    @each $name, $c in map.get(config.$ss-chip-config, variants) {
+        .#{$ss-prefix-module}-chip--#{$name} {
+            background: map.get($c, bg);
+            color: map.get($c, fg);
+            border-color: map.get($c, bg);
+        }
+
+        // Outlined status colours: `.ss-c-chip--outline.ss-c-chip--info` …
+        .#{$ss-prefix-module}-chip--outline.#{$ss-prefix-module}-chip--#{$name} {
+            background: transparent;
+            color: map.get($c, bg);
+        }
+    }
+
+    .#{$ss-prefix-module}-chip--outline {
+        background: transparent;
+        border-color: var(--ss-color-border-strong, var(--ss-color-border));
     }
 
     .#{$ss-prefix-module}-chip--removable {

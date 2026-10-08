@@ -4,11 +4,20 @@
 $ss-chip-config: (
     height: q(32),
     padding-inline: q(12),
-    radius: q(999),
+    radius: var(--ss-radius-full),
     gap: q(6),
 
     font-size: var(--ss-font-size-sm),
     bg: var(--ss-color-surface, var(--ss-color-background)),
     fg: var(--ss-color-foreground),
     border: var(--ss-color-border, var(--ss-color-foreground)),
+
+    // Status colours (solid) — same bg/fg pairs as badge and button.
+    variants: (
+        accent: (bg: var(--ss-color-accent), fg: var(--ss-color-on-accent)),
+        info: (bg: var(--ss-color-info), fg: var(--ss-color-on-info)),
+        success: (bg: var(--ss-color-success), fg: var(--ss-color-on-success)),
+        warning: (bg: var(--ss-color-warning), fg: var(--ss-color-on-warning)),
+        error: (bg: var(--ss-color-error), fg: var(--ss-color-on-error)),
+    ),
 ) !default;

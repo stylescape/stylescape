@@ -1,0 +1,72 @@
+@use "../../01-core/prefix" as *;
+@use "./htmx.mixins" as htmx;
+
+$_stale: htmx.ss-htmx-config(stale-opacity);
+$_busy: htmx.ss-htmx-config(busy-opacity);
+
+@layer ss.components {
+    // ------------------------------------------------------------------------
+    // Request indicator: on the requesting element, an ancestor of it, or
+    // the element named by `hx-indicator` (which then gets .htmx-request).
+    // ------------------------------------------------------------------------
+
+    .htmx-indicator {
+        @include htmx.ss-htmx-indicator;
+        @include htmx.ss-htmx-reduced-motion;
+    }
+
+    .htmx-request .htmx-indicator,
+    .htmx-request.htmx-indicator {
+        @include htmx.ss-htmx-indicator-active;
+        @include htmx.ss-htmx-reduced-motion;
+    }
+
+    // ------------------------------------------------------------------------
+    // Busy controls
+    // ------------------------------------------------------------------------
+
+    .htmx-request {
+        cursor: progress;
+    }
+
+    // `hx-disabled-elt` sets `disabled` during the request; keep the
+    // control legible but clearly inert.
+    form.htmx-request :is(button, input[type="submit"]):disabled,
+    :is(button, input[type="submit"]).htmx-request {
+        cursor: progress;
+        opacity: $_busy;
+    }
+
+    // ------------------------------------------------------------------------
+    // Fragments: opt in with `ss-c-fragment` on the swap target.
+    // ------------------------------------------------------------------------
+
+    .#{$ss-prefix-module}-fragment {
+        @include htmx.ss-htmx-fragment;
+        @include htmx.ss-htmx-reduced-motion;
+    }
+
+    // Old content stays readable but marked stale while the request runs
+    // (`hx-indicator` pointing at the fragment puts .htmx-request on it).
+    .#{$ss-prefix-module}-fragment.htmx-request {
+        opacity: $_stale;
+        pointer-events: none;
+    }
+
+    .#{$ss-prefix-module}-fragment.htmx-swapping,
+    .#{$ss-prefix-module}-fragment .htmx-added,
+    .#{$ss-prefix-module}-fragment.htmx-added {
+        opacity: 0;
+    }
+
+    .#{$ss-prefix-module}-fragment .htmx-settling,
+    .#{$ss-prefix-module}-fragment.htmx-settling {
+        @include htmx.ss-htmx-fragment;
+        @include htmx.ss-htmx-reduced-motion;
+    }
+
+    // Busy regions announced to assistive tech get the same stale look.
+    .#{$ss-prefix-module}-fragment[aria-busy="true"] {
+        opacity: $_stale;
+    }
+}

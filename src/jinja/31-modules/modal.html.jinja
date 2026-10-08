@@ -1,8 +1,47 @@
 {% extends "../base.html.jinja" %} {% set title = "Modals" %} {%- block title %}{{
 title }}{%- endblock %} {%- block content %}
+<style>
+    /* Demo only: the interactive examples stay hidden until opened. */
+    .ss-c-modal[id]:not(.show) {
+        display: none;
+    }
+    .ss-c-modal[id] .ss-c-modal__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgb(0 0 0 / 0.5);
+    }
+    .ss-c-modal[id] .ss-c-modal__container {
+        position: relative;
+        width: 100%;
+        max-width: 480px;
+        padding: 16px 24px;
+        background: var(--ss-color-background);
+        color: var(--ss-color-text);
+        border-radius: var(--ss-radius-lg);
+    }
+    .ss-c-modal[id] .ss-c-modal__header,
+    .ss-c-modal[id] .ss-c-modal__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+    /* Static previews: lay the modal out as a plain card, not a fixed flex overlay. */
+    .ss-c-modal:not([id]) {
+        z-index: auto;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        padding: 0;
+    }
+    .ss-c-modal[id] .ss-c-modal__close {
+        min-width: 32px;
+        min-height: 32px;
+    }
+</style>
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             Modal dialogs for displaying content that requires user
             interaction.
@@ -15,7 +54,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <button
             class="ss-c-button"
@@ -24,19 +63,21 @@ title }}{%- endblock %} {%- block content %}
             Open Modal
         </button>
 
-        <div id="modal-basic" class="ss-c-modal">
+        <div id="modal-basic" class="ss-c-modal" role="dialog" aria-modal="true" aria-labelledby="modal-basic-title">
             <div
                 class="ss-c-modal__overlay"
                 onclick="this.parentElement.classList.remove('show')"
             ></div>
             <div class="ss-c-modal__container">
                 <header class="ss-c-modal__header">
-                    <h3 class="ss-c-modal__title">Modal Title</h3>
+                    <h3 class="ss-c-modal__title" id="modal-basic-title">Modal Title</h3>
                     <button
+                        type="button"
                         class="ss-c-modal__close"
-                        onclick="this.closest('.modal').classList.remove('show')"
+                        aria-label="Close"
+                        onclick="this.closest('.ss-c-modal').classList.remove('show')"
                     >
-                        &times;
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </header>
                 <div class="ss-c-modal__body">
@@ -48,7 +89,7 @@ title }}{%- endblock %} {%- block content %}
                 <footer class="ss-c-modal__footer">
                     <button
                         class="ss-c-button ss-c-button--secondary"
-                        onclick="this.closest('.modal').classList.remove('show')"
+                        onclick="this.closest('.ss-c-modal').classList.remove('show')"
                     >
                         Cancel
                     </button>
@@ -66,7 +107,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div style="display: flex; gap: 16px; flex-wrap: wrap">
             <button
@@ -83,19 +124,21 @@ title }}{%- endblock %} {%- block content %}
             </button>
         </div>
 
-        <div id="modal-sm" class="ss-c-modal ss-c-modal--small">
+        <div id="modal-sm" class="ss-c-modal ss-c-modal--small" role="dialog" aria-modal="true" aria-labelledby="modal-sm-title">
             <div
                 class="ss-c-modal__overlay"
                 onclick="this.parentElement.classList.remove('show')"
             ></div>
             <div class="ss-c-modal__container">
                 <header class="ss-c-modal__header">
-                    <h3 class="ss-c-modal__title">Small Modal</h3>
+                    <h3 class="ss-c-modal__title" id="modal-sm-title">Small Modal</h3>
                     <button
+                        type="button"
                         class="ss-c-modal__close"
-                        onclick="this.closest('.modal').classList.remove('show')"
+                        aria-label="Close"
+                        onclick="this.closest('.ss-c-modal').classList.remove('show')"
                     >
-                        &times;
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </header>
                 <div class="ss-c-modal__body">
@@ -104,19 +147,21 @@ title }}{%- endblock %} {%- block content %}
             </div>
         </div>
 
-        <div id="modal-lg" class="ss-c-modal ss-c-modal--large">
+        <div id="modal-lg" class="ss-c-modal ss-c-modal--large" role="dialog" aria-modal="true" aria-labelledby="modal-lg-title">
             <div
                 class="ss-c-modal__overlay"
                 onclick="this.parentElement.classList.remove('show')"
             ></div>
             <div class="ss-c-modal__container">
                 <header class="ss-c-modal__header">
-                    <h3 class="ss-c-modal__title">Large Modal</h3>
+                    <h3 class="ss-c-modal__title" id="modal-lg-title">Large Modal</h3>
                     <button
+                        type="button"
                         class="ss-c-modal__close"
-                        onclick="this.closest('.modal').classList.remove('show')"
+                        aria-label="Close"
+                        onclick="this.closest('.ss-c-modal').classList.remove('show')"
                     >
-                        &times;
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </header>
                 <div class="ss-c-modal__body">
@@ -134,7 +179,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <button
             class="ss-c-button ss-c-button--danger"
@@ -143,14 +188,14 @@ title }}{%- endblock %} {%- block content %}
             Delete Item
         </button>
 
-        <div id="modal-confirm" class="ss-c-modal">
+        <div id="modal-confirm" class="ss-c-modal" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-title">
             <div
                 class="ss-c-modal__overlay"
                 onclick="this.parentElement.classList.remove('show')"
             ></div>
             <div class="ss-c-modal__container">
                 <header class="ss-c-modal__header">
-                    <h3 class="ss-c-modal__title">Confirm Deletion</h3>
+                    <h3 class="ss-c-modal__title" id="modal-confirm-title">Confirm Deletion</h3>
                 </header>
                 <div class="ss-c-modal__body">
                     <p>
@@ -161,7 +206,7 @@ title }}{%- endblock %} {%- block content %}
                 <footer class="ss-c-modal__footer">
                     <button
                         class="ss-c-button ss-c-button--secondary"
-                        onclick="this.closest('.modal').classList.remove('show')"
+                        onclick="this.closest('.ss-c-modal').classList.remove('show')"
                     >
                         Cancel
                     </button>
@@ -175,10 +220,6 @@ title }}{%- endblock %} {%- block content %}
 </section>
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
-    <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
-        <p>Full-featured modal dialogs and overlay components.</p>
-    </header>
 
     {# Basic Modal Structure #} {% set section_title = "Basic Modal Structure"
     %}
@@ -187,15 +228,15 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-modal-preview"
             style="
                 position: relative;
                 min-height: 400px;
-                background: var(--color_fill_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface-alt);
+                border-radius: var(--ss-radius-lg);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -208,7 +249,7 @@ title }}{%- endblock %} {%- block content %}
                     position: absolute;
                     inset: 0;
                     background: rgba(0, 0, 0, 0.5);
-                    border-radius: 12px;
+                    border-radius: var(--ss-radius-lg);
                 "
             ></div>
             <!-- Modal Content -->
@@ -218,9 +259,10 @@ title }}{%- endblock %} {%- block content %}
                     position: relative;
                     width: 90%;
                     max-width: 480px;
-                    background: white;
-                    border-radius: 12px;
-                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                    background: var(--ss-color-surface);
+                    color: var(--ss-color-text);
+                    border-radius: var(--ss-radius-lg);
+                    box-shadow: var(--ss-a-shadow-xl);
                 "
             >
                 <div
@@ -230,23 +272,25 @@ title }}{%- endblock %} {%- block content %}
                         justify-content: space-between;
                         align-items: center;
                         padding: 20px 24px;
-                        border-bottom: 1px solid var(--color_line_secondary);
+                        border-bottom: 1px solid var(--ss-color-border);
                     "
                 >
                     <h3 style="margin: 0; font-size: 18px">Modal Title</h3>
                     <button
+                        type="button"
                         class="ss-c-modal--close"
+                        aria-label="Close"
                         style="
                             width: 32px;
                             height: 32px;
                             border: none;
-                            background: var(--color_fill_secondary);
-                            border-radius: 6px;
+                            background: var(--ss-color-surface-alt);
+                            border-radius: var(--ss-radius-md);
                             cursor: pointer;
                             font-size: 16px;
                         "
                     >
-                        ✕
+                        <span aria-hidden="true">✕</span>
                     </button>
                 </div>
                 <div class="ss-c-modal--body" style="padding: 24px">
@@ -262,17 +306,18 @@ title }}{%- endblock %} {%- block content %}
                         justify-content: flex-end;
                         gap: 12px;
                         padding: 16px 24px;
-                        border-top: 1px solid var(--color_line_secondary);
-                        background: var(--color_fill_secondary);
-                        border-radius: 0 0 12px 12px;
+                        border-top: 1px solid var(--ss-color-border);
+                        background: var(--ss-color-surface-alt);
+                        border-radius: 0 0 var(--ss-radius-lg) var(--ss-radius-lg);
                     "
                 >
                     <button
                         style="
                             padding: 10px 20px;
-                            border: 1px solid var(--color_line_secondary);
-                            background: white;
-                            border-radius: 6px;
+                            border: 1px solid var(--ss-color-border);
+                            background: var(--ss-color-surface);
+                            color: var(--ss-color-text);
+                            border-radius: var(--ss-radius-md);
                             cursor: pointer;
                         "
                     >
@@ -282,9 +327,9 @@ title }}{%- endblock %} {%- block content %}
                         style="
                             padding: 10px 20px;
                             border: none;
-                            background: var(--color_fill_primary);
-                            color: white;
-                            border-radius: 6px;
+                            background: var(--ss-color-accent);
+                            color: var(--ss-color-on-accent);
+                            border-radius: var(--ss-radius-md);
                             cursor: pointer;
                         "
                     >
@@ -297,28 +342,30 @@ title }}{%- endblock %} {%- block content %}
         "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 
-    {# Modal Sizes #} {% set section_title = "Modal Sizes" %}
+    {# Modal Sizes #} {% set section_title = "Static Modal Sizes" %}
     <section
         class="ss-c-demo__subsection"
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div style="display: flex; flex-direction: column; gap: 20px">
             <!-- Small Modal -->
             <div
                 class="ss-c-modal ss-c-modal--small"
                 style="
+                    position: relative;
                     max-width: 320px;
-                    background: white;
-                    border-radius: 12px;
-                    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+                    background: var(--ss-color-surface);
+                    color: var(--ss-color-text);
+                    border-radius: var(--ss-radius-lg);
+                    box-shadow: var(--ss-a-shadow-lg);
                 "
             >
                 <div style="padding: 20px; text-align: center">
                     <div style="font-size: 48px; margin-bottom: 12px">✓</div>
-                    <h4 style="margin: 0 0 8px">Success!</h4>
+                    <h3 style="margin: 0 0 8px">Success!</h3>
                     <p style="margin: 0 0 16px; font-size: 14px; opacity: 0.7">
                         Your changes have been saved.
                     </p>
@@ -326,9 +373,9 @@ title }}{%- endblock %} {%- block content %}
                         style="
                             padding: 10px 24px;
                             border: none;
-                            background: var(--color_state_success);
-                            color: white;
-                            border-radius: 6px;
+                            background: var(--ss-color-success);
+                            color: var(--ss-color-on-success);
+                            border-radius: var(--ss-radius-md);
                             cursor: pointer;
                         "
                     >
@@ -340,17 +387,19 @@ title }}{%- endblock %} {%- block content %}
             <div
                 class="ss-c-modal ss-c-modal--large"
                 style="
+                    position: relative;
                     max-width: 700px;
-                    background: white;
-                    border-radius: 12px;
-                    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+                    background: var(--ss-color-surface);
+                    color: var(--ss-color-text);
+                    border-radius: var(--ss-radius-lg);
+                    box-shadow: var(--ss-a-shadow-lg);
                 "
             >
                 <div
                     class="ss-c-modal--header"
                     style="
                         padding: 20px 24px;
-                        border-bottom: 1px solid var(--color_line_secondary);
+                        border-bottom: 1px solid var(--ss-color-border);
                     "
                 >
                     <h3 style="margin: 0">Large Modal</h3>
@@ -371,8 +420,8 @@ title }}{%- endblock %} {%- block content %}
                         <div
                             style="
                                 padding: 16px;
-                                background: var(--color_fill_secondary);
-                                border-radius: 8px;
+                                background: var(--ss-color-surface-alt);
+                                border-radius: var(--ss-radius-lg);
                             "
                         >
                             Column 1 content
@@ -380,8 +429,8 @@ title }}{%- endblock %} {%- block content %}
                         <div
                             style="
                                 padding: 16px;
-                                background: var(--color_fill_secondary);
-                                border-radius: 8px;
+                                background: var(--ss-color-surface-alt);
+                                border-radius: var(--ss-radius-lg);
                             "
                         >
                             Column 2 content
@@ -400,7 +449,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-modal-preview"
@@ -408,7 +457,7 @@ title }}{%- endblock %} {%- block content %}
                 position: relative;
                 min-height: 350px;
                 background: #1a1a2e;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             "
         >
@@ -417,7 +466,8 @@ title }}{%- endblock %} {%- block content %}
                 style="
                     position: absolute;
                     inset: 0;
-                    background: white;
+                    background: var(--ss-color-surface);
+                    color: var(--ss-color-text);
                     display: flex;
                     flex-direction: column;
                 "
@@ -429,7 +479,7 @@ title }}{%- endblock %} {%- block content %}
                         justify-content: space-between;
                         align-items: center;
                         padding: 16px 24px;
-                        border-bottom: 1px solid var(--color_line_secondary);
+                        border-bottom: 1px solid var(--ss-color-border);
                     "
                 >
                     <h3 style="margin: 0; font-size: 16px">
@@ -439,8 +489,8 @@ title }}{%- endblock %} {%- block content %}
                         style="
                             padding: 8px 16px;
                             border: none;
-                            background: var(--color_fill_secondary);
-                            border-radius: 6px;
+                            background: var(--ss-color-surface-alt);
+                            border-radius: var(--ss-radius-md);
                             cursor: pointer;
                         "
                     >
@@ -472,7 +522,7 @@ title }}{%- endblock %} {%- block content %}
                                     #667eea,
                                     #764ba2
                                 );
-                                border-radius: 8px;
+                                border-radius: var(--ss-radius-lg);
                             "
                         ></div>
                         <div
@@ -483,7 +533,7 @@ title }}{%- endblock %} {%- block content %}
                                     #f093fb,
                                     #f5576c
                                 );
-                                border-radius: 8px;
+                                border-radius: var(--ss-radius-lg);
                             "
                         ></div>
                         <div
@@ -494,7 +544,7 @@ title }}{%- endblock %} {%- block content %}
                                     #4facfe,
                                     #00f2fe
                                 );
-                                border-radius: 8px;
+                                border-radius: var(--ss-radius-lg);
                             "
                         ></div>
                     </div>
@@ -511,15 +561,17 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-modal"
             style="
+                position: relative;
                 max-width: 450px;
-                background: white;
-                border-radius: 12px;
-                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+                background: var(--ss-color-surface);
+                color: var(--ss-color-text);
+                border-radius: var(--ss-radius-lg);
+                box-shadow: var(--ss-a-shadow-lg);
             "
         >
             <div class="ss-c-modal--header" style="padding: 24px 24px 0">
@@ -546,8 +598,8 @@ title }}{%- endblock %} {%- block content %}
                         style="
                             width: 100%;
                             padding: 12px;
-                            border: 1px solid var(--color_line_secondary);
-                            border-radius: 8px;
+                            border: 1px solid var(--ss-color-border);
+                            border-radius: var(--ss-radius-lg);
                             font-size: 14px;
                             box-sizing: border-box;
                         "
@@ -570,8 +622,8 @@ title }}{%- endblock %} {%- block content %}
                         style="
                             width: 100%;
                             padding: 12px;
-                            border: 1px solid var(--color_line_secondary);
-                            border-radius: 8px;
+                            border: 1px solid var(--ss-color-border);
+                            border-radius: var(--ss-radius-lg);
                             font-size: 14px;
                             box-sizing: border-box;
                         "
@@ -594,8 +646,8 @@ title }}{%- endblock %} {%- block content %}
                         style="
                             width: 100%;
                             padding: 12px;
-                            border: 1px solid var(--color_line_secondary);
-                            border-radius: 8px;
+                            border: 1px solid var(--ss-color-border);
+                            border-radius: var(--ss-radius-lg);
                             font-size: 14px;
                             box-sizing: border-box;
                         "
@@ -607,9 +659,9 @@ title }}{%- endblock %} {%- block content %}
                         width: 100%;
                         padding: 14px;
                         border: none;
-                        background: var(--color_fill_primary);
-                        color: white;
-                        border-radius: 8px;
+                        background: var(--ss-color-accent);
+                        color: var(--ss-color-on-accent);
+                        border-radius: var(--ss-radius-lg);
                         cursor: pointer;
                         font-size: 15px;
                         font-weight: 500;
@@ -623,12 +675,12 @@ title }}{%- endblock %} {%- block content %}
                 style="
                     padding: 16px 24px;
                     text-align: center;
-                    border-top: 1px solid var(--color_line_secondary);
+                    border-top: 1px solid var(--ss-color-border);
                 "
             >
                 <p style="margin: 0; font-size: 14px; opacity: 0.7">
                     Already have an account?
-                    <a href="#" style="color: var(--color_fill_primary)">
+                    <a href="#" style="color: var(--ss-color-accent)">
                         Sign in
                     </a>
                 </p>

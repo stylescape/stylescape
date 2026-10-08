@@ -1,14 +1,16 @@
 // ============================================================================
 // Stylescape | Theme Toggler
 // ============================================================================
-// Manages dark/light theme switching with localStorage persistence.
-// Supports data-theme-toggle attributes for declarative configuration.
+// Manages light / dark / auto theme switching with localStorage persistence.
+// Binds checkboxes, two-state buttons (aria-pressed) and three-state cycle
+// buttons, including the `ss-c-theme-toggle` module.
 // ============================================================================
 
 /**
- * Available theme values
+ * Theme values written to `<html data-theme>`. `"auto"` follows
+ * `prefers-color-scheme`; no attribute means light.
  */
-export type Theme = "dark" | "light";
+export type Theme = "dark" | "light" | "auto";
 
 /**
  * Configuration options for theme toggling
@@ -24,30 +26,35 @@ export interface ThemeTogglerOptions {
     onChange?: (theme: Theme) => void;
 }
 
+const TOGGLE_SELECTOR =
+    '[data-theme-toggle], .ss-c-theme-toggle, [data-ss="theme-toggle"]';
+const DARK_QUERY = "(prefers-color-scheme: dark)";
+const CYCLE: Theme[] = ["light", "dark", "auto"];
+
 /**
- * Static utility class for managing dark/light theme switching.
- * Persists user preference in localStorage.
+ * Static utility class for managing the page theme.
+ * Persists the user's choice in localStorage (key `preferredTheme`).
+ *
+ * Controls:
+ * - `<input type="checkbox">`: checked while the page is dark.
+ * - `<button>`: toggles light/dark and keeps `aria-pressed` in sync
+ *   (pressed while dark).
+ * - `<button data-theme-cycle>`: cycles light → dark → auto and exposes the
+ *   choice as `data-theme-state`; its accessible name is taken from
+ *   `data-theme-label-light|dark|auto` when present.
  *
  * @example JavaScript
  * ```typescript
- * // Initialize with a toggle switch
- * ThemeToggler.initializeToggleSwitch("darkModeToggle")
- *
- * // Or register to initialize on page load
- * ThemeToggler.registerOnLoad()
- *
- * // Programmatic control
+ * ThemeToggler.initAll()           // every [data-theme-toggle] / .ss-c-theme-toggle
  * ThemeToggler.toggle()
- * ThemeToggler.setTheme("dark")
- * const current = ThemeToggler.getCurrentTheme()
+ * ThemeToggler.setTheme("auto")
+ * ThemeToggler.getResolvedTheme()  // "dark" | "light"
  * ```
  *
- * @example HTML with data-theme-toggle
+ * @example HTML
  * ```html
- * <input type="checkbox"
- *        id="themeToggle"
- *        data-theme-toggle>
- * <label for="themeToggle">Dark Mode</label>
+ * <button type="button" class="ss-c-theme-toggle" aria-pressed="false"
+ *         aria-label="Dark mode">…</button>
  * ```
  */
 export class ThemeToggler {
@@ -56,94 +63,189 @@ export class ThemeToggler {
     private static readonly LIGHT_THEME = "light";
     private static readonly STORAGE_KEY = "preferredTheme";
     private static readonly htmlElement = document.documentElement;
+    private static readonly bound = new Set<HTMLElement>();
+    private static mediaListening = false;
 
     private constructor() {
         // Prevent instantiation
     }
 
     /**
-     * Toggle between dark and light themes.
-     * Updates both the DOM attribute and localStorage.
+     * Toggle between dark and light, starting from the theme currently
+     * shown (so "auto" on a dark OS goes to light).
      */
     static toggle(): void {
-        const newTheme =
-            ThemeToggler.getCurrentTheme() === ThemeToggler.DARK_THEME
+        ThemeToggler.setTheme(
+            ThemeToggler.getResolvedTheme() === ThemeToggler.DARK_THEME
                 ? ThemeToggler.LIGHT_THEME
-                : ThemeToggler.DARK_THEME;
+                : ThemeToggler.DARK_THEME,
+        );
+    }
 
-        ThemeToggler.setTheme(newTheme);
+    /** Step through light → dark → auto → light. */
+    static cycle(): void {
+        const current = ThemeToggler.getCurrentTheme() as Theme;
+        const index = CYCLE.indexOf(current);
+        ThemeToggler.setTheme(CYCLE[(index + 1) % CYCLE.length]);
     }
 
     /**
-     * Set theme explicitly to a specific value.
+     * Set theme explicitly.
      *
-     * @param theme - The theme to set ("dark" or "light")
+     * @param theme - "dark", "light" or "auto"
      */
     static setTheme(theme: string): void {
         ThemeToggler.htmlElement.dataset[ThemeToggler.THEME_ATTRIBUTE] = theme;
-        localStorage.setItem(ThemeToggler.STORAGE_KEY, theme);
+        try {
+            localStorage.setItem(ThemeToggler.STORAGE_KEY, theme);
+        } catch {
+            // Storage unavailable: the theme still applies to this page.
+        }
+        ThemeToggler.syncAll();
     }
 
     /**
-     * Get the currently active theme.
-     * Checks DOM attribute first, then localStorage, defaults to light.
-     *
-     * @returns The current theme ("dark" or "light")
+     * Get the chosen theme: the DOM attribute first, then localStorage,
+     * defaulting to light. May be "auto".
      */
     static getCurrentTheme(): string {
+        let stored: string | null;
+        try {
+            stored = localStorage.getItem(ThemeToggler.STORAGE_KEY);
+        } catch {
+            stored = null;
+        }
         return (
             ThemeToggler.htmlElement.dataset[ThemeToggler.THEME_ATTRIBUTE] ||
-            localStorage.getItem(ThemeToggler.STORAGE_KEY) ||
+            stored ||
             ThemeToggler.LIGHT_THEME
         );
     }
 
-    /**
-     * Sync the toggle input checkbox state with the current theme.
-     *
-     * @param toggle - The checkbox input element to sync
-     */
-    private static syncToggleState(toggle: HTMLInputElement): void {
-        const currentTheme = ThemeToggler.getCurrentTheme();
-        toggle.checked = currentTheme === ThemeToggler.DARK_THEME;
+    /** The theme actually shown: "auto" resolved through the OS setting. */
+    static getResolvedTheme(): "dark" | "light" {
+        const theme = ThemeToggler.getCurrentTheme();
+        if (theme === "auto") {
+            return typeof window.matchMedia === "function" &&
+                window.matchMedia(DARK_QUERY).matches
+                ? "dark"
+                : "light";
+        }
+        return theme === ThemeToggler.DARK_THEME ? "dark" : "light";
     }
 
     /**
-     * Initialize a toggle switch (input[type=checkbox]) by ID or data attribute
+     * Bind one control (checkbox or button). Binding the same element twice
+     * is a no-op.
+     */
+    static bind(toggle: HTMLElement): void {
+        if (ThemeToggler.bound.has(toggle)) return;
+        ThemeToggler.bound.add(toggle);
+        ThemeToggler.listenToSystem();
+
+        if (toggle instanceof HTMLInputElement) {
+            toggle.addEventListener("change", ThemeToggler.onChange);
+        } else {
+            toggle.addEventListener("click", ThemeToggler.onClick);
+        }
+        ThemeToggler.sync(toggle);
+    }
+
+    /** Remove the listeners from one control. */
+    static unbind(toggle: HTMLElement): void {
+        toggle.removeEventListener("change", ThemeToggler.onChange);
+        toggle.removeEventListener("click", ThemeToggler.onClick);
+        ThemeToggler.bound.delete(toggle);
+    }
+
+    /** Bind every theme control under `root`. */
+    static initAll(root: ParentNode = document): HTMLElement[] {
+        const toggles = Array.from(
+            root.querySelectorAll<HTMLElement>(TOGGLE_SELECTOR),
+        );
+        toggles.forEach((t) => ThemeToggler.bind(t));
+        return toggles;
+    }
+
+    /**
+     * Initialize a toggle by ID; falls back to every `[data-theme-toggle]` /
+     * `.ss-c-theme-toggle` control on the page.
+     *
      * @param toggleId The ID of the toggle (default: 'themeToggle')
      */
     static initializeToggleSwitch(toggleId = "themeToggle"): void {
-        let toggle = document.getElementById(
-            toggleId,
-        ) as HTMLInputElement | null;
-
-        if (!toggle) {
-            toggle = document.querySelector(
-                "[data-theme-toggle]",
-            ) as HTMLInputElement | null;
+        const toggle = document.getElementById(toggleId);
+        if (toggle) {
+            ThemeToggler.bind(toggle);
+        } else {
+            ThemeToggler.initAll();
         }
-
-        if (!toggle) {
-            // console.warn(
-            //     `ThemeToggler: No toggle element found for ID '${toggleId}' or [data-theme-toggle].`,
-            // )
-            return;
-        }
-
-        ThemeToggler.syncToggleState(toggle);
-
-        toggle.addEventListener("change", () => {
-            ThemeToggler.toggle();
-        });
     }
 
     /**
-     * Register initialization to occur after full page load
-     * Recommended if HTML elements may load later
+     * Initialize after the page has loaded, or right away when it already
+     * has (e.g. when called from a component registry after `load`).
      */
     static registerOnLoad(toggleId = "themeToggle"): void {
-        window.addEventListener("load", () => {
+        if (document.readyState === "complete") {
             ThemeToggler.initializeToggleSwitch(toggleId);
+            return;
+        }
+        window.addEventListener(
+            "load",
+            () => ThemeToggler.initializeToggleSwitch(toggleId),
+            { once: true },
+        );
+    }
+
+    // ========================================================================
+    // Internals
+    // ========================================================================
+
+    private static onChange = (): void => {
+        ThemeToggler.toggle();
+    };
+
+    private static onClick = (event: Event): void => {
+        const toggle = event.currentTarget as HTMLElement;
+        if (toggle.hasAttribute("data-theme-cycle")) ThemeToggler.cycle();
+        else ThemeToggler.toggle();
+    };
+
+    private static syncAll(): void {
+        ThemeToggler.bound.forEach((toggle) => {
+            if (toggle.isConnected) ThemeToggler.sync(toggle);
+            else ThemeToggler.bound.delete(toggle);
         });
+    }
+
+    private static sync(toggle: HTMLElement): void {
+        const dark = ThemeToggler.getResolvedTheme() === "dark";
+        if (toggle instanceof HTMLInputElement) {
+            toggle.checked = dark;
+            return;
+        }
+        if (toggle.hasAttribute("data-theme-cycle")) {
+            const theme = ThemeToggler.getCurrentTheme();
+            toggle.dataset.themeState = theme;
+            const label = toggle.getAttribute(`data-theme-label-${theme}`);
+            if (label) toggle.setAttribute("aria-label", label);
+            return;
+        }
+        toggle.setAttribute("aria-pressed", String(dark));
+    }
+
+    /** Keep controls right when "auto" follows an OS theme change. */
+    private static listenToSystem(): void {
+        if (
+            ThemeToggler.mediaListening ||
+            typeof window.matchMedia !== "function"
+        ) {
+            return;
+        }
+        const query = window.matchMedia(DARK_QUERY);
+        if (typeof query?.addEventListener !== "function") return;
+        ThemeToggler.mediaListening = true;
+        query.addEventListener("change", () => ThemeToggler.syncAll());
     }
 }

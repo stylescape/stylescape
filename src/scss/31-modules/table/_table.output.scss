@@ -42,8 +42,9 @@
                 display: block;
                 margin-bottom: var(--ss-space-md, q(16));
                 border: q(1) solid var(--ss-color-line-secondary);
-                border-radius: var(--ss-radius-sm, q(4));
-                background-color: var(--ss-color-fill, #fff);
+                border-radius: var(--ss-radius-md);
+
+                background-color: var(--ss-color-fill);
 
                 &:last-child {
                     margin-bottom: 0;
@@ -76,6 +77,21 @@
             col {
                 display: none;
             }
+        }
+    }
+}
+
+@layer ss.components {
+    .#{$ss-prefix-module}-table__sort {
+        @include table.ss-table-sort;
+    }
+    // Number columns line up on the decimal side.
+    .#{$ss-prefix-module}-table__cell--numeric {
+        text-align: end;
+        font-variant-numeric: tabular-nums;
+
+        > .#{$ss-prefix-module}-table__sort {
+            justify-content: flex-end;
         }
     }
 }

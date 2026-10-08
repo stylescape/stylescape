@@ -1,0 +1,49 @@
+@use "sass:map";
+@use "./search-bar.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-search-bar {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    inline-size: 100%;
+    max-inline-size: map.get(config.$ss-search-bar-config, max-width);
+
+    // Leading magnifier, drawn over the input's start padding.
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: 2;
+        inset-block: 0;
+        inset-inline-start: map.get(config.$ss-search-bar-config, icon-inset);
+        inline-size: map.get(config.$ss-search-bar-config, icon-size);
+        background: map.get(config.$ss-search-bar-config, icon-color);
+        mask: map.get(config.$ss-search-bar-config, icon) center / contain no-repeat;
+        pointer-events: none;
+    }
+
+    @media (forced-colors: active) {
+        &::before {
+            background: CanvasText;
+        }
+    }
+}
+
+@mixin ss-search-bar-input {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    padding-inline-start: calc(
+        map.get(config.$ss-search-bar-config, icon-inset) * 2 +
+            map.get(config.$ss-search-bar-config, icon-size)
+    );
+
+    &::-webkit-search-cancel-button {
+        cursor: pointer;
+    }
+}
+
+/// Attached button: shares the input's edge.
+@mixin ss-search-bar-button {
+    flex: none;
+    margin-inline-start: q(-1);
+}

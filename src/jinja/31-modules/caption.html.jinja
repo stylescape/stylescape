@@ -3,7 +3,7 @@
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>Descriptive text elements for images, figures, and tables.</p>
     </header>
 
@@ -13,20 +13,20 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <figure style="margin: 0; max-width: 400px">
             <img
-                src="https://via.placeholder.com/400x250"
+                src="/img/placeholder/400x250.svg"
                 alt="Sample image"
-                style="width: 100%; display: block; border-radius: 8px"
+                style="width: 100%; display: block; border-radius: var(--ss-radius-lg)"
             />
             <figcaption
                 class="ss-c-caption"
                 style="
                     margin-top: 12px;
                     font-size: 14px;
-                    opacity: 0.7;
+                    color: var(--ss-color-text-muted);
                     text-align: center;
                 "
             >
@@ -43,7 +43,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="
@@ -55,13 +55,13 @@
             <!-- Caption Below -->
             <figure style="margin: 0">
                 <img
-                    src="https://via.placeholder.com/250x150"
+                    src="/img/placeholder/250x150.svg"
                     alt="Sample"
-                    style="width: 100%; display: block; border-radius: 8px"
+                    style="width: 100%; display: block; border-radius: var(--ss-radius-lg)"
                 />
                 <figcaption
                     class="ss-c-caption"
-                    style="margin-top: 8px; font-size: 13px; opacity: 0.7"
+                    style="margin-top: 8px; font-size: 13px; color: var(--ss-color-text-muted)"
                 >
                     Caption below the image
                 </figcaption>
@@ -70,14 +70,14 @@
             <figure style="margin: 0">
                 <figcaption
                     class="ss-c-caption"
-                    style="margin-bottom: 8px; font-size: 13px; opacity: 0.7"
+                    style="margin-bottom: 8px; font-size: 13px; color: var(--ss-color-text-muted)"
                 >
                     Caption above the image
                 </figcaption>
                 <img
-                    src="https://via.placeholder.com/250x150"
+                    src="/img/placeholder/250x150.svg"
                     alt="Sample"
-                    style="width: 100%; display: block; border-radius: 8px"
+                    style="width: 100%; display: block; border-radius: var(--ss-radius-lg)"
                 />
             </figure>
         </div>
@@ -91,7 +91,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <figure
             style="
@@ -99,11 +99,11 @@
                 max-width: 400px;
                 position: relative;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <img
-                src="https://via.placeholder.com/400x280"
+                src="/img/placeholder/400x280.svg"
                 alt="Sample image"
                 style="width: 100%; display: block"
             />
@@ -116,15 +116,15 @@
                     right: 0;
                     padding: 16px 20px;
                     background: linear-gradient(
-                        transparent,
-                        rgba(0, 0, 0, 0.8)
+                        rgba(0, 0, 0, 0.55),
+                        rgba(0, 0, 0, 0.85)
                     );
                     color: white;
                 "
             >
                 <strong>Overlay Caption</strong>
                 <br />
-                <span style="font-size: 13px; opacity: 0.9">
+                <span style="font-size: 13px">
                     Text positioned over the image with gradient background.
                 </span>
             </figcaption>
@@ -139,7 +139,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <table
             style="width: 100%; max-width: 500px; border-collapse: collapse"
@@ -152,18 +152,19 @@
                     padding: 0 0 12px;
                     font-size: 14px;
                     font-weight: 600;
+                    color: var(--ss-color-text-muted);
                 "
             >
                 Table 1: Monthly Sales Data for Q1 2024
             </caption>
             <thead>
-                <tr style="background: var(--color_fill_secondary)">
+                <tr style="background: var(--ss-color-surface-muted)">
                     <th
                         style="
                             padding: 12px;
                             text-align: left;
                             border-bottom: 2px solid
-                                var(--color_line_secondary);
+                                var(--ss-color-border);
                         "
                     >
                         Month
@@ -173,7 +174,7 @@
                             padding: 12px;
                             text-align: right;
                             border-bottom: 2px solid
-                                var(--color_line_secondary);
+                                var(--ss-color-border);
                         "
                     >
                         Sales
@@ -183,7 +184,7 @@
                             padding: 12px;
                             text-align: right;
                             border-bottom: 2px solid
-                                var(--color_line_secondary);
+                                var(--ss-color-border);
                         "
                     >
                         Growth
@@ -196,7 +197,7 @@
                         style="
                             padding: 10px 12px;
                             border-bottom: 1px solid
-                                var(--color_line_secondary);
+                                var(--ss-color-border);
                         "
                     >
                         January
@@ -206,7 +207,7 @@
                             padding: 10px 12px;
                             text-align: right;
                             border-bottom: 1px solid
-                                var(--color_line_secondary);
+                                var(--ss-color-border);
                         "
                     >
                         $12,500
@@ -216,8 +217,8 @@
                             padding: 10px 12px;
                             text-align: right;
                             border-bottom: 1px solid
-                                var(--color_line_secondary);
-                            color: var(--color_state_success);
+                                var(--ss-color-border);
+                            color: var(--ss-color-success);
                         "
                     >
                         +5%
@@ -228,7 +229,7 @@
                         style="
                             padding: 10px 12px;
                             border-bottom: 1px solid
-                                var(--color_line_secondary);
+                                var(--ss-color-border);
                         "
                     >
                         February
@@ -238,7 +239,7 @@
                             padding: 10px 12px;
                             text-align: right;
                             border-bottom: 1px solid
-                                var(--color_line_secondary);
+                                var(--ss-color-border);
                         "
                     >
                         $15,200
@@ -248,8 +249,8 @@
                             padding: 10px 12px;
                             text-align: right;
                             border-bottom: 1px solid
-                                var(--color_line_secondary);
-                            color: var(--color_state_success);
+                                var(--ss-color-border);
+                            color: var(--ss-color-success);
                         "
                     >
                         +21%
@@ -264,7 +265,7 @@
                         style="
                             padding: 10px 12px;
                             text-align: right;
-                            color: var(--color_state_error);
+                            color: var(--ss-color-error);
                         "
                     >
                         -3%
@@ -282,30 +283,31 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <figure style="margin: 0; max-width: 450px">
             <img
-                src="https://via.placeholder.com/450x300"
+                src="/img/placeholder/450x300.svg"
                 alt="Landscape photo"
-                style="width: 100%; display: block; border-radius: 8px"
+                style="width: 100%; display: block; border-radius: var(--ss-radius-lg)"
             />
             <figcaption
                 class="ss-c-caption"
                 style="
                     margin-top: 12px;
                     padding: 12px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 6px;
+                    background: var(--ss-color-surface-muted);
+                    border-radius: var(--ss-radius-md);
                     font-size: 13px;
+                    color: var(--ss-color-text);
                 "
             >
                 <strong>Sunset over the mountains</strong>
-                <p style="margin: 8px 0 0; opacity: 0.8; line-height: 1.5">
+                <p style="margin: 8px 0 0; color: var(--ss-color-text-muted); line-height: 1.5">
                     A breathtaking view captured during golden hour at Yosemite
                     National Park.
                 </p>
-                <p style="margin: 8px 0 0; font-size: 12px; opacity: 0.6">
+                <p style="margin: 8px 0 0; font-size: 12px; color: var(--ss-color-text-muted)">
                     ◉ Photo by Sarah Johnson | © 2024 All rights reserved
                 </p>
             </figcaption>

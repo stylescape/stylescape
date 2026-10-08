@@ -1,0 +1,80 @@
+{% extends "../base.html.jinja" %} {% set title = "Dashboard Grid" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-l-dashboard</code> layout: an auto-fill grid of
+        widgets (<code>ss-c-card</code>, <code>ss-c-stat</code>,
+        <code>ss-c-panel</code>, charts) at least <code>--ss-dashboard-min</code>
+        wide, spaced by <code>--ss-dashboard-gap</code>. Widgets span more columns
+        with <code>ss-l-dashboard__item--span-2</code>, <code>--span-3</code>,
+        <code>--full</code> and more rows with <code>--tall</code>. The dashboard is
+        a size container: a span applies only once the dashboard is wide enough
+        for that many default-width columns, so it never overflows.
+    </p>
+
+    {% set section_title = "Stats and cards" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-l-dashboard">
+            <div class="ss-c-stat">
+                <div class="ss-c-stat__title">Accounts</div>
+                <div class="ss-c-stat__value">1,284</div>
+                <div class="ss-c-stat__desc">+12 this week</div>
+            </div>
+            <div class="ss-c-stat">
+                <div class="ss-c-stat__title">Open tickets</div>
+                <div class="ss-c-stat__value">37</div>
+                <div class="ss-c-stat__desc">5 overdue</div>
+            </div>
+            <div class="ss-c-stat">
+                <div class="ss-c-stat__title">Uptime</div>
+                <div class="ss-c-stat__value">99.98%</div>
+                <div class="ss-c-stat__desc">Last 30 days</div>
+            </div>
+            <div class="ss-c-stat">
+                <div class="ss-c-stat__title">Queue</div>
+                <div class="ss-c-stat__value">4</div>
+                <div class="ss-c-stat__desc">Jobs waiting</div>
+            </div>
+            <article class="ss-c-card ss-l-dashboard__item--span-2 ss-l-dashboard__item--tall">
+                <header class="ss-c-card__header"><h3 class="ss-c-card__title">Requests per hour</h3></header>
+                <div class="ss-c-card__body">
+                    <div style="height: 100%; min-height: 160px; background: var(--ss-color-surface-2)" role="img"
+                         aria-label="Chart placeholder"></div>
+                </div>
+            </article>
+            <article class="ss-c-card">
+                <h3 class="ss-c-card__title">Recent activity</h3>
+                <p class="ss-c-card__body" style="margin: 0">Invoice 2041 paid.</p>
+            </article>
+            <article class="ss-c-card">
+                <h3 class="ss-c-card__title">Storage</h3>
+                <p class="ss-c-card__body" style="margin: 0">62 GB of 100 GB.</p>
+            </article>
+            <section class="ss-c-panel ss-l-dashboard__item--full" aria-labelledby="demo-dash-log">
+                <div class="ss-c-panel__header" id="demo-dash-log">Event log</div>
+                <div class="ss-c-panel__body">12:04 Deploy finished &middot; 11:58 Backup completed</div>
+            </section>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Compact" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p><code>ss-l-dashboard--compact</code>: narrower columns, smaller gap.</p>
+        {% set code_snippet %}
+        <div class="ss-l-dashboard ss-l-dashboard--compact">
+            <div class="ss-c-stat"><div class="ss-c-stat__title">CPU</div><div class="ss-c-stat__value">41%</div></div>
+            <div class="ss-c-stat"><div class="ss-c-stat__title">Memory</div><div class="ss-c-stat__value">6.2 GB</div></div>
+            <div class="ss-c-stat"><div class="ss-c-stat__title">Disk</div><div class="ss-c-stat__value">62%</div></div>
+            <div class="ss-c-stat"><div class="ss-c-stat__title">Network</div><div class="ss-c-stat__value">12 MB/s</div></div>
+            <div class="ss-c-stat"><div class="ss-c-stat__title">Workers</div><div class="ss-c-stat__value">8</div></div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

@@ -158,3 +158,9 @@ _Repo-specific guidance goes here; preserved across regeneration._
   `bin/migrate_ss_prefix.py` remain: they perform a *different*, already-run
   migration (namespace-only → layered prefixes) that the spec's `ss-o-` map
   does not cover.
+
+## Working branch
+
+**Agents work directly on `dev`.** Unless explicitly asked otherwise, make
+all changes on the `dev` branch of this checkout — don't create feature
+branches or worktrees, and don't switch to another branch.

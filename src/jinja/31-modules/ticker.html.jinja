@@ -3,7 +3,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             Animated scrolling text for announcements, news tickers, and brand
             marquees.
@@ -16,15 +16,15 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Simple horizontal scrolling text.</p>
         {% set code_snippet %}
         <div
             class="ss-c-ticker"
             style="
                 overflow: hidden;
-                background: var(--color_fill_primary);
-                color: white;
+                background: var(--ss-color-accent);
+                color: var(--ss-color-on-accent);
                 padding: 12px 0;
             "
         >
@@ -68,6 +68,15 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     transform: translateX(-50%);
                 }
             }
+            .ss-c-ticker:hover .ss-c-ticker__content,
+            .ss-c-ticker:focus-within .ss-c-ticker__content {
+                animation-play-state: paused;
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .ss-c-ticker__content {
+                    animation: none !important;
+                }
+            }
         </style>
         {% endset %} {% set language="HTML" %} {%- include
         "includes/preview/ss-c-preview_code.html.jinja" %}
@@ -79,7 +88,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>News-style ticker with label.</p>
         {% set code_snippet %}
         <div
@@ -88,14 +97,14 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                 display: flex;
                 background: #1a1a2e;
                 overflow: hidden;
-                border-radius: 8px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
                 class="ss-c-ticker__label"
                 style="
-                    background: var(--color_state_error);
-                    color: white;
+                    background: var(--ss-color-error);
+                    color: var(--ss-color-on-error);
                     padding: 12px 20px;
                     font-weight: 700;
                     flex-shrink: 0;
@@ -155,7 +164,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Logo carousel for showcasing partners or clients.</p>
         {% set code_snippet %}
         <div
@@ -163,8 +172,9 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             style="
                 overflow: hidden;
                 padding: 24px 0;
-                background: var(--color_fill_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface-alt);
+                color: var(--ss-color-text);
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
@@ -172,6 +182,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                 style="
                     display: flex;
                     align-items: center;
+                    white-space: nowrap;
                     animation: ticker 30s linear infinite;
                 "
             >
@@ -287,7 +298,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Financial ticker with price changes.</p>
         {% set code_snippet %}
         <div
@@ -296,7 +307,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                 overflow: hidden;
                 background: #0a0a0f;
                 padding: 12px 0;
-                border-radius: 8px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
@@ -304,6 +315,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                 style="
                     display: flex;
                     gap: 48px;
+                    white-space: nowrap;
                     animation: ticker 35s linear infinite;
                     font-family: monospace;
                 "
@@ -404,17 +416,17 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Ticker scrolling in opposite direction.</p>
         {% set code_snippet %}
         <div
             class="ss-c-ticker ss-c-ticker--reverse"
             style="
                 overflow: hidden;
-                background: linear-gradient(90deg, #667eea, #764ba2);
+                background: linear-gradient(90deg, #4f46e5, #6d28d9);
                 color: white;
                 padding: 16px 0;
-                border-radius: 8px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
@@ -422,6 +434,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                 style="
                     display: flex;
                     gap: 32px;
+                    white-space: nowrap;
                     animation: ticker-reverse 20s linear infinite;
                     font-size: 14px;
                     text-transform: uppercase;
@@ -461,16 +474,17 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Ticker that pauses when user hovers.</p>
         {% set code_snippet %}
         <div
             class="ss-c-ticker ss-c-ticker--pausable"
             style="
                 overflow: hidden;
-                background: var(--color_fill_secondary);
+                background: var(--ss-color-surface-alt);
+                color: var(--ss-color-text);
                 padding: 16px 0;
-                border-radius: 8px;
+                border-radius: var(--ss-radius-lg);
                 cursor: default;
             "
         >
@@ -479,6 +493,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                 style="
                     display: flex;
                     gap: 48px;
+                    white-space: nowrap;
                     animation: ticker 25s linear infinite;
                     font-weight: 500;
                 "
@@ -512,7 +527,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Vertically scrolling announcements.</p>
         {% set code_snippet %}
         <div
@@ -520,9 +535,10 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             style="
                 height: 120px;
                 overflow: hidden;
-                background: white;
-                border: 1px solid var(--color_line_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface);
+                color: var(--ss-color-text);
+                border: 1px solid var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
                 padding: 16px 20px;
                 max-width: 400px;
             "

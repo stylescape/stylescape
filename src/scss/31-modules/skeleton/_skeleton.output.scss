@@ -1,0 +1,29 @@
+@use "../../01-core/prefix" as *;
+@use "./skeleton.mixins" as skeleton;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-skeleton {
+        @include skeleton.ss-skeleton;
+    }
+    .#{$ss-prefix-module}-skeleton--line {
+        @include skeleton.ss-skeleton-line;
+    }
+    .#{$ss-prefix-module}-skeleton--text {
+        @include skeleton.ss-skeleton-text;
+    }
+    .#{$ss-prefix-module}-skeleton--block {
+        @include skeleton.ss-skeleton-block;
+    }
+    .#{$ss-prefix-module}-skeleton--avatar {
+        @include skeleton.ss-skeleton-avatar;
+    }
+
+    @keyframes ss-skeleton-shimmer {
+        from {
+            background-position: 150% 0;
+        }
+        to {
+            background-position: -50% 0;
+        }
+    }
+}

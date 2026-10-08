@@ -1,0 +1,115 @@
+@use "sass:map";
+@use "./tree.config" as config;
+@use "../../01-core/external" as *;
+@use "../../01-core/prefix" as *;
+
+$_c: config.$ss-tree-config;
+
+/// WAI-ARIA tree built from nested lists:
+/// `ul[role=tree] > li[role=treeitem] > (.ss-c-tree__label + ul[role=group])`.
+/// `TreeViewManager` adds the roles, `aria-expanded` and the roving tabindex.
+@mixin ss-tree {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: map.get($_c, font-size);
+    line-height: 1.5;
+    color: var(--ss-color-text);
+
+    // Zero specificity so `__group` indentation still applies.
+    :where(ul, ol) {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+}
+
+@mixin ss-tree-group {
+    padding-inline-start: map.get($_c, indent);
+}
+
+/// Collapsed branches hide their group (works before the script runs too).
+@mixin ss-tree-item {
+    &[aria-expanded="false"] > .#{$ss-prefix-module}-tree__group {
+        display: none;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:focus-visible > .#{$ss-prefix-module}-tree__label {
+        outline: var(--ss-focus-ring-width, #{q(2)}) solid
+            var(--ss-focus-ring-color, currentColor);
+        outline-offset: calc(-1 * var(--ss-focus-ring-width, #{q(2)}));
+    }
+
+    &[aria-selected="true"] > .#{$ss-prefix-module}-tree__label {
+        color: map.get($_c, selected-fg);
+        background-color: map.get($_c, selected-bg);
+    }
+}
+
+/// Row: disclosure triangle (branches only), optional icon, text.
+@mixin ss-tree-label {
+    display: flex;
+    align-items: center;
+    gap: q(4);
+    padding: map.get($_c, label-padding);
+    cursor: default;
+    user-select: none;
+
+    &::before {
+        content: "";
+        flex: none;
+        inline-size: map.get($_c, toggle-size);
+        block-size: map.get($_c, toggle-size);
+    }
+
+    &:hover {
+        background-color: map.get($_c, hover-bg);
+    }
+
+    [aria-expanded] > & {
+        cursor: pointer;
+    }
+
+    [aria-expanded] > &::before {
+        background-color: currentColor;
+        clip-path: polygon(35% 25%, 70% 50%, 35% 75%);
+        transition: transform var(--ss-duration-150)
+            var(--ss-ease-out);
+    }
+
+    [aria-expanded="true"] > &::before {
+        transform: rotate(90deg);
+    }
+
+    [dir="rtl"] [aria-expanded="false"] > &::before {
+        transform: scaleX(-1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &::before {
+            transition: none;
+        }
+    }
+}
+
+@mixin ss-tree-icon {
+    flex: none;
+    inline-size: 1em;
+    block-size: 1em;
+    color: var(--ss-color-text-muted);
+}
+
+/// Vertical guide line per nesting level.
+@mixin ss-tree-lines {
+    .#{$ss-prefix-module}-tree__group {
+        margin-inline-start: calc(#{map.get($_c, toggle-size)} / 2 + #{q(6)});
+        padding-inline-start: calc(
+            #{map.get($_c, indent)} - #{map.get($_c, toggle-size)} / 2
+        );
+        border-inline-start: map.get($_c, guide);
+    }
+}

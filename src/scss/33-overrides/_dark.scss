@@ -7,6 +7,22 @@
 /// `ss.overrides` layer so it wins against the default token set without
 /// requiring extra specificity.
 ///
+/// Mirrors `12-lexicon/_color-tokens.scss` role by role: every semantic
+/// surface / text / line token that flips with the theme is redefined here,
+/// otherwise components keep reading the light value (black text on the
+/// dark legacy `--color_*` page background). Absolute tokens (white, black,
+/// the gray ramp) stay as they are. The light theme darkens the brand and
+/// status hues for contrast on white; here the original hues already pass
+/// on the dark surfaces, so they are restored and text placed *on* them
+/// (`--ss-color-on-*`) turns near-black. Text pairs meet WCAG AA (4.5:1)
+/// against `--ss-color-background` and `-surface`.
+///
+/// Two ways in: `data-theme="dark"` forces the dark set, and
+/// `data-theme="auto"` follows `prefers-color-scheme`. Without a
+/// `data-theme` attribute the page stays light, so existing sites do not
+/// turn dark on a dark OS. `data-theme="light"` inside a dark page is a
+/// light island (see `12-lexicon/_color-tokens.scss`).
+///
 /// @group Overrides.Theme
 /// @author Scape Press
 /// @link https://scape.style
@@ -15,14 +31,140 @@
 ///
 ////
 
+@use "sass:color";
 @use "../01-core/external" as *;
 
-@layer ss.overrides {
-    [data-theme="dark"] {
-        --ss-color-surface: #1c1c1c;
-        --ss-color-text-primary: #f2f2f2;
+$_accent: hue_color("N2405");
+$_state-link: hue_color("N2404");
+$_state-hover: hue_color("N2402");
+$_visited: hue_color("N2704");
+$_accent-dark: hue_color("N2407");
+$_accent-light: hue_color("N2403");
+$_success: hue_color("N1505");
+$_warning: hue_color("N0605");
+$_error: hue_color("N0305");
+$_info: hue_color("N2705");
 
-        --ss-a-shadow-sm: 0 #{q(2)} #{q(6)} rgb(0 0 0 / 0.4);
-        --ss-a-shadow-md: 0 #{q(6)} #{q(18)} rgb(0 0 0 / 0.6);
+@function _bg($c) {
+    @return color.mix(#111111, $c, 78%);
+} // deep fill
+@function _soft($c) {
+    @return color.mix(#111111, $c, 88%);
+} // faintest fill
+@function _fg($c) {
+    @return color.mix(#ffffff, $c, 55%);
+} // readable light tint
+
+@mixin _dark-tokens {
+    color-scheme: dark;
+
+    // Surface / Background
+    --ss-color-background: #111111;
+    --ss-color-foreground: #f2f2f2;
+
+    --ss-color-surface: #1c1c1c;
+    --ss-color-surface-alt: #202020;
+    --ss-color-surface-muted: #262626;
+    --ss-color-surface-hover: #2e2e2e;
+    --ss-color-surface-primary: #1c1c1c;
+
+    --ss-color-surface-1: #2a2a2a;
+    --ss-color-surface-2: #333333;
+    --ss-color-surface-3: #3d3d3d;
+
+    --ss-color-fill: #1c1c1c;
+    --ss-color-fill-muted: #262626;
+
+    // Text
+    --ss-color-text: #f2f2f2;
+    --ss-color-text-primary: #f2f2f2;
+    --ss-color-text-muted: #b8b8b8;
+    --ss-color-muted: #8c8c8c;
+    --ss-color-muted-foreground: #b8b8b8;
+
+    // Lines / Borders
+    --ss-color-line: #3d3d3d;
+    --ss-color-line-primary: #f2f2f2;
+    --ss-color-line-secondary: #2a2a2a;
+
+    --ss-color-border: #474747;
+    --ss-color-border-muted: #333333;
+    --ss-color-border-subtle: #2a2a2a;
+    --ss-color-border-strong: #7a7a7a;
+
+    // Brand / Accent
+    --ss-color-primary: #f2f2f2;
+    --ss-color-secondary: #5a5a5a;
+
+    --ss-color-accent: #{$_accent};
+    --ss-color-accent-bg: #{_bg($_accent)};
+    --ss-color-accent-foreground: #111111;
+    --ss-color-accent-highlight: #{$_accent-light};
+    --ss-color-accent-tertiary: #{$_accent-dark};
+    --ss-color-on-accent: #111111;
+    --ss-color-highlight: #{_bg($_accent)};
+    --ss-color-highlight-foreground: #{_fg($_accent)};
+
+    --ss-color-backdrop: rgb(0 0 0 / 0.7);
+
+    // Links / States
+    --ss-color-link: #{$_state-link};
+    --ss-color-link-hover: #{$_state-hover};
+    --ss-color-link-active: #{$_accent};
+    --ss-color-link-visited: #{$_visited};
+    --ss-color-focus: #{$_state-link};
+    --ss-color-state-hover: #{$_state-hover};
+    --ss-color-state-active: #{$_accent};
+    --ss-color-state-link: #{$_state-link};
+
+    // Status / Feedback
+    --ss-color-success: #{$_success};
+    --ss-color-success-bg: #{_bg($_success)};
+    --ss-color-success-soft: #{_soft($_success)};
+    --ss-color-success-foreground: #{_fg($_success)};
+    --ss-color-on-success: #111111;
+
+    --ss-color-warning: #{$_warning};
+    --ss-color-warning-bg: #{_bg($_warning)};
+    --ss-color-warning-soft: #{_soft($_warning)};
+    --ss-color-warning-foreground: #{_fg($_warning)};
+    --ss-color-on-warning: #111111;
+
+    --ss-color-error: #{$_error};
+    --ss-color-error-bg: #{_bg($_error)};
+    --ss-color-error-soft: #{_soft($_error)};
+    --ss-color-error-foreground: #{_fg($_error)};
+    --ss-color-on-error: #111111;
+
+    --ss-color-info: #{$_info};
+    --ss-color-info-bg: #{_bg($_info)};
+    --ss-color-info-soft: #{_soft($_info)};
+    --ss-color-info-foreground: #{_fg($_info)};
+    --ss-color-on-info: #111111;
+
+    // Code / Keyboard
+    --ss-color-code-bg: #0a0a0a;
+    --ss-color-code-background: #0a0a0a;
+    --ss-color-kbd-bg: #262626;
+
+    --ss-a-shadow-sm: 0 #{q(2)} #{q(6)} rgb(0 0 0 / 0.4);
+    --ss-a-shadow-md: 0 #{q(6)} #{q(18)} rgb(0 0 0 / 0.6);
+}
+
+@layer ss.overrides {
+    // A light island (`data-theme="light"` inside a dark page) also needs
+    // light native controls; its tokens come from 12-lexicon.
+    [data-theme="light"] {
+        color-scheme: light;
+    }
+
+    [data-theme="dark"] {
+        @include _dark-tokens;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        [data-theme="auto"] {
+            @include _dark-tokens;
+        }
     }
 }

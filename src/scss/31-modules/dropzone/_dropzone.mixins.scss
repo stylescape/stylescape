@@ -1,0 +1,79 @@
+@use "sass:map";
+@use "./dropzone.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-dropzone {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: map.get(config.$ss-dropzone-config, gap);
+}
+
+/// Visually hidden but focusable: the label below shows its focus ring.
+@mixin ss-dropzone-input {
+    position: absolute;
+    inline-size: q(1);
+    block-size: q(1);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    opacity: 0;
+}
+
+@mixin ss-dropzone-surface {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: map.get(config.$ss-dropzone-config, gap);
+    padding: map.get(config.$ss-dropzone-config, padding);
+
+    background: map.get(config.$ss-dropzone-config, bg);
+    color: map.get(config.$ss-dropzone-config, fg);
+    border: map.get(config.$ss-dropzone-config, border-width) dashed
+        map.get(config.$ss-dropzone-config, border);
+    border-radius: 0;
+    text-align: center;
+    cursor: pointer;
+
+    transition:
+        background-color map.get(config.$ss-dropzone-config, duration) var(--ss-ease-in-out),
+        border-color map.get(config.$ss-dropzone-config, duration) var(--ss-ease-in-out);
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+@mixin ss-dropzone-surface-hover {
+    border-color: map.get(config.$ss-dropzone-config, hover-border);
+}
+
+/// Files are over the zone: solid accent border and tint (the border style
+/// changes too, so the state does not rest on colour alone).
+@mixin ss-dropzone-surface-active {
+    border-style: solid;
+    border-color: map.get(config.$ss-dropzone-config, active-border);
+    background: map.get(config.$ss-dropzone-config, active-bg);
+}
+
+@mixin ss-dropzone-surface-invalid {
+    border-style: solid;
+    border-color: map.get(config.$ss-dropzone-config, invalid-border);
+    background: map.get(config.$ss-dropzone-config, invalid-bg);
+}
+
+@mixin ss-dropzone-icon {
+    display: block;
+    inline-size: map.get(config.$ss-dropzone-config, icon-size);
+    block-size: map.get(config.$ss-dropzone-config, icon-size);
+    background: currentColor;
+    mask: map.get(config.$ss-dropzone-config, icon) center / contain no-repeat;
+}
+
+@mixin ss-dropzone-hint {
+    color: map.get(config.$ss-dropzone-config, hint-color);
+    font-size: map.get(config.$ss-dropzone-config, hint-font-size);
+}

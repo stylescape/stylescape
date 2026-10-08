@@ -63,6 +63,27 @@
         border-style: none;
     }
 
+    /// …but a bare text field still needs a visible boundary (WCAG 1.4.11).
+    /// `:where()` keeps it at zero specificity, so any classed control wins.
+    :where(
+            input:not(
+                    [type="button"],
+                    [type="submit"],
+                    [type="reset"],
+                    [type="image"],
+                    [type="checkbox"],
+                    [type="radio"],
+                    [type="range"],
+                    [type="color"],
+                    [type="file"],
+                    [type="hidden"]
+                ),
+            select,
+            textarea
+        ) {
+        border: q(1) solid var(--ss-color-border-strong, currentColor);
+    }
+
     /// Specify font inheritance of form elements
     button,
     input,

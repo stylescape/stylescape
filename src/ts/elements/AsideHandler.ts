@@ -171,5 +171,6 @@ export class AsideHandler {
             AsideHandler.VISIBLE_CLASS,
             isVisible,
         );
+        this.asideSwitch?.setAttribute("aria-expanded", String(isVisible));
     }
 }

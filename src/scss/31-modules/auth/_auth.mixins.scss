@@ -1,0 +1,38 @@
+@use "sass:map";
+@use "./auth.config" as config;
+@use "../../01-core/external" as *;
+
+@function _cfg($key) {
+    @return map.get(config.$ss-auth-config, $key);
+}
+
+/// Full-height backdrop that centres the panel.
+@mixin ss-auth {
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    min-block-size: 100vh;
+    min-block-size: 100dvh;
+    padding: q(32) q(16);
+    background-color: _cfg(bg);
+    color: var(--ss-color-text);
+}
+
+@mixin ss-auth-panel {
+    display: flex;
+    flex-direction: column;
+    gap: _cfg(gap);
+    box-sizing: border-box;
+    inline-size: 100%;
+    max-inline-size: _cfg(panel-width);
+    padding: _cfg(padding);
+    background-color: _cfg(panel-bg);
+    border: _cfg(border);
+    border-radius: _cfg(radius);
+    box-shadow: _cfg(shadow);
+}
+
+/// Read one key of `$ss-auth-config` (for the output file).
+@function ss-auth-config($key) {
+    @return map.get(config.$ss-auth-config, $key);
+}

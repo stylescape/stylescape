@@ -1,10 +1,10 @@
 ////
 ///
-/// Deafult Paragraph Typography Mixins Module
+/// Text Indent Mixins
 /// ===========================================================================
-/// Provides reusable mixins for text alignment and centering.
+/// First-line, hanging and block indentation for running text.
 ///
-/// @group TextAlignment
+/// @group Typography.Indent
 /// @author Scape Press
 /// @link https://scape.style
 /// @since 0.1.0 initial release
@@ -24,15 +24,14 @@
 @use "../../../01-core/external" as *;
 
 @mixin text_indent($amount: baseline(4)) {
-    text-indent: $amount !important;
-    // text-justify: inter-word; // Optional for better justification
+    text-indent: $amount;
 }
 
 ///
 /// Mixin for removing text indentation.
 ///
 @mixin text_indent--none {
-    text-indent: 0 !important;
+    text-indent: 0;
 }
 
 ///
@@ -68,4 +67,23 @@
 ///
 @mixin text_indent--xl {
     @include text_indent(baseline(8));
+}
+
+///
+/// Hanging indent: the first line sits at the margin, the rest are indented
+/// (bibliographies, references).
+/// @param {Length} $amount [baseline(4)] - Depth of the hang.
+///
+@mixin text_indent--hanging($amount: baseline(4)) {
+    padding-inline-start: $amount;
+    text-indent: calc(-1 * #{$amount});
+}
+
+///
+/// Block indent: the whole block is inset from both margins (quotations,
+/// excerpts).
+/// @param {Length} $amount [baseline(4)] - Inset on each side.
+///
+@mixin text_indent--block($amount: baseline(4)) {
+    margin-inline: $amount;
 }

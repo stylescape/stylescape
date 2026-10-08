@@ -1,16 +1,31 @@
 {% extends "../base.html.jinja" %} {%- block title %}Width Utilities{%- endblock
-%} {%- block content %} {#
+%} {%- block head %}
+<style>
+    /* Fill tokens sit very close to the preview surface in both themes;
+       outline the demo boxes so their size/shape stays visible. */
+    .ss-c-preview--vertical .ss-c-bg--fill_02 {
+        outline: 1px solid var(--ss-color-border);
+        outline-offset: -1px;
+    }
+</style>
+{%- endblock %} {%- block content %}
+<header class="ss-c-demo__section__header">
+    <h1>Width Utilities</h1>
+    <p>Width utilities: percentages, viewport units, fixed sizes, min/max and fit-content.</p>
+</header>
+
+{#
 ============================================================================
 Percentage Widths
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Percentage Widths" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Percentage Widths</h3>
+        <h2>Percentage Widths</h2>
         <p>Width utilities based on percentage values.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Common Percentages</h4>
+        <h3>Common Percentages</h3>
         {% set code_snippet %}
         <div class="ss-c-w--100 ss-c-bg--fill_02 ss-c-p--02 ss-c-mb--02">100% width</div>
         <div class="ss-c-w--75 ss-c-bg--fill_02 ss-c-p--02 ss-c-mb--02">75% width</div>
@@ -21,7 +36,7 @@ Percentage Widths
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Auto Width</h4>
+        <h3>Auto Width</h3>
         {% set code_snippet %}
         <div class="ss-c-w--auto ss-c-bg--fill_02 ss-c-p--02 ss-c-d--inline-block">
             Auto width (fits content)
@@ -36,12 +51,12 @@ Viewport Widths
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Viewport Widths" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Viewport Widths</h3>
+        <h2>Viewport Widths</h2>
         <p>Width utilities based on viewport dimensions.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Viewport Width Units</h4>
+        <h3>Viewport Width Units</h3>
         {% set code_snippet %}
         <div class="ss-c-w--100vw ss-c-bg--fill_02 ss-c-p--02 ss-c-mb--02">
             100vw - Full viewport width
@@ -59,12 +74,12 @@ Fixed Widths
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Fixed Widths" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Fixed Widths</h3>
+        <h2>Fixed Widths</h2>
         <p>Width utilities with fixed pixel values.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Pixel Widths</h4>
+        <h3>Pixel Widths</h3>
         {% set code_snippet %}
         <div class="ss-c-w--64 ss-c-bg--fill_02 ss-c-p--02 ss-c-mb--02">64px</div>
         <div class="ss-c-w--128 ss-c-bg--fill_02 ss-c-p--02 ss-c-mb--02">128px</div>
@@ -80,12 +95,12 @@ Min/Max Widths
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Min/Max Widths" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Min/Max Widths</h3>
+        <h2>Min/Max Widths</h2>
         <p>Constrain element widths with minimum and maximum values.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Maximum Width</h4>
+        <h3>Maximum Width</h3>
         {% set code_snippet %}
         <div class="ss-c-max-w--sm ss-c-bg--fill_02 ss-c-p--02 ss-c-mb--02">
             Max width small (320px)
@@ -104,7 +119,7 @@ Min/Max Widths
     </section>
 
     <section class="ss-c-demo__subsection">
-        <h4>Minimum Width</h4>
+        <h3>Minimum Width</h3>
         {% set code_snippet %}
         <div class="ss-c-d--inline-block ss-c-min-w--100 ss-c-bg--fill_02 ss-c-p--02 ss-c-mb--02">
             Min 100px
@@ -122,12 +137,12 @@ Fit Content
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Fit Content" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Fit Content</h3>
+        <h2>Fit Content</h2>
         <p>Width that fits the content with constraints.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Fit Content Width</h4>
+        <h3>Fit Content Width</h3>
         {% set code_snippet %}
         <div class="ss-c-w--fit ss-c-bg--fill_02 ss-c-p--02 ss-c-mb--02">Width fits content</div>
         <div class="ss-c-w--min ss-c-bg--fill_02 ss-c-p--02 ss-c-mb--02">

@@ -1,0 +1,30 @@
+@use "../../01-core/prefix" as *;
+@use "./empty-state.mixins" as empty;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-empty-state {
+        @include empty.ss-empty-state;
+    }
+    .#{$ss-prefix-module}-empty-state__icon {
+        @include empty.ss-empty-state-icon;
+    }
+    .#{$ss-prefix-module}-empty-state__title {
+        @include empty.ss-empty-state-title;
+    }
+    .#{$ss-prefix-module}-empty-state__description {
+        @include empty.ss-empty-state-description;
+    }
+    .#{$ss-prefix-module}-empty-state__actions {
+        @include empty.ss-empty-state-actions;
+    }
+    .#{$ss-prefix-module}-empty-state--bordered {
+        @include empty.ss-empty-state-bordered;
+    }
+    .#{$ss-prefix-module}-empty-state--compact {
+        @include empty.ss-empty-state-compact;
+    }
+    // Spans every track when dropped into a card grid or list.
+    .#{$ss-prefix-module}-empty-state--wide {
+        grid-column: 1 / -1;
+    }
+}

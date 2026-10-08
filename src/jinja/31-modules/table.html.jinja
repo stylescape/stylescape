@@ -3,7 +3,7 @@ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
     </header>
 
     {% set table_content %}
@@ -50,10 +50,24 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
         {% set code_snippet %}
-        <table class="">{{ table_content | safe }}</table>
+        <table class="ss-c-table">{{ table_content | safe }}</table>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Bordered, Striped & Hover" %}
+    <section
+        class="ss-c-demo__subsection"
+        data-label="{{ section_title }}"
+        data-level="2"
+    >
+        <h2>{{ section_title }}</h2>
+
+        {% set code_snippet %}
+        <table class="ss-c-table ss-c-table--bordered ss-c-table--striped ss-c-table--hover">{{ table_content | safe }}</table>
         {% endset %} {% set language="HTML" %} {%- include
         "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
@@ -68,7 +82,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
         {% set code_snippet %}
         <table class="ss-c-table--lined--all">{{ table_content | safe }}</table>
@@ -86,7 +100,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
         {% set code_snippet %}
         <table class="ss-c-table--lined--horizontal">
@@ -106,7 +120,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
         {% set code_snippet %}
         <table class="ss-c-table--lined--vertical">
@@ -126,7 +140,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
         {% set code_snippet %}
         <table class="ss-c-table--striped--horizontal">
@@ -146,7 +160,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
         {% set code_snippet %}
         <table class="ss-c-table--striped--vertical">
@@ -166,7 +180,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
         {% set code_snippet %}
         <table class="ss-c-table--striped--vertical ss-c-table--size--sm">
@@ -186,7 +200,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
         {% set code_snippet %}
         <div class="ss-c-collapsible_table">
@@ -194,7 +208,11 @@ title }}{%- endblock %} {%- block content %}
                 <span class="ss-c-collapsible_table--title">
                     Expandable Table Title
                 </span>
-                <button class="active ss-c-flipper--down" type="button"></button>
+                <button
+                    class="active ss-c-flipper--down"
+                    type="button"
+                    aria-label="Toggle table"
+                ></button>
             </div>
 
             <div class="ss-c-collapsible_table--content ss-c-collapse">
@@ -217,20 +235,25 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
 
         {% set code_snippet %}
         <div class="ss-c-data_table">
             <div class="ss-c-data_table--header">
                 <span class="ss-c-data_table--title">Data Table Title</span>
-                <form role="search" class="ss-c-data_table--form">
-                    <button class="ss-c-data_table--button" type="submit">
-                        <i class="ss-c-i i_ui_search"></i>
+                <form role="search" class="ss-c-data_table--form" aria-label="Table search">
+                    <button
+                        class="ss-c-data_table--button"
+                        type="submit"
+                        aria-label="Search"
+                    >
+                        <svg aria-hidden="true" focusable="false" width="16" height="16" style="flex: none" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>
                     </button>
                     <input
                         type="text"
                         class="ss-c-data_table--input"
                         placeholder="Search..."
+                        aria-label="Search table"
                     />
                 </form>
             </div>
@@ -252,6 +275,30 @@ title }}{%- endblock %} {%- block content %}
 
         {% endset %} {% set language="HTML" %} {%- include
         "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Sortable header" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <table class="ss-c-table ss-c-table--hover" data-ss="table-sort">
+            <caption>Repositories (select a column header to sort)</caption>
+            <thead>
+                <tr>
+                    <th scope="col" aria-sort="ascending"><button class="ss-c-table__sort" type="button">Name</button></th>
+                    <th scope="col" class="ss-c-table__cell--numeric" data-ss-sort-type="number"><button class="ss-c-table__sort" type="button">Size</button></th>
+                    <th scope="col"><button class="ss-c-table__sort" type="button">Updated</button></th>
+                    <th scope="col">Owner</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>sturnia-plot</td><td class="ss-c-table__cell--numeric" data-sort-value="18400">18.4 MB</td><td data-sort-value="2026-10-07">7 Oct</td><td>Starling</td></tr>
+                <tr><td>sturnus-area</td><td class="ss-c-table__cell--numeric" data-sort-value="5200">5.2 MB</td><td data-sort-value="2026-09-30">30 Sep</td><td>Starling</td></tr>
+                <tr><td>stylescape</td><td class="ss-c-table__cell--numeric" data-sort-value="41000">41.0 MB</td><td data-sort-value="2026-10-08">8 Oct</td><td>Scape Press</td></tr>
+            </tbody>
+        </table>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 
     {%- endblock content %}

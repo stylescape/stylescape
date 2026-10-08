@@ -3,43 +3,41 @@ title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
     </header>
     {% set image_url =
-    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1470&q=80"
+    "/img/placeholder/1470x980-photo.svg"
     %} {% set image_url_bright =
-    "https://images.unsplash.com/uploads/1412026095116d2b0c90e/3bf33993?q=80&w=3872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    "/img/placeholder/1470x980-photo.svg"
     %} {#
     ----------------------------------------------------------------------------
     Dark Variation
     ----------------------------------------------------------------------------
-    #} {% set section_title = "Dark Slider Variation " %}
+    #} {% set section_title = "Dark Slider Variation" %}
     <section
         class="ss-c-demo__subsection"
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="ss-c-aspect_ratio--3x2">
-            <figure class="ss-c-image__compare" id="imageCompare">
+            <figure class="ss-c-image-compare" data-ss="image-compare" id="imageCompare-dark">
                 <img
                     src="{{ image_url }}"
-                    class="ss-c-image__compare--image"
+                    class="ss-c-image-compare__image"
                     alt="After Image"
                     crossorigin="anonymous"
                     data-dark-side="right"
                 />
                 <img
                     src="{{ image_url_bright }}"
-                    class="ss-c-image__compare--overlay ss-c-image__compare--image"
+                    class="ss-c-image-compare__overlay"
                     alt="Before Image"
                     crossorigin="anonymous"
                     data-dark-side="left"
                 />
-                <div class="ss-c-image__compare--slider" id="slider">
-                    <span class="ss-c-arrow--left"></span>
-                    <span class="ss-c-arrow--right"></span>
+                <div class="ss-c-image-compare__handle" id="slider-dark" role="slider" tabindex="0" aria-label="Before/after split" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
                 </div>
             </figure>
         </div>
@@ -47,33 +45,31 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 
-    {% set section_title = "Dark Slider Variation " %}
+    {% set section_title = "Light Slider Variation" %}
     <section
         class="ss-c-demo__subsection"
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="ss-c-aspect_ratio--3x2">
-            <figure class="ss-c-image__compare" id="imageCompare">
+            <figure class="ss-c-image-compare" data-ss="image-compare" id="imageCompare-light">
                 <img
                     src="{{ image_url_bright }}"
-                    class="ss-c-image__compare--image"
+                    class="ss-c-image-compare__image"
                     alt="Before Image"
                     crossorigin="anonymous"
                     data-dark-side="right"
                 />
                 <img
                     src="{{ image_url }}"
-                    class="ss-c-image__compare--overlay ss-c-image__compare--image"
+                    class="ss-c-image-compare__overlay"
                     alt="After Image"
                     crossorigin="anonymous"
                     data-dark-side="left"
                 />
-                <div class="ss-c-image__compare--slider" id="slider">
-                    <span class="ss-c-arrow--left"></span>
-                    <span class="ss-c-arrow--right"></span>
+                <div class="ss-c-image-compare__handle" id="slider-light" role="slider" tabindex="0" aria-label="Before/after split" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
                 </div>
             </figure>
         </div>
@@ -92,30 +88,29 @@ title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="aspect_ratio--{{ ratio }}">
-            <figure class="ss-c-image__compare" id="imageCompare">
+            <figure class="ss-c-image-compare" data-ss="image-compare" id="imageCompare-{{ ratio }}">
                 <img
                     src="{{ image_url }}"
-                    class="ss-c-image__compare--image"
+                    class="ss-c-image-compare__image"
                     alt="After Image"
                     data-dark-side="right"
                 />
                 <img
                     src="{{ image_url }}"
-                    class="ss-c-image__compare--overlay ss-c-image__compare--image"
+                    class="ss-c-image-compare__overlay"
                     alt="Before Image"
                     data-dark-side="left"
                 />
-                <div class="ss-c-image__compare--slider" id="slider">
-                    <span class="ss-c-arrow--left"></span>
-                    <span class="ss-c-arrow--right"></span>
+                <div class="ss-c-image-compare__handle" id="slider-{{ ratio }}" role="slider" tabindex="0" aria-label="Before/after split" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
                 </div>
             </figure>
         </div>
         {% endset %} {% set language="HTML" %} {%- include
         "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
-    {% endfor %} {%- endblock %}
+    {% endfor %}
 </section>
+{%- endblock %}

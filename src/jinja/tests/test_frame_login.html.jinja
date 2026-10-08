@@ -50,19 +50,31 @@
             </div>
 
             <div class="ss-c-form__field">
-                <input
-                    type="password"
-                    name="password"
-                    id="id_password"
-                    class=""
-                    minlength="3"
-                    maxlength="30"
-                    placeholder="Password"
-                    required
-                    aria-labelledby="id_username_label"
-                    aria-describedby="id_password_help id_password_error"
-                />
-                <label for="id_password" id="id_password_label" class="">
+                <div style="position: relative">
+                    <input
+                        type="password"
+                        name="password"
+                        id="id_password"
+                        class="ss-c-form__field__input"
+                        minlength="3"
+                        maxlength="30"
+                        placeholder="Password"
+                        required
+                        aria-labelledby="id_password_label"
+                        aria-describedby="id_password_help id_password_error"
+                    />
+                    <button
+                        type="button"
+                        class="ss-c-toggle-password"
+                        data-password-toggle="id_password"
+                        aria-pressed="false"
+                        aria-label="Show password"
+                        style="min-block-size: 1.5rem"
+                    >
+                        ◉ Show
+                    </button>
+                </div>
+                <label for="id_password" id="id_password_label" class="ss-c-form__field__label">
                     Password
                 </label>
                 <span id="id_password_help" class="ss-c-form__field__help">
@@ -78,7 +90,7 @@
             </div>
 
             <div class="ss-c-form__field">
-                <label for="id_remember_me" class="">Remember Me</label>
+                <label for="id_remember_me" class="ss-c-form__field__label">Remember Me</label>
                 <input
                     type="checkbox"
                     name="remember_me"
@@ -96,15 +108,6 @@
                     Keep me logged in for 30 days.
                 </span>
             </div>
-
-            <button
-                type="button"
-                class="ss-c-toggle-password"
-                data-password-toggle="id_password"
-                aria-pressed="false"
-            >
-                ◉ Toggle
-            </button>
 
             <button type="submit" class="ss-c-button ss-c-button--solid">Login</button>
 

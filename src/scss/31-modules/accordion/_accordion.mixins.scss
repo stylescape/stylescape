@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "./accordion.config" as config;
+@use "../../01-core/external" as *;
 
 @mixin ss-accordion {
     display: block;
@@ -38,4 +39,15 @@
 
 @mixin ss-accordion-body {
     padding: map.get(config.$ss-accordion-config, body-padding);
+}
+
+@mixin ss-accordion-icon {
+    flex: 0 0 auto;
+    width: map.get(config.$ss-accordion-config, icon-size);
+    height: map.get(config.$ss-accordion-config, icon-size);
+    margin-inline-start: q(12);
+    border-inline-end: q(2) solid currentColor;
+    border-block-end: q(2) solid currentColor;
+    transform: rotate(45deg);
+    transition: map.get(config.$ss-accordion-config, transition);
 }

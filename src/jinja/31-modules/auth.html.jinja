@@ -1,0 +1,58 @@
+{% extends "../base.html.jinja" %} {% set title = "Auth" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-auth</code> module, the layout of the sign-in,
+        sign-up, password and activation pages in <code>src/templates/stylescape/auth/</code>.
+        <code>ss-c-auth</code> fills the viewport and centres <code>__panel</code>; here
+        it is shown at a fixed height.
+    </p>
+
+    {% set section_title = "Sign in" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-auth" style="min-block-size: 32rem">
+            <div class="ss-c-auth__panel">
+                <p class="ss-c-auth__brand"><a href="#home">KodW Demo</a></p>
+                <h3 class="ss-c-auth__title">Sign in</h3>
+                <form class="ss-c-form" action="#" method="post">
+                    <div class="ss-c-form__field">
+                        <label class="ss-c-form__label" for="auth-user">Username</label>
+                        <input class="ss-c-input" id="auth-user" name="username" autocomplete="username" />
+                    </div>
+                    <div class="ss-c-form__field">
+                        <label class="ss-c-form__label" for="auth-pass">Password</label>
+                        <input class="ss-c-input" id="auth-pass" name="password" type="password" autocomplete="current-password" />
+                    </div>
+                    <div class="ss-c-form__actions">
+                        <button class="ss-c-button ss-c-button--primary" type="submit">Sign in</button>
+                    </div>
+                </form>
+                <ul class="ss-c-auth__links">
+                    <li><a href="#reset">Forgot your password?</a></li>
+                    <li><a href="#register">Create an account</a></li>
+                </ul>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Status page" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-auth" style="min-block-size: 22rem">
+            <div class="ss-c-auth__panel">
+                <h3 class="ss-c-auth__title">Account activated</h3>
+                <p class="ss-c-auth__lead">Your account is ready. You can sign in now.</p>
+                <span class="ss-c-auth__icon" aria-hidden="true">✓</span>
+                <a class="ss-c-button ss-c-button--primary" href="#login">Sign in</a>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

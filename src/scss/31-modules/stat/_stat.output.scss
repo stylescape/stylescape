@@ -1,5 +1,6 @@
 @use "../../01-core/prefix" as *;
 @use "./stat.mixins" as stat;
+@use "../../01-core/external" as *;
 
 @layer ss.components {
     .#{$ss-prefix-module}-stats {
@@ -26,5 +27,17 @@
     }
     .#{$ss-prefix-module}-stat__actions {
         @include stat.ss-stat-actions;
+    }
+
+    // A stat placed straight into an `ss-l-dashboard` (outside `ss-c-stats`)
+    // becomes a widget tile: the stats group surface, without the divider
+    // between neighbours.
+    .#{$ss-prefix-layout}-dashboard > .#{$ss-prefix-module}-stat {
+        display: grid;
+        background-color: var(--ss-color-surface);
+        border: var(--ss-a-border-width-1, #{q(1)}) solid
+            var(--ss-color-line-secondary);
+        border-radius: var(--ss-radius-md);
+        box-shadow: var(--ss-a-shadow-sm);
     }
 }

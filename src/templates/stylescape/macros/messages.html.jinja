@@ -1,0 +1,27 @@
+{#-
+    stylescape/macros/messages.html.jinja
+    ===========================================================================
+        {% from "stylescape/macros/messages.html.jinja" import messages_list %}
+        {{ messages_list(messages) }}
+
+    messages_list(messages, toast=False, label=None)
+        Django's `messages` (context processor) as ss-c-alert items, or as
+        ss-c-toast items in a floating ss-c-messages--toast region. The
+        modifier is the message's level_tag: debug, info, success, warning,
+        error. Error text is wrapped in role="alert".
+-#}
+
+{%- macro messages_list(messages, toast=False, label=None) -%}
+    {%- set items = messages | list if messages else [] -%}
+    {%- if items %}
+    {%- set block = "ss-c-toast" if toast else "ss-c-alert" %}
+    <ul class="ss-c-messages{{ ' ss-c-messages--toast' if toast }}" aria-label="{{ label or _('Messages') }}">
+        {%- for message in items %}
+        {%- set level = message.level_tag if message.level_tag is defined and message.level_tag else "info" %}
+        <li class="{{ block }} {{ block }}--{{ level }}{{ ' ' ~ message.extra_tags if message.extra_tags }}">
+            {%- if level == "error" %}<span role="alert">{{ message }}</span>{% else %}{{ message }}{% endif -%}
+        </li>
+        {%- endfor %}
+    </ul>
+    {%- endif %}
+{%- endmacro %}

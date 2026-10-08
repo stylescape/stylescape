@@ -1,0 +1,64 @@
+{% extends "../base.html.jinja" %} {% set title = "Filter bar" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-filter-bar</code> module: the row of
+        filters above a list or table (a Django <code>GET</code> form), with a
+        result count, a reset action and the active filters as chips.
+    </p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <form class="ss-c-filter-bar" role="search" aria-label="Filter projects" method="get" action="#">
+            <div class="ss-c-filter-bar__group ss-c-filter-bar__group--grow">
+                <label for="fb-q">Search</label>
+                <div class="ss-c-search-bar ss-c-search-bar--full">
+                    <input id="fb-q" name="q" type="search" class="ss-c-search-bar__input" value="harbour">
+                </div>
+            </div>
+            <div class="ss-c-filter-bar__group">
+                <label for="fb-status">Status</label>
+                <select id="fb-status" name="status" class="ss-c-select">
+                    <option>Any</option><option selected>Active</option><option>Archived</option>
+                </select>
+            </div>
+            <div class="ss-c-filter-bar__group">
+                <label for="fb-from">Updated since</label>
+                <input id="fb-from" name="since" type="date" class="ss-c-input" value="2026-09-01">
+            </div>
+            <p class="ss-c-filter-bar__summary" role="status">24 projects</p>
+            <div class="ss-c-filter-bar__actions">
+                <button type="reset" class="ss-c-button">Reset</button>
+                <button type="submit" class="ss-c-button">Apply</button>
+            </div>
+            <ul class="ss-c-filter-bar__chips" aria-label="Active filters">
+                <li class="ss-c-chip">Search: harbour</li>
+                <li class="ss-c-chip">Status: Active</li>
+            </ul>
+        </form>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Plain" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <form class="ss-c-filter-bar ss-c-filter-bar--plain" aria-label="Filter events" action="#">
+            <div class="ss-c-filter-bar__group">
+                <label for="fb2-type">Type</label>
+                <select id="fb2-type" class="ss-c-select ss-c-select--sm"><option>All</option><option>Errors</option></select>
+            </div>
+            <label class="ss-c-switch">
+                <input type="checkbox" role="switch" class="ss-c-switch__input" checked>
+                <span>Live</span>
+            </label>
+            <p class="ss-c-filter-bar__summary">138 events</p>
+        </form>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

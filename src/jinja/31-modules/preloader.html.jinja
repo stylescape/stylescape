@@ -3,7 +3,7 @@
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
     </header>
 
     {% set section_title = "Preloader Container" %}
@@ -12,7 +12,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>
             The preloader container normally covers the full viewport. Below is
             a constrained demo.
@@ -38,14 +38,14 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="
                 position: relative;
                 width: 100%;
                 height: 200px;
-                background: var(--color_surface_primary, #f5f5f5);
+                background: var(--ss-color-surface-alt);
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -72,19 +72,19 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="
                 position: relative;
                 width: 100%;
                 height: 200px;
-                background: var(--color_surface_primary, #f5f5f5);
+                background: var(--ss-color-surface-alt);
             "
         >
             <div
                 class="ss-c-preloader_pulse"
-                style="top: 50%; left: 50%; transform: translate(-50%, -50%)"
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)"
             ></div>
         </div>
         {% endset %}
@@ -100,11 +100,13 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>
-            Add the
-            <code>preloader_hidden</code>
-            class to hide the preloader after content loads.
+            <code>Preloader</code> adds
+            <code>ss-c-preloader--hidden</code> once the page has loaded, which
+            fades the preloader out. <code>ss-c-preloader_hidden</code> removes
+            it from the layout at once (pass it as <code>hiddenClass</code> or
+            <code>data-ss-preloader-hidden-class</code> to use it instead).
         </p>
         {% set code_snippet %}
         <div

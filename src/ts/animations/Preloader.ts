@@ -11,7 +11,13 @@
 export interface PreloaderOptions {
     /** Timeout before hiding (ms) */
     timeout?: number;
-    /** CSS class to add when hidden */
+    /**
+     * CSS class to add when hidden. Defaults to `ss-c-preloader--hidden`,
+     * which the preloader module fades out. Pass `"preloader--hidden"` (the old
+     * default) or `"ss-c-preloader_hidden"` (instant
+     * `display: none`) to keep older markup or stylesheets working. Can also
+     * be set with `data-ss-preloader-hidden-class`.
+     */
     hiddenClass?: string;
     /** Minimum display time (ms) */
     minDisplayTime?: number;
@@ -24,19 +30,22 @@ export interface PreloaderOptions {
  *
  * @example JavaScript
  * ```typescript
- * const preloader = new Preloader(".preloader", { timeout: 500 })
+ * const preloader = new Preloader(".ss-c-preloader", { timeout: 500 })
  * ```
  *
  * @example HTML with data-ss
  * ```html
- * <div class="preloader"
+ * <div class="ss-c-preloader"
  *      data-ss="preloader"
  *      data-ss-preloader-timeout="500"
  *      data-ss-preloader-min-display="200">
- *     <div class="preloader__spinner"></div>
+ *     <div class="ss-c-preloader__pulse"></div>
  * </div>
  * ```
  */
+/** Default hidden class; styled by `31-modules/preloader`. */
+export const PRELOADER_HIDDEN_CLASS = "ss-c-preloader--hidden";
+
 export class Preloader {
     private element: HTMLElement | null;
     private options: Required<PreloaderOptions>;
@@ -54,7 +63,10 @@ export class Preloader {
 
         this.options = {
             timeout: options.timeout ?? 500,
-            hiddenClass: options.hiddenClass ?? "preloader--hidden",
+            hiddenClass:
+                options.hiddenClass ??
+                this.element?.dataset.ssPreloaderHiddenClass ??
+                PRELOADER_HIDDEN_CLASS,
             minDisplayTime: options.minDisplayTime ?? 0,
             onHide: options.onHide ?? (() => {}),
         };
@@ -136,42 +148,3 @@ export class Preloader {
 }
 
 export default Preloader;
-
-//     constructor(preloaderName: string, preloaderTimeout: number) {
-//         this.preloaderName = preloaderName
-//         this.preloaderElement = document.querySelector(preloaderName)
-//         this.preloaderTimeout = preloaderTimeout
-//         if (!this.preloaderElement) {
-//             // pass
-//             // console.warn(`Preloader element not found: ${preloaderName}`)
-//         } else {
-//             this.setPreloader()
-//         }
-//     }
-
-//     setPreloader(): void {
-//         window.addEventListener('load', this.handleLoadEvent.bind(this))
-//     }
-
-//     private handleLoadEvent(): void {
-//         if (this.preloaderElement) {
-//             setTimeout(() => this.hidePreloader(), this.preloaderTimeout)
-//         }
-//     }
-
-//     private hidePreloader(): void {
-//         if (this.preloaderElement) {
-//             this.preloaderElement.classList.add('preloader_hidden')
-//         }
-//     }
-
-//     // Optional: Method to update the preloader element dynamically
-//     updatePreloaderElement(selector: string): void {
-//         this.preloaderName = selector
-//         this.preloaderElement = document.querySelector(selector)
-
-//         if (!this.preloaderElement) {
-//             console.warn(`Updated preloader element not found: ${selector}`)
-//         }
-//     }
-// }

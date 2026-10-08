@@ -67,6 +67,8 @@ export class ResponsiveMenuManager {
     private isExpanded: boolean = false;
     private isMobile: boolean = false;
     private focusableElements: HTMLElement[] = [];
+    /** Element we gave `role="navigation"`, so destroy() can remove it. */
+    private addedLandmark: HTMLElement | null = null;
 
     constructor(
         menuSelector: string | HTMLElement,
@@ -244,6 +246,9 @@ export class ResponsiveMenuManager {
                 link.removeEventListener("click", this.handleLinkClick);
             });
 
+        this.addedLandmark?.removeAttribute("role");
+        this.addedLandmark = null;
+
         this.menu = null;
         this.toggle = null;
     }
@@ -296,7 +301,7 @@ export class ResponsiveMenuManager {
         this.menu.id = menuId;
         this.toggle.setAttribute("aria-controls", menuId);
         this.toggle.setAttribute("aria-expanded", "false");
-        this.menu.setAttribute("role", "navigation");
+        this.ensureNavigationLandmark();
 
         // Initial check
         this.checkWindowSize();
@@ -320,6 +325,30 @@ export class ResponsiveMenuManager {
                     link.addEventListener("click", this.handleLinkClick);
                 });
         }
+    }
+
+    /**
+     * Make sure the menu sits inside a navigation landmark. The role belongs
+     * on the container, never on the `<ul>`/`<ol>` itself: that would replace
+     * the list semantics (item count, position) screen readers announce.
+     * A `<nav>` or existing `[role="navigation"]` ancestor is left alone.
+     */
+    private ensureNavigationLandmark(): void {
+        if (!this.menu) return;
+        if (this.menu.closest('nav, [role="navigation"]')) return;
+
+        const isList = this.menu.matches("ul, ol, menu");
+        const container = isList ? this.menu.parentElement : this.menu;
+        if (
+            !container ||
+            container === document.body ||
+            container.hasAttribute("role")
+        ) {
+            return;
+        }
+
+        container.setAttribute("role", "navigation");
+        this.addedLandmark = container;
     }
 
     private updateFocusableElements(): void {

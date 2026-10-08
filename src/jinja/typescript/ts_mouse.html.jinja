@@ -3,7 +3,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>JavaScript components for drag-and-drop functionality.</p>
     </header>
 
@@ -14,11 +14,13 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Comprehensive drag-and-drop with zones and callbacks.</p>
         {% set code_snippet %}
         <!-- Draggable items -->
         <div
+            role="group"
+            aria-label="Draggable items"
             style="
                 display: flex;
                 flex-direction: column;
@@ -34,8 +36,8 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     align-items: center;
                     gap: 12px;
                     padding: 12px 16px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 8px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                     cursor: move;
                 "
             >
@@ -52,8 +54,8 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     align-items: center;
                     gap: 12px;
                     padding: 12px 16px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 8px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                     cursor: move;
                 "
             >
@@ -70,8 +72,8 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     align-items: center;
                     gap: 12px;
                     padding: 12px 16px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 8px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                     cursor: move;
                 "
             >
@@ -89,12 +91,12 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             style="
                 min-height: 150px;
                 padding: 24px;
-                border: 2px dashed var(--color_line_secondary);
-                border-radius: 12px;
+                border: 2px dashed var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: var(--color_fill_secondary);
+                background: var(--ss-color-surface-alt);
                 transition:
                     border-color 0.2s,
                     background 0.2s;
@@ -112,7 +114,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Drag-and-drop kanban board implementation.</p>
         {% set code_snippet %}
         <div
@@ -125,12 +127,12 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- To Do Column -->
             <div
                 style="
-                    background: var(--color_fill_secondary);
-                    border-radius: 12px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                     padding: 16px;
                 "
             >
-                <h4
+                <h3
                     style="
                         margin: 0 0 16px;
                         font-size: 14px;
@@ -139,7 +141,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     "
                 >
                     To Do
-                </h4>
+                </h3>
                 <div
                     data-ss="dropzone"
                     data-ss-dropzone-accept=".task-card"
@@ -155,8 +157,9 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                         data-ss="draggable"
                         style="
                             padding: 12px;
-                            background: white;
-                            border-radius: 8px;
+                            background: var(--ss-color-surface);
+                            color: var(--ss-color-text);
+                            border-radius: var(--ss-radius-lg);
                             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
                             cursor: move;
                         "
@@ -173,8 +176,9 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                         data-ss="draggable"
                         style="
                             padding: 12px;
-                            background: white;
-                            border-radius: 8px;
+                            background: var(--ss-color-surface);
+                            color: var(--ss-color-text);
+                            border-radius: var(--ss-radius-lg);
                             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
                             cursor: move;
                         "
@@ -192,12 +196,12 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- In Progress Column -->
             <div
                 style="
-                    background: var(--color_fill_secondary);
-                    border-radius: 12px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                     padding: 16px;
                 "
             >
-                <h4
+                <h3
                     style="
                         margin: 0 0 16px;
                         font-size: 14px;
@@ -206,7 +210,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     "
                 >
                     In Progress
-                </h4>
+                </h3>
                 <div
                     data-ss="dropzone"
                     data-ss-dropzone-accept=".task-card"
@@ -222,10 +226,11 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                         data-ss="draggable"
                         style="
                             padding: 12px;
-                            background: white;
-                            border-radius: 8px;
+                            background: var(--ss-color-surface);
+                            color: var(--ss-color-text);
+                            border-radius: var(--ss-radius-lg);
                             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-                            border-left: 3px solid var(--color_state_warning);
+                            border-left: 3px solid var(--ss-color-warning);
                             cursor: move;
                         "
                     >
@@ -242,12 +247,12 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- Done Column -->
             <div
                 style="
-                    background: var(--color_fill_secondary);
-                    border-radius: 12px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                     padding: 16px;
                 "
             >
-                <h4
+                <h3
                     style="
                         margin: 0 0 16px;
                         font-size: 14px;
@@ -256,7 +261,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     "
                 >
                     Done
-                </h4>
+                </h3>
                 <div
                     data-ss="dropzone"
                     data-ss-dropzone-accept=".task-card"
@@ -272,10 +277,11 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                         data-ss="draggable"
                         style="
                             padding: 12px;
-                            background: white;
-                            border-radius: 8px;
+                            background: var(--ss-color-surface);
+                            color: var(--ss-color-text);
+                            border-radius: var(--ss-radius-lg);
                             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-                            border-left: 3px solid var(--color_state_success);
+                            border-left: 3px solid var(--ss-color-success);
                             cursor: move;
                             opacity: 0.7;
                         "
@@ -307,7 +313,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Drag-and-drop file upload area.</p>
         {% set code_snippet %}
         <!-- File drop zone -->
@@ -316,8 +322,8 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             data-ss-dropzone-accept="*"
             style="
                 padding: 48px;
-                border: 2px dashed var(--color_line_secondary);
-                border-radius: 16px;
+                border: 2px dashed var(--ss-color-border);
+                border-radius: var(--ss-radius-xl);
                 text-align: center;
                 cursor: pointer;
                 transition: all 0.2s;
@@ -336,10 +342,10 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             style="
                 margin-top: 16px;
                 padding: 48px;
-                border: 2px dashed var(--color_fill_primary);
-                border-radius: 16px;
+                border: 2px dashed var(--ss-color-accent);
+                border-radius: var(--ss-radius-xl);
                 text-align: center;
-                background: rgba(var(--color_fill_primary_rgb), 0.05);
+                background: color-mix(in srgb, var(--ss-color-accent) 5%, transparent);
             "
         >
             <div style="font-size: 48px; margin-bottom: 16px">⇩</div>
@@ -348,7 +354,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     margin: 0;
                     font-size: 18px;
                     font-weight: 500;
-                    color: var(--color_fill_primary);
+                    color: var(--ss-color-accent);
                 "
             >
                 Drop files to upload
@@ -370,8 +376,8 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     align-items: center;
                     gap: 12px;
                     padding: 12px 16px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 8px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                 "
             >
                 <span style="font-size: 24px">▭</span>
@@ -379,7 +385,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     <strong style="display: block">document.pdf</strong>
                     <span style="font-size: 12px; opacity: 0.6">2.4 MB</span>
                 </div>
-                <span style="color: var(--color_state_success)">✓</span>
+                <span style="color: var(--ss-color-success)">✓</span>
             </div>
             <div
                 style="
@@ -387,8 +393,8 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     align-items: center;
                     gap: 12px;
                     padding: 12px 16px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 8px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                 "
             >
                 <span style="font-size: 24px">▭</span>
@@ -402,8 +408,8 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     style="
                         width: 60px;
                         height: 4px;
-                        background: var(--color_line_secondary);
-                        border-radius: 2px;
+                        background: var(--ss-color-border);
+                        border-radius: var(--ss-radius-sm);
                         overflow: hidden;
                     "
                 >
@@ -411,7 +417,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                         style="
                             width: 60%;
                             height: 100%;
-                            background: var(--color_fill_primary);
+                            background: var(--ss-color-accent);
                         "
                     ></div>
                 </div>
@@ -427,11 +433,13 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Reorderable list with drag-and-drop.</p>
         {% set code_snippet %}
         <div
             data-ss="sortable"
+            role="list"
+            aria-label="Sortable items"
             style="
                 max-width: 400px;
                 display: flex;
@@ -441,14 +449,16 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         >
             <div
                 data-ss="draggable"
+                role="listitem"
                 style="
                     display: flex;
                     align-items: center;
                     gap: 12px;
                     padding: 14px 16px;
-                    background: white;
-                    border: 1px solid var(--color_line_secondary);
-                    border-radius: 8px;
+                    background: var(--ss-color-surface);
+                    color: var(--ss-color-text);
+                    border: 1px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
                     cursor: move;
                 "
             >
@@ -458,14 +468,16 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             </div>
             <div
                 data-ss="draggable"
+                role="listitem"
                 style="
                     display: flex;
                     align-items: center;
                     gap: 12px;
                     padding: 14px 16px;
-                    background: white;
-                    border: 1px solid var(--color_line_secondary);
-                    border-radius: 8px;
+                    background: var(--ss-color-surface);
+                    color: var(--ss-color-text);
+                    border: 1px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
                     cursor: move;
                 "
             >
@@ -475,14 +487,15 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             </div>
             <div
                 data-ss="draggable"
+                role="listitem"
                 style="
                     display: flex;
                     align-items: center;
                     gap: 12px;
                     padding: 14px 16px;
-                    background: var(--color_fill_primary);
-                    color: white;
-                    border-radius: 8px;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
+                    border-radius: var(--ss-radius-lg);
                     cursor: move;
                     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
                     transform: scale(1.02);
@@ -495,21 +508,23 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             <div
                 style="
                     height: 52px;
-                    border: 2px dashed var(--color_fill_primary);
-                    border-radius: 8px;
-                    background: rgba(var(--color_fill_primary_rgb), 0.05);
+                    border: 2px dashed var(--ss-color-accent);
+                    border-radius: var(--ss-radius-lg);
+                    background: color-mix(in srgb, var(--ss-color-accent) 5%, transparent);
                 "
             ></div>
             <div
                 data-ss="draggable"
+                role="listitem"
                 style="
                     display: flex;
                     align-items: center;
                     gap: 12px;
                     padding: 14px 16px;
-                    background: white;
-                    border: 1px solid var(--color_line_secondary);
-                    border-radius: 8px;
+                    background: var(--ss-color-surface);
+                    color: var(--ss-color-text);
+                    border: 1px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
                     cursor: move;
                 "
             >
@@ -519,14 +534,16 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             </div>
             <div
                 data-ss="draggable"
+                role="listitem"
                 style="
                     display: flex;
                     align-items: center;
                     gap: 12px;
                     padding: 14px 16px;
-                    background: white;
-                    border: 1px solid var(--color_line_secondary);
-                    border-radius: 8px;
+                    background: var(--ss-color-surface);
+                    color: var(--ss-color-text);
+                    border: 1px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
                     cursor: move;
                 "
             >
@@ -545,7 +562,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Programmatic control of drag-and-drop components.</p>
         {% set code_snippet %}
         <script>

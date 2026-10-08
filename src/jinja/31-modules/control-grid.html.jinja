@@ -1,0 +1,88 @@
+{% extends "../base.html.jinja" %} {% set title = "Control grid" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-control-grid</code> module: a property
+        inspector with labels in one column and controls in the other, and
+        <code>ss-c-control-row</code> for a single line of buttons. Below
+        30em the grid stacks (opt out with <code>--fixed</code>).
+    </p>
+
+    {% set section_title = "Property inspector" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <form class="ss-c-control-grid" style="max-width: 440px" data-ss="range-output">
+            <h3 class="ss-c-control-grid__heading">Cursor</h3>
+            <label class="ss-c-control-grid__label" for="cg-size">Size</label>
+            <div class="ss-c-control-grid__control">
+                <div class="ss-c-range-field ss-c-range-field--inline" style="flex: 1">
+                    <input id="cg-size" type="range" class="ss-c-range ss-c-range--sm" min="8" max="64" value="24" style="--ss-range-progress: 28.6%">
+                    <output for="cg-size" class="ss-c-range-field__output" data-ss-output-suffix=" px">24 px</output>
+                </div>
+            </div>
+            <label class="ss-c-control-grid__label" for="cg-colour">Colour</label>
+            <div class="ss-c-control-grid__control">
+                <input id="cg-colour" type="color" class="ss-c-color-input ss-c-color-input--sm" value="#287192">
+            </div>
+            <label class="ss-c-control-grid__label" for="cg-blend">Blend</label>
+            <div class="ss-c-control-grid__control">
+                <select id="cg-blend" class="ss-c-select ss-c-select--sm">
+                    <option>Normal</option><option>Difference</option><option>Multiply</option>
+                </select>
+            </div>
+            <h3 class="ss-c-control-grid__heading">Behaviour</h3>
+            <div class="ss-c-control-grid__row">
+                <span class="ss-c-control-grid__label" id="cg-magnetic">Magnetic</span>
+                <div class="ss-c-control-grid__control">
+                    <input type="checkbox" role="switch" class="ss-c-switch__input" aria-labelledby="cg-magnetic" checked>
+                </div>
+            </div>
+            <label class="ss-c-control-grid__label" for="cg-delay">Delay</label>
+            <div class="ss-c-control-grid__control">
+                <input id="cg-delay" type="number" class="ss-c-input ss-c-input--sm" style="width: 8ch" value="120">
+                <span class="ss-c-control-grid__value">ms</span>
+            </div>
+            <div class="ss-c-control-grid__full ss-c-control-row">
+                <button type="reset" class="ss-c-button">Reset</button>
+                <button type="button" class="ss-c-button">Apply</button>
+            </div>
+        </form>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Compact" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <dl class="ss-c-control-grid ss-c-control-grid--compact" style="max-width: 320px">
+            <dt class="ss-c-control-grid__label">Position</dt>
+            <dd class="ss-c-control-grid__control" style="margin: 0"><span class="ss-c-control-grid__value">412, 96</span></dd>
+            <dt class="ss-c-control-grid__label">Velocity</dt>
+            <dd class="ss-c-control-grid__control" style="margin: 0"><span class="ss-c-control-grid__value">0.84 px/ms</span></dd>
+            <dt class="ss-c-control-grid__label">State</dt>
+            <dd class="ss-c-control-grid__control" style="margin: 0">hover</dd>
+        </dl>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Control row" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-control-row">
+            <span class="ss-c-control-row__label">Toggle all</span>
+            <button type="button" class="ss-c-button">On</button>
+            <button type="button" class="ss-c-button">Off</button>
+            <label for="cr-filter" class="ss-u-visually-hidden">Filter events</label>
+            <select id="cr-filter" class="ss-c-select" style="width: auto">
+                <option>All events</option><option>Errors only</option>
+            </select>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

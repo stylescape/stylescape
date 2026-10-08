@@ -20,7 +20,25 @@ function buildContainer(width = 200): HTMLElement {
         <div class="image__compare--slider"></div>
     `;
     document.body.appendChild(container);
+    stubWidth(container, width);
+    return container;
+}
 
+/** Current `ss-c-image-compare` markup. */
+function buildModuleContainer(width = 200): HTMLElement {
+    const container = document.createElement("figure");
+    container.className = "ss-c-image-compare";
+    container.innerHTML = `
+        <img class="ss-c-image-compare__image" src="after.jpg" alt="After">
+        <img class="ss-c-image-compare__overlay" src="before.jpg" alt="Before">
+        <div class="ss-c-image-compare__handle"></div>
+    `;
+    document.body.appendChild(container);
+    stubWidth(container, width);
+    return container;
+}
+
+function stubWidth(container: HTMLElement, width: number): void {
     Object.defineProperty(container, "offsetWidth", {
         configurable: true,
         value: width,
@@ -37,8 +55,6 @@ function buildContainer(width = 200): HTMLElement {
             y: 0,
             toJSON: () => ({}),
         }) as DOMRect;
-
-    return container;
 }
 
 const overlayOf = (c: HTMLElement) =>
@@ -193,7 +209,9 @@ describe("ImageCompareSlider", () => {
 
             expect(handle.querySelector(".dark--left")).not.toBeNull();
             const arrow = handle.querySelector(".arrow--left") as HTMLElement;
-            expect(arrow.style.borderColor).toBe("var(--color_text_primary)");
+            expect(arrow.style.borderColor).toBe(
+                "var(--ss-color-text-primary)",
+            );
         });
 
         it("does not inject when the canvas has no 2d context", async () => {
@@ -252,6 +270,120 @@ describe("ImageCompareSlider", () => {
             expect(() =>
                 ImageCompareSlider.initAll(".nothing-here"),
             ).not.toThrow();
+        });
+    });
+    describe("ss-c-image-compare markup", () => {
+        const handle = (c: HTMLElement) =>
+            c.querySelector(".ss-c-image-compare__handle") as HTMLElement;
+        const key = (el: HTMLElement, k: string) =>
+            el.dispatchEvent(
+                new KeyboardEvent("keydown", { key: k, bubbles: true }),
+            );
+
+        it("drives the position through a custom property", () => {
+            const c = buildModuleContainer(200);
+            new ImageCompareSlider(c);
+
+            expect(
+                c.style.getPropertyValue("--ss-image-compare-position"),
+            ).toBe("50%");
+            // The module CSS clips the overlay, so no inline width is set.
+            expect(
+                (
+                    c.querySelector(
+                        ".ss-c-image-compare__overlay",
+                    ) as HTMLElement
+                ).style.width,
+            ).toBe("");
+        });
+
+        it("exposes the handle as a keyboard slider", () => {
+            const c = buildModuleContainer(200);
+            new ImageCompareSlider(c);
+            const h = handle(c);
+
+            expect(h.getAttribute("role")).toBe("slider");
+            expect(h.tabIndex).toBe(0);
+            expect(h.getAttribute("aria-label")).toBe("Comparison position");
+            expect(h.getAttribute("aria-valuemin")).toBe("0");
+            expect(h.getAttribute("aria-valuemax")).toBe("100");
+            expect(h.getAttribute("aria-valuenow")).toBe("50");
+        });
+
+        it("keeps an author-provided label", () => {
+            const c = buildModuleContainer(200);
+            handle(c).setAttribute("aria-label", "Before/after split");
+            new ImageCompareSlider(c);
+            expect(handle(c).getAttribute("aria-label")).toBe(
+                "Before/after split",
+            );
+        });
+
+        it("moves with arrow, page, Home and End keys", () => {
+            const c = buildModuleContainer(200);
+            const onChange = vi.fn();
+            const slider = new ImageCompareSlider(c, { step: 10, onChange });
+            const h = handle(c);
+
+            key(h, "ArrowRight");
+            expect(slider.value).toBe(60);
+            key(h, "ArrowLeft");
+            key(h, "ArrowDown");
+            expect(slider.value).toBe(40);
+            key(h, "PageUp");
+            expect(slider.value).toBe(80);
+            key(h, "End");
+            expect(slider.value).toBe(100);
+            key(h, "ArrowRight");
+            expect(slider.value).toBe(100);
+            key(h, "Home");
+            expect(slider.value).toBe(0);
+            expect(h.getAttribute("aria-valuetext")).toBe("0%");
+            expect(onChange).toHaveBeenLastCalledWith(0);
+        });
+
+        it("reads the initial position from data-ss-image-compare-position", () => {
+            const c = buildModuleContainer(200);
+            c.dataset.ssImageComparePosition = "25";
+            const slider = new ImageCompareSlider(c);
+            expect(slider.value).toBe(25);
+        });
+
+        it("prefers the initialPosition option", () => {
+            const c = buildModuleContainer(200);
+            c.dataset.ssImageComparePosition = "25";
+            const slider = new ImageCompareSlider(c, { initialPosition: 70 });
+            expect(slider.value).toBe(70);
+        });
+
+        it("tracks dragging as a percentage", () => {
+            const c = buildModuleContainer(200);
+            const slider = new ImageCompareSlider(c);
+
+            handle(c).dispatchEvent(new MouseEvent("mousedown"));
+            mouseMove(50);
+            expect(slider.value).toBe(25);
+            expect(
+                c.style.getPropertyValue("--ss-image-compare-position"),
+            ).toBe("25%");
+        });
+
+        it("stops listening after destroy()", () => {
+            const c = buildModuleContainer(200);
+            const slider = new ImageCompareSlider(c);
+            slider.destroy();
+
+            handle(c).dispatchEvent(new MouseEvent("mousedown"));
+            mouseMove(20);
+            key(handle(c), "End");
+            expect(slider.value).toBe(50);
+        });
+
+        it("initAll() picks up current and legacy containers by default", () => {
+            document.body.innerHTML = "";
+            buildModuleContainer(200);
+            buildContainer(200);
+            expect(ImageCompareSlider.initAll()).toHaveLength(2);
         });
     });
 });

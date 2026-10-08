@@ -1,0 +1,67 @@
+@use "sass:map";
+@use "./skeleton.config" as config;
+@use "../../01-core/external" as *;
+
+$_c: config.$ss-skeleton-config;
+
+/// Loading placeholder with a moving shimmer. Mark the loading region
+/// `aria-busy="true"` and the skeletons `aria-hidden="true"`; the shimmer
+/// stops under `prefers-reduced-motion`.
+@mixin ss-skeleton {
+    --ss-skeleton-width: 100%;
+    --ss-skeleton-height: #{map.get($_c, block-height)};
+    --ss-skeleton-lines: 3;
+    display: block;
+    inline-size: var(--ss-skeleton-width);
+    block-size: var(--ss-skeleton-height);
+    background-color: map.get($_c, base);
+    background-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        #{map.get($_c, highlight)} 50%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+    border-radius: var(--ss-radius-sm);
+    animation: ss-skeleton-shimmer map.get($_c, duration)
+        var(--ss-ease-in-out, ease-in-out) infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+        background-image: none;
+    }
+}
+
+/// One line of text.
+@mixin ss-skeleton-line {
+    block-size: map.get($_c, line-height);
+    margin-block: calc(#{map.get($_c, line-gap)} / 2);
+}
+
+/// A paragraph: `--ss-skeleton-lines` bars, the last one shorter.
+@mixin ss-skeleton-text {
+    $lh: map.get($_c, line-height);
+    $gap: map.get($_c, line-gap);
+    block-size: calc(var(--ss-skeleton-lines) * (#{$lh} + #{$gap}) - #{$gap});
+    border-radius: 0;
+    mask:
+        linear-gradient(to bottom, transparent calc(100% - #{$lh}), var(--ss-color-black) 0)
+            no-repeat 0 0 / 60% 100%,
+        repeating-linear-gradient(
+            to bottom,
+            var(--ss-color-black) 0 #{$lh},
+            transparent #{$lh} calc(#{$lh} + #{$gap})
+        )
+            no-repeat 0 0 / 100% calc(100% - #{$lh});
+}
+
+@mixin ss-skeleton-avatar {
+    --ss-skeleton-width: #{map.get($_c, avatar-size)};
+    --ss-skeleton-height: #{map.get($_c, avatar-size)};
+    border-radius: var(--ss-radius-full);
+}
+
+@mixin ss-skeleton-block {
+    border-radius: var(--ss-radius-md);
+}

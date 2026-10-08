@@ -1,0 +1,248 @@
+{% extends "../base.html.jinja" %}
+{%- block title %}Django templates{%- endblock %}
+{%- block content %}
+<section class="ss-c-demo__section" data-label="Django templates" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>Django templates</h1></header>
+    <p>
+        Jinja2 templates for Django and sturnus apps ship in
+        <code>src/templates/stylescape/</code> (outside this demo folder): a base page on
+        the <code>ss-l-app</code> shell; list, detail, form and confirm-delete pages;
+        macros for form fields, forms, formsets, pagination, breadcrumbs, tables, the
+        page header and messages; and the auth pages. Below is their output for a
+        paginated list and an invalid form, rendered by Python Jinja2 with real Django
+        forms and a Django <code>Paginator</code>, inside a contained shell.
+    </p>
+
+    <section class="ss-c-demo__subsection" data-label="List page" data-level="2">
+        <h2>List page</h2>
+        <p><code>stylescape/pages/list.html.jinja</code> with <code>columns</code>, <code>page_obj</code> and two messages.</p>
+        <div style="block-size: 40rem; border: 1px solid var(--ss-color-border)">
+<div class="ss-l-app ss-l-app--contained">
+            <header class="ss-l-app__header">
+                <a class="ss-c-brand" href="/">KodW Demo</a>
+                <span class="ss-l-app__spacer"></span>
+            </header>
+            <div class="ss-l-app__main">
+                <div class="ss-l-container ss-l-region ss-l-region-md">
+                    <header class="ss-c-title-bar">
+                        <div class="ss-c-title-bar__text">
+                            <div class="ss-c-title-bar__eyebrow"><nav aria-label="Breadcrumb">
+        <ol class="ss-c-breadcrumb">
+            <li class="ss-c-breadcrumb__item"><a class="ss-c-breadcrumb__link" href="/">Home</a></li>
+            <li class="ss-c-breadcrumb__item"><a class="ss-c-breadcrumb__link" href="/projects/">Projects</a></li>
+            <li class="ss-c-breadcrumb__item ss-c-breadcrumb__item--active" aria-current="page">Harbour quay renewal</li>
+        </ol>
+    </nav></div>
+                            <h1 class="ss-c-title-bar__title">Projects</h1>
+                        </div>
+                        <div class="ss-c-title-bar__actions"><a class="ss-c-button ss-c-button--primary" href="/projects/new/">New project</a></div>
+                    </header>
+    <ul class="ss-c-messages" aria-label="Messages">
+        <li class="ss-c-alert ss-c-alert--success">The project “Harbour quay renewal” was saved.</li>
+        <li class="ss-c-alert ss-c-alert--error"><span role="alert">Budget could not be parsed.</span></li>
+    </ul>
+    <div class="ss-c-table-wrapper">
+        <table class="ss-c-table ss-c-table--hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="ss-u-text-start">Project</th>
+                    <th scope="col" class="ss-u-text-start">Status</th>
+                    <th scope="col" class="ss-u-text-start">Owner</th>
+                    <th scope="col" class="ss-u-text-end">Budget</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="ss-u-text-start"><a href="/projects/1/">Harbour quay renewal</a></th>
+                    <td>Active</td>
+                    <td>Anna de Vries</td>
+                    <td class="ss-u-text-end">€ 1.2 m</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="ss-u-text-start"><a href="/projects/2/">Ferry terminal</a></th>
+                    <td>Paused</td>
+                    <td>Bram Jansen</td>
+                    <td class="ss-u-text-end">€ 640 k</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="ss-u-text-start"><a href="/projects/3/">Dune path lighting</a></th>
+                    <td>Active</td>
+                    <td>Chris Bakker</td>
+                    <td class="ss-u-text-end">€ 85 k</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="ss-u-text-start"><a href="/projects/4/">Lock gate sensors</a></th>
+                    <td>Active</td>
+                    <td>Dewi Visser</td>
+                    <td class="ss-u-text-end">€ 210 k</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="ss-u-text-start"><a href="/projects/5/">Pier 4 decking</a></th>
+                    <td>Paused</td>
+                    <td>Eva Smit</td>
+                    <td class="ss-u-text-end">€ 120 k</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="ss-u-text-start"><a href="/projects/6/">Bike parking</a></th>
+                    <td>Active</td>
+                    <td>Femke de Boer</td>
+                    <td class="ss-u-text-end">€ 40 k</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<div class="ss-l-region ss-l-region-sm">
+    <nav aria-label="Pagination">
+        <ul class="ss-c-pagination">
+            <li class="ss-c-pagination__item"><a class="ss-c-pagination__link" href="?q=harbour&amp;page=2" rel="prev" aria-label="Previous page"><span aria-hidden="true">←</span></a></li>
+            <li class="ss-c-pagination__item"><a class="ss-c-pagination__link" href="?q=harbour&amp;page=1">1</a></li>
+            <li class="ss-c-pagination__item"><a class="ss-c-pagination__link" href="?q=harbour&amp;page=2">2</a></li>
+            <li class="ss-c-pagination__item ss-c-pagination__item--active"><a class="ss-c-pagination__link" href="?q=harbour&amp;page=3" aria-current="page">3</a></li>
+            <li class="ss-c-pagination__item"><a class="ss-c-pagination__link" href="?q=harbour&amp;page=4">4</a></li>
+            <li class="ss-c-pagination__item" aria-hidden="true"><span class="ss-c-pagination__link">…</span></li>
+            <li class="ss-c-pagination__item"><a class="ss-c-pagination__link" href="?q=harbour&amp;page=8">8</a></li>
+            <li class="ss-c-pagination__item"><a class="ss-c-pagination__link" href="?q=harbour&amp;page=4" rel="next" aria-label="Next page"><span aria-hidden="true">→</span></a></li>
+        </ul>
+    </nav>
+</div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section class="ss-c-demo__subsection" data-label="Form page" data-level="2">
+        <h2>Form page</h2>
+        <p><code>stylescape/pages/form.html.jinja</code> with a bound, invalid form and a formset.</p>
+        <div style="block-size: 40rem; border: 1px solid var(--ss-color-border)">
+<div class="ss-l-app ss-l-app--contained">
+            <header class="ss-l-app__header">
+                <a class="ss-c-brand" href="/">KodW Demo</a>
+                <span class="ss-l-app__spacer"></span>
+            </header>
+            <div class="ss-l-app__main">
+                <div class="ss-l-container ss-l-region ss-l-region-md">
+                    <header class="ss-c-title-bar">
+                        <div class="ss-c-title-bar__text">
+                            <div class="ss-c-title-bar__eyebrow"><nav aria-label="Breadcrumb">
+        <ol class="ss-c-breadcrumb">
+            <li class="ss-c-breadcrumb__item"><a class="ss-c-breadcrumb__link" href="/">Home</a></li>
+            <li class="ss-c-breadcrumb__item"><a class="ss-c-breadcrumb__link" href="/projects/">Projects</a></li>
+            <li class="ss-c-breadcrumb__item ss-c-breadcrumb__item--active" aria-current="page">Harbour quay renewal</li>
+        </ol>
+    </nav></div>
+                            <h1 class="ss-c-title-bar__title">Edit project</h1>
+                        </div>
+                    </header>
+    <ul class="ss-c-messages" aria-label="Messages">
+        <li class="ss-c-alert ss-c-alert--success">The project “Harbour quay renewal” was saved.</li>
+        <li class="ss-c-alert ss-c-alert--error"><span role="alert">Budget could not be parsed.</span></li>
+    </ul>
+<form class="ss-c-form" action="" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="token">
+    <div role="alert">
+    <ul class="ss-c-form__errors ss-c-form__errors--nonfield">
+        <li>Two projects can&#39;t share a name.</li>
+    </ul></div>
+    <div class="ss-c-form__field ss-c-form__field--invalid">
+        <label class="ss-c-form__label" for="demo_name">Name<span class="ss-c-form__required" aria-hidden="true"></span></label>
+        <input type="text" name="name" maxlength="80" aria-describedby="demo_name_helptext demo_name_error" aria-invalid="true" required id="demo_name">
+        <div class="ss-c-form__help" id="demo_name_helptext">Shown in the overview.</div>
+    <ul class="ss-c-form__errors" id="demo_name_error">
+        <li>This field is required.</li>
+    </ul>
+    </div>
+    <div class="ss-c-form__field">
+        <fieldset class="ss-c-form__fieldset">
+            <legend class="ss-c-form__legend">Status<span class="ss-c-form__required" aria-hidden="true"></span></legend>
+            <div id="demo_status"><div>
+    <label for="demo_status_0"><input type="radio" name="status" value="a" required id="demo_status_0" checked>
+ Active</label>
+</div><div>
+    <label for="demo_status_1"><input type="radio" name="status" value="p" required id="demo_status_1">
+ Paused</label>
+</div>
+</div>
+        </fieldset>
+    </div>
+    <div class="ss-c-form__field">
+        <fieldset class="ss-c-form__fieldset">
+            <legend class="ss-c-form__legend">Tags</legend>
+            <div id="demo_tags"><div>
+    <label for="demo_tags_0"><input type="checkbox" name="tags" value="w" id="demo_tags_0">
+ Water</label>
+</div><div>
+    <label for="demo_tags_1"><input type="checkbox" name="tags" value="r" id="demo_tags_1">
+ Roads</label>
+</div>
+</div>
+        </fieldset>
+    </div>
+    <div class="ss-c-form__field">
+        <label class="ss-c-form__label" for="demo_description">Description</label>
+        <textarea name="description" cols="40" rows="3" id="demo_description">
+</textarea>
+    </div>
+    <div class="ss-c-form__field ss-c-form__field--inline">
+        <label class="ss-c-form__label" for="demo_public">Visible to residents</label>
+        <input type="checkbox" name="public" id="demo_public">
+    </div>
+    <div class="ss-c-form__field ss-c-form__field--invalid">
+        <label class="ss-c-form__label" for="demo_budget">Budget (€)<span class="ss-c-form__required" aria-hidden="true"></span></label>
+        <input type="number" name="budget" value="x" step="any" aria-describedby="demo_budget_error" aria-invalid="true" required id="demo_budget">
+    <ul class="ss-c-form__errors" id="demo_budget_error">
+        <li>Enter a number.</li>
+    </ul>
+    </div>
+    <input type="hidden" name="token" value="abc" id="demo_token">
+    <div class="ss-c-form__formset">
+        <input type="hidden" name="lines-TOTAL_FORMS" value="2" id="demo_lines-TOTAL_FORMS"><input type="hidden" name="lines-INITIAL_FORMS" value="0" id="demo_lines-INITIAL_FORMS"><input type="hidden" name="lines-MIN_NUM_FORMS" value="0" id="demo_lines-MIN_NUM_FORMS"><input type="hidden" name="lines-MAX_NUM_FORMS" value="1000" id="demo_lines-MAX_NUM_FORMS">
+        <fieldset class="ss-c-form__fieldset">
+            <legend class="ss-c-form__legend">Item 1</legend>
+    <div class="ss-c-form__field">
+        <label class="ss-c-form__label" for="demo_lines-0-item">Item<span class="ss-c-form__required" aria-hidden="true"></span></label>
+        <input type="text" name="lines-0-item" id="demo_lines-0-item">
+    </div>
+    <div class="ss-c-form__field">
+        <label class="ss-c-form__label" for="demo_lines-0-qty">Quantity<span class="ss-c-form__required" aria-hidden="true"></span></label>
+        <input type="number" name="lines-0-qty" min="1" id="demo_lines-0-qty">
+    </div>
+        </fieldset>
+        <fieldset class="ss-c-form__fieldset">
+            <legend class="ss-c-form__legend">Item 2</legend>
+    <div class="ss-c-form__field">
+        <label class="ss-c-form__label" for="demo_lines-1-item">Item<span class="ss-c-form__required" aria-hidden="true"></span></label>
+        <input type="text" name="lines-1-item" id="demo_lines-1-item">
+    </div>
+    <div class="ss-c-form__field">
+        <label class="ss-c-form__label" for="demo_lines-1-qty">Quantity<span class="ss-c-form__required" aria-hidden="true"></span></label>
+        <input type="number" name="lines-1-qty" min="1" id="demo_lines-1-qty">
+    </div>
+        </fieldset>
+    </div>
+    <div class="ss-c-form__actions">
+        <button class="ss-c-button ss-c-button--primary" type="submit">Save</button>
+        <a class="ss-c-button ss-c-button--ghost" href="/projects/1/">Cancel</a>
+    </div>
+</form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    {% set section_title = "Usage" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>Add the package's template folder to the Jinja2 backend and extend a page:</p>
+        {% set code_snippet %}{% raw %}
+# settings.py (the Jinja2 / sturnus.context.jinja2.Jinja2 backend)
+TEMPLATES[0]["DIRS"] = [BASE_DIR / "node_modules" / "stylescape" / "src" / "templates"]
+
+{# projects/templates/projects/project_list.html.jinja #}
+{% extends "stylescape/pages/list.html.jinja" %}
+{% block title %}{{ _("Projects") }}{% endblock %}
+{% endraw %}{% endset %} {% set language="Python" %} {% set show_preview = false %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

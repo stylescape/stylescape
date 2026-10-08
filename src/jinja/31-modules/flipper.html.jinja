@@ -1,14 +1,17 @@
 {% extends "../base.html.jinja" %} {% set title = "Flipper" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
-    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
     <p>Examples for the <code>ss-c-flipper</code> module.</p>
 
     {% set section_title = "Down" %}
     <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
+        <p>The flipper is absolutely centred in its nearest positioned parent.</p>
         {% set code_snippet %}
-        <span class="ss-c-flipper ss-c-flipper--down" aria-expanded="false">
-            <span class="ss-c-flipper__icon">v</span>
+        <span style="position: relative; display: inline-block; width: 2rem; height: 2rem">
+            <span class="ss-c-flipper ss-c-flipper--down" aria-hidden="true">
+                <span class="ss-c-flipper__icon"></span>
+            </span>
         </span>
         {% endset %} {% set language="HTML" %}
         {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
@@ -16,12 +19,43 @@
 
     {% set section_title = "All directions" %}
     <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <span class="ss-c-flipper ss-c-flipper--up"><span class="ss-c-flipper__icon">^</span></span>
-        <span class="ss-c-flipper ss-c-flipper--down"><span class="ss-c-flipper__icon">v</span></span>
-        <span class="ss-c-flipper ss-c-flipper--left"><span class="ss-c-flipper__icon"><</span></span>
-        <span class="ss-c-flipper ss-c-flipper--right"><span class="ss-c-flipper__icon">></span></span>
+        <span style="position: relative; display: inline-block; width: 2rem; height: 2rem">
+            <span class="ss-c-flipper ss-c-flipper--up" aria-hidden="true">
+                <span class="ss-c-flipper__icon"></span>
+            </span>
+        </span>
+        <span style="position: relative; display: inline-block; width: 2rem; height: 2rem">
+            <span class="ss-c-flipper ss-c-flipper--down" aria-hidden="true">
+                <span class="ss-c-flipper__icon"></span>
+            </span>
+        </span>
+        <span style="position: relative; display: inline-block; width: 2rem; height: 2rem">
+            <span class="ss-c-flipper ss-c-flipper--left" aria-hidden="true">
+                <span class="ss-c-flipper__icon"></span>
+            </span>
+        </span>
+        <span style="position: relative; display: inline-block; width: 2rem; height: 2rem">
+            <span class="ss-c-flipper ss-c-flipper--right" aria-hidden="true">
+                <span class="ss-c-flipper__icon"></span>
+            </span>
+        </span>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+    {% set section_title = "Active" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>Add <code>is-active</code> to fold the bars into an arrow.</p>
+        {% set code_snippet %}
+        {% for dir in ["up", "down", "left", "right"] %}
+        <span style="position: relative; display: inline-block; width: 2rem; height: 2rem">
+            <span class="ss-c-flipper ss-c-flipper--{{ dir }} is-active" aria-hidden="true">
+                <span class="ss-c-flipper__icon"></span>
+            </span>
+        </span>
+        {% endfor %}
         {% endset %} {% set language="HTML" %}
         {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>

@@ -1,0 +1,92 @@
+@use "sass:map";
+@use "./segmented.config" as config;
+@use "../../01-core/external" as *;
+
+/// The group. Reset the fieldset box; the legend sits above the segments.
+@mixin ss-segmented {
+    display: inline-flex;
+    flex-wrap: wrap;
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+@mixin ss-segmented-legend {
+    float: inline-start;
+    inline-size: 100%;
+    margin-block-end: map.get(config.$ss-segmented-config, legend-gap);
+    padding: 0;
+    font-weight: map.get(config.$ss-segmented-config, legend-weight);
+}
+
+@mixin ss-segmented-size($size) {
+    $s: map.get(map.get(config.$ss-segmented-config, sizes), $size);
+
+    --ss-segmented-height: #{map.get($s, height)};
+    --ss-segmented-padding: #{map.get($s, padding)};
+    --ss-segmented-font-size: #{map.get($s, font-size)};
+}
+
+/// One segment's visible box (the radio's sibling span, or a button).
+@mixin ss-segmented-segment {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: q(6);
+    min-block-size: var(--ss-segmented-height);
+    padding: var(--ss-segmented-padding);
+
+    background: map.get(config.$ss-segmented-config, bg);
+    color: map.get(config.$ss-segmented-config, fg);
+    border: map.get(config.$ss-segmented-config, border-width) solid
+        map.get(config.$ss-segmented-config, border);
+    border-radius: 0;
+
+    font: inherit;
+    font-size: var(--ss-segmented-font-size);
+    line-height: 1.2;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+
+    transition:
+        background-color map.get(config.$ss-segmented-config, duration) var(--ss-ease-in-out),
+        color map.get(config.$ss-segmented-config, duration) var(--ss-ease-in-out);
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+@mixin ss-segmented-segment-hover {
+    background: map.get(config.$ss-segmented-config, hover-bg);
+}
+
+/// Selected: filled with the accent and bold, so the state does not rest on
+/// colour alone.
+@mixin ss-segmented-segment-selected {
+    z-index: 1;
+    background: map.get(config.$ss-segmented-config, selected-bg);
+    color: map.get(config.$ss-segmented-config, selected-fg);
+    border-color: map.get(config.$ss-segmented-config, selected-bg);
+    font-weight: 600;
+
+    @media (forced-colors: active) {
+        background: Highlight;
+        color: HighlightText;
+        border-color: Highlight;
+    }
+}
+
+@mixin ss-segmented-segment-focus {
+    z-index: 2;
+    outline: var(--ss-focus-ring-width, #{q(2)}) solid var(--ss-focus-ring-color, currentColor);
+    outline-offset: var(--ss-focus-ring-offset, #{q(2)});
+}
+
+@mixin ss-segmented-segment-disabled {
+    opacity: map.get(config.$ss-segmented-config, disabled-opacity);
+    cursor: not-allowed;
+}

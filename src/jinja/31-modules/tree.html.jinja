@@ -1,0 +1,64 @@
+{% extends "../base.html.jinja" %} {% set title = "Tree" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>Examples for the <code>ss-c-tree</code> module and <code>TreeViewManager</code>: a WAI-ARIA tree built from nested lists. The manager adds <code>role="tree|treeitem|group"</code>, <code>aria-expanded</code> and a roving tabindex, and handles the arrow keys, Home/End, Enter, Space, <kbd>*</kbd> and type-ahead. Authoring the roles up front, as here, avoids a flash of an unstructured list; branches marked <code>aria-expanded="false"</code> stay collapsed without the script.</p>
+
+    {% set section_title = "IFC model tree" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <ul role="tree" class="ss-c-tree" data-ss="tree" aria-label="Model structure">
+            <li role="treeitem" aria-expanded="true">
+                <span class="ss-c-tree__label">IfcProject: Harbour bridge</span>
+                <ul role="group">
+                    <li role="treeitem" aria-expanded="true">
+                        <span class="ss-c-tree__label">IfcSite: Kop van Zuid</span>
+                        <ul role="group">
+                            <li role="treeitem" aria-expanded="false">
+                                <span class="ss-c-tree__label">IfcBridge: Main span</span>
+                                <ul role="group">
+                                    <li role="treeitem"><span class="ss-c-tree__label">IfcBeam (24)</span></li>
+                                    <li role="treeitem"><span class="ss-c-tree__label">IfcColumn (8)</span></li>
+                                </ul>
+                            </li>
+                            <li role="treeitem" aria-selected="true"><span class="ss-c-tree__label">IfcBuildingStorey: Deck</span></li>
+                            <li role="treeitem"><span class="ss-c-tree__label">IfcAnnotation: Survey points</span></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Guide lines and links" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <ul role="tree" class="ss-c-tree ss-c-tree--lines" data-ss="tree" aria-label="Files">
+            <li role="treeitem" aria-expanded="true">
+                <span class="ss-c-tree__label">src</span>
+                <ul role="group">
+                    <li role="treeitem" aria-expanded="true">
+                        <span class="ss-c-tree__label">scss</span>
+                        <ul role="group">
+                            <li role="treeitem"><span class="ss-c-tree__label"><a href="#index-scss">index.scss</a></span></li>
+                            <li role="treeitem"><span class="ss-c-tree__label"><a href="#tokens">_tokens.scss</a></span></li>
+                        </ul>
+                    </li>
+                    <li role="treeitem" aria-expanded="false">
+                        <span class="ss-c-tree__label">ts</span>
+                        <ul role="group">
+                            <li role="treeitem"><span class="ss-c-tree__label"><a href="#index-ts">index.ts</a></span></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li role="treeitem"><span class="ss-c-tree__label"><a href="#readme">README.md</a></span></li>
+        </ul>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

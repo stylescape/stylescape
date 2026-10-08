@@ -1,0 +1,107 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./segmented.mixins" as seg;
+
+$_seg: ".#{$ss-prefix-module}-segmented";
+
+@layer ss.components {
+    // <fieldset class="ss-c-segmented">
+    //   <legend class="ss-c-segmented__legend">View</legend>
+    //   <label class="ss-c-segmented__option">
+    //     <input class="ss-c-segmented__input" type="radio" name="view" checked>
+    //     <span class="ss-c-segmented__label">List</span>
+    //   </label> …
+    // </fieldset>
+    #{$_seg} {
+        @include seg.ss-segmented;
+        @include seg.ss-segmented-size(md);
+    }
+    #{$_seg}--sm {
+        @include seg.ss-segmented-size(sm);
+    }
+    #{$_seg}--lg {
+        @include seg.ss-segmented-size(lg);
+    }
+    #{$_seg}--block {
+        display: flex;
+
+        > #{$_seg}__option,
+        > #{$_seg}__button {
+            flex: 1 1 0;
+        }
+        #{$_seg}__label {
+            inline-size: 100%;
+        }
+    }
+
+    #{$_seg}__legend {
+        @include seg.ss-segmented-legend;
+    }
+
+    #{$_seg}__option {
+        position: relative;
+        display: inline-flex;
+
+        // Collapse the shared borders between neighbours.
+        & + & {
+            margin-inline-start: q(-1);
+        }
+    }
+
+    // The radio stays in the accessibility tree and focus order, stretched
+    // invisibly over its segment so clicks land on it.
+    #{$_seg}__input {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        inline-size: 100%;
+        block-size: 100%;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
+
+    #{$_seg}__label {
+        @include seg.ss-segmented-segment;
+    }
+    #{$_seg}__input:hover:not(:checked, :disabled) + #{$_seg}__label {
+        @include seg.ss-segmented-segment-hover;
+    }
+    #{$_seg}__input:checked + #{$_seg}__label {
+        @include seg.ss-segmented-segment-selected;
+    }
+    #{$_seg}__input:focus-visible + #{$_seg}__label {
+        @include seg.ss-segmented-segment-focus;
+    }
+    #{$_seg}__input:disabled + #{$_seg}__label {
+        @include seg.ss-segmented-segment-disabled;
+    }
+
+    // Button variant: <div class="ss-c-segmented" role="group" aria-label="…">
+    //   <button type="button" class="ss-c-segmented__button" aria-pressed="true">…
+    #{$_seg}__button {
+        @include seg.ss-segmented-segment;
+
+        & + & {
+            margin-inline-start: q(-1);
+        }
+        &:hover:not([aria-pressed="true"], :disabled) {
+            @include seg.ss-segmented-segment-hover;
+        }
+        &[aria-pressed="true"],
+        &[aria-checked="true"],
+        &[aria-selected="true"] {
+            @include seg.ss-segmented-segment-selected;
+        }
+        &:focus-visible {
+            @include seg.ss-segmented-segment-focus;
+        }
+        &:disabled {
+            @include seg.ss-segmented-segment-disabled;
+        }
+    }
+}

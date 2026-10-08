@@ -1,0 +1,50 @@
+@use "sass:map";
+@use "./order-summary.config" as config;
+@use "../../01-core/external" as *;
+
+@function _cfg($key) {
+    @return map.get(config.$ss-order-summary-config, $key);
+}
+
+@mixin ss-order-summary {
+    display: flex;
+    flex-direction: column;
+    gap: _cfg(gap);
+    box-sizing: border-box;
+    padding: _cfg(padding);
+    background-color: _cfg(bg);
+    color: var(--ss-color-text);
+    border: _cfg(border);
+    border-radius: _cfg(radius);
+    font-variant-numeric: tabular-nums;
+}
+
+@mixin ss-order-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: q(12);
+    margin: 0;
+
+    > dt,
+    > dd {
+        margin: 0;
+    }
+
+    > dd {
+        text-align: end;
+        white-space: nowrap;
+    }
+}
+
+@mixin ss-order-summary-total {
+    padding-block-start: _cfg(gap);
+    border-block-start: _cfg(total-divider);
+    font-size: var(--ss-font-size-lg);
+    font-weight: var(--ss-font-weight-bold);
+}
+
+/// Read one key of `$ss-order-summary-config` (for the output file).
+@function ss-order-summary-config($key) {
+    @return map.get(config.$ss-order-summary-config, $key);
+}

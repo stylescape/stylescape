@@ -1,0 +1,790 @@
+////
+///
+/// Stylescape 0.3 Class-Name Compatibility
+/// ===========================================================================
+///
+/// Stylescape 0.4 prefixed every class (`.button` → `.ss-c-button`,
+/// `.frame_main` → `.ss-l-frame`, `.flex--row` → `.ss-f-cluster` / utilities)
+/// and no longer styles the 0.3 names, so markup written for 0.3 lost its
+/// buttons, badges, ribbons and app frame. This partial gives the 0.3 names
+/// the 0.4 look: each old class includes the mixin of the module that
+/// replaced it, or reads the 0.4 tokens. It does not copy 0.3 CSS.
+///
+/// Coverage: every 0.3 class the sturnus-style templates and the KodW apps
+/// still use (see `doc/migration-0.4.md` for the old → new table). Exact
+/// numeric spacing names (`margin--10_right`, `gap--04`, `grid__frame--24`)
+/// keep their 0.3 pixel values via `q()`.
+///
+/// Everything sits in `@layer ss.compat`, below `ss.components`: the 0.3
+/// names do not collide with any `ss-*` class, so the layer only matters
+/// against element selectors and themes. Opt out with
+///
+///     @use "pkg:stylescape/scss" with ($v03-compat: false);
+///
+/// @group Utilities.Legacy
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.4.2 0.3 compat layer
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "sass:list";
+@use "sass:string";
+@use "../01-core/external" as *;
+@use "../01-core/config" as cfg;
+@use "../31-modules/button/button.mixins" as button;
+@use "../31-modules/badge/badge.mixins" as badge;
+@use "../31-modules/card/card.mixins" as card;
+@use "../31-modules/ribbon/ribbon.mixins" as ribbon;
+@use "../31-modules/sidebar/sidebar.mixins" as sidebar;
+@use "../31-modules/sidebar/sidebar.config" as sidebar-config;
+@use "../31-modules/rail/rail.mixins" as rail;
+@use "../31-modules/flipper/flipper.mixins" as flipper;
+@use "../31-modules/tooltip/tooltip.mixins" as tooltip;
+@use "../31-modules/divider/divider.mixins" as divider;
+@use "../31-modules/pagination/pagination.mixins" as pagination;
+@use "../31-modules/modal/modal.mixins" as modal;
+@use "../31-modules/modal/modal.config" as modal-config;
+@use "../31-modules/preloader/preloader.mixins" as preloader;
+@use "../31-modules/preloader/preloader.config" as preloader-config;
+@use "../31-modules/checkbox/checkbox.mixins" as checkbox;
+@use "../31-modules/radio/radio.mixins" as radio;
+@use "../31-modules/input/input.mixins" as input;
+@use "../31-modules/select/select.mixins" as select;
+@use "../31-modules/alert/alert.mixins" as alert;
+@use "../31-modules/spinner/spinner.mixins" as spinner;
+
+// 0.3 breakpoints for the responsive grid spans (max-width, as in 0.3).
+$_v03-breakpoints: (
+    lg: 2160px,
+    md: 1440px,
+    sm: 720px,
+);
+
+// Exact pixel names used by 0.3 `margin--N` / `padding--N`.
+$_v03-space-px: (0, 1, 2, 4, 5, 8, 10, 12, 15, 16, 20, 24, 25, 30, 32, 40, 48, 50, 64, 80, 100, 200);
+$_v03-sides: (
+    top: (top,),
+    right: (right,),
+    bottom: (bottom,),
+    left: (left,),
+    horizontal: (left, right),
+    vertical: (top, bottom),
+);
+$_v03-named-space: (xs: q(4), sm: q(8), md: q(16), lg: q(24), xl: q(40));
+
+@if cfg.$v03-compat {
+    @layer ss.compat {
+        // ====================================================================
+        // Buttons (`.button`, `.button--*`, 0.3 single-word `.button.accent`)
+        // ====================================================================
+
+        .button {
+            @include button.c-button-base;
+        }
+        .button--primary, .button.primary { @include button.c-button-primary; }
+        .button--secondary, .button.secondary { @include button.c-button-secondary; }
+        .button--outline, .button.outline { @include button.c-button-outline; }
+        .button--ghost, .button.ghost { @include button.c-button-ghost; }
+        .button--solid, .button.solid { @include button.c-button-solid; }
+        .button--link, .button.link { @include button.c-button-link; }
+        .button--accent, .button.accent { @include button.c-button-accent; }
+        .button--clear, .button.clear { @include button.c-button-clear; }
+        .button--success, .button.success { @include button.c-button-success; }
+        .button--warning, .button.warning { @include button.c-button-warning; }
+        .button--danger, .button.danger { @include button.c-button-danger; }
+        .button--info, .button.info { @include button.c-button-info; }
+        .button--rounded { @include button.c-button-rounded; }
+        .button--pill,
+        .button.pill { @include button.c-button-pill; }
+        .button--square { @include button.c-button-square; }
+        .button--icon { @include button.c-button-icon; }
+        .button--block { @include button.c-button-block; }
+        .button--disabled { @include button.c-button-disabled; }
+        .button--loading { @include button.c-button-loading; }
+        @each $s in (xs, sm, md, lg, xl) {
+            .button--size-#{$s} {
+                @include button.c-button-size($s);
+            }
+        }
+
+        // ====================================================================
+        // Badges (`.badge`, `.badge--*`, `.badge.accent|info|…|pill`)
+        // ====================================================================
+
+        .badge {
+            @include badge.ss-badge;
+            @include badge.ss-badge-size(md);
+            @include badge.ss-badge-variant(default);
+
+            &:empty {
+                display: none;
+            }
+        }
+        @each $v in (accent, success, warning, error, info) {
+            .badge--#{$v},
+            .badge.#{$v} {
+                @include badge.ss-badge-variant($v);
+            }
+        }
+        @each $s in (xs, sm, lg, xl) {
+            .badge--size-#{$s} {
+                @include badge.ss-badge-size($s);
+            }
+        }
+        .badge--pill,
+        .badge.pill { @include badge.ss-badge-pill; }
+        .badge--squared,
+        .badge.squared { @include badge.ss-badge-squared; }
+        .badge--rounded,
+        .badge.rounded { border-radius: var(--ss-radius-sm); }
+
+        // ====================================================================
+        // Card (`.card`, `.card__header|__body|__footer` and the
+        // `.card--header|--body|--footer` spelling sturnus uses)
+        // ====================================================================
+
+        .card {
+            @include card.c-card-base;
+        }
+        .card__header,
+        .card--header { @include card.c-card-header; }
+        .card__body,
+        .card--body { @include card.c-card-body; }
+        .card__footer,
+        .card--footer { @include card.c-card-footer; }
+
+        // ====================================================================
+        // Ribbon (`.ribbon--top|bottom|left|right`, slots, title, menu,
+        // button, panel)
+        // ====================================================================
+
+        .ribbon--top,
+        .ribbon--bottom,
+        .ribbon--left,
+        .ribbon--right {
+            h1, h2, h3, h4, h5, h6 {
+                font-size: inherit;
+                font-weight: inherit;
+                line-height: inherit;
+                color: inherit;
+                margin: 0;
+                padding: 0;
+            }
+            ul,
+            ol,
+            menu {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            p {
+                margin: 0;
+            }
+        }
+        .ribbon--top { @include ribbon.ss-ribbon-top; }
+        .ribbon--bottom { @include ribbon.ss-ribbon-bottom; }
+        .ribbon--left { @include ribbon.ss-ribbon-left; }
+        .ribbon--right { @include ribbon.ss-ribbon-right; }
+        .ribbon--inverted { @include ribbon.ss-ribbon-inverted; }
+
+        .ribbon__slot--horizontal_left { @include ribbon.ss-ribbon-slot-horizontal-left; }
+        .ribbon__slot--horizontal_center { @include ribbon.ss-ribbon-slot-horizontal-center; }
+        .ribbon__slot--horizontal_right { @include ribbon.ss-ribbon-slot-horizontal-right; }
+        .ribbon__slot--vertical_top { @include ribbon.ss-ribbon-slot-vertical-top; }
+        .ribbon__slot--vertical_center { @include ribbon.ss-ribbon-slot-vertical-center; }
+        .ribbon__slot--vertical_bottom { @include ribbon.ss-ribbon-slot-vertical-bottom; }
+
+        .ribbon__title { @include ribbon.ss-ribbon-title; }
+        // The logo is often one glyph: keep the link a 24px target (WCAG 2.5.8).
+        .ribbon__title__logo a,
+        .ribbon__title__text a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-inline-size: q(24);
+            min-block-size: q(24);
+        }
+        .ribbon__title__image img {
+            display: block;
+            block-size: 1.5em;
+            inline-size: auto;
+        }
+        .ribbon__button,
+        .ribbon_menu_button { @include ribbon.ss-ribbon-button; }
+        .ribbon__menu { @include ribbon.ss-ribbon-menu; }
+        .ribbon__menu__item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        // 0.3 dropdown panel under a ribbon menu item.
+        .ribbon_panel {
+            @include ribbon.ss-ribbon-panel;
+            display: grid;
+            gap: var(--ss-space-sm);
+            justify-items: start;
+            grid-auto-rows: min-content;
+            top: 100%;
+            min-width: q(150);
+            padding: var(--ss-space-md);
+            list-style: none;
+            background-color: var(--ss-color-background);
+            color: var(--ss-color-text);
+            border-color: var(--ss-color-text);
+        }
+        .ribbon_panel_header,
+        .ribbon_panel_section,
+        .ribbon_panel_section_header,
+        .ribbon_panel_section_item {
+            width: 100%;
+            margin: 0;
+            padding-inline: var(--ss-space-sm);
+            font-size: var(--ss-font-size-xs);
+        }
+        .ribbon_panel_header,
+        .ribbon_panel_section_header {
+            font-weight: var(--ss-font-weight-semibold);
+        }
+        .ribbon_panel_header {
+            text-align: center;
+        }
+        .ribbon_panel_line {
+            width: 100%;
+            margin: 0;
+            border: 0;
+            border-top: q(1) solid var(--ss-color-border);
+        }
+
+        // ====================================================================
+        // App frame (`.frame_main` → `.ss-l-frame`) and content slots
+        // ====================================================================
+
+        .frame_main {
+            box-sizing: border-box;
+            display: grid;
+            width: 100vw;
+            height: 100vh;
+            max-width: 100vw;
+            max-height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            grid-template-columns: auto 1fr auto;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+                "top_left      top_center       top_right"
+                "middle_left   middle_center    middle_right"
+                "bottom_left   bottom_center    bottom_right";
+        }
+        %_v03-frame-area {
+            box-sizing: border-box;
+            display: grid;
+            min-width: 0;
+            min-height: 0;
+            max-width: 100%;
+            max-height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .frame_main__area--top {
+            @extend %_v03-frame-area;
+            grid-row: 1;
+            grid-column: 1 / -1;
+        }
+        .frame_main__area--bottom {
+            @extend %_v03-frame-area;
+            grid-row: 3;
+            grid-column: 1 / -1;
+        }
+        .frame_main__area--middle_left {
+            @extend %_v03-frame-area;
+            grid-area: middle_left;
+            height: 100%;
+        }
+        .frame_main__area--middle_center {
+            @extend %_v03-frame-area;
+            grid-area: middle_center;
+            overflow: auto;
+        }
+        .frame_main__area--middle_right {
+            @extend %_v03-frame-area;
+            grid-area: middle_right;
+        }
+        .frame_main__area--background {
+            grid-area: 1 / 1 / -1 / -1;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .main_content {
+            box-sizing: border-box;
+            max-width: 100%;
+            min-height: 100%;
+            padding: q(20);
+        }
+        .main_header,
+        .main_footer {
+            align-self: start;
+            justify-self: start;
+            text-align: start;
+        }
+        .canvas {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        // ====================================================================
+        // Rail, sidebar, flipper (the aside toggle)
+        // ====================================================================
+
+        .rail { @include rail.ss-rail; }
+
+        .sidebar--left,
+        .sidebar--right {
+            flex: 0 0 auto;
+            width: fit-content;
+        }
+        .sidebar--left {
+            @include sidebar.ss-sidebar-left;
+            order: -1;
+
+            > .sidebar__menu {
+                border-right: q(1) solid
+                    map.get(sidebar-config.$sidebar-config, "border-color");
+            }
+        }
+        .sidebar--right {
+            @include sidebar.ss-sidebar-right;
+            order: 1;
+
+            > .sidebar__menu {
+                border-left: q(1) solid
+                    map.get(sidebar-config.$sidebar-config, "border-color");
+            }
+        }
+        .sidebar__menu { @include sidebar.ss-sidebar-menu; }
+        .sidebar__control { @include sidebar.ss-sidebar-control; }
+        .sidebar__content {
+            padding: var(--ss-space-sm);
+            font-size: var(--ss-font-size-xs);
+            overflow-y: auto;
+            max-height: 100%;
+        }
+
+        .flipper--left {
+            @include flipper.ss-flipper-base;
+            @include flipper.ss-flipper-left;
+        }
+        .flipper--right {
+            @include flipper.ss-flipper-base;
+            @include flipper.ss-flipper-right;
+        }
+        .flipper--up {
+            @include flipper.ss-flipper-base;
+            @include flipper.ss-flipper-up;
+        }
+        .flipper--down {
+            @include flipper.ss-flipper-base;
+            @include flipper.ss-flipper-down;
+        }
+        .flipper__icon {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        // ====================================================================
+        // Tooltip (`.tooltip[tooltip-data]`, CSS-only bubble)
+        // ====================================================================
+
+        .tooltip[tooltip-data] {
+            @include tooltip.ss-tooltip-wrapper;
+
+            &.tooltip--right { @include tooltip.ss-tooltip-wrapper-right; }
+            &.tooltip--left { @include tooltip.ss-tooltip-wrapper-left; }
+            &.tooltip--top { @include tooltip.ss-tooltip-wrapper-top; }
+            &.tooltip--bottom { @include tooltip.ss-tooltip-wrapper-bottom; }
+        }
+
+        // ====================================================================
+        // Forms (`.input`, `.checkbox` / `.radio` label wrappers,
+        // `.custom-select`, `.dropdown--menu`)
+        // ====================================================================
+
+        .input { @include input.ss-input; }
+        textarea.input { @include input.ss-input-textarea; }
+        select.input,
+        .custom-select select { @include select.ss-select; }
+
+        .checkbox {
+            @include checkbox.ss-checkbox-label;
+
+            input[type="checkbox"] { @include checkbox.ss-checkbox; }
+        }
+        .radio {
+            @include radio.ss-radio-label;
+
+            input[type="radio"] { @include radio.ss-radio; }
+        }
+        .custom-select {
+            position: relative;
+        }
+        .dropdown--menu {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-top: var(--ss-space-xs);
+            padding: var(--ss-space-xs);
+            background: var(--ss-color-background);
+            color: var(--ss-color-text);
+            border: q(1) solid var(--ss-color-border-strong);
+            box-shadow: var(--ss-a-shadow-md);
+            z-index: var(--ss-z-dropdown);
+
+            label {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--ss-color-surface-hover);
+                }
+            }
+        }
+
+        // ====================================================================
+        // Feedback (`.alert`, `.spinner`, `.preloader*`, `.divider*`)
+        // ====================================================================
+
+        .alert {
+            @include alert.ss-alert;
+            @include alert.ss-alert-variant(info);
+        }
+        @each $v in (info, success, warning) {
+            .alert--#{$v} {
+                @include alert.ss-alert;
+                @include alert.ss-alert-variant($v);
+            }
+        }
+        .alert--error,
+        .alert--danger {
+            @include alert.ss-alert;
+            @include alert.ss-alert-variant(danger);
+        }
+
+        .spinner { @include spinner.ss-spinner; }
+
+        .preloader { @include preloader.ss-preloader; }
+        .preloader_lines {
+            @include preloader.ss-preloader-lines;
+        }
+        // 0.3 markup uses `.preloader_line.preloader_line_N` children where
+        // the module expects `> span`.
+        .preloader_line {
+            width: map.get(preloader-config.$preloader-config, "line-width");
+            background-color: map.get(preloader-config.$preloader-config, "line-color");
+            animation: ss-preloader-lines
+                #{map.get(preloader-config.$preloader-config, "duration")}
+                ease-in-out infinite;
+        }
+        @for $i from 1 through 5 {
+            .preloader_line_#{$i} {
+                animation-delay: #{($i - 1) * 0.1}s;
+            }
+        }
+        .preloader_pulse { @include preloader.ss-preloader-pulse; }
+        @media (prefers-reduced-motion: reduce) {
+            .preloader_line,
+            .preloader_pulse {
+                animation: none;
+            }
+        }
+
+        .divider { @include divider.ss-divider; }
+        .divider--vertical { @include divider.ss-divider-vertical; }
+
+        // ====================================================================
+        // Navigation and overlays (`.pagination` with `.pill` links,
+        // `.modal` + `modal_*` parts)
+        // ====================================================================
+
+        .pagination {
+            @include pagination.ss-pagination;
+
+            > .pill { @include pagination.ss-pagination-item; }
+            > .pill.disabled,
+            > .pill[aria-disabled="true"] { @include pagination.ss-pagination-disabled; }
+        }
+        .pagination--right {
+            justify-content: flex-end;
+        }
+
+        .modal {
+            @include modal.modal-container;
+
+            &[hidden] {
+                display: none;
+            }
+        }
+        .modal_content { @include modal.modal-content; }
+        .modal_header,
+        .modal_footer {
+            padding: map.get(modal-config.$ss-modal-config, padding);
+        }
+        .modal_header {
+            text-align: center;
+            border-bottom: q(1) solid var(--ss-color-border);
+        }
+        .modal_footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--ss-space-sm);
+            border-top: q(1) solid var(--ss-color-border);
+        }
+
+        // ====================================================================
+        // Page blocks (`.section`, `.form`, `.gallery_*`)
+        // ====================================================================
+
+        .section {
+            width: 100%;
+            padding-block: var(--ss-space-2xl);
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: q(10);
+        }
+        .gallery_image {
+            aspect-ratio: 1;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .gallery_border {
+            border: q(1) solid var(--ss-color-border-strong);
+        }
+
+        // ====================================================================
+        // Tables
+        // ====================================================================
+
+        .table--lined--horizontal {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+
+            th,
+            td {
+                padding: q(2) q(4);
+                text-align: start;
+                border-inline: 0;
+                border-block: q(1) solid var(--ss-color-line);
+            }
+        }
+        .data_table {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        // ====================================================================
+        // Typography and colour helpers
+        // ====================================================================
+
+        .small {
+            font-size: 80%;
+            line-height: 1.2;
+        }
+        .font--xs { font-size: q(8); line-height: q(10); }
+        .font--sm { font-size: var(--ss-font-size-xs); line-height: q(15); }
+        .h5 {
+            margin: 0 0 q(20);
+            font-size: var(--ss-font-size-lg);
+            font-weight: var(--ss-font-weight-medium);
+            line-height: var(--ss-line-height-snug);
+            color: var(--ss-color-text);
+        }
+        .character--hyperlink--base {
+            color: inherit;
+            text-decoration: none;
+
+            &:hover {
+                color: var(--ss-color-link-hover);
+            }
+        }
+        .object--color--fill_primary { color: var(--ss-color-background); }
+        .object--fill--fill_primary { background: var(--ss-color-background); }
+        .object--fill--accent_secondary { background: var(--ss-color-secondary); }
+        .object--corner--pill { border-radius: var(--ss-radius-full); }
+        .object--width--full_width { width: 100%; }
+        .object--height--full_height { height: 100%; }
+        .list_none,
+        .list_none > * { list-style-type: none; }
+        .border--none { border-style: none; }
+        .border--solid { border-style: solid; }
+        .border_thin { border-width: q(1); }
+
+        // ====================================================================
+        // Display, visibility, alignment
+        // ====================================================================
+
+        .display_inline-block { display: inline-block; }
+        .invisible { display: none !important; }
+        .visually-hidden {
+            position: absolute;
+            width: q(1);
+            height: q(1);
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        .vertical--middle { vertical-align: middle; }
+        .overflow-auto { overflow: auto; }
+
+        .flex { display: flex; }
+        .flex--row { display: flex; flex-direction: row; }
+        .flex--col { display: flex; flex-direction: column; }
+        .flex--wrap { flex-wrap: wrap; }
+
+        .align--start { align-items: flex-start; }
+        .align--center { align-items: center; }
+        .align--end { align-items: flex-end; }
+        .align_content--end { align-content: end; }
+        .justify--start { justify-content: flex-start; }
+        .justify--center { justify-content: center; }
+        .justify--end { justify-content: flex-end; }
+        .justify--between { justify-content: space-between; }
+
+        // ====================================================================
+        // Sizing boxes, aspect ratios, spacers
+        // ====================================================================
+
+        @for $n from 1 through 24 {
+            $s: q($n * 5);
+            .box--size_#{string.slice("0#{$n}", -2)} {
+                box-sizing: content-box;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                aspect-ratio: 1;
+                width: $s;
+                height: $s;
+                min-width: $s;
+                min-height: $s;
+                font-size: $s;
+            }
+        }
+        @each $name, $ratio in ("1x1": 1, "4x3": list.slash(4, 3), "3x2": list.slash(3, 2), "16x9": list.slash(16, 9)) {
+            .aspect_ratio--#{$name} {
+                position: relative;
+                width: 100%;
+                aspect-ratio: $ratio;
+
+                > * {
+                    position: absolute;
+                    inset: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .spacer_vertical {
+            display: block;
+            width: 100%;
+
+            &:not([class*="--"]) {
+                height: var(--ss-space-md);
+            }
+        }
+
+        // ====================================================================
+        // Grid (`.grid__frame--N`, `.grid--span--col--[bp--]N`)
+        // ====================================================================
+
+        @for $n from 1 through 24 {
+            .grid__frame--#{$n} {
+                display: grid;
+                position: relative;
+                grid-template-columns: repeat($n, 1fr);
+                gap: q(20);
+            }
+        }
+        // Zero-padded spellings found in sturnus templates.
+        @for $n from 1 through 9 {
+            .grid__frame--0#{$n} {
+                display: grid;
+                position: relative;
+                grid-template-columns: repeat($n, 1fr);
+                gap: q(20);
+            }
+        }
+        @for $n from 1 through 24 {
+            .grid--span--col--#{$n} { grid-column: span $n; }
+            .grid--span--row--#{$n} { grid-row: span $n; }
+            .grid--size--row--#{$n} { grid-template-rows: repeat($n, 1fr); }
+        }
+        @each $bp, $max in $_v03-breakpoints {
+            @media (max-width: $max) {
+                @for $n from 1 through 24 {
+                    .grid--span--col--#{$bp}--#{$n} { grid-column: span $n; }
+                }
+            }
+        }
+
+        // ====================================================================
+        // Gap (`gap--0N` = N × 5px) and margin / padding (`--N_side` = N px)
+        // ====================================================================
+
+        @for $n from 0 through 12 {
+            $key: "0#{$n}";
+            .gap--#{$key} { gap: q($n * 5); }
+            .gap--col--#{$key} { column-gap: q($n * 5); }
+            .gap--row--#{$key} { row-gap: q($n * 5); }
+        }
+
+        @each $n in $_v03-space-px {
+            .margin--#{$n} { margin: q($n); }
+            .padding--#{$n} { padding: q($n); }
+            @each $side, $props in $_v03-sides {
+                .margin--#{$n}_#{$side} {
+                    @each $p in $props { margin-#{$p}: q($n); }
+                }
+                .padding--#{$n}_#{$side} {
+                    @each $p in $props { padding-#{$p}: q($n); }
+                }
+            }
+        }
+        // `margin--md_top` etc. live in `_legacy-compat.scss`; 0.3 also
+        // spelled the axes `_horizontal` / `_vertical`.
+        @each $k, $v in $_v03-named-space {
+            .margin--#{$k}_horizontal { margin-inline: $v; }
+            .margin--#{$k}_vertical { margin-block: $v; }
+            .padding--#{$k}_horizontal { padding-inline: $v; }
+            .padding--#{$k}_vertical { padding-block: $v; }
+        }
+    }
+}

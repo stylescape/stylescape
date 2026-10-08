@@ -214,6 +214,7 @@ export class ScrollToTopButton {
     public show(): void {
         this.button?.classList.add(this.options.visibleClass);
         this.button?.setAttribute("aria-hidden", "false");
+        this.button?.removeAttribute("tabindex");
     }
 
     /**
@@ -221,7 +222,9 @@ export class ScrollToTopButton {
      */
     public hide(): void {
         this.button?.classList.remove(this.options.visibleClass);
+        // Hidden from AT must also mean out of the tab order (WCAG 4.1.2).
         this.button?.setAttribute("aria-hidden", "true");
+        this.button?.setAttribute("tabindex", "-1");
     }
 
     /**
@@ -266,6 +269,7 @@ export class ScrollToTopButton {
             this.button.getAttribute("aria-label") || "Scroll to top",
         );
         this.button.setAttribute("aria-hidden", "true");
+        this.button.setAttribute("tabindex", "-1");
 
         // Initial state
         this.checkScroll();

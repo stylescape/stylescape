@@ -1,0 +1,118 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./split.mixins" as split;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-split {
+        @include split.ss-split;
+    }
+    .#{$ss-prefix-module}-split--vertical {
+        @include split.ss-split-vertical;
+    }
+
+    .#{$ss-prefix-module}-split__pane {
+        @include split.ss-split-pane;
+    }
+    .#{$ss-prefix-module}-split__pane--primary {
+        @include split.ss-split-pane-primary;
+    }
+
+    .#{$ss-prefix-module}-split__handle {
+        @include split.ss-split-handle;
+    }
+    .#{$ss-prefix-module}-split--vertical
+        > .#{$ss-prefix-module}-split__handle {
+        @include split.ss-split-handle-vertical;
+    }
+
+    // Gutter: holds the handle (filling it) and the collapse toggle.
+    .#{$ss-prefix-module}-split__gutter {
+        @include split.ss-split-strip;
+        @include split.ss-split-gutter;
+
+        > .#{$ss-prefix-module}-split__handle {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            margin: 0;
+        }
+
+        > .#{$ss-prefix-module}-split__toggle {
+            z-index: 1;
+        }
+    }
+    .#{$ss-prefix-module}-split--vertical
+        > .#{$ss-prefix-module}-split__gutter {
+        @include split.ss-split-strip-vertical;
+
+        > .#{$ss-prefix-module}-split__handle {
+            @include split.ss-split-handle-vertical;
+            margin: 0;
+        }
+    }
+
+    .#{$ss-prefix-module}-split__toggle {
+        @include split.ss-split-toggle;
+    }
+
+    // Collapsed: the primary pane is hidden and the chevron flips.
+    .#{$ss-prefix-module}-split[data-state="collapsed"] {
+        > .#{$ss-prefix-module}-split__pane--primary {
+            display: none;
+        }
+
+        .#{$ss-prefix-module}-split__toggle::before {
+            transform: translateX(#{q(-1)}) rotate(-135deg);
+        }
+    }
+
+    // The primary pane sits after the gutter (a right or bottom pane):
+    // the chevron points the other way.
+    .#{$ss-prefix-module}-split__gutter--end
+        .#{$ss-prefix-module}-split__toggle::before {
+        transform: translateX(#{q(-1)}) rotate(-135deg);
+    }
+    .#{$ss-prefix-module}-split[data-state="collapsed"]
+        .#{$ss-prefix-module}-split__gutter--end
+        .#{$ss-prefix-module}-split__toggle::before {
+        transform: translateX(#{q(1)}) rotate(45deg);
+    }
+    .#{$ss-prefix-module}-split--vertical .#{$ss-prefix-module}-split__toggle {
+        rotate: 90deg;
+    }
+
+    // A handle placed at the inner edge of an app-shell sidebar
+    // (`ss-l-app__sidebar`) to resize it.
+    .#{$ss-prefix-module}-split__handle--edge {
+        position: absolute;
+        inset-block: 0;
+        inset-inline-end: 0;
+        inline-size: q(8);
+        margin: 0;
+
+        // The sidebar's own border is the resting line.
+        &:not(:hover, :focus-visible, .is-dragging)::before {
+            background-color: transparent;
+        }
+    }
+    .#{$ss-prefix-module}-split__handle--edge.#{$ss-prefix-module}-split__handle--end {
+        inset-inline: 0 auto;
+    }
+
+    // Narrow screens: `--responsive` stacks the panes and drops the handle.
+    @media (max-width: 47.99875rem) {
+        .#{$ss-prefix-module}-split--responsive {
+            flex-direction: column;
+            block-size: auto;
+
+            > .#{$ss-prefix-module}-split__pane--primary {
+                flex-basis: auto;
+            }
+
+            > .#{$ss-prefix-module}-split__handle,
+            > .#{$ss-prefix-module}-split__gutter {
+                display: none;
+            }
+        }
+    }
+}

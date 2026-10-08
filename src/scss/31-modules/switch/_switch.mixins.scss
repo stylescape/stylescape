@@ -1,0 +1,110 @@
+@use "sass:map";
+@use "./switch.config" as config;
+@use "../../01-core/external" as *;
+
+/// Sets the track size through custom properties, so the knob and its
+/// travel follow without repeating the geometry per size.
+@mixin ss-switch-size($size) {
+    $s: map.get(map.get(config.$ss-switch-config, sizes), $size);
+
+    --ss-switch-width: #{map.get($s, width)};
+    --ss-switch-height: #{map.get($s, height)};
+}
+
+/// Wrapper label: control and text on one line, the whole row clickable.
+@mixin ss-switch {
+    @include ss-switch-size(md);
+
+    display: inline-flex;
+    align-items: center;
+    gap: map.get(config.$ss-switch-config, gap);
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+/// The track. Applied to the native checkbox (`appearance: none`) or to the
+/// legacy `span.ss-c-slider`; the knob is its `::before`.
+@mixin ss-switch-track {
+    --_inset: #{map.get(config.$ss-switch-config, knob-inset)};
+    --_knob: calc(var(--ss-switch-height) - var(--_inset) * 2);
+
+    appearance: none;
+    position: relative;
+    flex: none;
+    display: inline-block;
+    inline-size: var(--ss-switch-width);
+    block-size: var(--ss-switch-height);
+    margin: 0;
+
+    background: map.get(config.$ss-switch-config, track-off);
+    border: 0;
+    // `--ss-switch-radius` lets the legacy `.ss-c-round` spelling (compat
+    // layer) round the track without restyling it.
+    border-radius: var(--ss-switch-radius, #{map.get(config.$ss-switch-config, radius)});
+    cursor: pointer;
+    vertical-align: middle;
+
+    transition: background-color map.get(config.$ss-switch-config, duration) var(--ss-ease-in-out);
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset-block-start: var(--_inset);
+        inset-inline-start: var(--_inset);
+        inline-size: var(--_knob);
+        block-size: var(--_knob);
+
+        background: map.get(config.$ss-switch-config, knob);
+        border-radius: inherit;
+
+        transition: transform map.get(config.$ss-switch-config, duration) var(--ss-ease-in-out);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+
+        &::before {
+            transition: none;
+        }
+    }
+
+    // Windows high contrast: the track colours are dropped, so draw the
+    // outline and knob in system colours.
+    @media (forced-colors: active) {
+        border: q(1) solid CanvasText;
+
+        &::before {
+            background: CanvasText;
+        }
+    }
+}
+
+@mixin ss-switch-track-on {
+    background: map.get(config.$ss-switch-config, track-on);
+
+    &::before {
+        transform: translateX(calc(var(--ss-switch-width) - var(--ss-switch-height)));
+    }
+
+    &:dir(rtl)::before {
+        transform: translateX(calc(var(--ss-switch-height) - var(--ss-switch-width)));
+    }
+
+    @media (forced-colors: active) {
+        background: Highlight;
+    }
+}
+
+@mixin ss-switch-track-focus {
+    outline: var(--ss-focus-ring-width, #{q(2)}) solid var(--ss-focus-ring-color, currentColor);
+    outline-offset: var(--ss-focus-ring-offset, #{q(2)});
+}
+
+@mixin ss-switch-track-disabled {
+    opacity: map.get(config.$ss-switch-config, disabled-opacity);
+    cursor: not-allowed;
+}
+
+@mixin ss-switch-round {
+    border-radius: var(--ss-radius-full);
+}

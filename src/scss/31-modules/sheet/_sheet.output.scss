@@ -1,0 +1,79 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints" as *;
+@use "./sheet.mixins" as sheet;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-sheet {
+        @include sheet.ss-sheet;
+    }
+
+    // Anchored to the viewport instead of the positioned parent.
+    .#{$ss-prefix-module}-sheet--fixed {
+        position: fixed;
+    }
+
+    .#{$ss-prefix-module}-sheet--left {
+        @include sheet.ss-sheet-side(left);
+    }
+    .#{$ss-prefix-module}-sheet--right {
+        @include sheet.ss-sheet-side(right);
+    }
+    .#{$ss-prefix-module}-sheet--left[data-state="open"],
+    .#{$ss-prefix-module}-sheet--right[data-state="open"] {
+        transform: none;
+    }
+
+    .#{$ss-prefix-module}-sheet__handle {
+        @include sheet.ss-sheet-handle;
+    }
+    .#{$ss-prefix-module}-sheet--left > .#{$ss-prefix-module}-sheet__handle,
+    .#{$ss-prefix-module}-sheet--right > .#{$ss-prefix-module}-sheet__handle {
+        @include sheet.ss-sheet-handle-side;
+    }
+    .#{$ss-prefix-module}-sheet--left > .#{$ss-prefix-module}-sheet__handle {
+        order: 1;
+    }
+
+    .#{$ss-prefix-module}-sheet__body {
+        @include sheet.ss-sheet-body;
+    }
+    .#{$ss-prefix-module}-sheet--left > .#{$ss-prefix-module}-sheet__body,
+    .#{$ss-prefix-module}-sheet--right > .#{$ss-prefix-module}-sheet__body {
+        padding-block-start: var(--ss-space-4);
+    }
+
+    // Closed: the body leaves the tab order and the accessibility tree once
+    // it has slid away (visibility switches after the transition).
+    .#{$ss-prefix-module}-sheet:not([data-state="open"])
+        > .#{$ss-prefix-module}-sheet__body {
+        visibility: hidden;
+        transition: visibility 0s linear var(--ss-duration-300);
+    }
+
+    // `--dock`: a sheet below `md`, a docked, always-open panel from `md`
+    // up (the handle hides). Place it as a column of the surrounding
+    // layout, e.g. an `ss-l-app__sidebar`.
+    @include breakpoint-up("md") {
+        .#{$ss-prefix-module}-sheet--dock {
+            position: relative;
+            inset: auto;
+            inline-size: auto;
+            block-size: 100%;
+            transform: none;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+
+            > .#{$ss-prefix-module}-sheet__handle {
+                display: none;
+            }
+
+            > .#{$ss-prefix-module}-sheet__body,
+            &:not([data-state="open"]) > .#{$ss-prefix-module}-sheet__body {
+                visibility: visible;
+                padding-block-start: var(--ss-space-4);
+            }
+        }
+    }
+}

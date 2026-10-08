@@ -1,0 +1,43 @@
+@use "../../01-core/prefix" as *;
+@use "./legend.mixins" as legend;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-legend {
+        @include legend.ss-legend;
+    }
+    .#{$ss-prefix-module}-legend--vertical {
+        @include legend.ss-legend-vertical;
+
+        > .#{$ss-prefix-module}-legend__item {
+            align-self: stretch;
+        }
+    }
+    .#{$ss-prefix-module}-legend__title {
+        @include legend.ss-legend-title;
+    }
+    .#{$ss-prefix-module}-legend__item {
+        @include legend.ss-legend-item;
+    }
+    .#{$ss-prefix-module}-legend__swatch {
+        @include legend.ss-legend-swatch;
+    }
+    .#{$ss-prefix-module}-legend__swatch--line {
+        @include legend.ss-legend-swatch-line;
+    }
+    .#{$ss-prefix-module}-legend__swatch--dashed {
+        @include legend.ss-legend-swatch-line;
+        @include legend.ss-legend-swatch-dashed;
+    }
+    .#{$ss-prefix-module}-legend__swatch--point {
+        @include legend.ss-legend-swatch-point;
+    }
+    .#{$ss-prefix-module}-legend__swatch--area {
+        @include legend.ss-legend-swatch-area;
+    }
+    .#{$ss-prefix-module}-legend__value {
+        @include legend.ss-legend-value;
+    }
+    .#{$ss-prefix-module}-legend__toggle {
+        @include legend.ss-legend-toggle;
+    }
+}

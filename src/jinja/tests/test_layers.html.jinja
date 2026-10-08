@@ -3,36 +3,67 @@
 {%- endblock %} {% set aside_right = true %} {%- block aside_right_content %}
 Aside Right Menu {%- endblock %} {%- block content %}
 
-<div class="ss-c-layer-controls">
-    <button onclick="toggleLayer('guides')">Toggle guides</button>
-    <button onclick="toggleLayer('modal')">Toggle modal</button>
-    <button onclick="toggleLayer('interface')">Toggle interface</button>
-    <button onclick="toggleLayer('content')">Toggle content</button>
-    <button onclick="toggleLayer('canvas')">Toggle canvas</button>
+<header class="ss-c-demo__section__header">
+    <h1>Test Layout Aside</h1>
+    <p>Z-index layer stack (guides, modal, interface, content, canvas) with left and right asides.</p>
+</header>
+
+<style>
+    /* Demo-only: offset the boxes so the stacking order is visible. */
+    .ss-c-layer-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--ss-spacing-2, 0.5rem);
+        margin-block-end: var(--ss-spacing-6, 1.5rem);
+    }
+    .ss-c-layer-demo {
+        min-block-size: 22rem;
+    }
+    .ss-c-layer-demo .ss-c-layer-box {
+        position: absolute;
+        inset-block-start: calc(var(--i) * 3rem);
+        inset-inline-start: calc(var(--i) * 3rem);
+        inline-size: 14rem;
+        block-size: 9rem;
+        padding: var(--ss-spacing-3, 0.75rem);
+        background-color: var(--ss-color-surface, var(--ss-color-fill));
+        color: var(--ss-color-text);
+        border: 1px solid var(--ss-color-border-strong, var(--ss-color-border));
+        border-radius: var(--ss-radius-md);
+        box-shadow: var(--ss-a-shadow-md);
+    }
+</style>
+
+<div class="ss-c-layer-controls" role="group" aria-label="Show or hide layers">
+    <button type="button" class="ss-c-button ss-c-button--outline" aria-pressed="true" aria-controls="layer-guides" onclick="toggleLayer(this, 'guides')">Guides</button>
+    <button type="button" class="ss-c-button ss-c-button--outline" aria-pressed="true" aria-controls="layer-modal" onclick="toggleLayer(this, 'modal')">Modal</button>
+    <button type="button" class="ss-c-button ss-c-button--outline" aria-pressed="true" aria-controls="layer-interface" onclick="toggleLayer(this, 'interface')">Interface</button>
+    <button type="button" class="ss-c-button ss-c-button--outline" aria-pressed="true" aria-controls="layer-content" onclick="toggleLayer(this, 'content')">Content</button>
+    <button type="button" class="ss-c-button ss-c-button--outline" aria-pressed="true" aria-controls="layer-canvas" onclick="toggleLayer(this, 'canvas')">Canvas</button>
 </div>
 
 <div class="ss-c-layer-demo">
-    <div class="ss-c-layer-box ss-c-z-guides" id="layer-guides">
+    <div class="ss-c-layer-box ss-c-z-guides" id="layer-guides" style="--i: 0">
         guides
         <br />
         <small>z(guides)</small>
     </div>
-    <div class="ss-c-layer-box ss-c-z-modal" id="layer-modal">
+    <div class="ss-c-layer-box ss-c-z-modal" id="layer-modal" style="--i: 1">
         modal
         <br />
         <small>z(modal)</small>
     </div>
-    <div class="ss-c-layer-box ss-c-z-interface" id="layer-interface">
+    <div class="ss-c-layer-box ss-c-z-interface" id="layer-interface" style="--i: 2">
         interface
         <br />
         <small>z(interface)</small>
     </div>
-    <div class="ss-c-layer-box ss-c-z-content" id="layer-content">
+    <div class="ss-c-layer-box ss-c-z-content" id="layer-content" style="--i: 3">
         content
         <br />
         <small>z(content)</small>
     </div>
-    <div class="ss-c-layer-box ss-c-z-canvas" id="layer-canvas">
+    <div class="ss-c-layer-box ss-c-z-canvas" id="layer-canvas" style="--i: 4">
         canvas
         <br />
         <small>z(canvas)</small>
@@ -40,12 +71,13 @@ Aside Right Menu {%- endblock %} {%- block content %}
 </div>
 
 <script>
-    function toggleLayer(id) {
+    function toggleLayer(button, id) {
         const el = document.getElementById("layer-" + id);
-        el.classList.toggle("hidden");
+        el.hidden = !el.hidden;
+        button.setAttribute("aria-pressed", String(!el.hidden));
     }
 </script>
 
-<i class="ss-c-i i_badge_country_fill_nl"></i>
+<i class="ss-c-i i_badge_country_fill_nl" aria-hidden="true"></i>
 
 {%- endblock content %}

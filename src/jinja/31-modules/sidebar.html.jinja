@@ -3,7 +3,7 @@
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>Navigation and content sidebars for application layouts.</p>
     </header>
 
@@ -13,16 +13,19 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Simple navigation sidebar with links.</p>
         {% set code_snippet %}
-        <div style="display: flex; gap: 24px">
+        <div style="display: flex; flex-wrap: wrap; gap: 24px">
             <aside
                 class="ss-c-sidebar"
+                aria-label="Basic sidebar"
                 style="
+                    display: flex;
+                    flex-direction: column;
                     width: 250px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 12px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                     padding: 20px;
                     flex-shrink: 0;
                 "
@@ -31,15 +34,15 @@
                     class="ss-c-sidebar__header"
                     style="
                         padding-bottom: 16px;
-                        border-bottom: 1px solid var(--color_line_secondary);
+                        border-bottom: 1px solid var(--ss-color-border);
                         margin-bottom: 16px;
                     "
                 >
-                    <h4 style="margin: 0; font-size: 16px; font-weight: 600">
+                    <h3 style="margin: 0; font-size: 16px; font-weight: 600">
                         Navigation
-                    </h4>
+                    </h3>
                 </div>
-                <nav class="ss-c-sidebar__nav">
+                <nav class="ss-c-sidebar__nav" aria-label="Basic sidebar navigation">
                     <ul
                         style="
                             list-style: none;
@@ -56,9 +59,9 @@
                                 style="
                                     display: block;
                                     padding: 10px 12px;
-                                    background: var(--color_fill_primary);
-                                    color: white;
-                                    border-radius: 8px;
+                                    background: var(--ss-color-accent);
+                                    color: var(--ss-color-on-accent);
+                                    border-radius: var(--ss-radius-lg);
                                     text-decoration: none;
                                 "
                             >
@@ -71,7 +74,7 @@
                                 style="
                                     display: block;
                                     padding: 10px 12px;
-                                    border-radius: 8px;
+                                    border-radius: var(--ss-radius-lg);
                                     text-decoration: none;
                                     color: inherit;
                                 "
@@ -85,7 +88,7 @@
                                 style="
                                     display: block;
                                     padding: 10px 12px;
-                                    border-radius: 8px;
+                                    border-radius: var(--ss-radius-lg);
                                     text-decoration: none;
                                     color: inherit;
                                 "
@@ -99,7 +102,7 @@
                                 style="
                                     display: block;
                                     padding: 10px 12px;
-                                    border-radius: 8px;
+                                    border-radius: var(--ss-radius-lg);
                                     text-decoration: none;
                                     color: inherit;
                                 "
@@ -112,11 +115,11 @@
             </aside>
             <div
                 style="
-                    flex: 1;
+                    flex: 1 1 240px;
                     padding: 20px;
-                    background: white;
-                    border: 1px solid var(--color_line_secondary);
-                    border-radius: 12px;
+                    background: var(--ss-color-surface);
+                    border: 1px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
                 "
             >
                 <p style="margin: 0; opacity: 0.6">Main content area</p>
@@ -132,16 +135,19 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Navigation links with icon indicators.</p>
         {% set code_snippet %}
         <aside
             class="ss-c-sidebar"
+            aria-label="Sidebar with icons"
             style="
+                display: flex;
+                flex-direction: column;
                 width: 280px;
                 background: #1a1a2e;
                 color: white;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 padding: 20px;
             "
         >
@@ -161,21 +167,21 @@
                         width: 40px;
                         height: 40px;
                         background: linear-gradient(135deg, #667eea, #764ba2);
-                        border-radius: 10px;
+                        border-radius: var(--ss-radius-lg);
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         font-size: 18px;
                     "
                 >
-                    ◐
+                    <span aria-hidden="true">◐</span>
                 </div>
                 <span style="font-size: 18px; font-weight: 700">
                     Stylescape
                 </span>
             </div>
 
-            <nav>
+            <nav aria-label="Main navigation">
                 <ul
                     style="
                         list-style: none;
@@ -195,12 +201,12 @@
                                 gap: 12px;
                                 padding: 12px 14px;
                                 background: rgba(255, 255, 255, 0.1);
-                                border-radius: 8px;
+                                border-radius: var(--ss-radius-lg);
                                 text-decoration: none;
                                 color: white;
                             "
                         >
-                            <span>⌂</span>
+                            <span aria-hidden="true">⌂</span>
                             Dashboard
                         </a>
                     </li>
@@ -212,12 +218,12 @@
                                 align-items: center;
                                 gap: 12px;
                                 padding: 12px 14px;
-                                border-radius: 8px;
+                                border-radius: var(--ss-radius-lg);
                                 text-decoration: none;
                                 color: rgba(255, 255, 255, 0.7);
                             "
                         >
-                            <span>▤</span>
+                            <span aria-hidden="true">▤</span>
                             Projects
                         </a>
                     </li>
@@ -229,12 +235,12 @@
                                 align-items: center;
                                 gap: 12px;
                                 padding: 12px 14px;
-                                border-radius: 8px;
+                                border-radius: var(--ss-radius-lg);
                                 text-decoration: none;
                                 color: rgba(255, 255, 255, 0.7);
                             "
                         >
-                            <span>☺</span>
+                            <span aria-hidden="true">☺</span>
                             Team
                         </a>
                     </li>
@@ -246,12 +252,12 @@
                                 align-items: center;
                                 gap: 12px;
                                 padding: 12px 14px;
-                                border-radius: 8px;
+                                border-radius: var(--ss-radius-lg);
                                 text-decoration: none;
                                 color: rgba(255, 255, 255, 0.7);
                             "
                         >
-                            <span>▦</span>
+                            <span aria-hidden="true">▦</span>
                             Analytics
                         </a>
                     </li>
@@ -263,12 +269,12 @@
                                 align-items: center;
                                 gap: 12px;
                                 padding: 12px 14px;
-                                border-radius: 8px;
+                                border-radius: var(--ss-radius-lg);
                                 text-decoration: none;
                                 color: rgba(255, 255, 255, 0.7);
                             "
                         >
-                            <span>⚙</span>
+                            <span aria-hidden="true">⚙</span>
                             Settings
                         </a>
                     </li>
@@ -287,7 +293,7 @@
                         style="
                             width: 36px;
                             height: 36px;
-                            background: #667eea;
+                            background: #4f46e5;
                             border-radius: 50%;
                             display: flex;
                             align-items: center;
@@ -301,7 +307,7 @@
                         <div style="font-size: 14px; font-weight: 500">
                             John Doe
                         </div>
-                        <div style="font-size: 12px; opacity: 0.6">
+                        <div style="font-size: 12px; color: rgba(255, 255, 255, 0.7)">
                             john@email.com
                         </div>
                     </div>
@@ -318,20 +324,23 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Sidebar with expandable sections.</p>
         {% set code_snippet %}
         <aside
             class="ss-c-sidebar"
+            aria-label="Collapsible sidebar"
             style="
+                display: flex;
+                flex-direction: column;
                 width: 280px;
-                background: white;
-                border: 1px solid var(--color_line_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface);
+                border: 1px solid var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
                 padding: 16px;
             "
         >
-            <nav>
+            <nav aria-label="Collapsible navigation">
                 <ul
                     style="
                         list-style: none;
@@ -356,11 +365,11 @@
                                     font-size: 12px;
                                     text-transform: uppercase;
                                     letter-spacing: 0.5px;
-                                    opacity: 0.6;
+                                    color: var(--ss-color-text-muted);
                                 "
                             >
                                 Main
-                                <span>▼</span>
+                                <span aria-hidden="true">▼</span>
                             </summary>
                             <ul
                                 style="
@@ -379,10 +388,10 @@
                                             display: block;
                                             padding: 10px 12px;
                                             background: var(
-                                                --color_fill_primary
+                                                --ss-color-accent
                                             );
-                                            color: white;
-                                            border-radius: 6px;
+                                            color: var(--ss-color-on-accent);
+                                            border-radius: var(--ss-radius-md);
                                             text-decoration: none;
                                         "
                                     >
@@ -395,7 +404,7 @@
                                         style="
                                             display: block;
                                             padding: 10px 12px;
-                                            border-radius: 6px;
+                                            border-radius: var(--ss-radius-md);
                                             text-decoration: none;
                                             color: inherit;
                                         "
@@ -421,11 +430,11 @@
                                     font-size: 12px;
                                     text-transform: uppercase;
                                     letter-spacing: 0.5px;
-                                    opacity: 0.6;
+                                    color: var(--ss-color-text-muted);
                                 "
                             >
                                 Projects
-                                <span>▶</span>
+                                <span aria-hidden="true">▶</span>
                             </summary>
                             <ul
                                 style="
@@ -443,7 +452,7 @@
                                         style="
                                             display: block;
                                             padding: 10px 12px;
-                                            border-radius: 6px;
+                                            border-radius: var(--ss-radius-md);
                                             text-decoration: none;
                                             color: inherit;
                                         "
@@ -457,7 +466,7 @@
                                         style="
                                             display: block;
                                             padding: 10px 12px;
-                                            border-radius: 6px;
+                                            border-radius: var(--ss-radius-md);
                                             text-decoration: none;
                                             color: inherit;
                                         "
@@ -471,7 +480,7 @@
                                         style="
                                             display: block;
                                             padding: 10px 12px;
-                                            border-radius: 6px;
+                                            border-radius: var(--ss-radius-md);
                                             text-decoration: none;
                                             color: inherit;
                                         "
@@ -497,11 +506,11 @@
                                     font-size: 12px;
                                     text-transform: uppercase;
                                     letter-spacing: 0.5px;
-                                    opacity: 0.6;
+                                    color: var(--ss-color-text-muted);
                                 "
                             >
                                 Settings
-                                <span>▶</span>
+                                <span aria-hidden="true">▶</span>
                             </summary>
                             <ul
                                 style="
@@ -519,7 +528,7 @@
                                         style="
                                             display: block;
                                             padding: 10px 12px;
-                                            border-radius: 6px;
+                                            border-radius: var(--ss-radius-md);
                                             text-decoration: none;
                                             color: inherit;
                                         "
@@ -533,7 +542,7 @@
                                         style="
                                             display: block;
                                             padding: 10px 12px;
-                                            border-radius: 6px;
+                                            border-radius: var(--ss-radius-md);
                                             text-decoration: none;
                                             color: inherit;
                                         "
@@ -557,15 +566,18 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Compact icon-only sidebar for maximized content area.</p>
         {% set code_snippet %}
         <aside
             class="ss-c-sidebar ss-c-sidebar--mini"
+            aria-label="Mini sidebar"
             style="
+                display: flex;
+                flex-direction: column;
                 width: 64px;
                 background: #1a1a2e;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 padding: 12px;
             "
         >
@@ -582,7 +594,7 @@
                         width: 40px;
                         height: 40px;
                         background: linear-gradient(135deg, #667eea, #764ba2);
-                        border-radius: 10px;
+                        border-radius: var(--ss-radius-lg);
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -591,88 +603,98 @@
                         margin-bottom: 16px;
                     "
                 >
-                    ◐
+                    <span aria-hidden="true">◐</span>
                 </div>
 
                 <a
                     href="#"
+                    aria-label="Home"
                     style="
                         width: 40px;
                         height: 40px;
                         background: rgba(255, 255, 255, 0.1);
-                        border-radius: 8px;
+                        border-radius: var(--ss-radius-lg);
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        color: white;
                         text-decoration: none;
                     "
                 >
-                    ⌂
+                    <span aria-hidden="true">⌂</span>
                 </a>
                 <a
                     href="#"
+                    aria-label="Projects"
                     style="
                         width: 40px;
                         height: 40px;
-                        border-radius: 8px;
+                        border-radius: var(--ss-radius-lg);
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        color: white;
                         text-decoration: none;
                     "
                 >
-                    ▤
+                    <span aria-hidden="true">▤</span>
                 </a>
                 <a
                     href="#"
+                    aria-label="Team"
                     style="
                         width: 40px;
                         height: 40px;
-                        border-radius: 8px;
+                        border-radius: var(--ss-radius-lg);
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        color: white;
                         text-decoration: none;
                     "
                 >
-                    ☺
+                    <span aria-hidden="true">☺</span>
                 </a>
                 <a
                     href="#"
+                    aria-label="Analytics"
                     style="
                         width: 40px;
                         height: 40px;
-                        border-radius: 8px;
+                        border-radius: var(--ss-radius-lg);
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        color: white;
                         text-decoration: none;
                     "
                 >
-                    ▦
+                    <span aria-hidden="true">▦</span>
                 </a>
 
                 <div style="flex: 1; min-height: 40px"></div>
 
                 <a
                     href="#"
+                    aria-label="Settings"
                     style="
                         width: 40px;
                         height: 40px;
-                        border-radius: 8px;
+                        border-radius: var(--ss-radius-lg);
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        color: white;
                         text-decoration: none;
                     "
                 >
-                    ⚙
+                    <span aria-hidden="true">⚙</span>
                 </a>
                 <div
                     style="
                         width: 36px;
                         height: 36px;
-                        background: #667eea;
+                        background: #4f46e5;
                         border-radius: 50%;
                         display: flex;
                         align-items: center;
@@ -696,20 +718,23 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Navigation items with notification badges.</p>
         {% set code_snippet %}
         <aside
             class="ss-c-sidebar"
+            aria-label="Sidebar with badges"
             style="
+                display: flex;
+                flex-direction: column;
                 width: 260px;
-                background: white;
-                border: 1px solid var(--color_line_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface);
+                border: 1px solid var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
                 padding: 16px;
             "
         >
-            <nav>
+            <nav aria-label="Mailbox navigation">
                 <ul
                     style="
                         list-style: none;
@@ -728,20 +753,20 @@
                                 align-items: center;
                                 gap: 12px;
                                 padding: 12px 14px;
-                                background: var(--color_fill_primary);
-                                color: white;
-                                border-radius: 8px;
+                                background: var(--ss-color-accent);
+                                color: var(--ss-color-on-accent);
+                                border-radius: var(--ss-radius-lg);
                                 text-decoration: none;
                             "
                         >
-                            <span>⇩</span>
+                            <span aria-hidden="true">⇩</span>
                             <span style="flex: 1">Inbox</span>
                             <span
                                 style="
-                                    background: white;
-                                    color: var(--color_fill_primary);
+                                    background: var(--ss-color-on-accent);
+                                    color: var(--ss-color-accent);
                                     padding: 2px 8px;
-                                    border-radius: 10px;
+                                    border-radius: var(--ss-radius-lg);
                                     font-size: 12px;
                                     font-weight: 600;
                                 "
@@ -758,12 +783,12 @@
                                 align-items: center;
                                 gap: 12px;
                                 padding: 12px 14px;
-                                border-radius: 8px;
+                                border-radius: var(--ss-radius-lg);
                                 text-decoration: none;
                                 color: inherit;
                             "
                         >
-                            <span>⭐</span>
+                            <span aria-hidden="true">⭐</span>
                             <span style="flex: 1">Starred</span>
                         </a>
                     </li>
@@ -775,12 +800,12 @@
                                 align-items: center;
                                 gap: 12px;
                                 padding: 12px 14px;
-                                border-radius: 8px;
+                                border-radius: var(--ss-radius-lg);
                                 text-decoration: none;
                                 color: inherit;
                             "
                         >
-                            <span>⇧</span>
+                            <span aria-hidden="true">⇧</span>
                             <span style="flex: 1">Sent</span>
                         </a>
                     </li>
@@ -792,19 +817,19 @@
                                 align-items: center;
                                 gap: 12px;
                                 padding: 12px 14px;
-                                border-radius: 8px;
+                                border-radius: var(--ss-radius-lg);
                                 text-decoration: none;
                                 color: inherit;
                             "
                         >
-                            <span>✎</span>
+                            <span aria-hidden="true">✎</span>
                             <span style="flex: 1">Drafts</span>
                             <span
                                 style="
-                                    background: var(--color_state_warning);
-                                    color: white;
+                                    background: var(--ss-color-warning);
+                                    color: var(--ss-color-on-warning);
                                     padding: 2px 8px;
-                                    border-radius: 10px;
+                                    border-radius: var(--ss-radius-lg);
                                     font-size: 12px;
                                     font-weight: 600;
                                 "
@@ -821,12 +846,12 @@
                                 align-items: center;
                                 gap: 12px;
                                 padding: 12px 14px;
-                                border-radius: 8px;
+                                border-radius: var(--ss-radius-lg);
                                 text-decoration: none;
                                 color: inherit;
                             "
                         >
-                            <span>␡</span>
+                            <span aria-hidden="true">␡</span>
                             <span style="flex: 1">Trash</span>
                         </a>
                     </li>
@@ -844,21 +869,21 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Right-side content sidebar for supplementary information.</p>
         {% set code_snippet %}
-        <div style="display: flex; gap: 24px">
+        <div style="display: flex; flex-wrap: wrap; gap: 24px">
             <div
                 style="
-                    flex: 1;
+                    flex: 1 1 240px;
                     padding: 20px;
-                    background: white;
-                    border: 1px solid var(--color_line_secondary);
-                    border-radius: 12px;
+                    background: var(--ss-color-surface);
+                    border: 1px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
                 "
             >
                 <h3 style="margin: 0 0 12px">Article Title</h3>
-                <p style="margin: 0; opacity: 0.7; line-height: 1.6">
+                <p style="margin: 0; color: var(--ss-color-text-muted); line-height: 1.6">
                     Main content area with the primary article or page content.
                     The sidebar provides supplementary information and
                     navigation.
@@ -866,27 +891,33 @@
             </div>
             <aside
                 class="ss-c-sidebar ss-c-sidebar--content"
-                style="width: 260px; flex-shrink: 0"
+                aria-label="Content sidebar"
+                style="
+                    width: 260px;
+                    flex-shrink: 0;
+                    display: flex;
+                    flex-direction: column;
+                "
             >
                 <div
                     style="
                         padding: 20px;
-                        background: var(--color_fill_secondary);
-                        border-radius: 12px;
+                        background: var(--ss-color-surface-alt);
+                        border-radius: var(--ss-radius-lg);
                         margin-bottom: 16px;
                     "
                 >
-                    <h5
+                    <h3
                         style="
                             margin: 0 0 12px;
                             font-size: 14px;
                             text-transform: uppercase;
                             letter-spacing: 0.5px;
-                            opacity: 0.6;
+                            color: var(--ss-color-text-muted);
                         "
                     >
                         On This Page
-                    </h5>
+                    </h3>
                     <ul
                         style="
                             list-style: none;
@@ -902,7 +933,8 @@
                             <a
                                 href="#"
                                 style="
-                                    color: var(--color_fill_primary);
+                                    color: var(--ss-color-link);
+                                    font-weight: 600;
                                     text-decoration: none;
                                 "
                             >
@@ -913,9 +945,8 @@
                             <a
                                 href="#"
                                 style="
-                                    color: inherit;
+                                    color: var(--ss-color-text-muted);
                                     text-decoration: none;
-                                    opacity: 0.7;
                                 "
                             >
                                 Getting Started
@@ -925,9 +956,8 @@
                             <a
                                 href="#"
                                 style="
-                                    color: inherit;
+                                    color: var(--ss-color-text-muted);
                                     text-decoration: none;
-                                    opacity: 0.7;
                                 "
                             >
                                 Configuration
@@ -937,9 +967,8 @@
                             <a
                                 href="#"
                                 style="
-                                    color: inherit;
+                                    color: var(--ss-color-text-muted);
                                     text-decoration: none;
-                                    opacity: 0.7;
                                 "
                             >
                                 API Reference
@@ -950,21 +979,21 @@
                 <div
                     style="
                         padding: 20px;
-                        background: var(--color_fill_secondary);
-                        border-radius: 12px;
+                        background: var(--ss-color-surface-alt);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
-                    <h5
+                    <h3
                         style="
                             margin: 0 0 12px;
                             font-size: 14px;
                             text-transform: uppercase;
                             letter-spacing: 0.5px;
-                            opacity: 0.6;
+                            color: var(--ss-color-text-muted);
                         "
                     >
                         Related
-                    </h5>
+                    </h3>
                     <ul
                         style="
                             list-style: none;
@@ -980,9 +1009,8 @@
                             <a
                                 href="#"
                                 style="
-                                    color: inherit;
+                                    color: var(--ss-color-text-muted);
                                     text-decoration: none;
-                                    opacity: 0.7;
                                 "
                             >
                                 Similar Article 1
@@ -992,9 +1020,8 @@
                             <a
                                 href="#"
                                 style="
-                                    color: inherit;
+                                    color: var(--ss-color-text-muted);
                                     text-decoration: none;
-                                    opacity: 0.7;
                                 "
                             >
                                 Similar Article 2

@@ -3,8 +3,25 @@ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
     </header>
+    <p>
+        Cursor utilities (<code>ss-u-cursor--*</code>) set the pointer shown
+        over an element. Hover a tile to try it.
+    </p>
+
+    {% set section_title = "Cursor utilities" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-flex ss-c-flex--wrap ss-u-gap-8">
+            {% for c in ["pointer", "default", "text", "move", "grab", "help", "wait", "progress", "crosshair", "not-allowed", "no-drop", "resize-ew", "resize-ns"] %}
+            <span class="ss-c-chip ss-c-chip--outline ss-u-cursor--{{ c }}">{{ c }}</span>
+            {% endfor %}
+        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
 </section>
 
 {%- endblock content %}

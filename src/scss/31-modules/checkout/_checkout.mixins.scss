@@ -1,0 +1,66 @@
+@use "sass:map";
+@use "./checkout.config" as config;
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints" as *;
+
+@function _cfg($key) {
+    @return map.get(config.$ss-checkout-config, $key);
+}
+
+@mixin ss-checkout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: _cfg(gap);
+    align-items: start;
+
+    @include breakpoint-up("md") {
+        grid-template-columns: minmax(0, 1fr) _cfg(aside-width);
+    }
+}
+
+@mixin ss-checkout-aside {
+    @include breakpoint-up("md") {
+        position: sticky;
+        inset-block-start: _cfg(sticky-top);
+    }
+}
+
+@mixin ss-checkout-section {
+    display: flex;
+    flex-direction: column;
+    gap: _cfg(section-gap);
+    margin: 0;
+    padding: _cfg(section-padding-block) 0;
+    border: 0;
+    border-block-end: _cfg(divider);
+}
+
+/// Numbered section heading; the number comes from a CSS counter.
+@mixin ss-checkout-section-title {
+    display: flex;
+    align-items: center;
+    gap: q(12);
+    margin: 0;
+    padding: 0;
+    font-size: var(--ss-font-size-lg);
+    font-weight: var(--ss-font-weight-semibold);
+
+    &::before {
+        counter-increment: ss-checkout-section;
+        content: counter(ss-checkout-section);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 _cfg(number-size);
+        block-size: _cfg(number-size);
+        border-radius: var(--ss-radius-full);
+        background-color: var(--ss-color-accent);
+        color: var(--ss-color-on-accent);
+        font-size: var(--ss-font-size-sm);
+    }
+}
+
+/// Read one key of `$ss-checkout-config` (for the output file).
+@function ss-checkout-config($key) {
+    @return map.get(config.$ss-checkout-config, $key);
+}

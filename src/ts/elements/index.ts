@@ -31,3 +31,12 @@ export type { DrilldownMenuOptions } from "./DrilldownMenuManager";
 // Responsive Table
 export { ResponsiveTableManager } from "./ResponsiveTableManager";
 export type { ResponsiveTableOptions } from "./ResponsiveTableManager";
+
+// Split pane, sheet and tree view
+export { SheetManager } from "./SheetManager";
+export { SplitPaneManager } from "./SplitPaneManager";
+export { TreeViewManager } from "./TreeViewManager";
+
+// Context menu
+export { ContextMenuManager } from "./ContextMenuManager";
+export type { ContextMenuOptions } from "./ContextMenuManager";

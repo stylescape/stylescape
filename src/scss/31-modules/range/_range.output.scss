@@ -31,3 +31,51 @@
         @include range.ss-range-variant(var(--ss-color-error));
     }
 }
+
+// `.ss-c-slider` on a range input is an alias of `.ss-c-range` (inside
+// `.ss-c-switch` the same class is the legacy switch track; see switch).
+@layer ss.components {
+    input[type="range"].#{$ss-prefix-module}-slider {
+        @include range.ss-range;
+        @include range.ss-range-size(md);
+    }
+}
+
+// Range with a value readout:
+// <div class="ss-c-range-field">
+//   <label for="vol" class="ss-c-range-field__label">Volume</label>
+//   <output for="vol" class="ss-c-range-field__output">40</output>
+//   <input id="vol" type="range" class="ss-c-range" value="40">
+// </div>
+@layer ss.components {
+    .#{$ss-prefix-module}-range-field {
+        @include range.ss-range-field;
+
+        > input[type="range"] {
+            grid-area: input;
+        }
+    }
+    .#{$ss-prefix-module}-range-field--inline {
+        @include range.ss-range-field-inline;
+    }
+    // Labelled from outside (control grid, toolbar): slider + readout only.
+    .#{$ss-prefix-module}-range-field--inline:not(:has(> .#{$ss-prefix-module}-range-field__label)) {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas: "input output";
+    }
+    .#{$ss-prefix-module}-range-field__label {
+        @include range.ss-range-label;
+    }
+    .#{$ss-prefix-module}-range-field__output {
+        @include range.ss-range-output;
+    }
+    .#{$ss-prefix-module}-range-field__min {
+        @include range.ss-range-scale;
+        grid-area: min;
+    }
+    .#{$ss-prefix-module}-range-field__max {
+        @include range.ss-range-scale;
+        grid-area: max;
+        text-align: end;
+    }
+}

@@ -1,0 +1,48 @@
+{#-
+    stylescape/pages/detail.html.jinja
+    ===========================================================================
+    For a DetailView. Context: object, and optionally fields (a list of
+    names, or {"attr", "label"} mappings, as for the table macro),
+    update_url, delete_url, list_url, page_title.
+
+    Without `fields` the page shows the object's model fields that have a
+    verbose_name (object._meta.fields). Override `detail` for a custom body.
+-#}
+{%- extends "stylescape/base.html.jinja" -%}
+{%- from "stylescape/macros/tables.html.jinja" import cell_value -%}
+
+{%- block title %}{{ page_title | default(object, true) }}{% endblock -%}
+
+{%- block page_actions %}
+{%- if update_url %}<a class="ss-c-button" href="{{ update_url }}">{{ _("Edit") }}</a>{% endif %}
+{%- if delete_url %}<a class="ss-c-button ss-c-button--danger" href="{{ delete_url }}">{{ _("Delete") }}</a>{% endif %}
+{%- endblock -%}
+
+{%- block content %}
+{%- block detail %}
+{%- if fields is defined and fields %}
+{%- set _fields = fields %}
+{%- elif object._meta is defined %}
+{%- set _fields = [] %}
+{%- for f in object._meta.fields if f.name != "id" %}
+{%- set _discard = _fields.append({"attr": "get_" ~ f.name ~ "_display" if f.choices else f.name, "label": f.verbose_name | capitalize}) %}
+{%- endfor %}
+{%- else %}
+{%- set _fields = [] %}
+{%- endif %}
+<dl class="ss-c-description-list ss-c-description-list--grid">
+    {%- for f in _fields %}
+    {%- set attr = f.attr if f is mapping else f %}
+    {%- set label = f.label if f is mapping and f.label else attr | replace("_", " ") | capitalize %}
+    {%- set value = cell_value(object, attr) %}
+    <div>
+        <dt>{{ label }}</dt>
+        <dd>{{ value if value | string | length else "–" }}</dd>
+    </div>
+    {%- endfor %}
+</dl>
+{%- endblock detail %}
+{%- if list_url %}
+<p class="ss-l-region ss-l-region-sm"><a href="{{ list_url }}">{{ _("Back to the overview") }}</a></p>
+{%- endif %}
+{%- endblock content -%}

@@ -38,9 +38,11 @@
 @mixin ss-avatar-status($color) {
     &::after {
         content: "";
+        min-width: q(6);
+        min-height: q(6);
         position: absolute;
-        right: 5%;
-        bottom: 5%;
+        right: map.get(config.$ss-avatar-config, indicator-inset);
+        bottom: map.get(config.$ss-avatar-config, indicator-inset);
         width: map.get(config.$ss-avatar-config, indicator-size);
         height: map.get(config.$ss-avatar-config, indicator-size);
         border-radius: 50%;

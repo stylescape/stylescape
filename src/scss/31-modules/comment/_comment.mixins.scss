@@ -1,0 +1,83 @@
+@use "sass:map";
+@use "./comment.config" as config;
+@use "../../01-core/external" as *;
+
+@function _cfg($key) {
+    @return map.get(config.$ss-comment-config, $key);
+}
+
+@mixin ss-comments {
+    display: flex;
+    flex-direction: column;
+    gap: _cfg(list-gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin ss-comment {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: _cfg(gap);
+    align-items: start;
+}
+
+@mixin ss-comment-avatar($size) {
+    grid-row: span 2;
+    inline-size: $size;
+    block-size: $size;
+    border-radius: var(--ss-radius-full);
+    object-fit: cover;
+}
+
+/// Small text buttons under a comment (Reply, Edit, Report). Keeps a
+/// 24 px target (WCAG 2.5.8).
+@mixin ss-comment-action {
+    display: inline-flex;
+    align-items: center;
+    gap: q(4);
+    min-block-size: q(24);
+    padding: 0 q(4);
+    margin-inline-start: q(-4);
+
+    font: inherit;
+    font-size: var(--ss-font-size-sm);
+    color: _cfg(muted);
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    border-radius: var(--ss-radius-sm);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--ss-color-text);
+        text-decoration: underline;
+    }
+
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color);
+        outline-offset: var(--ss-focus-ring-offset);
+    }
+
+    &[aria-pressed="true"] {
+        color: var(--ss-color-accent);
+    }
+}
+
+@mixin ss-comment-replies {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: _cfg(list-gap);
+    margin: _cfg(gap) 0 0;
+    margin-inline-start: calc(#{_cfg(avatar-size)} / 2);
+    padding: 0;
+    padding-inline-start: _cfg(indent);
+    list-style: none;
+    border-inline-start: _cfg(thread-line);
+}
+
+/// Read one key of `$ss-comment-config` (for the output file).
+@function ss-comment-config($key) {
+    @return map.get(config.$ss-comment-config, $key);
+}

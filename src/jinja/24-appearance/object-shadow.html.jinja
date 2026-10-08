@@ -1,22 +1,37 @@
 {% extends "../base.html.jinja" %} {%- block title %}Shadow Utilities{%- endblock
-%} {%- block content %} {#
+%} {%- block head %}
+<style>
+    /* Fill tokens sit very close to the preview surface in both themes;
+       outline the demo boxes so their size/shape stays visible. */
+    .ss-c-preview--vertical .ss-c-bg--fill_01 {
+        outline: 1px solid var(--ss-color-border);
+        outline-offset: -1px;
+    }
+</style>
+{%- endblock %} {%- block content %}
+<header class="ss-c-demo__section__header">
+    <h1>Shadow Utilities</h1>
+    <p>Box, elevation, directional, inset, coloured and text shadow utilities.</p>
+</header>
+
+{#
 ============================================================================
 Box Shadows
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Box Shadows" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Box Shadows</h3>
+        <h2>Box Shadows</h2>
         <p>Add depth to elements with box shadow utilities.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Shadow Sizes</h4>
+        <h3>Shadow Sizes</h3>
         {% set code_snippet %}
-        <div class="ss-c-shadow--none ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">No shadow</div>
-        <div class="ss-c-shadow--sm ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">Small shadow</div>
-        <div class="ss-c-shadow--md ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">Medium shadow</div>
-        <div class="ss-c-shadow--lg ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">Large shadow</div>
-        <div class="ss-c-shadow--xl ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-shadow--none ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">No shadow</div>
+        <div class="ss-c-shadow--sm ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">Small shadow</div>
+        <div class="ss-c-shadow--md ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">Medium shadow</div>
+        <div class="ss-c-shadow--lg ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">Large shadow</div>
+        <div class="ss-c-shadow--xl ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Extra large shadow
         </div>
         {% endset %} {% set language="HTML" %} {% include
@@ -29,26 +44,26 @@ Elevation Shadows
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Elevation" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Elevation Shadows</h3>
+        <h2>Elevation Shadows</h2>
         <p>Material design style elevation levels.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Elevation Levels</h4>
+        <h3>Elevation Levels</h3>
         {% set code_snippet %}
-        <div class="ss-c-elevation--01 ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-elevation--01 ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Elevation 1 (cards)
         </div>
-        <div class="ss-c-elevation--02 ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-elevation--02 ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Elevation 2 (raised cards)
         </div>
-        <div class="ss-c-elevation--03 ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-elevation--03 ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Elevation 3 (drawers)
         </div>
-        <div class="ss-c-elevation--04 ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-elevation--04 ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Elevation 4 (dialogs)
         </div>
-        <div class="ss-c-elevation--05 ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-elevation--05 ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Elevation 5 (modals)
         </div>
         {% endset %} {% set language="HTML" %} {% include
@@ -61,21 +76,21 @@ Directional Shadows
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Directional Shadows" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Directional Shadows</h3>
+        <h2>Directional Shadows</h2>
         <p>Shadows that appear to come from a specific direction.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Direction Variations</h4>
+        <h3>Direction Variations</h3>
         {% set code_snippet %}
-        <div class="ss-c-shadow--top ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">Shadow from top</div>
-        <div class="ss-c-shadow--bottom ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-shadow--top ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">Shadow from top</div>
+        <div class="ss-c-shadow--bottom ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Shadow from bottom
         </div>
-        <div class="ss-c-shadow--left ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-shadow--left ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Shadow from left
         </div>
-        <div class="ss-c-shadow--right ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-shadow--right ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Shadow from right
         </div>
         {% endset %} {% set language="HTML" %} {% include
@@ -88,20 +103,20 @@ Inset Shadows
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Inset Shadows" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Inset Shadows</h3>
+        <h2>Inset Shadows</h2>
         <p>Inner shadows for pressed or inset effects.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Inset Variations</h4>
+        <h3>Inset Variations</h3>
         {% set code_snippet %}
-        <div class="ss-c-shadow--inset ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-shadow--inset ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Inset shadow (pressed effect)
         </div>
-        <div class="ss-c-shadow--inset-sm ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-shadow--inset-sm ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Small inset shadow
         </div>
-        <div class="ss-c-shadow--inset-lg ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-shadow--inset-lg ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Large inset shadow
         </div>
         {% endset %} {% set language="HTML" %} {% include
@@ -114,23 +129,23 @@ Colored Shadows
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Colored Shadows" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Colored Shadows</h3>
+        <h2>Colored Shadows</h2>
         <p>Shadows with semantic or custom colors.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Semantic Shadow Colors</h4>
+        <h3>Semantic Shadow Colors</h3>
         {% set code_snippet %}
-        <div class="ss-c-shadow--primary ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-shadow--primary ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Primary colored shadow
         </div>
-        <div class="ss-c-shadow--success ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-shadow--success ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Success colored shadow
         </div>
-        <div class="ss-c-shadow--warning ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-shadow--warning ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Warning colored shadow
         </div>
-        <div class="ss-c-shadow--danger ss-c-bg--fill_01 ss-c-p--04 ss-c-mb--04">
+        <div class="ss-c-shadow--danger ss-c-bg--fill_01 ss-c-p--12 ss-c-mb--16">
             Danger colored shadow
         </div>
         {% endset %} {% set language="HTML" %} {% include
@@ -143,12 +158,12 @@ Text Shadows
 ============================================================================ #}
 <section class="ss-c-demo__section" data-label="Text Shadows" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h3>Text Shadows</h3>
+        <h2>Text Shadows</h2>
         <p>Shadow effects applied to text.</p>
     </header>
 
     <section class="ss-c-demo__subsection">
-        <h4>Text Shadow Examples</h4>
+        <h3>Text Shadow Examples</h3>
         {% set code_snippet %}
         <p class="ss-c-text-shadow--sm ss-c-fs--03">Small text shadow</p>
         <p class="ss-c-text-shadow--md ss-c-fs--03">Medium text shadow</p>

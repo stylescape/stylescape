@@ -1,0 +1,262 @@
+{% extends "../base.html.jinja" %} {% set title = "Django forms" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Django renders forms without classes. Wrap them in
+        <code>&lt;form class="ss-c-form"&gt;</code> and the <code>form</code>
+        module styles that markup as it comes: field wrappers, labels,
+        <code>&lt;div class="helptext"&gt;</code>,
+        <code>&lt;ul class="errorlist"&gt;</code>,
+        <code>&lt;ul class="errorlist nonfield"&gt;</code>,
+        <code>aria-invalid</code> widgets, <code>required_css_class</code>
+        markers, and the fieldset Django uses for radio and checkbox groups.
+        The selectors carry no specificity, so a class on a widget
+        (<code>attrs=&#123;"class": "ss-c-input"&#125;</code>) always wins.
+        The markup below is Django 6 output, pasted unchanged. For
+        hand-written templates the same look is available as classes (last
+        example).
+    </p>
+
+    {% set section_title = "Unbound form" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p><code>&#123;&#123; form &#125;&#125;</code> with <code>required_css_class = "required"</code>: help text, a <code>RadioSelect</code>, a <code>CheckboxSelectMultiple</code>, a textarea and a <code>BooleanField</code>.</p>
+        {% set code_snippet %}
+        <form class="ss-c-form" method="post" action="#" novalidate aria-label="Contact (unbound)" style="max-width: 560px">
+            <div class="required">
+                <label for="id_clean_name" class="required">Name:</label>
+            <div class="helptext" id="id_clean_name_helptext">Your full name as it appears on invoices.</div>
+            <input type="text" name="name" maxlength="80" required aria-describedby="id_clean_name_helptext" id="id_clean_name">
+            </div>
+              <div class="required">
+                <label for="id_clean_email" class="required">Email:</label>
+            <input type="email" name="email" maxlength="320" required id="id_clean_email">
+            </div>
+              <div class="required">
+                <fieldset>
+              <legend class="required">Topic:</legend>
+            <div id="id_clean_topic"><div>
+                <label for="id_clean_topic_0"><input type="radio" name="topic" value="q" required id="id_clean_topic_0">
+             Question</label>
+            </div><div>
+                <label for="id_clean_topic_1"><input type="radio" name="topic" value="b" required id="id_clean_topic_1">
+             Bug report</label>
+            </div><div>
+                <label for="id_clean_topic_2"><input type="radio" name="topic" value="f" required id="id_clean_topic_2">
+             Feedback</label>
+            </div>
+            </div></fieldset>
+            </div>
+              <div>
+                <fieldset aria-describedby="id_clean_channels_helptext">
+              <legend>Channels:</legend>
+            <div class="helptext" id="id_clean_channels_helptext">Leave empty to opt out.</div>
+            <div id="id_clean_channels"><div>
+                <label for="id_clean_channels_0"><input type="checkbox" name="channels" value="mail" id="id_clean_channels_0">
+             E-mail</label>
+            </div><div>
+                <label for="id_clean_channels_1"><input type="checkbox" name="channels" value="sms" id="id_clean_channels_1">
+             SMS</label>
+            </div>
+            </div></fieldset>
+            </div>
+              <div class="required">
+                <label for="id_clean_message" class="required">Message:</label>
+            <textarea name="message" cols="40" rows="4" required id="id_clean_message">
+</textarea>
+            </div>
+              <div>
+                <label for="id_clean_subscribe">Subscribe to the newsletter:</label>
+            <input type="checkbox" name="subscribe" id="id_clean_subscribe">
+            </div>
+            <div class="ss-c-form__actions">
+                <button type="submit" class="ss-c-button">Send</button>
+            </div>
+        </form>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Bound form with errors" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p><code>non_field_errors</code> render as a boxed summary at the top; field errors sit above their widget, which Django marks <code>aria-invalid</code> and links with <code>aria-describedby</code>.</p>
+        {% set code_snippet %}
+        <form class="ss-c-form" method="post" action="#" novalidate aria-label="Contact (with errors)" style="max-width: 560px">
+            <ul class="errorlist nonfield"><li>Name and e-mail do not match an existing account.</li></ul>
+              <div class="error required">
+                <label for="id_bound_name" class="required">Name:</label>
+            <div class="helptext" id="id_bound_name_helptext">Your full name as it appears on invoices.</div>
+            <ul class="errorlist" id="id_bound_name_error"><li>This field is required.</li></ul>
+            <input type="text" name="name" maxlength="80" required aria-invalid="true" aria-describedby="id_bound_name_helptext id_bound_name_error" id="id_bound_name">
+            </div>
+              <div class="error required">
+                <label for="id_bound_email" class="required">Email:</label>
+            <ul class="errorlist" id="id_bound_email_error"><li>Enter a valid email address.</li></ul>
+            <input type="email" name="email" value="not-an-email" maxlength="320" required aria-invalid="true" aria-describedby="id_bound_email_error" id="id_bound_email">
+            </div>
+              <div class="required">
+                <fieldset>
+              <legend class="required">Topic:</legend>
+            <div id="id_bound_topic"><div>
+                <label for="id_bound_topic_0"><input type="radio" name="topic" value="q" required id="id_bound_topic_0" checked>
+             Question</label>
+            </div><div>
+                <label for="id_bound_topic_1"><input type="radio" name="topic" value="b" required id="id_bound_topic_1">
+             Bug report</label>
+            </div><div>
+                <label for="id_bound_topic_2"><input type="radio" name="topic" value="f" required id="id_bound_topic_2">
+             Feedback</label>
+            </div>
+            </div></fieldset>
+            </div>
+              <div>
+                <fieldset aria-describedby="id_bound_channels_helptext">
+              <legend>Channels:</legend>
+            <div class="helptext" id="id_bound_channels_helptext">Leave empty to opt out.</div>
+            <div id="id_bound_channels"><div>
+                <label for="id_bound_channels_0"><input type="checkbox" name="channels" value="mail" id="id_bound_channels_0">
+             E-mail</label>
+            </div><div>
+                <label for="id_bound_channels_1"><input type="checkbox" name="channels" value="sms" id="id_bound_channels_1">
+             SMS</label>
+            </div>
+            </div></fieldset>
+            </div>
+              <div class="required">
+                <label for="id_bound_message" class="required">Message:</label>
+            <textarea name="message" cols="40" rows="4" required id="id_bound_message">
+Hi</textarea>
+            </div>
+              <div>
+                <label for="id_bound_subscribe">Subscribe to the newsletter:</label>
+            <input type="checkbox" name="subscribe" id="id_bound_subscribe">
+            </div>
+            <div class="ss-c-form__actions">
+                <button type="submit" class="ss-c-button">Send</button>
+            </div>
+        </form>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "form.as_p" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p><code>as_p</code> puts each error list before its paragraph and the help text in a <code>span</code>.</p>
+        {% set code_snippet %}
+        <form class="ss-c-form" method="post" action="#" novalidate aria-label="Item (as_p)" style="max-width: 560px">
+            <ul class="errorlist" id="id_p_title_error"><li>This field is required.</li></ul>
+              <p>
+                <label for="id_p_title">Title:</label>
+                <input type="text" name="title" required aria-invalid="true" aria-describedby="id_p_title_helptext id_p_title_error" id="id_p_title">
+                  <span class="helptext" id="id_p_title_helptext">Shown in the list.</span>
+              </p>
+              <ul class="errorlist" id="id_p_count_error"><li>Ensure this value is greater than or equal to 0.</li></ul>
+              <p>
+                <label for="id_p_count">Count:</label>
+                <input type="number" name="count" value="-1" min="0" required aria-invalid="true" aria-describedby="id_p_count_error" id="id_p_count">
+              </p>
+            <div class="ss-c-form__actions">
+                <button type="submit" class="ss-c-button">Send</button>
+            </div>
+        </form>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Formset" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>The management form is four hidden inputs; each form goes in its own <code>&lt;fieldset&gt;</code>: <code>&#123;&#123; formset.management_form &#125;&#125;&#123;% for form in formset %&#125;&lt;fieldset&gt;…&#123;&#123; form &#125;&#125;&lt;/fieldset&gt;&#123;% endfor %&#125;</code>. Wrap them in <code>ss-c-form__formset</code> for tighter spacing. Formset-level errors use <code>errorlist nonform</code> and look like <code>nonfield</code>.</p>
+        {% set code_snippet %}
+        <form class="ss-c-form" method="post" action="#" novalidate aria-label="Order items (formset)" style="max-width: 560px">
+            <div class="ss-c-form__formset">
+
+                <input type="hidden" name="items-TOTAL_FORMS" value="2" id="id_fs_items-TOTAL_FORMS"><input type="hidden" name="items-INITIAL_FORMS" value="0" id="id_fs_items-INITIAL_FORMS"><input type="hidden" name="items-MIN_NUM_FORMS" value="1" id="id_fs_items-MIN_NUM_FORMS"><input type="hidden" name="items-MAX_NUM_FORMS" value="1000" id="id_fs_items-MAX_NUM_FORMS">
+                <fieldset>
+                <legend>Item 1</legend>
+                <div>
+                    <label for="id_fs_items-0-product">Product:</label>
+                <input type="text" name="items-0-product" value="Sensor" id="id_fs_items-0-product">
+                </div>
+                  <div>
+                    <label for="id_fs_items-0-quantity">Quantity:</label>
+                <input type="number" name="items-0-quantity" value="2" min="1" id="id_fs_items-0-quantity">
+                </div>
+                  <div>
+                    <label for="id_fs_items-0-DELETE">Delete:</label>
+                <input type="checkbox" name="items-0-DELETE" id="id_fs_items-0-DELETE">
+                </div>
+                </fieldset>
+                <fieldset>
+                <legend>Item 2</legend>
+                <div>
+                    <label for="id_fs_items-1-product">Product:</label>
+                <ul class="errorlist" id="id_fs_items-1-product_error"><li>This field is required.</li></ul>
+                <input type="text" name="items-1-product" aria-invalid="true" aria-describedby="id_fs_items-1-product_error" id="id_fs_items-1-product">
+                </div>
+                  <div>
+                    <label for="id_fs_items-1-quantity">Quantity:</label>
+                <ul class="errorlist" id="id_fs_items-1-quantity_error"><li>Ensure this value is greater than or equal to 1.</li></ul>
+                <input type="number" name="items-1-quantity" value="0" min="1" aria-invalid="true" aria-describedby="id_fs_items-1-quantity_error" id="id_fs_items-1-quantity">
+                </div>
+                  <div>
+                    <label for="id_fs_items-1-DELETE">Delete:</label>
+                <input type="checkbox" name="items-1-DELETE" id="id_fs_items-1-DELETE">
+                </div>
+                </fieldset>
+
+            </div>
+            <div class="ss-c-form__actions">
+                <button type="submit" class="ss-c-button">Send</button>
+            </div>
+        </form>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Explicit classes" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>For hand-written templates: <code>ss-c-form__field</code>, <code>__label</code>, <code>__help</code>, <code>__errors</code>, <code>__errors--nonfield</code>, <code>__fieldset</code>/<code>__legend</code>, <code>__choices</code>, <code>__field--inline</code> and <code>__field--invalid</code>.</p>
+        {% set code_snippet %}
+        <form class="ss-c-form" method="post" action="#" novalidate aria-label="Order (explicit classes)" style="max-width: 560px">
+            <ul class="ss-c-form__errors ss-c-form__errors--nonfield">
+                <li>Your session expired. Check the fields and send again.</li>
+            </ul>
+            <div class="ss-c-form__field ss-c-form__field--invalid">
+                <label class="ss-c-form__label ss-c-form__required" for="ex-email">E-mail</label>
+                <div class="ss-c-form__help" id="ex-email_helptext">We only use it to send the receipt.</div>
+                <ul class="ss-c-form__errors" id="ex-email_error"><li>Enter a valid email address.</li></ul>
+                <input class="ss-c-input" type="email" id="ex-email" name="email" value="anna@" aria-invalid="true" aria-describedby="ex-email_helptext ex-email_error">
+            </div>
+            <fieldset class="ss-c-form__fieldset">
+                <legend class="ss-c-form__legend">Delivery</legend>
+                <div class="ss-c-form__field">
+                    <label class="ss-c-form__label" for="ex-street">Street</label>
+                    <input class="ss-c-input" type="text" id="ex-street" name="street">
+                </div>
+                <div class="ss-c-form__field">
+                    <span class="ss-c-form__label" id="ex-slot-label">Time slot</span>
+                    <div class="ss-c-form__choices" role="radiogroup" aria-labelledby="ex-slot-label">
+                        <label><input class="ss-c-radio" type="radio" name="slot" checked> Morning</label>
+                        <label><input class="ss-c-radio" type="radio" name="slot"> Afternoon</label>
+                    </div>
+                </div>
+                <div class="ss-c-form__field ss-c-form__field--inline">
+                    <label for="ex-gift">Gift wrap</label>
+                    <input class="ss-c-checkbox" type="checkbox" id="ex-gift" name="gift">
+                </div>
+            </fieldset>
+            <div class="ss-c-form__actions">
+                <button type="submit" class="ss-c-button">Order</button>
+                <button type="button" class="ss-c-button">Cancel</button>
+            </div>
+        </form>
+
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

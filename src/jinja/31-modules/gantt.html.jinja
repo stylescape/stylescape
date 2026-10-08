@@ -1,0 +1,64 @@
+{% extends "../base.html.jinja" %} {% set title = "Gantt" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>Examples for the <code>ss-c-gantt</code> module: a horizontal track timeline. The container sets <code>--ss-gantt-columns</code> (time steps) and <code>--ss-gantt-today</code> (a 0-based, fractional column offset for the today line); each bar sets <code>--start</code> (1-based column) and <code>--span</code>. ARIA table roles keep rows, labels and the period readable for screen readers; say the dates in the bar's text or <code>aria-label</code>. For the vertical story layout, see the <code>timeline</code> module.</p>
+
+    {% set section_title = "Project plan 2026" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-gantt" role="table" aria-label="Project plan 2026; today is 8 October" style="--ss-gantt-columns: 12; --ss-gantt-today: 9.25">
+            <div class="ss-c-gantt__row" role="row">
+                <span class="ss-c-gantt__label" role="columnheader">Task</span>
+                <div class="ss-c-gantt__scale" role="columnheader" aria-label="Months January to December">
+                    <span class="ss-c-gantt__tick" aria-hidden="true">Jan</span><span class="ss-c-gantt__tick" aria-hidden="true">Feb</span><span class="ss-c-gantt__tick" aria-hidden="true">Mar</span><span class="ss-c-gantt__tick" aria-hidden="true">Apr</span><span class="ss-c-gantt__tick" aria-hidden="true">May</span><span class="ss-c-gantt__tick" aria-hidden="true">Jun</span><span class="ss-c-gantt__tick" aria-hidden="true">Jul</span><span class="ss-c-gantt__tick" aria-hidden="true">Aug</span><span class="ss-c-gantt__tick" aria-hidden="true">Sep</span><span class="ss-c-gantt__tick" aria-hidden="true">Oct</span><span class="ss-c-gantt__tick" aria-hidden="true">Nov</span><span class="ss-c-gantt__tick" aria-hidden="true">Dec</span>
+                </div>
+            </div>
+            <div class="ss-c-gantt__row ss-c-gantt__row--group" role="row">
+                <span class="ss-c-gantt__label" role="rowheader">Design</span>
+                <div class="ss-c-gantt__track" role="cell"><span class="ss-c-gantt__bar ss-c-gantt__bar--outline" style="--start: 1; --span: 4">Jan – Apr</span></div>
+            </div>
+            <div class="ss-c-gantt__row" role="row">
+                <span class="ss-c-gantt__label" role="rowheader">Survey</span>
+                <div class="ss-c-gantt__track" role="cell"><span class="ss-c-gantt__bar ss-c-gantt__bar--success" style="--start: 1; --span: 2">Jan – Feb, done</span></div>
+            </div>
+            <div class="ss-c-gantt__row" role="row">
+                <span class="ss-c-gantt__label" role="rowheader">Concept design</span>
+                <div class="ss-c-gantt__track" role="cell"><span class="ss-c-gantt__bar" style="--start: 2; --span: 3">Feb – Apr</span></div>
+            </div>
+            <div class="ss-c-gantt__row" role="row">
+                <span class="ss-c-gantt__label" role="rowheader">Permit</span>
+                <div class="ss-c-gantt__track" role="cell">
+                    <span class="ss-c-gantt__bar ss-c-gantt__bar--warning" style="--start: 5; --span: 5">May – Sep, delayed</span>
+                    <span class="ss-c-gantt__milestone ss-c-gantt__milestone--error" style="--start: 11" role="img" aria-label="Milestone: permit decision, 1 November"></span>
+                </div>
+            </div>
+            <div class="ss-c-gantt__row" role="row">
+                <span class="ss-c-gantt__label" role="rowheader">Construction</span>
+                <div class="ss-c-gantt__track" role="cell">
+                    <span class="ss-c-gantt__bar ss-c-gantt__bar--info" style="--start: 8; --span: 3">Aug – Oct</span>
+                    <span class="ss-c-gantt__bar ss-c-gantt__bar--outline" style="--start: 11; --span: 2">Nov – Dec</span>
+                </div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Weekly scale, narrow labels" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-gantt" role="table" aria-label="Sprint 42" style="--ss-gantt-columns: 5; --ss-gantt-label-width: 6rem; --ss-gantt-min-width: 24rem">
+            <div class="ss-c-gantt__row" role="row">
+                <span class="ss-c-gantt__label" role="columnheader">Who</span>
+                <div class="ss-c-gantt__scale" role="columnheader" aria-label="Monday to Friday"><span class="ss-c-gantt__tick" aria-hidden="true">Mon</span><span class="ss-c-gantt__tick" aria-hidden="true">Tue</span><span class="ss-c-gantt__tick" aria-hidden="true">Wed</span><span class="ss-c-gantt__tick" aria-hidden="true">Thu</span><span class="ss-c-gantt__tick" aria-hidden="true">Fri</span></div>
+            </div>
+            <div class="ss-c-gantt__row" role="row"><span class="ss-c-gantt__label" role="rowheader">Anna</span><div class="ss-c-gantt__track" role="cell"><span class="ss-c-gantt__bar" style="--start: 1; --span: 3">API, Mon – Wed</span></div></div>
+            <div class="ss-c-gantt__row" role="row"><span class="ss-c-gantt__label" role="rowheader">Bram</span><div class="ss-c-gantt__track" role="cell"><span class="ss-c-gantt__bar ss-c-gantt__bar--success" style="--start: 2; --span: 4">Frontend, Tue – Fri</span></div></div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

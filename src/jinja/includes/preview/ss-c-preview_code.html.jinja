@@ -2,7 +2,12 @@
 -----------------------------------------------------------------------------
 Font Preview Box Component
 -----------------------------------------------------------------------------
-#} {% set snippet_id = "code-snippet-" + range(1000, 9999) | random %} {% set
+#} {#
+Deterministic id: the n-th snippet on the page (counter from base.html.jinja),
+falling back to the snippet length for templates that do not extend base.
+#} {% if _ss_snippet_ids is defined %}{% set snippet_id = "code-snippet-" +
+_ss_snippet_ids.push(1) %}{% else %}{% set snippet_id = "code-snippet-" +
+(code_snippet | default('') | length) %}{% endif %} {% set
 lang = language | lower | default("html") %} {% set show_preview = show_preview
 | default(true) %}
 
@@ -11,9 +16,11 @@ lang = language | lower | default("html") %} {% set show_preview = show_preview
     'typescript' and lang != 'ts' %}
     <div class="ss-c-preview__live">{{ code_snippet | safe }}</div>
     {% endif %}
-    <div class="ss-c-preview__info">
+    {# aria-live: announces the button's "Copied!" state (ClipboardHelper). #}
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>{{ language | default("HTML") }}</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
             onclick="ClipboardHelper.copyById('{{ snippet_id }}')"
         >

@@ -1,15 +1,23 @@
-{% extends "../base.html.jinja" %} {% set title = "Rating" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+{% extends "../base.html.jinja" %} {% set title = "Rating" %} {%- block title %}{{ title }}{%- endblock %}
+{%- block head %}
+<style>
+    /* Side-by-side demo ratings keep 24px between neighbouring stars (WCAG 2.5.8). */
+    .ss-c-preview__live > .ss-c-rating + .ss-c-rating {
+        margin-left: 24px; /* physical: the rating is direction: rtl */
+    }
+</style>
+{%- endblock %} {%- block content %}
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
-    <header class="ss-c-demo__section__header"><h2>{{ title }}</h2></header>
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
     <p>Examples for the <code>ss-c-rating</code> module.</p>
 
     {% set section_title = "Default" %}
     <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <div class="ss-c-rating">
-            <input type="radio" name="r1" value="5"><input type="radio" name="r1" value="4">
-            <input type="radio" name="r1" value="3" checked><input type="radio" name="r1" value="2"><input type="radio" name="r1" value="1">
+        <div class="ss-c-rating" role="radiogroup" aria-label="Rating">
+            <input type="radio" name="r1" value="5" aria-label="5 stars"><input type="radio" name="r1" value="4" aria-label="4 stars">
+            <input type="radio" name="r1" value="3" aria-label="3 stars" checked><input type="radio" name="r1" value="2" aria-label="2 stars"><input type="radio" name="r1" value="1" aria-label="1 star">
         </div>
         {% endset %} {% set language="HTML" %}
         {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
@@ -17,12 +25,12 @@
 
     {% set section_title = "Sizes" %}
     <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <div class="ss-c-rating ss-c-rating--xs"><input type="radio" name="rs-xs" checked><input type="radio" name="rs-xs"><input type="radio" name="rs-xs"></div>
-        <div class="ss-c-rating ss-c-rating--sm"><input type="radio" name="rs-sm" checked><input type="radio" name="rs-sm"><input type="radio" name="rs-sm"></div>
-        <div class="ss-c-rating ss-c-rating--lg"><input type="radio" name="rs-lg" checked><input type="radio" name="rs-lg"><input type="radio" name="rs-lg"></div>
-        <div class="ss-c-rating ss-c-rating--xl"><input type="radio" name="rs-xl" checked><input type="radio" name="rs-xl"><input type="radio" name="rs-xl"></div>
+        <div class="ss-c-rating ss-c-rating--xs" role="radiogroup" aria-label="Rating (xs)"><input type="radio" name="rs-xs" value="3" aria-label="3 stars" checked><input type="radio" name="rs-xs" value="2" aria-label="2 stars"><input type="radio" name="rs-xs" value="1" aria-label="1 star"></div>
+        <div class="ss-c-rating ss-c-rating--sm" role="radiogroup" aria-label="Rating (sm)"><input type="radio" name="rs-sm" value="3" aria-label="3 stars" checked><input type="radio" name="rs-sm" value="2" aria-label="2 stars"><input type="radio" name="rs-sm" value="1" aria-label="1 star"></div>
+        <div class="ss-c-rating ss-c-rating--lg" role="radiogroup" aria-label="Rating (lg)"><input type="radio" name="rs-lg" value="3" aria-label="3 stars" checked><input type="radio" name="rs-lg" value="2" aria-label="2 stars"><input type="radio" name="rs-lg" value="1" aria-label="1 star"></div>
+        <div class="ss-c-rating ss-c-rating--xl" role="radiogroup" aria-label="Rating (xl)"><input type="radio" name="rs-xl" value="3" aria-label="3 stars" checked><input type="radio" name="rs-xl" value="2" aria-label="2 stars"><input type="radio" name="rs-xl" value="1" aria-label="1 star"></div>
         {% endset %} {% set language="HTML" %}
         {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>

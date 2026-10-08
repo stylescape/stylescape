@@ -1,0 +1,51 @@
+{% extends "../base.html.jinja" %} {% set title = "Cart" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-cart</code> module: line items with a thumbnail,
+        title and variant, a quantity field, the line total and a remove action. The
+        row wraps on narrow screens. Pair it with <code>ss-c-order-summary</code>.
+    </p>
+
+    {% set section_title = "Line items" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <ul class="ss-c-cart" aria-label="Shopping cart">
+            <li class="ss-c-cart__item">
+                <img class="ss-c-cart__media" src="/img/placeholder/100x100.svg" alt="" width="72" height="72" />
+                <div class="ss-c-cart__details">
+                    <h3 class="ss-c-cart__title"><a href="#product-1">Canvas tote bag</a></h3>
+                    <p class="ss-c-cart__meta">Natural · Large</p>
+                </div>
+                <input class="ss-c-input ss-c-cart__quantity" type="number" min="0" value="2" aria-label="Quantity, Canvas tote bag" />
+                <p class="ss-c-cart__price">€ 25,00 <span class="ss-c-cart__unit">2 × € 12,50</span></p>
+                <button class="ss-c-button ss-c-button--ghost ss-c-button--sm ss-c-cart__remove" type="button" aria-label="Remove Canvas tote bag">Remove</button>
+            </li>
+            <li class="ss-c-cart__item">
+                <img class="ss-c-cart__media" src="/img/placeholder/100x100.svg" alt="" width="72" height="72" />
+                <div class="ss-c-cart__details">
+                    <h3 class="ss-c-cart__title"><a href="#product-2">Harbour map print</a></h3>
+                    <p class="ss-c-cart__meta">A2 · Matte</p>
+                </div>
+                <input class="ss-c-input ss-c-cart__quantity" type="number" min="0" value="1" aria-label="Quantity, Harbour map print" />
+                <p class="ss-c-cart__price ss-c-cart__price--discount">€ 32,00 <span class="ss-c-cart__unit">was € 40,00</span></p>
+                <button class="ss-c-button ss-c-button--ghost ss-c-button--sm ss-c-cart__remove" type="button" aria-label="Remove Harbour map print">Remove</button>
+            </li>
+        </ul>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Empty" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-cart">
+            <p class="ss-c-cart__empty">Your cart is empty. <a href="#shop">Continue shopping</a></p>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

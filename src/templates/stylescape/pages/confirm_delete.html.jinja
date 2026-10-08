@@ -1,0 +1,35 @@
+{#-
+    stylescape/pages/confirm_delete.html.jinja
+    ===========================================================================
+    For a DeleteView. Context: object, and optionally cancel_url (falls back
+    to object.get_absolute_url()), page_title, related (a list of strings:
+    what else will be deleted).
+-#}
+{%- extends "stylescape/base.html.jinja" -%}
+
+{%- block title %}{{ page_title | default(_("Delete %(name)s?", name=object), true) }}{% endblock -%}
+
+{%- block content %}
+<form class="ss-c-form" action="" method="post">
+    {%- if csrf_input is defined %}{{ csrf_input }}{% endif %}
+    <div class="ss-c-alert ss-c-alert--warning">
+        <p class="ss-c-alert__body">{{ _("Are you sure you want to delete “%(name)s”? This cannot be undone.", name=object) }}</p>
+    </div>
+    {%- if related %}
+    <p>{{ _("The following will be deleted as well:") }}</p>
+    <ul>
+        {%- for item in related %}
+        <li>{{ item }}</li>
+        {%- endfor %}
+    </ul>
+    {%- endif %}
+    {%- if form is defined and form %}{{ form.non_field_errors() }}{% for f in form.hidden_fields() %}{{ f }}{% endfor %}{% endif %}
+    <div class="ss-c-form__actions">
+        <button class="ss-c-button ss-c-button--danger" type="submit">{{ _("Yes, delete") }}</button>
+        {%- set _cancel = cancel_url or (object.get_absolute_url() if object.get_absolute_url is defined else "") %}
+        {%- if _cancel %}
+        <a class="ss-c-button ss-c-button--ghost" href="{{ _cancel }}">{{ _("No, keep it") }}</a>
+        {%- endif %}
+    </div>
+</form>
+{%- endblock content -%}

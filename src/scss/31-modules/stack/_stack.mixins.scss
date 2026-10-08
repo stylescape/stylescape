@@ -3,6 +3,9 @@
 @mixin ss-stack {
     display: inline-grid;
     place-items: center;
+    // Own stacking context: the lower layers use negative z-index and would
+    // otherwise slide behind the parent's background and vanish.
+    isolation: isolate;
 
     > * {
         grid-column-start: 1;
@@ -11,7 +14,10 @@
         z-index: 1;
         transform: translateY(0) scale(1);
         opacity: 1;
-        transition: transform 0.2s ease, opacity 0.2s ease;
+        transition:
+            transform var(--ss-duration-200) var(--ss-ease-in-out),
+            opacity var(--ss-duration-200) var(--ss-ease-in-out);
+
     }
     > *:nth-child(2) {
         z-index: 0;

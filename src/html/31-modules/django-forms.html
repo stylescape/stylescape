@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+     
+    
+    
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Django forms</title>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link rel="stylesheet" href="/css/stylescape.css" />
+        
+        <script>
+            try {
+                const theme = localStorage.getItem("preferredTheme");
+                if (theme) document.documentElement.dataset.theme = theme;
+            } catch (e) {}
+        </script>
+        
+
+        <style>
+            * {
+                font-variant-numeric: lining-nums tabular-nums;
+                font-feature-settings: "lnum", "tnum";
+            }
+        </style>
+    </head>
+
+    <body class="">
+        <a class="ss-c-demo__skip-link" href="#main_content">Skip to content</a>
+        <div class="ss-l-frame">
+            <div class="ss-l-frame__area--top"><header class="ss-c-ribbon--top">
+    <div class="ss-c-ribbon__slot--horizontal_left">
+        <div id="ribbon__title" class="ss-c-ribbon__slot--left ss-c-ribbon__title">
+            <a href="/" class="ss-c-ribbon__title__text">
+                <span class="ss-c-ribbon__title__logo" aria-hidden="true">+</span>
+                STYLESCAPE
+            </a>
+        </div>
+    </div>
+
+    <div class="ss-c-ribbon__slot--horizontal_right">
+        
+        <ul id="ribbon__menu" class="ss-c-ribbon__nav" aria-label="Display options">
+            <li class="ss-c-ribbon__menu__item">
+                <label class="ss-c-ribbon__button" for="themeToggle">
+                    <input type="checkbox" id="themeToggle" />
+                    Dark mode
+                </label>
+            </li>
+            <li class="ss-c-ribbon__menu__item">
+                <button
+                    type="button"
+                    class="ss-c-ribbon__button"
+                    data-toggle="baseline"
+                    aria-pressed="false"
+                    aria-label="Baseline grid"
+                    title="Baseline grid"
+                >
+                    <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+                        <path d="M1 3h14M1 6.5h14M1 10h14M1 13.5h14" stroke="currentColor" stroke-width="1.25" fill="none" />
+                    </svg>
+                </button>
+            </li>
+            <li class="ss-c-ribbon__menu__item">
+                <button
+                    type="button"
+                    class="ss-c-ribbon__button"
+                    data-toggle="graph"
+                    aria-pressed="false"
+                    aria-label="Graph paper grid"
+                    title="Graph paper grid"
+                >
+                    <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+                        <path d="M1 1h14v14H1zM5.67 1v14M10.33 1v14M1 5.67h14M1 10.33h14" stroke="currentColor" stroke-width="1.25" fill="none" />
+                    </svg>
+                </button>
+            </li>
+        </ul>
+    </div>
+</header>
+</div>
+
+            <div class="ss-l-frame__area--middle_left"><aside class="ss-c-sidebar ss-c-sidebar--left" aria-label="Site navigation">
+    <nav
+        id="sidebar_left_navigation"
+        class="ss-c-ribbon--left ss-c-ribbon--inverted"
+        aria-label="Quick links"
+    >
+        <div class="ss-c-ribbon__slot--vertical_top ss-c-gap--02">
+            <div class="ss-c-tooltip ss-c-tooltip--right" tooltip-data="Home">
+                <a class="ss-c-ribbon__button" href="/" aria-label="Home">
+                    <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+                        <path d="M2 7.5 8 2l6 5.5V14H10v-4H6v4H2z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" fill="none" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <nav
+        id="sidebar_left_menu"
+        class="ss-c-sidebar__menu"
+        aria-label="Demo pages"
+    >
+        <div id="sidebar_left_content" class="ss-c-sidebar__content ss-c-rail">
+
+<section class="ss-c-sidebar__section">
+    <details class="ss-c-sidebar__accordion">
+        <summary class="ss-c-sidebar__accordion__header">
+            <h2 id="section-1">00. Pages</h2>
+            <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+        </summary>
+
+        <div class="ss-c-sidebar__accordion__content">
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-1-1">
+                        Overview
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/pages/django-templates.html">Django Templates</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/pages/gallery.html">Gallery</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/pages/index.html">Index</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/pages/layout_page.html">Page</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/pages/layout_screen.html">Screen</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/pages/media.html">Media</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/pages/semantic.html">Semantic</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/pages/typography.html">Typography</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+</section>
+
+
+<section class="ss-c-sidebar__section">
+    <details class="ss-c-sidebar__accordion">
+        <summary class="ss-c-sidebar__accordion__header">
+            <h2 id="section-2">12. Lexicon</h2>
+            <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+        </summary>
+
+        <div class="ss-c-sidebar__accordion__content">
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-1-2">
+                        Color
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/12-lexicon/color-palette.html">Palette</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/12-lexicon/color-system.html">System</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+</section>
+
+
+<section class="ss-c-sidebar__section">
+    <details class="ss-c-sidebar__accordion">
+        <summary class="ss-c-sidebar__accordion__header">
+            <h2 id="section-3">21. Typography</h2>
+            <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+        </summary>
+
+        <div class="ss-c-sidebar__accordion__content">
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-1-3">
+                        Font
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-font-default.html">Font Default</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-font-letter-spacing.html">Font Letter Spacing</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-font-size.html">Font Size</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-font-weight.html">Font Weight</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-2-3">
+                        Character
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-character-abbreviation.html">Character Abbreviation</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-character-acronym.html">Character Acronym</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-character-case.html">Character Case</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-character-citation.html">Character Citation</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-character-code.html">Character Code</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-character-dropcap.html">Character Dropcap</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-character-hyperlink.html">Character Hyperlink</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-character-lined.html">Character Lined</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-character-mark.html">Character Mark</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-character-quote.html">Character Quote</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-character-variant.html">Character Variant</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-character.html">Character</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-3-3">
+                        Paragraph
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-paragraph-align.html">Paragraph Align</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-paragraph-heading.html">Paragraph Heading</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-paragraph-indent.html">Paragraph Indent</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-paragraph.html">Paragraph</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-4-3">
+                        List
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-list-special.html">List Special</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/21-typography/type-list.html">List</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+</section>
+
+
+<section class="ss-c-sidebar__section">
+    <details class="ss-c-sidebar__accordion">
+        <summary class="ss-c-sidebar__accordion__header">
+            <h2 id="section-4">23. Layout</h2>
+            <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+        </summary>
+
+        <div class="ss-c-sidebar__accordion__content">
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-1-4">
+                        Layout Primitives
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/23-layout/app.html">App</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/23-layout/dashboard.html">Dashboard</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/23-layout/flex.html">Flex</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/23-layout/grid.html">Grid</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/23-layout/layers.html">Layers</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/23-layout/viewport-grid.html">Viewport Grid</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+</section>
+
+
+<section class="ss-c-sidebar__section">
+    <details class="ss-c-sidebar__accordion">
+        <summary class="ss-c-sidebar__accordion__header">
+            <h2 id="section-5">24. Appearance</h2>
+            <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+        </summary>
+
+        <div class="ss-c-sidebar__accordion__content">
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-1-5">
+                        Object Properties
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/24-appearance/object-border.html">Border</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/24-appearance/object-color.html">Color</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/24-appearance/object-corner.html">Corner</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/24-appearance/object-fill.html">Fill</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/24-appearance/object-height.html">Height</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/24-appearance/object-margin.html">Margin</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/24-appearance/object-padding.html">Padding</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/24-appearance/object-shadow.html">Shadow</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/24-appearance/object-width.html">Width</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-2-5">
+                        Line & Rules
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/24-appearance/line-rule.html">Line rule</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/24-appearance/line.html">Line </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+</section>
+
+
+<section class="ss-c-sidebar__section">
+    <details class="ss-c-sidebar__accordion">
+        <summary class="ss-c-sidebar__accordion__header">
+            <h2 id="section-6">31. Modules</h2>
+            <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+        </summary>
+
+        <div class="ss-c-sidebar__accordion__content">
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-1-6">
+                        Buttons
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/button-group.html">Button Group</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/button.html">Button</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/api-explorer.html">Api Explorer</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/auth.html">Auth</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/avatar.html">Avatar</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/bottom-nav.html">Bottom Nav</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/brand.html">Brand</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/calendar.html">Calendar</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/cart.html">Cart</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/chart.html">Chart</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/checkout.html">Checkout</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/choice.html">Choice</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/close.html">Close</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/code-block.html">Code Block</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/collapse.html">Collapse</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/color-input.html">Input</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/comment.html">Comment</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/context-menu.html">Context Menu</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/control-grid.html">Control Grid</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/countdown.html">Countdown</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/demo.html">Demo</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/description-list.html">Description List</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/diff.html">Diff</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/django-forms.html">Django Forms</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/dropcap.html">Dropcap</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/dropzone.html">Dropzone</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/empty-state.html">Empty State</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/fab.html">Fab</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/file-input.html">File Input</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/filter-bar.html">Filter Bar</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/flipper.html">Flipper</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/floating-label.html">Floating Label</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/footer.html">Footer</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/gantt.html">Gantt</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/headline.html">Headline</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/htmx.html">Htmx</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/indicator.html">Indicator</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/join.html">Join</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/kbd.html">Kbd</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/legend.html">Legend</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/log.html">Log</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/mask.html">Mask</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/messages.html">Messages</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/offcanvas.html">Offcanvas</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/order-summary.html">Order Summary</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/overlay-panel.html">Overlay Panel</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/overlay.html">Overlay</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/panel.html">Panel</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/pricing.html">Pricing</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/pull-quote.html">Pull Quote</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/radial-progress.html">Radial Progress</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/rating.html">Rating</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/scrollspy.html">Scrollspy</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/search-bar.html">Search Bar</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/section-header.html">Section Header</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/section-title.html">Section Title</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/segmented.html">Segmented</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/sheet.html">Sheet</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/shortcut-list.html">Shortcut List</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/split.html">Split</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/stack.html">Stack</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/stepper.html">Stepper</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/steps.html">Steps</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/subnav.html">Subnav</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/swap.html">Swap</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/tab.html">Tab</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/theme-toggle.html">Theme Toggle</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/title-bar.html">Title Bar</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/toolbar.html">Toolbar</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/tree.html">Tree</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/validation.html">Validation</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/viewport.html">Viewport</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-2-6">
+                        Inputs & Forms
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/checkbox.html">Checkbox</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/drilldown.html">Drilldown</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/dropdown.html">Dropdown</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/form.html">Form</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/formfield.html">Formfield</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/input-group.html">Input Group</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/input.html">Input</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/label.html">Label</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/radio.html">Radio</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/range.html">Range</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/select.html">Select</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/switch.html">Switch</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/toggle.html">Toggle</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-3-6">
+                        Status & Feedback
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/alert.html">Alert</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/badge.html">Badge</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/popover.html">Popover</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/preloader.html">Preloader</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/progress.html">Progress</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/skeleton.html">Skeleton</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/spinner.html">Spinner</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/toast.html">Toast</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/tooltip.html">Tooltip</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-4-6">
+                        Navigation
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/breadcrumb.html">Breadcrumb</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/menu-item.html">Menu Item</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/nav.html">Nav</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/navbar.html">Navbar</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/pagination.html">Pagination</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/rail.html">Rail</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/ribbon.html">Ribbon</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/sidebar.html">Sidebar</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/ticker.html">Ticker</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/toc.html">Toc</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-5-6">
+                        Cards & Content
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/accordion.html">Accordion</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/blogpost.html">Blogpost</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/card.html">Card</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/chip.html">Chip</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/cover.html">Cover</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/figure.html">Figure</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/graphic.html">Graphic</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/hero.html">Hero</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/placeholder.html">Placeholder</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/preview.html">Preview</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/summary.html">Summary</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/widget.html">Widget</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-6-6">
+                        Media
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/carousel.html">Carousel</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/gallery.html">Gallery</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/iframe.html">Iframe</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/image-compare.html">Image Compare</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/image-slider.html">Image Slider</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/image.html">Image</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/map.html">Map</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/video-button.html">Video Button</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/video.html">Video</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-7-6">
+                        Data Display
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/chat.html">Chat</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/icon-bar.html">Icon Bar</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/icon-font.html">Icon Font</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/icon.html">Icon</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/list-group.html">List Group</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/portfolio.html">Portfolio</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/social.html">Social</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/stat.html">Stat</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/state.html">State</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/table.html">Table</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/tags-list.html">Tags List</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/timeline.html">Timeline</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/timestamp.html">Timestamp</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/vcard.html">Vcard</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-8-6">
+                        Misc
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/box.html">Box</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/caption.html">Caption</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/cookie.html">Cookie</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/cursor.html">Cursor</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/dimensions.html">Dimensions</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/divider.html">Divider</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/interactive.html">Interactive</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/modal.html">Modal</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/spacer.html">Spacer</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+</section>
+
+
+<section class="ss-c-sidebar__section">
+    <details class="ss-c-sidebar__accordion">
+        <summary class="ss-c-sidebar__accordion__header">
+            <h2 id="section-7">61. TypeScript Features</h2>
+            <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+        </summary>
+
+        <div class="ss-c-sidebar__accordion__content">
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-1-7">
+                        Interactive Features
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/typescript/ts_animations.html">Animations</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/typescript/ts_buttons.html">Buttons</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/typescript/ts_content.html">Content</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/typescript/ts_data.html">Data</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/typescript/ts_elements.html">Elements</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/typescript/ts_forms.html">Forms</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/typescript/ts_media.html">Media</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/typescript/ts_mouse.html">Mouse</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/typescript/ts_scroll.html">Scroll</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/typescript/ts_storage.html">Storage</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/typescript/ts_utilities.html">Utilities</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+</section>
+
+
+<section class="ss-c-sidebar__section">
+    <details class="ss-c-sidebar__accordion">
+        <summary class="ss-c-sidebar__accordion__header">
+            <h2 id="section-8">90. Architecture</h2>
+            <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+        </summary>
+
+        <div class="ss-c-sidebar__accordion__content">
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-1-8">
+                        Architecture Reference
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/01_core.html">01 Core</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/11_reset.html">11 Reset</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/12_lexicon.html">12 Lexicon</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/13_rhythm.html">13 Rhythm</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/21_typography.html">21 Typography</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/22_flow.html">22 Flow</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/23_layout.html">23 Layout</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/24_appearance.html">24 Appearance</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/31_modules.html">31 Modules</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/32_utilities.html">32 Utilities</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/33_overrides.html">33 Overrides</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/91_development.html">91 Development</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/architecture/index.html">Index</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+</section>
+
+
+<section class="ss-c-sidebar__section">
+    <details class="ss-c-sidebar__accordion">
+        <summary class="ss-c-sidebar__accordion__header">
+            <h2 id="section-9">99. Tests</h2>
+            <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+        </summary>
+
+        <div class="ss-c-sidebar__accordion__content">
+            
+            <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
+                <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
+                    <h3 id="group-1-9">
+                        Test Pages
+                    </h3>
+                    <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
+                </summary>
+
+                <div class="ss-c-sidebar__accordion__content">
+                    
+
+                    <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/tests/test.html">Test</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/tests/test_class_coverage.html">Class Coverage</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/tests/test_compat_v03.html">Compat V03</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/tests/test_frame_login.html">Frame Login</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/tests/test_layers.html">Layers</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/tests/test_layout_scapeframe.html">Scapeframe</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+</section>
+
+
+
+        </div>
+    </nav>
+
+    <div class="ss-c-sidebar__control">
+        <button
+            type="button"
+            class="ss-c-flipper--left"
+            id="sidebar_left_switch"
+            aria-expanded="false"
+            aria-controls="sidebar_left_menu"
+            aria-label="Show page navigation"
+        >
+            <span class="ss-c-flipper__icon"></span>
+        </button>
+    </div>
+</aside>
+
+            </div>
+
+            <div class="ss-l-frame__area--middle_center">
+                <main id="main_content" class="ss-l-main ss-c-rail" tabindex="0">
+<section class="ss-c-demo__section" data-label="Django forms" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>Django forms</h1></header>
+    <p>
+        Django renders forms without classes. Wrap them in
+        <code>&lt;form class="ss-c-form"&gt;</code> and the <code>form</code>
+        module styles that markup as it comes: field wrappers, labels,
+        <code>&lt;div class="helptext"&gt;</code>,
+        <code>&lt;ul class="errorlist"&gt;</code>,
+        <code>&lt;ul class="errorlist nonfield"&gt;</code>,
+        <code>aria-invalid</code> widgets, <code>required_css_class</code>
+        markers, and the fieldset Django uses for radio and checkbox groups.
+        The selectors carry no specificity, so a class on a widget
+        (<code>attrs=&#123;"class": "ss-c-input"&#125;</code>) always wins.
+        The markup below is Django 6 output, pasted unchanged. For
+        hand-written templates the same look is available as classes (last
+        example).
+    </p>
+
+    
+    <section class="ss-c-demo__subsection" data-label="Unbound form" data-level="2">
+        <h2>Unbound form</h2>
+        <p><code>&#123;&#123; form &#125;&#125;</code> with <code>required_css_class = "required"</code>: help text, a <code>RadioSelect</code>, a <code>CheckboxSelectMultiple</code>, a textarea and a <code>BooleanField</code>.</p>
+             
+
+<div class="ss-c-preview--vertical">
+    
+    <div class="ss-c-preview__live">
+        <form class="ss-c-form" method="post" action="#" novalidate aria-label="Contact (unbound)" style="max-width: 560px">
+            <div class="required">
+                <label for="id_clean_name" class="required">Name:</label>
+            <div class="helptext" id="id_clean_name_helptext">Your full name as it appears on invoices.</div>
+            <input type="text" name="name" maxlength="80" required aria-describedby="id_clean_name_helptext" id="id_clean_name">
+            </div>
+              <div class="required">
+                <label for="id_clean_email" class="required">Email:</label>
+            <input type="email" name="email" maxlength="320" required id="id_clean_email">
+            </div>
+              <div class="required">
+                <fieldset>
+              <legend class="required">Topic:</legend>
+            <div id="id_clean_topic"><div>
+                <label for="id_clean_topic_0"><input type="radio" name="topic" value="q" required id="id_clean_topic_0">
+             Question</label>
+            </div><div>
+                <label for="id_clean_topic_1"><input type="radio" name="topic" value="b" required id="id_clean_topic_1">
+             Bug report</label>
+            </div><div>
+                <label for="id_clean_topic_2"><input type="radio" name="topic" value="f" required id="id_clean_topic_2">
+             Feedback</label>
+            </div>
+            </div></fieldset>
+            </div>
+              <div>
+                <fieldset aria-describedby="id_clean_channels_helptext">
+              <legend>Channels:</legend>
+            <div class="helptext" id="id_clean_channels_helptext">Leave empty to opt out.</div>
+            <div id="id_clean_channels"><div>
+                <label for="id_clean_channels_0"><input type="checkbox" name="channels" value="mail" id="id_clean_channels_0">
+             E-mail</label>
+            </div><div>
+                <label for="id_clean_channels_1"><input type="checkbox" name="channels" value="sms" id="id_clean_channels_1">
+             SMS</label>
+            </div>
+            </div></fieldset>
+            </div>
+              <div class="required">
+                <label for="id_clean_message" class="required">Message:</label>
+            <textarea name="message" cols="40" rows="4" required id="id_clean_message">
+</textarea>
+            </div>
+              <div>
+                <label for="id_clean_subscribe">Subscribe to the newsletter:</label>
+            <input type="checkbox" name="subscribe" id="id_clean_subscribe">
+            </div>
+            <div class="ss-c-form__actions">
+                <button type="submit" class="ss-c-button">Send</button>
+            </div>
+        </form>
+        </div>
+    
+    
+    <div class="ss-c-preview__info" aria-live="polite">
+        <small>HTML</small>
+        <button
+            type="button"
+            class="ss-c-preview__copy-button"
+            onclick="ClipboardHelper.copyById('code-snippet-1')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="ss-c-preview__code">
+        <pre
+            class="ss-c-line-numbers"
+        ><code id="code-snippet-1" class="language-html">&lt;form class=&quot;ss-c-form&quot; method=&quot;post&quot; action=&quot;#&quot; novalidate aria-label=&quot;Contact (unbound)&quot; style=&quot;max-width: 560px&quot;&gt;
+            &lt;div class=&quot;required&quot;&gt;
+                &lt;label for=&quot;id_clean_name&quot; class=&quot;required&quot;&gt;Name:&lt;/label&gt;
+            &lt;div class=&quot;helptext&quot; id=&quot;id_clean_name_helptext&quot;&gt;Your full name as it appears on invoices.&lt;/div&gt;
+            &lt;input type=&quot;text&quot; name=&quot;name&quot; maxlength=&quot;80&quot; required aria-describedby=&quot;id_clean_name_helptext&quot; id=&quot;id_clean_name&quot;&gt;
+            &lt;/div&gt;
+              &lt;div class=&quot;required&quot;&gt;
+                &lt;label for=&quot;id_clean_email&quot; class=&quot;required&quot;&gt;Email:&lt;/label&gt;
+            &lt;input type=&quot;email&quot; name=&quot;email&quot; maxlength=&quot;320&quot; required id=&quot;id_clean_email&quot;&gt;
+            &lt;/div&gt;
+              &lt;div class=&quot;required&quot;&gt;
+                &lt;fieldset&gt;
+              &lt;legend class=&quot;required&quot;&gt;Topic:&lt;/legend&gt;
+            &lt;div id=&quot;id_clean_topic&quot;&gt;&lt;div&gt;
+                &lt;label for=&quot;id_clean_topic_0&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;topic&quot; value=&quot;q&quot; required id=&quot;id_clean_topic_0&quot;&gt;
+             Question&lt;/label&gt;
+            &lt;/div&gt;&lt;div&gt;
+                &lt;label for=&quot;id_clean_topic_1&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;topic&quot; value=&quot;b&quot; required id=&quot;id_clean_topic_1&quot;&gt;
+             Bug report&lt;/label&gt;
+            &lt;/div&gt;&lt;div&gt;
+                &lt;label for=&quot;id_clean_topic_2&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;topic&quot; value=&quot;f&quot; required id=&quot;id_clean_topic_2&quot;&gt;
+             Feedback&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;/div&gt;&lt;/fieldset&gt;
+            &lt;/div&gt;
+              &lt;div&gt;
+                &lt;fieldset aria-describedby=&quot;id_clean_channels_helptext&quot;&gt;
+              &lt;legend&gt;Channels:&lt;/legend&gt;
+            &lt;div class=&quot;helptext&quot; id=&quot;id_clean_channels_helptext&quot;&gt;Leave empty to opt out.&lt;/div&gt;
+            &lt;div id=&quot;id_clean_channels&quot;&gt;&lt;div&gt;
+                &lt;label for=&quot;id_clean_channels_0&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;channels&quot; value=&quot;mail&quot; id=&quot;id_clean_channels_0&quot;&gt;
+             E-mail&lt;/label&gt;
+            &lt;/div&gt;&lt;div&gt;
+                &lt;label for=&quot;id_clean_channels_1&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;channels&quot; value=&quot;sms&quot; id=&quot;id_clean_channels_1&quot;&gt;
+             SMS&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;/div&gt;&lt;/fieldset&gt;
+            &lt;/div&gt;
+              &lt;div class=&quot;required&quot;&gt;
+                &lt;label for=&quot;id_clean_message&quot; class=&quot;required&quot;&gt;Message:&lt;/label&gt;
+            &lt;textarea name=&quot;message&quot; cols=&quot;40&quot; rows=&quot;4&quot; required id=&quot;id_clean_message&quot;&gt;
+&lt;/textarea&gt;
+            &lt;/div&gt;
+              &lt;div&gt;
+                &lt;label for=&quot;id_clean_subscribe&quot;&gt;Subscribe to the newsletter:&lt;/label&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;subscribe&quot; id=&quot;id_clean_subscribe&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;ss-c-form__actions&quot;&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;ss-c-button&quot;&gt;Send&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/form&gt;</code></pre>
+    </div>
+</div>
+
+    </section>
+
+    
+    <section class="ss-c-demo__subsection" data-label="Bound form with errors" data-level="2">
+        <h2>Bound form with errors</h2>
+        <p><code>non_field_errors</code> render as a boxed summary at the top; field errors sit above their widget, which Django marks <code>aria-invalid</code> and links with <code>aria-describedby</code>.</p>
+             
+
+<div class="ss-c-preview--vertical">
+    
+    <div class="ss-c-preview__live">
+        <form class="ss-c-form" method="post" action="#" novalidate aria-label="Contact (with errors)" style="max-width: 560px">
+            <ul class="errorlist nonfield"><li>Name and e-mail do not match an existing account.</li></ul>
+              <div class="error required">
+                <label for="id_bound_name" class="required">Name:</label>
+            <div class="helptext" id="id_bound_name_helptext">Your full name as it appears on invoices.</div>
+            <ul class="errorlist" id="id_bound_name_error"><li>This field is required.</li></ul>
+            <input type="text" name="name" maxlength="80" required aria-invalid="true" aria-describedby="id_bound_name_helptext id_bound_name_error" id="id_bound_name">
+            </div>
+              <div class="error required">
+                <label for="id_bound_email" class="required">Email:</label>
+            <ul class="errorlist" id="id_bound_email_error"><li>Enter a valid email address.</li></ul>
+            <input type="email" name="email" value="not-an-email" maxlength="320" required aria-invalid="true" aria-describedby="id_bound_email_error" id="id_bound_email">
+            </div>
+              <div class="required">
+                <fieldset>
+              <legend class="required">Topic:</legend>
+            <div id="id_bound_topic"><div>
+                <label for="id_bound_topic_0"><input type="radio" name="topic" value="q" required id="id_bound_topic_0" checked>
+             Question</label>
+            </div><div>
+                <label for="id_bound_topic_1"><input type="radio" name="topic" value="b" required id="id_bound_topic_1">
+             Bug report</label>
+            </div><div>
+                <label for="id_bound_topic_2"><input type="radio" name="topic" value="f" required id="id_bound_topic_2">
+             Feedback</label>
+            </div>
+            </div></fieldset>
+            </div>
+              <div>
+                <fieldset aria-describedby="id_bound_channels_helptext">
+              <legend>Channels:</legend>
+            <div class="helptext" id="id_bound_channels_helptext">Leave empty to opt out.</div>
+            <div id="id_bound_channels"><div>
+                <label for="id_bound_channels_0"><input type="checkbox" name="channels" value="mail" id="id_bound_channels_0">
+             E-mail</label>
+            </div><div>
+                <label for="id_bound_channels_1"><input type="checkbox" name="channels" value="sms" id="id_bound_channels_1">
+             SMS</label>
+            </div>
+            </div></fieldset>
+            </div>
+              <div class="required">
+                <label for="id_bound_message" class="required">Message:</label>
+            <textarea name="message" cols="40" rows="4" required id="id_bound_message">
+Hi</textarea>
+            </div>
+              <div>
+                <label for="id_bound_subscribe">Subscribe to the newsletter:</label>
+            <input type="checkbox" name="subscribe" id="id_bound_subscribe">
+            </div>
+            <div class="ss-c-form__actions">
+                <button type="submit" class="ss-c-button">Send</button>
+            </div>
+        </form>
+        </div>
+    
+    
+    <div class="ss-c-preview__info" aria-live="polite">
+        <small>HTML</small>
+        <button
+            type="button"
+            class="ss-c-preview__copy-button"
+            onclick="ClipboardHelper.copyById('code-snippet-2')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="ss-c-preview__code">
+        <pre
+            class="ss-c-line-numbers"
+        ><code id="code-snippet-2" class="language-html">&lt;form class=&quot;ss-c-form&quot; method=&quot;post&quot; action=&quot;#&quot; novalidate aria-label=&quot;Contact (with errors)&quot; style=&quot;max-width: 560px&quot;&gt;
+            &lt;ul class=&quot;errorlist nonfield&quot;&gt;&lt;li&gt;Name and e-mail do not match an existing account.&lt;/li&gt;&lt;/ul&gt;
+              &lt;div class=&quot;error required&quot;&gt;
+                &lt;label for=&quot;id_bound_name&quot; class=&quot;required&quot;&gt;Name:&lt;/label&gt;
+            &lt;div class=&quot;helptext&quot; id=&quot;id_bound_name_helptext&quot;&gt;Your full name as it appears on invoices.&lt;/div&gt;
+            &lt;ul class=&quot;errorlist&quot; id=&quot;id_bound_name_error&quot;&gt;&lt;li&gt;This field is required.&lt;/li&gt;&lt;/ul&gt;
+            &lt;input type=&quot;text&quot; name=&quot;name&quot; maxlength=&quot;80&quot; required aria-invalid=&quot;true&quot; aria-describedby=&quot;id_bound_name_helptext id_bound_name_error&quot; id=&quot;id_bound_name&quot;&gt;
+            &lt;/div&gt;
+              &lt;div class=&quot;error required&quot;&gt;
+                &lt;label for=&quot;id_bound_email&quot; class=&quot;required&quot;&gt;Email:&lt;/label&gt;
+            &lt;ul class=&quot;errorlist&quot; id=&quot;id_bound_email_error&quot;&gt;&lt;li&gt;Enter a valid email address.&lt;/li&gt;&lt;/ul&gt;
+            &lt;input type=&quot;email&quot; name=&quot;email&quot; value=&quot;not-an-email&quot; maxlength=&quot;320&quot; required aria-invalid=&quot;true&quot; aria-describedby=&quot;id_bound_email_error&quot; id=&quot;id_bound_email&quot;&gt;
+            &lt;/div&gt;
+              &lt;div class=&quot;required&quot;&gt;
+                &lt;fieldset&gt;
+              &lt;legend class=&quot;required&quot;&gt;Topic:&lt;/legend&gt;
+            &lt;div id=&quot;id_bound_topic&quot;&gt;&lt;div&gt;
+                &lt;label for=&quot;id_bound_topic_0&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;topic&quot; value=&quot;q&quot; required id=&quot;id_bound_topic_0&quot; checked&gt;
+             Question&lt;/label&gt;
+            &lt;/div&gt;&lt;div&gt;
+                &lt;label for=&quot;id_bound_topic_1&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;topic&quot; value=&quot;b&quot; required id=&quot;id_bound_topic_1&quot;&gt;
+             Bug report&lt;/label&gt;
+            &lt;/div&gt;&lt;div&gt;
+                &lt;label for=&quot;id_bound_topic_2&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;topic&quot; value=&quot;f&quot; required id=&quot;id_bound_topic_2&quot;&gt;
+             Feedback&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;/div&gt;&lt;/fieldset&gt;
+            &lt;/div&gt;
+              &lt;div&gt;
+                &lt;fieldset aria-describedby=&quot;id_bound_channels_helptext&quot;&gt;
+              &lt;legend&gt;Channels:&lt;/legend&gt;
+            &lt;div class=&quot;helptext&quot; id=&quot;id_bound_channels_helptext&quot;&gt;Leave empty to opt out.&lt;/div&gt;
+            &lt;div id=&quot;id_bound_channels&quot;&gt;&lt;div&gt;
+                &lt;label for=&quot;id_bound_channels_0&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;channels&quot; value=&quot;mail&quot; id=&quot;id_bound_channels_0&quot;&gt;
+             E-mail&lt;/label&gt;
+            &lt;/div&gt;&lt;div&gt;
+                &lt;label for=&quot;id_bound_channels_1&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;channels&quot; value=&quot;sms&quot; id=&quot;id_bound_channels_1&quot;&gt;
+             SMS&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;/div&gt;&lt;/fieldset&gt;
+            &lt;/div&gt;
+              &lt;div class=&quot;required&quot;&gt;
+                &lt;label for=&quot;id_bound_message&quot; class=&quot;required&quot;&gt;Message:&lt;/label&gt;
+            &lt;textarea name=&quot;message&quot; cols=&quot;40&quot; rows=&quot;4&quot; required id=&quot;id_bound_message&quot;&gt;
+Hi&lt;/textarea&gt;
+            &lt;/div&gt;
+              &lt;div&gt;
+                &lt;label for=&quot;id_bound_subscribe&quot;&gt;Subscribe to the newsletter:&lt;/label&gt;
+            &lt;input type=&quot;checkbox&quot; name=&quot;subscribe&quot; id=&quot;id_bound_subscribe&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;ss-c-form__actions&quot;&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;ss-c-button&quot;&gt;Send&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/form&gt;</code></pre>
+    </div>
+</div>
+
+    </section>
+
+    
+    <section class="ss-c-demo__subsection" data-label="form.as_p" data-level="2">
+        <h2>form.as_p</h2>
+        <p><code>as_p</code> puts each error list before its paragraph and the help text in a <code>span</code>.</p>
+             
+
+<div class="ss-c-preview--vertical">
+    
+    <div class="ss-c-preview__live">
+        <form class="ss-c-form" method="post" action="#" novalidate aria-label="Item (as_p)" style="max-width: 560px">
+            <ul class="errorlist" id="id_p_title_error"><li>This field is required.</li></ul>
+              <p>
+                <label for="id_p_title">Title:</label>
+                <input type="text" name="title" required aria-invalid="true" aria-describedby="id_p_title_helptext id_p_title_error" id="id_p_title">
+                  <span class="helptext" id="id_p_title_helptext">Shown in the list.</span>
+              </p>
+              <ul class="errorlist" id="id_p_count_error"><li>Ensure this value is greater than or equal to 0.</li></ul>
+              <p>
+                <label for="id_p_count">Count:</label>
+                <input type="number" name="count" value="-1" min="0" required aria-invalid="true" aria-describedby="id_p_count_error" id="id_p_count">
+              </p>
+            <div class="ss-c-form__actions">
+                <button type="submit" class="ss-c-button">Send</button>
+            </div>
+        </form>
+        </div>
+    
+    
+    <div class="ss-c-preview__info" aria-live="polite">
+        <small>HTML</small>
+        <button
+            type="button"
+            class="ss-c-preview__copy-button"
+            onclick="ClipboardHelper.copyById('code-snippet-3')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="ss-c-preview__code">
+        <pre
+            class="ss-c-line-numbers"
+        ><code id="code-snippet-3" class="language-html">&lt;form class=&quot;ss-c-form&quot; method=&quot;post&quot; action=&quot;#&quot; novalidate aria-label=&quot;Item (as_p)&quot; style=&quot;max-width: 560px&quot;&gt;
+            &lt;ul class=&quot;errorlist&quot; id=&quot;id_p_title_error&quot;&gt;&lt;li&gt;This field is required.&lt;/li&gt;&lt;/ul&gt;
+              &lt;p&gt;
+                &lt;label for=&quot;id_p_title&quot;&gt;Title:&lt;/label&gt;
+                &lt;input type=&quot;text&quot; name=&quot;title&quot; required aria-invalid=&quot;true&quot; aria-describedby=&quot;id_p_title_helptext id_p_title_error&quot; id=&quot;id_p_title&quot;&gt;
+                  &lt;span class=&quot;helptext&quot; id=&quot;id_p_title_helptext&quot;&gt;Shown in the list.&lt;/span&gt;
+              &lt;/p&gt;
+              &lt;ul class=&quot;errorlist&quot; id=&quot;id_p_count_error&quot;&gt;&lt;li&gt;Ensure this value is greater than or equal to 0.&lt;/li&gt;&lt;/ul&gt;
+              &lt;p&gt;
+                &lt;label for=&quot;id_p_count&quot;&gt;Count:&lt;/label&gt;
+                &lt;input type=&quot;number&quot; name=&quot;count&quot; value=&quot;-1&quot; min=&quot;0&quot; required aria-invalid=&quot;true&quot; aria-describedby=&quot;id_p_count_error&quot; id=&quot;id_p_count&quot;&gt;
+              &lt;/p&gt;
+            &lt;div class=&quot;ss-c-form__actions&quot;&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;ss-c-button&quot;&gt;Send&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/form&gt;</code></pre>
+    </div>
+</div>
+
+    </section>
+
+    
+    <section class="ss-c-demo__subsection" data-label="Formset" data-level="2">
+        <h2>Formset</h2>
+        <p>The management form is four hidden inputs; each form goes in its own <code>&lt;fieldset&gt;</code>: <code>&#123;&#123; formset.management_form &#125;&#125;&#123;% for form in formset %&#125;&lt;fieldset&gt;…&#123;&#123; form &#125;&#125;&lt;/fieldset&gt;&#123;% endfor %&#125;</code>. Wrap them in <code>ss-c-form__formset</code> for tighter spacing. Formset-level errors use <code>errorlist nonform</code> and look like <code>nonfield</code>.</p>
+             
+
+<div class="ss-c-preview--vertical">
+    
+    <div class="ss-c-preview__live">
+        <form class="ss-c-form" method="post" action="#" novalidate aria-label="Order items (formset)" style="max-width: 560px">
+            <div class="ss-c-form__formset">
+
+                <input type="hidden" name="items-TOTAL_FORMS" value="2" id="id_fs_items-TOTAL_FORMS"><input type="hidden" name="items-INITIAL_FORMS" value="0" id="id_fs_items-INITIAL_FORMS"><input type="hidden" name="items-MIN_NUM_FORMS" value="1" id="id_fs_items-MIN_NUM_FORMS"><input type="hidden" name="items-MAX_NUM_FORMS" value="1000" id="id_fs_items-MAX_NUM_FORMS">
+                <fieldset>
+                <legend>Item 1</legend>
+                <div>
+                    <label for="id_fs_items-0-product">Product:</label>
+                <input type="text" name="items-0-product" value="Sensor" id="id_fs_items-0-product">
+                </div>
+                  <div>
+                    <label for="id_fs_items-0-quantity">Quantity:</label>
+                <input type="number" name="items-0-quantity" value="2" min="1" id="id_fs_items-0-quantity">
+                </div>
+                  <div>
+                    <label for="id_fs_items-0-DELETE">Delete:</label>
+                <input type="checkbox" name="items-0-DELETE" id="id_fs_items-0-DELETE">
+                </div>
+                </fieldset>
+                <fieldset>
+                <legend>Item 2</legend>
+                <div>
+                    <label for="id_fs_items-1-product">Product:</label>
+                <ul class="errorlist" id="id_fs_items-1-product_error"><li>This field is required.</li></ul>
+                <input type="text" name="items-1-product" aria-invalid="true" aria-describedby="id_fs_items-1-product_error" id="id_fs_items-1-product">
+                </div>
+                  <div>
+                    <label for="id_fs_items-1-quantity">Quantity:</label>
+                <ul class="errorlist" id="id_fs_items-1-quantity_error"><li>Ensure this value is greater than or equal to 1.</li></ul>
+                <input type="number" name="items-1-quantity" value="0" min="1" aria-invalid="true" aria-describedby="id_fs_items-1-quantity_error" id="id_fs_items-1-quantity">
+                </div>
+                  <div>
+                    <label for="id_fs_items-1-DELETE">Delete:</label>
+                <input type="checkbox" name="items-1-DELETE" id="id_fs_items-1-DELETE">
+                </div>
+                </fieldset>
+
+            </div>
+            <div class="ss-c-form__actions">
+                <button type="submit" class="ss-c-button">Send</button>
+            </div>
+        </form>
+        </div>
+    
+    
+    <div class="ss-c-preview__info" aria-live="polite">
+        <small>HTML</small>
+        <button
+            type="button"
+            class="ss-c-preview__copy-button"
+            onclick="ClipboardHelper.copyById('code-snippet-4')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="ss-c-preview__code">
+        <pre
+            class="ss-c-line-numbers"
+        ><code id="code-snippet-4" class="language-html">&lt;form class=&quot;ss-c-form&quot; method=&quot;post&quot; action=&quot;#&quot; novalidate aria-label=&quot;Order items (formset)&quot; style=&quot;max-width: 560px&quot;&gt;
+            &lt;div class=&quot;ss-c-form__formset&quot;&gt;
+
+                &lt;input type=&quot;hidden&quot; name=&quot;items-TOTAL_FORMS&quot; value=&quot;2&quot; id=&quot;id_fs_items-TOTAL_FORMS&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;items-INITIAL_FORMS&quot; value=&quot;0&quot; id=&quot;id_fs_items-INITIAL_FORMS&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;items-MIN_NUM_FORMS&quot; value=&quot;1&quot; id=&quot;id_fs_items-MIN_NUM_FORMS&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;items-MAX_NUM_FORMS&quot; value=&quot;1000&quot; id=&quot;id_fs_items-MAX_NUM_FORMS&quot;&gt;
+                &lt;fieldset&gt;
+                &lt;legend&gt;Item 1&lt;/legend&gt;
+                &lt;div&gt;
+                    &lt;label for=&quot;id_fs_items-0-product&quot;&gt;Product:&lt;/label&gt;
+                &lt;input type=&quot;text&quot; name=&quot;items-0-product&quot; value=&quot;Sensor&quot; id=&quot;id_fs_items-0-product&quot;&gt;
+                &lt;/div&gt;
+                  &lt;div&gt;
+                    &lt;label for=&quot;id_fs_items-0-quantity&quot;&gt;Quantity:&lt;/label&gt;
+                &lt;input type=&quot;number&quot; name=&quot;items-0-quantity&quot; value=&quot;2&quot; min=&quot;1&quot; id=&quot;id_fs_items-0-quantity&quot;&gt;
+                &lt;/div&gt;
+                  &lt;div&gt;
+                    &lt;label for=&quot;id_fs_items-0-DELETE&quot;&gt;Delete:&lt;/label&gt;
+                &lt;input type=&quot;checkbox&quot; name=&quot;items-0-DELETE&quot; id=&quot;id_fs_items-0-DELETE&quot;&gt;
+                &lt;/div&gt;
+                &lt;/fieldset&gt;
+                &lt;fieldset&gt;
+                &lt;legend&gt;Item 2&lt;/legend&gt;
+                &lt;div&gt;
+                    &lt;label for=&quot;id_fs_items-1-product&quot;&gt;Product:&lt;/label&gt;
+                &lt;ul class=&quot;errorlist&quot; id=&quot;id_fs_items-1-product_error&quot;&gt;&lt;li&gt;This field is required.&lt;/li&gt;&lt;/ul&gt;
+                &lt;input type=&quot;text&quot; name=&quot;items-1-product&quot; aria-invalid=&quot;true&quot; aria-describedby=&quot;id_fs_items-1-product_error&quot; id=&quot;id_fs_items-1-product&quot;&gt;
+                &lt;/div&gt;
+                  &lt;div&gt;
+                    &lt;label for=&quot;id_fs_items-1-quantity&quot;&gt;Quantity:&lt;/label&gt;
+                &lt;ul class=&quot;errorlist&quot; id=&quot;id_fs_items-1-quantity_error&quot;&gt;&lt;li&gt;Ensure this value is greater than or equal to 1.&lt;/li&gt;&lt;/ul&gt;
+                &lt;input type=&quot;number&quot; name=&quot;items-1-quantity&quot; value=&quot;0&quot; min=&quot;1&quot; aria-invalid=&quot;true&quot; aria-describedby=&quot;id_fs_items-1-quantity_error&quot; id=&quot;id_fs_items-1-quantity&quot;&gt;
+                &lt;/div&gt;
+                  &lt;div&gt;
+                    &lt;label for=&quot;id_fs_items-1-DELETE&quot;&gt;Delete:&lt;/label&gt;
+                &lt;input type=&quot;checkbox&quot; name=&quot;items-1-DELETE&quot; id=&quot;id_fs_items-1-DELETE&quot;&gt;
+                &lt;/div&gt;
+                &lt;/fieldset&gt;
+
+            &lt;/div&gt;
+            &lt;div class=&quot;ss-c-form__actions&quot;&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;ss-c-button&quot;&gt;Send&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/form&gt;</code></pre>
+    </div>
+</div>
+
+    </section>
+
+    
+    <section class="ss-c-demo__subsection" data-label="Explicit classes" data-level="2">
+        <h2>Explicit classes</h2>
+        <p>For hand-written templates: <code>ss-c-form__field</code>, <code>__label</code>, <code>__help</code>, <code>__errors</code>, <code>__errors--nonfield</code>, <code>__fieldset</code>/<code>__legend</code>, <code>__choices</code>, <code>__field--inline</code> and <code>__field--invalid</code>.</p>
+             
+
+<div class="ss-c-preview--vertical">
+    
+    <div class="ss-c-preview__live">
+        <form class="ss-c-form" method="post" action="#" novalidate aria-label="Order (explicit classes)" style="max-width: 560px">
+            <ul class="ss-c-form__errors ss-c-form__errors--nonfield">
+                <li>Your session expired. Check the fields and send again.</li>
+            </ul>
+            <div class="ss-c-form__field ss-c-form__field--invalid">
+                <label class="ss-c-form__label ss-c-form__required" for="ex-email">E-mail</label>
+                <div class="ss-c-form__help" id="ex-email_helptext">We only use it to send the receipt.</div>
+                <ul class="ss-c-form__errors" id="ex-email_error"><li>Enter a valid email address.</li></ul>
+                <input class="ss-c-input" type="email" id="ex-email" name="email" value="anna@" aria-invalid="true" aria-describedby="ex-email_helptext ex-email_error">
+            </div>
+            <fieldset class="ss-c-form__fieldset">
+                <legend class="ss-c-form__legend">Delivery</legend>
+                <div class="ss-c-form__field">
+                    <label class="ss-c-form__label" for="ex-street">Street</label>
+                    <input class="ss-c-input" type="text" id="ex-street" name="street">
+                </div>
+                <div class="ss-c-form__field">
+                    <span class="ss-c-form__label" id="ex-slot-label">Time slot</span>
+                    <div class="ss-c-form__choices" role="radiogroup" aria-labelledby="ex-slot-label">
+                        <label><input class="ss-c-radio" type="radio" name="slot" checked> Morning</label>
+                        <label><input class="ss-c-radio" type="radio" name="slot"> Afternoon</label>
+                    </div>
+                </div>
+                <div class="ss-c-form__field ss-c-form__field--inline">
+                    <label for="ex-gift">Gift wrap</label>
+                    <input class="ss-c-checkbox" type="checkbox" id="ex-gift" name="gift">
+                </div>
+            </fieldset>
+            <div class="ss-c-form__actions">
+                <button type="submit" class="ss-c-button">Order</button>
+                <button type="button" class="ss-c-button">Cancel</button>
+            </div>
+        </form>
+
+        </div>
+    
+    
+    <div class="ss-c-preview__info" aria-live="polite">
+        <small>HTML</small>
+        <button
+            type="button"
+            class="ss-c-preview__copy-button"
+            onclick="ClipboardHelper.copyById('code-snippet-5')"
+        >
+            Copy
+        </button>
+    </div>
+    <div class="ss-c-preview__code">
+        <pre
+            class="ss-c-line-numbers"
+        ><code id="code-snippet-5" class="language-html">&lt;form class=&quot;ss-c-form&quot; method=&quot;post&quot; action=&quot;#&quot; novalidate aria-label=&quot;Order (explicit classes)&quot; style=&quot;max-width: 560px&quot;&gt;
+            &lt;ul class=&quot;ss-c-form__errors ss-c-form__errors--nonfield&quot;&gt;
+                &lt;li&gt;Your session expired. Check the fields and send again.&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;div class=&quot;ss-c-form__field ss-c-form__field--invalid&quot;&gt;
+                &lt;label class=&quot;ss-c-form__label ss-c-form__required&quot; for=&quot;ex-email&quot;&gt;E-mail&lt;/label&gt;
+                &lt;div class=&quot;ss-c-form__help&quot; id=&quot;ex-email_helptext&quot;&gt;We only use it to send the receipt.&lt;/div&gt;
+                &lt;ul class=&quot;ss-c-form__errors&quot; id=&quot;ex-email_error&quot;&gt;&lt;li&gt;Enter a valid email address.&lt;/li&gt;&lt;/ul&gt;
+                &lt;input class=&quot;ss-c-input&quot; type=&quot;email&quot; id=&quot;ex-email&quot; name=&quot;email&quot; value=&quot;anna@&quot; aria-invalid=&quot;true&quot; aria-describedby=&quot;ex-email_helptext ex-email_error&quot;&gt;
+            &lt;/div&gt;
+            &lt;fieldset class=&quot;ss-c-form__fieldset&quot;&gt;
+                &lt;legend class=&quot;ss-c-form__legend&quot;&gt;Delivery&lt;/legend&gt;
+                &lt;div class=&quot;ss-c-form__field&quot;&gt;
+                    &lt;label class=&quot;ss-c-form__label&quot; for=&quot;ex-street&quot;&gt;Street&lt;/label&gt;
+                    &lt;input class=&quot;ss-c-input&quot; type=&quot;text&quot; id=&quot;ex-street&quot; name=&quot;street&quot;&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;ss-c-form__field&quot;&gt;
+                    &lt;span class=&quot;ss-c-form__label&quot; id=&quot;ex-slot-label&quot;&gt;Time slot&lt;/span&gt;
+                    &lt;div class=&quot;ss-c-form__choices&quot; role=&quot;radiogroup&quot; aria-labelledby=&quot;ex-slot-label&quot;&gt;
+                        &lt;label&gt;&lt;input class=&quot;ss-c-radio&quot; type=&quot;radio&quot; name=&quot;slot&quot; checked&gt; Morning&lt;/label&gt;
+                        &lt;label&gt;&lt;input class=&quot;ss-c-radio&quot; type=&quot;radio&quot; name=&quot;slot&quot;&gt; Afternoon&lt;/label&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;ss-c-form__field ss-c-form__field--inline&quot;&gt;
+                    &lt;label for=&quot;ex-gift&quot;&gt;Gift wrap&lt;/label&gt;
+                    &lt;input class=&quot;ss-c-checkbox&quot; type=&quot;checkbox&quot; id=&quot;ex-gift&quot; name=&quot;gift&quot;&gt;
+                &lt;/div&gt;
+            &lt;/fieldset&gt;
+            &lt;div class=&quot;ss-c-form__actions&quot;&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;ss-c-button&quot;&gt;Order&lt;/button&gt;
+                &lt;button type=&quot;button&quot; class=&quot;ss-c-button&quot;&gt;Cancel&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/form&gt;</code></pre>
+    </div>
+</div>
+
+    </section>
+</section>
+                </main>
+            </div>
+
+            <div class="ss-l-frame__area--middle_right ss-c-rail"><aside class="ss-c-sidebar ss-c-sidebar--right" aria-label="Page contents">
+    <div
+        id="sidebar_right_navigation"
+        class="ss-c-ribbon--right ss-c-ribbon--inverted"
+    ></div>
+
+    <nav
+        id="sidebar_right_menu"
+        class="ss-c-sidebar__menu"
+        aria-label="On this page"
+    >
+        <div class="ss-c-sidebar__content ss-c-rail"><div id="toc" class="ss-c-toc"></div>
+
+        </div>
+    </nav>
+    <div class="ss-c-sidebar__control">
+        <button
+            type="button"
+            class="ss-c-flipper--right"
+            id="sidebar_right_switch"
+            aria-expanded="false"
+            aria-controls="sidebar_right_menu"
+            aria-label="Show table of contents"
+        >
+            <span class="ss-c-flipper__icon"></span>
+        </button>
+    </div>
+</aside>
+
+            </div>
+
+            <footer class="ss-l-frame__area--bottom">
+<section
+    id="ticker-bottom"
+    class="ss-c-ticker--horizontal--bottom"
+    role="marquee"
+    aria-label="News ticker"
+    tabindex="0"
+>
+    <ul class="ss-c-ticker__track">
+        <li class="ss-c-ticker__item">Latest update: Stylescape v0.1 now live!</li>
+        <li class="ss-c-ticker__item">New components released today.</li>
+        <li class="ss-c-ticker__item">☼ Tip: Use mixins for modular SCSS!</li>
+    </ul>
+</section>
+<div class="ss-c-ribbon--bottom ss-c-ribbon--inverted">
+    <div class="ss-c-ribbon__slot--horizontal_center">
+        <small>
+            &copy; 2026 <span aria-hidden="true">SC∆PE PRESS</span>
+            <span class="ss-c-visually-hidden">Scape Press</span>
+        </small>
+    </div>
+</div>
+</footer>
+        </div><div
+    class="ss-c-demo__guide ss-c-guide--graph_centered"
+    data-grid="graph"
+    aria-hidden="true"
+></div>
+<div
+    class="ss-c-demo__guide ss-c-guide--baseline"
+    data-grid="baseline"
+    aria-hidden="true"
+></div>
+
+
+        <script type="module">
+            import { initializeStylescape } from "/js/index.js";
+            initializeStylescape();
+        </script>
+    </body>
+</html>

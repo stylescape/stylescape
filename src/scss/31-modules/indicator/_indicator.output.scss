@@ -34,3 +34,54 @@
         @include ind.ss-indicator-item-at(bottom, end);
     }
 }
+
+@layer ss.components {
+    .#{$ss-prefix-module}-status-dot {
+        @include ind.ss-indicator-status-dot;
+    }
+    .#{$ss-prefix-module}-status-dot--sm {
+        @include ind.ss-indicator-status-dot-size(sm);
+    }
+    .#{$ss-prefix-module}-status-dot--lg {
+        @include ind.ss-indicator-status-dot-size(lg);
+    }
+    .#{$ss-prefix-module}-status-dot--success {
+        @include ind.ss-indicator-status-dot-tone(success);
+    }
+    .#{$ss-prefix-module}-status-dot--warning {
+        @include ind.ss-indicator-status-dot-tone(warning);
+    }
+    .#{$ss-prefix-module}-status-dot--error {
+        @include ind.ss-indicator-status-dot-tone(error);
+    }
+    .#{$ss-prefix-module}-status-dot--info {
+        @include ind.ss-indicator-status-dot-tone(info);
+    }
+    .#{$ss-prefix-module}-status-dot--muted {
+        @include ind.ss-indicator-status-dot-tone(muted);
+    }
+    .#{$ss-prefix-module}-status-dot--pulse {
+        @include ind.ss-indicator-status-dot-pulse;
+    }
+
+    .#{$ss-prefix-module}-status-bar {
+        @include ind.ss-indicator-status-bar;
+    }
+    .#{$ss-prefix-module}-status-bar__item {
+        @include ind.ss-indicator-status-bar-item;
+    }
+    .#{$ss-prefix-module}-status-bar__spacer {
+        @include ind.ss-indicator-status-bar-spacer;
+    }
+
+    @keyframes ss-status-dot-pulse {
+        from {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+        to {
+            transform: scale(2.5);
+            opacity: 0;
+        }
+    }
+}

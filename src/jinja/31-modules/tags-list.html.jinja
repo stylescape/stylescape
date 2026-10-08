@@ -3,7 +3,12 @@
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
+        <p>
+            Examples for the <code>ss-c-tags-list</code> module: a wrapping
+            list of tag links, each styled with
+            <code>ss-c-tags-list__item</code>.
+        </p>
     </header>
 
     {% set section_title = "Basic Tags List" %}
@@ -12,88 +17,52 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <div>
-            <span class="ss-c-tags__title">Tags:</span>
-            <ul class="ss-c-tags__list">
-                <li class="ss-c-tags__list-item">
-                    <a href="#" class="ss-c-tags__link">Design</a>
-                </li>
-                <li class="ss-c-tags__list-item">
-                    <a href="#" class="ss-c-tags__link">Development</a>
-                </li>
-                <li class="ss-c-tags__list-item">
-                    <a href="#" class="ss-c-tags__link">CSS</a>
-                </li>
-            </ul>
-        </div>
-        {% endset %}
-        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
-        <div class="ss-c-demo__code">
-            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
-        </div>
+        <ul class="ss-c-tags-list" aria-label="Tags">
+            <li><a href="#" class="ss-c-tags-list__item">Design</a></li>
+            <li><a href="#" class="ss-c-tags-list__item">Development</a></li>
+            <li><a href="#" class="ss-c-tags-list__item">CSS</a></li>
+        </ul>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 
-    {% set section_title = "Tags with Hidden Items" %}
+    {% set section_title = "Labelled Tags" %}
     <section
         class="ss-c-demo__subsection"
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <div>
-            <span class="ss-c-tags__title">Categories:</span>
-            <ul class="ss-c-tags__list">
-                <li class="ss-c-tags__list-item">
-                    <a href="#" class="ss-c-tags__link">JavaScript</a>
-                </li>
-                <li class="ss-c-tags__list-item">
-                    <a href="#" class="ss-c-tags__link">TypeScript</a>
-                </li>
-                <li class="ss-c-tags__list-item ss-c-tags__list-item--hidden">
-                    <a href="#" class="ss-c-tags__link">Hidden Tag</a>
-                </li>
-                <li class="ss-c-tags__list-item">
-                    <a href="#" class="ss-c-tags__link">React</a>
-                </li>
-            </ul>
-            <span class="ss-c-tags__more-link">Show more...</span>
-        </div>
-        {% endset %}
-        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
-        <div class="ss-c-demo__code">
-            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
-        </div>
+        <p id="tags-categories"><strong>Categories</strong></p>
+        <ul class="ss-c-tags-list" aria-labelledby="tags-categories">
+            <li><a href="#" class="ss-c-tags-list__item">JavaScript</a></li>
+            <li><a href="#" class="ss-c-tags-list__item">TypeScript</a></li>
+            <li><a href="#" class="ss-c-tags-list__item">React</a></li>
+        </ul>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 
-    {% set section_title = "Tags List Inline" %}
+    {% set section_title = "Static Tags" %}
     <section
         class="ss-c-demo__subsection"
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
+        <p>Tags that are not links use a <code>span</code>.</p>
         {% set code_snippet %}
         <p>Filed under:</p>
-
-        <ul class="ss-c-tags__list">
-            <li class="ss-c-tags__list-item">
-                <a href="#" class="ss-c-tags__link">News</a>
-            </li>
-            <li class="ss-c-tags__list-item">
-                <a href="#" class="ss-c-tags__link">Technology</a>
-            </li>
-            <li class="ss-c-tags__list-item">
-                <a href="#" class="ss-c-tags__link">Updates</a>
-            </li>
+        <ul class="ss-c-tags-list">
+            <li><span class="ss-c-tags-list__item">News</span></li>
+            <li><span class="ss-c-tags-list__item">Technology</span></li>
+            <li><span class="ss-c-tags-list__item">Updates</span></li>
         </ul>
-        {% endset %}
-        <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
-        <div class="ss-c-demo__code">
-            <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
-        </div>
+        {% endset %} {% set language="HTML" %} {%- include
+        "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 </section>
 

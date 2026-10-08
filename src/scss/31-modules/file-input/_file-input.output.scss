@@ -6,6 +6,11 @@
         @include fi.ss-file-input;
         @include fi.ss-file-input-size(md);
     }
+    // Stacked file inputs (block-width) keep apart.
+    .#{$ss-prefix-module}-file-input + .#{$ss-prefix-module}-file-input {
+        @include fi.ss-file-input-stack-gap;
+    }
+
     .#{$ss-prefix-module}-file-input--xs { @include fi.ss-file-input-size(xs); }
     .#{$ss-prefix-module}-file-input--sm { @include fi.ss-file-input-size(sm); }
     .#{$ss-prefix-module}-file-input--lg { @include fi.ss-file-input-size(lg); }
@@ -14,12 +19,12 @@
     .#{$ss-prefix-module}-file-input--ghost { @include fi.ss-file-input-ghost; }
 
     .#{$ss-prefix-module}-file-input--primary {
-        @include fi.ss-file-input-variant(var(--ss-color-primary, var(--ss-color-accent)), var(--ss-color-on-accent, #fff));
+        @include fi.ss-file-input-variant(var(--ss-color-primary, var(--ss-color-accent)), var(--ss-color-on-accent));
     }
     .#{$ss-prefix-module}-file-input--success {
-        @include fi.ss-file-input-variant(var(--ss-color-success), var(--ss-color-on-success, #fff));
+        @include fi.ss-file-input-variant(var(--ss-color-success), var(--ss-color-on-success));
     }
     .#{$ss-prefix-module}-file-input--error {
-        @include fi.ss-file-input-variant(var(--ss-color-error), var(--ss-color-on-error, #fff));
+        @include fi.ss-file-input-variant(var(--ss-color-error), var(--ss-color-on-error));
     }
 }

@@ -11,13 +11,16 @@ import { CountdownTimer } from "../animations/CountdownTimer.js";
 import { Preloader } from "../animations/Preloader.js";
 import { ProgressBarManager } from "../animations/ProgressBarManager.js";
 import { ButtonHandler } from "../buttons/ButtonHandler.js";
+import { FabManager } from "../buttons/FabManager.js";
 import { ToggleSwitchManager } from "../buttons/ToggleSwitchManager.js";
 import { FilterManager } from "../data/FilterManager.js";
 import { RatingManager } from "../data/RatingManager.js";
+import { TableSortManager } from "../data/TableSortManager.js";
 import { AccordionManager } from "../elements/AccordionManager.js";
 import { AsideHandler } from "../elements/AsideHandler.js";
 import { CollapsibleSectionManager } from "../elements/CollapsibleSectionManager.js";
 import { CollapsibleTableHandler } from "../elements/CollapsibleTableHandler.js";
+import { ContextMenuManager } from "../elements/ContextMenuManager.js";
 import { DetailManager } from "../elements/DetailManager.js";
 import { DropdownHandler } from "../elements/DropdownHandler.js";
 import { ExclusiveDetails } from "../elements/ExclusiveDetails.js";
@@ -25,13 +28,20 @@ import { Modal } from "../elements/Modal.js";
 import { NotificationManager } from "../elements/NotificationManager.js";
 import { PasswordToggleManager } from "../elements/PasswordToggleManager.js";
 import { ResponsiveMenuManager } from "../elements/ResponsiveMenuManager.js";
+import { SheetManager } from "../elements/SheetManager.js";
+import { SplitPaneManager } from "../elements/SplitPaneManager.js";
 import { Tooltip } from "../elements/Tooltip.js";
 // Form Components
+import { TreeViewManager } from "../elements/TreeViewManager.js";
 import { AutocompleteManager } from "../forms/AutocompleteManager.js";
+import { DropZoneManager } from "../forms/DropZoneManager.js";
 import { FormValidator } from "../forms/FormValidator.js";
 // Scroll Components
+import { NumberStepperManager } from "../forms/NumberStepperManager.js";
+import { RangeOutputManager } from "../forms/RangeOutputManager.js";
 import { ScrollToTopButton } from "../interface/scroll.js";
 import { ImageCompareSlider } from "../media/ImageCompareSlider.js";
+import LazyLoadManager from "../media/LazyLoadManager.js";
 import { DragAndDropManager } from "../mouse/DragAndDropManager.js";
 import { ScrollSpyManager } from "../scroll/ScrollSpyManager.js";
 import { CookieConsentManager } from "../storage/CookieConsentManager.js";
@@ -181,13 +191,12 @@ export const componentRegistry = new Map<string, RegistryEntry>([
     [
         "theme-toggle",
         {
+            // The element itself is the toggle (button or checkbox); a
+            // `toggleId` still points at another element, as before.
             handler: (el, config) => {
-                const toggleId =
-                    config.toggleId ||
-                    el.dataset.ssThemeToggleId ||
-                    el.id ||
-                    "themeToggle";
-                return ThemeToggler.registerOnLoad(toggleId);
+                const toggleId = config.toggleId || el.dataset.ssThemeToggleId;
+                if (toggleId) return ThemeToggler.registerOnLoad(toggleId);
+                return ThemeToggler.bind(el);
             },
             defaults: {},
         },
@@ -819,6 +828,102 @@ export const componentRegistry = new Map<string, RegistryEntry>([
                             : undefined),
                     ...config,
                 });
+            },
+            defaults: {},
+        },
+    ],
+
+    // ========================================================================
+    // Layout, data display and form controls
+    // ========================================================================
+
+    [
+        "split-pane",
+        {
+            handler: (el) =>
+                el.matches(".ss-c-split__handle, [data-ss-split-handle]")
+                    ? new SplitPaneManager(el)
+                    : SplitPaneManager.initAll(el),
+            defaults: {},
+        },
+    ],
+
+    [
+        "sheet",
+        {
+            handler: (el) => new SheetManager(el),
+            defaults: {},
+        },
+    ],
+
+    [
+        "tree",
+        {
+            handler: (el, config) => new TreeViewManager(el, config),
+            defaults: {},
+        },
+    ],
+
+    [
+        "table-sort",
+        {
+            handler: (el, config) =>
+                new TableSortManager(el as HTMLTableElement, config),
+            defaults: {},
+        },
+    ],
+
+    [
+        "range-output",
+        {
+            handler: (el) => new RangeOutputManager(el),
+            defaults: {},
+        },
+    ],
+
+    [
+        "stepper",
+        {
+            handler: (el) => new NumberStepperManager(el),
+            defaults: {},
+        },
+    ],
+
+    [
+        "dropzone",
+        {
+            handler: (el, config) =>
+                new DropZoneManager(el, { maxSize: config.maxSize }),
+            defaults: {},
+        },
+    ],
+
+    [
+        "fab",
+        {
+            handler: (el) => new FabManager(el),
+            defaults: {},
+        },
+    ],
+
+    [
+        "lazy",
+        {
+            handler: (el, config) => new LazyLoadManager(el, config),
+            defaults: {},
+        },
+    ],
+
+    [
+        "context-menu",
+        {
+            // On the target; `data-ss-context-menu-menu` names the menu's id.
+            handler: (el, config) => {
+                const id = config.menu || el.dataset.ssContextMenuMenu;
+                const menu = id ? document.getElementById(id) : null;
+                return menu
+                    ? new ContextMenuManager(menu, { target: el })
+                    : null;
             },
             defaults: {},
         },

@@ -1,0 +1,62 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./control-grid.mixins" as cg;
+
+$_cg: ".#{$ss-prefix-module}-control-grid";
+
+@layer ss.components {
+    // <div class="ss-c-control-grid">
+    //   <h3 class="ss-c-control-grid__heading">Cursor</h3>
+    //   <label class="ss-c-control-grid__label" for="size">Size</label>
+    //   <div class="ss-c-control-grid__control"><input id="size" …></div>
+    //   …
+    // </div>
+    // Optional rows (`.ss-c-control-grid__row`) line up on the parent grid.
+    #{$_cg} {
+        @include cg.ss-control-grid;
+    }
+    #{$_cg}--compact {
+        @include cg.ss-control-grid-compact;
+    }
+    #{$_cg}--stacked {
+        @include cg.ss-control-grid-stacked;
+    }
+    @include cg.ss-control-grid-below-stack {
+        #{$_cg}:not(#{$_cg}--fixed) {
+            @include cg.ss-control-grid-stacked;
+        }
+    }
+
+    #{$_cg}__row {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-template-columns: subgrid;
+        align-items: center;
+    }
+    #{$_cg}__label {
+        @include cg.ss-control-grid-label;
+    }
+    #{$_cg}__control {
+        @include cg.ss-control-grid-control;
+    }
+    #{$_cg}__heading {
+        @include cg.ss-control-grid-heading;
+    }
+    // Current value next to a control (sliders, read-only properties).
+    #{$_cg}__value {
+        @include cg.ss-control-grid-value;
+    }
+    // A full-width cell (actions, notes).
+    #{$_cg}__full {
+        grid-column: 1 / -1;
+    }
+
+    // <div class="ss-c-control-row"> one line of buttons / small controls
+    .#{$ss-prefix-module}-control-row {
+        @include cg.ss-control-row;
+    }
+    .#{$ss-prefix-module}-control-row__label {
+        @include cg.ss-control-grid-label;
+        margin-inline-end: q(4);
+    }
+}

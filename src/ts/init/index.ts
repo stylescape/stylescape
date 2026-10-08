@@ -267,15 +267,18 @@ export function initializeStylescape(): void {
         }
     });
 
+    // The frame can fire after the document (and jsdom's Window) is gone,
+    // e.g. during teardown; there is nothing to set up then.
+    const startGridManager = (): void => {
+        if (typeof Window === "undefined") return;
+        new GridManager();
+    };
+
     if (document.readyState === "complete") {
-        requestAnimationFrame(() => {
-            new GridManager();
-        });
+        requestAnimationFrame(startGridManager);
     } else {
         window.addEventListener("load", () => {
-            requestAnimationFrame(() => {
-                new GridManager();
-            });
+            requestAnimationFrame(startGridManager);
         });
     }
 }

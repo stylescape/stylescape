@@ -1,0 +1,80 @@
+{#-
+    stylescape/macros/tables.html.jinja
+    ===========================================================================
+        {% from "stylescape/macros/tables.html.jinja" import table %}
+
+    cell_value(row, "author.name") -> the cell text (also used by the detail page)
+    table(columns, rows, caption=None, empty=None, classes="")
+        columns: names ("title") or mappings
+            {"attr": "author.name", "label": "Author", "link": True,
+             "numeric": False, "empty": "–"}
+          `attr` is a dotted path, read with item-then-attribute lookup;
+          a callable value is called (`get_status_display`). `link` wraps the
+          cell in a link to the row's get_absolute_url() (or row.url).
+        rows: model instances or mappings (`object_list`).
+        Row actions: call it with a block, which receives the row:
+            {% call(row) table(cols, object_list) %}
+                <a href="{{ url('item-edit', pk=row.pk) }}">Edit</a>
+            {% endcall %}
+-#}
+
+{%- macro cell_value(row, path) -%}
+    {%- set ns = namespace(v=row) -%}
+    {%- for part in path.split(".") -%}
+        {%- if ns.v is defined and ns.v is not none -%}
+            {%- set ns.v = ns.v[part] -%}
+            {%- if ns.v is callable and ns.v.all is not defined %}{% set ns.v = ns.v() %}{% endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {{- ns.v if ns.v is defined and ns.v is not none else "" -}}
+{%- endmacro %}
+
+{%- macro _row_url(row) -%}
+    {%- if row.get_absolute_url is defined -%}{{ row.get_absolute_url() }}{%- elif row.url is defined -%}{{ row.url }}{%- endif -%}
+{%- endmacro %}
+
+{%- macro table(columns, rows, caption=None, empty=None, classes="") -%}
+    {%- set has_actions = caller is defined %}
+    <div class="ss-c-table-wrapper">
+        <table class="ss-c-table ss-c-table--hover{{ ' ' ~ classes if classes }}">
+            {%- if caption %}
+            <caption>{{ caption }}</caption>
+            {%- endif %}
+            <thead>
+                <tr>
+                    {%- for col in columns %}
+                    {%- set label = col.label if col is mapping and col.label else ((col.attr if col is mapping else col) | replace(".", " ") | replace("_", " ") | capitalize) %}
+                    <th scope="col" class="{{ 'ss-u-text-end' if col is mapping and col.numeric else 'ss-u-text-start' }}">{{ label }}</th>
+                    {%- endfor %}
+                    {%- if has_actions %}
+                    <th scope="col"><span class="ss-u-visually-hidden">{{ _("Actions") }}</span></th>
+                    {%- endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {%- for row in rows %}
+                <tr>
+                    {%- for col in columns %}
+                    {%- set attr = col.attr if col is mapping else col %}
+                    {%- set value = cell_value(row, attr) %}
+                    {%- set text = value if value | string | length else ((col.empty if col is mapping and col.empty is defined else none) or "–") %}
+                    {%- set href = _row_url(row) if col is mapping and col.link else "" %}
+                    {%- if loop.first %}
+                    <th scope="row" class="ss-u-text-start">{% if href %}<a href="{{ href }}">{{ text }}</a>{% else %}{{ text }}{% endif %}</th>
+                    {%- else %}
+                    <td{% if col is mapping and col.numeric %} class="ss-u-text-end"{% endif %}>{% if href %}<a href="{{ href }}">{{ text }}</a>{% else %}{{ text }}{% endif %}</td>
+                    {%- endif %}
+                    {%- endfor %}
+                    {%- if has_actions %}
+                    <td class="ss-u-text-end">{{ caller(row) }}</td>
+                    {%- endif %}
+                </tr>
+                {%- else %}
+                <tr>
+                    <td colspan="{{ columns | length + (1 if has_actions else 0) }}">{{ empty or _("Nothing here yet.") }}</td>
+                </tr>
+                {%- endfor %}
+            </tbody>
+        </table>
+    </div>
+{%- endmacro %}

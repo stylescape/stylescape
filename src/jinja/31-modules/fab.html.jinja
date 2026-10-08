@@ -1,0 +1,90 @@
+{% extends "../base.html.jinja" %} {% set title = "FAB" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-fab</code> module: a floating action button
+        that opens a speed dial of related actions. <code>FabManager</code>
+        (<code>data-ss="fab"</code>) keeps <code>aria-expanded</code> in sync,
+        closes on <kbd class="ss-c-kbd">Esc</kbd>, on a click outside and after an
+        action. Closed actions are hidden from the tab order.
+    </p>
+
+    {% set section_title = "Speed dial" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>Actions stack above the button.</p>
+        {% set code_snippet %}
+        <div style="display: grid; place-items: center; padding-block: 13rem 1rem">
+            <div class="ss-c-fab" data-ss="fab">
+                <button class="ss-c-fab__toggle" type="button" aria-label="Open actions" aria-expanded="false" aria-controls="fab-dial">
+                    <span class="ss-c-fab__icon ss-c-fab__icon--open" aria-hidden="true">+</span>
+                    <span class="ss-c-fab__icon ss-c-fab__icon--close" aria-hidden="true">×</span>
+                </button>
+                <div class="ss-c-fab__actions" id="fab-dial" role="group" aria-label="Quick actions">
+                    <button class="ss-c-fab__action" type="button" aria-label="Reply">↩</button>
+                    <button class="ss-c-fab__action" type="button" aria-label="Share">⇪</button>
+                    <button class="ss-c-fab__action" type="button" aria-label="Archive">▣</button>
+                </div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Open" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>The open state, set by <code>aria-expanded="true"</code> on the toggle (or <code>.is-open</code> on the root).</p>
+        {% set code_snippet %}
+        <div style="display: grid; place-items: center; padding-block: 13rem 1rem">
+            <div class="ss-c-fab is-open">
+                <button class="ss-c-fab__toggle" type="button" aria-label="Close actions" aria-expanded="true" aria-controls="fab-dial-open">
+                    <span class="ss-c-fab__icon ss-c-fab__icon--open" aria-hidden="true">+</span>
+                    <span class="ss-c-fab__icon ss-c-fab__icon--close" aria-hidden="true">×</span>
+                </button>
+                <div class="ss-c-fab__actions" id="fab-dial-open" role="group" aria-label="Quick actions">
+                    <button class="ss-c-fab__action" type="button" aria-label="Reply">↩</button>
+                    <button class="ss-c-fab__action" type="button" aria-label="Share">⇪</button>
+                    <button class="ss-c-fab__action" type="button" aria-label="Archive">▣</button>
+                </div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Radial" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p><code>ss-c-fab--radial</code> fans two to eight actions around the button, starting at the top.</p>
+        {% set code_snippet %}
+        <div style="display: grid; place-items: center; padding-block: 8rem">
+            <div class="ss-c-fab ss-c-fab--radial is-open">
+                <button class="ss-c-fab__toggle" type="button" aria-label="Close actions" aria-expanded="true" aria-controls="fab-radial">
+                    <span class="ss-c-fab__icon ss-c-fab__icon--open" aria-hidden="true">+</span>
+                    <span class="ss-c-fab__icon ss-c-fab__icon--close" aria-hidden="true">×</span>
+                </button>
+                <div class="ss-c-fab__actions" id="fab-radial" role="group" aria-label="Quick actions">
+                    <button class="ss-c-fab__action" type="button" aria-label="New message">✎</button>
+                    <button class="ss-c-fab__action" type="button" aria-label="Attach file">⎘</button>
+                    <button class="ss-c-fab__action" type="button" aria-label="Mute">◌</button>
+                    <button class="ss-c-fab__action" type="button" aria-label="Pin">↥</button>
+                    <button class="ss-c-fab__action" type="button" aria-label="Archive">▣</button>
+                </div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Fixed to the corner" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            Add <code>ss-c-fab--fixed</code> to pin the dial to the bottom-right
+            corner of the viewport (not rendered here, so it does not cover the page).
+        </p>
+        <pre><code>&lt;div class="ss-c-fab ss-c-fab--fixed" data-ss="fab"&gt;…&lt;/div&gt;</code></pre>
+    </section>
+</section>
+{%- endblock %}

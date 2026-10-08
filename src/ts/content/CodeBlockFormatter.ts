@@ -48,6 +48,17 @@ export class CodeBlockFormatter {
             if (formatted !== raw) {
                 block.textContent = formatted;
             }
+
+            // A block that scrolls horizontally must be reachable by keyboard
+            // (WCAG 2.1.1); only those get a tab stop, not every snippet.
+            const pre = block.closest("pre");
+            if (
+                pre &&
+                !pre.hasAttribute("tabindex") &&
+                pre.scrollWidth > pre.clientWidth
+            ) {
+                pre.tabIndex = 0;
+            }
         });
     }
 

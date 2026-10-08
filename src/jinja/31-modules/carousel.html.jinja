@@ -2,7 +2,7 @@
 %}{{ title }}{%- endblock %} {%- block content %}
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             Carousel components for cycling through elements like a slideshow.
         </p>
@@ -14,7 +14,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="
@@ -22,7 +22,7 @@
                 width: 100%;
                 max-width: 600px;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div style="display: flex; transition: transform 0.5s ease">
@@ -96,14 +96,14 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="
                 position: relative;
                 width: 100%;
                 max-width: 600px;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             "
         >
@@ -127,6 +127,7 @@
             </div>
             <!-- Navigation Arrows -->
             <button
+                aria-label="Previous slide"
                 style="
                     position: absolute;
                     left: 16px;
@@ -136,6 +137,7 @@
                     height: 40px;
                     border-radius: 50%;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border: none;
                     cursor: pointer;
                     display: flex;
@@ -148,6 +150,7 @@
                 ←
             </button>
             <button
+                aria-label="Next slide"
                 style="
                     position: absolute;
                     right: 16px;
@@ -157,6 +160,7 @@
                     height: 40px;
                     border-radius: 50%;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border: none;
                     cursor: pointer;
                     display: flex;
@@ -180,14 +184,14 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="
                 position: relative;
                 width: 100%;
                 max-width: 600px;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             "
         >
@@ -224,7 +228,7 @@
                     style="
                         width: 24px;
                         height: 4px;
-                        border-radius: 2px;
+                        border-radius: var(--ss-radius-sm);
                         background: white;
                     "
                 ></span>
@@ -232,7 +236,7 @@
                     style="
                         width: 12px;
                         height: 4px;
-                        border-radius: 2px;
+                        border-radius: var(--ss-radius-sm);
                         background: rgba(255, 255, 255, 0.5);
                     "
                 ></span>
@@ -240,7 +244,7 @@
                     style="
                         width: 12px;
                         height: 4px;
-                        border-radius: 2px;
+                        border-radius: var(--ss-radius-sm);
                         background: rgba(255, 255, 255, 0.5);
                     "
                 ></span>
@@ -248,7 +252,7 @@
                     style="
                         width: 12px;
                         height: 4px;
-                        border-radius: 2px;
+                        border-radius: var(--ss-radius-sm);
                         background: rgba(255, 255, 255, 0.5);
                     "
                 ></span>
@@ -264,7 +268,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             style="
@@ -275,6 +279,9 @@
             "
         >
             <div
+                tabindex="0"
+                role="region"
+                aria-label="Card carousel"
                 style="
                     display: flex;
                     gap: 16px;
@@ -288,8 +295,9 @@
                     style="
                         min-width: 200px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                         overflow: hidden;
                     "
@@ -305,8 +313,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Card 1</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Card 1</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             Description text
                         </p>
                     </div>
@@ -315,8 +323,9 @@
                     style="
                         min-width: 200px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                         overflow: hidden;
                     "
@@ -332,8 +341,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Card 2</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Card 2</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             Description text
                         </p>
                     </div>
@@ -342,8 +351,9 @@
                     style="
                         min-width: 200px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                         overflow: hidden;
                     "
@@ -359,8 +369,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Card 3</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Card 3</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             Description text
                         </p>
                     </div>
@@ -369,8 +379,9 @@
                     style="
                         min-width: 200px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                         overflow: hidden;
                     "
@@ -386,8 +397,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Card 4</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Card 4</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             Description text
                         </p>
                     </div>
@@ -405,30 +416,30 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="ss-c-carousel ss-c-carousel-slider">
             <div class="ss-c-carousel-fixed-item">
                 <button class="ss-c-button">Fixed CTA</button>
             </div>
             <div class="ss-c-carousel-item active" id="carousel-slide-1">
-                <img src="/img/demo1.jpg" alt="Slide 1" />
+                <img src="/img/placeholder/1200x600-demo1.svg" alt="Slide 1" />
                 <div class="ss-c-carousel-caption">
-                    <h2>Slide One</h2>
+                    <h3>Slide One</h3>
                     <p>This is the first slide.</p>
                 </div>
             </div>
             <div class="ss-c-carousel-item" id="carousel-slide-2">
-                <img src="/img/demo2.jpg" alt="Slide 2" />
+                <img src="/img/placeholder/1200x600-demo2.svg" alt="Slide 2" />
                 <div class="ss-c-carousel-caption">
-                    <h2>Slide Two</h2>
+                    <h3>Slide Two</h3>
                     <p>This is the second slide.</p>
                 </div>
             </div>
             <div class="ss-c-carousel-item" id="carousel-slide-3">
-                <img src="/img/demo3.jpg" alt="Slide 3" />
+                <img src="/img/placeholder/1200x600-demo3.svg" alt="Slide 3" />
                 <div class="ss-c-carousel-caption">
-                    <h2>Slide Three</h2>
+                    <h3>Slide Three</h3>
                     <p>This is the third slide.</p>
                 </div>
             </div>
@@ -467,7 +478,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-slideshow"
@@ -476,7 +487,7 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div class="ss-c-slideshow__slides" style="display: flex; height: 100%">
@@ -501,6 +512,7 @@
                 </div>
             </div>
             <button
+                aria-label="Previous slide"
                 class="ss-c-slideshow__prev"
                 style="
                     position: absolute;
@@ -510,6 +522,7 @@
                     width: 44px;
                     height: 44px;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border: none;
                     border-radius: 50%;
                     cursor: pointer;
@@ -522,6 +535,7 @@
                 ←
             </button>
             <button
+                aria-label="Next slide"
                 class="ss-c-slideshow__next"
                 style="
                     position: absolute;
@@ -531,6 +545,7 @@
                     width: 44px;
                     height: 44px;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border: none;
                     border-radius: 50%;
                     cursor: pointer;
@@ -554,7 +569,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-slideshow"
@@ -563,7 +578,7 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div class="ss-c-slideshow__slides" style="height: 100%">
@@ -588,10 +603,12 @@
                     left: 50%;
                     transform: translateX(-50%);
                     display: flex;
-                    gap: 10px;
+                    gap: 14px;
                 "
             >
                 <button
+                    aria-label="Go to slide 1"
+                    aria-current="true"
                     class="ss-c-slideshow__dot active"
                     style="
                         width: 12px;
@@ -604,6 +621,7 @@
                     "
                 ></button>
                 <button
+                    aria-label="Go to slide 2"
                     class="ss-c-slideshow__dot"
                     style="
                         width: 12px;
@@ -616,6 +634,7 @@
                     "
                 ></button>
                 <button
+                    aria-label="Go to slide 3"
                     class="ss-c-slideshow__dot"
                     style="
                         width: 12px;
@@ -628,6 +647,7 @@
                     "
                 ></button>
                 <button
+                    aria-label="Go to slide 4"
                     class="ss-c-slideshow__dot"
                     style="
                         width: 12px;
@@ -652,7 +672,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-slideshow"
@@ -661,7 +681,7 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
@@ -683,15 +703,16 @@
                         bottom: 0;
                         left: 0;
                         right: 0;
+                        transform: none;
                         padding: 40px 24px 24px;
                         background: linear-gradient(
-                            transparent,
-                            rgba(0, 0, 0, 0.7)
+                            rgba(0, 0, 0, 0.25),
+                            rgba(0, 0, 0, 0.8)
                         );
                         color: white;
                     "
                 >
-                    <h3 style="margin: 0 0 8px; font-size: 20px">
+                    <h3 style="margin: 0 0 8px; font-size: 20px; color: inherit">
                         Amazing Landscape
                     </h3>
                     <p style="margin: 0; opacity: 0.9; font-size: 14px">
@@ -700,6 +721,7 @@
                 </div>
             </div>
             <button
+                aria-label="Previous slide"
                 class="ss-c-slideshow__prev"
                 style="
                     position: absolute;
@@ -708,7 +730,7 @@
                     transform: translateY(-50%);
                     width: 40px;
                     height: 40px;
-                    background: rgba(255, 255, 255, 0.2);
+                    background: rgba(0, 0, 0, 0.45);
                     backdrop-filter: blur(4px);
                     border: none;
                     border-radius: 50%;
@@ -720,6 +742,7 @@
                 ←
             </button>
             <button
+                aria-label="Next slide"
                 class="ss-c-slideshow__next"
                 style="
                     position: absolute;
@@ -728,7 +751,7 @@
                     transform: translateY(-50%);
                     width: 40px;
                     height: 40px;
-                    background: rgba(255, 255, 255, 0.2);
+                    background: rgba(0, 0, 0, 0.45);
                     backdrop-filter: blur(4px);
                     border: none;
                     border-radius: 50%;
@@ -750,15 +773,18 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <div class="ss-c-slideshow ss-c-slideshow--thumbnails" style="max-width: 600px">
+        <div
+            class="ss-c-slideshow ss-c-slideshow--thumbnails"
+            style="display: block; max-width: 600px; margin-top: 0; overflow: visible"
+        >
             <div
                 style="
                     position: relative;
                     aspect-ratio: 16/9;
                     overflow: hidden;
-                    border-radius: 12px;
+                    border-radius: var(--ss-radius-lg);
                     margin-bottom: 12px;
                 "
             >
@@ -777,6 +803,8 @@
             </div>
             <div class="ss-c-slideshow__thumbs" style="display: flex; gap: 8px">
                 <button
+                    aria-label="Show slide 1"
+                    aria-current="true"
                     class="ss-c-slideshow__thumb active"
                     style="
                         flex: 1;
@@ -786,12 +814,13 @@
                             #43e97b 0%,
                             #38f9d7 100%
                         );
-                        border: 3px solid var(--color_fill_primary);
-                        border-radius: 6px;
+                        border: 3px solid var(--ss-color-accent);
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     "
                 ></button>
                 <button
+                    aria-label="Show slide 2"
                     class="ss-c-slideshow__thumb"
                     style="
                         flex: 1;
@@ -802,12 +831,13 @@
                             #fee140 100%
                         );
                         border: 3px solid transparent;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
                 ></button>
                 <button
+                    aria-label="Show slide 3"
                     class="ss-c-slideshow__thumb"
                     style="
                         flex: 1;
@@ -818,12 +848,13 @@
                             #764ba2 100%
                         );
                         border: 3px solid transparent;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
                 ></button>
                 <button
+                    aria-label="Show slide 4"
                     class="ss-c-slideshow__thumb"
                     style="
                         flex: 1;
@@ -834,7 +865,7 @@
                             #f5576c 100%
                         );
                         border: 3px solid transparent;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
@@ -852,7 +883,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-slideshow ss-c-slideshow--fullscreen"
@@ -861,7 +892,7 @@
                 max-width: 700px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 background: #000;
             "
         >
@@ -882,15 +913,16 @@
                 "
             >
                 <div style="text-align: center; color: white">
-                    <h2
+                    <h3
                         style="
                             margin: 0 0 16px;
                             font-size: 36px;
                             font-weight: 300;
+                            color: inherit;
                         "
                     >
                         Welcome
-                    </h2>
+                    </h3>
                     <p style="margin: 0 0 24px; opacity: 0.8">
                         Explore our collection
                     </p>
@@ -900,7 +932,7 @@
                             background: white;
                             color: #302b63;
                             border: none;
-                            border-radius: 24px;
+                            border-radius: var(--ss-radius-3xl);
                             font-weight: 500;
                             cursor: pointer;
                         "
@@ -932,6 +964,7 @@
                 "
             >
                 <button
+                    aria-label="Previous slide"
                     style="
                         width: 48px;
                         height: 48px;
@@ -945,6 +978,7 @@
                     ←
                 </button>
                 <button
+                    aria-label="Next slide"
                     style="
                         width: 48px;
                         height: 48px;
@@ -969,10 +1003,16 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <div class="ss-c-slideshow ss-c-slideshow--cards" style="padding: 20px 0">
+        <div
+            class="ss-c-slideshow ss-c-slideshow--cards"
+            style="display: block; padding: 20px 0"
+        >
             <div
+                tabindex="0"
+                role="region"
+                aria-label="Card slideshow"
                 style="
                     display: flex;
                     gap: 16px;
@@ -984,10 +1024,12 @@
                 <div
                     class="ss-c-slideshow__card"
                     style="
+                        display: block;
                         min-width: 280px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         overflow: hidden;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
                     "
@@ -1003,8 +1045,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Card Title</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Card Title</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             Short description text
                         </p>
                     </div>
@@ -1012,10 +1054,12 @@
                 <div
                     class="ss-c-slideshow__card"
                     style="
+                        display: block;
                         min-width: 280px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         overflow: hidden;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
                     "
@@ -1031,8 +1075,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Another Card</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Another Card</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             Description here
                         </p>
                     </div>
@@ -1040,10 +1084,12 @@
                 <div
                     class="ss-c-slideshow__card"
                     style="
+                        display: block;
                         min-width: 280px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         overflow: hidden;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
                     "
@@ -1059,8 +1105,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Third Card</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Third Card</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             More content
                         </p>
                     </div>
@@ -1078,43 +1124,59 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <div class="ss-c-slideshow ss-c-slideshow--progress" style="max-width: 600px">
+        <div
+            class="ss-c-slideshow ss-c-slideshow--progress"
+            style="
+                position: relative;
+                width: 100%;
+                height: auto;
+                max-width: 600px;
+                background: none;
+            "
+        >
             <div
                 class="ss-c-slideshow__progress"
-                style="display: flex; gap: 4px; margin-bottom: 12px"
+                style="
+                    position: static;
+                    display: flex;
+                    gap: 4px;
+                    height: auto;
+                    margin-bottom: 12px;
+                    background: none;
+                "
             >
                 <div
                     style="
                         flex: 1;
                         height: 3px;
-                        background: var(--color_fill_primary);
-                        border-radius: 2px;
+                        background: var(--ss-color-accent);
+                        border-radius: var(--ss-radius-sm);
                     "
                 ></div>
                 <div
                     style="
                         flex: 1;
                         height: 3px;
-                        background: var(--color_line_secondary);
-                        border-radius: 2px;
+                        background: var(--ss-color-border);
+                        border-radius: var(--ss-radius-sm);
                     "
                 ></div>
                 <div
                     style="
                         flex: 1;
                         height: 3px;
-                        background: var(--color_line_secondary);
-                        border-radius: 2px;
+                        background: var(--ss-color-border);
+                        border-radius: var(--ss-radius-sm);
                     "
                 ></div>
                 <div
                     style="
                         flex: 1;
                         height: 3px;
-                        background: var(--color_line_secondary);
-                        border-radius: 2px;
+                        background: var(--ss-color-border);
+                        border-radius: var(--ss-radius-sm);
                     "
                 ></div>
             </div>
@@ -1123,7 +1185,7 @@
                     position: relative;
                     aspect-ratio: 16/9;
                     overflow: hidden;
-                    border-radius: 12px;
+                    border-radius: var(--ss-radius-lg);
                 "
             >
                 <div
@@ -1141,10 +1203,10 @@
                         justify-content: center;
                     "
                 >
-                    <div style="text-align: center; color: white">
-                        <span style="font-size: 48px">◎</span>
-                        <h3 style="margin: 16px 0 8px">Step 1 of 4</h3>
-                        <p style="margin: 0; opacity: 0.9">
+                    <div style="text-align: center; color: #1a1a1a">
+                        <span style="font-size: 48px" aria-hidden="true">◎</span>
+                        <h3 style="margin: 16px 0 8px; color: inherit">Step 1 of 4</h3>
+                        <p style="margin: 0">
                             Getting started with the basics
                         </p>
                     </div>
@@ -1160,9 +1222,10 @@
                 <button
                     style="
                         padding: 10px 24px;
-                        background: var(--color_fill_secondary);
+                        background: var(--ss-color-surface-muted);
+                        color: var(--ss-color-text);
                         border: none;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     "
                 >
@@ -1171,10 +1234,10 @@
                 <button
                     style="
                         padding: 10px 24px;
-                        background: var(--color_fill_primary);
-                        color: white;
+                        background: var(--ss-color-accent);
+                        color: var(--ss-color-on-accent);
                         border: none;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     "
                 >
@@ -1200,7 +1263,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-slideshow"
@@ -1210,12 +1273,12 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
                 class="ss-c-slideshow--slides"
-                style="display: flex; transition: transform 0.5s ease"
+                style="display: flex; height: 100%; transition: transform 0.5s ease"
             >
                 <div
                     class="ss-c-slideshow--slide"
@@ -1264,6 +1327,7 @@
                 </div>
             </div>
             <button
+                aria-label="Previous slide"
                 class="ss-c-slideshow--prev"
                 style="
                     position: absolute;
@@ -1274,6 +1338,7 @@
                     height: 44px;
                     border: none;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border-radius: 50%;
                     cursor: pointer;
                     font-size: 18px;
@@ -1282,6 +1347,7 @@
                 ←
             </button>
             <button
+                aria-label="Next slide"
                 class="ss-c-slideshow--next"
                 style="
                     position: absolute;
@@ -1292,6 +1358,7 @@
                     height: 44px;
                     border: none;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border-radius: 50%;
                     cursor: pointer;
                     font-size: 18px;
@@ -1311,7 +1378,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-slideshow"
@@ -1321,10 +1388,10 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
-            <div class="ss-c-slideshow--slides">
+            <div class="ss-c-slideshow--slides" style="height: 100%">
                 <div
                     class="ss-c-slideshow--slide active"
                     style="
@@ -1342,10 +1409,12 @@
                     left: 50%;
                     transform: translateX(-50%);
                     display: flex;
-                    gap: 10px;
+                    gap: 14px;
                 "
             >
                 <button
+                    aria-label="Go to slide 1"
+                    aria-current="true"
                     class="ss-c-slideshow--indicator active"
                     style="
                         width: 12px;
@@ -1358,6 +1427,7 @@
                     "
                 ></button>
                 <button
+                    aria-label="Go to slide 2"
                     class="ss-c-slideshow--indicator"
                     style="
                         width: 12px;
@@ -1370,6 +1440,7 @@
                     "
                 ></button>
                 <button
+                    aria-label="Go to slide 3"
                     class="ss-c-slideshow--indicator"
                     style="
                         width: 12px;
@@ -1382,6 +1453,7 @@
                     "
                 ></button>
                 <button
+                    aria-label="Go to slide 4"
                     class="ss-c-slideshow--indicator"
                     style="
                         width: 12px;
@@ -1406,7 +1478,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-slideshow"
@@ -1416,7 +1488,7 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
@@ -1434,15 +1506,16 @@
                         bottom: 0;
                         left: 0;
                         right: 0;
+                        transform: none;
                         padding: 40px 24px 24px;
                         background: linear-gradient(
-                            transparent,
-                            rgba(0, 0, 0, 0.7)
+                            rgba(0, 0, 0, 0.25),
+                            rgba(0, 0, 0, 0.8)
                         );
                         color: white;
                     "
                 >
-                    <h3 style="margin: 0 0 8px; font-size: 20px">
+                    <h3 style="margin: 0 0 8px; font-size: 20px; color: inherit">
                         Beautiful Sunset
                     </h3>
                     <p style="margin: 0; opacity: 0.9; font-size: 14px">
@@ -1457,9 +1530,10 @@
                     position: absolute;
                     top: 16px;
                     right: 16px;
+                    left: auto;
                     padding: 6px 12px;
                     background: rgba(0, 0, 0, 0.5);
-                    border-radius: 20px;
+                    border-radius: var(--ss-radius-2xl);
                     color: white;
                     font-size: 13px;
                 "
@@ -1478,7 +1552,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div class="ss-c-slideshow-container" style="max-width: 600px">
             <div
@@ -1487,12 +1561,15 @@
                     width: 100%;
                     aspect-ratio: 16/9;
                     background: linear-gradient(135deg, #667eea, #764ba2);
-                    border-radius: 12px;
+                    border-radius: var(--ss-radius-lg);
                     margin-bottom: 12px;
                 "
             ></div>
             <div
                 class="ss-c-slideshow--thumbnails"
+                tabindex="0"
+                role="region"
+                aria-label="Slide thumbnails"
                 style="display: flex; gap: 8px; overflow-x: auto"
             >
                 <div
@@ -1502,9 +1579,9 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #667eea, #764ba2);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
-                        border: 3px solid var(--color_fill_primary);
+                        border: 3px solid var(--ss-color-accent);
                     "
                 ></div>
                 <div
@@ -1514,7 +1591,7 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #f093fb, #f5576c);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
@@ -1526,7 +1603,7 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #4facfe, #00f2fe);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
@@ -1538,7 +1615,7 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #43e97b, #38f9d7);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
@@ -1550,7 +1627,7 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #fa709a, #fee140);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
@@ -1567,7 +1644,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
         <div
             class="ss-c-slideshow ss-c-slideshow--fade"
@@ -1576,7 +1653,7 @@
                 width: 100%;
                 max-width: 600px;
                 aspect-ratio: 16/9;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             "
         >
@@ -1614,6 +1691,8 @@
                 class="ss-c-slideshow--controls"
                 style="
                     position: absolute;
+                    top: auto;
+                    right: auto;
                     bottom: 20px;
                     left: 50%;
                     transform: translateX(-50%);
@@ -1626,7 +1705,8 @@
                         padding: 8px 16px;
                         border: none;
                         background: rgba(255, 255, 255, 0.9);
-                        border-radius: 6px;
+                        color: #111111;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     "
                 >
@@ -1637,7 +1717,8 @@
                         padding: 8px 16px;
                         border: none;
                         background: rgba(255, 255, 255, 0.9);
-                        border-radius: 6px;
+                        color: #111111;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     "
                 >

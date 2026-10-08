@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "./stat.config" as config;
 @use "../../01-core/external" as *;
+@use "../../01-core/prefix" as *;
 
 @mixin ss-stats {
     display: inline-flex;
@@ -15,6 +16,14 @@
 @mixin ss-stats-vertical {
     flex-direction: column;
     overflow-x: visible;
+
+    // Dividers run between rows, not down the left edge.
+    > .#{$ss-prefix-module}-stat + .#{$ss-prefix-module}-stat {
+
+        border-inline-start: 0;
+        border-block-start: map.get(config.$ss-stat-config, divider);
+    }
+
 }
 
 @mixin ss-stat {
@@ -39,6 +48,12 @@
 
 @mixin ss-stat-value {
     grid-area: value;
+    margin: 0;
+    color: map.get(config.$ss-stat-config, fg);
+    font-family: inherit;
+
+
+
     font-size: map.get(config.$ss-stat-config, value-font-size);
     font-weight: 700;
     line-height: 1.1;

@@ -1,9 +1,12 @@
 {% extends "../base.html.jinja" %} {% set title = "Map" %} {%- block title %}{{
-title }}{%- endblock %} {%- block content %}
+title }}{%- endblock %} {%- block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" crossorigin="" />
+{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
     </header>
 
     {% set section_title = "Map Canvas" %}
@@ -12,7 +15,7 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>
             The map canvas takes up the full viewport. For demo purposes, the
             container is constrained.
@@ -23,7 +26,7 @@ title }}{%- endblock %} {%- block content %}
             style="
                 width: 100%;
                 height: 400px;
-                background: #e0e0e0;
+                background: var(--ss-color-surface-muted);
                 position: relative;
             "
         >
@@ -38,7 +41,7 @@ title }}{%- endblock %} {%- block content %}
                         justify-content: center;
                         align-items: center;
                         height: 100%;
-                        color: #666;
+                        color: var(--ss-color-text-muted);
                     "
                 >
                     Map Canvas Placeholder
@@ -58,36 +61,47 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <div
-            class="ss-c-layer_control_base"
-            style="padding: 16px; background: #f5f5f5; border-radius: 8px"
-        >
-            <h3>Base Layers</h3>
-            <label>
-                <span>
-                    <input
-                        type="radio"
-                        name="base-layer"
-                        value="streets"
-                        checked
-                    />
-                    <span>Streets</span>
-                </span>
-            </label>
-            <label>
-                <span>
-                    <input type="radio" name="base-layer" value="satellite" />
-                    <span>Satellite</span>
-                </span>
-            </label>
-            <label>
-                <span>
-                    <input type="radio" name="base-layer" value="terrain" />
-                    <span>Terrain</span>
-                </span>
-            </label>
+        <!-- Layer controls fill their positioned map container -->
+        <div style="position: relative; min-height: 200px">
+            <div
+                class="ss-c-layer_control_base"
+                role="group"
+                aria-labelledby="map-base-layers"
+                style="
+                    padding: 16px;
+                    background: var(--ss-color-surface-alt);
+                    color: var(--ss-color-text);
+                    border-radius: var(--ss-radius-lg);
+                    pointer-events: auto;
+                "
+            >
+                <h3 id="map-base-layers">Base Layers</h3>
+                <label>
+                    <span>
+                        <input
+                            type="radio"
+                            name="base-layer"
+                            value="streets"
+                            checked
+                        />
+                        <span>Streets</span>
+                    </span>
+                </label>
+                <label>
+                    <span>
+                        <input type="radio" name="base-layer" value="satellite" />
+                        <span>Satellite</span>
+                    </span>
+                </label>
+                <label>
+                    <span>
+                        <input type="radio" name="base-layer" value="terrain" />
+                        <span>Terrain</span>
+                    </span>
+                </label>
+            </div>
         </div>
         {% endset %}
         <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
@@ -102,37 +116,150 @@ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         {% set code_snippet %}
-        <div
-            class="ss-c-layer_control_overlay"
-            style="padding: 16px; background: #f5f5f5; border-radius: 8px"
-        >
-            <h3>Overlays</h3>
-            <label>
-                <span>
-                    <input type="checkbox" name="overlay" value="traffic" />
-                    <span>Traffic</span>
-                </span>
-            </label>
-            <label>
-                <span>
-                    <input type="checkbox" name="overlay" value="transit" />
-                    <span>Transit</span>
-                </span>
-            </label>
-            <label>
-                <span>
-                    <input type="checkbox" name="overlay" value="bike" />
-                    <span>Bike Lanes</span>
-                </span>
-            </label>
+        <!-- Layer controls fill their positioned map container -->
+        <div style="position: relative; min-height: 200px">
+            <div
+                class="ss-c-layer_control_overlay"
+                role="group"
+                aria-labelledby="map-overlays"
+                style="
+                    padding: 16px;
+                    background: var(--ss-color-surface-alt);
+                    color: var(--ss-color-text);
+                    border-radius: var(--ss-radius-lg);
+                    pointer-events: auto;
+                "
+            >
+                <h3 id="map-overlays">Overlays</h3>
+                <label>
+                    <span>
+                        <input type="checkbox" name="overlay" value="traffic" />
+                        <span>Traffic</span>
+                    </span>
+                </label>
+                <label>
+                    <span>
+                        <input type="checkbox" name="overlay" value="transit" />
+                        <span>Transit</span>
+                    </span>
+                </label>
+                <label>
+                    <span>
+                        <input type="checkbox" name="overlay" value="bike" />
+                        <span>Bike Lanes</span>
+                    </span>
+                </label>
+            </div>
         </div>
         {% endset %}
         <div class="ss-c-demo__preview">{{ code_snippet | safe }}</div>
         <div class="ss-c-demo__code">
             <pre><code class="ss-c-language-html">{{ code_snippet | e }}</code></pre>
         </div>
+    </section>
+    {% set section_title = "Leaflet controls" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            Inside <code>ss-c-map</code>, Leaflet's zoom bar, layer switcher,
+            attribution, scale, popups and tooltips read the colour, radius, shadow
+            and focus tokens, so they follow the dark theme. Leaflet still positions
+            and sizes them. Load stylescape after <code>leaflet.css</code>. The markup
+            below is what Leaflet 1.9 renders (no tiles in this demo).
+        </p>
+        {% set code_snippet %}
+        <div class="ss-c-map">
+            <div class="ss-c-map__canvas leaflet-container leaflet-touch" tabindex="0" aria-label="Harbour map (Leaflet)">
+                <div class="leaflet-pane leaflet-map-pane">
+                    <div class="leaflet-pane leaflet-tooltip-pane">
+                        <div class="leaflet-tooltip leaflet-tooltip-top" role="tooltip" style="left: 120px; top: 210px;">Pier 4</div>
+                    </div>
+                    <div class="leaflet-pane leaflet-popup-pane">
+                        <div class="leaflet-popup" style="left: 330px; bottom: -150px;">
+                            <div class="leaflet-popup-content-wrapper">
+                                <div class="leaflet-popup-content" style="width: 168px;"><strong>Harbour office</strong><br />Open 8:00–17:00</div>
+                            </div>
+                            <div class="leaflet-popup-tip-container"><div class="leaflet-popup-tip"></div></div>
+                            <a class="leaflet-popup-close-button" role="button" aria-label="Close popup" href="#close"><span aria-hidden="true">×</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="leaflet-control-container">
+                    <div class="leaflet-top leaflet-left">
+                        <div class="leaflet-control-zoom leaflet-bar leaflet-control">
+                            <a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in"><span aria-hidden="true">+</span></a>
+                            <a class="leaflet-control-zoom-out leaflet-disabled" href="#" title="Zoom out" role="button" aria-label="Zoom out" aria-disabled="true"><span aria-hidden="true">−</span></a>
+                        </div>
+                    </div>
+                    <div class="leaflet-top leaflet-right">
+                        <div class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control">
+                            <section class="leaflet-control-layers-list" aria-label="Layers">
+                                <div class="leaflet-control-layers-base">
+                                    <label><span><input type="radio" class="leaflet-control-layers-selector" name="leaflet-base" checked /><span> Streets</span></span></label>
+                                    <label><span><input type="radio" class="leaflet-control-layers-selector" name="leaflet-base" /><span> Aerial</span></span></label>
+                                </div>
+                                <div class="leaflet-control-layers-separator"></div>
+                                <div class="leaflet-control-layers-overlays">
+                                    <label><span><input type="checkbox" class="leaflet-control-layers-selector" checked /><span> Moorings</span></span></label>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="leaflet-bottom leaflet-left">
+                        <div class="leaflet-control-scale leaflet-control"><div class="leaflet-control-scale-line" style="width: 82px;">200 m</div></div>
+                    </div>
+                    <div class="leaflet-bottom leaflet-right">
+                        <div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com">Leaflet</a> | © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "MapLibre and Mapbox GL controls" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            The same for <code>.maplibregl-ctrl*</code> and <code>.mapboxgl-ctrl*</code>:
+            control groups, attribution, scale and popups (every anchor). The
+            libraries draw their control icons as dark images; in dark mode they
+            are inverted through <code>--ss-map-icon-filter</code>.
+        </p>
+        {% set code_snippet %}
+        <div class="ss-c-map">
+            <div class="ss-c-map__canvas maplibregl-map" tabindex="0" aria-label="Harbour map (MapLibre)">
+                <div class="maplibregl-popup maplibregl-popup-anchor-bottom" style="transform: translate(-50%, -100%) translate(380px, 190px);">
+                    <div class="maplibregl-popup-tip"></div>
+                    <div class="maplibregl-popup-content">
+                        <button class="maplibregl-popup-close-button" type="button" aria-label="Close popup">×</button>
+                        <strong>Ferry terminal</strong><br />Next departure 14:20
+                    </div>
+                </div>
+                <div class="maplibregl-control-container">
+                    <div class="maplibregl-ctrl-top-right">
+                        <div class="maplibregl-ctrl maplibregl-ctrl-group">
+                            <button class="maplibregl-ctrl-zoom-in" type="button" title="Zoom in" aria-label="Zoom in"><span class="maplibregl-ctrl-icon" aria-hidden="true"></span></button>
+                            <button class="maplibregl-ctrl-zoom-out" type="button" title="Zoom out" aria-label="Zoom out"><span class="maplibregl-ctrl-icon" aria-hidden="true"></span></button>
+                            <button class="maplibregl-ctrl-compass" type="button" title="Reset bearing to north" aria-label="Reset bearing to north"><span class="maplibregl-ctrl-icon" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                    <div class="maplibregl-ctrl-bottom-left">
+                        <div class="maplibregl-ctrl maplibregl-ctrl-scale" style="width: 74px;">100 m</div>
+                    </div>
+                    <div class="maplibregl-ctrl-bottom-right">
+                        <div class="maplibregl-ctrl maplibregl-ctrl-attrib">
+                            <div class="maplibregl-ctrl-attrib-inner"><a href="https://maplibre.org/">MapLibre</a> | © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
 </section>
 

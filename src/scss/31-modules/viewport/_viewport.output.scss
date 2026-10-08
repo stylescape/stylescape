@@ -1,0 +1,81 @@
+@use "../../01-core/prefix" as *;
+@use "./viewport.mixins" as viewport;
+
+$_v: ".#{$ss-prefix-module}-viewport";
+
+@layer ss.components {
+    #{$_v} {
+        @include viewport.ss-viewport;
+
+        > :is(canvas, iframe, video),
+        &__canvas {
+            @include viewport.ss-viewport-canvas;
+        }
+    }
+
+    #{$_v}--fill {
+        @include viewport.ss-viewport-fill;
+    }
+
+    @each $name, $ratio in viewport.ss-viewport-config(ratios) {
+        #{$_v}--#{$name} {
+            aspect-ratio: $ratio;
+        }
+    }
+
+    // ------------------------------------------------------------------------
+    // Loading: set aria-busy="true" (or --loading) on the frame while the
+    // scene loads; the overlay fades out when it's removed.
+    // ------------------------------------------------------------------------
+
+    #{$_v}__loading {
+        @include viewport.ss-viewport-loading;
+    }
+
+    #{$_v}[aria-busy="true"] #{$_v}__loading,
+    #{$_v}--loading #{$_v}__loading {
+        @include viewport.ss-viewport-loading-active;
+    }
+
+    #{$_v}__progress {
+        @include viewport.ss-viewport-progress;
+    }
+
+    // ------------------------------------------------------------------------
+    // Error and empty states: shown whenever present (toggle with `hidden`).
+    // ------------------------------------------------------------------------
+
+    #{$_v}__message {
+        @include viewport.ss-viewport-overlay;
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    #{$_v}__message--error {
+        color: var(--ss-color-error);
+    }
+
+    #{$_v}__title {
+        margin: 0;
+        font-size: var(--ss-font-size-md);
+        font-weight: var(--ss-font-weight-semibold);
+        color: var(--ss-color-text);
+    }
+
+    // Short usage hint ("Drag to orbit · Scroll to zoom") in a corner.
+    #{$_v}__hint {
+        position: absolute;
+        inset-inline-start: var(--ss-space-2);
+        inset-block-end: var(--ss-space-2);
+        z-index: 1;
+        margin: 0;
+        padding: var(--ss-space-1) var(--ss-space-2);
+        background-color: var(--ss-color-background);
+        color: var(--ss-color-text-secondary);
+        font-size: var(--ss-font-size-xs);
+        border-radius: var(--ss-radius-sm);
+        pointer-events: none;
+    }
+}

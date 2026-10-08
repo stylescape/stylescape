@@ -1,15 +1,21 @@
-<!-- templates/includes/typography.html.jinja -->
-<section id="typography">
+{% extends "../base.html.jinja" %} {% set title = "Text-level Semantics" %} {%-
+block title %}{{ title }}{%- endblock %} {%- block content %}
+
+<section id="typography" class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header">
+        <h1>{{ title }}</h1>
+        <p>Native inline text elements and preformatted text.</p>
+    </header>
     <pre>This is preformatted text using <code>&lt;pre&gt;&lt;/pre&gt;</code></pre>
-    <article class="ss-c-text-markup">
-        <div>
+    <article>
+        <p>
             <strong>Strong</strong>
             ,
             <em>Emphasis</em>
             ,
             <mark>Mark</mark>
-        </div>
-        <div>
+        </p>
+        <p>
             <b>B</b>
             ,
             <i>I</i>
@@ -17,44 +23,44 @@
             <u>U</u>
             ,
             <small>Small</small>
-        </div>
-        <div>
+        </p>
+        <p>
             <sub>Subscript</sub>
             ,
             <sup>Superscript</sup>
-        </div>
-        <div>
+        </p>
+        <p>
             <s>Strikethrough</s>
             ,
             <ins>Inserted</ins>
             ,
             <del>Deleted</del>
-        </div>
-        <div>
+        </p>
+        <p>
             <bdi>BDI: محمد</bdi>
             ,
             <bdo dir="rtl">BDO: محمد</bdo>
-        </div>
-        <div>
+        </p>
+        <p>
             <abbr title="World Wide Web">WWW</abbr>
             ,
             <cite>Every HTML Element</cite>
             ,
             <code>&lt;code&gt;</code>
-        </div>
-        <div>
+        </p>
+        <p>
             <data value="123">Data</data>
             ,
             <time datetime="2026-01-23">Jan 23, 2026</time>
-        </div>
-        <div>
+        </p>
+        <p>
             <kbd>Ctrl</kbd>
             ,
             <dfn>Definition</dfn>
             ,
             <var>Variable</var>
-        </div>
-        <div>
+        </p>
+        <p>
             <ruby>
                 漢
                 <rp>(</rp>
@@ -66,14 +72,15 @@
             ,
             <wbr />
             Word Break
-        </div>
-        <div>
+        </p>
+        <p>
             <code>console.log('Hello, world!');</code>
             – inline code snippet
-        </div>
+        </p>
         <pre><code>function greet(name) {
   return `Hello, ${name}!`;
 }
 console.log(greet('HTML'));</code></pre>
     </article>
 </section>
+{%- endblock %}

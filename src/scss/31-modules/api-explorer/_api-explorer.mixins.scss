@@ -1,0 +1,101 @@
+@use "sass:map";
+@use "./api-explorer.config" as config;
+
+@function _cfg($key) {
+    @return map.get(config.$ss-api-explorer-config, $key);
+}
+
+@mixin ss-api-explorer {
+    --ss-api-explorer-height: #{_cfg(height)};
+
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    inline-size: 100%;
+    block-size: var(--ss-api-explorer-height);
+    min-block-size: _cfg(min-height);
+    overflow: hidden;
+
+    background-color: _cfg(bg);
+    border: _cfg(border);
+    border-radius: _cfg(radius);
+}
+
+@mixin ss-api-explorer-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: _cfg(header-gap);
+    padding: _cfg(header-padding);
+
+    background-color: _cfg(header-bg);
+    border-block-end: _cfg(border);
+    font-size: var(--ss-font-size-sm);
+}
+
+/// Holds the tool. An iframe or `.graphiql-container` child fills the
+/// remaining height; anything else (Swagger UI, Redoc) scrolls in here.
+@mixin ss-api-explorer-body {
+    position: relative;
+    flex: 1 1 auto;
+    min-block-size: 0;
+    overflow: auto;
+    // Repaint so a `data-theme="light"` island on the body shows.
+    background-color: var(--ss-color-background);
+    color: var(--ss-color-text);
+
+    > :is(iframe, .graphiql-container) {
+        display: block;
+        inline-size: 100%;
+        block-size: 100%;
+        border: 0;
+    }
+}
+
+/// GraphiQL 2+/3 custom properties: fonts and radii only. Its colours are
+/// HSL triplets (`--color-base: 219, 28%, 100%`) that tokens can't feed;
+/// toggle GraphiQL's own dark theme (`graphiql-dark` on `body`) instead.
+@mixin ss-api-explorer-vendor-graphiql {
+    .graphiql-container {
+        --font-family: var(--ss-font-family-base);
+        --font-family-mono: var(--ss-font-family-mono);
+        --border-radius-2: var(--ss-radius-xs);
+        --border-radius-4: var(--ss-radius-sm);
+        --border-radius-8: var(--ss-radius-md);
+        --border-radius-12: var(--ss-radius-lg);
+        block-size: 100%;
+    }
+}
+
+/// Swagger UI: page fonts, full width, no outer margin.
+@mixin ss-api-explorer-vendor-swagger {
+    .swagger-ui {
+        font-family: var(--ss-font-family-base);
+
+        :is(.info .title, .info p, .info li, .opblock-tag, .opblock .opblock-summary-description,
+            .opblock .opblock-summary-operation-id, .opblock .opblock-summary-path,
+            .tab li, .parameter__name, .parameter__type, .response-col_status,
+            .response-col_links, .btn, .model-title, .model, table thead tr th,
+            table thead tr td, .opblock-description-wrapper p, .scheme-container label) {
+            font-family: var(--ss-font-family-base);
+        }
+
+        :is(.microlight, pre, code, .opblock .opblock-summary-path) {
+            font-family: var(--ss-font-family-mono);
+        }
+
+        .wrapper {
+            max-inline-size: none;
+            padding-inline: var(--ss-space-4);
+        }
+
+        .information-container .info {
+            margin-block: var(--ss-space-4);
+        }
+    }
+}
+
+/// Read one key of `$ss-api-explorer-config` (for the output file).
+@function ss-api-explorer-config($key) {
+    @return map.get(config.$ss-api-explorer-config, $key);
+}

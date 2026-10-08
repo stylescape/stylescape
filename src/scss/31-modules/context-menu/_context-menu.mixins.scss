@@ -1,0 +1,114 @@
+@use "sass:map";
+@use "./context-menu.config" as config;
+@use "../../01-core/external" as *;
+
+@function _cfg($key) {
+    @return map.get(config.$ss-context-menu-config, $key);
+}
+
+/// Floating panel. `position: fixed` because the manager places it at
+/// viewport coordinates (the pointer, or the trigger's box).
+@mixin ss-context-menu {
+    position: fixed;
+    z-index: _cfg(z-index);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-width: _cfg(min-width);
+    max-width: _cfg(max-width);
+    max-height: calc(100vh - #{q(16)});
+    margin: 0;
+    padding: _cfg(padding);
+    overflow-y: auto;
+
+    background-color: _cfg(bg);
+    color: _cfg(fg);
+    border: q(1) solid _cfg(border);
+    border-radius: _cfg(radius);
+    box-shadow: _cfg(shadow);
+    font-size: _cfg(font-size);
+    list-style: none;
+
+    &[hidden] {
+        display: none;
+    }
+}
+
+@mixin ss-context-menu-item {
+    display: flex;
+    align-items: center;
+    gap: _cfg(item-gap);
+    box-sizing: border-box;
+    width: 100%;
+    min-height: _cfg(item-min-height);
+    margin: 0;
+    padding: _cfg(item-padding);
+
+    font: inherit;
+    color: inherit;
+    text-align: start;
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    border-radius: var(--ss-radius-sm);
+    cursor: pointer;
+
+    &:hover {
+        background-color: _cfg(item-hover-bg);
+    }
+
+    // Roving focus is the selection highlight; keep the ring for
+    // keyboard users on top of the fill.
+    &:focus-visible,
+    &:focus {
+        background-color: _cfg(item-focus-bg);
+        color: _cfg(item-focus-fg);
+        outline: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color);
+        outline-offset: calc(-1 * var(--ss-focus-ring-width));
+    }
+
+    &[aria-disabled="true"],
+    &:disabled {
+        color: _cfg(muted);
+        background: transparent;
+        cursor: not-allowed;
+    }
+
+    &[aria-checked="true"]::after {
+        content: "\2713";
+        margin-inline-start: auto;
+    }
+}
+
+@mixin ss-context-menu-icon {
+    flex: 0 0 _cfg(icon-size);
+    inline-size: _cfg(icon-size);
+    block-size: _cfg(icon-size);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: _cfg(muted);
+}
+
+@mixin ss-context-menu-shortcut {
+    margin-inline-start: auto;
+    padding-inline-start: q(16);
+    font-family: var(--ss-font-family-mono);
+    font-size: var(--ss-font-size-xs);
+    color: _cfg(muted);
+    white-space: nowrap;
+}
+
+@mixin ss-context-menu-separator {
+    block-size: 0;
+    margin: q(4) q(-4);
+    border: 0;
+    border-block-start: q(1) solid _cfg(border);
+}
+
+@mixin ss-context-menu-heading {
+    padding: q(6) q(10) q(2);
+    font-size: var(--ss-font-size-xs);
+    font-weight: var(--ss-font-weight-semibold);
+    color: _cfg(muted);
+}

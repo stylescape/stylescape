@@ -1,0 +1,170 @@
+@use "sass:map";
+@use "./split.config" as config;
+@use "../../01-core/external" as *;
+@use "../../01-core/prefix" as *;
+
+/// Two panes side by side (or stacked with `--vertical`). The primary pane
+/// is sized by `--ss-split-size`; the other takes the rest.
+@mixin ss-split {
+    --ss-split-size: #{map.get(config.$ss-split-config, size)};
+
+    display: flex;
+    flex-direction: row;
+    min-inline-size: 0;
+    min-block-size: 0;
+    block-size: 100%;
+}
+
+@mixin ss-split-vertical {
+    flex-direction: column;
+}
+
+@mixin ss-split-pane {
+    position: relative;
+    flex: 1 1 0;
+    min-inline-size: 0;
+    min-block-size: 0;
+    overflow: auto;
+}
+
+@mixin ss-split-pane-primary {
+    flex: 0 0 var(--ss-split-size);
+}
+
+/// The strip between the panes: a wide hit area whose negative margins
+/// overlap the panes, so the gap between them stays a hairline. Used by a
+/// bare handle, or by a `__gutter` that holds a handle and a toggle.
+@mixin ss-split-strip {
+    $cfg: config.$ss-split-config;
+
+    position: relative;
+    flex: 0 0 map.get($cfg, handle-size);
+    margin-inline: calc(
+        (#{map.get($cfg, handle-size)} - #{map.get($cfg, line-width)}) / -2
+    );
+    z-index: var(--ss-z-10, 10);
+}
+
+@mixin ss-split-strip-vertical {
+    $cfg: config.$ss-split-config;
+
+    margin-inline: 0;
+    margin-block: calc(
+        (#{map.get($cfg, handle-size)} - #{map.get($cfg, line-width)}) / -2
+    );
+}
+
+/// Gutter: centres the collapse toggle over a handle that fills it.
+@mixin ss-split-gutter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/// The separator: a hairline that turns the accent colour on hover, focus
+/// and while dragging.
+@mixin ss-split-handle {
+    $cfg: config.$ss-split-config;
+
+    @include ss-split-strip;
+
+    cursor: col-resize;
+    touch-action: none;
+    user-select: none;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset-block: 0;
+        inset-inline-start: 50%;
+        inline-size: map.get($cfg, line-width);
+        transform: translateX(-50%);
+        background-color: map.get($cfg, line-color);
+        transition:
+            background-color var(--ss-duration-150) var(--ss-ease-out),
+            inline-size var(--ss-duration-150) var(--ss-ease-out);
+    }
+
+    &:hover::before,
+    &:focus-visible::before,
+    &.is-dragging::before {
+        inline-size: q(3);
+        background-color: map.get($cfg, active-color);
+    }
+
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color);
+        outline-offset: calc(var(--ss-focus-ring-offset) * -1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &::before {
+            transition: none;
+        }
+    }
+}
+
+@mixin ss-split-handle-vertical {
+    $cfg: config.$ss-split-config;
+
+    @include ss-split-strip-vertical;
+
+    cursor: row-resize;
+
+    &::before {
+        inset-block: auto;
+        inset-inline: 0;
+        inset-block-start: 50%;
+        inline-size: auto;
+        block-size: map.get($cfg, line-width);
+        transform: translateY(-50%);
+    }
+
+    &:hover::before,
+    &:focus-visible::before,
+    &.is-dragging::before {
+        inline-size: auto;
+        block-size: q(3);
+    }
+}
+
+/// Small button in a `__gutter`, over the handle, that collapses the
+/// primary pane. It is the handle's sibling: a separator must not contain
+/// another focusable control.
+@mixin ss-split-toggle {
+    $cfg: config.$ss-split-config;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: map.get($cfg, toggle-size);
+    block-size: map.get($cfg, toggle-size);
+    padding: 0;
+    flex: none;
+
+    background-color: var(--ss-color-surface);
+    color: var(--ss-color-text);
+    border: var(--ss-a-border-width-1, #{q(1)}) solid
+        var(--ss-color-border-strong);
+    cursor: pointer;
+
+    // Chevron drawn with borders: points toward the primary pane.
+    &::before {
+        content: "";
+        inline-size: q(6);
+        block-size: q(6);
+        border-block-end: q(2) solid currentColor;
+        border-inline-start: q(2) solid currentColor;
+        transform: translateX(#{q(1)}) rotate(45deg);
+    }
+
+    &:hover {
+        background-color: var(--ss-color-surface-hover);
+    }
+
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color);
+        outline-offset: var(--ss-focus-ring-offset);
+    }
+}

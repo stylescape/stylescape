@@ -8,10 +8,11 @@ $input-group-config: (
     "addon-padding": q(6) q(12),
     "addon-padding-sm": q(4) q(8),
     "addon-padding-lg": q(8) q(16),
-    "addon-background": var(--ss-color-fill-muted, #f4f4f4),
-    "addon-color": var(--ss-color-text, #1a1a1a),
-    "border-color": var(--ss-color-line, #e5e5e5),
+    "addon-background": var(--ss-color-fill-muted),
+    "addon-color": var(--ss-color-text),
+    "border-color": var(--ss-color-line),
     "border-radius": 0, // sharp corners by default
-    "focus-ring": 0 0 0 q(3.2)
-        color-mix(in srgb, var(--ss-color-accent, #2563eb) 25%, transparent),
+    // Shared focus-ring tokens, drawn as a box-shadow around the whole group.
+    "focus-ring": 0 0 0 var(--ss-focus-ring-width, #{q(2)})
+        var(--ss-focus-ring-color, currentColor),
 ) !default;

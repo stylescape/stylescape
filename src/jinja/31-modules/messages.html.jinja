@@ -1,0 +1,88 @@
+{% extends "../base.html.jinja" %} {% set title = "Messages" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Django's <code>messages</code> framework on top of the <code>alert</code> and
+        <code>toast</code> modules. The message's <code>level_tag</code>
+        (<code>debug</code>, <code>info</code>, <code>success</code>,
+        <code>warning</code>, <code>error</code>) is the modifier, so the template
+        needs no mapping:
+        <code>class="ss-c-alert ss-c-alert--{{ '{{' }} message.level_tag {{ '}}' }}"</code>.
+        Extra tags stay available in <code>message.extra_tags</code>.
+    </p>
+
+    {% set section_title = "Inline list" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            <code>ss-c-messages</code> resets the list; the alerts space themselves. Wrap the text of
+            errors only in <code>role="alert"</code> (inside the <code>li</code>, so the
+            list keeps its semantics); a page full of info messages then doesn't
+            interrupt a screen reader.
+        </p>
+        {% set code_snippet %}
+        <ul class="ss-c-messages" aria-label="Messages">
+            <li class="ss-c-alert ss-c-alert--debug">SQL queries: 14 in 32 ms.</li>
+            <li class="ss-c-alert ss-c-alert--info">Your export is being prepared.</li>
+            <li class="ss-c-alert ss-c-alert--success">The project “Harbour” was added successfully.</li>
+            <li class="ss-c-alert ss-c-alert--warning">Your subscription ends in 3 days.</li>
+            <li class="ss-c-alert ss-c-alert--error"><span role="alert">Please correct the errors below.</span></li>
+        </ul>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Dismissible" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <ul class="ss-c-messages" aria-label="Messages">
+            <li class="ss-c-alert ss-c-alert--success">
+                <p class="ss-c-alert__body">Changes saved.</p>
+                <button type="button" class="ss-c-alert__close" aria-label="Dismiss message">✕</button>
+            </li>
+        </ul>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "As toasts" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            <code>ss-c-messages--toast</code> floats the list in the top-right corner
+            (<code>--ss-z-toast</code>); each message is an <code>ss-c-toast</code> with
+            the same modifiers. Shown in place here with a static wrapper.
+        </p>
+        {% set code_snippet %}
+        <ul class="ss-c-messages ss-c-messages--toast" aria-label="Notifications" style="position: static">
+            <li class="ss-c-toast ss-c-toast--debug">Cache warmed.</li>
+            <li class="ss-c-toast ss-c-toast--info">3 new comments.</li>
+            <li class="ss-c-toast ss-c-toast--success">Profile updated.</li>
+            <li class="ss-c-toast ss-c-toast--warning">Connection is slow.</li>
+            <li class="ss-c-toast ss-c-toast--error"><span role="alert">Upload failed.</span></li>
+        </ul>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Jinja2 template" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>The <code>stylescape/macros/messages.html.jinja</code> macro renders exactly this:</p>
+        {% set code_snippet %}{% raw %}
+{% if messages %}
+<ul class="ss-c-messages" aria-label="Messages">
+    {% for message in messages %}
+    <li class="ss-c-alert ss-c-alert--{{ message.level_tag }}">
+        {%- if message.level_tag == "error" %}<span role="alert">{{ message }}</span>
+        {%- else %}{{ message }}{% endif -%}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}{% endraw %}
+        {% endset %} {% set language="Jinja" %} {% set show_preview = false %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

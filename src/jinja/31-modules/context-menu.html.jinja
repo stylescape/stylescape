@@ -1,0 +1,70 @@
+{% extends "../base.html.jinja" %} {% set title = "Context Menu" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-context-menu</code> module. The menu is a
+        floating <code>role="menu"</code> that <code>ContextMenuManager</code>
+        opens on a right click, or on <kbd class="ss-c-kbd ss-c-kbd--sm">Shift</kbd> +
+        <kbd class="ss-c-kbd ss-c-kbd--sm">F10</kbd> and the
+        <kbd class="ss-c-kbd ss-c-kbd--sm">ContextMenu</kbd> key while its target
+        has focus. Arrow keys, <kbd class="ss-c-kbd ss-c-kbd--sm">Home</kbd>,
+        <kbd class="ss-c-kbd ss-c-kbd--sm">End</kbd> and typing a letter move
+        through the items; <kbd class="ss-c-kbd ss-c-kbd--sm">Esc</kbd> closes it
+        and returns focus to the target.
+    </p>
+
+    {% set section_title = "Static" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p><code>ss-c-context-menu--static</code> renders the menu in the page flow, for documentation.</p>
+        {% set code_snippet %}
+        <div class="ss-c-context-menu ss-c-context-menu--static" role="menu" aria-label="Layer actions (static example)">
+            <div class="ss-c-context-menu__heading" role="presentation">Layer</div>
+            <button class="ss-c-context-menu__item" role="menuitem" type="button" tabindex="-1">
+                <span class="ss-c-context-menu__label">Copy</span>
+                <span class="ss-c-context-menu__shortcut">Ctrl C</span>
+            </button>
+            <button class="ss-c-context-menu__item" role="menuitem" type="button" tabindex="-1" aria-disabled="true">
+                <span class="ss-c-context-menu__label">Paste</span>
+                <span class="ss-c-context-menu__shortcut">Ctrl V</span>
+            </button>
+            <button class="ss-c-context-menu__item" role="menuitemcheckbox" aria-checked="true" type="button" tabindex="-1">
+                <span class="ss-c-context-menu__label">Snap to grid</span>
+            </button>
+            <div class="ss-c-context-menu__separator" role="separator"></div>
+            <button class="ss-c-context-menu__item ss-c-context-menu__item--danger" role="menuitem" type="button" tabindex="-1">
+                <span class="ss-c-context-menu__label">Delete layer</span>
+                <span class="ss-c-context-menu__shortcut">Del</span>
+            </button>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "With a target" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            Give the target <code>data-ss="context-menu"</code> and the menu's id in
+            <code>data-ss-context-menu-menu</code>. The target needs a
+            <code>tabindex</code> so keyboard users can reach it. The menu starts
+            <code>hidden</code>; the manager sets <code>role</code> on items that
+            lack one and dispatches <code>ss:context-menu:select</code>.
+        </p>
+        {% set code_snippet %}
+        <div class="ss-c-card ss-c-card__body" tabindex="0" data-ss="context-menu" data-ss-context-menu-menu="demo-context-menu">
+            Right-click here, or focus and press Shift+F10.
+        </div>
+        <div class="ss-c-context-menu" id="demo-context-menu" role="menu" aria-label="Canvas actions" hidden>
+            <button class="ss-c-context-menu__item" role="menuitem" type="button" data-action="zoom-fit">
+                <span class="ss-c-context-menu__label">Zoom to fit</span>
+            </button>
+            <button class="ss-c-context-menu__item" role="menuitem" type="button" data-action="reset">
+                <span class="ss-c-context-menu__label">Reset view</span>
+            </button>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

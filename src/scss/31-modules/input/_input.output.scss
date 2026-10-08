@@ -21,6 +21,12 @@
         @include input.ss-input-error;
     }
 
+    // <textarea class="ss-c-input"> grows like .ss-c-textarea instead of
+    // being clipped to the single-line control height.
+    textarea.#{$ss-prefix-module}-input {
+        @include input.ss-input-textarea;
+    }
+
     .#{$ss-prefix-module}-textarea {
         @include input.ss-input;
         @include input.ss-input-textarea;
@@ -33,6 +39,37 @@
     .#{$ss-prefix-module}-input[list] {
         &::-webkit-calendar-picker-indicator {
             display: none;
+        }
+    }
+}
+
+// Number and date/time fields: aligned digits, and native pickers that
+// follow the theme (`color-scheme` comes from the light/dark tokens) and
+// stay inside the control height.
+@layer ss.components {
+    .#{$ss-prefix-module}-input:is(
+            [type="number"],
+            [type="date"],
+            [type="time"],
+            [type="datetime-local"],
+            [type="month"],
+            [type="week"]
+        ) {
+        font-variant-numeric: tabular-nums;
+    }
+    .#{$ss-prefix-module}-input:is(
+            [type="date"],
+            [type="time"],
+            [type="datetime-local"],
+            [type="month"],
+            [type="week"]
+        ) {
+        &::-webkit-datetime-edit,
+        &::-webkit-datetime-edit-fields-wrapper {
+            padding: 0;
+        }
+        &::-webkit-calendar-picker-indicator {
+            cursor: pointer;
         }
     }
 }

@@ -38,6 +38,12 @@
         color: map.get(config.$ss-pull-quote-config, inverted-fg);
         padding: map.get(config.$ss-pull-quote-config, inverted-padding);
 
+        // The typography `blockquote` colour would otherwise win over the
+        // inherited inverted foreground.
+        .#{$ss-prefix-module}-pull-quote__text {
+            color: inherit;
+        }
+
         .#{$ss-prefix-module}-pull-quote__attribution {
             color: map.get(config.$ss-pull-quote-config, inverted-attribution-color);
         }

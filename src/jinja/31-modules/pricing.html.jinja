@@ -1,0 +1,62 @@
+{% extends "../base.html.jinja" %} {% set title = "Pricing" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-pricing</code> module. Plans wrap into as many
+        columns as fit (at least 15rem each); calls to action line up at the bottom.
+        Excluded features are marked with a dash and should say so in text for screen
+        readers.
+    </p>
+
+    {% set section_title = "Plans" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <ul class="ss-c-pricing" aria-label="Plans">
+            <li class="ss-c-pricing__plan">
+                <h3 class="ss-c-pricing__name">Starter</h3>
+                <p class="ss-c-pricing__description">For a single project.</p>
+                <p class="ss-c-pricing__price">
+                    <span class="ss-c-pricing__currency">€</span>
+                    <span class="ss-c-pricing__amount">0</span>
+                    <span class="ss-c-pricing__period">/ month</span>
+                </p>
+                <ul class="ss-c-pricing__features">
+                    <li class="ss-c-pricing__feature">1 project</li>
+                    <li class="ss-c-pricing__feature">Community support</li>
+                    <li class="ss-c-pricing__feature ss-c-pricing__feature--excluded">Not included: API access</li>
+                </ul>
+                <a class="ss-c-button ss-c-button--block ss-c-pricing__cta" href="#signup">Start free</a>
+            </li>
+            <li class="ss-c-pricing__plan ss-c-pricing__plan--featured">
+                <span class="ss-c-pricing__badge">Most popular</span>
+                <h3 class="ss-c-pricing__name">Team</h3>
+                <p class="ss-c-pricing__description">For a team up to 10 people.</p>
+                <p class="ss-c-pricing__price">
+                    <span class="ss-c-pricing__currency">€</span>
+                    <span class="ss-c-pricing__amount">29</span>
+                    <span class="ss-c-pricing__period">/ month</span>
+                </p>
+                <ul class="ss-c-pricing__features">
+                    <li class="ss-c-pricing__feature">Unlimited projects</li>
+                    <li class="ss-c-pricing__feature">Email support</li>
+                    <li class="ss-c-pricing__feature">API access</li>
+                </ul>
+                <a class="ss-c-button ss-c-button--primary ss-c-button--block ss-c-pricing__cta" href="#signup">Choose Team</a>
+            </li>
+            <li class="ss-c-pricing__plan">
+                <h3 class="ss-c-pricing__name">Enterprise</h3>
+                <p class="ss-c-pricing__description">SSO, audit log and an SLA.</p>
+                <p class="ss-c-pricing__price"><span class="ss-c-pricing__amount">Custom</span></p>
+                <ul class="ss-c-pricing__features">
+                    <li class="ss-c-pricing__feature">Everything in Team</li>
+                    <li class="ss-c-pricing__feature">Single sign-on</li>
+                </ul>
+                <a class="ss-c-button ss-c-button--block ss-c-pricing__cta" href="#contact">Contact sales</a>
+            </li>
+        </ul>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

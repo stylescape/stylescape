@@ -55,7 +55,7 @@ export class GridManager {
         );
 
         document
-            .querySelectorAll<HTMLElement>(".guide--layer")
+            .querySelectorAll<HTMLElement>("[data-grid]")
             .forEach((layer) => {
                 if (layer.offsetHeight !== height) {
                     layer.style.height = `${height}px`;
@@ -65,7 +65,7 @@ export class GridManager {
 
     private applyVisibilityState(): void {
         document
-            .querySelectorAll<GridLayer>(".guide--layer")
+            .querySelectorAll<GridLayer>("[data-grid]")
             .forEach((layer) => {
                 const id = layer.dataset.grid;
                 const isActive = !!this.visibilityMap[id];
@@ -78,6 +78,7 @@ export class GridManager {
                 const id = button.dataset.toggle;
                 const isActive = !!this.visibilityMap[id];
                 button.classList.toggle("active", isActive);
+                button.setAttribute("aria-pressed", String(isActive));
             });
     }
 
@@ -97,6 +98,7 @@ export class GridManager {
                 button.addEventListener("click", () => {
                     const isNowActive = layer.classList.toggle("active");
                     button.classList.toggle("active", isNowActive);
+                    button.setAttribute("aria-pressed", String(isNowActive));
                     this.visibilityMap[id] = isNowActive;
                     this.saveVisibility();
                 });

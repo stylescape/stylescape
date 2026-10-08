@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="UTF-8" />
-        <title>Stylescape</title>
+        <title>Scapeframe Layout | Stylescape</title>
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
@@ -17,23 +17,60 @@
                 font-variant-numeric: lining-nums tabular-nums;
                 font-feature-settings: "lnum", "tnum";
             }
+            /* Place the areas on the 1fr 6fr 1fr frame grid: the top bar
+               spans the frame, the content sits in the centre column. */
+            .ss-c-frame_main > .ss-c-frame_main__area--top {
+                grid-column: 1 / -1;
+            }
+            .ss-c-frame_main > .ss-c-frame_main__area--middle_center {
+                grid-column: 2;
+            }
+            /* Image compare has a TS behaviour but no module styles yet:
+               stack the overlay on the base image (as on ts_media). */
+            .ss-c-image__compare {
+                position: relative;
+                block-size: 100%;
+                margin: 0;
+                overflow: hidden;
+            }
+            .ss-c-image__compare--image {
+                display: block;
+                inline-size: 100%;
+                block-size: 100%;
+                object-fit: cover;
+            }
+            .ss-c-image__compare--overlay {
+                position: absolute;
+                inset: 0;
+                clip-path: inset(0 50% 0 0);
+            }
+            .ss-c-image__compare--slider {
+                position: absolute;
+                inset-block: 0;
+                inset-inline-start: 50%;
+                display: flex;
+                align-items: center;
+                gap: var(--ss-spacing-1, 0.25rem);
+                padding-inline: var(--ss-spacing-1, 0.25rem);
+                transform: translateX(-50%);
+                color: var(--ss-color-text);
+                background-color: var(--ss-color-surface);
+            }
         </style>
     </head>
 
     <body class="">
         <div class="ss-c-frame_main">
             <div class="ss-c-frame_main__area--top">
-                <header class="ss-c-ribbon--top" id="" role="navigation">
+                <header class="ss-c-ribbon--top">
                     <div class="ss-c-ribbon__slot--horizontal_left">
                         <h1
                             id="ribbon__title"
                             class="ss-c-ribbon__slot--left ss-c-ribbon__title"
-                            role="heading"
-                            aria-level="1"
                         >
                             <div class="ss-c-ribbon__title__logo">
-                                <a href="/" class="">
-                                    <span class="i-text">+</span>
+                                <a href="/" class="" aria-label="Home">
+                                    <span class="i-text" aria-hidden="true">+</span>
                                 </a>
                             </div>
                             <div class="ss-c-ribbon__title__text">
@@ -43,6 +80,7 @@
                                 <figure class="ss-c-figure">
                                     <img
                                         src="https://health-innovation-campus.com/wp-content/uploads/2024/11/Healthcare-Innovation-Campus-Boxmeer_Logo_Green-and-White.svg"
+                                        alt="Health Innovation Campus Boxmeer"
                                     />
                                 </figure>
                             </div>
@@ -53,8 +91,8 @@
                 </header>
             </div>
 
-            <div class="ss-c-frame_main__area--middle_center">
-                <main class="" role="main">
+            <div class="ss-c-frame_main__area--middle_center" tabindex="0">
+                <main class="">
                     <div class="ss-c-frame_app">
                         <div class="ss-c-app__view">
                             <div class="ss-c-aspect_ratio--16x9">
@@ -63,12 +101,12 @@
                                     id="imageCompare"
                                 >
                                     <img
-                                        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=1470&amp;q=80"
+                                        src="/img/placeholder/1470x980-photo.svg"
                                         class="ss-c-image__compare--image"
                                         alt="After Image"
                                     />
                                     <img
-                                        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=1470&amp;q=80"
+                                        src="/img/placeholder/1470x980-photo.svg"
                                         class="ss-c-image__compare--overlay ss-c-image__compare--image"
                                         alt="Before Image"
                                     />
@@ -126,25 +164,30 @@
             
         </div>
 
-        <aside class=""><template
-    class="ss-c-guide--layer ss-c-guide--graph_centered"
+        <aside class=""><div
+    class="ss-c-demo__guide ss-c-guide--graph_centered"
     data-grid="graph"
-></template>
-<template class="ss-c-guide--layer ss-c-guide--baseline" data-grid="baseline"></template>
+    aria-hidden="true"
+></div>
+<div
+    class="ss-c-demo__guide ss-c-guide--baseline"
+    data-grid="baseline"
+    aria-hidden="true"
+></div>
 
         </aside>
+        <script>
+            function filterSections(query) {
+                const q = query.toLowerCase();
+                document
+                    .querySelectorAll(".ss-c-demo__section, .ss-c-demo__subsection")
+                    .forEach((section) => {
+                        section.style.display =
+                            section.textContent.toLowerCase().includes(q) ?
+                                "block"
+                            :   "none";
+                    });
+            }
+        </script>
     </body>
-    <script>
-        function filterSections(query) {
-            const q = query.toLowerCase();
-            document
-                .querySelectorAll(".ss-c-demo__section, .ss-c-demo__subsection")
-                .forEach((section) => {
-                    section.style.display =
-                        section.textContent.toLowerCase().includes(q) ?
-                            "block"
-                        :   "none";
-                });
-        }
-    </script>
 </html>

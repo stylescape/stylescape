@@ -1,0 +1,119 @@
+@use "sass:map";
+@use "./chart.config" as config;
+@use "../../01-core/external" as *;
+@use "../../01-core/prefix" as *;
+
+$_c: config.$ss-chart-config;
+
+/// Frame around a chart library's canvas/SVG: header (title, actions),
+/// plot body, attached legend, caption, in that source order. Parts are
+/// auto-placed, so a missing part leaves no gap. The library owns what is
+/// drawn in `__body`; the frame only sizes it.
+@mixin ss-chart {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: map.get($_c, gap);
+    margin: 0;
+    padding: map.get($_c, padding);
+    min-inline-size: 0;
+    color: var(--ss-color-text);
+    background-color: map.get($_c, background);
+    border: map.get($_c, border);
+    border-radius: map.get($_c, radius);
+}
+
+@mixin ss-chart-plain {
+    padding: 0;
+    background: none;
+    border: 0;
+}
+
+@mixin ss-chart-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: q(4) q(12);
+}
+
+@mixin ss-chart-title {
+    margin: 0;
+    font-size: var(--ss-font-size-md);
+    font-weight: 600;
+}
+
+@mixin ss-chart-subtitle {
+    flex-basis: 100%;
+    margin: 0;
+    font-size: var(--ss-font-size-sm);
+    color: var(--ss-color-text-muted);
+}
+
+@mixin ss-chart-actions {
+    display: flex;
+    gap: q(4);
+    margin-inline-start: auto;
+}
+
+@mixin ss-chart-body($size: md) {
+    position: relative;
+    min-inline-size: 0;
+    block-size: var(--ss-chart-height, #{map.get(map.get($_c, sizes), $size)});
+
+    > canvas,
+    > svg,
+    > img {
+        display: block;
+        inline-size: 100%;
+        block-size: 100%;
+    }
+}
+
+@mixin ss-chart-size($size) {
+    --ss-chart-height: #{map.get(map.get($_c, sizes), $size)};
+}
+
+/// Height follows the width (`--ss-chart-aspect`, default 16 / 9).
+@mixin ss-chart-aspect {
+    --ss-chart-aspect: #{map.get($_c, aspect)};
+
+    .#{$ss-prefix-module}-chart__body {
+        block-size: auto;
+        aspect-ratio: var(--ss-chart-aspect);
+    }
+}
+
+
+/// Legend in a column beside the plot instead of below it.
+@mixin ss-chart-legend-end {
+    grid-template-columns: minmax(0, 1fr) minmax(
+            0,
+            #{map.get($_c, legend-side-width)}
+        );
+
+    .#{$ss-prefix-module}-chart__header,
+    .#{$ss-prefix-module}-chart__caption {
+        grid-column: 1 / -1;
+    }
+
+    .#{$ss-prefix-module}-chart__legend {
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: center;
+    }
+}
+
+@mixin ss-chart-caption {
+    font-size: var(--ss-font-size-sm);
+    color: var(--ss-color-text-muted);
+}
+
+/// Dashboard grid of chart frames; `--wide` spans two tracks, `--full` all.
+@mixin ss-chart-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(min(100%, #{map.get($_c, grid-min)}), 1fr)
+    );
+    gap: q(16);
+}

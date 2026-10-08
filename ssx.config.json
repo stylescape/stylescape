@@ -2,13 +2,18 @@
     "$schema": "../ssx/spec/ssx.config.schema.json",
     "overrides": [
         {
-            "comment": "Compat shims mirror other sites' CSS verbatim so their markup keeps rendering. They live under 32-utilities/ for build order, but they are not utilities — judging them as single-purpose helpers buries every real finding. ss.overrides is what they actually are: third-party CSS held at arm's length.",
+            "comment": "Component compat shims mirror other sites' CSS verbatim so their markup keeps rendering. They live under 32-utilities/ for build order, but they are not utilities: they are emitted in @layer ss.compat, which sits below ss.components so a module wins over a shim that reuses its class name.",
             "files": [
                 "src/scss/32-utilities/_scapepress-parity.scss",
-                "src/scss/32-utilities/_legacy-compat.scss",
-                "src/scss/32-utilities/_legacy-components-compat.scss"
+                "src/scss/32-utilities/_legacy-components-compat.scss",
+                "src/scss/32-utilities/_legacy-v03-compat.scss"
             ],
-            "layer": "ss.overrides"
+            "layer": "ss.compat"
+        },
+        {
+            "comment": "Legacy utility aliases (0.3 class names mapped onto ss-u- utilities); emitted in @layer ss.utilities.",
+            "files": ["src/scss/32-utilities/_legacy-compat.scss"],
+            "layer": "ss.utilities"
         }
     ]
 }

@@ -1,0 +1,39 @@
+@use "../../01-core/prefix" as *;
+@use "../input/input.mixins" as input;
+@use "./search-bar.mixins" as sb;
+
+$_sb: ".#{$ss-prefix-module}-search-bar";
+
+@layer ss.components {
+    // <form class="ss-c-search-bar" role="search" action="">
+    //   <label for="q" class="ss-u-visually-hidden">Search projects</label>
+    //   <input id="q" name="q" type="search" class="ss-c-search-bar__input">
+    //   <button class="ss-c-button ss-c-search-bar__button">Search</button>
+    // </form>
+    #{$_sb} {
+        @include sb.ss-search-bar;
+    }
+    #{$_sb}--full {
+        max-inline-size: none;
+    }
+    #{$_sb}__input {
+        @include input.ss-input;
+        @include sb.ss-search-bar-input;
+    }
+    #{$_sb}--sm #{$_sb}__input {
+        @include input.ss-input-size(sm);
+        @include sb.ss-search-bar-input;
+    }
+    #{$_sb}--lg #{$_sb}__input {
+        @include input.ss-input-size(lg);
+        @include sb.ss-search-bar-input;
+    }
+    #{$_sb}__button {
+        @include sb.ss-search-bar-button;
+    }
+    // A focused input sits above the attached button's edge.
+    #{$_sb}__input:focus-visible {
+        position: relative;
+        z-index: 1;
+    }
+}

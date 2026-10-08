@@ -421,13 +421,13 @@ $transition-slow: 300ms ease;
 // Earliest-defining site wins (priority: scape_ventures > scape_group > scape_press > ...).
 //
 // Every top-level class selector found in the source SCSS is
-// re-emitted here under `@layer ss.utilities` with the
+// re-emitted here under `@layer ss.compat` with the
 // `ss-c-` prefix. Inner class selectors are prefixed too, so
 // any `&__child` / `.foo .bar` patterns continue to work after
 // the rename.
 // ========================================================================
 
-@layer ss.utilities {
+@layer ss.compat {
 
     // -- lead  (from site-scape_ventures/src/static/scss/base/_typography.scss) --
     .ss-c-lead {
@@ -2455,7 +2455,7 @@ $transition-slow: 300ms ease;
     }
 
     // -- filter-bar  (from site-scape_ventures/src/static/scss/sections/_portfolio.scss) --
-    .ss-c-filter-bar {
+    .ss-c-filter-bar:has(> .ss-c-filter-btn) {
         display: flex;
         flex-wrap: wrap;
         gap: $spacing-2;
@@ -3562,14 +3562,7 @@ $transition-slow: 300ms ease;
 
     // -- card  (from site-scape_press/src/static/scss/components/_cards.scss) --
     .ss-c-card {
-        padding: $spacing-8;
-        background-color: $color-white;
-        border: q(1) solid $color-gray-100;
-        transition: box-shadow $transition-base;
-
-        &:hover {
-            box-shadow: $shadow-lg;
-        }
+        // [parity] root look comes from the card module (31-modules/card)
 
         &__icon {
             display: flex;
@@ -3594,7 +3587,7 @@ $transition-slow: 300ms ease;
 
         &__description {
             font-size: $font-size-base;
-            color: $color-gray-600;
+            color: var(--ss-color-text-muted);
             line-height: $line-height-relaxed;
         }
     }
@@ -3816,7 +3809,7 @@ $transition-slow: 300ms ease;
     }
 
     // -- dropdown  (from site-scape_press/src/static/scss/layout/_nav.scss) --
-    .ss-c-dropdown {
+    .ss-c-header__primary-item .ss-c-dropdown {
         position: absolute;
         top: 100%;
         left: 50%;
@@ -6532,7 +6525,7 @@ $transition-slow: 300ms ease;
 
 
         .ss-c-frame_main__area--top{
-            background-color: rgba(255,255,255,0.8);
+            background-color: color-mix(in srgb, var(--ss-color-background) 80%, transparent);
             backdrop-filter: blur(q(64));
             grid-template-columns: 1fr 6fr 1fr;
             gap: q(16);
@@ -6544,7 +6537,7 @@ $transition-slow: 300ms ease;
         .ss-c-frame_main__area--top_center,
         .ss-c-frame_main__area--top_right{
             position: relative;
-            border-bottom:q(1) solid black;
+            border-bottom:q(1) solid var(--ss-color-text);
             height: calc(5 * q(16));
             padding-top:q(16);
         }
@@ -6558,7 +6551,7 @@ $transition-slow: 300ms ease;
         }
 
         .ss-c-frame_main__area--bottom{
-            background-color: rgba(255,255,255,0.8);
+            background-color: color-mix(in srgb, var(--ss-color-background) 80%, transparent);
             backdrop-filter: blur(q(64));
             grid-template-columns: 1fr 6fr 1fr;
             gap: q(16);
@@ -6569,7 +6562,7 @@ $transition-slow: 300ms ease;
         .ss-c-frame_main__area--bottom_center,
         .ss-c-frame_main__area--bottom_right{
             position: relative;
-            border-top:q(1) solid #000;
+            border-top:q(1) solid var(--ss-color-text);
             height: calc(4 * q(16));
 
         }
@@ -12698,31 +12691,7 @@ $transition-slow: 300ms ease;
 
     }
 
-    // -- stack  (from site-geoid_org/src/static/scss/layout/_grid.scss) --
-    .ss-c-stack {
-      display: flex;
-      flex-direction: column;
-
-      &--gap-xs {
-        gap: var(--spacing-xs);
-      }
-
-      &--gap-sm {
-        gap: var(--spacing-sm);
-      }
-
-      &--gap-md {
-        gap: var(--spacing-md);
-      }
-
-      &--gap-lg {
-        gap: var(--spacing-lg);
-      }
-
-      &--center {
-        align-items: center;
-      }
-    }
+    // [parity] dropped `.ss-c-stack` (site-geoid_org/src/static/scss/layout/_grid.scss): geoid_org column stack: use the `ss-f-stack` flow primitive; `.ss-c-stack` is the overlapping-stack module
 
     // -- aspect-box  (from site-geoid_org/src/static/scss/layout/_grid.scss) --
     .ss-c-aspect-box {
@@ -15117,12 +15086,7 @@ $transition-slow: 300ms ease;
         color: var(--color-gray-500);
     }
 
-    // -- stats  (from site-inthecity_ai/src/static/scss/blocks/_stats.scss) --
-    .ss-c-stats {
-        max-width: q(1024);
-        width: 100%;
-        min-width: 0;
-    }
+    // [parity] dropped `.ss-c-stats` (site-inthecity_ai/src/static/scss/blocks/_stats.scss): inthecity stats wrapper sizing: `.ss-c-stats` is the stat module's row; the site's section container sets the width
 
     // -- stats__eyebrow  (from site-inthecity_ai/src/static/scss/blocks/_stats.scss) --
     .ss-c-stats__eyebrow {
@@ -16444,28 +16408,7 @@ $transition-slow: 300ms ease;
       }
     }
 
-    // -- stat  (from site-kockums_foundation/src/static/scss/sections/_features.scss) --
-    .ss-c-stat {
-      &__value {
-        display: block;
-        font-family: Georgia, serif;
-        font-size: $font-size-4xl;
-        font-weight: $font-weight-normal;
-        color: $color-primary;
-        line-height: 1;
-        margin-bottom: $spacing-2;
-
-        // [parity] (stripped @include block)
-
-      }
-
-      &__label {
-        font-size: $font-size-sm;
-        color: #737373;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-    }
+    // [parity] dropped `.ss-c-stat` (site-kockums_foundation/src/static/scss/sections/_features.scss): kockums stat value/label: `.ss-c-stat__*` is owned by the stat module
 
     // -- section-hero  (from site-kockums_foundation/src/static/scss/sections/_hero.scss) --
     .ss-c-section-hero {
@@ -28780,7 +28723,7 @@ $transition-slow: 300ms ease;
     }
 
     // -- product-card  (from site-starling_associates/src/static/scss/index.scss) --
-    .ss-c-product-card {
+    .ss-c-products-container .ss-c-product-card {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -28802,7 +28745,7 @@ $transition-slow: 300ms ease;
         }
 
         &:hover {
-            background: #ffffff;
+            background: var(--ss-color-surface-hover);
 
             .ss-c-product-link {
                 color: $color-accent;
@@ -29772,7 +29715,7 @@ $transition-slow: 300ms ease;
     }
 
     // -- filter-bar__label  (from site-starling_studio/src/static/scss/app/_filter_bar.scss) --
-    .ss-c-filter-bar__label {
+    .ss-c-systems-grid-section .ss-c-filter-bar__label {
         font-size: var(--filter-btn-font-size);
         font-weight: 600;
         color: var(--color-text-muted, #666);
@@ -29780,48 +29723,48 @@ $transition-slow: 300ms ease;
     }
 
     // -- filter-bar--bordered  (from site-starling_studio/src/static/scss/app/_filter_bar.scss) --
-    .ss-c-filter-bar--bordered {
+    .ss-c-systems-grid-section .ss-c-filter-bar--bordered {
         border-top: var(--filter-bar-border);
         border-bottom: var(--filter-bar-border);
     }
 
     // -- filter-bar--pills  (from site-starling_studio/src/static/scss/app/_filter_bar.scss) --
-    .ss-c-filter-bar--pills {
+    .ss-c-systems-grid-section .ss-c-filter-bar--pills {
         --filter-btn-radius: 999px;
     }
 
     // -- filter-bar--sm  (from site-starling_studio/src/static/scss/app/_filter_bar.scss) --
-    .ss-c-filter-bar--sm {
+    .ss-c-systems-grid-section .ss-c-filter-bar--sm {
         --filter-bar-gap: #{q(4)};
         --filter-btn-padding: #{q(4)} #{q(8)};
         --filter-btn-font-size: #{q(12)};
     }
 
     // -- filter-bar--lg  (from site-starling_studio/src/static/scss/app/_filter_bar.scss) --
-    .ss-c-filter-bar--lg {
+    .ss-c-systems-grid-section .ss-c-filter-bar--lg {
         --filter-bar-gap: #{q(12)};
         --filter-btn-padding: #{q(12)} #{q(24)};
         --filter-btn-font-size: #{q(16)};
     }
 
     // -- filter-bar--center  (from site-starling_studio/src/static/scss/app/_filter_bar.scss) --
-    .ss-c-filter-bar--center {
+    .ss-c-systems-grid-section .ss-c-filter-bar--center {
         justify-content: center;
     }
 
     // -- filter-bar--spread  (from site-starling_studio/src/static/scss/app/_filter_bar.scss) --
-    .ss-c-filter-bar--spread {
+    .ss-c-systems-grid-section .ss-c-filter-bar--spread {
         justify-content: space-between;
     }
 
     // -- filter-bar--minimal  (from site-starling_studio/src/static/scss/app/_filter_bar.scss) --
-    .ss-c-filter-bar--minimal {
+    .ss-c-systems-grid-section .ss-c-filter-bar--minimal {
         --filter-btn-border: none;
         --filter-btn-radius: #{q(4)};
     }
 
     // -- filter-bar--underline  (from site-starling_studio/src/static/scss/app/_filter_bar.scss) --
-    .ss-c-filter-bar--underline {
+    .ss-c-systems-grid-section .ss-c-filter-bar--underline {
         --filter-btn-border: none;
         --filter-btn-radius: 0;
         --filter-btn-bg-hover: transparent;
@@ -30083,11 +30026,7 @@ $transition-slow: 300ms ease;
         --page-hero-bg: var(--color-primary, #008fbf);
     }
 
-    // -- ribbon__menu  (from site-starling_studio/src/static/scss/app/_ribbon.scss) --
-    .ss-c-ribbon__menu {
-        visibility: hidden;
-        display: none;
-    }
+    // [parity] dropped `.ss-c-ribbon__menu` (site-starling_studio/src/static/scss/app/_ribbon.scss): starling_studio ribbon menu: the desktop-hide rule lost its mobile reveal in the harvest and hid every `.ss-c-ribbon__menu`
 
     // -- series-card  (from site-starling_studio/src/static/scss/app/_series_card.scss) --
     .ss-c-series-card {

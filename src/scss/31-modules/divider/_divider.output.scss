@@ -2,7 +2,9 @@
 // 31-modules / divider / output
 // =============================================================================
 
+@use "sass:map";
 @use "../../01-core/prefix" as *;
+@use "./divider.config" as config;
 @use "./divider.mixins" as *;
 
 @layer ss.components {
@@ -20,6 +22,38 @@
         }
         &--with-label {
             @include ss-divider-with-label;
+        }
+
+        // Weights
+        &--thin {
+            border-top-width: map.get(config.$divider-config, "thickness-thin");
+            border-top-color: map.get(config.$divider-config, "color-thin");
+        }
+        &--thick {
+            border-top-width: map.get(config.$divider-config, "thickness-thick");
+        }
+
+        // Vertical weights / styles (standalone modifiers)
+        &--vertical--thin,
+        &--vertical--thick,
+        &--vertical--dotted,
+        &--vertical--inline {
+            @include ss-divider-vertical;
+        }
+        &--vertical--thin {
+            border-left-color: map.get(config.$divider-config, "color-thin");
+        }
+        &--vertical--thick {
+            border-left-width: map.get(config.$divider-config, "thickness-thick");
+        }
+        &--vertical--dotted {
+            border-left-style: dotted;
+        }
+        // Text-height rule that sits on the line between inline items.
+        &--vertical--inline {
+            height: 1em;
+            align-self: auto;
+            vertical-align: middle;
         }
     }
 }

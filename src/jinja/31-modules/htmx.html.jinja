@@ -1,0 +1,80 @@
+{% extends "../base.html.jinja" %} {% set title = "htmx" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Styles for the classes <a href="https://htmx.org/docs/#indicators">htmx</a>
+        toggles while a request runs and content is swapped. The examples set the
+        classes by hand to show each state. Set
+        <code>htmx.config.includeIndicatorStyles = false</code> so htmx's injected
+        indicator CSS doesn't override the motion tokens. Transitions are dropped
+        under <code>prefers-reduced-motion: reduce</code>.
+    </p>
+
+    {% set section_title = "Indicator" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            <code>.htmx-indicator</code> is invisible (and hidden from assistive tech)
+            until the element or an ancestor has <code>.htmx-request</code>. With
+            <code>hx-indicator="#id"</code>, htmx puts <code>.htmx-request</code> on
+            that element instead.
+        </p>
+        {% set code_snippet %}
+        <button class="ss-c-button" type="button" hx-post="/save">
+            Save
+            <span class="htmx-indicator ss-c-spinner ss-c-spinner--sm" role="status" aria-label="Saving"></span>
+        </button>
+
+        <button class="ss-c-button htmx-request" type="button" hx-post="/save">
+            Save
+            <span class="htmx-indicator ss-c-spinner ss-c-spinner--sm" role="status" aria-label="Saving"></span>
+        </button>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Busy form" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            <code>hx-disabled-elt</code> disables the submit button during the request;
+            it keeps its label, dims and shows a progress cursor.
+        </p>
+        {% set code_snippet %}
+        <form class="ss-c-form htmx-request" hx-post="/search" hx-disabled-elt="find button">
+            <div class="ss-c-form__field">
+                <label class="ss-c-form__label" for="htmx-q">Search</label>
+                <input class="ss-c-input" id="htmx-q" name="q" type="search" value="harbour">
+            </div>
+            <div class="ss-c-form__actions">
+                <button class="ss-c-button ss-c-button--primary" type="submit" disabled>Search</button>
+                <span class="htmx-indicator" role="status">Searching…</span>
+            </div>
+        </form>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Fragment" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            Put <code>ss-c-fragment</code> on a swap target. While the request runs
+            (<code>hx-indicator</code> pointing at it, or <code>aria-busy="true"</code>)
+            the old content dims and ignores clicks; with a swap delay
+            (<code>hx-swap="innerHTML swap:200ms settle:200ms"</code>) it fades out
+            on <code>.htmx-swapping</code> and the new content fades in.
+        </p>
+        {% set code_snippet %}
+        <div class="ss-c-fragment" id="results" aria-live="polite">
+            <p>12 results for “harbour”.</p>
+        </div>
+
+        <div class="ss-c-fragment htmx-request" aria-busy="true">
+            <p>12 results for “harbour” (loading new results).</p>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

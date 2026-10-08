@@ -6,7 +6,7 @@ sources of every site under
 
 For every distinct class name found at the top of a SCSS rule block, this
 script emits a `.ss-c-{name} { ... body ... }` block under
-`@layer ss.utilities`. The body is the original rule body (nested
+`@layer ss.compat`. The body is the original rule body (nested
 selectors, declarations) copied verbatim, with INNER class selectors
 also prefixed with `ss-c-`.
 
@@ -14,9 +14,9 @@ Resolution:
   * Prefer scape_ventures (the canonical base shared by 3 sites).
   * Fall back to the first encounter elsewhere.
   * Skip classes that already exist in stylescape as `.ss-c-{name}`
-    (avoid clobbering modern modules — those win via cascade layer
-    order because parity ships under `@layer ss.utilities` *before*
-    the existing compat shims).
+    (avoid clobbering modern modules). Classes that collide anyway still
+    lose to the modules: `ss.compat` is declared *before*
+    `ss.components` (see `01-core/_layers.scss`).
 
 NOTE: This is a coarse, structural port — it copies SCSS as-is. Sass
 imports / variables that don't resolve in the stylescape context are
@@ -427,6 +427,130 @@ def fill_undefined_vars(body: str, defined: set[str]) -> str:
     return body
 
 
+
+# ---------------------------------------------------------------------------
+# Pass 3: per-site decisions for class names that clash with a module
+# ---------------------------------------------------------------------------
+#
+# `ss.compat` loses to `ss.components`, so a harvested block whose root class
+# is also a module class (`.ss-c-card`, `.ss-c-dropdown`, …) no longer styles
+# the module's properties, but still leaks every property the module leaves
+# alone into every module instance. Each such block gets a decision here,
+# keyed by (class name, source path prefix):
+#
+#   ("drop", reason)          remove the block; `reason` is left as a comment
+#   ("scope", wrapper[, […]]) prefix the root selector with the site wrapper
+#                             (and optionally apply snippet replacements)
+#   ("replace", [(a, b), …])  literal snippet replacements inside the block
+#
+# The decisions are applied after generation and are idempotent, so they can
+# also be re-applied to the checked-in file on their own
+# (`--postprocess-only`): several source sites are no longer on disk, so a
+# full regeneration would lose their blocks.
+
+TOKEN_TRANSLUCENT_BG = (
+    "color-mix(in srgb, var(--ss-color-background) 80%, transparent)"
+)
+
+SITE_DECISIONS: dict[tuple[str, str], tuple] = {
+    # scape_press service card: keep the site's __icon/__title/__description
+    # parts, but read the card tokens instead of white / gray literals, and
+    # stop adding a hover shadow to every module card.
+    ("card", "site-scape_press/"): ("replace", [
+        ("        padding: $spacing-8;\n"
+         "        background-color: $color-white;\n"
+         "        border: q(1) solid $color-gray-100;\n"
+         "        transition: box-shadow $transition-base;\n"
+         "\n"
+         "        &:hover {\n"
+         "            box-shadow: $shadow-lg;\n"
+         "        }\n",
+         "        // [parity] root look comes from the card module (31-modules/card)\n"),
+        ("            color: $color-gray-600;\n",
+         "            color: var(--ss-color-text-muted);\n"),
+    ]),
+    # scape_press header nav panel: only inside the header's primary nav item.
+    ("dropdown", "site-scape_press/"): ("scope", ".ss-c-header__primary-item"),
+    # geoid_org column stack: same job as the `ss-f-stack` flow primitive.
+    ("stack", "site-geoid_org/"): ("drop",
+        "geoid_org column stack: use the `ss-f-stack` flow primitive; "
+        "`.ss-c-stack` is the overlapping-stack module"),
+    # inthecity stats wrapper sizing (width/max-width only); the __* parts stay.
+    ("stats", "site-inthecity_ai/"): ("drop",
+        "inthecity stats wrapper sizing: `.ss-c-stats` is the stat module's "
+        "row; the site's section container sets the width"),
+    # kockums stat value/label: owned by the stat module.
+    ("stat", "site-kockums_foundation/"): ("drop",
+        "kockums stat value/label: `.ss-c-stat__*` is owned by the stat module"),
+    # starling_associates product row: only inside its products container.
+    ("product-card", "site-starling_associates/"): ("scope",
+        ".ss-c-products-container",
+        [("            background: #ffffff;\n",
+          "            background: var(--ss-color-surface-hover);\n")]),
+    # scape_agency frame: translucent bars follow the theme background.
+    ("frame_main", "site-scape_agency/"): ("replace", [
+        ("background-color: rgba(255,255,255,0.8);",
+         "background-color: " + TOKEN_TRANSLUCENT_BG + ";"),
+        ("border-bottom:q(1) solid black;",
+         "border-bottom:q(1) solid var(--ss-color-text);"),
+        ("border-top:q(1) solid #000;",
+         "border-top:q(1) solid var(--ss-color-text);"),
+    ]),
+    # starling_studio mobile menu: the harvest kept the desktop `display:none`
+    # but lost its `max-width: 768px` reveal, which hid every ribbon menu.
+    ("ribbon__menu", "site-starling_studio/"): ("drop",
+        "starling_studio ribbon menu: the desktop-hide rule lost its mobile "
+        "reveal in the harvest and hid every `.ss-c-ribbon__menu`"),
+    # scape_ventures portfolio filters: only bars that hold the site's
+    # `.ss-c-filter-btn` buttons (the filter-bar module never does).
+    ("filter-bar", "site-scape_ventures/"): ("replace", [
+        ("    .ss-c-filter-bar {\n",
+         "    .ss-c-filter-bar:has(> .ss-c-filter-btn) {\n"),
+    ]),
+}
+
+# starling_studio filter-bar parts and modifiers: only inside the site's
+# systems grid, so they cannot restyle a filter-bar module instance.
+for _part in ("__label", "--bordered", "--pills", "--sm", "--lg", "--center",
+              "--spread", "--minimal", "--underline"):
+    SITE_DECISIONS[("filter-bar" + _part, "site-starling_studio/")] = (
+        "scope", ".ss-c-systems-grid-section")
+
+_BLOCK_RE = re.compile(
+    r"(?m)^    // -- (?P<name>\S+)  \(from (?P<src>[^)]*)\) --\n"
+    r"(?P<body>.*?)(?=^    // -- |^    // \[parity\] dropped|^\}|\Z)",
+    re.S,
+)
+
+
+def apply_site_decisions(text: str) -> str:
+    """Apply SITE_DECISIONS to generated parity SCSS (idempotent)."""
+
+    def decide(m: "re.Match[str]") -> str:
+        name, src, body = m.group("name"), m.group("src"), m.group("body")
+        for (key, prefix), decision in SITE_DECISIONS.items():
+            if key != name or not src.startswith(prefix):
+                continue
+            kind = decision[0]
+            if kind == "drop":
+                return f"    // [parity] dropped `.ss-c-{name}` ({src}): {decision[1]}\n\n"
+            head = m.group(0)[: m.start("body") - m.start()]
+            if kind == "scope":
+                root = f"    .ss-c-{name} {{"
+                if root in body:
+                    body = body.replace(root, f"    {decision[1]} .ss-c-{name} {{", 1)
+                for old, new in (decision[2] if len(decision) > 2 else []):
+                    body = body.replace(old, new)
+                return head + body
+            if kind == "replace":
+                for old, new in decision[1]:
+                    body = body.replace(old, new)
+                return head + body
+        return m.group(0)
+
+    return _BLOCK_RE.sub(decide, text)
+
+
 def main() -> int:
     files = collect_scss_files()
     print(f"scss files found: {len(files)}", file=sys.stderr)
@@ -506,7 +630,7 @@ def main() -> int:
     out_lines.append("//\n")
     out_lines.append(
         "// Every top-level class selector found in the source SCSS is\n"
-        "// re-emitted here under `@layer ss.utilities` with the\n"
+        "// re-emitted here under `@layer ss.compat` with the\n"
         "// `ss-c-` prefix. Inner class selectors are prefixed too, so\n"
         "// any `&__child` / `.foo .bar` patterns continue to work after\n"
         "// the rename.\n"
@@ -516,7 +640,7 @@ def main() -> int:
         "===========\n\n"
     )
 
-    out_lines.append("@layer ss.utilities {\n\n")
+    out_lines.append("@layer ss.compat {\n\n")
 
     # Build set of variables that ARE defined in the preludes so we don't
     # replace them with fallbacks.
@@ -546,10 +670,24 @@ def main() -> int:
 
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     with open(OUT_PATH, "w", encoding="utf-8") as fh:
-        fh.write("".join(out_lines))
+        fh.write(apply_site_decisions("".join(out_lines)))
     print(f"wrote {OUT_PATH}  ({len(chosen)} blocks)", file=sys.stderr)
     return 0
 
 
+def postprocess_only() -> int:
+    """Re-apply SITE_DECISIONS to the checked-in parity file in place."""
+    with open(OUT_PATH, encoding="utf-8") as fh:
+        text = fh.read()
+    new = apply_site_decisions(text)
+    if new != text:
+        with open(OUT_PATH, "w", encoding="utf-8") as fh:
+            fh.write(new)
+    print(f"post-processed {OUT_PATH}", file=sys.stderr)
+    return 0
+
+
 if __name__ == "__main__":
+    if "--postprocess-only" in sys.argv[1:]:
+        sys.exit(postprocess_only())
     sys.exit(main())

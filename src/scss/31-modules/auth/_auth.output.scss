@@ -1,0 +1,74 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./auth.mixins" as auth;
+
+$_a: ".#{$ss-prefix-module}-auth";
+$_muted: auth.ss-auth-config(muted);
+
+@layer ss.components {
+    #{$_a} {
+        @include auth.ss-auth;
+    }
+
+    #{$_a}__panel {
+        @include auth.ss-auth-panel;
+    }
+
+    #{$_a}__brand {
+        margin: 0;
+        font-weight: var(--ss-font-weight-semibold);
+        text-align: center;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+
+    #{$_a}__title {
+        margin: 0;
+        font-size: var(--ss-font-size-xl);
+        text-align: center;
+    }
+
+    #{$_a}__lead {
+        margin: 0;
+        color: $_muted;
+        text-align: center;
+    }
+
+    // Submit button spans the panel.
+    #{$_a}__panel .#{$ss-prefix-module}-form__actions > :is(button, [type="submit"]) {
+        flex: 1 1 auto;
+    }
+
+    #{$_a}__links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: q(4) q(16);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: var(--ss-font-size-sm);
+    }
+
+    // Status pages (password reset sent, account activated).
+    #{$_a}__icon {
+        align-self: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        inline-size: q(48);
+        block-size: q(48);
+        border-radius: var(--ss-radius-full);
+        background-color: var(--ss-color-success-bg);
+        color: var(--ss-color-success-foreground);
+        font-size: var(--ss-font-size-xl);
+    }
+
+    #{$_a}__icon--error {
+        background-color: var(--ss-color-error-bg);
+        color: var(--ss-color-error-foreground);
+    }
+}

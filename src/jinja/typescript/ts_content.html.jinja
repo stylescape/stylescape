@@ -3,7 +3,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             JavaScript components for active link highlighting and automatic
             table of contents generation.
@@ -17,7 +17,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>
             Automatically highlights navigation links matching the current URL.
         </p>
@@ -26,19 +26,20 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         <nav
             data-ss="active-link"
             data-ss-active-link-class="active"
+            aria-label="Site (demo)"
             style="
                 display: flex;
                 gap: 8px;
                 padding: 16px;
-                background: var(--color_fill_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface-alt);
+                border-radius: var(--ss-radius-lg);
             "
         >
             <a
                 href="/home"
                 style="
                     padding: 8px 16px;
-                    border-radius: 6px;
+                    border-radius: var(--ss-radius-md);
                     text-decoration: none;
                     color: inherit;
                 "
@@ -49,7 +50,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                 href="/about"
                 style="
                     padding: 8px 16px;
-                    border-radius: 6px;
+                    border-radius: var(--ss-radius-md);
                     text-decoration: none;
                     color: inherit;
                 "
@@ -61,10 +62,10 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                 class="active"
                 style="
                     padding: 8px 16px;
-                    border-radius: 6px;
+                    border-radius: var(--ss-radius-md);
                     text-decoration: none;
-                    background: var(--color_fill_primary);
-                    color: white;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
                 "
             >
                 Services
@@ -73,7 +74,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                 href="/contact"
                 style="
                     padding: 8px 16px;
-                    border-radius: 6px;
+                    border-radius: var(--ss-radius-md);
                     text-decoration: none;
                     color: inherit;
                 "
@@ -86,12 +87,12 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         <aside
             data-ss="active-link"
             data-ss-active-link-class="is-current"
-            data-ss-active-link-skip=".skip-highlight"
+            data-ss-active-link-skip=".ss-c-skip-highlight"
             style="
                 width: 200px;
                 padding: 16px;
-                background: var(--color_fill_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface-alt);
+                border-radius: var(--ss-radius-lg);
                 margin-top: 16px;
             "
         >
@@ -102,7 +103,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                         style="
                             display: block;
                             padding: 10px 12px;
-                            border-radius: 6px;
+                            border-radius: var(--ss-radius-md);
                             text-decoration: none;
                             color: inherit;
                         "
@@ -117,13 +118,10 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                         style="
                             display: block;
                             padding: 10px 12px;
-                            border-radius: 6px;
+                            border-radius: var(--ss-radius-md);
                             text-decoration: none;
-                            background: rgba(
-                                var(--color_fill_primary_rgb),
-                                0.1
-                            );
-                            color: var(--color_fill_primary);
+                            background: var(--ss-color-highlight);
+                            color: var(--ss-color-highlight-foreground);
                             font-weight: 500;
                         "
                     >
@@ -136,7 +134,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                         style="
                             display: block;
                             padding: 10px 12px;
-                            border-radius: 6px;
+                            border-radius: var(--ss-radius-md);
                             text-decoration: none;
                             color: inherit;
                         "
@@ -150,7 +148,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                         style="
                             display: block;
                             padding: 10px 12px;
-                            border-radius: 6px;
+                            border-radius: var(--ss-radius-md);
                             text-decoration: none;
                             color: inherit;
                         "
@@ -165,7 +163,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                         style="
                             display: block;
                             padding: 10px 12px;
-                            border-radius: 6px;
+                            border-radius: var(--ss-radius-md);
                             text-decoration: none;
                             color: inherit;
                             opacity: 0.6;
@@ -187,7 +185,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>
             Generates a table of contents from elements with
             <code>data-label</code>
@@ -207,7 +205,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- Main content with labeled sections -->
             <div id="content-area">
                 <section data-label="Introduction" id="intro">
-                    <h2>Introduction</h2>
+                    <h3>Introduction</h3>
                     <p>
                         Welcome to the documentation. This section covers the
                         basics.
@@ -215,22 +213,22 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                 </section>
 
                 <section data-label="Getting Started" id="getting-started">
-                    <h2>Getting Started</h2>
+                    <h3>Getting Started</h3>
                     <p>Follow these steps to begin using the library.</p>
 
                     <section data-label="Installation" id="installation">
-                        <h3>Installation</h3>
+                        <h4>Installation</h4>
                         <p>Install via npm or yarn.</p>
                     </section>
 
                     <section data-label="Configuration" id="configuration">
-                        <h3>Configuration</h3>
+                        <h4>Configuration</h4>
                         <p>Configure your project settings.</p>
                     </section>
                 </section>
 
                 <section data-label="Advanced Usage" id="advanced">
-                    <h2>Advanced Usage</h2>
+                    <h3>Advanced Usage</h3>
                     <p>Learn about advanced features and patterns.</p>
                 </section>
             </div>
@@ -238,16 +236,17 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             <!-- Auto-generated TOC -->
             <nav
                 id="toc-nav"
+                aria-label="On this page"
                 style="
                     position: sticky;
                     top: 20px;
                     padding: 20px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 12px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                     height: fit-content;
                 "
             >
-                <h4
+                <h3
                     style="
                         margin: 0 0 16px;
                         font-size: 14px;
@@ -256,7 +255,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                     "
                 >
                     On This Page
-                </h4>
+                </h3>
                 <ul style="list-style: none; padding: 0; margin: 0">
                     <li>
                         <a
@@ -280,9 +279,9 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
                                 display: block;
                                 padding: 6px 0;
                                 text-decoration: none;
-                                color: var(--color_fill_primary);
+                                color: var(--ss-color-accent);
                                 border-left: 2px solid
-                                    var(--color_fill_primary);
+                                    var(--ss-color-accent);
                                 padding-left: 12px;
                                 font-weight: 500;
                             "
@@ -348,7 +347,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>
             The TOC builder supports nested sections with
             <code>data-level</code>
@@ -358,30 +357,30 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         <!-- Deeply nested content structure -->
         <article id="documentation">
             <section data-label="Chapter 1" data-level="1">
-                <h1>Chapter 1: Foundation</h1>
+                <h3>Chapter 1: Foundation</h3>
 
                 <section data-label="Overview" data-level="2">
-                    <h2>Overview</h2>
+                    <h4>Overview</h4>
                     <p>Chapter overview content...</p>
                 </section>
 
                 <section data-label="Core Concepts" data-level="2">
-                    <h2>Core Concepts</h2>
+                    <h4>Core Concepts</h4>
 
                     <section data-label="Components" data-level="3">
-                        <h3>Components</h3>
+                        <h5>Components</h5>
                         <p>Component details...</p>
                     </section>
 
                     <section data-label="Patterns" data-level="3">
-                        <h3>Patterns</h3>
+                        <h5>Patterns</h5>
                         <p>Pattern explanations...</p>
                     </section>
                 </section>
             </section>
 
             <section data-label="Chapter 2" data-level="1">
-                <h1>Chapter 2: Advanced</h1>
+                <h3>Chapter 2: Advanced</h3>
                 <p>Advanced topics...</p>
             </section>
         </article>
@@ -391,8 +390,8 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
             class="ss-c-toc"
             style="
                 padding: 20px;
-                background: var(--color_fill_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface-alt);
+                border-radius: var(--ss-radius-lg);
             "
         >
             <ol style="margin: 0; padding-left: 20px">
@@ -422,7 +421,7 @@ block title %}{{ title }}{%- endblock %} {%- block content %}
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Programmatic control of content management components.</p>
         {% set code_snippet %}
         <script>

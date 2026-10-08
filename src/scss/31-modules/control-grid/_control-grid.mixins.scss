@@ -1,0 +1,76 @@
+@use "sass:map";
+@use "./control-grid.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-control-grid {
+    display: grid;
+    grid-template-columns: map.get(config.$ss-control-grid-config, label-width) minmax(0, 1fr);
+    align-items: center;
+    gap: map.get(config.$ss-control-grid-config, row-gap)
+        map.get(config.$ss-control-grid-config, column-gap);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-inline-size: 0;
+}
+
+@mixin ss-control-grid-stacked {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: q(4);
+}
+
+@mixin ss-control-grid-label {
+    font-weight: map.get(config.$ss-control-grid-config, label-weight);
+}
+
+/// Full-width group heading between rows.
+@mixin ss-control-grid-heading {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding-block-start: q(8);
+    border-block-start: q(1) solid map.get(config.$ss-control-grid-config, heading-border);
+    color: map.get(config.$ss-control-grid-config, heading-color);
+    font-size: map.get(config.$ss-control-grid-config, heading-font-size);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    &:first-child {
+        padding-block-start: 0;
+        border-block-start: 0;
+    }
+}
+
+/// A control cell holding several controls (input + unit, button pair, …).
+@mixin ss-control-grid-control {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: q(8);
+    min-inline-size: 0;
+}
+
+@mixin ss-control-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: map.get(config.$ss-control-grid-config, row-gap-inline);
+}
+
+@mixin ss-control-grid-compact {
+    gap: map.get(config.$ss-control-grid-config, compact-row-gap)
+        map.get(config.$ss-control-grid-config, compact-column-gap);
+    font-size: var(--ss-font-size-sm);
+}
+
+// Wraps rules that apply below the width where the grid stacks.
+@mixin ss-control-grid-below-stack {
+    @media (max-width: map.get(config.$ss-control-grid-config, stack-below)) {
+        @content;
+    }
+}
+
+@mixin ss-control-grid-value {
+    color: map.get(config.$ss-control-grid-config, value-color);
+    font-variant-numeric: tabular-nums;
+}

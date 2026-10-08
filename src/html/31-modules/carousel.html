@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
      
+    
+    
 
     <head>
         <meta charset="UTF-8" />
@@ -10,6 +12,13 @@
             content="width=device-width, initial-scale=1.0"
         />
         <link rel="stylesheet" href="/css/stylescape.css" />
+        
+        <script>
+            try {
+                const theme = localStorage.getItem("preferredTheme");
+                if (theme) document.documentElement.dataset.theme = theme;
+            } catch (e) {}
+        </script>
         
 
         <style>
@@ -21,172 +30,85 @@
     </head>
 
     <body class="">
+        <a class="ss-c-demo__skip-link" href="#main_content">Skip to content</a>
         <div class="ss-l-frame">
-            <div class="ss-l-frame__area--top"><header class="ss-c-ribbon--top" id="" role="navigation">
+            <div class="ss-l-frame__area--top"><header class="ss-c-ribbon--top">
     <div class="ss-c-ribbon__slot--horizontal_left">
-        <h1
-            id="ribbon__title"
-            class="ss-c-ribbon__slot--left ss-c-ribbon__title"
-            role="heading"
-            aria-level="1"
-        >
-            <div class="ss-c-ribbon__title__logo">
-                <a href="/" class="">
-                    <span class="i-text">+</span>
-                </a>
-            </div>
-            <div class="ss-c-ribbon__title__text">
-                <a href="/" class="">STYLESCAPE</a>
-            </div>
-        </h1>
-    </div>
-
-    <div class="ss-c-ribbon__slot--horizontal_center">
-        <button
-            aria-label="Toggle navigation"
-            aria-expanded="false"
-            type="button"
-            data-view-component="true"
-            id="ss-c-ribbon__nav_button"
-            class="ss-c-button--menu ss-c-ribbon__nav_button"
-        >
-            <svg
-                aria-hidden="true"
-                height="24"
-                viewBox="0 0 16 16"
-                version="1.1"
-                width="24"
-                data-view-component="true"
-                class="octicon octicon-three-bars"
-            >
-                <path
-                    fill-rule="evenodd"
-                    d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"
-                ></path>
-            </svg>
-        </button>
+        <div id="ribbon__title" class="ss-c-ribbon__slot--left ss-c-ribbon__title">
+            <a href="/" class="ss-c-ribbon__title__text">
+                <span class="ss-c-ribbon__title__logo" aria-hidden="true">+</span>
+                STYLESCAPE
+            </a>
+        </div>
     </div>
 
     <div class="ss-c-ribbon__slot--horizontal_right">
-        <menu id="ribbon__menu" class="ss-c-ribbon__menu" role="menubar">
+        
+        <ul id="ribbon__menu" class="ss-c-ribbon__nav" aria-label="Display options">
             <li class="ss-c-ribbon__menu__item">
-                <button class="ss-c-ribbon__button" onclick="copy()">
-                    
-                    <a href="">
-                        <i class="ss-c-i i_symbol_swirl_left_02"></i>
-                    </a>
-                    
-                </button>
-            </li>
-
-            <li class="ss-c-ribbon__menu__item">
-                <input type="checkbox" id="themeToggle" />
-            </li>
-
-            <li class="ss-c-ribbon__menu__item">
-                <button class="ss-c-ribbon__button" data-toggle="baseline">
-                    <a>☰</a>
-                </button>
+                <label class="ss-c-ribbon__button" for="themeToggle">
+                    <input type="checkbox" id="themeToggle" />
+                    Dark mode
+                </label>
             </li>
             <li class="ss-c-ribbon__menu__item">
-                <button class="ss-c-ribbon__button" data-toggle="graph">
-                    <a class="ss-c-i i_shape_square_hatch_cross"></a>
+                <button
+                    type="button"
+                    class="ss-c-ribbon__button"
+                    data-toggle="baseline"
+                    aria-pressed="false"
+                    aria-label="Baseline grid"
+                    title="Baseline grid"
+                >
+                    <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+                        <path d="M1 3h14M1 6.5h14M1 10h14M1 13.5h14" stroke="currentColor" stroke-width="1.25" fill="none" />
+                    </svg>
                 </button>
             </li>
             <li class="ss-c-ribbon__menu__item">
-                <button class="ss-c-ribbon__button" data-toggle="margin">
-                    <a>⌘</a>
+                <button
+                    type="button"
+                    class="ss-c-ribbon__button"
+                    data-toggle="graph"
+                    aria-pressed="false"
+                    aria-label="Graph paper grid"
+                    title="Graph paper grid"
+                >
+                    <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+                        <path d="M1 1h14v14H1zM5.67 1v14M10.33 1v14M1 5.67h14M1 10.33h14" stroke="currentColor" stroke-width="1.25" fill="none" />
+                    </svg>
                 </button>
             </li>
-
-            <li class="ss-c-ribbon__menu__item">
-                <details>
-                    <summary class="ss-c-ribbon__button">
-                        <a class="ss-c-i i_people_person_lg"></a>
-                    </summary>
-
-                    <ul class="ss-c-ribbon__panel ss-c-right">
-                        <figure class="ss-c-ribbon__panel__header">
-                            <svg
-                                width="1024px"
-                                height="1024px"
-                                viewBox="0 0 1024 1024"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M 835.9818972646173 512.0 L 836.324339003978 517.6113282867436 L 837.3553250936186 523.262079754239 L 839.0859172569347 528.9924028009625 L 841.5347763583628 534.8439160620367 L 844.72837199953 540.8604816935966 L 848.7010169947163 547.0889922119512 L 853.4944117222938 553.5801142495943 L 859.1561618942254 560.3888565976051 L 865.736355890543 567.5746925288631 L 873.2806601891411 575.200721605908 L 881.8173927945109 583.3309326515962 L 891.3345790097904 592.0239367368017 L 901.7412681711926 601.3205278388623 L 912.806539066669 611.2213209603058 L 924.0732707884969 621.6506277995279 L 934.7600197945286 632.4068142165584 L 943.7037614140019 643.1132767742733 L 949.4517285651382 653.2101558060733 L 950.6128849559411 662.0446581020444 L 946.4102883421261 669.0745326339959 L 937.0905147157945 674.0823501505081 L 923.8337577622183 677.2395351051528 L 908.234881973824 678.981314670556 L 891.7675559050591 679.813814771627 L 875.5122455032827 680.1788411569928 L 860.1344512825522 680.4057199335664 L 845.9796752904703 680.7182034350765 L 833.1847679676544 681.2607708108153 L 821.7653438658485 682.1250902090662 L 811.6737798359745 683.3703903950502 L 802.8342611966852 685.0374660577581 L 795.1626668708894 687.1578217087042 L 788.5772607662808 689.7595506357702 L 783.0041047157192 692.8711774099163 L 778.379584347726 696.5243114472785 L 774.6514596374262 700.7556782129595 L 771.7792445947223 705.60889975228 L 769.7339630481323 711.1359604832742 L 768.4968300602293 717.3978924148537 L 768.0574412116943 724.4649642563118 L 768.41151617362 732.4163099604941 L 769.557594483079 741.3383464739884 L 771.4917084115095 751.320813124777 L 774.1984879290756 762.4484202117651 L 777.6363194950525 774.7847627362182 L 781.7131963578304 788.3433173926144 L 786.2494215691675 803.0385781901102 L 790.9254280097347 818.6110964285933 L 795.2223569709565 834.5297108712989 L 798.3861438770879 849.9033628228949 L 799.4800457417773 863.4869117139046 L 797.5972966945454 873.8980438689539 L 792.2101624863667 880.0673014625793 L 783.449234451674 881.692987456968 L 772.0703123214264 879.3464530534034 L 759.1240931857259 874.1489281861166 L 745.5919649458405 867.3090703034466 L 732.1914931428483 859.8166047349234 L 719.3559225741446 852.352420077526 L 707.2984952211475 845.327875177808 L 696.0899847605801 838.9627792054714 L 685.7196991152296 833.3562374142375 L 676.1355962290468 828.5377502345468 L 667.26806837045 824.5001592774115 L 659.0429925715673 821.2195319786163 L 651.3883282280311 818.6666097099726 L 644.2370478966059 816.8131154001878 L 637.528078620711 815.6350464831683 L 631.2062197244077 815.1142601177487 L 625.2215762615483 815.2391363684735 L 619.5288000337595 816.0047885641563 L 614.0862893845347 817.4131029181067 L 608.8554193694015 819.4727801673978 L 603.7998275869388 822.1994844406054 L 598.8847489016729 825.6161425992725 L 594.0763681637118 829.7533630456564 L 589.3411495403817 834.6498740185245 L 584.6450988412188 840.3527995279387 L 579.9529153608199 846.9174558409695 L 575.2269936040017 854.406117331476 L 570.4262492876971 862.8847991317089 L 565.5047828795198 872.4164314802085 L 560.4104881371575 883.0477200333873 L 555.0839222348948 894.7853879947229 L 549.4581824939993 907.5555421750239 L 543.4613254334248 921.1387534970545 L 537.0240767766492 935.0768851713187 L 530.0967226517304 948.5644318490433 L 522.6780398234612 960.3789144762766 L 514.851556758834 968.9656633017896 L 506.80826283991144 972.8 L 498.8237810833902 970.975443803768 L 491.1810951676303 963.6593130833805 L 484.08187065441314 952.0270118031106 L 477.60502213702887 937.7298388238441 L 471.724583883927 922.3257377392383 L 466.35425599851663 906.9788182137017 L 461.38648170944066 892.4237762114544 L 456.7152259059708 879.0583469799146 L 452.2453698635427 867.057329534855 L 447.8945571542429 856.463901213122 L 443.59174151256536 847.251072403468 L 439.2746968587553 839.3593453113451 L 434.88746577943857 832.7184514676853 L 430.37807212853426 827.2593365326675 L 425.69653927677706 822.9204957078146 L 420.79314696110106 819.6511959773695 L 415.6168241331335 817.4131029181067 L 410.1135729034441 816.1811920186585 L 404.2249990230952 815.9439693709355 L 397.88725273740584 816.7024293657439 L 391.03028939012484 818.4683910376364 L 383.5775254253647 821.2622372881756 L 375.44632213509004 825.1092834396745 L 366.55010625110054 830.0334869354404 L 356.80356389120243 836.0464069304023 L 346.13335332375766 843.1281185316361 L 334.4982258008207 851.1952826461018 L 321.9239729413206 860.0505745159248 L 308.55859345142824 869.3098936923691 L 294.74691552794206 878.3156383706953 L 281.10336758069906 886.0752982425893 L 268.52267915985743 891.3132081904348 L 258.0393026300502 892.7398242071099 L 250.50727397362374 889.5227605533723 L 246.25387906599428 881.6929874569682 L 244.9692855852996 870.1458704079942 L 245.91182375310538 856.2271608249232 L 248.23525756676557 841.2437097581842 L 251.2200422490599 826.183804538076 L 254.35249426807954 811.6698916000557 L 257.30728350844663 798.0318929944697 L 259.89722929583684 785.4050432567049 L 262.02477289933506 773.8097988246875 L 263.64577586259605 763.2057808962379 L 264.7455362461143 753.5245765208012 L 265.3239100142924 744.6882949977144 L 265.38646200509254 736.6193802274126 L 264.93937269237944 729.2453472276568 L 263.98659729156486 722.5006949642889 L 262.52833272299654 716.3273180285078 L 260.56021181571566 710.6741727491201 L 258.07286870623534 705.4966203621179 L 255.05165388024193 700.7556782129598 L 251.4763566807961 696.4173004721326 L 247.32084303634898 692.4517449227492 L 242.55256518815844 688.8330327460217 L 237.13196335982022 685.5384623397638 L 231.0118416652735 682.5481069157231 L 224.1368777251117 679.8441981974952 L 216.44355412519707 677.4102568857668 L 207.86102367937892 675.2297618691314 L 198.31380652428732 673.2840394702127 L 187.72786871094513 671.5488831528085 L 176.04268880608515 669.9891697771925 L 163.23350381989064 668.550443440753 L 149.3499162867544 667.146241663695 L 134.57838390216847 665.6403348156389 L 119.33321371641875 663.8252670907834 L 104.36512440908015 661.4048429454376 L 90.83638464998144 658.0001322108478 L 80.25138495252985 653.2101558060733 L 74.1191995383276 646.7454039139072 L 73.38711504405887 638.5878916383001 L 77.98344900911061 629.0584566704513 L 86.8526439197525 618.7121141572209 L 98.44860718441873 608.1341957475945 L 111.28162254402179 597.7814376100976 L 124.21788778188301 587.931493335341 L 136.52542864352665 578.7091038936962 L 147.7932097789191 570.1363308528632 L 157.82559414269537 562.1767267964968 L 166.55606811146896 554.7653086380294 L 173.98834582746153 547.8261671151449 L 180.1597841397453 541.2817358795664 L 185.1199205420234 535.0570821175589 L 188.9183681017202 529.08143461216 L 191.5981777304466 523.2882567364788 L 193.19223498717702 517.6145843462907 L 193.72121625305084 512.0 L 193.19223498717702 506.3854156537094 L 191.5981777304466 500.71174326352116 L 188.91836810172035 494.91856538784026 L 185.1199205420234 488.94291788244124 L 180.15978413974523 482.7182641204335 L 173.9883458274618 476.17383288485513 L 166.55606811146882 469.2346913619706 L 157.82559414269514 461.823273203503 L 147.79320977891928 453.86366914713676 L 136.5254286435265 445.2908961063039 L 124.21788778188315 436.06850666465914 L 111.28162254402199 426.2185623899026 L 98.44860718441888 415.8658042524057 L 86.85264391975271 405.28788584277936 L 77.98344900911113 394.9415433295492 L 73.38711504405894 385.4121083617003 L 74.1191995383276 377.2545960860928 L 80.25138495252992 370.7898441939266 L 90.8363846499813 365.999867789152 L 104.36512440908015 362.5951570545625 L 119.33321371641817 360.1747329092164 L 134.57838390216835 358.3596651843611 L 149.34991628675425 356.85375833630496 L 163.23350381989047 355.44955655924707 L 176.04268880608493 354.01083022280744 L 187.72786871094456 352.45111684719166 L 198.3138065242871 350.7159605297874 L 207.86102367937897 348.7702381308686 L 216.4435541251971 346.58974311423316 L 224.1368777251118 344.15580180250475 L 231.01184166527355 341.45189308427683 L 237.1319633598201 338.4615376602363 L 242.5525651881584 335.1669672539783 L 247.32084303634898 331.5482550772508 L 251.47635668079607 327.58269952786736 L 255.05165388024187 323.2443217870404 L 258.0728687062352 318.5033796378823 L 260.56021181571566 313.32582725088014 L 262.52833272299654 307.6726819714922 L 263.9865972915649 301.49930503571113 L 264.9393726923795 294.7546527723432 L 265.38646200509265 287.38061977258735 L 265.3239100142923 279.31170500228563 L 264.7455362461145 270.4754234791988 L 263.6457758625961 260.7942191037621 L 262.02477289933506 250.19020117531267 L 259.89722929583684 238.59495674329528 L 257.30728350844686 225.96810700553084 L 254.35249426807977 212.33010839994498 L 251.22004224905993 197.8161954619242 L 248.2352575667655 182.75629024181566 L 245.9118237531055 167.77283917507668 L 244.9692855852996 153.85412959200582 L 246.2538790659942 142.30701254303187 L 250.50727397362348 134.4772394466279 L 258.03930263004986 131.26017579289004 L 268.5226791598577 132.68679180956525 L 281.1033675806988 137.92470175741056 L 294.74691552794195 145.68436162930453 L 308.55859345142756 154.69010630763023 L 321.9239729413199 163.9494254840746 L 334.4982258008206 172.80471735389796 L 346.1333533237575 180.87188146836365 L 356.80356389120215 187.9535930695974 L 366.55010625110066 193.9665130645596 L 375.44632213509 198.89071656032533 L 383.5775254253645 202.73776271182433 L 391.0302893901247 205.53160896236355 L 397.88725273740573 207.29757063425606 L 404.22499902309494 208.05603062906428 L 410.11357290344404 207.81880798134137 L 415.6168241331335 206.58689708189334 L 420.79314696110094 204.34880402263067 L 425.6965392767771 201.07950429218536 L 430.3780721285343 196.7406634673324 L 434.8874657794385 191.2815485323148 L 439.27469685875514 184.6406546886551 L 443.5917415125652 176.74892759653227 L 447.89455715424293 167.5360987868779 L 452.2453698635426 156.9426704651449 L 456.7152259059708 144.94165302008517 L 461.38648170944043 131.5762237885462 L 466.3542559985164 117.02118178629908 L 471.7245838839267 101.67426226076283 L 477.60502213702887 86.27016117615582 L 484.08187065441297 71.97298819688962 L 491.1810951676304 60.3406869166191 L 498.82378108339014 53.0245561962319 L 506.8082628399114 51.19999999999999 L 514.851556758834 55.03433669821001 L 522.6780398234611 63.62108552372324 L 530.09672265173 75.4355681509561 L 537.0240767766488 88.9231148286803 L 543.4613254334248 102.8612465029453 L 549.4581824939992 116.4444578249756 L 555.0839222348948 129.21461200527725 L 560.4104881371575 140.95227996661282 L 565.5047828795198 151.58356851979136 L 570.4262492876971 161.11520086829086 L 575.2269936040016 169.59388266852386 L 579.9529153608198 177.08254415903025 L 584.6450988412189 183.64720047206134 L 589.3411495403817 189.35012598147534 L 594.0763681637117 194.24663695434342 L 598.8847489016728 198.38385740072744 L 603.7998275869386 201.80051555939448 L 608.8554193694015 204.5272198326022 L 614.0862893845346 206.5868970818933 L 619.5288000337592 207.99521143584352 L 625.2215762615484 208.76086363152638 L 631.2062197244078 208.88573988225127 L 637.5280786207109 208.3649535168319 L 644.2370478966058 207.18688459981223 L 651.3883282280308 205.3333902900276 L 659.0429925715671 202.7804680213838 L 667.2680683704499 199.4998407225887 L 676.1355962290467 195.46224976545324 L 685.7196991152293 190.64376258576257 L 696.08998476058 185.03722079452882 L 707.2984952211476 178.67212482219185 L 719.3559225741445 171.64757992247405 L 732.1914931428481 164.18339526507683 L 745.5919649458402 156.69092969655344 L 759.1240931857261 149.85107181388346 L 772.0703123214264 144.65354694659652 L 783.4492344516739 142.30701254303173 L 792.2101624863666 143.9326985374206 L 797.5972966945451 150.10195613104577 L 799.4800457417774 160.5130882860945 L 798.3861438770876 174.0966371771051 L 795.2223569709565 189.4702891287005 L 790.9254280097343 205.3889035714071 L 786.2494215691672 220.96142180988994 L 781.7131963578304 235.6566826073855 L 777.6363194950525 249.21523726378146 L 774.1984879290757 261.55157978823456 L 771.4917084115095 272.6791868752225 L 769.5575944830791 282.66165352601126 L 768.41151617362 291.58369003950577 L 768.057441211694 299.535035743688 L 768.4968300602293 306.6021075851464 L 769.7339630481324 312.86403951672594 L 771.7792445947223 318.39110024772003 L 774.6514596374262 323.2443217870403 L 778.3795843477259 327.47568855272135 L 783.0041047157192 331.12882259008353 L 788.5772607662808 334.2404493642299 L 795.1626668708893 336.84217829129585 L 802.8342611966851 338.9625339422417 L 811.6737798359742 340.6296096049498 L 821.7653438658482 341.87490979093366 L 833.1847679676546 342.7392291891846 L 845.9796752904701 343.2817965649235 L 860.1344512825518 343.59428006643367 L 875.5122455032832 343.8211588430072 L 891.7675559050591 344.18618522837284 L 908.2348819738238 345.018685329444 L 923.8337577622179 346.7604648948472 L 937.0905147157941 349.9176498494918 L 946.4102883421259 354.9254673660038 L 950.6128849559411 361.95534189795563 L 949.4517285651385 370.7898441939265 L 943.7037614140019 380.8867232257264 L 934.7600197945286 391.59318578344175 L 924.0732707884972 402.349372200472 L 912.806539066669 412.7786790396941 L 901.7412681711929 422.6794721611375 L 891.3345790097909 431.976063263198 L 881.8173927945109 440.66906734840387 L 873.2806601891411 448.7992783940918 L 865.7363558905431 456.4253074711368 L 859.1561618942254 463.61114340239465 L 853.4944117222939 470.41988575040534 L 848.7010169947165 476.9110077880484 L 844.72837199953 483.1395183064033 L 841.5347763583628 489.15608393796316 L 839.0859172569347 495.0075971990376 L 837.3553250936186 500.73792024576096 L 836.324339003978 506.38867171325626 Z"
-                                    fill="rgb(115,144,160)"
-                                ></path>
-                            </svg>
-                            <figcaption>
-                                <h3 class="ss-c-ribbon__panel__header">starling</h3>
-                            </figcaption>
-                        </figure>
-
-                        <hr class="ss-c-ribbon__panel__line" />
-
-                        <h4 class="ss-c-ribbon__panel__section__header">Account</h4>
-
-                        <ul class="ss-c-ribbon__panel__section">
-                            <li class="ss-c-ribbon__panel__section__item">
-                                <a href="/accounts/profileprofile/kerem/">
-                                    Profile
-                                </a>
-                            </li>
-                        </ul>
-
-                        <hr class="ss-c-ribbon__panel__line" />
-
-                        <ul class="ss-c-ribbon__panel__section">
-                            <li class="ss-c-ribbon__panel__section__item">
-                                <a href="/accounts/logout">Sign out</a>
-                            </li>
-                        </ul>
-                    </ul>
-                </details>
-            </li>
-        </menu>
+        </ul>
     </div>
 </header>
 </div>
 
-            <div class="ss-l-frame__area--middle_left"><aside class="ss-c-sidebar ss-c-sidebar--left" id="" role="navigation">
+            <div class="ss-l-frame__area--middle_left"><aside class="ss-c-sidebar ss-c-sidebar--left" aria-label="Site navigation">
     <nav
         id="sidebar_left_navigation"
         class="ss-c-ribbon--left ss-c-ribbon--inverted"
-        aria-label="Sidebar Left Navigation"
+        aria-label="Quick links"
     >
-        <!-- Add navigation links here -->
         <div class="ss-c-ribbon__slot--vertical_top ss-c-gap--02">
-          <div class="ss-c-tooltip ss-c-tooltip--right" tooltip-data="Portal Home">
-            <button class="ss-c-ribbon__button">
-              <a href="/en/portal/">
-                <i class="ss-c-i i_ui_home_plain"></i>
-              </a>
-            </button>
-          </div>
+            <div class="ss-c-tooltip ss-c-tooltip--right" tooltip-data="Home">
+                <a class="ss-c-ribbon__button" href="/" aria-label="Home">
+                    <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+                        <path d="M2 7.5 8 2l6 5.5V14H10v-4H6v4H2z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" fill="none" />
+                    </svg>
+                </a>
+            </div>
         </div>
     </nav>
 
     <nav
         id="sidebar_left_menu"
         class="ss-c-sidebar__menu"
-        aria-label="Sidebar Left Content Navigation"
+        aria-label="Demo pages"
     >
+        <div id="sidebar_left_content" class="ss-c-sidebar__content ss-c-rail">
 
-        <section
-            id="sidebar_left_content"
-            class="ss-c-sidebar__content ss-c-rail"
-            role="region"
-        >
-            <h2 id="sidebar-left-label" class="ss-c-visually-hidden">
-                Left Sidebar Content
-            </h2>
-<section
-    class="ss-c-sidebar__section"
-    role="region"
-    aria-labelledby="section-1"
->
+<section class="ss-c-sidebar__section">
     <details class="ss-c-sidebar__accordion">
         <summary class="ss-c-sidebar__accordion__header">
             <h2 id="section-1">00. Pages</h2>
@@ -197,7 +119,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-1-">
+                    <h3 id="group-1-1">
                         Overview
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -207,6 +129,16 @@
                     
 
                     <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/pages/django-templates.html">Django Templates</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/pages/gallery.html">Gallery</a>
+                        </li>
                         
                         <li>
                              
@@ -246,11 +178,8 @@
     </details>
 </section>
 
-<section
-    class="ss-c-sidebar__section"
-    role="region"
-    aria-labelledby="section-2"
->
+
+<section class="ss-c-sidebar__section">
     <details class="ss-c-sidebar__accordion">
         <summary class="ss-c-sidebar__accordion__header">
             <h2 id="section-2">12. Lexicon</h2>
@@ -261,7 +190,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-1-">
+                    <h3 id="group-1-2">
                         Color
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -290,11 +219,8 @@
     </details>
 </section>
 
-<section
-    class="ss-c-sidebar__section"
-    role="region"
-    aria-labelledby="section-3"
->
+
+<section class="ss-c-sidebar__section">
     <details class="ss-c-sidebar__accordion">
         <summary class="ss-c-sidebar__accordion__header">
             <h2 id="section-3">21. Typography</h2>
@@ -305,7 +231,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-1-">
+                    <h3 id="group-1-3">
                         Font
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -342,7 +268,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-2-">
+                    <h3 id="group-2-3">
                         Character
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -419,7 +345,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-3-">
+                    <h3 id="group-3-3">
                         Paragraph
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -456,7 +382,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-4-">
+                    <h3 id="group-4-3">
                         List
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -485,11 +411,8 @@
     </details>
 </section>
 
-<section
-    class="ss-c-sidebar__section"
-    role="region"
-    aria-labelledby="section-4"
->
+
+<section class="ss-c-sidebar__section">
     <details class="ss-c-sidebar__accordion">
         <summary class="ss-c-sidebar__accordion__header">
             <h2 id="section-4">23. Layout</h2>
@@ -500,7 +423,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-1-">
+                    <h3 id="group-1-4">
                         Layout Primitives
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -510,6 +433,16 @@
                     
 
                     <ul class="ss-c-sidebar__subsection__list">
+                        
+                        <li>
+                             
+                            <a href="/src/html/23-layout/app.html">App</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/23-layout/dashboard.html">Dashboard</a>
+                        </li>
                         
                         <li>
                              
@@ -526,6 +459,11 @@
                             <a href="/src/html/23-layout/layers.html">Layers</a>
                         </li>
                         
+                        <li>
+                             
+                            <a href="/src/html/23-layout/viewport-grid.html">Viewport Grid</a>
+                        </li>
+                        
                     </ul>
                 </div>
             </details>
@@ -534,11 +472,8 @@
     </details>
 </section>
 
-<section
-    class="ss-c-sidebar__section"
-    role="region"
-    aria-labelledby="section-5"
->
+
+<section class="ss-c-sidebar__section">
     <details class="ss-c-sidebar__accordion">
         <summary class="ss-c-sidebar__accordion__header">
             <h2 id="section-5">24. Appearance</h2>
@@ -549,7 +484,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-1-">
+                    <h3 id="group-1-5">
                         Object Properties
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -611,7 +546,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-2-">
+                    <h3 id="group-2-5">
                         Line & Rules
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -640,11 +575,8 @@
     </details>
 </section>
 
-<section
-    class="ss-c-sidebar__section"
-    role="region"
-    aria-labelledby="section-6"
->
+
+<section class="ss-c-sidebar__section">
     <details class="ss-c-sidebar__accordion">
         <summary class="ss-c-sidebar__accordion__header">
             <h2 id="section-6">31. Modules</h2>
@@ -655,7 +587,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-1-">
+                    <h3 id="group-1-6">
                         Buttons
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -678,6 +610,16 @@
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/api-explorer.html">Api Explorer</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/auth.html">Auth</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/avatar.html">Avatar</a>
                         </li>
                         
@@ -689,6 +631,26 @@
                         <li>
                              
                             <a href="/src/html/31-modules/brand.html">Brand</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/calendar.html">Calendar</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/cart.html">Cart</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/chart.html">Chart</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/checkout.html">Checkout</a>
                         </li>
                         
                         <li>
@@ -713,6 +675,26 @@
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/color-input.html">Input</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/comment.html">Comment</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/context-menu.html">Context Menu</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/control-grid.html">Control Grid</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/countdown.html">Countdown</a>
                         </li>
                         
@@ -723,7 +705,17 @@
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/description-list.html">Description List</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/diff.html">Diff</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/django-forms.html">Django Forms</a>
                         </li>
                         
                         <li>
@@ -733,7 +725,27 @@
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/dropzone.html">Dropzone</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/empty-state.html">Empty State</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/fab.html">Fab</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/file-input.html">File Input</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/filter-bar.html">Filter Bar</a>
                         </li>
                         
                         <li>
@@ -753,7 +765,17 @@
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/gantt.html">Gantt</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/headline.html">Headline</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/htmx.html">Htmx</a>
                         </li>
                         
                         <li>
@@ -773,12 +795,37 @@
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/legend.html">Legend</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/log.html">Log</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/mask.html">Mask</a>
                         </li>
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/messages.html">Messages</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/offcanvas.html">Offcanvas</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/order-summary.html">Order Summary</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/overlay-panel.html">Overlay Panel</a>
                         </li>
                         
                         <li>
@@ -789,6 +836,11 @@
                         <li>
                              
                             <a href="/src/html/31-modules/panel.html">Panel</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/pricing.html">Pricing</a>
                         </li>
                         
                         <li>
@@ -813,6 +865,11 @@
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/search-bar.html">Search Bar</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/section-header.html">Section Header</a>
                         </li>
                         
@@ -823,7 +880,32 @@
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/segmented.html">Segmented</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/sheet.html">Sheet</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/shortcut-list.html">Shortcut List</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/split.html">Split</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/stack.html">Stack</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/stepper.html">Stepper</a>
                         </li>
                         
                         <li>
@@ -848,12 +930,32 @@
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/theme-toggle.html">Theme Toggle</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/title-bar.html">Title Bar</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/toolbar.html">Toolbar</a>
                         </li>
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/tree.html">Tree</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/validation.html">Validation</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/viewport.html">Viewport</a>
                         </li>
                         
                     </ul>
@@ -862,7 +964,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-2-">
+                    <h3 id="group-2-6">
                         Inputs & Forms
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -930,6 +1032,11 @@
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/switch.html">Switch</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/toggle.html">Toggle</a>
                         </li>
                         
@@ -939,7 +1046,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-3-">
+                    <h3 id="group-3-6">
                         Status & Feedback
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -977,6 +1084,11 @@
                         
                         <li>
                              
+                            <a href="/src/html/31-modules/skeleton.html">Skeleton</a>
+                        </li>
+                        
+                        <li>
+                             
                             <a href="/src/html/31-modules/spinner.html">Spinner</a>
                         </li>
                         
@@ -996,7 +1108,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-4-">
+                    <h3 id="group-4-6">
                         Navigation
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -1063,7 +1175,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-5-">
+                    <h3 id="group-5-6">
                         Cards & Content
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -1140,7 +1252,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-6-">
+                    <h3 id="group-6-6">
                         Media
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -1164,6 +1276,11 @@
                         <li>
                              
                             <a href="/src/html/31-modules/iframe.html">Iframe</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/31-modules/image-compare.html">Image Compare</a>
                         </li>
                         
                         <li>
@@ -1197,7 +1314,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-7-">
+                    <h3 id="group-7-6">
                         Data Display
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -1284,7 +1401,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-8-">
+                    <h3 id="group-8-6">
                         Misc
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -1348,11 +1465,8 @@
     </details>
 </section>
 
-<section
-    class="ss-c-sidebar__section"
-    role="region"
-    aria-labelledby="section-7"
->
+
+<section class="ss-c-sidebar__section">
     <details class="ss-c-sidebar__accordion">
         <summary class="ss-c-sidebar__accordion__header">
             <h2 id="section-7">61. TypeScript Features</h2>
@@ -1363,7 +1477,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-1-">
+                    <h3 id="group-1-7">
                         Interactive Features
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -1437,11 +1551,8 @@
     </details>
 </section>
 
-<section
-    class="ss-c-sidebar__section"
-    role="region"
-    aria-labelledby="section-8"
->
+
+<section class="ss-c-sidebar__section">
     <details class="ss-c-sidebar__accordion">
         <summary class="ss-c-sidebar__accordion__header">
             <h2 id="section-8">90. Architecture</h2>
@@ -1452,7 +1563,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-1-">
+                    <h3 id="group-1-8">
                         Architecture Reference
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -1536,11 +1647,8 @@
     </details>
 </section>
 
-<section
-    class="ss-c-sidebar__section"
-    role="region"
-    aria-labelledby="section-9"
->
+
+<section class="ss-c-sidebar__section">
     <details class="ss-c-sidebar__accordion">
         <summary class="ss-c-sidebar__accordion__header">
             <h2 id="section-9">99. Tests</h2>
@@ -1551,7 +1659,7 @@
             
             <details class="ss-c-sidebar__accordion ss-c-sidebar__accordion--nested">
                 <summary class="ss-c-sidebar__accordion__header ss-c-sidebar__accordion__header--nested">
-                    <h3 id="group-1-">
+                    <h3 id="group-1-9">
                         Test Pages
                     </h3>
                     <span class="ss-c-sidebar__accordion__icon" aria-hidden="true">›</span>
@@ -1570,6 +1678,11 @@
                         <li>
                              
                             <a href="/src/html/tests/test_class_coverage.html">Class Coverage</a>
+                        </li>
+                        
+                        <li>
+                             
+                            <a href="/src/html/tests/test_compat_v03.html">Compat V03</a>
                         </li>
                         
                         <li>
@@ -1597,15 +1710,17 @@
 
 
 
-        </section>
+        </div>
     </nav>
 
-    <div class="ss-c-sidebar__control" role="group" aria-label="Sidebar Toggle">
+    <div class="ss-c-sidebar__control">
         <button
+            type="button"
             class="ss-c-flipper--left"
             id="sidebar_left_switch"
-            aria-pressed="false"
-            aria-label="Toggle Left Sidebar"
+            aria-expanded="false"
+            aria-controls="sidebar_left_menu"
+            aria-label="Show page navigation"
         >
             <span class="ss-c-flipper__icon"></span>
         </button>
@@ -1615,10 +1730,10 @@
             </div>
 
             <div class="ss-l-frame__area--middle_center">
-                <main id="main_content" class="ss-l-main ss-c-rail" role="main">
+                <main id="main_content" class="ss-l-main ss-c-rail" tabindex="0">
 <section class="ss-c-demo__section" data-label="Carousel" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>Carousel</h2>
+        <h1>Carousel</h1>
         <p>
             Carousel components for cycling through elements like a slideshow.
         </p>
@@ -1630,8 +1745,8 @@
         data-label="Basic Carousel"
         data-level="2"
     >
-        <h3>Basic Carousel</h3>
-            
+        <h2>Basic Carousel</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -1642,7 +1757,7 @@
                 width: 100%;
                 max-width: 600px;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div style="display: flex; transition: transform 0.5s ease">
@@ -1707,11 +1822,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-3588')"
+            onclick="ClipboardHelper.copyById('code-snippet-1')"
         >
             Copy
         </button>
@@ -1719,13 +1836,13 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-3588" class="language-html">&lt;div
+        ><code id="code-snippet-1" class="language-html">&lt;div
             style=&quot;
                 position: relative;
                 width: 100%;
                 max-width: 600px;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             &quot;
         &gt;
             &lt;div style=&quot;display: flex; transition: transform 0.5s ease&quot;&gt;
@@ -1800,9 +1917,9 @@
     Navigation"
         data-level="2"
     >
-        <h3>Carousel with
-    Navigation</h3>
-            
+        <h2>Carousel with
+    Navigation</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -1812,7 +1929,7 @@
                 position: relative;
                 width: 100%;
                 max-width: 600px;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             "
         >
@@ -1836,6 +1953,7 @@
             </div>
             <!-- Navigation Arrows -->
             <button
+                aria-label="Previous slide"
                 style="
                     position: absolute;
                     left: 16px;
@@ -1845,6 +1963,7 @@
                     height: 40px;
                     border-radius: 50%;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border: none;
                     cursor: pointer;
                     display: flex;
@@ -1857,6 +1976,7 @@
                 ←
             </button>
             <button
+                aria-label="Next slide"
                 style="
                     position: absolute;
                     right: 16px;
@@ -1866,6 +1986,7 @@
                     height: 40px;
                     border-radius: 50%;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border: none;
                     cursor: pointer;
                     display: flex;
@@ -1880,11 +2001,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-4906')"
+            onclick="ClipboardHelper.copyById('code-snippet-2')"
         >
             Copy
         </button>
@@ -1892,12 +2015,12 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-4906" class="language-html">&lt;div
+        ><code id="code-snippet-2" class="language-html">&lt;div
             style=&quot;
                 position: relative;
                 width: 100%;
                 max-width: 600px;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             &quot;
         &gt;
@@ -1921,6 +2044,7 @@
             &lt;/div&gt;
             &lt;!-- Navigation Arrows --&gt;
             &lt;button
+                aria-label=&quot;Previous slide&quot;
                 style=&quot;
                     position: absolute;
                     left: 16px;
@@ -1930,6 +2054,7 @@
                     height: 40px;
                     border-radius: 50%;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border: none;
                     cursor: pointer;
                     display: flex;
@@ -1942,6 +2067,7 @@
                 ←
             &lt;/button&gt;
             &lt;button
+                aria-label=&quot;Next slide&quot;
                 style=&quot;
                     position: absolute;
                     right: 16px;
@@ -1951,6 +2077,7 @@
                     height: 40px;
                     border-radius: 50%;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border: none;
                     cursor: pointer;
                     display: flex;
@@ -1975,9 +2102,9 @@
     Indicators"
         data-level="2"
     >
-        <h3>Carousel with
-    Indicators</h3>
-            
+        <h2>Carousel with
+    Indicators</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -1987,7 +2114,7 @@
                 position: relative;
                 width: 100%;
                 max-width: 600px;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             "
         >
@@ -2024,7 +2151,7 @@
                     style="
                         width: 24px;
                         height: 4px;
-                        border-radius: 2px;
+                        border-radius: var(--ss-radius-sm);
                         background: white;
                     "
                 ></span>
@@ -2032,7 +2159,7 @@
                     style="
                         width: 12px;
                         height: 4px;
-                        border-radius: 2px;
+                        border-radius: var(--ss-radius-sm);
                         background: rgba(255, 255, 255, 0.5);
                     "
                 ></span>
@@ -2040,7 +2167,7 @@
                     style="
                         width: 12px;
                         height: 4px;
-                        border-radius: 2px;
+                        border-radius: var(--ss-radius-sm);
                         background: rgba(255, 255, 255, 0.5);
                     "
                 ></span>
@@ -2048,7 +2175,7 @@
                     style="
                         width: 12px;
                         height: 4px;
-                        border-radius: 2px;
+                        border-radius: var(--ss-radius-sm);
                         background: rgba(255, 255, 255, 0.5);
                     "
                 ></span>
@@ -2056,11 +2183,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-1478')"
+            onclick="ClipboardHelper.copyById('code-snippet-3')"
         >
             Copy
         </button>
@@ -2068,12 +2197,12 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-1478" class="language-html">&lt;div
+        ><code id="code-snippet-3" class="language-html">&lt;div
             style=&quot;
                 position: relative;
                 width: 100%;
                 max-width: 600px;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             &quot;
         &gt;
@@ -2110,7 +2239,7 @@
                     style=&quot;
                         width: 24px;
                         height: 4px;
-                        border-radius: 2px;
+                        border-radius: var(--ss-radius-sm);
                         background: white;
                     &quot;
                 &gt;&lt;/span&gt;
@@ -2118,7 +2247,7 @@
                     style=&quot;
                         width: 12px;
                         height: 4px;
-                        border-radius: 2px;
+                        border-radius: var(--ss-radius-sm);
                         background: rgba(255, 255, 255, 0.5);
                     &quot;
                 &gt;&lt;/span&gt;
@@ -2126,7 +2255,7 @@
                     style=&quot;
                         width: 12px;
                         height: 4px;
-                        border-radius: 2px;
+                        border-radius: var(--ss-radius-sm);
                         background: rgba(255, 255, 255, 0.5);
                     &quot;
                 &gt;&lt;/span&gt;
@@ -2134,7 +2263,7 @@
                     style=&quot;
                         width: 12px;
                         height: 4px;
-                        border-radius: 2px;
+                        border-radius: var(--ss-radius-sm);
                         background: rgba(255, 255, 255, 0.5);
                     &quot;
                 &gt;&lt;/span&gt;
@@ -2151,8 +2280,8 @@
         data-label="Card Carousel"
         data-level="2"
     >
-        <h3>Card Carousel</h3>
-            
+        <h2>Card Carousel</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -2166,6 +2295,9 @@
             "
         >
             <div
+                tabindex="0"
+                role="region"
+                aria-label="Card carousel"
                 style="
                     display: flex;
                     gap: 16px;
@@ -2179,8 +2311,9 @@
                     style="
                         min-width: 200px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                         overflow: hidden;
                     "
@@ -2196,8 +2329,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Card 1</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Card 1</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             Description text
                         </p>
                     </div>
@@ -2206,8 +2339,9 @@
                     style="
                         min-width: 200px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                         overflow: hidden;
                     "
@@ -2223,8 +2357,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Card 2</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Card 2</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             Description text
                         </p>
                     </div>
@@ -2233,8 +2367,9 @@
                     style="
                         min-width: 200px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                         overflow: hidden;
                     "
@@ -2250,8 +2385,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Card 3</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Card 3</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             Description text
                         </p>
                     </div>
@@ -2260,8 +2395,9 @@
                     style="
                         min-width: 200px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                         overflow: hidden;
                     "
@@ -2277,8 +2413,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Card 4</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Card 4</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             Description text
                         </p>
                     </div>
@@ -2287,11 +2423,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-4982')"
+            onclick="ClipboardHelper.copyById('code-snippet-4')"
         >
             Copy
         </button>
@@ -2299,7 +2437,7 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-4982" class="language-html">&lt;div
+        ><code id="code-snippet-4" class="language-html">&lt;div
             style=&quot;
                 position: relative;
                 width: 100%;
@@ -2308,6 +2446,9 @@
             &quot;
         &gt;
             &lt;div
+                tabindex=&quot;0&quot;
+                role=&quot;region&quot;
+                aria-label=&quot;Card carousel&quot;
                 style=&quot;
                     display: flex;
                     gap: 16px;
@@ -2321,8 +2462,9 @@
                     style=&quot;
                         min-width: 200px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                         overflow: hidden;
                     &quot;
@@ -2338,8 +2480,8 @@
                         &quot;
                     &gt;&lt;/div&gt;
                     &lt;div style=&quot;padding: 16px&quot;&gt;
-                        &lt;h4 style=&quot;margin: 0 0 8px&quot;&gt;Card 1&lt;/h4&gt;
-                        &lt;p style=&quot;margin: 0; font-size: 14px; opacity: 0.7&quot;&gt;
+                        &lt;h3 style=&quot;margin: 0 0 8px&quot;&gt;Card 1&lt;/h3&gt;
+                        &lt;p style=&quot;margin: 0; font-size: 14px; color: var(--ss-color-text-muted)&quot;&gt;
                             Description text
                         &lt;/p&gt;
                     &lt;/div&gt;
@@ -2348,8 +2490,9 @@
                     style=&quot;
                         min-width: 200px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                         overflow: hidden;
                     &quot;
@@ -2365,8 +2508,8 @@
                         &quot;
                     &gt;&lt;/div&gt;
                     &lt;div style=&quot;padding: 16px&quot;&gt;
-                        &lt;h4 style=&quot;margin: 0 0 8px&quot;&gt;Card 2&lt;/h4&gt;
-                        &lt;p style=&quot;margin: 0; font-size: 14px; opacity: 0.7&quot;&gt;
+                        &lt;h3 style=&quot;margin: 0 0 8px&quot;&gt;Card 2&lt;/h3&gt;
+                        &lt;p style=&quot;margin: 0; font-size: 14px; color: var(--ss-color-text-muted)&quot;&gt;
                             Description text
                         &lt;/p&gt;
                     &lt;/div&gt;
@@ -2375,8 +2518,9 @@
                     style=&quot;
                         min-width: 200px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                         overflow: hidden;
                     &quot;
@@ -2392,8 +2536,8 @@
                         &quot;
                     &gt;&lt;/div&gt;
                     &lt;div style=&quot;padding: 16px&quot;&gt;
-                        &lt;h4 style=&quot;margin: 0 0 8px&quot;&gt;Card 3&lt;/h4&gt;
-                        &lt;p style=&quot;margin: 0; font-size: 14px; opacity: 0.7&quot;&gt;
+                        &lt;h3 style=&quot;margin: 0 0 8px&quot;&gt;Card 3&lt;/h3&gt;
+                        &lt;p style=&quot;margin: 0; font-size: 14px; color: var(--ss-color-text-muted)&quot;&gt;
                             Description text
                         &lt;/p&gt;
                     &lt;/div&gt;
@@ -2402,8 +2546,9 @@
                     style=&quot;
                         min-width: 200px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
                         overflow: hidden;
                     &quot;
@@ -2419,8 +2564,8 @@
                         &quot;
                     &gt;&lt;/div&gt;
                     &lt;div style=&quot;padding: 16px&quot;&gt;
-                        &lt;h4 style=&quot;margin: 0 0 8px&quot;&gt;Card 4&lt;/h4&gt;
-                        &lt;p style=&quot;margin: 0; font-size: 14px; opacity: 0.7&quot;&gt;
+                        &lt;h3 style=&quot;margin: 0 0 8px&quot;&gt;Card 4&lt;/h3&gt;
+                        &lt;p style=&quot;margin: 0; font-size: 14px; color: var(--ss-color-text-muted)&quot;&gt;
                             Description text
                         &lt;/p&gt;
                     &lt;/div&gt;
@@ -2439,9 +2584,9 @@
     Structure"
         data-level="2"
     >
-        <h3>Full Carousel
-    Structure</h3>
-            
+        <h2>Full Carousel
+    Structure</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -2451,23 +2596,23 @@
                 <button class="ss-c-button">Fixed CTA</button>
             </div>
             <div class="ss-c-carousel-item active" id="carousel-slide-1">
-                <img src="/img/demo1.jpg" alt="Slide 1" />
+                <img src="/img/placeholder/1200x600-demo1.svg" alt="Slide 1" />
                 <div class="ss-c-carousel-caption">
-                    <h2>Slide One</h2>
+                    <h3>Slide One</h3>
                     <p>This is the first slide.</p>
                 </div>
             </div>
             <div class="ss-c-carousel-item" id="carousel-slide-2">
-                <img src="/img/demo2.jpg" alt="Slide 2" />
+                <img src="/img/placeholder/1200x600-demo2.svg" alt="Slide 2" />
                 <div class="ss-c-carousel-caption">
-                    <h2>Slide Two</h2>
+                    <h3>Slide Two</h3>
                     <p>This is the second slide.</p>
                 </div>
             </div>
             <div class="ss-c-carousel-item" id="carousel-slide-3">
-                <img src="/img/demo3.jpg" alt="Slide 3" />
+                <img src="/img/placeholder/1200x600-demo3.svg" alt="Slide 3" />
                 <div class="ss-c-carousel-caption">
-                    <h2>Slide Three</h2>
+                    <h3>Slide Three</h3>
                     <p>This is the third slide.</p>
                 </div>
             </div>
@@ -2488,11 +2633,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-1002')"
+            onclick="ClipboardHelper.copyById('code-snippet-5')"
         >
             Copy
         </button>
@@ -2500,28 +2647,28 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-1002" class="language-html">&lt;div class=&quot;ss-c-carousel ss-c-carousel-slider&quot;&gt;
+        ><code id="code-snippet-5" class="language-html">&lt;div class=&quot;ss-c-carousel ss-c-carousel-slider&quot;&gt;
             &lt;div class=&quot;ss-c-carousel-fixed-item&quot;&gt;
                 &lt;button class=&quot;ss-c-button&quot;&gt;Fixed CTA&lt;/button&gt;
             &lt;/div&gt;
             &lt;div class=&quot;ss-c-carousel-item active&quot; id=&quot;carousel-slide-1&quot;&gt;
-                &lt;img src=&quot;/img/demo1.jpg&quot; alt=&quot;Slide 1&quot; /&gt;
+                &lt;img src=&quot;/img/placeholder/1200x600-demo1.svg&quot; alt=&quot;Slide 1&quot; /&gt;
                 &lt;div class=&quot;ss-c-carousel-caption&quot;&gt;
-                    &lt;h2&gt;Slide One&lt;/h2&gt;
+                    &lt;h3&gt;Slide One&lt;/h3&gt;
                     &lt;p&gt;This is the first slide.&lt;/p&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
             &lt;div class=&quot;ss-c-carousel-item&quot; id=&quot;carousel-slide-2&quot;&gt;
-                &lt;img src=&quot;/img/demo2.jpg&quot; alt=&quot;Slide 2&quot; /&gt;
+                &lt;img src=&quot;/img/placeholder/1200x600-demo2.svg&quot; alt=&quot;Slide 2&quot; /&gt;
                 &lt;div class=&quot;ss-c-carousel-caption&quot;&gt;
-                    &lt;h2&gt;Slide Two&lt;/h2&gt;
+                    &lt;h3&gt;Slide Two&lt;/h3&gt;
                     &lt;p&gt;This is the second slide.&lt;/p&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
             &lt;div class=&quot;ss-c-carousel-item&quot; id=&quot;carousel-slide-3&quot;&gt;
-                &lt;img src=&quot;/img/demo3.jpg&quot; alt=&quot;Slide 3&quot; /&gt;
+                &lt;img src=&quot;/img/placeholder/1200x600-demo3.svg&quot; alt=&quot;Slide 3&quot; /&gt;
                 &lt;div class=&quot;ss-c-carousel-caption&quot;&gt;
-                    &lt;h2&gt;Slide Three&lt;/h2&gt;
+                    &lt;h3&gt;Slide Three&lt;/h3&gt;
                     &lt;p&gt;This is the third slide.&lt;/p&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
@@ -2561,8 +2708,8 @@
         data-label="Basic Slideshow"
         data-level="2"
     >
-        <h3>Basic Slideshow</h3>
-            
+        <h2>Basic Slideshow</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -2574,7 +2721,7 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div class="ss-c-slideshow__slides" style="display: flex; height: 100%">
@@ -2599,6 +2746,7 @@
                 </div>
             </div>
             <button
+                aria-label="Previous slide"
                 class="ss-c-slideshow__prev"
                 style="
                     position: absolute;
@@ -2608,6 +2756,7 @@
                     width: 44px;
                     height: 44px;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border: none;
                     border-radius: 50%;
                     cursor: pointer;
@@ -2620,6 +2769,7 @@
                 ←
             </button>
             <button
+                aria-label="Next slide"
                 class="ss-c-slideshow__next"
                 style="
                     position: absolute;
@@ -2629,6 +2779,7 @@
                     width: 44px;
                     height: 44px;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border: none;
                     border-radius: 50%;
                     cursor: pointer;
@@ -2643,11 +2794,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-8723')"
+            onclick="ClipboardHelper.copyById('code-snippet-6')"
         >
             Copy
         </button>
@@ -2655,14 +2808,14 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-8723" class="language-html">&lt;div
+        ><code id="code-snippet-6" class="language-html">&lt;div
             class=&quot;ss-c-slideshow&quot;
             style=&quot;
                 position: relative;
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             &quot;
         &gt;
             &lt;div class=&quot;ss-c-slideshow__slides&quot; style=&quot;display: flex; height: 100%&quot;&gt;
@@ -2687,6 +2840,7 @@
                 &lt;/div&gt;
             &lt;/div&gt;
             &lt;button
+                aria-label=&quot;Previous slide&quot;
                 class=&quot;ss-c-slideshow__prev&quot;
                 style=&quot;
                     position: absolute;
@@ -2696,6 +2850,7 @@
                     width: 44px;
                     height: 44px;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border: none;
                     border-radius: 50%;
                     cursor: pointer;
@@ -2708,6 +2863,7 @@
                 ←
             &lt;/button&gt;
             &lt;button
+                aria-label=&quot;Next slide&quot;
                 class=&quot;ss-c-slideshow__next&quot;
                 style=&quot;
                     position: absolute;
@@ -2717,6 +2873,7 @@
                     width: 44px;
                     height: 44px;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border: none;
                     border-radius: 50%;
                     cursor: pointer;
@@ -2741,9 +2898,9 @@
     Indicators"
         data-level="2"
     >
-        <h3>Slideshow with
-    Indicators</h3>
-            
+        <h2>Slideshow with
+    Indicators</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -2755,7 +2912,7 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div class="ss-c-slideshow__slides" style="height: 100%">
@@ -2780,10 +2937,12 @@
                     left: 50%;
                     transform: translateX(-50%);
                     display: flex;
-                    gap: 10px;
+                    gap: 14px;
                 "
             >
                 <button
+                    aria-label="Go to slide 1"
+                    aria-current="true"
                     class="ss-c-slideshow__dot active"
                     style="
                         width: 12px;
@@ -2796,6 +2955,7 @@
                     "
                 ></button>
                 <button
+                    aria-label="Go to slide 2"
                     class="ss-c-slideshow__dot"
                     style="
                         width: 12px;
@@ -2808,6 +2968,7 @@
                     "
                 ></button>
                 <button
+                    aria-label="Go to slide 3"
                     class="ss-c-slideshow__dot"
                     style="
                         width: 12px;
@@ -2820,6 +2981,7 @@
                     "
                 ></button>
                 <button
+                    aria-label="Go to slide 4"
                     class="ss-c-slideshow__dot"
                     style="
                         width: 12px;
@@ -2835,11 +2997,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-6065')"
+            onclick="ClipboardHelper.copyById('code-snippet-7')"
         >
             Copy
         </button>
@@ -2847,14 +3011,14 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-6065" class="language-html">&lt;div
+        ><code id="code-snippet-7" class="language-html">&lt;div
             class=&quot;ss-c-slideshow&quot;
             style=&quot;
                 position: relative;
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             &quot;
         &gt;
             &lt;div class=&quot;ss-c-slideshow__slides&quot; style=&quot;height: 100%&quot;&gt;
@@ -2879,10 +3043,12 @@
                     left: 50%;
                     transform: translateX(-50%);
                     display: flex;
-                    gap: 10px;
+                    gap: 14px;
                 &quot;
             &gt;
                 &lt;button
+                    aria-label=&quot;Go to slide 1&quot;
+                    aria-current=&quot;true&quot;
                     class=&quot;ss-c-slideshow__dot active&quot;
                     style=&quot;
                         width: 12px;
@@ -2895,6 +3061,7 @@
                     &quot;
                 &gt;&lt;/button&gt;
                 &lt;button
+                    aria-label=&quot;Go to slide 2&quot;
                     class=&quot;ss-c-slideshow__dot&quot;
                     style=&quot;
                         width: 12px;
@@ -2907,6 +3074,7 @@
                     &quot;
                 &gt;&lt;/button&gt;
                 &lt;button
+                    aria-label=&quot;Go to slide 3&quot;
                     class=&quot;ss-c-slideshow__dot&quot;
                     style=&quot;
                         width: 12px;
@@ -2919,6 +3087,7 @@
                     &quot;
                 &gt;&lt;/button&gt;
                 &lt;button
+                    aria-label=&quot;Go to slide 4&quot;
                     class=&quot;ss-c-slideshow__dot&quot;
                     style=&quot;
                         width: 12px;
@@ -2944,9 +3113,9 @@
     Captions"
         data-level="2"
     >
-        <h3>Slideshow with
-    Captions</h3>
-            
+        <h2>Slideshow with
+    Captions</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -2958,7 +3127,7 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
@@ -2980,15 +3149,16 @@
                         bottom: 0;
                         left: 0;
                         right: 0;
+                        transform: none;
                         padding: 40px 24px 24px;
                         background: linear-gradient(
-                            transparent,
-                            rgba(0, 0, 0, 0.7)
+                            rgba(0, 0, 0, 0.25),
+                            rgba(0, 0, 0, 0.8)
                         );
                         color: white;
                     "
                 >
-                    <h3 style="margin: 0 0 8px; font-size: 20px">
+                    <h3 style="margin: 0 0 8px; font-size: 20px; color: inherit">
                         Amazing Landscape
                     </h3>
                     <p style="margin: 0; opacity: 0.9; font-size: 14px">
@@ -2997,6 +3167,7 @@
                 </div>
             </div>
             <button
+                aria-label="Previous slide"
                 class="ss-c-slideshow__prev"
                 style="
                     position: absolute;
@@ -3005,7 +3176,7 @@
                     transform: translateY(-50%);
                     width: 40px;
                     height: 40px;
-                    background: rgba(255, 255, 255, 0.2);
+                    background: rgba(0, 0, 0, 0.45);
                     backdrop-filter: blur(4px);
                     border: none;
                     border-radius: 50%;
@@ -3017,6 +3188,7 @@
                 ←
             </button>
             <button
+                aria-label="Next slide"
                 class="ss-c-slideshow__next"
                 style="
                     position: absolute;
@@ -3025,7 +3197,7 @@
                     transform: translateY(-50%);
                     width: 40px;
                     height: 40px;
-                    background: rgba(255, 255, 255, 0.2);
+                    background: rgba(0, 0, 0, 0.45);
                     backdrop-filter: blur(4px);
                     border: none;
                     border-radius: 50%;
@@ -3039,11 +3211,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-8683')"
+            onclick="ClipboardHelper.copyById('code-snippet-8')"
         >
             Copy
         </button>
@@ -3051,14 +3225,14 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-8683" class="language-html">&lt;div
+        ><code id="code-snippet-8" class="language-html">&lt;div
             class=&quot;ss-c-slideshow&quot;
             style=&quot;
                 position: relative;
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             &quot;
         &gt;
             &lt;div
@@ -3080,15 +3254,16 @@
                         bottom: 0;
                         left: 0;
                         right: 0;
+                        transform: none;
                         padding: 40px 24px 24px;
                         background: linear-gradient(
-                            transparent,
-                            rgba(0, 0, 0, 0.7)
+                            rgba(0, 0, 0, 0.25),
+                            rgba(0, 0, 0, 0.8)
                         );
                         color: white;
                     &quot;
                 &gt;
-                    &lt;h3 style=&quot;margin: 0 0 8px; font-size: 20px&quot;&gt;
+                    &lt;h3 style=&quot;margin: 0 0 8px; font-size: 20px; color: inherit&quot;&gt;
                         Amazing Landscape
                     &lt;/h3&gt;
                     &lt;p style=&quot;margin: 0; opacity: 0.9; font-size: 14px&quot;&gt;
@@ -3097,6 +3272,7 @@
                 &lt;/div&gt;
             &lt;/div&gt;
             &lt;button
+                aria-label=&quot;Previous slide&quot;
                 class=&quot;ss-c-slideshow__prev&quot;
                 style=&quot;
                     position: absolute;
@@ -3105,7 +3281,7 @@
                     transform: translateY(-50%);
                     width: 40px;
                     height: 40px;
-                    background: rgba(255, 255, 255, 0.2);
+                    background: rgba(0, 0, 0, 0.45);
                     backdrop-filter: blur(4px);
                     border: none;
                     border-radius: 50%;
@@ -3117,6 +3293,7 @@
                 ←
             &lt;/button&gt;
             &lt;button
+                aria-label=&quot;Next slide&quot;
                 class=&quot;ss-c-slideshow__next&quot;
                 style=&quot;
                     position: absolute;
@@ -3125,7 +3302,7 @@
                     transform: translateY(-50%);
                     width: 40px;
                     height: 40px;
-                    background: rgba(255, 255, 255, 0.2);
+                    background: rgba(0, 0, 0, 0.45);
                     backdrop-filter: blur(4px);
                     border: none;
                     border-radius: 50%;
@@ -3148,19 +3325,22 @@
         data-label="Thumbnail Navigation"
         data-level="2"
     >
-        <h3>Thumbnail Navigation</h3>
-            
+        <h2>Thumbnail Navigation</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
     <div class="ss-c-preview__live">
-        <div class="ss-c-slideshow ss-c-slideshow--thumbnails" style="max-width: 600px">
+        <div
+            class="ss-c-slideshow ss-c-slideshow--thumbnails"
+            style="display: block; max-width: 600px; margin-top: 0; overflow: visible"
+        >
             <div
                 style="
                     position: relative;
                     aspect-ratio: 16/9;
                     overflow: hidden;
-                    border-radius: 12px;
+                    border-radius: var(--ss-radius-lg);
                     margin-bottom: 12px;
                 "
             >
@@ -3179,6 +3359,8 @@
             </div>
             <div class="ss-c-slideshow__thumbs" style="display: flex; gap: 8px">
                 <button
+                    aria-label="Show slide 1"
+                    aria-current="true"
                     class="ss-c-slideshow__thumb active"
                     style="
                         flex: 1;
@@ -3188,12 +3370,13 @@
                             #43e97b 0%,
                             #38f9d7 100%
                         );
-                        border: 3px solid var(--color_fill_primary);
-                        border-radius: 6px;
+                        border: 3px solid var(--ss-color-accent);
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     "
                 ></button>
                 <button
+                    aria-label="Show slide 2"
                     class="ss-c-slideshow__thumb"
                     style="
                         flex: 1;
@@ -3204,12 +3387,13 @@
                             #fee140 100%
                         );
                         border: 3px solid transparent;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
                 ></button>
                 <button
+                    aria-label="Show slide 3"
                     class="ss-c-slideshow__thumb"
                     style="
                         flex: 1;
@@ -3220,12 +3404,13 @@
                             #764ba2 100%
                         );
                         border: 3px solid transparent;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
                 ></button>
                 <button
+                    aria-label="Show slide 4"
                     class="ss-c-slideshow__thumb"
                     style="
                         flex: 1;
@@ -3236,7 +3421,7 @@
                             #f5576c 100%
                         );
                         border: 3px solid transparent;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
@@ -3245,11 +3430,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-3512')"
+            onclick="ClipboardHelper.copyById('code-snippet-9')"
         >
             Copy
         </button>
@@ -3257,13 +3444,16 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-3512" class="language-html">&lt;div class=&quot;ss-c-slideshow ss-c-slideshow--thumbnails&quot; style=&quot;max-width: 600px&quot;&gt;
+        ><code id="code-snippet-9" class="language-html">&lt;div
+            class=&quot;ss-c-slideshow ss-c-slideshow--thumbnails&quot;
+            style=&quot;display: block; max-width: 600px; margin-top: 0; overflow: visible&quot;
+        &gt;
             &lt;div
                 style=&quot;
                     position: relative;
                     aspect-ratio: 16/9;
                     overflow: hidden;
-                    border-radius: 12px;
+                    border-radius: var(--ss-radius-lg);
                     margin-bottom: 12px;
                 &quot;
             &gt;
@@ -3282,6 +3472,8 @@
             &lt;/div&gt;
             &lt;div class=&quot;ss-c-slideshow__thumbs&quot; style=&quot;display: flex; gap: 8px&quot;&gt;
                 &lt;button
+                    aria-label=&quot;Show slide 1&quot;
+                    aria-current=&quot;true&quot;
                     class=&quot;ss-c-slideshow__thumb active&quot;
                     style=&quot;
                         flex: 1;
@@ -3291,12 +3483,13 @@
                             #43e97b 0%,
                             #38f9d7 100%
                         );
-                        border: 3px solid var(--color_fill_primary);
-                        border-radius: 6px;
+                        border: 3px solid var(--ss-color-accent);
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     &quot;
                 &gt;&lt;/button&gt;
                 &lt;button
+                    aria-label=&quot;Show slide 2&quot;
                     class=&quot;ss-c-slideshow__thumb&quot;
                     style=&quot;
                         flex: 1;
@@ -3307,12 +3500,13 @@
                             #fee140 100%
                         );
                         border: 3px solid transparent;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     &quot;
                 &gt;&lt;/button&gt;
                 &lt;button
+                    aria-label=&quot;Show slide 3&quot;
                     class=&quot;ss-c-slideshow__thumb&quot;
                     style=&quot;
                         flex: 1;
@@ -3323,12 +3517,13 @@
                             #764ba2 100%
                         );
                         border: 3px solid transparent;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     &quot;
                 &gt;&lt;/button&gt;
                 &lt;button
+                    aria-label=&quot;Show slide 4&quot;
                     class=&quot;ss-c-slideshow__thumb&quot;
                     style=&quot;
                         flex: 1;
@@ -3339,7 +3534,7 @@
                             #f5576c 100%
                         );
                         border: 3px solid transparent;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     &quot;
@@ -3358,9 +3553,9 @@
     Slideshow"
         data-level="2"
     >
-        <h3>Fullscreen Style
-    Slideshow</h3>
-            
+        <h2>Fullscreen Style
+    Slideshow</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -3372,7 +3567,7 @@
                 max-width: 700px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 background: #000;
             "
         >
@@ -3393,15 +3588,16 @@
                 "
             >
                 <div style="text-align: center; color: white">
-                    <h2
+                    <h3
                         style="
                             margin: 0 0 16px;
                             font-size: 36px;
                             font-weight: 300;
+                            color: inherit;
                         "
                     >
                         Welcome
-                    </h2>
+                    </h3>
                     <p style="margin: 0 0 24px; opacity: 0.8">
                         Explore our collection
                     </p>
@@ -3411,7 +3607,7 @@
                             background: white;
                             color: #302b63;
                             border: none;
-                            border-radius: 24px;
+                            border-radius: var(--ss-radius-3xl);
                             font-weight: 500;
                             cursor: pointer;
                         "
@@ -3443,6 +3639,7 @@
                 "
             >
                 <button
+                    aria-label="Previous slide"
                     style="
                         width: 48px;
                         height: 48px;
@@ -3456,6 +3653,7 @@
                     ←
                 </button>
                 <button
+                    aria-label="Next slide"
                     style="
                         width: 48px;
                         height: 48px;
@@ -3472,11 +3670,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-1459')"
+            onclick="ClipboardHelper.copyById('code-snippet-10')"
         >
             Copy
         </button>
@@ -3484,14 +3684,14 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-1459" class="language-html">&lt;div
+        ><code id="code-snippet-10" class="language-html">&lt;div
             class=&quot;ss-c-slideshow ss-c-slideshow--fullscreen&quot;
             style=&quot;
                 position: relative;
                 max-width: 700px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 background: #000;
             &quot;
         &gt;
@@ -3512,15 +3712,16 @@
                 &quot;
             &gt;
                 &lt;div style=&quot;text-align: center; color: white&quot;&gt;
-                    &lt;h2
+                    &lt;h3
                         style=&quot;
                             margin: 0 0 16px;
                             font-size: 36px;
                             font-weight: 300;
+                            color: inherit;
                         &quot;
                     &gt;
                         Welcome
-                    &lt;/h2&gt;
+                    &lt;/h3&gt;
                     &lt;p style=&quot;margin: 0 0 24px; opacity: 0.8&quot;&gt;
                         Explore our collection
                     &lt;/p&gt;
@@ -3530,7 +3731,7 @@
                             background: white;
                             color: #302b63;
                             border: none;
-                            border-radius: 24px;
+                            border-radius: var(--ss-radius-3xl);
                             font-weight: 500;
                             cursor: pointer;
                         &quot;
@@ -3562,6 +3763,7 @@
                 &quot;
             &gt;
                 &lt;button
+                    aria-label=&quot;Previous slide&quot;
                     style=&quot;
                         width: 48px;
                         height: 48px;
@@ -3575,6 +3777,7 @@
                     ←
                 &lt;/button&gt;
                 &lt;button
+                    aria-label=&quot;Next slide&quot;
                     style=&quot;
                         width: 48px;
                         height: 48px;
@@ -3600,14 +3803,20 @@
         data-label="Card Slideshow"
         data-level="2"
     >
-        <h3>Card Slideshow</h3>
-            
+        <h2>Card Slideshow</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
     <div class="ss-c-preview__live">
-        <div class="ss-c-slideshow ss-c-slideshow--cards" style="padding: 20px 0">
+        <div
+            class="ss-c-slideshow ss-c-slideshow--cards"
+            style="display: block; padding: 20px 0"
+        >
             <div
+                tabindex="0"
+                role="region"
+                aria-label="Card slideshow"
                 style="
                     display: flex;
                     gap: 16px;
@@ -3619,10 +3828,12 @@
                 <div
                     class="ss-c-slideshow__card"
                     style="
+                        display: block;
                         min-width: 280px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         overflow: hidden;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
                     "
@@ -3638,8 +3849,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Card Title</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Card Title</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             Short description text
                         </p>
                     </div>
@@ -3647,10 +3858,12 @@
                 <div
                     class="ss-c-slideshow__card"
                     style="
+                        display: block;
                         min-width: 280px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         overflow: hidden;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
                     "
@@ -3666,8 +3879,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Another Card</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Another Card</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             Description here
                         </p>
                     </div>
@@ -3675,10 +3888,12 @@
                 <div
                     class="ss-c-slideshow__card"
                     style="
+                        display: block;
                         min-width: 280px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         overflow: hidden;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
                     "
@@ -3694,8 +3909,8 @@
                         "
                     ></div>
                     <div style="padding: 16px">
-                        <h4 style="margin: 0 0 8px">Third Card</h4>
-                        <p style="margin: 0; font-size: 14px; opacity: 0.7">
+                        <h3 style="margin: 0 0 8px">Third Card</h3>
+                        <p style="margin: 0; font-size: 14px; color: var(--ss-color-text-muted)">
                             More content
                         </p>
                     </div>
@@ -3704,11 +3919,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-3861')"
+            onclick="ClipboardHelper.copyById('code-snippet-11')"
         >
             Copy
         </button>
@@ -3716,8 +3933,14 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-3861" class="language-html">&lt;div class=&quot;ss-c-slideshow ss-c-slideshow--cards&quot; style=&quot;padding: 20px 0&quot;&gt;
+        ><code id="code-snippet-11" class="language-html">&lt;div
+            class=&quot;ss-c-slideshow ss-c-slideshow--cards&quot;
+            style=&quot;display: block; padding: 20px 0&quot;
+        &gt;
             &lt;div
+                tabindex=&quot;0&quot;
+                role=&quot;region&quot;
+                aria-label=&quot;Card slideshow&quot;
                 style=&quot;
                     display: flex;
                     gap: 16px;
@@ -3729,10 +3952,12 @@
                 &lt;div
                     class=&quot;ss-c-slideshow__card&quot;
                     style=&quot;
+                        display: block;
                         min-width: 280px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         overflow: hidden;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
                     &quot;
@@ -3748,8 +3973,8 @@
                         &quot;
                     &gt;&lt;/div&gt;
                     &lt;div style=&quot;padding: 16px&quot;&gt;
-                        &lt;h4 style=&quot;margin: 0 0 8px&quot;&gt;Card Title&lt;/h4&gt;
-                        &lt;p style=&quot;margin: 0; font-size: 14px; opacity: 0.7&quot;&gt;
+                        &lt;h3 style=&quot;margin: 0 0 8px&quot;&gt;Card Title&lt;/h3&gt;
+                        &lt;p style=&quot;margin: 0; font-size: 14px; color: var(--ss-color-text-muted)&quot;&gt;
                             Short description text
                         &lt;/p&gt;
                     &lt;/div&gt;
@@ -3757,10 +3982,12 @@
                 &lt;div
                     class=&quot;ss-c-slideshow__card&quot;
                     style=&quot;
+                        display: block;
                         min-width: 280px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         overflow: hidden;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
                     &quot;
@@ -3776,8 +4003,8 @@
                         &quot;
                     &gt;&lt;/div&gt;
                     &lt;div style=&quot;padding: 16px&quot;&gt;
-                        &lt;h4 style=&quot;margin: 0 0 8px&quot;&gt;Another Card&lt;/h4&gt;
-                        &lt;p style=&quot;margin: 0; font-size: 14px; opacity: 0.7&quot;&gt;
+                        &lt;h3 style=&quot;margin: 0 0 8px&quot;&gt;Another Card&lt;/h3&gt;
+                        &lt;p style=&quot;margin: 0; font-size: 14px; color: var(--ss-color-text-muted)&quot;&gt;
                             Description here
                         &lt;/p&gt;
                     &lt;/div&gt;
@@ -3785,10 +4012,12 @@
                 &lt;div
                     class=&quot;ss-c-slideshow__card&quot;
                     style=&quot;
+                        display: block;
                         min-width: 280px;
                         scroll-snap-align: start;
-                        background: white;
-                        border-radius: 12px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                         overflow: hidden;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
                     &quot;
@@ -3804,8 +4033,8 @@
                         &quot;
                     &gt;&lt;/div&gt;
                     &lt;div style=&quot;padding: 16px&quot;&gt;
-                        &lt;h4 style=&quot;margin: 0 0 8px&quot;&gt;Third Card&lt;/h4&gt;
-                        &lt;p style=&quot;margin: 0; font-size: 14px; opacity: 0.7&quot;&gt;
+                        &lt;h3 style=&quot;margin: 0 0 8px&quot;&gt;Third Card&lt;/h3&gt;
+                        &lt;p style=&quot;margin: 0; font-size: 14px; color: var(--ss-color-text-muted)&quot;&gt;
                             More content
                         &lt;/p&gt;
                     &lt;/div&gt;
@@ -3824,48 +4053,64 @@
     Progress"
         data-level="2"
     >
-        <h3>Slideshow with
-    Progress</h3>
-            
+        <h2>Slideshow with
+    Progress</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
     <div class="ss-c-preview__live">
-        <div class="ss-c-slideshow ss-c-slideshow--progress" style="max-width: 600px">
+        <div
+            class="ss-c-slideshow ss-c-slideshow--progress"
+            style="
+                position: relative;
+                width: 100%;
+                height: auto;
+                max-width: 600px;
+                background: none;
+            "
+        >
             <div
                 class="ss-c-slideshow__progress"
-                style="display: flex; gap: 4px; margin-bottom: 12px"
+                style="
+                    position: static;
+                    display: flex;
+                    gap: 4px;
+                    height: auto;
+                    margin-bottom: 12px;
+                    background: none;
+                "
             >
                 <div
                     style="
                         flex: 1;
                         height: 3px;
-                        background: var(--color_fill_primary);
-                        border-radius: 2px;
+                        background: var(--ss-color-accent);
+                        border-radius: var(--ss-radius-sm);
                     "
                 ></div>
                 <div
                     style="
                         flex: 1;
                         height: 3px;
-                        background: var(--color_line_secondary);
-                        border-radius: 2px;
+                        background: var(--ss-color-border);
+                        border-radius: var(--ss-radius-sm);
                     "
                 ></div>
                 <div
                     style="
                         flex: 1;
                         height: 3px;
-                        background: var(--color_line_secondary);
-                        border-radius: 2px;
+                        background: var(--ss-color-border);
+                        border-radius: var(--ss-radius-sm);
                     "
                 ></div>
                 <div
                     style="
                         flex: 1;
                         height: 3px;
-                        background: var(--color_line_secondary);
-                        border-radius: 2px;
+                        background: var(--ss-color-border);
+                        border-radius: var(--ss-radius-sm);
                     "
                 ></div>
             </div>
@@ -3874,7 +4119,7 @@
                     position: relative;
                     aspect-ratio: 16/9;
                     overflow: hidden;
-                    border-radius: 12px;
+                    border-radius: var(--ss-radius-lg);
                 "
             >
                 <div
@@ -3892,10 +4137,10 @@
                         justify-content: center;
                     "
                 >
-                    <div style="text-align: center; color: white">
-                        <span style="font-size: 48px">◎</span>
-                        <h3 style="margin: 16px 0 8px">Step 1 of 4</h3>
-                        <p style="margin: 0; opacity: 0.9">
+                    <div style="text-align: center; color: #1a1a1a">
+                        <span style="font-size: 48px" aria-hidden="true">◎</span>
+                        <h3 style="margin: 16px 0 8px; color: inherit">Step 1 of 4</h3>
+                        <p style="margin: 0">
                             Getting started with the basics
                         </p>
                     </div>
@@ -3911,9 +4156,10 @@
                 <button
                     style="
                         padding: 10px 24px;
-                        background: var(--color_fill_secondary);
+                        background: var(--ss-color-surface-muted);
+                        color: var(--ss-color-text);
                         border: none;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     "
                 >
@@ -3922,10 +4168,10 @@
                 <button
                     style="
                         padding: 10px 24px;
-                        background: var(--color_fill_primary);
-                        color: white;
+                        background: var(--ss-color-accent);
+                        color: var(--ss-color-on-accent);
                         border: none;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     "
                 >
@@ -3935,11 +4181,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-5053')"
+            onclick="ClipboardHelper.copyById('code-snippet-12')"
         >
             Copy
         </button>
@@ -3947,41 +4195,57 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-5053" class="language-html">&lt;div class=&quot;ss-c-slideshow ss-c-slideshow--progress&quot; style=&quot;max-width: 600px&quot;&gt;
+        ><code id="code-snippet-12" class="language-html">&lt;div
+            class=&quot;ss-c-slideshow ss-c-slideshow--progress&quot;
+            style=&quot;
+                position: relative;
+                width: 100%;
+                height: auto;
+                max-width: 600px;
+                background: none;
+            &quot;
+        &gt;
             &lt;div
                 class=&quot;ss-c-slideshow__progress&quot;
-                style=&quot;display: flex; gap: 4px; margin-bottom: 12px&quot;
+                style=&quot;
+                    position: static;
+                    display: flex;
+                    gap: 4px;
+                    height: auto;
+                    margin-bottom: 12px;
+                    background: none;
+                &quot;
             &gt;
                 &lt;div
                     style=&quot;
                         flex: 1;
                         height: 3px;
-                        background: var(--color_fill_primary);
-                        border-radius: 2px;
+                        background: var(--ss-color-accent);
+                        border-radius: var(--ss-radius-sm);
                     &quot;
                 &gt;&lt;/div&gt;
                 &lt;div
                     style=&quot;
                         flex: 1;
                         height: 3px;
-                        background: var(--color_line_secondary);
-                        border-radius: 2px;
+                        background: var(--ss-color-border);
+                        border-radius: var(--ss-radius-sm);
                     &quot;
                 &gt;&lt;/div&gt;
                 &lt;div
                     style=&quot;
                         flex: 1;
                         height: 3px;
-                        background: var(--color_line_secondary);
-                        border-radius: 2px;
+                        background: var(--ss-color-border);
+                        border-radius: var(--ss-radius-sm);
                     &quot;
                 &gt;&lt;/div&gt;
                 &lt;div
                     style=&quot;
                         flex: 1;
                         height: 3px;
-                        background: var(--color_line_secondary);
-                        border-radius: 2px;
+                        background: var(--ss-color-border);
+                        border-radius: var(--ss-radius-sm);
                     &quot;
                 &gt;&lt;/div&gt;
             &lt;/div&gt;
@@ -3990,7 +4254,7 @@
                     position: relative;
                     aspect-ratio: 16/9;
                     overflow: hidden;
-                    border-radius: 12px;
+                    border-radius: var(--ss-radius-lg);
                 &quot;
             &gt;
                 &lt;div
@@ -4008,10 +4272,10 @@
                         justify-content: center;
                     &quot;
                 &gt;
-                    &lt;div style=&quot;text-align: center; color: white&quot;&gt;
-                        &lt;span style=&quot;font-size: 48px&quot;&gt;◎&lt;/span&gt;
-                        &lt;h3 style=&quot;margin: 16px 0 8px&quot;&gt;Step 1 of 4&lt;/h3&gt;
-                        &lt;p style=&quot;margin: 0; opacity: 0.9&quot;&gt;
+                    &lt;div style=&quot;text-align: center; color: #1a1a1a&quot;&gt;
+                        &lt;span style=&quot;font-size: 48px&quot; aria-hidden=&quot;true&quot;&gt;◎&lt;/span&gt;
+                        &lt;h3 style=&quot;margin: 16px 0 8px; color: inherit&quot;&gt;Step 1 of 4&lt;/h3&gt;
+                        &lt;p style=&quot;margin: 0&quot;&gt;
                             Getting started with the basics
                         &lt;/p&gt;
                     &lt;/div&gt;
@@ -4027,9 +4291,10 @@
                 &lt;button
                     style=&quot;
                         padding: 10px 24px;
-                        background: var(--color_fill_secondary);
+                        background: var(--ss-color-surface-muted);
+                        color: var(--ss-color-text);
                         border: none;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     &quot;
                 &gt;
@@ -4038,10 +4303,10 @@
                 &lt;button
                     style=&quot;
                         padding: 10px 24px;
-                        background: var(--color_fill_primary);
-                        color: white;
+                        background: var(--ss-color-accent);
+                        color: var(--ss-color-on-accent);
                         border: none;
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     &quot;
                 &gt;
@@ -4068,8 +4333,8 @@
         data-label="Basic Slideshow"
         data-level="2"
     >
-        <h3>Basic Slideshow</h3>
-            
+        <h2>Basic Slideshow</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -4082,12 +4347,12 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
                 class="ss-c-slideshow--slides"
-                style="display: flex; transition: transform 0.5s ease"
+                style="display: flex; height: 100%; transition: transform 0.5s ease"
             >
                 <div
                     class="ss-c-slideshow--slide"
@@ -4136,6 +4401,7 @@
                 </div>
             </div>
             <button
+                aria-label="Previous slide"
                 class="ss-c-slideshow--prev"
                 style="
                     position: absolute;
@@ -4146,6 +4412,7 @@
                     height: 44px;
                     border: none;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border-radius: 50%;
                     cursor: pointer;
                     font-size: 18px;
@@ -4154,6 +4421,7 @@
                 ←
             </button>
             <button
+                aria-label="Next slide"
                 class="ss-c-slideshow--next"
                 style="
                     position: absolute;
@@ -4164,6 +4432,7 @@
                     height: 44px;
                     border: none;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border-radius: 50%;
                     cursor: pointer;
                     font-size: 18px;
@@ -4174,11 +4443,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-2688')"
+            onclick="ClipboardHelper.copyById('code-snippet-13')"
         >
             Copy
         </button>
@@ -4186,7 +4457,7 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-2688" class="language-html">&lt;div
+        ><code id="code-snippet-13" class="language-html">&lt;div
             class=&quot;ss-c-slideshow&quot;
             style=&quot;
                 position: relative;
@@ -4194,12 +4465,12 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             &quot;
         &gt;
             &lt;div
                 class=&quot;ss-c-slideshow--slides&quot;
-                style=&quot;display: flex; transition: transform 0.5s ease&quot;
+                style=&quot;display: flex; height: 100%; transition: transform 0.5s ease&quot;
             &gt;
                 &lt;div
                     class=&quot;ss-c-slideshow--slide&quot;
@@ -4248,6 +4519,7 @@
                 &lt;/div&gt;
             &lt;/div&gt;
             &lt;button
+                aria-label=&quot;Previous slide&quot;
                 class=&quot;ss-c-slideshow--prev&quot;
                 style=&quot;
                     position: absolute;
@@ -4258,6 +4530,7 @@
                     height: 44px;
                     border: none;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border-radius: 50%;
                     cursor: pointer;
                     font-size: 18px;
@@ -4266,6 +4539,7 @@
                 ←
             &lt;/button&gt;
             &lt;button
+                aria-label=&quot;Next slide&quot;
                 class=&quot;ss-c-slideshow--next&quot;
                 style=&quot;
                     position: absolute;
@@ -4276,6 +4550,7 @@
                     height: 44px;
                     border: none;
                     background: rgba(255, 255, 255, 0.9);
+                    color: #111111;
                     border-radius: 50%;
                     cursor: pointer;
                     font-size: 18px;
@@ -4296,9 +4571,9 @@
     Indicators"
         data-level="2"
     >
-        <h3>Slideshow with
-    Indicators</h3>
-            
+        <h2>Slideshow with
+    Indicators</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -4311,10 +4586,10 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
-            <div class="ss-c-slideshow--slides">
+            <div class="ss-c-slideshow--slides" style="height: 100%">
                 <div
                     class="ss-c-slideshow--slide active"
                     style="
@@ -4332,10 +4607,12 @@
                     left: 50%;
                     transform: translateX(-50%);
                     display: flex;
-                    gap: 10px;
+                    gap: 14px;
                 "
             >
                 <button
+                    aria-label="Go to slide 1"
+                    aria-current="true"
                     class="ss-c-slideshow--indicator active"
                     style="
                         width: 12px;
@@ -4348,6 +4625,7 @@
                     "
                 ></button>
                 <button
+                    aria-label="Go to slide 2"
                     class="ss-c-slideshow--indicator"
                     style="
                         width: 12px;
@@ -4360,6 +4638,7 @@
                     "
                 ></button>
                 <button
+                    aria-label="Go to slide 3"
                     class="ss-c-slideshow--indicator"
                     style="
                         width: 12px;
@@ -4372,6 +4651,7 @@
                     "
                 ></button>
                 <button
+                    aria-label="Go to slide 4"
                     class="ss-c-slideshow--indicator"
                     style="
                         width: 12px;
@@ -4387,11 +4667,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-3482')"
+            onclick="ClipboardHelper.copyById('code-snippet-14')"
         >
             Copy
         </button>
@@ -4399,7 +4681,7 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-3482" class="language-html">&lt;div
+        ><code id="code-snippet-14" class="language-html">&lt;div
             class=&quot;ss-c-slideshow&quot;
             style=&quot;
                 position: relative;
@@ -4407,10 +4689,10 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             &quot;
         &gt;
-            &lt;div class=&quot;ss-c-slideshow--slides&quot;&gt;
+            &lt;div class=&quot;ss-c-slideshow--slides&quot; style=&quot;height: 100%&quot;&gt;
                 &lt;div
                     class=&quot;ss-c-slideshow--slide active&quot;
                     style=&quot;
@@ -4428,10 +4710,12 @@
                     left: 50%;
                     transform: translateX(-50%);
                     display: flex;
-                    gap: 10px;
+                    gap: 14px;
                 &quot;
             &gt;
                 &lt;button
+                    aria-label=&quot;Go to slide 1&quot;
+                    aria-current=&quot;true&quot;
                     class=&quot;ss-c-slideshow--indicator active&quot;
                     style=&quot;
                         width: 12px;
@@ -4444,6 +4728,7 @@
                     &quot;
                 &gt;&lt;/button&gt;
                 &lt;button
+                    aria-label=&quot;Go to slide 2&quot;
                     class=&quot;ss-c-slideshow--indicator&quot;
                     style=&quot;
                         width: 12px;
@@ -4456,6 +4741,7 @@
                     &quot;
                 &gt;&lt;/button&gt;
                 &lt;button
+                    aria-label=&quot;Go to slide 3&quot;
                     class=&quot;ss-c-slideshow--indicator&quot;
                     style=&quot;
                         width: 12px;
@@ -4468,6 +4754,7 @@
                     &quot;
                 &gt;&lt;/button&gt;
                 &lt;button
+                    aria-label=&quot;Go to slide 4&quot;
                     class=&quot;ss-c-slideshow--indicator&quot;
                     style=&quot;
                         width: 12px;
@@ -4493,9 +4780,9 @@
     Captions"
         data-level="2"
     >
-        <h3>Slideshow with
-    Captions</h3>
-            
+        <h2>Slideshow with
+    Captions</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -4508,7 +4795,7 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div
@@ -4526,15 +4813,16 @@
                         bottom: 0;
                         left: 0;
                         right: 0;
+                        transform: none;
                         padding: 40px 24px 24px;
                         background: linear-gradient(
-                            transparent,
-                            rgba(0, 0, 0, 0.7)
+                            rgba(0, 0, 0, 0.25),
+                            rgba(0, 0, 0, 0.8)
                         );
                         color: white;
                     "
                 >
-                    <h3 style="margin: 0 0 8px; font-size: 20px">
+                    <h3 style="margin: 0 0 8px; font-size: 20px; color: inherit">
                         Beautiful Sunset
                     </h3>
                     <p style="margin: 0; opacity: 0.9; font-size: 14px">
@@ -4549,9 +4837,10 @@
                     position: absolute;
                     top: 16px;
                     right: 16px;
+                    left: auto;
                     padding: 6px 12px;
                     background: rgba(0, 0, 0, 0.5);
-                    border-radius: 20px;
+                    border-radius: var(--ss-radius-2xl);
                     color: white;
                     font-size: 13px;
                 "
@@ -4561,11 +4850,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-8787')"
+            onclick="ClipboardHelper.copyById('code-snippet-15')"
         >
             Copy
         </button>
@@ -4573,7 +4864,7 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-8787" class="language-html">&lt;div
+        ><code id="code-snippet-15" class="language-html">&lt;div
             class=&quot;ss-c-slideshow&quot;
             style=&quot;
                 position: relative;
@@ -4581,7 +4872,7 @@
                 max-width: 600px;
                 aspect-ratio: 16/9;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
             &quot;
         &gt;
             &lt;div
@@ -4599,15 +4890,16 @@
                         bottom: 0;
                         left: 0;
                         right: 0;
+                        transform: none;
                         padding: 40px 24px 24px;
                         background: linear-gradient(
-                            transparent,
-                            rgba(0, 0, 0, 0.7)
+                            rgba(0, 0, 0, 0.25),
+                            rgba(0, 0, 0, 0.8)
                         );
                         color: white;
                     &quot;
                 &gt;
-                    &lt;h3 style=&quot;margin: 0 0 8px; font-size: 20px&quot;&gt;
+                    &lt;h3 style=&quot;margin: 0 0 8px; font-size: 20px; color: inherit&quot;&gt;
                         Beautiful Sunset
                     &lt;/h3&gt;
                     &lt;p style=&quot;margin: 0; opacity: 0.9; font-size: 14px&quot;&gt;
@@ -4622,9 +4914,10 @@
                     position: absolute;
                     top: 16px;
                     right: 16px;
+                    left: auto;
                     padding: 6px 12px;
                     background: rgba(0, 0, 0, 0.5);
-                    border-radius: 20px;
+                    border-radius: var(--ss-radius-2xl);
                     color: white;
                     font-size: 13px;
                 &quot;
@@ -4644,9 +4937,9 @@
     Thumbnails"
         data-level="2"
     >
-        <h3>Slideshow with
-    Thumbnails</h3>
-            
+        <h2>Slideshow with
+    Thumbnails</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -4658,12 +4951,15 @@
                     width: 100%;
                     aspect-ratio: 16/9;
                     background: linear-gradient(135deg, #667eea, #764ba2);
-                    border-radius: 12px;
+                    border-radius: var(--ss-radius-lg);
                     margin-bottom: 12px;
                 "
             ></div>
             <div
                 class="ss-c-slideshow--thumbnails"
+                tabindex="0"
+                role="region"
+                aria-label="Slide thumbnails"
                 style="display: flex; gap: 8px; overflow-x: auto"
             >
                 <div
@@ -4673,9 +4969,9 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #667eea, #764ba2);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
-                        border: 3px solid var(--color_fill_primary);
+                        border: 3px solid var(--ss-color-accent);
                     "
                 ></div>
                 <div
@@ -4685,7 +4981,7 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #f093fb, #f5576c);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
@@ -4697,7 +4993,7 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #4facfe, #00f2fe);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
@@ -4709,7 +5005,7 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #43e97b, #38f9d7);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
@@ -4721,7 +5017,7 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #fa709a, #fee140);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     "
@@ -4730,11 +5026,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-8710')"
+            onclick="ClipboardHelper.copyById('code-snippet-16')"
         >
             Copy
         </button>
@@ -4742,19 +5040,22 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-8710" class="language-html">&lt;div class=&quot;ss-c-slideshow-container&quot; style=&quot;max-width: 600px&quot;&gt;
+        ><code id="code-snippet-16" class="language-html">&lt;div class=&quot;ss-c-slideshow-container&quot; style=&quot;max-width: 600px&quot;&gt;
             &lt;div
                 class=&quot;ss-c-slideshow--main&quot;
                 style=&quot;
                     width: 100%;
                     aspect-ratio: 16/9;
                     background: linear-gradient(135deg, #667eea, #764ba2);
-                    border-radius: 12px;
+                    border-radius: var(--ss-radius-lg);
                     margin-bottom: 12px;
                 &quot;
             &gt;&lt;/div&gt;
             &lt;div
                 class=&quot;ss-c-slideshow--thumbnails&quot;
+                tabindex=&quot;0&quot;
+                role=&quot;region&quot;
+                aria-label=&quot;Slide thumbnails&quot;
                 style=&quot;display: flex; gap: 8px; overflow-x: auto&quot;
             &gt;
                 &lt;div
@@ -4764,9 +5065,9 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #667eea, #764ba2);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
-                        border: 3px solid var(--color_fill_primary);
+                        border: 3px solid var(--ss-color-accent);
                     &quot;
                 &gt;&lt;/div&gt;
                 &lt;div
@@ -4776,7 +5077,7 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #f093fb, #f5576c);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     &quot;
@@ -4788,7 +5089,7 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #4facfe, #00f2fe);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     &quot;
@@ -4800,7 +5101,7 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #43e97b, #38f9d7);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     &quot;
@@ -4812,7 +5113,7 @@
                         width: 80px;
                         height: 60px;
                         background: linear-gradient(135deg, #fa709a, #fee140);
-                        border-radius: 6px;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                         opacity: 0.7;
                     &quot;
@@ -4830,8 +5131,8 @@
         data-label="Fade Transition Slideshow"
         data-level="2"
     >
-        <h3>Fade Transition Slideshow</h3>
-            
+        <h2>Fade Transition Slideshow</h2>
+             
 
 <div class="ss-c-preview--vertical">
     
@@ -4843,7 +5144,7 @@
                 width: 100%;
                 max-width: 600px;
                 aspect-ratio: 16/9;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             "
         >
@@ -4881,6 +5182,8 @@
                 class="ss-c-slideshow--controls"
                 style="
                     position: absolute;
+                    top: auto;
+                    right: auto;
                     bottom: 20px;
                     left: 50%;
                     transform: translateX(-50%);
@@ -4893,7 +5196,8 @@
                         padding: 8px 16px;
                         border: none;
                         background: rgba(255, 255, 255, 0.9);
-                        border-radius: 6px;
+                        color: #111111;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     "
                 >
@@ -4904,7 +5208,8 @@
                         padding: 8px 16px;
                         border: none;
                         background: rgba(255, 255, 255, 0.9);
-                        border-radius: 6px;
+                        color: #111111;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     "
                 >
@@ -4914,11 +5219,13 @@
         </div>
         </div>
     
-    <div class="ss-c-preview__info">
+    
+    <div class="ss-c-preview__info" aria-live="polite">
         <small>HTML</small>
         <button
+            type="button"
             class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-3984')"
+            onclick="ClipboardHelper.copyById('code-snippet-17')"
         >
             Copy
         </button>
@@ -4926,14 +5233,14 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-3984" class="language-html">&lt;div
+        ><code id="code-snippet-17" class="language-html">&lt;div
             class=&quot;ss-c-slideshow ss-c-slideshow--fade&quot;
             style=&quot;
                 position: relative;
                 width: 100%;
                 max-width: 600px;
                 aspect-ratio: 16/9;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             &quot;
         &gt;
@@ -4971,6 +5278,8 @@
                 class=&quot;ss-c-slideshow--controls&quot;
                 style=&quot;
                     position: absolute;
+                    top: auto;
+                    right: auto;
                     bottom: 20px;
                     left: 50%;
                     transform: translateX(-50%);
@@ -4983,7 +5292,8 @@
                         padding: 8px 16px;
                         border: none;
                         background: rgba(255, 255, 255, 0.9);
-                        border-radius: 6px;
+                        color: #111111;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     &quot;
                 &gt;
@@ -4994,7 +5304,8 @@
                         padding: 8px 16px;
                         border: none;
                         background: rgba(255, 255, 255, 0.9);
-                        border-radius: 6px;
+                        color: #111111;
+                        border-radius: var(--ss-radius-md);
                         cursor: pointer;
                     &quot;
                 &gt;
@@ -5010,35 +5321,29 @@
                 </main>
             </div>
 
-            <div class="ss-l-frame__area--middle_right ss-c-rail"><aside class="ss-c-sidebar ss-c-sidebar--right" id="" role="navigation">
-    <nav
+            <div class="ss-l-frame__area--middle_right ss-c-rail"><aside class="ss-c-sidebar ss-c-sidebar--right" aria-label="Page contents">
+    <div
         id="sidebar_right_navigation"
         class="ss-c-ribbon--right ss-c-ribbon--inverted"
-        aria-label="Sidebar right Navigation"
-    >
-        <!-- Add navigation links here -->
-    </nav>
+    ></div>
 
     <nav
         id="sidebar_right_menu"
         class="ss-c-sidebar__menu"
-        aria-label="Sidebar right Content Navigation"
+        aria-label="On this page"
     >
-        <section class="ss-c-sidebar__content ss-c-rail">
-            <h2 id="sidebar-right-label" class="ss-c-visually-hidden">
-                Page Contents
-            </h2><section class="ss-c-sidebar__section">
-    <nav id="toc" class="ss-c-toc"></nav>
-</section>
+        <div class="ss-c-sidebar__content ss-c-rail"><div id="toc" class="ss-c-toc"></div>
 
-        </section>
+        </div>
     </nav>
-    <div class="ss-c-sidebar__control" role="group" aria-label="Sidebar Toggle">
+    <div class="ss-c-sidebar__control">
         <button
+            type="button"
             class="ss-c-flipper--right"
             id="sidebar_right_switch"
-            aria-pressed="false"
-            aria-label="Toggle right Sidebar"
+            aria-expanded="false"
+            aria-controls="sidebar_right_menu"
+            aria-label="Show table of contents"
         >
             <span class="ss-c-flipper__icon"></span>
         </button>
@@ -5047,37 +5352,40 @@
 
             </div>
 
-            <div class="ss-l-frame__area--bottom"><section
+            <footer class="ss-l-frame__area--bottom">
+<section
     id="ticker-bottom"
     class="ss-c-ticker--horizontal--bottom"
     role="marquee"
-    aria-label="News Ticker"
-    aria-live="polite"
-    aria-atomic="true"
-    aria-relevant="additions text"
-    aria-busy="false"
+    aria-label="News ticker"
+    tabindex="0"
 >
-    <ul class="ss-c-ticker__track" aria-live="polite">
+    <ul class="ss-c-ticker__track">
         <li class="ss-c-ticker__item">Latest update: Stylescape v0.1 now live!</li>
         <li class="ss-c-ticker__item">New components released today.</li>
         <li class="ss-c-ticker__item">☼ Tip: Use mixins for modular SCSS!</li>
     </ul>
 </section>
-<footer class="ss-c-ribbon--bottom ss-c-ribbon--inverted" role="contentinfo">
+<div class="ss-c-ribbon--bottom ss-c-ribbon--inverted">
     <div class="ss-c-ribbon__slot--horizontal_center">
-        <small>&copy; 2026 SC∆PE PRESS</small>
+        <small>
+            &copy; 2026 <span aria-hidden="true">SC∆PE PRESS</span>
+            <span class="ss-c-visually-hidden">Scape Press</span>
+        </small>
     </div>
-</footer>
 </div>
-        </div>
-
-        <aside class=""><template
-    class="ss-c-guide--layer ss-c-guide--graph_centered"
+</footer>
+        </div><div
+    class="ss-c-demo__guide ss-c-guide--graph_centered"
     data-grid="graph"
-></template>
-<template class="ss-c-guide--layer ss-c-guide--baseline" data-grid="baseline"></template>
+    aria-hidden="true"
+></div>
+<div
+    class="ss-c-demo__guide ss-c-guide--baseline"
+    data-grid="baseline"
+    aria-hidden="true"
+></div>
 
-        </aside>
 
         <script type="module">
             import { initializeStylescape } from "/js/index.js";

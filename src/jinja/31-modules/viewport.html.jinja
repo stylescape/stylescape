@@ -1,0 +1,83 @@
+{% extends "../base.html.jinja" %} {% set title = "Viewport" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-viewport</code> module: a frame for a canvas that a
+        library draws (three.js, an IFC or point-cloud viewer, a viewcube, a panorama
+        or a tile viewer). The library renders into <code>__canvas</code> (or a direct
+        <code>canvas</code>, <code>iframe</code> or <code>video</code> child); the frame
+        sizes it and shows loading, progress and error states.
+    </p>
+
+    {% set section_title = "Loading" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            Set <code>aria-busy="true"</code> on the frame while the scene loads; the
+            overlay fades in and out with it (instantly under reduced motion) and
+            leaves the accessibility tree once hidden. A <code>&lt;progress&gt;</code>
+            with <code>__progress</code> runs along the bottom edge.
+        </p>
+        {% set code_snippet %}
+        <div class="ss-c-viewport" aria-busy="true" role="group" aria-label="Building model">
+            <canvas class="ss-c-viewport__canvas" aria-hidden="true"></canvas>
+            <div class="ss-c-viewport__loading" role="status">
+                <span class="ss-c-spinner" aria-hidden="true"></span>
+                <span>Loading model… 42%</span>
+            </div>
+            <progress class="ss-c-viewport__progress" max="100" value="42" aria-label="Model loaded"></progress>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Ready, with a hint" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <div class="ss-c-viewport ss-c-viewport--panorama" role="group" aria-label="Harbour panorama">
+            <canvas class="ss-c-viewport__canvas" tabindex="0" aria-label="Panorama, drag to look around"></canvas>
+            <div class="ss-c-viewport__loading" role="status"><span class="ss-c-spinner" aria-hidden="true"></span>Loading…</div>
+            <p class="ss-c-viewport__hint">Drag to look around · Scroll to zoom</p>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Error" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p><code>__message</code> covers the canvas whenever it's present; toggle it with <code>hidden</code>.</p>
+        {% set code_snippet %}
+        <div class="ss-c-viewport ss-c-viewport--4x3" role="group" aria-label="Point cloud">
+            <canvas class="ss-c-viewport__canvas" aria-hidden="true"></canvas>
+            <div class="ss-c-viewport__message ss-c-viewport__message--error" role="alert">
+                <p class="ss-c-viewport__title">The point cloud could not be loaded</p>
+                <p>WebGL is turned off in this browser.</p>
+                <button class="ss-c-button" type="button">Try again</button>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Aspect ratios and fill" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            16:9 by default; <code>--square</code>, <code>--4x3</code>, <code>--wide</code>
+            (21:9) and <code>--panorama</code> (2:1). <code>--fill</code> drops the ratio,
+            border and radius to fill a sized parent such as
+            <code>ss-l-app__main--bleed</code>.
+        </p>
+        {% set code_snippet %}
+        <div class="ss-l-grid ss-l-grid-3 ss-l-grid-gap-md">
+            <div class="ss-c-viewport ss-c-viewport--square" role="group" aria-label="Viewcube"><p class="ss-c-viewport__hint">1:1</p></div>
+            <div class="ss-c-viewport ss-c-viewport--4x3" role="group" aria-label="Tiles"><p class="ss-c-viewport__hint">4:3</p></div>
+            <div class="ss-c-viewport ss-c-viewport--wide" role="group" aria-label="Timeline scene"><p class="ss-c-viewport__hint">21:9</p></div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

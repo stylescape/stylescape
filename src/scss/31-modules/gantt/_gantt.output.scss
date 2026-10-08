@@ -1,0 +1,56 @@
+@use "../../01-core/prefix" as *;
+@use "./gantt.mixins" as gantt;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-gantt {
+        @include gantt.ss-gantt;
+    }
+    .#{$ss-prefix-module}-gantt__row {
+        @include gantt.ss-gantt-row;
+    }
+    .#{$ss-prefix-module}-gantt__row--group {
+        @include gantt.ss-gantt-group-row;
+    }
+    .#{$ss-prefix-module}-gantt__label {
+        @include gantt.ss-gantt-label;
+    }
+    .#{$ss-prefix-module}-gantt__scale,
+    .#{$ss-prefix-module}-gantt__track {
+        @include gantt.ss-gantt-grid;
+    }
+    .#{$ss-prefix-module}-gantt__scale {
+        @include gantt.ss-gantt-scale;
+    }
+    .#{$ss-prefix-module}-gantt__tick {
+        @include gantt.ss-gantt-tick;
+    }
+    .#{$ss-prefix-module}-gantt__bar {
+        @include gantt.ss-gantt-bar;
+    }
+    .#{$ss-prefix-module}-gantt__bar--accent,
+    .#{$ss-prefix-module}-gantt__milestone--accent {
+        @include gantt.ss-gantt-bar-tone(accent);
+    }
+    .#{$ss-prefix-module}-gantt__bar--success,
+    .#{$ss-prefix-module}-gantt__milestone--success {
+        @include gantt.ss-gantt-bar-tone(success);
+    }
+    .#{$ss-prefix-module}-gantt__bar--warning,
+    .#{$ss-prefix-module}-gantt__milestone--warning {
+        @include gantt.ss-gantt-bar-tone(warning);
+    }
+    .#{$ss-prefix-module}-gantt__bar--error,
+    .#{$ss-prefix-module}-gantt__milestone--error {
+        @include gantt.ss-gantt-bar-tone(error);
+    }
+    .#{$ss-prefix-module}-gantt__bar--info,
+    .#{$ss-prefix-module}-gantt__milestone--info {
+        @include gantt.ss-gantt-bar-tone(info);
+    }
+    .#{$ss-prefix-module}-gantt__bar--outline {
+        @include gantt.ss-gantt-bar-outline;
+    }
+    .#{$ss-prefix-module}-gantt__milestone {
+        @include gantt.ss-gantt-milestone;
+    }
+}

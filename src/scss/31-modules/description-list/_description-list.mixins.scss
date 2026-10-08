@@ -1,0 +1,99 @@
+@use "sass:map";
+@use "./description-list.config" as config;
+@use "../../01-core/external" as *;
+
+$_c: config.$ss-description-list-config;
+
+/// Stacked (default): each term sits above its value. Pairs may be wrapped
+/// in a `<div>` (valid inside `<dl>`), which the inline and grid variants use.
+@mixin ss-description-list {
+    display: grid;
+    row-gap: map.get($_c, row-gap);
+    margin: 0;
+
+    dt {
+        font-size: map.get($_c, term-size);
+        font-weight: map.get($_c, term-weight);
+        color: map.get($_c, term-color);
+    }
+
+    dd {
+        margin: 0;
+        color: var(--ss-color-text);
+        overflow-wrap: anywhere;
+    }
+
+    dd + dt {
+        margin-block-start: q(4);
+    }
+}
+
+/// Term and value on one row, terms in an aligned column.
+@mixin ss-description-list-inline {
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: map.get($_c, column-gap);
+    align-items: baseline;
+
+    > div {
+        display: contents;
+    }
+
+    dd + dt {
+        margin-block-start: 0;
+    }
+
+    dd {
+        text-align: start;
+    }
+}
+
+/// Inline rows separated by a hairline, value pushed to the end edge
+/// (readout panels).
+@mixin ss-description-list-divided {
+    row-gap: 0;
+    // The gap moves into the term's padding so the rule runs unbroken.
+    column-gap: 0;
+
+    dt {
+        padding-inline-end: map.get($_c, column-gap);
+    }
+
+    dt,
+    dd {
+        padding-block: q(6);
+        border-block-end: map.get($_c, divider);
+    }
+
+    dd {
+        text-align: end;
+    }
+}
+
+/// Values in the monospace face with tabular digits (coordinates, ids,
+/// measurements).
+@mixin ss-description-list-mono {
+    dd {
+        font-family: var(--ss-font-family-mono, monospace);
+        font-variant-numeric: tabular-nums;
+    }
+}
+
+/// Stacked pairs flowing into as many columns as fit.
+@mixin ss-description-list-grid {
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(#{map.get($_c, grid-min)}, 1fr)
+    );
+    column-gap: map.get($_c, column-gap);
+    row-gap: q(12);
+
+    > div {
+        display: grid;
+        align-content: start;
+        row-gap: q(2);
+    }
+
+    dd + dt {
+        margin-block-start: 0;
+    }
+}

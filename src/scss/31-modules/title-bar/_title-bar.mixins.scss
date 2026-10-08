@@ -1,0 +1,30 @@
+@use "sass:map";
+@use "./title-bar.config" as config;
+@use "../../01-core/external" as *;
+
+@function _cfg($key) {
+    @return map.get(config.$ss-title-bar-config, $key);
+}
+
+@mixin ss-title-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: _cfg(gap);
+    margin: 0 0 _cfg(margin-block-end);
+    padding: 0 0 _cfg(padding-block-end);
+    border-block-end: _cfg(divider);
+}
+
+@mixin ss-title-bar-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: q(8);
+}
+
+/// Read one key of `$ss-title-bar-config` (for the output file).
+@function ss-title-bar-config($key) {
+    @return map.get(config.$ss-title-bar-config, $key);
+}

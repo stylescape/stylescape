@@ -7,6 +7,7 @@
             content="width=device-width, initial-scale=1.0"
         />
         <title>Grid Layout Demo</title>
+        <link rel="stylesheet" href="/css/stylescape.css" />
         <style>
             html,
             body {
@@ -15,7 +16,7 @@
                 height: 100%;
             }
 
-            .layout-grid-screen {
+            .ss-c-layout-grid-screen {
                 display: grid;
                 grid-template-columns: auto 1fr auto;
                 grid-template-rows: auto 1fr auto;
@@ -23,59 +24,71 @@
                     "top-left top-center top-right"
                     "middle-left middle-center middle-right"
                     "bottom-left bottom-center bottom-right";
+                gap: 0;
                 height: 100vh;
-                width: 100vw;
+                width: 100%;
                 overflow: hidden;
             }
 
-            .layout-area {
-                padding: q(8);
-                background: #f3f4f6;
-                border: q(1) solid #e5e7eb;
-                font-family: sans-serif;
+            /* Landmark wrappers that keep their cells on the parent grid */
+            .ss-c-layout-row {
+                display: contents;
+            }
+
+            /* The ss-c-top-left/... helpers are absolute-position utilities
+               in the library; keep the cells in normal grid flow here. */
+            .ss-c-layout-area {
+                position: static;
+                inset: auto;
+                transform: none;
+                margin: 0;
+                padding: 0.5rem;
+                background: var(--ss-color-surface-alt);
+                color: var(--ss-color-text);
+                border: 1px solid var(--ss-color-border);
                 font-size: 0.9rem;
             }
 
-            .top-left {
+            .ss-c-top-left {
                 grid-area: top-left;
             }
 
-            .top-center {
+            .ss-c-top-center {
                 grid-area: top-center;
             }
 
-            .top-right {
+            .ss-c-top-right {
                 grid-area: top-right;
             }
 
-            .middle-left {
+            .ss-c-middle-left {
                 grid-area: middle-left;
             }
 
-            .middle-center {
+            .ss-c-middle-center {
                 grid-area: middle-center;
                 overflow-y: auto;
-                background: var(--color_surface_primary) fff;
+                background: var(--ss-color-background);
             }
 
-            .middle-right {
+            .ss-c-middle-right {
                 grid-area: middle-right;
             }
 
-            .bottom-left {
+            .ss-c-bottom-left {
                 grid-area: bottom-left;
             }
 
-            .bottom-center {
+            .ss-c-bottom-center {
                 grid-area: bottom-center;
             }
 
-            .bottom-right {
+            .ss-c-bottom-right {
                 grid-area: bottom-right;
             }
 
-            .scroll-content {
-                padding: q(16);
+            .ss-c-scroll-content {
+                padding: 1rem;
                 line-height: 1.5;
             }
         </style>
@@ -83,12 +96,14 @@
 
     <body>
         <div class="ss-c-layout-grid-screen">
-            <div class="ss-c-layout-area ss-c-top-left">Top Left</div>
-            <div class="ss-c-layout-area ss-c-top-center">Top Center</div>
-            <div class="ss-c-layout-area ss-c-top-right">Top Right</div>
+            <header class="ss-c-layout-row">
+                <div class="ss-c-layout-area ss-c-top-left">Top Left</div>
+                <div class="ss-c-layout-area ss-c-top-center">Top Center</div>
+                <div class="ss-c-layout-area ss-c-top-right">Top Right</div>
+            </header>
 
-            <div class="ss-c-layout-area ss-c-middle-left">Middle Left</div>
-            <div class="ss-c-layout-area ss-c-middle-center">
+            <aside class="ss-c-layout-area ss-c-middle-left" aria-label="Left panel">Middle Left</aside>
+            <main class="ss-c-layout-area ss-c-middle-center" tabindex="0">
                 <div class="ss-c-scroll-content">
                     <h1>Main Content</h1>
                     <p>
@@ -126,12 +141,14 @@
                         ullamcorper sit amet ligula.
                     </p>
                 </div>
-            </div>
-            <div class="ss-c-layout-area ss-c-middle-right">Middle Right</div>
+            </main>
+            <aside class="ss-c-layout-area ss-c-middle-right" aria-label="Right panel">Middle Right</aside>
 
-            <div class="ss-c-layout-area ss-c-bottom-left">Bottom Left</div>
-            <div class="ss-c-layout-area ss-c-bottom-center">Bottom Center</div>
-            <div class="ss-c-layout-area ss-c-bottom-right">Bottom Right</div>
+            <footer class="ss-c-layout-row">
+                <div class="ss-c-layout-area ss-c-bottom-left">Bottom Left</div>
+                <div class="ss-c-layout-area ss-c-bottom-center">Bottom Center</div>
+                <div class="ss-c-layout-area ss-c-bottom-right">Bottom Right</div>
+            </footer>
         </div>
     </body>
 </html>

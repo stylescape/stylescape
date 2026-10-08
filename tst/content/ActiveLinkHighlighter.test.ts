@@ -143,6 +143,26 @@ describe("ActiveLinkHighlighter", () => {
             expect(link.classList.contains("active")).toBe(false);
         });
 
+        it("skips in-page fragment links", () => {
+            setLocation("/components/pagination");
+            const hash = anchor("#");
+            const section = anchor("#usage");
+
+            new ActiveLinkHighlighter();
+
+            expect(hash.classList.contains("active")).toBe(false);
+            expect(section.classList.contains("active")).toBe(false);
+        });
+
+        it("marks a matching link as the current page", () => {
+            setLocation("/team/about");
+            const match = anchor("/team/about");
+
+            new ActiveLinkHighlighter();
+
+            expect(match.getAttribute("aria-current")).toBe("page");
+        });
+
         it("skips links with an empty href attribute", () => {
             setLocation("/something");
             const link = anchor("");

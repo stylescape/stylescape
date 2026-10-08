@@ -1,0 +1,64 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./order-summary.mixins" as summary;
+
+$_s: ".#{$ss-prefix-module}-order-summary";
+$_muted: summary.ss-order-summary-config(muted);
+$_divider: summary.ss-order-summary-config(divider);
+
+@layer ss.components {
+    #{$_s} {
+        @include summary.ss-order-summary;
+    }
+
+    #{$_s}__title {
+        margin: 0;
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-semibold);
+    }
+
+    #{$_s}__items {
+        display: flex;
+        flex-direction: column;
+        gap: q(8);
+        margin: 0;
+        padding: 0 0 summary.ss-order-summary-config(gap);
+        list-style: none;
+        border-block-end: $_divider;
+        font-size: var(--ss-font-size-sm);
+    }
+
+    #{$_s}__item {
+        @include summary.ss-order-summary-row;
+    }
+
+    #{$_s}__quantity {
+        color: $_muted;
+    }
+
+    // <dl class="ss-c-order-summary__rows"><div class="ss-c-order-summary__row"><dt>…<dd>…
+    #{$_s}__rows {
+        display: flex;
+        flex-direction: column;
+        gap: q(8);
+        margin: 0;
+    }
+
+    #{$_s}__row {
+        @include summary.ss-order-summary-row;
+    }
+
+    #{$_s}__row--discount > dd {
+        color: var(--ss-color-success);
+    }
+
+    #{$_s}__row--total {
+        @include summary.ss-order-summary-total;
+    }
+
+    #{$_s}__note {
+        margin: 0;
+        color: $_muted;
+        font-size: var(--ss-font-size-xs);
+    }
+}

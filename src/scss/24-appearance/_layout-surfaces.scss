@@ -1,0 +1,55 @@
+// ============================================================================
+// Appearance — Layout Surfaces
+// ============================================================================
+//
+// Paint for the `ss-l-app`, `ss-l-viewport-grid` and `ss-l-dashboard`
+// layouts in `23-layout`. SSX keeps colour, surface and type out of
+// `ss.layout`, so the layouts only arrange and this file paints them. Type
+// size comes from the markup: `ss-t-text-sm` on the footer, `ss-t-text-xs`
+// on viewport labels.
+//
+// ============================================================================
+
+@use "../01-core/prefix" as *;
+@use "../01-core/external" as *;
+@use "../23-layout/breakpoints" as *;
+
+@layer ss.appearance {
+    // App shell
+    .#{$ss-prefix-layout}-app {
+        background-color: var(--ss-color-background);
+        color: var(--ss-color-text);
+    }
+
+    .#{$ss-prefix-layout}-app__header,
+    .#{$ss-prefix-layout}-app__sidebar {
+        background-color: var(--ss-color-surface);
+    }
+
+    .#{$ss-prefix-layout}-app__footer {
+        background-color: var(--ss-color-surface);
+        color: var(--ss-color-text-secondary);
+    }
+
+    // Below `md` an open sidebar overlays the main area.
+    @include breakpoint-down("md") {
+        .#{$ss-prefix-layout}-app__sidebar {
+            box-shadow: var(--ss-a-shadow-lg);
+        }
+    }
+
+    // Viewport grid: the gap shows the grid colour, drawing hairlines
+    // between the cells.
+    .#{$ss-prefix-layout}-viewport-grid {
+        background-color: var(--ss-color-border);
+    }
+
+    .#{$ss-prefix-layout}-viewport-grid__cell {
+        background-color: var(--ss-color-surface-alt);
+    }
+
+    .#{$ss-prefix-layout}-viewport-grid__label {
+        background-color: var(--ss-color-surface);
+        color: var(--ss-color-text);
+    }
+}

@@ -2,7 +2,7 @@
 // Stylescape | Lazy Load Manager
 // ============================================================================
 // Manages lazy loading of images and content using Intersection Observer.
-// Supports data-ss-lazy and data-src attributes for declarative configuration.
+// Supports data-ss="lazy" and data-src attributes for declarative configuration.
 // ============================================================================
 
 /**
@@ -21,42 +21,74 @@ export interface LazyLoadManagerOptions {
     onLoad?: (element: HTMLElement) => void;
 }
 
+/** What the constructor accepts: a selector, one element or a collection. */
+export type LazyLoadTarget =
+    string | HTMLElement | NodeListOf<HTMLElement> | HTMLElement[];
+
 /**
  * Lazy load manager using Intersection Observer API.
  * Defers loading of images until they enter the viewport.
  *
+ * `<img>`, `<iframe>`, `<video>`, `<audio>` and `<source>` elements get their
+ * `src` (and `srcset` from `data-srcset`) swapped in; any other element gets
+ * the source as its `background-image`.
+ *
  * @example JavaScript
  * ```typescript
- * const lazyLoader = new LazyLoadManager(".lazy-image")
+ * new LazyLoadManager(".ss-c-lazy-image")
+ * new LazyLoadManager(document.querySelector("img")!)
+ * new LazyLoadManager(document.querySelectorAll("[data-src]"))
  * ```
  *
- * @example HTML with data-src
+ * @example HTML with data-ss
  * ```html
- * <!-- Images with placeholder -->
- * <img class="lazy-image"
- *      data-src="large-image.jpg"
- *      src="placeholder.jpg"
- *      alt="Lazy loaded image">
- *
- * <!-- Background images -->
- * <div class="lazy-bg"
- *      data-ss="lazy"
- *      data-src="background.jpg">
- * </div>
+ * <img data-ss="lazy" data-src="large-image.jpg" src="placeholder.jpg" alt="…">
+ * <div data-ss="lazy" data-src="background.jpg"></div>
  * ```
  */
 export default class LazyLoadManager {
     /** Collection of items to lazy load */
-    private items: NodeListOf<HTMLElement>;
+    private items: HTMLElement[];
+    private options: Required<LazyLoadManagerOptions>;
+    private observer: IntersectionObserver | null = null;
 
     /**
      * Creates a new LazyLoadManager instance.
      *
-     * @param itemsSelector - CSS selector for elements to lazy load
+     * @param target - CSS selector, element, NodeList or array of elements
+     * @param options - Observer and loading options
      */
-    constructor(itemsSelector: string) {
-        this.items = document.querySelectorAll(itemsSelector);
+    constructor(target: LazyLoadTarget, options: LazyLoadManagerOptions = {}) {
+        this.items = LazyLoadManager.resolve(target);
+        this.options = {
+            rootMargin: options.rootMargin ?? "0px",
+            threshold: options.threshold ?? 0,
+            srcAttribute: options.srcAttribute ?? "data-src",
+            loadedClass: options.loadedClass ?? "is-loaded",
+            onLoad: options.onLoad ?? (() => {}),
+        };
         this.observeItems();
+    }
+
+    /** Load every pending item now, without waiting for intersection. */
+    public loadAll(): void {
+        this.items.forEach((item) => this.load(item));
+    }
+
+    /** Stop observing; items that have not loaded keep their placeholder. */
+    public destroy(): void {
+        this.observer?.disconnect();
+        this.observer = null;
+    }
+
+    private static resolve(target: LazyLoadTarget): HTMLElement[] {
+        if (typeof target === "string") {
+            return Array.from(document.querySelectorAll<HTMLElement>(target));
+        }
+        if (target instanceof HTMLElement) {
+            return [target];
+        }
+        return Array.from(target);
     }
 
     /**
@@ -64,19 +96,45 @@ export default class LazyLoadManager {
      * Loads content when items become visible.
      */
     private observeItems(): void {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    // Replace placeholder with actual content
-                    const item = entry.target as HTMLImageElement;
-                    if (item.dataset.src) {
-                        item.src = item.dataset.src;
-                    }
-                    observer.unobserve(item);
-                }
-            });
-        });
+        if (typeof IntersectionObserver === "undefined") {
+            // No observer support: load straight away rather than never.
+            this.loadAll();
+            return;
+        }
 
-        this.items.forEach((item) => observer.observe(item));
+        this.observer = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const item = entry.target as HTMLElement;
+                    this.load(item);
+                    observer.unobserve(item);
+                });
+            },
+            {
+                rootMargin: this.options.rootMargin,
+                threshold: this.options.threshold,
+            },
+        );
+
+        this.items.forEach((item) => this.observer?.observe(item));
+    }
+
+    /** Promote the stored source onto the element. */
+    private load(item: HTMLElement): void {
+        const src = item.getAttribute(this.options.srcAttribute);
+        if (!src) return;
+
+        if (item.matches("img, iframe, video, audio, source, embed")) {
+            const srcset = item.getAttribute("data-srcset");
+            if (srcset) item.setAttribute("srcset", srcset);
+            item.setAttribute("src", src);
+        } else {
+            item.style.backgroundImage = `url("${src.replace(/"/g, '\\"')}")`;
+        }
+
+        item.removeAttribute(this.options.srcAttribute);
+        item.classList.add(this.options.loadedClass);
+        this.options.onLoad(item);
     }
 }

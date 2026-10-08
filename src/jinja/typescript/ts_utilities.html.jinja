@@ -3,7 +3,7 @@
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             JavaScript utility components for clipboard, fetch, font preview,
             grid layers, and initialization.
@@ -16,7 +16,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Copy content to clipboard with visual feedback.</p>
         {% set code_snippet %}
         <!-- Copy button for code -->
@@ -24,7 +24,7 @@
             style="
                 position: relative;
                 background: #1e1e1e;
-                border-radius: 12px;
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             "
         >
@@ -37,7 +37,7 @@
                     background: #2d2d2d;
                 "
             >
-                <span style="color: #888; font-size: 13px">JavaScript</span>
+                <span style="color: #b0b0b0; font-size: 13px">JavaScript</span>
                 <button
                     class="ss-c-copy-button"
                     data-ss="copy"
@@ -45,7 +45,7 @@
                         padding: 6px 12px;
                         background: #3d3d3d;
                         border: none;
-                        border-radius: 4px;
+                        border-radius: var(--ss-radius-md);
                         color: #ccc;
                         cursor: pointer;
                         font-size: 13px;
@@ -72,9 +72,9 @@ console.log(greeting);</code></pre>
                 data-copy-text="npm install stylescape"
                 style="
                     padding: 12px 20px;
-                    background: var(--color_fill_secondary);
+                    background: var(--ss-color-surface-alt);
                     border: none;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     cursor: pointer;
                     display: flex;
                     align-items: center;
@@ -89,10 +89,10 @@ console.log(greeting);</code></pre>
                 class="is-copied"
                 style="
                     padding: 12px 20px;
-                    background: var(--color_state_success);
-                    color: white;
+                    background: var(--ss-color-success);
+                    color: var(--ss-color-on-success);
                     border: none;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     cursor: pointer;
                     display: flex;
                     align-items: center;
@@ -111,13 +111,14 @@ console.log(greeting);</code></pre>
             <input
                 type="text"
                 id="shareLinkInput"
+                aria-label="Share link"
                 value="https://stylescape.dev/share/abc123"
                 readonly
                 style="
                     flex: 1;
                     padding: 12px 16px;
-                    border: 1px solid var(--color_line_secondary);
-                    border-radius: 8px;
+                    border: 1px solid var(--ss-color-border);
+                    border-radius: var(--ss-radius-lg);
                     font-family: monospace;
                 "
             />
@@ -126,10 +127,10 @@ console.log(greeting);</code></pre>
                 data-copy-target="#shareLinkInput"
                 style="
                     padding: 12px 20px;
-                    background: var(--color_fill_primary);
-                    color: white;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
                     border: none;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     cursor: pointer;
                 "
             >
@@ -146,7 +147,7 @@ console.log(greeting);</code></pre>
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>HTTP client for API requests with CSRF support.</p>
         {% set code_snippet %}
         <!-- Form with AJAX submit -->
@@ -163,6 +164,7 @@ console.log(greeting);</code></pre>
         >
             <div>
                 <label
+                    for="tsu-name"
                     style="
                         display: block;
                         margin-bottom: 6px;
@@ -172,19 +174,21 @@ console.log(greeting);</code></pre>
                     Name
                 </label>
                 <input
+                    id="tsu-name"
                     type="text"
                     name="name"
                     required
                     style="
                         width: 100%;
                         padding: 12px 16px;
-                        border: 1px solid var(--color_line_secondary);
-                        border-radius: 8px;
+                        border: 1px solid var(--ss-color-border);
+                        border-radius: var(--ss-radius-lg);
                     "
                 />
             </div>
             <div>
                 <label
+                    for="tsu-email"
                     style="
                         display: block;
                         margin-bottom: 6px;
@@ -194,19 +198,21 @@ console.log(greeting);</code></pre>
                     Email
                 </label>
                 <input
+                    id="tsu-email"
                     type="email"
                     name="email"
                     required
                     style="
                         width: 100%;
                         padding: 12px 16px;
-                        border: 1px solid var(--color_line_secondary);
-                        border-radius: 8px;
+                        border: 1px solid var(--ss-color-border);
+                        border-radius: var(--ss-radius-lg);
                     "
                 />
             </div>
             <div>
                 <label
+                    for="tsu-message"
                     style="
                         display: block;
                         margin-bottom: 6px;
@@ -216,14 +222,15 @@ console.log(greeting);</code></pre>
                     Message
                 </label>
                 <textarea
+                    id="tsu-message"
                     name="message"
                     rows="4"
                     required
                     style="
                         width: 100%;
                         padding: 12px 16px;
-                        border: 1px solid var(--color_line_secondary);
-                        border-radius: 8px;
+                        border: 1px solid var(--ss-color-border);
+                        border-radius: var(--ss-radius-lg);
                         resize: vertical;
                     "
                 ></textarea>
@@ -232,10 +239,10 @@ console.log(greeting);</code></pre>
                 type="submit"
                 style="
                     padding: 14px 24px;
-                    background: var(--color_fill_primary);
-                    color: white;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
                     border: none;
-                    border-radius: 8px;
+                    border-radius: var(--ss-radius-lg);
                     cursor: pointer;
                     font-weight: 500;
                 "
@@ -249,8 +256,8 @@ console.log(greeting);</code></pre>
             style="
                 margin-top: 24px;
                 padding: 20px;
-                background: var(--color_fill_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface-alt);
+                border-radius: var(--ss-radius-lg);
                 display: flex;
                 align-items: center;
                 gap: 12px;
@@ -260,8 +267,8 @@ console.log(greeting);</code></pre>
                 style="
                     width: 20px;
                     height: 20px;
-                    border: 2px solid var(--color_line_secondary);
-                    border-top-color: var(--color_fill_primary);
+                    border: 2px solid var(--ss-color-border);
+                    border-top-color: var(--ss-color-accent);
                     border-radius: 50%;
                     animation: spin 1s linear infinite;
                 "
@@ -277,11 +284,11 @@ console.log(greeting);</code></pre>
                 style="
                     padding: 16px;
                     background: rgba(34, 197, 94, 0.1);
-                    border-left: 4px solid var(--color_state_success);
-                    border-radius: 0 8px 8px 0;
+                    border-left: 4px solid var(--ss-color-success);
+                    border-radius: 0 var(--ss-radius-lg) var(--ss-radius-lg) 0;
                 "
             >
-                <strong style="color: var(--color_state_success)">
+                <strong style="color: var(--ss-color-success)">
                     ✓ Success
                 </strong>
                 <p style="margin: 4px 0 0; font-size: 14px">
@@ -292,11 +299,11 @@ console.log(greeting);</code></pre>
                 style="
                     padding: 16px;
                     background: rgba(239, 68, 68, 0.1);
-                    border-left: 4px solid var(--color_state_error);
-                    border-radius: 0 8px 8px 0;
+                    border-left: 4px solid var(--ss-color-error);
+                    border-radius: 0 var(--ss-radius-lg) var(--ss-radius-lg) 0;
                 "
             >
-                <strong style="color: var(--color_state_error)">
+                <strong style="color: var(--ss-color-error)">
                     ✕ Error
                 </strong>
                 <p style="margin: 4px 0 0; font-size: 14px">
@@ -314,7 +321,7 @@ console.log(greeting);</code></pre>
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Toggle visibility of grid overlay layers for design alignment.</p>
         {% set code_snippet %}
         <!-- Grid toggle controls -->
@@ -323,10 +330,10 @@ console.log(greeting);</code></pre>
                 data-ss-l-grid-toggle="columns"
                 style="
                     padding: 10px 16px;
-                    background: var(--color_fill_primary);
-                    color: white;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
                     border: none;
-                    border-radius: 6px;
+                    border-radius: var(--ss-radius-md);
                     cursor: pointer;
                 "
             >
@@ -336,9 +343,9 @@ console.log(greeting);</code></pre>
                 data-ss-l-grid-toggle="baseline"
                 style="
                     padding: 10px 16px;
-                    background: var(--color_fill_secondary);
+                    background: var(--ss-color-surface-alt);
                     border: none;
-                    border-radius: 6px;
+                    border-radius: var(--ss-radius-md);
                     cursor: pointer;
                 "
             >
@@ -348,9 +355,9 @@ console.log(greeting);</code></pre>
                 data-ss-l-grid-toggle="spacing"
                 style="
                     padding: 10px 16px;
-                    background: var(--color_fill_secondary);
+                    background: var(--ss-color-surface-alt);
                     border: none;
-                    border-radius: 6px;
+                    border-radius: var(--ss-radius-md);
                     cursor: pointer;
                 "
             >
@@ -363,9 +370,10 @@ console.log(greeting);</code></pre>
             style="
                 position: relative;
                 padding: 40px;
-                background: white;
-                border: 1px solid var(--color_line_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface);
+                color: var(--ss-color-text);
+                border: 1px solid var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
                 overflow: hidden;
             "
         >
@@ -398,7 +406,7 @@ console.log(greeting);</code></pre>
 
             <!-- Content -->
             <div style="position: relative">
-                <h4 style="margin: 0 0 12px">Design Alignment</h4>
+                <h3 style="margin: 0 0 12px">Design Alignment</h3>
                 <p style="margin: 0">
                     Toggle the grid overlays to check alignment with the design
                     system grid.
@@ -415,7 +423,7 @@ console.log(greeting);</code></pre>
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Automatic component initialization via data-ss attributes.</p>
         {% set code_snippet %}
         <!-- Auto-initialized components -->
@@ -425,8 +433,8 @@ console.log(greeting);</code></pre>
             style="
                 display: inline-block;
                 padding: 12px 20px;
-                background: var(--color_fill_secondary);
-                border-radius: 8px;
+                background: var(--ss-color-surface-alt);
+                border-radius: var(--ss-radius-lg);
                 cursor: pointer;
             "
         >
@@ -434,7 +442,7 @@ console.log(greeting);</code></pre>
         </div>
 
         <!-- Skip auto-initialization -->
-        <div data-ss="modal" data-ss-skip-init="true" style="display: none">
+        <div data-ss="modal" data-ss-manual style="display: none">
             <!-- This modal won't be auto-initialized -->
             <!-- Must be initialized manually via JavaScript -->
         </div>
@@ -450,13 +458,12 @@ console.log(greeting);</code></pre>
 
         <!-- Manual initialization example -->
         <script>
-            // Skip auto-init and initialize manually
-            const modal = document.querySelector("[data-ss-skip-init]");
-            if (modal) {
-                new Modal(modal, {
-                    closeOnBackdrop: true,
-                    animation: "fade",
-                });
+            // Skipped by auto-init (data-ss-manual); initialize it manually
+            // through the global Stylescape API when you need it
+            const modal = document.querySelector("[data-ss-manual]");
+            if (modal && window.Stylescape) {
+                modal.removeAttribute("data-ss-manual");
+                window.Stylescape.init(modal);
             }
         </script>
         {% endset %} {% set language="HTML" %} {%- include
@@ -469,7 +476,7 @@ console.log(greeting);</code></pre>
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Live font preview from text input.</p>
         {% set code_snippet %}
         <!-- Font preview component -->
@@ -477,12 +484,13 @@ console.log(greeting);</code></pre>
             style="
                 max-width: 600px;
                 padding: 24px;
-                background: var(--color_fill_secondary);
-                border-radius: 12px;
+                background: var(--ss-color-surface-alt);
+                border-radius: var(--ss-radius-lg);
             "
         >
             <div style="margin-bottom: 20px">
                 <label
+                    for="tsu-preview-text"
                     style="
                         display: block;
                         margin-bottom: 8px;
@@ -492,14 +500,15 @@ console.log(greeting);</code></pre>
                     Preview Text
                 </label>
                 <input
+                    id="tsu-preview-text"
                     type="text"
                     data-ss="font-preview-input"
                     value="The quick brown fox jumps over the lazy dog"
                     style="
                         width: 100%;
                         padding: 12px 16px;
-                        border: 1px solid var(--color_line_secondary);
-                        border-radius: 8px;
+                        border: 1px solid var(--ss-color-border);
+                        border-radius: var(--ss-radius-lg);
                         font-size: 16px;
                     "
                 />
@@ -509,8 +518,9 @@ console.log(greeting);</code></pre>
                 <div
                     style="
                         padding: 20px;
-                        background: white;
-                        border-radius: 8px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
                     <p
@@ -536,8 +546,9 @@ console.log(greeting);</code></pre>
                 <div
                     style="
                         padding: 20px;
-                        background: white;
-                        border-radius: 8px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
                     <p
@@ -563,8 +574,9 @@ console.log(greeting);</code></pre>
                 <div
                     style="
                         padding: 20px;
-                        background: white;
-                        border-radius: 8px;
+                        background: var(--ss-color-surface);
+                        color: var(--ss-color-text);
+                        border-radius: var(--ss-radius-lg);
                     "
                 >
                     <p
@@ -599,7 +611,7 @@ console.log(greeting);</code></pre>
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Programmatic control of utility components.</p>
         {% set code_snippet %}
         <script>

@@ -21,7 +21,6 @@
 @use "../01-core/external" as *;
 
 @layer ss.reset {
-
     *,
     *::before,
     *::after {
@@ -43,8 +42,11 @@
     // Body
     // ============================================================================
 
+    // `html` keeps normalize's 1.15 (it only seeds rem-relative metrics);
+    // running text gets the readable base line height.
     body {
         margin: 0;
+        line-height: var(--ss-line-height-base, 1.5);
         min-height: 100vh;
         min-height: 100dvh;
     }
@@ -94,5 +96,17 @@
 
     [hidden] {
         display: none !important;
+    }
+
+    // ============================================================================
+    // Focus
+    // ============================================================================
+
+    // One keyboard focus ring for every element, from the focus tokens. It is
+    // in the lowest layer, so components that draw their own indicator win.
+    :focus-visible {
+        outline: var(--ss-focus-ring-width, #{q(2)}) solid
+            var(--ss-focus-ring-color, currentColor);
+        outline-offset: var(--ss-focus-ring-offset, #{q(2)});
     }
 }

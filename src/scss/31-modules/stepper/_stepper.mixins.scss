@@ -1,0 +1,82 @@
+@use "sass:map";
+@use "./stepper.config" as config;
+@use "../../01-core/external" as *;
+
+@mixin ss-stepper-size($size) {
+    $s: map.get(map.get(config.$ss-stepper-config, sizes), $size);
+
+    --ss-stepper-height: #{map.get($s, height)};
+    --ss-stepper-font-size: #{map.get($s, font-size)};
+}
+
+@mixin ss-stepper {
+    display: inline-flex;
+    align-items: stretch;
+    vertical-align: middle;
+}
+
+@mixin ss-stepper-part {
+    block-size: var(--ss-stepper-height);
+    margin: 0;
+    border: map.get(config.$ss-stepper-config, border-width) solid
+        map.get(config.$ss-stepper-config, border);
+    border-radius: 0;
+    font: inherit;
+    font-size: var(--ss-stepper-font-size);
+
+    &:focus-visible {
+        position: relative;
+        z-index: 1;
+        outline: var(--ss-focus-ring-width, #{q(2)}) solid var(--ss-focus-ring-color, currentColor);
+        outline-offset: var(--ss-focus-ring-offset, #{q(2)});
+    }
+    &:disabled,
+    &[aria-disabled="true"] {
+        opacity: map.get(config.$ss-stepper-config, disabled-opacity);
+        cursor: not-allowed;
+    }
+}
+
+@mixin ss-stepper-input {
+    @include ss-stepper-part;
+
+    appearance: textfield;
+    inline-size: map.get(config.$ss-stepper-config, input-width);
+    min-inline-size: 0;
+    padding: 0 q(8);
+    margin-inline: q(-1);
+    background: map.get(config.$ss-stepper-config, bg);
+    color: map.get(config.$ss-stepper-config, fg);
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+
+    // The flanking buttons replace the native spinners.
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        appearance: none;
+        margin: 0;
+    }
+
+    &[aria-invalid="true"] {
+        border-color: var(--ss-color-error);
+    }
+}
+
+@mixin ss-stepper-button {
+    @include ss-stepper-part;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    inline-size: var(--ss-stepper-height);
+    padding: 0;
+    background: map.get(config.$ss-stepper-config, button-bg);
+    color: map.get(config.$ss-stepper-config, fg);
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover:not(:disabled, [aria-disabled="true"]) {
+        background: map.get(config.$ss-stepper-config, button-hover-bg);
+    }
+}

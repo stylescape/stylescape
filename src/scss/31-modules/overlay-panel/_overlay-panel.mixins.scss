@@ -1,0 +1,148 @@
+@use "sass:map";
+@use "./overlay-panel.config" as config;
+@use "../../01-core/external" as *;
+
+/// Translucent, token-based surface. Browsers without `color-mix()` get
+/// the opaque surface colour.
+@mixin ss-overlay-panel-surface {
+    $cfg: config.$ss-overlay-panel-config;
+
+    background-color: var(--ss-color-surface);
+    background-color: var(
+        --ss-overlay-panel-bg,
+        color-mix(
+            in srgb,
+            var(--ss-color-surface) #{map.get($cfg, opacity)},
+            transparent
+        )
+    );
+    color: var(--ss-color-text);
+    border: map.get($cfg, border);
+    border-radius: map.get($cfg, radius);
+    box-shadow: map.get($cfg, shadow);
+
+    @supports (backdrop-filter: blur(1px)) {
+        backdrop-filter: blur(map.get($cfg, blur));
+    }
+
+    // Opaque when the user asks for less transparency.
+    @media (prefers-reduced-transparency: reduce) {
+        background-color: var(--ss-color-surface);
+        backdrop-filter: none;
+    }
+}
+
+/// Absolutely positioned panel; the parent needs a positioning context.
+/// Default anchor is the top-left corner.
+@mixin ss-overlay-panel {
+    $cfg: config.$ss-overlay-panel-config;
+
+    --ss-overlay-panel-inset: #{map.get($cfg, inset)};
+    --ss-overlay-panel-z: #{map.get($cfg, z-index)};
+
+    @include ss-overlay-panel-surface;
+
+    position: absolute;
+    inset-block-start: var(--ss-overlay-panel-inset);
+    inset-inline-start: var(--ss-overlay-panel-inset);
+    z-index: var(--ss-overlay-panel-z);
+    box-sizing: border-box;
+    max-inline-size: map.get($cfg, max-width);
+    max-block-size: calc(100% - 2 * var(--ss-overlay-panel-inset));
+    overflow: auto;
+    padding: map.get($cfg, padding);
+    font-size: var(--ss-font-size-sm);
+}
+
+/// Small uppercase heading inside the panel.
+@mixin ss-overlay-panel-title {
+    margin: 0 0 var(--ss-space-2);
+    color: var(--ss-color-text-secondary);
+    font-size: var(--ss-font-size-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/// Anchor helper: resets the default top-left inset, then pins the panel
+/// to `$block` (top / bottom) and `$inline` (start / end / center).
+@mixin ss-overlay-panel-anchor($block, $inline) {
+    inset: auto;
+
+    @if $block == top {
+        inset-block-start: var(--ss-overlay-panel-inset);
+    } @else {
+        inset-block-end: var(--ss-overlay-panel-inset);
+    }
+
+    @if $inline == start {
+        inset-inline-start: var(--ss-overlay-panel-inset);
+    } @else if $inline == end {
+        inset-inline-end: var(--ss-overlay-panel-inset);
+    } @else {
+        inset-inline-start: 50%;
+        translate: -50% 0;
+    }
+}
+
+/// Vertical stack of square icon buttons sharing one surface (zoom in /
+/// out, reset view, fullscreen…). Buttons are native `<button>`s.
+@mixin ss-overlay-panel-controls {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+}
+
+@mixin ss-overlay-panel-control {
+    $cfg: config.$ss-overlay-panel-config;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: map.get($cfg, control-size);
+    block-size: map.get($cfg, control-size);
+    padding: 0;
+    margin: 0;
+
+    background: transparent;
+    color: var(--ss-color-text);
+    border: 0;
+    border-radius: 0;
+    font: inherit;
+    font-size: var(--ss-font-size-md);
+    line-height: 1;
+    cursor: pointer;
+
+    & + & {
+        border-block-start: var(--ss-a-border-width-1, #{q(1)}) solid
+            var(--ss-color-border);
+    }
+
+    > svg {
+        inline-size: q(18);
+        block-size: q(18);
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+    }
+
+    &:hover {
+        background-color: var(--ss-color-surface-hover);
+    }
+
+    &[aria-pressed="true"] {
+        background-color: var(--ss-color-accent);
+        color: var(--ss-color-on-accent);
+    }
+
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color);
+        outline-offset: calc(var(--ss-focus-ring-width) * -1);
+    }
+
+    &:disabled {
+        color: var(--ss-color-muted);
+        cursor: not-allowed;
+    }
+}

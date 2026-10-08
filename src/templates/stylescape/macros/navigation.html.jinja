@@ -1,0 +1,80 @@
+{#-
+    stylescape/macros/navigation.html.jinja
+    ===========================================================================
+        {% from "stylescape/macros/navigation.html.jinja" import breadcrumb, pagination %}
+
+    breadcrumb(items, label=None)
+        items: a list of (label, url) pairs or {"label", "url"} mappings. The
+        last item is the current page (aria-current="page"); an item with no
+        url renders as text.
+    pagination(page_obj, params=None, param_name="page", label=None)
+        page_obj: a Django Page (ListView's `page_obj`). Uses
+        Paginator.get_elided_page_range() (Django 3.2+) and falls back to
+        page_range. params: the query to keep (usually `request.GET`); its
+        `page` parameter is replaced.
+-#}
+
+
+{%- macro breadcrumb(items, label=None) -%}
+    {%- if items %}
+    <nav aria-label="{{ label or _('Breadcrumb') }}">
+        <ol class="ss-c-breadcrumb">
+            {%- for item in items %}
+            {%- set text = item.label if item is mapping else item[0] -%}
+            {%- set href = item.get("url") if item is mapping else (item[1] if item | length > 1 else none) -%}
+            {%- if loop.last %}
+            <li class="ss-c-breadcrumb__item ss-c-breadcrumb__item--active" aria-current="page">{{ text }}</li>
+            {%- elif href %}
+            <li class="ss-c-breadcrumb__item"><a class="ss-c-breadcrumb__link" href="{{ href }}">{{ text }}</a></li>
+            {%- else %}
+            <li class="ss-c-breadcrumb__item">{{ text }}</li>
+            {%- endif %}
+            {%- endfor %}
+        </ol>
+    </nav>
+    {%- endif %}
+{%- endmacro %}
+
+{%- macro _href(number, base, param_name) -%}
+    ?{{ base ~ "&" if base }}{{ param_name }}={{ number }}
+{%- endmacro %}
+
+{%- macro pagination(page_obj, params=None, param_name="page", label=None) -%}
+    {%- if page_obj and page_obj.paginator.num_pages > 1 %}
+    {%- set ns = namespace(base="") -%}
+    {%- if params -%}
+        {%- set query = params.copy() -%}
+        {%- set _discard = query.pop(param_name, none) -%}
+        {%- set ns.base = query.urlencode() if query.urlencode is defined else query | urlencode -%}
+    {%- endif -%}
+    {%- set paginator = page_obj.paginator -%}
+    {%- if paginator.get_elided_page_range is defined -%}
+        {%- set pages = paginator.get_elided_page_range(page_obj.number, on_each_side=1, on_ends=1) -%}
+    {%- else -%}
+        {%- set pages = paginator.page_range -%}
+    {%- endif %}
+    <nav aria-label="{{ label or _('Pagination') }}">
+        <ul class="ss-c-pagination">
+            {%- if page_obj.has_previous() %}
+            <li class="ss-c-pagination__item"><a class="ss-c-pagination__link" href="{{ _href(page_obj.previous_page_number(), ns.base, param_name) }}" rel="prev" aria-label="{{ _('Previous page') }}"><span aria-hidden="true">←</span></a></li>
+            {%- else %}
+            <li class="ss-c-pagination__item" aria-disabled="true"><span class="ss-c-pagination__link"><span aria-hidden="true">←</span><span class="ss-u-visually-hidden">{{ _('Previous page') }}</span></span></li>
+            {%- endif %}
+            {%- for number in pages %}
+            {%- if number == page_obj.number %}
+            <li class="ss-c-pagination__item ss-c-pagination__item--active"><a class="ss-c-pagination__link" href="{{ _href(number, ns.base, param_name) }}" aria-current="page">{{ number }}</a></li>
+            {%- elif number is number %}
+            <li class="ss-c-pagination__item"><a class="ss-c-pagination__link" href="{{ _href(number, ns.base, param_name) }}">{{ number }}</a></li>
+            {%- else %}
+            <li class="ss-c-pagination__item" aria-hidden="true"><span class="ss-c-pagination__link">{{ number }}</span></li>
+            {%- endif %}
+            {%- endfor %}
+            {%- if page_obj.has_next() %}
+            <li class="ss-c-pagination__item"><a class="ss-c-pagination__link" href="{{ _href(page_obj.next_page_number(), ns.base, param_name) }}" rel="next" aria-label="{{ _('Next page') }}"><span aria-hidden="true">→</span></a></li>
+            {%- else %}
+            <li class="ss-c-pagination__item" aria-disabled="true"><span class="ss-c-pagination__link"><span aria-hidden="true">→</span><span class="ss-u-visually-hidden">{{ _('Next page') }}</span></span></li>
+            {%- endif %}
+        </ul>
+    </nav>
+    {%- endif %}
+{%- endmacro %}

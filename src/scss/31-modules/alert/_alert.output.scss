@@ -8,6 +8,10 @@
         @include alert.ss-alert-variant(info);
     }
 
+    .#{$ss-prefix-module}-alert--debug {
+        @include alert.ss-alert;
+        @include alert.ss-alert-variant(debug);
+    }
     .#{$ss-prefix-module}-alert--info {
         @include alert.ss-alert;
         @include alert.ss-alert-variant(info);
@@ -29,6 +33,12 @@
     .#{$ss-prefix-module}-alert__title {
         font-weight: 600;
         margin-block-end: q(4);
+    }
+
+    // Consecutive alerts get breathing room instead of sharing an edge.
+    $_alerts: ".#{$ss-prefix-module}-alert, [class*='#{$ss-prefix-module}-alert--']";
+    :is(#{$_alerts}) + :is(#{$_alerts}) {
+        @include alert.ss-alert-stack-gap;
     }
 
     .#{$ss-prefix-module}-alert__body {

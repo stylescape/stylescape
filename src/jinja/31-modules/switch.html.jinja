@@ -1,0 +1,127 @@
+{% extends "../base.html.jinja" %} {% set title = "Switch" %} {%- block title %}{{ title }}{%- endblock %} {%- block content %}
+<section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
+    <header class="ss-c-demo__section__header"><h1>{{ title }}</h1></header>
+    <p>
+        Examples for the <code>ss-c-switch</code> module: a native
+        <code>&lt;input type="checkbox" role="switch"&gt;</code> drawn as a
+        track and knob. It works without JavaScript; screen readers announce
+        it as a switch that is on or off. Square by default, like the other
+        form controls; <code>--round</code> gives the pill shape.
+    </p>
+
+    {% set section_title = "Default" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <label class="ss-c-switch">
+            <input type="checkbox" role="switch" class="ss-c-switch__input">
+            <span>Wi-Fi</span>
+        </label>
+        <label class="ss-c-switch">
+            <input type="checkbox" role="switch" class="ss-c-switch__input" checked>
+            <span>Bluetooth</span>
+        </label>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Label left or right" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>The text goes where it sits in the source. <code>--between</code> spreads a settings row across its container.</p>
+        {% set code_snippet %}
+        <div style="display: grid; gap: 12px; max-width: 360px">
+            <label class="ss-c-switch">
+                <span>Label before</span>
+                <input type="checkbox" role="switch" class="ss-c-switch__input" checked>
+            </label>
+            <label class="ss-c-switch ss-c-switch--between">
+                <span>Show grid</span>
+                <input type="checkbox" role="switch" class="ss-c-switch__input">
+            </label>
+            <label class="ss-c-switch ss-c-switch--between">
+                <span>Snap to grid</span>
+                <input type="checkbox" role="switch" class="ss-c-switch__input" checked>
+            </label>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Sizes and shape" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <label class="ss-c-switch ss-c-switch--sm">
+            <input type="checkbox" role="switch" class="ss-c-switch__input" checked>
+            <span>Small</span>
+        </label>
+        <label class="ss-c-switch">
+            <input type="checkbox" role="switch" class="ss-c-switch__input" checked>
+            <span>Medium</span>
+        </label>
+        <label class="ss-c-switch ss-c-switch--lg">
+            <input type="checkbox" role="switch" class="ss-c-switch__input" checked>
+            <span>Large</span>
+        </label>
+        <label class="ss-c-switch ss-c-switch--round">
+            <input type="checkbox" role="switch" class="ss-c-switch__input" checked>
+            <span>Round</span>
+        </label>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Disabled" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        {% set code_snippet %}
+        <label class="ss-c-switch">
+            <input type="checkbox" role="switch" class="ss-c-switch__input" disabled>
+            <span>Off, disabled</span>
+        </label>
+        <label class="ss-c-switch">
+            <input type="checkbox" role="switch" class="ss-c-switch__input" checked disabled>
+            <span>On, disabled</span>
+        </label>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Without a wrapper" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>The input carries its own size, so it can sit next to a separate label, in a table cell or a toolbar.</p>
+        {% set code_snippet %}
+        <input type="checkbox" role="switch" class="ss-c-switch__input" id="switch-autosave" checked>
+        <label for="switch-autosave" style="margin-inline-start: 8px">Autosave</label>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+
+    {% set section_title = "Legacy markup (ss-c-slider)" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            The older <code>label.ss-c-switch &gt; input + span.ss-c-slider</code>
+            markup (also used by many demos) is styled the same way: the input
+            stays focusable on top of the track, the span draws it.
+            <code>ss-c-round</code> is the legacy name for the pill shape.
+            On an <code>input[type=range]</code>, <code>ss-c-slider</code> is an
+            alias of <code>ss-c-range</code>.
+        </p>
+        {% set code_snippet %}
+        <label class="ss-c-switch">
+            <input type="checkbox" aria-label="Legacy switch">
+            <span class="ss-c-slider"></span>
+        </label>
+        <label class="ss-c-switch">
+            <input type="checkbox" checked aria-label="Legacy round switch">
+            <span class="ss-c-slider ss-c-round"></span>
+        </label>
+        <input type="range" class="ss-c-slider" aria-label="Legacy range slider" value="30" style="max-width: 240px">
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
+</section>
+{%- endblock %}

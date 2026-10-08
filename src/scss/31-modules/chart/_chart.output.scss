@@ -1,0 +1,66 @@
+@use "../../01-core/prefix" as *;
+@use "./chart.mixins" as chart;
+
+@layer ss.components {
+    .#{$ss-prefix-module}-chart {
+        @include chart.ss-chart;
+    }
+    .#{$ss-prefix-module}-chart--plain {
+        @include chart.ss-chart-plain;
+    }
+    .#{$ss-prefix-module}-chart__header {
+        @include chart.ss-chart-header;
+    }
+    .#{$ss-prefix-module}-chart__title {
+        @include chart.ss-chart-title;
+    }
+    .#{$ss-prefix-module}-chart__subtitle {
+        @include chart.ss-chart-subtitle;
+    }
+    .#{$ss-prefix-module}-chart__actions {
+        @include chart.ss-chart-actions;
+    }
+    .#{$ss-prefix-module}-chart__body {
+        @include chart.ss-chart-body;
+    }
+    .#{$ss-prefix-module}-chart--xs {
+        @include chart.ss-chart-size(xs);
+    }
+    .#{$ss-prefix-module}-chart--sm {
+        @include chart.ss-chart-size(sm);
+    }
+    .#{$ss-prefix-module}-chart--md {
+        @include chart.ss-chart-size(md);
+    }
+    .#{$ss-prefix-module}-chart--lg {
+        @include chart.ss-chart-size(lg);
+    }
+    .#{$ss-prefix-module}-chart--aspect {
+        @include chart.ss-chart-aspect;
+    }
+    .#{$ss-prefix-module}-chart--legend-end {
+        @include chart.ss-chart-legend-end;
+    }
+    .#{$ss-prefix-module}-chart__caption {
+        @include chart.ss-chart-caption;
+    }
+
+    .#{$ss-prefix-module}-chart-grid {
+        @include chart.ss-chart-grid;
+    }
+    .#{$ss-prefix-module}-chart--wide {
+        grid-column: span 2;
+    }
+    .#{$ss-prefix-module}-chart--full {
+        grid-column: 1 / -1;
+    }
+
+    @media (max-width: 48em) {
+        .#{$ss-prefix-module}-chart--wide {
+            grid-column: 1 / -1;
+        }
+        .#{$ss-prefix-module}-chart--legend-end {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+}

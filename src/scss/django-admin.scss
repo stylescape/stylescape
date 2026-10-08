@@ -1,0 +1,343 @@
+////
+///
+/// Django Admin Skin
+/// ===========================================================================
+///
+/// Separate entry point, not part of `index.scss`. The Django admin ships
+/// its own complete stylesheet (`admin/css/base.css` and friends) built on
+/// CSS variables; loading all of stylescape on top would restyle the admin's
+/// tables, forms and buttons through the reset and the modules. This entry
+/// emits only:
+///
+/// 1. the `--ss-*` design tokens (light, and dark via `data-theme`);
+/// 2. Django's admin variables pointed at those tokens;
+/// 3. styles for the dashboard widgets `sturnus-admin` renders
+///    (`admin/widgets/*.html`: stats, count, chart, quick links, recent
+///    activity).
+///
+/// Django's admin toggles `data-theme` on `<html>` between `auto`, `light`
+/// and `dark`, the same values stylescape's dark theme listens to, so the
+/// admin's own theme switch drives the tokens.
+///
+/// Load it after the admin CSS, e.g. in `admin/base_site.html`:
+///
+///     {% block extrastyle %}{{ block.super }}
+///     <link rel="stylesheet" href="{% static 'stylescape/css/django-admin.css' %}">
+///     {% endblock %}
+///
+/// The admin's stylesheets are unlayered, and unlayered rules beat every
+/// cascade layer, so parts 2 and 3 are unlayered here too. The selectors
+/// match Django's own (`html[data-theme]`) so source order decides.
+///
+/// @group Integrations.DjangoAdmin
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.5.0
+/// @access public
+///
+////
+
+@charset "utf-8";
+
+@use "01-core/layers";
+@use "01-core/external" as *;
+@use "12-lexicon" as *;
+@use "33-overrides/dark";
+
+// ============================================================================
+// 2. Django admin variables -> stylescape tokens
+// ============================================================================
+// Every value is a token reference, so the dark theme needs no second
+// block: the tokens switch, these follow.
+
+// Hover/pressed shades: mix towards the page's foreground, which darkens in
+// the light theme and lightens in the dark one (where `--ss-color-on-*`
+// text is near-black), so text on the shade keeps its contrast.
+$_shade: 82%;
+
+:root,
+html[data-theme] {
+    --primary: var(--ss-color-accent);
+    --secondary: var(--ss-color-accent);
+    --accent: var(--ss-color-background);
+    --primary-fg: var(--ss-color-on-accent);
+
+    --body-fg: var(--ss-color-text);
+    --body-bg: var(--ss-color-background);
+    --body-quiet-color: var(--ss-color-text-secondary);
+    --body-medium-color: var(--ss-color-text);
+    --body-loud-color: var(--ss-color-text-primary);
+
+    // Header: an inverted bar (the foreground colour), like the demo
+    // shell's ribbon; its text uses the background colour.
+    --header-color: var(--ss-color-background);
+    --header-branding-color: var(--ss-color-background);
+    --header-bg: var(--ss-color-foreground);
+    --header-link-color: var(--ss-color-on-accent);
+
+    --breadcrumbs-fg: var(--ss-color-text-secondary);
+    --breadcrumbs-link-fg: var(--ss-color-link);
+    --breadcrumbs-bg: var(--ss-color-surface-muted);
+
+    --link-fg: var(--ss-color-link);
+    --link-hover-color: var(--ss-color-link-hover);
+    --link-selected-fg: var(--ss-color-link-active);
+
+    --hairline-color: var(--ss-color-border-subtle, var(--ss-color-border));
+    --border-color: var(--ss-color-border);
+
+    --error-fg: var(--ss-color-error);
+
+    --message-debug-bg: var(--ss-color-surface-muted);
+    --message-info-bg: var(--ss-color-info-soft);
+    --message-success-bg: var(--ss-color-success-soft);
+    --message-warning-bg: var(--ss-color-warning-soft);
+    --message-error-bg: var(--ss-color-error-soft);
+
+    --darkened-bg: var(--ss-color-surface-muted);
+    --selected-bg: var(--ss-color-surface-2);
+    --selected-row: var(--ss-color-accent-bg);
+
+    --button-fg: var(--ss-color-on-accent);
+    --button-bg: var(--ss-color-accent);
+    --button-hover-bg: color-mix(in srgb, var(--ss-color-accent) #{$_shade}, var(--ss-color-foreground));
+    --default-button-bg: color-mix(in srgb, var(--ss-color-accent) #{$_shade}, var(--ss-color-foreground));
+    --default-button-hover-bg: var(--ss-color-accent);
+    --close-button-bg: var(--ss-color-text-secondary);
+    --close-button-hover-bg: var(--ss-color-text);
+    --delete-button-bg: var(--ss-color-error);
+    --delete-button-hover-bg: color-mix(in srgb, var(--ss-color-error) #{$_shade}, var(--ss-color-foreground));
+
+    --object-tools-fg: var(--button-fg);
+    --object-tools-bg: var(--close-button-bg);
+    --object-tools-hover-bg: var(--close-button-hover-bg);
+
+    --font-family-primary: var(--ss-font-family-base);
+    --font-family-monospace: var(--ss-font-family-mono);
+}
+
+// One focus ring for the admin as well.
+:is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: var(--ss-focus-ring-width) solid var(--ss-focus-ring-color);
+    outline-offset: var(--ss-focus-ring-offset);
+}
+
+// ============================================================================
+// 3. sturnus-admin dashboard widgets
+// ============================================================================
+
+.dashboard-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, #{q(256)}), 1fr));
+    gap: var(--ss-space-4);
+    align-items: start;
+}
+
+.dashboard-empty {
+    color: var(--ss-color-text-secondary);
+}
+
+.widget {
+    box-sizing: border-box;
+    min-inline-size: 0;
+    padding: var(--ss-space-4);
+    background-color: var(--ss-color-background);
+    color: var(--ss-color-text);
+    border: q(1) solid var(--ss-color-border);
+    border-radius: var(--ss-radius-md);
+
+    > h3 {
+        margin: 0 0 var(--ss-space-3);
+        padding: 0;
+        background: none;
+        color: var(--ss-color-text-secondary);
+        font-size: var(--ss-font-size-sm);
+        font-weight: var(--ss-font-weight-semibold);
+        text-transform: none;
+        letter-spacing: 0;
+    }
+}
+
+// Charts and stat grids want the width of two columns when there is room.
+.widget-chart,
+.widget-activity {
+    grid-column: span 2;
+
+    @media (max-width: 48em) {
+        grid-column: auto;
+    }
+}
+
+// -- Stats -------------------------------------------------------------------
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(#{q(96)}, 1fr));
+    gap: var(--ss-space-3);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ss-space-1);
+    min-inline-size: 0;
+}
+
+.stat-value {
+    font-size: var(--ss-font-size-2xl);
+    font-weight: var(--ss-font-weight-bold);
+    line-height: var(--ss-line-height-tight);
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+    color: var(--ss-color-text-secondary);
+    font-size: var(--ss-font-size-sm);
+}
+
+// -- Count -------------------------------------------------------------------
+
+.widget-count {
+    padding: 0;
+}
+
+.widget-count .widget-link {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+        "icon value"
+        "icon title";
+    column-gap: var(--ss-space-3);
+    align-items: center;
+    padding: var(--ss-space-4);
+    color: inherit;
+    text-decoration: none;
+    border-radius: inherit;
+}
+
+.widget-count a.widget-link:hover {
+    background-color: var(--ss-color-surface-hover);
+    color: inherit;
+}
+
+.widget-icon {
+    grid-area: icon;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: q(40);
+    block-size: q(40);
+    border-radius: var(--ss-radius-full);
+    background-color: var(--ss-color-accent-bg);
+    color: var(--ss-color-text);
+    font-size: var(--ss-font-size-lg);
+}
+
+.widget-count-value {
+    grid-area: value;
+    font-size: var(--ss-font-size-2xl);
+    font-weight: var(--ss-font-weight-bold);
+    line-height: var(--ss-line-height-tight);
+    font-variant-numeric: tabular-nums;
+}
+
+.widget-count .widget-title {
+    grid-area: title;
+    color: var(--ss-color-text-secondary);
+    font-size: var(--ss-font-size-sm);
+}
+
+// -- Chart -------------------------------------------------------------------
+
+.widget-chart canvas {
+    display: block;
+    inline-size: 100%;
+    max-block-size: q(320);
+}
+
+// -- Quick links -------------------------------------------------------------
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(#{q(128)}, 1fr));
+    gap: var(--ss-space-2);
+}
+
+.quick-link {
+    display: flex;
+    align-items: center;
+    gap: var(--ss-space-2);
+    min-block-size: q(40);
+    padding: var(--ss-space-2) var(--ss-space-3);
+    border: q(1) solid var(--ss-color-border);
+    border-radius: var(--ss-radius-sm);
+    text-decoration: none;
+
+    &:link,
+    &:visited {
+        color: var(--ss-color-text);
+        text-decoration: none;
+    }
+
+    &:hover {
+        background-color: var(--ss-color-surface-hover);
+        border-color: var(--ss-color-border-strong);
+        color: var(--ss-color-text);
+    }
+}
+
+.link-icon {
+    flex: 0 0 auto;
+    color: var(--ss-color-text-secondary);
+}
+
+.link-label {
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+}
+
+// -- Recent activity ---------------------------------------------------------
+
+.activity-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.activity-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: var(--ss-space-1);
+    padding: var(--ss-space-2) 0;
+    border-block-end: q(1) solid var(--ss-color-border);
+    list-style: none;
+
+    &:last-child {
+        border-block-end: 0;
+    }
+}
+
+.activity-user {
+    font-weight: var(--ss-font-weight-semibold);
+}
+
+.activity-action {
+    color: var(--ss-color-text-secondary);
+}
+
+.activity-object {
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+}
+
+.activity-time {
+    margin-inline-start: auto;
+    color: var(--ss-color-text-secondary);
+    font-size: var(--ss-font-size-xs);
+    white-space: nowrap;
+}
+
+.activity-empty {
+    color: var(--ss-color-text-secondary);
+}

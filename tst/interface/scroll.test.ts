@@ -217,10 +217,13 @@ describe("scroll utilities", () => {
             stt.show();
             expect(btn.classList.contains("scroll-to-top--visible")).toBe(true);
             expect(btn.getAttribute("aria-hidden")).toBe("false");
+            expect(btn.hasAttribute("tabindex")).toBe(false);
 
             stt.hide();
             expect(btn.classList.contains("scroll-to-top--visible")).toBe(false);
             expect(btn.getAttribute("aria-hidden")).toBe("true");
+            // Hidden from AT must also leave the tab order.
+            expect(btn.getAttribute("tabindex")).toBe("-1");
         });
 
         it("shows the button on a scroll event past the threshold", async () => {

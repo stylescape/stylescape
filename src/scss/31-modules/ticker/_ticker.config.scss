@@ -4,13 +4,18 @@
 
 @use "../../01-core/external" as *;
 
+// The scroll period below is a literal on purpose (see "duration").
+// stylelint-disable-next-line declaration-property-value-disallowed-list
 $ticker-config: (
+    // Scroll period for one full pass; depends on the content length, so it
+    // is a per-ticker knob rather than a motion token.
     "duration": 20s,
     "gap": q(12),
     "item-padding-x": q(16),
-    "item-font-size": q(12),
-    "background": var(--ss-color-text, #1a1a1a),
-    "color": var(--ss-color-fill, #ffffff),
-    "border-color": var(--ss-color-fill, #ffffff),
-    "z-index": 1030,
+    "item-font-size": var(--ss-font-size-xs),
+    "background": var(--ss-color-text-primary),
+    "color": var(--ss-color-background),
+    "border-color": var(--ss-color-background),
+    "z-index": var(--ss-z-fixed),
+
 ) !default;

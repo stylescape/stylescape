@@ -1,0 +1,97 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./color-input.mixins" as ci;
+
+$_ci: ".#{$ss-prefix-module}-color-input";
+$_sw: ".#{$ss-prefix-module}-swatch-list";
+
+@layer ss.components {
+    // <input type="color" class="ss-c-color-input">
+    #{$_ci} {
+        @include ci.ss-color-input;
+        @include ci.ss-color-input-size(md);
+    }
+    #{$_ci}--sm {
+        @include ci.ss-color-input-size(sm);
+    }
+    #{$_ci}--lg {
+        @include ci.ss-color-input-size(lg);
+    }
+
+    // <div class="ss-c-color-field"> colour input + readout/hex field
+    .#{$ss-prefix-module}-color-field {
+        @include ci.ss-color-field;
+    }
+    .#{$ss-prefix-module}-color-field__value {
+        font-family: var(--ss-font-family-mono);
+        font-variant-numeric: tabular-nums;
+        text-transform: lowercase;
+    }
+
+    // <fieldset class="ss-c-swatch-list">
+    //   <legend class="ss-c-swatch-list__legend">Colour</legend>
+    //   <label class="ss-c-swatch-list__item">
+    //     <input class="ss-c-swatch-list__input" type="radio" name="c" value="#0a7">
+    //     <span class="ss-c-swatch-list__chip" style="--ss-swatch: #0a7"></span>
+    //     <span class="ss-c-swatch-list__name">Green</span>
+    //   </label> …
+    // </fieldset>
+    #{$_sw} {
+        @include ci.ss-swatch-list;
+    }
+    #{$_sw}__legend {
+        float: inline-start;
+        inline-size: 100%;
+        margin-block-end: q(6);
+        padding: 0;
+        font-weight: 500;
+    }
+    #{$_sw}__item {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: q(8);
+        cursor: pointer;
+    }
+    // The radio covers its chip invisibly, so it keeps focus and clicks.
+    #{$_sw}__input {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        inline-size: 100%;
+        block-size: 100%;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
+    #{$_sw}__chip {
+        @include ci.ss-swatch-chip;
+    }
+    #{$_sw}__input:checked + #{$_sw}__chip {
+        @include ci.ss-swatch-chip-selected;
+    }
+    #{$_sw}__input:focus-visible + #{$_sw}__chip {
+        @include ci.ss-swatch-chip-focus;
+    }
+    #{$_sw}__input:disabled + #{$_sw}__chip {
+        opacity: 0.4;
+    }
+    // Names are hidden by default (give them `ss-u-visually-hidden` or use
+    // `--labelled` to show them next to each chip).
+    #{$_sw}:not(#{$_sw}--labelled) #{$_sw}__name {
+        position: absolute;
+        inline-size: q(1);
+        block-size: q(1);
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+    #{$_sw}--labelled {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

@@ -22,25 +22,88 @@
 // ============================================================================
 
 $ss-dropcap-config: (
+    // Spans ~3 lines of body text; em keeps it relative to the paragraph.
     standard: (
-        font-size: var(--ss-font-size-xxl),
+        font-size: 3.25em,
         font-weight: 600,
-        line-height: 1,
-        margin: 0 var(--ss-space-md) 0 0,
+        line-height: 0.85,
+        margin: q(4) q(8) 0 0,
         padding: 0,
         border: none,
         border-radius: 0,
     ),
 
+    // Letter set in a solid square.
     block: (
-        font-size: var(--ss-font-size-xl),
+        font-size: 2.25em,
         font-weight: 500,
-        line-height: 1,
-        height: var(--ss-space-4xl),
-        width: var(--ss-space-4xl),
-        padding: var(--ss-space-sm),
+        line-height: 1.75em,
+        height: 1.75em,
+        width: 1.75em,
+        margin: q(4) q(12) 0 0,
+        padding: 0,
         border: none,
-        border-radius: 0,
+        border-radius: var(--ss-radius-none, 0),
+        bg: var(--ss-color-text-primary),
+        fg: var(--ss-color-background),
+    ),
+) !default;
+
+// Modifier looks for `.ss-c-dropcap--<name>`. Each map is written onto the
+// paragraph's `::first-letter` after the standard drop cap, so a variant only
+// lists what it changes. `::first-letter` takes font, colour, background,
+// border, padding and margin properties, but not width/height: box sizes are
+// set with padding (the circle assumes a capital about 0.7em wide).
+$ss-dropcap-variants: (
+    boxed: (
+        font-size: 2.5em,
+        line-height: 1,
+        padding: 0.15em 0.3em,
+        margin: q(4) q(12) 0 0,
+        background: var(--ss-color-text-primary),
+        color: var(--ss-color-background),
+        border-radius: var(--ss-radius-md),
+    ),
+    circle: (
+        font-size: 2.25em,
+        line-height: 1,
+        padding: 0.25em 0.4em,
+        margin: q(4) q(12) 0 0,
+        background: var(--ss-color-surface-alt),
+        color: var(--ss-color-text-primary),
+        border: q(1) solid var(--ss-color-border-strong),
+        border-radius: var(--ss-radius-full),
+    ),
+    outlined: (
+        font-size: 3.75em,
+        font-weight: 700,
+        line-height: 0.8,
+        // Chromium ignores -webkit-text-stroke on ::first-letter, so the
+        // contour is drawn with four hard text-shadows instead.
+        color: var(--ss-color-background),
+        text-shadow: (
+            q(-1) q(-1) 0 var(--ss-color-text-primary),
+            q(1) q(-1) 0 var(--ss-color-text-primary),
+            q(-1) q(1) 0 var(--ss-color-text-primary),
+            q(1) q(1) 0 var(--ss-color-text-primary)
+        ),
+    ),
+    gradient: (
+        font-size: 4em,
+        font-weight: 900,
+        line-height: 0.8,
+        background: linear-gradient(135deg, var(--ss-color-accent), var(--ss-color-info)),
+        -webkit-background-clip: text,
+        background-clip: text,
+        color: transparent,
+    ),
+    serif: (
+        font-size: 4.5em,
+        font-family: var(--ss-font-family-serif),
+        font-style: italic,
+        font-weight: 400,
+        line-height: 0.75,
+        margin: q(6) q(10) 0 0,
     ),
 ) !default;
 

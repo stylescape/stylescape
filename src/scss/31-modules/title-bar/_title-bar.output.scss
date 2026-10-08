@@ -1,0 +1,44 @@
+@use "../../01-core/prefix" as *;
+@use "../../01-core/external" as *;
+@use "./title-bar.mixins" as tb;
+
+$_t: ".#{$ss-prefix-module}-title-bar";
+$_muted: tb.ss-title-bar-config(muted);
+
+@layer ss.components {
+    #{$_t} {
+        @include tb.ss-title-bar;
+    }
+
+    #{$_t}--plain {
+        padding-block-end: 0;
+        border-block-end: 0;
+    }
+
+    #{$_t}__text {
+        flex: 1 1 q(240);
+        min-inline-size: 0;
+    }
+
+    #{$_t}__eyebrow {
+        margin: 0 0 q(4);
+        color: $_muted;
+        font-size: var(--ss-font-size-sm);
+    }
+
+    #{$_t}__title {
+        margin: 0;
+        font-size: tb.ss-title-bar-config(title-size);
+        line-height: var(--ss-line-height-tight);
+        overflow-wrap: anywhere;
+    }
+
+    #{$_t}__description {
+        margin: q(8) 0 0;
+        color: $_muted;
+    }
+
+    #{$_t}__actions {
+        @include tb.ss-title-bar-actions;
+    }
+}

@@ -3,7 +3,7 @@
 
 <section class="ss-c-demo__section" data-label="{{ title }}" data-level="1">
     <header class="ss-c-demo__section__header">
-        <h2>{{ title }}</h2>
+        <h1>{{ title }}</h1>
         <p>
             JavaScript animation components for content reveal, countdowns,
             preloaders, and progress bars.
@@ -16,7 +16,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>
             Reveals content with fade-in effects. Supports scroll-triggered
             reveal via IntersectionObserver.
@@ -49,12 +49,12 @@
             <div
                 style="
                     padding: 40px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 12px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-lg);
                     text-align: center;
                 "
             >
-                <h4>Scroll to Reveal</h4>
+                <h3>Scroll to Reveal</h3>
                 <p>This content appears when scrolled into view.</p>
             </div>
         </div>
@@ -68,7 +68,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>
             Displays countdown to a target date/time with customizable format.
         </p>
@@ -91,9 +91,9 @@
                 class="ss-c-countdown-days"
                 style="
                     padding: 16px 24px;
-                    background: var(--color_fill_primary);
-                    color: white;
-                    border-radius: 8px;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
+                    border-radius: var(--ss-radius-lg);
                 "
             >
                 00
@@ -102,9 +102,9 @@
                 class="ss-c-countdown-hours"
                 style="
                     padding: 16px 24px;
-                    background: var(--color_fill_primary);
-                    color: white;
-                    border-radius: 8px;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
+                    border-radius: var(--ss-radius-lg);
                 "
             >
                 00
@@ -113,9 +113,9 @@
                 class="ss-c-countdown-minutes"
                 style="
                     padding: 16px 24px;
-                    background: var(--color_fill_primary);
-                    color: white;
-                    border-radius: 8px;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
+                    border-radius: var(--ss-radius-lg);
                 "
             >
                 00
@@ -124,9 +124,9 @@
                 class="ss-c-countdown-seconds"
                 style="
                     padding: 16px 24px;
-                    background: var(--color_fill_primary);
-                    color: white;
-                    border-radius: 8px;
+                    background: var(--ss-color-accent);
+                    color: var(--ss-color-on-accent);
+                    border-radius: var(--ss-radius-lg);
                 "
             >
                 00
@@ -150,7 +150,7 @@
                     style="
                         font-size: 48px;
                         font-weight: 700;
-                        color: var(--color_fill_primary);
+                        color: var(--ss-color-accent);
                     "
                 >
                     00
@@ -171,7 +171,7 @@
                     style="
                         font-size: 48px;
                         font-weight: 700;
-                        color: var(--color_fill_primary);
+                        color: var(--ss-color-accent);
                     "
                 >
                     00
@@ -192,7 +192,7 @@
                     style="
                         font-size: 48px;
                         font-weight: 700;
-                        color: var(--color_fill_primary);
+                        color: var(--ss-color-accent);
                     "
                 >
                     00
@@ -213,7 +213,7 @@
                     style="
                         font-size: 48px;
                         font-weight: 700;
-                        color: var(--color_fill_primary);
+                        color: var(--ss-color-accent);
                     "
                 >
                     00
@@ -239,87 +239,115 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>
             Manages a preloader element during page load with automatic hiding.
         </p>
         {% set code_snippet %}
         <!-- Preloader overlay -->
+        <!-- Demo frame: the transform contains the fixed overlay to this box -->
         <div
-            class="ss-c-preloader"
-            data-ss="preloader"
-            data-ss-preloader-timeout="500"
-            data-ss-preloader-min-display="300"
             style="
-                position: fixed;
-                inset: 0;
-                background: rgba(255, 255, 255, 0.95);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 9999;
+                position: relative;
+                height: 220px;
+                margin-bottom: 16px;
+                overflow: hidden;
+                border: 1px solid var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
+                transform: translateZ(0);
             "
         >
-            <div class="ss-c-preloader__content" style="text-align: center">
-                <div
-                    class="ss-c-preloader__spinner"
-                    style="
-                        width: 48px;
-                        height: 48px;
-                        border: 4px solid var(--color_fill_secondary);
-                        border-top-color: var(--color_fill_primary);
-                        border-radius: 50%;
-                        animation: spin 1s linear infinite;
-                    "
-                ></div>
-                <p style="margin-top: 16px; opacity: 0.7">Loading...</p>
+            <div
+                class="ss-c-preloader"
+                data-ss="preloader"
+                aria-label="Loading page"
+                data-ss-preloader-timeout="500"
+                data-ss-preloader-min-display="300"
+                style="
+                    position: fixed;
+                    inset: 0;
+                    background: var(--ss-color-background);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 9999;
+                "
+            >
+                <div class="ss-c-preloader__content" style="text-align: center">
+                    <div
+                        class="ss-c-preloader__spinner"
+                        style="
+                            width: 48px;
+                            height: 48px;
+                            border: 4px solid var(--ss-color-surface-alt);
+                            border-top-color: var(--ss-color-accent);
+                            border-radius: 50%;
+                            animation: spin 1s linear infinite;
+                        "
+                    ></div>
+                    <p style="margin-top: 16px; opacity: 0.7">Loading...</p>
+                </div>
             </div>
         </div>
 
         <!-- Preloader with logo -->
         <div
-            class="ss-c-preloader"
-            data-ss="preloader"
-            data-ss-preloader-timeout="1000"
             style="
-                position: fixed;
-                inset: 0;
-                background: var(--color_fill_primary);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 9999;
+                position: relative;
+                height: 220px;
+                margin-bottom: 16px;
+                overflow: hidden;
+                border: 1px solid var(--ss-color-border);
+                border-radius: var(--ss-radius-lg);
+                transform: translateZ(0);
             "
         >
-            <div style="text-align: center; color: white">
-                <svg
-                    width="64"
-                    height="64"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                >
-                    <path
-                        d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-                    />
-                </svg>
-                <div
-                    style="
-                        margin-top: 24px;
-                        width: 120px;
-                        height: 4px;
-                        background: rgba(255, 255, 255, 0.3);
-                        border-radius: 2px;
-                        overflow: hidden;
-                    "
-                >
+            <div
+                class="ss-c-preloader"
+                data-ss="preloader"
+                role="status"
+                aria-label="Loading application"
+                data-ss-preloader-timeout="1000"
+                style="
+                    position: fixed;
+                    inset: 0;
+                    background: var(--ss-color-accent);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 9999;
+                "
+            >
+                <div style="text-align: center; color: var(--ss-color-on-accent)">
+                    <svg
+                        width="64"
+                        height="64"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                    >
+                        <path
+                            d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                        />
+                    </svg>
                     <div
                         style="
-                            width: 60%;
-                            height: 100%;
-                            background: white;
-                            animation: loading 1.5s ease-in-out infinite;
+                            margin-top: 24px;
+                            width: 120px;
+                            height: 4px;
+                            background: color-mix(in srgb, var(--ss-color-on-accent) 30%, transparent);
+                            border-radius: var(--ss-radius-sm);
+                            overflow: hidden;
                         "
-                    ></div>
+                    >
+                        <div
+                            style="
+                                width: 60%;
+                                height: 100%;
+                                background: var(--ss-color-on-accent);
+                                animation: loading 1.5s ease-in-out infinite;
+                            "
+                        ></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -333,19 +361,24 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Controls progress bar UI with animation support.</p>
         {% set code_snippet %}
         <!-- Basic animated progress -->
         <div
             data-ss="progress"
+            role="progressbar"
+            aria-label="Animated progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="75"
             data-ss-progress-value="75"
             data-ss-progress-animate="true"
             data-ss-progress-duration="1000"
             style="
                 height: 8px;
-                background: var(--color_fill_secondary);
-                border-radius: 4px;
+                background: var(--ss-color-surface-alt);
+                border-radius: var(--ss-radius-md);
                 overflow: hidden;
             "
         >
@@ -354,7 +387,7 @@
                 style="
                     height: 100%;
                     width: 0%;
-                    background: var(--color_fill_primary);
+                    background: var(--ss-color-accent);
                     transition: width 1s ease;
                 "
             ></div>
@@ -369,17 +402,18 @@
                     margin-bottom: 8px;
                 "
             >
-                <span>Upload Progress</span>
+                <span id="upload-progress-label">Upload Progress</span>
                 <span class="ss-c-progress__value">45%</span>
             </div>
             <div
                 data-ss="progress"
+                aria-labelledby="upload-progress-label"
                 data-ss-progress-value="45"
                 data-ss-progress-animate="true"
                 style="
                     height: 12px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 6px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-md);
                     overflow: hidden;
                 "
             >
@@ -390,7 +424,7 @@
                         width: 0%;
                         background: linear-gradient(
                             90deg,
-                            var(--color_fill_primary),
+                            var(--ss-color-accent),
                             #764ba2
                         );
                     "
@@ -402,12 +436,16 @@
         <div style="margin-top: 24px; display: flex; gap: 4px">
             <div
                 data-ss="progress"
+                role="progressbar"
+                aria-label="Step 1 of 4"
+                aria-valuemin="0"
+                aria-valuemax="100"
                 data-ss-progress-value="100"
                 style="
                     flex: 1;
                     height: 8px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 4px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-md);
                     overflow: hidden;
                 "
             >
@@ -416,18 +454,22 @@
                     style="
                         height: 100%;
                         width: 0%;
-                        background: var(--color_state_success);
+                        background: var(--ss-color-success);
                     "
                 ></div>
             </div>
             <div
                 data-ss="progress"
+                role="progressbar"
+                aria-label="Step 2 of 4"
+                aria-valuemin="0"
+                aria-valuemax="100"
                 data-ss-progress-value="100"
                 style="
                     flex: 1;
                     height: 8px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 4px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-md);
                     overflow: hidden;
                 "
             >
@@ -436,18 +478,22 @@
                     style="
                         height: 100%;
                         width: 0%;
-                        background: var(--color_state_success);
+                        background: var(--ss-color-success);
                     "
                 ></div>
             </div>
             <div
                 data-ss="progress"
+                role="progressbar"
+                aria-label="Step 3 of 4"
+                aria-valuemin="0"
+                aria-valuemax="100"
                 data-ss-progress-value="60"
                 style="
                     flex: 1;
                     height: 8px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 4px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-md);
                     overflow: hidden;
                 "
             >
@@ -456,18 +502,22 @@
                     style="
                         height: 100%;
                         width: 0%;
-                        background: var(--color_state_warning);
+                        background: var(--ss-color-warning);
                     "
                 ></div>
             </div>
             <div
                 data-ss="progress"
+                role="progressbar"
+                aria-label="Step 4 of 4"
+                aria-valuemin="0"
+                aria-valuemax="100"
                 data-ss-progress-value="0"
                 style="
                     flex: 1;
                     height: 8px;
-                    background: var(--color_fill_secondary);
-                    border-radius: 4px;
+                    background: var(--ss-color-surface-alt);
+                    border-radius: var(--ss-radius-md);
                     overflow: hidden;
                 "
             >
@@ -476,7 +526,7 @@
                     style="
                         height: 100%;
                         width: 0%;
-                        background: var(--color_fill_primary);
+                        background: var(--ss-color-accent);
                     "
                 ></div>
             </div>
@@ -491,7 +541,7 @@
         data-label="{{ section_title }}"
         data-level="2"
     >
-        <h3>{{ section_title }}</h3>
+        <h2>{{ section_title }}</h2>
         <p>Programmatic control of animation components.</p>
         {% set code_snippet %}
         <script>

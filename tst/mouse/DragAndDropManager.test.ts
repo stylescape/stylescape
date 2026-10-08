@@ -105,8 +105,7 @@ describe("DragAndDropManager", () => {
 
         it("wires up drop zones from the default selector", () => {
             document.body.innerHTML = `
-                <div class="item"></div>
-                <div data-ss="dropzone" id="zone"></div>
+                <div data-ss="dropzone" id="zone"><div class="item"></div></div>
             `;
 
             new DragAndDropManager(".item");
@@ -116,10 +115,22 @@ describe("DragAndDropManager", () => {
             expect(zone.getAttribute("aria-dropeffect")).toBe("move");
         });
 
-        it("honours a custom dropZoneSelector option", () => {
+        it("leaves an empty drop zone without a list role", () => {
             document.body.innerHTML = `
                 <div class="item"></div>
-                <div class="my-zone" id="z"></div>
+                <div data-ss="dropzone" id="zone"></div>
+            `;
+
+            new DragAndDropManager(".item");
+
+            const zone = document.getElementById("zone")!;
+            expect(zone.hasAttribute("role")).toBe(false);
+            expect(zone.getAttribute("aria-dropeffect")).toBe("move");
+        });
+
+        it("honours a custom dropZoneSelector option", () => {
+            document.body.innerHTML = `
+                <div class="my-zone" id="z"><div class="item"></div></div>
             `;
 
             new DragAndDropManager(".item", { dropZoneSelector: ".my-zone" });

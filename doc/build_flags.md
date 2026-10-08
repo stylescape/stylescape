@@ -11,8 +11,9 @@ sets them where it loads core:
 );
 ```
 
-Every default reproduces the historical build exactly: passing no configuration
-compiles byte-for-byte the same stylesheet as before flags existed.
+Every default keeps existing markup working: `$scapepress-parity` reproduces the
+historical build exactly, and `$v03-compat` (new in 0.4.2) adds the 0.3
+class names back.
 
 Themes that sit on top of core pass the configuration on core's behalf — see
 `stylescape-matter`'s `src/scss/index.scss` for the pattern.
@@ -44,3 +45,17 @@ disappear.
 
 Keep it `true` for the scapepress sites themselves and for anything that
 inherited their markup.
+
+## `$v03-compat`
+
+|         |                                         |
+| ------- | --------------------------------------- |
+| Type    | `Bool`                                  |
+| Default | `true`                                  |
+| Layer   | `32-utilities/_legacy-v03-compat.scss`  |
+
+Styles the unprefixed stylescape 0.3 class names (`.button`, `.badge`,
+`.ribbon--top`, `.frame_main`, `.grid__frame--24`, `.margin--10_right`, …)
+with the 0.4 module mixins and tokens, so 0.3 markup keeps its look on 0.4.
+Set it to `false` once the markup uses the `ss-*` names. See
+[Migrating from 0.3](migration-0.4.md) for the old → new table.
