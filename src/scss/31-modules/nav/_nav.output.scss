@@ -22,4 +22,12 @@
     .#{$ss-prefix-module}-nav__link[aria-current="page"] {
         @include nav.ss-nav-link-active;
     }
+
+    // A vertical nav stacks its list (the list is a horizontal flex row).
+    .#{$ss-prefix-module}-nav--vertical .#{$ss-prefix-module}-nav__list,
+    .#{$ss-prefix-module}-nav__list.#{$ss-prefix-module}-nav--vertical {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--ss-space-1);
+    }
 }

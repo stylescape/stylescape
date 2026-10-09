@@ -12,7 +12,7 @@ So that 0.3 markup keeps working while it is migrated, core ships
 0.4 module mixins and tokens (it does not copy 0.3 CSS), so a 0.3 `.button`
 looks exactly like a 0.4 `.ss-c-button`, follows the theme tokens and works
 in dark mode. It covers every 0.3 class used by the `sturnus-style`
-templates and the KodW apps. The rules sit in `@layer ss.compat`, below
+templates and downstream apps. The rules sit in `@layer ss.compat`, below
 `ss.components`.
 
 Once your markup uses the `ss-*` names, drop the layer:

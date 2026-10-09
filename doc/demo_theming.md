@@ -38,8 +38,26 @@ shell. `src/jinja/pages/gallery.html.jinja` is a working landing page to copy.
 
 ## Sturnus: from Bootstrap to stylescape
 
-Point a Jinja2 loader at the templates that ship with the npm package, then
-extend the base template.
+`sturnus-demo` provides the shell for every demo project:
+
+- `sturnus/demo/base.html.jinja` (Jinja2) and `sturnus/demo/base.html` (Django
+  templates) render the `ss-l-app` shell with the package name, navigation,
+  theme toggle, Django messages, sidebars and footer. The root
+  `base.html.jinja` shim maps library templates that extend the host base onto
+  it.
+- `processor_stylescape` supplies `stylescape_css_url`, `stylescape_js_url` and
+  `demo_brand` (the package name, derived from the demo's folder, or the
+  `DEMO_BRAND` setting).
+- The CSS and JS come from jsDelivr (`stylescape@0.5`). Set
+  `STYLESCAPE_DIST_DIR` to a local stylescape `dist/` to serve it as static
+  files instead, or `STYLESCAPE_CSS_URL` / `STYLESCAPE_JS_URL` to point
+  anywhere.
+
+A demo's `demo_app/base.html.jinja` extends `sturnus/demo/base.html.jinja` and
+fills `title`, `brand`, `nav` and `footer`; `sturnus-webhooks` is the
+reference. Projects outside the demos can instead point a Jinja2 loader at the
+templates that ship with the npm package and extend the stylescape base
+template.
 
 ```python
 TEMPLATES = [

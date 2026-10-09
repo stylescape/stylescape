@@ -22,7 +22,7 @@ core.** That is what to fix first.
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Substantive**           | `starling` (77 scss, 365 classes, 273 props), `vorm` (5 scss, 115 classes)                                                                                       | starling = a full parallel system; vorm = a Dutch civic app, brand-specific                                                                                                                                                               |
 | **Byte-identical clones** | `geoid`, `kockums`, `matter`, `speckle`                                                                                                                          | All four SCSS trees identical (same md5). Contribute **0** unique classes — a strict subset of starling. All four still declare `"name": "@starling-cloud/stylescape-starling"` in package.json — four packages colliding on one npm name |
-| **Stubs**                 | `pzh`, `staco`, `vattenfall`, `vorm-kodw` (0-byte `index.scss`), `mesmera` (3 lines), `lovelace` (comments only), `futur` (26 lines), `necron-hicb` (fonts only) | No theming                                                                                                                                                                                                                                |
+| **Stubs**                 | `pzh`, `staco`, `vattenfall`, `mesmera` (3 lines), `lovelace` (comments only), `futur` (26 lines), `necron-hicb` (fonts only) | No theming                                                                                                                                                                                                                                |
 | **Empty**                 | `bioscreen`, `blob`, `blockfoundation`, `dmi`, `necron`, `protoverse`, `suell`, `zoofoo`                                                                         | Zero SCSS                                                                                                                                                                                                                                 |
 
 ---
@@ -35,9 +35,9 @@ works.
 
 | Form                                                                           | Used by                         | Result                                                                                  |
 | ------------------------------------------------------------------------------ | ------------------------------- | --------------------------------------------------------------------------------------- |
-| `@import "~stylescape/src/scss/index.scss"` with a pre-set `$font_path` global | geoid, kockums, matter, speckle | ❌ `Error: This module and the new module both define a variable named "$font-path".`   |
-| `@use "…/index.scss" as * with ($font_path: …)`                                | futur, vorm                     | ❌ `Error: This variable was not declared with !default in the @used module.` (exit 65) |
-| `@use "…/index.scss" as *` — no configuration                                  | —                               | ✅ compiles, 1,038,749 bytes                                                            |
+| `@import "~stylescape/src/scss/index.scss"` with a pre-set `$font_path` global | geoid, kockums, matter, speckle | `Error: This module and the new module both define a variable named "$font-path".`   |
+| `@use "…/index.scss" as * with ($font_path: …)`                                | futur, vorm                     | `Error: This variable was not declared with !default in the @used module.` (exit 65) |
+| `@use "…/index.scss" as *` — no configuration                                  | —                               | compiles, 1,038,749 bytes                                                            |
 
 **Root cause.** `$font_path` _is_ declared `!default`
 ([_font_face.scss:33](../src/scss/12-lexicon/tokens/soul_type/_font_face.scss#L33)),
@@ -140,9 +140,9 @@ loaded. Meanwhile 11 themes ship font binaries, and most are broken:
 | geoid, kockums, speckle | `@font-face` points at remote `font.starling.host`; the 6 local binaries are never referenced. Also a **trailing comma** after the last `format()` → invalid `src` descriptor         |
 | matter                  | Declares DIN from the CDN while shipping **Unitext** binaries — declared family never shipped, shipped family never declared                                                          |
 | necron-hicb             | `url()`s point at `static/fonts/`, binaries live in `src/font/` — paths don't resolve                                                                                                 |
-| vorm-kodw, zoofoo       | Binaries shipped, **zero** `@font-face` anywhere                                                                                                                                      |
+| zoofoo                  | Binaries shipped, **zero** `@font-face` anywhere                                                                                                                                      |
 | staco                   | Declares a font whose binaries aren't in the repo                                                                                                                                     |
-| **starling**            | ✅ **The only correct one** — sidecar `fonts.css` colocated with binaries, relative `url()`, exposed as a package subpath export, 12 faces with proper weights + `font-display: swap` |
+| **starling**            | **The only correct one** — sidecar `fonts.css` colocated with binaries, relative `url()`, exposed as a package subpath export, 12 faces with proper weights + `font-display: swap` |
 
 Adopt starling's sidecar pattern as sanctioned, and ship an
 `ss-font-face($family, $path, $weights)` mixin — it would collapse vorm's 56

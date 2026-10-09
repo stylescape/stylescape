@@ -17,12 +17,27 @@
 }
 
 @mixin ss-panel-header {
+    // Heading first, then any actions (buttons) pushed to the end.
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ss-space-2);
     padding: map.get(config.$ss-panel-config, header-padding);
     background-color: var(--ss-color-surface-alt);
     border-bottom: map.get(config.$ss-panel-config, border);
 
     font-size: map.get(config.$ss-panel-config, header-size);
     font-weight: map.get(config.$ss-panel-config, header-weight);
+
+    // A heading element in the header takes the header's size, so a
+    // correctly ranked `<h2>`/`<h3>` does not render at page-heading size.
+    > :is(h1, h2, h3, h4, h5, h6) {
+        margin: 0;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+    }
 }
 
 @mixin ss-panel-body {

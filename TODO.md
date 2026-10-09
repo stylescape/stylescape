@@ -1,28 +1,45 @@
 # stylescape TODO
 
+## Open (2026-10-09, from the sturnia/sturnus demo theming rollout)
+
+Gaps the fleet agents worked around while moving every demo onto stylescape. The worst ones were fixed in 0.5.0 (see CHANGELOG); these remain:
+
+- [ ] `ss-c-map` themes Leaflet and MapLibre/Mapbox chrome only; OpenLayers, Google Maps and ArcGIS controls keep their own look.
+- [ ] Toasts in the top-right region cover the app-shell header controls; offset the region by the header height inside `ss-l-app`.
+- [ ] No app-shell variant where the whole document scrolls (scroll-driven players need it); no 5- or 6-cell `ss-l-viewport-grid` preset.
+- [ ] `ss-c-form` styles any `div:has(> label)` as a field in the components layer, which beats `ss-l-grid` on hand-built forms.
+- [ ] `ss-l-app__sidebar` has no inner padding; content needs its own (`ss-u-p-4`).
+- [ ] `ss-c-segmented` has no link variant; no solid/dark `ss-c-badge`; a badge inside `ss-c-card__tag` draws two borders.
+- [ ] `ss-c-search-bar` needs `__input` on its input or the icon overlaps the text; `ss-c-form__field--inline` needs the label first and help text outside the row.
+- [ ] Compat/parity shims still carry hex colours for `ss-c-prose` (also unsets h2/h3 sizes), `ss-c-blockquote`, `ss-c-hero` (min-height 100vh), `ss-c-cta`, a second `ss-c-timeline` set and `ss-c-stat-card__value`.
+- [ ] `ss-c-description-list--divided` looks misaligned in the stacked layout.
+- [ ] `ss-u-gap-N` counts 1/16 rem steps (`gap-8` is 0.5rem), unlike the `--ss-space-*` scale; document it or align it.
+- [ ] `ss-c-modal` has no backdrop pattern of its own, and the modal and toast demo pages use inline styles and `__container` classes that do not exist.
+- [ ] No status-dot variant for "unknown/not checked".
+
 ## Open (2026-10-08, after implementing everything below)
 
 Everything below is ticked except the npm republish, which is outward-facing and waits for the maintainer. These came up while implementing it:
 
 - [ ] Publish: push a version tag so the tag-only workflow releases 0.5.0 to npm (also covers "Republish stylescape" below).
-- [ ] `kodw-buurtbasis` still imports 0.3 paths (`pkg:stylescape/scss/dev`, `scss/variables`, `scss/mixins/head_frame/frame_base`) that 0.4 does not have, so it cannot move to unit.gl 0.3.5 until it migrates to 0.4 (or a 0.3.19 hides `round-to`). `stylescape-vorm-kodw` compiles cleanly against this tree and unit.gl 0.3.5.
+- [ ] One downstream app still imports 0.3 paths (`pkg:stylescape/scss/dev`, `scss/variables`, `scss/mixins/head_frame/frame_base`) that 0.4 does not have, so it cannot move to unit.gl 0.3.5 until it migrates to 0.4 (or a 0.3.19 hides `round-to`). A downstream 0.4 theme compiles cleanly against this tree and unit.gl 0.3.5.
 - [ ] ssx repo: the spec (`spec/ssx.json`) has no `ss.compat` layer, so the three compat shims get no layer rules. Add the layer there.
 - [ ] `npm run lint:ssx` still reports 18 errors outside the baseline, all in files from the 2026-10-07 consistency pass (abbreviation mixins, spacer, accordion, select, toggle, graphic, divider, choice, chip). Fix or re-baseline them deliberately.
 - [ ] The Jinja layer in `src/templates/stylescape/` was rendered with Python Jinja2 and real Django forms, but not yet inside a sturnus Jinja2 backend. Try it in `sturnus-demo`, then move the sturnia and sturnus demo shells onto it (see `doc/demo_theming.md`).
 - [ ] `.config-templates/eslint.config.js` (fleet-synced) still imports `eslint-plugin-import`; update it in the control plane to `eslint-plugin-import-x`.
 
-## From KodW (2026-10-07)
+## From a downstream app (2026-10-07)
 
-Found while working on the KodW apps (`kijkopdewijk`); KodW works around some of these in its own repos.
+Found while working on a downstream app, which works around some of these in its own repos.
 
-- [x] `scss/index.scss` forwards both `dev` (which forwards `pkg:unit.gl`) and `functions`, which define `round-to`. With `unit.gl` 0.3.5 (which added its own `round-to`) every consumer fails: "Two forwarded modules both define a function named round-to". Hide `round-to` in one of the two forwards. `unit.gl` 0.3.4 is broken on its own ("no such file or directory" from Sass). `kodw-buurtbasis` pins `unit.gl` to 0.3.3 until this is released.
-  - 2026-10-08 (unit.gl sweep): the published stylescape 0.4.1 `src/scss/index.scss` compiles without errors against unit.gl 0.3.5 and against unit.gl `dev` (the coming 0.3.6), and so does this repo's working tree. The clash looks fixed as of 0.4.1. Not ticked: KodW's own build has not been run against it.
+- [x] `scss/index.scss` forwards both `dev` (which forwards `pkg:unit.gl`) and `functions`, which define `round-to`. With `unit.gl` 0.3.5 (which added its own `round-to`) every consumer fails: "Two forwarded modules both define a function named round-to". Hide `round-to` in one of the two forwards. `unit.gl` 0.3.4 is broken on its own ("no such file or directory" from Sass). The downstream app pins `unit.gl` to 0.3.3 until this is released.
+  - 2026-10-08 (unit.gl sweep): the published stylescape 0.4.1 `src/scss/index.scss` compiles without errors against unit.gl 0.3.5 and against unit.gl `dev` (the coming 0.3.6), and so does this repo's working tree. The clash looks fixed as of 0.4.1. Since verified: a downstream 0.4 theme compiles cleanly against this tree and unit.gl 0.3.5.
 
-- [ ] Republish stylescape so KodW picks up the Dart Sass 3 deprecation fixes (see `CHANGELOG.md`, Unreleased → Fixed).
+- [ ] Republish stylescape so downstream apps pick up the Dart Sass 3 deprecation fixes (see `CHANGELOG.md`, Unreleased → Fixed).
 
-## From the KodW theme demo (2026-10-08)
+## From a downstream theme demo (2026-10-08)
 
-Found in stylescape 0.4.1 while building `stylescape-vorm-kodw` and its demo of every KodW screen. The theme works around each of these (see its `src/scss/theme/`); fixing them here lets the workaround go.
+Found in stylescape 0.4.1 while building a downstream theme and its demo of every app screen. The theme works around each of these (see its `src/scss/theme/`); fixing them here lets the workaround go.
 
 - [x] Dark mode does not work: `33-overrides/_dark.scss` redeclares only `--ss-color-surface` and `--ss-color-text-primary`, and does so inside `@layer ss.overrides`, which loses to the unlayered light tokens on `:root` in `12-lexicon/_color-tokens.scss`. Declare the full neutral set (background, surfaces, fill, text, muted, lines, borders, progress track, …) for `[data-theme="dark"]` outside the layer, after the light set.
 - [x] `.ss-c-card` gets `background-color: #fff` from the utilities layer, which overrides the component's own `var(--ss-card-bg, var(--ss-color-surface))`, so cards stay white in dark mode.
@@ -104,7 +121,7 @@ State today:
 
 ### Blockers before new components
 
-- [x] Dark mode (see "From the KodW theme demo" above). 24 sturnia demos are dark; nothing can switch themes until the full neutral set is declared for `[data-theme="dark"]`.
+- [x] Dark mode (see "From a downstream theme demo" above). 24 sturnia demos are dark; nothing can switch themes until the full neutral set is declared for `[data-theme="dark"]`.
 - [x] 0.3 to 0.4 class names (same section). Either extend `32-utilities/_legacy-components-compat.scss` or migrate `sturnus-style` to 0.4 and have the sturnus demos extend it.
 - [x] Decide the split: primitives below go in stylescape core; the Starling brand goes in `stylescape-starling`; the demo shells themselves (gallery page, nav between demos) become importable packages in `sturnia-base` and `sturnus-demo`.
 

@@ -180,21 +180,27 @@ describe("Component Registry", () => {
             const panelB = el.querySelector('[data-ss-tab-panel="b"]')!;
 
             // First tab active by default
-            expect(tabA.classList.contains("tab--active")).toBe(true);
+            expect(tabA.classList.contains("ss-c-tab__item--active")).toBe(
+                true,
+            );
             expect(tabA.getAttribute("aria-selected")).toBe("true");
-            expect(panelA.getAttribute("aria-hidden")).toBe("false");
-            expect(panelB.getAttribute("aria-hidden")).toBe("true");
+            expect((panelA as HTMLElement).hidden).toBe(false);
+            expect((panelB as HTMLElement).hidden).toBe(true);
 
             // Clicking tab B activates it
             click(tabB);
-            expect(tabB.classList.contains("tab--active")).toBe(true);
-            expect(tabA.classList.contains("tab--active")).toBe(false);
-            expect(panelB.classList.contains("tab-panel--active")).toBe(true);
+            expect(tabB.classList.contains("ss-c-tab__item--active")).toBe(
+                true,
+            );
+            expect(tabA.classList.contains("ss-c-tab__item--active")).toBe(
+                false,
+            );
+            expect((panelB as HTMLElement).hidden).toBe(false);
 
             // The handler also exposes a programmatic activate()
             expect(typeof api.activate).toBe("function");
             api.activate("a");
-            expect(tabA.classList.contains("tab--active")).toBe(true);
+            expect(tabA.classList.contains("ss-c-tab__item--active")).toBe(true);
         });
 
         it("the 'carousel' handler cycles slides via its returned API", () => {

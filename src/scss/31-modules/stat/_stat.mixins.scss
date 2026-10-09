@@ -11,6 +11,11 @@
     color: map.get(config.$ss-stat-config, fg);
     border-radius: map.get(config.$ss-stat-config, radius);
     box-shadow: map.get(config.$ss-stat-config, shadow);
+
+    // Dividers between neighbouring stats in the group.
+    > .#{$ss-prefix-module}-stat + .#{$ss-prefix-module}-stat {
+        border-inline-start: map.get(config.$ss-stat-config, divider);
+    }
 }
 
 @mixin ss-stats-vertical {
@@ -34,10 +39,8 @@
         "figure desc actions" auto / auto 1fr auto;
     column-gap: map.get(config.$ss-stat-config, column-gap);
     padding: map.get(config.$ss-stat-config, padding);
-
-    & + & {
-        border-inline-start: map.get(config.$ss-stat-config, divider);
-    }
+    // Dividers between neighbours belong to the `ss-c-stats` group (see
+    // `ss-stats`); on bare stats in a grid they drew stray borders.
 }
 
 @mixin ss-stat-title {

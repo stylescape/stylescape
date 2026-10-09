@@ -23,6 +23,7 @@ import { CollapsibleTableHandler } from "../elements/CollapsibleTableHandler.js"
 import { ContextMenuManager } from "../elements/ContextMenuManager.js";
 import { DetailManager } from "../elements/DetailManager.js";
 import { DropdownHandler } from "../elements/DropdownHandler.js";
+import { DropdownManager } from "../elements/DropdownManager.js";
 import { ExclusiveDetails } from "../elements/ExclusiveDetails.js";
 import { Modal } from "../elements/Modal.js";
 import { NotificationManager } from "../elements/NotificationManager.js";
@@ -30,6 +31,7 @@ import { PasswordToggleManager } from "../elements/PasswordToggleManager.js";
 import { ResponsiveMenuManager } from "../elements/ResponsiveMenuManager.js";
 import { SheetManager } from "../elements/SheetManager.js";
 import { SplitPaneManager } from "../elements/SplitPaneManager.js";
+import { TabManager } from "../elements/TabManager.js";
 import { Tooltip } from "../elements/Tooltip.js";
 // Form Components
 import { TreeViewManager } from "../elements/TreeViewManager.js";
@@ -287,39 +289,7 @@ export const componentRegistry = new Map<string, RegistryEntry>([
     [
         "tabs",
         {
-            handler: (el, _config) => {
-                const tabs = el.querySelectorAll("[data-ss-tab]");
-                const panels = el.querySelectorAll("[data-ss-tab-panel]");
-
-                const activate = (tabId: string) => {
-                    tabs.forEach((tab) => {
-                        const isActive =
-                            tab.getAttribute("data-ss-tab") === tabId;
-                        tab.classList.toggle("tab--active", isActive);
-                        tab.setAttribute("aria-selected", String(isActive));
-                    });
-
-                    panels.forEach((panel) => {
-                        const isActive =
-                            panel.getAttribute("data-ss-tab-panel") === tabId;
-                        panel.classList.toggle("tab-panel--active", isActive);
-                        panel.setAttribute("aria-hidden", String(!isActive));
-                    });
-                };
-
-                tabs.forEach((tab) => {
-                    tab.addEventListener("click", () => {
-                        const tabId = tab.getAttribute("data-ss-tab");
-                        if (tabId) activate(tabId);
-                    });
-                });
-
-                // Activate first tab by default
-                const firstTab = tabs[0]?.getAttribute("data-ss-tab");
-                if (firstTab) activate(firstTab);
-
-                return { activate };
-            },
+            handler: (el, config) => new TabManager(el, config),
             defaults: {},
         },
     ],
@@ -925,6 +895,14 @@ export const componentRegistry = new Map<string, RegistryEntry>([
                     ? new ContextMenuManager(menu, { target: el })
                     : null;
             },
+            defaults: {},
+        },
+    ],
+
+    [
+        "dropdown-menu",
+        {
+            handler: (el) => new DropdownManager(el),
             defaults: {},
         },
     ],

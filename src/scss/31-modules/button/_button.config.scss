@@ -23,13 +23,12 @@ $ss-button-config: (
     transition: (
         background var(--ss-duration-200) var(--ss-ease-in-out),
         border var(--ss-duration-200) var(--ss-ease-in-out),
-        opacity var(--ss-duration-200) var(--ss-ease-in-out),
+        opacity var(--ss-duration-200) var(--ss-ease-in-out)
     ),
 
     // Base colors
     bg: var(--ss-color-text-primary),
     fg: var(--ss-color-surface),
-
     // Interaction states
     hover-opacity: 0.9,
     active-opacity: 0.8,
@@ -38,91 +37,87 @@ $ss-button-config: (
     focus-ring-color: var(--ss-focus-ring-color, currentColor),
     focus-ring-offset: var(--ss-focus-ring-offset, q(2)),
     hover-wash: var(--ss-color-surface-hover),
-
     // Variants — bg / fg / border (null border = leave unset)
     variants: (
-        primary: (
-            bg: var(--ss-color-accent),
-            fg: var(--ss-color-accent-foreground),
-            border: var(--ss-color-accent),
+            primary: (
+                bg: var(--ss-color-accent),
+                fg: var(--ss-color-accent-foreground),
+                border: var(--ss-color-accent),
+            ),
+            secondary: (
+                bg: var(--ss-color-secondary),
+                fg: var(--ss-color-white),
+                border: null,
+            ),
+            solid: (
+                bg: var(--ss-color-text-primary),
+                fg: var(--ss-color-surface),
+                border: null,
+            ),
+            accent: (
+                bg: var(--ss-color-accent),
+                fg: var(--ss-color-accent-foreground),
+                border: null,
+            ),
+            success: (
+                bg: var(--ss-color-success),
+                fg: var(--ss-color-on-success),
+                border: var(--ss-color-success),
+            ),
+            warning: (
+                bg: var(--ss-color-warning),
+                fg: var(--ss-color-on-warning),
+                border: var(--ss-color-warning),
+            ),
+            danger: (
+                bg: var(--ss-color-error),
+                fg: var(--ss-color-on-error),
+                border: var(--ss-color-error),
+            ),
+            info: (
+                bg: var(--ss-color-info),
+                fg: var(--ss-color-on-info),
+                border: var(--ss-color-info),
+            ),
         ),
-        secondary: (
-            bg: var(--ss-color-secondary),
-            fg: var(--ss-color-white),
-            border: null,
-        ),
-        solid: (
-            bg: var(--ss-color-text-primary),
-            fg: var(--ss-color-surface),
-            border: null,
-        ),
-        accent: (
-            bg: var(--ss-color-accent),
-            fg: var(--ss-color-accent-foreground),
-            border: null,
-        ),
-        success: (
-            bg: var(--ss-color-success),
-            fg: var(--ss-color-on-success),
-            border: var(--ss-color-success),
-        ),
-        warning: (
-            bg: var(--ss-color-warning),
-            fg: var(--ss-color-on-warning),
-            border: var(--ss-color-warning),
-        ),
-        danger: (
-            bg: var(--ss-color-error),
-            fg: var(--ss-color-on-error),
-            border: var(--ss-color-error),
-        ),
-        info: (
-            bg: var(--ss-color-info),
-            fg: var(--ss-color-on-info),
-            border: var(--ss-color-info),
-        ),
-    ),
 
     // Outline / ghost share fg + hover wash
     outline-color: var(--ss-color-text-primary),
-
     // Link variant
     link-color: var(--ss-color-link),
-
     // Sizes — padding / font-size
     sizes: (
-        // Heights follow the `.ss-c-input` scale (sm 32 / md 40 / lg 48).
-        xs: (
-            padding: q(2) q(8),
-            font-size: var(--ss-font-size-xs),
-            height: q(24),
+            // Heights follow the `.ss-c-input` scale (sm 32 / md 40 / lg 48).
+            xs: (
+                    padding: q(2) q(8),
+                    font-size: var(--ss-font-size-xs),
+                    height: q(24),
+                ),
+            sm: (
+                padding: q(4) q(12),
+                font-size: var(--ss-font-size-sm),
+                height: q(32),
+            ),
+            md: (
+                padding: q(6) q(16),
+                font-size: var(--ss-font-size-md),
+                height: q(40),
+            ),
+            lg: (
+                padding: q(8) q(24),
+                font-size: var(--ss-font-size-lg),
+                height: q(48),
+            ),
+            xl: (
+                padding: q(10) q(32),
+                font-size: var(--ss-font-size-xl),
+                height: q(56),
+            )
         ),
-        sm: (
-            padding: q(4) q(12),
-            font-size: var(--ss-font-size-sm),
-            height: q(32),
-        ),
-        md: (
-            padding: q(6) q(16),
-            font-size: var(--ss-font-size-md),
-            height: q(40),
-        ),
-        lg: (
-            padding: q(8) q(24),
-            font-size: var(--ss-font-size-lg),
-            height: q(48),
-        ),
-        xl: (
-            padding: q(10) q(32),
-            font-size: var(--ss-font-size-xl),
-            height: q(56),
-        ),
-    ),
 
     // Shapes
     rounded-radius: var(--ss-radius-lg, q(8)),
     pill-radius: var(--ss-radius-full),
-
     // Icon-only button
     icon-padding: q(8),
     icon-width: q(40),
@@ -131,7 +126,6 @@ $ss-button-config: (
 
     // Vertical rhythm between stacked block buttons
     block-stack-gap: q(8),
-
     // Menu (hamburger-style) button
     menu-padding: q(8),
     menu-font-size: var(--ss-font-size-xl),
@@ -141,5 +135,5 @@ $ss-button-config: (
     loading-size: q(16),
     loading-border-width: q(2),
     loading-color: var(--ss-color-on-accent),
-    loading-speed: var(--ss-duration-loop-fast),
+    loading-speed: var(--ss-duration-loop-fast)
 ) !default;

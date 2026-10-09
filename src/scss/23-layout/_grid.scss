@@ -14,6 +14,7 @@
 ////
 
 @use "../01-core/external" as *;
+@use "breakpoints" as *;
 
 @layer ss.layout {
     .ss-l-grid {
@@ -67,5 +68,25 @@
     }
     .ss-l-grid-gap-xl {
         --ss-l-grid-gap: var(--ss-spacing-8);
+    }
+
+    // Fixed column counts give way on small screens: 3 to 6 columns become
+    // two below `md`, and every fixed grid becomes one column below `sm`.
+    @include breakpoint-down("md") {
+        .ss-l-grid-3,
+        .ss-l-grid-4,
+        .ss-l-grid-5,
+        .ss-l-grid-6 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+    @include breakpoint-down("sm") {
+        .ss-l-grid-2,
+        .ss-l-grid-3,
+        .ss-l-grid-4,
+        .ss-l-grid-5,
+        .ss-l-grid-6 {
+            grid-template-columns: minmax(0, 1fr);
+        }
     }
 }

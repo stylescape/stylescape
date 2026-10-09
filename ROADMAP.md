@@ -51,14 +51,14 @@ checkbox state this document carried. Verified outcomes:
 
 | Phase                                | State                                  | Evidence                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ------------------------------------ | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **A** — SSX spec consolidation       | ✅ Done                                | `ssx/doc/*` carry the six-prefix contract, `ss-o-` deprecation + mapping, `variants.md`, ITCSS/BEM/OOCSS links                                                                                                                                                                                                                                                                                             |
-| **B** — Stylescape prefix alignment  | ✅ Done                                | Build compiles to 974 KB; emitted prefixes are `ss-a/c/f/l/t/u` only; **zero** `ss-o-` selectors                                                                                                                                                                                                                                                                                                           |
-| **C** — Semiosys consumer migration  | ✅ Closed (C.3/C.4 declined by design) | Migration steps done: **C.2** template blocks on `.ss-c-*`, **C.5a/b/c** `overrides/_dashboard` + `dashboard.scss` folded away, all 13 partials in `@layer ss.overrides`; build green at 1.03 MB. **C.3/C.4 trialled with before/after screenshots → regress the UI** (stylescape badges lose `--success`/`--warning` colour; buttons go dark/low-contrast) and are declined; bespoke shims kept by design |
-| **D** — Semiosys cascade-layer model | ✅ Done                                | Model + seed of all 10 layers (`0010`), FK on 3 style models (`0012`), admin + CRUD views + doc; **runtime-confirmed** (migrate + 10 seeded rows)                                                                                                                                                                                                                                                          |
-| **E** — Semiosys UX polish           | ✅ Done                                | White logo on dark navbar, flat nav (no BEM group), horizontal filters w/ right-aligned search, compact labeled pagination — **screenshot-verified**                                                                                                                                                                                                                                                       |
-| **F** — Release trinity              | ⬜ Open (maintainer)                   | **F.4 done** (all three READMEs cross-link the trio). Packaging blocker **fixed + verified** (`bundleDependencies`). Remaining F.1–F.3 = version-tag + `npm publish` (outward-facing — left to maintainer, gated on explicit go-ahead)                                                                                                                                                                     |
+| **A** — SSX spec consolidation       | Done                                | `ssx/doc/*` carry the six-prefix contract, `ss-o-` deprecation + mapping, `variants.md`, ITCSS/BEM/OOCSS links                                                                                                                                                                                                                                                                                             |
+| **B** — Stylescape prefix alignment  | Done                                | Build compiles to 974 KB; emitted prefixes are `ss-a/c/f/l/t/u` only; **zero** `ss-o-` selectors                                                                                                                                                                                                                                                                                                           |
+| **C** — Semiosys consumer migration  | Closed (C.3/C.4 declined by design) | Migration steps done: **C.2** template blocks on `.ss-c-*`, **C.5a/b/c** `overrides/_dashboard` + `dashboard.scss` folded away, all 13 partials in `@layer ss.overrides`; build green at 1.03 MB. **C.3/C.4 trialled with before/after screenshots → regress the UI** (stylescape badges lose `--success`/`--warning` colour; buttons go dark/low-contrast) and are declined; bespoke shims kept by design |
+| **D** — Semiosys cascade-layer model | Done                                | Model + seed of all 10 layers (`0010`), FK on 3 style models (`0012`), admin + CRUD views + doc; **runtime-confirmed** (migrate + 10 seeded rows)                                                                                                                                                                                                                                                          |
+| **E** — Semiosys UX polish           | Done                                | White logo on dark navbar, flat nav (no BEM group), horizontal filters w/ right-aligned search, compact labeled pagination — **screenshot-verified**                                                                                                                                                                                                                                                       |
+| **F** — Release trinity              | Open (maintainer)                   | **F.4 done** (all three READMEs cross-link the trio). Packaging blocker **fixed + verified** (`bundleDependencies`). Remaining F.1–F.3 = version-tag + `npm publish` (outward-facing — left to maintainer, gated on explicit go-ahead)                                                                                                                                                                     |
 
-### ⚠ Build blocker (found, root-caused, fixed + verified 2026-06-14)
+### Build blocker (found, root-caused, fixed + verified 2026-06-14)
 
 Consumer SCSS builds of stylescape fail to resolve `unit.gl`. Two distinct
 faults were found:
@@ -114,7 +114,7 @@ taxonomy, one layer constitution, one prefix convention — locked at `v1.0.0`.
 
 ## Phases
 
-### Phase A — SSX spec consolidation ✅
+### Phase A — SSX spec consolidation
 
 The spec is the contract. It must be internally consistent before anything
 downstream is aligned to it.
@@ -136,7 +136,7 @@ downstream is aligned to it.
 - [x] **A.6** ITCSS, BEM, OOCSS (plus SUIT, Atomic, DaisyUI) inline-linked in
       `ssx/doc/introduction.md:3-9`.
 
-### Phase B — Stylescape prefix alignment ✅
+### Phase B — Stylescape prefix alignment
 
 Bring the implementation up to the consolidated spec.
 
@@ -156,7 +156,7 @@ Bring the implementation up to the consolidated spec.
       `ss-f` (59), `ss-l` (148), `ss-t` (163), `ss-u` (577) — all conforming,
       **zero** `ss-o-`.
 
-### Phase C — Semiosys consumer migration 🟡
+### Phase C — Semiosys consumer migration
 
 Picks up Phase 6 Step B of the legacy roadmap.
 
@@ -199,11 +199,11 @@ kept by current repo convention):
 
 | Legacy block in templates    | Locations                                                                     | Block `ss-c-` shim? | Action                                                                                   |
 | ---------------------------- | ----------------------------------------------------------------------------- | :-----------------: | ---------------------------------------------------------------------------------------- |
-| `.btn` / `.btn--primary`     | `partials/_list-header`, `partials/_empty-state`                              |         ✅          | **Re-prefixed** (C.2, appearance-neutral)                                                |
-| `.badge` / `.badge--info`    | `component/list.html.jinja`                                                   |         ✅          | **Re-prefixed** (C.2, appearance-neutral)                                                |
-| `.data-table` (block)        | `component/list.html.jinja`                                                   |         ✅          | **Re-prefixed** (C.2, appearance-neutral)                                                |
-| `.form` (block)              | all 13 `*/form.html.jinja` + `cascade_layer/delete` + `component_type/delete` |     ✅ (added)      | **Re-prefixed** (C.2) — `.ss-c-form { @extend .form }` block shim added to `_forms.scss` |
-| `.pagination` (block)        | `partials/_pagination.html.jinja`                                             |         ✅          | **Re-prefixed** (C.2, appearance-neutral)                                                |
+| `.btn` / `.btn--primary`     | `partials/_list-header`, `partials/_empty-state`                              |         Yes          | **Re-prefixed** (C.2, appearance-neutral)                                                |
+| `.badge` / `.badge--info`    | `component/list.html.jinja`                                                   |         Yes          | **Re-prefixed** (C.2, appearance-neutral)                                                |
+| `.data-table` (block)        | `component/list.html.jinja`                                                   |         Yes          | **Re-prefixed** (C.2, appearance-neutral)                                                |
+| `.form` (block)              | all 13 `*/form.html.jinja` + `cascade_layer/delete` + `component_type/delete` |     (added)      | **Re-prefixed** (C.2) — `.ss-c-form { @extend .form }` block shim added to `_forms.scss` |
+| `.pagination` (block)        | `partials/_pagination.html.jinja`                                             |         Yes          | **Re-prefixed** (C.2, appearance-neutral)                                                |
 | `badge--{{size}}` parametric | `partials/_badge.html.jinja`                                                  |       partial       | **Unused partial** (no includes) — left as-is                                            |
 
 - [x] **C.1** Per-template audit produced (table above). Templates were already
@@ -264,9 +264,9 @@ been resolved at the **stylescape** end (no template rewrites required):
 | `.ss-c-button--large`          |   46 | likewise, `--large` is an alias for `--size-lg`                             |
 | `.ss-c-badge--info`            |    ? | stylescape `31-modules/badge` now exposes `--info` variant                  |
 | `.ss-c-badge--danger`          |    ? | stylescape `31-modules/badge` now exposes `--danger` (aliased to `--error`) |
-| `.ss-c-button--primary`        |   36 | already matched ✅                                                          |
-| `.ss-c-button--secondary`      |   61 | already matched ✅                                                          |
-| `.ss-c-button--danger`         |   33 | already matched ✅                                                          |
+| `.ss-c-button--primary`        |   36 | already matched                                                          |
+| `.ss-c-button--secondary`      |   61 | already matched                                                          |
+| `.ss-c-button--danger`         |   33 | already matched                                                          |
 | `--xs/--md/--xl`               |  n/a | full set of short-form size aliases added at the same time                  |
 
 See `31-modules/button/_button.output.scss:72-96` and
@@ -296,7 +296,7 @@ produced **1.03 MB** of CSS with the layer distribution: `ss.reset: 5`,
       selectors can now proceed safely template-by-template against a running
       dashboard; the architecture is already correct cascade-wise.
 
-### Phase D — Semiosys data model: cascade layers ✅
+### Phase D — Semiosys data model: cascade layers
 
 The data model includes `model_cascade_layer.py` and `model_modifier.py`, wired
 through end-to-end.
@@ -317,7 +317,7 @@ through end-to-end.
       [`semiosys/doc/variants-modifiers.md`](../semiosys/doc/variants-modifiers.md),
       mirroring `ssx/doc/variants.md`.
 
-### Phase E — Semiosys UX polish ✅
+### Phase E — Semiosys UX polish
 
 Quality-of-life fixes captured from operator feedback.
 
@@ -337,7 +337,7 @@ Quality-of-life fixes captured from operator feedback.
       (`.pagination__center`/`__current`), and prev/next carry both icon and
       text (`partials/_pagination.html.jinja`, `components/_pagination.scss`).
 
-### Phase F — Release trinity ⬜
+### Phase F — Release trinity
 
 Lockstep `v1.0.0` across all three repos. **Gated on Phase C close-out and an
 explicit release go-ahead** (tagging/publishing is outward-facing).

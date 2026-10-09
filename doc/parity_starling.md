@@ -57,7 +57,7 @@ dart-sass, exit 0).
 | flat `.ss-<name>`     |         — |         — |   314 |  97.2% |
 | non-`ss-`             |        32 |      0.5% |     9 |   2.8% |
 
-⚠️ **44.2% of A's emitted surface (2,746 classes) comes from two generated shim
+**44.2% of A's emitted surface (2,746 classes) comes from two generated shim
 files** — `32-utilities/_scapepress-parity.scss` (31,560 lines) and
 `_legacy-components-compat.scss`. These are legacy site selectors mechanically
 re-prefixed. The rename was a blind find/replace and visibly corrupted
@@ -229,12 +229,12 @@ desktop-only by construction. A's layout layer has exactly one
 | `<a>` default             | reset **then re-styled** by the typography layer                                                          | `color:inherit; text-decoration:none`, **never re-styled** — all links render as body text                                          |
 | Form appearance           | reset only; visual treatment lives in modules                                                             | **the reset paints them** (surface bg, border, radius, padding)                                                                     |
 | Vendor form normalization | full normalize.css surface (`::-moz-focus-inner`, spin buttons, `[type=search]`, `progress`, `fieldset`…) | **none**                                                                                                                            |
-| Focus                     | never kills outline; opt-in `.ss-u-focus-ring` + 13 `:focus-visible` component rules                      | ⚠️ **`input,select,textarea:focus { outline:none }`** replaced only by a 1px border-colour change — likely fails WCAG 2.4.11/2.4.13 |
+| Focus                     | never kills outline; opt-in `.ss-u-focus-ring` + 13 `:focus-visible` component rules                      | **`input,select,textarea:focus { outline:none }`** replaced only by a 1px border-colour change — likely fails WCAG 2.4.11/2.4.13 |
 | Scrollbar theming         | none                                                                                                      | full cross-browser themed thin scrollbar                                                                                            |
 | `prefers-reduced-motion`  | global blanket in `33-overrides/_compatibility.scss:71-80`                                                | **none**, despite motion tokens and animated spinner/toast                                                                          |
 | Print                     | `@media print` + 10 print utilities                                                                       | **none**                                                                                                                            |
 | `color-scheme`            | **absent**                                                                                                | **absent** — gap in **both**; native scrollbars/controls stay light under dark theme                                                |
-| Blanket transition        | ⚠️ `transition: all .2s` on **every `<button>`** (`tags/_forms.scss:110-114`)                             | none                                                                                                                                |
+| Blanket transition        | `transition: all .2s` on **every `<button>`** (`tags/_forms.scss:110-114`)                             | none                                                                                                                                |
 
 ### Typography
 
@@ -243,7 +243,7 @@ byline, legal, display scale 1-6, measure, small-caps, emphasis marks, four
 underline styles, multi-column). B ships one 63-line element-level file plus 12
 utilities.
 
-⚠️ **A's font stack names a font that is never loaded.**
+**A's font stack names a font that is never loaded.**
 `--ss-font-family-sans` resolves to `"stylescape_sans_regular"`, but the
 `@font-face` blocks in `12-lexicon/tokens/soul_type/_font_face.scss:50-111` are
 **all commented out** — **verified:
@@ -271,10 +271,10 @@ invalid values.
 | **A-only** (~15 families) | text-align, text-wrap/balance, position, z-index, float/clearfix, visibility, align/place (~40 classes), object-fit, aspect-ratio, 26 cursors, user-select, pointer-events, stretched-link, focus-ring, print, prose |
 | Shared concept, renamed   | flex, gap, grid, spacing, truncate, sr-only — A is a superset of each                                                                                                                                                |
 
-⚠️ **`.ss-u-text-*` means text-_align_ in A but font-_size_ in B** — a live
+**`.ss-u-text-*` means text-_align_ in A but font-_size_ in B** — a live
 footgun if the two are ever merged.
 
-⚠️ **Spacing keys ≥7 mean different sizes**: `.ss-p-8` = 40px in B, `.ss-u-p-8`
+**Spacing keys ≥7 mean different sizes**: `.ss-p-8` = 40px in B, `.ss-u-p-8`
 = 32px in A.
 
 ---
@@ -319,10 +319,10 @@ computed values off `:root`:
 
 | Token                           | `data-theme` unset  | `data-theme="dark"` | Expected dark   |
 | ------------------------------- | ------------------- | ------------------- | --------------- |
-| `--ss-color-surface`            | `#ffffff`           | **`#ffffff`** ❌    | `#1c1c1c`       |
-| `--ss-color-text-primary`       | `#000000`           | **`#000000`** ❌    | —               |
-| `--ss-a-shadow-sm`              | `…rgb(0 0 0 / 0.1)` | **unchanged** ❌    | —               |
-| `--color_fill_primary` (legacy) | `#ffffff`           | `#000000` ✅        | flips correctly |
+| `--ss-color-surface`            | `#ffffff`           | **`#ffffff`** (wrong) | `#1c1c1c`       |
+| `--ss-color-text-primary`       | `#000000`           | **`#000000`** (wrong) | —               |
+| `--ss-a-shadow-sm`              | `…rgb(0 0 0 / 0.1)` | **unchanged** (wrong) | —               |
+| `--color_fill_primary` (legacy) | `#ffffff`           | `#000000` (correct) | flips correctly |
 
 **A has no working dark mode for its component layer.** Only the legacy
 `--color_*` vocabulary flips — and A's `31-modules` components consume
@@ -424,7 +424,7 @@ A's reset colours `pre` with `--ss-color-code-foreground` (`#f4f4f4`), so the
 module uses A's own `--ss-color-code-background`/`-foreground` dark code
 surface instead. A light translation rendered near-white text on light grey.
 
-⚠️ **Two ported names were squatted by the generated shim.**
+**Two ported names were squatted by the generated shim.**
 `_scapepress-parity.scss` defined `.ss-c-menu` (a fullscreen mobile nav at
 `opacity: 0`) and `.ss-c-code-block` (legacy site styling) in
 **`@layer ss.utilities`**, which is ordered _after_ `ss.components` — so the

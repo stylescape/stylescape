@@ -18,6 +18,13 @@
         min-width: 0;
         border-radius: 0;
 
+        // A trailing/leading button or addon keeps its content width; only
+        // the field stretches.
+        &:is(button, .ss-c-button, [type="submit"], [type="button"]) {
+            flex: 0 0 auto;
+            width: auto;
+        }
+
         &:not(:last-child) {
             margin-right: q(-1);
         }

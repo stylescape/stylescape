@@ -23,6 +23,8 @@ export { TableSortManager } from "./data/TableSortManager.js";
 export { ContextMenuManager } from "./elements/ContextMenuManager.js";
 export { SheetManager } from "./elements/SheetManager.js";
 export { SplitPaneManager } from "./elements/SplitPaneManager.js";
+export { DropdownManager } from "./elements/DropdownManager.js";
+export { TabManager } from "./elements/TabManager.js";
 export { TreeViewManager } from "./elements/TreeViewManager.js";
 export { DropZoneManager } from "./forms/DropZoneManager.js";
 export { NumberStepperManager } from "./forms/NumberStepperManager.js";

@@ -47,6 +47,7 @@
 @layer ss.layout {
     .#{$ss-prefix-layout}-app {
         --ss-app-header-height: #{q(56)};
+        --ss-app-content-width: #{q(1152)};
         --ss-app-footer-height: #{q(32)};
         --ss-app-sidebar-width: #{q(280)};
         --ss-app-sidebar-left-width: var(--ss-app-sidebar-width);
@@ -159,13 +160,36 @@
         > canvas,
         > svg,
         > iframe,
-        > video,
-        > .#{$ss-prefix-layout}-app__fill {
+        > video {
             display: block;
             inline-size: 100%;
             block-size: 100%;
             border: 0;
         }
+
+        // Any other host (a grid, a split pane) fills the area too, but
+        // keeps its own display.
+        > .#{$ss-prefix-layout}-app__fill {
+            inline-size: 100%;
+            block-size: 100%;
+        }
+    }
+
+    // Centred reading column inside the main area (demo galleries, docs,
+    // forms). Width from `--ss-app-content-width`.
+    .#{$ss-prefix-layout}-app__content {
+        box-sizing: border-box;
+        max-inline-size: var(--ss-app-content-width);
+        margin-inline: auto;
+        padding: var(--ss-space-6) var(--ss-space-4);
+    }
+
+    // Wide charts and tables: a wider column, or the full main width.
+    .#{$ss-prefix-layout}-app__content--wide {
+        max-inline-size: calc(var(--ss-app-content-width) * 1.5);
+    }
+    .#{$ss-prefix-layout}-app__content--full {
+        max-inline-size: none;
     }
 
     // ------------------------------------------------------------------------

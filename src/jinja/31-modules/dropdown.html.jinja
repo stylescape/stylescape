@@ -154,5 +154,29 @@ title %}{{ title }}{%- endblock %} {%- block content %}
             }
         };
     </script>
+
+    {% set section_title = "Menu button (DropdownManager)" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            <code>data-ss="dropdown-menu"</code> makes the first button (or
+            <code>[aria-haspopup]</code>) toggle the menu: <code>is-open</code>
+            on the root, <code>aria-expanded</code> on the trigger, Escape and a
+            click outside close it, arrow keys move through the items. A native
+            <code>&lt;details class="ss-c-dropdown"&gt;</code> also works and gets
+            the same closing behaviour.
+        </p>
+        {% set code_snippet %}
+        <div class="ss-c-dropdown" data-ss="dropdown-menu">
+            <button type="button" class="ss-c-button ss-c-button--outline" aria-haspopup="true">Sort</button>
+            <ul class="ss-c-dropdown__menu">
+                <li><a class="ss-c-dropdown__item" href="#name">Name</a></li>
+                <li><a class="ss-c-dropdown__item" href="#date">Date</a></li>
+                <li><a class="ss-c-dropdown__item" href="#size">Size</a></li>
+            </ul>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
 </section>
 {%- endblock %}

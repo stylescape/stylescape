@@ -176,24 +176,30 @@ function initComponent(element: HTMLElement, componentName: string): unknown {
 function initElement(element: HTMLElement): void {
     const ssAttr = element.getAttribute(config.attributePrefix);
 
-    console.log(`[Stylescape] Processing element:`, {
-        element: element.tagName,
-        id: element.id,
-        dataSs: ssAttr,
-    });
+    if (config.debug) {
+        console.log(`[Stylescape] Processing element:`, {
+            element: element.tagName,
+            id: element.id,
+            dataSs: ssAttr,
+        });
+    }
 
     if (!ssAttr) return;
 
     // Skip if manual initialization is requested
     if (element.hasAttribute(`${config.attributePrefix}-manual`)) {
-        console.log(`[Stylescape] Skipping manual element:`, element);
+        if (config.debug) {
+            console.log(`[Stylescape] Skipping manual element:`, element);
+        }
         return;
     }
 
     // Support space-separated component names for multiple components
     const componentNames = ssAttr.trim().split(/\s+/);
 
-    console.log(`[Stylescape] Initializing components:`, componentNames);
+    if (config.debug) {
+        console.log(`[Stylescape] Initializing components:`, componentNames);
+    }
 
     componentNames.forEach((name) => {
         if (name) {
@@ -208,11 +214,12 @@ function initElement(element: HTMLElement): void {
  * @param root - Root element to scan (default: document.body)
  */
 export function init(root: Element = document.body): void {
-    // Always log initialization start for debugging
-    console.log("[Stylescape] Auto-init starting...", {
-        root: root.tagName,
-        autoInitEnabled: config.autoInitEnabled,
-    });
+    if (config.debug) {
+        console.log("[Stylescape] Auto-init starting...", {
+            root: root.tagName,
+            autoInitEnabled: config.autoInitEnabled,
+        });
+    }
 
     if (!config.autoInitEnabled) {
         if (config.debug) {
@@ -225,9 +232,11 @@ export function init(root: Element = document.body): void {
     const selector = `[${config.attributePrefix}]`;
     const elements = root.querySelectorAll<HTMLElement>(selector);
 
-    console.log(
-        `[Stylescape] Found ${elements.length} elements with ${selector}`,
-    );
+    if (config.debug) {
+        console.log(
+            `[Stylescape] Found ${elements.length} elements with ${selector}`,
+        );
+    }
 
     // Also check the root element itself
     if (
@@ -239,9 +248,11 @@ export function init(root: Element = document.body): void {
 
     elements.forEach((element) => initElement(element));
 
-    console.log(
-        `[Stylescape] Auto-init complete. Initialized ${elements.length} elements`,
-    );
+    if (config.debug) {
+        console.log(
+            `[Stylescape] Auto-init complete. Initialized ${elements.length} elements`,
+        );
+    }
 }
 
 /**

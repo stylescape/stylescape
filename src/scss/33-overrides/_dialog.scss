@@ -1,0 +1,21 @@
+////
+///
+/// Closed dialogs
+/// ===========================================================================
+///
+/// A component class on a `<dialog>` (`ss-c-modal`, `ss-c-panel`, …) sets
+/// `display`, which beats the browser's hiding of a closed dialog. This
+/// layer outranks components, so a closed dialog stays hidden whatever its
+/// classes. Zero specificity: an open dialog is untouched.
+///
+/// @group Overrides
+/// @since 0.5.0
+/// @access public
+///
+////
+
+@layer ss.overrides {
+    :where(dialog:not([open])) {
+        display: none;
+    }
+}

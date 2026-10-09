@@ -723,7 +723,10 @@ $_legacy-color-map: (
     // ========================================================================
 
     .ss-c-accent     { color: var(--ss-color-accent); }
-    .active     { color: var(--ss-color-accent); font-weight: 600; }
+    // Legacy highlight for old markup. Not on stylescape components: in this
+    // layer it beat their own active/pressed colours (e.g. a pressed
+    // segmented button lost its text).
+    .active:not([class*="ss-c-"]) { color: var(--ss-color-accent); font-weight: 600; }
     .ss-c-icon-font  { font-family: var(--ss-font-icons, system-ui), sans-serif; line-height: 1; }
     .ss-c-animate_fade { transition: opacity 200ms ease-out; }
     .ss-c-app__view  { display: block; width: 100%; }

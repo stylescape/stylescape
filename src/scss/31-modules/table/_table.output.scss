@@ -94,4 +94,10 @@
             justify-content: flex-end;
         }
     }
+
+    // Browsers centre `th`; header cells follow the table's start alignment
+    // (zero specificity, so numeric and alignment modifiers still win).
+    .#{$ss-prefix-module}-table :where(th) {
+        text-align: inherit;
+    }
 }

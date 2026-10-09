@@ -16,10 +16,9 @@ Target: `v1.0.0` — cross-repo alignment with
 
 ## [0.5.0] - 2026-10-08
 
-Stylescape as the single theme for the sturnia and sturnus demos: app and
-tool layouts, form, data-display and feedback components, a Jinja2 layer for
-Django, working dark mode, and 0.3 class-name compatibility. Not yet
-published to npm.
+Stylescape as the single theme for the sturnia and sturnus demos: app and tool
+layouts, form, data-display and feedback components, a Jinja2 layer for Django,
+working dark mode, and 0.3 class-name compatibility. Not yet published to npm.
 
 ### Breaking
 
@@ -164,6 +163,32 @@ published to npm.
 
 ### Added
 
+- `TabManager` (`data-ss="tabs"`): WAI-ARIA tabs for `ss-c-tab`. It pairs tabs
+  and panels through `aria-controls` or `data-ss-tab`/`data-ss-tab-panel`,
+  hides inactive panels with `hidden`, keeps `aria-selected`, roving `tabindex`
+  and `ss-c-tab__item--active` in sync, supports Arrow keys, Home and End, and
+  fires `ss:tab-change`. The tab demo page uses it (it had an inline `openCity`
+  script).
+- `DropdownManager` (`data-ss="dropdown-menu"`): menu-button behaviour for
+  `ss-c-dropdown` (toggle, `aria-expanded`, Escape with focus return, outside
+  click, arrow keys); a native `<details class="ss-c-dropdown">` gets the same
+  closing behaviour.
+- Toggle buttons: `ss-c-button[aria-pressed="true"]` shows the on state.
+- `ss-c-overlay-panel--wide`, `ss-l-app__content--wide|--full`,
+  `ss-c-pagination--center`, `ss-c-dropdown--end`, and native
+  `<details class="ss-c-dropdown">` support.
+- Utilities: `ss-u-max-w-prose|sm|md|lg` and `ss-u-list-none`.
+- `css/_index.scss` in the package, so the plain Sass CLI resolves
+  `@use "stylescape/css"` like bundlers do.
+
+- Text colour utilities
+  `ss-a-text-primary|secondary|muted|accent|success|warning|error|info|inherit`
+  and sizing utilities `ss-u-w-full|w-auto|max-w-full|min-w-0|h-full|h-auto`,
+  the targets for converting Bootstrap's `text-muted`, `w-100` and friends.
+- `ss-l-app__content`: the centred reading column inside the app shell
+  (`--ss-app-content-width`). The gallery page template uses it, and it no
+  longer carries inline styles.
+
 - **App and demo layouts:** `ss-l-app` (header, left/right sidebars, a main
   viewport that can host a full-bleed canvas or map, status bar; sized by
   `--ss-app-*`; sidebars overlay below `md`), `ss-l-viewport-grid` (1, 2h, 2v,
@@ -241,6 +266,45 @@ published to npm.
 
 ### Fixed
 
+- A closed `<dialog class="ss-c-modal">` stayed visible (`display: flex`).
+- `ss-t-bold` (and `strong`/`b`) reset `color` and `text-decoration`, so a bold
+  link lost its link colour; bold now sets only weight, style and size.
+- `ss-c-stat__label` had no grid slot; it is the caption under the value.
+- Bare `ss-c-stat` cards side by side drew a divider; dividers now only appear
+  inside the `ss-c-stats` group.
+- `ss-c-radio__label` took a fixed dark grey from a compat shim (unreadable in
+  dark mode); it inherits the text colour.
+- The progress track used the surface colour, invisible on panels; it uses
+  `--ss-color-surface-1`. `ss-c-progress__bar--success|warning|error|info`
+  colour the bar (a shim version read undefined variables).
+- A theme island (`data-theme` on an element) now also takes the matching text
+  colour instead of inheriting the surrounding theme's.
+- The legacy `.active` utility (utilities layer) recoloured stylescape
+  components that toggle `.active`; it no longer applies to `ss-c-*` elements.
+- `<code>` inside a link takes the link colour (it failed contrast in dark mode).
+- `ss-c-input-group`: buttons and addons keep their own width.
+- `ss-c-log--follow` keeps a short log at the top; an empty log keeps a body.
+- `ss-c-alert` with a title stacks title and body.
+- `ss-c-panel__header` lays out a heading plus actions.
+- Links in an active `ss-c-list-group__item` take its text colour.
+- Table header cells follow the table's start alignment.
+- Fixed-column grids (`ss-l-grid-2` to `-6`) collapse on small screens: 3 to 6
+  columns become two below `md`, all become one below `sm`.
+- `ss-c-nav--vertical` stacks its `ss-c-nav__list`.
+- `ss-c-auth` inside the app shell no longer claims a full viewport height.
+- `ss-l-app__fill` no longer forces `display: block` (a grid or split can fill
+  the bleed area).
+
+- **Nested stacks kept the wrong spacing.** `ss-f-stack` spaced children with
+  `margin` on `> * + *`, reading `--ss-f-stack-gap` on the child, so a nested
+  `ss-f-stack-xs` also shrank the gap above itself. The stack now uses flex
+  `gap`, declared on the stack, with `--ss-f-stack-gap` defaulting to
+  `--ss-vspace-md`.
+- A heading inside `ss-c-panel__header` takes the header's size instead of
+  rendering at page-heading size.
+- Auto-init logged to the console on every page; its messages now only appear
+  with `setDebug(true)`.
+
 - `ThemeToggler` drives buttons (`aria-pressed`) as well as checkboxes,
   supports a light/dark/auto cycle (`data-theme-cycle`), resolves `"auto"`,
   keeps every control in sync, survives blocked storage, and initialises when
@@ -277,7 +341,7 @@ published to npm.
   (`ss-c-demo__skip-link`, `ss-c-demo__guide`), theme persisted across pages,
   local placeholder images replacing dead external services.
 - Sass deprecation warnings that break under Dart Sass 3 (reported from the
-  KodW `stylescape-vorm-kodw` build): the three `if()` zero-pad calls
+  build of a downstream theme): the three `if()` zero-pad calls
   (`32-utilities/_legacy-compat.scss`, `_legacy-components-compat.scss`) became
   `$n: "#{$i}"; @if $i < 10 { $n: "0#{$i}"; }`, which works on every Dart Sass
   version, unlike the new CSS `if()` syntax; `23-layout/_breakpoints.scss` now
@@ -287,7 +351,7 @@ published to npm.
   Verified: `npm run build` went from 10 deprecation warnings to 0; the built
   `stylescape.css`/`.min.css` and a plain `sass` compile are byte-identical
   before and after; all four breakpoint mixins give identical output; vitest
-  passes (814). The KodW theme, compiled against local source, has 0 warnings
+  passes (814). That theme, compiled against local source, has 0 warnings
   (was 5) and byte-identical CSS.
 
 ---

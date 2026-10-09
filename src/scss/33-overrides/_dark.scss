@@ -158,6 +158,14 @@ $_info: hue_color("N2705");
         color-scheme: light;
     }
 
+    // A theme island re-declares the colour tokens; it also takes the
+    // matching text colour, which it would otherwise inherit from the
+    // surrounding theme. Zero specificity, and only on the element that
+    // carries `data-theme`.
+    :where([data-theme]) {
+        color: var(--ss-color-text-primary);
+    }
+
     [data-theme="dark"] {
         @include _dark-tokens;
     }

@@ -27,4 +27,15 @@
     .#{$ss-prefix-module}-dropdown__divider {
         @include dropdown.ss-dropdown-divider;
     }
+
+    // Native disclosure: `<details class="ss-c-dropdown">` opens with [open].
+    details.#{$ss-prefix-module}-dropdown[open]
+        .#{$ss-prefix-module}-dropdown__menu {
+        display: block;
+    }
+
+    // Menu aligned to the trigger's end edge (opens towards the start).
+    .#{$ss-prefix-module}-dropdown--end .#{$ss-prefix-module}-dropdown__menu {
+        inset-inline: auto 0;
+    }
 }

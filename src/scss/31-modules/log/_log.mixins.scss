@@ -9,6 +9,8 @@ $_c: config.$ss-log-config;
 @mixin ss-log {
     --ss-log-max-height: #{map.get($_c, max-height)};
     max-block-size: var(--ss-log-max-height);
+    // An empty log still reads as a box, not a hairline.
+    min-block-size: calc(3lh + #{q(8)});
     overflow-y: auto;
     overscroll-behavior: contain;
 
@@ -34,6 +36,12 @@ $_c: config.$ss-log-config;
 @mixin ss-log-follow {
     display: flex;
     flex-direction: column-reverse;
+
+    // column-reverse pins content to the bottom; while the log is shorter
+    // than its box, the auto margin keeps the list at the top instead.
+    > * {
+        margin-block-end: auto;
+    }
 }
 
 /// The list owns the column tracks; entries join them through subgrid so
