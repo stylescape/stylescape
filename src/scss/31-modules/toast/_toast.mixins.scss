@@ -38,3 +38,30 @@
     background: map.get($v, bg);
     color: map.get($v, fg);
 }
+
+/// Text column: title and message; takes the free width.
+@mixin ss-toast-content {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+}
+
+/// Bold first line above the message.
+@mixin ss-toast-title {
+    display: block;
+    font-weight: var(--ss-font-weight-semibold, 600);
+}
+
+/// Row of buttons under the message.
+@mixin ss-toast-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: map.get(config.$ss-toast-config, gap);
+    margin-block-start: map.get(config.$ss-toast-config, gap);
+}
+
+/// Close button (with `ss-c-close`): toast colour, pushed to the end.
+@mixin ss-toast-close {
+    flex: none;
+    margin-inline-start: auto;
+    color: inherit;
+}

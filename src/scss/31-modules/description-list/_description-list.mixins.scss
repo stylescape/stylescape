@@ -47,20 +47,38 @@ $_c: config.$ss-description-list-config;
     }
 }
 
-/// Inline rows separated by a hairline, value pushed to the end edge
-/// (readout panels).
+/// Pairs separated by a hairline. Stacked: the term sits on the value,
+/// with one rule under each pair. Combined with `--inline` (readout
+/// panels): one row per pair, value pushed to the end edge.
 @mixin ss-description-list-divided {
     row-gap: 0;
-    // The gap moves into the term's padding so the rule runs unbroken.
-    column-gap: 0;
-
-    dt {
-        padding-inline-end: map.get($_c, column-gap);
-    }
 
     dt,
     dd {
         padding-block: q(6);
+    }
+
+    dt {
+        padding-block-end: 0;
+    }
+
+    dd {
+        border-block-end: map.get($_c, divider);
+    }
+
+    dd + dt {
+        margin-block-start: 0;
+    }
+}
+
+/// `--inline` + `--divided`: the rule runs under both columns.
+@mixin ss-description-list-divided-inline {
+    // The gap moves into the term's padding so the rule runs unbroken.
+    column-gap: 0;
+
+    dt {
+        padding-block-end: q(6);
+        padding-inline-end: map.get($_c, column-gap);
         border-block-end: map.get($_c, divider);
     }
 

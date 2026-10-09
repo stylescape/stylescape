@@ -69,6 +69,14 @@
     --ss-status-dot-color: #{map.get(map.get(config.$ss-indicator-config, tones), $tone)};
 }
 
+/// Hollow ring for "unknown" / "not checked yet": no status colour, so it
+/// cannot be mistaken for a muted (known, inactive) state.
+@mixin ss-indicator-status-dot-unknown {
+    --ss-status-dot-color: var(--ss-color-border-strong);
+    background-color: transparent;
+    box-shadow: inset 0 0 0 q(2) currentColor;
+}
+
 /// Expanding ring for "live" states; still under reduced motion.
 @mixin ss-indicator-status-dot-pulse {
     &::after {

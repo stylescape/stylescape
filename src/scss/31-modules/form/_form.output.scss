@@ -90,19 +90,31 @@
 // `<form class="ss-c-form">{{ form }}</form>` (div.html, Django ≥ 5) and
 // `{{ form.as_p }}`. Selectors use :where() so they carry no specificity:
 // any class on a widget (`ss-c-input`, `ss-c-select`, …) wins.
+
+// Not a hand-built wrapper: no `ss-l-`, `ss-f-` or `ss-c-` class.
+$_django-wrapper: ":not(";
+$_sep: "";
+@each $p in ($ss-prefix-layout, $ss-prefix-flow, $ss-prefix-module) {
+    $_django-wrapper: '#{$_django-wrapper}#{$_sep}[class^="#{$p}-"], [class*=" #{$p}-"]';
+    $_sep: ", ";
+}
+$_django-wrapper: "#{$_django-wrapper})";
 @layer ss.components {
     // Field wrappers, recognised by their content (a label, a fieldset,
     // help or errors) so that layout divs inside the form are left alone.
     // Direct children of the form, and of a fieldset (formset forms).
     // Django's choices container (`<div id="id_topic">`) holds its labels
-    // one level deeper, so it is not a field wrapper.
+    // one level deeper, so it is not a field wrapper. Wrappers carrying a
+    // stylescape layout, flow or component class (`ss-l-grid`,
+    // `ss-f-cluster`, `ss-c-search-bar`, …) are hand-built and keep their
+    // own display.
     :where(.#{$ss-prefix-module}-form, .#{$ss-prefix-module}-form fieldset)
-        > :where(div, p):where(:has(> label, > fieldset, > .helptext, > ul.errorlist)) {
+        > :where(div, p):where(:has(> label, > fieldset, > .helptext, > ul.errorlist)):where(#{$_django-wrapper}) {
         @include form.ss-form-field;
         margin: 0;
     }
     :where(.#{$ss-prefix-module}-form, .#{$ss-prefix-module}-form fieldset)
-        > :where(div, p):where(:has(> label + input[type="checkbox"])) {
+        > :where(div, p):where(:has(> label + input[type="checkbox"])):where(#{$_django-wrapper}) {
         @include form.ss-form-field-inline;
     }
     :where(.#{$ss-prefix-module}-form) :where(label, legend) {

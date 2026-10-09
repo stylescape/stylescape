@@ -3,6 +3,10 @@
 @use "./search-bar.mixins" as sb;
 
 $_sb: ".#{$ss-prefix-module}-search-bar";
+// The input: `__input`, or any bare text/search input directly inside the
+// bar (so the magnifier never overlaps the text).
+// Specificity stays that of `__input`.
+$_in: ':is(#{$_sb}__input, :where(#{$_sb} > input:is([type="search"], [type="text"], :not([type]))))';
 
 @layer ss.components {
     // <form class="ss-c-search-bar" role="search" action="">
@@ -16,15 +20,15 @@ $_sb: ".#{$ss-prefix-module}-search-bar";
     #{$_sb}--full {
         max-inline-size: none;
     }
-    #{$_sb}__input {
+    #{$_in} {
         @include input.ss-input;
         @include sb.ss-search-bar-input;
     }
-    #{$_sb}--sm #{$_sb}__input {
+    #{$_sb}--sm #{$_in} {
         @include input.ss-input-size(sm);
         @include sb.ss-search-bar-input;
     }
-    #{$_sb}--lg #{$_sb}__input {
+    #{$_sb}--lg #{$_in} {
         @include input.ss-input-size(lg);
         @include sb.ss-search-bar-input;
     }
@@ -32,7 +36,7 @@ $_sb: ".#{$ss-prefix-module}-search-bar";
         @include sb.ss-search-bar-button;
     }
     // A focused input sits above the attached button's edge.
-    #{$_sb}__input:focus-visible {
+    #{$_in}:focus-visible {
         position: relative;
         z-index: 1;
     }

@@ -34,7 +34,10 @@
 
 /// CSS-only tooltip surfacing the `title` attribute on hover/focus.
 /// Ported from the old `abbreviation_tooltip` mixin so `<abbr title="…">`
-/// behaves like it did in the previous StyleScape.
+/// behaves like it did in the previous StyleScape. Only the text lives
+/// here; the bubble (absolute position, z-index, background, radius,
+/// shadow) is painted in `ss.appearance` by
+/// `24-appearance/_relocated-surfaces.scss`, from the same config map.
 @mixin ss-character-abbreviation-tooltip {
     $cfg: config.$ss-character-abbreviation-tooltip-config;
 
@@ -43,15 +46,10 @@
     &:hover::after,
     &:focus::after {
         content: attr(title);
-        position: absolute;
-        z-index: map.get($cfg, z-index);
         left: 0;
         bottom: calc(-1 * #{map.get($cfg, offset)});
         white-space: nowrap;
         color: map.get($cfg, color);
-        background: map.get($cfg, background);
-        border-radius: map.get($cfg, radius);
-        box-shadow: map.get($cfg, shadow);
         font-size: map.get($cfg, font-size);
         font-style: normal;
         line-height: normal;

@@ -158,11 +158,34 @@ describe("Modal", () => {
             });
             modal.open();
 
-            const backdrop = modalElement.querySelector(".modal-backdrop");
-            if (backdrop) {
-                click(backdrop);
-                await wait(350);
-            }
+            const backdrop = document.querySelector(".ss-c-modal-backdrop");
+            expect(backdrop).not.toBeNull();
+            click(backdrop as Element);
+            await wait(350);
+            expect(modal.opened).toBe(false);
+            expect(document.querySelector(".ss-c-modal-backdrop")).toBeNull();
+        });
+
+        it("should close on a click on the container outside the content", async () => {
+            modal = new Modal(modalElement, {
+                closeOnBackdrop: true,
+            });
+            modal.open();
+
+            click(modalElement);
+            await wait(350);
+            expect(modal.opened).toBe(false);
+        });
+
+        it("should ignore container clicks when closeOnBackdrop is off", async () => {
+            modal = new Modal(modalElement, {
+                closeOnBackdrop: false,
+            });
+            modal.open();
+
+            click(modalElement);
+            await wait(350);
+            expect(modal.opened).toBe(true);
         });
 
         it("should not close on content click", async () => {

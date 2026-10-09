@@ -1731,107 +1731,57 @@
 
             <div class="ss-l-frame__area--middle_center">
                 <main id="main_content" class="ss-l-main ss-c-rail" tabindex="0">
-<style>
-    /* Demo only: the interactive examples stay hidden until opened. */
-    .ss-c-modal[id]:not(.show) {
-        display: none;
-    }
-    .ss-c-modal[id] .ss-c-modal__overlay {
-        position: absolute;
-        inset: 0;
-        background: rgb(0 0 0 / 0.5);
-    }
-    .ss-c-modal[id] .ss-c-modal__container {
-        position: relative;
-        width: 100%;
-        max-width: 480px;
-        padding: 16px 24px;
-        background: var(--ss-color-background);
-        color: var(--ss-color-text);
-        border-radius: var(--ss-radius-lg);
-    }
-    .ss-c-modal[id] .ss-c-modal__header,
-    .ss-c-modal[id] .ss-c-modal__footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-    }
-    /* Static previews: lay the modal out as a plain card, not a fixed flex overlay. */
-    .ss-c-modal:not([id]) {
-        z-index: auto;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: flex-start;
-        padding: 0;
-    }
-    .ss-c-modal[id] .ss-c-modal__close {
-        min-width: 32px;
-        min-height: 32px;
-    }
-</style>
+
 <section class="ss-c-demo__section" data-label="Modals" data-level="1">
     <header class="ss-c-demo__section__header">
         <h1>Modals</h1>
         <p>
-            Modal dialogs for displaying content that requires user
-            interaction.
+            Modal dialogs for content that needs the user's attention.
+            <code>ss-c-modal</code> is a full-screen container that centres
+            an <code>ss-c-modal-content</code> box with
+            <code>ss-c-modal-header</code>, <code>-body</code> and
+            <code>-footer</code>. Use a native <code>&lt;dialog&gt;</code>
+            (its <code>::backdrop</code> dims the page), or a
+            <code>div</code> with <code>data-ss="modal"</code>, which adds an
+            <code>ss-c-modal-backdrop</code>, traps focus, closes on Escape
+            and on a click outside the content, and returns focus.
         </p>
     </header>
 
-     
-    <section
-        class="ss-c-demo__subsection"
-        data-label="Basic Modal"
-        data-level="2"
-    >
-        <h2>Basic Modal</h2>
+    
+    <section class="ss-c-demo__subsection" data-label="Native dialog" data-level="2">
+        <h2>Native dialog</h2>
+        <p>
+            <code>showModal()</code> makes the rest of the page inert and
+            closes on Escape; a <code>&lt;form method="dialog"&gt;</code>
+            closes it without script.
+        </p>
              
 
 <div class="ss-c-preview--vertical">
     
     <div class="ss-c-preview__live">
-        <button
-            class="ss-c-button"
-            onclick="document.getElementById('modal-basic').classList.add('show')"
-        >
-            Open Modal
+        <button type="button" class="ss-c-button" onclick="document.getElementById('modal-dialog').showModal()">
+            Open dialog
         </button>
 
-        <div id="modal-basic" class="ss-c-modal" role="dialog" aria-modal="true" aria-labelledby="modal-basic-title">
-            <div
-                class="ss-c-modal__overlay"
-                onclick="this.parentElement.classList.remove('show')"
-            ></div>
-            <div class="ss-c-modal__container">
-                <header class="ss-c-modal__header">
-                    <h3 class="ss-c-modal__title" id="modal-basic-title">Modal Title</h3>
-                    <button
-                        type="button"
-                        class="ss-c-modal__close"
-                        aria-label="Close"
-                        onclick="this.closest('.ss-c-modal').classList.remove('show')"
-                    >
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <dialog class="ss-c-modal" id="modal-dialog" aria-labelledby="modal-dialog-title">
+            <div class="ss-c-modal-content">
+                <header class="ss-c-modal-header">
+                    <h2 class="ss-t-text-lg ss-u-m-0" id="modal-dialog-title">Rename layer</h2>
+                    <form method="dialog">
+                        <button class="ss-c-close" aria-label="Close"></button>
+                    </form>
                 </header>
-                <div class="ss-c-modal__body">
-                    <p>
-                        This is the modal body content. You can place any
-                        content here.
-                    </p>
+                <div class="ss-c-modal-body">
+                    <p>A native dialog: no script beyond <code>showModal()</code>.</p>
                 </div>
-                <footer class="ss-c-modal__footer">
-                    <button
-                        class="ss-c-button ss-c-button--secondary"
-                        onclick="this.closest('.ss-c-modal').classList.remove('show')"
-                    >
-                        Cancel
-                    </button>
-                    <button class="ss-c-button ss-c-button--primary">Confirm</button>
-                </footer>
+                <form method="dialog" class="ss-c-modal-footer">
+                    <button class="ss-c-button ss-c-button--outline" value="cancel">Cancel</button>
+                    <button class="ss-c-button ss-c-button--primary" value="ok">Rename</button>
+                </form>
             </div>
-        </div>
+        </dialog>
         </div>
     
     
@@ -1848,122 +1798,62 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-1" class="language-html">&lt;button
-            class=&quot;ss-c-button&quot;
-            onclick=&quot;document.getElementById(&#39;modal-basic&#39;).classList.add(&#39;show&#39;)&quot;
-        &gt;
-            Open Modal
+        ><code id="code-snippet-1" class="language-html">&lt;button type=&quot;button&quot; class=&quot;ss-c-button&quot; onclick=&quot;document.getElementById(&#39;modal-dialog&#39;).showModal()&quot;&gt;
+            Open dialog
         &lt;/button&gt;
 
-        &lt;div id=&quot;modal-basic&quot; class=&quot;ss-c-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;modal-basic-title&quot;&gt;
-            &lt;div
-                class=&quot;ss-c-modal__overlay&quot;
-                onclick=&quot;this.parentElement.classList.remove(&#39;show&#39;)&quot;
-            &gt;&lt;/div&gt;
-            &lt;div class=&quot;ss-c-modal__container&quot;&gt;
-                &lt;header class=&quot;ss-c-modal__header&quot;&gt;
-                    &lt;h3 class=&quot;ss-c-modal__title&quot; id=&quot;modal-basic-title&quot;&gt;Modal Title&lt;/h3&gt;
-                    &lt;button
-                        type=&quot;button&quot;
-                        class=&quot;ss-c-modal__close&quot;
-                        aria-label=&quot;Close&quot;
-                        onclick=&quot;this.closest(&#39;.ss-c-modal&#39;).classList.remove(&#39;show&#39;)&quot;
-                    &gt;
-                        &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
-                    &lt;/button&gt;
+        &lt;dialog class=&quot;ss-c-modal&quot; id=&quot;modal-dialog&quot; aria-labelledby=&quot;modal-dialog-title&quot;&gt;
+            &lt;div class=&quot;ss-c-modal-content&quot;&gt;
+                &lt;header class=&quot;ss-c-modal-header&quot;&gt;
+                    &lt;h2 class=&quot;ss-t-text-lg ss-u-m-0&quot; id=&quot;modal-dialog-title&quot;&gt;Rename layer&lt;/h2&gt;
+                    &lt;form method=&quot;dialog&quot;&gt;
+                        &lt;button class=&quot;ss-c-close&quot; aria-label=&quot;Close&quot;&gt;&lt;/button&gt;
+                    &lt;/form&gt;
                 &lt;/header&gt;
-                &lt;div class=&quot;ss-c-modal__body&quot;&gt;
-                    &lt;p&gt;
-                        This is the modal body content. You can place any
-                        content here.
-                    &lt;/p&gt;
+                &lt;div class=&quot;ss-c-modal-body&quot;&gt;
+                    &lt;p&gt;A native dialog: no script beyond &lt;code&gt;showModal()&lt;/code&gt;.&lt;/p&gt;
                 &lt;/div&gt;
-                &lt;footer class=&quot;ss-c-modal__footer&quot;&gt;
-                    &lt;button
-                        class=&quot;ss-c-button ss-c-button--secondary&quot;
-                        onclick=&quot;this.closest(&#39;.ss-c-modal&#39;).classList.remove(&#39;show&#39;)&quot;
-                    &gt;
-                        Cancel
-                    &lt;/button&gt;
-                    &lt;button class=&quot;ss-c-button ss-c-button--primary&quot;&gt;Confirm&lt;/button&gt;
-                &lt;/footer&gt;
+                &lt;form method=&quot;dialog&quot; class=&quot;ss-c-modal-footer&quot;&gt;
+                    &lt;button class=&quot;ss-c-button ss-c-button--outline&quot; value=&quot;cancel&quot;&gt;Cancel&lt;/button&gt;
+                    &lt;button class=&quot;ss-c-button ss-c-button--primary&quot; value=&quot;ok&quot;&gt;Rename&lt;/button&gt;
+                &lt;/form&gt;
             &lt;/div&gt;
-        &lt;/div&gt;</code></pre>
+        &lt;/dialog&gt;</code></pre>
     </div>
 </div>
 
     </section>
 
-     
-    <section
-        class="ss-c-demo__subsection"
-        data-label="Modal Sizes"
-        data-level="2"
-    >
-        <h2>Modal Sizes</h2>
+    
+    <section class="ss-c-demo__subsection" data-label="Scripted modal" data-level="2">
+        <h2>Scripted modal</h2>
+        <p>
+            <code>data-ss="modal"</code> on the container and
+            <code>data-ss-modal-trigger="#id"</code> on the button; any
+            <code>data-ss-modal-close</code> element closes it.
+        </p>
              
 
 <div class="ss-c-preview--vertical">
     
     <div class="ss-c-preview__live">
-        <div style="display: flex; gap: 16px; flex-wrap: wrap">
-            <button
-                class="ss-c-button"
-                onclick="document.getElementById('modal-sm').classList.add('show')"
-            >
-                Small
-            </button>
-            <button
-                class="ss-c-button"
-                onclick="document.getElementById('modal-lg').classList.add('show')"
-            >
-                Large
-            </button>
-        </div>
+        <button type="button" class="ss-c-button" data-ss="modal-trigger" data-ss-modal-trigger="#modal-basic">
+            Open modal
+        </button>
 
-        <div id="modal-sm" class="ss-c-modal ss-c-modal--small" role="dialog" aria-modal="true" aria-labelledby="modal-sm-title">
-            <div
-                class="ss-c-modal__overlay"
-                onclick="this.parentElement.classList.remove('show')"
-            ></div>
-            <div class="ss-c-modal__container">
-                <header class="ss-c-modal__header">
-                    <h3 class="ss-c-modal__title" id="modal-sm-title">Small Modal</h3>
-                    <button
-                        type="button"
-                        class="ss-c-modal__close"
-                        aria-label="Close"
-                        onclick="this.closest('.ss-c-modal').classList.remove('show')"
-                    >
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <div class="ss-c-modal" id="modal-basic" data-ss="modal" role="dialog" aria-modal="true" aria-labelledby="modal-basic-title" hidden>
+            <div class="ss-c-modal-content" data-ss-modal-content>
+                <header class="ss-c-modal-header">
+                    <h2 class="ss-t-text-lg ss-u-m-0" id="modal-basic-title">Modal title</h2>
+                    <button type="button" class="ss-c-close" aria-label="Close" data-ss-modal-close></button>
                 </header>
-                <div class="ss-c-modal__body">
-                    <p>Compact modal for quick confirmations.</p>
+                <div class="ss-c-modal-body">
+                    <p>Modal body text goes here.</p>
                 </div>
-            </div>
-        </div>
-
-        <div id="modal-lg" class="ss-c-modal ss-c-modal--large" role="dialog" aria-modal="true" aria-labelledby="modal-lg-title">
-            <div
-                class="ss-c-modal__overlay"
-                onclick="this.parentElement.classList.remove('show')"
-            ></div>
-            <div class="ss-c-modal__container">
-                <header class="ss-c-modal__header">
-                    <h3 class="ss-c-modal__title" id="modal-lg-title">Large Modal</h3>
-                    <button
-                        type="button"
-                        class="ss-c-modal__close"
-                        aria-label="Close"
-                        onclick="this.closest('.ss-c-modal').classList.remove('show')"
-                    >
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </header>
-                <div class="ss-c-modal__body">
-                    <p>Spacious modal for detailed content or forms.</p>
-                </div>
+                <footer class="ss-c-modal-footer">
+                    <button type="button" class="ss-c-button ss-c-button--outline" data-ss-modal-close>Cancel</button>
+                    <button type="button" class="ss-c-button ss-c-button--primary" data-ss-modal-close>Save</button>
+                </footer>
             </div>
         </div>
         </div>
@@ -1982,64 +1872,23 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-2" class="language-html">&lt;div style=&quot;display: flex; gap: 16px; flex-wrap: wrap&quot;&gt;
-            &lt;button
-                class=&quot;ss-c-button&quot;
-                onclick=&quot;document.getElementById(&#39;modal-sm&#39;).classList.add(&#39;show&#39;)&quot;
-            &gt;
-                Small
-            &lt;/button&gt;
-            &lt;button
-                class=&quot;ss-c-button&quot;
-                onclick=&quot;document.getElementById(&#39;modal-lg&#39;).classList.add(&#39;show&#39;)&quot;
-            &gt;
-                Large
-            &lt;/button&gt;
-        &lt;/div&gt;
+        ><code id="code-snippet-2" class="language-html">&lt;button type=&quot;button&quot; class=&quot;ss-c-button&quot; data-ss=&quot;modal-trigger&quot; data-ss-modal-trigger=&quot;#modal-basic&quot;&gt;
+            Open modal
+        &lt;/button&gt;
 
-        &lt;div id=&quot;modal-sm&quot; class=&quot;ss-c-modal ss-c-modal--small&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;modal-sm-title&quot;&gt;
-            &lt;div
-                class=&quot;ss-c-modal__overlay&quot;
-                onclick=&quot;this.parentElement.classList.remove(&#39;show&#39;)&quot;
-            &gt;&lt;/div&gt;
-            &lt;div class=&quot;ss-c-modal__container&quot;&gt;
-                &lt;header class=&quot;ss-c-modal__header&quot;&gt;
-                    &lt;h3 class=&quot;ss-c-modal__title&quot; id=&quot;modal-sm-title&quot;&gt;Small Modal&lt;/h3&gt;
-                    &lt;button
-                        type=&quot;button&quot;
-                        class=&quot;ss-c-modal__close&quot;
-                        aria-label=&quot;Close&quot;
-                        onclick=&quot;this.closest(&#39;.ss-c-modal&#39;).classList.remove(&#39;show&#39;)&quot;
-                    &gt;
-                        &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
-                    &lt;/button&gt;
+        &lt;div class=&quot;ss-c-modal&quot; id=&quot;modal-basic&quot; data-ss=&quot;modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;modal-basic-title&quot; hidden&gt;
+            &lt;div class=&quot;ss-c-modal-content&quot; data-ss-modal-content&gt;
+                &lt;header class=&quot;ss-c-modal-header&quot;&gt;
+                    &lt;h2 class=&quot;ss-t-text-lg ss-u-m-0&quot; id=&quot;modal-basic-title&quot;&gt;Modal title&lt;/h2&gt;
+                    &lt;button type=&quot;button&quot; class=&quot;ss-c-close&quot; aria-label=&quot;Close&quot; data-ss-modal-close&gt;&lt;/button&gt;
                 &lt;/header&gt;
-                &lt;div class=&quot;ss-c-modal__body&quot;&gt;
-                    &lt;p&gt;Compact modal for quick confirmations.&lt;/p&gt;
+                &lt;div class=&quot;ss-c-modal-body&quot;&gt;
+                    &lt;p&gt;Modal body text goes here.&lt;/p&gt;
                 &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div id=&quot;modal-lg&quot; class=&quot;ss-c-modal ss-c-modal--large&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;modal-lg-title&quot;&gt;
-            &lt;div
-                class=&quot;ss-c-modal__overlay&quot;
-                onclick=&quot;this.parentElement.classList.remove(&#39;show&#39;)&quot;
-            &gt;&lt;/div&gt;
-            &lt;div class=&quot;ss-c-modal__container&quot;&gt;
-                &lt;header class=&quot;ss-c-modal__header&quot;&gt;
-                    &lt;h3 class=&quot;ss-c-modal__title&quot; id=&quot;modal-lg-title&quot;&gt;Large Modal&lt;/h3&gt;
-                    &lt;button
-                        type=&quot;button&quot;
-                        class=&quot;ss-c-modal__close&quot;
-                        aria-label=&quot;Close&quot;
-                        onclick=&quot;this.closest(&#39;.ss-c-modal&#39;).classList.remove(&#39;show&#39;)&quot;
-                    &gt;
-                        &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
-                    &lt;/button&gt;
-                &lt;/header&gt;
-                &lt;div class=&quot;ss-c-modal__body&quot;&gt;
-                    &lt;p&gt;Spacious modal for detailed content or forms.&lt;/p&gt;
-                &lt;/div&gt;
+                &lt;footer class=&quot;ss-c-modal-footer&quot;&gt;
+                    &lt;button type=&quot;button&quot; class=&quot;ss-c-button ss-c-button--outline&quot; data-ss-modal-close&gt;Cancel&lt;/button&gt;
+                    &lt;button type=&quot;button&quot; class=&quot;ss-c-button ss-c-button--primary&quot; data-ss-modal-close&gt;Save&lt;/button&gt;
+                &lt;/footer&gt;
             &lt;/div&gt;
         &lt;/div&gt;</code></pre>
     </div>
@@ -2047,49 +1896,58 @@
 
     </section>
 
-     
-    <section
-        class="ss-c-demo__subsection"
-        data-label="Confirmation Modal"
-        data-level="2"
-    >
-        <h2>Confirmation Modal</h2>
+    
+    <section class="ss-c-demo__subsection" data-label="Sizes" data-level="2">
+        <h2>Sizes</h2>
+        <p>
+            <code>ss-c-modal-sm</code>, <code>-md</code>, <code>-lg</code>,
+            <code>-xl</code> and <code>-full</code> on the container set the
+            content width.
+        </p>
              
 
 <div class="ss-c-preview--vertical">
     
     <div class="ss-c-preview__live">
-        <button
-            class="ss-c-button ss-c-button--danger"
-            onclick="document.getElementById('modal-confirm').classList.add('show')"
-        >
-            Delete Item
-        </button>
+        <div class="ss-f-cluster">
+            <button type="button" class="ss-c-button" data-ss="modal-trigger" data-ss-modal-trigger="#modal-sm">Small</button>
+            <button type="button" class="ss-c-button" data-ss="modal-trigger" data-ss-modal-trigger="#modal-lg">Large</button>
+            <button type="button" class="ss-c-button" data-ss="modal-trigger" data-ss-modal-trigger="#modal-full">Full screen</button>
+        </div>
 
-        <div id="modal-confirm" class="ss-c-modal" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-title">
-            <div
-                class="ss-c-modal__overlay"
-                onclick="this.parentElement.classList.remove('show')"
-            ></div>
-            <div class="ss-c-modal__container">
-                <header class="ss-c-modal__header">
-                    <h3 class="ss-c-modal__title" id="modal-confirm-title">Confirm Deletion</h3>
+        <div class="ss-c-modal ss-c-modal-sm" id="modal-sm" data-ss="modal" role="dialog" aria-modal="true" aria-labelledby="modal-sm-title" hidden>
+            <div class="ss-c-modal-content" data-ss-modal-content>
+                <header class="ss-c-modal-header">
+                    <h2 class="ss-t-text-lg ss-u-m-0" id="modal-sm-title">Small modal</h2>
+                    <button type="button" class="ss-c-close" aria-label="Close" data-ss-modal-close></button>
                 </header>
-                <div class="ss-c-modal__body">
-                    <p>
-                        Are you sure you want to delete this item? This action
-                        cannot be undone.
-                    </p>
+                <div class="ss-c-modal-body">
+                    <p><code>ss-c-modal-sm</code></p>
                 </div>
-                <footer class="ss-c-modal__footer">
-                    <button
-                        class="ss-c-button ss-c-button--secondary"
-                        onclick="this.closest('.ss-c-modal').classList.remove('show')"
-                    >
-                        Cancel
-                    </button>
-                    <button class="ss-c-button ss-c-button--danger">Delete</button>
-                </footer>
+            </div>
+        </div>
+
+        <div class="ss-c-modal ss-c-modal-lg" id="modal-lg" data-ss="modal" role="dialog" aria-modal="true" aria-labelledby="modal-lg-title" hidden>
+            <div class="ss-c-modal-content" data-ss-modal-content>
+                <header class="ss-c-modal-header">
+                    <h2 class="ss-t-text-lg ss-u-m-0" id="modal-lg-title">Large modal</h2>
+                    <button type="button" class="ss-c-close" aria-label="Close" data-ss-modal-close></button>
+                </header>
+                <div class="ss-c-modal-body">
+                    <p><code>ss-c-modal-lg</code></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ss-c-modal ss-c-modal-full" id="modal-full" data-ss="modal" role="dialog" aria-modal="true" aria-labelledby="modal-full-title" hidden>
+            <div class="ss-c-modal-content" data-ss-modal-content>
+                <header class="ss-c-modal-header">
+                    <h2 class="ss-t-text-lg ss-u-m-0" id="modal-full-title">Full screen modal</h2>
+                    <button type="button" class="ss-c-close" aria-label="Close" data-ss-modal-close></button>
+                </header>
+                <div class="ss-c-modal-body">
+                    <p><code>ss-c-modal-full</code></p>
+                </div>
             </div>
         </div>
         </div>
@@ -2108,165 +1966,78 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-3" class="language-html">&lt;button
-            class=&quot;ss-c-button ss-c-button--danger&quot;
-            onclick=&quot;document.getElementById(&#39;modal-confirm&#39;).classList.add(&#39;show&#39;)&quot;
-        &gt;
-            Delete Item
-        &lt;/button&gt;
+        ><code id="code-snippet-3" class="language-html">&lt;div class=&quot;ss-f-cluster&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;ss-c-button&quot; data-ss=&quot;modal-trigger&quot; data-ss-modal-trigger=&quot;#modal-sm&quot;&gt;Small&lt;/button&gt;
+            &lt;button type=&quot;button&quot; class=&quot;ss-c-button&quot; data-ss=&quot;modal-trigger&quot; data-ss-modal-trigger=&quot;#modal-lg&quot;&gt;Large&lt;/button&gt;
+            &lt;button type=&quot;button&quot; class=&quot;ss-c-button&quot; data-ss=&quot;modal-trigger&quot; data-ss-modal-trigger=&quot;#modal-full&quot;&gt;Full screen&lt;/button&gt;
+        &lt;/div&gt;
 
-        &lt;div id=&quot;modal-confirm&quot; class=&quot;ss-c-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;modal-confirm-title&quot;&gt;
-            &lt;div
-                class=&quot;ss-c-modal__overlay&quot;
-                onclick=&quot;this.parentElement.classList.remove(&#39;show&#39;)&quot;
-            &gt;&lt;/div&gt;
-            &lt;div class=&quot;ss-c-modal__container&quot;&gt;
-                &lt;header class=&quot;ss-c-modal__header&quot;&gt;
-                    &lt;h3 class=&quot;ss-c-modal__title&quot; id=&quot;modal-confirm-title&quot;&gt;Confirm Deletion&lt;/h3&gt;
+        &lt;div class=&quot;ss-c-modal ss-c-modal-sm&quot; id=&quot;modal-sm&quot; data-ss=&quot;modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;modal-sm-title&quot; hidden&gt;
+            &lt;div class=&quot;ss-c-modal-content&quot; data-ss-modal-content&gt;
+                &lt;header class=&quot;ss-c-modal-header&quot;&gt;
+                    &lt;h2 class=&quot;ss-t-text-lg ss-u-m-0&quot; id=&quot;modal-sm-title&quot;&gt;Small modal&lt;/h2&gt;
+                    &lt;button type=&quot;button&quot; class=&quot;ss-c-close&quot; aria-label=&quot;Close&quot; data-ss-modal-close&gt;&lt;/button&gt;
                 &lt;/header&gt;
-                &lt;div class=&quot;ss-c-modal__body&quot;&gt;
-                    &lt;p&gt;
-                        Are you sure you want to delete this item? This action
-                        cannot be undone.
-                    &lt;/p&gt;
+                &lt;div class=&quot;ss-c-modal-body&quot;&gt;
+                    &lt;p&gt;&lt;code&gt;ss-c-modal-sm&lt;/code&gt;&lt;/p&gt;
                 &lt;/div&gt;
-                &lt;footer class=&quot;ss-c-modal__footer&quot;&gt;
-                    &lt;button
-                        class=&quot;ss-c-button ss-c-button--secondary&quot;
-                        onclick=&quot;this.closest(&#39;.ss-c-modal&#39;).classList.remove(&#39;show&#39;)&quot;
-                    &gt;
-                        Cancel
-                    &lt;/button&gt;
-                    &lt;button class=&quot;ss-c-button ss-c-button--danger&quot;&gt;Delete&lt;/button&gt;
-                &lt;/footer&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;ss-c-modal ss-c-modal-lg&quot; id=&quot;modal-lg&quot; data-ss=&quot;modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;modal-lg-title&quot; hidden&gt;
+            &lt;div class=&quot;ss-c-modal-content&quot; data-ss-modal-content&gt;
+                &lt;header class=&quot;ss-c-modal-header&quot;&gt;
+                    &lt;h2 class=&quot;ss-t-text-lg ss-u-m-0&quot; id=&quot;modal-lg-title&quot;&gt;Large modal&lt;/h2&gt;
+                    &lt;button type=&quot;button&quot; class=&quot;ss-c-close&quot; aria-label=&quot;Close&quot; data-ss-modal-close&gt;&lt;/button&gt;
+                &lt;/header&gt;
+                &lt;div class=&quot;ss-c-modal-body&quot;&gt;
+                    &lt;p&gt;&lt;code&gt;ss-c-modal-lg&lt;/code&gt;&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;ss-c-modal ss-c-modal-full&quot; id=&quot;modal-full&quot; data-ss=&quot;modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;modal-full-title&quot; hidden&gt;
+            &lt;div class=&quot;ss-c-modal-content&quot; data-ss-modal-content&gt;
+                &lt;header class=&quot;ss-c-modal-header&quot;&gt;
+                    &lt;h2 class=&quot;ss-t-text-lg ss-u-m-0&quot; id=&quot;modal-full-title&quot;&gt;Full screen modal&lt;/h2&gt;
+                    &lt;button type=&quot;button&quot; class=&quot;ss-c-close&quot; aria-label=&quot;Close&quot; data-ss-modal-close&gt;&lt;/button&gt;
+                &lt;/header&gt;
+                &lt;div class=&quot;ss-c-modal-body&quot;&gt;
+                    &lt;p&gt;&lt;code&gt;ss-c-modal-full&lt;/code&gt;&lt;/p&gt;
+                &lt;/div&gt;
             &lt;/div&gt;
         &lt;/div&gt;</code></pre>
     </div>
 </div>
 
     </section>
-</section>
 
-<section class="ss-c-demo__section" data-label="Modals" data-level="1">
-
-     
-    <section
-        class="ss-c-demo__subsection"
-        data-label="Basic Modal Structure"
-        data-level="2"
-    >
-        <h2>Basic Modal Structure</h2>
+    
+    <section class="ss-c-demo__subsection" data-label="Confirmation" data-level="2">
+        <h2>Confirmation</h2>
+        <p>
+            <code>role="alertdialog"</code> with a description, for
+            destructive actions. Focus starts on the safe choice.
+        </p>
              
 
 <div class="ss-c-preview--vertical">
     
     <div class="ss-c-preview__live">
-        <div
-            class="ss-c-modal-preview"
-            style="
-                position: relative;
-                min-height: 400px;
-                background: var(--ss-color-surface-alt);
-                border-radius: var(--ss-radius-lg);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            "
-        >
-            <!-- Modal Backdrop -->
-            <div
-                class="ss-c-modal--backdrop"
-                style="
-                    position: absolute;
-                    inset: 0;
-                    background: rgba(0, 0, 0, 0.5);
-                    border-radius: var(--ss-radius-lg);
-                "
-            ></div>
-            <!-- Modal Content -->
-            <div
-                class="ss-c-modal"
-                style="
-                    position: relative;
-                    width: 90%;
-                    max-width: 480px;
-                    background: var(--ss-color-surface);
-                    color: var(--ss-color-text);
-                    border-radius: var(--ss-radius-lg);
-                    box-shadow: var(--ss-a-shadow-xl);
-                "
-            >
-                <div
-                    class="ss-c-modal--header"
-                    style="
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        padding: 20px 24px;
-                        border-bottom: 1px solid var(--ss-color-border);
-                    "
-                >
-                    <h3 style="margin: 0; font-size: 18px">Modal Title</h3>
-                    <button
-                        type="button"
-                        class="ss-c-modal--close"
-                        aria-label="Close"
-                        style="
-                            width: 32px;
-                            height: 32px;
-                            border: none;
-                            background: var(--ss-color-surface-alt);
-                            border-radius: var(--ss-radius-md);
-                            cursor: pointer;
-                            font-size: 16px;
-                        "
-                    >
-                        <span aria-hidden="true">✕</span>
-                    </button>
+        <button type="button" class="ss-c-button ss-c-button--danger" data-ss="modal-trigger" data-ss-modal-trigger="#modal-confirm">
+            Delete project
+        </button>
+
+        <div class="ss-c-modal ss-c-modal-sm" id="modal-confirm" data-ss="modal" role="alertdialog" aria-modal="true" aria-labelledby="modal-confirm-title" aria-describedby="modal-confirm-desc" hidden>
+            <div class="ss-c-modal-content" data-ss-modal-content>
+                <div class="ss-c-modal-body">
+                    <h2 class="ss-t-text-lg" id="modal-confirm-title">Delete this project?</h2>
+                    <p id="modal-confirm-desc">Its 12 layers and their history are removed. This cannot be undone.</p>
                 </div>
-                <div class="ss-c-modal--body" style="padding: 24px">
-                    <p style="margin: 0; line-height: 1.6">
-                        This is the modal body content. You can add any content
-                        here including forms, images, or other components.
-                    </p>
-                </div>
-                <div
-                    class="ss-c-modal--footer"
-                    style="
-                        display: flex;
-                        justify-content: flex-end;
-                        gap: 12px;
-                        padding: 16px 24px;
-                        border-top: 1px solid var(--ss-color-border);
-                        background: var(--ss-color-surface-alt);
-                        border-radius: 0 0 var(--ss-radius-lg) var(--ss-radius-lg);
-                    "
-                >
-                    <button
-                        style="
-                            padding: 10px 20px;
-                            border: 1px solid var(--ss-color-border);
-                            background: var(--ss-color-surface);
-                            color: var(--ss-color-text);
-                            border-radius: var(--ss-radius-md);
-                            cursor: pointer;
-                        "
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        style="
-                            padding: 10px 20px;
-                            border: none;
-                            background: var(--ss-color-accent);
-                            color: var(--ss-color-on-accent);
-                            border-radius: var(--ss-radius-md);
-                            cursor: pointer;
-                        "
-                    >
-                        Confirm
-                    </button>
-                </div>
+                <footer class="ss-c-modal-footer">
+                    <button type="button" class="ss-c-button ss-c-button--outline" data-ss-modal-close>Cancel</button>
+                    <button type="button" class="ss-c-button ss-c-button--danger" data-ss-modal-close>Delete</button>
+                </footer>
             </div>
         </div>
         </div>
@@ -2285,112 +2056,20 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-4" class="language-html">&lt;div
-            class=&quot;ss-c-modal-preview&quot;
-            style=&quot;
-                position: relative;
-                min-height: 400px;
-                background: var(--ss-color-surface-alt);
-                border-radius: var(--ss-radius-lg);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            &quot;
-        &gt;
-            &lt;!-- Modal Backdrop --&gt;
-            &lt;div
-                class=&quot;ss-c-modal--backdrop&quot;
-                style=&quot;
-                    position: absolute;
-                    inset: 0;
-                    background: rgba(0, 0, 0, 0.5);
-                    border-radius: var(--ss-radius-lg);
-                &quot;
-            &gt;&lt;/div&gt;
-            &lt;!-- Modal Content --&gt;
-            &lt;div
-                class=&quot;ss-c-modal&quot;
-                style=&quot;
-                    position: relative;
-                    width: 90%;
-                    max-width: 480px;
-                    background: var(--ss-color-surface);
-                    color: var(--ss-color-text);
-                    border-radius: var(--ss-radius-lg);
-                    box-shadow: var(--ss-a-shadow-xl);
-                &quot;
-            &gt;
-                &lt;div
-                    class=&quot;ss-c-modal--header&quot;
-                    style=&quot;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        padding: 20px 24px;
-                        border-bottom: 1px solid var(--ss-color-border);
-                    &quot;
-                &gt;
-                    &lt;h3 style=&quot;margin: 0; font-size: 18px&quot;&gt;Modal Title&lt;/h3&gt;
-                    &lt;button
-                        type=&quot;button&quot;
-                        class=&quot;ss-c-modal--close&quot;
-                        aria-label=&quot;Close&quot;
-                        style=&quot;
-                            width: 32px;
-                            height: 32px;
-                            border: none;
-                            background: var(--ss-color-surface-alt);
-                            border-radius: var(--ss-radius-md);
-                            cursor: pointer;
-                            font-size: 16px;
-                        &quot;
-                    &gt;
-                        &lt;span aria-hidden=&quot;true&quot;&gt;✕&lt;/span&gt;
-                    &lt;/button&gt;
+        ><code id="code-snippet-4" class="language-html">&lt;button type=&quot;button&quot; class=&quot;ss-c-button ss-c-button--danger&quot; data-ss=&quot;modal-trigger&quot; data-ss-modal-trigger=&quot;#modal-confirm&quot;&gt;
+            Delete project
+        &lt;/button&gt;
+
+        &lt;div class=&quot;ss-c-modal ss-c-modal-sm&quot; id=&quot;modal-confirm&quot; data-ss=&quot;modal&quot; role=&quot;alertdialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;modal-confirm-title&quot; aria-describedby=&quot;modal-confirm-desc&quot; hidden&gt;
+            &lt;div class=&quot;ss-c-modal-content&quot; data-ss-modal-content&gt;
+                &lt;div class=&quot;ss-c-modal-body&quot;&gt;
+                    &lt;h2 class=&quot;ss-t-text-lg&quot; id=&quot;modal-confirm-title&quot;&gt;Delete this project?&lt;/h2&gt;
+                    &lt;p id=&quot;modal-confirm-desc&quot;&gt;Its 12 layers and their history are removed. This cannot be undone.&lt;/p&gt;
                 &lt;/div&gt;
-                &lt;div class=&quot;ss-c-modal--body&quot; style=&quot;padding: 24px&quot;&gt;
-                    &lt;p style=&quot;margin: 0; line-height: 1.6&quot;&gt;
-                        This is the modal body content. You can add any content
-                        here including forms, images, or other components.
-                    &lt;/p&gt;
-                &lt;/div&gt;
-                &lt;div
-                    class=&quot;ss-c-modal--footer&quot;
-                    style=&quot;
-                        display: flex;
-                        justify-content: flex-end;
-                        gap: 12px;
-                        padding: 16px 24px;
-                        border-top: 1px solid var(--ss-color-border);
-                        background: var(--ss-color-surface-alt);
-                        border-radius: 0 0 var(--ss-radius-lg) var(--ss-radius-lg);
-                    &quot;
-                &gt;
-                    &lt;button
-                        style=&quot;
-                            padding: 10px 20px;
-                            border: 1px solid var(--ss-color-border);
-                            background: var(--ss-color-surface);
-                            color: var(--ss-color-text);
-                            border-radius: var(--ss-radius-md);
-                            cursor: pointer;
-                        &quot;
-                    &gt;
-                        Cancel
-                    &lt;/button&gt;
-                    &lt;button
-                        style=&quot;
-                            padding: 10px 20px;
-                            border: none;
-                            background: var(--ss-color-accent);
-                            color: var(--ss-color-on-accent);
-                            border-radius: var(--ss-radius-md);
-                            cursor: pointer;
-                        &quot;
-                    &gt;
-                        Confirm
-                    &lt;/button&gt;
-                &lt;/div&gt;
+                &lt;footer class=&quot;ss-c-modal-footer&quot;&gt;
+                    &lt;button type=&quot;button&quot; class=&quot;ss-c-button ss-c-button--outline&quot; data-ss-modal-close&gt;Cancel&lt;/button&gt;
+                    &lt;button type=&quot;button&quot; class=&quot;ss-c-button ss-c-button--danger&quot; data-ss-modal-close&gt;Delete&lt;/button&gt;
+                &lt;/footer&gt;
             &lt;/div&gt;
         &lt;/div&gt;</code></pre>
     </div>
@@ -2398,106 +2077,43 @@
 
     </section>
 
-     
-    <section
-        class="ss-c-demo__subsection"
-        data-label="Static Modal Sizes"
-        data-level="2"
-    >
-        <h2>Static Modal Sizes</h2>
+    
+    <section class="ss-c-demo__subsection" data-label="Form in a modal" data-level="2">
+        <h2>Form in a modal</h2>
              
 
 <div class="ss-c-preview--vertical">
     
     <div class="ss-c-preview__live">
-        <div style="display: flex; flex-direction: column; gap: 20px">
-            <!-- Small Modal -->
-            <div
-                class="ss-c-modal ss-c-modal--small"
-                style="
-                    position: relative;
-                    max-width: 320px;
-                    background: var(--ss-color-surface);
-                    color: var(--ss-color-text);
-                    border-radius: var(--ss-radius-lg);
-                    box-shadow: var(--ss-a-shadow-lg);
-                "
-            >
-                <div style="padding: 20px; text-align: center">
-                    <div style="font-size: 48px; margin-bottom: 12px">✓</div>
-                    <h3 style="margin: 0 0 8px">Success!</h3>
-                    <p style="margin: 0 0 16px; font-size: 14px; opacity: 0.7">
-                        Your changes have been saved.
-                    </p>
-                    <button
-                        style="
-                            padding: 10px 24px;
-                            border: none;
-                            background: var(--ss-color-success);
-                            color: var(--ss-color-on-success);
-                            border-radius: var(--ss-radius-md);
-                            cursor: pointer;
-                        "
-                    >
-                        OK
-                    </button>
-                </div>
-            </div>
-            <!-- Large Modal -->
-            <div
-                class="ss-c-modal ss-c-modal--large"
-                style="
-                    position: relative;
-                    max-width: 700px;
-                    background: var(--ss-color-surface);
-                    color: var(--ss-color-text);
-                    border-radius: var(--ss-radius-lg);
-                    box-shadow: var(--ss-a-shadow-lg);
-                "
-            >
-                <div
-                    class="ss-c-modal--header"
-                    style="
-                        padding: 20px 24px;
-                        border-bottom: 1px solid var(--ss-color-border);
-                    "
-                >
-                    <h3 style="margin: 0">Large Modal</h3>
-                </div>
-                <div class="ss-c-modal--body" style="padding: 24px">
-                    <p>
-                        This is a larger modal suitable for complex content
-                        like forms, tables, or detailed information.
-                    </p>
-                    <div
-                        style="
-                            display: grid;
-                            grid-template-columns: repeat(2, 1fr);
-                            gap: 16px;
-                            margin-top: 16px;
-                        "
-                    >
-                        <div
-                            style="
-                                padding: 16px;
-                                background: var(--ss-color-surface-alt);
-                                border-radius: var(--ss-radius-lg);
-                            "
-                        >
-                            Column 1 content
-                        </div>
-                        <div
-                            style="
-                                padding: 16px;
-                                background: var(--ss-color-surface-alt);
-                                border-radius: var(--ss-radius-lg);
-                            "
-                        >
-                            Column 2 content
-                        </div>
+        <button type="button" class="ss-c-button" data-ss="modal-trigger" data-ss-modal-trigger="#modal-form">
+            Invite a member
+        </button>
+
+        <div class="ss-c-modal" id="modal-form" data-ss="modal" role="dialog" aria-modal="true" aria-labelledby="modal-form-title" hidden>
+            <form class="ss-c-modal-content" data-ss-modal-content onsubmit="return false">
+                <header class="ss-c-modal-header">
+                    <h2 class="ss-t-text-lg ss-u-m-0" id="modal-form-title">Invite a member</h2>
+                    <button type="button" class="ss-c-close" aria-label="Close" data-ss-modal-close></button>
+                </header>
+                <div class="ss-c-modal-body ss-f-stack">
+                    <div class="ss-c-form__field">
+                        <label class="ss-c-form__label" for="modal-form-email">Email</label>
+                        <input class="ss-c-input" type="email" id="modal-form-email" autocomplete="email" required>
+                    </div>
+                    <div class="ss-c-form__field">
+                        <label class="ss-c-form__label" for="modal-form-role">Role</label>
+                        <select class="ss-c-select" id="modal-form-role">
+                            <option>Viewer</option>
+                            <option>Editor</option>
+                            <option>Owner</option>
+                        </select>
                     </div>
                 </div>
-            </div>
+                <footer class="ss-c-modal-footer">
+                    <button type="button" class="ss-c-button ss-c-button--outline" data-ss-modal-close>Cancel</button>
+                    <button type="submit" class="ss-c-button ss-c-button--primary">Send invite</button>
+                </footer>
+            </form>
         </div>
         </div>
     
@@ -2515,211 +2131,65 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-5" class="language-html">&lt;div style=&quot;display: flex; flex-direction: column; gap: 20px&quot;&gt;
-            &lt;!-- Small Modal --&gt;
-            &lt;div
-                class=&quot;ss-c-modal ss-c-modal--small&quot;
-                style=&quot;
-                    position: relative;
-                    max-width: 320px;
-                    background: var(--ss-color-surface);
-                    color: var(--ss-color-text);
-                    border-radius: var(--ss-radius-lg);
-                    box-shadow: var(--ss-a-shadow-lg);
-                &quot;
-            &gt;
-                &lt;div style=&quot;padding: 20px; text-align: center&quot;&gt;
-                    &lt;div style=&quot;font-size: 48px; margin-bottom: 12px&quot;&gt;✓&lt;/div&gt;
-                    &lt;h3 style=&quot;margin: 0 0 8px&quot;&gt;Success!&lt;/h3&gt;
-                    &lt;p style=&quot;margin: 0 0 16px; font-size: 14px; opacity: 0.7&quot;&gt;
-                        Your changes have been saved.
-                    &lt;/p&gt;
-                    &lt;button
-                        style=&quot;
-                            padding: 10px 24px;
-                            border: none;
-                            background: var(--ss-color-success);
-                            color: var(--ss-color-on-success);
-                            border-radius: var(--ss-radius-md);
-                            cursor: pointer;
-                        &quot;
-                    &gt;
-                        OK
-                    &lt;/button&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;!-- Large Modal --&gt;
-            &lt;div
-                class=&quot;ss-c-modal ss-c-modal--large&quot;
-                style=&quot;
-                    position: relative;
-                    max-width: 700px;
-                    background: var(--ss-color-surface);
-                    color: var(--ss-color-text);
-                    border-radius: var(--ss-radius-lg);
-                    box-shadow: var(--ss-a-shadow-lg);
-                &quot;
-            &gt;
-                &lt;div
-                    class=&quot;ss-c-modal--header&quot;
-                    style=&quot;
-                        padding: 20px 24px;
-                        border-bottom: 1px solid var(--ss-color-border);
-                    &quot;
-                &gt;
-                    &lt;h3 style=&quot;margin: 0&quot;&gt;Large Modal&lt;/h3&gt;
-                &lt;/div&gt;
-                &lt;div class=&quot;ss-c-modal--body&quot; style=&quot;padding: 24px&quot;&gt;
-                    &lt;p&gt;
-                        This is a larger modal suitable for complex content
-                        like forms, tables, or detailed information.
-                    &lt;/p&gt;
-                    &lt;div
-                        style=&quot;
-                            display: grid;
-                            grid-template-columns: repeat(2, 1fr);
-                            gap: 16px;
-                            margin-top: 16px;
-                        &quot;
-                    &gt;
-                        &lt;div
-                            style=&quot;
-                                padding: 16px;
-                                background: var(--ss-color-surface-alt);
-                                border-radius: var(--ss-radius-lg);
-                            &quot;
-                        &gt;
-                            Column 1 content
-                        &lt;/div&gt;
-                        &lt;div
-                            style=&quot;
-                                padding: 16px;
-                                background: var(--ss-color-surface-alt);
-                                border-radius: var(--ss-radius-lg);
-                            &quot;
-                        &gt;
-                            Column 2 content
-                        &lt;/div&gt;
+        ><code id="code-snippet-5" class="language-html">&lt;button type=&quot;button&quot; class=&quot;ss-c-button&quot; data-ss=&quot;modal-trigger&quot; data-ss-modal-trigger=&quot;#modal-form&quot;&gt;
+            Invite a member
+        &lt;/button&gt;
+
+        &lt;div class=&quot;ss-c-modal&quot; id=&quot;modal-form&quot; data-ss=&quot;modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;modal-form-title&quot; hidden&gt;
+            &lt;form class=&quot;ss-c-modal-content&quot; data-ss-modal-content onsubmit=&quot;return false&quot;&gt;
+                &lt;header class=&quot;ss-c-modal-header&quot;&gt;
+                    &lt;h2 class=&quot;ss-t-text-lg ss-u-m-0&quot; id=&quot;modal-form-title&quot;&gt;Invite a member&lt;/h2&gt;
+                    &lt;button type=&quot;button&quot; class=&quot;ss-c-close&quot; aria-label=&quot;Close&quot; data-ss-modal-close&gt;&lt;/button&gt;
+                &lt;/header&gt;
+                &lt;div class=&quot;ss-c-modal-body ss-f-stack&quot;&gt;
+                    &lt;div class=&quot;ss-c-form__field&quot;&gt;
+                        &lt;label class=&quot;ss-c-form__label&quot; for=&quot;modal-form-email&quot;&gt;Email&lt;/label&gt;
+                        &lt;input class=&quot;ss-c-input&quot; type=&quot;email&quot; id=&quot;modal-form-email&quot; autocomplete=&quot;email&quot; required&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;ss-c-form__field&quot;&gt;
+                        &lt;label class=&quot;ss-c-form__label&quot; for=&quot;modal-form-role&quot;&gt;Role&lt;/label&gt;
+                        &lt;select class=&quot;ss-c-select&quot; id=&quot;modal-form-role&quot;&gt;
+                            &lt;option&gt;Viewer&lt;/option&gt;
+                            &lt;option&gt;Editor&lt;/option&gt;
+                            &lt;option&gt;Owner&lt;/option&gt;
+                        &lt;/select&gt;
                     &lt;/div&gt;
                 &lt;/div&gt;
-            &lt;/div&gt;
+                &lt;footer class=&quot;ss-c-modal-footer&quot;&gt;
+                    &lt;button type=&quot;button&quot; class=&quot;ss-c-button ss-c-button--outline&quot; data-ss-modal-close&gt;Cancel&lt;/button&gt;
+                    &lt;button type=&quot;submit&quot; class=&quot;ss-c-button ss-c-button--primary&quot;&gt;Send invite&lt;/button&gt;
+                &lt;/footer&gt;
+            &lt;/form&gt;
         &lt;/div&gt;</code></pre>
     </div>
 </div>
 
     </section>
 
-     
-    <section
-        class="ss-c-demo__subsection"
-        data-label="Fullscreen Modal"
-        data-level="2"
-    >
-        <h2>Fullscreen Modal</h2>
+    
+    <section class="ss-c-demo__subsection" data-label="Content box in place" data-level="2">
+        <h2>Content box in place</h2>
+        <p>
+            The content box on its own, outside the fixed container, to show
+            its parts.
+        </p>
              
 
 <div class="ss-c-preview--vertical">
     
     <div class="ss-c-preview__live">
-        <div
-            class="ss-c-modal-preview"
-            style="
-                position: relative;
-                min-height: 350px;
-                background: #1a1a2e;
-                border-radius: var(--ss-radius-lg);
-                overflow: hidden;
-            "
-        >
-            <div
-                class="ss-c-modal ss-c-modal--fullscreen"
-                style="
-                    position: absolute;
-                    inset: 0;
-                    background: var(--ss-color-surface);
-                    color: var(--ss-color-text);
-                    display: flex;
-                    flex-direction: column;
-                "
-            >
-                <div
-                    class="ss-c-modal--header"
-                    style="
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        padding: 16px 24px;
-                        border-bottom: 1px solid var(--ss-color-border);
-                    "
-                >
-                    <h3 style="margin: 0; font-size: 16px">
-                        Fullscreen Modal
-                    </h3>
-                    <button
-                        style="
-                            padding: 8px 16px;
-                            border: none;
-                            background: var(--ss-color-surface-alt);
-                            border-radius: var(--ss-radius-md);
-                            cursor: pointer;
-                        "
-                    >
-                        Close ✕
-                    </button>
-                </div>
-                <div
-                    class="ss-c-modal--body"
-                    style="flex: 1; padding: 24px; overflow-y: auto"
-                >
-                    <p>
-                        This modal takes up the full viewport. Perfect for
-                        immersive experiences, image galleries, or complex
-                        workflows.
-                    </p>
-                    <div
-                        style="
-                            display: grid;
-                            grid-template-columns: repeat(3, 1fr);
-                            gap: 12px;
-                            margin-top: 16px;
-                        "
-                    >
-                        <div
-                            style="
-                                aspect-ratio: 1;
-                                background: linear-gradient(
-                                    135deg,
-                                    #667eea,
-                                    #764ba2
-                                );
-                                border-radius: var(--ss-radius-lg);
-                            "
-                        ></div>
-                        <div
-                            style="
-                                aspect-ratio: 1;
-                                background: linear-gradient(
-                                    135deg,
-                                    #f093fb,
-                                    #f5576c
-                                );
-                                border-radius: var(--ss-radius-lg);
-                            "
-                        ></div>
-                        <div
-                            style="
-                                aspect-ratio: 1;
-                                background: linear-gradient(
-                                    135deg,
-                                    #4facfe,
-                                    #00f2fe
-                                );
-                                border-radius: var(--ss-radius-lg);
-                            "
-                        ></div>
-                    </div>
-                </div>
+        <div class="ss-c-modal-content" role="group" aria-labelledby="modal-static-title">
+            <header class="ss-c-modal-header">
+                <h3 class="ss-t-text-lg ss-u-m-0" id="modal-static-title">Header</h3>
+                <button type="button" class="ss-c-close" aria-label="Close"></button>
+            </header>
+            <div class="ss-c-modal-body">
+                <p>Body</p>
             </div>
+            <footer class="ss-c-modal-footer">
+                <button type="button" class="ss-c-button ss-c-button--outline">Cancel</button>
+                <button type="button" class="ss-c-button ss-c-button--primary">Confirm</button>
+            </footer>
         </div>
         </div>
     
@@ -2737,384 +2207,18 @@
     <div class="ss-c-preview__code">
         <pre
             class="ss-c-line-numbers"
-        ><code id="code-snippet-6" class="language-html">&lt;div
-            class=&quot;ss-c-modal-preview&quot;
-            style=&quot;
-                position: relative;
-                min-height: 350px;
-                background: #1a1a2e;
-                border-radius: var(--ss-radius-lg);
-                overflow: hidden;
-            &quot;
-        &gt;
-            &lt;div
-                class=&quot;ss-c-modal ss-c-modal--fullscreen&quot;
-                style=&quot;
-                    position: absolute;
-                    inset: 0;
-                    background: var(--ss-color-surface);
-                    color: var(--ss-color-text);
-                    display: flex;
-                    flex-direction: column;
-                &quot;
-            &gt;
-                &lt;div
-                    class=&quot;ss-c-modal--header&quot;
-                    style=&quot;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        padding: 16px 24px;
-                        border-bottom: 1px solid var(--ss-color-border);
-                    &quot;
-                &gt;
-                    &lt;h3 style=&quot;margin: 0; font-size: 16px&quot;&gt;
-                        Fullscreen Modal
-                    &lt;/h3&gt;
-                    &lt;button
-                        style=&quot;
-                            padding: 8px 16px;
-                            border: none;
-                            background: var(--ss-color-surface-alt);
-                            border-radius: var(--ss-radius-md);
-                            cursor: pointer;
-                        &quot;
-                    &gt;
-                        Close ✕
-                    &lt;/button&gt;
-                &lt;/div&gt;
-                &lt;div
-                    class=&quot;ss-c-modal--body&quot;
-                    style=&quot;flex: 1; padding: 24px; overflow-y: auto&quot;
-                &gt;
-                    &lt;p&gt;
-                        This modal takes up the full viewport. Perfect for
-                        immersive experiences, image galleries, or complex
-                        workflows.
-                    &lt;/p&gt;
-                    &lt;div
-                        style=&quot;
-                            display: grid;
-                            grid-template-columns: repeat(3, 1fr);
-                            gap: 12px;
-                            margin-top: 16px;
-                        &quot;
-                    &gt;
-                        &lt;div
-                            style=&quot;
-                                aspect-ratio: 1;
-                                background: linear-gradient(
-                                    135deg,
-                                    #667eea,
-                                    #764ba2
-                                );
-                                border-radius: var(--ss-radius-lg);
-                            &quot;
-                        &gt;&lt;/div&gt;
-                        &lt;div
-                            style=&quot;
-                                aspect-ratio: 1;
-                                background: linear-gradient(
-                                    135deg,
-                                    #f093fb,
-                                    #f5576c
-                                );
-                                border-radius: var(--ss-radius-lg);
-                            &quot;
-                        &gt;&lt;/div&gt;
-                        &lt;div
-                            style=&quot;
-                                aspect-ratio: 1;
-                                background: linear-gradient(
-                                    135deg,
-                                    #4facfe,
-                                    #00f2fe
-                                );
-                                border-radius: var(--ss-radius-lg);
-                            &quot;
-                        &gt;&lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
+        ><code id="code-snippet-6" class="language-html">&lt;div class=&quot;ss-c-modal-content&quot; role=&quot;group&quot; aria-labelledby=&quot;modal-static-title&quot;&gt;
+            &lt;header class=&quot;ss-c-modal-header&quot;&gt;
+                &lt;h3 class=&quot;ss-t-text-lg ss-u-m-0&quot; id=&quot;modal-static-title&quot;&gt;Header&lt;/h3&gt;
+                &lt;button type=&quot;button&quot; class=&quot;ss-c-close&quot; aria-label=&quot;Close&quot;&gt;&lt;/button&gt;
+            &lt;/header&gt;
+            &lt;div class=&quot;ss-c-modal-body&quot;&gt;
+                &lt;p&gt;Body&lt;/p&gt;
             &lt;/div&gt;
-        &lt;/div&gt;</code></pre>
-    </div>
-</div>
-
-    </section>
-
-     
-    <section
-        class="ss-c-demo__subsection"
-        data-label="Form Modal"
-        data-level="2"
-    >
-        <h2>Form Modal</h2>
-             
-
-<div class="ss-c-preview--vertical">
-    
-    <div class="ss-c-preview__live">
-        <div
-            class="ss-c-modal"
-            style="
-                position: relative;
-                max-width: 450px;
-                background: var(--ss-color-surface);
-                color: var(--ss-color-text);
-                border-radius: var(--ss-radius-lg);
-                box-shadow: var(--ss-a-shadow-lg);
-            "
-        >
-            <div class="ss-c-modal--header" style="padding: 24px 24px 0">
-                <h3 style="margin: 0 0 8px">Create Account</h3>
-                <p style="margin: 0; font-size: 14px; opacity: 0.7">
-                    Fill in your details to get started
-                </p>
-            </div>
-            <form class="ss-c-modal--body" style="padding: 24px">
-                <div style="margin-bottom: 16px">
-                    <label
-                        style="
-                            display: block;
-                            margin-bottom: 6px;
-                            font-size: 14px;
-                            font-weight: 500;
-                        "
-                    >
-                        Full Name
-                    </label>
-                    <input
-                        type="text"
-                        placeholder="John Doe"
-                        style="
-                            width: 100%;
-                            padding: 12px;
-                            border: 1px solid var(--ss-color-border);
-                            border-radius: var(--ss-radius-lg);
-                            font-size: 14px;
-                            box-sizing: border-box;
-                        "
-                    />
-                </div>
-                <div style="margin-bottom: 16px">
-                    <label
-                        style="
-                            display: block;
-                            margin-bottom: 6px;
-                            font-size: 14px;
-                            font-weight: 500;
-                        "
-                    >
-                        Email
-                    </label>
-                    <input
-                        type="email"
-                        placeholder="john@example.com"
-                        style="
-                            width: 100%;
-                            padding: 12px;
-                            border: 1px solid var(--ss-color-border);
-                            border-radius: var(--ss-radius-lg);
-                            font-size: 14px;
-                            box-sizing: border-box;
-                        "
-                    />
-                </div>
-                <div style="margin-bottom: 20px">
-                    <label
-                        style="
-                            display: block;
-                            margin-bottom: 6px;
-                            font-size: 14px;
-                            font-weight: 500;
-                        "
-                    >
-                        Password
-                    </label>
-                    <input
-                        type="password"
-                        placeholder="••••••••"
-                        style="
-                            width: 100%;
-                            padding: 12px;
-                            border: 1px solid var(--ss-color-border);
-                            border-radius: var(--ss-radius-lg);
-                            font-size: 14px;
-                            box-sizing: border-box;
-                        "
-                    />
-                </div>
-                <button
-                    type="submit"
-                    style="
-                        width: 100%;
-                        padding: 14px;
-                        border: none;
-                        background: var(--ss-color-accent);
-                        color: var(--ss-color-on-accent);
-                        border-radius: var(--ss-radius-lg);
-                        cursor: pointer;
-                        font-size: 15px;
-                        font-weight: 500;
-                    "
-                >
-                    Create Account
-                </button>
-            </form>
-            <div
-                class="ss-c-modal--footer"
-                style="
-                    padding: 16px 24px;
-                    text-align: center;
-                    border-top: 1px solid var(--ss-color-border);
-                "
-            >
-                <p style="margin: 0; font-size: 14px; opacity: 0.7">
-                    Already have an account?
-                    <a href="#" style="color: var(--ss-color-accent)">
-                        Sign in
-                    </a>
-                </p>
-            </div>
-        </div>
-        </div>
-    
-    
-    <div class="ss-c-preview__info" aria-live="polite">
-        <small>HTML</small>
-        <button
-            type="button"
-            class="ss-c-preview__copy-button"
-            onclick="ClipboardHelper.copyById('code-snippet-7')"
-        >
-            Copy
-        </button>
-    </div>
-    <div class="ss-c-preview__code">
-        <pre
-            class="ss-c-line-numbers"
-        ><code id="code-snippet-7" class="language-html">&lt;div
-            class=&quot;ss-c-modal&quot;
-            style=&quot;
-                position: relative;
-                max-width: 450px;
-                background: var(--ss-color-surface);
-                color: var(--ss-color-text);
-                border-radius: var(--ss-radius-lg);
-                box-shadow: var(--ss-a-shadow-lg);
-            &quot;
-        &gt;
-            &lt;div class=&quot;ss-c-modal--header&quot; style=&quot;padding: 24px 24px 0&quot;&gt;
-                &lt;h3 style=&quot;margin: 0 0 8px&quot;&gt;Create Account&lt;/h3&gt;
-                &lt;p style=&quot;margin: 0; font-size: 14px; opacity: 0.7&quot;&gt;
-                    Fill in your details to get started
-                &lt;/p&gt;
-            &lt;/div&gt;
-            &lt;form class=&quot;ss-c-modal--body&quot; style=&quot;padding: 24px&quot;&gt;
-                &lt;div style=&quot;margin-bottom: 16px&quot;&gt;
-                    &lt;label
-                        style=&quot;
-                            display: block;
-                            margin-bottom: 6px;
-                            font-size: 14px;
-                            font-weight: 500;
-                        &quot;
-                    &gt;
-                        Full Name
-                    &lt;/label&gt;
-                    &lt;input
-                        type=&quot;text&quot;
-                        placeholder=&quot;John Doe&quot;
-                        style=&quot;
-                            width: 100%;
-                            padding: 12px;
-                            border: 1px solid var(--ss-color-border);
-                            border-radius: var(--ss-radius-lg);
-                            font-size: 14px;
-                            box-sizing: border-box;
-                        &quot;
-                    /&gt;
-                &lt;/div&gt;
-                &lt;div style=&quot;margin-bottom: 16px&quot;&gt;
-                    &lt;label
-                        style=&quot;
-                            display: block;
-                            margin-bottom: 6px;
-                            font-size: 14px;
-                            font-weight: 500;
-                        &quot;
-                    &gt;
-                        Email
-                    &lt;/label&gt;
-                    &lt;input
-                        type=&quot;email&quot;
-                        placeholder=&quot;john@example.com&quot;
-                        style=&quot;
-                            width: 100%;
-                            padding: 12px;
-                            border: 1px solid var(--ss-color-border);
-                            border-radius: var(--ss-radius-lg);
-                            font-size: 14px;
-                            box-sizing: border-box;
-                        &quot;
-                    /&gt;
-                &lt;/div&gt;
-                &lt;div style=&quot;margin-bottom: 20px&quot;&gt;
-                    &lt;label
-                        style=&quot;
-                            display: block;
-                            margin-bottom: 6px;
-                            font-size: 14px;
-                            font-weight: 500;
-                        &quot;
-                    &gt;
-                        Password
-                    &lt;/label&gt;
-                    &lt;input
-                        type=&quot;password&quot;
-                        placeholder=&quot;••••••••&quot;
-                        style=&quot;
-                            width: 100%;
-                            padding: 12px;
-                            border: 1px solid var(--ss-color-border);
-                            border-radius: var(--ss-radius-lg);
-                            font-size: 14px;
-                            box-sizing: border-box;
-                        &quot;
-                    /&gt;
-                &lt;/div&gt;
-                &lt;button
-                    type=&quot;submit&quot;
-                    style=&quot;
-                        width: 100%;
-                        padding: 14px;
-                        border: none;
-                        background: var(--ss-color-accent);
-                        color: var(--ss-color-on-accent);
-                        border-radius: var(--ss-radius-lg);
-                        cursor: pointer;
-                        font-size: 15px;
-                        font-weight: 500;
-                    &quot;
-                &gt;
-                    Create Account
-                &lt;/button&gt;
-            &lt;/form&gt;
-            &lt;div
-                class=&quot;ss-c-modal--footer&quot;
-                style=&quot;
-                    padding: 16px 24px;
-                    text-align: center;
-                    border-top: 1px solid var(--ss-color-border);
-                &quot;
-            &gt;
-                &lt;p style=&quot;margin: 0; font-size: 14px; opacity: 0.7&quot;&gt;
-                    Already have an account?
-                    &lt;a href=&quot;#&quot; style=&quot;color: var(--ss-color-accent)&quot;&gt;
-                        Sign in
-                    &lt;/a&gt;
-                &lt;/p&gt;
-            &lt;/div&gt;
+            &lt;footer class=&quot;ss-c-modal-footer&quot;&gt;
+                &lt;button type=&quot;button&quot; class=&quot;ss-c-button ss-c-button--outline&quot;&gt;Cancel&lt;/button&gt;
+                &lt;button type=&quot;button&quot; class=&quot;ss-c-button ss-c-button--primary&quot;&gt;Confirm&lt;/button&gt;
+            &lt;/footer&gt;
         &lt;/div&gt;</code></pre>
     </div>
 </div>

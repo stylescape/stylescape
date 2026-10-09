@@ -129,11 +129,14 @@ and class-name changes here are breaking changes downstream.
 
 _Repo-specific guidance goes here; preserved across regeneration._
 
-- `npm install` currently fails on the `kist`/`tsc` toolchain. To compile SCSS
-  locally, `npm pack` the sibling `unit.gl` and `hue.gl` packages into
+- `npm install` used to fail on the `kist`/`tsc` toolchain. On 2026-10-09
+  `npm install` of kist 0.1.81 and the `@getkist/*` actions went through and
+  `npm run build` passed; a from-scratch `npm ci` was not tried. If it fails
+  again, `npm pack` the sibling `unit.gl` and `hue.gl` packages into
   `node_modules/` rather than reinstalling the whole tree.
-- JS is bundled by `bin/bundle_js.mjs` (esbuild) because the kist bundle action
-  has no `dist`. After re-bundling, restart the vite dev server — it caches
+- JS is bundled by `bin/bundle_js.mjs` (esbuild) rather than kist's
+  `BundleAction`, which failed on a plain `entry:` string up to
+  `@getkist/action-tsup` 1.0.20; 1.0.25 fixes it. After re-bundling, restart the vite dev server — it caches
   `/js` module transforms.
 - Two colour systems coexist on this branch: components read `--ss-color-*`
   emitted from `src/scss/12-lexicon/_color-tokens.scss`. Check which layer you

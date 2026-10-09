@@ -1,6 +1,4 @@
-@use "sass:map";
 @use "../../01-core/prefix" as *;
-@use "./chip.config" as config;
 @use "./chip.mixins" as chip;
 @use "../../01-core/external" as *;
 
@@ -10,17 +8,14 @@
     }
 
     // Solid status colours: `.ss-c-chip--info` …
-    @each $name, $c in map.get(config.$ss-chip-config, variants) {
+    @each $name in chip.ss-chip-variant-names() {
         .#{$ss-prefix-module}-chip--#{$name} {
-            background: map.get($c, bg);
-            color: map.get($c, fg);
-            border-color: map.get($c, bg);
+            @include chip.ss-chip-variant($name);
         }
 
         // Outlined status colours: `.ss-c-chip--outline.ss-c-chip--info` …
         .#{$ss-prefix-module}-chip--outline.#{$ss-prefix-module}-chip--#{$name} {
-            background: transparent;
-            color: map.get($c, bg);
+            @include chip.ss-chip-variant-outline($name);
         }
     }
 

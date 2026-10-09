@@ -8,12 +8,20 @@
         @include toast.ss-toast-region;
     }
 
+    // Inside `ss-l-app`, `--ss-app-overlay-top` keeps the top regions
+    // below the app header.
     .#{$ss-prefix-module}-toast-region[data-position="top-right"] {
-        top: map.get(config.$ss-toast-config, region-inset);
+        top: calc(
+            var(--ss-app-overlay-top, 0px) +
+                #{map.get(config.$ss-toast-config, region-inset)}
+        );
         right: map.get(config.$ss-toast-config, region-inset);
     }
     .#{$ss-prefix-module}-toast-region[data-position="top-left"] {
-        top: map.get(config.$ss-toast-config, region-inset);
+        top: calc(
+            var(--ss-app-overlay-top, 0px) +
+                #{map.get(config.$ss-toast-config, region-inset)}
+        );
         left: map.get(config.$ss-toast-config, region-inset);
     }
     .#{$ss-prefix-module}-toast-region[data-position="bottom-right"] {
@@ -27,6 +35,21 @@
 
     .#{$ss-prefix-module}-toast {
         @include toast.ss-toast;
+    }
+
+    // Parts: `__content` (with `__title`), `__actions`, and `__close` on an
+    // `ss-c-close` button.
+    .#{$ss-prefix-module}-toast__content {
+        @include toast.ss-toast-content;
+    }
+    .#{$ss-prefix-module}-toast__title {
+        @include toast.ss-toast-title;
+    }
+    .#{$ss-prefix-module}-toast__actions {
+        @include toast.ss-toast-actions;
+    }
+    .#{$ss-prefix-module}-toast__close {
+        @include toast.ss-toast-close;
     }
 
     .#{$ss-prefix-module}-toast--debug {

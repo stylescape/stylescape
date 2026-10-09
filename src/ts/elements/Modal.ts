@@ -5,6 +5,9 @@
 // Supports data-ss-modal attributes for declarative configuration.
 // ============================================================================
 
+/** Default backdrop class; styled by the modal module. */
+export const MODAL_BACKDROP_CLASS = "ss-c-modal-backdrop";
+
 /**
  * Configuration options for Modal
  */
@@ -17,7 +20,7 @@ export interface ModalOptions {
     animationDuration?: number;
     /** CSS class for open state */
     openClass?: string;
-    /** CSS class for backdrop */
+    /** CSS class for the backdrop element (default `ss-c-modal-backdrop`) */
     backdropClass?: string;
     /** Trap focus within modal */
     trapFocus?: boolean;
@@ -89,7 +92,7 @@ export class Modal {
             closeOnEscape: options.closeOnEscape ?? true,
             animationDuration: options.animationDuration ?? 300,
             openClass: options.openClass ?? "modal--open",
-            backdropClass: options.backdropClass ?? "modal-backdrop",
+            backdropClass: options.backdropClass ?? MODAL_BACKDROP_CLASS,
             trapFocus: options.trapFocus ?? true,
             focusElement: options.focusElement ?? "",
             returnFocus: options.returnFocus ?? true,
@@ -215,7 +218,7 @@ export class Modal {
      */
     public setContent(html: string): void {
         const content = this.element?.querySelector(
-            "[data-ss-modal-content], .modal-content",
+            "[data-ss-modal-content], .ss-c-modal-content, .modal-content",
         );
         if (content) {
             content.innerHTML = html;
@@ -234,6 +237,7 @@ export class Modal {
             .forEach((button) => {
                 button.removeEventListener("click", this.handleCloseClick);
             });
+        this.element?.removeEventListener("click", this.handleContainerClick);
         this.element = null;
     }
 
@@ -294,7 +298,10 @@ export class Modal {
         if (!this.element) return;
 
         // Set up ARIA attributes
-        this.element.setAttribute("role", "dialog");
+        // Keep an explicit role (`alertdialog`).
+        if (!this.element.hasAttribute("role")) {
+            this.element.setAttribute("role", "dialog");
+        }
         this.element.setAttribute("aria-modal", "true");
         this.element.setAttribute("aria-hidden", "true");
         this.element.hidden = true;
@@ -305,6 +312,10 @@ export class Modal {
             .forEach((button) => {
                 button.addEventListener("click", this.handleCloseClick);
             });
+
+        // `ss-c-modal` is a full-screen container above the backdrop, so a
+        // click outside the content lands on the container itself.
+        this.element.addEventListener("click", this.handleContainerClick);
     }
 
     private createBackdrop(): void {
@@ -400,6 +411,12 @@ export class Modal {
 
     private handleCloseClick = (): void => {
         this.close();
+    };
+
+    private handleContainerClick = (event: MouseEvent): void => {
+        if (this.options.closeOnBackdrop && event.target === this.element) {
+            this.close();
+        }
     };
 }
 

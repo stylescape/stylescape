@@ -5,6 +5,7 @@
 @use "sass:map";
 @use "./card.config" as config;
 @use "../../01-core/external" as *;
+@use "../../01-core/prefix" as *;
 
 // @mixin c-card-base {
 //   $cfg: config.$ss-card-config;
@@ -257,6 +258,12 @@
     font-family: var(--ss-font-family-mono, monospace);
     font-size: var(--ss-font-size-xs);
     line-height: 1.4;
+
+    // A tag that only wraps a badge lets the badge draw the frame.
+    &:has(> .#{$ss-prefix-module}-badge:only-child) {
+        padding: 0;
+        border: 0;
+    }
 }
 
 // The card's main link; its ::after covers the whole card so every part is

@@ -1,6 +1,4 @@
 @use "../../01-core/prefix" as *;
-@use "sass:map";
-@use "./accordion.config" as config;
 @use "./accordion.mixins" as accordion;
 
 @layer ss.components {
@@ -61,11 +59,11 @@
 
     // ---- Variants -------------------------------------------------------------
     .#{$ss-prefix-module}-accordion--bordered {
-        border-color: map.get(config.$ss-accordion-config, bordered-color);
+        @include accordion.ss-accordion-bordered;
     }
 
     .#{$ss-prefix-module}-accordion--filled {
-        background: map.get(config.$ss-accordion-config, filled-bg);
+        @include accordion.ss-accordion-filled;
     }
 
     // ---- Groups: items share the group's frame ---------------------------------
@@ -74,7 +72,7 @@
         border-radius: 0;
 
         & + .#{$ss-prefix-module}-accordion {
-            border-top: map.get(config.$ss-accordion-config, border);
+            @include accordion.ss-accordion-group-divider;
         }
     }
 

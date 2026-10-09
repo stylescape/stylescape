@@ -14,6 +14,88 @@ Target: `v1.0.0` — cross-repo alignment with
 [SSX v1.0](https://github.com/stylescape/ssx) and
 [Semiosys v1.0](https://github.com/stylescape/semiosys).
 
+### Added
+
+- `ss-l-app--scroll`: an app shell where the whole document scrolls (long
+  pages, scroll-driven players). The header sticks to the top and sidebars
+  stick below it; below `md` an open sidebar is a fixed overlay under the
+  header.
+- `ss-l-viewport-grid--3x2`, `--2x3` (six cells), `--1-4` and `--1-4-side`
+  (one large view and four small ones).
+- `ss-c-status-dot--unknown`: a hollow ring for "unknown / not checked yet",
+  distinct from `--muted`.
+- Native `<dialog class="ss-c-modal">` opened with `showModal()` is a
+  full-screen container without the browser frame, and its `::backdrop` dims
+  the page. `ss-c-modal--backdrop` lets a non-dialog container dim the page
+  itself instead of needing a separate `ss-c-modal-backdrop` element.
+- `--ss-app-overlay-top`: the app header height inside a full-viewport
+  `ss-l-app` with a header, 0 elsewhere.
+- Toast parts: `ss-c-toast__content` (takes the free width), `__title`,
+  `__actions` (button row) and `__close` (on an `ss-c-close` button: toast
+  colour, at the end).
+- Accordion, chip, choice and divider mixins for what their output files
+  used to read from config directly: `ss-accordion-bordered`, `-filled`,
+  `-group-divider`, `ss-chip-variant()`, `ss-chip-variant-outline()`,
+  `ss-chip-variant-names()`, `ss-choice-sibling`, `ss-divider-thin`,
+  `-thick`, `-vertical-thin` and `-vertical-thick`. The CSS is unchanged.
+
+### Changed
+
+- Top toast regions (`ss-c-toast-region[data-position^="top"]`) and
+  `ss-c-messages--toast` start below the app header inside `ss-l-app`
+  (`--ss-app-overlay-top`); they used to cover the header controls.
+- `ss-c-form__field--inline` shows the box first whatever the markup order,
+  and help text and errors wrap onto their own rows below (they used to sit
+  in the row, reversed). The `ss-c-form` macro's inline fields benefit as is.
+- Zero-class Django form styling no longer treats a wrapper carrying an
+  `ss-l-`, `ss-f-` or `ss-c-` class as a field, so a hand-built
+  `ss-l-grid` (or other layout) inside `ss-c-form` keeps its own display.
+- `ss-c-search-bar` styles a bare `type="search"`/`"text"` input directly
+  inside it like `__input`, so the magnifier no longer overlaps the text
+  when the class is missing.
+- The modal and toast demo pages use the module classes only: a native
+  `<dialog>`, `data-ss="modal"` modals (basic, sizes, confirmation, form)
+  and toasts with title, actions, close button and a live region. They
+  used inline styles and classes that do not exist (`ss-c-modal__container`,
+  `ss-c-toast-container`, …).
+- `npm run lint:ssx` has no errors left. The abbreviation tooltip no longer
+  repeats the bubble's position, z-index, background, radius and shadow in
+  `ss.typography` (`24-appearance/_relocated-surfaces.scss` already paints
+  them in `ss.appearance`; computed styles are unchanged). Nine
+  `cross-component` findings are baselined as false positives: the linter
+  reads the underscore part names `accordion_group`, `graphic_no-margins`,
+  `spacer_divider` and `toggle_button_group` as separate components, and
+  `ss-c-error`/`ss-c-success` on `ss-c-select` are 0.3 state classes.
+  Renaming those parts is a separate naming decision.
+- Documented that `ss-u-gap-N` is N px (`q(N)`, so `gap-8` is 0.5rem), unlike
+  `ss-u-p-N`/`ss-u-m-N`, which follow `--ss-spacing-N`. The 0.4 migration
+  guide said "4 px steps".
+
+### Fixed
+
+- Ghost and outline buttons, `ss-c-theme-toggle` and `ss-c-nav__link` on a
+  ribbon follow the ribbon foreground. They painted with the page text
+  colour, which is the ribbon background, so they were invisible on it.
+- `ss-c-description-list--divided` without `--inline` (stacked) drew a rule
+  under both term and value and pushed the value to the end edge; it now
+  draws one rule per pair with the value under its term. `--inline
+  --divided` is unchanged.
+- An `ss-c-card__tag` that only wraps an `ss-c-badge` drew two frames; the
+  badge now draws the only one.
+- `Modal` (`data-ss="modal"`): the backdrop it adds had the unstyled class
+  `modal-backdrop`, and `ss-c-modal` covers the backdrop, so the page was not
+  dimmed and a click outside the content never closed the modal. The default
+  `backdropClass` is now `ss-c-modal-backdrop` (exported as
+  `MODAL_BACKDROP_CLASS`; pass `backdropClass` to keep the old one), a click
+  on the container outside the content closes it when `closeOnBackdrop` is
+  on, and an explicit `role` (`alertdialog`) is no longer overwritten with
+  `dialog`.
+
+## [0.5.1] - 2026-10-09
+
+Republish of 0.5.0 without changes: the 0.5.0 tag's publish build failed, so
+0.5.0 never reached npm. 0.5.1 is the first 0.5 release on npm.
+
 ## [0.5.0] - 2026-10-08
 
 Stylescape as the single theme for the sturnia and sturnus demos: app and tool

@@ -119,10 +119,21 @@
     }
 }
 
-/// Single checkbox field: box first, label after, on one line.
+/// Single checkbox field: box first, label after, on one line, whichever
+/// comes first in the markup. Help text and errors wrap onto their own
+/// rows below.
 @mixin ss-form-field-inline {
-    flex-direction: row-reverse;
-    justify-content: flex-end;
+    flex-flow: row wrap;
+    justify-content: flex-start;
     align-items: center;
-    gap: map.get(config.$ss-form-config, choice-gap);
+    column-gap: map.get(config.$ss-form-config, choice-gap);
+    row-gap: map.get(config.$ss-form-config, field-gap);
+
+    > input:is([type="checkbox"], [type="radio"]) {
+        order: -1;
+    }
+
+    > :not(label, input) {
+        flex-basis: 100%;
+    }
 }

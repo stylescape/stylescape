@@ -51,7 +51,7 @@ everything that was never a 0.3 rule (`.hover`, `.icon`, bare `.accent`).
 | `flex--wrap` | `ss-u-flex-wrap` |
 | `align--start/center/end` | `ss-u-items-start/center/end` |
 | `justify--start/center/end/between` | `ss-u-justify-start/center/end/between` |
-| `gap--0N` (N × 5 px) | `ss-u-gap-*` (4 px steps) or `ss-f-cluster-xs…xl` |
+| `gap--0N` (N × 5 px) | `ss-u-gap-N` (N px, `q(N)`; not the `--ss-spacing-*` scale of `ss-u-p-N`) or `ss-f-cluster-xs…xl` |
 | `margin--N_side`, `padding--N_side` (N px) | `ss-u-m*-*` / `ss-u-p*-*` (4 px steps) |
 | `aspect_ratio--16x9` | `ss-u-ratio ss-u-ratio-16x9` |
 | `visually-hidden` | `ss-u-visually-hidden` |

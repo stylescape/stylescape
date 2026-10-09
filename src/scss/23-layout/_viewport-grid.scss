@@ -13,8 +13,10 @@
 ///     </div>
 ///
 /// Layouts: default (1), `--2h` (side by side), `--2v` (stacked), `--2x2`,
-/// `--1-3` (one large view over / beside three small ones: the first cell
-/// is the large one). Below `md`, every layout stacks into one column.
+/// `--3x2` and `--2x3` (six cells, columns × rows), and `--1-3` / `--1-4`
+/// with their `-side` forms (one large view over / beside three or four
+/// small ones: the first cell is the large one). Below `md`, every layout
+/// stacks into one column.
 ///
 /// Tokens: `--ss-viewport-grid-gap` (default 1 px hairline, so the cells
 /// read as one surface), `--ss-viewport-grid-min` (minimum cell height
@@ -100,6 +102,37 @@
     .#{$ss-prefix-layout}-viewport-grid--1-3-side {
         grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
         grid-template-rows: repeat(3, minmax(0, 1fr));
+
+        > :first-child {
+            grid-row: 1 / -1;
+        }
+    }
+
+    // Six cells: three columns by two rows, or two columns by three rows.
+    .#{$ss-prefix-layout}-viewport-grid--3x2 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+    }
+
+    .#{$ss-prefix-layout}-viewport-grid--2x3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(3, minmax(0, 1fr));
+    }
+
+    // One main view on top, four small ones in a row below.
+    .#{$ss-prefix-layout}-viewport-grid--1-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-rows: minmax(0, 2fr) minmax(0, 1fr);
+
+        > :first-child {
+            grid-column: 1 / -1;
+        }
+    }
+
+    // One main view on the left, four small ones stacked on the right.
+    .#{$ss-prefix-layout}-viewport-grid--1-4-side {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+        grid-template-rows: repeat(4, minmax(0, 1fr));
 
         > :first-child {
             grid-row: 1 / -1;

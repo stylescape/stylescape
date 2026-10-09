@@ -24,3 +24,25 @@
 @mixin ss-chip-removable {
     cursor: default;
 }
+
+/// Names of the status variants in `$ss-chip-config` (`variants`).
+@function ss-chip-variant-names() {
+    @return map.keys(map.get(config.$ss-chip-config, variants));
+}
+
+/// Solid status colour.
+@mixin ss-chip-variant($name) {
+    $c: map.get(map.get(config.$ss-chip-config, variants), $name);
+
+    background: map.get($c, bg);
+    color: map.get($c, fg);
+    border-color: map.get($c, bg);
+}
+
+/// Outlined status colour (with `--outline`).
+@mixin ss-chip-variant-outline($name) {
+    $c: map.get(map.get(config.$ss-chip-config, variants), $name);
+
+    background: transparent;
+    color: map.get($c, bg);
+}

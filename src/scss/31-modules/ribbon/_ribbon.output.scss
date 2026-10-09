@@ -72,6 +72,28 @@
             fill: currentColor;
             vertical-align: middle;
         }
+        // Controls that paint with the page text colour (ghost and outline
+        // buttons, the theme toggle, nav links) would vanish on the ribbon,
+        // whose background is that colour. They follow the ribbon foreground
+        // instead, with a translucent hover.
+        .#{$ss-prefix-module}-button--ghost,
+        .#{$ss-prefix-module}-button--outline,
+        .#{$ss-prefix-module}-theme-toggle,
+        .#{$ss-prefix-module}-nav__link {
+            color: inherit;
+            background: transparent;
+
+            &:hover {
+                color: inherit;
+                background: color-mix(in srgb, currentColor 15%, transparent);
+            }
+        }
+        .#{$ss-prefix-module}-button--outline,
+        .#{$ss-prefix-module}-theme-toggle:not(
+                .#{$ss-prefix-module}-theme-toggle--ghost
+            ) {
+            border-color: currentColor;
+        }
     }
 
     .#{$ss-prefix-module}-ribbon {

@@ -26,6 +26,15 @@
 ///   `--ss-app-sidebar-width`, `--ss-app-sidebar-left-width`,
 ///   `--ss-app-sidebar-right-width`.
 ///
+/// `--ss-app-overlay-top` is the header height when the shell has a
+/// header (else 0). Fixed overlays inside the shell (the top toast
+/// regions, `ss-c-messages--toast`) start below it, so they do not
+/// cover the header controls.
+///
+/// `--scroll`: the whole document scrolls instead of `__main` (long pages,
+/// scroll-driven players). The header sticks to the top, sidebars stick
+/// below it, and the shell is at least one viewport tall.
+///
 /// Sidebar state is `data-state` on the sidebar: none (shown on wide
 /// screens, hidden below `md`), `"open"` (shown; an overlay below `md`)
 /// or `"closed"` (hidden). `SheetManager` drives it from a button with
@@ -71,6 +80,31 @@
     // Fill a sized parent instead of the viewport (embedded demos, panels).
     .#{$ss-prefix-layout}-app--contained {
         block-size: 100%;
+    }
+
+    // Top offset for fixed overlays (toasts) inside a full-viewport shell.
+    .#{$ss-prefix-layout}-app:not(.#{$ss-prefix-layout}-app--contained):has(
+            > .#{$ss-prefix-layout}-app__header
+        ) {
+        --ss-app-overlay-top: var(--ss-app-header-height);
+    }
+
+    // Document-scrolling shell: the page scrolls, header and sidebars stick.
+    .#{$ss-prefix-layout}-app--scroll {
+        block-size: auto;
+        min-block-size: 100vh;
+        min-block-size: 100dvh;
+        overflow: visible;
+
+        > .#{$ss-prefix-layout}-app__header {
+            position: sticky;
+            inset-block-start: 0;
+            z-index: var(--ss-z-navbar, 100);
+        }
+
+        > .#{$ss-prefix-layout}-app__main {
+            overflow: visible;
+        }
     }
 
     // ------------------------------------------------------------------------
@@ -192,6 +226,16 @@
         max-inline-size: none;
     }
 
+    @include breakpoint-up("md") {
+        .#{$ss-prefix-layout}-app--scroll > .#{$ss-prefix-layout}-app__sidebar {
+            position: sticky;
+            inset-block-start: var(--ss-app-header-height);
+            align-self: start;
+            max-block-size: calc(100vh - var(--ss-app-header-height));
+            max-block-size: calc(100dvh - var(--ss-app-header-height));
+        }
+    }
+
     // ------------------------------------------------------------------------
     // Narrow viewports: sidebars overlay the main area
     // ------------------------------------------------------------------------
@@ -221,6 +265,12 @@
 
         .#{$ss-prefix-layout}-app__sidebar[data-state="open"] {
             display: block;
+        }
+
+        // In a scrolling shell the overlay stays in view below the header.
+        .#{$ss-prefix-layout}-app--scroll > .#{$ss-prefix-layout}-app__sidebar {
+            position: fixed;
+            inset-block: var(--ss-app-header-height) 0;
         }
     }
 }

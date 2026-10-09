@@ -31,6 +31,34 @@
     z-index: map.get($cfg, backdrop-z-index);
 }
 
+/// Backdrop paint for a native `<dialog>` (its `::backdrop`) or for a
+/// non-dialog container that dims the page itself (`ss-c-modal--backdrop`).
+@mixin modal-backdrop-paint {
+    $cfg: config.$ss-modal-config;
+
+    background-color: map.get($cfg, backdrop-color);
+    backdrop-filter: blur(map.get($cfg, backdrop-blur));
+}
+
+/// Native `<dialog class="ss-c-modal">` opened with `showModal()`: drop
+/// the UA frame so the dialog is the full-screen flex container and
+/// `ss-c-modal-content` is the visible box.
+@mixin modal-dialog {
+    box-sizing: border-box;
+    inline-size: 100%;
+    block-size: 100%;
+    max-inline-size: none;
+    max-block-size: none;
+    margin: 0;
+    border: 0;
+    color: inherit;
+    background: transparent;
+
+    &::backdrop {
+        @include modal-backdrop-paint;
+    }
+}
+
 /// Modal container
 @mixin modal-container {
     $cfg: config.$ss-modal-config;

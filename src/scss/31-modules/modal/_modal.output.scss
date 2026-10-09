@@ -94,7 +94,17 @@
         }
     }
 
-    // `<dialog class="ss-c-modal">` stays hidden until opened.
+    // A container without a separate `ss-c-modal-backdrop` element dims
+    // the page itself.
+    .#{$ss-prefix-module}-modal--backdrop {
+        @include mixins.modal-backdrop-paint;
+    }
+
+    // `<dialog class="ss-c-modal">`: full-screen container whose
+    // `::backdrop` dims the page; hidden until opened.
+    dialog.#{$ss-prefix-module}-modal {
+        @include mixins.modal-dialog;
+    }
     dialog.#{$ss-prefix-module}-modal:not([open]) {
         display: none;
     }

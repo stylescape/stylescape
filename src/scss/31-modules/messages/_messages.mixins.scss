@@ -22,7 +22,10 @@
 /// Floating stack of toasts in the top-right corner.
 @mixin ss-messages-toast {
     position: fixed;
-    inset-block-start: _cfg(toast-inset);
+    // Below the app header inside `ss-l-app` (`--ss-app-overlay-top`).
+    inset-block-start: calc(
+        var(--ss-app-overlay-top, 0px) + #{_cfg(toast-inset)}
+    );
     inset-inline-end: _cfg(toast-inset);
     z-index: _cfg(toast-z-index);
     gap: _cfg(gap);

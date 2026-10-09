@@ -36,12 +36,12 @@ stages:
 
       # Build JS bundle + sourcemaps (ESM) via esbuild
       # -----------------------------------------------------------------
-      # NOTE: kist's `BundleAction` (from `@getkist/action-tsup`) can't load in
-      # this workspace — the plugin package ships no built `dist/`, so kist's
-      # plugin discovery skips it and the action never registers, which aborts
-      # the whole build. We bundle directly with the `esbuild` devDependency
-      # instead; see `bin/bundle_js.mjs`. This produces `dist/js/stylescape.js`
-      # (the module the demo pages load) so the `data-ss-*` behaviour layer runs.
+      # NOTE: we bundle with the `esbuild` devDependency (`bin/bundle_js.mjs`)
+      # rather than kist's `BundleAction`, which used to fail on a plain
+      # `entry:` string ("Cannot find 0: s"). Fixed in `@getkist/action-tsup`
+      # 1.0.25 (now installed), so switching back is an option. This produces
+      # `dist/js/stylescape.js` (the module the demo pages load) so the
+      # `data-ss-*` behaviour layer runs.
       - name: BuildJS
         action: RunScriptAction
         options:

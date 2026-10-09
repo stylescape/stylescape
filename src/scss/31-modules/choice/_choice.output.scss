@@ -1,6 +1,4 @@
-@use "sass:map";
 @use "../../01-core/prefix" as *;
-@use "./choice.config" as config;
 @use "./choice.mixins" as choice;
 
 @layer ss.components {
@@ -10,6 +8,6 @@
 
     // Inline choices in a row keep apart from each other.
     .#{$ss-prefix-module}-choice + .#{$ss-prefix-module}-choice {
-        margin-inline-start: map.get(config.$ss-choice-config, sibling-gap);
+        @include choice.ss-choice-sibling;
     }
 }

@@ -54,11 +54,10 @@ stages:
 
       # Build JS bundles + sourcemaps (ESM + min + IIFE) via esbuild
       # -----------------------------------------------------------------
-      # NOTE: kist's `BundleAction` (from `@getkist/action-tsup`) can't load in
-      # this workspace — the plugin package ships no built `dist/`, so kist's
-      # plugin discovery skips it and the action never registers, which aborts
-      # the build. We bundle directly with the `esbuild` devDependency instead;
-      # see `bin/bundle_js.mjs`. `--prod` emits ESM + minified ESM + IIFE
+      # NOTE: we bundle with the `esbuild` devDependency (`bin/bundle_js.mjs`)
+      # rather than kist's `BundleAction`, which used to fail on a plain
+      # `entry:` string ("Cannot find 0: s"). Fixed in `@getkist/action-tsup`
+      # 1.0.25 (now installed), so switching back is an option. `--prod` emits ESM + minified ESM + IIFE
       # (`stylescape[.min].js`, `index[.min].js`, `stylescape.iife[.min].js`),
       # matching the four BundleAction steps this replaces.
       - name: BuildJS
@@ -74,15 +73,13 @@ stages:
       # (`./dist/js/esm/**`, e.g. `stylescape/buttons/*`) plus declarations to
       # `./dist/types` (via tsconfig's `declarationDir`).
       #
-      # NOTE: `outDir` is set inside `compilerOptions`, NOT via the top-level
-      # `outputDir` option — kist's TypeScriptCompilerAction has a bug where it
-      # assigns `outputDir` to the options object *after* the final options are
-      # already merged, so `outputDir` is silently ignored and tsc would fall
-      # back to tsconfig's `outDir: ./dist/js`. Setting it here is respected.
+      # NOTE: `outDir` is set inside `compilerOptions` rather than via the
+      # top-level `outputDir` option, which kist < 0.1.79 silently ignored.
+      # Both work from 0.1.79 on.
       - name: BuildESMModules
         action: TypeScriptCompilerAction
         options:
-          tsConfigPath: "./tsconfig.json"
+          tsconfigPath: "./tsconfig.json"
           filePaths:
             - "src/ts/index.ts"
           compilerOptions:
@@ -216,4 +213,4 @@ stages:
             - path: "./CITATION.cff"
               key: "version: "
             - path: "./VERSION"
-              key: "v"
+              key: ""  # VERSION holds a bare version
