@@ -16,3 +16,7 @@ Done on 2026-10-10 and moved to `CHANGELOG.md` (0.5.2): sidebar `--padded`, segm
 
 - Bootstrap compatibility mapping. The 54 sturnus repos on Bootstrap should migrate to a shared base template, not keep two class vocabularies.
 - Aliases for the ad-hoc variables the demos invented (`--primary`, `--gray-500`, `--spacing-md`, `--radius-sm`). Migrate the demos to `--ss-*` tokens instead.
+
+## Open from the 2026-10-10 fleet refresh
+
+- [ ] **Delete the stray remote tag `v0.5.0`.** Its publish build failed (npm 10 crash on a lockfile-free install) and nothing reached npm; 0.5.1 was released from the fixed workflow instead. Deleting a remote tag was left for the owner.
