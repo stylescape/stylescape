@@ -32,6 +32,21 @@
         bottom: map.get(config.$ss-toast-config, region-inset);
         left: map.get(config.$ss-toast-config, region-inset);
     }
+    .#{$ss-prefix-module}-toast-region[data-position="top-center"] {
+        top: calc(
+            var(--ss-app-overlay-top, 0px) +
+                #{map.get(config.$ss-toast-config, region-inset)}
+        );
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: center;
+    }
+    .#{$ss-prefix-module}-toast-region[data-position="bottom-center"] {
+        bottom: map.get(config.$ss-toast-config, region-inset);
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: center;
+    }
 
     .#{$ss-prefix-module}-toast {
         @include toast.ss-toast;
@@ -50,6 +65,27 @@
     }
     .#{$ss-prefix-module}-toast__close {
         @include toast.ss-toast-close;
+    }
+    // Built by `NotificationManager`: leading icon, message line, action
+    // button, progress bar, and the states around adding and removing it.
+    .#{$ss-prefix-module}-toast__icon {
+        @include toast.ss-toast-icon;
+    }
+    .#{$ss-prefix-module}-toast__message {
+        @include toast.ss-toast-message;
+    }
+    .#{$ss-prefix-module}-toast__action {
+        @include toast.ss-toast-action;
+    }
+    .#{$ss-prefix-module}-toast__progress {
+        @include toast.ss-toast-progress;
+    }
+    .#{$ss-prefix-module}-toast__progress-bar {
+        @include toast.ss-toast-progress-bar;
+    }
+    .#{$ss-prefix-module}-toast[data-state="entering"],
+    .#{$ss-prefix-module}-toast[data-state="leaving"] {
+        @include toast.ss-toast-transient;
     }
 
     .#{$ss-prefix-module}-toast--debug {

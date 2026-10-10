@@ -17,6 +17,8 @@
 
 @mixin ss-toast {
     pointer-events: auto;
+    position: relative;
+    overflow: hidden;
 
     display: flex;
     align-items: flex-start;
@@ -30,6 +32,21 @@
     color: map.get(config.$ss-toast-config, fg);
     border-radius: map.get(config.$ss-toast-config, radius);
     box-shadow: map.get(config.$ss-toast-config, shadow);
+
+    // Fades and slides when `NotificationManager` adds and removes it.
+    transition:
+        opacity map.get(config.$ss-toast-config, duration) var(--ss-ease-in-out),
+        transform map.get(config.$ss-toast-config, duration) var(--ss-ease-in-out);
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+/// Entering (first frame) and leaving: transparent and nudged sideways.
+@mixin ss-toast-transient {
+    opacity: 0;
+    transform: translateY(map.get(config.$ss-toast-config, gap));
 }
 
 @mixin ss-toast-variant($variant) {
@@ -64,4 +81,51 @@
     flex: none;
     margin-inline-start: auto;
     color: inherit;
+}
+
+/// Leading glyph (check, cross, !, i): fixed width, aligned with the title.
+@mixin ss-toast-icon {
+    flex: none;
+    font-weight: var(--ss-font-weight-semibold, 600);
+    line-height: inherit;
+}
+
+/// Message text under the title.
+@mixin ss-toast-message {
+    display: block;
+}
+
+/// Action button: toast colour, outlined, square.
+@mixin ss-toast-action {
+    padding: q(2) q(10);
+    background: transparent;
+    color: inherit;
+    border: q(1) solid currentColor;
+    border-radius: 0;
+    font: inherit;
+    cursor: pointer;
+
+    &:hover {
+        background: color-mix(in srgb, currentColor 15%, transparent);
+    }
+    &:focus-visible {
+        outline: var(--ss-focus-ring-width, #{q(2)}) solid currentColor;
+        outline-offset: var(--ss-focus-ring-offset, #{q(2)});
+    }
+}
+
+/// Time-left bar along the bottom edge; the manager animates the bar's width.
+@mixin ss-toast-progress {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    block-size: q(3);
+    background: color-mix(in srgb, currentColor 20%, transparent);
+}
+
+@mixin ss-toast-progress-bar {
+    inline-size: 100%;
+    block-size: 100%;
+    background: currentColor;
+    opacity: 0.6;
 }

@@ -2,7 +2,10 @@
 // Stylescape | Notification Manager
 // ============================================================================
 // Toast notifications and alerts with stacking, positioning, and animations.
-// Supports data-ss-notification attributes for declarative configuration.
+// Renders the `ss-c-toast` component (parts `__content`, `__title`,
+// `__message`, `__actions`, `__action`, `__close`, `__progress`) inside an
+// `ss-c-toast-region`. Supports data-ss-notification attributes for
+// declarative configuration.
 // ============================================================================
 
 /**
@@ -57,8 +60,10 @@ export interface NotificationManagerOptions {
     position?: NotificationPosition;
     /** Max visible notifications */
     maxNotifications?: number;
-    /** CSS class prefix */
+    /** Class of each notification (the `ss-c-toast` component) */
     cssClass?: string;
+    /** Class of the container (the `ss-c-toast-region` component) */
+    containerClass?: string;
     /** Animation duration */
     animationDuration?: number;
     /** Default duration for notifications */
@@ -96,6 +101,23 @@ interface NotificationInstance {
  * })
  * ```
  *
+ * Markup it builds (see `ss-c-toast` in the Toasts demo):
+ *
+ * ```html
+ * <div class="ss-c-toast-region" data-position="top-right">
+ *   <div class="ss-c-toast ss-c-toast--success" role="alert">
+ *     <span class="ss-c-toast__icon">✓</span>
+ *     <div class="ss-c-toast__content">
+ *       <div class="ss-c-toast__title">…</div>
+ *       <div class="ss-c-toast__message">…</div>
+ *       <div class="ss-c-toast__actions">…</div>
+ *     </div>
+ *     <button class="ss-c-close ss-c-toast__close" aria-label="Close"></button>
+ *     <div class="ss-c-toast__progress"><div class="ss-c-toast__progress-bar"></div></div>
+ *   </div>
+ * </div>
+ * ```
+ *
  * @example HTML with data-ss (container)
  * ```html
  * <div data-ss="notification-container"
@@ -114,7 +136,8 @@ export class NotificationManager {
         this.options = {
             position: options.position ?? "top-right",
             maxNotifications: options.maxNotifications ?? 5,
-            cssClass: options.cssClass ?? "ss-notification",
+            cssClass: options.cssClass ?? "ss-c-toast",
+            containerClass: options.containerClass ?? "ss-c-toast-region",
             animationDuration: options.animationDuration ?? 300,
             defaultDuration: options.defaultDuration ?? 4000,
             newestOnTop: options.newestOnTop ?? true,
@@ -218,7 +241,9 @@ export class NotificationManager {
 
         // Trigger animation
         requestAnimationFrame(() => {
-            element.classList.add(`${this.options.cssClass}--visible`);
+            if (element.getAttribute("data-state") === "entering") {
+                element.removeAttribute("data-state");
+            }
         });
 
         // Auto-dismiss
@@ -242,8 +267,7 @@ export class NotificationManager {
         }
 
         // Animate out
-        instance.element.classList.remove(`${this.options.cssClass}--visible`);
-        instance.element.classList.add(`${this.options.cssClass}--removing`);
+        instance.element.setAttribute("data-state", "leaving");
 
         setTimeout(() => {
             instance.element.remove();
@@ -316,18 +340,18 @@ export class NotificationManager {
     private createContainer(): void {
         // Check for existing container
         this.container = document.querySelector<HTMLElement>(
-            `[data-ss="notification-container"], .${this.options.cssClass}-container`,
+            `[data-ss="notification-container"], .${this.options.containerClass}`,
         );
 
         if (!this.container) {
             this.container = document.createElement("div");
-            this.container.className = `${this.options.cssClass}-container`;
+            this.container.className = this.options.containerClass;
             document.body.appendChild(this.container);
+        } else {
+            this.container.classList.add(this.options.containerClass);
         }
 
-        this.container.classList.add(
-            `${this.options.cssClass}-container--${this.options.position}`,
-        );
+        this.container.dataset.position = this.options.position;
         this.container.setAttribute("role", "region");
         this.container.setAttribute("aria-label", "Notifications");
         this.container.setAttribute("aria-live", "polite");
@@ -338,7 +362,10 @@ export class NotificationManager {
         options: NotificationOptions,
     ): HTMLElement {
         const el = document.createElement("div");
+        // Born with `data-state="entering"`; the next frame removes it so the
+        // toast fades in. `data-state="leaving"` fades it out.
         el.className = `${this.options.cssClass} ${this.options.cssClass}--${options.type || "info"}`;
+        el.setAttribute("data-state", "entering");
         if (options.className) {
             el.classList.add(options.className);
         }
@@ -356,15 +383,15 @@ export class NotificationManager {
             ? `<div class="${this.options.cssClass}__title">${options.title}</div>`
             : "";
 
-        // Action button
+        // Action button, in the actions row under the message
         const actionHtml = options.actionText
-            ? `<button type="button" class="${this.options.cssClass}__action">${options.actionText}</button>`
+            ? `<div class="${this.options.cssClass}__actions"><button type="button" class="${this.options.cssClass}__action">${options.actionText}</button></div>`
             : "";
 
-        // Close button
+        // Close button: an `ss-c-close` (the glyph is a CSS mask, so no text)
         const closeHtml =
             options.closable !== false
-                ? `<button type="button" class="${this.options.cssClass}__close" aria-label="Close">&times;</button>`
+                ? `<button type="button" class="ss-c-close ${this.options.cssClass}__close" aria-label="Close"></button>`
                 : "";
 
         // Progress bar
@@ -422,10 +449,10 @@ export class NotificationManager {
 
     private getDefaultIcon(type: NotificationType): string {
         const icons: Record<NotificationType, string> = {
-            success: `<span class="${this.options.cssClass}__icon">✓</span>`,
-            error: `<span class="${this.options.cssClass}__icon">✕</span>`,
-            warning: `<span class="${this.options.cssClass}__icon">⚠</span>`,
-            info: `<span class="${this.options.cssClass}__icon">ℹ</span>`,
+            success: `<span class="${this.options.cssClass}__icon" aria-hidden="true">✓</span>`,
+            error: `<span class="${this.options.cssClass}__icon" aria-hidden="true">✕</span>`,
+            warning: `<span class="${this.options.cssClass}__icon" aria-hidden="true">!</span>`,
+            info: `<span class="${this.options.cssClass}__icon" aria-hidden="true">i</span>`,
         };
         return icons[type];
     }

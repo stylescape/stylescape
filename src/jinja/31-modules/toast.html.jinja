@@ -130,6 +130,37 @@ title }}{%- endblock %} {%- block content %}
             })();
         </script>
     </section>
+
+    {% set section_title = "NotificationManager parts" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            <code>NotificationManager</code> builds this markup: a region with
+            <code>data-position</code> (also <code>top-center</code> and
+            <code>bottom-center</code>), and toasts with an
+            <code>__icon</code>, a <code>__content</code> holding
+            <code>__title</code>, <code>__message</code> and
+            <code>__actions</code> (with <code>__action</code> buttons), a
+            <code>__close</code> and an optional <code>__progress</code> bar.
+            <code>data-state="entering"</code> and <code>"leaving"</code> fade a
+            toast in and out.
+        </p>
+        {% set code_snippet %}
+        <div class="ss-c-toast ss-c-toast--info" role="alert">
+            <span class="ss-c-toast__icon" aria-hidden="true">i</span>
+            <div class="ss-c-toast__content">
+                <div class="ss-c-toast__title">Update available</div>
+                <div class="ss-c-toast__message">Version 0.5.2 is ready.</div>
+                <div class="ss-c-toast__actions">
+                    <button type="button" class="ss-c-toast__action">Update now</button>
+                </div>
+            </div>
+            <button type="button" class="ss-c-close ss-c-toast__close" aria-label="Close"></button>
+            <div class="ss-c-toast__progress"><div class="ss-c-toast__progress-bar" style="width: 60%"></div></div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
 </section>
 
 {%- endblock content %}
