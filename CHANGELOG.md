@@ -14,6 +14,8 @@ Target: `v1.0.0` — cross-repo alignment with
 [SSX v1.0](https://github.com/stylescape/ssx) and
 [Semiosys v1.0](https://github.com/stylescape/semiosys).
 
+## [0.5.2] - 2026-10-10
+
 ### Added
 
 - `ss-l-app--scroll`: an app shell where the whole document scrolls (long
@@ -133,6 +135,15 @@ Target: `v1.0.0` — cross-repo alignment with
 - Documented that `ss-u-gap-N` is N px (`q(N)`, so `gap-8` is 0.5rem), unlike
   `ss-u-p-N`/`ss-u-m-N`, which follow `--ss-spacing-N`. The 0.4 migration
   guide said "4 px steps".
+- Depends on `unit.gl ^0.3.6` (was `^0.3.5`). `hue.gl` stays `^0.1.2`:
+  hue.gl 0.2.0 is tagged but did not reach npm.
+- `ssx-baseline.json`: the three `cross-component` errors in
+  `_ribbon.output.scss` are baselined. The ribbon recolours ghost/outline
+  buttons, the theme toggle and nav links on purpose (see Fixed: they were
+  invisible on the ribbon); a token-scoped alternative (the ribbon redefining
+  the text and surface tokens for its subtree) would need a visual check of
+  every ribbon variant first. `npm run lint:ssx` reports 0 errors; the 330
+  unbaselined warnings were already there with the committed ssx.
 
 ### Fixed
 
@@ -153,6 +164,22 @@ Target: `v1.0.0` — cross-repo alignment with
   on the container outside the content closes it when `closeOnBackdrop` is
   on, and an explicit `role` (`alertdialog`) is no longer overwritten with
   `dialog`.
+- `pkg:stylescape/scss/01-core` can be imported on its own. unit.gl (through
+  `external`) and stylescape's own `functions` both define `px-to-rem`,
+  `rem-to-px`, `px-to-em`, `modular-scale`, `round-to` and `sum`, so
+  forwarding both failed with "Two forwarded modules both define a function".
+  The core index now hides unit.gl's six (stylescape's modules use their own,
+  which also take unitless input; unit.gl's stay available through
+  `pkg:unit.gl/functions`). Covered by `tst/styles/scss-compile.test.ts`.
+- Footer text is readable in light mode. The compat shims hardcoded white
+  text (`.ss-c-footer`, `.ss-c-footer-brand-name`, `.ss-c-footer-legal a`)
+  and grey links on parts the footer module does not style, while the module
+  themes the footer background (light grey in light mode), giving 1.2:1. The
+  root shim now leaves colours to the footer module, brand name and legal
+  links inherit the footer text colour (still white inside a site's own dark
+  `.ss-c-site-footer`), and the scape_group/phytosync link and copyright
+  greys read `--ss-color-text-secondary` / `--ss-color-text-primary`. The
+  decisions live in `SITE_DECISIONS` in `bin/gen_scapepress_parity.py`.
 
 ## [0.5.1] - 2026-10-09
 
@@ -619,6 +646,7 @@ per-version detail.
 
 Pre-alignment baseline — see git history for per-commit detail.
 
-[Unreleased]: https://github.com/stylescape/stylescape/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/stylescape/stylescape/compare/v0.5.2...HEAD
+[0.5.2]: https://github.com/stylescape/stylescape/compare/v0.5.1...v0.5.2
 [0.4.0]: https://github.com/stylescape/stylescape/compare/v0.3.18...v0.4.0
 [0.3.11]: https://github.com/stylescape/stylescape/releases/tag/v0.3.11
