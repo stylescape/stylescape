@@ -53,6 +53,15 @@ shell. `src/jinja/pages/gallery.html.jinja` is a working landing page to copy.
   files instead, or `STYLESCAPE_CSS_URL` / `STYLESCAPE_JS_URL` to point
   anywhere.
 
+Stylescape's own Jinja layer (`src/templates/stylescape/`: `base.html.jinja`,
+the auth, list, detail and form pages and the macros) was checked inside the
+`sturnus.context` Jinja2 backend on 2026-10-10: every template renders with
+real Django forms and the auth URLs
+(`tst/cases/sturnus/demo/test_stylescape_templates.py` in `sturnus-demo`). The
+demo shell stays separate on purpose: `stylescape/base.html.jinja` has a plain
+`ss-l-app__header`, while the demo shell uses the stylescape ribbon header. Use
+the stylescape layer for application pages and the demo shell for demos.
+
 A demo's `demo_app/base.html.jinja` extends `sturnus/demo/base.html.jinja` and
 fills `title`, `brand`, `nav` and `footer`; `sturnus-webhooks` is the
 reference. Projects outside the demos can instead point a Jinja2 loader at the

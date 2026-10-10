@@ -38,6 +38,38 @@ Target: `v1.0.0` — cross-repo alignment with
   `-group-divider`, `ss-chip-variant()`, `ss-chip-variant-outline()`,
   `ss-chip-variant-names()`, `ss-choice-sibling`, `ss-divider-thin`,
   `-thick`, `-vertical-thin` and `-vertical-thick`. The CSS is unchanged.
+- `ss-l-app__sidebar--padded`: opt-in inner padding (`--ss-space-4`) for a
+  sidebar. **Decision:** a modifier, not a default. The base sidebar stays
+  unpadded because sidebars that already set their own padding (every demo
+  so far) would otherwise double it.
+- `ss-c-segmented__link`: a link variant for navigation
+  (`<nav class="ss-c-segmented"><a class="ss-c-segmented__link"
+  aria-current="page">`). The current link takes the selected fill and weight;
+  links keep the segment colour and are not underlined (black links, square
+  corners). **Decision:** only the link variant; no separate solid badge, as
+  the default `ss-c-badge` is already solid `--ss-color-foreground`.
+- Toast parts for what `NotificationManager` builds: `__icon`, `__message`,
+  `__action`, `__progress` and `__progress-bar`; `data-state="entering"` and
+  `"leaving"` fade a toast in and out; regions also take
+  `data-position="top-center"` and `"bottom-center"`.
+- BEM parts for the four underscore names: `ss-c-accordion__group`
+  (`--flush`), `ss-c-toggle__button-group`, `ss-c-toggle__button`
+  (`--active`), `ss-c-spacer--divider` and `ss-c-graphic--no-margins`
+  (existing). **Decision:** rename to BEM with compat aliases, so SSX
+  conformance covers them. The old names (`ss-c-accordion_group`,
+  `ss-c-toggle_button(_group)`, `ss-c-spacer_divider`,
+  `ss-c-graphic_no-margins`, and `ss-c-error`/`ss-c-success` on `ss-c-select`)
+  still work as aliases in `_legacy-components-compat.scss` (`ss.compat`),
+  built from the same mixins. Prefer `is-invalid`/`is-valid` or
+  `aria-invalid` on selects.
+- `ss-c-map` note and an OpenLayers recipe in the map demo: only Leaflet and
+  MapLibre/Mapbox chrome is themed (OpenLayers, Google Maps and ArcGIS draw
+  their own controls). **Decision:** document, not extend.
+- `tst/styles/scss-compile.test.ts` compiles the whole entry and asserts the
+  selectors above, the compat aliases and the token-only shims.
+- `doc/migration-0.4.md`: a table of 0.3 Sass import paths and their 0.4
+  replacements, and the plan for the one app still on 0.3 paths
+  (kodw-buurtbasis, migrates to 0.4 through the VORM theme rollout; no 0.3.19).
 
 ### Changed
 
@@ -58,6 +90,37 @@ Target: `v1.0.0` — cross-repo alignment with
   and toasts with title, actions, close button and a live region. They
   used inline styles and classes that do not exist (`ss-c-modal__container`,
   `ss-c-toast-container`, …).
+- **`NotificationManager` renders `ss-c-toast`.** The container is an
+  `ss-c-toast-region` with `data-position` (no more
+  `ss-notification-container--*`), each notification an `ss-c-toast` with
+  `__icon`, `__content` (`__title`, `__message`, `__actions` > `__action`),
+  an `ss-c-close ss-c-toast__close` button and an optional `__progress`. The
+  `ss-notification*` classes no module styled are gone; `cssClass` defaults to
+  `ss-c-toast` and the new `containerClass` to `ss-c-toast-region`. The
+  warning and info glyphs are `!` and `i` (the old ones could render as
+  emoji). Toasts also take `position: relative`, `overflow: hidden` and a
+  short fade.
+- **Compat shims read tokens.** `ss-c-cta`, `ss-c-blockquote`,
+  `ss-c-timeline` (+ `-marker`), `ss-c-stat-card`, the lovelacelabs
+  `timeline-*`/`legend-item` set and `ss-c-prose` use `--ss-color-*` and
+  `--ss-space-*` instead of palette hex and the 0.3 green accent; corners are
+  square. Light-theme looks are kept (the shim accent was black, so the stat
+  value and timeline marker use `--ss-color-text`). `ss-c-prose` no longer
+  resets h2/h3 sizes, margins, list padding and code font to `unset` (a
+  harvest artefact): headings follow the typography layer and the rhythm uses
+  spacing tokens. `ss-c-hero` takes `min-height: 100svh` instead of `100vh`.
+  The decisions live in `bin/gen_scapepress_parity.py` (`SITE_DECISIONS`) and
+  re-apply with `--postprocess-only`. Several hundred literal colours remain in the
+  other generated shims and in `_legacy-components-compat.scss`.
+- `ssx-baseline.json`: the five `cross-component` errors for the underscore
+  part names are gone (renamed, see Added); `ss.compat` shims now count
+  `!important` (76 baselined).
+- SSX layer `ss.compat` (ssx repo): the three compat shims are now judged as
+  shims (below `ss.components`, exempt from raw-colour and prefix-mismatch
+  rules) instead of with no layer rules at all.
+- `.config-templates/eslint.config.js` imports `eslint-plugin-import-x` like
+  the repo config. The template is fleet-synced, so the same change is needed
+  in the `@starling-cloud/agents` control plane.
 - `npm run lint:ssx` has no errors left. The abbreviation tooltip no longer
   repeats the bubble's position, z-index, background, radius and shadow in
   `ss.typography` (`24-appearance/_relocated-surfaces.scss` already paints
@@ -65,8 +128,8 @@ Target: `v1.0.0` — cross-repo alignment with
   `cross-component` findings are baselined as false positives: the linter
   reads the underscore part names `accordion_group`, `graphic_no-margins`,
   `spacer_divider` and `toggle_button_group` as separate components, and
-  `ss-c-error`/`ss-c-success` on `ss-c-select` are 0.3 state classes.
-  Renaming those parts is a separate naming decision.
+  `ss-c-error`/`ss-c-success` on `ss-c-select` are 0.3 state classes (since
+  renamed to BEM parts with compat aliases, see above).
 - Documented that `ss-u-gap-N` is N px (`q(N)`, so `gap-8` is 0.5rem), unlike
   `ss-u-p-N`/`ss-u-m-N`, which follow `--ss-spacing-N`. The 0.4 migration
   guide said "4 px steps".

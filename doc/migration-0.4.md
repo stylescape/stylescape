@@ -29,6 +29,31 @@ Not covered (no 0.4 equivalent, or app-specific): `.page`, `.toc`,
 `.figcaption--title`, `.canvas_gradient`, icon font classes (`.i_*`) and
 everything that was never a 0.3 rule (`.hover`, `.icon`, bare `.accent`).
 
+## Sass import paths
+
+0.4 reorganised `src/scss` into numbered layer folders, so the 0.3 import
+paths are gone. Import the whole package, or one layer:
+
+| 0.3 import | 0.4 |
+| --- | --- |
+| `pkg:stylescape/scss/index.scss` | `pkg:stylescape/scss` (the package export is `./scss`; the `/index.scss` form does not resolve) |
+| `pkg:stylescape/scss/variables` | CSS custom properties in `pkg:stylescape/scss/12-lexicon` (`--ss-*`), or unit.gl's Sass variables from `pkg:unit.gl/variables` |
+| `pkg:stylescape/scss/mixins/head_frame/frame_base` | the `ss-l-frame` layout (`pkg:stylescape/scss/23-layout`), or `ss-l-app` for an app shell |
+| `pkg:stylescape/scss/dev` | development helpers live in `91-development` and are loaded by tooling only; a downstream app does not import them |
+
+The layer folders `11-reset`, `12-lexicon`, `31-modules` and `32-utilities`
+import on their own (checked against unit.gl 0.3.5 and hue.gl 0.1.2); the
+`./scss/*` export maps `scss/<folder>` to `src/scss/<folder>/_index.scss`.
+`pkg:stylescape/scss/01-core` does not import on its own (its `external` and
+`functions` forwards both define `px-to-rem`), so load core through the
+entry point.
+
+An app that still imports the 0.3 paths cannot move to unit.gl 0.3.5 (which
+hides `round-to`) until it uses the 0.4 entry point; there is no 0.3.19. The
+plan for the one known app (kodw-buurtbasis) is to migrate it to 0.4 as part
+of the VORM theme rollout. A 0.4 theme compiles against this tree and unit.gl
+0.3.5.
+
 ## Old → new names
 
 ### Frame and layout
