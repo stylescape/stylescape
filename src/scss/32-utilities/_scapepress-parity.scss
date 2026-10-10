@@ -1892,7 +1892,7 @@ $transition-slow: 300ms ease;
     // -- hero  (from site-scape_ventures/src/static/scss/sections/_hero.scss) --
     .ss-c-hero {
         position: relative;
-        min-height: 100vh;
+        min-height: 100svh;
         display: flex;
         align-items: center;
         padding-top: q(80);
@@ -2775,7 +2775,7 @@ $transition-slow: 300ms ease;
             top: 0;
             bottom: 0;
             width: q(2);
-            background: $color-gray-200;
+            background: var(--ss-color-border);
         }
     }
 
@@ -2797,11 +2797,11 @@ $transition-slow: 300ms ease;
         font-family: $font-display;
         font-size: $font-size-sm;
         font-weight: $font-weight-bold;
-        color: $color-accent;
-        background: $color-white;
+        color: var(--ss-color-text);
+        background: var(--ss-color-background);
         padding: $spacing-2 $spacing-3;
-        border-radius: $radius-md;
-        border: q(2) solid $color-gray-200;
+        border-radius: 0;
+        border: q(2) solid var(--ss-color-border);
     }
 
     // -- timeline-content  (from site-scape_ventures/src/static/scss/sections/_timeline.scss) --
@@ -4123,8 +4123,8 @@ $transition-slow: 300ms ease;
     // -- cta  (from site-scape_press/src/static/scss/sections/_cta.scss) --
     .ss-c-cta {
         padding: $spacing-32 0;
-        background-color: $color-white;
-        color: $color-black;
+        background-color: var(--ss-color-background);
+        color: var(--ss-color-text);
 
         &__container {
             max-width: 100%;
@@ -4143,13 +4143,13 @@ $transition-slow: 300ms ease;
             line-height: 0.95;
             letter-spacing: $letter-spacing-tight;
             margin: 0 0 $spacing-10;
-            color: $color-black;
+            color: var(--ss-color-text);
             max-width: 22ch;
         }
 
         &__description {
             font-size: $font-size-lg;
-            color: $color-gray-700;
+            color: var(--ss-color-text-muted);
             max-width: 60ch;
             margin: 0 0 $spacing-10;
             line-height: 1.5;
@@ -5029,9 +5029,9 @@ $transition-slow: 300ms ease;
         margin: q(12) 0;
         padding: q(8) q(10);
         position: relative;
-        border-left: q(4) solid var(--color_accent_primary, #2d5a27);
-        background: linear-gradient(135deg, rgba(45, 90, 39, 0.03) 0%, rgba(45, 90, 39, 0.01) 100%);
-        border-radius: 0 q(2) q(2) 0;
+        border-left: q(4) solid var(--ss-color-accent);
+        background: linear-gradient(135deg, color-mix(in srgb, var(--ss-color-accent) 4%, transparent) 0%, color-mix(in srgb, var(--ss-color-accent) 1%, transparent) 100%);
+        border-radius: 0;
 
         &__text {
             font-family: Georgia, serif, Georgia, "Times New Roman", serif;
@@ -5040,7 +5040,7 @@ $transition-slow: 300ms ease;
             font-weight: 400;
             line-height: 1.7;
             margin: 0 0 q(4);
-            color: var(--color_text_primary, #1a1a1a);
+            color: var(--ss-color-text);
             letter-spacing: 0.01em;
 
             &::before {
@@ -5049,7 +5049,7 @@ $transition-slow: 300ms ease;
                 font-size: q(64);
                 font-style: normal;
                 line-height: 1;
-                color: var(--color_accent_primary, #2d5a27);
+                color: var(--ss-color-accent);
                 opacity: 0.25;
                 position: absolute;
                 top: q(2);
@@ -5063,7 +5063,7 @@ $transition-slow: 300ms ease;
             gap: q(1);
             margin-top: q(4);
             padding-top: q(3);
-            border-top: q(1) solid rgba(0, 0, 0, 0.08);
+            border-top: q(1) solid color-mix(in srgb, var(--ss-color-text) 8%, transparent);
         }
 
         &__author {
@@ -5071,7 +5071,7 @@ $transition-slow: 300ms ease;
             font-style: normal;
             font-weight: 600;
             font-size: q(16);
-            color: var(--color_text_primary, #1a1a1a);
+            color: var(--ss-color-text);
         }
 
         &__source {
@@ -5089,8 +5089,8 @@ $transition-slow: 300ms ease;
         &--center {
             text-align: center;
             border-left: none;
-            border-top: q(4) solid var(--color_accent_primary, #2d5a27);
-            border-radius: q(2) q(2) 0 0;
+            border-top: q(4) solid var(--ss-color-accent);
+            border-radius: 0;
             padding: q(10) q(8);
 
             .ss-c-blockquote__text::before {
@@ -5109,8 +5109,8 @@ $transition-slow: 300ms ease;
         &--right {
             text-align: right;
             border-left: none;
-            border-right: q(4) solid var(--color_accent_primary, #2d5a27);
-            border-radius: q(2) 0 0 q(2);
+            border-right: q(4) solid var(--ss-color-accent);
+            border-radius: 0;
 
             .ss-c-blockquote__text::before {
                 left: auto;
@@ -16143,7 +16143,7 @@ $transition-slow: 300ms ease;
       &__value {
         font-size: $font-size-4xl;
         font-weight: $font-weight-bold;
-        color: $color-accent;
+        color: var(--ss-color-text);
         line-height: 1;
         margin-bottom: $spacing-2;
       }
@@ -16151,7 +16151,7 @@ $transition-slow: 300ms ease;
       &__label {
         font-size: $font-size-sm;
         font-weight: $font-weight-medium;
-        color: $color-gray-500;
+        color: var(--ss-color-text-muted);
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
@@ -20396,20 +20396,20 @@ $transition-slow: 300ms ease;
         &__quarter {
             font-size: q(12);
             font-weight: 600;
-            color: #718096;
+            color: var(--ss-color-text-muted);
         }
 
         &__title {
             font-size: q(17.6);
             font-weight: 600;
-            color: #2d3748;
+            color: var(--ss-color-text);
             margin-bottom: q(8);
         }
 
         &__description {
             font-size: q(13.6);
             line-height: 1.6;
-            color: #718096;
+            color: var(--ss-color-text-muted);
             margin-bottom: q(12);
         }
 
@@ -20449,7 +20449,7 @@ $transition-slow: 300ms ease;
             margin-top: q(16);
             font-size: q(14.4);
             font-style: italic;
-            color: #718096;
+            color: var(--ss-color-text-muted);
         }
     }
 
@@ -20478,7 +20478,7 @@ $transition-slow: 300ms ease;
             display: block;
             margin-top: q(8);
             font-size: q(12.8);
-            color: #718096;
+            color: var(--ss-color-text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -20499,19 +20499,19 @@ $transition-slow: 300ms ease;
         align-items: center;
         gap: q(8);
         font-size: q(12.8);
-        color: #718096;
+        color: var(--ss-color-text-muted);
         cursor: pointer;
         transition: color 0.3s ease;
 
         &:hover {
-            color: #2d3748;
+            color: var(--ss-color-text);
         }
 
         .ss-c-legend-dot {
             width: q(10);
             height: q(10);
             border-radius: 50%;
-            background: #ccc;
+            background: var(--ss-color-border-strong);
         }
 
         // [parity] (stripped @each block)
@@ -20529,7 +20529,7 @@ $transition-slow: 300ms ease;
 
         .ss-c-section-subtitle {
             margin-bottom: q(32);
-            color: #718096;
+            color: var(--ss-color-text-muted);
         }
 
         .ss-c-neu-btn {
@@ -23356,39 +23356,31 @@ $transition-slow: 300ms ease;
     .ss-c-prose {
         max-width: q(800);
 
+        // Heading sizes come from the typography layer; the shim only sets
+        // the rhythm of a long-form text column.
         > * + * {
-            margin-top: unset;
+            margin-top: var(--ss-space-4);
         }
 
         h2 {
-            font-size: unset;
-            margin-top: unset;
-
-            @media (min-width: $breakpoint-md) {
-                font-size: unset;
-            }
+            margin-top: var(--ss-space-8);
         }
 
         h3 {
-            font-size: unset;
-            margin-top: unset;
-
-            @media (min-width: $breakpoint-md) {
-                font-size: unset;
-            }
+            margin-top: var(--ss-space-6);
         }
 
         p {
-            margin-bottom: unset;
+            margin-bottom: var(--ss-space-4);
         }
 
         ul, ol {
-            padding-left: unset;
-            margin-bottom: unset;
+            padding-left: var(--ss-space-6);
+            margin-bottom: var(--ss-space-4);
         }
 
         li {
-            margin-bottom: unset;
+            margin-bottom: var(--ss-space-2);
         }
 
         ul li {
@@ -23405,25 +23397,24 @@ $transition-slow: 300ms ease;
         }
 
         blockquote {
-            padding-left: unset;
-            border-left: q(3) solid var(--ss-color-border, #e5e5e5);
+            padding-left: var(--ss-space-4);
+            border-left: q(3) solid var(--ss-color-border);
             font-style: italic;
-            color: #525252;
+            color: var(--ss-color-text-muted);
         }
 
         code {
-            font-family: unset;
             font-size: 0.9em;
-            background-color: #f2f2f2;
+            background-color: color-mix(in srgb, var(--ss-color-text) 6%, transparent);
             padding: 0.125em 0.375em;
-            border-radius: $radius-sm;
+            border-radius: 0;
         }
 
         pre {
-            background-color: #0a0a0a;
-            color: #ffffff;
-            padding: unset;
-            border-radius: $radius-lg;
+            background-color: var(--ss-color-foreground);
+            color: var(--ss-color-background);
+            padding: var(--ss-space-4);
+            border-radius: 0;
             overflow-x: auto;
 
             code {
@@ -23433,9 +23424,9 @@ $transition-slow: 300ms ease;
         }
 
         img {
-            border-radius: $radius-lg;
-            margin-top: unset;
-            margin-bottom: unset;
+            border-radius: 0;
+            margin-top: var(--ss-space-6);
+            margin-bottom: var(--ss-space-6);
         }
     }
 

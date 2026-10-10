@@ -516,6 +516,156 @@ for _part in ("__label", "--bordered", "--pills", "--sm", "--lg", "--center",
     SITE_DECISIONS[("filter-bar" + _part, "site-starling_studio/")] = (
         "scope", ".ss-c-systems-grid-section")
 
+
+# Compat shims on tokens (2026-10-10). Light-theme look is kept; hex colours
+# and Sass palette variables become `--ss-*` tokens so the shims follow the
+# theme, and radii are square.
+_TXT = "var(--ss-color-text)"
+_MUTED = "var(--ss-color-text-muted)"
+_BG = "var(--ss-color-background)"
+_BORDER = "var(--ss-color-border)"
+_ACCENT = "var(--ss-color-accent)"
+_MIX = "color-mix(in srgb, {c} {p}%, transparent)"
+
+_PROSE_BODY = """\
+    .ss-c-prose {
+        max-width: q(800);
+
+        // Heading sizes come from the typography layer; the shim only sets
+        // the rhythm of a long-form text column.
+        > * + * {
+            margin-top: var(--ss-space-4);
+        }
+
+        h2 {
+            margin-top: var(--ss-space-8);
+        }
+
+        h3 {
+            margin-top: var(--ss-space-6);
+        }
+
+        p {
+            margin-bottom: var(--ss-space-4);
+        }
+
+        ul, ol {
+            padding-left: var(--ss-space-6);
+            margin-bottom: var(--ss-space-4);
+        }
+
+        li {
+            margin-bottom: var(--ss-space-2);
+        }
+
+        ul li {
+            list-style-type: disc;
+        }
+
+        ol li {
+            list-style-type: decimal;
+        }
+
+        a {
+            text-decoration: underline;
+            text-underline-offset: q(2);
+        }
+
+        blockquote {
+            padding-left: var(--ss-space-4);
+            border-left: q(3) solid var(--ss-color-border);
+            font-style: italic;
+            color: var(--ss-color-text-muted);
+        }
+
+        code {
+            font-size: 0.9em;
+            background-color: color-mix(in srgb, var(--ss-color-text) 6%, transparent);
+            padding: 0.125em 0.375em;
+            border-radius: 0;
+        }
+
+        pre {
+            background-color: var(--ss-color-foreground);
+            color: var(--ss-color-background);
+            padding: var(--ss-space-4);
+            border-radius: 0;
+            overflow-x: auto;
+
+            code {
+                background: none;
+                padding: 0;
+            }
+        }
+
+        img {
+            border-radius: 0;
+            margin-top: var(--ss-space-6);
+            margin-bottom: var(--ss-space-6);
+        }
+    }
+
+"""
+
+SITE_DECISIONS.update({
+    # mesmera long-form column: the harvest lost its variables and emitted
+    # `unset` for sizes, margins and padding (which reset the heading scale
+    # and the list indent). Rhythm now reads the spacing tokens.
+    ("prose", "site-mesmera_io/"): ("rewrite", _PROSE_BODY),
+    # scape_foundation quote: accent and text tokens instead of the green and
+    # #1a1a1a fallbacks, square corners.
+    ("blockquote", "site-scape_foundation/"): ("replace", [
+        ("var(--color_accent_primary, #2d5a27)", _ACCENT),
+        ("var(--color_text_primary, #1a1a1a)", _TXT),
+        ("linear-gradient(135deg, rgba(45, 90, 39, 0.03) 0%, rgba(45, 90, 39, 0.01) 100%)",
+         "linear-gradient(135deg, " + _MIX.format(c=_ACCENT, p=4)
+         + " 0%, " + _MIX.format(c=_ACCENT, p=1) + " 100%)"),
+        ("border-top: q(1) solid rgba(0, 0, 0, 0.08)",
+         "border-top: q(1) solid " + _MIX.format(c=_TXT, p=8)),
+        ("border-radius: 0 q(2) q(2) 0;", "border-radius: 0;"),
+        ("border-radius: q(2) q(2) 0 0;", "border-radius: 0;"),
+        ("border-radius: q(2) 0 0 q(2);", "border-radius: 0;"),
+    ]),
+    # scape_ventures hero: same full-viewport look, but small-viewport units
+    # (no overflow under mobile toolbars) and overridable.
+    ("hero", "site-scape_ventures/"): ("replace", [
+        ("min-height: 100vh;",
+         "min-height: 100svh;"),
+    ]),
+    # scape_press call to action: theme background and text.
+    ("cta", "site-scape_press/"): ("replace", [
+        ("background-color: $color-white;\n        color: $color-black;",
+         "background-color: " + _BG + ";\n        color: " + _TXT + ";"),
+        ("margin: 0 0 $spacing-10;\n            color: $color-black;",
+         "margin: 0 0 $spacing-10;\n            color: " + _TXT + ";"),
+        ("color: $color-gray-700;", "color: " + _MUTED + ";"),
+    ]),
+    # scape_ventures timeline: line, marker and marker text follow the theme.
+    ("timeline", "site-scape_ventures/"): ("replace", [
+        ("background: $color-gray-200;", "background: " + _BORDER + ";"),
+    ]),
+    ("timeline-marker", "site-scape_ventures/"): ("replace", [
+        ("color: $color-accent;\n        background: $color-white;",
+         "color: " + _TXT + ";\n        background: " + _BG + ";"),
+        ("border-radius: $radius-md;", "border-radius: 0;"),
+        ("border: q(2) solid $color-gray-200;",
+         "border: q(2) solid " + _BORDER + ";"),
+    ]),
+    # kockums stat card: monochrome value (the accent was black), muted label.
+    ("stat-card", "site-kockums_foundation/"): ("replace", [
+        ("color: $color-accent;", "color: " + _TXT + ";"),
+        ("color: $color-gray-500;", "color: " + _MUTED + ";"),
+    ]),
+})
+
+# lovelacelabs timeline: slate literals become text tokens.
+for _n in ("timeline-milestone", "timeline-end", "timeline-stat",
+           "legend-item", "timeline-cta"):
+    SITE_DECISIONS[(_n, "site-lovelacelabs_ai/")] = ("replace", [
+        ("#718096", _MUTED), ("#2d3748", _TXT),
+        ("background: #ccc;", "background: var(--ss-color-border-strong);"),
+    ])
+
 _BLOCK_RE = re.compile(
     r"(?m)^    // -- (?P<name>\S+)  \(from (?P<src>[^)]*)\) --\n"
     r"(?P<body>.*?)(?=^    // -- |^    // \[parity\] dropped|^\}|\Z)",
@@ -542,6 +692,8 @@ def apply_site_decisions(text: str) -> str:
                 for old, new in (decision[2] if len(decision) > 2 else []):
                     body = body.replace(old, new)
                 return head + body
+            if kind == "rewrite":
+                return head + decision[1]
             if kind == "replace":
                 for old, new in decision[1]:
                     body = body.replace(old, new)
