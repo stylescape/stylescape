@@ -658,6 +658,42 @@ SITE_DECISIONS.update({
     ]),
 })
 
+# Footer text on tokens (2026-10-10). The footer module (ss.components) owns
+# the `.ss-c-footer` background and text colour and themes them (light grey in
+# light mode), but these shims hardcoded white text on the parts no module
+# rule styles, which left white on light grey (1.2:1). Parts now inherit or
+# read the text tokens, so they are readable in both themes and still white
+# inside a site's own dark footer (`.ss-c-site-footer`).
+_SECONDARY = "var(--ss-color-text-secondary, var(--ss-color-text-muted))"
+_PRIMARY = "var(--ss-color-text-primary)"
+SITE_DECISIONS.update({
+    ("footer", "site-scape_group/"): ("replace", [
+        ("        background: $color-primary;\n        color: $color-white;\n",
+         "        // [parity] background and text colour come from the footer\n"
+         "        // module (31-modules/footer)\n"),
+    ]),
+    ("footer__links", "site-scape_group/"): ("replace", [
+        ("color: $color-gray-400;", "color: " + _SECONDARY + ";"),
+        ("color: $color-white;", "color: " + _PRIMARY + ";"),
+    ]),
+    ("footer__copyright", "site-scape_group/"): ("replace", [
+        ("color: $color-gray-500;", "color: " + _SECONDARY + ";"),
+        ("color: $color-gray-400;", "color: " + _SECONDARY + ";"),
+        ("color: $color-white;", "color: " + _PRIMARY + ";"),
+    ]),
+    ("footer-legal", "site-scape_ventures/"): ("replace", [
+        ("            font-size: $font-size-sm;\n            color: $color-white;\n",
+         "            font-size: $font-size-sm;\n            color: inherit;\n"),
+    ]),
+    ("footer-brand-section", "site-phytosync_com/"): ("replace", [
+        ("            font-weight: 600;\n            color: $color-white;\n",
+         "            font-weight: 600;\n            color: inherit;\n"),
+    ]),
+    ("footer-copyright", "site-phytosync_com/"): ("replace", [
+        ("color: $color-gray-400;", "color: " + _SECONDARY + ";"),
+    ]),
+})
+
 # lovelacelabs timeline: slate literals become text tokens.
 for _n in ("timeline-milestone", "timeline-end", "timeline-stat",
            "legend-item", "timeline-cta"):

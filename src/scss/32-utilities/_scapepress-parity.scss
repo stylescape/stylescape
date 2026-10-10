@@ -1194,7 +1194,7 @@ $transition-slow: 300ms ease;
 
         a {
             font-size: $font-size-sm;
-            color: $color-white;
+            color: inherit;
 
             &:hover {
                 color: $color-accent-light;
@@ -3090,8 +3090,8 @@ $transition-slow: 300ms ease;
 
     // -- footer  (from site-scape_group/src/static/scss/layout/_footer.scss) --
     .ss-c-footer {
-        background: $color-primary;
-        color: $color-white;
+        // [parity] background and text colour come from the footer
+        // module (31-modules/footer)
         padding: $spacing-8 0;
     }
 
@@ -3132,12 +3132,12 @@ $transition-slow: 300ms ease;
 
         a {
             font-size: $font-size-sm;
-            color: $color-gray-400;
+            color: var(--ss-color-text-secondary, var(--ss-color-text-muted));
             text-decoration: none;
             transition: color $transition-base;
 
             &:hover {
-                color: $color-white;
+                color: var(--ss-color-text-primary);
             }
         }
     }
@@ -3145,7 +3145,7 @@ $transition-slow: 300ms ease;
     // -- footer__copyright  (from site-scape_group/src/static/scss/layout/_footer.scss) --
     .ss-c-footer__copyright {
         font-size: $font-size-sm;
-        color: $color-gray-500;
+        color: var(--ss-color-text-secondary, var(--ss-color-text-muted));
         margin: 0;
         order: 1;
 
@@ -3154,11 +3154,11 @@ $transition-slow: 300ms ease;
         }
 
         a {
-            color: $color-gray-400;
+            color: var(--ss-color-text-secondary, var(--ss-color-text-muted));
             text-decoration: none;
 
             &:hover {
-                color: $color-white;
+                color: var(--ss-color-text-primary);
             }
         }
     }
@@ -25224,14 +25224,14 @@ $transition-slow: 300ms ease;
         .ss-c-footer-brand-name {
             font-size: $font-size-lg;
             font-weight: 600;
-            color: $color-white;
+            color: inherit;
         }
     }
 
     // -- footer-copyright  (from site-phytosync_com/src/static/scss/index.scss) --
     .ss-c-footer-copyright {
         font-size: $font-size-sm;
-        color: $color-gray-400;
+        color: var(--ss-color-text-secondary, var(--ss-color-text-muted));
         margin-bottom: unset;
     }
 

@@ -45,7 +45,7 @@ describe("stylescape SCSS", () => {
 
     it("segmented has a link variant keyed on aria-current", () => {
         expect(has(".ss-c-segmented__link")).toBe(true);
-        expect(has('.ss-c-segmented__link[aria-current]')).toBe(true);
+        expect(has(".ss-c-segmented__link[aria-current]")).toBe(true);
         expect(rule(".ss-c-segmented__link")).toMatch(
             /text-decoration:\s*none/,
         );
@@ -61,8 +61,8 @@ describe("stylescape SCSS", () => {
         ]) {
             expect(has(`.ss-c-toast${part}`), part).toBe(true);
         }
-        expect(has('.ss-c-toast[data-state=entering]')).toBe(true);
-        expect(has('.ss-c-toast-region[data-position=top-center]')).toBe(true);
+        expect(has(".ss-c-toast[data-state=entering]")).toBe(true);
+        expect(has(".ss-c-toast-region[data-position=top-center]")).toBe(true);
         expect(css).not.toContain("ss-notification");
     });
 
@@ -111,5 +111,36 @@ describe("stylescape SCSS", () => {
         expect(rule(".ss-c-hero")).toMatch(/min-height:\s*100svh/);
         // The prose shim no longer resets heading sizes to `unset`.
         expect(rule(".ss-c-prose h2")).not.toMatch(/unset/);
+    });
+
+    it("footer parts follow the theme instead of hardcoded white", () => {
+        for (const sel of [
+            ".ss-c-footer",
+            ".ss-c-footer-brand-name",
+            ".ss-c-footer-legal a",
+            ".ss-c-footer__links a",
+            ".ss-c-footer__copyright",
+            ".ss-c-footer-copyright",
+        ]) {
+            expect(rule(sel), sel).not.toMatch(/#f{3}\b|#f{6}\b|\bwhite\b/i);
+        }
+        expect(rule(".ss-c-footer-legal a")).toMatch(/color:\s*inherit/);
+    });
+});
+
+describe("stylescape SCSS core", () => {
+    it("01-core compiles on its own (no duplicate forwarded members)", () => {
+        const result = sass.compileString(
+            '@use "01-core" as core;\n' +
+                ".a { width: core.px-to-rem(32px); height: core.rem-to-px(2rem); margin: core.q(4); }\n",
+            {
+                loadPaths: [path.join(root, "src/scss")],
+                importers: [new sass.NodePackageImporter(root)],
+                quietDeps: true,
+                silenceDeprecations: ["import", "global-builtin"],
+            },
+        );
+        expect(result.css).toMatch(/width:\s*2rem/);
+        expect(result.css).toMatch(/height:\s*32px/);
     });
 });

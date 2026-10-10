@@ -21,7 +21,12 @@
 @forward "banner";
 @forward "prefix";
 @forward "layers";
-@forward "external";
+// unit.gl and our own `functions` both define these six functions (Sass treats
+// `px_to_rem` and `px-to-rem` as one name), so forwarding both fails with "Two
+// forwarded modules both define a function named ...". Keep ours: stylescape's
+// modules use them, and they also take unitless input. unit.gl's versions stay
+// available through `pkg:unit.gl/functions`.
+@forward "external" hide px-to-rem, rem-to-px, px-to-em, modular-scale, round-to, sum;
 
 // Migrated from legacy `src/scss/{functions,maps}` (Phase 1, ROADMAP.md)
 @forward "functions";
