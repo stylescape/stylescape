@@ -83,7 +83,7 @@ export const MultipleFlexSpacers: Story = {
 export const SpacerWithDivider: Story = {
     render: () => html`
         <div class="ss-c-bg--fill_02 ss-c-p--02">Section one content</div>
-        <div class="ss-c-spacer_divider ss-c-spacer--04">
+        <div class="ss-c-spacer--divider ss-c-spacer--04">
             <hr class="ss-c-divider" />
         </div>
         <div class="ss-c-bg--fill_02 ss-c-p--02">Section two content</div>

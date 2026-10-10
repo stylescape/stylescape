@@ -17,22 +17,31 @@
 ////
 
 @use "../01-core/external" as *;
+@use "../31-modules/accordion/accordion.mixins" as accordion;
+@use "../31-modules/toggle/toggle.mixins" as toggle;
+@use "../31-modules/spacer/spacer.mixins" as spacer;
+@use "../31-modules/graphic/graphic.mixins" as graphic;
+@use "../31-modules/select/select.mixins" as select;
 
 @layer ss.compat {
     // ========================================================================
     // Accordion (legacy bootstrap-ish names)
     // ========================================================================
 
+    // 0.3 names for the BEM parts `ss-c-accordion__group(--flush)`.
     .ss-c-accordion_group {
-        display: flex;
-        flex-direction: column;
-        border: q(1) solid var(--ss-color-border);
-        border-radius: var(--ss-radius-md, q(8));
-        overflow: hidden;
+        @include accordion.ss-accordion-group;
 
         &--flush {
-            border: 0;
-            border-radius: 0;
+            @include accordion.ss-accordion-group-flush;
+        }
+
+        > .ss-c-accordion {
+            @include accordion.ss-accordion-group-item;
+
+            & + .ss-c-accordion {
+                @include accordion.ss-accordion-group-divider;
+            }
         }
     }
     .ss-c-accordion-item {
@@ -1227,11 +1236,24 @@
     // Toggle (switch + button group)
     // ========================================================================
 
+    // 0.3 names for the BEM parts `ss-c-toggle__button-group` and
+    // `ss-c-toggle__button(--active)`.
     .ss-c-toggle_button_group {
-        display: inline-flex;
+        @include toggle.ss-toggle-button-group;
         border: q(1) solid var(--ss-color-border);
-        border-radius: var(--ss-radius-sm, q(4));
+        border-radius: 0;
         overflow: hidden;
+
+        > .ss-c-toggle_button + .ss-c-toggle_button {
+            @include toggle.ss-toggle-button-joined;
+        }
+    }
+    .ss-c-toggle_button[aria-pressed="false"]:not(.ss-c-toggle_button--active) {
+        @include toggle.ss-toggle-button-resting;
+    }
+    .ss-c-toggle_button[aria-pressed="true"],
+    .ss-c-toggle_button.ss-c-toggle_button--active {
+        @include toggle.ss-toggle-button-pressed;
     }
     .ss-c-toggle_button {
         padding: q(6) q(12);
@@ -1703,7 +1725,7 @@
 
     // ---- Graphics / guides -------------------------------------------------
     .ss-c-graphic-elevate     { box-shadow: var(--ss-shadow-md, 0 q(2) q(6) rgba(0,0,0,.08)); }
-    .ss-c-graphic_no-margins  { margin: 0; }
+    .ss-c-graphic_no-margins  { @include graphic.ss-graphic-no-margins; }
     .ss-c-guide--baseline     { background-image: linear-gradient(to bottom, rgba(0,0,255,.05) q(1), transparent q(1)); background-size: 100% q(8); }
     .ss-c-guide--graph_centered { background-image: linear-gradient(rgba(0,0,0,.05) q(1), transparent q(1)), linear-gradient(90deg, rgba(0,0,0,.05) q(1), transparent q(1)); background-size: q(8) q(8); }
     .ss-c-guide--layer        { outline: q(1) dashed rgba(0,0,255,.4); }
@@ -1811,7 +1833,11 @@
     // ---- Spacers / divider ------------------------------------------------
     .ss-c-spacer_horizontal   { width: q(16); display: inline-block; }
     .ss-c-spacer_vertical     { height: q(16); display: block; }
-    .ss-c-spacer_divider      { border-top: q(1) solid var(--ss-color-border); margin: q(16) 0; }
+    .ss-c-spacer_divider      { @include spacer.ss-spacer-divider; }
+
+    // ---- Select states (0.3 names; 0.4 uses is-invalid / is-valid) -----------
+    .ss-c-select.ss-c-error   { @include select.ss-select-state(var(--ss-color-error)); }
+    .ss-c-select.ss-c-success { @include select.ss-select-state(var(--ss-color-success)); }
 
     // ---- Speed dial -------------------------------------------------------
     .ss-c-speed_dial_robin       { position: relative; }

@@ -67,9 +67,14 @@
     }
 
     // ---- Groups: items share the group's frame ---------------------------------
-    .#{$ss-prefix-module}-accordion_group > .#{$ss-prefix-module}-accordion {
-        border: 0;
-        border-radius: 0;
+    .#{$ss-prefix-module}-accordion__group {
+        @include accordion.ss-accordion-group;
+    }
+    .#{$ss-prefix-module}-accordion__group--flush {
+        @include accordion.ss-accordion-group-flush;
+    }
+    .#{$ss-prefix-module}-accordion__group > .#{$ss-prefix-module}-accordion {
+        @include accordion.ss-accordion-group-item;
 
         & + .#{$ss-prefix-module}-accordion {
             @include accordion.ss-accordion-group-divider;

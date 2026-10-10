@@ -7,26 +7,22 @@
         @include toggle.ss-toggle;
     }
 
-    // Toggle buttons (`.ss-c-button.ss-c-toggle_button` + aria-pressed).
-    // The pressed state must read differently from the resting one, so the
-    // resting button is outlined and the pressed one is filled with the
-    // accent — otherwise both inherit the solid button look.
-    .#{$ss-prefix-module}-toggle_button_group {
-        display: inline-flex;
+    // Toggle buttons (`.ss-c-button.ss-c-toggle__button` + aria-pressed),
+    // optionally in an `ss-c-toggle__button-group`. The 0.3 names
+    // `ss-c-toggle_button(_group)` live in `_legacy-components-compat.scss`.
+    .#{$ss-prefix-module}-toggle__button-group {
+        @include toggle.ss-toggle-button-group;
 
-        > .#{$ss-prefix-module}-toggle_button + .#{$ss-prefix-module}-toggle_button {
-            margin-inline-start: q(-1);
+        > .#{$ss-prefix-module}-toggle__button
+            + .#{$ss-prefix-module}-toggle__button {
+            @include toggle.ss-toggle-button-joined;
         }
     }
-    .#{$ss-prefix-module}-toggle_button[aria-pressed="false"]:not(.#{$ss-prefix-module}-toggle_button--active) {
-        background: var(--ss-color-background);
-        color: var(--ss-color-text-primary);
-        border-color: var(--ss-color-border-strong);
+    .#{$ss-prefix-module}-toggle__button[aria-pressed="false"]:not(.#{$ss-prefix-module}-toggle__button--active) {
+        @include toggle.ss-toggle-button-resting;
     }
-    .#{$ss-prefix-module}-toggle_button[aria-pressed="true"],
-    .#{$ss-prefix-module}-toggle_button.#{$ss-prefix-module}-toggle_button--active {
-        background: var(--ss-color-accent);
-        color: var(--ss-color-on-accent);
-        border-color: var(--ss-color-accent);
+    .#{$ss-prefix-module}-toggle__button[aria-pressed="true"],
+    .#{$ss-prefix-module}-toggle__button.#{$ss-prefix-module}-toggle__button--active {
+        @include toggle.ss-toggle-button-pressed;
     }
 }

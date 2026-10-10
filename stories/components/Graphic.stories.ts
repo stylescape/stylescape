@@ -34,7 +34,7 @@ export const SectionTitle2: Story = {
 
 export const SectionTitle3: Story = {
     render: () => html`
-        <div class="ss-c-graphic ss-c-graphic_no-margins">
+        <div class="ss-c-graphic ss-c-graphic--no-margins">
             <img
                 src="https://picsum.photos/800/300"
                 alt="Full-width graphic"

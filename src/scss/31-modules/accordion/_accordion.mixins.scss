@@ -66,3 +66,25 @@
 @mixin ss-accordion-group-divider {
     border-top: map.get(config.$ss-accordion-config, border);
 }
+
+/// `__group`: accordions stacked in one frame.
+@mixin ss-accordion-group {
+    display: flex;
+    flex-direction: column;
+    border: map.get(config.$ss-accordion-config, border);
+    border-radius: 0;
+    overflow: hidden;
+}
+
+/// `__group--flush`: no frame of its own.
+@mixin ss-accordion-group-flush {
+    border: 0;
+    border-radius: 0;
+}
+
+/// Accordions inside a group share its frame (the divider between
+/// neighbours is `ss-accordion-group-divider`).
+@mixin ss-accordion-group-item {
+    border: 0;
+    border-radius: 0;
+}

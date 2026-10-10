@@ -54,7 +54,7 @@ export const InitiallyOpen: Story = {
 
 export const StackedAccordions: Story = {
     render: () => html`
-        <div class="ss-c-accordion_group">
+        <div class="ss-c-accordion__group">
             <details class="ss-c-accordion">
                 <summary class="ss-c-accordion__header">
                     <span class="ss-c-accordion__title"
@@ -108,7 +108,7 @@ export const StackedAccordions: Story = {
 
 export const ExclusiveAccordionNameAttribute: Story = {
     render: () => html`
-        <div class="ss-c-accordion_group">
+        <div class="ss-c-accordion__group">
             <details class="ss-c-accordion" name="faq-group" open>
                 <summary class="ss-c-accordion__header">
                     <span class="ss-c-accordion__title">First Question</span>
@@ -174,7 +174,7 @@ export const FilledAccordion: Story = {
 
 export const FlushAccordion: Story = {
     render: () => html`
-        <div class="ss-c-accordion_group ss-c-accordion_group--flush">
+        <div class="ss-c-accordion__group ss-c-accordion__group--flush">
             <details class="ss-c-accordion">
                 <summary class="ss-c-accordion__header">
                     <span class="ss-c-accordion__title">Flush Item One</span>

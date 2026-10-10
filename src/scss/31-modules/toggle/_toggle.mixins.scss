@@ -71,3 +71,29 @@
         cursor: not-allowed;
     }
 }
+
+// Toggle buttons (`ss-c-button` + `ss-c-toggle__button`, aria-pressed). The
+// pressed state must read differently from the resting one, so the resting
+// button is outlined and the pressed one is filled with the accent.
+
+/// `__button-group`: buttons joined in a row.
+@mixin ss-toggle-button-group {
+    display: inline-flex;
+}
+
+/// Overlap neighbouring borders inside a group.
+@mixin ss-toggle-button-joined {
+    margin-inline-start: q(-1);
+}
+
+@mixin ss-toggle-button-resting {
+    background: var(--ss-color-background);
+    color: var(--ss-color-text-primary);
+    border-color: var(--ss-color-border-strong);
+}
+
+@mixin ss-toggle-button-pressed {
+    background: var(--ss-color-accent);
+    color: var(--ss-color-on-accent);
+    border-color: var(--ss-color-accent);
+}

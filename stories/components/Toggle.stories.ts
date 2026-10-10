@@ -147,12 +147,12 @@ export const MultiplePanels: Story = {
 
 export const BasicToggleButton: Story = {
     render: () => html`
-        <button class="ss-c-button ss-c-toggle_button" aria-pressed="false">
+        <button class="ss-c-button ss-c-toggle__button" aria-pressed="false">
             Toggle Off
         </button>
 
         <button
-            class="ss-c-button ss-c-toggle_button ss-c-toggle_button--active"
+            class="ss-c-button ss-c-toggle__button ss-c-toggle__button--active"
             aria-pressed="true"
         >
             Toggle On
@@ -163,24 +163,24 @@ export const BasicToggleButton: Story = {
 export const ToggleButtonGroup: Story = {
     render: () => html`
         <div
-            class="ss-c-toggle_button_group"
+            class="ss-c-toggle__button-group"
             role="group"
             aria-label="Text alignment"
         >
             <button
-                class="ss-c-button ss-c-toggle_button ss-c-toggle_button--active"
+                class="ss-c-button ss-c-toggle__button ss-c-toggle__button--active"
                 aria-pressed="true"
             >
                 Left
             </button>
             <button
-                class="ss-c-button ss-c-toggle_button"
+                class="ss-c-button ss-c-toggle__button"
                 aria-pressed="false"
             >
                 Center
             </button>
             <button
-                class="ss-c-button ss-c-toggle_button"
+                class="ss-c-button ss-c-toggle__button"
                 aria-pressed="false"
             >
                 Right

@@ -19,3 +19,17 @@
     height: q(1);
     flex-shrink: 0;
 }
+
+/// `--divider`: a spacer that carries a rule. When it wraps an <hr>, the rule
+/// is the hr itself (no second border, no extra hr margin).
+@mixin ss-spacer-divider {
+    border-top: q(1) solid var(--ss-color-border);
+    margin: q(16) 0;
+
+    > hr {
+        margin-block: 0;
+    }
+    &:has(> hr) {
+        border-top: 0;
+    }
+}
