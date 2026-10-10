@@ -26,7 +26,8 @@ $_seg: ".#{$ss-prefix-module}-segmented";
         display: flex;
 
         > #{$_seg}__option,
-        > #{$_seg}__button {
+        > #{$_seg}__button,
+        > #{$_seg}__link {
             flex: 1 1 0;
         }
         #{$_seg}__label {
@@ -102,6 +103,34 @@ $_seg: ".#{$ss-prefix-module}-segmented";
         }
         &:disabled {
             @include seg.ss-segmented-segment-disabled;
+        }
+    }
+
+    // Link variant, for navigation: <nav class="ss-c-segmented" aria-label="…">
+    //   <a class="ss-c-segmented__link" href="…" aria-current="page">…
+    // The current page is marked with aria-current, like the other variants
+    // mark theirs with aria-pressed. Links stay the segment colour and are
+    // not underlined; the selected fill and weight carry the state.
+    #{$_seg}__link {
+        @include seg.ss-segmented-segment;
+        text-decoration: none;
+
+        & + & {
+            margin-inline-start: q(-1);
+        }
+        &:hover:not([aria-current]) {
+            @include seg.ss-segmented-segment-hover;
+            text-decoration: none;
+        }
+        &[aria-current]:not([aria-current="false"]) {
+            @include seg.ss-segmented-segment-selected;
+        }
+        &:focus-visible {
+            @include seg.ss-segmented-segment-focus;
+        }
+        &[aria-disabled="true"] {
+            @include seg.ss-segmented-segment-disabled;
+            pointer-events: none;
         }
     }
 }

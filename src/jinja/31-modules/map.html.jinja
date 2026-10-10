@@ -261,6 +261,35 @@ title }}{%- endblock %} {%- block head %}
         {% endset %} {% set language="HTML" %}
         {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
+
+    {% set section_title = "Other map libraries" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            <code>ss-c-map</code> themes the chrome of Leaflet, MapLibre GL and
+            Mapbox GL only. OpenLayers, Google Maps and ArcGIS draw their own
+            controls and keep their own look; they are not themed on purpose,
+            because each ships its own stylesheet and class structure. The frame, canvas and <code>ss-c-map__control</code> overlay work
+            with any library. To theme another library's controls, scope a few
+            rules under <code>.ss-c-map</code> with the same tokens, for
+            example for OpenLayers:
+        </p>
+        {% set code_snippet %}
+        .ss-c-map .ol-control button {
+            background-color: var(--ss-color-surface);
+            color: var(--ss-color-text);
+            border-radius: 0;
+        }
+        .ss-c-map .ol-control button:hover {
+            background-color: var(--ss-color-surface-hover);
+        }
+        .ss-c-map .ol-attribution {
+            background-color: var(--ss-color-surface);
+            color: var(--ss-color-text);
+        }
+        {% endset %} {% set language="CSS" %} {% set show_preview = false %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
 </section>
 
 {%- endblock %}

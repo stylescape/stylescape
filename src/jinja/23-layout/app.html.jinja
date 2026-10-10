@@ -98,5 +98,28 @@
         {% endset %} {% set language="HTML" %}
         {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
+
+    {% set section_title = "Padded sidebar" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            A sidebar has no inner padding by default, so content that sets its
+            own spacing is not doubled. Add <code>ss-l-app__sidebar--padded</code>
+            for the standard inner padding (<code>--ss-space-4</code>) when the
+            content has none.
+        </p>
+        {% set code_snippet %}
+        <div style="height: 200px; border: 1px solid var(--ss-color-border)">
+            <div class="ss-l-app ss-l-app--contained">
+                <div class="ss-l-app__header"><strong>Viewer</strong></div>
+                <aside class="ss-l-app__sidebar ss-l-app__sidebar--padded" aria-label="Details">
+                    <p style="margin: 0">Content without its own padding.</p>
+                </aside>
+                <div class="ss-l-app__main" style="padding: var(--ss-space-4)">Main viewport</div>
+            </div>
+        </div>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
 </section>
 {%- endblock %}

@@ -85,5 +85,24 @@
         {% endset %} {% set language="HTML" %}
         {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
     </section>
+
+    {% set section_title = "Links (aria-current)" %}
+    <section class="ss-c-demo__subsection" data-label="{{ section_title }}" data-level="2">
+        <h2>{{ section_title }}</h2>
+        <p>
+            For navigation between pages or views, use links in a
+            <code>nav</code>. The current one carries
+            <code>aria-current="page"</code> and is filled and bold; links keep
+            the segment colour and are not underlined.
+        </p>
+        {% set code_snippet %}
+        <nav class="ss-c-segmented" aria-label="Report period">
+            <a class="ss-c-segmented__link" href="#day">Day</a>
+            <a class="ss-c-segmented__link" href="#week" aria-current="page">Week</a>
+            <a class="ss-c-segmented__link" href="#month">Month</a>
+        </nav>
+        {% endset %} {% set language="HTML" %}
+        {%- include "includes/preview/ss-c-preview_code.html.jinja" %}
+    </section>
 </section>
 {%- endblock %}
