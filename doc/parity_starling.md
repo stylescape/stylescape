@@ -1,7 +1,7 @@
 # Stylescape ↔ Stylescape-Starling Parity Report
 
 Generated: 2026-07-30 **A** = `stylescape` (`stylescape/stylescape`, v0.3.11)
-**B** = `stylescape-starling` (`stylescape-themes/stylescape-starling`,
+**B** = `stylescape-starling` (`stylescape-themes/stylescape-starling-cloud`,
 `@starling-cloud/stylescape-starling` v0.2.9)
 
 ## Verdict
