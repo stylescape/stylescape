@@ -14,6 +14,8 @@ Target: `v1.0.0` — cross-repo alignment with
 [SSX v1.0](https://github.com/stylescape/ssx) and
 [Semiosys v1.0](https://github.com/stylescape/semiosys).
 
+## [0.5.3] - 2026-10-18
+
 ### Added
 
 - `AsideHandler` takes options: `initialState` (`"show"` | `"hide"`, default
@@ -40,6 +42,10 @@ Target: `v1.0.0` — cross-repo alignment with
   `ss-c-robins_column_option4_section_3` replace their misspelled
   predecessors, which are gone (no kodw or sturnus consumer used them;
   `bin/gen_scapepress_parity.py` keeps the corrected names on regeneration).
+- `31-modules/toast/_toast.mixins.scss` now imports `01-core/external`, so
+  the `q()` calls of `ss-c-toast__action` (padding, border, focus ring)
+  compile to rem values; without the import they reached the CSS as the
+  literal text `q(2)`, which browsers drop.
 
 ## [0.5.2] - 2026-10-10
 
