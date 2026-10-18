@@ -14,6 +14,17 @@ Target: `v1.0.0` — cross-repo alignment with
 [SSX v1.0](https://github.com/stylescape/ssx) and
 [Semiosys v1.0](https://github.com/stylescape/semiosys).
 
+### Added
+
+- `AsideHandler` takes options: `initialState` (`"show"` | `"hide"`, default
+  `"hide"`) sets the state on a first visit, `persist` (default `true`)
+  decides whether the state is stored in and restored from localStorage,
+  `visibleClass` (default `active`) and `onOpen` / `onClose` callbacks;
+  `data-ss="aside"` reads `data-ss-aside-initial-state` and
+  `data-ss-aside-persist` (`"false"` to ignore storage), so a sidebar can
+  start open on a first visit instead of always hidden. The open state is
+  still marked with `.active`.
+
 ## [0.5.2] - 2026-10-10
 
 ### Added

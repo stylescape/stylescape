@@ -113,7 +113,18 @@ export const componentRegistry = new Map<string, RegistryEntry>([
                     config.switchId ||
                     el.dataset.ssAsideSwitch ||
                     `${menuId}_switch`;
-                return new AsideHandler(menuId, switchId);
+                // `data-ss-aside-initial-state="show"` opens the menu on a
+                // first visit; `data-ss-aside-persist="false"` ignores and
+                // skips localStorage. parseConfig already turns "false"
+                // into a boolean; the dataset fallback keeps the string.
+                const initialState =
+                    config.initialState ?? el.dataset.ssAsideInitialState;
+                const persist = config.persist ?? el.dataset.ssAsidePersist;
+                return new AsideHandler(menuId, switchId, {
+                    visibleClass: config.visibleClass,
+                    initialState: initialState === "show" ? "show" : "hide",
+                    persist: persist !== false && persist !== "false",
+                });
             },
             defaults: {},
         },
