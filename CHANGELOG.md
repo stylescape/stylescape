@@ -24,6 +24,22 @@ Target: `v1.0.0` — cross-repo alignment with
   `data-ss-aside-persist` (`"false"` to ignore storage), so a sidebar can
   start open on a first visit instead of always hidden. The open state is
   still marked with `.active`.
+- A compile check that `ss-c-card` takes its background from `--ss-card-bg`
+  / `--ss-color-surface` and no card rule sets a literal white (the 0.4
+  compat shim that forced `#fff` in dark mode went in 0.5.0), so consumers
+  can drop their dark-mode card overrides.
+
+### Fixed
+
+- Typos in token and compat class names that cspell flagged in every
+  consumer's compiled CSS: `--primitive-type-font-weight-style-Semi_Bold`,
+  `-Medium` and `-Light` (upright and `-italic-`) replace `--smemi_Bold`,
+  `--mdedium` and `--lgight`; the compat classes
+  `ss-c-robin_grid_row_position_1`, `ss-c-r-lineheight`,
+  `ss-c-robin_small_section_only_text` and
+  `ss-c-robins_column_option4_section_3` replace their misspelled
+  predecessors, which are gone (no kodw or sturnus consumer used them;
+  `bin/gen_scapepress_parity.py` keeps the corrected names on regeneration).
 
 ## [0.5.2] - 2026-10-10
 

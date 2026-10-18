@@ -692,6 +692,24 @@ SITE_DECISIONS.update({
     ("footer-copyright", "site-phytosync_com/"): ("replace", [
         ("color: $color-gray-400;", "color: " + _SECONDARY + ";"),
     ]),
+    # demosphere robins: the site's class names carry typos that cspell
+    # flags in every consumer's compiled CSS; the compat layer emits the
+    # corrected spellings (the block headers keep the source names).
+    ("robin_grid_row_posisiton_1", "site-demosphere_nl/"): ("replace", [
+        (".ss-c-robin_grid_row_posisiton_1 {",
+         ".ss-c-robin_grid_row_position_1 {"),
+    ]),
+    ("r-lineight", "site-demosphere_nl/"): ("replace", [
+        (".ss-c-r-lineight {", ".ss-c-r-lineheight {"),
+    ]),
+    ("robin_small_section_oinly_text", "site-demosphere_nl/"): ("replace", [
+        (".ss-c-robin_small_section_oinly_text {",
+         ".ss-c-robin_small_section_only_text {"),
+    ]),
+    ("robins_colum_option4_section_3", "site-demosphere_nl/"): ("replace", [
+        (".ss-c-robins_colum_option4_section_3 {",
+         ".ss-c-robins_column_option4_section_3 {"),
+    ]),
 })
 
 # lovelacelabs timeline: slate literals become text tokens.

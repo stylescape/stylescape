@@ -36,6 +36,46 @@ describe("stylescape SCSS", () => {
         }).css;
     }, 60000);
 
+    it("card background comes from the surface token, never a literal white", () => {
+        // The 0.4 compat shim forced `#fff` on `.ss-c-card` in dark mode
+        // (dropped in 0.5.0); consumers that still override the card
+        // background for dark mode can stop.
+        const card = rule(".ss-c-card");
+        expect(card).toMatch(
+            /background:\s*var\(--ss-card-bg,\s*var\(--ss-color-surface\)\)/,
+        );
+        expect(card).not.toMatch(/#fff\b|#ffffff|\bwhite\b/i);
+        const dark = rule("[data-theme=dark]").match(
+            /--ss-color-surface:\s*([^;]+)/,
+        )?.[1];
+        expect(dark).toBeDefined();
+        expect(dark).not.toMatch(/^#fff(fff)?$/i);
+    });
+
+    it("token and compat class names are spelled correctly", () => {
+        for (const typo of [
+            "lgight",
+            "mdedium",
+            "smemi",
+            "posisiton",
+            "oinly",
+            "lineight",
+            "robins_colum_",
+        ]) {
+            expect(css).not.toContain(typo);
+        }
+        for (const name of [
+            "--primitive-type-font-weight-style-Semi_Bold",
+            "--primitive-type-font-weight-style-italic-Light",
+            ".ss-c-robin_grid_row_position_1",
+            ".ss-c-r-lineheight",
+            ".ss-c-robin_small_section_only_text",
+            ".ss-c-robins_column_option4_section_3",
+        ]) {
+            expect(has(name)).toBe(true);
+        }
+    });
+
     it("app sidebar has no padding by default and a --padded modifier", () => {
         expect(rule(".ss-l-app__sidebar")).not.toMatch(/padding/);
         expect(rule(".ss-l-app__sidebar--padded")).toMatch(
