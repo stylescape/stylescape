@@ -10,6 +10,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.5.4] - 2026-10-20
+
 Target: `v1.0.0` — cross-repo alignment with
 [SSX v1.0](https://github.com/stylescape/ssx) and
 [Semiosys v1.0](https://github.com/stylescape/semiosys).
