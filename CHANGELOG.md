@@ -16,6 +16,14 @@ Target: `v1.0.0` — cross-repo alignment with
 
 ### Added
 
+- `DropdownManager` closes its menu when a link in it is followed (a click
+  on `.ss-c-dropdown__menu a[href]`) and on a `pageshow` that restores the
+  page from the back/forward cache, for a native `<details>` dropdown and a
+  button-triggered one alike, so a same-page link or a restored page no
+  longer shows the menu still open. A link that should leave the menu open
+  opts out with `data-ss-dropdown-keep-open` (on the link, or on the root
+  for the whole menu). Consumers can drop their own delegated listener (such
+  as citney-chat's `ribbon.ts`). `destroy()` removes both listeners.
 - `--ss-grid-cell-size` (1.25vw; 5vw at 768px and below) for
   viewport-proportional background grids.
 

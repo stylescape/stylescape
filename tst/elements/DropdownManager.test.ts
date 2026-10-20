@@ -26,6 +26,10 @@ const DETAILS = `
 const root = () => document.getElementById("dd")!;
 const trigger = () => root().querySelector<HTMLElement>("button, summary")!;
 const items = () => Array.from(root().querySelectorAll<HTMLElement>("a"));
+const click = (el: Element) =>
+    el.dispatchEvent(
+        new MouseEvent("click", { bubbles: true, cancelable: true }),
+    );
 const key = (el: Element, k: string) =>
     el.dispatchEvent(new KeyboardEvent("keydown", { key: k, bubbles: true }));
 
@@ -57,7 +61,9 @@ describe("DropdownManager", () => {
         document.body.innerHTML = MENU;
         const dd = new DropdownManager(root());
         dd.open();
-        items()[0].dispatchEvent(new MouseEvent("click", { bubbles: true }));
+        root()
+            .querySelector("li")!
+            .dispatchEvent(new MouseEvent("click", { bubbles: true }));
         expect(dd.isOpen).toBe(true);
         document.getElementById("outside")!.click();
         expect(dd.isOpen).toBe(false);
@@ -113,12 +119,62 @@ describe("DropdownManager", () => {
         expect(document.activeElement).toBe(trigger());
     });
 
+    it("closes when a menu link is followed", () => {
+        document.body.innerHTML = MENU;
+        const dd = new DropdownManager(root());
+        dd.open();
+        click(items()[0]);
+        expect(dd.isOpen).toBe(false);
+        expect(trigger().getAttribute("aria-expanded")).toBe("false");
+    });
+
+    it("closes a details dropdown when a menu link is followed", () => {
+        document.body.innerHTML = DETAILS;
+        const dd = new DropdownManager(root());
+        dd.open();
+        click(items()[0]);
+        expect(dd.isOpen).toBe(false);
+    });
+
+    it("keeps the menu open for a data-ss-dropdown-keep-open link or root", () => {
+        document.body.innerHTML = MENU;
+        const dd = new DropdownManager(root());
+        dd.open();
+        items()[0].setAttribute("data-ss-dropdown-keep-open", "");
+        click(items()[0]);
+        expect(dd.isOpen).toBe(true);
+        root().setAttribute("data-ss-dropdown-keep-open", "");
+        click(items()[1]);
+        expect(dd.isOpen).toBe(true);
+    });
+
+    it("closes on a pageshow from the back/forward cache only", () => {
+        document.body.innerHTML = DETAILS;
+        const dd = new DropdownManager(root());
+        dd.open();
+        window.dispatchEvent(
+            new PageTransitionEvent("pageshow", { persisted: false }),
+        );
+        expect(dd.isOpen).toBe(true);
+        window.dispatchEvent(
+            new PageTransitionEvent("pageshow", { persisted: true }),
+        );
+        expect(dd.isOpen).toBe(false);
+        dd.destroy();
+    });
+
     it("stops listening after destroy and binds all with initAll", () => {
         document.body.innerHTML = MENU;
         const dd = new DropdownManager(root());
         dd.destroy();
         trigger().click();
         expect(dd.isOpen).toBe(false);
+        dd.open();
+        click(items()[0]);
+        window.dispatchEvent(
+            new PageTransitionEvent("pageshow", { persisted: true }),
+        );
+        expect(dd.isOpen).toBe(true);
         expect(() => new DropdownManager("#missing")).toThrow();
         root().setAttribute("data-ss", "dropdown-menu");
         expect(DropdownManager.initAll()).toHaveLength(1);

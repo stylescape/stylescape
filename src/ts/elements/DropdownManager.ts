@@ -17,11 +17,21 @@
 // moves focus through the items with the arrow keys, Home and End.
 //
 // A native `<details class="ss-c-dropdown">` opens by itself; the manager
-// only adds closing on Escape and on a click outside.
+// only adds the closing.
+//
+// Either way the menu also closes when a link in it is followed (a click on
+// `.ss-c-dropdown__menu a[href]`), so a same-page link or a page restored
+// from the back/forward cache does not show it still open, and on a
+// `pageshow` that restores the page from that cache. A link that should
+// leave the menu open (a filter toggle, say) opts out with
+// `data-ss-dropdown-keep-open`, on the link or on an element between it and
+// the root (the root itself included).
 // ============================================================================
 
 const ITEMS =
     ".ss-c-dropdown__menu a[href], .ss-c-dropdown__menu button:not([disabled]), .ss-c-dropdown__menu [role='menuitem']";
+const MENU_LINK = ".ss-c-dropdown__menu a[href]";
+const KEEP_OPEN = "[data-ss-dropdown-keep-open]";
 let uid = 0;
 
 export class DropdownManager {
@@ -38,6 +48,17 @@ export class DropdownManager {
         if (this.isOpen && !this.root.contains(event.target as Node)) {
             this.close(false);
         }
+    };
+    private readonly onRootClick = (event: Event): void => {
+        if (!this.isOpen || !(event.target instanceof Element)) return;
+        const link = event.target.closest(MENU_LINK);
+        if (!link || !this.root.contains(link)) return;
+        const keep = link.closest(KEEP_OPEN);
+        if (keep && this.root.contains(keep)) return;
+        this.close(false);
+    };
+    private readonly onPageShow = (event: PageTransitionEvent): void => {
+        if (event.persisted && this.isOpen) this.close(false);
     };
     private readonly onKeydown = (event: KeyboardEvent): void => {
         if (event.key === "Escape" && this.isOpen) {
@@ -92,7 +113,9 @@ export class DropdownManager {
             this.trigger.addEventListener("click", this.onTriggerClick);
         }
         el.addEventListener("keydown", this.onKeydown);
+        el.addEventListener("click", this.onRootClick);
         document.addEventListener("click", this.onDocumentClick);
+        window.addEventListener("pageshow", this.onPageShow);
     }
 
     get isOpen(): boolean {
@@ -117,7 +140,9 @@ export class DropdownManager {
     destroy(): void {
         this.trigger?.removeEventListener("click", this.onTriggerClick);
         this.root.removeEventListener("keydown", this.onKeydown);
+        this.root.removeEventListener("click", this.onRootClick);
         document.removeEventListener("click", this.onDocumentClick);
+        window.removeEventListener("pageshow", this.onPageShow);
     }
 
     /** Bind every `[data-ss="dropdown-menu"]` under `root`. */
