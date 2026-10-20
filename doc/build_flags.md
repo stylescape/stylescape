@@ -7,44 +7,34 @@ sets them where it loads core:
 
 ```scss
 @use "pkg:stylescape/scss" with (
-    $scapepress-parity: false
+    $v03-compat: false
 );
 ```
 
-Every default keeps existing markup working: `$scapepress-parity` reproduces the
-historical build exactly, and `$v03-compat` (new in 0.4.2) adds the 0.3
-class names back.
+Every default keeps existing markup working: `$v03-compat` (new in 0.4.2) adds
+the 0.3 class names back.
 
 Themes that sit on top of core pass the configuration on core's behalf — see
 `stylescape-matter`'s `src/scss/index.scss` for the pattern.
 
-## `$scapepress-parity`
+## `$scapepress-parity` (deprecated, no effect)
 
-|         |                                        |
-| ------- | -------------------------------------- |
-| Type    | `Bool`                                 |
-| Default | `true`                                 |
-| Layer   | `32-utilities/_scapepress-parity.scss` |
+|         |                     |
+| ------- | ------------------- |
+| Type    | `Bool`              |
+| Default | `true`              |
+| Status  | deprecated in 0.6.0 |
 
-The parity layer re-emits every class found in the scapepress-sites SCSS under
-the `ss-c-*` prefix, so those sites can migrate onto core without losing their
-legacy styling. It is ~890 KiB of source — **more than half of the compiled
-stylesheet** — and it is dead weight for any consumer whose markup never used
-those classes.
+Until 0.5 this flag switched off the scapepress parity shim
+(`32-utilities/_scapepress-parity.scss`), which re-emitted every class found in
+the scapepress-sites SCSS under the `ss-c-*` prefix in `@layer ss.compat`.
 
-```
-core, default                    1024 KiB
-core, $scapepress-parity: false   472 KiB
-```
-
-Set it to `false` when the consuming markup was written fresh against the
-module layer (`.ss-c-*` components from `31-modules`) or does not use
-stylescape classes at all. Nothing in `31-modules` or the rest of
-`32-utilities` depends on the parity layer — only the legacy class names
-disappear.
-
-Keep it `true` for the scapepress sites themselves and for anything that
-inherited their markup.
+Those classes are now native module partials, `31-modules/*/_*.sites.scss`
+(one per component family: `lightbox`, `grid-square`, `programme`, `hero`,
+`footer`, …), in `@layer ss.components`, reading `--ss-*` tokens instead of
+the sites' own variables. They are always emitted. The flag is still accepted,
+so `with ($scapepress-parity: false)` keeps compiling, but it changes nothing;
+drop it from your configuration.
 
 ## `$v03-compat`
 

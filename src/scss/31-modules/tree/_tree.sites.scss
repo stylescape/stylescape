@@ -1,0 +1,66 @@
+////
+///
+/// Tree Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `tree` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 3 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Tree
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- tree-node  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-tree-node {
+        display: flex;
+        align-items: center;
+        gap: unset;
+        padding: unset unset;
+        border-radius: 0;
+        border: q(1) solid var(--ss-color-gray-200);
+        background: var(--ss-color-white);
+        min-width: q(200);
+        transition: all var(--ss-duration-150) ease;
+
+        &.active {
+            border-color: unset;
+            background: unset;
+
+            .ss-c-node-label {
+                color: unset;
+            }
+        }
+    }
+
+    // -- tree-connector  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-tree-connector {
+        width: q(1);
+        height: q(16);
+        background: var(--ss-color-gray-200);
+        margin-left: q(24);
+    }
+
+    // -- tree-branch  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-tree-branch {
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+        overflow: hidden;
+    }
+}

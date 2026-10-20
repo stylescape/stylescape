@@ -1,0 +1,499 @@
+////
+///
+/// Visual Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 26 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Visual
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- visual-canvas  (from site-lovelacelabs_ai/src/static/scss/app/_cursor.scss) --
+    .ss-c-visual-canvas {
+        // Already handled in cursor.ts, but can be customized here
+    }
+
+    // -- visual-container  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
+        background: unset;
+        border-radius: q(24);
+        overflow: hidden;
+
+        // Neumorphic container style
+        box-shadow:
+            q(8) q(8) q(16) unset,
+            q(-8) q(-8) q(16) unset,
+            inset q(2) q(2) q(4) unset,
+            inset q(-2) q(-2) q(4) rgba(163, 177, 198, 0.3);
+
+        transition: all 0.3s ease;
+
+        &:hover {
+            box-shadow:
+                q(12) q(12) q(24) unset,
+                q(-12) q(-12) q(24) unset;
+            transform: translateY(q(-2));
+
+            .ss-c-visual {
+                --visual-speed: 0.5;
+            }
+        }
+
+        &--wide {
+            aspect-ratio: 2 / 1;
+        }
+
+        &--tall {
+            aspect-ratio: 1 / 2;
+        }
+
+        // Show visual when container is loaded
+        &.ss-c-visual--loaded .ss-c-visual,
+        .ss-c-visual {
+            opacity: 1;
+        }
+    }
+
+    // -- visual  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual {
+        --visual-speed: 1;
+
+        width: 100%;
+        height: 100%;
+        display: block;
+        transition: opacity 0.5s ease;
+    }
+
+    // -- visual--neural  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--neural {
+        .ss-c-neural__connection {
+            opacity: 0.3;
+            stroke-dasharray: 5 5;
+            animation: neural-pulse 300ms infinite ease-in-out;
+
+            // (stripped @for block)
+
+        }
+
+        .ss-c-neural__node {
+            transform-origin: center;
+            animation: node-breathe 200ms infinite ease-in-out;
+
+            &--input {
+                animation-delay: 0s;
+            }
+            &--hidden {
+                animation-delay: 0.5s;
+            }
+            &--output {
+                animation-delay: 1s;
+            }
+        }
+    }
+
+    // -- visual--core  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--core {
+        .ss-c-core__ring {
+            transform-origin: center;
+            animation: ring-pulse 300ms infinite ease-in-out;
+
+            &--1 { animation-delay: 0s; }
+            &--2 { animation-delay: 0.5s; }
+            &--3 { animation-delay: 1s; }
+            &--4 { animation-delay: 1.5s; }
+        }
+
+        .ss-c-core__center {
+            animation: core-glow 200ms infinite ease-in-out;
+        }
+
+        .ss-c-core__particle {
+            animation: particle-orbit 300ms infinite linear;
+            animation-delay: calc(var(--particle-index, 0) * -0.5s);
+        }
+    }
+
+    // -- visual--flow  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--flow {
+        .ss-c-flow__stream {
+            stroke-dasharray: 20 10;
+            animation: flow-stream 200ms infinite linear;
+
+            &--1 { animation-duration: 3s; }
+            &--2 { animation-duration: 4s; animation-direction: reverse; }
+            &--3 { animation-duration: 5s; }
+            &--4 { animation-duration: 3.5s; animation-direction: reverse; }
+            &--5 { animation-duration: 4.5s; }
+        }
+
+        .ss-c-flow__dot {
+            animation: flow-dot 200ms infinite ease-in-out;
+
+            // (stripped @for block)
+
+        }
+    }
+
+    // -- visual--hex  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--hex {
+        .ss-c-hex__cell {
+            transform-origin: center;
+            animation: hex-pulse 300ms infinite ease-in-out;
+            animation-delay: calc(var(--hex-index, 0) * 0.15s);
+            cursor: pointer;
+
+            &:hover {
+                fill: unset;
+                stroke-width: 2;
+                animation-play-state: paused;
+            }
+        }
+    }
+
+    // -- visual--orbital  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--orbital {
+        .ss-c-orbital__path {
+            stroke-dasharray: 5 10;
+            animation: orbital-dash 300ms infinite linear;
+
+            &--1 { animation-duration: 12s; }
+            &--2 { animation-duration: 10s; animation-direction: reverse; }
+            &--3 { animation-duration: 8s; }
+        }
+
+        .ss-c-orbital__sun {
+            animation: sun-pulse 200ms infinite ease-in-out;
+        }
+
+        .ss-c-orbital__planet {
+            transform-origin: q(200) q(200);
+
+            &--1 {
+                animation: planet-orbit-1 12s infinite linear;
+            }
+            &--2 {
+                animation: planet-orbit-2 10s infinite linear;
+            }
+            &--3 {
+                animation: planet-orbit-3 8s infinite linear;
+            }
+        }
+    }
+
+    // -- visual--wave  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--wave {
+        .ss-c-wave__line {
+            animation: wave-flow 200ms infinite ease-in-out;
+
+            &--1 {
+                animation-duration: 3s;
+            }
+            &--2 {
+                animation-duration: 4s;
+                animation-delay: 0.5s;
+            }
+            &--3 {
+                animation-duration: 5s;
+                animation-delay: 1s;
+            }
+        }
+    }
+
+    // -- visual--constellation  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--constellation {
+        .ss-c-constellation__line {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: constellation-draw 3s forwards ease-out;
+            animation-delay: calc(var(--line-index, 0) * 0.2s);
+        }
+
+        .ss-c-constellation__star {
+            transform-origin: center;
+            animation: star-twinkle 150ms infinite ease-in-out;
+            animation-delay: calc(var(--star-index, 0) * 0.3s);
+        }
+    }
+
+    // -- visual--dna  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--dna {
+        .ss-c-dna__node {
+            animation: dna-wave 200ms infinite ease-in-out;
+            animation-delay: calc(var(--dna-index, 0) * 0.1s);
+
+            &--left {
+                animation-name: dna-wave-left;
+            }
+            &--right {
+                animation-name: dna-wave-right;
+            }
+        }
+
+        .ss-c-dna__bridge {
+            animation: dna-bridge 200ms infinite ease-in-out;
+            animation-delay: calc(var(--dna-index, 0) * 0.1s);
+        }
+    }
+
+    // -- visual--tree  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--tree {
+        .ss-c-tree__branch {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: tree-grow 4s forwards ease-out;
+            animation-delay: calc(var(--branch-depth, 0) * 0.5s);
+
+            &:hover {
+                stroke: unset;
+            }
+        }
+    }
+
+    // -- visual--blob  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--blob {
+        .ss-c-blob__shape {
+            transform-origin: center;
+
+            &--1 {
+                animation: blob-morph-1 300ms infinite ease-in-out;
+            }
+            &--2 {
+                animation: blob-morph-2 300ms infinite ease-in-out;
+                animation-delay: 1s;
+            }
+        }
+    }
+
+    // -- visual--circuit  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--circuit {
+        .ss-c-circuit__path {
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            animation: circuit-trace 3s forwards ease-out;
+            animation-delay: calc(var(--circuit-index, 0) * 0.5s);
+        }
+
+        .ss-c-circuit__node {
+            transform-origin: center;
+            animation: circuit-node-pulse 150ms infinite ease-in-out;
+            animation-delay: calc(var(--node-index, 0) * 0.1s);
+
+            &:hover {
+                animation-play-state: paused;
+                transform: scale(2);
+            }
+        }
+    }
+
+    // -- visual--ripple  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--ripple {
+        cursor: pointer;
+
+        .ss-c-ripple__circle {
+            transform-origin: center;
+            animation: ripple-expand 200ms infinite ease-out;
+
+            // (stripped @for block)
+
+        }
+
+        .ss-c-ripple__center {
+            animation: ripple-center 150ms infinite ease-in-out;
+        }
+
+        &:hover {
+            .ss-c-ripple__circle {
+                animation-duration: 1s;
+            }
+        }
+    }
+
+    // -- visual--particles  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--particles {
+        .ss-c-particle {
+            transform-origin: center;
+            animation: particle-float 300ms infinite ease-in-out;
+            animation-delay: calc(var(--particle-index, 0) * 0.1s);
+        }
+    }
+
+    // -- visual--spiral  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--spiral {
+        .ss-c-spiral__path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: spiral-draw 6s infinite ease-in-out;
+
+            &--1 { animation-delay: 0s; }
+            &--2 { animation-delay: 0.5s; }
+            &--3 { animation-delay: 1s; }
+        }
+
+        .ss-c-spiral__center {
+            animation: spiral-pulse 200ms infinite ease-in-out;
+        }
+    }
+
+    // -- visual--matrix  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--matrix {
+        .ss-c-matrix__cell {
+            animation: matrix-flicker 150ms infinite ease-in-out;
+            animation-delay: calc(var(--cell-index, 0) * 0.05s);
+        }
+    }
+
+    // -- visual--infinity  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--infinity {
+        .ss-c-infinity__path {
+            stroke-dasharray: 800;
+            stroke-dashoffset: 800;
+            animation: infinity-trace 6s infinite linear;
+
+            &--1 { animation-duration: 4s; }
+            &--2 { animation-duration: 5s; animation-delay: 0.5s; }
+            &--3 { animation-duration: 6s; animation-delay: 1s; }
+        }
+
+        .ss-c-infinity__dot {
+            animation: infinity-glow 200ms infinite ease-in-out;
+        }
+    }
+
+    // -- visual--soundwave  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--soundwave {
+        .ss-c-soundwave__bar {
+            transform-origin: center bottom;
+            animation: soundwave-bounce 150ms infinite ease-in-out;
+            animation-delay: calc(var(--bar-index, 0) * 0.05s);
+        }
+    }
+
+    // -- visual--atomic  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--atomic {
+        .ss-c-atomic__orbit {
+            stroke-dasharray: 5 5;
+            animation: atomic-orbit-dash 3s infinite linear;
+
+            &--1 { animation-direction: normal; }
+            &--2 { animation-direction: reverse; animation-duration: 4s; }
+            &--3 { animation-duration: 5s; }
+        }
+
+        .ss-c-atomic__electron {
+            transform-origin: q(200) q(200);
+
+            &--1 { animation: electron-orbit-1 3s infinite linear; }
+            &--2 { animation: electron-orbit-2 4s infinite linear; }
+            &--3 { animation: electron-orbit-3 5s infinite linear; }
+        }
+
+        .ss-c-atomic__nucleus {
+            animation: nucleus-pulse 200ms infinite ease-in-out;
+        }
+    }
+
+    // -- visual--cube  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--cube {
+        .ss-c-cube__wireframe {
+            transform-origin: center;
+            animation: cube-rotate 12s infinite linear;
+        }
+
+        .ss-c-cube__edge {
+            stroke-dasharray: 200;
+            animation: cube-edge-draw 4s infinite ease-in-out;
+            animation-delay: calc(var(--edge-index, 0) * 0.1s);
+        }
+
+        .ss-c-cube__vertex {
+            animation: cube-vertex-pulse 200ms infinite ease-in-out;
+            animation-delay: calc(var(--vertex-index, 0) * 0.2s);
+        }
+    }
+
+    // -- visual--radar  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual--radar {
+        .ss-c-radar__ring {
+            animation: radar-ring-pulse 4s infinite ease-out;
+
+            &:nth-child(1) { animation-delay: 0s; }
+            &:nth-child(2) { animation-delay: 0.5s; }
+            &:nth-child(3) { animation-delay: 1s; }
+            &:nth-child(4) { animation-delay: 1.5s; }
+        }
+
+        .ss-c-radar__beam {
+            transform-origin: q(200) q(200);
+            animation: radar-sweep 4s infinite linear;
+        }
+
+        .ss-c-radar__blip {
+            animation: radar-blip-ping 2s infinite ease-out;
+            animation-delay: calc(var(--blip-index, 0) * 0.3s);
+        }
+
+        .ss-c-radar__center {
+            animation: radar-center-pulse 150ms infinite ease-in-out;
+        }
+    }
+
+    // -- visual-card  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visual-card {
+        display: flex;
+        flex-direction: column;
+        gap: q(05);
+
+        &__title {
+        // (stripped @include)
+        // (stripped @include)
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+            color: unset;
+        }
+
+        &__description {
+        // (stripped @include)
+            text-align: center;
+            color: unset;
+            opacity: 0.8;
+        }
+    }
+
+    // -- visual-icon  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-visual-icon {
+        width: q(80);
+        height: q(80);
+        margin: 0 auto unset;
+        color: unset;
+    }
+
+    // -- visual-text  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-visual-text {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-600);
+        font-style: italic;
+    }
+}

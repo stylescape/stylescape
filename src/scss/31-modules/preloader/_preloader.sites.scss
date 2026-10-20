@@ -1,0 +1,89 @@
+////
+///
+/// Preloader Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `preloader` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 2 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Preloader
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- page-loader  (from site-suell_org/src/static/scss/components/_page-loader.scss) --
+    .ss-c-page-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+
+        &.ss-c-loaded {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        &__logo {
+            max-width: q(120);
+            margin-bottom: q(32);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        &__text {
+            font-size: q(12);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: #737373;
+        }
+    }
+
+    // -- loading-screen  (from site-vianen_com/src/static/scss/components/_loading.scss) --
+    .ss-c-loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--ss-color-fill, #ffffff);
+        // (stripped @include)
+      z-index: 9999;
+      transition: opacity var(--ss-duration-300) ease;
+
+      &.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .ss-c-loading-text {
+        font-size: q(12);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: #737373;
+      }
+    }
+}

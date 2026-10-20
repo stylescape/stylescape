@@ -1,0 +1,598 @@
+////
+///
+/// Features Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 29 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Features
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints";
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- faq-list  (from site-scape_ventures/src/static/scss/sections/_faq.scss) --
+    .ss-c-faq-list {
+        max-width: q(800);
+        margin: 0 auto;
+    }
+
+    // -- faq-item  (from site-scape_ventures/src/static/scss/sections/_faq.scss) --
+    .ss-c-faq-item {
+        border-bottom: q(1) solid var(--ss-color-gray-200);
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    // -- faq-question  (from site-scape_ventures/src/static/scss/sections/_faq.scss) --
+    .ss-c-faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: var(--ss-spacing-6) 0;
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-medium);
+        text-align: left;
+        cursor: pointer;
+        list-style: none;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        span {
+            flex: 1;
+        }
+    }
+
+    // -- faq-icon  (from site-scape_ventures/src/static/scss/sections/_faq.scss) --
+    .ss-c-faq-icon {
+        width: q(24);
+        height: q(24);
+        flex-shrink: 0;
+        transition: transform var(--ss-duration-200) ease;
+
+        details[open] & {
+            transform: rotate(180deg);
+        }
+    }
+
+    // -- faq-answer  (from site-scape_ventures/src/static/scss/sections/_faq.scss) --
+    .ss-c-faq-answer {
+        padding-bottom: var(--ss-spacing-6);
+
+        p {
+            font-size: var(--ss-font-size-base);
+        }
+    }
+
+    // -- faq  (from site-scape_group/src/static/scss/sections/_home.scss) --
+    .ss-c-faq {
+        padding: var(--ss-spacing-16) var(--ss-spacing-6);
+        background-color: var(--ss-color-white);
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            padding: var(--ss-spacing-24) var(--ss-spacing-8);
+        }
+
+        &__container {
+            max-width: q(1200);
+            margin: 0 auto;
+        }
+
+        &__heading {
+            font-family: var(--ss-font-family-display);
+            font-size: var(--ss-font-size-xs);
+            font-weight: var(--ss-font-weight-medium);
+            color: var(--ss-color-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: var(--ss-spacing-12);
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                margin-bottom: var(--ss-spacing-16);
+            }
+        }
+
+        &__list {
+            display: grid;
+            gap: var(--ss-spacing-8);
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--ss-spacing-12);
+            }
+        }
+
+        &__item {
+            padding: var(--ss-spacing-6);
+            border: q(1) solid var(--ss-color-gray-200);
+            border-radius: q(4);
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                padding: var(--ss-spacing-8);
+            }
+        }
+
+        &__question {
+            font-family: var(--ss-font-family-display);
+            font-size: var(--ss-font-size-lg);
+            font-weight: var(--ss-font-weight-semibold);
+            color: var(--ss-color-primary);
+            margin-bottom: var(--ss-spacing-3);
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                font-size: var(--ss-font-size-xl);
+            }
+        }
+
+        &__answer {
+            p {
+                font-size: var(--ss-font-size-sm);
+                color: var(--ss-color-gray-600);
+                line-height: var(--ss-leading-relaxed);
+
+                @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                    font-size: var(--ss-font-size-base);
+                }
+            }
+        }
+    }
+
+    // -- features  (from site-scape_press/src/static/scss/sections/_features.scss) --
+    .ss-c-features {
+        padding: var(--ss-spacing-24) 0;
+        background-color: var(--ss-color-black);
+        color: var(--ss-color-white);
+
+        &__container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 var(--ss-spacing-6);
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+                padding: 0 var(--ss-spacing-12);
+            }
+        }
+
+        &__header {
+            max-width: 60ch;
+            margin: 0 0 var(--ss-spacing-16);
+        }
+
+        &__eyebrow {
+            display: inline-block;
+            font-size: var(--ss-font-size-xs);
+            font-weight: var(--ss-font-weight-medium);
+            text-transform: uppercase;
+            letter-spacing: var(--ss-tracking-widest);
+            color: var(--ss-color-gray-300);
+            margin-bottom: var(--ss-spacing-6);
+        }
+
+        &__title {
+            font-family: var(--ss-font-family-display);
+            font-size: clamp(q(36), 6vw, q(80));
+            font-weight: var(--ss-font-weight-bold);
+            line-height: 0.95;
+            letter-spacing: var(--ss-tracking-tighter);
+            margin: 0 0 var(--ss-spacing-6);
+            color: var(--ss-color-white);
+        }
+
+        &__description {
+            font-size: var(--ss-font-size-lg);
+            color: var(--ss-color-gray-200);
+            line-height: 1.5;
+        }
+
+        &__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            border-top: q(1) solid color-mix(in srgb, var(--ss-color-white) 18%, transparent);
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        &__item {
+            position: relative;
+            padding: var(--ss-spacing-12) var(--ss-spacing-6);
+            border-bottom: q(1) solid color-mix(in srgb, var(--ss-color-white) 18%, transparent);
+            background-color: transparent;
+            color: var(--ss-color-white);
+            transition: background-color var(--ss-duration-200) ease;
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                &:nth-child(2n) {
+                    border-left: q(1) solid color-mix(in srgb, var(--ss-color-white) 18%, transparent);
+                }
+            }
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+                &:nth-child(2n) {
+                    border-left: none;
+                }
+                &:not(:nth-child(3n + 1)) {
+                    border-left: q(1) solid color-mix(in srgb, var(--ss-color-white) 18%, transparent);
+                }
+            }
+
+            &:hover {
+                background-color: color-mix(in srgb, var(--ss-color-white) 4%, transparent);
+            }
+        }
+
+        &__index {
+            font-size: var(--ss-font-size-xs);
+            font-weight: var(--ss-font-weight-medium);
+            font-variant-numeric: tabular-nums;
+            text-transform: uppercase;
+            letter-spacing: var(--ss-tracking-widest);
+            color: var(--ss-color-gray-300);
+            margin-bottom: var(--ss-spacing-8);
+        }
+
+        &__icon {
+            display: none; // Replaced by numbered list pattern.
+        }
+
+        &__item-title {
+            font-family: var(--ss-font-family-display);
+            font-size: var(--ss-font-size-3xl);
+            font-weight: var(--ss-font-weight-bold);
+            letter-spacing: var(--ss-tracking-tight);
+            margin: 0 0 var(--ss-spacing-4);
+            color: var(--ss-color-white);
+        }
+
+        &__item-description {
+            font-size: var(--ss-font-size-base);
+            color: var(--ss-color-gray-200);
+            line-height: 1.5;
+            margin: 0;
+        }
+    }
+
+    // -- feature-card  (from site-blockfoundation_io/src/static/scss/components/_cards.scss) --
+    .ss-c-feature-card {
+        background-color: var(--ss-color-background);
+        padding: var(--ss-spacing-8);
+        text-align: left;
+        transition: all var(--ss-duration-200) ease;
+        transform: translateY(0);
+
+        &:hover {
+            background-color: var(--ss-color-surface-hover);
+            transform: translateY(q(-4));
+        }
+
+        &__icon {
+            width: q(48);
+            height: q(48);
+            margin-bottom: var(--ss-spacing-6);
+        // (stripped @include)
+            transition: transform var(--ss-duration-200) ease;
+
+            svg {
+                width: q(32);
+                height: q(32);
+                color: var(--ss-color-text-primary);
+            }
+        }
+
+        &:hover &__icon {
+            transform: scale(1.1);
+        }
+
+        &__title {
+            font-size: var(--ss-font-size-lg);
+            font-weight: var(--ss-font-weight-medium);
+            margin-bottom: var(--ss-spacing-3);
+            color: var(--ss-color-text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        &__text {
+            color: var(--ss-color-secondary);
+            font-size: var(--ss-font-size-sm);
+            line-height: var(--ss-leading-relaxed);
+        }
+    }
+
+    // -- feature-block  (from site-geoid_org/src/static/scss/components/_card.scss) --
+    .ss-c-feature-block {
+      padding: var(--ss-spacing-12);
+      background: var(--ss-color-background);
+      border: q(1) solid var(--ss-color-border);
+      border-radius: var(--ss-radius-lg);
+        // (stripped @include)
+      &:hover {
+        border-color: var(--ss-color-accent);
+        // (stripped @include)
+      }
+
+      &__icon {
+        width: q(48);
+        height: q(48);
+        margin-bottom: var(--ss-spacing-6);
+        color: var(--ss-color-accent);
+      }
+
+      &__title {
+        font-size: q(18);
+        margin-bottom: var(--ss-spacing-4);
+        color: var(--ss-color-text);
+      }
+
+      &__text {
+        font-size: q(15);
+        color: var(--ss-color-text-secondary);
+      }
+    }
+
+    // -- feature-list  (from site-geoid_org/src/static/scss/components/_tables.scss) --
+    .ss-c-feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ss-spacing-6);
+
+      &--grid {
+        // (stripped @include block)
+
+      }
+    }
+
+    // -- feature-list-item  (from site-geoid_org/src/static/scss/components/_tables.scss) --
+    .ss-c-feature-list-item {
+      display: flex;
+      gap: var(--ss-spacing-6);
+      padding: var(--ss-spacing-6);
+      border-radius: var(--ss-radius-md);
+        // (stripped @include)
+      &:hover {
+        background: var(--ss-color-surface-alt);
+      }
+
+      &__icon {
+        flex-shrink: 0;
+        width: q(32);
+        height: q(32);
+        color: var(--ss-color-accent);
+      }
+
+      &__content {
+        flex: 1;
+      }
+
+      &__title {
+        font-weight: 600;
+        margin-bottom: q(4);
+      }
+
+      &__description {
+        font-size: q(14);
+        color: var(--ss-color-text-secondary);
+      }
+    }
+
+    // -- features__eyebrow  (from site-inthecity_ai/src/static/scss/blocks/_features.scss) --
+    .ss-c-features__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25em;
+        font-family: unset;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-accent);
+        font-size: q(12);
+        margin-bottom: q(8);
+    }
+
+    // -- features__eyebrow-dot  (from site-inthecity_ai/src/static/scss/blocks/_features.scss) --
+    .ss-c-features__eyebrow-dot {
+        width: 0.5em;
+        height: 0.5em;
+        background: var(--ss-color-accent);
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    // -- features__title  (from site-inthecity_ai/src/static/scss/blocks/_features.scss) --
+    .ss-c-features__title {
+        margin-bottom: 0.5em;
+    }
+
+    // -- features__subtitle  (from site-inthecity_ai/src/static/scss/blocks/_features.scss) --
+    .ss-c-features__subtitle {
+        color: var(--ss-color-gray-600);
+        max-width: 50ch;
+        margin-bottom: q(32);
+    }
+
+    // -- features__grid  (from site-inthecity_ai/src/static/scss/blocks/_features.scss) --
+    .ss-c-features__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(256), 1fr));
+        gap: q(24);
+    }
+
+    // -- feature-card__icon  (from site-inthecity_ai/src/static/scss/blocks/_features.scss) --
+    .ss-c-feature-card__icon {
+        width: q(40);
+        height: q(40);
+        margin-bottom: q(16);
+        color: var(--ss-color-accent);
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    // -- feature-card__title  (from site-inthecity_ai/src/static/scss/blocks/_features.scss) --
+    .ss-c-feature-card__title {
+        font-size: q(18);
+        margin: 0 0 0.5em;
+    }
+
+    // -- feature-card__description  (from site-inthecity_ai/src/static/scss/blocks/_features.scss) --
+    .ss-c-feature-card__description {
+        color: var(--ss-color-gray-600);
+        font-size: q(14);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    // -- feature  (from site-mesmera_io/src/static/scss/app/_components.scss) --
+    .ss-c-feature {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            flex-direction: row;
+            gap: unset;
+        }
+
+        &__icon {
+            flex-shrink: 0;
+            width: q(48);
+            height: q(48);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f2f2f2;
+            border-radius: var(--ss-radius-none);
+            color: var(--ss-color-text, #1a1a1a);
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                width: q(64);
+                height: q(64);
+            }
+        }
+
+        &__content {
+            flex: 1;
+        }
+
+        &__title {
+            margin-bottom: unset;
+        }
+
+        &__description {
+            color: #525252;
+        }
+    }
+
+    // -- features-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-features-section {
+        padding: unset 0;
+    }
+
+    // -- features-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-features-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+    }
+
+    // -- features-grid  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-features-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: unset;
+
+        @media (min-width: q(768)) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: q(1024)) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    // -- feature-icon  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-feature-icon {
+        width: q(48);
+        height: q(48);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: unset;
+        border-radius: 0;
+        margin-bottom: unset;
+
+        svg {
+            width: q(24);
+            height: q(24);
+            color: unset;
+        }
+    }
+
+    // -- feature-title  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-feature-title {
+        font-size: var(--ss-font-size-lg);
+        font-weight: 600;
+        margin-bottom: unset;
+    }
+
+    // -- feature-description  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-feature-description {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-600);
+        line-height: var(--ss-leading-relaxed);
+    }
+
+    // -- faq-section  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-faq-section {
+        padding: unset 0;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- faq-grid  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-faq-grid {
+        display: grid;
+        gap: unset;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    // -- features-title  (from site-starling_associates/src/static/scss/index.scss) --
+    .ss-c-features-title {
+        font-size: var(--ss-font-size-3xl);
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: unset;
+    }
+}

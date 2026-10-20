@@ -1,0 +1,197 @@
+////
+///
+/// Table Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `table` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 5 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Table
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints";
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- cookie-table  (from site-scape_ventures/src/static/scss/sections/_legal.scss) --
+    .ss-c-cookie-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: var(--ss-spacing-6) 0;
+        font-size: var(--ss-font-size-sm);
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+
+        thead {
+            background: var(--ss-color-gray-50);
+
+            th {
+                text-align: left;
+                padding: var(--ss-spacing-4);
+                font-weight: var(--ss-font-weight-semibold);
+                color: var(--ss-color-primary);
+                border-bottom: q(2) solid var(--ss-color-gray-200);
+                font-size: var(--ss-font-size-xs);
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+        }
+
+        tbody {
+            tr {
+                border-bottom: q(1) solid var(--ss-color-gray-100);
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                &:hover {
+                    background: var(--ss-color-gray-50);
+                }
+            }
+
+            td {
+                padding: var(--ss-spacing-4);
+                color: var(--ss-color-gray-700);
+                vertical-align: top;
+
+                &:first-child {
+                    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+                    font-size: var(--ss-font-size-xs);
+                    color: var(--ss-color-primary);
+                    font-weight: var(--ss-font-weight-medium);
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        // Responsive table
+        @media (max-width: map.get(breakpoints.$ss-breakpoints, "sm")) {
+            display: block;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    }
+
+    // -- table--full-width  (from site-scape_foundation/src/static/scss/components/_table.scss) --
+    .ss-c-table--full-width {
+        width: 100%;
+
+        th {
+            width: q(150);
+            min-width: q(150);
+            text-align: left;
+            vertical-align: top;
+            padding-right: q(16);
+        }
+
+        td {
+            width: 100%;
+        }
+
+        // Lists inside tables should not have bullets
+        ul, ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    // -- table-wrapper  (from site-geoid_org/src/static/scss/components/_tables.scss) --
+    .ss-c-table-wrapper {
+      overflow-x: auto;
+      margin-bottom: var(--ss-spacing-12);
+      border-radius: var(--ss-radius-md);
+      border: q(1) solid var(--ss-color-border);
+    }
+
+    // -- data-table  (from site-geoid_org/src/static/scss/components/_tables.scss) --
+    .ss-c-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: q(15);
+
+      th, td {
+        padding: var(--ss-spacing-4) var(--ss-spacing-6);
+        text-align: left;
+        border-bottom: q(1) solid var(--ss-color-border);
+      }
+
+      th {
+        font-weight: 600;
+        color: var(--ss-color-text);
+        background: var(--ss-color-surface-alt);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      td {
+        color: var(--ss-color-text-secondary);
+      }
+
+      tbody tr {
+        // (stripped @include block)
+
+
+        &:hover {
+          background: rgba(59, 130, 246, 0.05);
+        }
+
+        &:last-child td {
+          border-bottom: none;
+        }
+      }
+
+      // Striped rows
+      &--striped tbody tr:nth-child(odd) {
+        background: rgba(59, 130, 246, 0.02);
+      }
+
+      // Highlighted cells
+      .ss-c-table-highlight {
+        color: var(--ss-color-accent);
+        font-weight: 500;
+      }
+
+      // Success/Error states
+      .ss-c-table-success {
+        color: var(--ss-color-success);
+      }
+
+      .ss-c-table-error {
+        color: var(--ss-color-error);
+      }
+
+      .ss-c-table-warning {
+        color: var(--ss-color-warning);
+      }
+    }
+
+    // -- table-responsive  (from site-geoid_org/src/static/scss/components/_tables.scss) --
+    .ss-c-table-responsive {
+      // (stripped @include block)
+
+    }
+}

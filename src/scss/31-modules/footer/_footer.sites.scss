@@ -1,0 +1,860 @@
+////
+///
+/// Footer Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `footer` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 62 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Footer
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints";
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- site-footer  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-site-footer {
+        background: var(--ss-color-primary);
+        color: var(--ss-color-white);
+        padding: var(--ss-spacing-16) 0 var(--ss-spacing-8);
+    }
+
+    // -- footer-container  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-container {
+        max-width: q(1200);
+        margin: 0 auto;
+        padding: 0 var(--ss-spacing-6);
+    }
+
+    // -- footer-grid  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--ss-spacing-8);
+        margin-bottom: var(--ss-spacing-12);
+        align-items: start;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+        }
+    }
+
+    // -- footer-brand  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-brand {
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            padding-right: var(--ss-spacing-8);
+        }
+    }
+
+    // -- footer-logo  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--ss-spacing-3);
+        font-family: var(--ss-font-family-display);
+        font-weight: var(--ss-font-weight-bold);
+        font-size: var(--ss-font-size-sm);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        line-height: 1.25;
+        color: var(--ss-color-white);
+        margin: 0 0 var(--ss-spacing-4);
+
+        .ss-c-logo-icon {
+            width: q(32);
+            height: q(32);
+        }
+
+        &:hover {
+            color: var(--ss-color-gray-800);
+        }
+    }
+
+    // -- footer-tagline  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-tagline {
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-medium);
+        color: var(--ss-color-white);
+        margin-bottom: var(--ss-spacing-4);
+    }
+
+    // -- footer-description  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-description {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-white);
+    }
+
+    // -- footer-heading  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-heading {
+        font-size: var(--ss-font-size-sm);
+        font-weight: var(--ss-font-weight-semibold);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        line-height: 1.25;
+        color: var(--ss-color-white);
+        margin: 0 0 var(--ss-spacing-4);
+    }
+
+    // -- footer-links  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-links {
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: var(--ss-spacing-3);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-white);
+            line-height: var(--ss-leading-normal);
+        }
+
+        a {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-white);
+            transition: color var(--ss-duration-200) ease;
+
+            &:hover {
+                color: var(--ss-color-gray-800);
+            }
+        }
+    }
+
+    // -- footer-contact  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-contact {
+        address {
+            margin-bottom: var(--ss-spacing-4);
+
+            p {
+                font-size: var(--ss-font-size-sm);
+                color: var(--ss-color-white);
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    // -- footer-contact-links  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: var(--ss-spacing-2);
+
+        a {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-white);
+
+            &:hover {
+                color: var(--ss-color-gray-800);
+            }
+        }
+    }
+
+    // -- footer-social  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-social {
+        display: flex;
+        justify-content: center;
+        gap: var(--ss-spacing-4);
+        padding: var(--ss-spacing-8) 0;
+        border-top: q(1) solid var(--ss-color-gray-800);
+        border-bottom: q(1) solid var(--ss-color-gray-800);
+        margin-bottom: var(--ss-spacing-8);
+
+        a {
+            width: q(40);
+            height: q(40);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--ss-color-gray-800);
+            border-radius: 50%;
+            color: var(--ss-color-white);
+            transition: all var(--ss-duration-200) ease;
+
+            svg {
+                width: q(18);
+                height: q(18);
+            }
+
+            &:hover {
+                background: var(--ss-color-primary);
+                color: var(--ss-color-white);
+            }
+        }
+    }
+
+    // -- footer-bottom  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--ss-spacing-4);
+        text-align: center;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        p {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-white);
+        }
+    }
+
+    // -- footer-legal  (from site-scape_ventures/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-legal {
+        display: flex;
+        gap: var(--ss-spacing-6);
+
+        a {
+            font-size: var(--ss-font-size-sm);
+            color: inherit;
+
+            &:hover {
+                color: var(--ss-color-gray-800);
+            }
+        }
+    }
+
+    // -- footer  (from site-scape_group/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer {
+        // background and text colour come from the footer
+        // module (31-modules/footer)
+    }
+
+    // -- footer__container  (from site-scape_group/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer__container {
+        max-width: q(1200);
+        margin: 0 auto;
+        padding: 0 var(--ss-spacing-6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--ss-spacing-4);
+        text-align: center;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: left;
+        }
+    }
+
+    // -- footer__nav  (from site-scape_group/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer__nav {
+        order: 2;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            order: 1;
+        }
+    }
+
+    // -- footer__links  (from site-scape_group/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer__links {
+        display: flex;
+        gap: var(--ss-spacing-6);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        a {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-text-secondary, var(--ss-color-text-muted));
+            text-decoration: none;
+            transition: color var(--ss-duration-200) ease;
+
+            &:hover {
+                color: var(--ss-color-text-primary);
+            }
+        }
+    }
+
+    // -- footer__copyright  (from site-scape_group/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer__copyright {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-text-secondary, var(--ss-color-text-muted));
+        margin: 0;
+        order: 1;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            order: 2;
+        }
+
+        a {
+            color: var(--ss-color-text-secondary, var(--ss-color-text-muted));
+            text-decoration: none;
+
+            &:hover {
+                color: var(--ss-color-text-primary);
+            }
+        }
+    }
+
+    // -- footer__inner  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__inner {
+        max-width: q(1200);
+        margin: 0 auto;
+    }
+
+    // -- footer__brand  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__brand {
+        margin-bottom: q(48);
+    }
+
+    // -- footer__logo  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__logo {
+        font-size: q(40);
+        font-weight: 200;
+        text-transform: uppercase;
+        margin: 0 0 q(8);
+    }
+
+    // -- footer__tagline  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__tagline {
+        margin: 0;
+        opacity: 0.7;
+        font-size: q(18);
+    }
+
+    // -- footer__columns  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__columns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: q(32);
+    }
+
+    // -- footer__column  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__column {
+        flex: 1 1 q(200);
+        min-width: q(200);
+    }
+
+    // -- footer__column-title  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__column-title {
+        font-size: q(14);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin: 0 0 q(16);
+        opacity: 0.6;
+    }
+
+    // -- footer__nav-list  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin-bottom: q(8);
+        }
+
+        a {
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    // -- footer__address  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__address {
+        font-style: normal;
+
+        a {
+            display: block;
+            margin-bottom: q(8);
+        }
+
+        p {
+            margin: 0;
+            opacity: 0.7;
+        }
+    }
+
+    // -- footer__about-text  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__about-text {
+        font-size: q(14);
+        line-height: 1.5;
+        opacity: 0.7;
+        margin: 0 0 q(16);
+    }
+
+    // -- footer__social  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__social {
+        display: flex;
+        gap: q(16);
+
+        a {
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    // -- footer__bottom  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: q(16);
+        padding: q(16) q(32);
+        font-size: q(12);
+        border-top: q(1) solid currentColor;
+        opacity: 0.8;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    // -- footer__separator  (from site-demosphere_nl/src/static/scss/robin/_robins.scss) --
+    .ss-c-footer__separator {
+        margin: 0 q(8);
+        opacity: 0.5;
+    }
+
+    // -- footer__grid  (from site-geoid_org/src/static/scss/components/_footer.scss) --
+    .ss-c-footer__grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: var(--ss-spacing-24);
+      margin-bottom: var(--ss-spacing-24);
+
+      // (stripped @include block)
+
+
+      // (stripped @include block)
+
+    }
+
+    // -- footer__heading  (from site-geoid_org/src/static/scss/components/_footer.scss) --
+    .ss-c-footer__heading {
+      font-size: q(12);
+      font-weight: 600;
+      color: var(--ss-color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--ss-spacing-6);
+    }
+
+    // -- footer__list  (from site-geoid_org/src/static/scss/components/_footer.scss) --
+    .ss-c-footer__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--ss-spacing-4);
+    }
+
+    // -- footer__link  (from site-geoid_org/src/static/scss/components/_footer.scss) --
+    .ss-c-footer__link {
+      display: block;
+      padding: q(4) 0;
+      font-size: q(14);
+      color: var(--ss-color-text-secondary);
+      text-decoration: none;
+        // (stripped @include)
+        // (stripped @include)
+      &:hover {
+        color: var(--ss-color-text);
+        text-decoration: underline;
+      }
+    }
+
+    // -- footer__socials  (from site-geoid_org/src/static/scss/components/_footer.scss) --
+    .ss-c-footer__socials {
+      display: flex;
+      gap: var(--ss-spacing-4);
+      margin-bottom: var(--ss-spacing-6);
+    }
+
+    // -- footer__social-link  (from site-geoid_org/src/static/scss/components/_footer.scss) --
+    .ss-c-footer__social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: q(36);
+      height: q(36);
+      background: var(--ss-color-surface);
+      border: q(1) solid var(--ss-color-border);
+      border-radius: var(--ss-radius-md);
+      color: var(--ss-color-text-secondary);
+        // (stripped @include)
+        // (stripped @include)
+      &:hover {
+        background: var(--ss-color-accent);
+        border-color: var(--ss-color-accent);
+        color: white;
+        transform: translateY(q(-2));
+      }
+
+      svg {
+        width: q(18);
+        height: q(18);
+      }
+    }
+
+    // -- footer__policies  (from site-geoid_org/src/static/scss/components/_footer.scss) --
+    .ss-c-footer__policies {
+      display: flex;
+      gap: var(--ss-spacing-6);
+      list-style: none;
+
+      // (stripped @include block)
+
+
+      a {
+        font-size: q(13);
+        color: var(--ss-color-text-secondary);
+        text-decoration: none;
+        // (stripped @include)
+        &:hover {
+          color: var(--ss-color-accent);
+          text-decoration: underline;
+        }
+      }
+    }
+
+    // -- footer__newsletter  (from site-geoid_org/src/static/scss/components/_footer.scss) --
+    .ss-c-footer__newsletter {
+      margin-bottom: var(--ss-spacing-6);
+    }
+
+    // -- footer__newsletter-form  (from site-geoid_org/src/static/scss/components/_footer.scss) --
+    .ss-c-footer__newsletter-form {
+      display: flex;
+      gap: var(--ss-spacing-4);
+
+      // (stripped @include block)
+
+    }
+
+    // -- footer__newsletter-input  (from site-geoid_org/src/static/scss/components/_footer.scss) --
+    .ss-c-footer__newsletter-input {
+      flex: 1;
+      padding: var(--ss-spacing-4) var(--ss-spacing-6);
+      background: var(--ss-color-surface);
+      border: q(1) solid var(--ss-color-border);
+      color: var(--ss-color-text);
+      border-radius: var(--ss-radius-md);
+      font-size: q(14);
+        // (stripped @include)
+      &:focus {
+        outline: none;
+        border-color: var(--ss-color-accent);
+        background: var(--ss-color-background);
+      }
+
+      &::placeholder {
+        color: var(--ss-color-text-muted);
+      }
+    }
+
+    // -- footer__back-to-top  (from site-geoid_org/src/static/scss/components/_footer.scss) --
+    .ss-c-footer__back-to-top {
+      position: fixed;
+      bottom: var(--ss-spacing-12);
+      right: var(--ss-spacing-12);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: q(40);
+      height: q(40);
+      background: var(--ss-color-accent);
+      color: white;
+      border: none;
+      border-radius: var(--ss-radius-md);
+      cursor: pointer;
+      z-index: var(--ss-z-fixed);
+        // (stripped @include)
+        // (stripped @include)
+      &.ss-c-visible {
+        display: flex;
+      }
+
+      &:hover {
+        background: var(--ss-color-accent-highlight);
+        transform: translateY(q(-4));
+      }
+
+      svg {
+        width: q(20);
+        height: q(20);
+      }
+    }
+
+    // -- footer__divider  (from site-geoid_org/src/static/scss/components/_footer.scss) --
+    .ss-c-footer__divider {
+      height: q(1);
+      background: var(--ss-color-border);
+      margin: var(--ss-spacing-24) 0;
+    }
+
+    // -- footer__content  (from site-inthecity_ai/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer__content {
+        display: flex;
+        justify-content: space-between;
+        gap: q(32);
+        max-width: q(1024);
+        margin: 0 auto;
+        padding-bottom: q(32);
+        border-bottom: q(1) solid rgba(255, 255, 255, 0.1);
+
+        @media (max-width: q(640)) {
+            flex-direction: column;
+        }
+    }
+
+    // -- footer__nav-group  (from site-inthecity_ai/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer__nav-group {
+        min-width: q(96);
+
+        @media (max-width: q(640)) {
+            min-width: 0;
+        }
+    }
+
+    // -- footer__nav-title  (from site-inthecity_ai/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer__nav-title {
+        font-family: unset;
+        font-size: q(12);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-accent);
+        margin: 0 0 q(12);
+    }
+
+    // -- footer__title  (from site-lovelacelabs_ai/src/static/scss/app/_footer.scss) --
+    .ss-c-footer__title {
+        // (stripped @include)
+        // (stripped @include)
+
+        // Subtle underline accent
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: q(08);
+            height: q(1);
+            background: unset;
+            opacity: 0.4;
+
+            @media (max-width: q(600)) {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+
+    // -- footer__list-item  (from site-lovelacelabs_ai/src/static/scss/app/_footer.scss) --
+    .ss-c-footer__list-item {
+        margin-bottom: q(03);
+    }
+
+    // -- footer__bottom-content  (from site-lovelacelabs_ai/src/static/scss/app/_footer.scss) --
+    .ss-c-footer__bottom-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: q(1400);
+        margin: 0 auto;
+
+        @media (max-width: q(768)) {
+            flex-direction: column;
+            gap: q(05);
+            text-align: center;
+        }
+    }
+
+    // -- footer__legal-links  (from site-lovelacelabs_ai/src/static/scss/app/_footer.scss) --
+    .ss-c-footer__legal-links {
+        display: flex;
+        gap: q(06);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    // -- footer__legal-link  (from site-lovelacelabs_ai/src/static/scss/app/_footer.scss) --
+    .ss-c-footer__legal-link {
+        // (stripped @include)
+        // (stripped @include)
+        text-decoration: none;
+        color: unset;
+        letter-spacing: 0.02em;
+        padding: q(01) q(02);
+        border-radius: q(4);
+        transition: color 0.2s ease, background 0.2s ease;
+
+        &:hover {
+            color: unset;
+            background: unset;
+        }
+    }
+
+    // -- footer-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-footer-section {
+        // Standard section
+    }
+
+    // -- footer-brand-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-footer-brand-section {
+        .ss-c-footer-logo {
+            display: flex;
+            align-items: center;
+            gap: unset;
+            margin-bottom: unset;
+        }
+
+        .ss-c-brand-icon {
+            width: q(32);
+            height: q(32);
+            color: unset;
+        }
+
+        .ss-c-footer-brand-name {
+            font-size: var(--ss-font-size-lg);
+            font-weight: 600;
+            color: inherit;
+        }
+    }
+
+    // -- footer-copyright  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-footer-copyright {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-text-secondary, var(--ss-color-text-muted));
+        margin-bottom: unset;
+    }
+
+    // -- footer-meta  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-footer-meta {
+        font-size: var(--ss-font-size-xs);
+        color: var(--ss-color-gray-600);
+    }
+
+    // -- footer-nav  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-footer-nav {
+        h4 {
+            font-size: var(--ss-font-size-sm);
+            font-weight: var(--ss-font-weight-semibold);
+            color: var(--ss-color-gray-200);
+            margin-bottom: unset;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        ul li {
+            margin-bottom: unset;
+        }
+
+        a {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-500);
+            transition: color var(--ss-duration-150) ease;
+
+            &:hover {
+                color: var(--ss-color-white);
+            }
+        }
+    }
+
+    // -- footer-col  (from site-starling_associates/src/static/scss/index.scss) --
+    .ss-c-footer-col {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+
+        h4 {
+            font-size: var(--ss-font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #525252;
+            margin-bottom: unset;
+        }
+
+        a {
+            font-size: var(--ss-font-size-sm);
+            color: #737373;
+            transition: color unset;
+
+            &:hover {
+                color: var(--ss-color-text, #1a1a1a);
+            }
+        }
+    }
+
+    // -- copyright  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-copyright {
+        width: 100%;
+        font-size: q(14);
+        text-align: center;
+        padding: q(48) 0;
+    }
+
+    // -- footer-divider  (from site-starling_studio/src/static/scss/app/sticky_footer.scss) --
+    .ss-c-footer-divider {
+        margin: 0;
+        border-top:q(1) solid #000;
+    }
+
+    // -- footer-row  (from site-suell_org/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: q(24);
+
+        @media (max-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            flex-direction: column;
+            text-align: center;
+            gap: q(16);
+        }
+    }
+
+    // -- footer-separator  (from site-suell_org/src/static/scss/layout/_footer.scss) --
+    .ss-c-footer-separator {
+        color: var(--ss-color-border, #e5e5e5);
+        font-size: q(12);
+
+        @media (max-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            display: none;
+        }
+    }
+}

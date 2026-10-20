@@ -1,0 +1,86 @@
+////
+///
+/// Chart Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `chart` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 2 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Chart
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- charts-grid  (from site-lovelacelabs_ai/src/static/scss/app/_charts.scss) --
+    .ss-c-charts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(380), 1fr));
+        gap: q(32);
+        padding: q(32);
+        max-width: q(1400);
+        margin: 0 auto;
+    }
+
+    // -- chart-card  (from site-lovelacelabs_ai/src/static/scss/app/_charts.scss) --
+    .ss-c-chart-card {
+        background: #ffffff;
+        border-radius: q(12);
+        overflow: hidden;
+        box-shadow:
+            0 q(4) q(6) rgba(0, 0, 0, 0.05),
+            0 q(10) q(15) rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: translateY(q(-4));
+            box-shadow:
+                0 q(10) q(20) rgba(0, 0, 0, 0.08),
+                0 q(20) q(40) rgba(0, 0, 0, 0.05);
+        }
+
+        &__canvas {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: #ffffff;
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &__info {
+            padding: q(16) q(24);
+            border-top: q(1) solid unset;
+            background: unset;
+        }
+
+        &__title {
+            font-size: q(16);
+            font-weight: 600;
+            color: unset;
+            margin-bottom: q(4);
+        }
+
+        &__description {
+            font-size: q(12.8);
+            color: unset;
+        }
+    }
+}

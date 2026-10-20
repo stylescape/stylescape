@@ -6,7 +6,7 @@
 /// Compile-time feature flags for the SCSS build. Every flag is `!default`, so
 /// a consumer configures them at the entry point:
 ///
-///     @use "pkg:stylescape/scss" with ($scapepress-parity: false);
+///     @use "pkg:stylescape/scss" with ($v03-compat: false);
 ///
 /// Defaults reproduce the historical build exactly — a consumer that passes no
 /// configuration gets the same stylesheet as before this module existed.
@@ -23,18 +23,15 @@
 // Flags
 // ============================================================================
 
-/// Emit the scapepress parity layer (`32-utilities/_scapepress-parity.scss`).
+/// Deprecated, no effect. Kept so that consumers who still pass
+/// `with ($scapepress-parity: false)` keep compiling (configuring a variable
+/// that does not exist is a Sass error).
 ///
-/// The parity layer re-emits every class found in the scapepress-sites SCSS
-/// under the `ss-c-*` prefix so those sites can migrate onto core without
-/// losing their legacy styling. It is by far the largest part of the compiled
-/// stylesheet (~890 KiB of source), and it is dead weight for any consumer
-/// whose markup never used those classes — a site built fresh against the
-/// module layer, for example.
+/// It used to switch off the scapepress parity shim
+/// (`32-utilities/_scapepress-parity.scss`). Those `ss-c-*` classes are now
+/// native module partials (`31-modules/*/_*.sites.scss`) and always emitted.
 ///
-/// Turning it off drops the layer entirely; nothing in `31-modules` or
-/// `32-utilities` depends on it.
-///
+/// @deprecated 0.6.0 — remove the setting from your `@use … with (…)`.
 /// @type Bool
 $scapepress-parity: true !default;
 

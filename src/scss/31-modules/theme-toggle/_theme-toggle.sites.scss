@@ -1,0 +1,72 @@
+////
+///
+/// Theme Toggle Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `theme-toggle` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 2 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.ThemeToggle
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- theme-toggle  (from site-scape_agency/src/static/scss/_theme_modes.scss) --
+    .ss-c-theme-toggle {
+        transition: background 0.18s ease, color 0.18s ease;
+
+
+        .ss-c-theme-toggle__icon-light { display: none; }
+        .ss-c-theme-toggle__icon-dark  { display: inline; }
+    }
+
+    // -- lang-toggle  (from site-blockfoundation_io/src/static/scss/abstracts/_themes.scss) --
+    .ss-c-lang-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: q(4);
+        padding: 0;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: q(12);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-text-muted);
+        transition: color 200ms ease;
+
+        &:hover {
+            color: var(--ss-color-text-primary);
+        }
+
+        &__option {
+            cursor: pointer;
+
+            &--active {
+                color: var(--ss-color-text-primary);
+                font-weight: 600;
+            }
+        }
+
+        &__divider {
+            color: var(--ss-color-border);
+        }
+    }
+}

@@ -14,6 +14,47 @@ Target: `v1.0.0` — cross-repo alignment with
 [SSX v1.0](https://github.com/stylescape/ssx) and
 [Semiosys v1.0](https://github.com/stylescape/semiosys).
 
+### Added
+
+- `--ss-grid-cell-size` (1.25vw; 5vw at 768px and below) for
+  viewport-proportional background grids.
+
+### Changed
+
+- **Breaking (cascade):** the scapepress parity shim
+  (`32-utilities/_scapepress-parity.scss`, about 890 KiB in
+  `@layer ss.compat`) is gone. Its 2,251 class blocks keep every `ss-c-*`
+  name and now live in native module partials,
+  `31-modules/<module>/_<module>.sites.scss`, in `@layer ss.components`,
+  forwarded ahead of every module so a native rule still wins at equal
+  specificity. New modules include lightbox (`lb`), grid-square, grid-dots,
+  site-header, page-header, programme, series-card, system-card, section
+  and visual; families an existing module covers sit in its folder (hero,
+  footer, button, badge, ribbon, ...).
+- Those rules read `--ss-*` tokens instead of the sites' Sass prelude and
+  about 176 custom properties that were defined nowhere (`--spacing-md`,
+  `--color-accent`, `--font-mono`, ...): about 1,160 declarations that
+  silently did nothing now apply (e.g. the `.ss-c-hero__actions` gap).
+  Scale values snap to the nearest native step (22px becomes
+  `--ss-font-size-xl`), status colours use
+  `--ss-color-success/warning/error`, and component knobs
+  (`--series-card-*`, `--grid-dots-*`) keep their names with the site
+  default as fallback. Undefined custom properties without a fallback in
+  the compiled bundle drop from 1,264 uses to 5 (all pre-existing native).
+- Where a site class collided with a native rule (`ss-c-hero`,
+  `ss-c-lead`, `ss-c-pill`, `ss-c-icon`, `ss-c-frame_main*`,
+  `ss-c-ribbon__nav*`, ...), the native rule is canonical and the site
+  declarations are dropped, including a few `!important` ribbon overrides.
+
+### Deprecated
+
+- `$scapepress-parity` has no effect and will be removed; drop it from
+  `@use "pkg:stylescape/scss" with (...)`.
+
+### Removed
+
+- `bin/gen_scapepress_parity.py`, which only regenerated the shim.
+
 ## [0.5.3] - 2026-10-18
 
 ### Added

@@ -1,0 +1,219 @@
+////
+///
+/// Pull Quote Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `pull-quote` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 9 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.PullQuote
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- blockquote  (from site-scape_foundation/src/static/scss/components/_blockquote.scss) --
+    .ss-c-blockquote {
+        margin: q(12) 0;
+        padding: q(8) q(10);
+        position: relative;
+        border-left: q(4) solid var(--ss-color-accent);
+        background: linear-gradient(135deg, color-mix(in srgb, var(--ss-color-accent) 4%, transparent) 0%, color-mix(in srgb, var(--ss-color-accent) 1%, transparent) 100%);
+        border-radius: 0;
+
+        &__text {
+            font-family: Georgia, serif, Georgia, "Times New Roman", serif;
+            font-size: q(24);
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.7;
+            margin: 0 0 q(4);
+            color: var(--ss-color-text);
+            letter-spacing: 0.01em;
+
+            &::before {
+                content: '"';
+                font-family: Georgia, serif, Georgia, serif;
+                font-size: q(64);
+                font-style: normal;
+                line-height: 1;
+                color: var(--ss-color-accent);
+                opacity: 0.25;
+                position: absolute;
+                top: q(2);
+                left: q(4);
+            }
+        }
+
+        &__footer {
+            display: flex;
+            flex-direction: column;
+            gap: q(1);
+            margin-top: q(4);
+            padding-top: q(3);
+            border-top: q(1) solid color-mix(in srgb, var(--ss-color-text) 8%, transparent);
+        }
+
+        &__author {
+            font-family: 'FF DIN', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif, -apple-system, sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: q(16);
+            color: var(--ss-color-text);
+        }
+
+        &__source {
+            font-family: 'FF DIN', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif, -apple-system, sans-serif;
+            font-size: q(14);
+            font-style: italic;
+            opacity: 0.65;
+        }
+
+        // Alignment variants
+        &--left {
+            text-align: left;
+        }
+
+        &--center {
+            text-align: center;
+            border-left: none;
+            border-top: q(4) solid var(--ss-color-accent);
+            border-radius: 0;
+            padding: q(10) q(8);
+
+            .ss-c-blockquote__text::before {
+                left: 50%;
+                transform: translateX(-50%);
+                top: q(3);
+            }
+
+            .ss-c-blockquote__footer {
+                align-items: center;
+                border-top: none;
+                padding-top: 0;
+            }
+        }
+
+        &--right {
+            text-align: right;
+            border-left: none;
+            border-right: q(4) solid var(--ss-color-accent);
+            border-radius: 0;
+
+            .ss-c-blockquote__text::before {
+                left: auto;
+                right: q(4);
+            }
+
+            .ss-c-blockquote__footer {
+                align-items: flex-end;
+            }
+        }
+
+        // Large variant for hero sections
+        &--large {
+            .ss-c-blockquote__text {
+                font-size: q(32);
+                line-height: 1.6;
+
+                &::before {
+                    font-size: q(80);
+                }
+            }
+        }
+    }
+
+    // -- blockquote-section  (from site-scape_foundation/src/static/scss/components/_blockquote.scss) --
+    .ss-c-blockquote-section {
+        padding: q(12) 0;
+    }
+
+    // -- blockquote__text  (from site-starling_studio/src/static/scss/app/_blockquote.scss) --
+    .ss-c-blockquote__text {
+        margin: 0;
+        padding: 0;
+        display: block;
+        text-align: center;
+        overflow: hidden;
+        font-style: normal;
+        font-weight: 320;
+        font-size: q(80);
+        white-space: pre-line;
+    }
+
+    // -- blockquote__footer  (from site-starling_studio/src/static/scss/app/_blockquote.scss) --
+    .ss-c-blockquote__footer {
+        margin-top: q(24);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: q(4);
+    }
+
+    // -- blockquote__author  (from site-starling_studio/src/static/scss/app/_blockquote.scss) --
+    .ss-c-blockquote__author {
+        font-style: normal;
+        font-weight: 500;
+        opacity: 0.8;
+    }
+
+    // -- blockquote__source  (from site-starling_studio/src/static/scss/app/_blockquote.scss) --
+    .ss-c-blockquote__source {
+        font-size: q(14);
+        opacity: 0.6;
+    }
+
+    // -- blockquote--left  (from site-starling_studio/src/static/scss/app/_blockquote.scss) --
+    .ss-c-blockquote--left {
+        text-align: left;
+
+        .ss-c-blockquote__text {
+            text-align: left;
+        }
+
+        .ss-c-blockquote__footer {
+            align-items: flex-start;
+        }
+    }
+
+    // -- blockquote--right  (from site-starling_studio/src/static/scss/app/_blockquote.scss) --
+    .ss-c-blockquote--right {
+        text-align: right;
+
+        .ss-c-blockquote__text {
+            text-align: right;
+        }
+
+        .ss-c-blockquote__footer {
+            align-items: flex-end;
+        }
+    }
+
+    // -- blockquote--center  (from site-starling_studio/src/static/scss/app/_blockquote.scss) --
+    .ss-c-blockquote--center {
+        text-align: center;
+
+        .ss-c-blockquote__text {
+            text-align: center;
+        }
+
+        .ss-c-blockquote__footer {
+            align-items: center;
+        }
+    }
+}

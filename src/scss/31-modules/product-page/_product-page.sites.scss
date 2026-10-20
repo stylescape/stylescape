@@ -1,0 +1,741 @@
+////
+///
+/// Product Page Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 52 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.ProductPage
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- adore-hero  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 70vh;
+        text-align: center;
+        padding: q(20) q(10);
+        background: transparent !important;
+    }
+
+    // -- adore-hero__content  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-hero__content {
+        max-width: q(900);
+    }
+
+    // -- adore-hero__title  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-hero__title {
+        // (stripped @include)
+        // (stripped @include)
+        letter-spacing: 0.05em;
+        margin-bottom: q(06);
+        color: #1a1a1a;
+    }
+
+    // -- adore-hero__tagline  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-hero__tagline {
+        // (stripped @include)
+        // (stripped @include)
+        color: #525252;
+        letter-spacing: 0.02em;
+    }
+
+    // -- adore-section  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-section {
+        padding: q(20) q(10);
+        background: transparent;
+
+        &--alt {
+            background: #f9f9f9;
+        }
+
+        &--cta {
+            text-align: center;
+            padding: q(25) q(10);
+        }
+    }
+
+    // -- adore-section__container  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-section__container {
+        max-width: q(900);
+        margin: 0 auto;
+    }
+
+    // -- adore-section__title  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-section__title {
+        // (stripped @include)
+        // (stripped @include)
+        letter-spacing: 0.02em;
+        margin-bottom: q(08);
+        color: #1a1a1a;
+        position: relative;
+        padding-bottom: q(04);
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: q(12);
+            height: q(1);
+            background: var(--ss-color-accent, #3696c1);
+            opacity: 0.3;
+        }
+
+        .ss-c-adore-section--cta & {
+            &::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+
+    // -- adore-section__text  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-section__text {
+        // (stripped @include)
+        // (stripped @include)
+        line-height: 1.8;
+        color: #525252;
+        margin-bottom: q(05);
+    }
+
+    // -- adore-section__emphasis  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-section__emphasis {
+        // (stripped @include)
+        // (stripped @include)
+        color: #1a1a1a;
+        margin-top: q(06);
+        margin-bottom: q(05);
+    }
+
+    // -- adore-intro__lead  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-intro__lead {
+        // (stripped @include)
+        // (stripped @include)
+        line-height: 1.7;
+        color: #525252;
+        margin-bottom: q(05);
+    }
+
+    // -- adore-intro__examples  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-intro__examples {
+        margin: q(08) 0;
+        padding: q(06) q(08);
+        background: #f9f9f9;
+        border-radius: q(8);
+        border-left: q(2) solid #e5e5e5;
+
+        p {
+        // (stripped @include)
+        // (stripped @include)
+            margin-bottom: q(04);
+            color: #1a1a1a;
+        }
+    }
+
+    // -- adore-intro__statement  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-intro__statement {
+        // (stripped @include)
+        // (stripped @include)
+        line-height: 1.7;
+        color: #1a1a1a;
+        margin-top: q(08);
+
+        strong {
+        // (stripped @include)
+        }
+    }
+
+    // -- adore-list  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 q(06) 0;
+
+        li {
+        // (stripped @include)
+        // (stripped @include)
+            line-height: 1.8;
+            color: #525252;
+            padding: q(02) 0;
+            padding-left: q(06);
+            position: relative;
+
+            &::before {
+                content: "—";
+                position: absolute;
+                left: 0;
+                color: #737373;
+            }
+        }
+
+        &--styled {
+            li {
+        // (stripped @include)
+                font-style: italic;
+                color: #1a1a1a;
+            }
+        }
+
+        &--grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: q(02) q(08);
+
+            @media (max-width: q(600)) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        &--contrast {
+            li {
+                display: flex;
+                align-items: center;
+                gap: q(02);
+            }
+        }
+
+        &--negative {
+            li::before {
+                content: "×";
+                color: rgba(180, 100, 100, 0.7);
+            }
+        }
+    }
+
+    // -- adore-list__vs  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-list__vs {
+        // (stripped @include)
+        // (stripped @include)
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #737373;
+        padding: 0 q(02);
+    }
+
+    // -- adore-feature  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-feature {
+        margin-bottom: q(15);
+        padding-bottom: q(12);
+        border-bottom: q(1) solid #e5e5e5;
+
+        &:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
+
+    // -- adore-feature__title  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-feature__title {
+        // (stripped @include)
+        // (stripped @include)
+        color: #1a1a1a;
+        margin-bottom: q(05);
+        letter-spacing: 0.01em;
+    }
+
+    // -- adore-feature__text  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-feature__text {
+        // (stripped @include)
+        // (stripped @include)
+        line-height: 1.8;
+        color: #525252;
+        margin-bottom: q(04);
+
+        strong {
+        // (stripped @include)
+            color: #1a1a1a;
+        }
+    }
+
+    // -- adore-feature__emotions  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-feature__emotions {
+        // (stripped @include)
+        // (stripped @include)
+        font-style: italic;
+        line-height: 1.8;
+        color: #1a1a1a;
+        margin-bottom: q(05);
+        padding: q(04) q(06);
+        background: #f9f9f9;
+        border-radius: q(6);
+    }
+
+    // -- adore-capabilities  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-capabilities {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: q(08);
+
+        @media (max-width: q(768)) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // -- adore-capability  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-capability {
+        padding: q(06);
+        background: rgba(255, 255, 255, 0.5);
+        border: q(1) solid #e5e5e5;
+        border-radius: q(8);
+        transition: background 0.2s ease, transform 0.2s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(q(-2));
+        }
+    }
+
+    // -- adore-capability__title  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-capability__title {
+        // (stripped @include)
+        // (stripped @include)
+        color: #1a1a1a;
+        margin-bottom: q(03);
+    }
+
+    // -- adore-capability__text  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-capability__text {
+        // (stripped @include)
+        // (stripped @include)
+        line-height: 1.7;
+        color: #525252;
+        margin: 0;
+    }
+
+    // -- adore-cta  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-cta {
+        margin-top: q(10);
+    }
+
+    // -- adore-cta__button  (from site-lovelacelabs_ai/src/static/scss/app/_adore.scss) --
+    .ss-c-adore-cta__button {
+        // (stripped @include)
+        // (stripped @include)
+        display: inline-block;
+        padding: q(04) q(10);
+        background: var(--ss-color-accent, #3696c1);
+        color: #fff;
+        text-decoration: none;
+        letter-spacing: 0.05em;
+        border-radius: q(4);
+        transition: background 0.2s ease, transform 0.2s ease;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.75);
+            transform: translateY(q(-1));
+        }
+    }
+
+    // -- pixi-hero  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 70vh;
+        text-align: center;
+        padding: q(20) q(10);
+        background: transparent !important;
+    }
+
+    // -- pixi-hero__content  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-hero__content {
+        max-width: q(900);
+    }
+
+    // -- pixi-hero__title  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-hero__title {
+        // (stripped @include)
+        // (stripped @include)
+        letter-spacing: 0.05em;
+        margin-bottom: q(06);
+        color: unset;
+    }
+
+    // -- pixi-hero__tagline  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-hero__tagline {
+        // (stripped @include)
+        // (stripped @include)
+        color: unset;
+        letter-spacing: 0.02em;
+    }
+
+    // -- pixi-section  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-section {
+        padding: q(20) q(10);
+        background: transparent;
+
+        &--alt {
+            background: unset;
+        }
+
+        &--cta {
+            text-align: center;
+            padding: q(25) q(10);
+        }
+    }
+
+    // -- pixi-section__container  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-section__container {
+        max-width: q(900);
+        margin: 0 auto;
+    }
+
+    // -- pixi-section__title  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-section__title {
+        // (stripped @include)
+        // (stripped @include)
+        letter-spacing: 0.02em;
+        margin-bottom: q(08);
+        color: unset;
+        position: relative;
+        padding-bottom: q(04);
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: q(12);
+            height: q(1);
+            background: unset;
+            opacity: 0.3;
+        }
+
+        .ss-c-pixi-section--cta & {
+            &::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+
+    // -- pixi-section__text  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-section__text {
+        // (stripped @include)
+        // (stripped @include)
+        line-height: 1.8;
+        color: unset;
+        margin-bottom: q(05);
+    }
+
+    // -- pixi-section__emphasis  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-section__emphasis {
+        // (stripped @include)
+        // (stripped @include)
+        color: unset;
+        margin-top: q(06);
+        margin-bottom: q(05);
+    }
+
+    // -- pixi-intro__lead  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-intro__lead {
+        // (stripped @include)
+        // (stripped @include)
+        line-height: 1.7;
+        color: unset;
+        margin-bottom: q(05);
+    }
+
+    // -- pixi-intro__statement  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-intro__statement {
+        // (stripped @include)
+        // (stripped @include)
+        line-height: 1.7;
+        color: unset;
+        margin-top: q(08);
+
+        strong {
+        // (stripped @include)
+        }
+    }
+
+    // -- pixi-comparison  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-comparison {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: q(08);
+        margin: q(10) 0;
+
+        @media (max-width: q(600)) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // -- pixi-comparison__column  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-comparison__column {
+        padding: q(06);
+        background: rgba(255, 255, 255, 0.5);
+        border: q(1) solid unset;
+        border-radius: q(8);
+    }
+
+    // -- pixi-comparison__title  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-comparison__title {
+        // (stripped @include)
+        // (stripped @include)
+        color: unset;
+        margin-bottom: q(04);
+    }
+
+    // -- pixi-list  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 q(06) 0;
+
+        li {
+        // (stripped @include)
+        // (stripped @include)
+            line-height: 1.8;
+            color: unset;
+            padding: q(02) 0;
+            padding-left: q(06);
+            position: relative;
+
+            &::before {
+                content: "—";
+                position: absolute;
+                left: 0;
+                color: unset;
+            }
+
+            strong {
+        // (stripped @include)
+                color: unset;
+            }
+        }
+
+        &--styled {
+            li {
+        // (stripped @include)
+                font-style: italic;
+                color: unset;
+            }
+        }
+
+        &--negative {
+            li::before {
+                content: "×";
+                color: rgba(180, 100, 100, 0.7);
+            }
+        }
+
+        &--positive {
+            li::before {
+                content: "✓";
+                color: rgba(100, 150, 100, 0.8);
+            }
+        }
+
+        &--tech {
+            li {
+                padding: q(03) 0 q(03) q(06);
+                border-bottom: q(1) solid unset;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+
+    // -- pixi-feature  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-feature {
+        margin-bottom: q(15);
+        padding-bottom: q(12);
+        border-bottom: q(1) solid unset;
+
+        &:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
+
+    // -- pixi-feature__title  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-feature__title {
+        // (stripped @include)
+        // (stripped @include)
+        color: unset;
+        margin-bottom: q(05);
+        letter-spacing: 0.01em;
+    }
+
+    // -- pixi-feature__text  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-feature__text {
+        // (stripped @include)
+        // (stripped @include)
+        line-height: 1.8;
+        color: unset;
+        margin-bottom: q(04);
+
+        strong {
+        // (stripped @include)
+            color: unset;
+        }
+    }
+
+    // -- pixi-feature__emotions  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-feature__emotions {
+        // (stripped @include)
+        // (stripped @include)
+        font-style: italic;
+        line-height: 1.8;
+        color: unset;
+        margin-bottom: q(05);
+        padding: q(04) q(06);
+        background: unset;
+        border-radius: q(6);
+    }
+
+    // -- pixi-applications  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-applications {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: q(06);
+
+        @media (max-width: q(900)) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: q(600)) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // -- pixi-application  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-application {
+        padding: q(06);
+        background: rgba(255, 255, 255, 0.5);
+        border: q(1) solid unset;
+        border-radius: q(8);
+        transition: background 0.2s ease, transform 0.2s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(q(-2));
+        }
+    }
+
+    // -- pixi-application__title  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-application__title {
+        // (stripped @include)
+        // (stripped @include)
+        color: unset;
+        margin-bottom: q(03);
+    }
+
+    // -- pixi-application__text  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-application__text {
+        // (stripped @include)
+        // (stripped @include)
+        line-height: 1.7;
+        color: unset;
+        margin: 0;
+    }
+
+    // -- pixi-cta  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-cta {
+        margin-top: q(10);
+    }
+
+    // -- pixi-cta__button  (from site-lovelacelabs_ai/src/static/scss/app/_pixi.scss) --
+    .ss-c-pixi-cta__button {
+        // (stripped @include)
+        // (stripped @include)
+        display: inline-block;
+        padding: q(04) q(10);
+        background: unset;
+        color: #fff;
+        text-decoration: none;
+        letter-spacing: 0.05em;
+        border-radius: q(4);
+        transition: background 0.2s ease, transform 0.2s ease;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.75);
+            transform: translateY(q(-1));
+        }
+    }
+
+    // -- skip-section  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-skip-section {
+        position: fixed;
+        bottom: unset;
+        right: unset;
+        padding: unset unset;
+        background: color-mix(in srgb, var(--ss-color-gray-900) 90%, transparent);
+        border: q(1) solid var(--ss-color-gray-700);
+        border-radius: var(--ss-radius-none);
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-300);
+        cursor: pointer;
+        transition: all var(--ss-duration-200) ease;
+        z-index: 50;
+        backdrop-filter: blur(q(10));
+
+        &:hover {
+            color: var(--ss-color-white);
+            border-color: var(--ss-color-gray-600);
+        }
+    }
+
+    // -- scroll-fade  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-scroll-fade {
+        opacity: 0;
+        transform: translateY(q(40));
+        transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+        &.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        // Staggered delays
+        &.ss-c-scroll-fade-delay-1 { transition-delay: 0.1s; }
+        &.ss-c-scroll-fade-delay-2 { transition-delay: 0.2s; }
+        &.ss-c-scroll-fade-delay-3 { transition-delay: 0.3s; }
+        &.ss-c-scroll-fade-delay-4 { transition-delay: 0.4s; }
+    }
+
+    // -- scroll-card  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-scroll-card {
+        --parallax-y: 0;
+        --parallax-scale: 1;
+
+        opacity: 0;
+        transform: translateY(q(60)) scale(0.95);
+        transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    box-shadow 0.3s ease;
+        will-change: transform, opacity;
+
+        &.is-visible {
+            opacity: 1;
+            transform: translateY(var(--parallax-y, 0)) scale(var(--parallax-scale, 1));
+        }
+    }
+}

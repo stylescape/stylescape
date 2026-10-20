@@ -1,0 +1,324 @@
+////
+///
+/// Grid Square Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 42 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.GridSquare
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- grid-squares  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-squares {
+        position: absolute;
+        top: var(--nav-height, calc(var(--ss-grid-cell-size) * 2));
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: -1000;
+        overflow: hidden;
+
+        // On mobile, this absolutely-positioned background layer drifts away
+        // from the foreground during native scroll (iOS Safari composites it
+        // onto a separate layer that updates asynchronously). Hide on mobile.
+        @media (max-width: q(768)) {
+            display: none;
+        }
+    }
+
+    // -- grid-square  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square {
+        position: absolute;
+        width: var(--square-size, calc(var(--ss-grid-cell-size) * 4));
+        height: var(--square-size, calc(var(--ss-grid-cell-size) * 4));
+
+        // Green tints (accent #099f80 mixed with white)
+        &--green-10 {
+            background: #e6f5f2; // 10% green, 90% white
+        }
+
+        &--green-20 {
+            background: #ceece6; // 20% green, 80% white
+        }
+
+        &--green-30 {
+            background: #b5e2d9; // 30% green, 70% white
+        }
+    }
+
+    // -- grid-square--tl-1  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--tl-1 {
+        top: 0;
+        left: 0;
+    }
+
+    // -- grid-square--tl-2  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--tl-2 {
+        top: 0;
+        left: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--tl-3  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--tl-3 {
+        top: calc(var(--ss-grid-cell-size) * 4);
+        left: 0;
+    }
+
+    // -- grid-square--tl-4  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--tl-4 {
+        top: calc(var(--ss-grid-cell-size) * 4);
+        left: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--tl-5  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--tl-5 {
+        top: 0;
+        left: calc(var(--ss-grid-cell-size) * 8);
+    }
+
+    // -- grid-square--tl-6  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--tl-6 {
+        top: calc(var(--ss-grid-cell-size) * 8);
+        left: 0;
+    }
+
+    // -- grid-square--tr-1  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--tr-1 {
+        top: 0;
+        right: 0;
+    }
+
+    // -- grid-square--tr-2  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--tr-2 {
+        top: 0;
+        right: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--tr-3  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--tr-3 {
+        top: calc(var(--ss-grid-cell-size) * 4);
+        right: 0;
+    }
+
+    // -- grid-square--tr-4  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--tr-4 {
+        top: calc(var(--ss-grid-cell-size) * 4);
+        right: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--tr-5  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--tr-5 {
+        top: 0;
+        right: calc(var(--ss-grid-cell-size) * 8);
+    }
+
+    // -- grid-square--tr-6  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--tr-6 {
+        top: calc(var(--ss-grid-cell-size) * 8);
+        right: 0;
+    }
+
+    // -- grid-square--bl-1  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--bl-1 {
+        bottom: 0;
+        left: 0;
+    }
+
+    // -- grid-square--bl-2  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--bl-2 {
+        bottom: 0;
+        left: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--bl-3  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--bl-3 {
+        bottom: calc(var(--ss-grid-cell-size) * 4);
+        left: 0;
+    }
+
+    // -- grid-square--bl-4  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--bl-4 {
+        bottom: calc(var(--ss-grid-cell-size) * 8);
+        left: 0;
+    }
+
+    // -- grid-square--br-1  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--br-1 {
+        bottom: 0;
+        right: 0;
+    }
+
+    // -- grid-square--br-2  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--br-2 {
+        bottom: 0;
+        right: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--br-3  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--br-3 {
+        bottom: calc(var(--ss-grid-cell-size) * 4);
+        right: 0;
+    }
+
+    // -- grid-square--br-4  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--br-4 {
+        bottom: calc(var(--ss-grid-cell-size) * 8);
+        right: 0;
+    }
+
+    // -- grid-square--mid-1  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-1 {
+        top: calc(var(--ss-grid-cell-size) * 32);
+        right: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--mid-2  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-2 {
+        top: calc(var(--ss-grid-cell-size) * 36);
+        right: calc(var(--ss-grid-cell-size) * 8);
+    }
+
+    // -- grid-square--mid-3  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-3 {
+        top: calc(var(--ss-grid-cell-size) * 48);
+        left: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--mid-4  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-4 {
+        top: calc(var(--ss-grid-cell-size) * 52);
+        left: calc(var(--ss-grid-cell-size) * 8);
+    }
+
+    // -- grid-square--mid-5  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-5 {
+        top: calc(var(--ss-grid-cell-size) * 60);
+        right: calc(var(--ss-grid-cell-size) * 8);
+    }
+
+    // -- grid-square--mid-6  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-6 {
+        top: calc(var(--ss-grid-cell-size) * 68);
+        left: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--mid-7  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-7 {
+        top: calc(var(--ss-grid-cell-size) * 20);
+        left: calc(var(--ss-grid-cell-size) * 8);
+    }
+
+    // -- grid-square--mid-8  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-8 {
+        top: calc(var(--ss-grid-cell-size) * 24);
+        left: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--mid-9  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-9 {
+        top: calc(var(--ss-grid-cell-size) * 40);
+        right: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--mid-10  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-10 {
+        top: calc(var(--ss-grid-cell-size) * 56);
+        right: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--mid-11  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-11 {
+        top: calc(var(--ss-grid-cell-size) * 72);
+        right: calc(var(--ss-grid-cell-size) * 8);
+    }
+
+    // -- grid-square--mid-12  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-12 {
+        top: calc(var(--ss-grid-cell-size) * 76);
+        left: calc(var(--ss-grid-cell-size) * 8);
+    }
+
+    // -- grid-square--mid-13  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-13 {
+        top: calc(var(--ss-grid-cell-size) * 84);
+        right: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--mid-14  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--mid-14 {
+        top: calc(var(--ss-grid-cell-size) * 88);
+        left: calc(var(--ss-grid-cell-size) * 4);
+    }
+
+    // -- grid-square--large  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--large {
+        width: calc(var(--square-size, calc(var(--ss-grid-cell-size) * 4)) * 2);
+        height: calc(var(--square-size, calc(var(--ss-grid-cell-size) * 4)) * 2);
+    }
+
+    // -- grid-square--lg-1  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--lg-1 {
+        top: calc(var(--ss-grid-cell-size) * 16);
+        right: 0;
+    }
+
+    // -- grid-square--lg-2  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--lg-2 {
+        top: calc(var(--ss-grid-cell-size) * 44);
+        left: 0;
+    }
+
+    // -- grid-square--lg-3  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--lg-3 {
+        top: calc(var(--ss-grid-cell-size) * 64);
+        right: 0;
+    }
+
+    // -- grid-square--lg-4  (from site-inthecity_ai/src/static/scss/grid/_grid_squares.scss) --
+    .ss-c-grid-square--lg-4 {
+        top: calc(var(--ss-grid-cell-size) * 80);
+        left: 0;
+    }
+
+    // -- life-cell  (from site-inthecity_ai/src/static/scss/layout/_grid.scss) --
+    .ss-c-life-cell {
+        position: relative;
+        pointer-events: none;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: var(--life-cell-padding, #{q(2)});
+            right: var(--life-cell-padding, #{q(2)});
+            bottom: var(--life-cell-padding, #{q(2)});
+            left: var(--life-cell-padding, #{q(2)});
+            background-color: rgba(9, 159, 128, 0.12);
+            opacity: 0;
+            transition: opacity 750ms ease-out;
+        }
+
+        &.ss-c-alive::after {
+            opacity: 1;
+        }
+    }
+}

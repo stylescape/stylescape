@@ -1,0 +1,870 @@
+////
+///
+/// Product Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 70 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Product
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints";
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- technology  (from site-blockfoundation_io/src/static/scss/sections/_technology.scss) --
+    .ss-c-technology {
+        padding: var(--ss-spacing-24) 0;
+        background-color: var(--ss-color-background);
+        border-top: q(1) solid var(--ss-color-border);
+
+        &__inner {
+        // (stripped @include)
+        }
+
+        &__header {
+            text-align: left;
+            max-width: q(700);
+            margin-bottom: var(--ss-spacing-16);
+        }
+
+        &__tagline {
+            display: inline-block;
+            color: var(--ss-color-gray-600);
+            font-size: var(--ss-font-size-sm);
+            font-weight: var(--ss-font-weight-normal);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: var(--ss-spacing-4);
+        }
+
+        &__title {
+            font-size: var(--ss-font-size-4xl);
+            margin-bottom: var(--ss-spacing-4);
+            color: var(--ss-color-white);
+            text-transform: uppercase;
+
+            // (stripped @include block)
+
+        }
+
+        &__description {
+            color: var(--ss-color-gray-600);
+            font-size: var(--ss-font-size-lg);
+        }
+
+        &__grid {
+            display: grid;
+            gap: var(--ss-spacing-12);
+            background-color: transparent;
+
+            // (stripped @include block)
+
+        }
+
+        &__item {
+            display: flex;
+            gap: var(--ss-spacing-6);
+            padding: var(--ss-spacing-6);
+            background-color: var(--ss-color-surface-alt);
+            transition: background-color var(--ss-duration-200) ease;
+
+            &:hover {
+                background-color: var(--ss-color-surface-hover);
+            }
+        }
+
+        &__icon {
+            flex-shrink: 0;
+            width: q(48);
+            height: q(48);
+            border: q(1) solid var(--ss-color-gray-300);
+        // (stripped @include)
+            svg {
+                width: q(24);
+                height: q(24);
+                color: var(--ss-color-white);
+            }
+        }
+
+        &__content {
+            flex: 1;
+        }
+
+        &__item-title {
+            font-size: var(--ss-font-size-lg);
+            font-weight: var(--ss-font-weight-semibold);
+            margin-bottom: var(--ss-spacing-2);
+        }
+
+        &__item-text {
+            color: var(--ss-color-gray-600);
+            font-size: var(--ss-font-size-sm);
+            line-height: var(--ss-leading-relaxed);
+        }
+    }
+
+    // -- architecture-diagram  (from site-geoid_org/src/static/scss/layout/_grid.scss) --
+    .ss-c-architecture-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--ss-spacing-2);
+      max-width: q(500);
+      margin: 0 auto;
+    }
+
+    // -- architecture-layer  (from site-geoid_org/src/static/scss/layout/_grid.scss) --
+    .ss-c-architecture-layer {
+      width: 100%;
+      padding: var(--ss-spacing-6) var(--ss-spacing-12);
+      background: var(--ss-color-surface);
+      border: q(1) solid var(--ss-color-border);
+      border-radius: var(--ss-radius-md);
+      text-align: center;
+        // (stripped @include)
+      &--highlight {
+        border-color: var(--ss-color-accent);
+        background: rgba(59, 130, 246, 0.1);
+        box-shadow: 0 0 q(20) rgba(59, 130, 246, 0.2);
+      }
+
+      &__label {
+        display: block;
+        font-weight: 600;
+        color: var(--ss-color-text);
+        margin-bottom: q(4);
+      }
+
+      &__desc {
+        font-size: q(13);
+        color: var(--ss-color-text-muted);
+      }
+    }
+
+    // -- architecture-connector  (from site-geoid_org/src/static/scss/layout/_grid.scss) --
+    .ss-c-architecture-connector {
+      padding: var(--ss-spacing-2) 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    // -- architecture-arrow  (from site-geoid_org/src/static/scss/layout/_grid.scss) --
+    .ss-c-architecture-arrow {
+      width: q(24);
+      height: q(24);
+      color: var(--ss-color-line);
+    }
+
+    // -- material-content  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-content {
+        max-width: q(960);
+    }
+
+    // -- material-overview  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-overview {
+        margin-bottom: unset;
+    }
+
+    // -- material-description  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-description {
+        font-family: Georgia, serif;
+        font-size: var(--ss-font-size-xl);
+        font-weight: var(--ss-font-weight-light);
+        line-height: var(--ss-leading-relaxed);
+        margin: 0;
+
+        // (stripped @include block)
+
+    }
+
+    // -- material-grid  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-grid {
+        display: grid;
+        gap: unset;
+        margin-bottom: unset;
+
+        // (stripped @include block)
+
+    }
+
+    // -- material-section  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-section {
+        padding: unset;
+        background-color: #f2f2f2;
+    }
+
+    // -- material-section__title  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-section__title {
+        // (stripped @include)
+        margin-bottom: unset;
+    }
+
+    // -- material-list  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    // -- material-list__item  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-list__item {
+        font-size: var(--ss-font-size-sm);
+        color: #525252;
+        padding: unset 0;
+        border-bottom: q(1) solid #f2f2f2;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    // -- material-related  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-related {
+        padding-top: unset;
+        border-top: q(1) solid var(--ss-color-border, #e5e5e5);
+    }
+
+    // -- material-related__title  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-related__title {
+        // (stripped @include)
+        margin-bottom: unset;
+    }
+
+    // -- material-related__grid  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-related__grid {
+        display: grid;
+        gap: unset;
+
+        // (stripped @include block)
+
+
+        // (stripped @include block)
+
+    }
+
+    // -- material-card  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-card {
+        display: flex;
+        flex-direction: column;
+        padding: unset;
+        background-color: #f2f2f2;
+        text-decoration: none;
+        color: inherit;
+        transition: opacity unset;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    // -- material-card__name  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-card__name {
+        font-family: Georgia, serif;
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-light);
+        margin-bottom: unset;
+    }
+
+    // -- material-card__tagline  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-material-card__tagline {
+        font-size: var(--ss-font-size-xs);
+        color: #525252;
+        text-transform: uppercase;
+        letter-spacing: var(--ss-tracking-widest);
+    }
+
+    // -- architecture-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-architecture-section {
+        padding: unset 0;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- architecture-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-architecture-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+    }
+
+    // -- architecture-grid  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-architecture-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: unset;
+
+        @media (min-width: q(768)) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    // -- arch-card  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-arch-card {
+        padding: unset;
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+    }
+
+    // -- arch-icon  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-arch-icon {
+        width: q(40);
+        height: q(40);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: unset;
+        border-radius: 0;
+        margin-bottom: unset;
+
+        svg {
+            width: q(20);
+            height: q(20);
+            color: unset;
+        }
+    }
+
+    // -- arch-title  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-arch-title {
+        font-size: var(--ss-font-size-lg);
+        font-weight: 600;
+        margin-bottom: unset;
+    }
+
+    // -- arch-description  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-arch-description {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-600);
+        margin-bottom: unset;
+    }
+
+    // -- arch-code  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-arch-code {
+        display: block;
+        padding: unset unset;
+        background: var(--ss-color-gray-100);
+        border-radius: 0;
+        font-size: var(--ss-font-size-xs);
+        color: var(--ss-color-gray-700);
+    }
+
+    // -- stack-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-stack-section {
+        padding: unset 0;
+        background: var(--ss-color-gray-900);
+    }
+
+    // -- stack-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-stack-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+
+
+        .ss-c-section-description {
+            color: var(--ss-color-gray-300);
+        }
+    }
+
+    // -- stack-grid  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-stack-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: unset;
+
+        @media (min-width: q(768)) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (min-width: q(1024)) {
+            grid-template-columns: repeat(6, 1fr);
+        }
+    }
+
+    // -- stack-item  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-stack-item {
+        text-align: center;
+        padding: unset;
+    }
+
+    // -- stack-name  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-stack-name {
+        display: block;
+        font-size: var(--ss-font-size-base);
+        font-weight: 600;
+        color: var(--ss-color-white);
+        margin-bottom: unset;
+    }
+
+    // -- stack-detail  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-stack-detail {
+        display: block;
+        font-size: var(--ss-font-size-xs);
+        color: var(--ss-color-gray-500);
+    }
+
+    // -- tech-teaser  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-tech-teaser {
+        padding: unset 0;
+        background: var(--ss-color-white);
+    }
+
+    // -- tech-grid  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-tech-grid {
+        display: grid;
+        gap: unset;
+        align-items: center;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    // -- tech-description  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-tech-description {
+        font-size: var(--ss-font-size-lg);
+        color: var(--ss-color-gray-600);
+        line-height: var(--ss-leading-relaxed);
+        margin-bottom: unset;
+    }
+
+    // -- tech-highlights  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-tech-highlights {
+        margin-bottom: unset;
+
+        li {
+            padding: unset 0;
+            border-bottom: q(1) solid var(--ss-color-gray-200);
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            strong {
+                display: block;
+                font-size: var(--ss-font-size-base);
+                font-weight: var(--ss-font-weight-semibold);
+                color: var(--ss-color-gray-900);
+                margin-bottom: unset;
+            }
+
+            span {
+                font-size: var(--ss-font-size-sm);
+                color: var(--ss-color-gray-500);
+            }
+        }
+    }
+
+    // -- tech-visual  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-tech-visual {
+        display: flex;
+        justify-content: center;
+    }
+
+    // -- tech-diagram  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-tech-diagram {
+        position: relative;
+        width: q(360);
+        height: q(360);
+    }
+
+    // -- tech-architecture  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-tech-architecture {
+        padding: unset 0;
+        background: var(--ss-color-white);
+    }
+
+    // -- arch-number  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-arch-number {
+        font-size: var(--ss-font-size-sm);
+        font-weight: var(--ss-font-weight-bold);
+        color: unset;
+        margin-bottom: unset;
+    }
+
+    // -- arch-specs  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-arch-specs {
+        li {
+            display: flex;
+            justify-content: space-between;
+            padding: unset 0;
+            font-size: var(--ss-font-size-sm);
+            border-bottom: q(1) solid var(--ss-color-gray-200);
+            color: var(--ss-color-gray-700);
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            span {
+                color: var(--ss-color-gray-500);
+            }
+        }
+    }
+
+    // -- sync-section  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-sync-section {
+        padding: unset 0;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- sync-grid  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-sync-grid {
+        display: grid;
+        gap: unset;
+        align-items: center;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    // -- sync-description  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-sync-description {
+        font-size: var(--ss-font-size-lg);
+        color: var(--ss-color-gray-600);
+        line-height: var(--ss-leading-relaxed);
+        margin-bottom: unset;
+    }
+
+    // -- sync-metrics  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-sync-metrics {
+        display: flex;
+        gap: unset;
+    }
+
+    // -- sync-metric  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-sync-metric {
+        text-align: center;
+
+        .ss-c-sync-value {
+            display: block;
+            font-size: var(--ss-font-size-5xl);
+            font-weight: var(--ss-font-weight-bold);
+            color: unset;
+        }
+
+        .ss-c-sync-label {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    }
+
+    // -- sync-visual  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-sync-visual {
+        display: flex;
+        justify-content: center;
+    }
+
+    // -- sync-diagram  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-sync-diagram {
+        position: relative;
+        width: q(320);
+        height: q(320);
+    }
+
+    // -- sync-node  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-sync-node {
+        position: absolute;
+        width: q(90);
+        height: q(90);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 50%;
+        font-size: var(--ss-font-size-xs);
+        font-weight: var(--ss-font-weight-medium);
+        color: var(--ss-color-gray-600);
+        transition: all var(--ss-duration-200) ease;
+
+        &:hover {
+            border-color: unset;
+            box-shadow: 0 0 q(30) unset;
+        }
+
+        &-audio { top: 0; left: 50%; transform: translateX(-50%); }
+        &-visual { right: 0; top: 50%; transform: translateY(-50%); }
+        &-emotion { bottom: 0; left: 50%; transform: translateX(-50%); }
+        &-language { left: 0; top: 50%; transform: translateY(-50%); }
+    }
+
+    // -- sync-center  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-sync-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: q(110);
+        height: q(110);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, unset, unset);
+        border-radius: 50%;
+        font-size: var(--ss-font-size-xs);
+        font-weight: var(--ss-font-weight-bold);
+        color: var(--ss-color-white);
+        box-shadow: 0 0 q(60) unset;
+    }
+
+    // -- product-showcase  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-product-showcase {
+        padding: unset 0;
+        background: var(--ss-color-black);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+
+    // -- showcase-container  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-showcase-container {
+        max-width: q(1400);
+        margin: 0 auto;
+        padding: 0 var(--ss-spacing-6);
+        display: grid;
+        gap: unset;
+        align-items: center;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: 1fr 1.2fr;
+        }
+    }
+
+    // -- showcase-info  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-showcase-info {
+        .ss-c-showcase-label {
+            font-size: var(--ss-font-size-sm);
+            font-weight: var(--ss-font-weight-medium);
+            color: unset;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: unset;
+        }
+
+        .ss-c-showcase-title {
+            font-size: var(--ss-font-size-6xl);
+            font-weight: var(--ss-font-weight-bold);
+            color: var(--ss-color-white);
+            margin-bottom: unset;
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                font-size: var(--ss-font-size-8xl);
+            }
+        }
+
+        .ss-c-showcase-description {
+            font-size: var(--ss-font-size-lg);
+            color: var(--ss-color-gray-300);
+            line-height: var(--ss-leading-relaxed);
+            max-width: q(500);
+        }
+    }
+
+    // -- showcase-visual  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-showcase-visual {
+        position: relative;
+        min-height: q(500);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // -- showcase-image  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-showcase-image {
+        position: relative;
+        width: 100%;
+        max-width: q(500);
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--ss-radius-none);
+        }
+    }
+
+    // -- showcase-parts  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-showcase-parts {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+        margin-top: unset;
+    }
+
+    // -- showcase-part  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-showcase-part {
+        padding: unset unset;
+        background: var(--ss-color-gray-900);
+        border: q(1) solid var(--ss-color-gray-800);
+        border-radius: var(--ss-radius-none);
+        cursor: pointer;
+        transition: all var(--ss-duration-200) ease;
+
+        &:hover, &.active {
+            border-color: unset;
+            background: var(--ss-color-gray-800);
+        }
+
+        h4 {
+            font-size: var(--ss-font-size-base);
+            font-weight: var(--ss-font-weight-semibold);
+            color: var(--ss-color-white);
+            margin-bottom: unset;
+        }
+
+        p {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-500);
+        }
+    }
+
+    // -- showcase-header  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-showcase-header {
+        background: linear-gradient(180deg, var(--ss-color-gray-50) 0%, var(--ss-color-white) 100%);
+    }
+
+    // -- showcase-gallery  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-showcase-gallery {
+        padding: unset 0 unset;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- showcase-stats  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-showcase-stats {
+        padding: unset 0;
+        background: var(--ss-color-white);
+    }
+
+    // -- products  (from site-starling_associates/src/static/scss/index.scss) --
+    .ss-c-products {
+        border-bottom: q(1) solid var(--ss-color-border, #e5e5e5);
+        position: relative;
+
+        &::before {
+        // (stripped @include)
+        }
+
+        &::after {
+        // (stripped @include)
+        }
+    }
+
+    // -- products-container  (from site-starling_associates/src/static/scss/index.scss) --
+    .ss-c-products-container {
+        display: flex;
+        flex-direction: column;
+
+        @media (min-width: q(768)) {
+            flex-direction: row;
+        }
+    }
+
+    // -- product-card  (from site-starling_associates/src/static/scss/index.scss) --
+    .ss-c-products-container .ss-c-product-card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: unset unset;
+        transition: background unset;
+        border-bottom: q(1) solid var(--ss-color-border, #e5e5e5);
+
+        @media (min-width: q(768)) {
+            border-bottom: none;
+            border-right: q(1) solid var(--ss-color-border, #e5e5e5);
+
+            &:last-child {
+                border-right: none;
+            }
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover {
+            background: var(--ss-color-surface-hover);
+
+            .ss-c-product-link {
+                color: var(--ss-color-primary);
+            }
+        }
+    }
+
+    // -- product-icon  (from site-starling_associates/src/static/scss/index.scss) --
+    .ss-c-product-icon {
+        margin-bottom: unset;
+        color: #525252;
+    }
+
+    // -- product-title  (from site-starling_associates/src/static/scss/index.scss) --
+    .ss-c-product-title {
+        font-size: var(--ss-font-size-xl);
+        font-weight: 600;
+        margin-bottom: unset;
+    }
+
+    // -- product-description  (from site-starling_associates/src/static/scss/index.scss) --
+    .ss-c-product-description {
+        font-size: var(--ss-font-size-sm);
+        color: #525252;
+        line-height: 1.7;
+        margin-bottom: unset;
+    }
+
+    // -- product-features  (from site-starling_associates/src/static/scss/index.scss) --
+    .ss-c-product-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: unset;
+        margin-bottom: unset;
+
+        span {
+            padding: unset unset;
+            font-size: var(--ss-font-size-xs);
+            color: #525252;
+            background: #ffffff;
+            border: q(1) solid var(--ss-color-border, #e5e5e5);
+            border-radius: var(--ss-radius-none);
+        }
+    }
+
+    // -- product-link  (from site-starling_associates/src/static/scss/index.scss) --
+    .ss-c-product-link {
+        margin-top: auto;
+        font-size: var(--ss-font-size-sm);
+        font-weight: 500;
+        color: #525252;
+        transition: color unset;
+    }
+
+    // -- modules-grid  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-modules-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: unset;
+
+        @media (max-width: q(900)) {
+            grid-template-columns: 1fr;
+        }
+    }
+}

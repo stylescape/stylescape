@@ -1,0 +1,111 @@
+////
+///
+/// Dropdown Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `dropdown` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 1 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Dropdown
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints";
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- dropdown  (from site-scape_press/src/static/scss/layout/_nav.scss) --
+    .ss-c-header__primary-item .ss-c-dropdown {
+
+        // Hidden by default; shown by toggling the `hidden` attribute via JS.
+
+        &__inner {
+            padding: var(--ss-spacing-6);
+        }
+
+        &__lede {
+            margin: 0 0 var(--ss-spacing-5);
+            font-family: var(--ss-font-family-display);
+            font-size: var(--ss-font-size-sm);
+            line-height: 1.4;
+            color: color-mix(in srgb, var(--ss-color-black) 65%, transparent);
+            max-width: q(512);
+        }
+
+        &__list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--ss-spacing-1);
+            margin: 0 0 var(--ss-spacing-5);
+            padding: 0;
+            list-style: none;
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--ss-spacing-1) var(--ss-spacing-6);
+            }
+        }
+
+        &__link {
+            display: block;
+            padding: var(--ss-spacing-3) var(--ss-spacing-3);
+            text-decoration: none;
+            color: var(--ss-color-black);
+            border-radius: q(4);
+            transition: background-color var(--ss-duration-200) ease;
+
+            &:hover {
+                background-color: var(--ss-color-gray-100);
+            }
+        }
+
+        &__label {
+            display: block;
+            font-family: var(--ss-font-family-display);
+            font-weight: var(--ss-font-weight-medium);
+            font-size: var(--ss-font-size-base);
+            line-height: 1.2;
+        }
+
+        &__sub {
+            display: block;
+            margin-top: 0.25em;
+            font-size: var(--ss-font-size-xs);
+            line-height: 1.45;
+            color: color-mix(in srgb, var(--ss-color-black) 60%, transparent);
+        }
+
+        &__overview {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--ss-spacing-2);
+            padding-top: var(--ss-spacing-3);
+            border-top: q(1) solid color-mix(in srgb, var(--ss-color-black) 12%, transparent);
+            font-family: var(--ss-font-family-sans);
+            font-size: var(--ss-font-size-xs);
+            text-transform: uppercase;
+            letter-spacing: var(--ss-tracking-widest);
+            color: var(--ss-color-black);
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

@@ -1,0 +1,236 @@
+////
+///
+/// Carousel Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `carousel` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 16 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Carousel
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- carousel-block  (from site-inthecity_ai/src/static/scss/blocks/_carousel-block.scss) --
+    .ss-c-carousel-block {
+        text-align: center;
+    }
+
+    // -- carousel-block__cta  (from site-inthecity_ai/src/static/scss/blocks/_carousel-block.scss) --
+    .ss-c-carousel-block__cta {
+        padding-left: clamp(q(16), 5vw, q(48));
+        padding-right: clamp(q(16), 5vw, q(48));
+    }
+
+    // -- carousel-block__eyebrow  (from site-inthecity_ai/src/static/scss/blocks/_carousel-block.scss) --
+    .ss-c-carousel-block__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5em;
+        font-family: unset;
+        font-size: q(14);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-gray-500);
+        margin-bottom: 1em;
+    }
+
+    // -- carousel-block__eyebrow-dot  (from site-inthecity_ai/src/static/scss/blocks/_carousel-block.scss) --
+    .ss-c-carousel-block__eyebrow-dot {
+        width: q(8);
+        height: q(8);
+        background: var(--ss-color-accent);
+        border-radius: 50%;
+    }
+
+    // -- carousel-block__title  (from site-inthecity_ai/src/static/scss/blocks/_carousel-block.scss) --
+    .ss-c-carousel-block__title {
+        font-size: clamp(q(28), 4vw, q(40));
+        margin-bottom: 0.5em;
+    }
+
+    // -- carousel-block__subtitle  (from site-inthecity_ai/src/static/scss/blocks/_carousel-block.scss) --
+    .ss-c-carousel-block__subtitle {
+        color: var(--ss-color-gray-600);
+        max-width: q(600);
+        margin: 0 auto 2em;
+    }
+
+    // -- carousel-block__carousel  (from site-inthecity_ai/src/static/scss/blocks/_carousel-block.scss) --
+    .ss-c-carousel-block__carousel {
+        width: 100%;
+        overflow: hidden;
+        mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent
+        );
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent
+        );
+    }
+
+    // -- carousel-block__track  (from site-inthecity_ai/src/static/scss/blocks/_carousel-block.scss) --
+    .ss-c-carousel-block__track {
+        display: flex;
+        width: max-content;
+        will-change: transform;
+        animation: carousel-scroll 40s linear infinite;
+
+        &:hover {
+            animation-play-state: paused;
+        }
+    }
+
+    // -- carousel-block__item  (from site-inthecity_ai/src/static/scss/blocks/_carousel-block.scss) --
+    .ss-c-carousel-block__item {
+        flex-shrink: 0;
+        width: calc((100vw - q(64)) / 5 - q(32)); // 5 visible with gaps
+        max-width: q(180);
+        min-width: q(120);
+        margin-right: q(32);
+        aspect-ratio: 3 / 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: q(16);
+        border: #{q(1)} solid var(--ss-color-line);
+        border-radius: var(--ss-radius-md);
+        background: var(--ss-color-white);
+        transition:
+            border-color var(--ss-duration-150) var(--ss-ease-out),
+            box-shadow var(--ss-duration-150) var(--ss-ease-out);
+
+        &:hover {
+            border-color: var(--ss-color-accent);
+            box-shadow: 0 q(4) q(12) rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition:
+                filter var(--ss-duration-200) var(--ss-ease-out),
+                opacity var(--ss-duration-200) var(--ss-ease-out);
+        }
+
+        &:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+    }
+
+    // -- carousel-block__item-text  (from site-inthecity_ai/src/static/scss/blocks/_carousel-block.scss) --
+    .ss-c-carousel-block__item-text {
+        font-family: unset;
+        font-size: q(12);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ss-color-gray-600);
+        text-align: center;
+        line-height: 1.3;
+    }
+
+    // -- swiper  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-swiper {
+        width: 100%;
+        height: 100%;
+    }
+
+    // -- swiper-pagination  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-swiper-pagination {
+        position: absolute;
+        top: q(450);
+    }
+
+    // -- swiper-pagination-bullet  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-swiper-pagination-bullet {
+        height: q(7);
+        width: q(26);
+        border-radius: q(25);
+        background: black;
+    }
+
+    // -- swiper-button-prev  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-swiper-button-prev {
+        opacity: 0.7;
+        color: black;
+        transition: all 0.3s ease;
+    }
+
+    // -- mySwiper  (from site-starling_studio/src/static/scss/app/_swiper.scss) --
+    .ss-c-mySwiper {
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+
+        .ss-c-swiper-wrapper {
+            display: flex;
+            width: 100%;
+        }
+
+        .ss-c-swiper-slide {
+            width: 100%;
+            box-sizing: border-box;
+            padding: q(48);
+
+            .ss-c-grid__frame--24 {
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .ss-c-grid--span--col--12 {
+                margin: auto 0;
+            }
+
+            @media (max-width: q(768)) {
+                .ss-c-grid__frame--24 {
+                    grid-template-columns: repeat(12, 1fr);
+                }
+
+                .ss-c-grid--span--col--12 {
+                    grid-column: span 12;
+                }
+            }
+        }
+    }
+
+    // -- swiper-button-next  (from site-starling_studio/src/static/scss/app/_swiper.scss) --
+    .ss-c-swiper-button-next {
+        padding-right: q(10) !important;
+    }
+}

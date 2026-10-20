@@ -1,0 +1,316 @@
+////
+///
+/// Audience Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 29 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Audience
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints";
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- focus-content  (from site-scape_ventures/src/static/scss/sections/_focus.scss) --
+    .ss-c-focus-content {
+        .ss-c-focus-header {
+            margin-bottom: var(--ss-spacing-12);
+        }
+    }
+
+    // -- focus-grid  (from site-scape_ventures/src/static/scss/sections/_focus.scss) --
+    .ss-c-focus-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--ss-spacing-6);
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    // -- focus-item  (from site-scape_ventures/src/static/scss/sections/_focus.scss) --
+    .ss-c-focus-item {
+        padding: var(--ss-spacing-6);
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: var(--ss-radius-none);
+        text-align: center;
+    }
+
+    // -- focus-icon  (from site-scape_ventures/src/static/scss/sections/_focus.scss) --
+    .ss-c-focus-icon {
+        width: q(56);
+        height: q(56);
+        margin: 0 auto var(--ss-spacing-4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ss-color-gray-50);
+        border-radius: var(--ss-radius-none);
+        color: var(--ss-color-primary);
+
+        svg {
+            width: q(28);
+            height: q(28);
+        }
+    }
+
+    // -- focus-card  (from site-scape_ventures/src/static/scss/sections/_focus.scss) --
+    .ss-c-focus-card {
+        padding: var(--ss-spacing-8) var(--ss-spacing-6);
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: var(--ss-radius-none);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    // -- focus-title  (from site-scape_ventures/src/static/scss/sections/_focus.scss) --
+    .ss-c-focus-title {
+        font-size: var(--ss-font-size-lg);
+        margin-bottom: var(--ss-spacing-2);
+    }
+
+    // -- focus-description  (from site-scape_ventures/src/static/scss/sections/_focus.scss) --
+    .ss-c-focus-description {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-600);
+        max-width: 28ch;
+        margin: 0 auto;
+    }
+
+    // -- criteria-grid  (from site-scape_ventures/src/static/scss/sections/_thesis.scss) --
+    .ss-c-criteria-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--ss-spacing-6);
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    // -- criteria-item  (from site-scape_ventures/src/static/scss/sections/_thesis.scss) --
+    .ss-c-criteria-item {
+        padding: var(--ss-spacing-8) var(--ss-spacing-6);
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        text-align: center;
+
+        h4 {
+            font-size: var(--ss-font-size-xs);
+            font-weight: var(--ss-font-weight-semibold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ss-color-gray-500);
+            margin-bottom: var(--ss-spacing-3);
+        }
+
+        p {
+            font-size: var(--ss-font-size-lg);
+            font-weight: var(--ss-font-weight-medium);
+            color: var(--ss-color-primary);
+            margin: 0;
+        }
+    }
+
+    // -- audience  (from site-inthecity_ai/src/static/scss/blocks/_audience.scss) --
+    .ss-c-audience {
+        max-width: q(1024);
+    }
+
+    // -- audience__eyebrow  (from site-inthecity_ai/src/static/scss/blocks/_audience.scss) --
+    .ss-c-audience__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25em;
+        font-family: unset;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-accent);
+        font-size: q(12);
+        margin-bottom: q(8);
+    }
+
+    // -- audience__eyebrow-dot  (from site-inthecity_ai/src/static/scss/blocks/_audience.scss) --
+    .ss-c-audience__eyebrow-dot {
+        width: 0.5em;
+        height: 0.5em;
+        background: var(--ss-color-accent);
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    // -- audience__title  (from site-inthecity_ai/src/static/scss/blocks/_audience.scss) --
+    .ss-c-audience__title {
+        margin-bottom: 0.5em;
+    }
+
+    // -- audience__subtitle  (from site-inthecity_ai/src/static/scss/blocks/_audience.scss) --
+    .ss-c-audience__subtitle {
+        color: var(--ss-color-gray-600);
+        max-width: 50ch;
+        margin-bottom: q(32);
+    }
+
+    // -- audience__grid  (from site-inthecity_ai/src/static/scss/blocks/_audience.scss) --
+    .ss-c-audience__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(224), 1fr));
+        gap: q(24);
+        margin-bottom: q(32);
+    }
+
+    // -- audience__card  (from site-inthecity_ai/src/static/scss/blocks/_audience.scss) --
+    .ss-c-audience__card {
+        padding: q(24);
+        background: var(--ss-color-white);
+        border: #{q(1)} solid var(--ss-color-line);
+        transition: all var(--ss-duration-150) var(--ss-ease-out);
+
+        &:hover {
+            border-color: var(--ss-color-accent);
+            transform: translateY(q(-2));
+        }
+    }
+
+    // -- audience__icon  (from site-inthecity_ai/src/static/scss/blocks/_audience.scss) --
+    .ss-c-audience__icon {
+        width: q(40);
+        height: q(40);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(9, 159, 128, 0.1);
+        color: var(--ss-color-accent);
+        margin-bottom: q(16);
+
+        svg {
+            width: q(20);
+            height: q(20);
+        }
+    }
+
+    // -- audience__card-title  (from site-inthecity_ai/src/static/scss/blocks/_audience.scss) --
+    .ss-c-audience__card-title {
+        font-size: q(16);
+        font-weight: 600;
+        margin-bottom: q(8);
+        color: var(--ss-color-primary);
+    }
+
+    // -- audience__card-description  (from site-inthecity_ai/src/static/scss/blocks/_audience.scss) --
+    .ss-c-audience__card-description {
+        font-size: q(14);
+        color: var(--ss-color-gray-600);
+        line-height: 1.5;
+    }
+
+    // -- audience__cta  (from site-inthecity_ai/src/static/scss/blocks/_audience.scss) --
+    .ss-c-audience__cta {
+        display: flex;
+        justify-content: center;
+    }
+
+    // -- target-audience  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-target-audience {
+        max-width: q(1024);
+    }
+
+    // -- target-audience__title  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-target-audience__title {
+        text-align: center;
+        margin-bottom: q(16);
+    }
+
+    // -- target-audience__intro  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-target-audience__intro {
+        text-align: center;
+        color: var(--ss-color-gray-600);
+        max-width: 50ch;
+        margin: 0 auto q(32);
+    }
+
+    // -- target-audience__grid  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-target-audience__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(224), 1fr));
+        gap: q(24);
+    }
+
+    // -- target-audience__card  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-target-audience__card {
+        padding: q(24);
+        background: var(--ss-color-white);
+        border: #{q(1)} solid var(--ss-color-line);
+        text-align: center;
+    }
+
+    // -- target-audience__icon  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-target-audience__icon {
+        width: q(48);
+        height: q(48);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(9, 159, 128, 0.1);
+        color: var(--ss-color-accent);
+        margin: 0 auto q(16);
+
+        svg {
+            width: q(24);
+            height: q(24);
+        }
+    }
+
+    // -- target-audience__card-title  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-target-audience__card-title {
+        font-size: q(16);
+        font-weight: 600;
+        margin-bottom: q(8);
+        color: var(--ss-color-primary);
+    }
+
+    // -- target-audience__card-description  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-target-audience__card-description {
+        font-size: q(14);
+        color: var(--ss-color-gray-600);
+        line-height: 1.5;
+    }
+
+    // -- focus-grid--2col  (from site-kockums_foundation/src/static/scss/components/_bibliography.scss) --
+    .ss-c-focus-grid--2col {
+      // (stripped @include block)
+
+    }
+}

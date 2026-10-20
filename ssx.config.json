@@ -4,7 +4,6 @@
         {
             "comment": "Component compat shims mirror other sites' CSS verbatim so their markup keeps rendering. They live under 32-utilities/ for build order, but they are not utilities: they are emitted in @layer ss.compat, which sits below ss.components so a module wins over a shim that reuses its class name.",
             "files": [
-                "src/scss/32-utilities/_scapepress-parity.scss",
                 "src/scss/32-utilities/_legacy-components-compat.scss",
                 "src/scss/32-utilities/_legacy-v03-compat.scss"
             ],
@@ -14,6 +13,11 @@
             "comment": "Legacy utility aliases (0.3 class names mapped onto ss-u- utilities); emitted in @layer ss.utilities.",
             "files": ["src/scss/32-utilities/_legacy-compat.scss"],
             "layer": "ss.utilities"
+        },
+        {
+            "comment": "Scapepress site partials (31-modules/*/_*.sites.scss, formerly the 32-utilities scapepress-parity shim): the sites' own contextual rules, which style one component inside another (.ss-c-section .ss-c-btn). The class names are the sites' markup contract, so cross-component selectors are graded as warnings here rather than rewritten.",
+            "files": ["src/scss/31-modules/**/_*.sites.scss"],
+            "rules": { "cross-component": "warning" }
         }
     ]
 }

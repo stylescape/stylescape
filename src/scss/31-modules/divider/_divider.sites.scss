@@ -1,0 +1,64 @@
+////
+///
+/// Divider Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `divider` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 2 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Divider
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- divider--accent  (from site-scape_foundation/src/static/scss/components/_filter.scss) --
+    .ss-c-divider--accent {
+        border: none;
+        height: q(1);
+        background-color: var(--color_accent_primary);
+        margin: 0 0 q(32) 0;
+    }
+
+    // -- divider  (from site-geoid_org/src/static/scss/index.scss) --
+    .ss-c-divider {
+
+      &--spaced {
+        margin: var(--ss-spacing-24) 0;
+      }
+
+      &--text {
+        display: flex;
+        align-items: center;
+
+        &::before,
+        &::after {
+          content: '';
+          flex: 1;
+          height: q(1);
+          background: var(--ss-color-border);
+        }
+
+        span {
+          padding: 0 var(--ss-spacing-6);
+          font-size: q(14);
+          color: var(--ss-color-text-secondary);
+        }
+      }
+    }
+}

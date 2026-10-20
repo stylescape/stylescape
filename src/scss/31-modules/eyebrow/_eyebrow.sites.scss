@@ -1,0 +1,77 @@
+////
+///
+/// Eyebrow Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 8 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Eyebrow
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- eyebrow  (from site-inthecity_ai/src/static/scss/base/_typography.scss) --
+    .ss-c-eyebrow + h4 {
+        margin-top: 0;
+    }
+
+    // -- eyebrow--sm  (from site-starling_studio/src/static/scss/app/_eyebrow.scss) --
+    .ss-c-eyebrow--sm {
+        --eyebrow-font-size: #{q(10)};
+    }
+
+    // -- eyebrow--lg  (from site-starling_studio/src/static/scss/app/_eyebrow.scss) --
+    .ss-c-eyebrow--lg {
+        --eyebrow-font-size: #{q(14)};
+    }
+
+    // -- eyebrow--muted  (from site-starling_studio/src/static/scss/app/_eyebrow.scss) --
+    .ss-c-eyebrow--muted {
+        --eyebrow-color: var(--ss-color-muted, #666);
+    }
+
+    // -- eyebrow--light  (from site-starling_studio/src/static/scss/app/_eyebrow.scss) --
+    .ss-c-eyebrow--light {
+        --eyebrow-color: rgba(255, 255, 255, 0.8);
+    }
+
+    // -- eyebrow--accent  (from site-starling_studio/src/static/scss/app/_eyebrow.scss) --
+    .ss-c-eyebrow--accent {
+        --eyebrow-color: var(--ss-color-secondary, #0066cc);
+    }
+
+    // -- eyebrow--underline  (from site-starling_studio/src/static/scss/app/_eyebrow.scss) --
+    .ss-c-eyebrow--underline {
+        padding-bottom: var(--eyebrow-margin-bottom, 0);
+        border-bottom: q(2) solid currentColor;
+    }
+
+    // -- eyebrow--dot  (from site-starling_studio/src/static/scss/app/_eyebrow.scss) --
+    .ss-c-eyebrow--dot::before {
+        content: "";
+        display: inline-block;
+        width: 0.5em;
+        height: 0.5em;
+        background: currentColor;
+        border-radius: 50%;
+        margin-right: 0.75em;
+        vertical-align: middle;
+    }
+}

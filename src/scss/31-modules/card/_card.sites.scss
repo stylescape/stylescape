@@ -1,0 +1,754 @@
+////
+///
+/// Card Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `card` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 25 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Card
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints";
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- company-card  (from site-scape_group/src/static/scss/sections/_home.scss) --
+    .ss-c-company-card {
+        display: flex;
+        flex-direction: column;
+        padding: var(--ss-spacing-8);
+        background-color: #000000;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        position: relative;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            padding: var(--ss-spacing-12);
+        }
+
+        &:hover {
+            background-color: #111111;
+
+            .ss-c-company-card__arrow {
+                transform: translate(q(4), q(-4));
+            }
+
+            .ss-c-company-card__link {
+                color: var(--ss-color-white);
+            }
+        }
+
+        &__name {
+            font-family: var(--ss-font-family-display);
+            font-size: var(--ss-font-size-3xl);
+            font-weight: var(--ss-font-weight-semibold);
+            color: var(--ss-color-white);
+            margin-bottom: var(--ss-spacing-2);
+            letter-spacing: -0.02em;
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                font-size: var(--ss-font-size-4xl);
+            }
+        }
+
+        &__tagline {
+            font-size: var(--ss-font-size-base);
+            color: var(--ss-color-gray-300);
+            margin-bottom: var(--ss-spacing-4);
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                font-size: var(--ss-font-size-lg);
+            }
+        }
+
+        &__description {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-500);
+            line-height: var(--ss-leading-relaxed);
+            margin-bottom: var(--ss-spacing-8);
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                font-size: var(--ss-font-size-base);
+                margin-bottom: var(--ss-spacing-12);
+            }
+        }
+
+        &__link {
+            display: flex;
+            align-items: center;
+            gap: var(--ss-spacing-2);
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-500);
+            margin-top: auto;
+            transition: color 0.3s ease;
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                font-size: var(--ss-font-size-base);
+            }
+        }
+
+        &__arrow {
+            width: q(20);
+            height: q(20);
+            transition: transform 0.3s ease;
+        }
+    }
+
+    // -- card  (from site-scape_press/src/static/scss/components/_cards.scss) --
+    .ss-c-card {
+        // root look comes from the card module (31-modules/card)
+
+        &__icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: q(48);
+            height: q(48);
+            margin-bottom: var(--ss-spacing-4);
+            color: var(--ss-color-primary);
+
+            svg {
+                width: q(32);
+                height: q(32);
+            }
+        }
+
+
+        &__description {
+            font-size: var(--ss-font-size-base);
+            color: var(--ss-color-text-muted);
+            line-height: var(--ss-leading-relaxed);
+        }
+    }
+
+    // -- icon-card-section  (from site-scape_foundation/src/static/scss/components/_icon_card.scss) --
+    .ss-c-icon-card-section {
+        padding: q(8) 0;
+    }
+
+    // -- icon-card  (from site-scape_foundation/src/static/scss/components/_icon_card.scss) --
+    .ss-c-icon-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: q(220);
+
+        &__image-wrapper {
+            width: q(120);
+            height: q(120);
+            border-radius: 50%;
+            border: q(3) dotted #000;
+            padding: q(6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--ss-color-background, #fff);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+
+        &__image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        &__content {
+            margin-top: q(10);
+            max-width: 100%;
+        }
+
+        &__title {
+            font-family: Georgia, serif, Georgia, "Times New Roman", serif;
+            font-size: q(12);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            line-height: 1.1;
+            margin: 0 0 q(2);
+            color: var(--color_text_primary, #1a1a1a);
+            // Force each word to a new line
+            word-spacing: 100vw;
+        }
+
+        &__description {
+            font-family: Georgia, serif, Georgia, "Times New Roman", serif;
+            font-size: q(14);
+            font-style: italic;
+            line-height: 1.6;
+            margin: 0 0 q(2);
+            color: var(--color_text_secondary, #555);
+        }
+
+        &__link {
+            font-family: 'FF DIN', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif, -apple-system, sans-serif;
+            font-size: q(14);
+            font-weight: 500;
+            color: var(--color_accent_primary, #2d5a27);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: q(1);
+            transition: color 0.2s ease;
+
+            &:hover {
+                color: var(--color_accent_secondary, #4a8c3f);
+                text-decoration: underline;
+            }
+        }
+
+        &__link-arrow {
+            transition: transform 0.2s ease;
+        }
+
+        &__link:hover &__link-arrow {
+            transform: translateX(q(4));
+        }
+
+        // Connector between cards - aligned to circle center
+        &__connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            padding: 0 q(1);
+            // Center vertically with the 120px circle
+            height: q(120);
+
+            // Dotted arrow style
+            &--dotted_arrow {
+                svg {
+                    width: q(50);
+                    height: q(24);
+                }
+            }
+
+            // Vertical dotted bar style
+            &--dotted_bar {
+                .ss-c-icon-card__bar {
+                    width: q(2);
+                    height: q(60);
+                    border-left: q(2) dotted #000;
+                }
+            }
+        }
+    }
+
+    // -- card--elevated  (from site-geoid_org/src/static/scss/components/_card.scss) --
+    .ss-c-card--elevated {
+        // (stripped @include)
+      background: var(--ss-color-surface-alt);
+
+      &:hover {
+        // (stripped @include)
+      }
+    }
+
+    // -- card--interactive  (from site-geoid_org/src/static/scss/components/_card.scss) --
+    .ss-c-card--interactive {
+
+
+      &:active {
+        transform: translateY(q(-2));
+      }
+    }
+
+    // -- card--accent  (from site-geoid_org/src/static/scss/components/_card.scss) --
+    .ss-c-card--accent {
+      border-color: var(--ss-color-accent);
+      background: rgba(59, 130, 246, 0.05);
+
+      &:hover {
+        background: rgba(59, 130, 246, 0.1);
+      }
+    }
+
+    // -- card-header  (from site-geoid_org/src/static/scss/components/_card.scss) --
+    .ss-c-card-header {
+      padding: var(--ss-spacing-6) var(--ss-spacing-6) 0;
+      margin-bottom: var(--ss-spacing-6);
+      border-bottom: q(1) solid var(--ss-color-border);
+
+      h3, h4 {
+        margin-bottom: 0;
+      }
+    }
+
+    // -- card-body  (from site-geoid_org/src/static/scss/components/_card.scss) --
+    .ss-c-card-body {
+      padding: var(--ss-spacing-6);
+    }
+
+    // -- card-footer  (from site-geoid_org/src/static/scss/components/_card.scss) --
+    .ss-c-card-footer {
+      padding: var(--ss-spacing-6) var(--ss-spacing-6) 0;
+      margin-top: var(--ss-spacing-6);
+      border-top: q(1) solid var(--ss-color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--ss-spacing-6);
+    }
+
+    // -- doc-card  (from site-geoid_org/src/static/scss/components/_card.scss) --
+    .ss-c-doc-card {
+      display: block;
+      padding: var(--ss-spacing-6);
+      background: var(--ss-color-background);
+      border: q(1) solid var(--ss-color-border);
+      border-radius: var(--ss-radius-md);
+      text-decoration: none;
+        // (stripped @include)
+        // (stripped @include)
+      &:hover {
+        border-color: var(--ss-color-accent);
+        background: rgba(59, 130, 246, 0.03);
+        // (stripped @include)
+        .ss-c-doc-card__title {
+          color: var(--ss-color-accent);
+        }
+      }
+
+      &__title {
+        font-size: q(16);
+        font-weight: 600;
+        margin-bottom: var(--ss-spacing-2);
+        color: var(--ss-color-text);
+        // (stripped @include)
+      }
+
+      &__desc {
+        font-size: q(13);
+        color: var(--ss-color-text-muted);
+      }
+    }
+
+    // -- testimonial-card  (from site-geoid_org/src/static/scss/components/_card.scss) --
+    .ss-c-testimonial-card {
+      padding: var(--ss-spacing-12);
+      background: var(--ss-color-surface);
+      border: q(1) solid var(--ss-color-border);
+      border-radius: var(--ss-radius-lg);
+      border-left: q(4) solid var(--ss-color-accent);
+
+      &__quote {
+        font-size: q(16);
+        font-style: italic;
+        margin-bottom: var(--ss-spacing-6);
+        color: var(--ss-color-text);
+
+        &::before {
+          content: '"';
+          font-size: 2em;
+          color: var(--ss-color-accent);
+          opacity: 0.3;
+          line-height: 0.5;
+          vertical-align: -0.4em;
+          margin-right: q(4);
+        }
+      }
+
+      &__author {
+        font-weight: 600;
+        color: var(--ss-color-text);
+      }
+
+      &__title {
+        font-size: q(14);
+        color: var(--ss-color-text-secondary);
+      }
+
+      &__rating {
+        display: flex;
+        gap: q(4);
+        margin-bottom: var(--ss-spacing-4);
+
+        .ss-c-star {
+          color: var(--ss-color-warning);
+        }
+      }
+    }
+
+    // -- cards-grid  (from site-geoid_org/src/static/scss/components/_card.scss) --
+    .ss-c-cards-grid {
+      display: grid;
+      gap: var(--ss-spacing-12);
+
+      &--2 {
+        grid-template-columns: repeat(2, 1fr);
+
+        // (stripped @include block)
+
+      }
+
+      &--3 {
+        grid-template-columns: repeat(3, 1fr);
+
+        // (stripped @include block)
+
+
+        // (stripped @include block)
+
+      }
+
+      &--4 {
+        grid-template-columns: repeat(4, 1fr);
+
+        // (stripped @include block)
+
+
+        // (stripped @include block)
+
+
+        // (stripped @include block)
+
+      }
+    }
+
+    // -- doc-grid  (from site-geoid_org/src/static/scss/layout/_grid.scss) --
+    .ss-c-doc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--ss-spacing-6);
+
+      // (stripped @include block)
+
+
+      // (stripped @include block)
+
+    }
+
+    // -- info-card  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-info-card {
+        max-width: unset;
+        margin: 0 auto;
+        padding: unset;
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+    }
+
+    // -- discipline-card  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-discipline-card {
+        padding: unset;
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: var(--ss-radius-none);
+        transition: all var(--ss-duration-200) ease;
+
+        &:hover {
+            border-color: var(--ss-color-gray-200);
+        }
+
+        h4 {
+            font-size: var(--ss-font-size-lg);
+            color: var(--ss-color-gray-900);
+            margin-bottom: unset;
+        }
+
+        p {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-600);
+        }
+    }
+
+    // -- data-card  (from site-speckle_org/src/static/scss/components/_cards.scss) --
+    .ss-c-data-card {
+      background: var(--ss-color-surface-3);
+      border: q(1) solid var(--ss-color-border);
+      padding: var(--ss-spacing-8);
+
+      &__header {
+        display: flex;
+        align-items: center;
+        gap: var(--ss-spacing-3);
+        margin-bottom: var(--ss-spacing-8);
+        padding-bottom: var(--ss-spacing-4);
+        border-bottom: q(1) solid var(--ss-color-border);
+      }
+
+      &__icon {
+        color: var(--ss-color-accent);
+        font-size: var(--ss-font-size-lg);
+      }
+
+      &__label {
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-xs);
+        letter-spacing: var(--ss-tracking-widest);
+        text-transform: uppercase;
+        color: var(--ss-color-text-muted);
+      }
+
+      &__content {
+        display: grid;
+        gap: var(--ss-spacing-6);
+      }
+
+      &__stat {
+        display: flex;
+        flex-direction: column;
+        gap: var(--ss-spacing-2);
+      }
+
+      &__value {
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-4xl);
+        font-weight: var(--ss-font-weight-bold);
+        color: var(--ss-color-accent);
+        line-height: var(--ss-leading-none);
+      }
+
+      &__description {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-text-muted);
+      }
+    }
+
+    // -- detail-card  (from site-speckle_org/src/static/scss/components/_cards.scss) --
+    .ss-c-detail-card {
+      padding: var(--ss-spacing-6);
+      background: var(--ss-color-surface-alt);
+      border: q(1) solid var(--ss-color-border);
+
+      &__icon {
+        font-size: var(--ss-font-size-2xl);
+        color: var(--ss-color-accent);
+        margin-bottom: var(--ss-spacing-4);
+      }
+
+      &__title {
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-bold);
+        margin-bottom: var(--ss-spacing-2);
+      }
+
+      &__text {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-text-muted);
+        line-height: var(--ss-leading-relaxed);
+      }
+    }
+
+    // -- card-image  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-card-image {
+        grid-column: span 12;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    // -- card--media  (from site-starling_studio/src/static/scss/app/_card.scss) --
+    .ss-c-card--media {
+        position: relative;
+        overflow: hidden;
+        min-height: q(320);
+        background-image: var(--card-bg, none);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        // Dark overlay for text readability
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(0, 0, 0, 0.2) 25%,
+                rgba(0, 0, 0, 0.1) 35%,
+                rgba(0, 0, 0, 0) 100%
+            );
+            z-index: 1;
+            transition: background 0.3s ease;
+        }
+
+        // Hover effect - lighter overlay
+        &:hover::before {
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.5) 0%,
+                rgba(0, 0, 0, 0.4) 25%,
+                rgba(0, 0, 0, 0.3
+                ) 35%,
+                rgba(0, 0, 0, 0.1) 100%
+            );
+        }
+
+        // Hide the image element when using background
+        .ss-c-card__image {
+            display: none;
+        }
+
+        // Position body at bottom
+        .ss-c-card__body {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            padding: q(4);
+        }
+
+        // Light text on dark background
+        .ss-c-card__title,
+        .ss-c-card__title a,
+        .ss-c-card__subtitle,
+        .ss-c-card__text,
+        .ss-c-card__text p,
+        .ss-c-card__content,
+        .ss-c-card__content p {
+            color: #fff;
+        }
+
+        .ss-c-card__title a {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .ss-c-card__footer {
+            margin-top: q(2);
+        }
+    }
+
+    // -- card-horizontal  (from site-starling_studio/src/static/scss/app/_card_horizontal.scss) --
+    .ss-c-card-horizontal {
+        min-height: 50vh;
+        background: var(--ss-color-surface, #fff);
+        overflow: hidden;
+        border: q(1) solid var(--ss-color-border, #000);
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(q(-2));
+        }
+
+        // Responsive - stack on mobile
+        @media (max-width: q(768)) {
+            min-height: auto;
+        }
+
+        // Title link styling
+        h2 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+
+            &:hover {
+                color: var(--ss-color-primary, #0066cc);
+            }
+        }
+    }
+
+    // -- card-horizontal__header  (from site-starling_studio/src/static/scss/app/_card_horizontal.scss) --
+    .ss-c-card-horizontal__header {
+        // font-size_10 = baseline(10) = 2.5rem, line-height ~1.2 = 3rem
+        // 4x that = 12rem minimum
+        min-height: calc(4 * 1.2 * #{baseline(10)});
+
+        h2 {
+            // Modern: trim leading above cap-height and below baseline
+            // Safari 17.4+, Chrome 128+
+            text-box-trim: both;
+            text-box-edge: cap alphabetic;
+        }
+    }
+
+    // -- card-horizontal__image  (from site-starling_studio/src/static/scss/app/_card_horizontal.scss) --
+    .ss-c-card-horizontal__image {
+        position: relative;
+        overflow: hidden;
+        min-height: 50vh;
+
+        @media (max-width: q(768)) {
+            min-height: q(300);
+        }
+    }
+
+    // -- card-horizontal__figure  (from site-starling_studio/src/static/scss/app/_card_horizontal.scss) --
+    .ss-c-card-horizontal__figure {
+        position: absolute;
+        inset: 0;
+        margin: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: var(--ss-color-surface-alt, #f5f5f5);
+        transition: transform 0.5s ease;
+
+        // Placeholder icon
+        .ss-c-i {
+            opacity: 0.2;
+        }
+    }
+
+    // -- card-horizontal__systems  (from site-starling_studio/src/static/scss/app/_card_horizontal.scss) --
+    .ss-c-card-horizontal__systems {
+        border-top: q(1) solid var(--ss-color-border, #e0e0e0);
+
+        // Remove list styling
+        ul {
+            list-style: none;
+        }
+
+        // System item hover effects
+        li a {
+            text-decoration: none;
+            transition: transform 0.2s ease;
+
+            span {
+                transition: text-decoration 0.2s ease;
+            }
+
+            &:hover {
+                transform: translateY(q(-2));
+
+                span {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        // Badge hover effects (legacy)
+        .ss-c-badge {
+            pointer-events: auto;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+            &:hover {
+                border-bottom:q(1) solid #000;
+                transform: translateY(q(-1));
+            }
+        }
+    }
+}

@@ -1,0 +1,182 @@
+////
+///
+/// Frame Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 9 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Frame
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- frame--center  (from site-scape_foundation/src/static/scss/app/_frame.scss) --
+    .ss-c-frame--center {
+        // (stripped @include)
+        // Named areas
+        .ss-c-frame--center__area--center_left {
+        // (stripped @include)
+        }
+        .ss-c-frame--center__area--center_center {
+        // (stripped @include)
+        }
+        .ss-c-frame--center__area--center_right {
+        // (stripped @include)
+        }
+
+        // Optional logical groupings
+        .ss-c-frame--center__area--left {
+        // (stripped @include)
+        }
+        .ss-c-frame--center__area--center {
+        // (stripped @include)
+        }
+        .ss-c-frame--center__area--right {
+        // (stripped @include)
+        }
+    }
+
+    // -- frame--center__area--center_center  (from site-scape_foundation/src/static/scss/layout/_grid.scss) --
+    .ss-c-frame--center__area--center_center {
+        padding-left: q(12) !important;
+        padding-right: q(12) !important;
+    }
+
+    // -- frame_main  (from site-scape_agency/src/static/scss/_base.scss) --
+    .ss-c-frame_main{
+
+        *{
+            pointer-events: all;
+        }
+
+
+        .ss-c-frame_main__area--top{
+            background-color: color-mix(in srgb, var(--ss-color-background) 80%, transparent);
+            backdrop-filter: blur(q(64));
+            grid-template-columns: 1fr 6fr 1fr;
+            gap: q(16);
+            grid-template-areas: "top_left top_center top_right";
+        }
+
+
+        .ss-c-frame_main__area--top_left,
+        .ss-c-frame_main__area--top_center,
+        .ss-c-frame_main__area--top_right{
+            position: relative;
+            border-bottom:q(1) solid var(--ss-color-text);
+            height: calc(5 * q(16));
+            padding-top:q(16);
+        }
+
+        .ss-c-frame_main__area--middle_center{
+            border-left:none;
+            border-right:none;
+            display: block;
+            overflow-y: scroll;
+            scrollbar-width: none;
+        }
+
+        .ss-c-frame_main__area--bottom{
+            background-color: color-mix(in srgb, var(--ss-color-background) 80%, transparent);
+            backdrop-filter: blur(q(64));
+            grid-template-columns: 1fr 6fr 1fr;
+            gap: q(16);
+            grid-template-areas: "bottom_left bottom_center bottom_right";
+        }
+
+        .ss-c-frame_main__area--bottom_left,
+        .ss-c-frame_main__area--bottom_center,
+        .ss-c-frame_main__area--bottom_right{
+            position: relative;
+            border-top:q(1) solid var(--ss-color-text);
+            height: calc(4 * q(16));
+
+        }
+    }
+
+    // -- frame_underlay  (from site-scape_agency/src/static/scss/_base.scss) --
+    .ss-c-frame_underlay{
+        display: grid;
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: all;
+        padding:q(16);
+        padding-top:0;
+        padding-bottom: 0;
+        grid-template-areas:"middle_left middle_center middle_right";
+        grid-template-columns: 1fr 6fr 1fr;
+        gap: q(16);
+        margin: 0;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        border: 0;
+
+        .ss-c-frame_main__area--middle_center{
+            grid-area: middle_center;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+
+            .ss-c-works{
+                margin-top:calc(6 * q(16));
+                margin-bottom:calc(6 * q(16));
+
+                .ss-c-work-item{
+                    display: flex;
+                    flex-direction: column;
+                    width:33.33%;
+                    margin:0 auto;
+                    margin-bottom: q(16);
+                    scroll-margin-top:calc(6 * q(16));
+                }
+            }
+        }
+    }
+
+    // -- frame_main__area--bottom  (from site-scape_agency/src/static/scss/app/_ribbon.scss) --
+
+    // -- frame  (from site-inthecity_ai/src/static/scss/layout/_grid.scss) --
+    .ss-c-frame {
+        position: relative;
+    }
+
+    // -- frame__content  (from site-inthecity_ai/src/static/scss/layout/_grid.scss) --
+    .ss-c-frame__content {
+        position: relative;
+        overflow: hidden;
+        // Create a stacking context so negative z-indexed background layers
+        // (e.g. #life-grid) stay inside this element and are not painted
+        // behind body's background.
+        isolation: isolate;
+        // Push content below the fixed site header.
+        padding-top: var(--site-header-height, q(64));
+    }
+
+    // -- frame_main__area--top  (from site-zoo_foo/src/static/scss/index.scss) --
+
+    // -- frame_main__area--middle_center  (from site-zoo_foo/src/static/scss/index.scss) --
+}

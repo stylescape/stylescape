@@ -1,0 +1,1312 @@
+////
+///
+/// Article Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 60 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Article
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- article--card  (from site-scape_foundation/src/static/scss/app/_figure.scss) --
+    .ss-c-article--card {
+        border: q(1) solid var(--color_line_primary);
+
+        .ss-c-tags {
+            padding: q(8);
+
+            > * {
+        // (stripped @include)
+            }
+        }
+    }
+
+    // -- two-column-section  (from site-scape_foundation/src/static/scss/components/_two_column.scss) --
+    .ss-c-two-column-section {
+        padding: q(8) 0;
+    }
+
+    // -- two-column-grid  (from site-scape_foundation/src/static/scss/components/_two_column.scss) --
+    .ss-c-two-column-grid {
+        display: grid;
+        gap: q(8);
+        align-items: center;
+
+        &.ss-c-layout--equal {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        &.ss-c-layout--left-wide {
+            grid-template-columns: 3fr 2fr;
+        }
+
+        &.ss-c-layout--right-wide {
+            grid-template-columns: 2fr 3fr;
+        }
+
+        @media (max-width: q(900)) {
+            grid-template-columns: 1fr !important;
+            gap: q(6);
+
+            &.ss-c-reverse-mobile .ss-c-column--right {
+                order: -1;
+            }
+        }
+
+        .ss-c-column {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: q(3);
+        }
+
+        .ss-c-column-image {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                display: block;
+                max-width: 100%;
+                max-height: q(420);
+                width: auto;
+                height: auto;
+                object-fit: contain;
+            }
+        }
+
+        .ss-c-column-content {
+            min-width: 0;
+        }
+    }
+
+    // -- citation-buttons  (from site-scape_foundation/src/static/scss/sections/_download_section.scss) --
+    .ss-c-citation-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: q(8);
+    }
+
+    // -- citation-btn  (from site-scape_foundation/src/static/scss/sections/_download_section.scss) --
+    .ss-c-citation-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: q(4) q(16);
+        font-family: var(--ss-font-family-base);
+        font-size: var(--ss-font-size-xs);
+        font-weight: 500;
+        text-decoration: none;
+        background: var(--ss-color-background, #fff);
+        border: q(1) solid var(--ss-color-border, #ddd);
+        border-radius: q(3);
+        color: var(--ss-color-text-primary);
+        transition: all 0.15s ease;
+
+        &:hover {
+            background: var(--ss-color-gray-700, #333);
+            border-color: var(--ss-color-gray-700, #333);
+            color: var(--ss-color-background, #fff);
+        }
+    }
+
+    // -- citation-preview  (from site-scape_foundation/src/static/scss/sections/_download_section.scss) --
+    .ss-c-citation-preview {
+        background: var(--ss-color-surface-alt, #f8f8f8);
+        border: q(1) solid var(--ss-color-border-subtle, #e8e8e8);
+        border-radius: q(4);
+        padding: q(24);
+
+        &__title {
+            font-family: var(--ss-font-family-display);
+            font-size: var(--ss-font-size-sm);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0 0 q(16);
+        }
+
+        &__tabs {
+            display: flex;
+            gap: q(4);
+            margin-bottom: q(16);
+            border-bottom: q(1) solid var(--ss-color-border-subtle, #e8e8e8);
+            padding-bottom: q(8);
+        }
+
+        &__content {
+            position: relative;
+            display: flex;
+            gap: q(16);
+            align-items: flex-start;
+        }
+    }
+
+    // -- citation-tab  (from site-scape_foundation/src/static/scss/sections/_download_section.scss) --
+    .ss-c-citation-tab {
+        padding: q(4) q(16);
+        font-family: var(--ss-font-family-base);
+        font-size: var(--ss-font-size-xs);
+        font-weight: 500;
+        background: transparent;
+        border: none;
+        border-bottom: q(2) solid transparent;
+        color: var(--ss-color-text-muted, #666);
+        cursor: pointer;
+        transition: all 0.15s ease;
+
+        &:hover {
+            color: var(--ss-color-text-primary);
+        }
+
+        &.active {
+            color: var(--ss-color-text-primary);
+            border-bottom-color: var(--ss-color-accent, #2d5a27);
+        }
+    }
+
+    // -- citation-text  (from site-scape_foundation/src/static/scss/sections/_download_section.scss) --
+    .ss-c-citation-text {
+        flex: 1;
+        font-family: var(--ss-font-family-base);
+        font-size: var(--ss-font-size-xs);
+        line-height: 1.5;
+        word-break: break-word;
+        white-space: pre-wrap;
+        background: var(--ss-color-background, #fff);
+        padding: q(16);
+        border: q(1) solid var(--ss-color-border-subtle, #e8e8e8);
+        border-radius: q(3);
+    }
+
+    // -- citation-copy  (from site-scape_foundation/src/static/scss/sections/_download_section.scss) --
+    .ss-c-citation-copy {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: q(32);
+        height: q(32);
+        padding: 0;
+        background: var(--ss-color-background, #fff);
+        border: q(1) solid var(--ss-color-border, #ddd);
+        border-radius: q(3);
+        color: var(--ss-color-text-muted, #666);
+        cursor: pointer;
+        transition: all 0.15s ease;
+
+        &:hover {
+            background: var(--ss-color-gray-700, #333);
+            border-color: var(--ss-color-gray-700, #333);
+            color: var(--ss-color-background, #fff);
+        }
+
+        svg {
+            width: q(14);
+            height: q(14);
+        }
+    }
+
+    // -- magazine  (from site-scape_agency/src/static/scss/app/_magazine.scss) --
+    .ss-c-magazine {
+        margin-bottom: q(60);
+
+        &.ss-c-full {
+            height: calc(100vh - q(44));
+            // height: max(calc(100vh - 44px), fit-content);
+            // min-height: calc(100vh - 44px);
+            // height: auto;
+        }
+        &.ss-c-half {
+            height: calc(50vh - q(44));
+            // height: max(calc(50vh - 44px), fit-content);
+            // min-height: calc(50vh - 44px);
+            // height: auto;
+        }
+        @media screen and (max-height: q(750)) {
+            &.ss-c-full {
+                min-height: calc(100vh - #{q(44)});
+                height: auto;
+            }
+            &.ss-c-half {
+                min-height: calc(50vh - #{q(44)});
+                height: auto;
+            }
+        }
+        &.ss-c-no_margin {
+            margin-left: q(-20);
+            margin-right: q(-20);
+
+            &--left {
+                margin-left: q(-20);
+            }
+
+            &--right {
+                margin-right: q(-20);
+            }
+        }
+
+        figure {
+            width: 100%;
+            height: 100%;
+            img {
+                object-fit: cover;
+                height: 100%;
+            }
+        }
+    }
+
+    // -- rich-text-section  (from site-blockfoundation_io/src/static/scss/sections/_rich-text-section.scss) --
+    .ss-c-rich-text-section {
+        padding: var(--ss-spacing-24) 0;
+        background-color: var(--ss-color-background);
+        border-top: q(1) solid var(--ss-color-border);
+
+        &__inner {
+        // (stripped @include)
+        }
+
+        // Two-column layout: text on the left, image / placeholder on the right.
+        &__layout {
+            display: grid;
+            gap: var(--ss-spacing-12);
+            align-items: start;
+
+            // (stripped @include block)
+
+        }
+
+        &__media {
+            order: -1; // image first on small screens
+
+            // (stripped @include block)
+
+        }
+
+        &__placeholder {
+            aspect-ratio: 4 / 3;
+            width: 100%;
+            background-color: var(--ss-color-surface-alt);
+            border: q(1) solid var(--ss-color-border);
+            color: var(--ss-color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+
+            svg {
+                width: 100%;
+                height: 100%;
+                max-width: 100%;
+                max-height: 100%;
+                display: block;
+            }
+        }
+
+        &__content {
+            max-width: q(800);
+            color: var(--ss-color-secondary);
+            line-height: var(--ss-leading-relaxed);
+            font-size: var(--ss-font-size-base);
+
+            h2 {
+                font-size: var(--ss-font-size-4xl);
+                margin: var(--ss-spacing-12) 0 var(--ss-spacing-4);
+                color: var(--ss-color-text-primary);
+                text-transform: uppercase;
+                letter-spacing: 0.02em;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+
+                // (stripped @include block)
+
+            }
+
+            h3 {
+                font-size: var(--ss-font-size-3xl);
+                margin: var(--ss-spacing-8) 0 var(--ss-spacing-3);
+                color: var(--ss-color-text-primary);
+                text-transform: uppercase;
+                letter-spacing: 0.02em;
+            }
+
+            h4 {
+                font-size: var(--ss-font-size-xl);
+                margin: var(--ss-spacing-6) 0 var(--ss-spacing-2);
+                color: var(--ss-color-text-primary);
+            }
+
+            p {
+                margin-bottom: var(--ss-spacing-4);
+            }
+
+            ul,
+            ol {
+                margin: var(--ss-spacing-4) 0 var(--ss-spacing-6) var(--ss-spacing-6);
+
+                li {
+                    margin-bottom: var(--ss-spacing-2);
+                }
+            }
+
+            a {
+                color: var(--ss-color-text-primary);
+                text-decoration: underline;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+                margin: var(--ss-spacing-6) 0;
+            }
+
+            blockquote {
+                border-left: q(2) solid var(--ss-color-text-primary);
+                padding-left: var(--ss-spacing-6);
+                margin: var(--ss-spacing-6) 0;
+                font-style: italic;
+                color: var(--ss-color-text-primary);
+            }
+        }
+    }
+
+    // -- paragraph-block__image  (from site-inthecity_ai/src/static/scss/blocks/_paragraph-block.scss) --
+    .ss-c-paragraph-block__image {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: var(--ss-radius-md);
+        grid-column: span 1;
+        order: 2; // Default: appears on right
+
+        // When positioned left, image appears first
+        .ss-c-section--paragraph[data-image-position='left'] & {
+            order: 1;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    // -- paragraph-block  (from site-inthecity_ai/src/static/scss/blocks/_paragraph-block.scss) --
+    .ss-c-paragraph-block {
+        grid-column: span 2;
+        order: 1;
+
+        .ss-c-section--paragraph[data-image-position='left'] & {
+            order: 2;
+        }
+
+        @media (max-width: q(768)) {
+            grid-column: auto;
+        }
+    }
+
+    // -- paragraph-block__eyebrow  (from site-inthecity_ai/src/static/scss/blocks/_paragraph-block.scss) --
+    .ss-c-paragraph-block__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25em;
+        font-family: unset;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-accent);
+        font-size: q(12);
+        margin-bottom: q(8);
+    }
+
+    // -- paragraph-block__eyebrow-dot  (from site-inthecity_ai/src/static/scss/blocks/_paragraph-block.scss) --
+    .ss-c-paragraph-block__eyebrow-dot {
+        width: 0.5em;
+        height: 0.5em;
+        background: var(--ss-color-accent);
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    // -- paragraph-block__title  (from site-inthecity_ai/src/static/scss/blocks/_paragraph-block.scss) --
+    .ss-c-paragraph-block__title {
+        margin-bottom: 1em;
+    }
+
+    // -- paragraph-block__body  (from site-inthecity_ai/src/static/scss/blocks/_paragraph-block.scss) --
+    .ss-c-paragraph-block__body {
+        color: var(--ss-color-gray-600);
+        line-height: 1.7;
+
+        p {
+            margin: 0 0 1em;
+            max-width: 65ch;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        ul,
+        ol {
+            margin: 1em 0;
+            padding-left: 1.5em;
+            list-style: disc;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        strong {
+            color: var(--ss-color-primary);
+            font-weight: 600;
+        }
+    }
+
+    // -- paragraph-block__actions  (from site-inthecity_ai/src/static/scss/blocks/_paragraph-block.scss) --
+    .ss-c-paragraph-block__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: q(8);
+        margin-top: q(32);
+    }
+
+    // -- content-quarter  (from site-inthecity_ai/src/static/scss/layout/_grid.scss) --
+    .ss-c-content-quarter {
+        grid-column: span 16;
+    }
+
+    // -- bibliography-list  (from site-kockums_foundation/src/static/scss/components/_bibliography.scss) --
+    .ss-c-bibliography-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ss-spacing-4);
+    }
+
+    // -- bibliography-item  (from site-kockums_foundation/src/static/scss/components/_bibliography.scss) --
+    .ss-c-bibliography-item {
+      padding: var(--ss-spacing-4) 0;
+      border-bottom: q(1) solid var(--ss-color-gray-200);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &__citation {
+        font-size: var(--ss-font-size-base);
+        line-height: var(--ss-leading-relaxed);
+        color: #737373;
+        margin: 0;
+
+        em {
+          font-style: italic;
+        }
+      }
+    }
+
+    // -- content-grid  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-content-grid {
+        max-width: q(720);
+
+        &--wide {
+            max-width: q(900);
+        }
+    }
+
+    // -- content-block  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-content-block {
+        margin-bottom: unset;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // -- content-label  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-content-label {
+        // (stripped @include)
+        display: block;
+        margin-bottom: unset;
+    }
+
+    // -- content-heading  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-content-heading {
+        // (stripped @include)
+        font-size: var(--ss-font-size-3xl);
+        margin-bottom: unset;
+
+        // (stripped @include block)
+
+
+        // (stripped @include block)
+
+    }
+
+    // -- content-text  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-content-text {
+        font-size: var(--ss-font-size-base);
+        color: #525252;
+        line-height: var(--ss-leading-relaxed);
+        margin-bottom: unset;
+
+        &--large {
+            font-size: var(--ss-font-size-lg);
+
+            // (stripped @include block)
+
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // -- article-content  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-content {
+        max-width: q(720);
+    }
+
+    // -- article-lead  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-lead {
+        font-family: Georgia, serif;
+        font-size: var(--ss-font-size-xl);
+        font-weight: var(--ss-font-weight-light);
+        line-height: var(--ss-leading-relaxed);
+        margin-bottom: unset;
+
+        // (stripped @include block)
+
+    }
+
+    // -- article-body  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-body {
+        margin-bottom: unset;
+
+        p {
+            font-size: var(--ss-font-size-base);
+            line-height: var(--ss-leading-relaxed);
+            color: #525252;
+            margin-bottom: unset;
+        }
+    }
+
+    // -- article-heading  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-heading {
+        font-family: Georgia, serif;
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-light);
+        margin-top: unset;
+        margin-bottom: unset;
+
+        // (stripped @include block)
+
+    }
+
+    // -- article-footer  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-footer {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+        padding-top: unset;
+        border-top: q(1) solid var(--ss-color-border, #e5e5e5);
+
+        // (stripped @include block)
+
+    }
+
+    // -- article-meta  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-meta {
+        display: flex;
+        gap: unset;
+    }
+
+    // -- article-meta__date  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-meta__date {
+        // (stripped @include)
+    }
+
+    // -- article-back  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-back {
+        font-size: var(--ss-font-size-sm);
+        color: #525252;
+        transition: color var(--ss-duration-200) ease;
+
+        &:hover {
+            color: var(--ss-color-text, #1a1a1a);
+        }
+    }
+
+    // -- article-related  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-related {
+        margin-top: unset;
+        padding-top: unset;
+        border-top: q(1) solid var(--ss-color-border, #e5e5e5);
+    }
+
+    // -- article-related__title  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-related__title {
+        // (stripped @include)
+        margin-bottom: unset;
+    }
+
+    // -- article-related__grid  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-related__grid {
+        display: grid;
+        gap: unset;
+
+        // (stripped @include block)
+
+    }
+
+    // -- article-card  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-card {
+        display: flex;
+        flex-direction: column;
+        padding: unset;
+        background-color: #f2f2f2;
+        text-decoration: none;
+        color: inherit;
+        transition: opacity unset;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    // -- article-card__category  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-card__category {
+        // (stripped @include)
+        margin-bottom: unset;
+    }
+
+    // -- article-card__title  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-card__title {
+        font-family: Georgia, serif;
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-light);
+        margin-bottom: unset;
+    }
+
+    // -- article-card__meta  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-article-card__meta {
+        font-size: var(--ss-font-size-xs);
+        color: #525252;
+    }
+
+    // -- content-page  (from site-speckle_org/src/static/scss/sections/_content.scss) --
+    .ss-c-content-page {
+      min-height: 100vh;
+      padding-top: var(--ss-spacing-20);
+      padding-bottom: 0;
+      background: var(--ss-color-background);
+
+      &__header {
+        margin-bottom: var(--ss-spacing-16);
+        padding-bottom: var(--ss-spacing-8);
+        border-bottom: q(1) solid var(--ss-color-border);
+      }
+
+      &__title {
+        font-size: var(--ss-font-size-4xl);
+        font-weight: var(--ss-font-weight-black);
+        letter-spacing: var(--ss-tracking-tight);
+        text-transform: uppercase;
+        margin-bottom: var(--ss-spacing-4);
+
+        @media (min-width: q(768)) {
+          font-size: var(--ss-font-size-6xl);
+        }
+      }
+
+      &__description {
+        font-size: var(--ss-font-size-lg);
+        color: var(--ss-color-text-muted);
+        max-width: q(600);
+      }
+
+      &__body {
+        .ss-c-container--narrow {
+          max-width: q(800);
+        }
+      }
+    }
+
+    // -- episodes-section  (from site-speckle_org/src/static/scss/sections/_episodes.scss) --
+    .ss-c-episodes-section {
+      padding: var(--ss-spacing-16) 0;
+      background: var(--ss-color-background);
+    }
+
+    // -- episodes-controls  (from site-speckle_org/src/static/scss/sections/_episodes.scss) --
+    .ss-c-episodes-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--ss-spacing-8);
+      padding-bottom: var(--ss-spacing-4);
+      border-bottom: q(1) solid var(--ss-color-border);
+
+      &__count {
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-text-muted);
+      }
+
+      &__filters {
+        display: flex;
+        gap: var(--ss-spacing-2);
+      }
+    }
+
+    // -- episodes-grid  (from site-speckle_org/src/static/scss/sections/_episodes.scss) --
+    .ss-c-episodes-grid {
+      display: grid;
+      gap: var(--ss-spacing-6);
+      grid-template-columns: 1fr;
+
+      @media (min-width: q(640)) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (min-width: q(1024)) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    // -- episode-card  (from site-speckle_org/src/static/scss/sections/_episodes.scss) --
+    .ss-c-episode-card {
+      position: relative;
+      background: var(--ss-color-surface);
+      border: q(1) solid var(--ss-color-border);
+      transition: all var(--ss-duration-200);
+
+      &:hover {
+        border-color: var(--ss-color-accent);
+        transform: translateY(q(-4));
+
+        .ss-c-episode-card__overlay {
+          opacity: 1;
+        }
+      }
+
+      &--featured {
+        grid-column: 1 / -1;
+
+        @media (min-width: q(640)) {
+          grid-column: span 2;
+        }
+
+        .ss-c-episode-card__thumbnail {
+          aspect-ratio: 21/9;
+        }
+      }
+
+      &__link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      &__visual {
+        position: relative;
+      }
+
+      &__thumbnail {
+        aspect-ratio: 16/9;
+        background: linear-gradient(135deg, var(--ss-color-surface-3) 0%, var(--ss-color-surface-alt) 100%);
+      }
+
+      &__overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: opacity var(--ss-duration-150);
+      }
+
+      &__play {
+        width: q(60);
+        height: q(60);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ss-color-accent);
+        color: var(--ss-color-background);
+        font-size: var(--ss-font-size-xl);
+        border-radius: 50%;
+      }
+
+      &__badge {
+        position: absolute;
+        top: var(--ss-spacing-3);
+        left: var(--ss-spacing-3);
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-xs);
+        font-weight: var(--ss-font-weight-bold);
+        letter-spacing: var(--ss-tracking-widest);
+        padding: var(--ss-spacing-1) var(--ss-spacing-2);
+        background: var(--ss-color-background);
+        border: q(1) solid var(--ss-color-accent);
+        color: var(--ss-color-accent);
+      }
+
+      &__featured-badge,
+      &__coming-soon {
+        position: absolute;
+        top: var(--ss-spacing-3);
+        right: var(--ss-spacing-3);
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-xs);
+        font-weight: var(--ss-font-weight-bold);
+        letter-spacing: var(--ss-tracking-widest);
+        padding: var(--ss-spacing-1) var(--ss-spacing-2);
+      }
+
+      &__featured-badge {
+        background: var(--ss-color-accent);
+        color: var(--ss-color-background);
+      }
+
+      &__coming-soon {
+        background: var(--ss-color-surface);
+        border: q(1) solid var(--ss-color-border);
+        color: var(--ss-color-text-muted);
+      }
+
+      &__content {
+        padding: var(--ss-spacing-4);
+      }
+
+      &__title {
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-bold);
+        letter-spacing: var(--ss-tracking-tight);
+        margin-bottom: var(--ss-spacing-2);
+      }
+
+      &__meta {
+        display: flex;
+        align-items: center;
+        gap: var(--ss-spacing-2);
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-xs);
+        color: var(--ss-color-muted);
+        margin-bottom: var(--ss-spacing-3);
+      }
+
+      &__divider {
+        color: var(--ss-color-gray-600);
+      }
+
+      &__themes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--ss-spacing-2);
+      }
+
+      &__theme {
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-xs);
+        padding: var(--ss-spacing-1) var(--ss-spacing-2);
+        background: var(--ss-color-surface-3);
+        border: q(1) solid var(--ss-color-border);
+        color: var(--ss-color-text-muted);
+      }
+    }
+
+    // -- episode-hero  (from site-speckle_org/src/static/scss/sections/_episodes.scss) --
+    .ss-c-episode-hero {
+      position: relative;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      padding: var(--ss-spacing-20) 0;
+
+      &__background {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+      }
+
+      &__gradient {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(to right, var(--ss-color-background) 0%, transparent 60%),
+          linear-gradient(to top, var(--ss-color-background) 0%, transparent 40%),
+          linear-gradient(135deg, var(--ss-color-surface-alt) 0%, var(--ss-color-background) 100%);
+      }
+
+      &__layout {
+        display: grid;
+        gap: var(--ss-spacing-12);
+        align-items: center;
+
+        @media (min-width: q(1024)) {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      &__player {
+        order: 2;
+
+        @media (min-width: q(1024)) {
+          order: 1;
+        }
+      }
+
+      &__info {
+        order: 1;
+
+        @media (min-width: q(1024)) {
+          order: 2;
+        }
+      }
+
+      &__badge {
+        display: inline-block;
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-sm);
+        font-weight: var(--ss-font-weight-bold);
+        letter-spacing: var(--ss-tracking-widest);
+        padding: var(--ss-spacing-2) var(--ss-spacing-4);
+        background: var(--ss-color-accent-bg);
+        border: q(1) solid var(--ss-color-accent);
+        color: var(--ss-color-accent);
+        margin-bottom: var(--ss-spacing-4);
+      }
+
+      &__title {
+        font-size: var(--ss-font-size-4xl);
+        font-weight: var(--ss-font-weight-black);
+        letter-spacing: var(--ss-tracking-tight);
+        margin-bottom: var(--ss-spacing-4);
+
+        @media (min-width: q(768)) {
+          font-size: var(--ss-font-size-6xl);
+        }
+      }
+
+      &__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--ss-spacing-2);
+        margin-bottom: var(--ss-spacing-4);
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-text-muted);
+      }
+
+      &__meta-divider {
+        color: var(--ss-color-gray-600);
+      }
+
+      &__themes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--ss-spacing-2);
+        margin-bottom: var(--ss-spacing-6);
+      }
+
+      &__theme {
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-xs);
+        padding: var(--ss-spacing-1) var(--ss-spacing-3);
+        background: var(--ss-color-surface);
+        border: q(1) solid var(--ss-color-border);
+        color: var(--ss-color-secondary);
+      }
+
+      &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--ss-spacing-4);
+      }
+    }
+
+    // -- episode-player  (from site-speckle_org/src/static/scss/sections/_episodes.scss) --
+    .ss-c-episode-player {
+      aspect-ratio: 16/9;
+      background: var(--ss-color-surface);
+      border: q(1) solid var(--ss-color-border);
+      position: relative;
+
+      &__placeholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--ss-spacing-4);
+        background: linear-gradient(135deg, var(--ss-color-surface-3) 0%, var(--ss-color-surface-alt) 100%);
+      }
+
+      &__play-btn {
+        width: q(80);
+        height: q(80);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ss-color-accent);
+        color: var(--ss-color-background);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform var(--ss-duration-150);
+
+        svg {
+          width: q(32);
+          height: q(32);
+        }
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+
+      &__label {
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-text-muted);
+      }
+    }
+
+    // -- episode-synopsis  (from site-speckle_org/src/static/scss/sections/_episodes.scss) --
+    .ss-c-episode-synopsis {
+      padding: var(--ss-spacing-16) 0;
+      background: var(--ss-color-background);
+
+      &__title {
+        font-size: var(--ss-font-size-sm);
+        font-weight: var(--ss-font-weight-bold);
+        letter-spacing: var(--ss-tracking-widest);
+        text-transform: uppercase;
+        color: var(--ss-color-accent);
+        margin-bottom: var(--ss-spacing-6);
+      }
+
+      &__content {
+        font-size: var(--ss-font-size-lg);
+        line-height: var(--ss-leading-relaxed);
+        color: var(--ss-color-secondary);
+
+        p {
+          margin-bottom: var(--ss-spacing-4);
+        }
+      }
+    }
+
+    // -- episode-credits  (from site-speckle_org/src/static/scss/sections/_episodes.scss) --
+    .ss-c-episode-credits {
+      margin-top: var(--ss-spacing-8);
+      padding-top: var(--ss-spacing-6);
+      border-top: q(1) solid var(--ss-color-border);
+      display: flex;
+      gap: var(--ss-spacing-8);
+
+      &__item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--ss-spacing-1);
+      }
+
+      &__label {
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-xs);
+        letter-spacing: var(--ss-tracking-widest);
+        color: var(--ss-color-muted);
+        text-transform: uppercase;
+      }
+
+      &__value {
+        font-size: var(--ss-font-size-base);
+        color: var(--ss-color-foreground);
+      }
+    }
+
+    // -- episode-details  (from site-speckle_org/src/static/scss/sections/_episodes.scss) --
+    .ss-c-episode-details {
+      padding: var(--ss-spacing-16) 0;
+      background: var(--ss-color-surface);
+
+      &__grid {
+        display: grid;
+        gap: var(--ss-spacing-6);
+        grid-template-columns: 1fr;
+
+        @media (min-width: q(768)) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    }
+
+    // -- episode-nav  (from site-speckle_org/src/static/scss/sections/_episodes.scss) --
+    .ss-c-episode-nav {
+      padding: var(--ss-spacing-16) 0;
+      background: var(--ss-color-background);
+
+      &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--ss-spacing-8);
+      }
+
+      &__title {
+        font-size: var(--ss-font-size-xl);
+        font-weight: var(--ss-font-weight-bold);
+      }
+
+      &__link {
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-accent);
+        transition: color var(--ss-duration-150);
+
+        &:hover {
+          color: var(--ss-color-foreground);
+        }
+      }
+
+      &__grid {
+        display: grid;
+        gap: var(--ss-spacing-4);
+        grid-template-columns: repeat(2, 1fr);
+
+        @media (min-width: q(768)) {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      &__card {
+        padding: var(--ss-spacing-4);
+        background: var(--ss-color-surface);
+        border: q(1) solid var(--ss-color-border);
+        transition: border-color var(--ss-duration-150);
+
+        &:hover {
+          border-color: var(--ss-color-muted);
+        }
+      }
+
+      &__badge {
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-xs);
+        color: var(--ss-color-accent);
+        margin-bottom: var(--ss-spacing-2);
+      }
+
+      &__card-title {
+        font-size: var(--ss-font-size-base);
+        font-weight: var(--ss-font-weight-semibold);
+        margin-bottom: var(--ss-spacing-2);
+      }
+
+      &__status {
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-xs);
+        color: var(--ss-color-muted);
+      }
+    }
+
+    // -- content  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-content {
+        display: grid;
+        grid-template-columns: repeat(24, 1fr);
+        gap: q(24);
+        width: 100%;
+        height: 100%;
+        padding: 0 q(48);
+    }
+
+    // -- content-title  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-content-title {
+        grid-column: span 12;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-bottom: q(24);
+    }
+
+    // -- content-illustration  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-content-illustration {
+        grid-column: span 12;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    // -- content-with-image  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-content-with-image {
+        grid-column: span 12;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: q(24);
+    }
+
+    // -- content-with-image-picture  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-content-with-image-picture {
+        width: 100%;
+        height: q(384);
+        overflow: hidden;
+    }
+
+    // -- content-with-image-description  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-content-with-image-description {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: q(16);
+        width: 100%;
+    }
+
+    // -- content-with-text  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-content-with-text {
+        grid-column: span 12;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: q(32);
+    }
+
+    // -- content-section  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-content-section {
+        grid-column: span 6;
+        flex-direction: column;
+        gap: q(16);
+    }
+}

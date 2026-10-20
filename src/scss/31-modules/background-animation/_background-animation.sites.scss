@@ -1,0 +1,299 @@
+////
+///
+/// Background Animation Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 24 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.BackgroundAnimation
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- gradient-text  (from site-geoid_org/src/static/scss/base/_typography.scss) --
+    .ss-c-gradient-text {
+        // (stripped @include)
+    }
+
+    // -- background-animation  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+
+        // Subtle dark overlay for better content readability
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                ellipse at center,
+                transparent 0%,
+                rgba(0, 0, 0, 0.1) 100%
+            );
+            pointer-events: none;
+        }
+    }
+
+    // -- background-animation--relative  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation--relative {
+        position: absolute;
+    }
+
+    // -- background-animation--static  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation--static {
+        position: relative;
+    }
+
+    // -- background-animation__canvas  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation__canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    // -- background-animation__svg  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation__svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+    }
+
+    // -- background-animation__blobs  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation__blobs {
+        will-change: transform;
+    }
+
+    // -- background-animation__blob  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation__blob {
+        opacity: 0.8;
+        mix-blend-mode: normal;
+        will-change: transform, cx, cy;
+
+        // Apply individual blob animations with CSS custom properties
+        animation:
+            blob-float var(--blob-duration, 20s) ease-in-out infinite,
+            blob-scale calc(var(--blob-duration, 20s) * 0.7) ease-in-out infinite;
+        animation-delay: var(--blob-delay, 0s);
+
+        // Offset each blob's animation based on index
+        // (stripped @for block)
+
+    }
+
+    // -- background-animation--dark  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation--dark {
+        background: #ffffff;
+
+        .ss-c-background-animation__blob {
+            mix-blend-mode: normal;
+            opacity: 0.6;
+        }
+    }
+
+    // -- background-animation--light  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation--light {
+        background: #ffffff;
+
+        .ss-c-background-animation__blob {
+            mix-blend-mode: normal;
+            opacity: 0.5;
+        }
+    }
+
+    // -- background-animation--gradient  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation--gradient {
+        background: linear-gradient(
+            135deg,
+            #0f172a 0%,
+            #1e1b4b 25%,
+            #312e81 50%,
+            #1e1b4b 75%,
+            #0f172a 100%
+        );
+    }
+
+    // -- background-animation--interactive  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation--interactive {
+        pointer-events: auto;
+
+        .ss-c-background-animation__canvas {
+            cursor: none;
+        }
+    }
+
+    // -- background-animation--reduced-motion  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation--reduced-motion {
+        // (stripped @include)
+    }
+
+    // -- background-animation--loaded  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation--loaded {
+        .ss-c-background-animation__svg,
+        .ss-c-background-animation__canvas {
+            animation: fade-in 1s ease-out forwards;
+        }
+    }
+
+    // -- background-animation--blur-sm  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation--blur-sm {
+        .ss-c-background-animation__blob {
+            filter: blur(q(60));
+        }
+    }
+
+    // -- background-animation--blur-lg  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation--blur-lg {
+        .ss-c-background-animation__blob {
+            filter: blur(q(150));
+        }
+    }
+
+    // -- background-animation--opacity-low  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation--opacity-low {
+        .ss-c-background-animation__svg,
+        .ss-c-background-animation__canvas {
+            opacity: 0.4;
+        }
+    }
+
+    // -- background-animation--opacity-high  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
+    .ss-c-background-animation--opacity-high {
+        .ss-c-background-animation__svg,
+        .ss-c-background-animation__canvas {
+            opacity: 0.9;
+        }
+    }
+
+    // -- gradient  (from site-lovelacelabs_ai/src/static/scss/temp/_temp_fixes.scss) --
+    .ss-c-gradient {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+
+        .ss-c-overlay {
+            height: q(400);
+            width: q(400);
+            background: radial-gradient(
+                circle,
+                #fff078 0%,
+                #ffba45 25%,
+                #f5735f 50%,
+                #e15c7a 70%,
+                #c06fa0 85%,
+                #b2d2eb 100%
+            );
+            border-radius: 50%;
+            opacity: 30%;
+        }
+    }
+
+    // -- noise-overlay  (from site-speckle_org/src/static/scss/base/_effects.scss) --
+    .ss-c-noise-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: var(--ss-z-navbar);
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    // -- scanlines  (from site-speckle_org/src/static/scss/base/_effects.scss) --
+    .ss-c-scanlines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: var(--ss-z-navbar);
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent q(2),
+        rgba(0, 0, 0, 0.03) q(2),
+        rgba(0, 0, 0, 0.03) q(4)
+      );
+    }
+
+    // -- boids-canvas  (from site-starling_studio/src/static/scss/app/_boids.scss) --
+    .ss-c-boids-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      // Ensure canvas doesn't interfere with content
+      isolation: isolate;
+    }
+
+    // -- ascii-block  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-ascii-block {
+        font-family: "SF Mono", "Fira Code", Menlo, Monaco, monospace;
+        font-size: q(14);
+        line-height: 1.5;
+        white-space: pre;
+        color: #525252;
+        opacity: 0.8;
+        background: #ffffff;
+        padding: unset;
+        border: q(1) solid var(--ss-color-border, #e5e5e5);
+        border-radius: var(--ss-radius-none);
+
+        @media (max-width: q(600)) {
+            font-size: q(11);
+            overflow-x: auto;
+        }
+    }
+
+    // -- flock-canvas  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-flock-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: "SF Mono", "Fira Code", Menlo, Monaco, monospace;
+        font-size: q(14);
+        line-height: 1.2;
+        color: var(--ss-color-primary);
+        opacity: 0.45;
+        white-space: pre;
+        overflow: hidden;
+        user-select: none;
+        text-shadow: 0 0 q(10) color-mix(in srgb, var(--ss-color-primary) 60%, transparent);
+    }
+}

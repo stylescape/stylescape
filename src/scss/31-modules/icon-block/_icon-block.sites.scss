@@ -1,0 +1,387 @@
+////
+///
+/// Icon Block Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 21 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.IconBlock
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- icon-cards  (from site-scape_foundation/src/static/scss/components/_icon_card.scss) --
+    .ss-c-icon-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: q(14);
+        align-items: flex-start;
+        justify-content: center;
+
+        // Single row layout
+        &--row {
+            flex-wrap: nowrap;
+            overflow: visible;
+            justify-content: center;
+            padding: q(6) q(4);
+
+            .ss-c-icon-card {
+                flex: 0 0 auto;
+                max-width: q(200);
+            }
+        }
+
+        // Grid layout
+        &--grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(q(180), 1fr));
+            max-width: q(800);
+            margin: 0 auto;
+
+            .ss-c-icon-card__connector {
+                display: none;
+            }
+        }
+
+        // With connectors modifier
+        &--with-connectors {
+            gap: q(6);
+            align-items: flex-start;
+        }
+    }
+
+    // -- icon-grid-section  (from site-scape_foundation/src/static/scss/components/_icon_list.scss) --
+    .ss-c-icon-grid-section {
+        padding: q(8) 0;
+    }
+
+    // -- icon-grid  (from site-scape_foundation/src/static/scss/components/_icon_list.scss) --
+    .ss-c-icon-grid {
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+        max-width: q(1400);
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: q(8);
+
+        @media (max-width: q(1200)) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        @media (max-width: q(900)) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @media (max-width: q(600)) {
+            grid-template-columns: 1fr;
+        }
+
+        &__item {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: q(3);
+        }
+
+        &__icon {
+            flex: 0 0 auto;
+            width: q(56);
+            height: q(56);
+            border-radius: q(6);
+            border: q(1) solid var(--ss-color-border, #e5e5e5);
+            background: var(--ss-color-background, #fff);
+            padding: q(1.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        &__image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        &__content {
+            flex: 1 1 auto;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: q(0.5);
+        }
+
+        &__title {
+            margin: 0;
+            font-size: q(1.5);
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        &__description {
+            margin: 0;
+            font-size: q(1.25);
+            line-height: 1.4;
+        }
+
+        &__link {
+            align-self: flex-start;
+            margin-top: q(0.5);
+            font-size: q(1.25);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: q(1);
+
+            &:hover .ss-c-icon-grid__link-arrow,
+            &:focus .ss-c-icon-grid__link-arrow {
+                transform: translateX(q(3));
+            }
+        }
+
+        &__link-arrow {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+    }
+
+    // -- icon-block__intro  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__intro {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: q(32);
+        align-items: center;
+
+        .ss-c-section--icon[data-image-position] & {
+            grid-template-columns: repeat(3, 1fr);
+
+            @media (max-width: q(768)) {
+                grid-template-columns: 1fr;
+                gap: q(24);
+            }
+        }
+    }
+
+    // -- icon-block__heading  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__heading {
+        grid-column: span 2;
+        order: 1;
+        max-width: q(1024);
+
+        .ss-c-section--icon[data-image-position='left'] & {
+            order: 2;
+        }
+
+        @media (max-width: q(768)) {
+            grid-column: auto;
+        }
+    }
+
+    // -- icon-block__image  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__image {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: var(--ss-radius-md);
+        grid-column: span 1;
+        order: 2;
+
+        .ss-c-section--icon[data-image-position='left'] & {
+            order: 1;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    // -- icon-block  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block {
+        max-width: none;
+    }
+
+    // -- icon-block__eyebrow  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25em;
+        font-family: unset;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-accent);
+        font-size: q(12);
+        margin-bottom: q(8);
+    }
+
+    // -- icon-block__eyebrow-dot  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__eyebrow-dot {
+        width: 0.5em;
+        height: 0.5em;
+        background: var(--ss-color-accent);
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    // -- icon-block__title  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__title {
+        margin-bottom: 0.5em;
+    }
+
+    // -- icon-block__subtitle  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__subtitle {
+        color: var(--ss-color-gray-600);
+        max-width: 50ch;
+        margin-bottom: q(32);
+    }
+
+    // -- icon-block__grid  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__grid {
+        display: grid;
+        grid-template-columns: repeat(var(--columns, 3), 1fr);
+        gap: q(16);
+        margin-bottom: q(32);
+
+        @media (max-width: q(1024)) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: q(768)) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // -- icon-block__card  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__card {
+        padding: q(24);
+        background: var(--ss-color-white);
+        border: #{q(1)} solid var(--ss-color-line);
+        transition: all var(--ss-duration-150) var(--ss-ease-out);
+
+        &:hover {
+            border-color: var(--ss-color-accent);
+            transform: translateY(q(-2));
+        }
+    }
+
+    // -- icon-block__icon  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__icon {
+        width: q(40);
+        height: q(40);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(9, 159, 128, 0.1);
+        color: var(--ss-color-accent);
+        margin-bottom: q(16);
+
+        svg {
+            width: q(20);
+            height: q(20);
+        }
+    }
+
+    // -- icon-block__card-title  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__card-title {
+        font-size: q(16);
+        font-weight: 600;
+        margin-bottom: q(8);
+        color: var(--ss-color-primary);
+    }
+
+    // -- icon-block__card-title-name  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__card-title-name {
+        display: block;
+        font-size: q(20);
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    // -- icon-block__card-title-meta  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__card-title-meta {
+        display: block;
+        margin-top: q(4);
+        font-size: q(14);
+        font-weight: 500;
+        color: var(--ss-color-gray-600);
+    }
+
+    // -- icon-block__card-description  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__card-description {
+        font-size: q(14);
+        color: var(--ss-color-gray-600);
+        line-height: 1.5;
+    }
+
+    // -- icon-block__card-bullets  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__card-bullets {
+        margin: q(12) 0 0;
+        padding: 0;
+        list-style: none;
+        font-size: q(14);
+        color: var(--ss-color-gray-600);
+        line-height: 1.5;
+
+        li {
+            position: relative;
+            padding-left: q(16);
+            margin-bottom: q(5.6);
+
+            &::before {
+                content: '›';
+                position: absolute;
+                left: 0;
+                top: 0;
+                color: var(--ss-color-accent);
+                font-weight: 700;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    // -- icon-block__cta  (from site-inthecity_ai/src/static/scss/blocks/_icon-block.scss) --
+    .ss-c-icon-block__cta {
+        display: flex;
+        justify-content: center;
+    }
+
+    // -- icon  (from site-mesmera_io/src/static/scss/app/_components.scss) --
+    .ss-c-icon {
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        &--sm { font-size: q(16); }
+        &--md { font-size: q(24); }
+        &--lg { font-size: q(32); }
+        &--xl { font-size: q(48); }
+    }
+}

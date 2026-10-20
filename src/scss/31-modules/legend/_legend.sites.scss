@@ -1,0 +1,54 @@
+////
+///
+/// Legend Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `legend` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 1 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Legend
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- legend-item  (from site-lovelacelabs_ai/src/static/scss/app/_timeline.scss) --
+    .ss-c-legend-item {
+        display: flex;
+        align-items: center;
+        gap: q(8);
+        font-size: q(12.8);
+        color: var(--ss-color-text-muted);
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--ss-color-text);
+        }
+
+        .ss-c-legend-dot {
+            width: q(10);
+            height: q(10);
+            border-radius: 50%;
+            background: var(--ss-color-border-strong);
+        }
+
+        // (stripped @each block)
+
+    }
+}

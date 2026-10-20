@@ -1,0 +1,796 @@
+////
+///
+/// Diagram Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 30 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Diagram
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- storyboard-section  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
+    .ss-c-storyboard-section {
+        padding: q(8) 0;
+    }
+
+    // -- storyboard  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
+    .ss-c-storyboard {
+        display: flex;
+        flex-wrap: wrap;
+        gap: q(6);
+        align-items: flex-start;
+        justify-content: center;
+
+        &--row {
+            flex-wrap: nowrap;
+            overflow: visible;
+            justify-content: center;
+            padding: q(4) q(2);
+
+            .ss-c-storyboard__panel {
+                flex: 0 0 auto;
+                max-width: q(240);
+            }
+
+            @media (max-width: q(900)) {
+                flex-wrap: wrap;
+
+                .ss-c-storyboard__connector {
+                    display: none;
+                }
+            }
+        }
+
+        &--grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(q(200), 1fr));
+            max-width: q(1000);
+            margin: 0 auto;
+
+            .ss-c-storyboard__connector {
+                display: none;
+            }
+        }
+
+        &--with-connectors {
+            gap: q(2);
+            align-items: flex-start;
+        }
+    }
+
+    // -- storyboard__panel  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
+    .ss-c-storyboard__panel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: q(240);
+    }
+
+    // -- storyboard__image-wrapper  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
+    .ss-c-storyboard__image-wrapper {
+        width: 100%;
+        max-width: q(200);
+        aspect-ratio: 1 / 1;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    // -- storyboard__image  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
+    .ss-c-storyboard__image {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        background: transparent;
+    }
+
+    // -- storyboard__content  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
+    .ss-c-storyboard__content {
+        margin-top: q(3);
+        display: flex;
+        flex-direction: column;
+        gap: q(1);
+        align-items: center;
+    }
+
+    // -- storyboard__title  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
+    .ss-c-storyboard__title {
+        margin: 0;
+        font-size: q(2);
+        line-height: 1.2;
+    }
+
+    // -- storyboard__description  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
+    .ss-c-storyboard__description {
+        margin: 0;
+        font-size: q(1.5);
+        line-height: 1.45;
+    }
+
+    // -- storyboard__link  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
+    .ss-c-storyboard__link {
+        margin-top: q(1);
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: q(1);
+
+        &:hover .ss-c-storyboard__link-arrow,
+        &:focus .ss-c-storyboard__link-arrow {
+            transform: translateX(q(3));
+        }
+    }
+
+    // -- storyboard__link-arrow  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
+    .ss-c-storyboard__link-arrow {
+        display: inline-block;
+        transition: transform 0.2s ease;
+    }
+
+    // -- storyboard__connector  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
+    .ss-c-storyboard__connector {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: currentColor;
+        flex: 0 0 auto;
+        align-self: center;
+        margin-top: q(10);
+
+        &--dotted_bar .ss-c-storyboard__bar {
+            width: q(2);
+            height: q(8);
+            background-image: linear-gradient(currentColor 50%, transparent 50%);
+            background-size: q(2) q(8);
+        }
+    }
+
+    // -- diagrams-grid  (from site-lovelacelabs_ai/src/static/scss/app/_diagrams.scss) --
+    .ss-c-diagrams-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(q(380), 1fr));
+        gap: q(32);
+        padding: q(32);
+        max-width: q(1600);
+        margin: 0 auto;
+
+        @media (max-width: q(480)) {
+            grid-template-columns: 1fr;
+            padding: q(16);
+        }
+    }
+
+    // -- diagram-card  (from site-lovelacelabs_ai/src/static/scss/app/_diagrams.scss) --
+    .ss-c-diagram-card {
+        background: #e8ecef;
+        border-radius: q(20);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow:
+            q(8) q(8) q(16) rgba(163, 177, 198, 0.5),
+            q(-8) q(-8) q(16) rgba(255, 255, 255, 0.8);
+
+        &:hover {
+            transform: translateY(q(-4));
+            box-shadow:
+                q(12) q(12) q(24) rgba(163, 177, 198, 0.5),
+                q(-12) q(-12) q(24) rgba(255, 255, 255, 0.8);
+
+            .ss-c-diagram-container {
+                svg {
+                    transform: scale(1.02);
+                }
+            }
+        }
+
+        &__info {
+            padding: q(24);
+            text-align: center;
+        }
+
+        &__category {
+            display: inline-block;
+            padding: q(4) q(12);
+            background: rgba(66, 153, 225, 0.15);
+            color: #3182ce;
+            border-radius: q(20);
+            font-size: q(11.2);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: q(12);
+        }
+
+        &__title {
+            font-family: 'TTInterphasesPro', sans-serif;
+            font-size: q(17.6);
+            font-weight: 600;
+            color: #2d3748;
+            margin: 0 0 q(8);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        &__description {
+            font-size: q(13.6);
+            color: #718096;
+            line-height: 1.5;
+            margin: 0;
+        }
+    }
+
+    // -- diagram-container  (from site-lovelacelabs_ai/src/static/scss/app/_diagrams.scss) --
+    .ss-c-diagram-container {
+        background: #f8fafc;
+        padding: q(16);
+        cursor: pointer;
+        position: relative;
+        min-height: q(200);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: q(1) solid rgba(0, 0, 0, 0.05);
+
+        &::after {
+            content: '🔍';
+            position: absolute;
+            top: q(12);
+            right: q(12);
+            font-size: q(16);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        &:hover::after {
+            opacity: 0.5;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            max-height: q(280);
+            transition: transform 0.3s ease;
+        }
+    }
+
+    // -- diagram-legend  (from site-lovelacelabs_ai/src/static/scss/app/_diagrams.scss) --
+    .ss-c-diagram-legend {
+        display: flex;
+        justify-content: center;
+        gap: q(32);
+        flex-wrap: wrap;
+        margin-top: q(24);
+
+        .ss-c-legend-item {
+            display: flex;
+            align-items: center;
+            gap: q(8);
+        }
+
+        .ss-c-legend-symbol {
+            width: q(24);
+            height: q(24);
+            border-radius: q(4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &--node {
+                background: #e2e8f0;
+                border: q(2) solid #4a5568;
+                border-radius: 50%;
+            }
+
+            &--connection {
+                background: transparent;
+                position: relative;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: q(2);
+                    background: #4a5568;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+
+            &--layer {
+                background: #90cdf4;
+                border: q(2) solid #4299e1;
+            }
+
+            &--input {
+                background: #c6f6d5;
+                border: q(2) solid #48bb78;
+                border-radius: 50%;
+            }
+        }
+
+        .ss-c-legend-label {
+            font-size: q(13.6);
+            color: #4a5568;
+        }
+    }
+
+    // -- diagram-modal  (from site-lovelacelabs_ai/src/static/scss/app/_diagrams.scss) --
+    .ss-c-diagram-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+
+        &--open {
+            opacity: 1;
+            visibility: visible;
+
+            .ss-c-diagram-modal__content {
+                transform: scale(1);
+            }
+        }
+
+        &__backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(q(4));
+        }
+
+        &__content {
+            position: relative;
+            background: #ffffff;
+            border-radius: q(20);
+            padding: q(32);
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: 0 q(25) q(50) rgba(0, 0, 0, 0.3);
+        }
+
+        &__close {
+            position: absolute;
+            top: q(16);
+            right: q(16);
+            width: q(40);
+            height: q(40);
+            border: none;
+            background: #e8ecef;
+            border-radius: 50%;
+            font-size: q(24);
+            color: #4a5568;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow:
+                q(3) q(3) q(6) rgba(163, 177, 198, 0.5),
+                q(-3) q(-3) q(6) rgba(255, 255, 255, 0.8);
+
+            &:hover {
+                background: #d8dce0;
+                transform: rotate(90deg);
+            }
+        }
+
+        &__diagram {
+            min-width: q(600);
+            min-height: q(400);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                width: 100%;
+                height: auto;
+                max-width: q(800);
+            }
+
+            @media (max-width: q(768)) {
+                min-width: q(280);
+                min-height: q(200);
+            }
+        }
+    }
+
+    // -- diagram-layer  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-diagram-layer {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: q(1) solid var(--ss-color-gray-200);
+
+        span {
+            position: absolute;
+            font-size: var(--ss-font-size-xs);
+            font-weight: var(--ss-font-weight-medium);
+            color: var(--ss-color-gray-500);
+            white-space: nowrap;
+        }
+
+        &-1 {
+            inset: 0;
+            border-color: unset;
+            span { top: -unset; }
+        }
+
+        &-2 {
+            inset: 15%;
+            span { right: -unset; }
+        }
+
+        &-3 {
+            inset: 30%;
+            border-color: unset;
+            span { bottom: -unset; }
+        }
+
+        &-4 {
+            inset: 45%;
+            span { left: -unset; }
+        }
+    }
+
+    // -- diagram-core  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-diagram-core {
+        position: absolute;
+        inset: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, unset, unset);
+        border-radius: 50%;
+        box-shadow: 0 0 q(60) unset;
+
+        span {
+            font-size: var(--ss-font-size-xs);
+            font-weight: var(--ss-font-weight-bold);
+            color: var(--ss-color-white);
+        }
+    }
+
+    // -- double_diamond-image  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-double_diamond-image {
+        width: 100%;
+        height: auto;
+    }
+
+    // -- double_diamond  (from site-starling_studio/src/static/scss/app/_double_diamond.scss) --
+    .ss-c-double_diamond {
+      &__container {
+        width: 100%;
+        height: 100%;
+        min-height: q(500);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: q(32);
+        background: linear-gradient(135deg, color-mix(in srgb, var(--ss-color-accent) 2%, transparent) 0%, color-mix(in srgb, var(--ss-color-accent) 2%, transparent) 100%);
+        border-radius: q(12);
+        margin: q(32) 0;
+      }
+
+      &__svg {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        filter: var(--diamond-shadow, drop-shadow(0 #{q(2)} #{q(8)} color-mix(in srgb, var(--ss-color-black) 8%, transparent)));
+      }
+
+      &__line {
+        stroke: var(--ss-color-accent);
+        stroke-width: 2;
+        stroke-dasharray: 5, 5;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+
+      &__vertical-line {
+        stroke: var(--ss-color-accent);
+        stroke-width: 1;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+      }
+
+      &__phase {
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &--active {
+          filter: var(--diamond-shadow-active, drop-shadow(0 #{q(10)} #{q(20)} color-mix(in srgb, var(--ss-color-black) 15%, transparent)));
+
+          .ss-c-double_diamond__shape {
+            filter: brightness(1.15);
+          }
+        }
+
+        &--dimmed {
+          opacity: 0.3;
+
+          .ss-c-double_diamond__shape {
+            filter: grayscale(80%) opacity(0.4);
+          }
+
+          .ss-c-double_diamond__label {
+            opacity: 0.3;
+          }
+        }
+      }
+
+      &__shape {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        fill: var(--diamond-fill, transparent);
+        stroke: var(--diamond-outline-color, var(--ss-color-accent));
+        stroke-width: var(--diamond-outline-width, #{q(3)});
+        filter: brightness(1);
+        cursor: pointer;
+
+        &:hover {
+          stroke-width: q(4);
+          filter: brightness(1.05) drop-shadow(0 q(4) q(12) rgba(37, 99, 235, 0.3));
+        }
+      }
+
+      &__interactive {
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          r: 75;
+          fill: color-mix(in srgb, var(--ss-color-black) 2%, transparent);
+        }
+      }
+
+      &__label {
+        font-size: q(18);
+        font-weight: 600;
+        fill: var(--ss-color-text-primary);
+        transition: all 0.3s ease;
+        letter-spacing: q(0.5);
+        pointer-events: none;
+
+        @media (max-width: q(768)) {
+          font-size: q(14);
+        }
+      }
+
+      &__tooltip {
+        position: fixed;
+        background: var(--ss-color-surface);
+        border-radius: q(8);
+        padding: q(16);
+        max-width: q(300);
+        box-shadow: 0 q(20) q(25) q(-5) rgba(0, 0, 0, 0.1), 0 q(10) q(10) q(-5) rgba(0, 0, 0, 0.04);
+        z-index: 1000;
+        pointer-events: none;
+        animation: tooltip-fade-in 0.2s ease-out;
+        border-left: q(4) solid;
+
+        @media (max-width: q(768)) {
+          max-width: q(250);
+          padding: q(12);
+          font-size: q(14);
+        }
+      }
+
+      &__tooltip-content {
+        display: flex;
+        flex-direction: column;
+        gap: q(12);
+      }
+
+      &__tooltip-title {
+        font-size: q(16);
+        font-weight: 700;
+        color: var(--ss-color-text-primary);
+        margin: 0;
+
+        @media (max-width: q(768)) {
+          font-size: q(14);
+        }
+      }
+
+      &__tooltip-description {
+        font-size: q(14);
+        color: var(--ss-color-text-secondary);
+        line-height: 1.5;
+        margin: 0;
+
+        @media (max-width: q(768)) {
+          font-size: q(12);
+        }
+      }
+
+      &__tooltip-steps {
+        font-size: q(13);
+        color: var(--ss-color-text-secondary);
+
+        @media (max-width: q(768)) {
+          font-size: q(11);
+        }
+
+        strong {
+          color: var(--ss-color-text-primary);
+          font-weight: 600;
+          display: block;
+          margin-bottom: q(6);
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+
+          li {
+            padding: q(4) 0;
+            padding-left: q(16);
+            position: relative;
+
+            &:before {
+              content: '→';
+              position: absolute;
+              left: 0;
+              color: var(--ss-color-muted);
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+
+    // -- double_diamond__container  (from site-starling_studio/src/static/scss/app/_studio.scss) --
+    .ss-c-double_diamond__container {
+        width: 100%;
+        max-width: q(900);
+        margin: q(32) auto;
+    }
+
+    // -- double_diamond__svg  (from site-starling_studio/src/static/scss/app/_studio.scss) --
+    .ss-c-double_diamond__svg {
+        width: 100%;
+        height: auto;
+    }
+
+    // -- double_diamond__line  (from site-starling_studio/src/static/scss/app/_studio.scss) --
+    .ss-c-double_diamond__line {
+        stroke: var(--ss-color-border, #e0e0e0);
+        stroke-width: 1;
+    }
+
+    // -- double_diamond__vertical-line  (from site-starling_studio/src/static/scss/app/_studio.scss) --
+    .ss-c-double_diamond__vertical-line {
+        stroke: var(--ss-color-border, #e0e0e0);
+        stroke-width: 1;
+        stroke-dasharray: 4 4;
+    }
+
+    // -- double_diamond__shape  (from site-starling_studio/src/static/scss/app/_studio.scss) --
+    .ss-c-double_diamond__shape {
+        fill: none;
+        stroke-width: 2;
+        opacity: 0.8;
+        transition: opacity 0.2s ease, fill 0.2s ease;
+
+        &--discover {
+            stroke: var(--phase-discover-color, #008fbf);
+        }
+
+        &--define {
+            stroke: var(--phase-define-color, #00a896);
+        }
+
+        &--develop {
+            stroke: var(--phase-develop-color, #f77f00);
+        }
+
+        &--deliver {
+            stroke: var(--phase-deliver-color, #d62828);
+        }
+    }
+
+    // -- double_diamond__phase  (from site-starling_studio/src/static/scss/app/_studio.scss) --
+    .ss-c-double_diamond__phase {
+        cursor: pointer;
+
+        &:hover .ss-c-double_diamond__shape {
+            opacity: 1;
+            fill: currentColor;
+            fill-opacity: 0.1;
+        }
+    }
+
+    // -- double_diamond__label  (from site-starling_studio/src/static/scss/app/_studio.scss) --
+    .ss-c-double_diamond__label {
+        font-family: var(--ss-font-family-base);
+        font-size: q(16);
+        font-weight: 600;
+        fill: var(--ss-color-text);
+    }
+
+    // -- double_diamond__interactive  (from site-starling_studio/src/static/scss/app/_studio.scss) --
+    .ss-c-double_diamond__interactive {
+        transition: r 0.2s ease, filter 0.2s ease;
+        cursor: pointer;
+
+        &:hover {
+            r: 10;
+            filter: drop-shadow(0 0 q(4) currentColor);
+        }
+    }
+
+    // -- double-diamond-phase  (from site-starling_studio/src/static/scss/app/_studio.scss) --
+    .ss-c-double-diamond-phase {
+        padding: q(16);
+
+        h4 {
+            font-size: q(16);
+            font-weight: 600;
+            margin-bottom: q(8);
+            color: var(--ss-color-text);
+        }
+
+        p {
+            font-size: q(14);
+            line-height: 1.5;
+            color: var(--ss-color-muted);
+            margin: 0;
+        }
+    }
+
+    // -- diagram  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-diagram {
+        display: flex;
+        justify-content: center;
+        padding: unset 0;
+
+        pre {
+            font-family: "SF Mono", "Fira Code", Menlo, Monaco, monospace;
+            font-size: q(14);
+            line-height: 1.5;
+            white-space: pre;
+            color: #525252;
+        }
+    }
+}

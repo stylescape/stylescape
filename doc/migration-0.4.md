@@ -135,7 +135,8 @@ of the VORM theme rollout. A 0.4 theme compiles against this tree and unit.gl
 ## Compat shims that changed meaning in 0.4
 
 The site shims (`_scapepress-parity.scss`, `_legacy-components-compat.scss`)
-now sit in `ss.compat`, below the modules. Where a shim used a module's class
+now sit in `ss.compat`, below the modules. (Since 0.6.0 the scapepress classes
+are module partials, `31-modules/*/_*.sites.scss`, in `ss.components`.) Where a shim used a module's class
 name it was scoped to its site or dropped:
 
 | Class | Now |

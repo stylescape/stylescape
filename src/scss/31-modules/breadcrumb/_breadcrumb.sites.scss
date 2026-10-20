@@ -1,0 +1,120 @@
+////
+///
+/// Breadcrumb Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `breadcrumb` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 2 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Breadcrumb
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- breadcrumbs  (from site-scape_ventures/src/staticfiles/scss/components/_breadcrumbs.scss) --
+    .ss-c-breadcrumbs {
+        padding: var(--ss-spacing-4) 0;
+        margin-bottom: var(--ss-spacing-4);
+
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--ss-spacing-2);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+        }
+
+        &__link {
+            color: var(--ss-color-gray-500);
+            text-decoration: none;
+            font-size: var(--ss-font-size-sm);
+            transition: color 0.2s ease;
+
+            &:hover,
+            &:focus {
+                color: var(--ss-color-primary);
+            }
+        }
+
+        &__current {
+            color: var(--ss-color-primary);
+            font-size: var(--ss-font-size-sm);
+            font-weight: var(--ss-font-weight-medium);
+        }
+
+        &__separator {
+            display: flex;
+            align-items: center;
+            color: var(--ss-color-gray-300);
+
+            svg {
+                width: q(14);
+                height: q(14);
+            }
+        }
+    }
+
+    // -- breadcrumb  (from site-phytosync_com/src/static/scss/index.scss) --
+    // Scoped under .ss-c-phytosync: its li::after "/" doubled the breadcrumb
+    // module's own separator.
+    .ss-c-phytosync .ss-c-breadcrumb {
+
+        ol {
+            display: flex;
+            align-items: center;
+            gap: unset;
+            font-size: var(--ss-font-size-sm);
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: unset;
+            color: var(--ss-color-gray-500);
+
+            &::after {
+                content: '/';
+                color: var(--ss-color-gray-300);
+            }
+
+            &:last-child::after {
+                display: none;
+            }
+
+            &[aria-current="page"] {
+                color: var(--ss-color-gray-700);
+            }
+        }
+
+        a {
+            color: var(--ss-color-gray-500);
+
+            &:hover {
+                color: unset;
+            }
+        }
+    }
+}

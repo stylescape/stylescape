@@ -1,0 +1,138 @@
+////
+///
+/// Gallery Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `gallery` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 12 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Gallery
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- gallery  (from site-inthecity_ai/src/static/scss/blocks/_gallery.scss) --
+
+    // -- gallery__eyebrow  (from site-inthecity_ai/src/static/scss/blocks/_gallery.scss) --
+    .ss-c-gallery__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25em;
+        font-family: unset;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-accent);
+        font-size: q(12);
+        margin-bottom: q(8);
+    }
+
+    // -- gallery__eyebrow-dot  (from site-inthecity_ai/src/static/scss/blocks/_gallery.scss) --
+    .ss-c-gallery__eyebrow-dot {
+        width: 0.5em;
+        height: 0.5em;
+        background: var(--ss-color-accent);
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    // -- gallery__title  (from site-inthecity_ai/src/static/scss/blocks/_gallery.scss) --
+    .ss-c-gallery__title {
+        margin-bottom: 0.5em;
+    }
+
+    // -- gallery__subtitle  (from site-inthecity_ai/src/static/scss/blocks/_gallery.scss) --
+    .ss-c-gallery__subtitle {
+        color: var(--ss-color-gray-600);
+        max-width: 50ch;
+        margin-bottom: q(32);
+    }
+
+    // -- gallery__grid  (from site-inthecity_ai/src/static/scss/blocks/_gallery.scss) --
+    .ss-c-gallery__grid {
+        display: grid;
+        grid-template-columns: repeat(var(--columns, 3), 1fr);
+        gap: q(16);
+
+        @media (max-width: q(1024)) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: q(600)) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // -- gallery__item  (from site-inthecity_ai/src/static/scss/blocks/_gallery.scss) --
+    .ss-c-gallery__item {
+        margin: 0;
+        overflow: hidden;
+        background: var(--ss-color-gray-100);
+        border: #{q(1)} solid var(--ss-color-line);
+    }
+
+    // -- gallery__image  (from site-inthecity_ai/src/static/scss/blocks/_gallery.scss) --
+    .ss-c-gallery__image {
+        transition: transform var(--ss-duration-200) var(--ss-ease-out);
+
+        .ss-c-gallery__item:hover & {
+            transform: scale(1.03);
+        }
+    }
+
+    // -- gallery__caption  (from site-inthecity_ai/src/static/scss/blocks/_gallery.scss) --
+    .ss-c-gallery__caption {
+        padding: q(8) q(12);
+        font-size: q(12);
+        color: var(--ss-color-gray-600);
+        background: var(--ss-color-white);
+    }
+
+    // -- visuals-grid  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
+    .ss-c-visuals-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(280), 1fr));
+        gap: q(10);
+        padding: q(10);
+    }
+
+    // -- masonry  (from site-matter_tech/src/static/scss/layout/_grid.scss) --
+    .ss-c-masonry {
+        display: grid;
+        gap: unset;
+
+        // (stripped @include block)
+
+
+        // (stripped @include block)
+
+    }
+
+    // -- masonry__item--large  (from site-matter_tech/src/static/scss/layout/_grid.scss) --
+    .ss-c-masonry__item--large {
+        // (stripped @include block)
+
+
+        // (stripped @include block)
+
+
+        // (stripped @include block)
+
+    }
+}

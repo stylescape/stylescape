@@ -1,0 +1,215 @@
+////
+///
+/// Search Bar Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `search-bar` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 16 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.SearchBar
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- search-trigger  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-trigger {
+        width: q(40);
+        height: q(40);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: q(9999);
+        color: var(--ss-color-gray-600);
+        transition: all var(--ss-duration-150) ease;
+
+        svg {
+            width: q(20);
+            height: q(20);
+        }
+
+        &:hover {
+            background: var(--ss-color-gray-100);
+            color: var(--ss-color-gray-900);
+        }
+    }
+
+    // -- search-form  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-form {
+        display: flex;
+        gap: unset;
+    }
+
+    // -- search-input  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-input {
+        flex: 1;
+        padding: unset unset;
+        font-size: var(--ss-font-size-sm);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+        transition: border-color var(--ss-duration-150) ease;
+
+        &:focus {
+            outline: none;
+            border-color: unset;
+        }
+    }
+
+    // -- search-submit  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-submit {
+        padding: unset unset;
+        background: unset;
+        color: var(--ss-color-white);
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+        transition: background var(--ss-duration-150) ease;
+
+        svg {
+            width: q(18);
+            height: q(18);
+        }
+
+        &:hover {
+            background: unset;
+        }
+    }
+
+    // -- search-btn  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-btn {
+        padding: unset unset;
+        background: unset;
+        color: var(--ss-color-white);
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+
+        svg {
+            width: q(18);
+            height: q(18);
+        }
+
+        &:hover {
+            background: unset;
+        }
+    }
+
+    // -- search-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-section {
+        padding: unset 0;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- search-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+    }
+
+    // -- search-header  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-header {
+        text-align: center;
+        margin-bottom: unset;
+    }
+
+    // -- search-title  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-title {
+        font-size: var(--ss-font-size-4xl);
+        margin-bottom: unset;
+    }
+
+    // -- search-subtitle  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-subtitle {
+        font-size: var(--ss-font-size-lg);
+        color: var(--ss-color-gray-600);
+    }
+
+    // -- search-form-main  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-form-main {
+        background: var(--ss-color-white);
+        padding: unset;
+        border-radius: 0;
+        box-shadow: var(--ss-shadow-lg);
+    }
+
+    // -- search-input-wrapper  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: unset;
+        margin-bottom: unset;
+
+        .ss-c-search-icon {
+            width: q(24);
+            height: q(24);
+            color: var(--ss-color-gray-300);
+            flex-shrink: 0;
+        }
+    }
+
+    // -- search-input-main  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-input-main {
+        flex: 1;
+        padding: unset 0;
+        font-size: var(--ss-font-size-lg);
+        border: none;
+        border-bottom: q(2) solid var(--ss-color-gray-200);
+        background: transparent;
+        transition: border-color var(--ss-duration-150) ease;
+
+        &:focus {
+            outline: none;
+            border-color: unset;
+        }
+    }
+
+    // -- search-filters  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-filters {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: unset;
+    }
+
+    // -- search-filter-option  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-filter-option {
+        display: flex;
+        align-items: center;
+        gap: unset;
+        cursor: pointer;
+
+        input {
+            accent-color: unset;
+        }
+
+        span {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-700);
+        }
+    }
+
+    // -- search-tips  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-search-tips {
+        margin-top: unset;
+        padding: unset;
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+    }
+}

@@ -1,0 +1,303 @@
+////
+///
+/// Neumorphism Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 23 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Neumorphism
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- neu-btn  (from site-lovelacelabs_ai/src/static/scss/app/_cursor.scss) --
+    .ss-c-neu-btn {
+        &[data-cursor="pointer"] {
+            // Cursor will automatically apply pointer state
+        }
+    }
+
+    // -- neu-navbar  (from site-lovelacelabs_ai/src/static/scss/app/_navbar.scss) --
+    .ss-c-neu-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+
+        height: unset;
+        background: transparent;
+
+        // Subtle bottom border for definition
+        border-bottom: q(1) solid rgba(163, 177, 198, 0.2);
+
+        transition: all 0.3s ease;
+    }
+
+    // -- neu-container  (from site-lovelacelabs_ai/src/static/scss/app/_neu.scss) --
+    .ss-c-neu-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
+        background: #e0e0e0;
+        border-radius: q(24);
+        overflow: hidden;
+
+        // Neumorphic container style
+        box-shadow:
+            q(8) q(8) q(16) rgba(0,0,0,0.15),
+            q(-8) q(-8) q(16) rgba(255,255,255,0.7),
+            inset q(2) q(2) q(4) rgba(255,255,255,0.7),
+            inset q(-2) q(-2) q(4) rgba(163, 177, 198, 0.3);
+
+        transition: all 0.3s ease;
+
+        &:hover {
+            box-shadow:
+                q(12) q(12) q(24) rgba(0,0,0,0.15),
+                q(-12) q(-12) q(24) rgba(255,255,255,0.7);
+            transform: translateY(q(-2));
+
+            .ss-c-visual {
+                --visual-speed: 0.5;
+            }
+        }
+
+        &--wide {
+            aspect-ratio: 2 / 1;
+        }
+
+        &--tall {
+            aspect-ratio: 1 / 2;
+        }
+    }
+
+    // -- neu-card  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-card {
+        background: unset;
+        border-radius: unset;
+        padding: q(10);
+        // (stripped @include)
+        transition: all 0.3s ease;
+
+        &:hover {
+        // (stripped @include)
+        }
+
+        &--sm {
+            border-radius: unset;
+            padding: q(05);
+        // (stripped @include)
+        }
+
+        &--lg {
+            border-radius: unset;
+            padding: q(20);
+        // (stripped @include)
+        }
+
+        &--pressed {
+        // (stripped @include)
+        }
+    }
+
+    // -- neu-input  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-input {
+        background: unset;
+        border: none;
+        border-radius: unset;
+        padding: q(05) q(10);
+        // (stripped @include)
+        transition: all 0.2s ease;
+        outline: none;
+
+        &:focus {
+        // (stripped @include)
+        }
+
+        &--sm {
+            border-radius: unset;
+            padding: q(02) q(05);
+        }
+
+        &--lg {
+            border-radius: unset;
+            padding: q(10) q(20);
+        }
+    }
+
+    // -- neu-section  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-section {
+        background: unset;
+        border-radius: unset;
+        padding: q(20);
+        margin-bottom: q(10);
+        // (stripped @include)
+    }
+
+    // -- neu-inset  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-inset {
+        background: unset;
+        border-radius: unset;
+        padding: q(10);
+        // (stripped @include)
+    }
+
+    // -- neu-avatar  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-avatar {
+        background: unset;
+        border-radius: unset;
+        // (stripped @include)
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &--sm {
+            width: q(40);
+            height: q(40);
+        }
+
+        &--md {
+            width: q(64);
+            height: q(64);
+        }
+
+        &--lg {
+            width: q(96);
+            height: q(96);
+        }
+    }
+
+    // -- neu-progress  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-progress {
+        background: unset;
+        border-radius: unset;
+        height: q(8);
+        // (stripped @include)
+        overflow: hidden;
+
+        &__bar {
+            background: linear-gradient(145deg, unset, unset);
+            height: 100%;
+            border-radius: unset;
+        // (stripped @include)
+            transition: width 0.3s ease;
+        }
+    }
+
+    // -- neu-toggle  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-toggle {
+        position: relative;
+        width: q(56);
+        height: q(28);
+        background: unset;
+        border-radius: unset;
+        cursor: pointer;
+        // (stripped @include)
+        transition: all 0.3s ease;
+
+        &__knob {
+            position: absolute;
+            top: q(4);
+            left: q(4);
+            width: q(20);
+            height: q(20);
+            background: unset;
+            border-radius: unset;
+        // (stripped @include)
+            transition: all 0.3s ease;
+        }
+
+        &--active {
+            .ss-c-neu-toggle__knob {
+                left: q(32);
+            }
+        }
+    }
+
+    // -- neu-shadow  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-shadow {
+        // (stripped @include)
+    }
+
+    // -- neu-shadow-sm  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-shadow-sm {
+        // (stripped @include)
+    }
+
+    // -- neu-shadow-lg  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-shadow-lg {
+        // (stripped @include)
+    }
+
+    // -- neu-shadow-xl  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-shadow-xl {
+        // (stripped @include)
+    }
+
+    // -- neu-shadow-inset  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-shadow-inset {
+        // (stripped @include)
+    }
+
+    // -- neu-shadow-inset-sm  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-shadow-inset-sm {
+        // (stripped @include)
+    }
+
+    // -- neu-shadow-inset-lg  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-shadow-inset-lg {
+        // (stripped @include)
+    }
+
+    // -- neu-radius  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-radius {
+        border-radius: unset;
+    }
+
+    // -- neu-radius-sm  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-radius-sm {
+        border-radius: unset;
+    }
+
+    // -- neu-radius-lg  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-radius-lg {
+        border-radius: unset;
+    }
+
+    // -- neu-radius-xl  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-radius-xl {
+        border-radius: unset;
+    }
+
+    // -- neu-radius-round  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-radius-round {
+        border-radius: unset;
+    }
+
+    // -- neu-bg  (from site-lovelacelabs_ai/src/static/scss/app/_neumorphism.scss) --
+    .ss-c-neu-bg {
+        background: unset;
+    }
+}

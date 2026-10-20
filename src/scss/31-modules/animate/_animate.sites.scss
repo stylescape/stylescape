@@ -1,0 +1,442 @@
+////
+///
+/// Animate Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 45 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Animate
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints";
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- img-reveal  (from site-scape_agency/src/static/scss/sections/_image_reveal.scss) --
+    .ss-c-img-reveal {
+        @media (prefers-reduced-motion: reduce) {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        opacity: 0;
+        transform: translateY(q(16)) scale(1.02);
+        will-change: transform, opacity;
+
+        transition:
+            opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+            transform 1.1s cubic-bezier(0.22, 0.61, 0.36, 1);
+
+        &.is-revealed {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    // -- custom-cursor  (from site-scape_agency/src/static/scss/theme/_cursor.scss) --
+    .ss-c-custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: q(12);
+        height: q(12);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+
+        background: white;
+        mix-blend-mode: difference;
+
+        transform: translate(-50%, -50%);
+        transition:
+            width 0.2s ease,
+            height 0.2s ease,
+            border 0.2s ease,
+            background 0.2s ease;
+    }
+
+    // -- animate-on-scroll  (from site-blockfoundation_io/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-on-scroll {
+        opacity: 0;
+
+        &.is-visible {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    }
+
+    // -- animate-fade-in  (from site-blockfoundation_io/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-fade-in {
+        opacity: 0;
+
+        &.is-visible {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    }
+
+    // -- animate-slide-left  (from site-blockfoundation_io/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-slide-left {
+        opacity: 0;
+
+        &.is-visible {
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+    }
+
+    // -- animate-slide-right  (from site-blockfoundation_io/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-slide-right {
+        opacity: 0;
+
+        &.is-visible {
+            animation: slideInRight 0.6s ease-out forwards;
+        }
+    }
+
+    // -- stagger-children  (from site-blockfoundation_io/src/static/scss/utilities/_animations.scss) --
+    .ss-c-stagger-children {
+        > *:nth-child(1) { animation-delay: 0s; }
+        > *:nth-child(2) { animation-delay: 0.1s; }
+        > *:nth-child(3) { animation-delay: 0.2s; }
+        > *:nth-child(4) { animation-delay: 0.3s; }
+        > *:nth-child(5) { animation-delay: 0.4s; }
+        > *:nth-child(6) { animation-delay: 0.5s; }
+    }
+
+    // -- hover-lift  (from site-blockfoundation_io/src/static/scss/utilities/_animations.scss) --
+    .ss-c-hover-lift {
+        transition: transform var(--ss-duration-200) ease;
+
+        &:hover {
+            transform: translateY(q(-4));
+        }
+    }
+
+    // -- hover-scale  (from site-blockfoundation_io/src/static/scss/utilities/_animations.scss) --
+    .ss-c-hover-scale {
+        transition: transform var(--ss-duration-200) ease;
+
+        &:hover {
+            transform: scale(1.02);
+        }
+    }
+
+    // -- hover-glow  (from site-blockfoundation_io/src/static/scss/utilities/_animations.scss) --
+    .ss-c-hover-glow {
+        transition: box-shadow var(--ss-duration-200) ease;
+
+        &:hover {
+            box-shadow: 0 0 q(20) color-mix(in srgb, var(--ss-color-white) 10%, transparent);
+        }
+    }
+
+    // -- animate-fade-in-up  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-fade-in-up {
+      // (stripped @include block)
+
+    }
+
+    // -- animate-fade-in-down  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-fade-in-down {
+      // (stripped @include block)
+
+    }
+
+    // -- animate-fade-in-left  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-fade-in-left {
+      // (stripped @include block)
+
+    }
+
+    // -- animate-fade-in-right  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-fade-in-right {
+      // (stripped @include block)
+
+    }
+
+    // -- animate-scale-in  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-scale-in {
+      // (stripped @include block)
+
+    }
+
+    // -- animate-slide-in  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-slide-in {
+      // (stripped @include block)
+
+    }
+
+    // -- animate-pulse  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-pulse {
+      // (stripped @include block)
+
+    }
+
+    // -- animate-bounce  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-bounce {
+      // (stripped @include block)
+
+    }
+
+    // -- animate-spin  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-spin {
+      // (stripped @include block)
+
+    }
+
+    // -- transition-fast  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-transition-fast {
+        // (stripped @include)
+    }
+
+    // -- transition-base  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-transition-base {
+        // (stripped @include)
+    }
+
+    // -- transition-slow  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-transition-slow {
+        // (stripped @include)
+    }
+
+    // -- hover-grow  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-hover-grow {
+      // (stripped @include block)
+
+    }
+
+    // -- hover-accent  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-hover-accent {
+      // (stripped @include block)
+
+    }
+
+    // -- group-animate  (from site-geoid_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-group-animate {
+      [data-animate] {
+        // (stripped @include block)
+
+      }
+
+      // (stripped @for block)
+
+    }
+
+    // -- cursor-pointer  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-cursor-pointer {
+      cursor: pointer;
+    }
+
+    // -- cursor-default  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-cursor-default {
+      cursor: default;
+    }
+
+    // -- cursor-not-allowed  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-cursor-not-allowed {
+      cursor: not-allowed;
+    }
+
+    // -- transition-none  (from site-kockums_foundation/src/static/scss/utilities/_animations.scss) --
+    .ss-c-transition-none {
+      transition: none;
+    }
+
+    // -- cursor-hide  (from site-lovelacelabs_ai/src/static/scss/app/_cursor.scss) --
+    .ss-c-cursor-hide {
+        .ss-c-cursor-container {
+            display: none !important;
+        }
+    }
+
+    // -- cursor-magnetic-strong  (from site-lovelacelabs_ai/src/static/scss/app/_cursor.scss) --
+    .ss-c-cursor-magnetic-strong {
+        // Use as: data-magnetic-force="0.5" on element
+    }
+
+    // -- cursor-blend-normal  (from site-lovelacelabs_ai/src/static/scss/app/_cursor.scss) --
+    .ss-c-cursor-blend-normal {
+        .ss-c-cursor-container {
+            mix-blend-mode: normal !important;
+        }
+    }
+
+    // -- cursor-blend-exclusion  (from site-lovelacelabs_ai/src/static/scss/app/_cursor.scss) --
+    .ss-c-cursor-blend-exclusion {
+        .ss-c-cursor-container {
+            mix-blend-mode: exclusion !important;
+        }
+    }
+
+    // -- cursor-blend-multiply  (from site-lovelacelabs_ai/src/static/scss/app/_cursor.scss) --
+    .ss-c-cursor-blend-multiply {
+        .ss-c-cursor-container {
+            mix-blend-mode: multiply !important;
+        }
+    }
+
+    // -- reveal  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-reveal {
+        opacity: 0;
+        transform: translateY(q(60));
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+        &.ss-c-revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        &-delay-1 { transition-delay: 0.1s; }
+        &-delay-2 { transition-delay: 0.2s; }
+        &-delay-3 { transition-delay: 0.3s; }
+        &-delay-4 { transition-delay: 0.4s; }
+    }
+
+    // -- reveal-scale  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-reveal-scale {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+
+        &.ss-c-revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    // -- reveal-left  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-reveal-left {
+        opacity: 0;
+        transform: translateX(q(-60));
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+        &.ss-c-revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    // -- reveal-right  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-reveal-right {
+        opacity: 0;
+        transform: translateX(q(60));
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+        &.ss-c-revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    // -- custom-grid  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-custom-grid {
+        display: grid;
+        gap: unset;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    // -- custom-item  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-custom-item {
+        padding: unset;
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: var(--ss-radius-none);
+        transition: all var(--ss-duration-200) ease;
+
+        &:hover {
+            border-color: var(--ss-color-gray-200);
+            box-shadow: var(--ss-shadow-md);
+        }
+
+        h4 {
+            font-size: var(--ss-font-size-lg);
+            color: var(--ss-color-gray-900);
+            margin-bottom: unset;
+        }
+
+        p {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-600);
+        }
+    }
+
+    // -- animate-loading  (from site-speckle_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-animate-loading {
+      position: relative;
+      overflow: hidden;
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        animation: loading 1.5s infinite;
+      }
+    }
+
+    // -- fade-in  (from site-suell_org/src/static/scss/utilities/_animations.scss) --
+    .ss-c-fade-in {
+        opacity: 0;
+        transform: translateY(q(30));
+        transition: opacity 0.8s ease, transform 0.8s ease;
+
+        &.ss-c-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    // -- module  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-module {
+        background: #ffffff;
+        border: q(1) solid var(--ss-color-border, #e5e5e5);
+        padding: unset;
+        border-radius: var(--ss-radius-none);
+    }
+
+    // -- module__label  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-module__label {
+        font-family: "SF Mono", "Fira Code", Menlo, Monaco, monospace;
+        font-size: q(12);
+        color: var(--ss-color-primary);
+        margin-bottom: unset;
+    }
+
+    // -- module__text  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-module__text {
+        font-size: q(15);
+        color: #525252;
+        line-height: 1.6;
+    }
+}

@@ -1,0 +1,1250 @@
+////
+///
+/// Taxonomy Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 99 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Taxonomy
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- download-section  (from site-scape_foundation/src/static/scss/sections/_download_section.scss) --
+    .ss-c-download-section {
+        margin-top: q(80);
+        padding-top: q(40);
+
+        h3 {
+            font-family: var(--ss-font-family-display);
+            font-weight: 700;
+            text-transform: uppercase;
+            word-spacing: 100vw;
+            margin-bottom: q(16);
+        }
+
+        &__intro {
+            font-family: var(--ss-font-family-display);
+            font-style: italic;
+            margin-bottom: q(40);
+            max-width: 60ch;
+        }
+    }
+
+    // -- download-grid  (from site-scape_foundation/src/static/scss/sections/_download_section.scss) --
+    .ss-c-download-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, q(280)), 1fr));
+        gap: q(32);
+        margin-bottom: q(40);
+    }
+
+    // -- download-card  (from site-scape_foundation/src/static/scss/sections/_download_section.scss) --
+    .ss-c-download-card {
+        display: flex;
+        gap: q(24);
+        padding: q(24);
+        background: var(--ss-color-surface-alt, #f8f8f8);
+        border: q(1) solid var(--ss-color-border-subtle, #e8e8e8);
+        border-radius: q(4);
+        transition: border-color 0.2s ease;
+
+        &:hover {
+            border-color: var(--ss-color-border-strong, #ccc);
+        }
+
+        &__icon {
+            flex-shrink: 0;
+            width: q(40);
+            height: q(40);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ss-color-text-muted, #666);
+
+            svg {
+                width: q(32);
+                height: q(32);
+            }
+        }
+
+        &__content {
+            flex: 1;
+        }
+
+        &__title {
+            font-family: var(--ss-font-family-display);
+            font-size: var(--ss-font-size-sm);
+            font-weight: 700;
+            text-transform: uppercase;
+            word-spacing: 100vw;
+            margin: 0 0 q(8);
+        }
+
+        &__description {
+            font-size: var(--ss-font-size-xs);
+            color: var(--ss-color-text-muted, #666);
+            margin: 0 0 q(16);
+            line-height: 1.4;
+        }
+
+        &__button {
+            display: inline-flex;
+            align-items: center;
+            gap: q(8);
+            font-size: var(--ss-font-size-xs);
+
+            svg {
+                width: q(14);
+                height: q(14);
+            }
+        }
+    }
+
+    // -- research-grid  (from site-scape_foundation/src/static/scss/sections/_home.scss) --
+    .ss-c-research-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(240), 1fr));
+        gap: q(24);
+        margin: 0;
+
+        &__item {
+            display: flex;
+            flex-direction: column;
+            gap: q(12);
+            padding: q(32) q(24);
+            background: var(--ss-color-surface-alt, #f8f8f8);
+            border: q(1) solid var(--ss-color-border-subtle, #e8e8e8);
+            border-radius: q(4);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+
+            &:hover {
+                transform: translateY(q(-2));
+                border-color: #000;
+                background: var(--ss-color-background, #fff);
+
+                .ss-c-research-grid__cta {
+                    transform: translateX(q(4));
+                }
+            }
+        }
+
+        &__icon {
+            font-family: var(--ss-font-family-display);
+            font-size: q(40);
+            line-height: 1;
+            color: #000;
+            margin-bottom: q(8);
+        }
+
+        &__title {
+            font-family: var(--ss-font-family-display);
+            font-size: var(--ss-font-size-lg);
+            font-weight: 700;
+            text-transform: uppercase;
+            word-spacing: 100vw;
+            margin: 0;
+            color: #000;
+        }
+
+        &__tagline {
+            font-family: var(--ss-font-family-display);
+            font-style: italic;
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-text-muted, #666);
+            margin: 0;
+            flex: 1;
+        }
+
+        &__cta {
+            font-family: var(--ss-font-family-base);
+            font-size: var(--ss-font-size-sm);
+            font-weight: 500;
+            margin-top: auto;
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+    }
+
+    // -- research-visual  (from site-geoid_org/src/static/scss/components/_globe.scss) --
+    .ss-c-research-visual {
+      width: 100%;
+      height: q(300);
+      background: var(--ss-color-surface-alt);
+      border: q(1) solid var(--ss-color-border);
+      border-radius: var(--ss-radius-lg);
+      padding: var(--ss-spacing-6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      canvas {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+    // -- research-list  (from site-geoid_org/src/static/scss/components/_tables.scss) --
+    .ss-c-research-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ss-spacing-12);
+    }
+
+    // -- research-item  (from site-geoid_org/src/static/scss/components/_tables.scss) --
+    .ss-c-research-item {
+      padding-bottom: var(--ss-spacing-12);
+      border-bottom: q(1) solid var(--ss-color-border);
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      &__title {
+        font-size: q(18);
+        margin-bottom: var(--ss-spacing-4);
+        color: var(--ss-color-text);
+        font-weight: 600;
+      }
+
+      &__authors {
+        font-size: q(14);
+        color: var(--ss-color-text-secondary);
+        margin-bottom: var(--ss-spacing-4);
+        font-style: italic;
+      }
+
+      &__abstract {
+        font-size: q(15);
+        margin-bottom: var(--ss-spacing-4);
+        line-height: 1.7;
+      }
+
+      &__meta {
+        font-size: q(13);
+        color: var(--ss-color-text-muted);
+        margin-bottom: var(--ss-spacing-4);
+      }
+
+      &__link {
+        font-size: q(14);
+        font-weight: 500;
+        // (stripped @include)
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    // -- research-stats  (from site-lovelacelabs_ai/src/static/scss/app/_research.scss) --
+    .ss-c-research-stats {
+        padding: q(32) 0;
+
+        &__container {
+            display: flex;
+            justify-content: center;
+            gap: q(32);
+            flex-wrap: wrap;
+            max-width: q(800);
+            margin: 0 auto;
+        }
+    }
+
+    // -- research-stat  (from site-lovelacelabs_ai/src/static/scss/app/_research.scss) --
+    .ss-c-research-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: q(24) q(32);
+        min-width: q(150);
+
+        &__value {
+            font-size: q(40);
+            font-weight: 700;
+            color: unset;
+            font-family: 'TTInterphasesPro', sans-serif;
+        }
+
+        &__label {
+            font-size: q(12);
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: q(8);
+        }
+    }
+
+    // -- research-areas  (from site-lovelacelabs_ai/src/static/scss/app/_research.scss) --
+    .ss-c-research-areas {
+        padding: q(32);
+
+        &__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(q(200), 1fr));
+            gap: q(24);
+            max-width: q(1200);
+            margin: 0 auto;
+        }
+    }
+
+    // -- research-area  (from site-lovelacelabs_ai/src/static/scss/app/_research.scss) --
+    .ss-c-research-area {
+        padding: q(24);
+        text-align: center;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(q(-4));
+        }
+
+        &__icon {
+            font-size: q(40);
+            display: block;
+            margin-bottom: q(16);
+        }
+
+        &__title {
+            font-size: q(14.4);
+            font-weight: 600;
+            color: unset;
+            margin-bottom: q(8);
+        }
+
+        &__description {
+            font-size: q(12.8);
+            color: #71717a;
+            line-height: 1.5;
+        }
+    }
+
+    // -- research-papers  (from site-lovelacelabs_ai/src/static/scss/app/_research.scss) --
+    .ss-c-research-papers {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(350), 1fr));
+        gap: q(24);
+        padding: q(32);
+        max-width: q(1200);
+        margin: 0 auto;
+    }
+
+    // -- research-paper  (from site-lovelacelabs_ai/src/static/scss/app/_research.scss) --
+    .ss-c-research-paper {
+        padding: q(24);
+        transition: all 0.3s ease;
+
+        &--hover {
+            transform: translateY(q(-4));
+            box-shadow: 0 q(10) q(40) unset;
+        }
+
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: q(16);
+        }
+
+        &__status {
+            font-size: q(10.4);
+            padding: q(4) q(12);
+            border-radius: q(100);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+
+            &--published {
+                background: rgba(34, 197, 94, 0.2);
+                color: #22c55e;
+            }
+
+            &--preprint {
+                background: rgba(234, 179, 8, 0.2);
+                color: #eab308;
+            }
+
+            &--in-progress {
+                background: rgba(139, 92, 246, 0.2);
+                color: unset;
+            }
+        }
+
+        &__year {
+            font-size: q(12.8);
+            color: #52525b;
+            font-family: 'TTInterphasesPro', sans-serif;
+        }
+
+        &__title {
+            font-size: q(17.6);
+            font-weight: 600;
+            color: #e5e5e5;
+            margin-bottom: q(8);
+            line-height: 1.4;
+        }
+
+        &__authors {
+            font-size: q(12.8);
+            color: unset;
+            margin-bottom: q(16);
+        }
+
+        &__abstract {
+            font-size: q(13.6);
+            color: #a1a1aa;
+            line-height: 1.6;
+            margin-bottom: q(16);
+        }
+
+        &__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: q(8);
+            margin-bottom: q(16);
+        }
+
+        &__tag {
+            font-size: q(11.2);
+            padding: q(4) q(8);
+            background: unset;
+            color: unset;
+            border-radius: q(4);
+            cursor: pointer;
+            transition: background 0.2s;
+
+            &:hover {
+                background: unset;
+            }
+        }
+
+        &__actions {
+            display: flex;
+            gap: q(12);
+        }
+    }
+
+    // -- research-network  (from site-lovelacelabs_ai/src/static/scss/app/_research.scss) --
+    .ss-c-research-network {
+        width: 100%;
+        max-width: q(800);
+        margin: 0 auto;
+        aspect-ratio: 2 / 1;
+
+        svg {
+            width: 100%;
+            height: 100%;
+            border-radius: q(8);
+        }
+    }
+
+    // -- research-card  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-research-card {
+        padding: unset;
+        background-color: #f2f2f2;
+        border-left: q(2) solid var(--ss-color-black);
+    }
+
+    // -- research-card__number  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-research-card__number {
+        // (stripped @include)
+        margin-bottom: unset;
+    }
+
+    // -- research-card__title  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-research-card__title {
+        font-family: Georgia, serif;
+        font-size: var(--ss-font-size-xl);
+        font-weight: var(--ss-font-weight-light);
+        margin-bottom: unset;
+
+        // (stripped @include block)
+
+    }
+
+    // -- research-card__description  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-research-card__description {
+        font-size: var(--ss-font-size-sm);
+        color: #525252;
+        line-height: var(--ss-leading-relaxed);
+        margin-bottom: unset;
+    }
+
+    // -- research-card__focus  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-research-card__focus {
+        padding-left: unset;
+
+        li {
+            font-size: var(--ss-font-size-sm);
+            color: #737373;
+            margin-bottom: unset;
+
+            &::marker {
+                color: var(--ss-color-gray-300);
+            }
+        }
+    }
+
+    // -- taxonomy-tree  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-taxonomy-tree {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: unset;
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+        box-shadow: var(--ss-shadow-lg);
+    }
+
+    // -- node-label  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-node-label {
+        font-size: var(--ss-font-size-sm);
+        font-weight: 500;
+        color: var(--ss-color-gray-800);
+        font-style: italic;
+    }
+
+    // -- node-type  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-node-type {
+        font-size: var(--ss-font-size-xs);
+        color: var(--ss-color-gray-500);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-left: auto;
+    }
+
+    // -- taxonomy-preview-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-taxonomy-preview-section {
+        padding: unset 0;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- taxonomy-preview-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-taxonomy-preview-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+    }
+
+    // -- taxonomy-levels  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-taxonomy-levels {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: q(480);
+        margin: 0 auto unset;
+    }
+
+    // -- level-item  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-level-item {
+        display: flex;
+        align-items: center;
+        gap: unset;
+        width: 100%;
+        padding: unset unset;
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+
+        &--optional {
+            border-style: dashed;
+
+            .ss-c-level-content h4 {
+                color: var(--ss-color-gray-500);
+            }
+        }
+    }
+
+    // -- level-rank  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-level-rank {
+        width: q(28);
+        height: q(28);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: unset;
+        color: unset;
+        font-size: var(--ss-font-size-sm);
+        font-weight: 600;
+        border-radius: q(9999);
+        flex-shrink: 0;
+    }
+
+    // -- level-content  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-level-content {
+        flex: 1;
+
+        h4 {
+            font-size: var(--ss-font-size-base);
+            font-weight: 600;
+            margin-bottom: unset;
+        }
+
+        p {
+            font-size: var(--ss-font-size-xs);
+            color: var(--ss-color-gray-500);
+            font-style: italic;
+            margin: 0;
+        }
+    }
+
+    // -- level-connector  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-level-connector {
+        width: q(1);
+        height: q(20);
+        background: var(--ss-color-gray-200);
+    }
+
+    // -- taxonomy-cta  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-taxonomy-cta {
+        text-align: center;
+    }
+
+    // -- ecological-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-ecological-section {
+        padding: unset 0;
+    }
+
+    // -- ecological-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-ecological-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+    }
+
+    // -- ecological-content  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-ecological-content {
+        max-width: unset;
+        margin: 0 auto;
+    }
+
+    // -- ecological-categories  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-ecological-categories {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: unset;
+        margin-top: unset;
+
+        @media (min-width: q(768)) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    // -- eco-category  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-eco-category {
+        padding: unset;
+        background: var(--ss-color-gray-50);
+        border-radius: 0;
+    }
+
+    // -- eco-category-title  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-eco-category-title {
+        font-size: var(--ss-font-size-sm);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: unset;
+        margin-bottom: unset;
+    }
+
+    // -- eco-list  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-eco-list {
+        li {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-600);
+            padding: unset 0;
+            padding-left: unset;
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: q(6);
+                height: q(6);
+                background: unset;
+                border-radius: q(9999);
+            }
+        }
+    }
+
+    // -- taxonomy-browser  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-taxonomy-browser {
+        padding: unset 0;
+    }
+
+    // -- browser-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-browser-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: unset;
+
+        @media (min-width: q(1024)) {
+            grid-template-columns: q(280) 1fr;
+        }
+    }
+
+    // -- browser-sidebar  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-browser-sidebar {
+        @media (max-width: q(1024)) {
+            order: 2;
+        }
+    }
+
+    // -- browser-main  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-browser-main {
+        @media (max-width: q(1024)) {
+            order: 1;
+        }
+    }
+
+    // -- browser-search  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-browser-search {
+        margin-bottom: unset;
+    }
+
+    // -- taxonomy-tree-browser  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-taxonomy-tree-browser {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+    }
+
+    // -- branch-header  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-branch-header {
+        display: flex;
+        align-items: center;
+        gap: unset;
+        padding: unset unset;
+        background: var(--ss-color-white);
+        cursor: pointer;
+        transition: background var(--ss-duration-150) ease;
+
+        &:hover {
+            background: var(--ss-color-gray-50);
+        }
+    }
+
+    // -- branch-toggle  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-branch-toggle {
+        width: q(24);
+        height: q(24);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 0;
+
+        &:hover {
+            background: var(--ss-color-gray-100);
+        }
+
+        .ss-c-toggle-icon {
+            width: q(16);
+            height: q(16);
+            color: var(--ss-color-gray-500);
+            transition: transform var(--ss-duration-150) ease;
+        }
+
+        &[aria-expanded="true"] .ss-c-toggle-icon {
+            transform: rotate(180deg);
+        }
+    }
+
+    // -- branch-level  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-branch-level {
+        font-size: var(--ss-font-size-xs);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: unset;
+        padding: unset unset;
+        background: unset;
+        border-radius: 0;
+    }
+
+    // -- branch-name  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-branch-name {
+        font-size: var(--ss-font-size-sm);
+        font-weight: 500;
+        color: var(--ss-color-gray-800);
+        font-style: italic;
+    }
+
+    // -- branch-info  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-branch-info {
+        margin-left: auto;
+
+        svg {
+            width: q(16);
+            height: q(16);
+            color: var(--ss-color-gray-300);
+        }
+    }
+
+    // -- branch-children  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-branch-children {
+        padding: unset unset unset unset;
+        background: var(--ss-color-gray-50);
+        border-top: q(1) solid var(--ss-color-gray-200);
+    }
+
+    // -- branch-loading  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-branch-loading {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-500);
+        font-style: italic;
+    }
+
+    // -- database-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-database-section {
+        padding: unset 0;
+    }
+
+    // -- database-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-database-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: unset;
+
+        @media (min-width: q(1024)) {
+            grid-template-columns: q(280) 1fr;
+        }
+    }
+
+    // -- database-filters  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-database-filters {
+        @media (max-width: q(1024)) {
+            display: none;
+        }
+    }
+
+    // -- database-toolbar  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-database-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: unset;
+        margin-bottom: unset;
+    }
+
+    // -- result-count  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-result-count {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-500);
+    }
+
+    // -- sort-select  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-sort-select {
+        padding: unset unset;
+        font-size: var(--ss-font-size-sm);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+        background: var(--ss-color-white);
+        cursor: pointer;
+    }
+
+    // -- database-grid  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-database-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: unset;
+
+        @media (min-width: q(768)) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: q(1280)) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    // -- plant-card  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-plant-card {
+        padding: unset;
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        transition: all var(--ss-duration-150) ease;
+
+        &:hover {
+            border-color: unset;
+            box-shadow: var(--ss-shadow-md);
+        }
+    }
+
+    // -- plant-card-header  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-plant-card-header {
+        margin-bottom: unset;
+    }
+
+    // -- plant-taxonomy  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-plant-taxonomy {
+        font-size: var(--ss-font-size-xs);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: unset;
+    }
+
+    // -- plant-name  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-plant-name {
+        font-size: var(--ss-font-size-lg);
+        font-weight: 600;
+        margin-top: unset;
+        margin-bottom: unset;
+    }
+
+    // -- plant-latin  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-plant-latin {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-500);
+        margin: 0;
+    }
+
+    // -- plant-description  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-plant-description {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-600);
+        flex: 1;
+    }
+
+    // -- plant-tags  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-plant-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: unset;
+        margin-top: unset;
+    }
+
+    // -- plant-link  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-plant-link {
+        margin-top: unset;
+        padding-top: unset;
+        border-top: q(1) solid var(--ss-color-gray-100);
+        font-size: var(--ss-font-size-sm);
+        font-weight: 500;
+        color: unset;
+    }
+
+    // -- results-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-results-section {
+        padding: unset 0;
+    }
+
+    // -- results-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-results-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+    }
+
+    // -- results-header  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-results-header {
+        margin-bottom: unset;
+    }
+
+    // -- results-title  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-results-title {
+        font-size: var(--ss-font-size-xl);
+        margin-bottom: unset;
+    }
+
+    // -- results-query  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-results-query {
+        color: unset;
+    }
+
+    // -- results-count  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-results-count {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-500);
+    }
+
+    // -- results-list  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-results-list {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+    }
+
+    // -- result-item  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-result-item {
+        display: flex;
+        gap: unset;
+        padding: unset;
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+        transition: all var(--ss-duration-150) ease;
+
+        &:hover {
+            border-color: unset;
+            box-shadow: var(--ss-shadow-sm);
+        }
+    }
+
+    // -- result-type  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-result-type {
+        flex-shrink: 0;
+    }
+
+    // -- result-content  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-result-content {
+        flex: 1;
+    }
+
+    // -- result-name  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-result-name {
+        font-size: var(--ss-font-size-lg);
+        font-weight: 600;
+        margin-bottom: unset;
+
+        a {
+            color: var(--ss-color-gray-900);
+
+            &:hover {
+                color: unset;
+            }
+        }
+    }
+
+    // -- result-latin  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-result-latin {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-500);
+        margin-bottom: unset;
+    }
+
+    // -- result-description  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-result-description {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-600);
+        margin-bottom: unset;
+    }
+
+    // -- result-hierarchy  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-result-hierarchy {
+        font-size: var(--ss-font-size-xs);
+        color: var(--ss-color-gray-500);
+    }
+
+    // -- quick-links-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-quick-links-section {
+        padding: unset 0;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- quick-links-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-quick-links-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+    }
+
+    // -- quick-links-title  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-quick-links-title {
+        font-size: var(--ss-font-size-xl);
+        text-align: center;
+        margin-bottom: unset;
+    }
+
+    // -- quick-links-grid  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-quick-links-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: unset;
+
+        @media (min-width: q(768)) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    // -- quick-link-card  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-quick-link-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: unset;
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+        text-align: center;
+        transition: all var(--ss-duration-150) ease;
+
+        &:hover {
+            border-color: unset;
+            box-shadow: var(--ss-shadow-md);
+
+            .ss-c-quick-link-icon {
+                background: unset;
+
+                svg {
+                    color: unset;
+                }
+            }
+        }
+    }
+
+    // -- quick-link-icon  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-quick-link-icon {
+        width: q(48);
+        height: q(48);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ss-color-gray-100);
+        border-radius: 0;
+        margin-bottom: unset;
+        transition: all var(--ss-duration-150) ease;
+
+        svg {
+            width: q(24);
+            height: q(24);
+            color: var(--ss-color-gray-600);
+        }
+    }
+
+    // -- quick-link-text  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-quick-link-text {
+        font-size: var(--ss-font-size-sm);
+        font-weight: 500;
+        color: var(--ss-color-gray-700);
+    }
+
+    // -- eco-data-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-eco-data-section {
+        padding: unset 0;
+    }
+
+    // -- eco-data-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-eco-data-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+    }
+
+    // -- eco-properties  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-eco-properties {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: unset;
+        margin-top: unset;
+
+        @media (min-width: q(768)) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    // -- eco-property-group  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-eco-property-group {
+        padding: unset;
+        background: var(--ss-color-gray-50);
+        border-radius: 0;
+    }
+
+    // -- property-group-title  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-property-group-title {
+        font-size: var(--ss-font-size-sm);
+        font-weight: 600;
+        color: unset;
+        margin-bottom: unset;
+    }
+
+    // -- property-list  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-property-list {
+        li {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-600);
+            padding: unset 0;
+            padding-left: unset;
+            position: relative;
+
+            &::before {
+                content: '✓';
+                position: absolute;
+                left: 0;
+                color: unset;
+                font-size: var(--ss-font-size-xs);
+            }
+        }
+    }
+
+    // -- contributing-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-contributing-section {
+        padding: unset 0;
+    }
+
+    // -- contributing-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-contributing-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+        text-align: center;
+    }
+
+    // -- contributing-actions  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-contributing-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: unset;
+        margin-top: unset;
+    }
+
+    // -- info-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-info-section {
+        padding: unset 0;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- info-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-info-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+    }
+
+    // -- info-title  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-info-title {
+        font-size: var(--ss-font-size-lg);
+        margin-bottom: unset;
+    }
+
+    // -- info-text  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-info-text {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-600);
+        line-height: var(--ss-leading-relaxed);
+    }
+}

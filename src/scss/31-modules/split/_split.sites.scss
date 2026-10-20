@@ -1,0 +1,98 @@
+////
+///
+/// Split Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `split` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 5 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Split
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints";
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- split  (from site-matter_tech/src/static/scss/layout/_grid.scss) --
+    .ss-c-split {
+
+        // (stripped @include block)
+
+    }
+
+    // -- split--reverse  (from site-matter_tech/src/static/scss/layout/_grid.scss) --
+    .ss-c-split--reverse {
+        // (stripped @include block)
+
+    }
+
+    // -- split--content-left  (from site-matter_tech/src/static/scss/layout/_grid.scss) --
+    .ss-c-split--content-left {
+        // (stripped @include block)
+
+    }
+
+    // -- split--content-right  (from site-matter_tech/src/static/scss/layout/_grid.scss) --
+    .ss-c-split--content-right {
+        // (stripped @include block)
+
+    }
+
+    // -- split-section  (from site-suell_org/src/static/scss/layout/_split-section.scss) --
+    .ss-c-split-section {
+        display: flex;
+        flex-wrap: wrap;
+        background: #0a0a0a;
+
+        &__half {
+            flex: 1 1 50%;
+            min-width: q(300);
+            padding: q(96) q(64);
+            box-sizing: border-box;
+
+            @media (max-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+                flex: 1 1 100%;
+                padding: q(64) q(32);
+            }
+        }
+
+        &__title {
+            font-size: q(24);
+            font-weight: 600;
+            margin-bottom: q(8);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        &__subtitle {
+            font-size: q(14);
+            font-style: italic;
+            color: #737373;
+            margin-bottom: q(24);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        &__text {
+            font-size: q(16);
+            line-height: 1.8;
+            color: #737373;
+        }
+    }
+}

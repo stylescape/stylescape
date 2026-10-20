@@ -1,0 +1,473 @@
+////
+///
+/// System Card Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 38 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.SystemCard
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- system-card  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-system-card {
+        padding: unset;
+        background-color: transparent;
+        border: q(1) solid #f2f2f2;
+        transition: border-color unset, background-color unset;
+
+        // (stripped @include block)
+
+
+        &:hover {
+            border-color: #a3a3a3;
+            background-color: #fdf8f2;
+        }
+    }
+
+    // -- system-card__number  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-system-card__number {
+        // (stripped @include)
+        margin-bottom: unset;
+    }
+
+    // -- system-card__title  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-system-card__title {
+        font-family: Georgia, serif;
+        font-size: var(--ss-font-size-xl);
+        font-weight: var(--ss-font-weight-light);
+        margin-bottom: unset;
+
+        // (stripped @include block)
+
+    }
+
+    // -- system-card__description  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-system-card__description {
+        font-size: var(--ss-font-size-sm);
+        color: #525252;
+        line-height: var(--ss-leading-relaxed);
+        margin-bottom: unset;
+    }
+
+    // -- system-card__link  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-system-card__link {
+        // (stripped @include)
+        color: var(--ss-color-text, #1a1a1a);
+        transition: color var(--ss-duration-200) ease;
+
+        &::after {
+            content: ' →';
+            transition: transform var(--ss-duration-200) ease;
+            display: inline-block;
+        }
+
+        &:hover {
+            color: var(--ss-color-gray-500);
+
+            &::after {
+                transform: translateX(q(4));
+            }
+        }
+    }
+
+    // -- systems-grid  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-systems-grid {
+        display: grid;
+        gap: unset;
+
+        // (stripped @include block)
+
+    }
+
+    // -- system-detail  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-system-detail {
+        display: grid;
+        gap: unset;
+        padding: unset 0;
+        border-bottom: q(1) solid var(--ss-color-border, #e5e5e5);
+
+        // (stripped @include block)
+
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    // -- system-detail--reversed  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-system-detail--reversed {
+        // (stripped @include block)
+
+    }
+
+    // -- system-detail__number  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-system-detail__number {
+        // (stripped @include)
+        font-size: var(--ss-font-size-xl);
+        margin-bottom: unset;
+    }
+
+    // -- system-detail__title  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-system-detail__title {
+        font-size: var(--ss-font-size-3xl);
+        font-weight: var(--ss-font-weight-bold);
+        margin-bottom: unset;
+
+        // (stripped @include block)
+
+    }
+
+    // -- system-detail__description  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-system-detail__description {
+        font-size: unset;
+        color: #525252;
+        line-height: var(--ss-leading-relaxed);
+        margin-bottom: unset;
+    }
+
+    // -- system-detail__features  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-system-detail__features {
+        margin-bottom: unset;
+        padding-left: unset;
+
+        li {
+            position: relative;
+            font-size: var(--ss-font-size-sm);
+            color: #525252;
+            margin-bottom: unset;
+
+            &::before {
+                content: '–';
+                position: absolute;
+                left: -unset;
+                color: var(--ss-color-gray-300);
+            }
+        }
+    }
+
+    // -- system-detail__visual  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-system-detail__visual {
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    // -- systems-intro  (from site-matter_tech/src/static/scss/sections/_systems.scss) --
+    .ss-c-systems-intro {
+        max-width: q(720);
+        margin-bottom: unset;
+
+        // (stripped @include block)
+
+    }
+
+    // -- systems-intro__text  (from site-matter_tech/src/static/scss/sections/_systems.scss) --
+    .ss-c-systems-intro__text {
+        font-size: unset;
+        font-weight: unset;
+        line-height: var(--ss-leading-relaxed);
+        color: #525252;
+
+        // (stripped @include block)
+
+    }
+
+    // -- systems-category  (from site-matter_tech/src/static/scss/sections/_systems.scss) --
+    .ss-c-systems-category {
+        margin-bottom: unset;
+
+        // (stripped @include block)
+
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // -- systems-category__title  (from site-matter_tech/src/static/scss/sections/_systems.scss) --
+    .ss-c-systems-category__title {
+        font-family: 'FF DIN', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: var(--ss-font-size-sm);
+        font-weight: var(--ss-font-weight-medium);
+        letter-spacing: unset;
+        text-transform: uppercase;
+        color: #737373;
+        margin-bottom: unset;
+        padding-bottom: unset;
+        border-bottom: q(1) solid #f2f2f2;
+
+        // (stripped @include block)
+
+    }
+
+    // -- systems-category__grid  (from site-matter_tech/src/static/scss/sections/_systems.scss) --
+    .ss-c-systems-category__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: unset;
+
+        // (stripped @include block)
+
+
+        // (stripped @include block)
+
+    }
+
+    // -- systems-category__item  (from site-matter_tech/src/static/scss/sections/_systems.scss) --
+    .ss-c-systems-category__item {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        transition: opacity unset;
+
+        &:hover {
+            .ss-c-systems-category__image img {
+                transform: scale(1.03);
+            }
+
+            .ss-c-systems-category__name {
+                color: #525252;
+            }
+        }
+    }
+
+    // -- systems-category__image  (from site-matter_tech/src/static/scss/sections/_systems.scss) --
+    .ss-c-systems-category__image {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        background-color: var(--ss-color-gray-100);
+        margin-bottom: unset;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform unset;
+        }
+    }
+
+    // -- systems-category__placeholder  (from site-matter_tech/src/static/scss/sections/_systems.scss) --
+    .ss-c-systems-category__placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--ss-color-gray-100) 0%, var(--ss-color-gray-200) 100%);
+    }
+
+    // -- systems-category__info  (from site-matter_tech/src/static/scss/sections/_systems.scss) --
+    .ss-c-systems-category__info {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+    }
+
+    // -- systems-category__name  (from site-matter_tech/src/static/scss/sections/_systems.scss) --
+    .ss-c-systems-category__name {
+        font-family: 'FF DIN', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: var(--ss-font-size-base);
+        font-weight: var(--ss-font-weight-light);
+        color: var(--ss-color-text, #1a1a1a);
+        transition: color var(--ss-duration-200) ease;
+
+        // (stripped @include block)
+
+    }
+
+    // -- systems-category__subtitle  (from site-matter_tech/src/static/scss/sections/_systems.scss) --
+    .ss-c-systems-category__subtitle {
+        font-size: var(--ss-font-size-sm);
+        font-weight: unset;
+        color: #737373;
+    }
+
+    // -- system_card  (from site-starling_studio/src/static/scss/app/_card_horizontal.scss) --
+    .ss-c-system_card{
+        min-height: 25vh;
+        height:100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: var(--N2405);
+    }
+
+    // -- system_card__content  (from site-starling_studio/src/static/scss/app/_card_horizontal.scss) --
+    .ss-c-system_card__content{
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(q(8));
+        -webkit-backdrop-filter: blur(q(8)); // Safari support
+    }
+
+    // -- system_icon  (from site-starling_studio/src/static/scss/app/_card_horizontal.scss) --
+    .ss-c-system_icon {
+        color: #fff;
+
+        .ss-c-i {
+            color: inherit;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: q(32);
+            height: q(32);
+            font-size:q(32);
+
+            &::before{
+                font-size:q(32);
+            }
+
+            img {
+                filter: brightness(0) invert(1); // Makes SVG white
+            }
+        }
+    }
+
+    // -- system-card__inner  (from site-starling_studio/src/static/scss/app/_system_card.scss) --
+    .ss-c-system-card__inner {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 0;
+        height: 100%;
+
+        @media (max-width: q(768)) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // -- system-card__image  (from site-starling_studio/src/static/scss/app/_system_card.scss) --
+    .ss-c-system-card__image {
+        position: relative;
+        aspect-ratio: var(--system-card-image-ratio, 4 / 3);
+        overflow: hidden;
+        margin: 0;
+        background: var(--ss-color-surface-alt, #f5f5f5);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .ss-c-system-card:hover & img {
+            transform: scale(1.05);
+        }
+    }
+
+    // -- system-card__image--placeholder  (from site-starling_studio/src/static/scss/app/_system_card.scss) --
+    .ss-c-system-card__image--placeholder {
+        background: var(--system-card-image-bg, var(--ss-color-primary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--system-card-image-color, color-mix(in srgb, var(--ss-color-white) 30%, transparent));
+
+        .ss-c-i,
+        i {
+            font-size: q(16);
+            opacity: 0.5;
+        }
+    }
+
+    // -- system-card__content  (from site-starling_studio/src/static/scss/app/_system_card.scss) --
+    .ss-c-system-card__content {
+        display: flex;
+        flex-direction: column;
+        padding: q(24);
+        gap: q(8);
+    }
+
+    // -- system-card__series  (from site-starling_studio/src/static/scss/app/_system_card.scss) --
+    .ss-c-system-card__series {
+        display: inline-block;
+        font-size: q(11);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--system-card-series-color, var(--ss-color-primary));
+    }
+
+    // -- system-card__subtitle  (from site-starling_studio/src/static/scss/app/_system_card.scss) --
+    .ss-c-system-card__subtitle {
+        font-size: q(14);
+        color: var(--system-card-text-color, var(--ss-color-text-muted));
+        margin: 0;
+    }
+
+    // -- system-card__summary  (from site-starling_studio/src/static/scss/app/_system_card.scss) --
+    .ss-c-system-card__summary {
+        font-size: q(14);
+        line-height: 1.5;
+        color: var(--system-card-text-color, var(--ss-color-text-muted));
+        flex-grow: 1;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    // -- system-card--vertical  (from site-starling_studio/src/static/scss/app/_system_card.scss) --
+    .ss-c-system-card--vertical {
+        .ss-c-system-card__inner {
+            grid-template-columns: 1fr;
+        }
+
+        .ss-c-system-card__image {
+            aspect-ratio: 16 / 9;
+        }
+    }
+
+    // -- system-card--sm  (from site-starling_studio/src/static/scss/app/_system_card.scss) --
+    .ss-c-system-card--sm {
+        .ss-c-system-card__content {
+            padding: q(16);
+            gap: q(4);
+        }
+
+        .ss-c-system-card__title {
+            font-size: q(16);
+        }
+
+        .ss-c-system-card__summary {
+            display: none;
+        }
+    }
+
+    // -- system-card--lg  (from site-starling_studio/src/static/scss/app/_system_card.scss) --
+    .ss-c-system-card--lg {
+        .ss-c-system-card__content {
+            padding: q(32);
+        }
+
+        .ss-c-system-card__title {
+            font-size: q(28);
+        }
+    }
+
+    // -- system-card--dark  (from site-starling_studio/src/static/scss/app/_system_card.scss) --
+    .ss-c-system-card--dark {
+        --system-card-bg: var(--ss-color-gray-800, #1a1a1a);
+        --system-card-border: 1px solid rgba(255, 255, 255, 0.1);
+        --system-card-title-color: #fff;
+        --system-card-text-color: rgba(255, 255, 255, 0.7);
+        --system-card-series-color: var(--ss-color-accent, #4a7ab8);
+    }
+}

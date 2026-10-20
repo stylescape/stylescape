@@ -1,0 +1,358 @@
+////
+///
+/// Lightbox (lb) Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 25 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Lightbox
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- lb  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb {
+        margin: 0;
+
+        figure { margin: 0; }
+        img { display: block; max-width: 100%; height: auto; }
+
+        &__caption,
+        figcaption {
+            margin-top: q(8);
+            font-size: q(12);
+            opacity: 0.65;
+            line-height: 1.4;
+        }
+
+        &__title {
+            margin: 0 0 q(8);
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        &__eyebrow {
+            margin: 0 0 q(8);
+            font-size: q(11.2);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.65;
+        }
+
+        &__lead { font-size: q(16.8); line-height: 1.5; max-width: 60ch; }
+        &__prose { line-height: 1.55; max-width: 60ch; }
+        &__prose h3 { margin: q(20) 0 q(8); font-weight: 500; }
+        &__prose p { margin: 0 0 q(12); }
+        &__prose ul, &__prose ol { padding-inline-start: q(20); }
+    }
+
+    // -- lb--cover-hero  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--cover-hero {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        color: #fff;
+
+        .ss-c-lb__bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ss-c-lb__overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            padding: clamp(q(16), 4vw, q(48));
+            background: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0) 40%,
+                rgba(0, 0, 0, 0.55) 100%
+            );
+        }
+
+        .ss-c-lb__title { font-size: clamp(q(32), 6vw, q(80)); }
+        .ss-c-lb__subtitle { font-size: clamp(q(16), 1.6vw, q(22.4)); max-width: 40ch; }
+
+        &.ss-c-lb--align-bl .ss-c-lb__overlay { justify-content: flex-end; align-items: flex-start; }
+        &.ss-c-lb--align-br .ss-c-lb__overlay { justify-content: flex-end; align-items: flex-end; text-align: right; }
+        &.ss-c-lb--align-tl .ss-c-lb__overlay { justify-content: flex-start; align-items: flex-start; }
+        &.ss-c-lb--align-tr .ss-c-lb__overlay { justify-content: flex-start; align-items: flex-end; text-align: right; }
+        &.ss-c-lb--align-c  .ss-c-lb__overlay { justify-content: center;     align-items: center;    text-align: center; }
+    }
+
+    // -- lb--full-bleed  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--full-bleed img { width: 100%; height: auto; }
+
+    // -- lb--two-up  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--two-up .ss-c-lb__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: q(16);
+    }
+
+    // -- lb--two-up-asym  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--two-up-asym .ss-c-lb__grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: q(16);
+        align-items: start;
+    }
+
+    // -- lb--three-up  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--three-up .ss-c-lb__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: q(16);
+    }
+
+    // -- lb--four-up  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--four-up .ss-c-lb__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: q(16);
+    }
+
+    // -- lb--contact-sheet  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--contact-sheet .ss-c-lb__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(q(140), 1fr));
+        gap: q(8);
+
+        figure { aspect-ratio: 1/1; overflow: hidden; }
+        img { width: 100%; height: 100%; object-fit: cover; }
+    }
+
+    // -- lb--pull-quote  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--pull-quote {
+        blockquote {
+            margin: 0 auto;
+            max-width: 60ch;
+            text-align: center;
+        }
+
+        .ss-c-lb__quote {
+            font-size: clamp(q(22.4), 2.5vw, q(36));
+            font-style: italic;
+            line-height: 1.3;
+            margin: 0 0 q(16);
+        }
+
+        .ss-c-lb__cite {
+            font-size: q(13.6);
+            opacity: 0.7;
+            display: flex;
+            flex-direction: column;
+            gap: q(1.6);
+        }
+    }
+
+    // -- lb--text-column  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--text-column .ss-c-lb__prose { margin-inline: auto; }
+
+    // -- lb--two-col-text  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--two-col-text .ss-c-lb__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: q(32);
+    }
+
+    // -- lb--caption  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--caption p {
+        max-width: 60ch;
+        margin: 0 auto;
+        text-align: center;
+        font-size: q(13.6);
+        opacity: 0.75;
+    }
+
+    // -- lb--section-title  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--section-title {
+        text-align: center;
+        padding-block: q(16);
+
+        .ss-c-lb__title { font-size: clamp(q(32), 5vw, q(64)); }
+        .ss-c-lb__lead  { margin: q(8) auto 0; }
+    }
+
+    // -- lb--numbered-list  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--numbered-list .ss-c-lb__list {
+        list-style: none;
+        counter-reset: lb-num;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: q(16);
+
+        li {
+            counter-increment: lb-num;
+            display: grid;
+            grid-template-columns: q(48) 1fr;
+            gap: q(16);
+
+            &::before {
+                content: counter(lb-num, decimal-leading-zero);
+                font-variant-numeric: tabular-nums;
+                opacity: 0.4;
+                font-size: q(13.6);
+            }
+        }
+
+        .ss-c-lb__list-title { display: block; font-weight: 500; }
+        .ss-c-lb__list-text  { display: block; opacity: 0.75; }
+    }
+
+    // -- lb--definition-list  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--definition-list .ss-c-lb__dl {
+        margin: 0;
+
+        .ss-c-lb__dl-row {
+            display: grid;
+            grid-template-columns: q(192) 1fr;
+            gap: q(16);
+            padding: q(8) 0;
+            border-block-end: q(1) solid rgba(0, 0, 0, 0.08);
+        }
+
+        dt { font-weight: 500; }
+        dd { margin: 0; opacity: 0.85; }
+    }
+
+    // -- lb--img-caption  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--img-caption .ss-c-lb__grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: q(32);
+        align-items: start;
+    }
+
+    // -- lb--specs-table  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--specs-table .ss-c-lb__table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th, td {
+            padding: q(8) q(11.2);
+            text-align: left;
+            border-block-end: q(1) solid rgba(0, 0, 0, 0.08);
+            font-weight: 400;
+            vertical-align: top;
+        }
+
+        th { width: q(192); opacity: 0.65; font-size: q(12.8); text-transform: uppercase; letter-spacing: 0.05em; }
+    }
+
+    // -- lb--video-embed  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--video-embed .ss-c-lb__embed {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+
+        iframe { width: 100% !important; height: 100% !important; border: 0; }
+    }
+
+    // -- lb--video-file  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--video-file video {
+        width: 100%;
+        height: auto;
+        background: #000;
+        display: block;
+    }
+
+    // -- lb--diptych-portrait  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--diptych-portrait .ss-c-lb__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: q(16);
+
+        figure { aspect-ratio: 3/4; overflow: hidden; }
+        img { width: 100%; height: 100%; object-fit: cover; }
+    }
+
+    // -- lb--panorama  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--panorama img { width: 100%; height: auto; }
+
+    // -- lb--spacer  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--spacer {
+        &.ss-c-lb--size-xs { height: q(8); }
+        &.ss-c-lb--size-s  { height: q(16);   }
+        &.ss-c-lb--size-m  { height: q(32);   }
+        &.ss-c-lb--size-l  { height: q(64);   }
+        &.ss-c-lb--size-xl { height: q(96);   }
+    }
+
+    // -- lb--divider  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--divider {
+        text-align: center;
+
+        .ss-c-lb__divider-label {
+            display: inline-block;
+            padding: 0 q(9.6);
+            font-size: q(11.2);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.6;
+            background: var(--ss-color-background, #fff);
+            position: relative;
+            top: q(9.6);
+        }
+
+        hr {
+            border: 0;
+            border-block-start: q(1) solid currentColor;
+            opacity: 0.2;
+            margin: 0;
+        }
+    }
+
+    // -- lb--callout  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--callout {
+        padding: q(20) q(24);
+        border: q(1) solid currentColor;
+        max-width: 60ch;
+        margin-inline: auto;
+
+        &.ss-c-lb--tone-info { border-color: #5b8def; }
+        &.ss-c-lb--tone-warn { border-color: #c0a040; }
+
+        .ss-c-lb__title { font-size: q(16); font-weight: 500; }
+    }
+
+    // -- lb--gallery  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-lb--gallery {
+        --lb-cols: 3;
+
+        .ss-c-lb__grid {
+            display: grid;
+            grid-template-columns: repeat(var(--lb-cols, 3), 1fr);
+            gap: q(16);
+        }
+
+        figcaption {
+            font-size: q(11.2);
+            opacity: 0.6;
+            margin-top: q(4.8);
+        }
+    }
+}

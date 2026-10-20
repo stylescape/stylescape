@@ -1,0 +1,747 @@
+////
+///
+/// Studio Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 58 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Studio
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- home  (from site-scape_group/src/static/scss/sections/_home.scss) --
+    .ss-c-home {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--ss-color-white);
+    }
+
+    // -- careers-section__header  (from site-scape_agency/src/static/scss/_theme_modes.scss) --
+    .ss-c-careers-section__header {
+        border-color: var(--ss-color-line-primary);
+    }
+
+    // -- stories-grid__item  (from site-scape_agency/src/static/scss/_theme_modes.scss) --
+    .ss-c-stories-grid__item {
+        border-color: var(--ss-color-border);
+    }
+
+    // -- connect-lines  (from site-scape_agency/src/static/scss/_theme_modes.scss) --
+    .ss-c-connect-lines li {
+        border-color: var(--ss-color-border-muted);
+    }
+
+    // -- studio-locations__card  (from site-scape_agency/src/static/scss/_theme_modes.scss) --
+    .ss-c-studio-locations__card {
+        background: var(--ss-color-surface-muted);
+    }
+
+    // -- careers-roles__row--open  (from site-scape_agency/src/static/scss/_theme_modes.scss) --
+    .ss-c-careers-roles__row--open {
+        background: linear-gradient(to right, var(--ss-color-surface-muted), transparent 60%);
+    }
+
+    // -- careers-roles__tag--open  (from site-scape_agency/src/static/scss/_theme_modes.scss) --
+    .ss-c-careers-roles__tag--open {
+        background: var(--ss-color-foreground);
+        color: var(--ss-color-background);
+    }
+
+    // -- story__card  (from site-scape_agency/src/static/scss/app/_figure.scss) --
+    .ss-c-story__card {
+        // (stripped @include)
+        img {
+        // (stripped @include)
+        }
+
+        figcaption {
+        // (stripped @include)
+            grid-column: 3 / 7;
+            background-color: var(--color_line_primary);
+            opacity: 1;
+            padding: q(8) !important;
+            position: absolute;
+            bottom: q(20);
+
+            * {
+                color: var(--color_fill_primary);
+                margin: 0;
+            }
+        }
+    }
+
+    // -- connect-meta  (from site-scape_agency/src/static/scss/sections/_connect.scss) --
+    .ss-c-connect-meta {
+        &__note { margin-block-start: q(16); font-size: q(12.48); opacity: 0.65; line-height: 1.5; }
+    }
+
+    // -- connect-page  (from site-scape_agency/src/static/scss/sections/_connect.scss) --
+    .ss-c-connect-page {
+        display: flex; flex-direction: column; gap: q(48);
+    }
+
+    // -- connect-hero  (from site-scape_agency/src/static/scss/sections/_connect.scss) --
+    .ss-c-connect-hero {
+        display: flex; flex-direction: column; gap: q(12);
+        padding-block-end: q(32);
+        border-bottom: q(1) solid rgba(0,0,0,0.08);
+
+        &__kicker { font-size: q(11.52); text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.7; margin: 0; }
+        &__title {
+            font-size: clamp(q(28.8), 4.4vw, q(48));
+            line-height: 1.05; margin: 0; font-weight: 500;
+            max-width: 22ch;
+        }
+        &__lead { font-size: q(16.8); opacity: 0.85; margin: 0; max-width: 60ch; line-height: 1.55; }
+        &__cta { display: flex; flex-wrap: wrap; gap: q(9.6); margin-top: q(9.6); }
+    }
+
+    // -- connect-board  (from site-scape_agency/src/static/scss/sections/_connect.scss) --
+    .ss-c-connect-board {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(280), 1fr));
+        gap: q(24);
+    }
+
+    // -- connect-card  (from site-scape_agency/src/static/scss/sections/_connect.scss) --
+    .ss-c-connect-card {
+        border: q(1) solid rgba(0,0,0,0.12);
+        padding: q(24);
+        display: flex; flex-direction: column; gap: q(14.4);
+        background: rgba(255,255,255,0.4);
+
+        &__heading {
+            font-size: q(12.48); text-transform: uppercase; letter-spacing: 0.14em;
+            margin: 0 0 q(6.4) 0; font-weight: 500; opacity: 0.85;
+        }
+        &__address { font-style: normal; line-height: 1.6; font-size: q(15.2); }
+        &__list { display: flex; flex-direction: column; gap: q(6.4); margin: 0; padding: 0; }
+        &__row {
+            display: grid; grid-template-columns: q(144) 1fr; gap: q(9.6);
+            font-size: q(13.6);
+            dt { opacity: 0.6; }
+            dd { margin: 0; }
+        }
+
+        &--studio { grid-column: span 1; @media (min-width: q(760)) { grid-column: span 2; } }
+    }
+
+    // -- connect-social  (from site-scape_agency/src/static/scss/sections/_connect.scss) --
+    .ss-c-connect-social {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: q(8);
+        li a {
+            display: flex; flex-direction: column; padding: q(8) q(9.6);
+            text-decoration: none; border: q(1) solid rgba(0,0,0,0.08);
+            transition: border-color 0.2s ease;
+            span { font-size: q(11.2); text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; }
+            em { font-style: normal; font-size: q(14.4); }
+            &:hover { border-color: currentColor; }
+        }
+    }
+
+    // -- connect-foot  (from site-scape_agency/src/static/scss/sections/_connect.scss) --
+    .ss-c-connect-foot {
+        margin-block-start: q(16); padding-block-start: q(24);
+        border-top: q(1) solid rgba(0,0,0,0.08);
+        &__terms { font-size: q(12.8); opacity: 0.7; margin: 0; }
+    }
+
+    // -- careers-meta  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-careers-meta { &__note { /* (stripped @extend) */ } }
+
+    // -- careers-page  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-careers-page { display: flex; flex-direction: column; gap: q(56); }
+
+    // -- careers-hero  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-careers-hero {
+        // (stripped @extend)
+        &__kicker { font-size: q(11.52); text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.7; margin: 0; }
+        &__title  { font-size: clamp(q(27.2), 4vw, q(41.6)); line-height: 1.1; margin: 0; font-weight: 500; max-width: 24ch; }
+        &__lead   { font-size: q(16.8); opacity: 0.85; margin: 0; max-width: 60ch; line-height: 1.55; }
+    }
+
+    // -- careers-section  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-careers-section {
+        display: flex; flex-direction: column; gap: q(16);
+
+        &__header {
+        // (stripped @extend)
+            justify-content: space-between;
+        }
+        &__heading { /* (stripped @extend) */ }
+        &__count   { font-size: q(12.48); opacity: 0.5; font-variant-numeric: tabular-nums; }
+        &__cta     { display: flex; flex-wrap: wrap; gap: q(9.6); margin-top: q(8); }
+    }
+
+    // -- careers-roles  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-careers-roles {
+        display: flex; flex-direction: column; gap: 0;
+
+        &__row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: q(6.4);
+            padding-block: q(17.6);
+            border-bottom: q(1) solid rgba(0,0,0,0.08);
+
+            @media (min-width: q(760)) {
+                grid-template-columns: 1.3fr 1.4fr auto;
+                align-items: center; gap: q(16);
+            }
+
+            &--open { background: linear-gradient(to right, rgba(0,0,0,0.03), transparent 60%); }
+        }
+
+        &__title-wrap { display: flex; align-items: center; gap: q(9.6); }
+        &__title { font-size: q(16.8); margin: 0; font-weight: 500; }
+        &__tag {
+            font-size: q(10.4); text-transform: uppercase; letter-spacing: 0.12em;
+            padding: q(2.4) q(8); border: q(1) solid currentColor; opacity: 0.55;
+            &--open { opacity: 1; background: currentColor; color: #fff; }
+        }
+        &__meta {
+            margin: 0; font-size: q(13.12); opacity: 0.75;
+            display: flex; flex-wrap: wrap; gap: q(6.4) q(16);
+        }
+        &__cta {
+            font-size: q(13.6); text-decoration: none;
+            align-self: start;
+            @media (min-width: q(760)) { justify-self: end; }
+        }
+
+        &__future {
+            margin-top: q(24);
+            > summary {
+                cursor: pointer;
+                font-size: q(12.48); text-transform: uppercase; letter-spacing: 0.12em;
+                opacity: 0.7; padding-block: q(8);
+            }
+        }
+    }
+
+    // -- careers-pillars  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-careers-pillars {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(220), 1fr));
+        gap: q(24); margin: 0; padding: 0;
+
+        &__item { display: flex; flex-direction: column; gap: q(6.4); padding-block-start: q(8); border-top: q(1) solid rgba(0,0,0,0.15); }
+        &__num  { font-size: q(11.2); opacity: 0.5; letter-spacing: 0.14em; }
+        &__title { font-size: q(16); margin: 0; font-weight: 500; }
+        p { font-size: q(14.08); line-height: 1.5; opacity: 0.85; margin: 0; }
+    }
+
+    // -- careers-steps  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-careers-steps {
+        display: flex; flex-direction: column; gap: 0;
+        li {
+            display: grid; grid-template-columns: q(48) 1fr;
+            padding-block: q(16);
+            border-bottom: q(1) solid rgba(0,0,0,0.08);
+            align-items: start; gap: q(8);
+            > span { font-size: q(13.6); opacity: 0.55; font-variant-numeric: tabular-nums; }
+            h3 { font-size: q(16); margin: 0 0 q(3.2) 0; font-weight: 500; }
+            p  { font-size: q(14.08); line-height: 1.5; opacity: 0.85; margin: 0; }
+        }
+    }
+
+    // -- stories-meta  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-stories-meta { &__lead, &__note { /* (stripped @extend) */ margin-block-end: q(9.6); } }
+
+    // -- stories-page  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-stories-page { display: flex; flex-direction: column; gap: q(56); }
+
+    // -- stories-hero  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-stories-hero {
+        &__link { display: block; text-decoration: none; }
+        &__media { margin: 0 0 q(16) 0; img { width: 100%; height: auto; aspect-ratio: 21/10; object-fit: cover; } }
+        &__caption { display: flex; flex-direction: column; gap: q(6.4); }
+        &__kicker { font-size: q(11.2); text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.7; margin: 0; }
+        &__title  { font-size: clamp(q(25.6), 3.6vw, q(41.6)); line-height: 1.05; margin: 0; font-weight: 500; max-width: 24ch; }
+        &__lead   { font-size: q(16); opacity: 0.85; margin: 0; max-width: 56ch; line-height: 1.55; }
+        &__cta    { font-size: q(12.48); text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.85; margin-top: q(6.4); }
+    }
+
+    // -- stories-year  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-stories-year {
+        &__header { /* (stripped @extend) */ justify-content: space-between; }
+        &__heading { font-size: q(16); margin: 0; font-weight: 500; font-variant-numeric: tabular-nums; }
+        &__count { font-size: q(12.48); opacity: 0.5; }
+    }
+
+    // -- stories-grid  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-stories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(q(260), 1fr));
+        gap: q(28) q(24);
+        margin: 0; padding: 0;
+
+        &__link { display: flex; flex-direction: column; gap: q(8); text-decoration: none; transition: opacity 0.2s ease; &:hover { opacity: 0.65; } }
+        &__media { margin: 0; img { width: 100%; height: auto; aspect-ratio: 3/2; object-fit: cover; } }
+        &__body { display: flex; flex-direction: column; gap: q(4.8); }
+        &__kicker { display: flex; align-items: center; gap: q(8); margin: 0; font-size: q(11.52); opacity: 0.7; }
+        &__kind {
+            text-transform: uppercase; letter-spacing: 0.1em;
+            border: q(1) solid currentColor; padding: q(1.6) q(6.4);
+            font-size: q(10.4);
+        }
+        &__title { font-size: q(16); margin: 0; font-weight: 500; line-height: 1.25; }
+        &__lead  { font-size: q(13.6); opacity: 0.85; margin: 0; line-height: 1.5; }
+    }
+
+    // -- stories-empty  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-stories-empty { padding-block: q(64); text-align: center; opacity: 0.7; }
+
+    // -- studio-meta  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-studio-meta { &__cta { margin-block-start: q(16); } }
+
+    // -- studio-toc  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-studio-toc ul {
+        display: flex; flex-direction: column; gap: q(6.4);
+        a { /* (stripped @extend) */ font-size: q(13.6); }
+    }
+
+    // -- studio-page  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-studio-page { display: flex; flex-direction: column; gap: q(64); }
+
+    // -- studio-section  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-studio-section {
+        display: flex; flex-direction: column; gap: q(16);
+
+        &__header { /* (stripped @extend) */ }
+        &__index  { font-size: q(12.48); opacity: 0.5; font-variant-numeric: tabular-nums; }
+        &__heading { /* (stripped @extend) */ }
+        &__lead { font-size: q(15.2); opacity: 0.85; max-width: 65ch; line-height: 1.55; margin: 0; }
+        &__cta { display: flex; flex-wrap: wrap; gap: q(9.6); margin-top: q(6.4); }
+    }
+
+    // -- studio-manifesto  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-studio-manifesto {
+        padding-block-end: q(32);
+        border-bottom: q(1) solid rgba(0,0,0,0.08);
+
+        &__kicker { font-size: q(11.52); text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.7; margin: 0; }
+        &__title  { font-size: clamp(q(27.2), 4.4vw, q(44.8)); line-height: 1.05; margin: 0; font-weight: 500; max-width: 22ch; }
+        &__body {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: q(16);
+            font-size: q(16); line-height: 1.6;
+            max-width: 65ch;
+            @media (min-width: q(880)) { grid-template-columns: 1fr 1fr; gap: q(20) q(32); }
+            p { margin: 0; opacity: 0.9; }
+        }
+    }
+
+    // -- studio-principles  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-studio-principles {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(220), 1fr));
+        gap: q(24); margin: 0; padding: 0;
+
+        &__item { display: flex; flex-direction: column; gap: q(6.4); padding-block-start: q(8); border-top: q(1) solid rgba(0,0,0,0.15); }
+        &__num  { font-size: q(11.2); opacity: 0.5; letter-spacing: 0.14em; }
+        &__title { font-size: q(16); margin: 0; font-weight: 500; }
+        p { font-size: q(14.08); line-height: 1.5; opacity: 0.85; margin: 0; }
+    }
+
+    // -- studio-practice  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-studio-practice {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: q(32);
+        @media (min-width: q(760)) { grid-template-columns: repeat(3, 1fr); }
+
+        &__col {
+            h3 {
+                font-size: q(12.48); text-transform: uppercase; letter-spacing: 0.12em;
+                margin: 0 0 q(12) 0; font-weight: 500; opacity: 0.85;
+            }
+            ul { display: flex; flex-direction: column; gap: q(5.6); margin: 0; padding: 0; }
+            li {
+                font-size: q(14.4); line-height: 1.45; padding-block: q(5.6);
+                border-bottom: q(1) dashed rgba(0,0,0,0.1);
+            }
+        }
+    }
+
+    // -- studio-people  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-studio-people {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(q(240), 1fr));
+        gap: q(24); margin: 0; padding: 0;
+
+        &__card {
+            display: flex; flex-direction: column; gap: q(5.6);
+            padding: q(20); border: q(1) solid rgba(0,0,0,0.1);
+        }
+        &__name { font-size: q(16); margin: 0; font-weight: 500; }
+        &__role { font-size: q(11.52); text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin: 0; }
+        &__bio  { font-size: q(14.08); line-height: 1.5; opacity: 0.85; margin: q(6.4) 0 0 0; }
+
+        &__register-title {
+            margin: q(48) 0 q(6.4);
+            font-size: q(16.8);
+            font-weight: 500;
+            display: flex;
+            align-items: baseline;
+            gap: q(11.2);
+            flex-wrap: wrap;
+        }
+        &__register-eyebrow {
+            font-size: q(11.2);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            opacity: 0.55;
+        }
+        &__register-lead {
+            margin: 0 0 q(20);
+        }
+    }
+
+    // -- studio-register  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-studio-register {
+        margin: 0;
+        padding: q(6.4) 0 0;
+        columns: 2;
+        column-gap: q(36);
+        border-top: q(1) solid var(--ss-color-border, rgba(0, 0, 0, 0.12));
+
+        &__row {
+            break-inside: avoid;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            column-gap: q(12);
+            align-items: baseline;
+            padding: q(8.8) 0;
+            border-bottom: q(1) dashed var(--ss-color-border-muted, rgba(0, 0, 0, 0.1));
+        }
+        &__name {
+            font-size: q(14.08);
+            font-weight: 500;
+            grid-column: 1;
+        }
+        &__years {
+            font-size: q(11.52);
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.04em;
+            opacity: 0.7;
+            grid-column: 2;
+            text-align: right;
+            white-space: nowrap;
+        }
+        &__role {
+            font-size: q(11.52);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.6;
+            grid-column: 1 / -1;
+            margin-top: q(1.6);
+        }
+
+        @media (max-width: q(720)) {
+            columns: 1;
+        }
+    }
+
+    // -- studio-numbers  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-studio-numbers {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(140), 1fr));
+        gap: q(16); margin: 0; padding: 0;
+
+        li {
+            display: flex; flex-direction: column; gap: q(3.2);
+            padding: q(16); border: q(1) solid rgba(0,0,0,0.08);
+        }
+        &__big {
+            font-size: clamp(q(32), 4vw, q(44.8));
+            line-height: 1; font-weight: 500;
+            font-variant-numeric: tabular-nums;
+        }
+        &__label { font-size: q(12.48); opacity: 0.7; }
+    }
+
+    // -- studio-awards  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-studio-awards {
+        display: flex; flex-direction: column; gap: 0;
+        margin: 0; padding: 0;
+
+        &__row {
+            display: grid;
+            grid-template-columns: q(64) 1fr;
+            gap: q(8) q(16);
+            padding-block: q(13.6);
+            border-bottom: q(1) solid rgba(0,0,0,0.08);
+            font-size: q(14.72);
+
+            @media (min-width: q(760)) {
+                grid-template-columns: q(64) 1fr q(288);
+            }
+        }
+        &__year  { font-variant-numeric: tabular-nums; opacity: 0.55; }
+        &__title { font-weight: 500; }
+        &__place { opacity: 0.7; font-size: q(13.6); }
+    }
+
+    // -- studio-locations  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
+    .ss-c-studio-locations {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(260), 1fr));
+        gap: q(24);
+
+        &__card {
+            display: flex; flex-direction: column; gap: q(8);
+            padding: q(20); border: q(1) solid rgba(0,0,0,0.1);
+            h3 { font-size: q(17.6); margin: 0; font-weight: 500; }
+            address { font-style: normal; font-size: q(14.72); line-height: 1.55; }
+        }
+        &__meta { font-size: q(12.48); opacity: 0.7; margin: 0; }
+    }
+
+    // -- story-list  (from site-scape_agency/src/static/scss/sections/_related.scss) --
+    .ss-c-story-list {
+        display: flex;
+        flex-direction: column;
+        gap: q(40);
+        padding: 0;
+        margin: 0;
+
+        &__item a,
+        &__link {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: q(16);
+            text-decoration: none;
+
+            @media (min-width: q(720)) {
+                grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+                gap: q(32);
+                align-items: start;
+            }
+        }
+
+        &__media img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 2;
+            object-fit: cover;
+        }
+
+        &__title {
+            font-size: q(24);
+            margin: 0 0 q(8) 0;
+        }
+
+        &__kicker,
+        &__meta {
+            font-size: q(12);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.6;
+            margin: 0 0 q(6.4) 0;
+        }
+
+        &__lead {
+            margin: q(6.4) 0 0 0;
+            font-size: q(15.2);
+            line-height: 1.5;
+        }
+    }
+
+    // -- story-card  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-story-card {
+        display: flex;
+        flex-direction: column;
+        background-color: transparent;
+        overflow: hidden;
+    }
+
+    // -- story-card__link  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-story-card__link {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+
+        &:hover {
+            .ss-c-story-card__image {
+                transform: scale(1.03);
+            }
+
+            .ss-c-story-card__title {
+                color: var(--ss-color-gray-500);
+            }
+        }
+    }
+
+    // -- story-card__cover  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-story-card__cover {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        overflow: hidden;
+        background-color: var(--ss-color-gray-100);
+        margin-bottom: unset;
+    }
+
+    // -- story-card__image  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-story-card__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform unset;
+    }
+
+    // -- story-card__placeholder  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-story-card__placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--ss-color-gray-100) 0%, var(--ss-color-gray-200) 100%);
+    }
+
+    // -- story-card__content  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-story-card__content {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+    }
+
+    // -- story-card__meta  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-story-card__meta {
+        display: flex;
+        align-items: center;
+        gap: unset;
+        font-size: var(--ss-font-size-xs);
+        color: #737373;
+        text-transform: uppercase;
+        letter-spacing: var(--ss-tracking-widest);
+    }
+
+    // -- story-card__category  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-story-card__category {
+        color: #525252;
+    }
+
+    // -- story-card__date  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-story-card__date {
+        &::before {
+            content: '·';
+            margin-right: unset;
+        }
+    }
+
+    // -- story-card__title  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-story-card__title {
+        font-family: Georgia, serif;
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-light);
+        line-height: var(--ss-leading-none);
+        margin: 0;
+        transition: color var(--ss-duration-200) ease;
+
+        // (stripped @include block)
+
+    }
+
+    // -- story-card__excerpt  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-story-card__excerpt {
+        font-size: var(--ss-font-size-sm);
+        color: #525252;
+        line-height: var(--ss-leading-relaxed);
+        margin: 0;
+
+        // Limit to 3 lines
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    // -- story-card__read-time  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-story-card__read-time {
+        font-size: var(--ss-font-size-xs);
+        color: #737373;
+    }
+
+    // -- story-section  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-story-section {
+        padding: unset 0;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- story-content  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-story-content {
+        max-width: q(900);
+        margin: 0 auto;
+    }
+
+    // -- story-timeline  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-story-timeline {
+        margin-top: unset;
+    }
+
+    // -- experience-list  (from site-vianen_com/src/static/scss/sections/_experience.scss) --
+    .ss-c-experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: unset;
+    }
+
+    // -- experience-item  (from site-vianen_com/src/static/scss/sections/_experience.scss) --
+    .ss-c-experience-item {
+      display: grid;
+      grid-template-columns: q(200) 1fr;
+      gap: unset;
+      padding: unset 0;
+      border-bottom: q(1) solid var(--ss-color-border, #e5e5e5);
+
+      // (stripped @include block)
+
+
+      .ss-c-experience-date {
+        color: #737373;
+        font-size: q(14);
+      }
+
+      .ss-c-experience-content {
+        h4 {
+          margin-bottom: unset;
+
+          a {
+            color: var(--ss-color-text, #1a1a1a);
+
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+        }
+
+        .ss-c-experience-role {
+          color: #737373;
+          font-size: q(14.4);
+        }
+      }
+    }
+}

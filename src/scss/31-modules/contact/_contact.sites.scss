@@ -1,0 +1,726 @@
+////
+///
+/// Contact Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 38 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Contact
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints";
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- contact-card  (from site-scape_ventures/src/static/scss/components/_cards.scss) --
+    .ss-c-contact-card {
+        padding: var(--ss-spacing-6);
+        background: var(--ss-color-gray-50);
+        border-radius: var(--ss-radius-none);
+    }
+
+    // -- contact-card-icon  (from site-scape_ventures/src/static/scss/components/_cards.scss) --
+    .ss-c-contact-card-icon {
+        width: q(40);
+        height: q(40);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ss-color-white);
+        border-radius: var(--ss-radius-none);
+        color: var(--ss-color-primary);
+        margin-bottom: var(--ss-spacing-4);
+
+        svg {
+            width: q(20);
+            height: q(20);
+        }
+    }
+
+    // -- contact-card-title  (from site-scape_ventures/src/static/scss/components/_cards.scss) --
+    .ss-c-contact-card-title {
+        font-size: var(--ss-font-size-lg);
+        margin-bottom: var(--ss-spacing-3);
+    }
+
+    // -- contact-card-content  (from site-scape_ventures/src/static/scss/components/_cards.scss) --
+    .ss-c-contact-card-content {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-600);
+
+        p {
+            color: inherit;
+        }
+    }
+
+    // -- contact-link  (from site-scape_ventures/src/static/scss/components/_cards.scss) --
+    .ss-c-contact-link {
+        display: block;
+        color: var(--ss-color-primary);
+        font-weight: var(--ss-font-weight-medium);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    // -- contact-form  (from site-scape_ventures/src/static/scss/components/_forms.scss) --
+    .ss-c-contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--ss-spacing-6);
+    }
+
+    // -- contact-grid  (from site-scape_ventures/src/static/scss/sections/_contact.scss) --
+    .ss-c-contact-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--ss-spacing-12);
+    }
+
+    // -- contact-form-header  (from site-scape_ventures/src/static/scss/sections/_contact.scss) --
+    .ss-c-contact-form-header {
+        margin-bottom: var(--ss-spacing-8);
+
+        h2 {
+            font-size: var(--ss-font-size-3xl);
+            margin-bottom: var(--ss-spacing-2);
+        }
+
+        p {
+            color: var(--ss-color-gray-500);
+        }
+    }
+
+    // -- contact-info  (from site-scape_ventures/src/static/scss/sections/_contact.scss) --
+    .ss-c-contact-info {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--ss-spacing-6);
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: repeat(4, 1fr);
+            align-items: stretch;
+        }
+    }
+
+    // -- contact  (from site-scape_press/src/static/scss/sections/_contact.scss) --
+    .ss-c-contact {
+        padding: var(--ss-spacing-24) 0;
+        background-color: var(--ss-color-black);
+        color: var(--ss-color-white);
+
+        &__container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 var(--ss-spacing-6);
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+                padding: 0 var(--ss-spacing-12);
+            }
+        }
+
+        &__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--ss-spacing-16);
+            align-items: start;
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        &__eyebrow {
+            display: inline-block;
+            font-size: var(--ss-font-size-xs);
+            font-weight: var(--ss-font-weight-medium);
+            text-transform: uppercase;
+            letter-spacing: var(--ss-tracking-widest);
+            color: var(--ss-color-gray-300);
+            margin-bottom: var(--ss-spacing-6);
+        }
+
+        &__title {
+            font-family: var(--ss-font-family-display);
+            font-size: clamp(q(36), 7vw, q(96));
+            font-weight: var(--ss-font-weight-bold);
+            line-height: 0.95;
+            letter-spacing: var(--ss-tracking-tighter);
+            margin: 0 0 var(--ss-spacing-10);
+            color: var(--ss-color-white);
+            max-width: 14ch;
+        }
+
+        &__description {
+            font-size: var(--ss-font-size-lg);
+            color: var(--ss-color-gray-200);
+            line-height: 1.5;
+            margin: 0 0 var(--ss-spacing-10);
+            max-width: 50ch;
+        }
+
+        &__info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--ss-spacing-4);
+            font-style: normal;
+            margin-bottom: var(--ss-spacing-10);
+        }
+
+        &__info-item {
+            display: flex;
+            align-items: center;
+            gap: var(--ss-spacing-3);
+            font-size: var(--ss-font-size-base);
+            color: var(--ss-color-white);
+
+            svg {
+                width: q(18);
+                height: q(18);
+                color: var(--ss-color-white);
+            }
+
+            a {
+                color: inherit;
+                text-decoration: none;
+                border-bottom: q(1) solid currentColor;
+                padding-bottom: q(2);
+
+                &:hover {
+                    opacity: 0.6;
+                }
+            }
+        }
+
+        &__social {
+            display: flex;
+            gap: var(--ss-spacing-3);
+        }
+
+        &__social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: q(44);
+            height: q(44);
+            border: q(1) solid var(--ss-color-white);
+            border-radius: q(999);
+            color: var(--ss-color-white);
+            transition: background-color var(--ss-duration-150) ease, color var(--ss-duration-150) ease;
+
+            &:hover {
+                background-color: var(--ss-color-white);
+                color: var(--ss-color-black);
+            }
+
+            svg {
+                width: q(18);
+                height: q(18);
+            }
+        }
+    }
+
+    // -- contact_info  (from site-scape_agency/src/static/scss/_base.scss) --
+    .ss-c-contact_info{
+        font-size: q(10);
+        margin-top:q(16);
+
+        table{
+            table-layout: auto;
+            line-height: 120%;
+        }
+        tr td:first-child{
+            padding-right: q(2);
+        }
+    }
+
+    // -- newsletter-form  (from site-blockfoundation_io/src/static/scss/layout/_footer.scss) --
+    .ss-c-newsletter-form {
+        &__input-group {
+            display: flex;
+            gap: var(--ss-spacing-2);
+        }
+
+        &__input {
+            flex: 1;
+            padding: var(--ss-spacing-3) var(--ss-spacing-4);
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-text-primary);
+            background-color: transparent;
+            border: q(1) solid var(--ss-color-border);
+            transition: border-color var(--ss-duration-150) ease;
+
+            &::placeholder {
+                color: var(--ss-color-text-muted);
+            }
+
+            &:focus {
+                outline: none;
+                border-color: var(--ss-color-text-primary);
+            }
+        }
+
+        &__button {
+            padding: var(--ss-spacing-3) var(--ss-spacing-6);
+            font-size: var(--ss-font-size-sm);
+            font-weight: var(--ss-font-weight-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ss-color-background);
+            background-color: var(--ss-color-text-primary);
+            border: q(1) solid var(--ss-color-text-primary);
+            cursor: pointer;
+            transition: all var(--ss-duration-150) ease;
+
+            &:hover {
+                background-color: transparent;
+                color: var(--ss-color-text-primary);
+            }
+        }
+    }
+
+    // -- contact-item  (from site-blockfoundation_io/src/static/scss/sections/_contact.scss) --
+    .ss-c-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--ss-spacing-4);
+
+        &__icon {
+            flex-shrink: 0;
+            width: q(48);
+            height: q(48);
+            border: q(1) solid var(--ss-color-border);
+        // (stripped @include)
+            svg {
+                width: q(24);
+                height: q(24);
+                color: var(--ss-color-text-primary);
+            }
+        }
+
+        &__label {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-text-muted);
+            margin-bottom: var(--ss-spacing-1);
+        }
+
+        &__value {
+            font-weight: var(--ss-font-weight-medium);
+            color: var(--ss-color-text-primary);
+            transition: color var(--ss-duration-150) ease;
+        }
+
+        a.contact-item__value:hover {
+            color: var(--ss-color-link-hover);
+        }
+    }
+
+    // -- contact-section  (from site-coreal_ai/src/static/scss/index.scss) --
+    .ss-c-contact-section {
+        padding: unset var(--ss-spacing-6);
+
+        &__inner {
+            max-width: q(1200);
+            margin: 0 auto;
+        }
+    }
+
+    // -- contact-form-wrapper  (from site-coreal_ai/src/static/scss/index.scss) --
+    .ss-c-contact-form-wrapper {
+        background: #ffffff;
+        border: q(1) solid var(--ss-color-border, #e5e5e5);
+        border-radius: var(--ss-radius-none);
+        padding: unset;
+    }
+
+    // -- contact-note  (from site-geoid_org/src/static/scss/components/_tables.scss) --
+    .ss-c-contact-note {
+      padding: var(--ss-spacing-6);
+      background: var(--ss-color-surface-alt);
+      border-radius: var(--ss-radius-md);
+      border-left: q(4) solid var(--ss-color-accent);
+
+      p {
+        font-size: q(15);
+        margin-bottom: 0;
+      }
+    }
+
+    // -- contact-content  (from site-inthecity_ai/src/static/scss/blocks/_contact.scss) --
+    .ss-c-contact-content {
+        max-width: calc(32 * var(--ss-grid-cell-size));
+    }
+
+    // -- contact-intro  (from site-inthecity_ai/src/static/scss/blocks/_contact.scss) --
+    .ss-c-contact-intro {
+        color: var(--ss-color-gray-600);
+        margin-bottom: var(--ss-grid-cell-size);
+    }
+
+    // -- newsletter  (from site-kockums_foundation/src/static/scss/sections/_cta.scss) --
+    .ss-c-newsletter {
+        // (stripped @include)
+      background-color: var(--ss-color-gray-100);
+
+      &__container {
+        // (stripped @include)
+        max-width: q(600);
+        text-align: center;
+      }
+
+      &__title {
+        font-size: var(--ss-font-size-3xl);
+        font-weight: var(--ss-font-weight-bold);
+        margin-bottom: var(--ss-spacing-4);
+
+        // (stripped @include block)
+
+      }
+
+      &__text {
+        font-size: var(--ss-font-size-base);
+        color: var(--ss-color-gray-600);
+        margin-bottom: var(--ss-spacing-6);
+      }
+
+      &__form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--ss-spacing-3);
+
+        // (stripped @include block)
+
+      }
+
+      &__input {
+        flex: 1;
+        padding: var(--ss-spacing-4);
+        font-size: var(--ss-font-size-base);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+
+        &:focus {
+          outline: none;
+          border-color: #737373;
+          box-shadow: 0 0 0 q(3) rgba(#737373, 0.15);
+        }
+      }
+
+      &__submit {
+        // (stripped @include)
+        white-space: nowrap;
+      }
+
+      &__privacy {
+        margin-top: var(--ss-spacing-4);
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-500);
+
+        a {
+          color: #737373;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    // dropped `.ss-c-stat` (site-kockums_foundation/src/static/scss/sections/_features.scss): kockums stat value/label: `.ss-c-stat__*` is owned by the stat module
+
+    // -- contact-form__title  (from site-matter_tech/src/static/scss/sections/_contact.scss) --
+    .ss-c-contact-form__title {
+        font-size: var(--ss-font-size-xl);
+        font-weight: var(--ss-font-weight-bold);
+        margin-bottom: unset;
+    }
+
+    // -- contact-info__block  (from site-matter_tech/src/static/scss/sections/_contact.scss) --
+    .ss-c-contact-info__block {
+        h3 {
+        // (stripped @include)
+            margin-bottom: unset;
+        }
+
+        p {
+            font-size: var(--ss-font-size-sm);
+            color: #525252;
+            margin-bottom: unset;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        a {
+            color: var(--ss-color-text, #1a1a1a);
+            transition: color var(--ss-duration-150) ease;
+
+            &:hover {
+                color: var(--ss-color-primary);
+            }
+        }
+    }
+
+    // -- contact-info__heading  (from site-matter_tech/src/static/scss/sections/_contact.scss) --
+    .ss-c-contact-info__heading {
+        // (stripped @include)
+        margin-bottom: unset;
+    }
+
+    // -- contact-social  (from site-matter_tech/src/static/scss/sections/_contact.scss) --
+    .ss-c-contact-social {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+
+        a {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-text, #1a1a1a);
+
+            &:hover {
+                color: var(--ss-color-primary);
+            }
+        }
+    }
+
+    // -- inquiries-grid  (from site-matter_tech/src/static/scss/sections/_contact.scss) --
+    .ss-c-inquiries-grid {
+        display: grid;
+        gap: unset;
+        grid-template-columns: 1fr;
+
+        // (stripped @include block)
+
+    }
+
+    // -- inquiry-block  (from site-matter_tech/src/static/scss/sections/_contact.scss) --
+    .ss-c-inquiry-block {
+        padding-bottom: unset;
+        border-bottom: q(1) solid #f2f2f2;
+
+        // (stripped @include block)
+
+    }
+
+    // -- inquiry-heading  (from site-matter_tech/src/static/scss/sections/_contact.scss) --
+    .ss-c-inquiry-heading {
+        font-family: Georgia, serif;
+        font-size: var(--ss-font-size-3xl);
+        font-weight: var(--ss-font-weight-light);
+        margin-bottom: unset;
+
+        // (stripped @include block)
+
+    }
+
+    // -- inquiry-description  (from site-matter_tech/src/static/scss/sections/_contact.scss) --
+    .ss-c-inquiry-description {
+        font-size: var(--ss-font-size-base);
+        color: #525252;
+        line-height: var(--ss-leading-relaxed);
+        margin-bottom: unset;
+
+        &:last-of-type {
+            margin-bottom: unset;
+        }
+    }
+
+    // -- inquiry-contact  (from site-matter_tech/src/static/scss/sections/_contact.scss) --
+    .ss-c-inquiry-contact {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+    }
+
+    // -- inquiry-label  (from site-matter_tech/src/static/scss/sections/_contact.scss) --
+    .ss-c-inquiry-label {
+        // (stripped @include)
+        color: #737373;
+    }
+
+    // -- inquiry-email  (from site-matter_tech/src/static/scss/sections/_contact.scss) --
+    .ss-c-inquiry-email {
+        font-size: var(--ss-font-size-lg);
+        color: var(--ss-color-text, #1a1a1a);
+        text-decoration: none;
+        transition: color var(--ss-duration-150) ease;
+
+        &:hover {
+            color: var(--ss-color-primary);
+        }
+    }
+
+    // -- contact-cards-grid  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-contact-cards-grid {
+        display: grid;
+        gap: unset;
+        grid-template-columns: 1fr;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "sm")) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    // -- contact-email  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-contact-email {
+        display: inline-block;
+        font-size: var(--ss-font-size-base);
+        font-weight: var(--ss-font-weight-medium);
+        color: unset;
+        transition: color var(--ss-duration-150) ease;
+
+        &:hover {
+            color: unset;
+        }
+    }
+
+    // -- location-section  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-location-section {
+        padding: unset 0;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- location-grid  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-location-grid {
+        display: grid;
+        gap: unset;
+        align-items: center;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    // -- location-info  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-location-info {
+        address {
+            font-style: normal;
+            font-size: var(--ss-font-size-lg);
+            color: var(--ss-color-gray-700);
+            line-height: var(--ss-leading-relaxed);
+            margin-top: unset;
+
+            strong {
+                color: var(--ss-color-gray-900);
+            }
+        }
+    }
+
+    // -- location-map  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-location-map {
+        .ss-c-map-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: unset;
+            background: var(--ss-color-white);
+            border: q(1) solid var(--ss-color-gray-200);
+            border-radius: var(--ss-radius-none);
+            color: var(--ss-color-gray-300);
+
+            svg {
+                width: 100%;
+                max-width: q(200);
+                height: auto;
+                margin-bottom: unset;
+            }
+
+            span {
+                font-size: var(--ss-font-size-sm);
+                font-weight: var(--ss-font-weight-medium);
+                color: var(--ss-color-gray-500);
+            }
+        }
+    }
+
+    // -- newsletter-section  (from site-speckle_org/src/static/scss/sections/_contact.scss) --
+    .ss-c-newsletter-section {
+      padding: var(--ss-spacing-16) 0;
+      background: var(--ss-color-background);
+    }
+
+    // -- newsletter-box  (from site-speckle_org/src/static/scss/sections/_contact.scss) --
+    .ss-c-newsletter-box {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ss-spacing-6);
+      padding: var(--ss-spacing-8);
+      background: linear-gradient(135deg, var(--ss-color-surface) 0%, rgba(0, 255, 136, 0.05) 100%);
+      border: q(1) solid var(--ss-color-accent);
+
+      @media (min-width: q(768)) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      &__content {
+        flex: 1;
+      }
+
+      &__title {
+        font-size: var(--ss-font-size-xl);
+        font-weight: var(--ss-font-weight-bold);
+        margin-bottom: var(--ss-spacing-2);
+      }
+
+      &__text {
+        color: var(--ss-color-text-muted);
+      }
+
+      &__form {
+        display: flex;
+        gap: var(--ss-spacing-3);
+        flex-shrink: 0;
+
+        @media (max-width: q(767)) {
+          flex-direction: column;
+        }
+      }
+
+      &__input {
+        padding: var(--ss-spacing-3) var(--ss-spacing-4);
+        background: var(--ss-color-surface-alt);
+        border: q(1) solid var(--ss-color-border);
+        color: var(--ss-color-foreground);
+        min-width: q(250);
+
+        &::placeholder {
+          color: var(--ss-color-muted);
+        }
+
+        &:focus {
+          outline: none;
+          border-color: var(--ss-color-accent);
+        }
+      }
+    }
+}

@@ -1,0 +1,857 @@
+////
+///
+/// Programme Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 63 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Programme
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- exhibitions-meta  (from site-scape_agency/src/static/scss/sections/_exhibitions.scss) --
+    .ss-c-exhibitions-meta {
+        &__note { margin-block-start: q(16); font-size: q(12.48); opacity: 0.65; line-height: 1.4; }
+    }
+
+    // -- exhibitions-page  (from site-scape_agency/src/static/scss/sections/_exhibitions.scss) --
+    .ss-c-exhibitions-page {
+        display: flex;
+        flex-direction: column;
+        gap: q(64);
+    }
+
+    // -- exhibitions-hero  (from site-scape_agency/src/static/scss/sections/_exhibitions.scss) --
+    .ss-c-exhibitions-hero {
+        &__link { display: block; text-decoration: none; }
+        &__media {
+            margin: 0 0 q(16) 0;
+            img { width: 100%; height: auto; aspect-ratio: 21 / 10; object-fit: cover; }
+        }
+        &__caption { display: flex; flex-direction: column; gap: q(6.4); }
+        &__kicker {
+            font-size: q(11.2); text-transform: uppercase; letter-spacing: 0.14em;
+            margin: 0; opacity: 0.7;
+        }
+        &__title {
+            font-size: clamp(q(25.6), 3.6vw, q(41.6));
+            line-height: 1.05; margin: 0; font-weight: 500;
+        }
+        &__meta { font-size: q(13.6); opacity: 0.7; margin: 0; }
+    }
+
+    // -- exhibitions-group  (from site-scape_agency/src/static/scss/sections/_exhibitions.scss) --
+    .ss-c-exhibitions-group {
+        &__header {
+            display: flex; justify-content: space-between; align-items: baseline;
+            margin-block-end: q(16); padding-block-end: q(8);
+            border-bottom: q(1) solid currentColor;
+        }
+        &__heading {
+            font-size: q(12.48); text-transform: uppercase; letter-spacing: 0.14em;
+            margin: 0; font-weight: 500;
+        }
+        &__count { font-size: q(12.48); opacity: 0.5; }
+    }
+
+    // -- exhibitions-schedule  (from site-scape_agency/src/static/scss/sections/_exhibitions.scss) --
+    .ss-c-exhibitions-schedule {
+        display: flex; flex-direction: column; gap: 0;
+
+        &__row { border-bottom: q(1) solid rgba(0,0,0,0.08); }
+        &__link {
+            display: grid;
+            grid-template-columns: q(80) 1fr;
+            gap: q(20);
+            padding-block: q(20);
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+            align-items: start;
+
+            @media (min-width: q(880)) {
+                grid-template-columns: q(80) 1fr q(220);
+            }
+
+            &:hover { opacity: 0.6; }
+        }
+
+        &__date {
+            time {
+                display: flex; flex-direction: column; align-items: flex-start;
+                line-height: 1; gap: q(2.4);
+                .ss-c-day { font-size: q(25.6); font-weight: 500; }
+                .ss-c-month { font-size: q(12); text-transform: uppercase; letter-spacing: 0.1em; }
+                .ss-c-year { font-size: q(11.2); opacity: 0.55; }
+            }
+        }
+        &__date-tba { font-size: q(12.48); opacity: 0.55; text-transform: uppercase; letter-spacing: 0.1em; }
+
+        &__body {
+            display: flex; flex-direction: column; gap: q(4.8);
+        }
+        &__title { font-size: q(17.6); margin: 0; font-weight: 500; }
+        &__meta { font-size: q(12.48); opacity: 0.65; margin: 0; }
+        &__lead { font-size: q(14.08); opacity: 0.85; margin: q(4) 0 0 0; line-height: 1.5; }
+
+        &__media {
+            display: none;
+            @media (min-width: q(880)) { display: block; }
+            img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+        }
+    }
+
+    // -- exhibitions-empty  (from site-scape_agency/src/static/scss/sections/_exhibitions.scss) --
+    .ss-c-exhibitions-empty { padding-block: q(64); text-align: center; opacity: 0.7; }
+
+    // -- exhibition  (from site-scape_agency/src/static/scss/sections/_exhibitions.scss) --
+    .ss-c-exhibition {
+        display: flex; flex-direction: column; gap: q(40);
+
+        &__hero {
+            margin: 0 0 q(24) 0;
+            img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+        }
+        &__title-block { display: flex; flex-direction: column; gap: q(8); }
+        &__kicker { font-size: q(11.52); text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.65; margin: 0; }
+        &__title { font-size: clamp(q(28.8), 4vw, q(44.8)); line-height: 1.05; margin: 0; font-weight: 500; }
+        &__dateline { font-size: q(15.2); opacity: 0.75; margin: 0; line-height: 1.5; }
+        &__lead { font-size: q(17.6); line-height: 1.55; opacity: 0.9; max-width: 50ch; }
+    }
+
+    // -- exhibition-meta  (from site-scape_agency/src/static/scss/sections/_exhibitions.scss) --
+    .ss-c-exhibition-meta {
+        &__back { margin-block-start: q(16); font-size: q(12.8); }
+        &__back a { text-decoration: none; opacity: 0.7; &:hover { opacity: 1; } }
+    }
+
+    // -- aftermovie  (from site-inthecity_ai/src/static/scss/blocks/_aftermovie.scss) --
+    .ss-c-aftermovie {
+        max-width: q(1024);
+    }
+
+    // -- aftermovie__eyebrow  (from site-inthecity_ai/src/static/scss/blocks/_aftermovie.scss) --
+    .ss-c-aftermovie__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25em;
+        font-family: unset;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-accent);
+        font-size: q(12);
+        margin-bottom: q(8);
+    }
+
+    // -- aftermovie__eyebrow-dot  (from site-inthecity_ai/src/static/scss/blocks/_aftermovie.scss) --
+    .ss-c-aftermovie__eyebrow-dot {
+        width: 0.5em;
+        height: 0.5em;
+        background: var(--ss-color-accent);
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    // -- aftermovie__title  (from site-inthecity_ai/src/static/scss/blocks/_aftermovie.scss) --
+    .ss-c-aftermovie__title {
+        margin-bottom: 0.5em;
+    }
+
+    // -- aftermovie__subtitle  (from site-inthecity_ai/src/static/scss/blocks/_aftermovie.scss) --
+    .ss-c-aftermovie__subtitle {
+        color: var(--ss-color-gray-600);
+        max-width: 50ch;
+        margin-bottom: q(24);
+    }
+
+    // -- aftermovie__player  (from site-inthecity_ai/src/static/scss/blocks/_aftermovie.scss) --
+    .ss-c-aftermovie__player {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background-color: var(--ss-color-primary);
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+        border: #{q(1)} solid var(--ss-color-line);
+    }
+
+    // -- aftermovie__iframe  (from site-inthecity_ai/src/static/scss/blocks/_aftermovie.scss) --
+    .ss-c-aftermovie__iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+    }
+
+    // -- event-days__grid  (from site-inthecity_ai/src/static/scss/blocks/_event-days.scss) --
+    .ss-c-event-days__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(200), 1fr));
+        gap: q(16);
+        width: 100%;
+    }
+
+    // -- event-card  (from site-inthecity_ai/src/static/scss/blocks/_event-days.scss) --
+    .ss-c-event-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: var(--ss-color-white);
+        border: #{q(1)} solid var(--ss-color-line);
+        border-radius: var(--ss-radius-md);
+        transition: border-color var(--ss-duration-200) var(--ss-ease-out);
+
+        &:hover {
+            border-color: var(--ss-color-accent);
+        }
+
+        // Image always spans the full width of the card and uses a fixed
+        // aspect-ratio so every card in the row shows the same image size,
+        // regardless of the original photo dimensions.
+        &__image {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        &__content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: q(12);
+            gap: q(4);
+        }
+
+        &__day {
+            font-family: unset;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ss-color-gray-400);
+            font-size: q(12);
+        }
+
+        &__label {
+            display: block;
+            font-family: unset;
+            font-weight: 600;
+            color: var(--ss-color-accent);
+            font-size: q(14);
+            margin-top: q(4);
+        }
+
+        &__title {
+            font-weight: 600;
+            color: var(--ss-color-primary);
+            // Reserve space for two lines so the description below always
+            // starts at the same vertical position across cards, even when
+            // some titles wrap and others don't.
+            min-height: calc(2 * 1.3em);
+            line-height: 1.3;
+        }
+
+        &__description {
+            color: var(--ss-color-gray-600);
+            font-size: q(14);
+        }
+
+        &__link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25em;
+            font-weight: 600;
+            color: var(--ss-color-accent);
+            transition: gap var(--ss-duration-150) var(--ss-ease-out);
+            // Push the CTA to the bottom of the card so it lines up across
+            // siblings even when descriptions have different lengths.
+            margin-top: auto;
+            padding-top: q(12);
+            align-self: flex-start;
+
+            &:hover {
+                gap: 0.5em;
+            }
+
+            .ss-c-arrow {
+                transition: transform var(--ss-duration-150) var(--ss-ease-out);
+            }
+
+            &:hover .ss-c-arrow {
+                transform: translateX(q(4));
+            }
+        }
+    }
+
+    // -- previous-editions  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions {
+        max-width: q(1280);
+    }
+
+    // -- previous-editions__eyebrow  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25em;
+        font-family: unset;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-accent);
+        font-size: q(12);
+        margin-bottom: q(8);
+    }
+
+    // -- previous-editions__eyebrow-dot  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__eyebrow-dot {
+        width: 0.5em;
+        height: 0.5em;
+        background: var(--ss-color-accent);
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    // -- previous-editions__title  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__title {
+        margin-bottom: 0.5em;
+    }
+
+    // -- previous-editions__subtitle  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__subtitle {
+        color: var(--ss-color-gray-600);
+        max-width: 50ch;
+        margin-bottom: q(32);
+    }
+
+    // -- previous-editions__grid  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__grid {
+        display: grid;
+        grid-template-columns: repeat(var(--columns, 2), 1fr);
+        gap: q(16);
+
+        @media (max-width: q(768)) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // -- previous-editions__card  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__card {
+        display: flex;
+        flex-direction: column;
+        background: var(--ss-color-white);
+        border: #{q(1)} solid var(--ss-color-line);
+        color: inherit;
+        text-decoration: none;
+        transition: all var(--ss-duration-150) var(--ss-ease-out);
+
+        &:hover {
+            border-color: var(--ss-color-accent);
+            transform: translateY(q(-2));
+        }
+    }
+
+    // -- previous-editions__media  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__media {
+        overflow: hidden;
+        background: var(--ss-color-gray-100);
+    }
+
+    // -- previous-editions__image  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        aspect-ratio: 16 / 9;
+        display: block;
+        transition: transform var(--ss-duration-200) var(--ss-ease-out);
+
+        .ss-c-previous-editions__card:hover & {
+            transform: scale(1.03);
+        }
+    }
+
+    // -- previous-editions__body  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__body {
+        padding: q(24);
+        display: flex;
+        flex-direction: column;
+        gap: q(8);
+    }
+
+    // -- previous-editions__year  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__year {
+        font-family: unset;
+        font-size: q(12);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-accent);
+    }
+
+    // -- previous-editions__card-title  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__card-title {
+        font-size: q(20);
+        font-weight: 600;
+        color: var(--ss-color-primary);
+        margin: 0;
+    }
+
+    // -- previous-editions__description  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__description {
+        color: var(--ss-color-gray-600);
+        font-size: q(15);
+        margin: 0;
+    }
+
+    // -- previous-editions__cta  (from site-inthecity_ai/src/static/scss/blocks/_previous-editions.scss) --
+    .ss-c-previous-editions__cta {
+        margin-top: q(8);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25em;
+        font-family: unset;
+        font-size: q(12);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-accent);
+
+        svg {
+            width: 1em;
+            height: 1em;
+        }
+    }
+
+    // -- programme  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme {
+        max-width: q(1024);
+    }
+
+    // -- programme__eyebrow  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25em;
+        font-family: unset;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-accent);
+        font-size: q(12);
+        margin-bottom: q(8);
+    }
+
+    // -- programme__eyebrow-dot  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__eyebrow-dot {
+        width: 0.5em;
+        height: 0.5em;
+        background: var(--ss-color-accent);
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    // -- programme__title  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__title {
+        margin-bottom: 0.5em;
+    }
+
+    // -- programme__subtitle  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__subtitle {
+        color: var(--ss-color-gray-600);
+        max-width: 50ch;
+        margin-bottom: q(32);
+    }
+
+    // -- programme__days  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__days {
+        display: flex;
+        gap: 0;
+        margin-bottom: q(24);
+        border: #{q(1)} solid var(--ss-color-line);
+        background: var(--ss-color-white);
+        width: fit-content;
+    }
+
+    // -- programme__day  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__day {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: q(2);
+        padding: 0.75em 1.5em;
+        font-family: unset;
+        background: var(--ss-color-white);
+        border: none;
+        border-right: #{q(1)} solid var(--ss-color-line);
+        color: var(--ss-color-gray-600);
+        cursor: pointer;
+        transition: all var(--ss-duration-150) var(--ss-ease-out);
+
+        &:last-child {
+            border-right: none;
+        }
+
+        &:hover {
+            background: var(--ss-color-gray-50);
+            color: var(--ss-color-primary);
+        }
+
+        &--active {
+            background: var(--ss-color-primary);
+            color: var(--ss-color-white);
+
+            &:hover {
+                background: var(--ss-color-primary);
+                color: var(--ss-color-white);
+            }
+        }
+    }
+
+    // -- programme__day-label  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__day-label {
+        font-size: q(14);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    // -- programme__day-date  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__day-date {
+        font-size: q(12);
+        font-weight: 500;
+        opacity: 0.8;
+    }
+
+    // -- programme__filters  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: q(8);
+        margin-bottom: q(24);
+    }
+
+    // -- programme__filter  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__filter {
+        padding: 0.5em 1em;
+        font-family: unset;
+        font-size: q(12);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background: var(--ss-color-white);
+        border: #{q(1)} solid var(--ss-color-line);
+        color: var(--ss-color-gray-600);
+        cursor: pointer;
+        transition: all var(--ss-duration-150) var(--ss-ease-out);
+
+        &:hover {
+            border-color: var(--ss-color-accent);
+            color: var(--ss-color-primary);
+        }
+
+        &--active {
+            background: var(--ss-color-primary);
+            border-color: var(--ss-color-primary);
+            color: var(--ss-color-white);
+
+            &:hover {
+                background: var(--ss-color-primary);
+                border-color: var(--ss-color-primary);
+                color: var(--ss-color-white);
+            }
+        }
+    }
+
+    // -- programme__table  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__table {
+        border: #{q(1)} solid var(--ss-color-line);
+        background: var(--ss-color-white);
+    }
+
+    // -- programme__header  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__header {
+        display: grid;
+        grid-template-columns: q(96) 1fr q(128) q(128);
+        gap: q(16);
+        padding: q(12) q(16);
+        background: var(--ss-color-gray-100);
+        border-bottom: #{q(1)} solid var(--ss-color-line);
+        font-family: unset;
+        font-size: q(12);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ss-color-gray-500);
+
+        @media (max-width: q(768)) {
+            display: none;
+        }
+    }
+
+    // -- programme__body  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__body {
+        // Container for rows
+    }
+
+    // -- programme__row  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__row {
+        display: grid;
+        grid-template-columns: q(96) 1fr q(128) q(128);
+        gap: q(16);
+        padding: q(16);
+        border-bottom: #{q(1)} solid var(--ss-color-line);
+        transition: background var(--ss-duration-150) var(--ss-ease-out);
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover {
+            background: var(--ss-color-gray-100);
+        }
+
+        @media (max-width: q(768)) {
+            grid-template-columns: 1fr;
+            gap: q(8);
+        }
+    }
+
+    // -- programme__col  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__col {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        &--time {
+            @media (max-width: q(768)) {
+                order: -1;
+            }
+        }
+
+        &--title {
+            gap: q(4);
+        }
+
+        &--track,
+        &--location {
+            @media (max-width: q(768)) {
+                flex-direction: row;
+                gap: q(8);
+            }
+        }
+    }
+
+    // -- programme__time  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__time {
+        font-family: unset;
+        font-size: q(14);
+        font-weight: 500;
+        color: var(--ss-color-primary);
+    }
+
+    // -- programme__item-title  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__item-title {
+        font-weight: 600;
+        color: var(--ss-color-primary);
+    }
+
+    // -- programme__speaker  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__speaker {
+        font-size: q(14);
+        color: var(--ss-color-accent);
+    }
+
+    // -- programme__description  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__description {
+        font-size: q(14);
+        color: var(--ss-color-gray-600);
+        line-height: 1.5;
+    }
+
+    // -- programme__track  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__track {
+        display: inline-flex;
+        padding: 0.25em 0.5em;
+        font-family: unset;
+        font-size: q(10);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-radius: q(2);
+        width: fit-content;
+
+        &--main {
+            background: rgba(9, 159, 128, 0.1);
+            color: var(--ss-color-accent);
+        }
+
+        &--workshop {
+            background: rgba(0, 184, 212, 0.1);
+            color: var(--ss-color-accent);
+        }
+
+        &--panel {
+            background: rgba(6, 6, 68, 0.1);
+            color: var(--ss-color-primary);
+        }
+
+        &--networking {
+            background: rgba(245, 133, 77, 0.1);
+            color: var(--ss-color-warning);
+        }
+
+        &--break {
+            background: var(--ss-color-gray-100);
+            color: var(--ss-color-gray-500);
+        }
+
+        &--excursion {
+            background: rgba(138, 43, 226, 0.1);
+            color: #8a2be2;
+        }
+    }
+
+    // -- programme__col--location  (from site-inthecity_ai/src/static/scss/blocks/_programme.scss) --
+    .ss-c-programme__col--location {
+        font-size: q(14);
+        color: var(--ss-color-gray-500);
+    }
+
+    // dropped `.ss-c-stats` (site-inthecity_ai/src/static/scss/blocks/_stats.scss): inthecity stats wrapper sizing: `.ss-c-stats` is the stat module's row; the site's section container sets the width
+
+    // -- tickets  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-tickets {
+        max-width: q(1152);
+    }
+
+    // -- tickets__title  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-tickets__title {
+        text-align: center;
+        margin-bottom: q(32);
+    }
+
+    // -- tickets__grid  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-tickets__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: q(24);
+        margin-bottom: q(24);
+
+        @media (max-width: q(1024)) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: q(640)) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // -- ticket-card  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-ticket-card {
+        background: var(--ss-color-white);
+        border: #{q(1)} solid var(--ss-color-line);
+        padding: q(32);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        &--highlighted {
+            border-color: var(--ss-color-accent);
+            border-width: q(2);
+        }
+    }
+
+    // -- ticket-card__badge  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-ticket-card__badge {
+        position: absolute;
+        top: q(-12);
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--ss-color-accent);
+        color: var(--ss-color-white);
+        font-family: unset;
+        font-size: q(10);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: q(4) q(12);
+    }
+
+    // -- ticket-card__name  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-ticket-card__name {
+        font-size: q(20);
+        font-weight: 600;
+        margin-bottom: q(8);
+        color: var(--ss-color-primary);
+    }
+
+    // -- ticket-card__price  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-ticket-card__price {
+        font-size: q(32);
+        font-weight: 700;
+        color: var(--ss-color-accent);
+        margin-bottom: q(16);
+    }
+
+    // -- ticket-card__description  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-ticket-card__description {
+        font-size: q(14);
+        color: var(--ss-color-gray-600);
+        margin-bottom: q(16);
+    }
+
+    // -- ticket-card__includes  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-ticket-card__includes {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 q(24);
+        flex-grow: 1;
+
+        li {
+            display: flex;
+            align-items: flex-start;
+            gap: q(8);
+            padding: q(8) 0;
+            font-size: q(14);
+            color: var(--ss-color-gray-700);
+
+            svg {
+                width: q(16);
+                height: q(16);
+                color: var(--ss-color-accent);
+                flex-shrink: 0;
+                margin-top: q(2);
+            }
+        }
+    }
+
+    // -- tickets__note  (from site-inthecity_ai/src/static/scss/layout/_tickets-page.scss) --
+    .ss-c-tickets__note {
+        text-align: center;
+        font-size: q(14);
+        color: var(--ss-color-gray-500);
+
+        p {
+            margin: 0;
+        }
+    }
+}

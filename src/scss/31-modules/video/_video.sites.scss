@@ -1,0 +1,190 @@
+////
+///
+/// Video Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `video` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 7 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Video
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- video-grid  (from site-scape_foundation/src/static/scss/components/_video_grid.scss) --
+    .ss-c-video-grid {
+        display: grid;
+        gap: q(16);
+        width: 100%;
+
+        // Default: responsive grid
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, q(200)), 1fr));
+    }
+
+    // -- video-grid--portrait  (from site-scape_foundation/src/static/scss/components/_video_grid.scss) --
+    .ss-c-video-grid--portrait {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: q(16);
+        width: 100%;
+    }
+
+    // -- video-grid__item  (from site-scape_foundation/src/static/scss/components/_video_grid.scss) --
+    .ss-c-video-grid__item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-radius: q(4);
+        background: var(--ss-color-surface-alt, #f8f8f8);
+    }
+
+    // -- video-grid__video  (from site-scape_foundation/src/static/scss/components/_video_grid.scss) --
+    .ss-c-video-grid__video {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+    // -- video-grid__label  (from site-scape_foundation/src/static/scss/components/_video_grid.scss) --
+    .ss-c-video-grid__label {
+        display: block;
+        padding: q(12) q(16);
+        font-family: var(--ss-font-family-display);
+        font-size: var(--ss-font-size-sm);
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 0.05em;
+        background: var(--ss-color-background, #fff);
+        border-top: q(1) solid var(--ss-color-border-subtle, #e8e8e8);
+    }
+
+    // -- player-controls  (from site-speckle_org/src/static/scss/components/_player.scss) --
+    .ss-c-player-controls {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ss-spacing-4);
+
+      &__progress {
+        display: flex;
+        align-items: center;
+        gap: var(--ss-spacing-4);
+      }
+
+      &__progress-bar {
+        flex: 1;
+        height: q(4);
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: q(2);
+        position: relative;
+        cursor: pointer;
+
+        &:hover {
+          height: q(6);
+        }
+      }
+
+      &__progress-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 0%;
+        background: var(--ss-color-accent);
+        border-radius: q(2);
+        transition: width 0.1s linear;
+      }
+
+      &__progress-handle {
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        width: q(12);
+        height: q(12);
+        background: var(--ss-color-accent);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity var(--ss-duration-150);
+
+        .ss-c-player-controls__progress-bar:hover & {
+          opacity: 1;
+        }
+      }
+
+      &__time {
+        font-family: var(--ss-font-family-mono);
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-text-muted);
+        display: flex;
+        gap: var(--ss-spacing-1);
+      }
+
+      &__buttons {
+        display: flex;
+        align-items: center;
+        gap: var(--ss-spacing-2);
+      }
+
+      &__spacer {
+        flex: 1;
+      }
+    }
+
+    // -- player-btn  (from site-speckle_org/src/static/scss/components/_player.scss) --
+    .ss-c-player-btn {
+      width: q(40);
+      height: q(40);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ss-color-foreground);
+      border-radius: var(--ss-radius-md);
+      transition: all var(--ss-duration-150);
+
+      svg {
+        width: q(24);
+        height: q(24);
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      &--play {
+        width: q(56);
+        height: q(56);
+        background: var(--ss-color-foreground);
+        color: var(--ss-color-background);
+        border-radius: 50%;
+
+        &:hover {
+          background: var(--ss-color-gray-200);
+          transform: scale(1.05);
+        }
+
+        svg {
+          width: q(28);
+          height: q(28);
+        }
+      }
+    }
+}

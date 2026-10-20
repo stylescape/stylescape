@@ -1,0 +1,68 @@
+////
+///
+/// Steps Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `steps` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 4 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Steps
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- steps-section  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-steps-section {
+        display: flex;
+        flex-direction: column;
+        gap: q(40);
+        width: 100%;
+    }
+
+    // -- step  (from site-starling_studio/src/static/scss/_old.scss) --
+    // Scoped under .ss-c-starling: the bare selector overrode the steps
+    // module's layout (this layer outranks ss.components).
+    .ss-c-starling .ss-c-step {
+        grid-template-columns: q(16) 1fr;
+        gap: q(32);
+    }
+
+    // -- step-number  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-step-number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: q(32);
+        height: q(32);
+        font-weight: bold;
+        border: q(2) solid #000;
+        border-radius: 50%;
+        /* Circle shape */
+        flex-shrink: 0;
+        /* Prevents shrinking */
+    }
+
+    // -- step-content  (from site-starling_studio/src/static/scss/_old.scss) --
+    .ss-c-step-content {
+        display: flex;
+        flex-direction: column;
+        gap: q(24);
+        /* Space between paragraphs */
+    }
+}

@@ -1,0 +1,75 @@
+////
+///
+/// Grid Dots Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 1 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.GridDots
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- grid-dots  (from site-inthecity_ai/src/static/scss/grid/_grid_dots.scss) --
+    .ss-c-grid-dots {
+        position: absolute;
+        inset: 0;
+        z-index: var(--grid-dots-z-index, -1);
+        pointer-events: none;
+
+        // Dot pattern via background gradient + mask (no grid needed)
+        background-image: linear-gradient(
+            to right,
+            var(--grid-dots-color, var(--ss-color-primary)) var(--grid-dots-size, #{q(1)}),
+            transparent var(--grid-dots-size, #{q(1)})
+        );
+        background-size: var(--ss-grid-cell-size) var(--ss-grid-cell-size);
+        background-position: var(--grid-dots-offset, #{q(-0.5)}) var(--grid-dots-offset, #{q(-0.5)});
+
+        // Mask creates vertical cuts, leaving only dots at intersections
+        mask-image: linear-gradient(
+            to bottom,
+            black var(--grid-dots-size, #{q(1)}),
+            transparent var(--grid-dots-size, #{q(1)})
+        );
+        mask-size: var(--ss-grid-cell-size) var(--ss-grid-cell-size);
+        mask-position: var(--grid-dots-offset, #{q(-0.5)}) var(--grid-dots-offset, #{q(-0.5)});
+
+        // Webkit prefix for Safari support
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            black var(--grid-dots-size, #{q(1)}),
+            transparent var(--grid-dots-size, #{q(1)})
+        );
+        -webkit-mask-size: var(--ss-grid-cell-size) var(--ss-grid-cell-size);
+        -webkit-mask-position: var(--grid-dots-offset, #{q(-0.5)}) var(--grid-dots-offset, #{q(-0.5)});
+
+        opacity: var(--grid-dots-opacity, 0.25);
+
+        // On mobile, the absolutely-positioned background layer inside
+        // .ss-c-frame__content (overflow: hidden) gets composited on its own GPU
+        // layer and updates asynchronously from native scroll, producing a
+        // visible drift from the foreground content. The pattern is also
+        // effectively invisible at mobile cell sizes — hide it.
+        @media (max-width: q(768)) {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,181 @@
+////
+///
+/// Navbar Site Styles
+/// ===========================================================================
+///
+/// Classes the scapepress sites use next to the native `navbar` module,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module rather than
+/// from this module's index, so at equal specificity the native rules win.
+///
+/// 7 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Navbar
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- navbar__container  (from site-lovelacelabs_ai/src/static/scss/app/_navbar.scss) --
+    .ss-c-navbar__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        max-width: q(1400);
+        height: 100%;
+        margin: 0 auto;
+        padding: 0 q(10);
+    }
+
+    // -- navbar__brand  (from site-lovelacelabs_ai/src/static/scss/app/_navbar.scss) --
+    .ss-c-navbar__brand {
+        display: flex;
+        align-items: center;
+    }
+
+    // -- navbar__logo  (from site-lovelacelabs_ai/src/static/scss/app/_navbar.scss) --
+    .ss-c-navbar__logo {
+        // (stripped @include)
+        // (stripped @include)
+        text-decoration: none;
+        color: inherit;
+        letter-spacing: 0.1em;
+
+        padding: q(02) q(05);
+        border-radius: q(8);
+        background: transparent;
+
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow:
+                inset 0 0 0 q(1) rgba(255, 255, 255, 0.8),
+                0 0 0 q(1) rgba(163, 177, 198, 0.4),
+                q(4) q(4) q(8) unset,
+                q(-4) q(-4) q(8) unset;
+        }
+    }
+
+    // -- navbar__menu  (from site-lovelacelabs_ai/src/static/scss/app/_navbar.scss) --
+    .ss-c-navbar__menu {
+        display: flex;
+        align-items: center;
+        gap: q(02);
+    }
+
+    // -- navbar__link  (from site-lovelacelabs_ai/src/static/scss/app/_navbar.scss) --
+    .ss-c-navbar__link {
+        // (stripped @include)
+        // (stripped @include)
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: inherit;
+
+        padding: q(02) q(05);
+        border-radius: q(8);
+
+        // Glass effect background
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(q(12));
+        -webkit-backdrop-filter: blur(q(12));
+
+        // Neumorphic border effect
+        box-shadow:
+            inset 0 0 0 q(1) rgba(255, 255, 255, 0.6),
+            0 0 0 q(1) rgba(163, 177, 198, 0.2);
+
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.45);
+            box-shadow:
+                inset 0 0 0 q(1) rgba(255, 255, 255, 0.9),
+                0 0 0 q(1) rgba(163, 177, 198, 0.3),
+                q(4) q(4) q(12) unset,
+                q(-4) q(-4) q(12) unset;
+        }
+
+        &--active {
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow:
+                inset q(2) q(2) q(6) rgba(163, 177, 198, 0.4),
+                inset q(-2) q(-2) q(6) rgba(255, 255, 255, 0.6);
+        }
+    }
+
+    // -- navbar__toggle  (from site-lovelacelabs_ai/src/static/scss/app/_navbar.scss) --
+    .ss-c-navbar__toggle {
+        display: none;
+
+        width: q(40);
+        height: q(40);
+
+        background: transparent;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+
+        box-shadow:
+            inset 0 0 0 q(1) rgba(255, 255, 255, 0.5),
+            0 0 0 q(1) rgba(163, 177, 198, 0.3);
+
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow:
+                inset 0 0 0 q(1) rgba(255, 255, 255, 0.8),
+                0 0 0 q(1) rgba(163, 177, 198, 0.4),
+                q(4) q(4) q(8) unset,
+                q(-4) q(-4) q(8) unset;
+        }
+
+        &:active {
+            box-shadow:
+                inset q(2) q(2) q(4) unset,
+                inset q(-2) q(-2) q(4) unset;
+        }
+    }
+
+    // -- navbar__toggle-icon  (from site-lovelacelabs_ai/src/static/scss/app/_navbar.scss) --
+    .ss-c-navbar__toggle-icon {
+        display: block;
+        width: q(18);
+        height: q(2);
+        background: currentColor;
+        margin: 0 auto;
+        position: relative;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            width: q(18);
+            height: q(2);
+            background: currentColor;
+            left: 0;
+        }
+
+        &::before {
+            top: q(-6);
+        }
+
+        &::after {
+            bottom: q(-6);
+        }
+    }
+}

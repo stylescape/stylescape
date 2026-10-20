@@ -1,0 +1,693 @@
+////
+///
+/// Project Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 27 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Project
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- project-carousel  (from site-scape_foundation/src/static/scss/components/_carousel.scss) --
+    .ss-c-project-carousel {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: q(4);
+        padding: q(4) 0;
+
+        &__track {
+            display: flex;
+            gap: q(6);
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding: q(2) 0;
+
+            // Hide scrollbar
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        &__item {
+            flex: 0 0 q(280);
+            scroll-snap-align: start;
+            position: relative;
+            border-radius: q(2);
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            background: var(--ss-color-surface, #f5f5f5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            &:hover {
+                transform: translateY(q(-4));
+                box-shadow: 0 q(8) q(24) rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        &__image {
+            width: 100%;
+            height: q(180);
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        &__placeholder {
+            width: 100%;
+            height: q(180);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color_accent_primary, #2d5a27) 0%, #1a3d18 100%);
+
+            span {
+                font-family: Georgia, serif, Georgia, serif;
+                font-size: q(64);
+                font-weight: 700;
+                color: rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        &__info {
+            padding: q(4);
+        }
+
+        &__title {
+            font-family: Georgia, serif, Georgia, serif;
+            font-size: q(16);
+            font-weight: 600;
+            margin: 0 0 q(1);
+            line-height: 1.3;
+            color: var(--color_text_primary, #1a1a1a);
+        }
+
+        &__category {
+            font-family: 'FF DIN', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif, -apple-system, sans-serif;
+            font-size: q(12);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color_text_secondary, #666);
+        }
+
+        &__btn {
+            flex-shrink: 0;
+            width: q(40);
+            height: q(40);
+            border-radius: 50%;
+            border: q(1) solid var(--ss-color-border, #ddd);
+            background: var(--ss-color-background, #fff);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+
+            span {
+                font-size: q(24);
+                line-height: 1;
+                color: var(--color_text_primary, #1a1a1a);
+            }
+
+            &:hover {
+                background: var(--color_accent_primary, #2d5a27);
+                border-color: var(--color_accent_primary, #2d5a27);
+
+                span {
+                    color: #fff;
+                }
+            }
+
+            &:disabled {
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    // -- work-body  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-work-body {
+        display: flex;
+        flex-direction: column;
+        gap: q(56);
+        padding-block: q(16) q(64);
+        max-width: 100%;
+    }
+
+    // -- work-details  (from site-scape_agency/src/static/scss/sections/_layout_blocks.scss) --
+    .ss-c-work-details {
+        margin-top: q(96);
+        padding-top: q(32);
+        border-top: q(1) solid currentColor;
+        max-width: 100%;
+
+        &__heading {
+            margin: 0 0 q(40);
+            font-size: q(16);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        &__list {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: q(4);
+            padding: q(20) 0;
+            border-bottom: q(1) solid rgba(0, 0, 0, 0.12);
+
+            &:last-child { border-bottom: 0; }
+        }
+
+        &__label {
+            margin: 0;
+            font-size: q(15.2);
+            font-weight: 400;
+            opacity: 0.6;
+        }
+
+        &__value {
+            margin: 0;
+            font-size: q(20);
+            line-height: 1.35;
+            font-weight: 400;
+        }
+    }
+
+    // -- projects-page  (from site-scape_agency/src/static/scss/sections/_projects.scss) --
+    .ss-c-projects-page {
+        display: flex;
+        flex-direction: column;
+        gap: q(40);
+        padding-block-end: q(64);
+    }
+
+    // -- projects-viewmode  (from site-scape_agency/src/static/scss/sections/_projects.scss) --
+    .ss-c-projects-viewmode {
+        display: inline-flex;
+        gap: q(12);
+
+        &__item {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.5;
+
+            &.is-active,
+            &:hover,
+            &:focus {
+                opacity: 1;
+            }
+
+            &.is-active {
+                text-decoration: underline;
+                text-underline-offset: 0.25em;
+            }
+        }
+    }
+
+    // -- projects-index  (from site-scape_agency/src/static/scss/sections/_projects.scss) --
+    .ss-c-projects-index {
+        display: flex;
+        flex-direction: column;
+        gap: q(48);
+
+        &__empty {
+            opacity: 0.6;
+        }
+    }
+
+    // -- projects-year  (from site-scape_agency/src/static/scss/sections/_projects.scss) --
+    .ss-c-projects-year {
+        display: flex;
+        flex-direction: column;
+        gap: q(16);
+
+        &__header {
+            display: flex;
+            align-items: baseline;
+            gap: q(12);
+            padding-block-end: q(8);
+            border-block-end: q(1) solid currentColor;
+        }
+
+        &__heading {
+            font-size: clamp(q(32), 4vw, q(56));
+            font-weight: 400;
+            line-height: 1;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        &__count {
+            font-size: q(12);
+            opacity: 0.5;
+            letter-spacing: 0.05em;
+        }
+
+        &__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(q(180), 1fr));
+            gap: q(24) q(16);
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    // -- projects-tile  (from site-scape_agency/src/static/scss/sections/_projects.scss) --
+    .ss-c-projects-tile {
+        transition: opacity 0.2s ease-out;
+
+        &__link {
+            display: flex;
+            flex-direction: column;
+            gap: q(8);
+            color: inherit;
+            text-decoration: none;
+        }
+
+        &__figure {
+            position: relative;
+            margin: 0;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        &__image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease-out;
+
+            &--placeholder {
+                background:
+                    linear-gradient(
+                        135deg,
+                        rgba(0, 0, 0, 0.05) 25%,
+                        transparent 25%,
+                        transparent 50%,
+                        rgba(0, 0, 0, 0.05) 50%,
+                        rgba(0, 0, 0, 0.05) 75%,
+                        transparent 75%
+                    );
+                background-size: q(12) q(12);
+            }
+        }
+
+        &__title {
+            margin: 0;
+            font-size: q(13.6);
+            font-weight: 400;
+            line-height: 1.25;
+            letter-spacing: 0;
+        }
+
+        &__link:hover &__image,
+        &__link:focus-visible &__image {
+            transform: scale(1.03);
+        }
+    }
+
+    // -- projects-year__grid  (from site-scape_agency/src/static/scss/sections/_projects.scss) --
+    .ss-c-projects-year__grid:hover .ss-c-projects-tile {
+        opacity: 0.4;
+    }
+
+    // -- projects-yearnav  (from site-scape_agency/src/static/scss/sections/_projects.scss) --
+    .ss-c-projects-yearnav a {
+        color: inherit;
+        text-decoration: none;
+        opacity: 0.7;
+
+        &:hover,
+        &:focus {
+            opacity: 1;
+            text-decoration: underline;
+        }
+    }
+
+    // -- work-related  (from site-scape_agency/src/static/scss/sections/_related.scss) --
+    .ss-c-work-related {
+        margin-block-start: q(64);
+        padding-block-start: q(32);
+        border-top: q(1) solid currentColor;
+
+        &__heading {
+            font-size: q(12);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-block-end: q(24);
+            opacity: 0.6;
+            font-weight: 500;
+        }
+
+        &__list {
+            display: flex;
+            flex-direction: column;
+            gap: q(12);
+            padding: 0;
+            margin: 0;
+        }
+
+        &__item a {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0 q(20);
+            text-decoration: none;
+            padding-block: q(9.6);
+            border-bottom: q(1) solid rgba(0, 0, 0, 0.1);
+            transition: opacity 0.2s ease;
+
+            &:hover { opacity: 0.55; }
+        }
+
+        &__title {
+            font-size: q(18);
+        }
+
+        &__meta {
+            font-size: q(12.8);
+            opacity: 0.6;
+        }
+
+        &__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(q(220), 1fr));
+            gap: q(24);
+            padding: 0;
+            margin: 0;
+        }
+
+        &__card a {
+            display: flex;
+            flex-direction: column;
+            gap: q(6.4);
+            text-decoration: none;
+
+            img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 3 / 2;
+                object-fit: cover;
+            }
+
+            .ss-c-work-related__title { font-size: q(15.2); margin-block-start: q(6.4); }
+            .ss-c-work-related__meta { font-size: q(12); }
+        }
+    }
+
+    // -- projects  (from site-kockums_io/src/static/scss/sections/_projects.scss) --
+    .ss-c-projects {
+        // (stripped @include)
+        background-color: var(--ss-color-white);
+
+        &__inner {
+        // (stripped @include)
+        }
+
+        &__header {
+        // (stripped @include)
+            flex-wrap: wrap;
+            gap: var(--ss-spacing-4);
+            margin-bottom: var(--ss-spacing-10);
+        }
+
+        &__title {
+            color: #1a1a1a;
+        }
+
+        &__grid {
+            display: grid;
+            gap: var(--ss-spacing-6);
+
+            // (stripped @include block)
+
+
+            // (stripped @include block)
+
+        }
+    }
+
+    // -- project-card  (from site-kockums_io/src/static/scss/sections/_projects.scss) --
+    .ss-c-project-card {
+        position: relative;
+        border-radius: 0;
+        overflow: hidden;
+        background-color: #1a1a1a;
+
+        &::before {
+            content: '';
+            display: block;
+            padding-top: 75%;
+        }
+
+        &__image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--ss-duration-300) ease;
+        }
+
+        &__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to top,
+                rgba(#1a1a1a, 0.9) 0%,
+                rgba(#1a1a1a, 0) 60%
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: var(--ss-spacing-6);
+        }
+
+        &__category {
+            font-size: var(--ss-font-size-xs);
+            font-weight: var(--ss-font-weight-medium);
+            color: var(--ss-color-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--ss-spacing-2);
+        }
+
+        &__title {
+            font-size: var(--ss-font-size-xl);
+            font-weight: var(--ss-font-weight-bold);
+            color: var(--ss-color-white);
+            margin-bottom: var(--ss-spacing-2);
+        }
+
+        &__description {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-300);
+        }
+
+        &:hover {
+            .ss-c-project-card__image {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    // -- project-card--large  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-project-card--large {
+        // (stripped @include block)
+
+    }
+
+    // -- project-card--featured  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-project-card--featured {
+        // (stripped @include block)
+
+    }
+
+    // -- project-card__image  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-project-card__image {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        background-color: #fdf8f2;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform unset;
+        }
+    }
+
+    // -- project-card__content  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-project-card__content {
+        padding: unset 0;
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+    }
+
+    // -- project-card__number  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-project-card__number {
+        // (stripped @include)
+    }
+
+    // -- project-card__category  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-project-card__category {
+        // (stripped @include)
+    }
+
+    // -- project-card__title  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-project-card__title {
+        font-family: Georgia, serif;
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-light);
+        margin: 0;
+        transition: color var(--ss-duration-200) ease;
+
+        // (stripped @include block)
+
+    }
+
+    // -- project-card__location  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-project-card__location {
+        font-size: var(--ss-font-size-sm);
+        color: #737373;
+        margin: 0;
+    }
+
+    // -- project-card__description  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-project-card__description {
+        font-size: var(--ss-font-size-sm);
+        color: #525252;
+        line-height: var(--ss-leading-relaxed);
+        margin: unset 0 0;
+    }
+
+    // -- project-card__systems  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-project-card__systems {
+        display: flex;
+        flex-wrap: wrap;
+        gap: unset;
+        margin-top: unset;
+    }
+
+    // -- projects-grid  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-projects-grid {
+        display: grid;
+        gap: unset;
+
+        // (stripped @include block)
+
+
+        // (stripped @include block)
+
+    }
+
+    // -- projects-masonry  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-projects-masonry {
+        display: grid;
+        gap: unset;
+
+        // (stripped @include block)
+
+    }
+
+    // -- work-grid  (from site-vianen_com/src/static/scss/sections/_work.scss) --
+    .ss-c-work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(q(300), 1fr));
+      gap: unset;
+
+      // (stripped @include block)
+
+    }
+
+    // -- work-card  (from site-vianen_com/src/static/scss/sections/_work.scss) --
+    .ss-c-work-card {
+      background: #f2f2f2;
+      border: q(1) solid var(--ss-color-border, #e5e5e5);
+      border-radius: var(--ss-radius-none);
+      padding: unset;
+      transition: transform var(--ss-duration-150) ease, border-color var(--ss-duration-150) ease;
+
+      &:hover {
+        transform: translateY(q(-4));
+        border-color: #737373;
+      }
+
+      .ss-c-work-logo {
+        width: q(60);
+        height: q(60);
+        margin-bottom: unset;
+        border-radius: var(--ss-radius-none);
+        background: var(--ss-color-fill, #ffffff);
+        border: q(1) solid var(--ss-color-border, #e5e5e5);
+        // (stripped @include)
+        span {
+          font-size: q(20);
+          font-weight: 600;
+          color: #737373;
+        }
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+
+      h4 {
+        margin-bottom: unset;
+      }
+
+      p {
+        color: #737373;
+        font-size: q(14.4);
+        margin-bottom: unset;
+      }
+
+      .ss-c-work-link {
+        font-size: q(14);
+        color: #737373;
+
+        &:hover {
+          color: var(--ss-color-text, #1a1a1a);
+        }
+      }
+    }
+}

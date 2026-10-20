@@ -1,0 +1,1503 @@
+////
+///
+/// About Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 101 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.About
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "sass:map";
+@use "../../01-core/external" as *;
+@use "../../23-layout/breakpoints";
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- value-card  (from site-scape_ventures/src/static/scss/components/_cards.scss) --
+    .ss-c-value-card {
+        padding: var(--ss-spacing-8);
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: 0;
+        text-align: center;
+        transition: all var(--ss-duration-300) ease;
+
+        &:hover {
+            border-color: var(--ss-color-primary);
+        }
+    }
+
+    // -- value-card-icon  (from site-scape_ventures/src/static/scss/components/_cards.scss) --
+    .ss-c-value-card-icon {
+        width: q(64);
+        height: q(64);
+        margin: 0 auto var(--ss-spacing-6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ss-color-gray-50);
+        border-radius: var(--ss-radius-none);
+        color: var(--ss-color-primary);
+
+        svg {
+            width: q(32);
+            height: q(32);
+        }
+    }
+
+    // -- value-card-title  (from site-scape_ventures/src/static/scss/components/_cards.scss) --
+    .ss-c-value-card-title {
+        font-size: var(--ss-font-size-xl);
+        margin-bottom: var(--ss-spacing-3);
+    }
+
+    // -- value-card-description  (from site-scape_ventures/src/static/scss/components/_cards.scss) --
+    .ss-c-value-card-description {
+        font-size: var(--ss-font-size-sm);
+    }
+
+    // -- about-content  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-about-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--ss-spacing-12);
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: 1fr 1fr;
+            gap: var(--ss-spacing-16);
+            align-items: center;
+        }
+    }
+
+    // -- about-text  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-about-text {
+        .ss-c-lead {
+            margin-bottom: var(--ss-spacing-6);
+        }
+    }
+
+    // -- about-values  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-about-values {
+        display: flex;
+        flex-direction: column;
+        gap: var(--ss-spacing-6);
+        margin-top: var(--ss-spacing-8);
+    }
+
+    // -- value-item  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-value-item {
+        display: flex;
+        gap: var(--ss-spacing-4);
+    }
+
+    // -- value-icon  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-value-icon {
+        flex-shrink: 0;
+        width: q(48);
+        height: q(48);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ss-color-gray-100);
+        border-radius: var(--ss-radius-none);
+        color: var(--ss-color-primary);
+
+        svg {
+            width: q(24);
+            height: q(24);
+        }
+    }
+
+    // -- value-content  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-value-content {
+        h4 {
+            font-size: var(--ss-font-size-lg);
+            margin-bottom: var(--ss-spacing-1);
+        }
+
+        p {
+            font-size: var(--ss-font-size-sm);
+        }
+    }
+
+    // -- about-image  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-about-image {
+        .ss-c-image-frame {
+            position: relative;
+            border-radius: var(--ss-radius-none);
+            overflow: hidden;
+            background: var(--ss-color-gray-100);
+            aspect-ratio: 4/3;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    // -- values-grid  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-values-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--ss-spacing-6);
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    // -- mission-grid  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-mission-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--ss-spacing-12);
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: 1fr 1fr;
+            gap: var(--ss-spacing-16);
+            align-items: center;
+        }
+    }
+
+    // -- mission-content  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-mission-content {
+        p {
+            margin-bottom: var(--ss-spacing-4);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    // -- mission-image  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-mission-image {
+        img {
+            width: 100%;
+            border-radius: var(--ss-radius-none);
+            background: var(--ss-color-gray-100);
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+    }
+
+    // -- value-card__icon  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-value-card__icon {
+        width: q(48);
+        height: q(48);
+        margin: 0 auto q(16);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: q(32);
+            height: q(32);
+            fill: var(--ss-color-primary);
+        }
+    }
+
+    // -- value-card__title  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-value-card__title {
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-semibold);
+        margin-bottom: q(8);
+    }
+
+    // -- value-card__description  (from site-scape_ventures/src/static/scss/sections/_about.scss) --
+    .ss-c-value-card__description {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-600);
+    }
+
+    // -- about  (from site-scape_press/src/static/scss/sections/_about.scss) --
+    .ss-c-about {
+        padding: var(--ss-spacing-24) 0;
+        background-color: var(--ss-color-white);
+        color: var(--ss-color-black);
+
+        &__container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 var(--ss-spacing-6);
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+                padding: 0 var(--ss-spacing-12);
+            }
+        }
+
+        &__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--ss-spacing-12);
+            align-items: start;
+
+            @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+                grid-template-columns: 1fr 2fr;
+                gap: var(--ss-spacing-16);
+            }
+        }
+
+        &__eyebrow {
+            font-size: var(--ss-font-size-xs);
+            font-weight: var(--ss-font-weight-medium);
+            text-transform: uppercase;
+            letter-spacing: var(--ss-tracking-widest);
+            padding-top: var(--ss-spacing-3);
+            border-top: q(1) solid var(--ss-color-black);
+        }
+
+        &__title {
+            font-family: var(--ss-font-family-display);
+            font-size: clamp(q(36), 6vw, q(80));
+            font-weight: var(--ss-font-weight-bold);
+            line-height: 0.95;
+            letter-spacing: var(--ss-tracking-tighter);
+            margin: 0 0 var(--ss-spacing-8);
+            max-width: 22ch;
+        }
+
+        &__description {
+            font-size: var(--ss-font-size-lg);
+            color: var(--ss-color-gray-700);
+            line-height: 1.5;
+            margin-bottom: var(--ss-spacing-8);
+            max-width: 60ch;
+        }
+
+        &__list {
+            list-style: none;
+            margin: 0 0 var(--ss-spacing-10);
+            padding: 0;
+        }
+
+        &__list-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--ss-spacing-6);
+            padding: var(--ss-spacing-4) 0;
+            border-bottom: q(1) solid var(--ss-color-gray-200);
+            font-size: var(--ss-font-size-base);
+
+            &::before {
+                content: '\2014'; // —
+                color: var(--ss-color-black);
+                font-weight: var(--ss-font-weight-bold);
+            }
+        }
+    }
+
+    // -- mission  (from site-blockfoundation_io/src/static/scss/sections/_mission.scss) --
+    .ss-c-mission {
+        padding: var(--ss-spacing-24) 0;
+        background-color: var(--ss-color-black);
+        color: var(--ss-color-white);
+        border-top: q(1) solid var(--ss-color-gray-300);
+
+        &__inner {
+        // (stripped @include)
+            text-align: left;
+        }
+
+        &__tagline {
+            display: inline-block;
+            color: var(--ss-color-gray-600);
+            font-size: var(--ss-font-size-sm);
+            font-weight: var(--ss-font-weight-normal);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: var(--ss-spacing-6);
+        }
+
+        &__title {
+            font-size: var(--ss-font-size-4xl);
+            margin-bottom: var(--ss-spacing-6);
+            color: var(--ss-color-white);
+            text-transform: uppercase;
+
+            // (stripped @include block)
+
+        }
+
+        &__text {
+            color: var(--ss-color-gray-600);
+            font-size: var(--ss-font-size-lg);
+            line-height: var(--ss-leading-relaxed);
+            max-width: q(800);
+            margin-bottom: var(--ss-spacing-10);
+        }
+
+        &__stats {
+            display: grid;
+            gap: q(1);
+            background-color: var(--ss-color-gray-300);
+
+            // (stripped @include block)
+
+        }
+
+        &__stat {
+            text-align: left;
+            padding: var(--ss-spacing-8);
+            background-color: var(--ss-color-black);
+
+            &-value {
+                font-size: var(--ss-font-size-6xl);
+                font-weight: var(--ss-font-weight-bold);
+                color: var(--ss-color-white);
+                margin-bottom: var(--ss-spacing-2);
+            }
+
+            &-label {
+                color: var(--ss-color-gray-600);
+                font-size: var(--ss-font-size-xs);
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+        }
+    }
+
+    // -- principle-card  (from site-geoid_org/src/static/scss/components/_card.scss) --
+    .ss-c-principle-card {
+      padding: var(--ss-spacing-12);
+      background: var(--ss-color-surface);
+      border: q(1) solid var(--ss-color-border);
+      border-radius: var(--ss-radius-lg);
+        // (stripped @include)
+      &:hover {
+        border-color: var(--ss-color-accent);
+        background: rgba(59, 130, 246, 0.03);
+      }
+
+      &__title {
+        font-size: q(18);
+        margin-bottom: var(--ss-spacing-4);
+        color: var(--ss-color-text);
+      }
+
+      &__text {
+        font-size: q(15);
+        color: var(--ss-color-text-secondary);
+      }
+    }
+
+    // -- about-mission  (from site-geoid_org/src/static/scss/index.scss) --
+    .ss-c-about-mission {
+      font-size: q(20);
+      font-weight: 500;
+      color: var(--ss-color-text);
+      margin-bottom: var(--ss-spacing-12);
+      font-style: italic;
+    }
+
+    // -- about__eyebrow  (from site-inthecity_ai/src/static/scss/blocks/_about.scss) --
+    .ss-c-about__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25em;
+        font-family: unset;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ss-color-accent);
+        font-size: q(12);
+        margin-bottom: q(8);
+    }
+
+    // -- about__eyebrow-dot  (from site-inthecity_ai/src/static/scss/blocks/_about.scss) --
+    .ss-c-about__eyebrow-dot {
+        width: 0.5em;
+        height: 0.5em;
+        background: var(--ss-color-accent);
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    // -- about__title  (from site-inthecity_ai/src/static/scss/blocks/_about.scss) --
+    .ss-c-about__title {
+        margin-bottom: 1em;
+    }
+
+    // -- about__body  (from site-inthecity_ai/src/static/scss/blocks/_about.scss) --
+    .ss-c-about__body {
+        color: var(--ss-color-gray-600);
+        line-height: 1.7;
+
+        p {
+            margin: 0 0 1em;
+            max-width: 65ch;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        ul,
+        ol {
+            margin: 1em 0;
+            padding-left: 1.5em;
+            list-style: disc;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        strong {
+            color: var(--ss-color-primary);
+            font-weight: 600;
+        }
+    }
+
+    // -- about__actions  (from site-inthecity_ai/src/static/scss/blocks/_about.scss) --
+    .ss-c-about__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: q(8);
+        margin-top: q(32);
+    }
+
+    // -- manifesto-vision  (from site-lovelacelabs_ai/src/static/scss/app/_manifesto.scss) --
+    .ss-c-manifesto-vision {
+        padding: q(48) q(32);
+
+        &__container {
+            max-width: q(800);
+            margin: 0 auto;
+            padding: q(48);
+            text-align: center;
+        }
+
+        &__title {
+            font-size: q(14.4);
+            font-weight: 600;
+            color: unset;
+            letter-spacing: 0.2em;
+            margin-bottom: q(24);
+        }
+
+        &__statement {
+            font-size: q(20);
+            color: #e5e5e5;
+            line-height: 1.8;
+            font-style: italic;
+        }
+    }
+
+    // -- manifesto-principles  (from site-lovelacelabs_ai/src/static/scss/app/_manifesto.scss) --
+    .ss-c-manifesto-principles {
+        max-width: q(900);
+        margin: 0 auto;
+        padding: q(32);
+    }
+
+    // -- manifesto-principle  (from site-lovelacelabs_ai/src/static/scss/app/_manifesto.scss) --
+    .ss-c-manifesto-principle {
+        display: flex;
+        gap: q(32);
+        padding: q(32) 0;
+        border-bottom: q(1) solid #27272a;
+        opacity: 0;
+        transform: translateY(q(20));
+        transition: all 0.6s ease;
+
+        &--visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &__number {
+            font-size: q(48);
+            font-weight: 700;
+            color: unset;
+            font-family: 'TTInterphasesPro', sans-serif;
+            line-height: 1;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+            min-width: q(80);
+
+            &--glow {
+                opacity: 1;
+                text-shadow: 0 0 q(30) unset;
+            }
+        }
+
+        &__content {
+            flex: 1;
+        }
+
+        &__title {
+            font-size: q(24);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: q(12);
+        }
+
+        &__statement {
+            font-size: q(17.6);
+            color: unset;
+            margin-bottom: q(16);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        &__detail {
+            font-size: q(15.2);
+            color: #a1a1aa;
+            line-height: 1.7;
+        }
+    }
+
+    // -- manifesto-visualization  (from site-lovelacelabs_ai/src/static/scss/app/_manifesto.scss) --
+    .ss-c-manifesto-visualization {
+        width: 100%;
+        max-width: q(800);
+        margin: 0 auto;
+        aspect-ratio: 2 / 1;
+
+        svg {
+            width: 100%;
+            height: 100%;
+            border-radius: q(8);
+        }
+    }
+
+    // -- manifesto-signatories  (from site-lovelacelabs_ai/src/static/scss/app/_manifesto.scss) --
+    .ss-c-manifesto-signatories {
+        padding: q(48) q(32);
+        text-align: center;
+
+        &__container {
+            max-width: q(600);
+            margin: 0 auto;
+        }
+
+        &__title {
+            font-size: q(12.8);
+            font-weight: 600;
+            color: #71717a;
+            letter-spacing: 0.2em;
+            margin-bottom: q(24);
+        }
+
+        &__list {
+            display: flex;
+            flex-direction: column;
+            gap: q(12);
+            margin-bottom: q(32);
+        }
+
+        &__date {
+            font-size: q(12.8);
+            color: #52525b;
+            font-family: 'TTInterphasesPro', sans-serif;
+        }
+    }
+
+    // -- manifesto-signatory  (from site-lovelacelabs_ai/src/static/scss/app/_manifesto.scss) --
+    .ss-c-manifesto-signatory {
+        font-size: q(17.6);
+        color: unset;
+        font-style: italic;
+        opacity: 0;
+        animation: fadeInUp 0.6s ease forwards;
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(q(10));
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    // -- philosophy-intro  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
+    .ss-c-philosophy-intro {
+        padding: q(64) q(32);
+    }
+
+    // -- philosophy-quote  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
+    .ss-c-philosophy-quote {
+        max-width: q(800);
+        margin: 0 auto;
+        text-align: center;
+        padding: q(32);
+
+        p {
+            font-size: q(24);
+            font-style: italic;
+            line-height: 1.8;
+            color: #2d3748;
+
+            em {
+                color: unset;
+                font-style: italic;
+            }
+        }
+
+        cite {
+            display: block;
+            margin-top: q(24);
+            font-size: q(14.4);
+            color: #718096;
+            font-style: normal;
+        }
+    }
+
+    // -- philosophy-principles  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
+    .ss-c-philosophy-principles {
+        padding: q(32);
+    }
+
+    // -- principles-grid  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
+    .ss-c-principles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(300), 1fr));
+        gap: q(32);
+        max-width: q(1200);
+        margin: q(32) auto 0;
+        padding: 0 q(16);
+    }
+
+    // -- philosophy-vision  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
+    .ss-c-philosophy-vision {
+        padding: q(64) q(32);
+    }
+
+    // -- vision-card  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
+    .ss-c-vision-card {
+        flex: 1;
+        min-width: q(280);
+        max-width: q(350);
+        padding: q(32);
+        text-align: center;
+        border-radius: q(24);
+
+        &__marker {
+            margin-bottom: q(24);
+        }
+
+        &__year {
+            display: inline-block;
+            font-size: q(13.6);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: white;
+            background: linear-gradient(135deg, unset, unset);
+            padding: q(8) q(24);
+            border-radius: q(32);
+        }
+
+        &__line {
+            width: q(2);
+            height: q(30);
+            margin: q(16) auto 0;
+            background: linear-gradient(to bottom, unset, transparent);
+        }
+
+        &__title {
+            font-size: q(20);
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: q(12);
+        }
+
+        &__description {
+            font-size: q(14.4);
+            line-height: 1.6;
+            color: #718096;
+        }
+    }
+
+    // -- philosophy-ethics  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
+    .ss-c-philosophy-ethics {
+        padding: q(32);
+    }
+
+    // -- ethics-grid  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
+    .ss-c-ethics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(250), 1fr));
+        gap: q(24);
+        margin-top: q(32);
+
+        .ss-c-ethics-item {
+            padding: q(24);
+            border-radius: q(16);
+
+            h4 {
+                font-size: q(16);
+                font-weight: 600;
+                color: unset;
+                margin-bottom: q(12);
+            }
+
+            p {
+                font-size: q(13.6);
+                line-height: 1.6;
+                color: #718096;
+            }
+        }
+    }
+
+    // -- philosophy-closing  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
+    .ss-c-philosophy-closing {
+        padding: q(64) q(32);
+    }
+
+    // -- philosophy-symbol  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
+    .ss-c-philosophy-symbol {
+        font-size: q(64);
+        color: unset;
+        margin-bottom: q(32);
+        animation: symbol-float 3s ease-in-out infinite;
+    }
+
+    // -- philosophy-closing-text  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
+    .ss-c-philosophy-closing-text {
+        max-width: q(700);
+        margin: 0 auto;
+        font-size: q(17.6);
+        line-height: 1.8;
+        color: #4a5568;
+    }
+
+    // -- philosophy-signature  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
+    .ss-c-philosophy-signature {
+        margin-top: q(32);
+        font-size: q(14.4);
+        font-style: italic;
+        color: #718096;
+    }
+
+    // -- intro  (from site-matter_tech/src/static/scss/base/_typography.scss) --
+    .ss-c-intro {
+        font-size: unset;
+        font-weight: unset;
+        line-height: var(--ss-leading-relaxed);
+        color: #525252;
+        max-width: q(600);
+    }
+
+    // -- value-card__number  (from site-matter_tech/src/static/scss/components/_cards.scss) --
+    .ss-c-value-card__number {
+        // (stripped @include)
+        margin-bottom: unset;
+    }
+
+    // -- philosophy-grid  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-philosophy-grid {
+        display: grid;
+        gap: unset;
+        align-items: center;
+
+        // (stripped @include block)
+
+    }
+
+    // -- philosophy-content  (from site-matter_tech/src/static/scss/sections/_section.scss) --
+    .ss-c-philosophy-content {
+        p {
+            margin-bottom: unset;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    // -- about-section  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-about-section {
+        padding: unset 0;
+    }
+
+    // -- about-container  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-about-container {
+        max-width: unset;
+        margin: 0 auto;
+        padding: 0 unset;
+    }
+
+    // -- about-grid  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-about-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: unset;
+        align-items: center;
+
+        &--2col {
+            @media (min-width: q(1024)) {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
+
+    // -- about-heading  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-about-heading {
+        font-size: var(--ss-font-size-3xl);
+        margin-bottom: unset;
+    }
+
+    // -- about-visual  (from site-phytosync_com/src/static/scss/index.scss) --
+    .ss-c-about-visual {
+        display: flex;
+        justify-content: center;
+    }
+
+    // -- values-section  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-values-section {
+        padding: unset 0;
+        background: var(--ss-color-white);
+    }
+
+    // -- value-title  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-value-title {
+        font-size: var(--ss-font-size-lg);
+        font-weight: var(--ss-font-weight-semibold);
+        color: var(--ss-color-gray-900);
+        margin-bottom: unset;
+    }
+
+    // -- value-description  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-value-description {
+        font-size: var(--ss-font-size-sm);
+        color: var(--ss-color-gray-600);
+        line-height: var(--ss-leading-relaxed);
+    }
+
+    // -- ethics-statement  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-ethics-statement {
+        padding: unset 0;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- ethics-content  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-ethics-content {
+        max-width: q(900);
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    // -- ethics-title  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-ethics-title {
+        font-size: var(--ss-font-size-5xl);
+        margin-bottom: unset;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            font-size: var(--ss-font-size-6xl);
+        }
+    }
+
+    // -- ethics-quote  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-ethics-quote {
+        font-family: Georgia, serif;
+        font-size: var(--ss-font-size-xl);
+        font-style: italic;
+        color: var(--ss-color-gray-600);
+        line-height: var(--ss-leading-relaxed);
+        margin-bottom: unset;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            font-size: var(--ss-font-size-3xl);
+        }
+    }
+
+    // -- ethics-principles  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-ethics-principles {
+        display: grid;
+        gap: unset;
+        text-align: left;
+        margin-bottom: unset;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    // -- principle  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-principle {
+        padding: unset;
+        background: var(--ss-color-white);
+        border-radius: var(--ss-radius-none);
+        border: q(1) solid var(--ss-color-gray-200);
+
+        .ss-c-principle-number {
+            font-size: var(--ss-font-size-sm);
+            font-weight: var(--ss-font-weight-bold);
+            color: unset;
+            margin-bottom: unset;
+        }
+
+        h4 {
+            font-size: var(--ss-font-size-base);
+            font-weight: var(--ss-font-weight-semibold);
+            color: var(--ss-color-gray-900);
+            margin-bottom: unset;
+        }
+
+        p {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-600);
+        }
+    }
+
+    // -- principles-section  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-principles-section {
+        padding: unset 0;
+        background: var(--ss-color-white);
+    }
+
+    // -- transparency-section  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-transparency-section {
+        padding: unset 0;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- transparency-grid  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-transparency-grid {
+        display: grid;
+        gap: unset;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: 1fr 1fr;
+            align-items: start;
+        }
+    }
+
+    // -- transparency-description  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-transparency-description {
+        font-size: var(--ss-font-size-lg);
+        color: var(--ss-color-gray-600);
+        margin-bottom: unset;
+    }
+
+    // -- transparency-list  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-transparency-list {
+        li {
+            padding: unset 0;
+            border-bottom: q(1) solid var(--ss-color-gray-200);
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            h4 {
+                font-size: var(--ss-font-size-base);
+                color: var(--ss-color-gray-900);
+                margin-bottom: unset;
+            }
+
+            p {
+                font-size: var(--ss-font-size-sm);
+                color: var(--ss-color-gray-600);
+            }
+        }
+    }
+
+    // -- transparency-card  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-transparency-card {
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: var(--ss-radius-none);
+        padding: unset;
+
+        h4 {
+            font-size: var(--ss-font-size-xl);
+            color: var(--ss-color-gray-900);
+            margin-bottom: unset;
+        }
+
+        > p {
+            font-size: var(--ss-font-size-base);
+            color: var(--ss-color-gray-600);
+            margin-bottom: unset;
+        }
+    }
+
+    // -- sensitive-section  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-sensitive-section {
+        padding: unset 0;
+        background: var(--ss-color-white);
+    }
+
+    // -- sensitive-grid  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-sensitive-grid {
+        display: grid;
+        gap: unset;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    // -- sensitive-card  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-sensitive-card {
+        padding: unset;
+        background: var(--ss-color-white);
+        border-radius: var(--ss-radius-none);
+        border-left: q(3) solid unset;
+
+        h4 {
+            font-size: var(--ss-font-size-lg);
+            color: var(--ss-color-gray-900);
+            margin-bottom: unset;
+        }
+
+        p {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-600);
+        }
+    }
+
+    // -- advisory-section  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-advisory-section {
+        padding: unset 0;
+        background: var(--ss-color-gray-50);
+    }
+
+    // -- advisory-grid  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-advisory-grid {
+        display: grid;
+        gap: unset;
+        align-items: center;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    // -- advisory-content  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-advisory-content {
+        .ss-c-section-label {
+            color: unset;
+        }
+    }
+
+    // -- advisory-description  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-advisory-description {
+        font-size: var(--ss-font-size-lg);
+        color: var(--ss-color-gray-600);
+        line-height: var(--ss-leading-relaxed);
+        margin-bottom: unset;
+    }
+
+    // -- advisory-quote  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-advisory-quote {
+        blockquote {
+            font-family: Georgia, serif;
+            font-size: var(--ss-font-size-xl);
+            font-style: italic;
+            color: var(--ss-color-gray-700);
+            line-height: var(--ss-leading-relaxed);
+            margin-bottom: unset;
+            padding-left: unset;
+            border-left: q(2) solid unset;
+        }
+
+        cite {
+            font-size: var(--ss-font-size-sm);
+            color: var(--ss-color-gray-500);
+            font-style: normal;
+        }
+    }
+
+    // -- ethics-contact  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-ethics-contact {
+        padding: unset 0;
+        background: var(--ss-color-gray-900);
+        text-align: center;
+    }
+
+    // -- ethics-contact-content  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-ethics-contact-content {
+        max-width: q(650);
+        margin: 0 auto;
+        padding: 0 var(--ss-spacing-6);
+
+        h2 {
+            font-size: var(--ss-font-size-4xl);
+            color: var(--ss-color-white);
+            margin-bottom: unset;
+        }
+
+        p {
+            font-size: var(--ss-font-size-lg);
+            color: var(--ss-color-gray-200);
+            margin-bottom: unset;
+        }
+    }
+
+    // -- ethics-contact-actions  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-ethics-contact-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: unset;
+    }
+
+    // -- mission-section  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-mission-section {
+        padding: unset 0;
+        background: var(--ss-color-white);
+    }
+
+    // -- mission-title  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-mission-title {
+        font-size: var(--ss-font-size-5xl);
+        color: var(--ss-color-gray-900);
+        margin-bottom: unset;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
+            font-size: var(--ss-font-size-6xl);
+        }
+    }
+
+    // -- mission-description  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-mission-description {
+        font-size: var(--ss-font-size-lg);
+        color: var(--ss-color-gray-600);
+        line-height: var(--ss-leading-relaxed);
+        margin-bottom: unset;
+    }
+
+    // -- mission-values  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-mission-values {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+    }
+
+    // -- mission-value  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-mission-value {
+        padding: unset;
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: var(--ss-radius-none);
+        text-align: center;
+        transition: all var(--ss-duration-200) ease;
+
+        &:hover {
+            border-color: unset;
+        }
+
+        .ss-c-value-word {
+            font-size: var(--ss-font-size-4xl);
+            font-weight: var(--ss-font-weight-bold);
+            color: unset;
+        }
+    }
+
+    // -- join-section  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-join-section {
+        padding: unset 0;
+        background: var(--ss-color-white);
+    }
+
+    // -- join-grid  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-join-grid {
+        display: grid;
+        gap: unset;
+
+        @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
+            grid-template-columns: 1fr 1fr;
+            align-items: start;
+        }
+    }
+
+    // -- join-title  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-join-title {
+        font-size: var(--ss-font-size-5xl);
+        color: var(--ss-color-gray-900);
+        margin-bottom: unset;
+    }
+
+    // -- join-description  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-join-description {
+        font-size: var(--ss-font-size-lg);
+        color: var(--ss-color-gray-600);
+        margin-bottom: unset;
+    }
+
+    // -- join-values  (from site-pixi_systems/src/static/scss/index.scss) --
+    .ss-c-join-values {
+        padding: unset;
+        background: var(--ss-color-gray-50);
+        border: q(1) solid var(--ss-color-gray-200);
+        border-radius: var(--ss-radius-none);
+
+        h4 {
+            font-size: var(--ss-font-size-xl);
+            color: var(--ss-color-gray-900);
+            margin-bottom: unset;
+        }
+
+        ul {
+            li {
+                padding: unset 0;
+                font-size: var(--ss-font-size-base);
+                color: var(--ss-color-gray-700);
+
+                &::before {
+                    content: '';
+                    display: inline-block;
+                    width: q(6);
+                    height: q(6);
+                    border-radius: 50%;
+                    background: unset;
+                    margin-right: unset;
+                }
+            }
+        }
+    }
+
+    // -- mission-card  (from site-speckle_org/src/static/scss/components/_cards.scss) --
+    .ss-c-mission-card {
+      padding: var(--ss-spacing-8);
+      background: var(--ss-color-surface-alt);
+      border: q(1) solid var(--ss-color-border);
+
+      &--accent {
+        border-color: var(--ss-color-accent);
+        background: linear-gradient(135deg, var(--ss-color-surface-alt) 0%, rgba(0, 255, 136, 0.05) 100%);
+      }
+
+      &__icon {
+        font-size: var(--ss-font-size-3xl);
+        color: var(--ss-color-accent);
+        margin-bottom: var(--ss-spacing-4);
+      }
+
+      &__title {
+        font-size: var(--ss-font-size-xl);
+        font-weight: var(--ss-font-weight-bold);
+        margin-bottom: var(--ss-spacing-4);
+      }
+
+      &__content {
+        font-size: var(--ss-font-size-base);
+        line-height: var(--ss-leading-relaxed);
+        color: var(--ss-color-text-muted);
+
+        p {
+          margin-bottom: var(--ss-spacing-4);
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    // -- about-intro  (from site-speckle_org/src/static/scss/sections/_about.scss) --
+    .ss-c-about-intro {
+      padding: var(--ss-spacing-16) 0;
+      background: var(--ss-color-background);
+
+      &__content {
+        font-size: var(--ss-font-size-lg);
+        line-height: var(--ss-leading-relaxed);
+        color: var(--ss-color-secondary);
+
+        p {
+          margin-bottom: var(--ss-spacing-6);
+        }
+      }
+
+      &__lead {
+        font-size: var(--ss-font-size-xl);
+        color: var(--ss-color-foreground);
+        margin-bottom: var(--ss-spacing-8);
+
+        @media (min-width: q(768)) {
+          font-size: var(--ss-font-size-2xl);
+        }
+      }
+    }
+
+    // -- about-approach  (from site-speckle_org/src/static/scss/sections/_about.scss) --
+    .ss-c-about-approach {
+      padding: var(--ss-spacing-16) 0;
+      background: var(--ss-color-background);
+
+      &__header {
+        text-align: center;
+        margin-bottom: var(--ss-spacing-12);
+      }
+
+      &__title {
+        font-size: var(--ss-font-size-2xl);
+        font-weight: var(--ss-font-weight-bold);
+        margin-bottom: var(--ss-spacing-2);
+
+        @media (min-width: q(768)) {
+          font-size: var(--ss-font-size-3xl);
+        }
+      }
+
+      &__subtitle {
+        font-size: var(--ss-font-size-lg);
+        color: var(--ss-color-text-muted);
+      }
+    }
+
+    // -- about-themes  (from site-speckle_org/src/static/scss/sections/_about.scss) --
+    .ss-c-about-themes {
+      padding: var(--ss-spacing-16) 0;
+      background: var(--ss-color-surface);
+
+      &__header {
+        text-align: center;
+        margin-bottom: var(--ss-spacing-8);
+      }
+
+      &__title {
+        font-size: var(--ss-font-size-xl);
+        font-weight: var(--ss-font-weight-bold);
+      }
+    }
+
+    // -- themes-grid  (from site-speckle_org/src/static/scss/sections/_about.scss) --
+    .ss-c-themes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--ss-spacing-3);
+    }
+
+    // -- about-cta  (from site-speckle_org/src/static/scss/sections/_about.scss) --
+    .ss-c-about-cta {
+      padding: var(--ss-spacing-16) 0;
+      background: var(--ss-color-background);
+
+      &__box {
+        text-align: center;
+        padding: var(--ss-spacing-12);
+        background: linear-gradient(135deg, var(--ss-color-surface) 0%, var(--ss-color-surface-alt) 100%);
+        border: q(1) solid var(--ss-color-border);
+      }
+
+      &__title {
+        font-size: var(--ss-font-size-2xl);
+        font-weight: var(--ss-font-weight-bold);
+        margin-bottom: var(--ss-spacing-4);
+
+        @media (min-width: q(768)) {
+          font-size: var(--ss-font-size-3xl);
+        }
+      }
+
+      &__text {
+        font-size: var(--ss-font-size-lg);
+        color: var(--ss-color-text-muted);
+        margin-bottom: var(--ss-spacing-8);
+        max-width: q(500);
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--ss-spacing-4);
+      }
+    }
+
+    // -- philosophy  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-philosophy {
+        background: var(--ss-color-primary);
+        border-top: none;
+        border-bottom: none;
+        color: #FFFFFF;
+    }
+
+    // -- philosophy__content  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-philosophy__content {
+        max-width: q(900);
+        margin: 0 auto;
+        text-align: center;
+
+        h2 {
+            color: #FFFFFF;
+        }
+    }
+
+    // -- philosophy__conclusion  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-philosophy__conclusion {
+        font-family: "SF Mono", "Fira Code", Menlo, Monaco, monospace;
+        font-size: q(14);
+        line-height: 1.7;
+        color: #FFFFFF;
+        opacity: 0.9;
+        margin-bottom: unset;
+        max-width: q(700);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    // -- philosophy__grid  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-philosophy__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: unset;
+        margin-top: unset;
+        text-align: left;
+
+        @media (max-width: q(700)) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // -- philosophy__card  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-philosophy__card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: unset;
+        border-radius: var(--ss-radius-none);
+
+        h3 {
+            font-family: "SF Mono", "Fira Code", Menlo, Monaco, monospace;
+            font-size: q(14);
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: unset;
+        }
+
+        p {
+            font-family: "SF Mono", "Fira Code", Menlo, Monaco, monospace;
+            font-size: q(13);
+            line-height: 1.6;
+            color: #FFFFFF;
+            opacity: 0.85;
+            margin: 0;
+        }
+    }
+}

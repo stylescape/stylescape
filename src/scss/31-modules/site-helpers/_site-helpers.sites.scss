@@ -1,0 +1,899 @@
+////
+///
+/// Site Helpers Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 210 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.SiteHelpers
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- sr-only  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-sr-only {
+        position: absolute;
+        width: q(1);
+        height: q(1);
+        padding: 0;
+        margin: q(-1);
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    // -- hidden  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .hidden { display: none; }
+
+    // -- flex  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+
+    // -- inline-flex  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-inline-flex { display: inline-flex; }
+
+    // -- justify-center  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-justify-center { justify-content: center; }
+
+    // -- justify-between  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-justify-between { justify-content: space-between; }
+
+    // -- flex-col  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-flex-col { flex-direction: column; }
+
+    // -- flex-wrap  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-flex-wrap { flex-wrap: wrap; }
+
+    // -- gap-2  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-gap-2 { gap: var(--ss-spacing-2); }
+
+    // -- gap-4  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-gap-4 { gap: var(--ss-spacing-4); }
+
+    // -- gap-6  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-gap-6 { gap: var(--ss-spacing-6); }
+
+    // -- gap-8  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-gap-8 { gap: var(--ss-spacing-8); }
+
+    // -- mt-4  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+
+    // -- mt-6  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-mt-6 { margin-top: var(--ss-spacing-6); }
+
+    // -- mt-8  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+
+    // -- mb-4  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+
+    // -- mb-6  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-mb-6 { margin-bottom: var(--ss-spacing-6); }
+
+    // -- mb-8  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+
+    // -- p-4  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+
+    // -- p-6  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-p-6 { padding: var(--ss-spacing-6); }
+
+    // -- p-8  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+
+    // -- py-4  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-py-4 { padding-top: var(--ss-spacing-4); padding-bottom: var(--ss-spacing-4); }
+
+    // -- py-8  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-py-8 { padding-top: var(--ss-spacing-8); padding-bottom: var(--ss-spacing-8); }
+
+    // -- px-4  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-px-4 { padding-left: var(--ss-spacing-4); padding-right: var(--ss-spacing-4); }
+
+    // -- px-6  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-px-6 { padding-left: var(--ss-spacing-6); padding-right: var(--ss-spacing-6); }
+
+    // -- w-full  (from site-scape_ventures/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-w-full { width: 100%; }
+
+    // -- sr-only-focusable  (from site-scape_group/src/static/scss/base/_accessibility.scss) --
+    .ss-c-sr-only-focusable {
+        &:focus,
+        &:active {
+            position: static;
+            width: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+        }
+    }
+
+    // -- flex-center  (from site-scape_press/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-flex-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // -- flex-between  (from site-scape_press/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-flex-between {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    // -- mt-auto  (from site-scape_press/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-mt-auto {
+        margin-top: auto;
+    }
+
+    // -- mb-0  (from site-scape_press/src/static/scss/utilities/_helpers.scss) --
+
+    // -- bg-accent  (from site-scape_press/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-bg-accent {
+        background-color: var(--ss-color-primary);
+    }
+
+    // -- bg-dark  (from site-scape_press/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-bg-dark {
+        background-color: var(--ss-color-primary);
+    }
+
+    // -- reset--sides  (from site-scape_foundation/src/static/scss/layout/_grid.scss) --
+    .ss-c-reset--sides {
+        .ss-c-grid__frame--6,
+        .ss-c-grid__frame--1 {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    }
+
+    // -- reset  (from site-scape_foundation/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-reset {
+        padding: 0 !important;
+        margin: 0 !important;
+
+        &--top {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+
+        &--bottom {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        &--sides {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    }
+
+    // -- margin-top  (from site-scape_foundation/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-margin-top {
+        &--sm {
+            margin-top: q(16) !important;
+        }
+
+        &--md {
+            margin-top: q(32) !important;
+        }
+
+        &--lg {
+            margin-top: q(64) !important;
+        }
+
+        &--xl {
+            margin-top: q(96) !important;
+        }
+    }
+
+    // -- align--left  (from site-scape_foundation/src/static/scss/utilities/_text.scss) --
+    .ss-c-align--left {
+        align-items: left;
+    }
+
+    // -- d-none  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-d-none { display: none; }
+
+    // -- d-block  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-d-block { display: block; }
+
+    // -- d-inline  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-d-inline { display: inline; }
+
+    // -- d-inline-block  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-d-inline-block { display: inline-block; }
+
+    // -- d-flex  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-d-flex { display: flex; }
+
+    // -- d-inline-flex  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-d-inline-flex { display: inline-flex; }
+
+    // -- d-grid  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-d-grid { display: grid; }
+
+    // -- flex-row  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-flex-row { flex-direction: row; }
+
+    // -- flex-column  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-flex-column { flex-direction: column; }
+
+    // -- flex-nowrap  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-flex-nowrap { flex-wrap: nowrap; }
+
+    // -- justify-start  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-justify-start { justify-content: flex-start; }
+
+    // -- justify-end  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-justify-end { justify-content: flex-end; }
+
+    // -- justify-around  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-justify-around { justify-content: space-around; }
+
+    // -- flex-1  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-flex-1 { flex: 1; }
+
+    // -- flex-auto  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-flex-auto { flex: auto; }
+
+    // -- flex-none  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-flex-none { flex: none; }
+
+    // -- visible  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-visible { visibility: visible; }
+
+    // -- invisible  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-invisible { visibility: hidden; }
+
+    // -- overflow-auto  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-overflow-auto { overflow: auto; }
+
+    // -- overflow-hidden  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-overflow-hidden { overflow: hidden; }
+
+    // -- overflow-scroll  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-overflow-scroll { overflow: scroll; }
+
+    // -- relative  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-relative { position: relative; }
+
+    // -- absolute  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-absolute { position: absolute; }
+
+    // -- fixed  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-fixed { position: fixed; }
+
+    // -- sticky  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-sticky { position: sticky; }
+
+    // -- h-full  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-h-full { height: 100%; }
+
+    // -- min-h-screen  (from site-blockfoundation_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-min-h-screen { min-height: 100vh; }
+
+    // -- m-0  (from site-blockfoundation_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-m-0 { margin: 0; }
+
+    // -- m-auto  (from site-blockfoundation_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-m-auto { margin: auto; }
+
+    // -- mx-auto  (from site-blockfoundation_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-mx-auto { margin-left: auto; margin-right: auto; }
+
+    // -- my-auto  (from site-blockfoundation_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-my-auto { margin-top: auto; margin-bottom: auto; }
+
+    // -- p-0  (from site-blockfoundation_io/src/static/scss/utilities/_spacing.scss) --
+
+    // -- font-light  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-font-light { font-weight: var(--ss-font-weight-light); }
+
+    // -- font-normal  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-font-normal { font-weight: var(--ss-font-weight-normal); }
+
+    // -- font-medium  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-font-medium { font-weight: var(--ss-font-weight-medium); }
+
+    // -- font-semibold  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-font-semibold { font-weight: var(--ss-font-weight-semibold); }
+
+    // -- font-bold  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-font-bold { font-weight: var(--ss-font-weight-bold); }
+
+    // -- uppercase  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-uppercase { text-transform: uppercase; }
+
+    // -- lowercase  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-lowercase { text-transform: lowercase; }
+
+    // -- capitalize  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-capitalize { text-transform: capitalize; }
+
+    // -- no-underline  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-no-underline { text-decoration: none; }
+
+    // -- underline  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-underline { text-decoration: underline; }
+
+    // -- leading-tight  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-leading-tight { line-height: var(--ss-leading-none); }
+
+    // -- leading-normal  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-leading-normal { line-height: unset; }
+
+    // -- leading-relaxed  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-leading-relaxed { line-height: var(--ss-leading-relaxed); }
+
+    // -- tracking-tight  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-tracking-tight { letter-spacing: -0.025em; }
+
+    // -- tracking-normal  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-tracking-normal { letter-spacing: 0; }
+
+    // -- tracking-wide  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-tracking-wide { letter-spacing: 0.025em; }
+
+    // -- tracking-wider  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-tracking-wider { letter-spacing: 0.05em; }
+
+    // -- truncate  (from site-blockfoundation_io/src/static/scss/utilities/_text.scss) --
+    .ss-c-truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    // -- leading-snug  (from site-geoid_org/src/static/scss/base/_typography.scss) --
+    .ss-c-leading-snug {
+      line-height: 1.375;
+    }
+
+    // -- leading-loose  (from site-geoid_org/src/static/scss/base/_typography.scss) --
+    .ss-c-leading-loose {
+      line-height: 2;
+    }
+
+    // -- display-none  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-display-none {
+      display: none !important;
+    }
+
+    // -- display-block  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-display-block {
+      display: block !important;
+    }
+
+    // -- display-inline  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-display-inline {
+      display: inline !important;
+    }
+
+    // -- display-inline-block  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-display-inline-block {
+      display: inline-block !important;
+    }
+
+    // -- display-flex  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-display-flex {
+      display: flex !important;
+    }
+
+    // -- display-grid  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-display-grid {
+      display: grid !important;
+    }
+
+    // -- visually-hidden  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-visually-hidden {
+        // (stripped @include)
+    }
+
+    // -- opacity-0  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-opacity-0 {
+      opacity: 0;
+    }
+
+    // -- opacity-25  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-opacity-25 {
+      opacity: 0.25;
+    }
+
+    // -- opacity-50  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-opacity-50 {
+      opacity: 0.5;
+    }
+
+    // -- opacity-75  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-opacity-75 {
+      opacity: 0.75;
+    }
+
+    // -- opacity-100  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-opacity-100 {
+      opacity: 1;
+    }
+
+    // -- overflow-visible  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-overflow-visible {
+      overflow: visible;
+    }
+
+    // -- overflow-x-auto  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-overflow-x-auto {
+      overflow-x: auto;
+    }
+
+    // -- overflow-y-auto  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-overflow-y-auto {
+      overflow-y: auto;
+    }
+
+    // -- static  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-static {
+      position: static;
+    }
+
+    // -- z-0  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-z-0 {
+      z-index: 0;
+    }
+
+    // -- z-10  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-z-10 {
+      z-index: 10;
+    }
+
+    // -- z-20  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-z-20 {
+      z-index: 20;
+    }
+
+    // -- z-30  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-z-30 {
+      z-index: 30;
+    }
+
+    // -- z-40  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-z-40 {
+      z-index: 40;
+    }
+
+    // -- z-50  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-z-50 {
+      z-index: 50;
+    }
+
+    // -- z-auto  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-z-auto {
+      z-index: auto;
+    }
+
+    // -- w-auto  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-w-auto {
+      width: auto;
+    }
+
+    // -- h-auto  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-h-auto {
+      height: auto;
+    }
+
+    // -- h-screen  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-h-screen {
+      height: 100vh;
+    }
+
+    // -- px-0  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-px-0 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    // -- py-0  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-py-0 {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    // -- clearfix  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-clearfix {
+        // (stripped @include)
+    }
+
+    // -- pointer-events-none  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-pointer-events-none {
+      pointer-events: none;
+    }
+
+    // -- pointer-events-auto  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-pointer-events-auto {
+      pointer-events: auto;
+    }
+
+    // -- touch-auto  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-touch-auto {
+      touch-action: auto;
+    }
+
+    // -- touch-none  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-touch-none {
+      touch-action: none;
+    }
+
+    // -- touch-pan-x  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-touch-pan-x {
+      touch-action: pan-x;
+    }
+
+    // -- touch-pan-y  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-touch-pan-y {
+      touch-action: pan-y;
+    }
+
+    // -- select-none  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-select-none {
+      user-select: none;
+    }
+
+    // -- select-all  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-select-all {
+      user-select: all;
+    }
+
+    // -- select-auto  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-select-auto {
+      user-select: auto;
+    }
+
+    // -- blur-none  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-blur-none {
+      backdrop-filter: none;
+    }
+
+    // -- blur-sm  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-blur-sm {
+      backdrop-filter: blur(q(4));
+    }
+
+    // -- blur-md  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-blur-md {
+      backdrop-filter: blur(q(12));
+    }
+
+    // -- blur-lg  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-blur-lg {
+      backdrop-filter: blur(q(20));
+    }
+
+    // -- border-0  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-border-0 {
+      border: none;
+    }
+
+    // -- border  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-border {
+      border: q(1) solid var(--ss-color-border);
+    }
+
+    // -- border-t  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-border-t {
+      border-top: q(1) solid var(--ss-color-border);
+    }
+
+    // -- border-b  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-border-b {
+      border-bottom: q(1) solid var(--ss-color-border);
+    }
+
+    // -- border-l  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-border-l {
+      border-left: q(1) solid var(--ss-color-border);
+    }
+
+    // -- border-r  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-border-r {
+      border-right: q(1) solid var(--ss-color-border);
+    }
+
+    // -- rounded-none  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-rounded-none {
+      border-radius: 0;
+    }
+
+    // -- rounded-sm  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-rounded-sm {
+      border-radius: var(--ss-radius-sm);
+    }
+
+    // -- rounded-md  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-rounded-md {
+      border-radius: var(--ss-radius-md);
+    }
+
+    // -- rounded-lg  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-rounded-lg {
+      border-radius: var(--ss-radius-lg);
+    }
+
+    // -- rounded-xl  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-rounded-xl {
+      border-radius: var(--ss-radius-xl);
+    }
+
+    // -- rounded-full  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-rounded-full {
+      border-radius: var(--ss-radius-full);
+    }
+
+    // -- shadow-none  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-shadow-none {
+      box-shadow: none;
+    }
+
+    // -- shadow-sm  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-shadow-sm {
+        // (stripped @include)
+    }
+
+    // -- shadow-md  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-shadow-md {
+        // (stripped @include)
+    }
+
+    // -- shadow-lg  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-shadow-lg {
+        // (stripped @include)
+    }
+
+    // -- shadow-xl  (from site-geoid_org/src/static/scss/utilities/_visibility.scss) --
+    .ss-c-shadow-xl {
+        // (stripped @include)
+    }
+
+    // -- display  (from site-inthecity_ai/src/static/scss/base/_typography.scss) --
+    .ss-c-display {
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+    }
+
+    // -- bg-primary  (from site-kockums_foundation/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-bg-primary {
+      background-color: var(--ss-color-primary);
+    }
+
+    // -- bg-secondary  (from site-kockums_foundation/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-bg-secondary {
+      background-color: #737373;
+    }
+
+    // -- bg-light  (from site-kockums_foundation/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-bg-light {
+      background-color: var(--ss-color-gray-100);
+    }
+
+    // -- bg-white  (from site-kockums_foundation/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-bg-white {
+      background-color: var(--ss-color-white);
+    }
+
+    // -- mb-12  (from site-kockums_foundation/src/static/scss/utilities/_helpers.scss) --
+
+    // -- py-section  (from site-kockums_foundation/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-py-section {
+        // (stripped @include)
+    }
+
+    // -- inline-block  (from site-kockums_foundation/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-inline-block {
+      display: inline-block;
+    }
+
+    // -- rounded  (from site-kockums_foundation/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-rounded {
+      border-radius: 0;
+    }
+
+    // -- shadow  (from site-kockums_foundation/src/static/scss/utilities/_helpers.scss) --
+    .ss-c-shadow {
+      box-shadow: var(--ss-shadow-md);
+    }
+
+    // -- align-start  (from site-kockums_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-align-start { align-items: flex-start; }
+
+    // -- align-center  (from site-kockums_io/src/static/scss/utilities/_display.scss) --
+
+    // -- align-end  (from site-kockums_io/src/static/scss/utilities/_display.scss) --
+    .ss-c-align-end { align-items: flex-end; }
+
+    // -- m-1  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-m-1 { margin: var(--ss-spacing-1); }
+
+    // -- m-2  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-m-2 { margin: var(--ss-spacing-2); }
+
+    // -- m-4  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-m-4 { margin: var(--ss-spacing-4); }
+
+    // -- m-6  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-m-6 { margin: var(--ss-spacing-6); }
+
+    // -- m-8  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-m-8 { margin: var(--ss-spacing-8); }
+
+    // -- mt-0  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+
+    // -- mt-12  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+
+    // -- mt-16  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+
+    // -- mb-16  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+
+    // -- ml-auto  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-ml-auto { margin-left: auto; }
+
+    // -- mr-auto  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-mr-auto { margin-right: auto; }
+
+    // -- pt-0  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-pt-0 { padding-top: 0; }
+
+    // -- pt-8  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-pt-8 { padding-top: var(--ss-spacing-8); }
+
+    // -- pt-16  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-pt-16 { padding-top: var(--ss-spacing-16); }
+
+    // -- pb-0  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-pb-0 { padding-bottom: 0; }
+
+    // -- pb-8  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-pb-8 { padding-bottom: var(--ss-spacing-8); }
+
+    // -- pb-16  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-pb-16 { padding-bottom: var(--ss-spacing-16); }
+
+    // -- py-16  (from site-kockums_io/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-py-16 { padding-top: var(--ss-spacing-16); padding-bottom: var(--ss-spacing-16); }
+
+    // -- flex--center  (from site-matter_tech/src/static/scss/layout/_grid.scss) --
+    .ss-c-flex--center {
+        // (stripped @include)
+    }
+
+    // -- flex--between  (from site-matter_tech/src/static/scss/layout/_grid.scss) --
+    .ss-c-flex--between {
+        // (stripped @include)
+    }
+
+    // -- flex--column  (from site-matter_tech/src/static/scss/layout/_grid.scss) --
+    .ss-c-flex--column {
+        // (stripped @include)
+    }
+
+    // -- flex--gap-sm  (from site-matter_tech/src/static/scss/layout/_grid.scss) --
+    .ss-c-flex--gap-sm {
+        gap: unset;
+    }
+
+    // -- flex--gap-md  (from site-matter_tech/src/static/scss/layout/_grid.scss) --
+    .ss-c-flex--gap-md {
+        gap: unset;
+    }
+
+    // -- flex--gap-lg  (from site-matter_tech/src/static/scss/layout/_grid.scss) --
+    .ss-c-flex--gap-lg {
+        gap: unset;
+    }
+
+    // -- hidden-mobile  (from site-matter_tech/src/static/scss/utilities/_display.scss) --
+    .ss-c-hidden-mobile {
+        // (stripped @include block)
+
+    }
+
+    // -- hidden-desktop  (from site-matter_tech/src/static/scss/utilities/_display.scss) --
+    .ss-c-hidden-desktop {
+        // (stripped @include block)
+
+    }
+
+    // -- pt-4  (from site-matter_tech/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-pt-4 { padding-top: unset; }
+
+    // -- pt-12  (from site-matter_tech/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-pt-12 { padding-top: unset; }
+
+    // -- pb-4  (from site-matter_tech/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-pb-4 { padding-bottom: unset; }
+
+    // -- pb-12  (from site-matter_tech/src/static/scss/utilities/_spacing.scss) --
+    .ss-c-pb-12 { padding-bottom: unset; }
+
+    // -- normal-case  (from site-matter_tech/src/static/scss/utilities/_text.scss) --
+    .ss-c-normal-case { text-transform: none; }
+
+    // -- sticky--top  (from site-mesmera_io/src/static/scss/app/_grid.scss) --
+    .ss-c-sticky--top {
+        position: sticky;
+        top: 0;
+    }
+
+    // -- gap--row--00  (from site-starling_studio/src/static/scss/app/_index.scss) --
+    .ss-c-gap--row--00 {
+        row-gap: 0;
+    }
+
+    // -- gap--row--02  (from site-starling_studio/src/static/scss/app/_index.scss) --
+
+    // -- gap--col--00  (from site-starling_studio/src/static/scss/app/_index.scss) --
+    .ss-c-gap--col--00 {
+        column-gap: 0;
+    }
+
+    // -- lh--ratio  (from site-starling_studio/src/static/scss/theme/_index.scss) --
+    .ss-c-lh--ratio {
+        line-height: 1.25;
+    }
+
+    // -- mb-1  (from site-vianen_com/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-mb-1 {
+      margin-bottom: unset;
+    }
+
+    // -- mb-2  (from site-vianen_com/src/static/scss/utilities/_utilities.scss) --
+
+    // -- mb-3  (from site-vianen_com/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-mb-3 {
+      margin-bottom: unset;
+    }
+
+    // -- mt-1  (from site-vianen_com/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-mt-1 {
+      margin-top: unset;
+    }
+
+    // -- mt-2  (from site-vianen_com/src/static/scss/utilities/_utilities.scss) --
+
+    // -- p-1  (from site-vianen_com/src/static/scss/utilities/_utilities.scss) --
+    .ss-c-p-1 {
+      padding: unset;
+    }
+
+    // -- p-2  (from site-vianen_com/src/static/scss/utilities/_utilities.scss) --
+
+    // -- mt-sm  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-mt-sm { margin-top: unset; }
+
+    // -- mt-md  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-mt-md { margin-top: unset; }
+
+    // -- mt-lg  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-mt-lg { margin-top: unset; }
+
+    // -- mb-sm  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-mb-sm { margin-bottom: unset; }
+
+    // -- mb-md  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-mb-md { margin-bottom: unset; }
+
+    // -- mb-lg  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-mb-lg { margin-bottom: unset; }
+}

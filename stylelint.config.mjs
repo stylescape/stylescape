@@ -40,6 +40,18 @@ const MODULE_TOKEN_RULES = {
     ],
 };
 
+// The scapepress site partials (`31-modules/*/_*.sites.scss`) still carry the
+// sites' literal colours, durations and z-indexes; same rules, reported as
+// warnings until those literals are moved onto tokens.
+const SITES_TOKEN_RULES = Object.fromEntries(
+    Object.entries(MODULE_TOKEN_RULES).map(([rule, value]) => {
+        const [primary, secondary = {}] = Array.isArray(value)
+            ? value
+            : [value];
+        return [rule, [primary, { ...secondary, severity: "warning" }]];
+    }),
+);
+
 export default {
     plugins: ["@stylescape/ssx/stylelint"],
     rules: {
@@ -50,6 +62,11 @@ export default {
             files: ["src/scss/31-modules/**/*.scss"],
             customSyntax: "postcss-scss",
             rules: MODULE_TOKEN_RULES,
+        },
+        {
+            files: ["src/scss/31-modules/**/_*.sites.scss"],
+            customSyntax: "postcss-scss",
+            rules: SITES_TOKEN_RULES,
         },
     ],
     ignoreFiles: ["**/node_modules/**", "dist/**", "src/scss/01-core/**"],

@@ -148,9 +148,28 @@ describe("stylescape SCSS", () => {
             expect(body, sel).not.toMatch(/#[0-9a-f]{3,8}\b/i);
         }
         expect(rule(".ss-c-cta")).toMatch(/var\(--ss-color-background\)/);
-        expect(rule(".ss-c-hero")).toMatch(/min-height:\s*100svh/);
+        // The hero is the native module's; the sites' `100vh` rule is gone.
+        expect(rule(".ss-c-hero")).not.toMatch(/min-height:\s*100vh\b/);
         // The prose shim no longer resets heading sizes to `unset`.
         expect(rule(".ss-c-prose h2")).not.toMatch(/unset/);
+    });
+
+    it("scapepress site classes are module rules, not a compat shim", () => {
+        // Formerly `32-utilities/_scapepress-parity.scss` in `ss.compat`.
+        const compatStart = css.indexOf("@layer ss.compat {");
+        const moduleCss = css.slice(0, compatStart);
+        for (const sel of [
+            ".ss-c-lb--two-up",
+            ".ss-c-grid-square--tl-1",
+            ".ss-c-programme__row",
+            ".ss-c-site-header__inner",
+            ".ss-c-robin_grid_row_position_1",
+        ]) {
+            expect(moduleCss.includes(sel), sel).toBe(true);
+        }
+        // Undefined site variables were mapped onto lexicon tokens.
+        expect(rule(".ss-c-hero__actions")).not.toMatch(/var\(--spacing-/);
+        expect(css).toMatch(/--ss-grid-cell-size:\s*1\.25vw/);
     });
 
     it("footer parts follow the theme instead of hardcoded white", () => {
@@ -183,4 +202,17 @@ describe("stylescape SCSS core", () => {
         expect(result.css).toMatch(/width:\s*2rem/);
         expect(result.css).toMatch(/height:\s*32px/);
     });
+
+    it("$scapepress-parity is still accepted, as a no-op", () => {
+        const result = sass.compileString(
+            '@use "index" with ($scapepress-parity: false);\n',
+            {
+                loadPaths: [path.join(root, "src/scss")],
+                importers: [new sass.NodePackageImporter(root)],
+                quietDeps: true,
+                silenceDeprecations: ["import", "global-builtin"],
+            },
+        );
+        expect(result.css).toContain(".ss-c-lb--two-up");
+    }, 60000);
 });

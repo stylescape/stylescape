@@ -1,0 +1,1358 @@
+////
+///
+/// Lab Site Styles
+/// ===========================================================================
+///
+/// Component classes the scapepress sites use under the `ss-c-` prefix,
+/// moved here from the removed `32-utilities/_scapepress-parity.scss` shim.
+/// Forwarded from `31-modules/_index.scss` ahead of every module, so at
+/// equal specificity a native module rule wins.
+///
+/// 45 blocks, each still marked with the site and file it came from.
+/// Values read `--ss-*` tokens in place of the sites' own Sass and
+/// custom-property variables.
+///
+/// @group Modules.Lab
+/// @author Scape Press
+/// @link https://scape.style
+/// @since 0.6.0
+/// @access public
+///
+////
+
+@use "../../01-core/external" as *;
+
+// ============================================================================
+// Output
+// ============================================================================
+
+@layer ss.components {
+    // -- demo  (from site-coreal_ai/src/static/scss/index.scss) --
+    .ss-c-demo {
+        padding: unset var(--ss-spacing-6);
+        background: #ffffff;
+
+        &__inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: unset;
+            align-items: center;
+            max-width: q(1200);
+            margin: 0 auto;
+
+            @media (min-width: q(1024)) {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        &__content {
+            text-align: center;
+
+            @media (min-width: q(1024)) {
+                text-align: left;
+            }
+        }
+
+        &__title {
+            margin: unset 0 unset;
+        }
+
+        &__description {
+            color: #525252;
+            margin-bottom: unset;
+        }
+
+        &__visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        &__window {
+            width: 100%;
+            max-width: q(500);
+            background: #ffffff;
+            border: q(1) solid var(--ss-color-border, #e5e5e5);
+            border-radius: var(--ss-radius-none);
+            overflow: hidden;
+
+            &-header {
+                display: flex;
+                gap: unset;
+                padding: unset;
+                background: var(--ss-color-fill, #ffffff);
+                border-bottom: q(1) solid var(--ss-color-border, #e5e5e5);
+
+                span {
+                    width: q(12);
+                    height: q(12);
+                    border-radius: 50%;
+                    background: #737373;
+
+                    &:first-child { background: #EF4444; }
+                    &:nth-child(2) { background: #F59E0B; }
+                    &:nth-child(3) { background: #10B981; }
+                }
+            }
+
+            &-content {
+                height: q(300);
+                padding: unset;
+            }
+        }
+
+        &__animation {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(color-mix(in srgb, var(--ss-color-primary) 10%, transparent) q(1), transparent q(1)),
+                linear-gradient(90deg, color-mix(in srgb, var(--ss-color-primary) 10%, transparent) q(1), transparent q(1));
+            background-size: q(20) q(20);
+            border-radius: var(--ss-radius-none);
+        }
+
+        &__grid-animated {
+            position: absolute;
+            inset: q(20);
+            border: q(2) dashed color-mix(in srgb, var(--ss-color-primary) 30%, transparent);
+            border-radius: var(--ss-radius-none);
+            animation: gridPulse 3s infinite;
+        }
+
+        &__cursor {
+            position: absolute;
+            width: q(16);
+            height: q(16);
+            background: var(--ss-color-primary);
+            border-radius: 50%;
+            top: 50%;
+            left: 30%;
+            animation: cursorMove 4s infinite;
+        }
+    }
+
+    // -- globe-wireframe  (from site-geoid_org/src/static/scss/components/_globe.scss) --
+    .ss-c-globe-wireframe {
+      width: 100%;
+      max-width: q(400);
+      aspect-ratio: 1;
+    }
+
+    // -- globe-svg  (from site-geoid_org/src/static/scss/components/_globe.scss) --
+    .ss-c-globe-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 q(10) q(30) rgba(59, 130, 246, 0.1));
+    }
+
+    // -- globe-outline  (from site-geoid_org/src/static/scss/components/_globe.scss) --
+    .ss-c-globe-outline {
+      fill: none;
+      stroke: var(--ss-color-border);
+      stroke-width: 1.5;
+    }
+
+    // -- globe-line  (from site-geoid_org/src/static/scss/components/_globe.scss) --
+    .ss-c-globe-line {
+      fill: none;
+      stroke: var(--ss-color-border);
+      stroke-width: 0.75;
+      opacity: 0.6;
+
+      &--vertical {
+        transform-origin: center;
+      }
+    }
+
+    // -- globe-axis  (from site-geoid_org/src/static/scss/components/_globe.scss) --
+    .ss-c-globe-axis {
+      stroke: var(--ss-color-line);
+      stroke-width: 0.5;
+      stroke-dasharray: 4 4;
+      opacity: 0.4;
+    }
+
+    // -- globe-cell  (from site-geoid_org/src/static/scss/components/_globe.scss) --
+    .ss-c-globe-cell {
+      fill: rgba(59, 130, 246, 0.1);
+      stroke: var(--ss-color-accent);
+      stroke-width: 1;
+      opacity: 0.8;
+      // (stripped @include block)
+
+
+      &--accent {
+        fill: rgba(59, 130, 246, 0.25);
+        stroke-width: 1.5;
+        opacity: 1;
+      }
+
+      &:hover {
+        opacity: 1;
+        fill: rgba(59, 130, 246, 0.35);
+      }
+    }
+
+    // -- globe-animated  (from site-geoid_org/src/static/scss/components/_globe.scss) --
+    .ss-c-globe-animated {
+      // (stripped @include block)
+
+
+      &--slow {
+        // (stripped @include block)
+
+      }
+
+      &--fast {
+        // (stripped @include block)
+
+      }
+
+      // Pause animation on hover
+      &:hover {
+        // (stripped @include block)
+
+      }
+    }
+
+    // -- globe-container  (from site-geoid_org/src/static/scss/components/_globe.scss) --
+    .ss-c-globe-container {
+      perspective: q(1000);
+
+      .ss-c-globe-svg {
+        transform-style: preserve-3d;
+      }
+    }
+
+    // -- globe-point  (from site-geoid_org/src/static/scss/components/_globe.scss) --
+    .ss-c-globe-point {
+      fill: var(--ss-color-success);
+
+      &--pulse {
+        // (stripped @include block)
+
+      }
+    }
+
+    // -- globe-pattern  (from site-geoid_org/src/static/scss/components/_globe.scss) --
+    .ss-c-globe-pattern {
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+      background-size: 100% 100%;
+      background-attachment: fixed;
+    }
+
+    // -- ai-typing  (from site-inthecity_ai/src/static/scss/utilities/_reveal.scss) --
+    .ss-c-ai-typing {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: q(2) solid var(--ss-color-accent);
+        animation:
+            typing 3s steps(30, end),
+            blink 0.75s step-end infinite;
+    }
+
+    // -- dh-card  (from site-lovelacelabs_ai/src/static/scss/app/_cursor.scss) --
+    .ss-c-dh-card {
+        &[data-cursor-text] {
+            // Text will be shown in cursor dot
+        }
+    }
+
+    // -- dh-hero  (from site-lovelacelabs_ai/src/static/scss/app/_digital_humans.scss) --
+    .ss-c-dh-hero {
+        text-align: center;
+        padding: q(48) q(32);
+        margin-bottom: q(32);
+
+        h1 {
+            font-family: 'TTInterphasesPro', sans-serif;
+            font-size: q(40);
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: q(12);
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-size: q(17.6);
+            color: #64748b;
+            max-width: q(600);
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+    }
+
+    // -- dh-stats  (from site-lovelacelabs_ai/src/static/scss/app/_digital_humans.scss) --
+    .ss-c-dh-stats {
+        display: flex;
+        justify-content: center;
+        gap: q(32);
+        padding: q(24);
+        margin: 0 q(32) q(32);
+        background: #ffffff;
+        border-radius: q(16);
+        box-shadow:
+            q(8) q(8) q(16) rgba(0,0,0,0.15),
+            q(-8) q(-8) q(16) rgba(255,255,255,0.5);
+
+        @media (max-width: q(768)) {
+            flex-wrap: wrap;
+            gap: q(16);
+            margin: 0 q(16) q(24);
+        }
+    }
+
+    // -- dh-stat  (from site-lovelacelabs_ai/src/static/scss/app/_digital_humans.scss) --
+    .ss-c-dh-stat {
+        text-align: center;
+        padding: q(12) q(24);
+        background: #ffffff;
+        border-radius: q(12);
+        box-shadow:
+            inset q(3) q(3) q(6) rgba(0,0,0,0.15),
+            inset q(-3) q(-3) q(6) rgba(255,255,255,0.5);
+
+        &__value {
+            display: block;
+            font-family: 'TTInterphasesPro', sans-serif;
+            font-size: q(24);
+            font-weight: 700;
+            color: var(--ss-color-accent, #3696c1);
+            margin-bottom: q(4);
+        }
+
+        &__label {
+            font-size: q(12);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+        }
+    }
+
+    // -- dh-grid  (from site-lovelacelabs_ai/src/static/scss/app/_digital_humans.scss) --
+    .ss-c-dh-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(q(320), 1fr));
+        gap: q(32);
+        padding: 0 q(32) q(48);
+
+        @media (max-width: q(768)) {
+            grid-template-columns: 1fr;
+            gap: q(24);
+            padding: 0 q(16) q(32);
+        }
+    }
+
+    // -- dh-tech-section  (from site-lovelacelabs_ai/src/static/scss/app/_digital_humans.scss) --
+    .ss-c-dh-tech-section {
+        padding: q(32);
+        margin: 0 q(32) q(32);
+        background: #ffffff;
+        border-radius: q(20);
+        box-shadow:
+            q(8) q(8) q(16) rgba(0,0,0,0.15),
+            q(-8) q(-8) q(16) rgba(255,255,255,0.5);
+
+        h2 {
+            font-family: 'TTInterphasesPro', sans-serif;
+            font-size: q(20);
+            color: #334155;
+            margin: 0 0 q(20);
+            text-align: center;
+        }
+
+        @media (max-width: q(768)) {
+            margin: 0 q(16) q(24);
+            padding: q(24);
+        }
+    }
+
+    // -- dh-tech-list  (from site-lovelacelabs_ai/src/static/scss/app/_digital_humans.scss) --
+    .ss-c-dh-tech-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: q(12);
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            padding: q(8) q(16);
+            background: #ffffff;
+            border-radius: q(20);
+            font-size: q(12.8);
+            color: #475569;
+            box-shadow:
+                inset q(2) q(2) q(4) rgba(0,0,0,0.15),
+                inset q(-2) q(-2) q(4) rgba(255,255,255,0.5);
+            transition: all 0.2s ease;
+
+            &:hover {
+                color: var(--ss-color-accent, #3696c1);
+                box-shadow:
+                    q(3) q(3) q(6) rgba(0,0,0,0.15),
+                    q(-3) q(-3) q(6) rgba(255,255,255,0.5);
+            }
+        }
+    }
+
+    // -- dh-pipeline-section  (from site-lovelacelabs_ai/src/static/scss/app/_digital_humans.scss) --
+    .ss-c-dh-pipeline-section {
+        padding: q(32);
+        margin: 0 q(32) q(48);
+        background: #ffffff;
+        border-radius: q(20);
+        box-shadow:
+            q(8) q(8) q(16) rgba(0,0,0,0.15),
+            q(-8) q(-8) q(16) rgba(255,255,255,0.5);
+
+        h2 {
+            font-family: 'TTInterphasesPro', sans-serif;
+            font-size: q(20);
+            color: #334155;
+            margin: 0 0 q(24);
+            text-align: center;
+        }
+
+        @media (max-width: q(768)) {
+            margin: 0 q(16) q(32);
+            padding: q(24);
+        }
+    }
+
+    // -- dh-pipeline  (from site-lovelacelabs_ai/src/static/scss/app/_digital_humans.scss) --
+    .ss-c-dh-pipeline {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: q(8);
+
+        &__step {
+            display: flex;
+            align-items: center;
+            gap: q(8);
+        }
+
+        &__box {
+            padding: q(12) q(20);
+            background: #ffffff;
+            border-radius: q(10);
+            font-size: q(13.6);
+            font-weight: 500;
+            color: #334155;
+            box-shadow:
+                q(4) q(4) q(8) rgba(0,0,0,0.15),
+                q(-4) q(-4) q(8) rgba(255,255,255,0.5);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+
+            &:hover {
+                color: var(--ss-color-accent, #3696c1);
+                box-shadow:
+                    q(6) q(6) q(12) rgba(0,0,0,0.15),
+                    q(-6) q(-6) q(12) rgba(255,255,255,0.5);
+            }
+        }
+
+        &__arrow {
+            color: #94a3b8;
+            font-size: q(19.2);
+        }
+
+        @media (max-width: q(768)) {
+            flex-direction: column;
+            gap: q(12);
+
+            &__arrow {
+                transform: rotate(90deg);
+            }
+        }
+    }
+
+    // -- lab-experiments  (from site-lovelacelabs_ai/src/static/scss/app/_lab.scss) --
+    .ss-c-lab-experiments {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(320), 1fr));
+        gap: q(32);
+        padding: q(32);
+        max-width: q(1400);
+        margin: 0 auto;
+    }
+
+    // -- experiment-card  (from site-lovelacelabs_ai/src/static/scss/app/_lab.scss) --
+    .ss-c-experiment-card {
+        display: flex;
+        flex-direction: column;
+        padding: q(32);
+        border-radius: q(24);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(q(-4));
+
+            .ss-c-experiment-orb {
+                animation-play-state: running;
+            }
+
+            .ss-c-experiment-orb__ring {
+                animation-play-state: running;
+            }
+        }
+
+        &__visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: q(200);
+            margin-bottom: q(24);
+        }
+
+        &__content {
+            text-align: center;
+        }
+
+        &__category {
+            display: inline-block;
+            font-size: q(11.2);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: unset;
+            background: unset;
+            padding: q(4) q(12);
+            border-radius: q(16);
+            margin-bottom: q(12);
+        }
+
+        &__title {
+            font-size: q(20);
+            font-weight: 600;
+            margin-bottom: q(8);
+            color: #2d3748;
+        }
+
+        &__description {
+            font-size: q(14.4);
+            color: #718096;
+            margin-bottom: q(24);
+            line-height: 1.5;
+        }
+
+        &__btn {
+            display: inline-flex;
+            align-items: center;
+            gap: q(8);
+            padding: q(12) q(24);
+            font-size: q(13.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            .ss-c-btn-icon {
+                transition: transform 0.3s ease;
+            }
+
+            &:hover .ss-c-btn-icon {
+                transform: translateX(q(4));
+            }
+        }
+    }
+
+    // -- experiment-orb  (from site-lovelacelabs_ai/src/static/scss/app/_lab.scss) --
+    .ss-c-experiment-orb {
+        position: relative;
+        width: q(120);
+        height: q(120);
+
+        &__core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: q(40);
+            height: q(40);
+            background: linear-gradient(135deg, unset, unset);
+            border-radius: 50%;
+            box-shadow:
+                0 0 q(20) unset,
+                inset 0 0 q(10) rgba(white, 0.3);
+            animation: orb-pulse 2s ease-in-out infinite;
+        }
+
+        &__ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            border: q(2) solid transparent;
+            animation-play-state: paused;
+
+            &--1 {
+                width: q(70);
+                height: q(70);
+                margin: q(-35) 0 0 q(-35);
+                border-color: unset;
+                animation: ring-rotate 4s linear infinite;
+            }
+
+            &--2 {
+                width: q(90);
+                height: q(90);
+                margin: q(-45) 0 0 q(-45);
+                border-color: unset;
+                animation: ring-rotate 6s linear infinite reverse;
+            }
+
+            &--3 {
+                width: q(110);
+                height: q(110);
+                margin: q(-55) 0 0 q(-55);
+                border-color: unset;
+                animation: ring-rotate 8s linear infinite;
+            }
+        }
+
+        &__particles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+        }
+
+        &__particle {
+            position: absolute;
+            width: q(4);
+            height: q(4);
+            background: unset;
+            border-radius: 50%;
+            transform: rotate(var(--particle-angle, 0deg)) translateX(q(50));
+            animation: particle-orbit 3s linear infinite;
+            animation-delay: var(--particle-delay, 0s);
+        }
+    }
+
+    // -- lab-console-section  (from site-lovelacelabs_ai/src/static/scss/app/_lab.scss) --
+    .ss-c-lab-console-section {
+        .ss-c-section-title {
+            text-align: center;
+        }
+    }
+
+    // -- lab-console  (from site-lovelacelabs_ai/src/static/scss/app/_lab.scss) --
+    .ss-c-lab-console {
+        font-family: 'TTInterphasesPro', sans-serif;
+        background: #1a1a2e;
+        border-radius: q(16);
+        overflow: hidden;
+
+        .ss-c-console-header {
+            display: flex;
+            align-items: center;
+            gap: q(8);
+            padding: q(12) q(16);
+            background: #16162a;
+            border-bottom: q(1) solid #2a2a4a;
+        }
+
+        .ss-c-console-dot {
+            width: q(12);
+            height: q(12);
+            border-radius: 50%;
+
+            &--red { background: #ff5f56; }
+            &--yellow { background: #ffbd2e; }
+            &--green { background: #27ca40; }
+        }
+
+        .ss-c-console-title {
+            margin-left: q(16);
+            font-size: q(12);
+            color: #666;
+        }
+
+        .ss-c-console-body {
+            padding: q(24);
+            min-height: q(200);
+        }
+
+        .ss-c-console-line {
+            display: flex;
+            align-items: center;
+            gap: q(12);
+            margin-bottom: q(12);
+            font-size: q(13.6);
+            color: #888;
+
+            &--success {
+                color: unset;
+            }
+
+            &--highlight {
+                color: unset;
+            }
+        }
+
+        .ss-c-console-prompt {
+            color: unset;
+        }
+
+        .ss-c-console-cursor {
+            display: inline-block;
+            width: q(8);
+            height: q(16);
+            background: unset;
+            animation: cursor-blink 1s step-end infinite;
+        }
+    }
+
+    // -- lab-stats  (from site-lovelacelabs_ai/src/static/scss/app/_lab.scss) --
+    .ss-c-lab-stats {
+        padding: q(32);
+    }
+
+    // -- playground-featured  (from site-lovelacelabs_ai/src/static/scss/app/_playground.scss) --
+    .ss-c-playground-featured {
+        padding: q(48) q(32);
+
+        &__container {
+            max-width: q(800);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        &__badge {
+            display: inline-block;
+            font-size: q(11.2);
+            padding: q(5.6) q(16);
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            border-radius: q(100);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: q(16);
+        }
+
+        &__title {
+            font-size: q(32);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: q(12);
+        }
+
+        &__description {
+            font-size: q(16);
+            color: #a1a1aa;
+            max-width: q(500);
+            margin: 0 auto q(32);
+        }
+
+        &__demo {
+            max-width: q(600);
+            margin: 0 auto;
+        }
+    }
+
+    // -- playground-chat  (from site-lovelacelabs_ai/src/static/scss/app/_playground.scss) --
+    .ss-c-playground-chat {
+        background: #0f0f0f;
+        border: q(1) solid #27272a;
+        border-radius: q(12);
+        overflow: hidden;
+
+        &__messages {
+            height: q(300);
+            overflow-y: auto;
+            padding: q(16);
+            display: flex;
+            flex-direction: column;
+            gap: q(16);
+        }
+
+        &__message {
+            display: flex;
+            gap: q(12);
+            max-width: 80%;
+
+            &--user {
+                align-self: flex-end;
+                flex-direction: row-reverse;
+
+                .ss-c-playground-chat__bubble {
+                    background: #8b5cf6;
+                    color: white;
+                }
+            }
+
+            &--system {
+                align-self: flex-start;
+
+                .ss-c-playground-chat__bubble {
+                    background: #27272a;
+                    color: #e5e5e5;
+                }
+            }
+        }
+
+        &__avatar {
+            font-size: q(24);
+            flex-shrink: 0;
+        }
+
+        &__bubble {
+            padding: q(12) q(16);
+            border-radius: q(12);
+            font-size: q(14.4);
+            line-height: 1.5;
+        }
+
+        &__input-area {
+            display: flex;
+            gap: q(8);
+            padding: q(16);
+            border-top: q(1) solid #27272a;
+            background: #18181b;
+        }
+
+        &__input {
+            flex: 1;
+            background: #27272a;
+            border: q(1) solid #3f3f46;
+            border-radius: q(8);
+            padding: q(12) q(16);
+            color: #e5e5e5;
+            font-size: q(14.4);
+
+            &:focus {
+                outline: none;
+                border-color: #8b5cf6;
+            }
+
+            &::placeholder {
+                color: #71717a;
+            }
+        }
+
+        &__send {
+            padding: q(12) q(24);
+        }
+    }
+
+    // -- playground-demos  (from site-lovelacelabs_ai/src/static/scss/app/_playground.scss) --
+    .ss-c-playground-demos {
+        padding: q(32);
+
+        &__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(q(280), 1fr));
+            gap: q(24);
+            max-width: q(1200);
+            margin: 0 auto;
+        }
+    }
+
+    // -- playground-demo  (from site-lovelacelabs_ai/src/static/scss/app/_playground.scss) --
+    .ss-c-playground-demo {
+        overflow: hidden;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(q(-4));
+
+            .ss-c-playground-demo__overlay {
+                opacity: 1;
+            }
+        }
+
+        &__preview {
+            position: relative;
+            background: #1a1a2e;
+            border-radius: q(8) q(8) 0 0;
+            overflow: hidden;
+        }
+
+        &__canvas {
+            aspect-ratio: 16 / 9;
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &__overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        &__play {
+            width: q(50);
+            height: q(50);
+            background: unset;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: q(20);
+            color: white;
+        }
+
+        &__info {
+            padding: q(16);
+        }
+
+        &__meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: q(8);
+        }
+
+        &__type {
+            font-size: q(10.4);
+            color: unset;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+        }
+
+        &__difficulty {
+            font-size: q(10.4);
+            padding: q(3.2) q(8);
+            border-radius: q(4);
+            font-weight: 600;
+
+            &--easy {
+                background: rgba(34, 197, 94, 0.2);
+                color: #22c55e;
+            }
+
+            &--medium {
+                background: rgba(234, 179, 8, 0.2);
+                color: #eab308;
+            }
+
+            &--advanced {
+                background: rgba(239, 68, 68, 0.2);
+                color: #ef4444;
+            }
+        }
+
+        &__title {
+            font-size: q(16);
+            font-weight: 600;
+            color: #e5e5e5;
+            margin-bottom: q(8);
+        }
+
+        &__description {
+            font-size: q(12.8);
+            color: #71717a;
+            line-height: 1.5;
+            margin-bottom: q(16);
+        }
+
+        &__launch {
+            width: 100%;
+        }
+    }
+
+    // -- playground-explainer  (from site-lovelacelabs_ai/src/static/scss/app/_playground.scss) --
+    .ss-c-playground-explainer {
+        display: flex;
+        flex-direction: column;
+        gap: q(24);
+
+        &__step {
+            display: flex;
+            gap: q(16);
+            align-items: flex-start;
+        }
+
+        &__num {
+            font-size: q(24);
+            font-weight: 700;
+            color: unset;
+            font-family: 'TTInterphasesPro', sans-serif;
+            line-height: 1;
+        }
+
+        &__content {
+            strong {
+                display: block;
+                font-size: q(14.4);
+                color: #e5e5e5;
+                margin-bottom: q(4);
+            }
+
+            p {
+                font-size: q(12.8);
+                color: #71717a;
+                line-height: 1.5;
+            }
+        }
+    }
+
+    // -- threed-viewer  (from site-lovelacelabs_ai/src/static/scss/app/_threed.scss) --
+    .ss-c-threed-viewer {
+        position: relative;
+        width: 100%;
+        max-width: q(1200);
+        margin: 0 auto;
+
+        &__canvas {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #0a0a0f;
+            border-radius: q(12);
+            overflow: hidden;
+
+            canvas {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+        }
+
+        &__loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: q(16);
+            background: #0a0a0f;
+            color: #71717a;
+            font-size: q(14.4);
+        }
+
+        &__spinner {
+            width: q(40);
+            height: q(40);
+            border: q(3) solid #27272a;
+            border-top-color: unset;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        &__controls {
+            position: absolute;
+            bottom: q(16);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    // -- threed-controls  (from site-lovelacelabs_ai/src/static/scss/app/_threed.scss) --
+    .ss-c-threed-controls {
+        display: flex;
+        gap: q(8);
+        padding: q(8);
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(q(10));
+        border-radius: q(8);
+    }
+
+    // -- threed-control  (from site-lovelacelabs_ai/src/static/scss/app/_threed.scss) --
+    .ss-c-threed-control {
+        width: q(36);
+        height: q(36);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: q(17.6);
+        background: #1a1a2e;
+        border: q(1) solid #27272a;
+        color: #e5e5e5;
+        border-radius: q(6);
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+            background: unset;
+            border-color: unset;
+        }
+    }
+
+    // -- threed-scenes  (from site-lovelacelabs_ai/src/static/scss/app/_threed.scss) --
+    .ss-c-threed-scenes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(300), 1fr));
+        gap: q(16);
+        padding: q(16) q(32);
+        max-width: q(1200);
+        margin: 0 auto;
+    }
+
+    // -- threed-scene  (from site-lovelacelabs_ai/src/static/scss/app/_threed.scss) --
+    .ss-c-threed-scene {
+        display: flex;
+        gap: q(16);
+        align-items: flex-start;
+        padding: q(16);
+        text-align: left;
+        cursor: pointer;
+        border: q(2) solid transparent;
+        transition: all 0.3s ease;
+
+        &--active {
+            border-color: unset;
+
+            .ss-c-threed-scene__icon {
+                transform: scale(1.1);
+            }
+        }
+
+        &:hover:not(.ss-c-threed-scene--active) {
+            border-color: #3f3f46;
+        }
+
+        &__icon {
+            font-size: q(32);
+            transition: transform 0.3s;
+        }
+
+        &__info {
+            flex: 1;
+        }
+
+        &__title {
+            font-size: q(16);
+            font-weight: 600;
+            color: #e5e5e5;
+            margin-bottom: q(4);
+        }
+
+        &__description {
+            font-size: q(12.8);
+            color: #71717a;
+            line-height: 1.4;
+            margin-bottom: q(8);
+        }
+
+        &__complexity {
+            font-size: q(10.4);
+            padding: q(3.2) q(8);
+            border-radius: q(4);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+
+            &--easy {
+                background: rgba(34, 197, 94, 0.2);
+                color: #22c55e;
+            }
+
+            &--medium {
+                background: rgba(234, 179, 8, 0.2);
+                color: #eab308;
+            }
+
+            &--advanced {
+                background: rgba(139, 92, 246, 0.2);
+                color: unset;
+            }
+        }
+    }
+
+    // -- threed-params  (from site-lovelacelabs_ai/src/static/scss/app/_threed.scss) --
+    .ss-c-threed-params {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(q(200), 1fr));
+        gap: q(24);
+        padding: q(24);
+        max-width: q(800);
+        margin: 0 auto;
+    }
+
+    // -- threed-param  (from site-lovelacelabs_ai/src/static/scss/app/_threed.scss) --
+    .ss-c-threed-param {
+        display: flex;
+        flex-direction: column;
+        gap: q(8);
+
+        &__label {
+            font-size: q(12.8);
+            color: #a1a1aa;
+            font-weight: 500;
+        }
+
+        &__slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: q(6);
+            background: #27272a;
+            border-radius: q(3);
+            outline: none;
+
+            &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: q(18);
+                height: q(18);
+                background: unset;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: transform 0.2s;
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
+
+        &__value {
+            font-size: q(12);
+            color: unset;
+            font-family: 'TTInterphasesPro', sans-serif;
+        }
+
+        &__select {
+            background: #1a1a2e;
+            border: q(1) solid #27272a;
+            border-radius: q(6);
+            padding: q(8);
+            color: #e5e5e5;
+            font-size: q(13.6);
+
+            &:focus {
+                outline: none;
+                border-color: unset;
+            }
+        }
+    }
+
+    // -- threed-toggle  (from site-lovelacelabs_ai/src/static/scss/app/_threed.scss) --
+    .ss-c-threed-toggle {
+        position: relative;
+        display: inline-block;
+        width: q(44);
+        height: q(24);
+
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+
+            &:checked + .ss-c-threed-toggle__slider {
+                background: unset;
+
+                &::before {
+                    transform: translateX(q(20));
+                }
+            }
+        }
+
+        &__slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background: #27272a;
+            border-radius: q(12);
+            transition: 0.3s;
+
+            &::before {
+                content: '';
+                position: absolute;
+                height: q(18);
+                width: q(18);
+                left: q(3);
+                bottom: q(3);
+                background: white;
+                border-radius: 50%;
+                transition: 0.3s;
+            }
+        }
+    }
+
+    // -- threed-help  (from site-lovelacelabs_ai/src/static/scss/app/_threed.scss) --
+    .ss-c-threed-help {
+        display: flex;
+        justify-content: center;
+        gap: q(16);
+        flex-wrap: wrap;
+        padding: q(16) q(32);
+
+        &__item {
+            display: flex;
+            align-items: center;
+            gap: q(12);
+            padding: q(12) q(16);
+        }
+
+        &__key {
+            display: inline-block;
+            padding: q(5.6) q(12);
+            background: #1a1a2e;
+            border: q(1) solid #3f3f46;
+            border-radius: q(6);
+            font-size: q(12.8);
+            font-family: 'TTInterphasesPro', sans-serif;
+            color: unset;
+        }
+
+        &__action {
+            font-size: q(13.6);
+            color: #a1a1aa;
+        }
+    }
+
+    // -- threed-stats  (from site-lovelacelabs_ai/src/static/scss/app/_threed.scss) --
+    .ss-c-threed-stats {
+        position: fixed;
+        top: q(80);
+        right: q(16);
+        display: flex;
+        gap: q(16);
+        padding: q(12) q(16);
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(q(10));
+        border-radius: q(8);
+        z-index: 100;
+    }
+
+    // -- threed-stat  (from site-lovelacelabs_ai/src/static/scss/app/_threed.scss) --
+    .ss-c-threed-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: q(4);
+
+        &__label {
+            font-size: q(10.4);
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        &__value {
+            font-size: q(16);
+            font-weight: 600;
+            color: unset;
+            font-family: 'TTInterphasesPro', sans-serif;
+        }
+    }
+
+    // -- speckle-main  (from site-speckle_org/src/static/scss/layout/_container.scss) --
+    .ss-c-speckle-main {
+      min-height: 100vh;
+    }
+
+    // -- agents__footer  (from site-zoo_foo/src/static/scss/index.scss) --
+    .ss-c-agents__footer {
+        font-family: "SF Mono", "Fira Code", Menlo, Monaco, monospace;
+        font-size: q(14);
+        line-height: 1.7;
+        color: #525252;
+    }
+}
