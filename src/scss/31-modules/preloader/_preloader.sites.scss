@@ -34,13 +34,13 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: #000000;
+        background: var(--ss-color-black);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        z-index: 99999;
-        transition: opacity 0.6s ease, visibility 0.6s ease;
+        z-index: var(--ss-z-toast);
+        transition: opacity var(--ss-duration-500) ease, visibility var(--ss-duration-500) ease;
 
         &.ss-c-loaded {
             opacity: 0;
@@ -51,14 +51,14 @@
         &__logo {
             max-width: q(120);
             margin-bottom: q(32);
-            animation: pulse 2s ease-in-out infinite;
+            animation: pulse var(--ss-duration-loop-slow) ease-in-out infinite;
         }
 
         &__text {
             font-size: q(12);
             text-transform: uppercase;
             letter-spacing: 0.3em;
-            color: #737373;
+            color: var(--ss-color-gray-500);
         }
     }
 
@@ -69,9 +69,9 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--ss-color-fill, #ffffff);
+      background: var(--ss-color-fill);
         // (stripped @include)
-      z-index: 9999;
+      z-index: var(--ss-z-toast);
       transition: opacity var(--ss-duration-300) ease;
 
       &.hidden {
@@ -83,7 +83,7 @@
         font-size: q(12);
         text-transform: uppercase;
         letter-spacing: 0.2em;
-        color: #737373;
+        color: var(--ss-color-gray-500);
       }
     }
 }

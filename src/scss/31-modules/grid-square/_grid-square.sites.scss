@@ -35,7 +35,7 @@
         right: 0;
         bottom: 0;
         pointer-events: none;
-        z-index: -1000;
+        z-index: -1;
         overflow: hidden;
 
         // On mobile, this absolutely-positioned background layer drifts away
@@ -54,15 +54,15 @@
 
         // Green tints (accent #099f80 mixed with white)
         &--green-10 {
-            background: #e6f5f2; // 10% green, 90% white
+            background: var(--ss-color-gray-100); // 10% green, 90% white
         }
 
         &--green-20 {
-            background: #ceece6; // 20% green, 80% white
+            background: var(--ss-color-gray-200); // 20% green, 80% white
         }
 
         &--green-30 {
-            background: #b5e2d9; // 30% green, 70% white
+            background: var(--ss-color-success-bg); // 30% green, 70% white
         }
     }
 
@@ -312,9 +312,9 @@
             right: var(--life-cell-padding, #{q(2)});
             bottom: var(--life-cell-padding, #{q(2)});
             left: var(--life-cell-padding, #{q(2)});
-            background-color: rgba(9, 159, 128, 0.12);
+            background-color: color-mix(in srgb, var(--ss-color-success) 12%, transparent);
             opacity: 0;
-            transition: opacity 750ms ease-out;
+            transition: opacity var(--ss-duration-700) ease-out;
         }
 
         &.ss-c-alive::after {

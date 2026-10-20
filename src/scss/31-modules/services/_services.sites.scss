@@ -411,7 +411,7 @@
                 font-size: q(24);
                 line-height: 1;
                 color: color-mix(in srgb, var(--ss-color-black) 60%, transparent);
-                transition: transform 200ms ease;
+                transition: transform var(--ss-duration-200) ease;
             }
         }
 
@@ -680,7 +680,7 @@
             grid-template-columns: q(192) 1fr;
             gap: q(24);
             padding-block: q(14.4);
-            border-bottom: q(1) solid rgba(0,0,0,0.08);
+            border-bottom: q(1) solid color-mix(in srgb, var(--ss-color-black) 8%, transparent);
             font-size: q(14.72); line-height: 1.5;
             dt { font-weight: 500; }
             dd { margin: 0; opacity: 0.85; }
@@ -693,7 +693,7 @@
         grid-template-columns: repeat(auto-fit, minmax(q(200), 1fr));
         gap: q(20); margin: 0; padding: 0;
 
-        &__step { display: flex; flex-direction: column; gap: q(6.4); padding: q(16); border: q(1) solid rgba(0,0,0,0.08); }
+        &__step { display: flex; flex-direction: column; gap: q(6.4); padding: q(16); border: q(1) solid color-mix(in srgb, var(--ss-color-black) 8%, transparent); }
         &__num  { font-size: q(11.52); opacity: 0.55; letter-spacing: 0.12em; }
         &__title { font-size: q(15.2); margin: 0; font-weight: 500; }
         p { font-size: q(13.6); line-height: 1.5; opacity: 0.85; margin: 0; }
@@ -705,7 +705,7 @@
         grid-template-columns: repeat(auto-fill, minmax(q(160), 1fr));
         gap: q(8) q(20);
         margin: 0; padding: 0;
-        li { font-size: q(13.6); padding-block: q(6.4); border-bottom: q(1) solid rgba(0,0,0,0.06); }
+        li { font-size: q(13.6); padding-block: q(6.4); border-bottom: q(1) solid color-mix(in srgb, var(--ss-color-black) 6%, transparent); }
     }
 
     // -- services-cta  (from site-scape_agency/src/static/scss/sections/_pages.scss) --
@@ -760,8 +760,8 @@
     // -- use-case-card  (from site-coreal_ai/src/static/scss/index.scss) --
     .ss-c-use-case-card {
         padding: unset;
-        background: #ffffff;
-        border: q(1) solid var(--ss-color-border, #e5e5e5);
+        background: var(--ss-color-white);
+        border: q(1) solid var(--ss-color-border);
         border-radius: var(--ss-radius-none);
         transition: all var(--ss-duration-200) ease;
 
@@ -776,7 +776,7 @@
         }
 
         p {
-            color: #525252;
+            color: var(--ss-color-gray-600);
             font-size: q(15);
         }
     }
@@ -784,7 +784,7 @@
     // -- services  (from site-kockums_io/src/static/scss/sections/_services.scss) --
     .ss-c-services {
         // (stripped @include)
-        background-color: #1a1a1a;
+        background-color: var(--ss-color-gray-800);
 
         &__inner {
         // (stripped @include)
@@ -854,7 +854,7 @@
     // -- process-step__description  (from site-matter_tech/src/static/scss/sections/_process.scss) --
     .ss-c-process-step__description {
         font-size: var(--ss-font-size-sm);
-        color: #525252;
+        color: var(--ss-color-gray-600);
         line-height: var(--ss-leading-relaxed);
         margin: 0;
     }
@@ -898,7 +898,7 @@
     // -- service-item__description  (from site-matter_tech/src/static/scss/sections/_section.scss) --
     .ss-c-service-item__description {
         font-size: var(--ss-font-size-sm);
-        color: #525252;
+        color: var(--ss-color-gray-600);
         line-height: var(--ss-leading-relaxed);
         margin: 0;
     }
@@ -927,7 +927,7 @@
     // -- service-detail__description  (from site-matter_tech/src/static/scss/sections/_section.scss) --
     .ss-c-service-detail__description {
         font-size: unset;
-        color: #525252;
+        color: var(--ss-color-gray-600);
         line-height: var(--ss-leading-relaxed);
         margin-bottom: unset;
         max-width: q(700);
@@ -946,7 +946,7 @@
             li {
                 position: relative;
                 font-size: var(--ss-font-size-sm);
-                color: #525252;
+                color: var(--ss-color-gray-600);
                 margin-bottom: unset;
 
                 &::before {
@@ -974,7 +974,7 @@
     // -- engagement-step  (from site-matter_tech/src/static/scss/sections/_section.scss) --
     .ss-c-engagement-step {
         padding: unset;
-        background-color: #f2f2f2;
+        background-color: var(--ss-color-gray-100);
         border-left: q(2) solid var(--ss-color-black);
     }
 
@@ -994,7 +994,7 @@
     // -- engagement-step__description  (from site-matter_tech/src/static/scss/sections/_section.scss) --
     .ss-c-engagement-step__description {
         font-size: var(--ss-font-size-sm);
-        color: #525252;
+        color: var(--ss-color-gray-600);
         line-height: var(--ss-leading-relaxed);
         margin: 0;
     }
@@ -1192,9 +1192,9 @@
             border-radius: 50%;
             background: var(--ss-color-gray-600);
 
-            &:nth-child(1) { background: #ff5f56; }
-            &:nth-child(2) { background: #ffbd2e; }
-            &:nth-child(3) { background: #27c93f; }
+            &:nth-child(1) { background: var(--ss-color-error); }
+            &:nth-child(2) { background: var(--ss-color-warning); }
+            &:nth-child(3) { background: var(--ss-color-success); }
         }
 
         .ss-c-code-title {
@@ -1257,23 +1257,23 @@
         margin-bottom: unset;
 
         &-healthcare {
-            background: rgba(#559a6a, 0.15);
-            color: #559a6a;
+            background: color-mix(in srgb, var(--ss-color-success) 15%, transparent);
+            color: var(--ss-color-success);
         }
 
         &-beauty {
-            background: rgba(#c5728d, 0.15);
-            color: #c5728d;
+            background: color-mix(in srgb, var(--ss-color-error) 15%, transparent);
+            color: var(--ss-color-error);
         }
 
         &-wellness {
-            background: rgba(#a77cb9, 0.15);
-            color: #a77cb9;
+            background: color-mix(in srgb, var(--ss-color-info) 15%, transparent);
+            color: var(--ss-color-info);
         }
 
         &-enterprise {
-            background: rgba(#5192c8, 0.15);
-            color: #5192c8;
+            background: color-mix(in srgb, var(--ss-color-accent) 15%, transparent);
+            color: var(--ss-color-accent);
         }
     }
 

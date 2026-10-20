@@ -388,7 +388,7 @@
         // (stripped @include)
       &:hover {
         border-color: var(--ss-color-accent);
-        background: rgba(59, 130, 246, 0.03);
+        background: color-mix(in srgb, var(--ss-color-accent) 3%, transparent);
       }
 
       &__title {
@@ -500,7 +500,7 @@
 
         &__statement {
             font-size: q(20);
-            color: #e5e5e5;
+            color: var(--ss-color-gray-200);
             line-height: 1.8;
             font-style: italic;
         }
@@ -518,10 +518,10 @@
         display: flex;
         gap: q(32);
         padding: q(32) 0;
-        border-bottom: q(1) solid #27272a;
+        border-bottom: q(1) solid var(--ss-color-gray-700);
         opacity: 0;
         transform: translateY(q(20));
-        transition: all 0.6s ease;
+        transition: all var(--ss-duration-500) ease;
 
         &--visible {
             opacity: 1;
@@ -539,7 +539,7 @@
             font-family: 'TTInterphasesPro', sans-serif;
             line-height: 1;
             opacity: 0.5;
-            transition: all 0.3s ease;
+            transition: all var(--ss-duration-300) ease;
             min-width: q(80);
 
             &--glow {
@@ -555,7 +555,7 @@
         &__title {
             font-size: q(24);
             font-weight: 700;
-            color: #ffffff;
+            color: var(--ss-color-white);
             margin-bottom: q(12);
         }
 
@@ -569,7 +569,7 @@
 
         &__detail {
             font-size: q(15.2);
-            color: #a1a1aa;
+            color: var(--ss-color-gray-300);
             line-height: 1.7;
         }
     }
@@ -601,7 +601,7 @@
         &__title {
             font-size: q(12.8);
             font-weight: 600;
-            color: #71717a;
+            color: var(--ss-color-gray-500);
             letter-spacing: 0.2em;
             margin-bottom: q(24);
         }
@@ -615,7 +615,7 @@
 
         &__date {
             font-size: q(12.8);
-            color: #52525b;
+            color: var(--ss-color-gray-600);
             font-family: 'TTInterphasesPro', sans-serif;
         }
     }
@@ -626,7 +626,7 @@
         color: unset;
         font-style: italic;
         opacity: 0;
-        animation: fadeInUp 0.6s ease forwards;
+        animation: fadeInUp var(--ss-duration-500) ease forwards;
 
         @keyframes fadeInUp {
             from {
@@ -656,7 +656,7 @@
             font-size: q(24);
             font-style: italic;
             line-height: 1.8;
-            color: #2d3748;
+            color: var(--ss-color-gray-700);
 
             em {
                 color: unset;
@@ -668,7 +668,7 @@
             display: block;
             margin-top: q(24);
             font-size: q(14.4);
-            color: #718096;
+            color: var(--ss-color-gray-400);
             font-style: normal;
         }
     }
@@ -711,7 +711,7 @@
             font-size: q(13.6);
             font-weight: 700;
             letter-spacing: 0.1em;
-            color: white;
+            color: var(--ss-color-white);
             background: linear-gradient(135deg, unset, unset);
             padding: q(8) q(24);
             border-radius: q(32);
@@ -727,14 +727,14 @@
         &__title {
             font-size: q(20);
             font-weight: 600;
-            color: #2d3748;
+            color: var(--ss-color-gray-700);
             margin-bottom: q(12);
         }
 
         &__description {
             font-size: q(14.4);
             line-height: 1.6;
-            color: #718096;
+            color: var(--ss-color-gray-400);
         }
     }
 
@@ -764,7 +764,7 @@
             p {
                 font-size: q(13.6);
                 line-height: 1.6;
-                color: #718096;
+                color: var(--ss-color-gray-400);
             }
         }
     }
@@ -779,7 +779,7 @@
         font-size: q(64);
         color: unset;
         margin-bottom: q(32);
-        animation: symbol-float 3s ease-in-out infinite;
+        animation: symbol-float calc(var(--ss-duration-1000) * 3) ease-in-out infinite;
     }
 
     // -- philosophy-closing-text  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
@@ -788,7 +788,7 @@
         margin: 0 auto;
         font-size: q(17.6);
         line-height: 1.8;
-        color: #4a5568;
+        color: var(--ss-color-gray-600);
     }
 
     // -- philosophy-signature  (from site-lovelacelabs_ai/src/static/scss/app/_philosophy.scss) --
@@ -796,7 +796,7 @@
         margin-top: q(32);
         font-size: q(14.4);
         font-style: italic;
-        color: #718096;
+        color: var(--ss-color-gray-400);
     }
 
     // -- intro  (from site-matter_tech/src/static/scss/base/_typography.scss) --
@@ -804,7 +804,7 @@
         font-size: unset;
         font-weight: unset;
         line-height: var(--ss-leading-relaxed);
-        color: #525252;
+        color: var(--ss-color-gray-600);
         max-width: q(600);
     }
 
@@ -1287,7 +1287,7 @@
 
       &--accent {
         border-color: var(--ss-color-accent);
-        background: linear-gradient(135deg, var(--ss-color-surface-alt) 0%, rgba(0, 255, 136, 0.05) 100%);
+        background: linear-gradient(135deg, var(--ss-color-surface-alt) 0%, color-mix(in srgb, var(--ss-color-success) 5%, transparent) 100%);
       }
 
       &__icon {
@@ -1437,7 +1437,7 @@
         background: var(--ss-color-primary);
         border-top: none;
         border-bottom: none;
-        color: #FFFFFF;
+        color: var(--ss-color-white);
     }
 
     // -- philosophy__content  (from site-zoo_foo/src/static/scss/index.scss) --
@@ -1447,7 +1447,7 @@
         text-align: center;
 
         h2 {
-            color: #FFFFFF;
+            color: var(--ss-color-white);
         }
     }
 
@@ -1456,7 +1456,7 @@
         font-family: "SF Mono", "Fira Code", Menlo, Monaco, monospace;
         font-size: q(14);
         line-height: 1.7;
-        color: #FFFFFF;
+        color: var(--ss-color-white);
         opacity: 0.9;
         margin-bottom: unset;
         max-width: q(700);
@@ -1479,7 +1479,7 @@
 
     // -- philosophy__card  (from site-zoo_foo/src/static/scss/index.scss) --
     .ss-c-philosophy__card {
-        background: rgba(255, 255, 255, 0.1);
+        background: color-mix(in srgb, var(--ss-color-white) 10%, transparent);
         padding: unset;
         border-radius: var(--ss-radius-none);
 
@@ -1487,7 +1487,7 @@
             font-family: "SF Mono", "Fira Code", Menlo, Monaco, monospace;
             font-size: q(14);
             font-weight: 600;
-            color: #FFFFFF;
+            color: var(--ss-color-white);
             margin-bottom: unset;
         }
 
@@ -1495,7 +1495,7 @@
             font-family: "SF Mono", "Fira Code", Menlo, Monaco, monospace;
             font-size: q(13);
             line-height: 1.6;
-            color: #FFFFFF;
+            color: var(--ss-color-white);
             opacity: 0.85;
             margin: 0;
         }

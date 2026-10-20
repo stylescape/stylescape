@@ -374,7 +374,7 @@
 
         a {
             opacity: 0.8;
-            transition: opacity 0.2s ease;
+            transition: opacity var(--ss-duration-200) ease;
 
             &:hover {
                 opacity: 1;
@@ -412,7 +412,7 @@
 
         a {
             opacity: 0.7;
-            transition: opacity 0.2s ease;
+            transition: opacity var(--ss-duration-200) ease;
 
             &:hover {
                 opacity: 1;
@@ -518,7 +518,7 @@
       &:hover {
         background: var(--ss-color-accent);
         border-color: var(--ss-color-accent);
-        color: white;
+        color: var(--ss-color-white);
         transform: translateY(q(-2));
       }
 
@@ -595,7 +595,7 @@
       width: q(40);
       height: q(40);
       background: var(--ss-color-accent);
-      color: white;
+      color: var(--ss-color-white);
       border: none;
       border-radius: var(--ss-radius-md);
       cursor: pointer;
@@ -632,7 +632,7 @@
         max-width: q(1024);
         margin: 0 auto;
         padding-bottom: q(32);
-        border-bottom: q(1) solid rgba(255, 255, 255, 0.1);
+        border-bottom: q(1) solid color-mix(in srgb, var(--ss-color-white) 10%, transparent);
 
         @media (max-width: q(640)) {
             flex-direction: column;
@@ -719,7 +719,7 @@
         letter-spacing: 0.02em;
         padding: q(01) q(02);
         border-radius: q(4);
-        transition: color 0.2s ease, background 0.2s ease;
+        transition: color var(--ss-duration-200) ease, background var(--ss-duration-200) ease;
 
         &:hover {
             color: unset;
@@ -804,17 +804,17 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: #525252;
+            color: var(--ss-color-gray-600);
             margin-bottom: unset;
         }
 
         a {
             font-size: var(--ss-font-size-sm);
-            color: #737373;
+            color: var(--ss-color-gray-500);
             transition: color unset;
 
             &:hover {
-                color: var(--ss-color-text, #1a1a1a);
+                color: var(--ss-color-text);
             }
         }
     }
@@ -830,7 +830,7 @@
     // -- footer-divider  (from site-starling_studio/src/static/scss/app/sticky_footer.scss) --
     .ss-c-footer-divider {
         margin: 0;
-        border-top:q(1) solid #000;
+        border-top:q(1) solid var(--ss-color-black);
     }
 
     // -- footer-row  (from site-suell_org/src/static/scss/layout/_footer.scss) --
@@ -850,7 +850,7 @@
 
     // -- footer-separator  (from site-suell_org/src/static/scss/layout/_footer.scss) --
     .ss-c-footer-separator {
-        color: var(--ss-color-border, #e5e5e5);
+        color: var(--ss-color-border);
         font-size: q(12);
 
         @media (max-width: map.get(breakpoints.$ss-breakpoints, "md")) {

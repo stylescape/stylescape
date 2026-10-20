@@ -120,7 +120,7 @@
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        color: var(--ss-color-primary, #008fbf);
+        color: var(--ss-color-primary);
         margin-bottom: q(8);
     }
 
@@ -168,7 +168,7 @@
 
     // -- page-header--border-bottom  (from site-starling_studio/src/static/scss/app/_page_header.scss) --
     .ss-c-page-header--border-bottom {
-        --page-header-border-bottom: 1px solid #000;
+        --page-header-border-bottom: 1px solid var(--ss-color-black);
     }
 
     // -- page-header--sm  (from site-starling_studio/src/static/scss/app/_page_header.scss) --
@@ -195,9 +195,9 @@
 
     // -- page-header--light  (from site-starling_studio/src/static/scss/app/_page_header.scss) --
     .ss-c-page-header--light {
-        --page-header-border-top: 1px solid rgba(255, 255, 255, 0.2);
-        --page-header-title-color: #fff;
-        --page-header-text-color: rgba(255, 255, 255, 0.8);
+        --page-header-border-top: 1px solid color-mix(in srgb, var(--ss-color-white) 20%, transparent);
+        --page-header-title-color: var(--ss-color-white);
+        --page-header-text-color: color-mix(in srgb, var(--ss-color-white) 80%, transparent);
     }
 
     // -- page-header--wrap  (from site-starling_studio/src/static/scss/app/_page_header.scss) --
@@ -211,8 +211,8 @@
     // -- page-border  (from site-suell_org/src/static/scss/base/_base.scss) --
     .ss-c-page-border {
         position: fixed;
-        background: #000000;
-        z-index: 9999;
+        background: var(--ss-color-black);
+        z-index: var(--ss-z-toast);
         pointer-events: none;
 
         &--top,

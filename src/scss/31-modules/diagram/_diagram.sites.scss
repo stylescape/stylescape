@@ -151,7 +151,7 @@
     // -- storyboard__link-arrow  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
     .ss-c-storyboard__link-arrow {
         display: inline-block;
-        transition: transform 0.2s ease;
+        transition: transform var(--ss-duration-200) ease;
     }
 
     // -- storyboard__connector  (from site-scape_foundation/src/static/scss/components/_storyboard.scss) --
@@ -189,19 +189,19 @@
 
     // -- diagram-card  (from site-lovelacelabs_ai/src/static/scss/app/_diagrams.scss) --
     .ss-c-diagram-card {
-        background: #e8ecef;
+        background: var(--ss-color-gray-100);
         border-radius: q(20);
         overflow: hidden;
-        transition: all 0.3s ease;
+        transition: all var(--ss-duration-300) ease;
         box-shadow:
-            q(8) q(8) q(16) rgba(163, 177, 198, 0.5),
-            q(-8) q(-8) q(16) rgba(255, 255, 255, 0.8);
+            q(8) q(8) q(16) color-mix(in srgb, var(--ss-color-gray-300) 50%, transparent),
+            q(-8) q(-8) q(16) color-mix(in srgb, var(--ss-color-white) 80%, transparent);
 
         &:hover {
             transform: translateY(q(-4));
             box-shadow:
-                q(12) q(12) q(24) rgba(163, 177, 198, 0.5),
-                q(-12) q(-12) q(24) rgba(255, 255, 255, 0.8);
+                q(12) q(12) q(24) color-mix(in srgb, var(--ss-color-gray-300) 50%, transparent),
+                q(-12) q(-12) q(24) color-mix(in srgb, var(--ss-color-white) 80%, transparent);
 
             .ss-c-diagram-container {
                 svg {
@@ -218,8 +218,8 @@
         &__category {
             display: inline-block;
             padding: q(4) q(12);
-            background: rgba(66, 153, 225, 0.15);
-            color: #3182ce;
+            background: color-mix(in srgb, var(--ss-color-accent) 15%, transparent);
+            color: var(--ss-color-accent);
             border-radius: q(20);
             font-size: q(11.2);
             font-weight: 600;
@@ -231,7 +231,7 @@
             font-family: 'TTInterphasesPro', sans-serif;
             font-size: q(17.6);
             font-weight: 600;
-            color: #2d3748;
+            color: var(--ss-color-gray-700);
             margin: 0 0 q(8);
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -239,7 +239,7 @@
 
         &__description {
             font-size: q(13.6);
-            color: #718096;
+            color: var(--ss-color-gray-400);
             line-height: 1.5;
             margin: 0;
         }
@@ -247,7 +247,7 @@
 
     // -- diagram-container  (from site-lovelacelabs_ai/src/static/scss/app/_diagrams.scss) --
     .ss-c-diagram-container {
-        background: #f8fafc;
+        background: var(--ss-color-gray-50);
         padding: q(16);
         cursor: pointer;
         position: relative;
@@ -255,7 +255,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-bottom: q(1) solid rgba(0, 0, 0, 0.05);
+        border-bottom: q(1) solid color-mix(in srgb, var(--ss-color-black) 5%, transparent);
 
         &::after {
             content: '🔍';
@@ -264,7 +264,7 @@
             right: q(12);
             font-size: q(16);
             opacity: 0;
-            transition: opacity 0.2s ease;
+            transition: opacity var(--ss-duration-200) ease;
         }
 
         &:hover::after {
@@ -275,7 +275,7 @@
             width: 100%;
             height: auto;
             max-height: q(280);
-            transition: transform 0.3s ease;
+            transition: transform var(--ss-duration-300) ease;
         }
     }
 
@@ -302,8 +302,8 @@
             justify-content: center;
 
             &--node {
-                background: #e2e8f0;
-                border: q(2) solid #4a5568;
+                background: var(--ss-color-gray-100);
+                border: q(2) solid var(--ss-color-gray-600);
                 border-radius: 50%;
             }
 
@@ -316,27 +316,27 @@
                     position: absolute;
                     width: 100%;
                     height: q(2);
-                    background: #4a5568;
+                    background: var(--ss-color-gray-600);
                     top: 50%;
                     transform: translateY(-50%);
                 }
             }
 
             &--layer {
-                background: #90cdf4;
-                border: q(2) solid #4299e1;
+                background: var(--ss-color-accent-tertiary);
+                border: q(2) solid var(--ss-color-accent-tertiary);
             }
 
             &--input {
-                background: #c6f6d5;
-                border: q(2) solid #48bb78;
+                background: var(--ss-color-success-bg);
+                border: q(2) solid var(--ss-color-success);
                 border-radius: 50%;
             }
         }
 
         .ss-c-legend-label {
             font-size: q(13.6);
-            color: #4a5568;
+            color: var(--ss-color-gray-600);
         }
     }
 
@@ -347,13 +347,13 @@
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: 9999;
+        z-index: var(--ss-z-toast);
         display: flex;
         align-items: center;
         justify-content: center;
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s ease;
+        transition: all var(--ss-duration-300) ease;
 
         &--open {
             opacity: 1;
@@ -370,21 +370,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: color-mix(in srgb, var(--ss-color-black) 70%, transparent);
             backdrop-filter: blur(q(4));
         }
 
         &__content {
             position: relative;
-            background: #ffffff;
+            background: var(--ss-color-white);
             border-radius: q(20);
             padding: q(32);
             max-width: 90vw;
             max-height: 90vh;
             overflow: auto;
             transform: scale(0.9);
-            transition: transform 0.3s ease;
-            box-shadow: 0 q(25) q(50) rgba(0, 0, 0, 0.3);
+            transition: transform var(--ss-duration-300) ease;
+            box-shadow: 0 q(25) q(50) color-mix(in srgb, var(--ss-color-black) 30%, transparent);
         }
 
         &__close {
@@ -394,21 +394,21 @@
             width: q(40);
             height: q(40);
             border: none;
-            background: #e8ecef;
+            background: var(--ss-color-gray-100);
             border-radius: 50%;
             font-size: q(24);
-            color: #4a5568;
+            color: var(--ss-color-gray-600);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
+            transition: all var(--ss-duration-200) ease;
             box-shadow:
-                q(3) q(3) q(6) rgba(163, 177, 198, 0.5),
-                q(-3) q(-3) q(6) rgba(255, 255, 255, 0.8);
+                q(3) q(3) q(6) color-mix(in srgb, var(--ss-color-gray-300) 50%, transparent),
+                q(-3) q(-3) q(6) color-mix(in srgb, var(--ss-color-white) 80%, transparent);
 
             &:hover {
-                background: #d8dce0;
+                background: var(--ss-color-gray-200);
                 transform: rotate(90deg);
             }
         }
@@ -524,19 +524,19 @@
         stroke-width: 2;
         stroke-dasharray: 5, 5;
         opacity: 0.5;
-        transition: all 0.3s ease;
+        transition: all var(--ss-duration-300) ease;
       }
 
       &__vertical-line {
         stroke: var(--ss-color-accent);
         stroke-width: 1;
         opacity: 0.8;
-        transition: all 0.3s ease;
+        transition: all var(--ss-duration-300) ease;
       }
 
       &__phase {
         cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all var(--ss-duration-300) var(--ss-ease-in-out);
 
         &--active {
           filter: var(--diamond-shadow-active, drop-shadow(0 #{q(10)} #{q(20)} color-mix(in srgb, var(--ss-color-black) 15%, transparent)));
@@ -560,7 +560,7 @@
       }
 
       &__shape {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all var(--ss-duration-300) var(--ss-ease-in-out);
         fill: var(--diamond-fill, transparent);
         stroke: var(--diamond-outline-color, var(--ss-color-accent));
         stroke-width: var(--diamond-outline-width, #{q(3)});
@@ -569,13 +569,13 @@
 
         &:hover {
           stroke-width: q(4);
-          filter: brightness(1.05) drop-shadow(0 q(4) q(12) rgba(37, 99, 235, 0.3));
+          filter: brightness(1.05) drop-shadow(0 q(4) q(12) color-mix(in srgb, var(--ss-color-info) 30%, transparent));
         }
       }
 
       &__interactive {
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all var(--ss-duration-300) ease;
 
         &:hover {
           r: 75;
@@ -587,7 +587,7 @@
         font-size: q(18);
         font-weight: 600;
         fill: var(--ss-color-text-primary);
-        transition: all 0.3s ease;
+        transition: all var(--ss-duration-300) ease;
         letter-spacing: q(0.5);
         pointer-events: none;
 
@@ -602,10 +602,10 @@
         border-radius: q(8);
         padding: q(16);
         max-width: q(300);
-        box-shadow: 0 q(20) q(25) q(-5) rgba(0, 0, 0, 0.1), 0 q(10) q(10) q(-5) rgba(0, 0, 0, 0.04);
-        z-index: 1000;
+        box-shadow: 0 q(20) q(25) q(-5) color-mix(in srgb, var(--ss-color-black) 10%, transparent), 0 q(10) q(10) q(-5) color-mix(in srgb, var(--ss-color-black) 4%, transparent);
+        z-index: var(--ss-z-dropdown);
         pointer-events: none;
-        animation: tooltip-fade-in 0.2s ease-out;
+        animation: tooltip-fade-in var(--ss-duration-200) ease-out;
         border-left: q(4) solid;
 
         @media (max-width: q(768)) {
@@ -695,13 +695,13 @@
 
     // -- double_diamond__line  (from site-starling_studio/src/static/scss/app/_studio.scss) --
     .ss-c-double_diamond__line {
-        stroke: var(--ss-color-border, #e0e0e0);
+        stroke: var(--ss-color-border);
         stroke-width: 1;
     }
 
     // -- double_diamond__vertical-line  (from site-starling_studio/src/static/scss/app/_studio.scss) --
     .ss-c-double_diamond__vertical-line {
-        stroke: var(--ss-color-border, #e0e0e0);
+        stroke: var(--ss-color-border);
         stroke-width: 1;
         stroke-dasharray: 4 4;
     }
@@ -711,22 +711,22 @@
         fill: none;
         stroke-width: 2;
         opacity: 0.8;
-        transition: opacity 0.2s ease, fill 0.2s ease;
+        transition: opacity var(--ss-duration-200) ease, fill var(--ss-duration-200) ease;
 
         &--discover {
-            stroke: var(--phase-discover-color, #008fbf);
+            stroke: var(--phase-discover-color, var(--ss-color-accent));
         }
 
         &--define {
-            stroke: var(--phase-define-color, #00a896);
+            stroke: var(--phase-define-color, var(--ss-color-success));
         }
 
         &--develop {
-            stroke: var(--phase-develop-color, #f77f00);
+            stroke: var(--phase-develop-color, var(--ss-color-warning));
         }
 
         &--deliver {
-            stroke: var(--phase-deliver-color, #d62828);
+            stroke: var(--phase-deliver-color, var(--ss-color-error));
         }
     }
 
@@ -751,7 +751,7 @@
 
     // -- double_diamond__interactive  (from site-starling_studio/src/static/scss/app/_studio.scss) --
     .ss-c-double_diamond__interactive {
-        transition: r 0.2s ease, filter 0.2s ease;
+        transition: r var(--ss-duration-200) ease, filter var(--ss-duration-200) ease;
         cursor: pointer;
 
         &:hover {
@@ -790,7 +790,7 @@
             font-size: q(14);
             line-height: 1.5;
             white-space: pre;
-            color: #525252;
+            color: var(--ss-color-gray-600);
         }
     }
 }

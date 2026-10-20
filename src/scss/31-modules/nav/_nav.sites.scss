@@ -41,7 +41,7 @@
 
     // -- nav-brand  (from site-scape_ventures/src/static/scss/layout/_header.scss) --
     .ss-c-nav-brand {
-        z-index: 1001;
+        z-index: calc(var(--ss-z-dropdown) + 1);
     }
 
     // -- nav-toggle  (from site-scape_ventures/src/static/scss/layout/_header.scss) --
@@ -53,7 +53,7 @@
         width: q(44);
         height: q(44);
         gap: q(5);
-        z-index: 1001;
+        z-index: calc(var(--ss-z-dropdown) + 1);
 
         @media (min-width: map.get(breakpoints.$ss-breakpoints, "lg")) {
             display: none;
@@ -175,7 +175,7 @@
         color: inherit;
         text-decoration: none;
         opacity: 0.5;
-        transition: opacity 0.3s ease;
+        transition: opacity var(--ss-duration-300) ease;
 
         &:hover {
             opacity: 0.8;

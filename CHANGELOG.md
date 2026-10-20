@@ -45,6 +45,20 @@ Target: `v1.0.0` — cross-repo alignment with
   `ss-c-lead`, `ss-c-pill`, `ss-c-icon`, `ss-c-frame_main*`,
   `ss-c-ribbon__nav*`, ...), the native rule is canonical and the site
   declarations are dropped, including a few `!important` ribbon overrides.
+- The site partials (`31-modules/*/_*.sites.scss`) read tokens instead
+  of the sites' literals: 591 colours (hex, `rgb()`/`rgba()` and named
+  `white`/`black`) moved onto `--ss-color-*` (neutrals onto the gray /
+  white / black palette, chromatic colours onto the accent / info /
+  success / warning / error families, tints via `color-mix()`), 135 dead
+  `var(--ss-color-*, #hex)` fallbacks were dropped, 295 durations moved
+  onto `--ss-duration-*` (values above 1s as
+  `calc(var(--ss-duration-1000) * n)`), 18 `cubic-bezier()` curves onto
+  `--ss-ease-*` and 25 z-indexes onto `--ss-z-*`. Values snap to the
+  nearest native step (e.g. `#525252` to gray-600, 0.6s to 500ms,
+  z-index 9999 to `--ss-z-toast`), so some site colours and timings shift
+  slightly, and chromatic site colours now follow the dark theme. The
+  stylelint warning override for these files is gone and 375 stale
+  `ssx-baseline.json` entries are removed.
 
 ### Deprecated
 

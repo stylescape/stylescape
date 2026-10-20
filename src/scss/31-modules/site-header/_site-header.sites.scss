@@ -35,7 +35,7 @@
         top: 0;
         left: 0;
         right: 0;
-        z-index: 1000;
+        z-index: var(--ss-z-dropdown);
         background: var(--ss-color-white);
         border-bottom: q(1) solid var(--ss-color-primary);
         transition: all var(--ss-duration-300) ease;
@@ -47,7 +47,7 @@
         top: -100%;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 9999;
+        z-index: var(--ss-z-toast);
         padding: var(--ss-spacing-3) var(--ss-spacing-6);
         background-color: var(--ss-color-primary);
         color: var(--ss-color-white);
@@ -55,7 +55,7 @@
         font-weight: var(--ss-font-weight-semibold);
         text-decoration: none;
         border-radius: 0 0 var(--ss-spacing-1) var(--ss-spacing-1);
-        transition: top 0.2s ease;
+        transition: top var(--ss-duration-200) ease;
 
         &:focus {
             top: 0;
@@ -70,7 +70,7 @@
         top: 0;
         left: 0;
         right: 0;
-        z-index: 100;
+        z-index: var(--ss-z-navbar);
         padding: var(--ss-spacing-5) 0;
         background-color: var(--ss-color-white);
         border-bottom: q(1) solid transparent;
@@ -441,7 +441,7 @@
       }
 
       &.active {
-        background: rgba(59, 130, 246, 0.1);
+        background: color-mix(in srgb, var(--ss-color-accent) 10%, transparent);
         color: var(--ss-color-accent);
         font-weight: 500;
       }
@@ -540,7 +540,7 @@
     // -- site-header--scrolled  (from site-matter_tech/src/static/scss/layout/_header.scss) --
     .ss-c-site-header--scrolled {
         &::after {
-            background-color: var(--ss-color-border, #e5e5e5);
+            background-color: var(--ss-color-border);
         }
     }
 
@@ -575,7 +575,7 @@
         display: flex;
         align-items: center;
         text-decoration: none;
-        color: #ffffff;
+        color: var(--ss-color-white);
         transition: opacity var(--ss-duration-150) ease;
 
         &:hover {
@@ -598,7 +598,7 @@
     .ss-c-site-header__home-link {
         font-size: unset;
         font-weight: unset;
-        color: #ffffff;
+        color: var(--ss-color-white);
         text-decoration: none;
         transition: opacity var(--ss-duration-150) ease;
 
@@ -629,7 +629,7 @@
     .ss-c-site-header__menu-toggle-text {
         font-size: unset;
         font-weight: unset;
-        color: #ffffff;
+        color: var(--ss-color-white);
         transition: opacity var(--ss-duration-150) ease;
 
         .ss-c-site-header__menu-toggle:hover & {
@@ -650,7 +650,7 @@
             display: block;
             width: 100%;
             height: q(2);
-            background-color: #ffffff;
+            background-color: var(--ss-color-white);
             transition: opacity var(--ss-duration-150) ease;
         }
 
@@ -664,7 +664,7 @@
         position: fixed;
         inset: 0;
         z-index: unset;
-        background-color: var(--ss-color-fill, #ffffff);
+        background-color: var(--ss-color-fill);
         display: flex;
         flex-direction: column;
         opacity: 0;
@@ -729,7 +729,7 @@
         display: flex;
         align-items: center;
         text-decoration: none;
-        color: var(--ss-color-text, #1a1a1a);
+        color: var(--ss-color-text);
         transition: opacity var(--ss-duration-150) ease;
 
         &:hover {
@@ -752,7 +752,7 @@
     .ss-c-site-menu__home-link {
         font-size: unset;
         font-weight: unset;
-        color: var(--ss-color-text, #1a1a1a);
+        color: var(--ss-color-text);
         text-decoration: none;
         transition: opacity var(--ss-duration-150) ease;
 
@@ -777,7 +777,7 @@
     .ss-c-site-menu__close-text {
         font-size: unset;
         font-weight: unset;
-        color: var(--ss-color-text, #1a1a1a);
+        color: var(--ss-color-text);
         transition: opacity var(--ss-duration-150) ease;
 
         .ss-c-site-menu__close:hover & {
@@ -798,7 +798,7 @@
             position: absolute;
             width: 100%;
             height: q(2);
-            background-color: var(--ss-color-text, #1a1a1a);
+            background-color: var(--ss-color-text);
             transition: opacity var(--ss-duration-150) ease;
 
             &:first-child {
@@ -856,7 +856,7 @@
         font-weight: var(--ss-font-weight-semibold);
         line-height: var(--ss-leading-none);
         letter-spacing: var(--ss-tracking-tighter);
-        color: var(--ss-color-text, #1a1a1a);
+        color: var(--ss-color-text);
         text-decoration: none;
         transition: opacity var(--ss-duration-150) ease;
 

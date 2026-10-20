@@ -46,9 +46,9 @@
             q(8) q(8) q(16) unset,
             q(-8) q(-8) q(16) unset,
             inset q(2) q(2) q(4) unset,
-            inset q(-2) q(-2) q(4) rgba(163, 177, 198, 0.3);
+            inset q(-2) q(-2) q(4) color-mix(in srgb, var(--ss-color-gray-300) 30%, transparent);
 
-        transition: all 0.3s ease;
+        transition: all var(--ss-duration-300) ease;
 
         &:hover {
             box-shadow:
@@ -83,7 +83,7 @@
         width: 100%;
         height: 100%;
         display: block;
-        transition: opacity 0.5s ease;
+        transition: opacity var(--ss-duration-500) ease;
     }
 
     // -- visual--neural  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
@@ -91,7 +91,7 @@
         .ss-c-neural__connection {
             opacity: 0.3;
             stroke-dasharray: 5 5;
-            animation: neural-pulse 300ms infinite ease-in-out;
+            animation: neural-pulse var(--ss-duration-300) infinite ease-in-out;
 
             // (stripped @for block)
 
@@ -99,16 +99,16 @@
 
         .ss-c-neural__node {
             transform-origin: center;
-            animation: node-breathe 200ms infinite ease-in-out;
+            animation: node-breathe var(--ss-duration-200) infinite ease-in-out;
 
             &--input {
                 animation-delay: 0s;
             }
             &--hidden {
-                animation-delay: 0.5s;
+                animation-delay: var(--ss-duration-500);
             }
             &--output {
-                animation-delay: 1s;
+                animation-delay: var(--ss-duration-1000);
             }
         }
     }
@@ -117,21 +117,21 @@
     .ss-c-visual--core {
         .ss-c-core__ring {
             transform-origin: center;
-            animation: ring-pulse 300ms infinite ease-in-out;
+            animation: ring-pulse var(--ss-duration-300) infinite ease-in-out;
 
             &--1 { animation-delay: 0s; }
-            &--2 { animation-delay: 0.5s; }
-            &--3 { animation-delay: 1s; }
-            &--4 { animation-delay: 1.5s; }
+            &--2 { animation-delay: var(--ss-duration-500); }
+            &--3 { animation-delay: var(--ss-duration-1000); }
+            &--4 { animation-delay: calc(var(--ss-duration-1000) * 1.5); }
         }
 
         .ss-c-core__center {
-            animation: core-glow 200ms infinite ease-in-out;
+            animation: core-glow var(--ss-duration-200) infinite ease-in-out;
         }
 
         .ss-c-core__particle {
-            animation: particle-orbit 300ms infinite linear;
-            animation-delay: calc(var(--particle-index, 0) * -0.5s);
+            animation: particle-orbit var(--ss-duration-300) infinite linear;
+            animation-delay: calc(var(--particle-index, 0) * calc(var(--ss-duration-500) * -1));
         }
     }
 
@@ -139,17 +139,17 @@
     .ss-c-visual--flow {
         .ss-c-flow__stream {
             stroke-dasharray: 20 10;
-            animation: flow-stream 200ms infinite linear;
+            animation: flow-stream var(--ss-duration-200) infinite linear;
 
-            &--1 { animation-duration: 3s; }
-            &--2 { animation-duration: 4s; animation-direction: reverse; }
-            &--3 { animation-duration: 5s; }
-            &--4 { animation-duration: 3.5s; animation-direction: reverse; }
-            &--5 { animation-duration: 4.5s; }
+            &--1 { animation-duration: calc(var(--ss-duration-1000) * 3); }
+            &--2 { animation-duration: calc(var(--ss-duration-1000) * 4); animation-direction: reverse; }
+            &--3 { animation-duration: calc(var(--ss-duration-1000) * 5); }
+            &--4 { animation-duration: calc(var(--ss-duration-1000) * 3.5); animation-direction: reverse; }
+            &--5 { animation-duration: calc(var(--ss-duration-1000) * 4.5); }
         }
 
         .ss-c-flow__dot {
-            animation: flow-dot 200ms infinite ease-in-out;
+            animation: flow-dot var(--ss-duration-200) infinite ease-in-out;
 
             // (stripped @for block)
 
@@ -160,8 +160,8 @@
     .ss-c-visual--hex {
         .ss-c-hex__cell {
             transform-origin: center;
-            animation: hex-pulse 300ms infinite ease-in-out;
-            animation-delay: calc(var(--hex-index, 0) * 0.15s);
+            animation: hex-pulse var(--ss-duration-300) infinite ease-in-out;
+            animation-delay: calc(var(--hex-index, 0) * var(--ss-duration-150));
             cursor: pointer;
 
             &:hover {
@@ -176,28 +176,28 @@
     .ss-c-visual--orbital {
         .ss-c-orbital__path {
             stroke-dasharray: 5 10;
-            animation: orbital-dash 300ms infinite linear;
+            animation: orbital-dash var(--ss-duration-300) infinite linear;
 
-            &--1 { animation-duration: 12s; }
-            &--2 { animation-duration: 10s; animation-direction: reverse; }
-            &--3 { animation-duration: 8s; }
+            &--1 { animation-duration: calc(var(--ss-duration-1000) * 12); }
+            &--2 { animation-duration: calc(var(--ss-duration-1000) * 10); animation-direction: reverse; }
+            &--3 { animation-duration: calc(var(--ss-duration-1000) * 8); }
         }
 
         .ss-c-orbital__sun {
-            animation: sun-pulse 200ms infinite ease-in-out;
+            animation: sun-pulse var(--ss-duration-200) infinite ease-in-out;
         }
 
         .ss-c-orbital__planet {
             transform-origin: q(200) q(200);
 
             &--1 {
-                animation: planet-orbit-1 12s infinite linear;
+                animation: planet-orbit-1 calc(var(--ss-duration-1000) * 12) infinite linear;
             }
             &--2 {
-                animation: planet-orbit-2 10s infinite linear;
+                animation: planet-orbit-2 calc(var(--ss-duration-1000) * 10) infinite linear;
             }
             &--3 {
-                animation: planet-orbit-3 8s infinite linear;
+                animation: planet-orbit-3 calc(var(--ss-duration-1000) * 8) infinite linear;
             }
         }
     }
@@ -205,18 +205,18 @@
     // -- visual--wave  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
     .ss-c-visual--wave {
         .ss-c-wave__line {
-            animation: wave-flow 200ms infinite ease-in-out;
+            animation: wave-flow var(--ss-duration-200) infinite ease-in-out;
 
             &--1 {
-                animation-duration: 3s;
+                animation-duration: calc(var(--ss-duration-1000) * 3);
             }
             &--2 {
-                animation-duration: 4s;
-                animation-delay: 0.5s;
+                animation-duration: calc(var(--ss-duration-1000) * 4);
+                animation-delay: var(--ss-duration-500);
             }
             &--3 {
-                animation-duration: 5s;
-                animation-delay: 1s;
+                animation-duration: calc(var(--ss-duration-1000) * 5);
+                animation-delay: var(--ss-duration-1000);
             }
         }
     }
@@ -226,22 +226,22 @@
         .ss-c-constellation__line {
             stroke-dasharray: 100;
             stroke-dashoffset: 100;
-            animation: constellation-draw 3s forwards ease-out;
-            animation-delay: calc(var(--line-index, 0) * 0.2s);
+            animation: constellation-draw calc(var(--ss-duration-1000) * 3) forwards ease-out;
+            animation-delay: calc(var(--line-index, 0) * var(--ss-duration-200));
         }
 
         .ss-c-constellation__star {
             transform-origin: center;
-            animation: star-twinkle 150ms infinite ease-in-out;
-            animation-delay: calc(var(--star-index, 0) * 0.3s);
+            animation: star-twinkle var(--ss-duration-150) infinite ease-in-out;
+            animation-delay: calc(var(--star-index, 0) * var(--ss-duration-300));
         }
     }
 
     // -- visual--dna  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
     .ss-c-visual--dna {
         .ss-c-dna__node {
-            animation: dna-wave 200ms infinite ease-in-out;
-            animation-delay: calc(var(--dna-index, 0) * 0.1s);
+            animation: dna-wave var(--ss-duration-200) infinite ease-in-out;
+            animation-delay: calc(var(--dna-index, 0) * var(--ss-duration-100));
 
             &--left {
                 animation-name: dna-wave-left;
@@ -252,8 +252,8 @@
         }
 
         .ss-c-dna__bridge {
-            animation: dna-bridge 200ms infinite ease-in-out;
-            animation-delay: calc(var(--dna-index, 0) * 0.1s);
+            animation: dna-bridge var(--ss-duration-200) infinite ease-in-out;
+            animation-delay: calc(var(--dna-index, 0) * var(--ss-duration-100));
         }
     }
 
@@ -262,8 +262,8 @@
         .ss-c-tree__branch {
             stroke-dasharray: 100;
             stroke-dashoffset: 100;
-            animation: tree-grow 4s forwards ease-out;
-            animation-delay: calc(var(--branch-depth, 0) * 0.5s);
+            animation: tree-grow calc(var(--ss-duration-1000) * 4) forwards ease-out;
+            animation-delay: calc(var(--branch-depth, 0) * var(--ss-duration-500));
 
             &:hover {
                 stroke: unset;
@@ -277,11 +277,11 @@
             transform-origin: center;
 
             &--1 {
-                animation: blob-morph-1 300ms infinite ease-in-out;
+                animation: blob-morph-1 var(--ss-duration-300) infinite ease-in-out;
             }
             &--2 {
-                animation: blob-morph-2 300ms infinite ease-in-out;
-                animation-delay: 1s;
+                animation: blob-morph-2 var(--ss-duration-300) infinite ease-in-out;
+                animation-delay: var(--ss-duration-1000);
             }
         }
     }
@@ -291,14 +291,14 @@
         .ss-c-circuit__path {
             stroke-dasharray: 500;
             stroke-dashoffset: 500;
-            animation: circuit-trace 3s forwards ease-out;
-            animation-delay: calc(var(--circuit-index, 0) * 0.5s);
+            animation: circuit-trace calc(var(--ss-duration-1000) * 3) forwards ease-out;
+            animation-delay: calc(var(--circuit-index, 0) * var(--ss-duration-500));
         }
 
         .ss-c-circuit__node {
             transform-origin: center;
-            animation: circuit-node-pulse 150ms infinite ease-in-out;
-            animation-delay: calc(var(--node-index, 0) * 0.1s);
+            animation: circuit-node-pulse var(--ss-duration-150) infinite ease-in-out;
+            animation-delay: calc(var(--node-index, 0) * var(--ss-duration-100));
 
             &:hover {
                 animation-play-state: paused;
@@ -313,19 +313,19 @@
 
         .ss-c-ripple__circle {
             transform-origin: center;
-            animation: ripple-expand 200ms infinite ease-out;
+            animation: ripple-expand var(--ss-duration-200) infinite ease-out;
 
             // (stripped @for block)
 
         }
 
         .ss-c-ripple__center {
-            animation: ripple-center 150ms infinite ease-in-out;
+            animation: ripple-center var(--ss-duration-150) infinite ease-in-out;
         }
 
         &:hover {
             .ss-c-ripple__circle {
-                animation-duration: 1s;
+                animation-duration: var(--ss-duration-1000);
             }
         }
     }
@@ -334,8 +334,8 @@
     .ss-c-visual--particles {
         .ss-c-particle {
             transform-origin: center;
-            animation: particle-float 300ms infinite ease-in-out;
-            animation-delay: calc(var(--particle-index, 0) * 0.1s);
+            animation: particle-float var(--ss-duration-300) infinite ease-in-out;
+            animation-delay: calc(var(--particle-index, 0) * var(--ss-duration-100));
         }
     }
 
@@ -344,23 +344,23 @@
         .ss-c-spiral__path {
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
-            animation: spiral-draw 6s infinite ease-in-out;
+            animation: spiral-draw calc(var(--ss-duration-1000) * 6) infinite ease-in-out;
 
             &--1 { animation-delay: 0s; }
-            &--2 { animation-delay: 0.5s; }
-            &--3 { animation-delay: 1s; }
+            &--2 { animation-delay: var(--ss-duration-500); }
+            &--3 { animation-delay: var(--ss-duration-1000); }
         }
 
         .ss-c-spiral__center {
-            animation: spiral-pulse 200ms infinite ease-in-out;
+            animation: spiral-pulse var(--ss-duration-200) infinite ease-in-out;
         }
     }
 
     // -- visual--matrix  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
     .ss-c-visual--matrix {
         .ss-c-matrix__cell {
-            animation: matrix-flicker 150ms infinite ease-in-out;
-            animation-delay: calc(var(--cell-index, 0) * 0.05s);
+            animation: matrix-flicker var(--ss-duration-150) infinite ease-in-out;
+            animation-delay: calc(var(--cell-index, 0) * var(--ss-duration-75));
         }
     }
 
@@ -369,15 +369,15 @@
         .ss-c-infinity__path {
             stroke-dasharray: 800;
             stroke-dashoffset: 800;
-            animation: infinity-trace 6s infinite linear;
+            animation: infinity-trace calc(var(--ss-duration-1000) * 6) infinite linear;
 
-            &--1 { animation-duration: 4s; }
-            &--2 { animation-duration: 5s; animation-delay: 0.5s; }
-            &--3 { animation-duration: 6s; animation-delay: 1s; }
+            &--1 { animation-duration: calc(var(--ss-duration-1000) * 4); }
+            &--2 { animation-duration: calc(var(--ss-duration-1000) * 5); animation-delay: var(--ss-duration-500); }
+            &--3 { animation-duration: calc(var(--ss-duration-1000) * 6); animation-delay: var(--ss-duration-1000); }
         }
 
         .ss-c-infinity__dot {
-            animation: infinity-glow 200ms infinite ease-in-out;
+            animation: infinity-glow var(--ss-duration-200) infinite ease-in-out;
         }
     }
 
@@ -385,8 +385,8 @@
     .ss-c-visual--soundwave {
         .ss-c-soundwave__bar {
             transform-origin: center bottom;
-            animation: soundwave-bounce 150ms infinite ease-in-out;
-            animation-delay: calc(var(--bar-index, 0) * 0.05s);
+            animation: soundwave-bounce var(--ss-duration-150) infinite ease-in-out;
+            animation-delay: calc(var(--bar-index, 0) * var(--ss-duration-75));
         }
     }
 
@@ -394,23 +394,23 @@
     .ss-c-visual--atomic {
         .ss-c-atomic__orbit {
             stroke-dasharray: 5 5;
-            animation: atomic-orbit-dash 3s infinite linear;
+            animation: atomic-orbit-dash calc(var(--ss-duration-1000) * 3) infinite linear;
 
             &--1 { animation-direction: normal; }
-            &--2 { animation-direction: reverse; animation-duration: 4s; }
-            &--3 { animation-duration: 5s; }
+            &--2 { animation-direction: reverse; animation-duration: calc(var(--ss-duration-1000) * 4); }
+            &--3 { animation-duration: calc(var(--ss-duration-1000) * 5); }
         }
 
         .ss-c-atomic__electron {
             transform-origin: q(200) q(200);
 
-            &--1 { animation: electron-orbit-1 3s infinite linear; }
-            &--2 { animation: electron-orbit-2 4s infinite linear; }
-            &--3 { animation: electron-orbit-3 5s infinite linear; }
+            &--1 { animation: electron-orbit-1 calc(var(--ss-duration-1000) * 3) infinite linear; }
+            &--2 { animation: electron-orbit-2 calc(var(--ss-duration-1000) * 4) infinite linear; }
+            &--3 { animation: electron-orbit-3 calc(var(--ss-duration-1000) * 5) infinite linear; }
         }
 
         .ss-c-atomic__nucleus {
-            animation: nucleus-pulse 200ms infinite ease-in-out;
+            animation: nucleus-pulse var(--ss-duration-200) infinite ease-in-out;
         }
     }
 
@@ -418,44 +418,44 @@
     .ss-c-visual--cube {
         .ss-c-cube__wireframe {
             transform-origin: center;
-            animation: cube-rotate 12s infinite linear;
+            animation: cube-rotate calc(var(--ss-duration-1000) * 12) infinite linear;
         }
 
         .ss-c-cube__edge {
             stroke-dasharray: 200;
-            animation: cube-edge-draw 4s infinite ease-in-out;
-            animation-delay: calc(var(--edge-index, 0) * 0.1s);
+            animation: cube-edge-draw calc(var(--ss-duration-1000) * 4) infinite ease-in-out;
+            animation-delay: calc(var(--edge-index, 0) * var(--ss-duration-100));
         }
 
         .ss-c-cube__vertex {
-            animation: cube-vertex-pulse 200ms infinite ease-in-out;
-            animation-delay: calc(var(--vertex-index, 0) * 0.2s);
+            animation: cube-vertex-pulse var(--ss-duration-200) infinite ease-in-out;
+            animation-delay: calc(var(--vertex-index, 0) * var(--ss-duration-200));
         }
     }
 
     // -- visual--radar  (from site-lovelacelabs_ai/src/static/scss/app/_visuals.scss) --
     .ss-c-visual--radar {
         .ss-c-radar__ring {
-            animation: radar-ring-pulse 4s infinite ease-out;
+            animation: radar-ring-pulse calc(var(--ss-duration-1000) * 4) infinite ease-out;
 
             &:nth-child(1) { animation-delay: 0s; }
-            &:nth-child(2) { animation-delay: 0.5s; }
-            &:nth-child(3) { animation-delay: 1s; }
-            &:nth-child(4) { animation-delay: 1.5s; }
+            &:nth-child(2) { animation-delay: var(--ss-duration-500); }
+            &:nth-child(3) { animation-delay: var(--ss-duration-1000); }
+            &:nth-child(4) { animation-delay: calc(var(--ss-duration-1000) * 1.5); }
         }
 
         .ss-c-radar__beam {
             transform-origin: q(200) q(200);
-            animation: radar-sweep 4s infinite linear;
+            animation: radar-sweep calc(var(--ss-duration-1000) * 4) infinite linear;
         }
 
         .ss-c-radar__blip {
-            animation: radar-blip-ping 2s infinite ease-out;
-            animation-delay: calc(var(--blip-index, 0) * 0.3s);
+            animation: radar-blip-ping var(--ss-duration-loop-slow) infinite ease-out;
+            animation-delay: calc(var(--blip-index, 0) * var(--ss-duration-300));
         }
 
         .ss-c-radar__center {
-            animation: radar-center-pulse 150ms infinite ease-in-out;
+            animation: radar-center-pulse var(--ss-duration-150) infinite ease-in-out;
         }
     }
 

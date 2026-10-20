@@ -30,7 +30,7 @@
     // -- demo  (from site-coreal_ai/src/static/scss/index.scss) --
     .ss-c-demo {
         padding: unset var(--ss-spacing-6);
-        background: #ffffff;
+        background: var(--ss-color-white);
 
         &__inner {
             display: grid;
@@ -58,7 +58,7 @@
         }
 
         &__description {
-            color: #525252;
+            color: var(--ss-color-gray-600);
             margin-bottom: unset;
         }
 
@@ -70,8 +70,8 @@
         &__window {
             width: 100%;
             max-width: q(500);
-            background: #ffffff;
-            border: q(1) solid var(--ss-color-border, #e5e5e5);
+            background: var(--ss-color-white);
+            border: q(1) solid var(--ss-color-border);
             border-radius: var(--ss-radius-none);
             overflow: hidden;
 
@@ -79,18 +79,18 @@
                 display: flex;
                 gap: unset;
                 padding: unset;
-                background: var(--ss-color-fill, #ffffff);
-                border-bottom: q(1) solid var(--ss-color-border, #e5e5e5);
+                background: var(--ss-color-fill);
+                border-bottom: q(1) solid var(--ss-color-border);
 
                 span {
                     width: q(12);
                     height: q(12);
                     border-radius: 50%;
-                    background: #737373;
+                    background: var(--ss-color-gray-500);
 
-                    &:first-child { background: #EF4444; }
-                    &:nth-child(2) { background: #F59E0B; }
-                    &:nth-child(3) { background: #10B981; }
+                    &:first-child { background: var(--ss-color-error); }
+                    &:nth-child(2) { background: var(--ss-color-warning); }
+                    &:nth-child(3) { background: var(--ss-color-success); }
                 }
             }
 
@@ -116,7 +116,7 @@
             inset: q(20);
             border: q(2) dashed color-mix(in srgb, var(--ss-color-primary) 30%, transparent);
             border-radius: var(--ss-radius-none);
-            animation: gridPulse 3s infinite;
+            animation: gridPulse calc(var(--ss-duration-1000) * 3) infinite;
         }
 
         &__cursor {
@@ -127,7 +127,7 @@
             border-radius: 50%;
             top: 50%;
             left: 30%;
-            animation: cursorMove 4s infinite;
+            animation: cursorMove calc(var(--ss-duration-1000) * 4) infinite;
         }
     }
 
@@ -143,7 +143,7 @@
       width: 100%;
       height: 100%;
       display: block;
-      filter: drop-shadow(0 q(10) q(30) rgba(59, 130, 246, 0.1));
+      filter: drop-shadow(0 q(10) q(30) color-mix(in srgb, var(--ss-color-accent) 10%, transparent));
     }
 
     // -- globe-outline  (from site-geoid_org/src/static/scss/components/_globe.scss) --
@@ -175,7 +175,7 @@
 
     // -- globe-cell  (from site-geoid_org/src/static/scss/components/_globe.scss) --
     .ss-c-globe-cell {
-      fill: rgba(59, 130, 246, 0.1);
+      fill: color-mix(in srgb, var(--ss-color-accent) 10%, transparent);
       stroke: var(--ss-color-accent);
       stroke-width: 1;
       opacity: 0.8;
@@ -183,14 +183,14 @@
 
 
       &--accent {
-        fill: rgba(59, 130, 246, 0.25);
+        fill: color-mix(in srgb, var(--ss-color-accent) 25%, transparent);
         stroke-width: 1.5;
         opacity: 1;
       }
 
       &:hover {
         opacity: 1;
-        fill: rgba(59, 130, 246, 0.35);
+        fill: color-mix(in srgb, var(--ss-color-accent) 35%, transparent);
       }
     }
 
@@ -238,8 +238,8 @@
     // -- globe-pattern  (from site-geoid_org/src/static/scss/components/_globe.scss) --
     .ss-c-globe-pattern {
       background-image:
-        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, color-mix(in srgb, var(--ss-color-accent) 10%, transparent) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, color-mix(in srgb, var(--ss-color-info) 10%, transparent) 0%, transparent 50%);
       background-size: 100% 100%;
       background-attachment: fixed;
     }
@@ -251,8 +251,8 @@
         white-space: nowrap;
         border-right: q(2) solid var(--ss-color-accent);
         animation:
-            typing 3s steps(30, end),
-            blink 0.75s step-end infinite;
+            typing calc(var(--ss-duration-1000) * 3) steps(30, end),
+            blink var(--ss-duration-700) step-end infinite;
     }
 
     // -- dh-card  (from site-lovelacelabs_ai/src/static/scss/app/_cursor.scss) --
@@ -272,14 +272,14 @@
             font-family: 'TTInterphasesPro', sans-serif;
             font-size: q(40);
             font-weight: 700;
-            color: #334155;
+            color: var(--ss-color-gray-600);
             margin-bottom: q(12);
             letter-spacing: -0.02em;
         }
 
         p {
             font-size: q(17.6);
-            color: #64748b;
+            color: var(--ss-color-gray-500);
             max-width: q(600);
             margin: 0 auto;
             line-height: 1.6;
@@ -293,11 +293,11 @@
         gap: q(32);
         padding: q(24);
         margin: 0 q(32) q(32);
-        background: #ffffff;
+        background: var(--ss-color-white);
         border-radius: q(16);
         box-shadow:
-            q(8) q(8) q(16) rgba(0,0,0,0.15),
-            q(-8) q(-8) q(16) rgba(255,255,255,0.5);
+            q(8) q(8) q(16) color-mix(in srgb, var(--ss-color-black) 15%, transparent),
+            q(-8) q(-8) q(16) color-mix(in srgb, var(--ss-color-white) 50%, transparent);
 
         @media (max-width: q(768)) {
             flex-wrap: wrap;
@@ -310,18 +310,18 @@
     .ss-c-dh-stat {
         text-align: center;
         padding: q(12) q(24);
-        background: #ffffff;
+        background: var(--ss-color-white);
         border-radius: q(12);
         box-shadow:
-            inset q(3) q(3) q(6) rgba(0,0,0,0.15),
-            inset q(-3) q(-3) q(6) rgba(255,255,255,0.5);
+            inset q(3) q(3) q(6) color-mix(in srgb, var(--ss-color-black) 15%, transparent),
+            inset q(-3) q(-3) q(6) color-mix(in srgb, var(--ss-color-white) 50%, transparent);
 
         &__value {
             display: block;
             font-family: 'TTInterphasesPro', sans-serif;
             font-size: q(24);
             font-weight: 700;
-            color: var(--ss-color-accent, #3696c1);
+            color: var(--ss-color-accent);
             margin-bottom: q(4);
         }
 
@@ -329,7 +329,7 @@
             font-size: q(12);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: #64748b;
+            color: var(--ss-color-gray-500);
         }
     }
 
@@ -351,16 +351,16 @@
     .ss-c-dh-tech-section {
         padding: q(32);
         margin: 0 q(32) q(32);
-        background: #ffffff;
+        background: var(--ss-color-white);
         border-radius: q(20);
         box-shadow:
-            q(8) q(8) q(16) rgba(0,0,0,0.15),
-            q(-8) q(-8) q(16) rgba(255,255,255,0.5);
+            q(8) q(8) q(16) color-mix(in srgb, var(--ss-color-black) 15%, transparent),
+            q(-8) q(-8) q(16) color-mix(in srgb, var(--ss-color-white) 50%, transparent);
 
         h2 {
             font-family: 'TTInterphasesPro', sans-serif;
             font-size: q(20);
-            color: #334155;
+            color: var(--ss-color-gray-600);
             margin: 0 0 q(20);
             text-align: center;
         }
@@ -383,20 +383,20 @@
 
         li {
             padding: q(8) q(16);
-            background: #ffffff;
+            background: var(--ss-color-white);
             border-radius: q(20);
             font-size: q(12.8);
-            color: #475569;
+            color: var(--ss-color-gray-600);
             box-shadow:
-                inset q(2) q(2) q(4) rgba(0,0,0,0.15),
-                inset q(-2) q(-2) q(4) rgba(255,255,255,0.5);
-            transition: all 0.2s ease;
+                inset q(2) q(2) q(4) color-mix(in srgb, var(--ss-color-black) 15%, transparent),
+                inset q(-2) q(-2) q(4) color-mix(in srgb, var(--ss-color-white) 50%, transparent);
+            transition: all var(--ss-duration-200) ease;
 
             &:hover {
-                color: var(--ss-color-accent, #3696c1);
+                color: var(--ss-color-accent);
                 box-shadow:
-                    q(3) q(3) q(6) rgba(0,0,0,0.15),
-                    q(-3) q(-3) q(6) rgba(255,255,255,0.5);
+                    q(3) q(3) q(6) color-mix(in srgb, var(--ss-color-black) 15%, transparent),
+                    q(-3) q(-3) q(6) color-mix(in srgb, var(--ss-color-white) 50%, transparent);
             }
         }
     }
@@ -405,16 +405,16 @@
     .ss-c-dh-pipeline-section {
         padding: q(32);
         margin: 0 q(32) q(48);
-        background: #ffffff;
+        background: var(--ss-color-white);
         border-radius: q(20);
         box-shadow:
-            q(8) q(8) q(16) rgba(0,0,0,0.15),
-            q(-8) q(-8) q(16) rgba(255,255,255,0.5);
+            q(8) q(8) q(16) color-mix(in srgb, var(--ss-color-black) 15%, transparent),
+            q(-8) q(-8) q(16) color-mix(in srgb, var(--ss-color-white) 50%, transparent);
 
         h2 {
             font-family: 'TTInterphasesPro', sans-serif;
             font-size: q(20);
-            color: #334155;
+            color: var(--ss-color-gray-600);
             margin: 0 0 q(24);
             text-align: center;
         }
@@ -441,27 +441,27 @@
 
         &__box {
             padding: q(12) q(20);
-            background: #ffffff;
+            background: var(--ss-color-white);
             border-radius: q(10);
             font-size: q(13.6);
             font-weight: 500;
-            color: #334155;
+            color: var(--ss-color-gray-600);
             box-shadow:
-                q(4) q(4) q(8) rgba(0,0,0,0.15),
-                q(-4) q(-4) q(8) rgba(255,255,255,0.5);
-            transition: all 0.2s ease;
+                q(4) q(4) q(8) color-mix(in srgb, var(--ss-color-black) 15%, transparent),
+                q(-4) q(-4) q(8) color-mix(in srgb, var(--ss-color-white) 50%, transparent);
+            transition: all var(--ss-duration-200) ease;
             white-space: nowrap;
 
             &:hover {
-                color: var(--ss-color-accent, #3696c1);
+                color: var(--ss-color-accent);
                 box-shadow:
-                    q(6) q(6) q(12) rgba(0,0,0,0.15),
-                    q(-6) q(-6) q(12) rgba(255,255,255,0.5);
+                    q(6) q(6) q(12) color-mix(in srgb, var(--ss-color-black) 15%, transparent),
+                    q(-6) q(-6) q(12) color-mix(in srgb, var(--ss-color-white) 50%, transparent);
             }
         }
 
         &__arrow {
-            color: #94a3b8;
+            color: var(--ss-color-gray-300);
             font-size: q(19.2);
         }
 
@@ -491,7 +491,7 @@
         flex-direction: column;
         padding: q(32);
         border-radius: q(24);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform var(--ss-duration-300) ease, box-shadow var(--ss-duration-300) ease;
 
         &:hover {
             transform: translateY(q(-4));
@@ -533,12 +533,12 @@
             font-size: q(20);
             font-weight: 600;
             margin-bottom: q(8);
-            color: #2d3748;
+            color: var(--ss-color-gray-700);
         }
 
         &__description {
             font-size: q(14.4);
-            color: #718096;
+            color: var(--ss-color-gray-400);
             margin-bottom: q(24);
             line-height: 1.5;
         }
@@ -550,10 +550,10 @@
             padding: q(12) q(24);
             font-size: q(13.6);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--ss-duration-300) ease;
 
             .ss-c-btn-icon {
-                transition: transform 0.3s ease;
+                transition: transform var(--ss-duration-300) ease;
             }
 
             &:hover .ss-c-btn-icon {
@@ -579,8 +579,8 @@
             border-radius: 50%;
             box-shadow:
                 0 0 q(20) unset,
-                inset 0 0 q(10) rgba(white, 0.3);
-            animation: orb-pulse 2s ease-in-out infinite;
+                inset 0 0 q(10) color-mix(in srgb, var(--ss-color-white) 30%, transparent);
+            animation: orb-pulse var(--ss-duration-loop-slow) ease-in-out infinite;
         }
 
         &__ring {
@@ -596,7 +596,7 @@
                 height: q(70);
                 margin: q(-35) 0 0 q(-35);
                 border-color: unset;
-                animation: ring-rotate 4s linear infinite;
+                animation: ring-rotate calc(var(--ss-duration-1000) * 4) linear infinite;
             }
 
             &--2 {
@@ -604,7 +604,7 @@
                 height: q(90);
                 margin: q(-45) 0 0 q(-45);
                 border-color: unset;
-                animation: ring-rotate 6s linear infinite reverse;
+                animation: ring-rotate calc(var(--ss-duration-1000) * 6) linear infinite reverse;
             }
 
             &--3 {
@@ -612,7 +612,7 @@
                 height: q(110);
                 margin: q(-55) 0 0 q(-55);
                 border-color: unset;
-                animation: ring-rotate 8s linear infinite;
+                animation: ring-rotate calc(var(--ss-duration-1000) * 8) linear infinite;
             }
         }
 
@@ -631,7 +631,7 @@
             background: unset;
             border-radius: 50%;
             transform: rotate(var(--particle-angle, 0deg)) translateX(q(50));
-            animation: particle-orbit 3s linear infinite;
+            animation: particle-orbit calc(var(--ss-duration-1000) * 3) linear infinite;
             animation-delay: var(--particle-delay, 0s);
         }
     }
@@ -646,7 +646,7 @@
     // -- lab-console  (from site-lovelacelabs_ai/src/static/scss/app/_lab.scss) --
     .ss-c-lab-console {
         font-family: 'TTInterphasesPro', sans-serif;
-        background: #1a1a2e;
+        background: var(--ss-color-gray-800);
         border-radius: q(16);
         overflow: hidden;
 
@@ -655,8 +655,8 @@
             align-items: center;
             gap: q(8);
             padding: q(12) q(16);
-            background: #16162a;
-            border-bottom: q(1) solid #2a2a4a;
+            background: var(--ss-color-gray-800);
+            border-bottom: q(1) solid var(--ss-color-info-foreground);
         }
 
         .ss-c-console-dot {
@@ -664,15 +664,15 @@
             height: q(12);
             border-radius: 50%;
 
-            &--red { background: #ff5f56; }
-            &--yellow { background: #ffbd2e; }
-            &--green { background: #27ca40; }
+            &--red { background: var(--ss-color-error); }
+            &--yellow { background: var(--ss-color-warning); }
+            &--green { background: var(--ss-color-success); }
         }
 
         .ss-c-console-title {
             margin-left: q(16);
             font-size: q(12);
-            color: #666;
+            color: var(--ss-color-gray-500);
         }
 
         .ss-c-console-body {
@@ -686,7 +686,7 @@
             gap: q(12);
             margin-bottom: q(12);
             font-size: q(13.6);
-            color: #888;
+            color: var(--ss-color-gray-400);
 
             &--success {
                 color: unset;
@@ -706,7 +706,7 @@
             width: q(8);
             height: q(16);
             background: unset;
-            animation: cursor-blink 1s step-end infinite;
+            animation: cursor-blink var(--ss-duration-1000) step-end infinite;
         }
     }
 
@@ -729,8 +729,8 @@
             display: inline-block;
             font-size: q(11.2);
             padding: q(5.6) q(16);
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            color: white;
+            background: linear-gradient(135deg, var(--ss-color-info), var(--ss-color-error));
+            color: var(--ss-color-white);
             border-radius: q(100);
             font-weight: 600;
             letter-spacing: 0.1em;
@@ -740,13 +740,13 @@
         &__title {
             font-size: q(32);
             font-weight: 700;
-            color: #ffffff;
+            color: var(--ss-color-white);
             margin-bottom: q(12);
         }
 
         &__description {
             font-size: q(16);
-            color: #a1a1aa;
+            color: var(--ss-color-gray-300);
             max-width: q(500);
             margin: 0 auto q(32);
         }
@@ -759,8 +759,8 @@
 
     // -- playground-chat  (from site-lovelacelabs_ai/src/static/scss/app/_playground.scss) --
     .ss-c-playground-chat {
-        background: #0f0f0f;
-        border: q(1) solid #27272a;
+        background: var(--ss-color-gray-900);
+        border: q(1) solid var(--ss-color-gray-700);
         border-radius: q(12);
         overflow: hidden;
 
@@ -783,8 +783,8 @@
                 flex-direction: row-reverse;
 
                 .ss-c-playground-chat__bubble {
-                    background: #8b5cf6;
-                    color: white;
+                    background: var(--ss-color-info);
+                    color: var(--ss-color-white);
                 }
             }
 
@@ -792,8 +792,8 @@
                 align-self: flex-start;
 
                 .ss-c-playground-chat__bubble {
-                    background: #27272a;
-                    color: #e5e5e5;
+                    background: var(--ss-color-gray-700);
+                    color: var(--ss-color-gray-200);
                 }
             }
         }
@@ -814,26 +814,26 @@
             display: flex;
             gap: q(8);
             padding: q(16);
-            border-top: q(1) solid #27272a;
-            background: #18181b;
+            border-top: q(1) solid var(--ss-color-gray-700);
+            background: var(--ss-color-gray-800);
         }
 
         &__input {
             flex: 1;
-            background: #27272a;
-            border: q(1) solid #3f3f46;
+            background: var(--ss-color-gray-700);
+            border: q(1) solid var(--ss-color-gray-600);
             border-radius: q(8);
             padding: q(12) q(16);
-            color: #e5e5e5;
+            color: var(--ss-color-gray-200);
             font-size: q(14.4);
 
             &:focus {
                 outline: none;
-                border-color: #8b5cf6;
+                border-color: var(--ss-color-info);
             }
 
             &::placeholder {
-                color: #71717a;
+                color: var(--ss-color-gray-500);
             }
         }
 
@@ -858,7 +858,7 @@
     // -- playground-demo  (from site-lovelacelabs_ai/src/static/scss/app/_playground.scss) --
     .ss-c-playground-demo {
         overflow: hidden;
-        transition: transform 0.3s ease;
+        transition: transform var(--ss-duration-300) ease;
 
         &:hover {
             transform: translateY(q(-4));
@@ -870,7 +870,7 @@
 
         &__preview {
             position: relative;
-            background: #1a1a2e;
+            background: var(--ss-color-gray-800);
             border-radius: q(8) q(8) 0 0;
             overflow: hidden;
         }
@@ -887,12 +887,12 @@
         &__overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: color-mix(in srgb, var(--ss-color-black) 50%, transparent);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity var(--ss-duration-300);
         }
 
         &__play {
@@ -904,7 +904,7 @@
             align-items: center;
             justify-content: center;
             font-size: q(20);
-            color: white;
+            color: var(--ss-color-white);
         }
 
         &__info {
@@ -932,31 +932,31 @@
             font-weight: 600;
 
             &--easy {
-                background: rgba(34, 197, 94, 0.2);
-                color: #22c55e;
+                background: color-mix(in srgb, var(--ss-color-success) 20%, transparent);
+                color: var(--ss-color-success);
             }
 
             &--medium {
-                background: rgba(234, 179, 8, 0.2);
-                color: #eab308;
+                background: color-mix(in srgb, var(--ss-color-warning) 20%, transparent);
+                color: var(--ss-color-warning);
             }
 
             &--advanced {
-                background: rgba(239, 68, 68, 0.2);
-                color: #ef4444;
+                background: color-mix(in srgb, var(--ss-color-error) 20%, transparent);
+                color: var(--ss-color-error);
             }
         }
 
         &__title {
             font-size: q(16);
             font-weight: 600;
-            color: #e5e5e5;
+            color: var(--ss-color-gray-200);
             margin-bottom: q(8);
         }
 
         &__description {
             font-size: q(12.8);
-            color: #71717a;
+            color: var(--ss-color-gray-500);
             line-height: 1.5;
             margin-bottom: q(16);
         }
@@ -990,13 +990,13 @@
             strong {
                 display: block;
                 font-size: q(14.4);
-                color: #e5e5e5;
+                color: var(--ss-color-gray-200);
                 margin-bottom: q(4);
             }
 
             p {
                 font-size: q(12.8);
-                color: #71717a;
+                color: var(--ss-color-gray-500);
                 line-height: 1.5;
             }
         }
@@ -1013,7 +1013,7 @@
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
-            background: #0a0a0f;
+            background: var(--ss-color-gray-900);
             border-radius: q(12);
             overflow: hidden;
 
@@ -1032,18 +1032,18 @@
             align-items: center;
             justify-content: center;
             gap: q(16);
-            background: #0a0a0f;
-            color: #71717a;
+            background: var(--ss-color-gray-900);
+            color: var(--ss-color-gray-500);
             font-size: q(14.4);
         }
 
         &__spinner {
             width: q(40);
             height: q(40);
-            border: q(3) solid #27272a;
+            border: q(3) solid var(--ss-color-gray-700);
             border-top-color: unset;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin var(--ss-duration-1000) linear infinite;
         }
 
         &__controls {
@@ -1059,7 +1059,7 @@
         display: flex;
         gap: q(8);
         padding: q(8);
-        background: rgba(0, 0, 0, 0.7);
+        background: color-mix(in srgb, var(--ss-color-black) 70%, transparent);
         backdrop-filter: blur(q(10));
         border-radius: q(8);
     }
@@ -1072,12 +1072,12 @@
         align-items: center;
         justify-content: center;
         font-size: q(17.6);
-        background: #1a1a2e;
-        border: q(1) solid #27272a;
-        color: #e5e5e5;
+        background: var(--ss-color-gray-800);
+        border: q(1) solid var(--ss-color-gray-700);
+        color: var(--ss-color-gray-200);
         border-radius: q(6);
         cursor: pointer;
-        transition: all 0.2s;
+        transition: all var(--ss-duration-200);
 
         &:hover {
             background: unset;
@@ -1104,7 +1104,7 @@
         text-align: left;
         cursor: pointer;
         border: q(2) solid transparent;
-        transition: all 0.3s ease;
+        transition: all var(--ss-duration-300) ease;
 
         &--active {
             border-color: unset;
@@ -1115,12 +1115,12 @@
         }
 
         &:hover:not(.ss-c-threed-scene--active) {
-            border-color: #3f3f46;
+            border-color: var(--ss-color-gray-600);
         }
 
         &__icon {
             font-size: q(32);
-            transition: transform 0.3s;
+            transition: transform var(--ss-duration-300);
         }
 
         &__info {
@@ -1130,13 +1130,13 @@
         &__title {
             font-size: q(16);
             font-weight: 600;
-            color: #e5e5e5;
+            color: var(--ss-color-gray-200);
             margin-bottom: q(4);
         }
 
         &__description {
             font-size: q(12.8);
-            color: #71717a;
+            color: var(--ss-color-gray-500);
             line-height: 1.4;
             margin-bottom: q(8);
         }
@@ -1150,17 +1150,17 @@
             letter-spacing: 0.05em;
 
             &--easy {
-                background: rgba(34, 197, 94, 0.2);
-                color: #22c55e;
+                background: color-mix(in srgb, var(--ss-color-success) 20%, transparent);
+                color: var(--ss-color-success);
             }
 
             &--medium {
-                background: rgba(234, 179, 8, 0.2);
-                color: #eab308;
+                background: color-mix(in srgb, var(--ss-color-warning) 20%, transparent);
+                color: var(--ss-color-warning);
             }
 
             &--advanced {
-                background: rgba(139, 92, 246, 0.2);
+                background: color-mix(in srgb, var(--ss-color-info) 20%, transparent);
                 color: unset;
             }
         }
@@ -1184,7 +1184,7 @@
 
         &__label {
             font-size: q(12.8);
-            color: #a1a1aa;
+            color: var(--ss-color-gray-300);
             font-weight: 500;
         }
 
@@ -1192,7 +1192,7 @@
             -webkit-appearance: none;
             width: 100%;
             height: q(6);
-            background: #27272a;
+            background: var(--ss-color-gray-700);
             border-radius: q(3);
             outline: none;
 
@@ -1203,7 +1203,7 @@
                 background: unset;
                 border-radius: 50%;
                 cursor: pointer;
-                transition: transform 0.2s;
+                transition: transform var(--ss-duration-200);
 
                 &:hover {
                     transform: scale(1.2);
@@ -1218,11 +1218,11 @@
         }
 
         &__select {
-            background: #1a1a2e;
-            border: q(1) solid #27272a;
+            background: var(--ss-color-gray-800);
+            border: q(1) solid var(--ss-color-gray-700);
             border-radius: q(6);
             padding: q(8);
-            color: #e5e5e5;
+            color: var(--ss-color-gray-200);
             font-size: q(13.6);
 
             &:focus {
@@ -1257,9 +1257,9 @@
             position: absolute;
             cursor: pointer;
             inset: 0;
-            background: #27272a;
+            background: var(--ss-color-gray-700);
             border-radius: q(12);
-            transition: 0.3s;
+            transition: var(--ss-duration-300);
 
             &::before {
                 content: '';
@@ -1268,9 +1268,9 @@
                 width: q(18);
                 left: q(3);
                 bottom: q(3);
-                background: white;
+                background: var(--ss-color-white);
                 border-radius: 50%;
-                transition: 0.3s;
+                transition: var(--ss-duration-300);
             }
         }
     }
@@ -1293,8 +1293,8 @@
         &__key {
             display: inline-block;
             padding: q(5.6) q(12);
-            background: #1a1a2e;
-            border: q(1) solid #3f3f46;
+            background: var(--ss-color-gray-800);
+            border: q(1) solid var(--ss-color-gray-600);
             border-radius: q(6);
             font-size: q(12.8);
             font-family: 'TTInterphasesPro', sans-serif;
@@ -1303,7 +1303,7 @@
 
         &__action {
             font-size: q(13.6);
-            color: #a1a1aa;
+            color: var(--ss-color-gray-300);
         }
     }
 
@@ -1315,10 +1315,10 @@
         display: flex;
         gap: q(16);
         padding: q(12) q(16);
-        background: rgba(0, 0, 0, 0.8);
+        background: color-mix(in srgb, var(--ss-color-black) 80%, transparent);
         backdrop-filter: blur(q(10));
         border-radius: q(8);
-        z-index: 100;
+        z-index: var(--ss-z-navbar);
     }
 
     // -- threed-stat  (from site-lovelacelabs_ai/src/static/scss/app/_threed.scss) --
@@ -1330,7 +1330,7 @@
 
         &__label {
             font-size: q(10.4);
-            color: #71717a;
+            color: var(--ss-color-gray-500);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -1353,6 +1353,6 @@
         font-family: "SF Mono", "Fira Code", Menlo, Monaco, monospace;
         font-size: q(14);
         line-height: 1.7;
-        color: #525252;
+        color: var(--ss-color-gray-600);
     }
 }

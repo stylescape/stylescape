@@ -54,7 +54,7 @@
             background: radial-gradient(
                 ellipse at center,
                 transparent 0%,
-                rgba(0, 0, 0, 0.1) 100%
+                color-mix(in srgb, var(--ss-color-black) 10%, transparent) 100%
             );
             pointer-events: none;
         }
@@ -102,8 +102,8 @@
 
         // Apply individual blob animations with CSS custom properties
         animation:
-            blob-float var(--blob-duration, 20s) ease-in-out infinite,
-            blob-scale calc(var(--blob-duration, 20s) * 0.7) ease-in-out infinite;
+            blob-float var(--blob-duration, calc(var(--ss-duration-1000) * 20)) ease-in-out infinite,
+            blob-scale calc(var(--blob-duration, calc(var(--ss-duration-1000) * 20)) * 0.7) ease-in-out infinite;
         animation-delay: var(--blob-delay, 0s);
 
         // Offset each blob's animation based on index
@@ -113,7 +113,7 @@
 
     // -- background-animation--dark  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
     .ss-c-background-animation--dark {
-        background: #ffffff;
+        background: var(--ss-color-white);
 
         .ss-c-background-animation__blob {
             mix-blend-mode: normal;
@@ -123,7 +123,7 @@
 
     // -- background-animation--light  (from site-lovelacelabs_ai/src/static/scss/app/_background-animation.scss) --
     .ss-c-background-animation--light {
-        background: #ffffff;
+        background: var(--ss-color-white);
 
         .ss-c-background-animation__blob {
             mix-blend-mode: normal;
@@ -135,11 +135,11 @@
     .ss-c-background-animation--gradient {
         background: linear-gradient(
             135deg,
-            #0f172a 0%,
-            #1e1b4b 25%,
-            #312e81 50%,
-            #1e1b4b 75%,
-            #0f172a 100%
+            var(--ss-color-gray-800) 0%,
+            var(--ss-color-info-foreground) 25%,
+            var(--ss-color-info) 50%,
+            var(--ss-color-info-foreground) 75%,
+            var(--ss-color-gray-800) 100%
         );
     }
 
@@ -161,7 +161,7 @@
     .ss-c-background-animation--loaded {
         .ss-c-background-animation__svg,
         .ss-c-background-animation__canvas {
-            animation: fade-in 1s ease-out forwards;
+            animation: fade-in var(--ss-duration-1000) ease-out forwards;
         }
     }
 
@@ -208,12 +208,12 @@
             width: q(400);
             background: radial-gradient(
                 circle,
-                #fff078 0%,
-                #ffba45 25%,
-                #f5735f 50%,
-                #e15c7a 70%,
-                #c06fa0 85%,
-                #b2d2eb 100%
+                var(--ss-color-warning-bg) 0%,
+                var(--ss-color-warning) 25%,
+                var(--ss-color-error) 50%,
+                var(--ss-color-error) 70%,
+                var(--ss-color-error) 85%,
+                var(--ss-color-accent-tertiary) 100%
             );
             border-radius: 50%;
             opacity: 30%;
@@ -240,8 +240,8 @@
         0deg,
         transparent,
         transparent q(2),
-        rgba(0, 0, 0, 0.03) q(2),
-        rgba(0, 0, 0, 0.03) q(4)
+        color-mix(in srgb, var(--ss-color-black) 3%, transparent) q(2),
+        color-mix(in srgb, var(--ss-color-black) 3%, transparent) q(4)
       );
     }
 
@@ -264,11 +264,11 @@
         font-size: q(14);
         line-height: 1.5;
         white-space: pre;
-        color: #525252;
+        color: var(--ss-color-gray-600);
         opacity: 0.8;
-        background: #ffffff;
+        background: var(--ss-color-white);
         padding: unset;
-        border: q(1) solid var(--ss-color-border, #e5e5e5);
+        border: q(1) solid var(--ss-color-border);
         border-radius: var(--ss-radius-none);
 
         @media (max-width: q(600)) {

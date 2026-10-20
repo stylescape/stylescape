@@ -32,7 +32,7 @@
     // -- companies  (from site-scape_group/src/static/scss/sections/_home.scss) --
     .ss-c-companies {
         padding: var(--ss-spacing-16) var(--ss-spacing-6);
-        background-color: #000000;
+        background-color: var(--ss-color-black);
 
         @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
             padding: var(--ss-spacing-24) var(--ss-spacing-8);
@@ -79,7 +79,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: var(--ss-color-text-muted, #666);
+            color: var(--ss-color-text-muted);
             margin: 0 0 q(32);
         }
 
@@ -102,7 +102,7 @@
             a {
                 text-decoration: none;
                 color: inherit;
-                transition: opacity 0.15s ease;
+                transition: opacity var(--ss-duration-150) ease;
 
                 &:hover {
                     opacity: 0.6;
@@ -142,7 +142,7 @@
             padding: var(--ss-spacing-8);
             background: var(--ss-color-surface-alt);
             border: q(1) solid var(--ss-color-border);
-            transition: all 300ms ease;
+            transition: all var(--ss-duration-300) ease;
 
             &:hover {
                 border-color: var(--ss-color-text-muted);
@@ -194,7 +194,7 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--ss-color-text-muted);
-            transition: color 200ms ease;
+            transition: color var(--ss-duration-200) ease;
 
             &:hover {
                 color: var(--ss-color-text-primary);
@@ -380,7 +380,7 @@
         display: flex;
         width: max-content;
         will-change: transform;
-        animation: partners-scroll 40s linear infinite;
+        animation: partners-scroll calc(var(--ss-duration-1000) * 40) linear infinite;
 
         &:hover {
             animation-play-state: paused;
@@ -408,7 +408,7 @@
 
         &:hover {
             border-color: var(--ss-color-accent);
-            box-shadow: 0 q(4) q(12) rgba(0, 0, 0, 0.1);
+            box-shadow: 0 q(4) q(12) color-mix(in srgb, var(--ss-color-black) 10%, transparent);
         }
 
         a {
@@ -476,26 +476,26 @@
         flex-direction: column;
 
         &--gold {
-            border-color: #d4a600;
+            border-color: var(--ss-color-warning);
 
             .ss-c-partner-level__name {
-                color: #d4a600;
+                color: var(--ss-color-warning);
             }
         }
 
         &--silver {
-            border-color: #8e8e8e;
+            border-color: var(--ss-color-gray-400);
 
             .ss-c-partner-level__name {
-                color: #8e8e8e;
+                color: var(--ss-color-gray-400);
             }
         }
 
         &--bronze {
-            border-color: #cd7f32;
+            border-color: var(--ss-color-warning);
 
             .ss-c-partner-level__name {
-                color: #cd7f32;
+                color: var(--ss-color-warning);
             }
         }
     }
@@ -695,7 +695,7 @@
         align-items: baseline;
         gap: unset;
         padding: unset 0;
-        border-bottom: q(1) solid var(--ss-color-border, #e5e5e5);
+        border-bottom: q(1) solid var(--ss-color-border);
     }
 
     // -- recognition-item__year  (from site-matter_tech/src/static/scss/sections/_section.scss) --
@@ -725,7 +725,7 @@
     // -- partner-category  (from site-matter_tech/src/static/scss/sections/_section.scss) --
     .ss-c-partner-category {
         padding: unset;
-        background-color: #f2f2f2;
+        background-color: var(--ss-color-gray-100);
     }
 
     // -- partner-category__title  (from site-matter_tech/src/static/scss/sections/_section.scss) --
@@ -742,9 +742,9 @@
 
         li {
             font-size: var(--ss-font-size-sm);
-            color: #525252;
+            color: var(--ss-color-gray-600);
             padding: unset 0;
-            border-bottom: q(1) solid #f2f2f2;
+            border-bottom: q(1) solid var(--ss-color-gray-100);
 
             &:last-child {
                 border-bottom: none;

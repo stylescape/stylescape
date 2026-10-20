@@ -68,7 +68,7 @@
         position: relative;
         aspect-ratio: 16 / 9;
         overflow: hidden;
-        color: #fff;
+        color: var(--ss-color-white);
 
         .ss-c-lb__bg {
             position: absolute;
@@ -86,8 +86,8 @@
             padding: clamp(q(16), 4vw, q(48));
             background: linear-gradient(
                 180deg,
-                rgba(0, 0, 0, 0) 40%,
-                rgba(0, 0, 0, 0.55) 100%
+                transparent 40%,
+                color-mix(in srgb, var(--ss-color-black) 55%, transparent) 100%
             );
         }
 
@@ -232,7 +232,7 @@
             grid-template-columns: q(192) 1fr;
             gap: q(16);
             padding: q(8) 0;
-            border-block-end: q(1) solid rgba(0, 0, 0, 0.08);
+            border-block-end: q(1) solid color-mix(in srgb, var(--ss-color-black) 8%, transparent);
         }
 
         dt { font-weight: 500; }
@@ -255,7 +255,7 @@
         th, td {
             padding: q(8) q(11.2);
             text-align: left;
-            border-block-end: q(1) solid rgba(0, 0, 0, 0.08);
+            border-block-end: q(1) solid color-mix(in srgb, var(--ss-color-black) 8%, transparent);
             font-weight: 400;
             vertical-align: top;
         }
@@ -276,7 +276,7 @@
     .ss-c-lb--video-file video {
         width: 100%;
         height: auto;
-        background: #000;
+        background: var(--ss-color-black);
         display: block;
     }
 
@@ -313,7 +313,7 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
             opacity: 0.6;
-            background: var(--ss-color-background, #fff);
+            background: var(--ss-color-background);
             position: relative;
             top: q(9.6);
         }
@@ -333,8 +333,8 @@
         max-width: 60ch;
         margin-inline: auto;
 
-        &.ss-c-lb--tone-info { border-color: #5b8def; }
-        &.ss-c-lb--tone-warn { border-color: #c0a040; }
+        &.ss-c-lb--tone-info { border-color: var(--ss-color-info); }
+        &.ss-c-lb--tone-warn { border-color: var(--ss-color-warning); }
 
         .ss-c-lb__title { font-size: q(16); font-weight: 500; }
     }

@@ -122,16 +122,16 @@
         &__sign {
             display: inline-block;
             font-weight: 400;
-            transition: transform 0.15s ease-out;
+            transition: transform var(--ss-duration-150) ease-out;
         }
 
         &__options {
             position: absolute;
-            z-index: 10;
+            z-index: var(--ss-z-10);
             margin-top: q(8);
             padding: q(12) q(16);
             min-width: q(192);
-            background: var(--ss-color-background, #fff);
+            background: var(--ss-color-background);
             border: q(1) solid currentColor;
             text-transform: none;
             letter-spacing: 0;
@@ -166,39 +166,39 @@
         .ss-c-filter-btn {
             padding: q(12) q(24);
             border: none;
-            background: #e8ecef;
+            background: var(--ss-color-gray-100);
             border-radius: q(12);
             font-family: 'TTInterphasesPro', sans-serif;
             font-size: q(14);
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: #4a5568;
+            color: var(--ss-color-gray-600);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--ss-duration-300) ease;
             box-shadow:
-                q(4) q(4) q(8) rgba(163, 177, 198, 0.5),
-                q(-4) q(-4) q(8) rgba(255, 255, 255, 0.8);
+                q(4) q(4) q(8) color-mix(in srgb, var(--ss-color-gray-300) 50%, transparent),
+                q(-4) q(-4) q(8) color-mix(in srgb, var(--ss-color-white) 80%, transparent);
 
             &:hover {
                 transform: translateY(q(-2));
                 box-shadow:
-                    q(6) q(6) q(12) rgba(163, 177, 198, 0.5),
-                    q(-6) q(-6) q(12) rgba(255, 255, 255, 0.8);
+                    q(6) q(6) q(12) color-mix(in srgb, var(--ss-color-gray-300) 50%, transparent),
+                    q(-6) q(-6) q(12) color-mix(in srgb, var(--ss-color-white) 80%, transparent);
             }
 
             &:active {
                 box-shadow:
-                    inset q(2) q(2) q(5) rgba(163, 177, 198, 0.5),
-                    inset q(-2) q(-2) q(5) rgba(255, 255, 255, 0.8);
+                    inset q(2) q(2) q(5) color-mix(in srgb, var(--ss-color-gray-300) 50%, transparent),
+                    inset q(-2) q(-2) q(5) color-mix(in srgb, var(--ss-color-white) 80%, transparent);
             }
 
             &--active {
-                background: linear-gradient(145deg, #d8dce0, #f0f4f8);
-                color: #2d3748;
+                background: linear-gradient(145deg, var(--ss-color-gray-200), var(--ss-color-gray-100));
+                color: var(--ss-color-gray-700);
                 box-shadow:
-                    inset q(3) q(3) q(6) rgba(163, 177, 198, 0.5),
-                    inset q(-3) q(-3) q(6) rgba(255, 255, 255, 0.8);
+                    inset q(3) q(3) q(6) color-mix(in srgb, var(--ss-color-gray-300) 50%, transparent),
+                    inset q(-3) q(-3) q(6) color-mix(in srgb, var(--ss-color-white) 80%, transparent);
 
                 &:hover {
                     transform: none;
@@ -344,14 +344,14 @@
     // -- filter-item  (from site-starling_studio/src/static/scss/_old.scss) --
     .ss-c-filter-item {
         cursor: pointer;
-        transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+        transition: color var(--ss-duration-300) ease-in-out, border-bottom var(--ss-duration-300) ease-in-out;
     }
 
     // -- filter-bar__label  (from site-starling_studio/src/static/scss/app/_filter_bar.scss) --
     .ss-c-systems-grid-section .ss-c-filter-bar__label {
         font-size: var(--filter-btn-font-size, var(--ss-font-size-sm));
         font-weight: 600;
-        color: var(--ss-color-muted, #666);
+        color: var(--ss-color-muted);
         margin-right: var(--filter-bar-gap, var(--ss-spacing-2));
     }
 
@@ -406,7 +406,7 @@
             border-bottom: q(2) solid transparent;
 
             &:hover {
-                border-bottom-color: var(--ss-color-border, #e0e0e0);
+                border-bottom-color: var(--ss-color-border);
             }
 
             &.is-active,

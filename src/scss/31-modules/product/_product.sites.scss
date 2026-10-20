@@ -142,8 +142,8 @@
         // (stripped @include)
       &--highlight {
         border-color: var(--ss-color-accent);
-        background: rgba(59, 130, 246, 0.1);
-        box-shadow: 0 0 q(20) rgba(59, 130, 246, 0.2);
+        background: color-mix(in srgb, var(--ss-color-accent) 10%, transparent);
+        box-shadow: 0 0 q(20) color-mix(in srgb, var(--ss-color-accent) 20%, transparent);
       }
 
       &__label {
@@ -208,7 +208,7 @@
     // -- material-section  (from site-matter_tech/src/static/scss/sections/_section.scss) --
     .ss-c-material-section {
         padding: unset;
-        background-color: #f2f2f2;
+        background-color: var(--ss-color-gray-100);
     }
 
     // -- material-section__title  (from site-matter_tech/src/static/scss/sections/_section.scss) --
@@ -227,9 +227,9 @@
     // -- material-list__item  (from site-matter_tech/src/static/scss/sections/_section.scss) --
     .ss-c-material-list__item {
         font-size: var(--ss-font-size-sm);
-        color: #525252;
+        color: var(--ss-color-gray-600);
         padding: unset 0;
-        border-bottom: q(1) solid #f2f2f2;
+        border-bottom: q(1) solid var(--ss-color-gray-100);
 
         &:last-child {
             border-bottom: none;
@@ -239,7 +239,7 @@
     // -- material-related  (from site-matter_tech/src/static/scss/sections/_section.scss) --
     .ss-c-material-related {
         padding-top: unset;
-        border-top: q(1) solid var(--ss-color-border, #e5e5e5);
+        border-top: q(1) solid var(--ss-color-border);
     }
 
     // -- material-related__title  (from site-matter_tech/src/static/scss/sections/_section.scss) --
@@ -265,7 +265,7 @@
         display: flex;
         flex-direction: column;
         padding: unset;
-        background-color: #f2f2f2;
+        background-color: var(--ss-color-gray-100);
         text-decoration: none;
         color: inherit;
         transition: opacity unset;
@@ -286,7 +286,7 @@
     // -- material-card__tagline  (from site-matter_tech/src/static/scss/sections/_section.scss) --
     .ss-c-material-card__tagline {
         font-size: var(--ss-font-size-xs);
-        color: #525252;
+        color: var(--ss-color-gray-600);
         text-transform: uppercase;
         letter-spacing: var(--ss-tracking-widest);
     }
@@ -757,7 +757,7 @@
 
     // -- products  (from site-starling_associates/src/static/scss/index.scss) --
     .ss-c-products {
-        border-bottom: q(1) solid var(--ss-color-border, #e5e5e5);
+        border-bottom: q(1) solid var(--ss-color-border);
         position: relative;
 
         &::before {
@@ -786,11 +786,11 @@
         flex-direction: column;
         padding: unset unset;
         transition: background unset;
-        border-bottom: q(1) solid var(--ss-color-border, #e5e5e5);
+        border-bottom: q(1) solid var(--ss-color-border);
 
         @media (min-width: q(768)) {
             border-bottom: none;
-            border-right: q(1) solid var(--ss-color-border, #e5e5e5);
+            border-right: q(1) solid var(--ss-color-border);
 
             &:last-child {
                 border-right: none;
@@ -813,7 +813,7 @@
     // -- product-icon  (from site-starling_associates/src/static/scss/index.scss) --
     .ss-c-product-icon {
         margin-bottom: unset;
-        color: #525252;
+        color: var(--ss-color-gray-600);
     }
 
     // -- product-title  (from site-starling_associates/src/static/scss/index.scss) --
@@ -826,7 +826,7 @@
     // -- product-description  (from site-starling_associates/src/static/scss/index.scss) --
     .ss-c-product-description {
         font-size: var(--ss-font-size-sm);
-        color: #525252;
+        color: var(--ss-color-gray-600);
         line-height: 1.7;
         margin-bottom: unset;
     }
@@ -841,9 +841,9 @@
         span {
             padding: unset unset;
             font-size: var(--ss-font-size-xs);
-            color: #525252;
-            background: #ffffff;
-            border: q(1) solid var(--ss-color-border, #e5e5e5);
+            color: var(--ss-color-gray-600);
+            background: var(--ss-color-white);
+            border: q(1) solid var(--ss-color-border);
             border-radius: var(--ss-radius-none);
         }
     }
@@ -853,7 +853,7 @@
         margin-top: auto;
         font-size: var(--ss-font-size-sm);
         font-weight: 500;
-        color: #525252;
+        color: var(--ss-color-gray-600);
         transition: color unset;
     }
 

@@ -34,9 +34,9 @@
         display: flex;
         flex-direction: column;
         padding: var(--ss-spacing-8);
-        background-color: #000000;
+        background-color: var(--ss-color-black);
         text-decoration: none;
-        transition: background-color 0.3s ease;
+        transition: background-color var(--ss-duration-300) ease;
         position: relative;
 
         @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
@@ -44,7 +44,7 @@
         }
 
         &:hover {
-            background-color: #111111;
+            background-color: var(--ss-color-gray-900);
 
             .ss-c-company-card__arrow {
                 transform: translate(q(4), q(-4));
@@ -97,7 +97,7 @@
             font-size: var(--ss-font-size-sm);
             color: var(--ss-color-gray-500);
             margin-top: auto;
-            transition: color 0.3s ease;
+            transition: color var(--ss-duration-300) ease;
 
             @media (min-width: map.get(breakpoints.$ss-breakpoints, "md")) {
                 font-size: var(--ss-font-size-base);
@@ -107,7 +107,7 @@
         &__arrow {
             width: q(20);
             height: q(20);
-            transition: transform 0.3s ease;
+            transition: transform var(--ss-duration-300) ease;
         }
     }
 
@@ -155,13 +155,13 @@
             width: q(120);
             height: q(120);
             border-radius: 50%;
-            border: q(3) dotted #000;
+            border: q(3) dotted var(--ss-color-black);
             padding: q(6);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--ss-color-background, #fff);
-            transition: transform 0.3s ease;
+            background: var(--ss-color-background);
+            transition: transform var(--ss-duration-300) ease;
             flex-shrink: 0;
 
             &:hover {
@@ -190,7 +190,7 @@
             letter-spacing: 0.08em;
             line-height: 1.1;
             margin: 0 0 q(2);
-            color: var(--color_text_primary, #1a1a1a);
+            color: var(--color_text_primary, var(--ss-color-gray-800));
             // Force each word to a new line
             word-spacing: 100vw;
         }
@@ -201,28 +201,28 @@
             font-style: italic;
             line-height: 1.6;
             margin: 0 0 q(2);
-            color: var(--color_text_secondary, #555);
+            color: var(--color_text_secondary, var(--ss-color-gray-600));
         }
 
         &__link {
             font-family: 'FF DIN', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif, -apple-system, sans-serif;
             font-size: q(14);
             font-weight: 500;
-            color: var(--color_accent_primary, #2d5a27);
+            color: var(--color_accent_primary, var(--ss-color-success));
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: q(1);
-            transition: color 0.2s ease;
+            transition: color var(--ss-duration-200) ease;
 
             &:hover {
-                color: var(--color_accent_secondary, #4a8c3f);
+                color: var(--color_accent_secondary, var(--ss-color-success));
                 text-decoration: underline;
             }
         }
 
         &__link-arrow {
-            transition: transform 0.2s ease;
+            transition: transform var(--ss-duration-200) ease;
         }
 
         &__link:hover &__link-arrow {
@@ -252,7 +252,7 @@
                 .ss-c-icon-card__bar {
                     width: q(2);
                     height: q(60);
-                    border-left: q(2) dotted #000;
+                    border-left: q(2) dotted var(--ss-color-black);
                 }
             }
         }
@@ -280,10 +280,10 @@
     // -- card--accent  (from site-geoid_org/src/static/scss/components/_card.scss) --
     .ss-c-card--accent {
       border-color: var(--ss-color-accent);
-      background: rgba(59, 130, 246, 0.05);
+      background: color-mix(in srgb, var(--ss-color-accent) 5%, transparent);
 
       &:hover {
-        background: rgba(59, 130, 246, 0.1);
+        background: color-mix(in srgb, var(--ss-color-accent) 10%, transparent);
       }
     }
 
@@ -326,7 +326,7 @@
         // (stripped @include)
       &:hover {
         border-color: var(--ss-color-accent);
-        background: rgba(59, 130, 246, 0.03);
+        background: color-mix(in srgb, var(--ss-color-accent) 3%, transparent);
         // (stripped @include)
         .ss-c-doc-card__title {
           color: var(--ss-color-accent);
@@ -580,24 +580,23 @@
             inset: 0;
             background: linear-gradient(
                 to top,
-                rgba(0, 0, 0, 0.3) 0%,
-                rgba(0, 0, 0, 0.2) 25%,
-                rgba(0, 0, 0, 0.1) 35%,
-                rgba(0, 0, 0, 0) 100%
+                color-mix(in srgb, var(--ss-color-black) 30%, transparent) 0%,
+                color-mix(in srgb, var(--ss-color-black) 20%, transparent) 25%,
+                color-mix(in srgb, var(--ss-color-black) 10%, transparent) 35%,
+                transparent 100%
             );
             z-index: 1;
-            transition: background 0.3s ease;
+            transition: background var(--ss-duration-300) ease;
         }
 
         // Hover effect - lighter overlay
         &:hover::before {
             background: linear-gradient(
                 to top,
-                rgba(0, 0, 0, 0.5) 0%,
-                rgba(0, 0, 0, 0.4) 25%,
-                rgba(0, 0, 0, 0.3
-                ) 35%,
-                rgba(0, 0, 0, 0.1) 100%
+                color-mix(in srgb, var(--ss-color-black) 50%, transparent) 0%,
+                color-mix(in srgb, var(--ss-color-black) 40%, transparent) 25%,
+                color-mix(in srgb, var(--ss-color-black) 30%, transparent) 35%,
+                color-mix(in srgb, var(--ss-color-black) 10%, transparent) 100%
             );
         }
 
@@ -624,7 +623,7 @@
         .ss-c-card__text p,
         .ss-c-card__content,
         .ss-c-card__content p {
-            color: #fff;
+            color: var(--ss-color-white);
         }
 
         .ss-c-card__title a {
@@ -643,10 +642,10 @@
     // -- card-horizontal  (from site-starling_studio/src/static/scss/app/_card_horizontal.scss) --
     .ss-c-card-horizontal {
         min-height: 50vh;
-        background: var(--ss-color-surface, #fff);
+        background: var(--ss-color-surface);
         overflow: hidden;
-        border: q(1) solid var(--ss-color-border, #000);
-        transition: transform 0.3s ease;
+        border: q(1) solid var(--ss-color-border);
+        transition: transform var(--ss-duration-300) ease;
 
         &:hover {
             transform: translateY(q(-2));
@@ -661,10 +660,10 @@
         h2 a {
             color: inherit;
             text-decoration: none;
-            transition: color 0.2s ease;
+            transition: color var(--ss-duration-200) ease;
 
             &:hover {
-                color: var(--ss-color-primary, #0066cc);
+                color: var(--ss-color-primary);
             }
         }
     }
@@ -702,8 +701,8 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        background-color: var(--ss-color-surface-alt, #f5f5f5);
-        transition: transform 0.5s ease;
+        background-color: var(--ss-color-surface-alt);
+        transition: transform var(--ss-duration-500) ease;
 
         // Placeholder icon
         .ss-c-i {
@@ -713,7 +712,7 @@
 
     // -- card-horizontal__systems  (from site-starling_studio/src/static/scss/app/_card_horizontal.scss) --
     .ss-c-card-horizontal__systems {
-        border-top: q(1) solid var(--ss-color-border, #e0e0e0);
+        border-top: q(1) solid var(--ss-color-border);
 
         // Remove list styling
         ul {
@@ -723,10 +722,10 @@
         // System item hover effects
         li a {
             text-decoration: none;
-            transition: transform 0.2s ease;
+            transition: transform var(--ss-duration-200) ease;
 
             span {
-                transition: text-decoration 0.2s ease;
+                transition: text-decoration var(--ss-duration-200) ease;
             }
 
             &:hover {
@@ -743,10 +742,10 @@
             pointer-events: auto;
             cursor: pointer;
             text-decoration: none;
-            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            transition: background-color var(--ss-duration-200) ease, color var(--ss-duration-200) ease, transform var(--ss-duration-200) ease;
 
             &:hover {
-                border-bottom:q(1) solid #000;
+                border-bottom:q(1) solid var(--ss-color-black);
                 transform: translateY(q(-1));
             }
         }

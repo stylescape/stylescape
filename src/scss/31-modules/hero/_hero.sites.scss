@@ -105,7 +105,7 @@
         width: 100%;
         max-width: q(400);
         color: var(--ss-color-primary);
-        animation: float 6s ease-in-out infinite;
+        animation: float calc(var(--ss-duration-1000) * 6) ease-in-out infinite;
     }
 
     // -- hero-scroll  (from site-scape_ventures/src/static/scss/sections/_hero.scss) --
@@ -120,7 +120,7 @@
         gap: var(--ss-spacing-2);
         font-size: var(--ss-font-size-xs);
         color: var(--ss-color-gray-300);
-        animation: bounce 2s ease-in-out infinite;
+        animation: bounce var(--ss-duration-loop-slow) ease-in-out infinite;
 
         svg {
             width: q(20);
@@ -205,14 +205,14 @@
             max-width: q(900);
 
             // Subtle text shadow for readability
-            text-shadow: 0 q(2) q(20) rgba(0, 0, 0, 0.3);
+            text-shadow: 0 q(2) q(20) color-mix(in srgb, var(--ss-color-black) 30%, transparent);
         }
 
         &__title {
             font-family: Georgia, serif, Georgia, "Times New Roman", serif;
             font-size: clamp(q(40), 6vw, q(64));
             font-weight: 700;
-            color: #fff;
+            color: var(--ss-color-white);
             margin: 0 0 q(4);
             line-height: 1.2;
         }
@@ -220,7 +220,7 @@
         &__tagline {
             font-family: 'FF DIN', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif, -apple-system, sans-serif;
             font-size: clamp(q(16), 2vw, q(20));
-            color: rgba(255, 255, 255, 0.9);
+            color: color-mix(in srgb, var(--ss-color-white) 90%, transparent);
             margin: 0;
             font-weight: 400;
             max-width: q(700);
@@ -238,9 +238,9 @@
             height: 100%;
             background: linear-gradient(
                 to bottom,
-                rgba(0, 0, 0, 0.2) 0%,
-                rgba(0, 0, 0, 0.4) 50%,
-                rgba(0, 0, 0, 0.3) 100%
+                color-mix(in srgb, var(--ss-color-black) 20%, transparent) 0%,
+                color-mix(in srgb, var(--ss-color-black) 40%, transparent) 50%,
+                color-mix(in srgb, var(--ss-color-black) 30%, transparent) 100%
             );
             z-index: 1;
         }
@@ -250,7 +250,7 @@
     .ss-c-page-hero {
         padding: calc(unset) var(--ss-spacing-6) unset;
         text-align: center;
-        background: #ffffff;
+        background: var(--ss-color-white);
 
         &__inner {
             max-width: q(700);
@@ -262,7 +262,7 @@
         }
 
         &__subtitle {
-            color: #525252;
+            color: var(--ss-color-gray-600);
             font-size: q(18);
         }
     }
@@ -283,7 +283,7 @@
 
     // -- hero__content  (from site-geoid_org/src/static/scss/layout/_hero.scss) --
     .ss-c-hero__content {
-      z-index: 10;
+      z-index: var(--ss-z-10);
 
       // (stripped @include block)
 
@@ -361,7 +361,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(10, 11, 13, 0.6);
+        background: color-mix(in srgb, var(--ss-color-gray-900) 60%, transparent);
         z-index: 1;
       }
 
@@ -424,7 +424,7 @@
       bottom: 0;
       background: radial-gradient(
         ellipse at 50% 0%,
-        rgba(59, 130, 246, 0.15) 0%,
+        color-mix(in srgb, var(--ss-color-accent) 15%, transparent) 0%,
         transparent 70%
       );
       pointer-events: none;
@@ -650,7 +650,7 @@
         background:
           linear-gradient(to top, var(--ss-color-background) 0%, transparent 50%),
           linear-gradient(to right, var(--ss-color-background) 0%, transparent 60%),
-          linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, transparent 50%);
+          linear-gradient(135deg, color-mix(in srgb, var(--ss-color-success) 5%, transparent) 0%, transparent 50%);
       }
 
       &__content {
@@ -786,7 +786,7 @@
         font-size: var(--ss-font-size-xs);
         letter-spacing: var(--ss-tracking-widest);
         text-transform: uppercase;
-        animation: bounce 2s infinite;
+        animation: bounce var(--ss-duration-loop-slow) infinite;
 
         svg {
           width: q(20);
@@ -804,8 +804,8 @@
         height: q(56);
         font-size: var(--ss-font-size-3xl);
         color: var(--ss-color-primary);
-        background: var(--ss-color-fill, #ffffff);
-        border: q(1) solid var(--ss-color-border, #e5e5e5);
+        background: var(--ss-color-fill);
+        border: q(1) solid var(--ss-color-border);
         border-radius: var(--ss-radius-none);
         margin-bottom: unset;
     }
@@ -813,7 +813,7 @@
     // -- hero-tagline  (from site-starling_associates/src/static/scss/index.scss) --
     .ss-c-hero-tagline {
         font-size: var(--ss-font-size-lg);
-        color: #525252;
+        color: var(--ss-color-gray-600);
         margin-bottom: unset;
 
         @media (min-width: q(768)) {
@@ -848,14 +848,14 @@
         flex-direction: column;
         justify-content: flex-end;
         padding: q(32);
-        color: #fff;
+        color: var(--ss-color-white);
     }
 
     // -- page-hero__placeholder  (from site-starling_studio/src/static/scss/app/_page_hero.scss) --
     .ss-c-page-hero__placeholder {
         position: absolute;
         inset: 0;
-        background: var(--ss-color-primary, #008fbf);
+        background: var(--ss-color-primary);
 
         // Subtle gradient for visual interest
         &::after {
@@ -865,7 +865,7 @@
             background: linear-gradient(
                 135deg,
                 transparent 0%,
-                rgba(255, 255, 255, 0.05) 50%,
+                color-mix(in srgb, var(--ss-color-white) 5%, transparent) 50%,
                 transparent 100%
             );
         }
@@ -909,8 +909,8 @@
     .ss-c-page-hero--light-overlay {
         --page-hero-overlay: linear-gradient(
             to top,
-            rgba(0, 0, 0, 0.3) 0%,
-            rgba(0, 0, 0, 0.1) 50%,
+            color-mix(in srgb, var(--ss-color-black) 30%, transparent) 0%,
+            color-mix(in srgb, var(--ss-color-black) 10%, transparent) 50%,
             transparent 100%
         );
     }
@@ -933,12 +933,12 @@
 
     // -- page-hero--dark  (from site-starling_studio/src/static/scss/app/_page_hero.scss) --
     .ss-c-page-hero--dark {
-        --page-hero-bg: var(--ss-color-gray-800, #1a1a1a);
+        --page-hero-bg: var(--ss-color-gray-800);
     }
 
     // -- page-hero--brand  (from site-starling_studio/src/static/scss/app/_page_hero.scss) --
     .ss-c-page-hero--brand {
-        --page-hero-bg: var(--ss-color-primary, #008fbf);
+        --page-hero-bg: var(--ss-color-primary);
     }
 
     // dropped `.ss-c-ribbon__menu` (site-starling_studio/src/static/scss/app/_ribbon.scss): starling_studio ribbon menu: the desktop-hide rule lost its mobile reveal in the harvest and hid every `.ss-c-ribbon__menu`
@@ -961,7 +961,7 @@
     // -- hero__subtext  (from site-zoo_foo/src/static/scss/index.scss) --
     .ss-c-hero__subtext {
         font-size: q(18);
-        color: #525252;
+        color: var(--ss-color-gray-600);
         max-width: 50ch;
     }
 

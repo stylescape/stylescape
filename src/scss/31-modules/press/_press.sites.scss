@@ -124,7 +124,7 @@
 
     // -- press-tile  (from site-scape_agency/src/static/scss/sections/_press.scss) --
     .ss-c-press-tile {
-        transition: opacity 0.2s ease-out;
+        transition: opacity var(--ss-duration-200) ease-out;
 
         &__link {
             display: flex;
@@ -139,7 +139,7 @@
             margin: 0;
             aspect-ratio: 4 / 3;
             overflow: hidden;
-            background: rgba(0, 0, 0, 0.04);
+            background: color-mix(in srgb, var(--ss-color-black) 4%, transparent);
         }
 
         &__image {
@@ -147,17 +147,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease-out;
+            transition: transform var(--ss-duration-300) ease-out;
 
             &--placeholder {
                 background:
                     linear-gradient(
                         135deg,
-                        rgba(0, 0, 0, 0.05) 25%,
+                        color-mix(in srgb, var(--ss-color-black) 5%, transparent) 25%,
                         transparent 25%,
                         transparent 50%,
-                        rgba(0, 0, 0, 0.05) 50%,
-                        rgba(0, 0, 0, 0.05) 75%,
+                        color-mix(in srgb, var(--ss-color-black) 5%, transparent) 50%,
+                        color-mix(in srgb, var(--ss-color-black) 5%, transparent) 75%,
                         transparent 75%
                     );
                 background-size: q(12) q(12);
@@ -286,7 +286,7 @@
         &:focus {
             background: currentColor;
 
-            & > * { color: var(--ss-color-background, #fff); }
+            & > * { color: var(--ss-color-background); }
         }
 
         &__count {
@@ -296,7 +296,7 @@
             min-width: 1.5em;
             padding: 0 0.4em;
             background: currentColor;
-            color: var(--ss-color-background, #fff);
+            color: var(--ss-color-background);
             font-variant-numeric: tabular-nums;
         }
     }
@@ -328,7 +328,7 @@
             font-size: q(11.2);
             cursor: pointer;
 
-            &:hover { background: rgba(0, 0, 0, 0.05); }
+            &:hover { background: color-mix(in srgb, var(--ss-color-black) 5%, transparent); }
         }
 
         &__hint {
@@ -358,7 +358,7 @@
 
     // -- press-asset  (from site-scape_agency/src/static/scss/sections/_press.scss) --
     .ss-c-press-asset {
-        transition: opacity 0.2s ease-out;
+        transition: opacity var(--ss-duration-200) ease-out;
 
         &__label {
             display: flex;
@@ -379,8 +379,8 @@
             aspect-ratio: 1 / 1;
             overflow: hidden;
             border: q(2) solid transparent;
-            background: rgba(0, 0, 0, 0.04);
-            transition: border-color 0.15s ease-out;
+            background: color-mix(in srgb, var(--ss-color-black) 4%, transparent);
+            transition: border-color var(--ss-duration-150) ease-out;
         }
 
         &__image {
@@ -393,11 +393,11 @@
                 background:
                     linear-gradient(
                         135deg,
-                        rgba(0, 0, 0, 0.05) 25%,
+                        color-mix(in srgb, var(--ss-color-black) 5%, transparent) 25%,
                         transparent 25%,
                         transparent 50%,
-                        rgba(0, 0, 0, 0.05) 50%,
-                        rgba(0, 0, 0, 0.05) 75%,
+                        color-mix(in srgb, var(--ss-color-black) 5%, transparent) 50%,
+                        color-mix(in srgb, var(--ss-color-black) 5%, transparent) 75%,
                         transparent 75%
                     );
                 background-size: q(12) q(12);
@@ -409,8 +409,8 @@
             bottom: q(6.4);
             left: q(6.4);
             padding: q(2.4) q(6.4);
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
+            background: color-mix(in srgb, var(--ss-color-black) 70%, transparent);
+            color: var(--ss-color-white);
             font-size: q(10.4);
             text-transform: uppercase;
             letter-spacing: 0.06em;
@@ -440,7 +440,7 @@
             text-transform: uppercase;
             letter-spacing: 0.06em;
             background: currentColor;
-            color: var(--ss-color-background, #fff);
+            color: var(--ss-color-background);
             align-self: flex-start;
         }
 
@@ -506,7 +506,7 @@
             align-items: center;
             gap: q(16);
             padding: q(8) 0;
-            border-block-end: q(1) solid rgba(0, 0, 0, 0.08);
+            border-block-end: q(1) solid color-mix(in srgb, var(--ss-color-black) 8%, transparent);
         }
 
         &__thumb {
@@ -514,7 +514,7 @@
             width: q(64);
             height: q(64);
             overflow: hidden;
-            background: rgba(0, 0, 0, 0.04);
+            background: color-mix(in srgb, var(--ss-color-black) 4%, transparent);
 
             img { width: 100%; height: 100%; object-fit: cover; display: block; }
         }
@@ -537,7 +537,7 @@
 
         &__warning {
             font-size: q(11.2);
-            color: #b54;
+            color: var(--ss-color-error);
         }
 
         &__remove-btn {
@@ -550,7 +550,7 @@
             line-height: 1;
             cursor: pointer;
 
-            &:hover { background: rgba(0, 0, 0, 0.05); }
+            &:hover { background: color-mix(in srgb, var(--ss-color-black) 5%, transparent); }
         }
 
         &__clear { margin-block-start: q(-8); }
@@ -619,7 +619,7 @@
 
             &.has-error input,
             &.has-error select,
-            &.has-error textarea { border-color: #c53; }
+            &.has-error textarea { border-color: var(--ss-color-error); }
         }
 
         &__terms {
@@ -640,13 +640,13 @@
 
         &__error {
             font-size: q(12);
-            color: #c53;
+            color: var(--ss-color-error);
         }
 
         &__errors {
             padding: q(8) q(11.2);
-            border: q(1) solid #c53;
-            color: #c53;
+            border: q(1) solid var(--ss-color-error);
+            color: var(--ss-color-error);
             font-size: q(13.6);
         }
     }
@@ -669,12 +669,12 @@
         cursor: pointer;
 
         &:hover,
-        &:focus { background: rgba(0, 0, 0, 0.05); }
+        &:focus { background: color-mix(in srgb, var(--ss-color-black) 5%, transparent); }
 
         &--primary {
             background: currentColor;
 
-            & { color: var(--ss-color-background, #fff); }
+            & { color: var(--ss-color-background); }
 
             &:hover, &:focus {
                 background: transparent;
@@ -683,7 +683,7 @@
         }
 
         &--ghost {
-            border-color: rgba(0, 0, 0, 0.3);
+            border-color: color-mix(in srgb, var(--ss-color-black) 30%, transparent);
         }
     }
 
@@ -696,10 +696,10 @@
     // -- press-item  (from site-matter_tech/src/static/scss/sections/_section.scss) --
     .ss-c-press-item {
         padding: unset 0;
-        border-bottom: q(1) solid var(--ss-color-border, #e5e5e5);
+        border-bottom: q(1) solid var(--ss-color-border);
 
         &:first-child {
-            border-top: q(1) solid var(--ss-color-border, #e5e5e5);
+            border-top: q(1) solid var(--ss-color-border);
         }
     }
 
@@ -724,7 +724,7 @@
     // -- press-item__excerpt  (from site-matter_tech/src/static/scss/sections/_section.scss) --
     .ss-c-press-item__excerpt {
         font-size: var(--ss-font-size-sm);
-        color: #525252;
+        color: var(--ss-color-gray-600);
         line-height: var(--ss-leading-relaxed);
         margin: 0;
         max-width: q(640);

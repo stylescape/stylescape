@@ -60,12 +60,12 @@
             overflow: hidden;
             text-decoration: none;
             color: inherit;
-            background: var(--ss-color-surface, #f5f5f5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--ss-color-surface);
+            transition: transform var(--ss-duration-300) ease, box-shadow var(--ss-duration-300) ease;
 
             &:hover {
                 transform: translateY(q(-4));
-                box-shadow: 0 q(8) q(24) rgba(0, 0, 0, 0.15);
+                box-shadow: 0 q(8) q(24) color-mix(in srgb, var(--ss-color-black) 15%, transparent);
             }
         }
 
@@ -83,13 +83,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--color_accent_primary, #2d5a27) 0%, #1a3d18 100%);
+            background: linear-gradient(135deg, var(--color_accent_primary, var(--ss-color-success)) 0%, var(--ss-color-success-foreground) 100%);
 
             span {
                 font-family: Georgia, serif, Georgia, serif;
                 font-size: q(64);
                 font-weight: 700;
-                color: rgba(255, 255, 255, 0.3);
+                color: color-mix(in srgb, var(--ss-color-white) 30%, transparent);
             }
         }
 
@@ -103,7 +103,7 @@
             font-weight: 600;
             margin: 0 0 q(1);
             line-height: 1.3;
-            color: var(--color_text_primary, #1a1a1a);
+            color: var(--color_text_primary, var(--ss-color-gray-800));
         }
 
         &__category {
@@ -111,7 +111,7 @@
             font-size: q(12);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: var(--color_text_secondary, #666);
+            color: var(--color_text_secondary, var(--ss-color-gray-500));
         }
 
         &__btn {
@@ -119,26 +119,26 @@
             width: q(40);
             height: q(40);
             border-radius: 50%;
-            border: q(1) solid var(--ss-color-border, #ddd);
-            background: var(--ss-color-background, #fff);
+            border: q(1) solid var(--ss-color-border);
+            background: var(--ss-color-background);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
+            transition: all var(--ss-duration-200) ease;
 
             span {
                 font-size: q(24);
                 line-height: 1;
-                color: var(--color_text_primary, #1a1a1a);
+                color: var(--color_text_primary, var(--ss-color-gray-800));
             }
 
             &:hover {
-                background: var(--color_accent_primary, #2d5a27);
-                border-color: var(--color_accent_primary, #2d5a27);
+                background: var(--color_accent_primary, var(--ss-color-success));
+                border-color: var(--color_accent_primary, var(--ss-color-success));
 
                 span {
-                    color: #fff;
+                    color: var(--ss-color-white);
                 }
             }
 
@@ -184,7 +184,7 @@
             grid-template-columns: 1fr;
             gap: q(4);
             padding: q(20) 0;
-            border-bottom: q(1) solid rgba(0, 0, 0, 0.12);
+            border-bottom: q(1) solid color-mix(in srgb, var(--ss-color-black) 12%, transparent);
 
             &:last-child { border-bottom: 0; }
         }
@@ -285,7 +285,7 @@
 
     // -- projects-tile  (from site-scape_agency/src/static/scss/sections/_projects.scss) --
     .ss-c-projects-tile {
-        transition: opacity 0.2s ease-out;
+        transition: opacity var(--ss-duration-200) ease-out;
 
         &__link {
             display: flex;
@@ -300,7 +300,7 @@
             margin: 0;
             aspect-ratio: 1 / 1;
             overflow: hidden;
-            background: rgba(0, 0, 0, 0.04);
+            background: color-mix(in srgb, var(--ss-color-black) 4%, transparent);
         }
 
         &__image {
@@ -308,17 +308,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease-out;
+            transition: transform var(--ss-duration-300) ease-out;
 
             &--placeholder {
                 background:
                     linear-gradient(
                         135deg,
-                        rgba(0, 0, 0, 0.05) 25%,
+                        color-mix(in srgb, var(--ss-color-black) 5%, transparent) 25%,
                         transparent 25%,
                         transparent 50%,
-                        rgba(0, 0, 0, 0.05) 50%,
-                        rgba(0, 0, 0, 0.05) 75%,
+                        color-mix(in srgb, var(--ss-color-black) 5%, transparent) 50%,
+                        color-mix(in srgb, var(--ss-color-black) 5%, transparent) 75%,
                         transparent 75%
                     );
                 background-size: q(12) q(12);
@@ -387,8 +387,8 @@
             gap: 0 q(20);
             text-decoration: none;
             padding-block: q(9.6);
-            border-bottom: q(1) solid rgba(0, 0, 0, 0.1);
-            transition: opacity 0.2s ease;
+            border-bottom: q(1) solid color-mix(in srgb, var(--ss-color-black) 10%, transparent);
+            transition: opacity var(--ss-duration-200) ease;
 
             &:hover { opacity: 0.55; }
         }
@@ -445,7 +445,7 @@
         }
 
         &__title {
-            color: #1a1a1a;
+            color: var(--ss-color-gray-800);
         }
 
         &__grid {
@@ -465,7 +465,7 @@
         position: relative;
         border-radius: 0;
         overflow: hidden;
-        background-color: #1a1a1a;
+        background-color: var(--ss-color-gray-800);
 
         &::before {
             content: '';
@@ -491,8 +491,8 @@
             bottom: 0;
             background: linear-gradient(
                 to top,
-                rgba(#1a1a1a, 0.9) 0%,
-                rgba(#1a1a1a, 0) 60%
+                color-mix(in srgb, var(--ss-color-gray-800) 90%, transparent) 0%,
+                transparent 60%
             );
             display: flex;
             flex-direction: column;
@@ -544,7 +544,7 @@
     .ss-c-project-card__image {
         aspect-ratio: 4 / 3;
         overflow: hidden;
-        background-color: #fdf8f2;
+        background-color: var(--ss-color-gray-50);
 
         img {
             width: 100%;
@@ -587,14 +587,14 @@
     // -- project-card__location  (from site-matter_tech/src/static/scss/components/_cards.scss) --
     .ss-c-project-card__location {
         font-size: var(--ss-font-size-sm);
-        color: #737373;
+        color: var(--ss-color-gray-500);
         margin: 0;
     }
 
     // -- project-card__description  (from site-matter_tech/src/static/scss/components/_cards.scss) --
     .ss-c-project-card__description {
         font-size: var(--ss-font-size-sm);
-        color: #525252;
+        color: var(--ss-color-gray-600);
         line-height: var(--ss-leading-relaxed);
         margin: unset 0 0;
     }
@@ -640,15 +640,15 @@
 
     // -- work-card  (from site-vianen_com/src/static/scss/sections/_work.scss) --
     .ss-c-work-card {
-      background: #f2f2f2;
-      border: q(1) solid var(--ss-color-border, #e5e5e5);
+      background: var(--ss-color-gray-100);
+      border: q(1) solid var(--ss-color-border);
       border-radius: var(--ss-radius-none);
       padding: unset;
       transition: transform var(--ss-duration-150) ease, border-color var(--ss-duration-150) ease;
 
       &:hover {
         transform: translateY(q(-4));
-        border-color: #737373;
+        border-color: var(--ss-color-gray-500);
       }
 
       .ss-c-work-logo {
@@ -656,13 +656,13 @@
         height: q(60);
         margin-bottom: unset;
         border-radius: var(--ss-radius-none);
-        background: var(--ss-color-fill, #ffffff);
-        border: q(1) solid var(--ss-color-border, #e5e5e5);
+        background: var(--ss-color-fill);
+        border: q(1) solid var(--ss-color-border);
         // (stripped @include)
         span {
           font-size: q(20);
           font-weight: 600;
-          color: #737373;
+          color: var(--ss-color-gray-500);
         }
 
         img {
@@ -676,17 +676,17 @@
       }
 
       p {
-        color: #737373;
+        color: var(--ss-color-gray-500);
         font-size: q(14.4);
         margin-bottom: unset;
       }
 
       .ss-c-work-link {
         font-size: q(14);
-        color: #737373;
+        color: var(--ss-color-gray-500);
 
         &:hover {
-          color: var(--ss-color-text, #1a1a1a);
+          color: var(--ss-color-text);
         }
       }
     }
