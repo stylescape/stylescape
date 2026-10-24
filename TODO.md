@@ -21,3 +21,12 @@ Done on 2026-10-10 and moved to `CHANGELOG.md` (0.5.2): sidebar `--padded`, segm
 ## Open from the 2026-10-10 fleet refresh
 
 - [ ] **Delete the stray remote tag `v0.5.0`.** Its publish build failed (npm 10 crash on a lockfile-free install) and nothing reached npm; 0.5.1 was released from the fixed workflow instead. Deleting a remote tag was left for the owner.
+
+## Bugs (sweep 2026-10-24)
+
+- [x] `src/scss/31-modules/headline/_headline.mixins.scss:78` — `font-size: var(--ss-font-size-h2)` reads a token nothing defines, so the declaration is invalid at computed time and `.ss-c-headline__text` inherits the body size. Fall back to `--ss-font-size-4xl` (the base `h2` size).
+- [x] `src/scss/21-typography/paragraph/semantic/subheader/_paragraph-subheader.config.scss:23` — the `h2` subheader `line-height` reads the undefined `--semantic-type-title--xxl-line-height` (left over from the 0.5.0 token migration). Use `--ss-leading-heading` like h3-h6.
+- [x] `src/scss/31-modules/site-helpers/_site-helpers.sites.scss:207` — `.ss-c-align--left { align-items: left }` is invalid CSS (dropped). Use `flex-start`.
+- [x] `src/scss/31-modules/card/_card.sites.scss:680` — `text-box-trim: both` is not a value of the property (`none | trim-start | trim-end | trim-both`). Use `trim-both`.
+- [x] `src/scss/31-modules/diagram/_diagram.sites.scss:581,758` — `r: 75` / `r: 10` are unitless lengths, invalid in CSS (only SVG attributes accept user units). Use `px`.
+- [x] The `*.sites.scss` partials carry 859 literal `unset` values that `gen_scapepress_parity.py` (3deef213) substituted for site Sass variables it could not resolve; 191 sat inside shorthands or lists (`padding: unset 0`, `border-left: 2px solid unset`, `top: -unset`, `box-shadow: 0 0 30px unset`, `transition: opacity unset`), which made the whole declaration invalid and silently dropped. Recovered from the site sources as of 2026-06-14 (each site's git history), then put on `--ss-spacing-*`, `--ss-color-*`, `--ss-duration-*` / `--ss-ease-*` tokens or `q()`. The bare `unset` values (valid CSS) are left as they are.

@@ -10,6 +10,25 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- `.ss-c-headline__text` reads `--ss-font-size-h2` with a `--ss-font-size-4xl`
+  fallback; the token was never defined, so the headline fell back to the
+  inherited size.
+- The `h2` subheader's `line-height` uses `--ss-leading-heading` instead of
+  the undefined `--semantic-type-title--xxl-line-height`.
+- Invalid declarations that browsers dropped: `.ss-c-align--left` uses
+  `align-items: flex-start` (was `left`), the horizontal card heading uses
+  `text-box-trim: trim-both` (was `both`), and the double-diamond hover radii
+  have units (`r: 75px` / `10px`).
+- 191 declarations in the `*.sites.scss` partials that browsers dropped as
+  invalid: the parity generator had put `unset` inside shorthands and lists
+  (`padding: unset 0`, `border: 1px solid unset`, `top: -unset`,
+  `transition: opacity unset`, gradients and shadows) wherever it could not
+  resolve a site variable. The values are recovered from the site sources as
+  of the generation date and read `--ss-spacing-*`, `--ss-color-*`,
+  `--ss-duration-*` / `--ss-ease-*` tokens or `q()`.
+
 ## [0.5.4] - 2026-10-20
 
 Target: `v1.0.0` — cross-repo alignment with
