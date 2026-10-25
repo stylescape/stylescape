@@ -61,7 +61,7 @@ npm run typecheck
 
 ## Project Structure
 
-```
+```text
 stylescape/
 ├── src/
 │   ├── scss/          # SCSS source files

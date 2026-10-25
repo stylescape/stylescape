@@ -82,7 +82,7 @@ organized.
 
 #### Directory Structure
 
-```
+```text
 head_frame/
 ├── _frame_main.scss      # Full-page 3×3 grid layout
 ├── _frame_app.scss       # Application wrapper
@@ -172,7 +172,7 @@ flowchart LR
 
 Basic UI elements that cannot be broken down further:
 
-```
+```text
 body_atoms/
 ├── buttons/          # Button, button_flipper, button_switch
 ├── inputs/           # Text, checkbox, radio, select, toggle, range
@@ -186,7 +186,7 @@ body_atoms/
 
 Atoms combined to form functional groups:
 
-```
+```text
 body_molecules/
 ├── cards/            # Card components
 ├── forms/            # Form compositions, floating labels
@@ -202,7 +202,7 @@ body_molecules/
 
 Complex components that form distinct sections:
 
-```
+```text
 body_organisms/
 ├── ribbon/           # Navigation header bar
 ├── sidebar/          # Sidebar navigation
@@ -250,7 +250,7 @@ and feel. This includes typography, colors, borders, shadows, and motion.
 
 #### Directory Structure
 
-```
+```text
 soul_type/
 ├── font/             # font-family, font-size, font-weight
 ├── text/             # text-align, text-decoration, text-transform

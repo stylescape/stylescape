@@ -12,6 +12,18 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- `bin/gen_scapepress_parity.py` is back and no longer writes `unset` for a
+  site variable it cannot resolve: it evaluates each variable with Sass in
+  the site's context (`bin/scapepress_resolve.mjs`) and puts the value on the
+  same tokens as the partials (`bin/scapepress_parity_tokens.json`). An
+  unresolved variable fails the run with its site, file and block listed
+  (`--on-unresolved=skip` comments the declaration out). The output is
+  validated, and the script only writes to a scratch `--out-dir`, never `src/`.
+
+## [0.5.5] - 2026-10-24
+
+### Fixed
+
 - `.ss-c-headline__text` reads `--ss-font-size-h2` with a `--ss-font-size-4xl`
   fallback; the token was never defined, so the headline fell back to the
   inherited size.

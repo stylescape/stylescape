@@ -1,24 +1,10 @@
-# =============================================================================
-
 # Copilot Instructions
 
-# =============================================================================
+Project-specific guidance for GitHub Copilot
 
-#
+This file is portable - copy to other repos without modification
 
-# Project-specific guidance for GitHub Copilot.
-
-# This file is portable - copy to other repos without modification.
-
-#
-
-# =============================================================================
-
-# =============================================================================
-
-# Project Context
-
-# =============================================================================
+## Project Context
 
 - Project context: This is a design framework npm package. Check `package.json`
   for package name and description.
@@ -26,24 +12,16 @@
 - Tests: Vitest tests live in `tst/` (see `vitest.config.ts`).
 - Demo app: Demo project lives in `exe/`.
 
-# =============================================================================
-
-# Commands
-
-# =============================================================================
+## Commands
 
 - Preferred commands:
-    - Install: `make install` or `npm ci`
-    - Run tests: `make test` or `npm run test:run`
-    - Lint: `make lint` or `npm run lint`
-    - Build: `make build` or `npm run build`
-    - Dev: `make start` or `npm run dev`
+  - Install: `make install` or `npm ci`
+  - Run tests: `make test` or `npm run test:run`
+  - Lint: `make lint` or `npm run lint`
+  - Build: `make build` or `npm run build`
+  - Dev: `make start` or `npm run dev`
 
-# =============================================================================
-
-# Code Style
-
-# =============================================================================
+## Code Style
 
 - Line length: 79 characters (PEP 8 / project convention)
 - SCSS: 4 spaces indent, BEM naming convention
@@ -51,11 +29,7 @@
 - Section headers: Use `// ===...===` dividers between major sections
 - Import order: external → internal → local
 
-# =============================================================================
-
-# CI Policy
-
-# =============================================================================
+## CI Policy
 
 - Keep CI lightweight: prefer PR-only workflows and avoid large matrices unless
   explicitly requested.

@@ -32,13 +32,13 @@ Simply add the `data-ss` attribute to any element to initialize a component:
 
 ### Enable Auto-Init
 
-**Option 1: Script attribute (recommended)**
+#### Option 1: Script attribute (recommended)
 
 ```html
 <script src="stylescape.js" data-ss-auto></script>
 ```
 
-**Option 2: Global flag**
+#### Option 2: Global flag
 
 ```html
 <script>
@@ -47,7 +47,7 @@ Simply add the `data-ss` attribute to any element to initialize a component:
 <script src="stylescape.js"></script>
 ```
 
-**Option 3: Manual initialization**
+#### Option 3: Manual initialization
 
 ```javascript
 import { autoStart } from "stylescape";

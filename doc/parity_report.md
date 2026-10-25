@@ -35,23 +35,23 @@ rule loss is less dramatic than raw line ratios suggest.
 
 ## PARTIAL modules (new <20% of legacy size)
 
-| Slug          | Legacy lines | New lines | Ratio | Source files                                                  |
-| ------------- | -----------: | --------: | ----: | ------------------------------------------------------------- |
-| `card`        |         4069 |       182 |    4% | _card.scss                                                    |
-| `video`       |         1565 |        65 |    4% | _video.scss, _video.scss                                      |
-| `image`       |         1352 |        80 |    6% | _image.scss, _image.scss                                      |
-| `button`      |         1169 |       225 |   19% | _button.scss, _button.scss                                    |
-| `form`        |         1057 |        96 |    9% | _form.scss                                                    |
-| `chat`        |         1037 |       148 |   14% | _chat.scss                                                    |
-| `input`       |         1004 |       152 |   15% | _input.scss, _input.scss                                      |
-| `placeholder` |          812 |       159 |   20% | _input_placeholder.scss, _placeholder.scss, _placeholder.scss |
-| `popover`     |          583 |        80 |   14% | _popover.scss, _popover.scss                                  |
-| `social`      |          568 |        99 |   17% | _social.scss                                                  |
-| `table`       |          562 |        92 |   16% | _table.scss                                                   |
-| `map`         |          512 |        69 |   13% | _map.scss                                                     |
-| `pagination`  |          483 |        89 |   18% | _pagination.scss                                              |
-| `tooltip`     |          406 |        74 |   18% | _tooltip.scss                                                 |
-| `progress`    |          276 |        53 |   19% | _status_progress.scss                                         |
+| Slug | Legacy lines | New lines | Ratio | Source files |
+| --- | ---: | ---: | ---: | --- |
+| `card` | 4069 | 182 | 4% | _card.scss |
+| `video` | 1565 | 65 | 4% | _video.scss,_video.scss |
+| `image` | 1352 | 80 | 6% | _image.scss,_image.scss |
+| `button` | 1169 | 225 | 19% | _button.scss,_button.scss |
+| `form` | 1057 | 96 | 9% | _form.scss |
+| `chat` | 1037 | 148 | 14% | _chat.scss |
+| `input` | 1004 | 152 | 15% | _input.scss,_input.scss |
+| `placeholder` | 812 | 159 | 20% | _input_placeholder.scss, _placeholder.scss,_placeholder.scss |
+| `popover` | 583 | 80 | 14% | _popover.scss,_popover.scss |
+| `social` | 568 | 99 | 17% | _social.scss |
+| `table` | 562 | 92 | 16% | _table.scss |
+| `map` | 512 | 69 | 13% | _map.scss |
+| `pagination` | 483 | 89 | 18% | _pagination.scss |
+| `tooltip` | 406 | 74 | 18% | _tooltip.scss |
+| `progress` | 276 | 53 | 19% | _status_progress.scss |
 
 ## OK modules
 

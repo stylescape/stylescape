@@ -223,18 +223,18 @@ desktop-only by construction. A's layout layer has exactly one
 
 ### Reset — behavioural differences that matter
 
-| Concern                   | A                                                                                                         | B                                                                                                                                   |
-| ------------------------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Universal margin zeroing  | targeted only                                                                                             | `* { margin:0; padding:0 }` — nukes `dl/blockquote/figure/table` too                                                                |
-| `<a>` default             | reset **then re-styled** by the typography layer                                                          | `color:inherit; text-decoration:none`, **never re-styled** — all links render as body text                                          |
-| Form appearance           | reset only; visual treatment lives in modules                                                             | **the reset paints them** (surface bg, border, radius, padding)                                                                     |
-| Vendor form normalization | full normalize.css surface (`::-moz-focus-inner`, spin buttons, `[type=search]`, `progress`, `fieldset`…) | **none**                                                                                                                            |
-| Focus                     | never kills outline; opt-in `.ss-u-focus-ring` + 13 `:focus-visible` component rules                      | **`input,select,textarea:focus { outline:none }`** replaced only by a 1px border-colour change — likely fails WCAG 2.4.11/2.4.13 |
-| Scrollbar theming         | none                                                                                                      | full cross-browser themed thin scrollbar                                                                                            |
-| `prefers-reduced-motion`  | global blanket in `33-overrides/_compatibility.scss:71-80`                                                | **none**, despite motion tokens and animated spinner/toast                                                                          |
-| Print                     | `@media print` + 10 print utilities                                                                       | **none**                                                                                                                            |
-| `color-scheme`            | **absent**                                                                                                | **absent** — gap in **both**; native scrollbars/controls stay light under dark theme                                                |
-| Blanket transition        | `transition: all .2s` on **every `<button>`** (`tags/_forms.scss:110-114`)                             | none                                                                                                                                |
+| Concern | A | B |
+| --- | --- | --- |
+| Universal margin zeroing | targeted only | `* { margin:0; padding:0 }` — nukes `dl/blockquote/figure/table` too |
+| `<a>` default | reset **then re-styled** by the typography layer | `color:inherit; text-decoration:none`, **never re-styled** — all links render as body text |
+| Form appearance | reset only; visual treatment lives in modules | **the reset paints them** (surface bg, border, radius, padding) |
+| Vendor form normalization | full normalize.css surface (`::-moz-focus-inner`, spin buttons, `[type=search]`, `progress`, `fieldset`…) | **none** |
+| Focus | never kills outline; opt-in `.ss-u-focus-ring` + 13 `:focus-visible` component rules | **`input,select,textarea:focus { outline:none }`** replaced only by a 1px border-colour change — likely fails WCAG 2.4.11/2.4.13 |
+| Scrollbar theming | none | full cross-browser themed thin scrollbar |
+| `prefers-reduced-motion` | global blanket in `33-overrides/_compatibility.scss:71-80` | **none**, despite motion tokens and animated spinner/toast |
+| Print | `@media print` + 10 print utilities | **none** |
+| `color-scheme` | **absent** | **absent** — gap in **both**; native scrollbars/controls stay light under dark theme |
+| Blanket transition | `transition: all .2s` on **every `<button>`** (`tags/_forms.scss:110-114`) | none |
 
 ### Typography
 
@@ -317,12 +317,12 @@ permanently.
 **Verified empirically in Chrome** against the live dev server, reading
 computed values off `:root`:
 
-| Token                           | `data-theme` unset  | `data-theme="dark"` | Expected dark   |
-| ------------------------------- | ------------------- | ------------------- | --------------- |
-| `--ss-color-surface`            | `#ffffff`           | **`#ffffff`** (wrong) | `#1c1c1c`       |
-| `--ss-color-text-primary`       | `#000000`           | **`#000000`** (wrong) | —               |
-| `--ss-a-shadow-sm`              | `…rgb(0 0 0 / 0.1)` | **unchanged** (wrong) | —               |
-| `--color_fill_primary` (legacy) | `#ffffff`           | `#000000` (correct) | flips correctly |
+| Token | `data-theme` unset | `data-theme="dark"` | Expected dark |
+| --- | --- | --- | --- |
+| `--ss-color-surface` | `#ffffff` | **`#ffffff`** (wrong) | `#1c1c1c` |
+| `--ss-color-text-primary` | `#000000` | **`#000000`** (wrong) | — |
+| `--ss-a-shadow-sm` | `…rgb(0 0 0 / 0.1)` | **unchanged** (wrong) | — |
+| `--color_fill_primary` (legacy) | `#ffffff` | `#000000` (correct) | flips correctly |
 
 **A has no working dark mode for its component layer.** Only the legacy
 `--color_*` vocabulary flips — and A's `31-modules` components consume

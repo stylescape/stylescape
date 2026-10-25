@@ -4,7 +4,7 @@ Centralised brand assets for all Stylescape repositories.
 
 ## Structure
 
-```
+```text
 brand/
 ├── favicon/          # Favicon files (ico, svg, png)
 ├── logo/             # Logo variations

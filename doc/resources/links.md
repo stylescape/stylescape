@@ -1,58 +1,58 @@
 # Links
 
-### CSS Frameworks
+## CSS Frameworks
 
-- https://prismic.io/blog/best-css-frameworks
+- <https://prismic.io/blog/best-css-frameworks>
 
 ### Twitter Bootstrap
 
-- https://github.com/twbs/bootstrap/tree/main/build
+- <https://github.com/twbs/bootstrap/tree/main/build>
 
 ### Milligram
 
-- https://milligram.io/typography.html
+- <https://milligram.io/typography.html>
 
 ### GitHub Primer
 
-- https://github.com/primer/css/tree/main/src
+- <https://github.com/primer/css/tree/main/src>
 
 ### Foundation
 
-- https://get.foundation/
-- https://github.com/foundation/foundation-sites
+- <https://get.foundation/>
+- <https://github.com/foundation/foundation-sites>
 
 ### Bulma
 
-- https://bulma.io/
+- <https://bulma.io/>
 
 ### Tailwind CSS
 
-- https://tailwindcss.com/
+- <https://tailwindcss.com/>
 
 ### Semantic UI
 
-- https://semantic-ui.com/
+- <https://semantic-ui.com/>
 
 ### Materialize
 
-- https://materializecss.com/
+- <https://materializecss.com/>
 
 ### UIKit
 
-- https://getuikit.com/
+- <https://getuikit.com/>
 
 ### Tachyons
 
-- https://tachyons.io/
+- <https://tachyons.io/>
 
 ### Pure.css
 
-- https://pure-css.github.io/
+- <https://pure-css.github.io/>
 
 ### Spectre
 
-- https://picturepan2.github.io/spectre/
+- <https://picturepan2.github.io/spectre/>
 
 ### Vanilla
 
-- https://vanillaframework.io/
+- <https://vanillaframework.io/>

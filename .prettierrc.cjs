@@ -116,6 +116,7 @@ module.exports = {
         {
             files: ["*.md"],
             options: {
+                tabWidth: 2,
                 proseWrap: "always",
             },
         },

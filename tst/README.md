@@ -9,7 +9,7 @@ organized by feature area mirroring the `src/ts` structure.
 
 ## Directory Structure
 
-```
+```text
 tst/
 ├── setup.ts                    # Global test setup and mocks
 ├── utils/

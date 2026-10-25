@@ -49,14 +49,14 @@ contributors, and present a unified project structure.
 A full pass over all three repos found the codebase **well ahead** of the
 checkbox state this document carried. Verified outcomes:
 
-| Phase                                | State                                  | Evidence                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ------------------------------------ | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **A** — SSX spec consolidation       | Done                                | `ssx/doc/*` carry the six-prefix contract, `ss-o-` deprecation + mapping, `variants.md`, ITCSS/BEM/OOCSS links                                                                                                                                                                                                                                                                                             |
-| **B** — Stylescape prefix alignment  | Done                                | Build compiles to 974 KB; emitted prefixes are `ss-a/c/f/l/t/u` only; **zero** `ss-o-` selectors                                                                                                                                                                                                                                                                                                           |
-| **C** — Semiosys consumer migration  | Closed (C.3/C.4 declined by design) | Migration steps done: **C.2** template blocks on `.ss-c-*`, **C.5a/b/c** `overrides/_dashboard` + `dashboard.scss` folded away, all 13 partials in `@layer ss.overrides`; build green at 1.03 MB. **C.3/C.4 trialled with before/after screenshots → regress the UI** (stylescape badges lose `--success`/`--warning` colour; buttons go dark/low-contrast) and are declined; bespoke shims kept by design |
-| **D** — Semiosys cascade-layer model | Done                                | Model + seed of all 10 layers (`0010`), FK on 3 style models (`0012`), admin + CRUD views + doc; **runtime-confirmed** (migrate + 10 seeded rows)                                                                                                                                                                                                                                                          |
-| **E** — Semiosys UX polish           | Done                                | White logo on dark navbar, flat nav (no BEM group), horizontal filters w/ right-aligned search, compact labeled pagination — **screenshot-verified**                                                                                                                                                                                                                                                       |
-| **F** — Release trinity              | Open (maintainer)                   | **F.4 done** (all three READMEs cross-link the trio). Packaging blocker **fixed + verified** (`bundleDependencies`). Remaining F.1–F.3 = version-tag + `npm publish` (outward-facing — left to maintainer, gated on explicit go-ahead)                                                                                                                                                                     |
+| Phase | State | Evidence |
+| --- | --- | --- |
+| **A** — SSX spec consolidation | Done | `ssx/doc/*` carry the six-prefix contract, `ss-o-` deprecation + mapping, `variants.md`, ITCSS/BEM/OOCSS links |
+| **B** — Stylescape prefix alignment | Done | Build compiles to 974 KB; emitted prefixes are `ss-a/c/f/l/t/u` only; **zero** `ss-o-` selectors |
+| **C** — Semiosys consumer migration | Closed (C.3/C.4 declined by design) | Migration steps done: **C.2** template blocks on `.ss-c-*`, **C.5a/b/c** `overrides/_dashboard` + `dashboard.scss` folded away, all 13 partials in `@layer ss.overrides`; build green at 1.03 MB. **C.3/C.4 trialled with before/after screenshots → regress the UI** (stylescape badges lose `--success`/`--warning` colour; buttons go dark/low-contrast) and are declined; bespoke shims kept by design |
+| **D** — Semiosys cascade-layer model | Done | Model + seed of all 10 layers (`0010`), FK on 3 style models (`0012`), admin + CRUD views + doc; **runtime-confirmed** (migrate + 10 seeded rows) |
+| **E** — Semiosys UX polish | Done | White logo on dark navbar, flat nav (no BEM group), horizontal filters w/ right-aligned search, compact labeled pagination — **screenshot-verified** |
+| **F** — Release trinity | Open (maintainer) | **F.4 done** (all three READMEs cross-link the trio). Packaging blocker **fixed + verified** (`bundleDependencies`). Remaining F.1–F.3 = version-tag + `npm publish` (outward-facing — left to maintainer, gated on explicit go-ahead) |
 
 ### Build blocker (found, root-caused, fixed + verified 2026-06-14)
 
@@ -197,14 +197,14 @@ Templates are already ~90 % migrated to `.ss-c-*`. Remaining legacy **block**
 selectors (element classes like `data-table__actions`, `pagination__link` are
 kept by current repo convention):
 
-| Legacy block in templates    | Locations                                                                     | Block `ss-c-` shim? | Action                                                                                   |
-| ---------------------------- | ----------------------------------------------------------------------------- | :-----------------: | ---------------------------------------------------------------------------------------- |
-| `.btn` / `.btn--primary`     | `partials/_list-header`, `partials/_empty-state`                              |         Yes          | **Re-prefixed** (C.2, appearance-neutral)                                                |
-| `.badge` / `.badge--info`    | `component/list.html.jinja`                                                   |         Yes          | **Re-prefixed** (C.2, appearance-neutral)                                                |
-| `.data-table` (block)        | `component/list.html.jinja`                                                   |         Yes          | **Re-prefixed** (C.2, appearance-neutral)                                                |
-| `.form` (block)              | all 13 `*/form.html.jinja` + `cascade_layer/delete` + `component_type/delete` |     (added)      | **Re-prefixed** (C.2) — `.ss-c-form { @extend .form }` block shim added to `_forms.scss` |
-| `.pagination` (block)        | `partials/_pagination.html.jinja`                                             |         Yes          | **Re-prefixed** (C.2, appearance-neutral)                                                |
-| `badge--{{size}}` parametric | `partials/_badge.html.jinja`                                                  |       partial       | **Unused partial** (no includes) — left as-is                                            |
+| Legacy block in templates | Locations | Block `ss-c-` shim? | Action |
+| --- | --- | :---: | --- |
+| `.btn` / `.btn--primary` | `partials/_list-header`, `partials/_empty-state` | Yes | **Re-prefixed** (C.2, appearance-neutral) |
+| `.badge` / `.badge--info` | `component/list.html.jinja` | Yes | **Re-prefixed** (C.2, appearance-neutral) |
+| `.data-table` (block) | `component/list.html.jinja` | Yes | **Re-prefixed** (C.2, appearance-neutral) |
+| `.form` (block) | all 13 `*/form.html.jinja` + `cascade_layer/delete` + `component_type/delete` | (added) | **Re-prefixed** (C.2) — `.ss-c-form { @extend .form }` block shim added to `_forms.scss` |
+| `.pagination` (block) | `partials/_pagination.html.jinja` | Yes | **Re-prefixed** (C.2, appearance-neutral) |
+| `badge--{{size}}` parametric | `partials/_badge.html.jinja` | partial | **Unused partial** (no includes) — left as-is |
 
 - [x] **C.1** Per-template audit produced (table above). Templates were already
       ~90 % on `.ss-c-*`; only a handful of legacy _blocks_ remained.
@@ -258,16 +258,16 @@ The shim blocks in `components/_*.scss` bridged a modifier-naming mismatch
 between semiosys templates and stylescape's `31-modules/`. The drift has now
 been resolved at the **stylescape** end (no template rewrites required):
 
-| Selector in semiosys templates | Hits | Resolution                                                                  |
-| ------------------------------ | ---: | --------------------------------------------------------------------------- |
-| `.ss-c-button--small`          |   46 | stylescape `31-modules/button` now emits `--small` as alias for `--size-sm` |
-| `.ss-c-button--large`          |   46 | likewise, `--large` is an alias for `--size-lg`                             |
-| `.ss-c-badge--info`            |    ? | stylescape `31-modules/badge` now exposes `--info` variant                  |
-| `.ss-c-badge--danger`          |    ? | stylescape `31-modules/badge` now exposes `--danger` (aliased to `--error`) |
-| `.ss-c-button--primary`        |   36 | already matched                                                          |
-| `.ss-c-button--secondary`      |   61 | already matched                                                          |
-| `.ss-c-button--danger`         |   33 | already matched                                                          |
-| `--xs/--md/--xl`               |  n/a | full set of short-form size aliases added at the same time                  |
+| Selector in semiosys templates | Hits | Resolution |
+| --- | ---: | --- |
+| `.ss-c-button--small` | 46 | stylescape `31-modules/button` now emits `--small` as alias for `--size-sm` |
+| `.ss-c-button--large` | 46 | likewise, `--large` is an alias for `--size-lg` |
+| `.ss-c-badge--info` | ? | stylescape `31-modules/badge` now exposes `--info` variant |
+| `.ss-c-badge--danger` | ? | stylescape `31-modules/badge` now exposes `--danger` (aliased to `--error`) |
+| `.ss-c-button--primary` | 36 | already matched |
+| `.ss-c-button--secondary` | 61 | already matched |
+| `.ss-c-button--danger` | 33 | already matched |
+| `--xs/--md/--xl` | n/a | full set of short-form size aliases added at the same time |
 
 See `31-modules/button/_button.output.scss:72-96` and
 `31-modules/badge/_badge.output.scss:35-42`.

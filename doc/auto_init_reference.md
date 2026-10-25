@@ -7,7 +7,7 @@
 
 ## Attribute Format
 
-```
+```text
 data-ss="{component}"                    → Initialize component
 data-ss="{component1} {component2}"      → Multiple components
 data-ss-{component}-{option}="{value}"   → Component option

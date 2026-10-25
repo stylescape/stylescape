@@ -6,7 +6,7 @@ hierarchy and functionality.
 
 ## Description
 
-```
+```text
 @mixin frame_main__area--center
 ```
 
@@ -51,7 +51,7 @@ point. This pattern follows SASS module conventions:
 
 The library follows a consistent **tier_category** naming pattern:
 
-```
+```text
 src/scss/
 ├── classes/           # CSS utility classes
 │   ├── body_atoms/

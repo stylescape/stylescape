@@ -76,26 +76,26 @@ Color & Theme Tokens • --color-background • --color-foreground •
 --color-surface-2, --color-surface-3 • --color-text-default,
 --color-text-muted, --color-text-inverse
 
-A Typography • font-family-_(e.g. sans, serif, mono) • font-size-_ (e.g. xs,
-sm, md, lg, xl) • font-weight-_(100–900 or light–bold) • line-height-_ (tight,
+A Typography • font-family-\* (e.g. sans, serif, mono) • font-size-\* (e.g. xs,
+sm, md, lg, xl) • font-weight-\* (100–900 or light–bold) • line-height-\* (tight,
 normal, loose) • text-transform (uppercase, lowercase, capitalize) •
 letter-spacing, word-spacing
 
-△ Spacing & Sizing • padding-_, margin-_, gap-_ • $q, $baseline (unit scales) •
-width-_, height-\*, max-width, min-height • Grid and flex gap units
+△ Spacing & Sizing • padding-\*, margin-\*, gap-\* • $q, $baseline (unit scales) •
+width-\*, height-\*, max-width, min-height • Grid and flex gap units
 
 ─ Layout & Position • .container, .grid, .flex • display: block | inline | flex
-| grid • justify-_, align-_, place-\* • position: relative | absolute | fixed •
+| grid • justify-\*, align-\*, place-\* • position: relative | absolute | fixed •
 z-index: z('ribbon'), z('overlay'), etc.
 
 UI Atoms • .button • .icon • .badge • .divider • .label • .checkbox, .radio,
 .input, .select
 
 ◍ Interaction • cursor: pointer • hover:, focus:, active:, disabled: states •
-transition-_, animation-_ • outline, box-shadow for focus states
+transition-\*, animation-\* • outline, box-shadow for focus states
 
-Surface & Structure • .card, .panel, .elevation-_ • border-_, border-radius-_ •
-box-shadow-_, opacity-\*
+Surface & Structure • .card, .panel, .elevation-\* • border-\*, border-radius-\* •
+box-shadow-\*, opacity-\*
 
 ⸻
 
