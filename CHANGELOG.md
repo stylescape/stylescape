@@ -10,8 +10,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.5.6] - 2026-11-14
+
 ### Fixed
 
+- The optional `icon.gl` peer is widened from `^0.0.47` to
+  `>=0.0.47 <0.2.0`, so consumers on `icon.gl` 0.0.51+ (PolyPlan ClimSim and
+  the portals) install without `ERESOLVE` / `--force`.
 - `bin/gen_scapepress_parity.py` is back and no longer writes `unset` for a
   site variable it cannot resolve: it evaluates each variable with Sass in
   the site's context (`bin/scapepress_resolve.mjs`) and puts the value on the
